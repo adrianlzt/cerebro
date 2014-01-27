@@ -1,0 +1,51 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+<h2>Generado nuevo usuario en Koala</h2>
+
+<div id="koalaError">
+{% if error %}
+	<b>Error:</b><br>
+	{% for e in error %}
+		<li>{{e}}<br>
+	{% endfor %}
+{% endif %}
+</div>
+
+{% if out %}
+	{% for o in out %}
+		{{o}}<br>
+	{% endfor %}
+{% endif %}
+<br>
+{% if not error %}
+ftp://{{usuario}}:{{password}}@ftp.es acceso ftp con la nueva cuenta.
+<br><br>
+<h3>Usuario <b>NO</b> creado</h3><br>
+    Con esta operación solo hemos generado el esqueleto de directorios necesario para el usuario.<br>
+    Dicho usuario tiene que ser creado en la máquina de ftp.es.<br>
+    Para esto <b>debemos ponernos en contacto con Jose</b>.<br>
+    Una posible plantilla podria ser:<br>
+    <br>
+    <q><br>
+    Buenas,<br>
+    <br>
+    Necesitamos crear un nuevo usuario en el servidor ftp.es, para que haga uso del espacio mapeado en el servidor ala.inet<br>
+    El nuevo usuario sera {{usuario}}.<br>
+    Su home /FTP/{{usuario}}/<br>
+    <br>
+    A falta de rellenar el nuevo UID para el usuario, creo que el comando deberia ser el siguiente:<br>
+    <br>
+    # ncftpd_passwd -f /usr/local/etc/ncftpd/pwdb/passwd.db -c -a "{{usuario}}:{{password}}:NUEVOUID:9000:Usuario fabricante ftp BLA:/FTP/{{usuario}}/:"<br>
+    <br>
+    Por favor, cuando definas el UID de este usuario, asignalo como dueño del home y del directorio upload:<br>
+    # chown NUEVOUID /FTP/{{usuario}}/<br>
+    # chown NUEVOUID /FTP/{{usuario}}/upload<br>
+    <br>
+    Muchas gracias<br>
+    </q>
+
+{% endif %}
+
+{% endblock %}

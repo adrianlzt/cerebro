@@ -1,0 +1,7 @@
+http://coreos.com/
+
+Linux for Massive Server Deployments
+CoreOS provides the tools to create and run distributed platforms
+
+
+Linux pelado, solo con systemd (demonio de arranque), etcd (servidor de clave-valor distribuido, usado para mantener una base de datos de las apps montadas), y docker (montar 'containers' con aplicaciones con todas sus librerias y necesidades integradas)

@@ -1,0 +1,1 @@
+El paquete distro-info, con sus comandos distro-info, debian-distro-info y ubuntu-distro-info nos proporciona información sobre que distribución es la estable, cual en desarrollo, cuales tiene soporte, etc.

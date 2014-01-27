@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Quality Center web access</title>
+		<link rel="stylesheet" href="/static/qcAccess.css">
+		<script src="/static/jquery.js"></script>
+	</head>
+	
+	<body>
+		<div id="header">
+			<h3>Quality Center web access</h3>
+		</div>
+		
+		<div id="info">
+			<span id="back">
+				[<a href="/t4u/reqs">Requirements</a> | 
+				<a href="/t4u/testplan">Test Plan</a> |
+				<a href="/t4u/testlab">Test Lab</a>]
+			</span>
+			<!--
+			<span id="login-info">
+				{% if user.is_authenticated %}
+					Hi, {{ user.username }} [<a href="/accounts/logout/">Logout</a>]
+				{% else %}
+					Please, <a href="/accounts/login/">log in</a>
+				{% endif %}
+			</span>
+			-->
+		</div>
+		
+		<div id="container">
+			{% block content %}
+				{{ content }}
+			{% endblock %}
+		</div>
+		{{variable}}
+	</body>
+</html>

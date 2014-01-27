@@ -1,0 +1,41 @@
+node node1
+node node2
+primitive Gearman lsb:gearmand \
+	op monitor interval="20s" \
+	meta target-role="Started"
+primitive Icinga lsb:icinga \
+	op monitor interval="20s" \
+	meta target-role="Started"
+primitive Icinga_ido2db lsb:ido2db \
+	op monitor interval="20s" \
+	meta target-role="Started"
+primitive PNP4NagiosDaemon lsb:npcd \
+	op monitor interval="20s" \
+	meta target-role="Started"
+primitive PNP4NagiosWorker lsb:pnp_gearman_worker \
+	op monitor interval="20s" \
+	meta target-role="Started"
+primitive apache ocf:heartbeat:apache \
+	params configfile="/etc/httpd/conf/httpd.conf" \
+	op monitor interval="1min" \
+	meta target-role="Started"
+primitive vip ocf:heartbeat:IPaddr2 \
+	params ip="10.2.2.1" nic="eth1" \
+	op monitor interval="10s" \
+	meta target-role="Started"
+colocation apache_with_vip inf: apache vip
+colocation gearman_with_vip inf: Gearman vip
+colocation icinga_with_vip inf: Icinga vip
+colocation ido2db_with_vip inf: Icinga_ido2db vip
+colocation pnp4nagiosdaemon_with_vip inf: PNP4NagiosDaemon vip
+colocation pnp4nagiosworker_with_vip inf: PNP4NagiosWorker vip
+order apache-after-vip inf: vip apache
+property $id="cib-bootstrap-options" \
+	dc-version="1.1.7-6.el6-148fccfd5985c5590cc601123c6c16e966b85d14" \
+	cluster-infrastructure="openais" \
+	expected-quorum-votes="2" \
+	stonith-enabled="false" \
+	no-quorum-policy="ignore" \
+	last-lrm-refresh="1362558734"
+rsc_defaults $id="rsc-options" \
+	resource-stickiness="100"

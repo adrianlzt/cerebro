@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+
+\bibitem{MiKTeX:miktex}
+\url{http://www.miktex.org/}.
+
+\bibitem{HRV:Bezerianos95}
+A.~Bezerianos, T.~Bountis, G.~Papaioannou, and P.~Polydoropoulos.
+\newblock Nonlinear time series analysis of electrocardiograms.
+\newblock {\em Chaos}, 5(1):95--101.
+
+\end{thebibliography}

@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          Plantilla LaTeX para PFC            %%
+%%      © Francisco José Vallejo Ramos          %%
+%%              Noviembre 2004                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt,twoside,spanish]{book}
+%\usepackage[colorlinks=true,linkcolor=blue]{hyperref}   % Para incluir hipervinculos en el dvi
+%\usepackage[dvips,colorlinks=true,linkcolor=blue]{hyperref}  % Para incluir hipervinculos en el ps (no funciona muy bien)
+\usepackage[dvipdfm,colorlinks=true,linkcolor=blue]{hyperref}  % Para incluir hipervinculos en el pdf
+\usepackage[latin1]{inputenc}
+\usepackage [spanish]{babel}
+%\usepackage[dvips]{graphicx}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{epstopdf}
+%\usepackage{subequation}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl} % Para pasar a pdf y que las fuentes no salgan asquerosamente borrosas
+%\usepackage{pslatex} % Para pasar a pdf y que las fuentes no salgan asquerosamente borrosas (otro tipo de fuente)
+\usepackage{epsfig}
+\usepackage{latexsym}
+\usepackage{picins}
+\usepackage{fancyhdr}
+\usepackage{boxedminipage}
+\usepackage{shadow}
+\usepackage{titlesec}
+%\usepackage[nottoc,notlof,notlot,notindex]{tocbibind} % Para incluir la bibliografía en el índice de forma automática
+
+%%%%%%%%%%%%%%%%%%
+%% NUMERACIONES %%
+%%%%%%%%%%%%%%%%%%
+%\setcounter{secnumdepth}{3} % Para que numere hasta \subsubsection
+\setcounter{tocdepth}{3} % Para que incluya en la toc hasta \subsection
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redefinimos de \part para que se incluya en el índice sin numero %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter       %Para definir \markpart como el nombre de la parte
+\def\@part[#1]#2{%
+   \def\partmark{#1}
+   \ifnum \c@secnumdepth >-2\relax
+     \refstepcounter{part}%
+     \addcontentsline{toc}{part}{#1}%\thepart\hspace{1em}#1}%
+   \else
+     \addcontentsline{toc}{part}{#1}%
+   \fi
+   \markboth{}{}%
+   {\thispagestyle{empty}
+    \centering
+    \interlinepenalty \@M
+    \normalfont
+    \Huge \bfseries #2\par}%
+   \@endpart}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                 TÍTULO Y AUTOR               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Proyecto Fin de carrera}
+\author{Francisco José Vallejo Ramos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\renewcommand\tablename{Tabla}
+\renewcommand\listfigurename{Lista de Figuras}
+\renewcommand\listtablename{Lista de Tablas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                    PORTADA                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{portada.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty} \cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%              FORMATEO DE PÁGINA              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\footskip}{35pt} \addtolength{\headwidth}{1.5cm}
+\addtolength{\voffset}{-1cm}
+\addtolength{\textheight}{1.5cm}
+\addtolength{\hoffset}{-0.5cm}
+\addtolength{\oddsidemargin}{0.9cm}
+\addtolength{\paperheight}{1cm}
+
+\fancyhf{}
+\fancyhead[LE,RO]{\bfseries \thepage}
+\fancyhead[LO]{\sffamily\scshape\footnotesize\rightmark}
+\fancyhead[RE]{\sffamily\scshape\footnotesize\leftmark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%               RUPTURA SILÁBICA               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{hyphenations.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%               AGRADECIMIENTOS                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+   \Large{\textbf{Agradecimientos}}
+\end{center}
+\newpage
+\thispagestyle{empty} \cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                   INDICES                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+\listoffigures
+\listoftables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+\addtolength{\parskip}{5pt} % Para que al meter un retorno de carro separe párrafos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  CAPITULO 1                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{capitulo1/capitulo1.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  CAPITULO 2                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{capitulo2/capitulo2.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                      APÉNDICES                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part[Apéndices]{APÉNDICES}
+\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  APENDICE 1                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{apendices/apendice1.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  APENDICE 2                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{apendices/apendice2.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\backmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                 BIBLIOGRAFÍA                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{bibliografia/bibliografia.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

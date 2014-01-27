@@ -1,0 +1,36 @@
+After Effects CC
+
+Tras crear un nuevo proyecto.
+
+Importar ficheros de vídeo
+ponernos en el "Espacio de trabajo" estándar (se define en la parte superior derecha).
+Tendremos una ventana a mitad de pantalla a la izquierda, donde pulsando con el botón derecho nos dará la opción de importar.
+También se hace con Control+i
+
+
+Recortar un video
+Para recortar un vídeo de los que hemos importado. Haremos doble click sobre el fichero, y se nos abrirá un visor.
+Nos ponemos en la parte desde donde queremos cortar el video y pulsamos al botón "{" que está bajo la línea de tiempo.
+Luego vamos hasta donde queramos que sea el final y pulsamos sobre el botón "}".
+A la derecha de esos botones tendremos dos para poder insertar el vídeo en la composición.
+
+
+Estabilizar un vídeo
+Movemos la línea de tiempo de la composición hasta el inicio del video que hemos insertado.
+Cambiamos el espacio de trabajo a "Seguimiento de movimiento". En el "Rastreador" (mitad pantalla derecha), seleccionamos "Seguir movimiento"
+Nos aparecerán dos recuadros con una cruceta en medio. Pinchamos entre los dos cuadros para mover todo el conjunto, y lo ponemos encima de un punto caracterísitico, a ser posible con mucho contraste.
+Si el video tiene rotaciones, pulsamos en el checkbox de "Rotación", y nos deberá aparecer otro recuadro como el anterior, unido por una línea.
+Ponemos ese recuadro encima de otro punto característico.
+Al elegir ambos puntos, debemos asegurarnos que están presentes en todo el trozo de video que queremos estabilizar.
+Para que AE analice el vídeo tendremos que pinchar en el "play" que hay en ese menú.
+Ahora tenemos que atender a un detalle. En la vista tendremos dos cosas, el vídeo que se va a exportar será el que esté dentro del recuadro donde se ven las cosas.
+Habrá un recuadro que se mueve al mover la línea de tiempo que corresponde a la posición del vídeo original para poder tener estabilizada la imagen.
+Lo más seguro es que queramos hacer ese segundo recuadro más grande que el primero, para que el video que exportemos rellene toda la pantalla.
+En resumen es hacer un zoom del vídeo, obligado porque el movimiento de la cámara nos corta ciertas partes al moverse.
+
+
+Exportar vídeo
+Una vez hayamos terminado con la composición, pincharemos en Archivo -> Exportar -> Añadir a la cola de procesamiento.
+Esto nos cambiará la vista de la composición por la de la cola de procesamiento.
+Hay deberemos definir la "Salida a:", que será el directorio y nombre de fichero que le queremos dar.
+También nos permite definir los parámetros del vídeo que vamos a exportar.

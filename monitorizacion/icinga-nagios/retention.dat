@@ -1,0 +1,8 @@
+Para mantener la información entre los reinicios de icinga.
+
+Para forzar a icinga a escribir la información:
+now=`date +%s`
+commandfile='/srv/nagios/icinga/spool/cmd/icinga.cmd'
+/usr/bin/printf "[%lu] SAVE_STATE_INFORMATION\n" $now > $commandfile
+
+Para cargar el fichero: READ_STATE_INFORMATION

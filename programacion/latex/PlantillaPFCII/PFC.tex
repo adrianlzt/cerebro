@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper,spanish]{book} %%%Esto indica el tipo de documento.Va a ser un libro (book), el tamaño es a4, la lengua castellano (spanish)%%%
+\usepackage[spanish]{babel} %%%Incluimos el paquete Babel que sirve para separar correctamente las palabras de multitud de idiomas%%%
+\usepackage[latin1]{inputenc}%%%Este paquete permite poner acentos directamente%%%
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}%%%Macros AMS%%%
+\usepackage{amsthm}%%%Macros AMS para teoremas%%%
+\usepackage{amsfonts}%%%Permite usar fuentes AMS%%%
+\usepackage{amssymb}%%%Para usar simbolos AMS%%%
+\usepackage{shadow}
+\usepackage{indentfirst}%%%Espaciado deprimera línea de cada párrafo%%%
+\usepackage{fancyhdr}
+\linespread{1.5}
+\usepackage{graphicx}
+\usepackage{appendix} %%%Permite un manejo sencille de los apéndices. Permite también introducir subapendices.
+\usepackage[colorlinks=true]{hyperref}%De esta forma el PDF sale muy chulo
+\usepackage{graphics}
+\usepackage{anysize} % Soporte para el comando \marginsize
+\usepackage{theorem}
+\usepackage{float}
+\marginsize{3cm}{2cm}{2.5cm}{2.5cm}%Permite manejar los márgenes de forma sencilla
+\usepackage[Lenny]{fncychap}
+\usepackage{url}
+\usepackage{eurofont}%Permite usar el símbolo de euro
+ \pagestyle{fancy}
+%\addtolength{\footskip}{+3cm}
+\usepackage{fancyhdr}                                   %Para un encabezado especial más visual
+\usepackage{extramarks}
+
+\author{Autor 2 \and Autor 1}
+\title{\textbf{\Huge{MEDIDA}}}
+%-----------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------
+\begin{document}%%%Aquí empieza el documento%%%
+
+\input{portada/port.tex}%Portada Gráfica
+
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png,.gif,.fig,.bmp}
+%Declaración de extensiones de figuras para el paquete graphicx
+
+\renewcommand\tablename{Tabla}%De esta forma sale nombre de Tabla en vez de Cuadro
+\renewcommand\listfigurename{Lista de Figuras}
+\renewcommand\listtablename{Lista de Tablas}
+
+\thispagestyle{empty} \cleardoublepage
+%Se deja sin numeración las páginas siguiente
+
+%==============================================================
+% Acta
+%===============================================================
+\thispagestyle{plain}
+\include{Acta/Acta}
+\newpage
+\thispagestyle{empty}\cleardoublepage
+
+%==============================================================
+%Agradecimientos
+%==============================================================
+\thispagestyle{plain}
+\input{Agradecimientos/Agradecimientos}
+\newpage
+\thispagestyle{empty}\cleardoublepage
+
+%==============================================================
+%Cita
+%==============================================================
+\thispagestyle{plain}
+\input{Cita/Cita}
+\newpage
+\thispagestyle{empty}\cleardoublepage
+%==============================================================
+%Resumen
+%==============================================================
+
+\input{Resumen/Abstract}
+\newpage\thispagestyle{empty}
+\cleardoublepage
+
+%===============================================================
+%Índices
+%===============================================================
+\pagestyle{plain}
+\tableofcontents
+\listoffigures
+\listoftables
+
+%===============================================================
+%Para el encabezado que se va a utilizar en todo el proyecto
+%===============================================================
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{} \fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[LO]{\bfseries\rightmark}
+\fancyhead[RE]{\bfseries\leftmark}
+%=============================================================
+
+%=============================================================
+%Capítulos
+%=============================================================
+
+\include{capitulo1/capitulo1}
+\include{capitulo2/capitulo2}
+
+%============================================================
+%   Apéndices
+%============================================================
+\renewcommand{\appendixtocname}{APÉNDICES}%Cambia el nombre de toc para apéndices
+\renewcommand{\appendixpagename}{APÉNDICES}%Cambia el nombre para la página
+\renewcommand{\appendixname}{APÉNDICE}
+\appendix
+\appendixpage
+\addappheadtotoc
+\input{Presupuesto/Presupuesto}
+
+%------------------------------------------------------------
+%          Bibliografia
+%------------------------------------------------------------
+\bibliographystyle{abbrv}
+\bibliography{bsample}
+%-------------------------------------------------------------
+
+\end{document}

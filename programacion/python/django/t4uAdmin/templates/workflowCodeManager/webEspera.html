@@ -1,0 +1,37 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<script src="/static/jquery.spinner.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	var $this = $("#spinner");
+	var opts = {
+		img: '/static/spinner-large.gif',
+		height: 48,
+		width: 48,
+		position: "right",
+		onStart: function() { },
+		onFinish: function() { }
+	};
+	
+	$this.spinner(opts);
+
+	$.ajax({
+		url: "/svn/{{ nextFunc }}/",
+		success: function(html){
+			$this.spinner('remove');
+			$("#container").html(html);
+		},
+	});
+
+	return false;
+});
+</script>
+
+It could take up to two minutes, please be patient.
+<div id="spinner" />
+
+{% endblock %}

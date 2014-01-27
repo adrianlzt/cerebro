@@ -1,0 +1,3 @@
+http://aws.amazon.com/es/glacier/
+
+Amazon Glacier es un servicio de almacenamiento de coste extremadamente bajo, que ofrece almacenamiento seguro y duradero para realizar copias de seguridad y archivar datos. Para mantener un bajo coste, Amazon Glacier está optimizado para datos a los que se accede con poca frecuencia y para cuando los tiempos de recuperación de varias horas son necesarios. Amazon Glacier permite a los clientes almacenar con seguridad cantidades pequeñas o grandes de datos por apenas 0,01 USD por gigabyte al mes, lo que representa un ahorro significativo en comparación con una solución centralizada en una empresa.

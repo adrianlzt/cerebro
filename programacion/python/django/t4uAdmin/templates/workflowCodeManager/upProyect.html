@@ -1,0 +1,40 @@
+<div class="revInfo">Proyects switched to revision <b>{{ newVersion }}</b></div>
+<table class="svnMessages">
+<tr>
+	<td>
+		{% if proyects %}
+			List of proyects switched:
+			<div class="proyects_list">
+				<li>{{ draftProyect.name }}</li>
+				{% for p in proyects %}
+					<li>{{ p.name }}</li>
+				{% endfor %}
+			</div>
+		{% else %}
+			No proyects to switch
+		{% endif %}
+	</td>
+	<td class="separator"></td>
+	<td>
+		{% if svnMessage %}
+			Log message:<br>
+			{% for log in svnMessage %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }} ({{log.author}})</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message|linebreaksbr }} </div>
+				</div>
+			{% endfor %}	
+		{% else %}
+			<div class="revision1">
+				<div class="logs-messages">
+					No logs are available.
+				</div>	
+			</div>
+		{% endif %}
+	</td>
+</tr>

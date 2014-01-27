@@ -1,0 +1,13 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "quantal64_lxc"
+
+  # https://github.com/fgrehm/vagrant-lxc/wiki/Base-boxes#available-boxes
+  config.vm.box_url = "http://bit.ly/vagrant-lxc-quantal64-2013-07-12"
+
+  config.vm.provision :puppet
+end

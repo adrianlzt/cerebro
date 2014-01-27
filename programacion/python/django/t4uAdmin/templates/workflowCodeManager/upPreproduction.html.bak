@@ -1,0 +1,65 @@
+{% extends "svnTest/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+{% if revisions.1.number == -1 or revisions.2.number == -1 %}
+	Error updating preproduction proyects.
+	Please, check it manually.
+{% else %}{% if revisions.1.number == revOrig.number and revisions.2.number == revOrig.number %} <!--- elif tag doesn't exists -->
+	Proyects are already updated to the last revision.
+{% else %}
+	<div class="revInfo">Preproduction proyects updated to revision <b>{{ revisions.1.number }}</b></div>
+	<table class="svnMessages">
+	<tr>
+		<td>Req-Testplan:</td>
+		<td></td>
+		<td>Manufacturer:</td>
+	</tr>
+	
+	<tr>
+		<td>
+			{% if logMessages.1 %}
+				{% for log in logMessages.1 %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }}</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message|linebreaksbr }} </div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<div class="revision1">
+					<div class="logs-messages">
+						No logs are available.
+					</div>	
+				</div>
+			{% endif %}
+		</td>
+		<td class="separator"></td>
+		<td>
+			{% if logMessages.2 %}
+				{% for log in logMessages.2 %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }}</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message }} </div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<p>No logs are available.</p>
+			{% endif %}
+		</td>
+	</tr>
+	
+{% endif %}
+{% endif %}
+
+{% endblock %}

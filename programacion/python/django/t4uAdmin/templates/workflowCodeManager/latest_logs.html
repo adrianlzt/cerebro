@@ -1,0 +1,22 @@
+<div class="revInfo">Latest Subversion log messages</div>
+<table class="svnMessages">
+<tr>
+	<td>
+		{% if svnMessages %}
+			{% for log in svnMessages %}
+			<div class="{% cycle 'revision1' 'revision2' %}">
+				<li>Revision {{ log.revision.number }}</li>
+				<div class="files-changed">
+				{% for p in log.changed_paths %}
+					{{ p.path }}<br>
+				{% endfor %}
+				</div>
+				<div class="logs-messages"> {{ log.message }} </div>
+			</div>
+			{% endfor %}
+		{% else %}
+			<p>No logs are available.</p>
+		{% endif %}
+	</td>
+</tr>
+</table>

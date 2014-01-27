@@ -1,0 +1,26 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+<h2>Generado nuevo usuario en Koala</h2>
+
+<div id="koalaError">
+{% if error %}
+	<b>Error:</b><br>
+	{% for e in error %}
+		<li>{{e}}<br>
+	{% endfor %}
+{% endif %}
+</div>
+
+{% if out %}
+	{% for o in out %}
+		{{o}}<br>
+	{% endfor %}
+{% endif %}
+<br>
+{% if not error %}
+<a href="ftp://{{usuario}}:{{password}}@195.235.93.11">Acceso</a> ftp con la nueva cuenta
+{% endif %}
+
+{% endblock %}

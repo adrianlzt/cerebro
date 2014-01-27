@@ -1,0 +1,21 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}MINI TUTORIAL I}{17}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introducci\'on B\'asica a \LaTeX \ para Windows}{17}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}\IeC {\textquestiondown }Qu\'e programas necesito?}{17}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}\IeC {\textquestiondown }C\'omo instalo MiKTeX?}{18}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Vale, pero \IeC {\textquestiondown }c\'omo escribo un documento en \LaTeX ?}{21}{subsection.1.1.3}
+\contentsline {subsubsection}{Elegir el editor}{21}{section*.1}
+\contentsline {subsubsection}{Utilizar una plantilla}{23}{section*.2}
+\contentsline {subsection}{\numberline {1.1.4}Compilaci\'on de fuentes .tex}{25}{subsection.1.1.4}
+\contentsline {subsubsection}{GSview}{26}{section*.3}
+\contentsline {subsubsection}{Compilaci\'on de fuentes con WinEdt}{27}{section*.4}
+\contentsline {subsubsection}{Compilaci\'on con TeXnicCenter}{28}{section*.5}
+\contentsline {section}{\numberline {1.2}Un par de ideas m\'as avanzadas, no mucho}{29}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Inclusi\'on de figuras}{29}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Inclusi\'on de tablas}{31}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Referencias}{32}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Bibliograf\IeC {\'\i }a}{33}{subsection.1.2.4}
+\contentsline {section}{\numberline {1.3}Conclusiones y recomendaciones}{36}{section.1.3}
+\contentsline {chapter}{\numberline {2}MINI TUTORIAL II}{37}{chapter.2}
+\contentsline {chapter}{AP\'ENDICES}{41}{section*.6}
+\contentsline {chapter}{\numberline {A}PRESUPUESTO DEL PROYECTO}{41}{chapter.1}

@@ -1,0 +1,26 @@
+nombre_aplicacion
+  -config
+    -routes.rb
+  -lib
+    -assets <- My Shared code (shared across different projects)
+  -vendor
+    -assets <- 3rd Party code (por ejemplo js para hacer un slideshow)
+  -app
+    -views
+      -zombies
+      -tweets
+        -index.html.erb <- muestra todos los tweets
+	-show.html.erb <- muestra un tweet
+      -layouts (mirar layouts.md)
+        -application.html.erb <- metemos el código html/js/css compartido entre las views de los objetos
+    -assets <- specific app code
+      -stylesheets
+        -hojadeestilo1.css
+        -hojadeestilo2.css
+      -javascripts
+        -application.js <- es donde se hace "include" de las librerias js necesarias, y del resto de js de este directorio
+      -images
+        -imagen.png
+    -public
+    -controllers
+      -tweet_controller.rb

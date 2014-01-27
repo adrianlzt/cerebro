@@ -1,0 +1,45 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<script>
+$(function(){
+	$('#id_recipients').before('<a name="show-t4uUsers" href="">T4U</a>  <a name="show-kheperaUsers" href="">Khepera</a>')
+	
+	$("a[name*='show-t4uUsers']").click(function() {
+		$("#id_recipients").val("Loading... (aprox 20s)")
+		$.ajax({
+			  url: "/svn/emailsT4U/",
+			  success: function(html){
+				$("#id_recipients").val(html)
+			  },
+		});
+		return false;
+	});
+	
+	$("a[name*='show-kheperaUsers']").click(function() {
+		$("#id_recipients").val("Loading... (aprox 20s)")
+		$.ajax({
+			  url: "/svn/emailsKhepera/",
+			  success: function(html){
+				$("#id_recipients").val(html)
+			  },
+		});
+		return false;
+	});
+});
+</script>
+
+<h2>Massive mailing</h2>
+<form action="/svn/sendDummyMail/{{platform}}" method="post">
+{% for field in form %}
+{% csrf_token %}
+	<div class="masviveField">
+		{{ field.label_tag }}:	{{ field.errors }}
+		{{ field }}
+		<br>
+	</div>
+{% endfor %}
+<input type="submit" value="Send massive mailing" />
+{% endblock %}

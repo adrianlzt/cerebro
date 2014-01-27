@@ -1,0 +1,2 @@
+python manage.py schemamigration workflowCodeManager --auto
+python manage.py migrate workflowCodeManager

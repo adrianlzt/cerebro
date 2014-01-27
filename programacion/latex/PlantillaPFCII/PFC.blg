@@ -1,0 +1,13 @@
+This is BibTeX, Version 0.99cThe top-level auxiliary file: C:\Documents and Settings\ojki\Escritorio\PFCPlantillas\PlantillaPFCII\PFC.aux
+A level-1 auxiliary file: Acta/Acta.aux
+A level-1 auxiliary file: capitulo1/capitulo1.aux
+A level-1 auxiliary file: capitulo2/capitulo2.aux
+The style file: abbrv.bst
+Database file #1: bsample.bib
+I was expecting a `,' or a `}'---line 128 of file bsample.bib
+ :  author ={Kalon K. L. Ho, and George B. Moody and Chung-Kang Peng and Joseph E. Mietus} 
+ :                                                                                         and Martin G. Larson and Daniel Levy and Ary L. Goldberger},
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in MiKTeX:miktex
+Warning--empty year in HRV:Bezerianos95
+(There was 1 error message)

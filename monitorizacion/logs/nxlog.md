@@ -1,0 +1,5 @@
+http://nxlog-ce.sourceforge.net/
+
+Implementing a centralized logging system has a critical role in IT security. Logs from all critical infrastructure elements need to be collected and forwarded securely and reliably to a central log server. This means that many different types of log sources, formats and platforms need to be handled.
+
+In the open source world the most common way to tackle this problem is to use syslog-ng or rsyslog for the central log collector. These can handle syslog natively, so basically this covers all sources which can send in syslog format (unix/linux, most network devices and appliances). In order to collect from Windows based systems, a special log collector tool needs to be installed which can read EventLog then convert it to syslog and forward it over the network to the central log server. Apart from closed source and proprietary solutions, the most popular open source tools for this task are Snare Agent and Eventlog-to-syslog. While this setup can get the job done, there are a couple problems with this approach which nxlog does not suffer from.

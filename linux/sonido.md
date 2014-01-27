@@ -1,0 +1,2 @@
+En ubuntu: amixer
+

@@ -1,0 +1,4 @@
+Para meter un script en el arranque de la maquina, hacerlo en el rc.local
+
+Si se va a quedar corriendo, tenemos que ponerlo en background:
+programa > /dev/null 2>&1 &

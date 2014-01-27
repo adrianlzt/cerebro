@@ -1,0 +1,32 @@
+Arch 2013.9
+CentOS 5.9
+CentOS 6.4
+Debian 6.06 (Squeeze)
+Debian 7 (Wheezy)
+Fedora 18 (Spherical Cow)
+Fedora 19 (Schrodinger's Cat)
+FreeBSD 9.1
+Gentoo 13.3
+OpenSUSE 12.3
+Red Hat Enterprise Linux 5.9
+Red Hat Enterprise Linux 6.4
+Scientific Linux 6.4
+Ubuntu 10.04 LTS (Lucid Lynx)
+Ubuntu 12.04 LTS (Precise Pangolin)
+Ubuntu 12.10 (Quantal Quetzal)
+Ubuntu 13.04 (Raring Ringtail)
+Ubuntu 13.10 (Saucy Salamander)
+Vyatta Network OS 6.5R2
+Windows Server 2008 R2 SP1
+Windows Server 2008 R2 SP1 (base install without updates)
+Windows Server 2008 R2 SP1 + SharePoint 2010 Foundation with SQL Server 2008 R2 Express
+Windows Server 2008 R2 SP1 + SharePoint 2010 Foundation with SQL Server 2008 R2 SP1 Standard
+Windows Server 2008 R2 SP1 + SQL Server 2008 R2 SP2 Standard
+Windows Server 2008 R2 SP1 + SQL Server 2008 R2 SP2 Web
+Windows Server 2008 R2 SP1 + SQL Server 2012 SP1 Standard
+Windows Server 2008 R2 SP1 + SQL Server 2012 SP1 Web
+Windows Server 2012
+Windows Server 2012 (base install without updates)
+Windows Server 2012 + SharePoint 2013 with SQL Server 2012 SP1 Standard
+Windows Server 2012 + SQL Server 2012 SP1 Standard
+Windows Server 2012 + SQL Server 2012 SP1 Web

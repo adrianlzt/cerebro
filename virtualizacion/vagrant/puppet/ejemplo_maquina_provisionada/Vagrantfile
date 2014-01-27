@@ -1,0 +1,31 @@
+box      = 'centos64'
+hostname = 'maquina1'
+domain   = 'example.com'
+ip       = '192.168.40.42'
+ram      = '256'
+url      = 'http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130731.box'
+
+Vagrant.configure("2") do |config|
+  config.vm.box = box
+#  config.vm.box_url = url
+  config.vm.hostname = hostname #+ '.' + domain
+  config.vm.network :private_network, ip: ip
+#  config.vm.network :public_network
+#  config.vm.network :forwarded_port, guest: 80, host: 8080
+#  config.vm.synced_folder "../data", "/vagrant_data"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize [
+      "modifyvm", :id, 
+      "--memory", ram,
+      "--name", hostname,
+    ]
+  end
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = 'puppet/manifests'
+    puppet.manifest_file = 'site.pp'
+    puppet.module_path = 'puppet/modules'
+  end
+
+end

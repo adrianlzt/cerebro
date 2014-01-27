@@ -1,0 +1,64 @@
+{% extends "workflowCodeManager/fija/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<script>
+$(function(){
+	$("#supplantUser-form").hide();
+
+	$("a[name*='supplantUser']").click(function() {
+		$("#supplantUser-form").slideToggle();
+		return false;
+	});
+	
+	$("a[name*='cancel-supplantUser']").click(function() {
+		$("#supplantUser-form").hide(30);
+		return false;
+	});
+});
+</script>
+
+<table id="index-table">
+	<tr>
+		<td>
+			<a href="/admin/workflowCodeManager/fijaproyect/" class="index-button">Admin proyects</a><br>
+			<div class="button-descr">
+				This links to the admin application.<br>
+				There administrators can create new production proyects.
+			</div>
+		</td>
+		<td>
+			<a href="/svn/fija/update_production/" class="index-button">Update production</a><br>
+			<div class="button-descr">
+				Update production proyect workflow script code to the latests revision in Subversion.<br>
+				Proyects are updated with the trunk code.<br>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="" name="supplantUserForm" class="index-button">Supplant</a><br>
+			<div class="button-descr">
+				Allow access to USER in "Fija" proyect.
+			</div>
+		</td>
+		<td>
+			<a href="/svn/fija/end_supplant/" class="index-button">End supplant</a><br>
+			<div class="button-descr">
+				Set correct password of USER in "Fija" proyect.
+			</div>
+		</td>
+	</tr>
+</table>
+
+<div id="supplantUser-form">
+	<form id="supplantUserForm" action="/svn/fija/supplant/" method="post">
+	{% csrf_token %}
+		User to supplant (name.surname.country): <input type="text" name="supplantUser" class="required"/>
+		<input type="submit" value="Supplant user" /><br>
+		<a href="" name="cancel-supplantUser">Cancel</a><br>
+	</form>
+</div>
+
+{% endblock %}

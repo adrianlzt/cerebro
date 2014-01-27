@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <!--
+  
+    feed/reader.xml
+    
+    Mini feed reader for GMail
+    
+    Copyright 2008 and beyond, Udell Enterprises, Inc
+  
+  -->
+  <ModulePrefs title="Mini Feed Reader β"
+               title_url="__UP_title_url__"
+               directory_title="Feed Reader for GMail"
+               description="Designed specifically for GMail, this reader will show the latest entries from any RSS feed. Also works on iGoogle!"
+               author="Sterling Udell"
+               author_email="sterling.udell+gadgets@gmail.com"
+               author_location="North Wales, UK"
+               author_affiliation="Udell Enterprises, Inc"
+               author_photo="http://gad.getpla.net/images/my_photo.png"
+               author_aboutme="Free-range programmer developing gadgets, map applications, and anything else that catches my interest."
+               author_link="http://gad.getpla.net"
+               author_quote="Is there no sun in this cursed country?"
+               height="80"
+               width="168"
+               screenshot="http://gad.getpla.net/feed/reader_120.png"
+               thumbnail="http://gad.getpla.net/feed/reader_120.png">
+    <Require feature="analytics" />
+    <Require feature="dynamic-height"/>
+    <Require feature="setprefs" />
+    <Require feature="settitle" />
+  </ModulePrefs>
+  <UserPref name="count" datatype="hidden" default_value="5" />
+  <UserPref name="feed_url" datatype="hidden" default_value="http://cket.inet/NoAuth/rss/9819f5815e130a74/?Order=ASC&amp;OrderBy=id&amp;Query=Queue%20%3D%20'TOOLS'%20AND%20(Status%20%3D%20'new'%20OR%20Status%20%3D%20'open'%20OR%20Status%20%3D%20'stalled')" />
+  <UserPref name="title_url" datatype="hidden" default_value="http://tick.inet" />
+  <Content type="html"><![CDATA[
+    <ul id="main" onmouseover="mainMouseOver()">Loading...</ul>
+    <div id="controls" style="left: -18px">
+      <img id="options" width="16" height="16" onclick="showSettings(true)" alt="Settings" />
+      <img id="reload"  width="16" height="16" onclick="retrieveData(true)" alt="Refresh" />
+      <img id="fewer"   width="16" height="16" onclick="clickFewer()"       alt="Show fewer entries" />
+      <img id="more"    width="16" height="16" onclick="clickMore()"        alt="Show more entries" />
+    </div>
+    <div id="sensor" onmouseover="leftMouseOver()"></div>
+    <form id="settings" onsubmit="saveSettings(); return false" >
+      <p>
+        <label for="feed_url">Feed Address:</label>
+        <input type="text" name="feed_url" value="__UP_feed_url__" id="feed_url" />
+      </p>
+      <p id="buttons">
+        <input type="submit" value="Save" />
+        <input type="button" value="Cancel" onclick="showSettings(false)" />
+      </p>
+    </form>
+
+    <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      border: none;
+      float: right;
+      display: inline;
+      margin-left: 5px;
+      margin-right: -5px;
+    }
+    #main {
+      width: 100%;
+      font-size: 75%;
+      list-style: square inside;
+      position: relative;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      margin-left: 3px;
+    }
+    #main li {
+      margin: 2px 0 2px 16px;
+      text-indent: -14px;
+    }
+    #sensor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 15px;
+      height: 100%;
+    }
+    #controls {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      width: 17px;
+      height: 100%;
+      background-color: #fffdd4;
+      border-right: 1px solid black;
+      overflow: hidden;
+    }
+    #controls img {
+      margin: 0;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+    }
+    #options {top: 1px}
+    #reload {top: 18px; display: none}
+    #fewer {bottom: 17px}
+    #more {bottom: 0}
+
+    #settings {
+      display: none; 
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      z-index: 3;
+      width: 95%;
+      background-color: #fffdd4;
+      border: 1px solid #444444;
+      font-size: 75%;
+    }
+    #settings p {
+      margin: 5px;
+    }
+    #feed_url {
+      width: 100%;
+    }
+    #buttons {
+      text-align: right;
+    }
+    #buttons input {
+      height: 19px;
+      font-size: 11px;
+      background-color: #e4e29f;
+    }
+    </style>
+
+    <script type="text/javascript">
+//if (!!gadgets && !!gadgets.window && !!gadgets.window.adjustHeight)
+//  window._IG_AdjustIFrameHeight = gadgets.window.adjustHeight;
+
+      var prefs = new _IG_Prefs(__MODULE_ID__);
+      var count   = prefs.getInt('count');
+      var feedUrl = prefs.getString('feed_url');
+      var feedInput = document.getElementById('feed_url');
+      var mainList = document.getElementById('main');
+      var controls = document.getElementById('controls');
+      var ctrlsOpen = false;
+      var maxCount = 10;
+      var lastResponse;
+      var reloadBtn = _gel('reload');
+      var defaultInterval = 15 * 60 * 1000; // milliseconds
+
+      _gel('options').src = _IG_GetImageUrl('http://gad.getpla.net/feed/wrench_icon.png');
+      _gel('fewer').src   = _IG_GetImageUrl('http://gad.getpla.net/feed/up_arrow.png');
+      _gel('more').src    = _IG_GetImageUrl('http://gad.getpla.net/feed/down_arrow.png');
+      if (gadgets.io)
+      {
+        reloadBtn.style.display = 'block';
+        reloadBtn.src = _IG_GetImageUrl('http://gad.getpla.net/feed/reload_16.png');
+      }
+
+      var platform = '';
+      var referer = document.referrer;
+      if (!referer && (window._args instanceof Function))
+        referer = _args()['parent'];
+      if (!referer || !(referer.search instanceof Function))
+        platform = 'other/unknown';
+      else if ((referer.search('//maps.google') > -1) ||
+               (referer.search(/google\.[.a-z]+\/maps/) > -1))
+        platform = 'gmaps';
+      else if (referer.search('//www.google') > -1)
+        platform = 'igoogle';
+      else if (referer.search('//mail.google') > -1)
+        platform = 'gmail';
+      else
+        platform = 'other/' + document.referrer.split('/')[2];
+
+      _IG_RegisterOnloadHandler(function () {retrieveData()});
+      window.setInterval('retrieveData(false)', defaultInterval);
+
+      if (window.addEventListener)
+        // W3C DOM Level 2 compliant
+        window.addEventListener('resize', windowResize, false);
+      else if (window.attachEvent)
+        // Most versions of IE
+        window.attachEvent('onresize', windowResize);
+
+      var retrieveData = function (noCache)
+      {
+        if (noCache)
+        {
+          reloadBtn.src = _IG_GetImageUrl('http://gad.getpla.net/feed/reload_green_16.png');
+          var interval = 1000;
+        }
+        else
+          var interval = defaultInterval;
+
+        var url = feedUrl;
+        if (url.indexOf('?') == -1)
+          url = url + '?';
+        else
+          url = url + '&';
+        url = url + 'cache=' + Math.round(Number(new Date()) / interval, 0);
+
+        if (gadgets.io)
+          gadgets.io.makeRequest(url, function (response) {receiveData(response.data)}, 
+            {'CONTENT_TYPE':  gadgets.io.ContentType.FEED,
+             'NUM_ENTRIES':   maxCount,
+             'GET_SUMMARIES': true});
+       else
+         _IG_FetchFeedAsJSON(url, receiveData, maxCount, true);
+      };
+
+      function receiveData(response)
+      {
+        reloadBtn.src = _IG_GetImageUrl('http://gad.getpla.net/feed/reload_16.png');
+
+        if (response == null)
+        {
+          var content = 'Error retrieving feed.';
+          controls.style.display = 'hidden';
+        }
+        else
+        {
+          var limit;
+
+          if (response.Title != null)
+          {
+            limit = Math.floor(getWidth() * 0.11);
+            if (response.Title.length <= limit)
+              _IG_SetTitle(response.Title);
+            else
+              _IG_SetTitle(response.Title.substring(0, limit) + '...');
+          }
+          if (response.Link != null)
+            prefs.set('title_url', response.Link);
+
+          var content = '';
+          var summary;
+          limit = 255;
+          var currentCount = Math.min(count, response.Entry.length);
+          for (var i = 0; i < currentCount; i++)
+          {
+            summary = _trim(stripTags(response.Entry[i].Summary));
+            if (summary.length > limit)
+              summary = summary.substring(0, limit) + '...';
+            content = content + '<li><a href="' + _hesc(response.Entry[i].Link) + '" ' +
+                      'title="' + summary + '" ' +
+                      'onmouseover="mainMouseOver()" target="_blank">' +
+                      _hesc(response.Entry[i].Title) + '</a></li>';
+          }
+
+          syncArrows(currentCount);
+          controls.style.display = 'block';
+          lastResponse = response;
+        }
+
+        mainList.innerHTML = content;
+        controls.style.height = (getHeight(mainList) + 1) + 'px';
+        _IG_AdjustIFrameHeight();
+      };
+
+      function mainMouseOver()
+      {
+        if (ctrlsOpen)
+        {
+          var left = parseInt(controls.style.left.replace('px', ''));
+          if (left > -18)
+          {
+            controls.style.left = (left - 1) + 'px';
+            setTimeout('mainMouseOver()', 5);
+          }
+          else
+            ctrlsOpen = false;
+        }
+      };
+
+      function leftMouseOver()
+      {
+        if (!ctrlsOpen)
+        {
+          var left = parseInt(controls.style.left.replace('px', ''));
+          if (left < 0)
+          {
+            controls.style.left = (left + 1) + 'px';
+            setTimeout('leftMouseOver()', 5);
+          }
+          else
+            ctrlsOpen = true;
+        }
+      };
+
+      function clickMore()
+      {
+        if (count < maxCount)
+        {
+          count++;
+          receiveData(lastResponse);
+          prefs.set('count', count);
+        }
+      };
+
+      function clickFewer()
+      {
+        if (count > 3)
+        {
+          count--;
+          receiveData(lastResponse);
+          prefs.set('count', count);
+        }
+      };
+
+      function syncArrows(currentCount)
+      {
+        if (currentCount == 3)
+          _gel('fewer').style.display = 'none';
+        else
+        {
+          _gel('fewer').style.display = 'inline';
+
+          if (currentCount == maxCount)
+          {
+            _gel('more').style.display = 'none';
+            _gel('fewer').style.bottom = '0';
+          }
+          else
+          {
+            _gel('more').style.display = 'inline';
+            _gel('fewer').style.bottom = '17';
+          }
+        }
+      };
+
+      function showSettings(show)
+      {
+        var settings = document.getElementById('settings');
+        if (show) {
+          mainMouseOver();
+
+          settings.style.display = 'block';
+          mainList.style.height = Math.max(getHeight(settings) + 6, getHeight(mainList)) + 'px';
+
+          feedInput.select();
+          feedInput.focus();
+        } else {
+          settings.style.display = 'none';
+          mainList.style.height = '';
+        }
+        _IG_AdjustIFrameHeight();
+      };
+      
+      function saveSettings()
+      {
+        var newUrl = _trim(feedInput.value);
+        if (newUrl == '')
+        {
+          alert('Please enter the URL (address) of the feed you wish to display.');
+          return;
+        }
+        else if (!isUrl(newUrl))
+        {
+          alert('This doesn\'t look like a valid URL. Please enter the full feed address (including HTTP).');
+          return;
+        }
+        
+        feedUrl = newUrl;
+        prefs.set('feed_url', feedUrl);
+        
+        showSettings(false);
+        retrieveData();
+      };
+
+      function isUrl(string) 
+      {
+        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        return regexp.test(string);
+      };
+     
+      function windowResize()
+      {
+        _gel('sensor').style.height = getHeight(mainList) + 'px';
+      };
+    
+      function getWidth(element)
+      {
+        if (element == null)
+          return Math.max(document.body.scrollWidth, document.body.offsetWidth);
+        else
+          return element.offsetWidth;
+      };
+
+      function getHeight(element)
+      {
+        if (element == null)
+          return Math.max(document.body.scrollHeight, document.body.offsetHeight);
+        else
+        {
+          if (element.innerHeight)
+            return element.innerHeight;
+          else
+            return element.clientHeight;
+        }
+      };
+      
+      function stripTags(str)
+      {
+        str = str.replace(/<\/?[^>]+>/gi, ' ');
+        str = str.replace(/ +/gi, ' ');
+        return str;
+      };
+    </script>
+  ]]></Content>
+</Module>

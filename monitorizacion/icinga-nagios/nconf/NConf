@@ -1,0 +1,40 @@
+Gestor de configuracion de nagios-icinga.
+Esta totalmente separado de icinga. Se hacen las configuraciones en esta herramienta, y luego se hace deploy, instalando las configuraciones en el directorio de icinga y reiniciandolo.
+Poco usable, lento, y da problemas generado las configuraciones.
+
+Comprobar requisitos de instalación en el fichero README
+
+Me da problemas al insertar la estructura de la base de datos con el usuari nconf recién creado. Es curioso porque llega a crear una tabla (o al menos rellena parte de una), y luego se queja de que no tiene permisos.
+Lo hago con el usuario root de mysql.
+
+En el archivo de configuracion de nconf (config/nconf.php)
+# The directory where NConf is located
+#define('NCONFDIR',     $nconfdir);
+
+# Manual installation:
+# Please replace the  $nconfdir  placeholder with the path to NConf as follows:
+define('NCONFDIR',     "/var/www/html/nconf");
+
+La linea que tiene $nconfdir hay que comentarla, si no intenta buscar esa variable que no existe.
+
+Para que nconf pueda ejecutar los chequeos meto a apache en el grupo de icinga, y reinicio apache.
+
+
+Tras instalar NConf lo primero que se hace es ejecutar el "Generate Nagios config" en la interfaz web.
+Cuando se ha generado la configuración, uso el módulo de deployement para cargar la configuración en icinga.
+
+Primero backup de la actual configuración (del directorio etc/ de icinga)
+
+Para que funcione el deployment hay que configurar correctamente los directorios y dar permisos a apache (nconf) para que pueda reiniciar el icinga.
+visudo:
+apache  ALL=NOPASSWD:   /etc/init.d/icinga reload
+
+Ahora al pulsar en "Generate Nagios Config", tras crear el tgz nos pedirá que pulsemos sobre el boton de Deploy, que cargará la configuración en nuestro directorio de Icinga.
+El fichero icinga.cfg debe tener en cuenta esos nuevos directorios donde almacenará la información NConf. Una idea es ponerlos bajo conf.d, ya que este directorio ya se utiliza para cargar configuraciones.
+
+El directorio donde se almacenan las configuraciones de NConf tiene que tener permisos de escritura por apache, o como apache lo metimos antes en el grupo de icinga, permisos de escritura para el grupo icinga.
+
+
+Problemas de dobles definiciones entre la conf de NConf y la que ya había. Que cosas puedo borrar?
+Por ahora borro objects/
+Comento las lineas que cogian las configuraciones directamente de objects/

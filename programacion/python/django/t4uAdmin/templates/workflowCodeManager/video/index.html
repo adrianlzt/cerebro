@@ -1,0 +1,109 @@
+{% extends "workflowCodeManager/video/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<script>
+$(function(){
+	$("#new-release-form").hide();
+	$("#show-logs").hide();
+
+	//Check that version number is correctly formated
+	$.validator.addMethod("version", function(value, element) { 
+		return this.optional(element) || /^[0-9]+\.[0-9]+\.[0-9]+$/i.test(value); 
+	}, "Please enter a valid version number (Eg.: x.y.z)");
+	
+	$("#newRelForm").validate({ //Validate new release form
+		rules: {
+			version: "required version"
+		}
+	});
+		
+	$("a[name*='new_release']").click(function() {
+		$("#new-release-form").slideToggle();
+		$("#show-logs").hide(30);
+		return false;
+	});
+	
+	$("a[name*='cancel-new_release']").click(function() {
+		$("#new-release-form").hide(30);
+		return false;
+	});
+	
+	$("a[name*='show-logs-link']").click(function() {
+		$("#show-logs").slideToggle();
+		$.ajax({
+			  url: "/svn/video/latest_logs/",
+			  success: function(html){
+				$("#show-logs").html(html);
+			  }
+		});
+		return false;
+	});
+});
+</script>
+
+<table id="index-table">
+	<tr>
+		<td>
+			<a href="/admin/workflowCodeManager/videoproyect/" class="index-button">Admin proyects</a><br>
+			<div class="button-descr">
+				This links to the admin application.<br>
+				There administrators can create new production or preproduction proyects. 
+			</div>
+		</td>
+		<td>
+			<a href="/svn/video/update_preproduction/" class="index-button">Update preproduction</a><br>
+			<div class="button-descr">
+				Update req-testplan and manufacturer workflow script code to the latests revision in Subversion.<br>
+				Proyects are updated with the trunk code.<br>
+				This code could be not stable.
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="" name="new_release" class="index-button">Create a new version</a><br>
+			<div class="button-descr">
+				Generate a new workflow code release from the trunk.<br>
+				This sould be done after QA has checked the correctness of preproduction proyects.<br>
+				A copy of trunk code is copied to tags folder.<br>
+				Current req-testplan draft and manufacturer proyects has been to switch to the new release.<br>
+				Could also be used to move all proyects to an already created tag.
+				
+			</div>
+		</td>
+		<td>
+			<a href="/svn/video/videoSync/" class="index-button">Check video vertical sync</a><br>
+			<div class="button-descr"> 
+				Check log files of video vertical synchronization proyects looking for some error.
+			</div>.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="/svn/video/synchronizeVideo/" name="sync_manufacturers" class="index-button">Video vertical synchronization</a><br>
+			<div class="button-descr"> 
+				Do the synchronization of video vertical.<br>
+				This action is made automatically all labour days (Mo,Tu,We,Th,Fr) at 5:00 AM.<br>
+				Please, <b>take care</b> using this button.
+			</div>
+		</td>
+	</tr>
+</table>
+
+<div id="new-release-form">
+	<form id="newRelForm" action="/svn/video/new_release/" method="post">
+	{% csrf_token %}
+		Version: <input type="text" name="version" class="required"/><br><br>
+		Log message <a href="" name="show-logs-link" id="show-logs-link">(Show latest logs)</a>:<br>
+		<textarea name="logMsg" cols=40 rows=6 class="required"></textarea><br>
+		<input type="submit" value="Generate new version" />
+		<a href="" name="cancel-new_release">Cancel</a><br>
+	</form>
+</div>
+
+<div id="show-logs">		
+</div>
+
+{% endblock %}

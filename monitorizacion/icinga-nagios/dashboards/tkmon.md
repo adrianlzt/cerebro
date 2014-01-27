@@ -1,0 +1,3 @@
+http://www.thomas-krenn.com/en/wiki/TKmon
+
+TKmon is a web interface developed by NETWAYS and Thomas-Krenn.AG for simplified administration of the monitoring software Icinga. The extensive configuration options of Icinga requires one have expertise knowledge of Linux operations, TKmon presents itself as a supplement in the form of a simplified interface. The most important status information on the monitored servers is directly accessible, host and service set-up is made understandable through data entry screens. In addition to the web interface TKmon works with an optional Call-Home-Service element, which sends the information regarding the monitored server hardware fault to the Thomas Krenn support department.

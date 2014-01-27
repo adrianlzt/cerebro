@@ -1,0 +1,8 @@
+http://www.seleniumhq.org/
+
+Selenium automates browsers. That's it. What you do with that power is entirely up to you. Primarily it is for automating web applications for testing purposes, but is certainly not limited to just that. Boring web-based administration tasks can (and should!) also be automated as well.
+
+Selenium has the support of some of the largest browser vendors who have taken (or are taking) steps to make Selenium a native part of their browser. It is also the core technology in countless other browser automation tools, APIs and frameworks.
+
+
+http://function.fr/docker-with-chrome-and-selenium-and-firefox/

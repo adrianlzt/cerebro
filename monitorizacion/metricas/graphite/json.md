@@ -1,0 +1,6 @@
+curl -s http://graphite/metrics/index.json | json_pp | tail
+[
+  ...
+  todas las métricas indexadas
+  ...
+]

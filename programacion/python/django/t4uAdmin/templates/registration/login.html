@@ -1,0 +1,31 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div id="welcome-info">
+<h2>Welcome to t4u admin tool</h2><br>
+This tool helps maintaining workflow scripts code of T4U proyects.<br>
+Updating learning and preproduction proyects is easily done with one button, and the process of generating a new release is automated.
+</div>
+
+<div id="login-box">
+	<form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form">
+		{% csrf_token %}
+		{{ form.username.label_tag }}
+		<br>
+		{{ form.username }}
+		<br>
+		<br>
+		{{ form.password.label_tag }}
+		<br>
+		{{ form.password }}
+		{% if form.errors %}
+			<p id="login-error">Your username and password didn't match. Please try again.</p>
+		{% endif %}
+		<br>
+		<input type="submit" id="login-submit" value="Login" />
+		<input type="hidden" name="next" value="{{ next }}" />
+	</form>
+</div>
+{% endblock %}

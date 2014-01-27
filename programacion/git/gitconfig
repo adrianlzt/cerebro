@@ -1,0 +1,27 @@
+## Se almacena en ~/.gitconfig ##
+[user]
+	email = ss@gmail.com
+	name = Pepe
+	editor = vim
+[merge]
+	tool = vimdiff
+[alias]
+	ci = commit
+	cam = commit -am
+        ca = commit -a
+        cm = commit -m
+	co = checkout
+	st = status
+	br = branch -v
+	df = diff
+	lg = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(red)%s%C(reset) %C(bold black)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+	pu = pull
+	g = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	h = !git --no-pager log origin/master..HEAD --abbrev-commit --pretty=oneline
+	alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\t=> \\2/' | sort
+	this = !git init && git add . && git commit -m \"initial commit\"
+	ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+	sba = show-branch --color=always -a --more=10 --no-name
+	sb = show-branch -a --list
+	ccm = !git reset --soft HEAD~ && git commit
+	

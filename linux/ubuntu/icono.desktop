@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=VPN
+Comment=Conectar a la VPN
+Exec=/home/adrian/Documentos/vpn/Conectar
+Icon=/usr/share/icons/gnome/48x48/actions/call-start.png
+Terminal=true
+Type=Application
+Categories=Utility;Application;

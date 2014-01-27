@@ -1,0 +1,38 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div class="revInfo">Learning proyects updated to revision <b>{{ latestRelease }}</b></div>
+<table class="svnMessages">
+<tr>
+	<td>
+		{% if learnings %}
+			List of learning proyects updated:
+			<div class="proyects_list">
+				{% for learnP in learnings %}
+					<li>{{ learnP.name }}</li>
+				{% endfor %}
+			</div>
+		{% else %}
+			No learning proyects to update
+		{% endif %}
+	</td>
+	<td class="separator"></td>
+	<td>
+		{% if svnMessage %}
+			Log message:
+			<div class="revision1">
+				<div class="logs-messages"> {{ svnMessage.message|linebreaksbr }} </div>
+			</div>
+		{% else %}
+			<div class="revision1">
+				<div class="logs-messages">
+					No logs are available.
+				</div>	
+			</div>
+		{% endif %}
+	</td>
+</tr>
+
+{% endblock %}

@@ -1,0 +1,1 @@
+http://substack.net/wireless_from_the_command_line_in_linux

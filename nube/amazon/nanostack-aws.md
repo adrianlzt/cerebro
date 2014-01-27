@@ -1,0 +1,1 @@
+../../virtualizacion/openstack/nanostack-aws.md

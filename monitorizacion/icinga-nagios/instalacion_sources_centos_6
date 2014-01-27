@@ -1,0 +1,144 @@
+Docs
+Arquitectura: https://www.icinga.org/about/architecture/
+Arquitectura distribuida LHCb (muy bueno): http://accelconf.web.cern.ch/accelconf/icalepcs2011/papers/wepmu035.pdf
+Otra opción de arquitectura distribuída (descartada por LHCb): http://www.tuxify.de/?p=435
+http://www.howtoforge.com/icinga-monitoring-solution-installation-and-configuration-on-centos
+http://docs.icinga.org/latest/en/
+README.RHEL
+INSTALLING
+
+Instalando Icinga 1.8.4 en Centos 6.3 mediante sources:
+No existe rpm para la version 1.8.4
+
+Usar 'script' para guardar todo el proceso de instalación.
+
+Hay dos opciones gráficas: Classic UI y Icinga-Web. Eligo web por:
+The IDOUtils database is also a requirement for Icinga-Reporting based on JasperReports Server which can be integrated into Icinga-Web as cronk.
+http://docs.icinga.org/latest/en/quickstart-idoutils.html
+
+http://docs.icinga.org/latest/en/quickstart-idoutils.html#prerequisites
+Instalar apache: # yum install httpd
+PHP para apache (es necesario php? parece que para la interfaz icinga): # yum install php (instala el modulo de php para apache)
+Librerias GD: # yum install gd gd-devel php-gd
+Compilador y librerias gcc: # yum install make gcc glibc glibc-common
+Graficos: # yum install libjpeg libjpeg-devel libpng libpng-devel
+Librerias de acceso a BBBD: # yum install libdbi-dbd-mysql libdbi-devel
+SNMP, no obligatorio, pero seguramente necesario: # yum install net-snmp net-snmp-devel //no tengo seguro que haga falta la -devel
+
+Posibilidad de instalar encriptacion ssl entre ldomod y ldo2db. No creo que sea necesario, ya que el entorno será seguro.
+
+En este ejemplo, instalo mysql-server localmente: # yum install mysql-server
+
+Crear usuario y grupo:
+# useradd -m icinga //crea automaticamente el grupo icinga
+# passwd icinga
+For sending commands from the classic web interface to Icinga, you'll need to create a new group icinga-cmd. Add the webuser and the Icingauser to this group. Necesario? lo hago por si acaso
+# groupadd icinga-cmd
+# usermod -a -G icinga-cmd icinga
+# usermod -a -G icinga-cmd apache
+
+El .tar.gz lo descomprimo el el HOME de mi usuario, y hago las cosas allí.
+La instlacion se hace por defecto en /usr/local/icinga/[bin,lib,...]
+
+$ ./configure --with-command-group=icinga-cmd --enable-idoutils --with-web-user=apache --with-web-group=apache --with-httpd-conf=/etc/httpd/conf.d
+$ make all
+# make fullinstall
+# make install-config (cuidado si ya existe una configuracion)
+
+Necesario el paquete mailx (para proveer 'mail')??
+
+Resumiendo:
+setenforce 0
+yum install httpd gd gd-devel make gcc glibc glibc-common libjpeg libjpeg-devel libpng libpng-devel libdbi-dbd-mysql libdbi-devel net-snmp net-snmp-devel
+yum install mysql-server
+useradd -m icinga
+passwd icinga
+groupadd icinga-cmd
+usermod -a -G icinga-cmd icinga
+usermod -a -G icinga-cmd apache
+cd ~
+http://downloads.sourceforge.net/project/icinga/icinga/1.8.4/icinga-1.8.4.tar.gz
+wget http://.../icinga-1.8.4.tar.gz
+tar zxvf icinga-1.8.4.tar.gz
+cd icinga-1.8.6/
+./configure --with-command-group=icinga-cmd --enable-idoutils --with-web-user=apache --with-web-group=apache --with-httpd-conf=/etc/httpd/conf.d
+make all
+make fullinstall
+make install-config
+
+
+Configuración básica:
+Definir email del admin: /usr/local/icinga/etc/objects/contacts.cfg
+
+Poner los ficheros de configuración:
+cd /usr/local/icinga/etc/
+mv idomod.cfg-sample idomod.cfg
+mv ido2db.cfg-sample ido2db.cfg  //En este se define la configuración de la base de datos
+
+Que es idomod e ido2db: http://docs.icinga.org/latest/en/db_components.html
+
+El idomod se carga al tener el fichero de configuracion (idoutils.cfg-sample) en /usr/local/icinga/etc/modules
+al estar especificado en /usr/local/icinga/etc/icinga.cfg:
+# Definitions for broker modules like idoutils.cfg
+cfg_dir=/usr/local/icinga/etc/modules
+event_broker_options=-1
+
+Arrancar el mysql, y crear la base de datos y el usuario:
+ mysql> CREATE DATABASE icinga;
+
+ GRANT USAGE ON icinga.* TO 'icinga'@'localhost'
+   IDENTIFIED BY 'icinga'
+   WITH MAX_QUERIES_PER_HOUR 0
+   MAX_CONNECTIONS_PER_HOUR 0
+   MAX_UPDATES_PER_HOUR 0;
+
+ GRANT SELECT, INSERT, UPDATE, DELETE, DROP, CREATE VIEW, INDEX, EXECUTE
+   ON icinga.* TO 'icinga'@'localhost';
+  
+ FLUSH PRIVILEGES;
+
+Importar la estructura de la base de datos de icinga:
+$ mysql -u root -p icinga < mysql.sql
+
+Definir la configuración de la base de datos (/usr/local/icinga/etc/ido2db.cfg)
+db_servertype=mysql
+db_port=3306
+db_user=icinga
+db_pass=icinga
+
+Securizamos el entorno web: htpasswd -c /usr/local/icinga/etc/htpasswd.users icingaadmin
+
+Instalar plugins de nagios (http://sourceforge.net/projects/nagiosplug/files/):
+Manualmente para poder configurar donde esta instalado icinga.
+./configure --prefix=/usr/local/icinga --with-cgiurl=/icinga/cgi-bin --with-htmurl=/icinga --with-nagios-user=icinga --with-nagios-group=icinga
+(La opcion with-htmlurl no la reconoce!)
+make
+make install
+
+SELinux:
+Desactivar y quitar del inicio:
+# setenforce 0
+/etc/selinux/config:
+SELINUX=permissive
+
+IPTables
+Comprobar que está el tráfico habilitado para http
+iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+Meterlo en las reglas del arranque /etc/sysconfig/iptables
+
+Agregar ido2db e icinga al chkconfig, y activarlos:
+chkgconfig --add ido2db
+chkconfig --add icinga
+Comprobar que se activen en el arranque (chkconfig --list | egrep "icinga|ido2db")
+
+Comprobar configuración correcta de icinga: /usr/local/icinga/bin/icinga -v /usr/local/icinga/etc/icinga.cfg 
+
+Arrancar los servicios, primero ido2db:
+service ido2bb start
+service icinga start
+
+Si instalamos más plugins usando yum, los instalará en /usr/lib64/nagios/plugins/
+Deberemos crear una nueva macro en resource.cfg para llamar a estos binarios.
+
+
+Fin instalacion

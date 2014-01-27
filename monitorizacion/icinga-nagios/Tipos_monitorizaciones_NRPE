@@ -1,0 +1,33 @@
+Interfaz para ejecutar comandos remotamente. Poniendo nrpe delante, el comando se ejecutará en el servidor remoto de manera bastante transparente para nosotros
+
+Sigue el siguiente esquema:
+
+icinga -> check_nrpe ---tcp---> nrpe_daemon -> nagios_plugin -> servicio
+
+En el monitorizador
+define host{
+    use                 generic-host     ; Inherit default values from a template
+    host_name           remotehost       ; The name we're giving to this server
+    alias               Linux Host       ; A longer name for the server
+    address             192.168.0.1      ; IP address of the server
+    }
+
+define service{
+    use                 generic-service
+    host_name           remotehost
+    service_description Current Users
+    check_command       check_nrpe!check_users
+    }
+
+define command{
+    command_name        check_nrpe
+    command_line        $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
+   }
+
+
+En el monitorizado:
+Para agregar más funcionalidad al nrpe, crearemos más ficheros .cfg dentro de /etc/nrpe.d/ con el formato
+command[nombre_comando]=comando a ejecutar
+Ej.: command[check_load]=/usr/local/icinga/libexec/check_load -w 1.5,1.1,0.9 -c 3.0,2.2,1.9
+
+Tras crear nuevos comandos en el monitorizado deberemos recargar/reiniciar el demonio nrpe
