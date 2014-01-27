@@ -1,0 +1,15 @@
+[submodule "programacion/r/scripts"]
+	path = programacion/r/scripts
+	url = git@github.com:adrianlzt/R-scripts.git
+[submodule "monitorizacion/rocksteady/vagrant"]
+	path = monitorizacion/rocksteady/vagrant
+	url = https://github.com/adrianlzt/rocksteady
+[submodule "programacion/python/clustercheck"]
+	path = programacion/python/clustercheck
+	url = git@github.com:adrianlzt/clustercheck.git
+[submodule "monitorizacion/tools-repo"]
+	path = monitorizacion/tools-repo
+	url = https://github.com/monitoringsucks/tool-repos.git
+[submodule "virtualizacion/vagrant/proyecto-buenas-practicas"]
+	path = virtualizacion/vagrant/proyecto-buenas-practicas
+	url = https://github.com/aussielunix/jenkins-appliance
