@@ -1,0 +1,18 @@
+{% extends "workflowCodeManager/video/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<h1>Video synchronization errors:</h1>
+
+{% if fileErrors %}
+	<b>{{fileErrors.0.0}}</b><br>
+	{{fileErrors.0.1|safe|linebreaksbr}}<br><br>
+	<b>{{fileErrors.1.0}}</b><br>
+	{{fileErrors.1.1|safe|linebreaksbr}}
+	
+{% else %}
+No errors
+{% endif %}
+
+{% endblock %}

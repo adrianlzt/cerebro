@@ -1,0 +1,3 @@
+Behaviour Driven Development (BDD) is a practice where developers collaborate with business stakeholders to develop executable specifications for pieces of development that they are about to start. Test Driven Development (TDD) says that tests should be written before development, but it doesn't say how tests should be written.
+
+BDD builds on TDD by proposing that the first tests should be functional/acceptance tests written in business-oriented language. Using a business-oriented language rather than code allows stakeholders to be involved in verifying that a feature satisfy the business' requirements before work on that feature even commences. You might then do TDD at the unit test level around individual components as you develop.

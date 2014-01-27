@@ -1,0 +1,10 @@
+string
+text
+integer
+decimal
+float
+binary
+date
+time
+datetime
+boolean

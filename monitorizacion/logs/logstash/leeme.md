@@ -1,0 +1,9 @@
+http://jpmens.net/2012/08/06/my-logstash-and-graylog2-notes/
+
+The monolithic Logstash program is an indexer and/or a Web server, depending on the arguments you launch it with. It also comes bundled with a copy of ElasticSearch (but I'll ignore that here: I prefer to use external instances of ElasticSearch).
+
+The Logstash indexer reads logs from a variety of sources, called "inputs", for example from files (cleverly following growing files -- think tail -f and log-rotation), from sockets, with a "syslog" listener, from message-queues (AMQP and ZeroMQ), pipes, or Redis. Each source is labelled with a "type" which I can use later to have Logstash apply particular filters to to specific "types" (i.e. sources).
+
+Logstash' filters let me pick up messages from "inputs" and massage them. I can "grep" for specific lines, join lines with "multiline", "split" lines, and (crazy but true) use "zeromq" to process the message off-site, waiting for a response before continuing. Most importantly, the "grok" filter allows me to use regular expressions to chop a log line into fields which I can "mutate" (another filter) or simply have Logstash store in ElasticSearch. Breaking a log line into fields means I can search by particular fields. (I'll show you an example shortly.)
+
+Outputs, finally, instruct Logstash how to handle messages which were "input" and possibly "filtered". Recall we applied a "type" to each message source, and I can use these types in "outputs" to segregate logs to different places. (Typically most inputs will go to "elasticsearch", but I could, say, additionally store messages in a file output.) There are a large variety of outputs: "stdout" and "elasticsearch" ought to be self-explanatory. Others include "e-mail", "file", "http", "amqp", "redis", "nagios", "pipe", "tcp", "zeromq", etc.

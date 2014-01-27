@@ -1,0 +1,3 @@
+echo "qwerty" | rev
+ytrewq
+

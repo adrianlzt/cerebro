@@ -1,0 +1,13 @@
+Mostrar bonito un fichero json (con los cambios de línea y tabulado):
+cat example.json | python -m json.tool
+
+
+http://docs.python.org/2/library/json.html
+Trabajar con json:
+>>> import json
+>>> json.dumps(['foo', {'bar': ('baz', None, 1.0, 2)}])
+'["foo", {"bar": ["baz", null, 1.0, 2]}]'
+
+>>> json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
+
+Para parsear la información a objetos python, tenemos bastante trabajo manual, definido que es cada estructura.

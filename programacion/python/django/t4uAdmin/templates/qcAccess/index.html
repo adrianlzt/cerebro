@@ -1,0 +1,34 @@
+{% extends "qcAccess/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<div id="tree">
+{% if devicesList %}
+	<div class="proyects_list">
+		{% for devices in devicesList %}
+			<li>{{ devices }}</li>
+		{% endfor %}
+		<ul>
+			<li>{{ country }}</li>
+			<ul>
+				<li>{{ fVersion }}</li>
+				<ul>
+					<li>{{ version }}</li>
+					<ul>
+						<li>{{ testsets }}</li>
+					</ul>
+				</ul>
+			</ul>
+		</ul>
+	</div>
+{% else %}
+	No data
+{% endif %}
+</div>
+
+<div id="data">	
+{{ data }}
+</div>
+
+{% endblock %}

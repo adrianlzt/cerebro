@@ -1,0 +1,18 @@
+{% extends "workflowCodeManager/base.html" %}
+{% load url from future %}
+
+{% block content %}
+<h2>Massive mailing</h2>
+
+<table border=1>
+<tr><td><b>From:</b> {{fromEmail|linebreaksbr}}</td></tr>
+<tr><td><b>Subject:</b> {{subject|linebreaksbr}}</td></tr>
+<tr><td><b>Message:</b><br>{{message|linebreaksbr}}</td></tr>
+<tr><td><b>To:</b><br>
+{% for e in toEmails %}
+	{{e}}<br>
+{% endfor %}
+</td></tr>
+</table>
+
+{% endblock %}

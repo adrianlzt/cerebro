@@ -1,0 +1,5 @@
+http://cea-hpc.github.io/clustershell/
+
+ClusterShell is an event-driven open source Python library, designed to run local or distant commands in parallel on server farms or on large Linux clusters. No need to reinvent the wheel: you can use ClusterShell as a building block to create cluster aware administration scripts and system applications in Python. It will take care of common issues encountered on HPC clusters, such as operating on groups of nodes, running distributed commands using optimized execution algorithms, as well as gathering results and merging identical outputs, or retrieving return codes. ClusterShell takes advantage of existing remote shell facilities already installed on your systems, like SSH.
+
+ClusterShell's primary goal is to improve the administration of high-performance clusters by providing a lightweight but scalable Python API for developers. It also provides clush, clubak and nodeset, three convenient command-line tools that allow traditional shell scripts to benefit from some of the library features.

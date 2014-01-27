@@ -1,0 +1,13 @@
+http://docs.icinga.org/latest/en/monitoring-overview.html
+
+Activos: icinga los envia 
+	SNMP, el menos costoso. Usa UDP, el resto TCP
+	NRPE, check_nrpe en el server de icinga. NRPE en los clientes (http://docs.icinga.org/latest/en/nrpe.html). Puede activarse la transmision por ssh, pero perdera rendimiento
+	check_by_ssh -> ssh -> ejecucion local (cuidado con saturar al hacer tantas conexiones)
+	check_nt -> nsclient++ (windows)
+	check_multi, check_mk (multiples querys)
+
+Pasivos: iniciados por remotos (o los monitorizados, o ¿los workers?)
+	NCSA. ncsa_server en el server con icinga, y send_ncsa en los monitorizados (o workers?)
+
+SNMP-Traps: llamadas lanzadas por ciertos procesos cuando detectan errores

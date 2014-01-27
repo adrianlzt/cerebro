@@ -1,0 +1,1 @@
+../../virtualizacion/openstack/nova_client.md

@@ -1,0 +1,16 @@
+http://gallir.wordpress.com/2011/08/19/peguntas-y-10-puntos-claves-de-amazon-ec2/
+http://www.slideshare.net/ae_bm/mi-experiencia-con-amazon-aws-ec2-y-s3
+http://aws.amazon.com/es/free/
+http://aws.amazon.com/es/ec2/
+alestic.com/ 
+https://github.com/boto/boto
+docs.amazonwebservices.com/general/latest/gr/GetTheTools.html
+aws.amazon.com/documentation/
+aws.amazon.com/articles/
+aws.amazon.com/resources/webinars/
+aws.amazon.com/whitepapers/
+aws.amazon.com/architecture/
+reinvent.awsevents.com/
+docs.amazonwebservices.com/AWSEC2/latest/UserGuide/FAQ_Regions_Availability_Zones.html
+https://forums.aws.amazon.com/thread.jspa?threadID=22830
+https://aws.amazon.com/marketplace

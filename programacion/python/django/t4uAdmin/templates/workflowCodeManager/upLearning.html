@@ -1,0 +1,39 @@
+<div class="revInfo">Learning proyects updated to revision <b>{{ latestRelease }}</b></div>
+<table class="svnMessages">
+<tr>
+	<td>
+		{% if learnings %}
+			List of learning proyects updated:
+			<div class="proyects_list">
+				{% for learnP in learnings %}
+					<li>{{ learnP.name }}</li>
+				{% endfor %}
+			</div>
+		{% else %}
+			No learning proyects to update
+		{% endif %}
+	</td>
+	<td class="separator"></td>
+	<td>
+		{% if svnMessage %}
+			Log message:
+			{% for log in svnMessage %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }} ({{log.author}})</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message|linebreaksbr }} </div>
+				</div>
+			{% endfor %}			
+		{% else %}
+			<div class="revision1">
+				<div class="logs-messages">
+					No logs are available.
+				</div>	
+			</div>
+		{% endif %}
+	</td>
+</tr>

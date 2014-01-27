@@ -1,0 +1,6 @@
+Comandos útiles:
+
+ifconfig
+
+ip
+

@@ -1,0 +1,1 @@
+../alta_disponibilidad/haproxy.md

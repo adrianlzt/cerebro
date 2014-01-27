@@ -1,0 +1,4 @@
+[uwsgi]
+processes = 8
+pythonpath = /opt/graphite/webapp/graphite
+wsgi-file = /opt/graphite/conf/graphite.wsgi

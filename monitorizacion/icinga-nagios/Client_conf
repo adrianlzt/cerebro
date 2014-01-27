@@ -1,0 +1,21 @@
+Monitorizacion activa (pregunta el server), instalar nrpe
+Repositorio epel
+nrpe.x86_64 : Host/service/network monitoring agent for Nagios
+yum install nrpe
+
+Activarlo en el arranque:
+chkconfig nrpe on
+
+Configuración: /etc/nagios/nrpe.cfg
+allowed_hosts=192.168.56.0/24
+
+Por defecto está activado el SSL. Para desactivarlo, en el fichero /etc/sysonfig/nrpe:
+NRPE_SSL_OPT="-n"
+
+Reiniciar nrpe si cambiamos algo (service nrpe restart)
+
+Al hacer las pruebas (/usr/lib64/nagios/plugins/check_nrpe) si se pone el parametro -n no se usa SSL
+
+Permitir el puerto 5666 en iptables
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 5666 -j ACCEPT
+

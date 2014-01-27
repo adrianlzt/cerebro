@@ -1,0 +1,4 @@
+http://www.mysqlperformanceblog.com/2012/10/28/percona-xtradb-cluster-installation-and-setup-webinar-follow-up-qa/
+
+Q: For automatic cluster starting, should it be ok to have in [mysqld_safe] the following: wsrep_urls=gcomm://IP1:4567,gcomm://IP2:4567,gcomm://IP3:4567,gcomm://
+A: This will work for automatic cluster starting, but unfortunately it can lead to inconsistency in case of a network split. If a network split happens and a node decides to shut down, and somehow restarts because of this automatic process, it gets bootstrapped because of this option, and you can end up having 2 different clusters serving data to different groups of clients. So, the last gcomm:// option should be avoided. Although it can be helpful when you are testing certain scenarios, don’t forget to remove it before going to production.

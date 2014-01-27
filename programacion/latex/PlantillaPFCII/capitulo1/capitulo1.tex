@@ -1,0 +1,486 @@
+\chapter{MINI TUTORIAL I}
+
+Este documento es una plantilla para la realización del proyecto de fin de carrera (PFC), es decir, se trata de un esqueleto que facilita la labor de escribir el PFC en \LaTeX.La plantilla ha sido utilizada para escribir este mini tutorial sobre \LaTeX, de forma que también sirva de demostración de cómo utilizar los elementos más comunes de un PFC. El objetivo principal no es enseñar a manejar completamente \LaTeX, si no que sólo busca ofrecer una ayuda inicial, presentando los programas necesarios y una indicación de cómo emplearlos.
+
+
+\section{Introducción Básica a \LaTeX\ para Windows}
+
+El sistema \LaTeX\  que se distribuye generalmente para Windows es el denominado MiKTeX~\cite{MiKTeX:miktex}. Es fácilmente configurable y, además, también es gratis.
+
+\subsection{¿Qué programas necesito?}
+
+Antes de entrar de lleno en la explicación de como utilizar \LaTeX\ nos vamos a parar  en detallar cuáles son las aplicaciones necesarias y como conseguirlas:
+\begin{itemize}
+	\item MiKTeX: este es el sistema \LaTeX\ para Windows, se puede descargar desde: \url{www.miktex.org}. Hay que tener en cuenta que lo que te descargas desde aquí es un instalador, que se encarga de descargar los paquetes necesarios. La instalación detallada se encuentra en la siguiente sección.
+	\item WinEdt: editor de texto para \LaTeX. Se puede descargar desde: \url{www.winedt.com}.
+	\item TeXnicCenter: otro editor de texto alternativo a WinEdt. El sitio web para la descarga es: \url{www.toolscenter.org}.
+	\item AFPL Ghostscript 8.51: programa interprete del lenguaje de post script (archivos .ps), que se puede descargar en: \url{www.cs.wisc.edu/~ghost/doc/AFPL/get851.htm}.
+	\item GSview: visor para los archivos escritos en lenguaje post script (.ps), se puede de: \url{www.cs.wisc.edu/~ghost/gsview/}. 
+	\item Acrobat Reader: aplicación que permite la visión de archivos en formato .pdf, se puede obtener de: \url{www.adobe.es}.
+\end{itemize}
+
+Estos son los programas necesarios para poder trabajar con \LaTeX\ en Windows. Para los que estén interesados en trabajar en sistemas Linux cabe decir que \LaTeX\ se distribuye como paquete de casi todas las distribuciones de Linux, y además éstas suelen tener editores bastante buenos. Yo suelo usar Kile, que es una aplicación para los escritorios KDE, parecida a los dos editores de Windows que se mencionan aquí.
+
+\subsection{¿Cómo instalo MiKTeX?}
+
+El primer paso es obtener una distribución actualizada, cosa que se puede hacer fácilmente en \url{http://www.miktex.org/}. 
+
+Si optas por descarga la versión completa, el primer paso es bajarse un programa que se encarga de la instalación cuyo nombra es \emph{setup-X}, donde \emph{X} indicará la versión de la distribución.
+
+Una vez ejecutado el instalable se presenta una pantalla como la de la Figura~\ref{fig:MiktexInst}.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst}
+	\caption{\emph{Programa de instalación de MiKTeX.}}
+	\label{fig:MiktexInst}
+\end{figure}
+
+Este programa es un asistente de instalación que permite elegir los paquetes que interesa tener y los descarga del sitio web.
+
+Una vez pulsado el botón de siguiente se nos ofrece dos posibildades:
+\begin{enumerate}
+	\item ``Download only'': con esta opción, simplemente se descargan los paquetes desde Internet.
+	\item ``Install'': se instalar los paquetes desde una ubicación local en la que ya se tengan descargados los paquetes.
+\end{enumerate}
+
+Si estamos instalando por primera vez MiKTeX se elegirá la primera opción para descargar los paquetes (ver Figura~\ref{fig:MiktexInst2}).
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst2}
+	\caption{\emph{Seleccionar la opción de Download only.}}
+	\label{fig:MiktexInst2}
+\end{figure}
+Una vez seleccionada la opción correspondiente se nos presenta una pantalla con tres opciones de instalación: pequeña, grande y total, como se presenta en la Figura~\ref{fig:MiktexInst3}. La descarga total es de unos 250 MB, por lo que es recomendable tener una conexión de banda ancha, o bien hacerlo desde la universidad.
+\begin{figure}
+	\centering
+		\includegraphics[width=.60\textwidth]{fig/MiktexInst3}
+	\caption{\emph{La selección Total implica la descarga de 250 MB.}}
+	\label{fig:MiktexInst3}
+\end{figure}
+Independientemente de la elección, es posible descargar posteriormente los paquetes necesarios.
+
+Una vez elegido tipo de instalación, se informa de los FTP's disponibles para la descarga. La elección más adecuada es la del repositor de la rediris (Figura~\ref{fig:MiktexInst4}).
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst4}
+	\caption{\emph{Selección del repositorio de paquetes desde el que se efectuará la descarga.}}
+	\label{fig:MiktexInst4}
+\end{figure}
+
+
+En la pantalla, mostrada en la Figura~\ref{fig:MiktexInst5} se nos sugiere un directorio local, en nuestra máquina, en el que se guardarán los archivos necesarios. Este directorio simplemente sirve como repositorio local, y no corresponde al de la instalación del programa MiKTeX propiamente dicha, simplemente guardará los paquetes necesarios.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst5}
+	\caption{\emph{Selección del directorio local donde se guardan los paquetes para la instalación.}}
+	\label{fig:MiktexInst5}
+\end{figure}
+
+
+Seguidamente se realiza la descarga. Si por algún motivo se suspende la descarga, se puede retomar de forma que no sea necesario realizar la descarga en una sola sesión (Figura~\ref{fig:MiktexInst6}).
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst6}
+	\caption{\emph{Descarga de paquetes.}}
+	\label{fig:MiktexInst6}
+\end{figure}
+
+
+Finalmente, se notifican las elecciones que se han realizado y se procede a la instalación de MiKTeX, que resulta bastante sencilla y clara. 
+
+Siempre se pude actualizar la distribución desde el menú Inicio->Programas->MiKTeX (ver Figura~\ref{fig:MiktexInst7}).
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/MiktexInst7}
+	\caption{\emph{Actualización de paquetes MiKTeX.}}
+	\label{fig:MiktexInst7}
+\end{figure}
+
+\subsection{Vale, pero ¿cómo escribo un documento en \LaTeX?}
+
+\subsubsection{Elegir el editor}
+Los archivos que leen todos los sistemas \LaTeX\ son archivo simples de texto ASCII, con extensión .tex, por lo que es posible utilizar cualquier editor capaz de producir textos ASCII. Pero esto puede resultar demasiado lioso, por que implica un conocimiento de bastante amplio del funcionamiento de \LaTeX. 
+
+Existen unos cuantos editores \LaTeX\ que se encargan de facilitar la tarea de edición 
+A continuación se detallan unos cuantos.
+
+\begin{itemize}
+	\item WinEdt~(\url{www.winedt.com}): Es un buen editor de \LaTeX, se integra muy facilmente con la distribución de MiKTeX que se tenga instalada. Es bastante intuitivo y sencillo de usar. Inconvenientes: no es gratuito, se permite un uso de tiempo limitado, a partir de ese tiempo se muestra un mensaje indicando que no hemos pagado y que lo hagamos, ya que llega a resultar molesta de verdad. Existen dos posible soluciones: una es probrar suerte con los programas de libre distribución y la otra es pagar la licencia. Otro problema que he encontrado es que no tiene ninguna forma de insertar figuras y tablas de forma automática, aunque la solución a este problema es sencilla, dado que se pueden descargar los gestores de tablas e imágenes desde la página WinEdt. Para el empleo de diccionarios, y otras aplicaciones, se puede consultar también la página~\url{www.winedt.org}
+	
+	\item TeXnicCenter~(\url{www.ToolsCenter.org}): La principal ventaja es que es gratuito, además que proporciona funcionalidades similares a WinEdt, además vienen integrados los gestores de tablas y figuras. El diccionario en castellano se puede conseguir mirando Tools->Options, y aquí en la pestaña Spelling, pulsar en el link que indica Downloads dictionar (ver Figura~\ref{fig:Texnic}).
+	
+	
+\begin{figure}
+	\centering
+		\includegraphics[width=0.75\textwidth]{fig/Texnic}
+	\caption{\emph{Diccionario para TeXnicCenter.}}
+	\label{fig:Texnic}
+\end{figure}
+
+Este es el editor de \LaTeX\ que yo empleo cuando trabajo en Windows.
+
+\end{itemize}
+
+\subsubsection{Utilizar una plantilla}
+
+Una vez que tenemos nuestro editor y sabemos algo de \LaTeX, podemos comenzar a escribir nuestro trabajos. En general se parte de unas plantillas, por ejemplo, la que estoy empleando yo para escribir este documento. Una plantilla muy sencilla es la que se muestra a continuación:
+\begin{verbatim}
+\documentclass[12pt,a4paper,spanish]{book} %%%Esto indica el tipo de documento.
+%Va a ser un libro (book), el tamaño es a4, la lengua castellano (spanish)%%%
+\usepackage{babel} %%%Incluimos el paquete Babel
+	%que sirve para separar correctamente
+	%las palabras de multitud de idiomas%%%
+\usepackage[latin1]{inputenc}%%%Este paquete permite poner acentos directamente%%%
+\usepackage{amsmath}%%%Macros AMS%%%
+\usepackage{amsthm}%%%Macros AMS para teoremas%%%
+\usepackage{amsfonts}%%%Permite usar fuentes AMS%%%
+\usepackage[dvips]{epsfig} %%%Inclusión de figuras postscript
+	% con visualización posterior%%%
+\usepackage{indentfirst}%%%Espaciado de
+	%primera línea de cada párrafo%%%
+\author{Hola}
+\title{Esto es un ejemplo de \LaTeX en acción}
+\date{La fecha de hoy}
+\begin{document}%%%Aquí empieza el documento%%%
+\maketitle
+\tableofcontents
+\listoffigures
+\chapter{Primer capítulo}
+\section{Primera sección}
+%Texto de la sección
+\begin {eqnarray} \label{eq1} %%%Comienzo
+	%de la ecuación%%%
+f:A \times M \rightarrow M \\
+(\lambda, x) \rightarrow \lambda x \nonumber
+\end {eqnarray} %%%Fin de la ecuación%%%
+\end {document}
+
+\end{verbatim}
+
+\subsection{Compilación de fuentes .tex}
+Este es un ejemplo muy tonto, cuya salida es:
+\begin{enumerate}
+	\item Primera Página, Figura~\ref{fig:lat1}:
+	
+\begin{figure}[H]
+	\centering\fbox{
+		\includegraphics[width=0.60\textwidth]{fig/lat1}}
+	\caption{\emph{Salida primera página.}}
+	\label{fig:lat1}
+\end{figure}
+
+\item Tercera Página, Figura~\ref{fig:lat2}
+\begin{figure}[H]
+	\centering\fbox{
+		\includegraphics[width=0.60\textwidth]{fig/lat2}}
+	\caption{\emph{Salida tercera página.}}
+	\label{fig:lat2}
+\end{figure}
+
+\item La página con más interés es la séptima, cuya salida se muestra en la Figura~\ref{fig:lat3}
+
+\begin{figure}[H]
+	\centering
+		\fbox{\includegraphics[width=0.60\textwidth]{fig/lat3}}
+	\caption{\emph{Salida del cuerpo del texto.}}
+	\label{fig:lat3}
+\end{figure}
+
+\end{enumerate}
+
+
+
+
+Obviamente nos hemos saltado el paso en el que se pasa de cógido \LaTeX, por llamarlo de alguna manera, a un fichero, que en nuestro caso era .pdf. A este proceso se le conoce como \emph{compilación de fuentes}, en algunos círculos con el nombre de \emph{latexearlo}.
+
+La compilación se podría hacer por linea de comando, pero es más sencillo aprovechar la integración de los editores con el \LaTeX\ instalado en nuestra máquina. A continuación se detalla el procedimiento para compilación en los dos editores enumerados en la sección anterior.
+
+Antes de pasar a la explicación en cuestión se detallará como obtener el visor GSViewer que para algunos casos de compilación (ya se verá cuáles) es necesario.
+
+\subsubsection{GSview}
+GSview es un interfaz gráfico para Ghostscript. Ghostscript es un interprete para el lenguaje PostScipt usado por las impresoras laser. Para los documentos que siguen las convenciones de estructura de documentos Adobe PostScript, GSView permite seleccionar sus páginas para verlas o bien para imprimirlas.
+
+Este visor necesita tener instalado el programa Aladdin GhostScript primero. 
+
+En la web~\url{http://www.cs.wisc.edu/~ghost/gsview/Readme.htm} se detalla el procedimeinto para la instalación de ambas aplicaciones, cabe mencionar que es más sencilla la instalación si primero se intala el Aladdin GhostScript, y posteriormente el visor GSview.
+
+\subsubsection{Compilación de fuentes con WinEdt}
+
+Existen diversas formas de compilar las fuentes, todas ellas comunes a ambos editores, por lo que se enunciarán aquí y no se volverán a repetir.
+
+\begin{enumerate}
+	\item \LaTeX\ -> dvi: En esta simplemente se compilan los archivos, y se crea un archivo salida con extensión .dvi. Este no es un formato muy extendido para el intercambio de documentos. En WinEdt para conseguir esta compilación se debe pulsar al icono en el que se señala la palabra \LaTeX, (ver Figura~\ref{fig:WinEdt1}).
+	
+\begin{figure}[H]
+	\centering\fbox{
+		\includegraphics[width=0.85\textwidth]{fig/WinEdt1}}
+	\caption{\emph{Compilación a dvi con WinEdt.}}
+	\label{fig:WinEdt1}
+\end{figure}
+
+A partir de aquí se puede pasar a formato .ps, que se pueden visualizar con GSview, o bien a .pdf, que se puede visualizar con Acrobat Reader\footnote{Debemos tener instalado el Acrobat Reader en nuestra máquina}. Para hacer esta conversión se emplean los iconos de WinEdt señalados en la Figura~\ref{fig:WinEdt2}, que son bastante gráficos.
+\begin{figure}[H]
+	\centering\fbox{
+		\includegraphics[width=0.85\textwidth]{fig/WinEdt2}}
+	\caption{\emph{Conversión a formato ps o pdf.}}
+	\label{fig:WinEdt2}
+\end{figure}
+
+\item \LaTeX\ -> pdf: Con esta compilación directamente se obtienen las salidas en formatos pdf. El icono a emplear es el que tiene por nombre pdfLaTeX, que se muestra resaltado en la Figura~\ref{fig:WinEdt3}
+\begin{figure}[H]
+	\centering\fbox{
+		\includegraphics[width=0.85\textwidth]{fig/WinEdt3}}
+	\caption{\emph{Compilación Latex a pdf}}
+	\label{fig:WinEdt3}
+\end{figure}
+
+En ambas compilaciones se puede emplear el icono con la mascota de \LaTeX, que están inmediatamente a la izquierda de los iconos mencionados, la única diferencia es que el empleo del icono con las mascotas lanza automáticamente la visión del documento de salida.
+\end{enumerate}
+
+En todos los casos para ver el resultado, es decir, el fichero salida que produce la compilación se emplean los iconos que están en la fila debajo de la que contiene los iconos de compilación, y que representan el logo del visor en cuestión. 
+
+\subsubsection{Compilación con TeXnicCenter}
+
+La filosofía de compilación es un poco distinta, aunque fundamentalmente se realiza el mismo proceso.
+
+En este caso sólo existe un icono de compilación, y para indicar que tipo de compilación se ha de hacer en una lista desplegable de posibilidades, que se encuentra justo a la izquierda del icono de compilación, (Figura~\ref{fig:Texnic1})
+\begin{figure}[H]
+	\centering
+	\fbox{
+		\includegraphics[width=0.85\textwidth]{fig/Texnic1}}
+	\caption{\emph{Compilación con TeXnicCenter.}}
+	\label{fig:Texnic1}
+\end{figure}
+
+De esta forma, si nuestro objetivo es compilar a .pdf basta con indicar en el cuadro de dialogo
+\begin{verbatim}
+LaTeX=>PDF
+\end{verbatim}
+
+y presionar en el icono de compilar.
+
+Para ambos editores se recomienda el uso de los proyectos, que permiten una gestión más compacta de todo un PFC por ejemplo.
+
+\section{Un par de ideas más avanzadas, no mucho}
+
+En esta sección se explica como incluir figuras, en distintos formatos, y tablas en \LaTeX, que en un primer acercamiento a \LaTeX\ parecen ser la parte que más quebraderos de cabeza da. También se explicará cómo referenciar, por ejemplo, una ecuación, y como incluir bibliografía y citas.
+
+\subsection{Inclusión de figuras}
+
+Como todo en \LaTeX, la inclusión de figuras se hace mediante unos comandos que indican al programa que se quiere incluir en el texto tal figura, y con una propiedades tales, y ya se encargará el de colocarla lo mejor que pueda, según lo especificado.
+
+El problema se plantea cuando se tiene que decidir el formato de figura que se pretende insertar. Por simplificar haremos una división muy burda entre figuras eps (encapsuladas postscript) y restantes figura, tales como png, jpg, gif
+
+La distinción se basa en el hecho de que la compilación es distinta según el grupo de figuras que se incluyan, así:
+
+\begin{itemize}
+	\item \LaTeX->div o ps si \emph{todas} las figuras que se incluyen en el documento son eps.
+	\item \LaTeX->pdf si \emph{todas} las figuras que se incluyen son de tipo png, jpg, gif. 
+\end{itemize}
+
+El procedimiento para incluir una figura en el documento es común a los dos grupos. En primer lugar es necesario tener incluido el paquete \emph{graphicx} en el preámbulo\footnote{Todo lo que hay antes de: $\backslash$begin\{document\}} con el siguiente comando:
+\begin{verbatim}
+	\usepackage{graphicx}
+\end{verbatim}
+A continuación del preámbulo se deben declarar las extensiones que se quieren para las figuras
+\begin{verbatim}
+	\DeclareGraphicsExtensions{.jpg,.pdf,.png,.gif,.eps}
+\end{verbatim}
+
+En algún lugar cercano en el que se quiere colocar la figura se debe poner el siguiente código:
+\begin{verbatim}
+	\begin{figure}[htbp]
+    	\centering
+        	\includegraphics[width=0.60\textwidth]{fig/AtractorLorenz}
+    	\caption{Mi Figura}
+    	\label{fig:AtractorLorenz}
+	\end{figure}
+\end{verbatim}
+
+Las opciones entre paréntesis indican el lugar en el que se prefiere que se coloque la figura, con h se indica que aquí (here), con t se indica que arriba (top), con b abajo (bottom) y con p en una página (page) de figuras a parte. Se recomienda consultar la siguiente web \url{http://ltx.blogspot.com/2003/10/quiero-mi-figura-aqui.html}.
+  
+Con lo que se crea un elemento flotante figura, con el entorno \emph{figure}, que sea centrada, con \emph{centering}. 
+El comando:
+\begin{verbatim}
+	\includegraphics[width=0.60\textwidth]{fig/AtractorLorenz}
+\end{verbatim}
+indica que se debe colocar la figura que se tiene guardada en disco, es conveniente hacer una carpeta con todas las figuras y referenciar el path a esa figura, como se hace en el ejemplo,  que se tiene una carpeta fig en dentro de la carpeta en la que se tienen los ficheros .tex
+
+Como se puede apreciar, no se indica la extensión del fichero, esta información no es necesaria, el compilador ya se encarga de buscar la extensión adecuada.
+
+La información entre corchetes son opciones o modificaciones sobre el comando. En este caso se indica que se reduzca el tamaño de la figura un a un 60\% del ancho del texto que cabe en una página.
+
+Yo personalmente uso compilación \LaTeX->pdf, de esta forma todas las figuras que empleo son o bien png, o bien jpg o bien gif. La elección está condicionada por el uso de estos formatos en Internet, y por lo sencillo que es tratar estos formatos con paquetes gráficos. Además Matlab permite la obtención de figuras de este estilo, mis preferidas son .png, he comprobado que la definición es mejor en un pdf, pero es cuestión de probar.
+
+El resultado de la ejecución del código para la inclusión de la figura es el que se aprecia en la Figura~\ref{fig:AtractorLorenz}
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.60\textwidth]{fig/AtractorLorenz}
+	\caption{Mi figura.}
+	\label{fig:AtractorLorenz}
+\end{figure}
+
+Para cuestiones un poco más avanzadas sobre figuras se recomienda la siguiente página: \url{http://www.udlap.mx/~ma108907/latex/figuras.html}.
+
+\subsection{Inclusión de tablas}
+
+Las tablas en \LaTeX\ tienen el objetivo principal de ser lo más funcionales posibles, es decir, prima el contenido frente al continente, aunque se pueden conseguir diseños de tablas muy estéticos, pero hay que tener en cuenta esto. La filosofía de la inclusión de tablas es similar a la de la inclusión de figuras, dado que primero se crea un entorno flotante, en este caso de tabla, y dentro de él se crea la tabla que deseemos. Un ejemplo sencillo sería:
+\begin{verbatim}
+	\begin{table}[h]
+	\scriptsize
+  	  \begin{tabular}{|l|c|l|}
+    	\hline
+    	\textbf{Variable}& \textbf{Unidades} & \textbf{Descripción}\\
+    	\hline
+    	\hline
+    	HRV index & ms & Número total de intervalos RR dividido por la altura del\\
+    	& & histograma de todos los intervalos RR usando celdas de 8 ms.\\
+    	TINN & ms & Anchura de la línea de base de la interpolación triangular,\\
+    	& & diferencia de mínimos cuadrados, del pico más alto del\\
+    	& & histograma de todos los intervalos RR.\\
+    	Dispersión del diagrama de Lorenz & ms & \\
+    	& & intervalos RR frente a la de los anteriores.\\
+    	\hline
+    	\hline
+    	\end{tabular}
+    	\caption{\emph{Métodos geométricos: medidas temporales de la HRV.}}
+    	\label{tab:MedidasTemporalesGeometricas}
+	\end{table}
+\end{verbatim}
+
+Las letras entre paréntesis al lado del comando 
+\begin{verbatim}
+	\begin{tabular}
+\end{verbatim}
+
+indican la alineación que tendrán los elementos de las respectivas columnas, en este caso los de la primera columna estarán alineados a la izquierda, al igual que los de la tercera columna, mientras que los de la segunda estarán centrados.
+
+El resultado de esta se muestra en la Tabla~\ref{tab:MedidasTemporalesGeometricas}
+
+\begin{table}[h]
+\scriptsize
+    \begin{tabular}{|l|c|l|}
+    \hline
+    \textbf{Variable}& \textbf{Unidades} & \textbf{Descripción}\\
+    \hline
+    \hline
+    HRV index & ms & Número total de intervalos RR dividido por la altura del\\
+    & & histograma de todos los intervalos RR usando celdas de 8 ms.\\
+    TINN & ms & Anchura de la línea de base de la interpolación triangular,\\
+    & & diferencia de mínimos cuadrados, del pico más alto del\\
+    & & histograma de todos los intervalos RR.\\
+    Dispersión del diagrama de Lorenz & ms & Mapa de puntos en el que se representa la duración de los\\
+    & & intervalos RR frente a la de los anteriores.\\
+    \hline
+    \end{tabular}
+    \caption{\emph{Métodos geométricos: medidas temporales de la HRV.}}
+    \label{tab:MedidasTemporalesGeometricas}
+\end{table}
+
+\subsection{Referencias}
+
+El manejo de referencias en \LaTeX\ es una de sus principales ventajas, dado que nosotros no debemos mantener un control total de la numeración, simplemente se debe hacer un pequeño ejercicio de orden a la hora de organizar las etiquetas (labels), y las referencias.
+
+Para poder referenciar capítulos, secciones (en general cualquier apartado del documento), figuras, tablas, ecuaciones, etc. primero se deben etiquetar. Para ello se emplea el comando 
+\begin{verbatim}
+	\label{}
+\end{verbatim}
+
+Una recomendación es la de emplear las etiquetas de la siguiente forma: se divide la etiqueta con 
+\begin{verbatim}
+	\label{part1:part2}
+\end{verbatim}
+
+En part1 se colocará la naturaleza de lo que se quiere referenciar, si se trata de una sección será sec, si es una figura será fig, etc. En part2 se debe indicar un nombre representativo de lo referenciado, así si es una figura que representa el atractor de Lorenz, la etiqueta completa será:
+\begin{verbatim}
+	\label{fig:AtractorLorenz}
+\end{verbatim}
+
+La manera de hacer referencia de esta figura basta con incluir el siguiente código:
+\begin{verbatim}
+	\ldots como se puede observar en la Figura~\ref{fig:AtractorLorenz}.
+\end{verbatim}
+
+Lo que una vez compilado resulta ser:
+
+
+\medskip
+\shabox{... como se puede observar en la Figura~\ref{fig:AtractorLorenz}.}
+\medskip
+
+\subsection{Bibliografía}
+
+Este es otro de los apartados más reseñables de \LaTeX. Existen diversas formas de introducir la bibliografía en un documento. En este apartado se introduce el uso de BibTeX, herramienta que permite un sencillo manejo de una amplia bibliografía como puede ser la que se ha de emplear en un PFC.
+
+El primer paso es crear un archivo .bib, que no es nada más ni menos que un archivo de texto con la terminación .bib, esto se puede hacer con los propios editores de \LaTeX, en este aspecto WinEdt le lleva ventaja a TeXnicCenter. 
+
+Este archivo no es más que un conjunto de entradas como la que se muestra a continuación:
+\begin{verbatim}
+@article{HRV:Bezerianos95,
+ author = "A. Bezerianos and G. Papaioannou and P. Polydoropoulos",
+ title = "Nonlinear time series analysis of electrocardiograms",
+ journal = "Chaos",
+ volume = "5",
+ number = "1",
+ pages = "95--101"
+}
+\end{verbatim}
+
+Con WinEdt es tan sencillo como insertar un item de BibTeX, lo que se puede realizar como se muestra en la Figura~\ref{fig:WinEdt4}
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.85\textwidth]{fig/WinEdt4}
+	\caption{\emph{Selección de una nueva entrada para BibTeX}}
+	\label{fig:WinEdt4}
+\end{figure}
+
+Para citar el artículo anterior en el documento que estemos escribiendo, primero se debe introducir los siguientes comandos en el archivo .tex principal:
+\begin{verbatim}
+\bibliographystyle{abbrv}
+\bibliography{bsample}
+\end{verbatim}
+
+El primer comando indica el estilo que se empleará en la bibliografía, y el segundo el archivo en el que está esa bibliografía.
+
+En la zona exacta en la que se quiere citar, se debe colocar la siguiente sentencia:
+\begin{verbatim}
+\ldots para ampliar los conceptos expuestos, consultar~\cite{HRV:Bezerianos95}.
+\end{verbatim}
+
+Como se puede apreciar, se debe seguir un cierto orden para las entradas de las citas. Compilado lo anterior queda:
+
+\medskip
+\shabox{\ldots para ampliar los conceptos expuestos, consultar~\cite{HRV:Bezerianos95}.}
+\medskip
+
+Para que la compilación tenga éxito, en el editor WinEdt es necesario primero utilizar el icono ``Bib'', (ver Figura~\ref{fig:WinEdt5}). Esto permite ejecutar la herramienta BibTeX, si bien probablemente será necesario hacerlo un par de veces para actualizar todas las citas, y posteriormente latexear el documento entero.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.85\textwidth]{fig/WinEdt5}
+	\caption{\emph{Compilación del BibTeX.}}
+	\label{fig:WinEdt5}
+\end{figure}
+
+En el editor TeXnicCenter basta simplemente con compilar unas cuantas veces, al menos dos veces para que el programa sea capaz de actualizar todas las referencias.
+
+\section{Conclusiones y recomendaciones}
+
+Este pequeño tutorial no pretende enseñar el manejo de la potente herramienta que es \LaTeX\, si no simplemente ayudar a superar el miedo inicial ante un nuevo lenguaje que permite crear textos muy bien estructurados y, sobre todo, que permite el manejo de documentos de extensión larga. 
+
+Nos ha parecido interesante resumir en un mismo documento los pasos iniciales antes de poder usar \LaTeX, tales como la instalación y el manejo básico de las herramientas necesarias, así como pequeños ejemplos de ciertos aspectos que al principio pueden resultar muy extraños para los que venimos del mundo Word. 
+
+Con lo aquí expuesto no se pueden crear documentos, pero permite un acercamiento amigable, que unido a la consulta de los libros y documentos que a continuación se presentan permitirían llegar a tener un control aceptable de \LaTeX.
+
+Se recomeniendan como referencias para el manejo de \LaTeX:
+\begin{itemize}
+	\item The LaTeX Companion. Libro que se encuentra en la biblioteca.
+	\item ~\url{www.cervantex.org}. Magnifico sitio Web, muy recomendable.
+	\item \textit{The not so shot introduction to LaTeX}. Se encuentra en Internet de forma gratuita.
+\end{itemize}
+
+Aparte de infinidad de información que se pude encontrar con solo introducir en el buscador de Google la palabra  \LaTeX.

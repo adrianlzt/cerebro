@@ -1,0 +1,1 @@
+Graylog2-Web provides a separate Ruby on Rails project which offers a very sexy-looking interface into what is stored in ElasticSearch. Filters allow me to drill down and search for specific fields, "streams" enable me to use pre-defined filters for doing the same, and I can monitor streams and have them issue alerts or forward messages to other Graylog2 endpoints.

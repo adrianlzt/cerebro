@@ -1,0 +1,8 @@
+<h1>Error:</h1>
+<div class="error">
+	{{ error|linebreaksbr }}
+	{% if forced_version %}
+		<br><br>
+		If you still want to update proyects to tag {{ forced_version }}, please click <a href='/svn/new_release/'>here</a>
+	{% endif %}
+</div>

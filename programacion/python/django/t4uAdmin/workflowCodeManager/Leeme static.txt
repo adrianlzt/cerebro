@@ -1,0 +1,2 @@
+La carpeta static que se encuentra dentro de workflowCodeManager es la que lee el servidor de pruebas de DJango (python manage.py runserver).
+La carpeta "buena" es la que se encuentra directamente en t4uAdmin, y es la que leera Apache

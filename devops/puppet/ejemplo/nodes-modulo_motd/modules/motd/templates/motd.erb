@@ -1,0 +1,12 @@
+Bienvenido a <%= @fqdn %>
+Variable <%= var %>
+Uptime <%= @uptime %>
+Version <%= @operatingsystem -%> de linux
+
+<% 
+if @osfamily == 'Debian' 
+-%>
+hola soy debian
+<% else -%>
+hola no soy debian
+<% end -%>

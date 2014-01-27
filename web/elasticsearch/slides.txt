@@ -1,0 +1,1165 @@
+=-= 1
+
+
+
+
+
+
+
+
+
+
+
+    GETTING STARTED WITH ELASTICSEARCH
+
+
+
+    Drew Raines
+    Developer, Elasticsearch
+    @drewr
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 2
+
+
+
+
+
+
+
+
+
+
+    o What is Elasticsearch?
+    o How do I run Elasticsearch?
+    o How do I get data in and out?
+    o How should I organize my data?
+    o What is a search engine?
+    o What happens when failure strikes?
+    o How do I analyze my data?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 3
+
+
+
+
+
+
+
+
+
+
+    What is Elasticsearch?
+
+
+    o Open-source, distributed, RESTful search engine
+    o Data exploration
+    o Highly configurable
+    o Sane defaults
+    o Fast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    bin/elasticsearch -f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 6
+
+
+
+
+
+
+
+
+
+
+    curl -XPUT localhost:9200/vehicles/tv/one -d'
+    {
+        "color": "green",
+        "driver": {
+            "born": "1959-09-07",
+            "name": "Walter White"
+        },
+        "make": "Pontiac",
+        "model": "Aztek",
+        "value_usd": 5000.0,
+        "year": 2003
+    }'
+
+
+
+
+
+
+
+
+
+
+
+=-= 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_mapping
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 8
+
+
+
+
+
+
+
+
+
+    Index     (Database)
+
+    Type      (Table)
+
+    Document  (Row)
+
+    Field     (Column)
+
+
+
+
+    http://en.wikipedia.org/wiki/Inverted_index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/tv/one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl 'localhost:9200/vehicles/tv/_search?q=_id:one'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 11
+
+
+
+
+
+
+
+
+
+
+    curl -XPUT localhost:9200/vehicles/tv/two -d'
+    {
+        "color": "black",
+        "driver": {
+            "born": "1949-01-09",
+            "name": "Michael Knight"
+        },
+        "make": "Pontiac",
+        "model": "Trans Am",
+        "year": 1982,
+        "value_usd": 9999999.00
+    }'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl 'localhost:9200/vehicles/_search?q=pontiac'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl 'localhost:9200/vehicles/_search?q=driver.name:walt*'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 14
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_search -d'
+    {
+        "query": {
+            "prefix": {
+                "driver.name": "walt"
+            }
+        }
+    }'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 15
+
+
+
+
+    curl localhost:9200/vehicles/_search -d'
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "match": {
+                            "make": "pontiac"
+                        }
+                    },
+                    {
+                        "range": {
+                            "year": {
+                                "gte": 2000
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }'
+
+
+
+
+
+
+=-= 16
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_search -d'
+    {
+        "query": {
+            "bool": {
+                "must": {
+                    "match": {
+                        "make": "pontiac"
+                    }
+                },
+                "should": {
+                    "range": {
+                        "year": {
+                            "gte": 2000
+                        }
+                    }
+                }
+            }
+        }
+    }'
+
+
+
+
+
+=-= 17
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          SEARCH!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 18
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       "car"              -> ("auto", "automobile", "truck")
+
+       "wireless network" -> ("wifi", "wi-fi")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 19
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    SHARDS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/_cluster/health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 21
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    FAILURE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 22
+
+
+
+
+
+
+
+
+
+
+
+   curl -XPUT localhost:9200/vehicles/tv/three -d'
+   {
+       "color": "red",
+       "driver": {
+           "name": "Thomas Magnum"
+       },
+       "make": "Ferrari",
+       "model": "308 GTS",
+       "year": 1978,
+       "value_usd": 30500.00
+   }'
+
+
+
+
+
+
+
+
+
+
+=-= 23
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 24
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/_cluster/health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 25
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl -XPUT localhost:9200/vehicles/_settings -d'
+    {
+        "number_of_replicas": 0
+    }'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/_cluster/health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 27
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl -XPUT localhost:9200/vehicles/_settings -d'
+    {
+        "number_of_replicas": 1
+    }'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 29
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    curl localhost:9200/_cluster/health
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    FACETED SEARCH (AGGREGATIONS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 31
+
+
+
+
+
+
+
+    curl localhost:9200/vehicles/_search -d'
+    {
+        "facets": {
+            "vehicle_make": {
+                "terms": {
+                    "field": "make"
+                }
+            },
+            "vehicle_value": {
+                "statistical": {
+                    "field": "value_usd"
+                }
+            }
+        },
+        "query": {
+            "match_all": {}
+        }
+    }'
+
+
+
+
+
+
+
+
+
+
+
+=-= 32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    https://github.com/elasticsearch/kibana
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 33
+
+
+
+
+
+
+
+
+
+
+
+
+    o What is Elasticsearch?
+    o How do I run Elasticsearch?
+    o How do I get data in and out?
+    o How should I organize my data?
+    o What is a search engine?
+    o What happens when failure strikes?
+    o How do I analyze my data?
+
+
+
+
+
+
+
+
+
+
+
+
+
+=-= 34
+
+
+
+
+    RESOURCES
+
+    Webinars
+
+    o What's New in Elasticsearch 0.90?
+    o Using Elasticsearch for Log Search and Analytics with Kibana
+
+    Development support
+
+    o Architecture review
+    o Query troubleshooting
+    o Performance assistance
+
+    Production support
+
+    o 24x7 response
+    o Hot patches and emergency fixes
+    o Support from the core Elasticsearch developers
+
+
+    http://elasticsearch.org
+    http://elasticsearch.com

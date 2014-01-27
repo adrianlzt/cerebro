@@ -1,0 +1,1 @@
+Usar: alert("mensaje " + variable)

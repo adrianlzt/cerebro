@@ -1,0 +1,1 @@
+Loopback device is a virtual network device implemented entirely in software (userspace) which the host uses to communicate with itself. Device (interface) is assigned a special non-routable IP address block 127.0.0.0/8 that is the IP addresses 127.0.0.1 through 127.255.255.254 can be used to communicate with the host itself

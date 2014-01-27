@@ -1,0 +1,2 @@
+https://github.com/google/lmctfy
+lmctfy (pronounced lem-kut-fee) is the open source version of Google’s container stack, which provides Linux application containers. These containers allow for the isolation of resources used by multiple applications running on a single machine. This gives the applications the impression of running exclusively on a machine. The applications may be container-aware and thus be able to create and manage their own subcontainers.

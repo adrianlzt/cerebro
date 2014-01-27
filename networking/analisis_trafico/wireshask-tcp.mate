@@ -1,0 +1,15 @@
+
+Pdu tcp_pdu Proto tcp Transport ip {
+        Extract addr From ip.addr;
+        Extract port From tcp.port;
+		Extract tcp_start From tcp.flags.syn;
+		Extract tcp_stop From tcp.flags.reset;
+		Extract tcp_stop From tcp.flags.fin;
+};
+
+Gop tcp_ses On tcp_pdu Match (addr, addr, port, port) {
+    Start (tcp_start=1);
+	Stop (tcp_stop=1);
+};
+
+Done;

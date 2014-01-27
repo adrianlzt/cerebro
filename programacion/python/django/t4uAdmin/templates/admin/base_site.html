@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Proyect site admin' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'Proyects administration' %}</h1>
+<a href="/svn/" style="margin-left:10px;">[Back to index]</a>
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}

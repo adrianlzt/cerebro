@@ -1,0 +1,59 @@
+{% if revisions.0.number == -1 or revisions.1.number == -1 %}
+	Error updating preproduction proyects.
+	Please, check it manually.
+{% else %}
+	<div class="revInfo">Preproduction proyects updated with trunk code</div>
+	<table class="svnMessages">
+	<tr>
+		<td>Req-Testplan:</td>
+		<td></td>
+		<td>Manufacturer:</td>
+	</tr>
+	
+	<tr>
+		<td>
+			{% if logMessages.0 %}
+				{% for log in logMessages.0 %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }} ({{log.author}})</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message|linebreaksbr }} </div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<div class="revision1">
+					<div class="logs-messages">
+						Already was in the last version.
+					</div>	
+				</div>
+			{% endif %}
+		</td>
+		<td class="separator"></td>
+		<td>
+			{% if logMessages.1 %}
+				{% for log in logMessages.1 %}
+				<div class="{% cycle 'revision1' 'revision2' %}">
+					<li>Revision {{ log.revision.number }}</li>
+					<div class="files-changed">
+					{% for p in log.changed_paths %}
+						{{ p.path }}<br>
+					{% endfor %}
+					</div>
+					<div class="logs-messages"> {{ log.message|linebreaksbr }} </div>
+				</div>
+				{% endfor %}
+			{% else %}
+				<div class="revision1">
+					<div class="logs-messages">
+						Already was in the last version.
+					</div>	
+				</div>
+			{% endif %}
+		</td>
+	</tr>
+	
+{% endif %}

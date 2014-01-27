@@ -1,0 +1,19 @@
+# Rackspace London
+[rax_lon]
+OS_USERNAME=usuario
+
+# es el account number
+OS_TENANT_NAME=1002 
+
+OS_PASSWORD=pass
+OS_AUTH_URL=https://lon.identity.api.rackspacecloud.com/v2.0/
+OS_REGION_NAME=LON
+#OS_AUTH_SYSTEM=rackspace
+#NOVA_RAX_AUTH=1
+#OS_PASSWORD=22e1f626d86153598fe8
+#OS_PROJECT_ID=1002 # es el account number
+#OS_NO_CACHE=1
+
+# NOVA_RAX_AUTH
+# Set to 1 to specify your API key in the OS_PASSWORD environment variable.
+# Otherwise, set OS_PASSWORD to your Rackspace Cloud password.

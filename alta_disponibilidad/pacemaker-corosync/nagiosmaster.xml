@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<cib admin_epoch="0" cib-last-written="Thu Mar  7 15:01:59 2013" crm_feature_set="3.0.6" dc-uuid="node1" epoch="93" have-quorum="1" num_updates="459" update-client="cibadmin" update-origin="node1" validate-with="pacemaker-1.2">
+  <configuration>
+    <crm_config>
+      <cluster_property_set id="cib-bootstrap-options">
+        <nvpair id="cib-bootstrap-options-dc-version" name="dc-version" value="1.1.7-6.el6-148fccfd5985c5590cc601123c6c16e966b85d14"/>
+        <nvpair id="cib-bootstrap-options-cluster-infrastructure" name="cluster-infrastructure" value="openais"/>
+        <nvpair id="cib-bootstrap-options-expected-quorum-votes" name="expected-quorum-votes" value="2"/>
+        <nvpair id="cib-bootstrap-options-stonith-enabled" name="stonith-enabled" value="false"/>
+        <nvpair id="cib-bootstrap-options-no-quorum-policy" name="no-quorum-policy" value="ignore"/>
+        <nvpair id="cib-bootstrap-options-last-lrm-refresh" name="last-lrm-refresh" value="1362558734"/>
+      </cluster_property_set>
+    </crm_config>
+    <nodes>
+      <node id="node1" type="normal" uname="node1"/>
+      <node id="node2" type="normal" uname="node2"/>
+    </nodes>
+    <resources>
+      <primitive class="ocf" id="vip" provider="heartbeat" type="IPaddr2">
+        <instance_attributes id="vip-instance_attributes">
+          <nvpair id="vip-instance_attributes-ip" name="ip" value="10.6.4.5"/>
+          <nvpair id="vip-instance_attributes-nic" name="nic" value="eth1"/>
+        </instance_attributes>
+        <operations>
+          <op id="vip-monitor-10s" interval="10s" name="monitor"/>
+        </operations>
+        <meta_attributes id="vip-meta_attributes">
+          <nvpair id="vip-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="lsb" id="Icinga_ido2db" type="ido2db">
+        <operations>
+          <op id="Icinga_ido2db-monitor-20s" interval="20s" name="monitor"/>
+        </operations>
+        <meta_attributes id="Icinga_ido2db-meta_attributes">
+          <nvpair id="Icinga_ido2db-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="lsb" id="PNP4NagiosWorker" type="pnp_gearman_worker">
+        <operations>
+          <op id="PNP4NagiosWorker-monitor-20s" interval="20s" name="monitor"/>
+        </operations>
+        <meta_attributes id="PNP4NagiosWorker-meta_attributes">
+          <nvpair id="PNP4NagiosWorker-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="lsb" id="PNP4NagiosDaemon" type="npcd">
+        <operations>
+          <op id="PNP4NagiosDaemon-monitor-20s" interval="20s" name="monitor"/>
+        </operations>
+        <meta_attributes id="PNP4NagiosDaemon-meta_attributes">
+          <nvpair id="PNP4NagiosDaemon-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="ocf" id="apache" provider="heartbeat" type="apache">
+        <instance_attributes id="apache-instance_attributes">
+          <nvpair id="apache-instance_attributes-configfile" name="configfile" value="/etc/httpd/conf/httpd.conf"/>
+        </instance_attributes>
+        <operations>
+          <op id="apache-monitor-1min" interval="1min" name="monitor"/>
+        </operations>
+        <meta_attributes id="apache-meta_attributes">
+          <nvpair id="apache-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="lsb" id="Gearman" type="gearmand">
+        <operations>
+          <op id="Gearman-monitor-20s" interval="20s" name="monitor"/>
+        </operations>
+        <meta_attributes id="Gearman-meta_attributes">
+          <nvpair id="Gearman-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="lsb" id="Icinga" type="icinga">
+        <operations>
+          <op id="Icinga-monitor-20s" interval="20s" name="monitor"/>
+        </operations>
+        <meta_attributes id="Icinga-meta_attributes">
+          <nvpair id="Icinga-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+    </resources>
+    <constraints>
+      <rsc_colocation id="gearman_with_vip" rsc="Gearman" score="INFINITY" with-rsc="vip"/>
+      <rsc_colocation id="ido2db_with_vip" rsc="Icinga_ido2db" score="INFINITY" with-rsc="vip"/>
+      <rsc_colocation id="pnp4nagiosdaemon_with_vip" rsc="PNP4NagiosDaemon" score="INFINITY" with-rsc="vip"/>
+      <rsc_colocation id="pnp4nagiosworker_with_vip" rsc="PNP4NagiosWorker" score="INFINITY" with-rsc="vip"/>
+      <rsc_order first="vip" id="apache-after-vip" score="INFINITY" then="apache"/>
+      <rsc_colocation id="apache_with_vip" rsc="apache" score="INFINITY" with-rsc="vip"/>
+      <rsc_colocation id="icinga_with_vip" rsc="Icinga" score="INFINITY" with-rsc="vip"/>
+    </constraints>
+    <rsc_defaults>
+      <meta_attributes id="rsc-options">
+        <nvpair id="rsc-options-resource-stickiness" name="resource-stickiness" value="100"/>
+      </meta_attributes>
+    </rsc_defaults>
+  </configuration>
+</cib>
+

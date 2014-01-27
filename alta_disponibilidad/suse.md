@@ -1,0 +1,1 @@
+../linux/suse/ha.md

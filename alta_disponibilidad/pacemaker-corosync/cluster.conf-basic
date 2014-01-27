@@ -1,0 +1,30 @@
+<cluster config_version="11" name="test">
+  <fence_daemon/>
+  <clusternodes>
+    <clusternode name="nodo1" nodeid="1">
+      <altname name="nodo1-alt"/>
+      <fence>
+        <method name="pcmk-redirect">
+          <device name="pcmk" port="nodo1"/>
+        </method>
+      </fence>
+    </clusternode>
+    <clusternode name="nodo2" nodeid="2">
+      <altname name="nodo2-alt"/>
+      <fence>
+        <method name="pcmk-redirect">
+          <device name="pcmk" port="nodo2"/>
+        </method>
+      </fence>
+    </clusternode>
+  </clusternodes>
+  <cman/>
+  <fencedevices>
+    <fencedevice agent="fence_pcmk" name="pcmk"/>
+  </fencedevices>
+  <rm>
+    <failoverdomains/>
+    <resources/>
+  </rm>
+  <totem rrp_mode="passive"/>
+</cluster>

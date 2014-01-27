@@ -1,0 +1,1 @@
+Eric said the new parser was a response to the tough decision made with Puppet 3.1 to deprecate the Puppet Ruby DSL, a pure Ruby implementation of the Puppet DSL. - See more at: http://puppetlabs.com/blog/puppet-3-2-introduces-an-experimental-parser-and-new-iteration-features#sthash.arsnpQPd.dpuf

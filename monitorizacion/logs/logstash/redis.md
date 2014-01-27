@@ -1,0 +1,1 @@
+The server keeps logs in a redis queue until the logs can be drained into elasticsearch. Neither redis nor elasticsearch are required to be on the server, but they are nevertheless required and installed here.

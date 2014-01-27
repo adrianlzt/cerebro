@@ -1,0 +1,25 @@
+Interfaces gráficas para las configuraciones: https://www.icinga.org/2011/11/17/addons-for-icinga-configuration-interfaces-tools/
+
+Monitorización activa: NRPE
+Instalar el plugin en el servidor: yum install nagios-plugins-nrpe (repo epel)
+Me va a instalar las cosas en los directorios de nagios!
+
+En resource.cfg se definen las macros que luego se utilizarán en el resto de .cfg.
+Lo normal es poner las rutas donde se encuentran los comandos de chequeo.
+
+Todos los hosts y servicios a monitorizar deben tener una configuración.
+Almacenaremos todas las configuraciones bajo el directorio /usr/local/icinga/etc/conf.d
+Dentro de ese directorio se leeran todos los ficheros que terminen en .cfg . Los subdirectorios serán tambien leídos.
+Podemos usar los subdirectorios para ordenar las configuraciones.
+En icinga.cfg se pueden definir más directorios de donde leer configuraciones, o ficheros directmente.
+
+Si se define un register 0, ese host/service se usa como template
+
+Tras crear este fichero debemos recargar/reiniciar icinga. Recargar (reload) es más rápido, pero, según la documentación, no siempre puede ser suficiente.
+
+
+Un servicio se puede asignar a un, o varios, hostgroup.
+En dicho hostgroup se definen todos los hosts que a el pertenecen, o al definir el host, se dice a que hostgroups pertenece.
+
+En que influye tener un parent?
+Y lo de heredar, solo es para propiedades (nada de servicios)?

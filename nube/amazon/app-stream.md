@@ -1,0 +1,1 @@
+Amazon AppStream is a flexible, low-latency service that lets you stream resource intensive applications and games from the cloud. AppStream streams the output of applications to mass-market devices, such as PCs, tablets, and mobile phones. With AppStream, your applications and games run in the cloud and are no longer constrained by the hardware in your customer’s hands.

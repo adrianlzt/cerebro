@@ -1,0 +1,44 @@
+require File.expand_path('~/.rackspace/credentials.rb')
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+# Rackspace data #
+rax_api_key=@rax_api_key
+rax_username=@rax_username
+flavor=/512MB/ # 512MB, 1GB, 2GB, 4GB, 8GB, 15GB, 30GB
+
+# image=/Ubuntu 13.10/
+# image=/Ubuntu 12.04/
+image="CentOS 6.4"
+
+region=:lon # :dfw, :ord, :lon, :iad, :syd
+server_name="vagrantBOX"
+pub_key = File.expand_path('~/.rackspace/rax.pub')
+priv_key = File.expand_path('~/.rackspace/rax')
+ 
+
+  Vagrant.require_plugin "vagrant-rackspace"
+  
+  config.vm.box = "dummy_rackspace"
+
+  config.ssh.private_key_path = priv_key
+
+  config.vm.provider :rackspace do |rs|
+    rs.username         = rax_username
+    rs.api_key          = rax_api_key
+    rs.flavor           = flavor
+    rs.image            = image
+    rs.rackspace_region = region
+    rs.server_name	= server_name
+    rs.public_key_path  = pub_key
+    # rs.disk_config
+    # rs.rackspace_compute_url
+    # rs.rackspace_auth_url
+    # 
+    # Networks
+    # rs.network '5e738e11-def2-4a75-ad1e-05bbe3b49efe'
+    # rs.network :service_net, :attached => false
+  end
+end
