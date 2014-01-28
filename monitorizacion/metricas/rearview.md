@@ -1,3 +1,4 @@
+http://steveakers.com/2014/01/24/rearview-on-rails/
 https://github.com/livingsocial/rearview
 
 Cada cierto tiempo se examina unas métricas, que se pasan por un script de ruby, donde se analizan, y se genera una alerta en caso de ser necesario.

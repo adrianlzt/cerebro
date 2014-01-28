@@ -21,3 +21,7 @@ Las cookies podemos sacarlas de Chrome con:
 
 curl -Ns http://www.climagic\.org/uxmas/[1-12] 
 # curl supports numeric ranges. This is the full 12 days of unix-mas from last year
+
+
+A través de proxy
+curl --proxy http://proxy.com:6666 http://www.google.es

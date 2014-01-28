@@ -15,3 +15,7 @@ find . -iregex ".+[0-9]+$" -type f
 
 Nos hace un resumen de los tipos de ficheros que tenemos en este directorio y sus subdirectorios
 find . -exec file {} \; | grep -o ":[^,]*" | sort | uniq -c | sort -nr
+
+
+Borrar los ficheros más antiguos de 30 días
+find . -mtime +30 -exec rm {} \;
