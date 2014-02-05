@@ -25,3 +25,30 @@ Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
 Para crear un rpm hacemos:
 fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
+
+
+RPM a partir de un .tar.gz
+mkdir /tmp/fpm
+cd programa/
+./configure --prefix=/tmp/fpm
+make
+make install
+cd /tmp/fpm
+fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia .
+
+
+
+
+## Python ##
+
+Para generar rpm necesita: yum install rpm-build
+
+A partir de un setup.py local
+fpm -s python -t rpm pyramid/setup.py
+
+A partir de un modulo de python (se bajará el modulo de la web)
+fpm -s python -t rpm pyramid
+
+
+Para que no genere las dependencias:
+--no-depends

@@ -1,4 +1,5 @@
 http://www.devco.net/archives/2009/08/19/tips_and_tricks_for_puppet_debugging.php
+http://docs.puppetlabs.com/guides/troubleshooting.html
 
 
 facter --trace hostname
@@ -8,7 +9,7 @@ facter -d hostname
 puppet apply cosa --debug
 
 
-puppet master --verbose --debug --no-daemonize
+/usr/bin/puppet master --logdest console --no-daemonize --verbose --debug
 
 
 

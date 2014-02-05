@@ -2,13 +2,18 @@ https://forge.puppetlabs.com/puppetlabs/stdlib
 
 Funciones para trabajar con strings, arrays, etc.
 
-Ejemplo
-join(["uno","dos","tres",",") => "uno,dos,tres"
+join(["uno","dos","tres"],",") => "uno,dos,tres"
+
+$var = join(["uno","dos","tres"],"','")
+notify {"llena: '$var'":} => "llena: 'uno','dos','tres'"
+
 
 parsejson($var) (mirar json.md)
 
 empty
 Returns true if the variable is empty.
+
+Para los validate_ mirar validate.md
 
 is_array
 is_domain_name

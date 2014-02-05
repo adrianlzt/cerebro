@@ -59,3 +59,31 @@ RAILS_ENV=production bundle exec rake assets:precompile
 
 Los logs se generan en
 /path/app/log/
+
+
+
+Ejemplo básico para probar passenger:
+$ mkdir /webapps/rack_example
+$ mkdir /webapps/rack_example/public
+$ mkdir /webapps/rack_example/tmp
+$ cd /webapps/rack_example
+$ vi config.ru
+app = proc do |env|
+    [200, { "Content-Type" => "text/html" }, ["hello <b>world</b>"]]
+    end
+    run app
+$ vi /etc/httpd/conf.d/test.conf
+<VirtualHost *:80>
+    ServerName www.rackexample.com
+    DocumentRoot /webapps/rack_example/public
+    <Directory /webapps/rack_example/public>
+        Allow from all
+        Options -MultiViews
+    </Directory>
+</VirtualHost>
+
+Nos debería mostrar un "hello world"
+
+
+
+Si tenemos problemas de permisos, chequear que el path de ruby, gems, passenger etc tienen permisos de rX para others

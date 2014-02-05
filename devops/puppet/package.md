@@ -34,3 +34,22 @@ Para instalar un paquete pip
 package { "django":
   provider => 'pip',
 }
+
+
+Instalar rpm (meter el rpm en el files/ del module):
+  $package = "NOMBRE-1.0.4-1.x86_64.rpm"
+
+  file { "/tmp/${package}":
+    source => "puppet:///modules/${module_name}/${package}",
+    owner => 'root',
+    group => 'root',
+    mode => '0644',
+  }
+  ->
+  package { 'NOMBRE':
+    ensure => installed,
+    provider => rpm,
+    source => "file:///tmp/${package}",
+    require => File["/tmp/${package}"],
+  }
+

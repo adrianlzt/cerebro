@@ -9,6 +9,8 @@ LoadPlugin write_graphite
     Host "172.17.0.2"
     Port "2003"
     #Protocol [tcp|udp] # tcp es eficiente, mantiene socket abierto
+                        # puede que no tenga abierto udp en el carbon
+			# definir alguno
     #LogSendErrors [true|false] # Loguea errores en la conex con graphite
     Prefix "collectd" # cadena que se antepone al hostname
     #Postfix "collectd" # cadena que se pone al final

@@ -18,7 +18,7 @@ unless. Como onlyif, pero al reves. Si es 0 ejecuta, resto, no ejecuta.
 Ejecuta el comando si no existe el fichero .list
 exec { 'add-collectd-repo' :
   command => "add-apt-repository -y ppa:vbulax/collectd5",
-  onlyif => 'test ! -f /etc/apt/sources.list.d/vbulax-collectd5-precise.list',
+  unless => 'test -f /etc/apt/sources.list.d/vbulax-collectd5-precise.list',
 }
 
 Solo hace apt-get update si los repos tienen más de 1 dia de antiguedad

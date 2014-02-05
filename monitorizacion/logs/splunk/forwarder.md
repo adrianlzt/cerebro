@@ -2,13 +2,19 @@ Tres tipos: universal, light y heavy.
 
 
 ## Light ##
+collectd data on a forwarder that requires a python-based scripted input
 
 
 ## Heavy: instancia entera de splunk configurada como forwarder ##
+Route collected data based on event info or filter data prior to WAN/slower connection
 
+Un heavy en cada datacenter.
+Solo una política de firewall desde el heavy al indexer.
 
 
 ## Universal: splunkforwarder ##
+Forward unparsed data to a receiber or indexer
+
 Instalacion: 
 yum install splunkforwarder
 /opt/splunkforwarder/bin/splunk enable boot-start

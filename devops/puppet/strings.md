@@ -8,14 +8,17 @@ Hacer regex sobre una variable:
 http://docs.puppetlabs.com/references/2.7.3/function.html#regsubst
 
 $var = "/dev/mapper/vg_lv_opt"
-$b = regsubst($var, '/', '_', 'G')
+$b = regsubst($var, '/', '_', 'G') <- la G es que se aplique más de una vez
 _dev_mapper_vg_lv_opt
 
+$var2 = "este.es.el.fqdn"
+$a2 = regsubst($var2, '\.', '_','G')
+notify { "a2: $a2" : }
+este_es_el_fqdn
 
 $var2 = "/"
 $a2 = regsubst($var2, '/', '_root_')
-$b2 = regsubst($a2, '/', '_', 'G')
-notify { "b2: $b2" : }
+notify { "a2: $a2" : }
 _root_
 
 

@@ -135,9 +135,18 @@ git push origin fix/master/que_hacemos
 Cuando definimos un backend intenta cargar: hiera/backend/nombre_backend.rb y la clase dentro del .rb debera llamarse Nombre_backend
 Reiniciar puppetmaster tras hacer cambios en los backends.
 
+Intentará cargar el backend desde todas las gemas instaladas y con las siguientes extensiones:
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.rb"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.rbw"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.so"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.bundle"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.dll"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.sl"
+"/usr/lib/ruby/gems/1.8/gems/pg-0.17.1/lib/hiera/backend/postgres_backend.jar"
 
-## Test desde ruby ##
-require 'rubygems'
+
+chown -R puppet.puppet /etc/puppet/hiera
 require 'hiera'
 require 'pp'
 scope = {} #variables de facter que queramos pasar

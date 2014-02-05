@@ -3,6 +3,9 @@ http://docs.splunk.com/Documentation/Splunk/6.0.1/Indexer/HowSplunkstoresindexes
 
 A los indexers nodes tambien le llaman 'peers'
 Para cada índice se crean tres buckets: home, cold y thawed.
+Como pasar de uno a otro bucket se hace por espacio por índice. Ejemplo, damos 10GB para el índice test para el bucket home, y 100GB para el bucket cold.
+Hay que definir una política de como se generaran los buckets, y cada cuanto pasarán de uno a otro.
+Por defecto poner "auto_high_volume" (http://docs.splunk.com/Documentation/Splunk/6.0.1/admin/Indexesconf)
 
 El home lo guardaríamos en el disco más rápido, y serían los datos más recientes.
 Cold, un poco menos usados.
@@ -39,3 +42,18 @@ index=_internal metrics kb series!=_* "group=per_host_thruput" monthsago=1 | eva
 
 ## Cluster ##
 Si quiero ver los índices, tengo que entrar en la interfaz web de alguno de los indexer (url:8000)
+
+
+
+
+## Crear índice ##
+/opt/splunk/etc/apps/search/local/indexes.conf
+[web]
+coldPath = $SPLUNK_DB/web/colddb
+homePath = $SPLUNK_DB/web/db
+thawedPath = $SPLUNK_DB/web/thaweddb
+maxTotalDataSizeMB = 1000000
+homePath.maxDataSizeMB = 15000
+maxVolumeDataSizeMB = 1000000
+
+Don’t add any more attributes to this index stanza, which is a way of accepting the defaults for all other settings. That means this index will store data in cold until we run into the size limitation set by our volume maxVolumeDataSizeMB or the default overall index size default of 500000 MB.
