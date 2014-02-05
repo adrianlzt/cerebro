@@ -1,3 +1,4 @@
+http://docs.splunk.com/Documentation/Splunk/6.0.1/admin/inputsconf
 http://es.splunk.com/view/SP-CAAAGXA
 Splunk Education: Getting Data into Linux
 
@@ -25,3 +26,31 @@ Para hacer una búsqueda tendremos que poner: index=dsnPRO cadena de busqueda
 
 Otros tipos de datos que se pueden meter:
 Salida del ps
+
+
+
+
+Si generamos inputs desde la web, se guardará en la app /opt/splunk/etc/apps/nombre desde donde hayamos creado el input.
+Podemos saber en que "contexto" estamos mirando la url.
+http://splunk-lab-tid1.open3s.com:8011/en-US/manager/launcher/quickstart <- app launcher (home)
+También podemos verlo en la parte superior izquierda de la pantalla, en "Back to xxx" (home es el launcher)
+
+
+Agregar scripts como inputs.
+Meterlo en SPLUNK_HOME/etc/system/bin
+
+
+
+Ejemplos:
+[monitor:///var/log]
+disabled = false
+followTail = 0
+[monitor:///opt/log/tradelog]
+disabled = false
+followTail = 0
+sourcetype = trade_entries
+host = trading_system
+[script:///home/student11/opt/splunk/etc/system/bin/myvmstat.sh]
+sourcetype = vmstat
+interval = 30
+

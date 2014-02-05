@@ -3,7 +3,7 @@
 cat < /dev/tcp/173.194.41.14/80
 
 Para saber si hemos logrado establecer conexión:
-netstat -tn | grep 173.194.41.14:80
+netstat -tnp | grep cat
 tcp        0      0 192.168.1.33:52331      173.194.41.14:80        ESTABLECIDO
 
 En el caso de no poder establecer conexión el estado quedará como:  SYN_SENT

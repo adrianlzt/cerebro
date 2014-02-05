@@ -20,6 +20,8 @@ class { 'motd':
   var => 'GRILLO'
 }
 
+No llamarlas con "include motd", ya que los parámetros no tomarán sus valores por defecto.
+
 
 Para ejecutarlas localmente:
 puppet apply -e "class {'nombre': }"

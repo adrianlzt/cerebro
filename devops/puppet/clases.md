@@ -9,6 +9,8 @@ class motd {
 Para incluir clases:
 include motd
 
+Si llamamos así a una clase parametrizada, los parámetros NO tomarán sus valores por defecto.
+
 Para tener como dependencia otra clase:
   The require function acts like include, but also causes the class to become a dependency of the surrounding container
 require clase

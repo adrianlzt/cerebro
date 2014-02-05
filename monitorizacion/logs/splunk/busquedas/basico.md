@@ -20,6 +20,7 @@ Podemos usar AND, OR, NOT (que deberemos poner en mayúsuclas) y () para búsque
 Podemos buscar cadenas entre comillas a lo google, eg.: "palabras juntas"
 
 Una vez hecha una búsqueda, poniéndonos encima de los resultados, se resaltarán palabras o campos en amarillo, y pinchándolos podremos filtrar tambien por esos campos
+Ctrl+click eliminaremos por ese campo.
 
 En la columna date puede aparecer una fecha distinta a la que aparece en el evento. Esto se debe a que Splunk normaliza las fechas.
 Con los ficheros de ejemplo que he importado parece que no lo hace muy bien, porque la hora del servidor es CEST (Madrid), la de mi usuario de splunk la misma, pero aún asi el log dice las 8:05 y splunk las 10:05:15.000+02:00. Parece que es porque mi máquina de pruebas esta en UTC

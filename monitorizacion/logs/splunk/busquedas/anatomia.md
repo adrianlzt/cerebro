@@ -1,0 +1,5 @@
+Search terms: What you are looking for (booleans, keyword...)
+Commands: How to obtain the results (graphs, computation, format,...)
+Functions: How to generate the result (sum, mean, ...)
+Arguments: Function content (value conversion,...)
+Clauses: How to group values (by field,...)

@@ -4,3 +4,7 @@ Tercero, haciendo thresholds en collectd y ejecutando un exec para enviar datos 
 
 Enviar métricas a graphite: https://github.com/shawn-sterling/graphios
 Mirar metricas/graphite/graphios.md
+
+Obtener métricas de una cola gearman para meterlo en graphite
+gearman_perfdata_to_graphite.md
+

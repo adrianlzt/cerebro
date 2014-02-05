@@ -49,3 +49,7 @@ ps -fea -o pcpu -o args
      ps -eo vsize,cmd
      (tb se puede ordenar con sort: ps -eo vsize,cmd | sort -b -k1,1n).
      La memoria se muestra en KB.
+
+
+Mostrar variables de entorno
+ps eww

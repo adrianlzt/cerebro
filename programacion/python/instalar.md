@@ -13,3 +13,9 @@ $ python setup.py install
 # easy_install fichero.egg
 # easy_install http://blabla.com/file.egg
 # easy_install json   # Lo instalará desde pypi.python.org
+
+
+## Proxy ##
+http_proxy=http://blabla.com:4643 easy_install paquete
+
+Parece que no funciona, probar con https_proxy

@@ -2,7 +2,7 @@ Cuidado con tener muchos files, porque el server tendrá que procesar un md5 por
 
 Lo más básico:
 file { "/tmp/test":
-      content => "prueba\nblabla",
+  content => "prueba\nblabla",
 }
 
 file { "/tmp/test":

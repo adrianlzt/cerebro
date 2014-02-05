@@ -41,3 +41,10 @@ end
 
 Todos los javascript irán metidos dentro del application-{md5-code}.js
 Lo mismo pasa con los css
+
+
+
+http://www.modrails.com/documentation/Users%20guide%20Apache.html#PassengerUser
+Usuario con el que se ejecuta la aplicación.
+Debe tener permiso de escritura sobre la app (ser el owner de los ficheros, creo que es lo suyo)
+If user switching support is enabled (que lo está por defecto), then Phusion Passenger will by default run the web application as the owner of the file config/environment.rb (for Rails apps) or config.ru (for Rack apps).

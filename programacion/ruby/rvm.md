@@ -1,7 +1,20 @@
 http://rvm.io/
 RVM: Ruby Version Manager
-
 Gestor para tener múltiples versiones de ruby en el mismo sistema.
+
+Instalación:
+curl -sSL https://get.rvm.io | bash -s stable
+
+  * First you need to add all users that will be using rvm to 'rvm' group,
+    and logout - login again, anyone using rvm will be operating with `umask u=rwx,g=rwx,o=rx`.
+
+  * To start using RVM you need to run `source /etc/profile.d/rvm.sh`
+    in all your open shell windows, in rare cases you need to reopen all shell windows.
+
+
+Instalar ruby 1.9.2:
+rvm install ruby-1.9.2
+rvm install --proxy http://blabla.com:4322 ruby-1.9.2
 
 Para usar el ruby del sistema:
 rvm use system

@@ -7,8 +7,14 @@ Para meter el template:
 fichero.pp
 file {'/tmp/bla':
   content => template("${module_name}/motd.erb"),
+  owner => 'root',
+  group => 'root',
+  mode => '0644',
 }
 El fichero deberá existir en ${module_name}/templates/motd.erb
+
+Si llamamos a una clase con "include nombre", los parámetros por defecto no se setearán, y no se podrán usar como variables en el template.
+Tendremos que llamar a la clase con "class {'nombre': }"
 
 
 Es como las plantillas de django, donde se meten variables y expresiones en un fichero que se generará dinámicamente.

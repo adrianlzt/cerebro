@@ -12,3 +12,19 @@ Almacenamiento de pares clave-valor
 
 
 http://basho.com/why-your-riak-cluster-should-have-at-least-five-nodes/
+
+
+
+
+"Practical Eventually-Consistent Web Apps on Riak" Sean Cribbs (basho)
+
+COMMENTS: it was not very interesting, not convincing.
+Consistency --> many commercial DB are not ACID
+Riak: "eventually-consistent, scalable, schema-free" datastore
+When not to use Riak:
+tightly coupled schema
+data fits on one machine
+your application can handle eventual consistency
+Apps that use them: Rovio(angry birds), Yammer, etc.
+
+https://speakerdeck.com/seancribbs/practical-eventually-consistent-web-apps-on-riak
