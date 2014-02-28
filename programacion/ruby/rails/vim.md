@@ -1,1 +1,1 @@
-unix-tools/vim/rails.md
+../../../unix-tools/vim/rails.md

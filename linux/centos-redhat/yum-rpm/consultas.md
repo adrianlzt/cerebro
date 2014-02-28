@@ -51,3 +51,10 @@ rpm -q --whatrequires <paquete>
 Verificar paquete
 # rpm -vK <paquete>.rpm (comprueba la firma del paquete)
 $ rpm -V vim-common (verifica un paquete ya instalado)
+
+
+Parámetros avanzados:
+Variables por las que podemos preguntar: rpm --querytags
+Obtener los valores: rpm -qp --qf "%{EPOCH}" file.rpm
+
+Otro ejemplo: rpm -qp --qf "%-30{NAME}%{DISTRIBUTION}\n" file.rpm

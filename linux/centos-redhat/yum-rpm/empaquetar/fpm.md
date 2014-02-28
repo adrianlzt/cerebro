@@ -1,4 +1,5 @@
-# https://github.com/jordansissel/fpm#readme
+ https://github.com/jordansissel/fpm#readme
+https://github.com/jordansissel/fpm/wiki
 
 Software para hacer mas sencillo el empaquetamiento
 
@@ -18,8 +19,7 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
 
 -d <dependencia>
 
-Para crear rpms en debian-like necesitamos: apt-get install rpm
-
+-e <- Nos deja editar el .spec antes de generar el rpm
 
 Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
@@ -27,6 +27,14 @@ Para crear un rpm hacemos:
 fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
 
 
+## RPMS ##
+Para crear rpms en debian-like necesitamos: apt-get install rpm
+En RedHat like: yum install rpm-build
+
+Si queremos poner un epoch: --epoch <valor>
+Ejemplo: fpm --epoch 2 -s gem -t rpm 1.5.2 rack
+
+## Directorio ##
 RPM a partir de un .tar.gz
 mkdir /tmp/fpm
 cd programa/
@@ -52,3 +60,7 @@ fpm -s python -t rpm pyramid
 
 Para que no genere las dependencias:
 --no-depends
+
+
+## Gemas ##
+fpm -s gem -t rpm -v 1.2.3 nombre

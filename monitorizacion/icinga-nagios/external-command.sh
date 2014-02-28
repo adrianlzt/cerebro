@@ -5,4 +5,4 @@
 now=`date +%s`
 commandfile='/srv/nagios/icinga/spool/cmd/icinga.cmd'
 
-/bin/printf "[%lu] SCHEDULE_SVC_CHECK;HOSTNAME;Check load by NRPE;$now\n" $now > $commandfile
+/usr/bin/printf "[%lu] SCHEDULE_SVC_CHECK;HOSTNAME;Check load by NRPE;$now\n" $now > $commandfile

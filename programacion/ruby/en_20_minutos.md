@@ -89,7 +89,7 @@ end
 If-else
 if variable.nil
   puts "vacia"
-elseif variable == "esto"
+elsif variable == "esto"
   puts "era eso!"
 else
   puts "nada de lo otro"

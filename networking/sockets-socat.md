@@ -18,6 +18,7 @@ El truco es poner a socat en medio:
 
 
 Aunque este sistema no me ha funcionado con icinga (idomod <-> ido2db)
+Pero si funciona por ejemplo para check_mk-multisite <-> icinga
 
 
 socat UNIX-CONNECT:/var/run/blabla/nameofthe.sock STDIN

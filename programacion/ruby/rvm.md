@@ -27,4 +27,10 @@ Las versiones de ruby que instalemos con rvm se hacen sobre:
 Se meten el PATH.
 
 Para definir la versión por defecto:
-rvm --default use VERSION
+rvm use --default VERSION
+
+Esto modificará el fichero /usr/local/rvm/config/alias
+En caso de poner una versión determinada el fichero contendrá:
+default=ruby-1.9.3-p545
+
+En caso de usar system estará vacío.

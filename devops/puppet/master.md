@@ -75,3 +75,7 @@ puppet module generate adri-test
 Generamos los dos directorios porque no vienen por defecto:
 mkdir adri-test/files
 mkdir adri-test/templates
+
+
+Obtener parámetros de configuración:
+/usr/bin/puppet master --configprint pidfile <- donde genera el fichero pid

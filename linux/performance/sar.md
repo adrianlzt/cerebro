@@ -24,7 +24,7 @@ Configuración en RHEL: /etc/sysconfig/sysstat y /etc/sysconfig/sysstat.ioconf
 
 Guardar estadísticas
 
-cd /tmp/; for crap in `ls  /var/log/sa/sa* | grep -v sar`; do LC_ALL=C sar -A  -f $crap | gzip >> /tmp/$HOSTNAME.all.sar.data.2013-10-09-01.txt.gz;done
+cd /tmp/; for crap in `ls  /var/log/sa/sa* | grep -v sar`; do LC_ALL=C sar -A  -f $crap | gzip >> /tmp/$HOSTNAME.all.sar.data.$(date +%Y-%m-%d-%H:%M).txt.gz;done
 
 Con esto generamos un fichero de texto comprimido con todas las estadísticas que tiene almacenada la máquina.
 Solo queda descomprimirlo en mi portatil y abrirlo con ksar para poder ver todos los datos de forma gráfica.
@@ -71,3 +71,12 @@ sar -u 2 5
 Para obtener info de un proceso en particular
 pidstat -p PID
 
+
+
+## Leyenda ##
+
+# Discos / iostat
+http://sebastien.godard.pagesperso-orange.fr/man_iostat.html
+
+# Sockets
+http://sebastien.godard.pagesperso-orange.fr/man_sar.html

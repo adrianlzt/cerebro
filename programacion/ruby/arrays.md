@@ -30,3 +30,23 @@ p = Array.[](Project.find_by name: 'm2m')
 
 Chequeo vacío
 [].empty?   #=> true
+
+
+Buscar en un array un único elemento:
+ary = [0, 4, 7, 10, 12]
+ary.bsearch {|x| x >=   4 } #=> 4
+  Parece que no funciona con objetos, usar el siguiente:
+
+envto_hostgroups.find_index {|hg| hg.name == "nuevohostgroup"}
+
+
+Buscar varios elementos:
+[1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]
+  Devuelve un array empty si no encuentra nada
+  Devuelve un array siempre, aunque haya un único elemento
+
+Eliminar elementos que no queramos:
+a = [1, 2, 3, 4, 5, 0]
+a.drop_while {|i| i < 3 }   #=> [3, 4, 5, 0]
+
+a = a.drop_while {|i| i < 3 } # Dejamos en el array solo los elementos con la condición

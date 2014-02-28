@@ -40,7 +40,7 @@ snapseed (edición de imágenes)
 SuperBeam | WiFi Direct Share
 superuser (para dar permisos de root)
 swype
-telegram (whatsapp killer). Cliente linux: https://github.com/vysheng/tg
+telegram (whatsapp killer). Cliente linux: https://github.com/vysheng/tg. Cliente chrome: https://chrome.google.com/webstore/detail/telegram-unofficial/clhhggbfdinjmjhajaheehoeibfljjno
 traductor
 twitter / tweedle / carbon
 vlc

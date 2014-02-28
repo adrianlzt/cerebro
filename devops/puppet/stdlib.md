@@ -53,6 +53,11 @@ ensure_resource(file, $target, {
   require => Nagios_hostgroup[$servicename],
 })
 
+Si nos da duplicated resource puede ser porque en un sitio tenemos declarado el ensure_resource, y en otro no.
+Puppet pasa primero por donde está el ensure, no está el recurso declarado, y se aplica.
+Cuando pasa por la declaración del recurso sin ensure, da error.
+https://ask.puppetlabs.com/question/2354/duplicate-declaration-error-occured-even-if-i-use-ensure_resource/
+
 
 El truco para no tener exported resources duplicados es crearnos una clase propia que será la que exportemos.
 Dentro de esa clase definimos el recurso que necesitamos con ensure_resource().

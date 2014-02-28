@@ -41,3 +41,18 @@ Interval: 		30 seconds
 Unhealthy Threshold: 	2
 Healthy Threshold: 	10
 
+
+Contras:
+El balanceador no escala del todo bien.
+Si pasamos de 0 a 500.000 peticiones en 60" el ELB se queda tostado.
+El ELB necesita tiempo para ir absorviendo tantas peticiones (necesita escalar él)
+  Una solución es "precalentarlo". Si sabemos cuando va a recibir las peticiones, 10' antes nos tiramos 5' enviándole muchas peticiones.
+  Analizando las peticiones en el ELB podemos ver como la gráfica va creciendo, luego llega a un valle hasta que, parece que internamente vuelve a crecer, y sigue creciendo la gráfica, otro valle, etc.
+  El tráfico entre instancias es gratuito.
+
+El balanceador nos da métricas de los errores 200, 400 y 500 que está devolviendo hacia clientes, con una resolución máxima de 1'.
+También nos da los errores 200, 500 y 500 desde el ELB a nuetras app.
+
+
+El balanceador nos permite tener únicamente sticky session.
+Generalmente la sesión se gestiona en la app, por ejemplo en el server de apps (tomcat) de amazon se puede replicar la sesión entre los nodos.

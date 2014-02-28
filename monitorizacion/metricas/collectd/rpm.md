@@ -2,6 +2,7 @@ Collectd viene con un fichero .spec para generar el rpm
 https://github.com/collectd/collectd/blob/master/contrib/redhat/collectd.spec
 
 Dentro de ese fichero encontraremos las instrucciones para generarlo.
+Hacerlo con el usuario makerpm (con root da error de permisos)
 Mirar también: linux/rpm/empaquetar/mock.md
 
 La versión empaquetada 5.4.0 tiene el .spec anticuado, por lo que deberemos coger este:
