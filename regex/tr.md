@@ -7,3 +7,7 @@ $ date +%s | tr -d '\n'
 
 $ date +%s | tr  '\n' ' '
 1379933110 $
+
+
+Borrar los paréntesis y mayúsculas:
+tr -d '[A-Z]()'

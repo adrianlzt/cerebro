@@ -113,10 +113,13 @@ mirar ajax.md
 El formulario será como el del caso anterior, únicamente que ahora no pondremos el remote: true
 
 En el controler definimos el responder para json
-repond_to do |format|
+respond_to do |format|
   ...
-    format.json { render json: @zombie.to_json(only: :decomp) }
-    end
+ format.json { render json: @zombie.to_json(only: :decomp) }
+end
+
+Para no devolver nada: format.json { render json: {} }
+
 
 Ahora escribimos el código javascript que se va a ejecutar en el cliente (irá cargado junto con la página)
 app/assets/javascripts/zombies.js.coffee
@@ -134,3 +137,10 @@ $(document).ready ->
       success: (json) ->
         $('#decomp').text(json.decomp).effect('highlight') <- añadimos valor nuevo y lo resaltamos
 	$('div#custom_phase2').fadeOut() if json.decomp== "Cosa" <- escondemos formulario si el valor es "Cosa"
+
+
+## Turbolinks ##
+A partir de Rails 4 donde va incluído por defecto Turbolink tenemos que usar
+  $(document).on 'ready page:load', ->
+en vez de
+  $(document).ready ->

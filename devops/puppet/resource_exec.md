@@ -18,13 +18,13 @@ unless. Como onlyif, pero al reves. Si es 0 ejecuta, resto, no ejecuta.
 Ejecuta el comando si no existe el fichero .list
 exec { 'add-collectd-repo' :
   command => "add-apt-repository -y ppa:vbulax/collectd5",
-  unless => 'test -f /etc/apt/sources.list.d/vbulax-collectd5-precise.list',
+  unless => '/usr/bin/test -f /etc/apt/sources.list.d/vbulax-collectd5-precise.list',
 }
 
 Solo hace apt-get update si los repos tienen más de 1 dia de antiguedad
 exec { 'update_repos' : 
   command => "apt-get update",
-  onlyif => 'test $(( $(date +%s) - $(stat -c %Z /var/cache/apt/pkgcache.bin) )) -gt $(( 24 * 60 * 60 ))',
+  onlyif => '/usr/bin/test $(( $(date +%s) - $(stat -c %Z /var/cache/apt/pkgcache.bin) )) -gt $(( 24 * 60 * 60 ))',
 }
 
 

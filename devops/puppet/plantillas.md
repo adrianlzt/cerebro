@@ -57,9 +57,18 @@ content => template('motd/motd.erb')
 Iterar
 $values = [val1, val2, otherval]
 
-<% @values.each do |val| -%>
-Some stuff with <%= val %>
+<% if @values and not @values.empty? -%>
+  <% @values.each do |val| -%>
+    Some stuff with <%= val %>
+  <% end -%>
+<% else -%>
+  #No values in $values
 <% end -%>
 
 Syntax Checking: ERB files are easy to syntax check. For a file mytemplate.erb, run
 erb -P -x -T '-' mytemplate.erb | ruby -c
+
+
+Substitución de caracteres
+<%= @fqdn.gsub(/a/, 'b') %> <-- cambia las 'a' por 'b'
+<%= @fqdn.sub(/a/, 'b') %> <-- cambia la primera 'a' por 'b'

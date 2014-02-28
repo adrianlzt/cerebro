@@ -9,6 +9,8 @@ que tengo el modulo en el path.
 Comprobar tambien que el nombre del directorio del módulo coincide con el que se define en class.
 
 
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Puppet::Parser::AST::Resource failed with error ArgumentError: Could not find declared class monitorizacion::basic at /etc/puppet/manifests/site.pp:83 on node client2.com
+Volver a ejecutar puppet agent
 
 
 Si al usar hiera como ENC nos sale el error:
@@ -22,3 +24,8 @@ Hacer pruebas con el facter de producción para ver si falla.
 
 Al conectar con el master: CRL is not yet valid for
 El problema es que cliente y servidor no tienen la misma hora.
+
+
+Al usar una función en el site.pp (hiera_resources) nos da el error: exception object expected at
+Esto quiere decir que tenemos algún fallo de sintaxis. Probar a meter la clase o el defined type directamente en el nodo, y nos dirá donde está el error.
+https://tickets.puppetlabs.com/browse/PUP-1100

@@ -15,6 +15,7 @@ Instalarlo en /usr/local/bin, o alguna ubicación donde pueda acceder dicho usua
 
 
 Sitios con plugins:
+https://www.monitoring-plugins.org/ <- web oficial
 https://trac.id.ethz.ch/projects/nagios_plugins
 http://exchange.nagios.org/
 https://www.monitoringexchange.org/

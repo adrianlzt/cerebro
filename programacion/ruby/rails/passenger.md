@@ -16,16 +16,21 @@ http://www.modrails.com/documentation/Users%20guide%20Apache.html#_deploying_a_r
     RailsEnv production
 </VirtualHost>
 
-Hay una forma de ponerlo como sub url, pero no me fuciona. Me deniega el acceso.
-Alias /subapp /websites/rack/public
-<Location /subapp>
-    PassengerBaseURI /subapp
-    PassengerAppRoot /websites/rack
-</Location>
-<Directory /websites/rack/public>
+Para ponerlo como suburi
+App en /vagrant/ui/public
+Document Root en /var/www/html
+conf-app-apache.conf
+  RailsBaseURI /ui
+  <Directory /vagrant/ui/public>
     Allow from all
     Options -MultiViews
-</Directory>
+    RailsEnv production
+  </Directory>
+
+Tenemos que poner un enlace a nuestra app en el Document root, con el mismo nombre que el RailsBase (http://robots.thoughtbot.com/phusion-passenger-with-a-prefix):
+  ln -s /vagrant/ui/public /var/www/html/ui
+
+
 
 Tras cambiar el código, basta con hacer:
 touch /webapps/rackapp/tmp/restart.txt
@@ -52,6 +57,7 @@ Tras la instalación nos dice que metamos esta configuración en apache (meter e
    PassengerPoolIdleTime 1500
    PassengerStatThrottleRate 120
    # PassengerMaxRequests 1000
+   # PassengerLogLevel 3
    
 Necesitamos precompilar los assets?
 RAILS_ENV=production bundle exec rake assets:precompile
@@ -70,8 +76,8 @@ $ cd /webapps/rack_example
 $ vi config.ru
 app = proc do |env|
     [200, { "Content-Type" => "text/html" }, ["hello <b>world</b>"]]
-    end
-    run app
+end
+run app
 $ vi /etc/httpd/conf.d/test.conf
 <VirtualHost *:80>
     ServerName www.rackexample.com

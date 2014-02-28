@@ -1,0 +1,7 @@
+http://blog.dataloop.io/2014/01/30/what-we-learnt-talking-to-60-companies-about-monitoring/
+
+Spammy Alerts
+
+And finally, if there was one consistent complaint from all the companies we spoke to, it was alerting. Alert Fatigue or Spammy Alerts, it’s clear that none of the tools, even the monitoring tools that claim to have advanced machine learning algorithms, have solved this problem, and its getting worse as companies scale out even more servers to run micro-services on continuously changing Cloud environments. In one company’s case, they were receiving around 5000 alert emails a day. With that volume, alerting had just become noise, and most of the team simply filtered them out into a folder or automatically deleted them all together.
+
+A key reason we saw for spammy alerts was the lack of granularity with current tools sending alerts. With many more services and servers, ultimately there are many more alerts being created by the monitoring tools. However, many of the alerts were sent to everyone via a group email address, as the tools didn’t provide an easy way to allow different developers to only receive, or subscribe, to the alerts they cared about. While everyone we spoke to was interested in the potential of predictive & more intelligent alerting using machine learning (particularly anomaly detection as the number of metrics they monitored increased), we believe there are some simpler things that can be done to reduce spammy alerts in many organizations, most notably only sending alerts to the people who need them!

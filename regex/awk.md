@@ -26,3 +26,11 @@ epoch = mktime(d[1] " " d[2] " " d[3] " " t[1] " " t[2] " " t[3])
 print epoch, $4
 }'
 1380715965 3
+
+
+Sumar una columna
+ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
+
+
+Dos columnas, una con créditos y otra con la nota. Queremos la media, calculada como SUM(nota*cred)/SUM(cred)
+cat creditos_notas.txt | awk '{NOTACRED += $1*$2; CRED += $1} END {print NOTACRED/CRED}'

@@ -10,3 +10,6 @@ The default is 1000 milliseconds.
 token_retransmit
 This timeout specifies in milliseconds after how long before receiving a token the token is retransmitted. This will be automatically calculated if token is modified. It is not recommended to alter this value without guidance from the corosync community.
 The default is 238 milliseconds.
+
+token_retransmits_before_loss_const
+

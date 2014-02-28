@@ -160,7 +160,7 @@ Ejecuta el comando externo (execute external command)
 
 Linea delimitando la columna 80 (esta limitación viene de poder imprimir el código en papel)
 :set colorcolumn=80
-
+:set colorcolumn=   <- borrar la columna
 
 ZZ
 Guardar y salir

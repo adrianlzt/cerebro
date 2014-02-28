@@ -20,6 +20,8 @@ http://exavolt.github.io/onde/#?schema_url=schemas/jquery-package.json
 
 Parsear JSON para ver si está correcto: http://jsonlint.com/
 
+Mostrar JSON con desplegables: http://jsonviewer.stack.hu/
+
 
 {
     "var": "cosa",

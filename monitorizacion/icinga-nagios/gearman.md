@@ -22,3 +22,10 @@ Eventhandlers
 # 'eventhandlers' queue or into the same queue like normal checks
 # would do.
 route_eventhandler_like_checks=no
+
+
+Protocolo de comunicación: http://gearman.org/protocol/
+Ejemplo: (echo status ; sleep 0.1) | netcat 127.0.0.1 4730
+
+Vaciar una cola: /usr/bin/gearman -t 1000 -n -w -f function_name > /dev/null
+  which basically dumps all the jobs into /dev/null

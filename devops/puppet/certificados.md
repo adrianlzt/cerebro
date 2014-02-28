@@ -17,3 +17,20 @@ Puppetdb al instalarse (el rpm) copia los certificados:
 PEM files in /etc/puppetdb/ssl are missing, we will move them into place for you
 Copying files: /var/lib/puppet/ssl/certs/ca.pem, /var/lib/puppet/ssl/private_keys/sr2s.pem and /var/lib/puppet/ssl/certs/sr2s.pem to /etc/puppetdb/ssl
 Tendremos que tener en cuenta que es obligatorio tener un domainname en la máquina que tenga puppetdb para que puppetmaster se pueda conectar a él.
+
+
+Firmar:
+puppet cert sign <nombre>
+puppet cert sign --all
+
+
+Borrar certificados firmados:
+puppet cert clean <nombre>
+
+
+Solicitar que nos firmen un certificado?
+Si el cliente nos dice: "Exiting; no certificate found and waitforcert is disabled"
+  puppet certificate generate `hostname`.dom.inet --ca-location remote --waitforcert 3 --server $PUPPETMASTER
+    Parece que el fqdn de la máquina (o el hostname en caso de no tener fqdn) no coincide con lo que ahí hemos puesto, luego tendremos problemas.
+
+  Si activo el waitforcert, no veo llega el certificado al master (pero debería según http://docs.puppetlabs.com/guides/setting_up.html#verifying-installation)

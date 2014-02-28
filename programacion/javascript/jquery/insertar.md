@@ -12,3 +12,7 @@ $(elemento).after/before.("lo que quiero añadir")
 .insertAfter()
 .insertBefore()
 $("lo que quiero añadir").insertAfter/Before(".claseDondeInserto")
+
+
+Cambia todo el contenido por...
+.replaceWith("blabla")

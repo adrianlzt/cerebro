@@ -1,0 +1,1 @@
+metaparametros.md

@@ -28,3 +28,6 @@ puppet apply -e "class {'nombre': }"
 
 
 Podemos hacerun chequeo de los parámetros con los métodos 'validate_' de stdlib: http://forge.puppetlabs.com/puppetlabs/stdlib
+
+
+Si definimos una variable como undef, podremos llamar a la clase sin estar obligados a definir la varible, pero la variable seguirá sin estar definida al llamar a la clase.

@@ -24,6 +24,8 @@ If Aggregated(CPU_Usage) < 30% => Terminate any instance
 
 También definimos un número máximo/mínimo de máquinas del autoscaling.
 
+También podemos crecer en "vertical", levantando máquinas más potentes.
+
 Al hacer autoscaling lo suyo es definir varias availability zones (ej.: dos datacenters distintos en Dublín). De esta manera las máquinas que se vayan creando se reparten en esas dos zonas.
 
 Que tenemos que definir:

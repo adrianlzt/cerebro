@@ -1,6 +1,6 @@
 http://docs.puppetlabs.com/hiera/1/hierarchy.html
 
-"Base de datos" donde se almacenan los parametros.
+"Base de datos" jerárquica donde se almacenan los parametros.
 
 Instalación: puppet resource package hiera ensure=installed
 Para que puppet vea hiera: ln -s /etc/hiera.yaml /etc/puppet/
@@ -12,7 +12,7 @@ El backend es el lenguaje en el que se almacenará los datos.
   YAML
   Relational Databases: https://github.com/Telmo/hiera-mysql-backend
   NoSQL databases: Redis (http://carlasouza.com/puppetconf13/#/step-30)
-  HTTP: https://github.com/crayfishx/hiera-http
+  HTTP: https://github.com/crayfishx/hiera-http . CouchDB nos ofrece una interfaz web lista para interactuar con este backend
   GPG: https://github.com/crayfishx/puppet-gpg
   REST: https://github.com/binford2k/hiera-rest
   Mas: https://rubygems.org/search?utf8=%E2%9C%93&query=+hiera
@@ -20,6 +20,10 @@ El backend es el lenguaje en el que se almacenará los datos.
 El hierarchy es como buscar la variable, de arriba a abajo.
 Primero buscaria en defaults, luego en clientcert, etc. En el primero que lo encuentre, parará.
 Con el formato %{::clientcert} podemos hacer referencia a variables del facter.
+Para buscar una variable en un manifest haremos:
+  hiera(nombre)
+
+Mirar tambien enc_hiera.md
 
 En los datadir existirá un fichero con los nombres que hemos definido en el hierarchy terminado con la extenison del backend.
 Ej.:

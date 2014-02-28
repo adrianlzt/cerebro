@@ -4,6 +4,8 @@ https://launchpad.net/mysql-tuning-primer
 http://www.percona.com/files/presentations/WEBINAR2012-03-Optimizing-MySQL-Configuration.pdf
 Muchas variables son de sesión, asi que tendremos que cambiarlas en el inicio si queremos que afecte a todas las conex.
 
+http://www.mysqlperformanceblog.com/2014/01/28/10-mysql-settings-to-tune-after-installation/
+
 
 SHOW STATUS LIKE 'perf%';
 

@@ -11,6 +11,7 @@ rails -> nos muestra opciones de la app. Ejecutar con -h para tener más informa
 rails generate <- genera código, nos muestra opciones de que podemos generar
   scaffold: nos genera el "andamio" para un 'resource' (model, routing, controller, view), tambien el database migrations
     rails g scaffold zombie name:string bio:text age:integer (automáticamente se añade timestamps, con created_at y updated_at)
+    Si queremos meter una relación a otro objeto ponemos algo tipo: porject_id:integer
   controller: genera controladores y la vista asociada por cada parámetro que pasemos
   Un generador mejor (pero no se si vale para rails 4): https://github.com/ryanb/nifty-generators
 

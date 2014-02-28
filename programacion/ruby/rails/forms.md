@@ -1,6 +1,10 @@
 Formulario generado por el scaffold:
 
 Para enviar un formulario a un path determinado: form_tag(search_zombies_path)
+http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html#method-i-form_tag
+<%= form_tag('/posts') do -%>
+  <div><%= submit_tag 'Save' %></div>
+<% end -%>
 
 <%= form_for(@zombie) do |f| %>
   <% if @zombie.errors.any? %>
@@ -31,9 +35,21 @@ Para enviar un formulario a un path determinado: form_tag(search_zombies_path)
 
 
 Tipos de datos para formularios:
+
+Si no tenemos "do |f|" podemos hacerlo como: 
+<%= hidden_field :post, :_checks, value: 1 %> que generará -> <input id="post__checks" name="post[_checks]" type="hidden" value="1">
+
+El tener o no tener |f| implica tener que definir un nuevo parámetro, que definirá el parámetro:
+  hidden_field :post, :_checks -> name="post[_checks]"
+  f.hidden_field :_checks -> name="post[_checks]"  (si |f| ha nacido de un elemento 'post')
+
 <%= f.text_field :campo %> <- campo de texto
+<%= f.text_field :campo, :value => "test" %> <- campo de texto con valor por defecto
+
 <%= f.number_field :age %>
 <%= f.text_area :campo %> <- campo de texto multilinea
+
+<%= f.hidden_field :_destroy %> <- oculto
 
 <%= f.check_box :casado %> <- para booleans
 
@@ -52,6 +68,9 @@ En este ejemplo, el modelo HostGroup tiene declarado, belongs_to :service)
   El parametro name es importante para ver a donde se postean los datos (postear a la clase host_group, parametro service_id
   collection_select object, method, collection, value_method, text_method, options = {}, html_options = {}
   http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select
+  Para definir el valor por defecto: ,{:selected => "whatever_value"})
+    Para que no falle el valor por defecto: 
+      <%= f.collection_select(:project_id, Project.all, :id, :name, @user.project? ? {} : {:selected => @user.project.id}) %>
 
 <%= f.password_field :pass %>
 <%= f.range_field :cantidad %> <- un slider para seleccionar un valor
@@ -62,6 +81,8 @@ En este ejemplo, el modelo HostGroup tiene declarado, belongs_to :service)
 
 ## Fields sin submit ##
 fields_for @elemento do |e|
+
+<%= f.fields_for :host_groups, @project.host_groups.where(environment_id: @env) do |builder| %>
 
 ## Cascada de selects ##
 Eligo un valor en un select, y dependiendo de ese, aparecen unas u otras opciones en el siguiente select.

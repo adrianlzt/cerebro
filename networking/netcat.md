@@ -1,3 +1,5 @@
+Para sockets mirar socat.md
+
 Testear una conexión: nc -vz ip port
 Testear una conex udp: nc -vuz ip port
 
@@ -24,4 +26,4 @@ while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html; } | nc -l 8080; 
 
 
 Conectar a un socket:
-docker -U /var/run/docker.sock
+nc -U /var/run/docker.sock
