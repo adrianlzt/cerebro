@@ -60,6 +60,10 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
 <%= f.select :gustos, ['musica', 'deporte'] %> <- desplegable
 <%= f.select :gustos, [['musica',1], ['deporte',2]] %> <- se muestra el texto, pero se postea el valor numerico
 
+Select múltiple para un elemento que tiene una relación M-N con projects
+<%= f.select :project_ids, @projects.map {|p| [p.name, p.id]}, {}, {:multiple=>true} %>
+Es necesario en el controlador modificar el params.require y añadir al final: project_ids: []
+
 Crear select para elegir un elemento al que pertenecemos (belongs_to)
 En este ejemplo, el modelo HostGroup tiene declarado, belongs_to :service)
 <%= collection_select :host_group, :service_id, @services, :id, :name, :prompt => 'Please select service'  %>
@@ -70,7 +74,9 @@ En este ejemplo, el modelo HostGroup tiene declarado, belongs_to :service)
   http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select
   Para definir el valor por defecto: ,{:selected => "whatever_value"})
     Para que no falle el valor por defecto: 
-      <%= f.collection_select(:project_id, Project.all, :id, :name, @user.project? ? {} : {:selected => @user.project.id}) %>
+      <%= f.collection_select(:project_id, Project.all, :id, :name, @user.project_id? ? {} : {:selected => @user.project.id}) %>
+      <%= f.collection_select(:project_id, Project.all, :id, :name, @contact.project_id? ? {:selected => @contact.project.id} : {}) %>
+
 
 <%= f.password_field :pass %>
 <%= f.range_field :cantidad %> <- un slider para seleccionar un valor
@@ -229,4 +235,51 @@ $(document).on 'click', '#delete_hostgroup', (event) ->
   event.preventDefault()
   $(this).prev("input[type=hidden]").val("1")
   $(this).parents(".hostgroup_field").hide()
+
+
+
+
+# Generar fields de un objeto sin mostrar los elementos que ya existan
+http://stackoverflow.com/questions/14884704/how-to-get-rails-build-and-fields-for-to-create-only-a-new-record-and-not-includ
+
+<%= f.fields_for :services,@project.services.build do |builder| %>
+  <%= render 'service_fields', :f => builder %>
+<% end %>
+
+
+Para si mostrar los objetos sería
+<%= f.fields_for :services do |builder| %>
+  <%= render 'service_fields', :f => builder %>
+<% end %>
+
+
+
+# Nested forms. Agregar nuevos campos pulsando un botón
+http://stackoverflow.com/questions/17839147/dynamically-add-fields-in-rails-with-out-nested-attributes
+
+La idea es generar una nueva fila y dejarla oculta en el código html.
+Cada vez que se pinche en un botón, copiará ese código html y los mostrará.
+
+VISTA:
+<div id="pruebas">
+</div>
+<%= link_to "add bulk", {}, {id: "nuevaPrueba"} %>
+<div class="hide" style="visibility:hidden" id="nueva_prueba_form">
+  <%= f.fields_for :services,@project.services.build,:child_index => "0000" do |builder| %>
+    <%= render 'service_fields', :f => builder %>
+  <% end %>
+</div>
+
+VISTA, partial (simplifcado):
+<p class="service_field">
+  <%= f.label :name, "Service name" %>
+  <%= f.text_field :name %>
+</p>
+
+JAVASCRIPT:
+$(document).on 'click', '#nuevaPrueba', (event) ->
+  event.preventDefault()
+  time = event.timeStamp
+  regexp = RegExp("0000", "g")
+  $("#pruebas").append($("#nueva_prueba_form").html().replace(regexp, time))
 

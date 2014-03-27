@@ -27,6 +27,10 @@ retry_interval                  1
 s/\s*;.*$//
 
 
+Borrar las líneas que empiezen por #
+echo -e "hola que tal\n#coemntairo\notra linea" | sed '/^#.*$/d'
+
+
 Del manual de semicomplete:
 
 Grep like: sed -n '/palabra/s' /dir/file

@@ -25,3 +25,40 @@ En $OPTARG ira el valor del parámetro ("bla" para el param 't')
 
 Podemos usar getopts para pasar parámetros que no sea $@ (los parámetros al llamar al programa)
 while getopts :f:h opt "${MY_OWN_SET[@]}"; do
+
+
+
+Ejemplo:
+
+while getopts ":ht:v" OPTION
+do
+  case $OPTION in
+    h)
+      help
+      exit 1
+      ;;
+    t)
+      TEST=$OPTARG
+      ;;
+    v)
+      VERBOSE=1
+      ;;
+
+    \?)
+      help
+      exit 1
+      ;;
+
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      help
+      exit 1
+      ;;
+
+    *)
+      # Should not occur
+      echo "Unknown error while processing options" >&2
+      exit 1
+      ;;
+  esac
+done

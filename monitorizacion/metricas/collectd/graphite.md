@@ -21,3 +21,22 @@ LoadPlugin write_graphite
   </Carbon>
 </Plugin>
 
+
+Otra opción para enviar a graphite:
+
+Collectd puede enviar métricas a otro collectd que hará de collector.
+
+Es mejor opción poner un collectd al lado de graphite y enviar las métricas así?
+Más eficiente en términos de red?
+Perdemos la posibilidad de escalar horizontalmente?
+
+
+<Plugin network>
+  Server "<your-docker-host>" "<the-collectd-port-likely-49153>"
+</Plugin network>
+
+
+
+En Evernote usan un "graphite relay" que actua como un load balancer ante un cluster de graphites.
+https://blog.evernote.com/tech/2013/07/29/graphite-at-evernote/
+

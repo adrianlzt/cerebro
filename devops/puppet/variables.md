@@ -3,6 +3,8 @@ Si van dentro de un literal ("cosa ${var} mas") se pone con corchetes.
 Las variables no pueden tener guiones (-), si pueden tener guiones bajos (_).
 Nomenclatura: $, luego ponemos el nombre de la clase y por último el nombre de la variable.
 
+true,True,false,False
+
 Ejemplo:
 
 $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."

@@ -1,7 +1,14 @@
 http://mesos.apache.org/
 http://mesosphere.io
+http://iankent.co.uk/2014/02/26/a-quick-introduction-to-apache-mesos/
 
 Apache Mesos is a cluster manager that provides efficient resource isolation and sharing across distributed applications, or frameworks. It can run Hadoop, MPI, Hypertable, Spark, and other applications on a dynamically shared pool of nodes.
+
+
+In some ways, Mesos provides the opposite to virtualisation:
+  Virtualisation splits a single physical resource into multiple virtual resources
+  Mesos joins multiple physical resources into a single virtual resource
+
 
 Computer resource management software. You can combine many servers as a one “virtual computer” with Mesos. Mesos itself is just allocating resources, so you have to use frameworks to manage these resources.
 

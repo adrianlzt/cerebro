@@ -14,7 +14,9 @@ Arrancamos splunk e instalamos las credenciales:
 iptables -F
 https://ec2-54-242-103-114.compute-1.amazonaws.com:8089/
 Web básica sin mucha info
+Con virtualbox no tengo acceso a la web :?
 
+Si quiero cambiar la pass de admin, por defecto 'changeme'
 ./splunk login -auth admin:changeme
 ./splunk edit user admin -password foo
 

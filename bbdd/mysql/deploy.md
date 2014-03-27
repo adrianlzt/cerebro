@@ -1,1 +1,1 @@
-percona/deploy.md
+../percona/deploy.md

@@ -1,1 +1,1 @@
-networking/honeyd.md
+../networking/honeyd.md

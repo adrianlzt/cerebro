@@ -72,3 +72,7 @@ erb -P -x -T '-' mytemplate.erb | ruby -c
 Substitución de caracteres
 <%= @fqdn.gsub(/a/, 'b') %> <-- cambia las 'a' por 'b'
 <%= @fqdn.sub(/a/, 'b') %> <-- cambia la primera 'a' por 'b'
+
+
+# Partials #
+<%= scope.function_template("#{el path que te mola}") %>

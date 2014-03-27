@@ -1,3 +1,33 @@
+# Boxes 2.0 #
+http://www.vagrantup.com/blog/feature-preview-vagrant-1-5-boxes-2-0.html
+https://github.com/mitchellh/vagrant/blob/master/website/docs/source/v2/boxes/versioning.html.md
+
+Nuevo sistema para buscar, descargar y usar las boxes, estilo index de docker.
+
+Para agregar una máquina:
+vagrant box add hashicorp/precise64
+o
+config.vm.box = "hashicorp/precise64"
+
+Se puede forzar una versión de la box
+--box-version
+config.vm.box_version
+= 1.2.3,  >= 1.2.3, < 2.0.0
+
+
+Comprobar si tenemos alguna box outdated:
+vagrant box outdated
+
+Actualizar boxes
+vagrant box update
+
+
+Ver máquinas de otro users:
+https://vagrantcloud.com/discover/featured
+
+
+
+
 Mostrar boxes:
 vagrant box list -i  (para mostrar url y fecha de añadido)
 

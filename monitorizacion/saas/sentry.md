@@ -1,0 +1,1 @@
+Sentry is all about exceptions. We could be simply logging these and sending them to Papertrail but Sentry provides tools for tracking and rolling up occurences. We’ll go for a plan with 90 days of history and 200 events per minute at a cost of $199 a month.

@@ -21,6 +21,8 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
 
 -e <- Nos deja editar el .spec antes de generar el rpm
 
+-a ARCH (all para poner noarch)
+
 Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
 Para crear un rpm hacemos:

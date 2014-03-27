@@ -56,3 +56,8 @@ También nos da los errores 200, 500 y 500 desde el ELB a nuetras app.
 
 El balanceador nos permite tener únicamente sticky session.
 Generalmente la sesión se gestiona en la app, por ejemplo en el server de apps (tomcat) de amazon se puede replicar la sesión entre los nodos.
+
+
+# Logs #
+Se puede acceder a los logs de los balanceadores:
+With Access Logs, you can obtain request-level details in addition to the existing load balancer metrics provided via CloudWatch. The logs contain information such as client IP address, request path, latencies, and server responses. You can use this data to pinpoint when application errors occurred or response times increased, and which requests were impacted. 

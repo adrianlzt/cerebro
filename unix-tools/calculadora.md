@@ -38,3 +38,7 @@ $ expr 32 \/ 4
 $ expr 5 + 5.5
 expr: non-numeric argument
 $ expr 
+
+
+Convertir hexadecimal en decimal:
+echo "ibase=16; 7F" | bc

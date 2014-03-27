@@ -15,3 +15,7 @@ Pepe-Martinez
 
 Elegir elementos según los valores de un array
 # select id,name from services WHERE name = ANY(string_to_array('ftp,dns',','));
+
+
+# Convertir una serie de resultados a una string separada por comas
+select array_to_string(array(select name from projects),',') AS cosa, id FROM tabla;

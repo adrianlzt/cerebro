@@ -9,3 +9,15 @@ send -- "xxxxxxx\n"
 expect "accept? *"
 send -- "y\n"
 interact
+
+
+# Chequear parametros
+#read the input parameters
+set host [lindex $argv 0]
+
+#check if all were provided
+if { $host == "" }  {
+ puts "Falta un parametro"
+ exit 1
+}
+

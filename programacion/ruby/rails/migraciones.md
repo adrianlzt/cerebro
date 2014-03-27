@@ -1,4 +1,6 @@
 http://guides.rubyonrails.org/migrations.html
+https://gist.github.com/amejiarosario/2950888 # Cheat sheet
+http://appletree.or.kr/quick_reference_cards/Ruby-Ruby_on_Rails/rails-migrations.pdf
 
 ## Migrations ##
 Si queremos añadir nuevos datos a un recurso que ya tengamos creado:
@@ -80,3 +82,11 @@ Generará el fichero db/schema.rb con el esquema actual
 Si hemos descargado un app y queremos crear la base de datos
 rake db:setup
 Esto crea la base de datos, las tablas (basándose en el fichero schema.rb) y carga los datos (seeds.rb)
+
+
+# Migración para cambiar una columna de tipo string a text
+class ChangeCommandlineToText < ActiveRecord::Migration
+  def change
+    change_column :commands, :command_line, :text
+  end
+end

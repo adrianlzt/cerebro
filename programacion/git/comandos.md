@@ -8,10 +8,10 @@ Quitar cambios del staged sin commit		git checkout -- fichero.txt
 						Si habiamos hecho algún cambio, pero aun no commit, este comando devuelve el fichero al estado que tiene en el repo
 Commit only new files				git commit -m “mensaje”
 Commit changes					git commit -a -m “mensaje”
-Rehacer un commit				git commit --all --amend
+Rehacer un commit				git commit --all --amend <- el --all es necesario?
 Estado						git status
 Log del git (o de un fichero)			git log <fichero>
-Log mostrando los diff de los n ult commits	 git log -p -2
+Log mostrando los diff de los n ult commits	git log -p -2
 Log de un fichero poniendo los cambios		git log -p -2 <fichero>
 Configurar remoto				git remote add origin ssh://git@bitbucket.org/pepe/pepe.git
 						git remote add origin git@bitbucket.org:pepe/dotfiles.git
@@ -34,6 +34,7 @@ Nueva rama					git branch <nombre>
 Renombrar rama					git branch -m old_branch new_branch
 Listar ramas locales y remotas			git branch --all   git br -a
 Borrar rama local				git branch -d <branch>
+Borra rama remota				git push origin :<branch>
 Movernos de rama o tag				git checkout <nombre>
 Movernos a rama orphaned			git checkout --orphan <nombre>    will have no parents / new history totally disconnected 
 Salirnos de un branch forzadamente		git checkout -f <nombre>
@@ -47,6 +48,8 @@ Reabase (cambios de otro branch a este)		git rebase develop   Aplica los cambios
 Definir un repo remoto por defecto para bajar	git branch --set-upstream-to=origin/develop develop
 Bajar código de remoto				git pull
 Diff branches					git diff <branch1> <branch2>
+						git diff <branch1>..<branch2>
+Diff branches rama contra el ancestro común	git diff <branch1>...<branch2>
 Mirar cambios					git diff
 Cambios respecto al dir local (sin commit)	git diff --staged
 Borrar last commit				git reset --hard HEAD~1
@@ -55,7 +58,8 @@ Añadir etiqueta					git tag -a “v1.0” -m “mensaje”
 Listar etiquetas				git tag       git tag -l “v1.*”
 Borrar etiqueta					git tag -d "0.1.0"
 Mirar alias					git aliases
-Dejar lo que estamos haciendo sin commit	git stash   http://www.gitguys.com/topics/temporarily-stashing-your-work/
+Dejar lo que estamos haciendo sin commit	git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
+						git stash save "mensaje"
 Volver a lo que estábamos haciendo		git stash pop
 Listar ficheros versionados			git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
 Mostrar ficheros excluídos			git ls-files --others --exclude-from=.git/info/exclude

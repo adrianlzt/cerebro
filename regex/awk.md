@@ -34,3 +34,11 @@ ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 
 Dos columnas, una con créditos y otra con la nota. Queremos la media, calculada como SUM(nota*cred)/SUM(cred)
 cat creditos_notas.txt | awk '{NOTACRED += $1*$2; CRED += $1} END {print NOTACRED/CRED}'
+
+
+AWK sin input:
+awk "BEGIN {printf \"${BASH}\";}"
+
+
+Mates, en el man hay un monton de funciones matemáticas: 
+awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}"

@@ -2,11 +2,22 @@ Hacer una petición GET a /:
 curl host:puerto
 
 
-Hacer un post con datos:
+Hacer un PUT con datos:
 curl -XPUT host:puerto -d '
 datos
 '
-  -d: envia esos datos al servidor. Si no se indica nada, se hace como POST
+  -d: envia esos datos al servidor
+
+
+Hacer un POST de un JSON
+curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: application/json" -d '
+{
+"name": "my-package",
+"desc": "To be used with https://github.com/adrianlzt/puppet-monitoring",
+"labels": ["puppet-monitoring"],
+"licenses": ["Public Domain"],
+}'
+
 
 curl -L http://web.com/mensaje300.html
   -L: si la web nos redirecciona, sigue dicha redirección.
@@ -25,3 +36,7 @@ curl -Ns http://www.climagic\.org/uxmas/[1-12]
 
 A través de proxy
 curl --proxy http://proxy.com:6666 http://www.google.es
+
+
+Autenticatión, HTTP basic:
+curl -u user:pass http://web.com

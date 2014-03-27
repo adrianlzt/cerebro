@@ -1,0 +1,10 @@
+[nombre_repo]
+baseurl=http://url.del/repo
+enabled=1
+gpgcheck=0
+name=Nombre del repo
+
+# Tambien se puede definir un proxy
+proxy=http://mycache.mydomain.com:3128
+proxy_username=yum-user
+proxy_password=qwerty

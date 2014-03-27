@@ -6,6 +6,13 @@ VAR=$(ifconfig)
  
 ENTRE LA VARIABLE Y EL IGUAL NO PUEDE HABER ESPACIOS
 
+Asignar variables en bash
+export VAR=cosa
+
+En sh
+VAR=cosa
+export VAR
+
 
 Definir valor por defecto:
 echo "para que nunca salga null la variable: ${variable:-valorDefault}"
@@ -29,3 +36,6 @@ foo="Hello"
 foo="$foo World"
 echo $foo
 
+
+eval $( cat /proc/sys/net/ipv4/ip_local_port_range | awk '{printf "MAX_PORTS=%d", $2-$1;}')
+El cat+awk me generan "MAX_PORTS=232322", que usando $() y eval termino teniendo definida la variable MAX_PORTS con ese valor.

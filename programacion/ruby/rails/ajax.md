@@ -138,6 +138,31 @@ $(document).ready ->
         $('#decomp').text(json.decomp).effect('highlight') <- añadimos valor nuevo y lo resaltamos
 	$('div#custom_phase2').fadeOut() if json.decomp== "Cosa" <- escondemos formulario si el valor es "Cosa"
 
+Ejecutar algo cuando se pinche sobre un enlace (y que el enlace no nos lleve a ningún lado)
+$(document).on 'click', '#delete_hostgroup', (event) ->
+  event.preventDefault()
+  ...javascript de lo que queramos hacer...
+
+
+# Devuelve un json cuando hacemos click
+
+$(document).on 'click', '#add_bulk', (event) ->
+  event.preventDefault()
+  bulk_id = $(this).next('#bulk_id').val()
+  url = "/bulks/"
+
+  $.ajax
+    type: 'get'
+    url: url+bulk_id+".json"
+    success: (json) ->
+      alert("fin")
+
+Si queremos pasar al GET valores tipo ?var=valor
+data: {
+        code: $('#user_id').val()
+      },
+
+
 
 ## Turbolinks ##
 A partir de Rails 4 donde va incluído por defecto Turbolink tenemos que usar

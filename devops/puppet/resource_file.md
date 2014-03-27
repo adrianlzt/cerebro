@@ -13,7 +13,7 @@ file { "/tmp/test":
 }
 
 file { '/etc/ntp.conf':
-        source => '/home/vagrant/curso/ntp/ntp.conf.erb',
+        source => '/home/vagrant/curso/ntp/ntp.conf',
         owner => 'root',
         group => 'root',
         mode => '0644',

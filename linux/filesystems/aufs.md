@@ -1,7 +1,8 @@
 advanced multi layered unification filesystem implements a union mount for Linux file systems.
 Aufs is a stackable unification filesystem such as Unionfs, which  unifies  several  directories  and provides a merged single directory.
-
 http://aufs.sourceforge.net/
+
+Para RedHat-like mirar funionfs.d
 
 
 Ejemplo, montar el contenido de dos directorios (files1/ y files2/) en un único directorio files/

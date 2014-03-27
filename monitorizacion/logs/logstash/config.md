@@ -1,6 +1,56 @@
-Configuraciones para agente:
+http://logstash.net/docs/1.3.3/configuration
+
+Las configuraciones seguirán el 'flow' de logstash: INPUT->FILTERS->OUTPUT
+
+Las configuraciones las meteremos, si hemos instalado desde el .deb, en /etc/logstash/conf.d
+Mejor separar un flow input-filter-output en cada fichero
+
+## Ejemplo básico ##
+Lee un fichero de log apache combined y lo escribe directamente a logstash:
+Ficheros de ejemplo de apache combined: http://www.monitorware.com/en/logsamples/download/apache-samples.rar
+input {
+  file {
+    path => "/tmp/access_log/access_log"
+  }
+}
+filter {
+}
+output {
+  elasticsearch {
+    cluster => "nombre"
+    node_name => "logstash_agent"
+  }
+}
+
+Más sobre configurar ES como output en elasticsearch.md
+
+## Mejorando apache log ## 
+El output lo mantengo tal cual
+input {
+  file {
+    path => "/tmp/access_log/access_log"
+    type => "apache"  <- aqui asignamos una 'etiqueta' a los eventos que vengan de este fichero
+  }
+}
+filter {
+  if [type] == "apache" {
+    grok {
+      patterns_dir => [ "/etc/logstash/patterns.d" ] <- podemos meter un directorio de patterns
+      match => [ "message", "%{COMBINEDAPACHELOG}" ] <- aqui pasamos un frok predefinido que analiza la estructura de un fichero apache combined
+    }
+    date {
+      locale => "en" <- si nuestro sistema tiene locale español, pero el log está en inglés tendremos que poner esto
+      match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ] <- hacemos que la variable genérica de ES timestamp la coja del message buscando ese patrón (si no, coge la hora de llegada del mensaje al servidor ES)
+    }
+    if [agent] != "" {
+      useragent { source => "agent" } <- me genera unas cuantas varibles más: name, os, os_name os_minor, os_major
+    }
+    geoip { source => "clientip" } <- generará variables con la localidad, lat, long, pais, continente, etc. Mirar geoip.md
+  }
+}
 
 
+## syslog to redis ##
 Lee de un fichero con formato syslog y lo escribe al redis para que lo procese logstash server
 input {
   file {
