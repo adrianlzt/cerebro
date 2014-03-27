@@ -27,3 +27,6 @@ while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html; } | nc -l 8080; 
 
 Conectar a un socket:
 nc -U /var/run/docker.sock
+
+Escucha de forma continuada (sin -k, tras el primer cliente, se cierra)
+nc -kl 8080

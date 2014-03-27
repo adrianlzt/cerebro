@@ -5,3 +5,8 @@ It's important to understand how precedence works. In many cases, if there is a 
 
 splunkbase.splunk.com
 apps.splunk.com
+
+
+
+http://apps.splunk.com/app/1306/
+Prelert Anomaly Detective

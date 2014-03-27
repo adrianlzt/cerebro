@@ -7,6 +7,13 @@ irb(main):027:1> end
 2
 3
 
+Es lo mismo que
+  for n in a
+que
+  a.each do |n|
+La difenrencia es que si a es nil el segundo dará error
+
+
 Para arrays también:
 a=[0,1,2]
 a.each { i
@@ -18,3 +25,9 @@ apps.each { | clave, valor| puts "clave: #{clave}   valor: #{valor} }
 
 
 next sirve para saltar a la siguiente vuelta, es como break en otros lenguajes
+
+
+Bucles con número de vuelta
+[:foo, :bar, :baz].to_enum.with_index(1).each do |elem, i|
+  puts "#{i}: #{elem}"
+end

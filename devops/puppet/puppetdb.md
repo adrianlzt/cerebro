@@ -1,3 +1,5 @@
+http://docs.puppetlabs.com/puppetdb/1/configure.html#host
+
 Mirar storeconfigs.md
 
 

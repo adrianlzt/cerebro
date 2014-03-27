@@ -1,5 +1,7 @@
 http://wiki.bash-hackers.org/scripting/posparams
 
+Mirar getopts.md para como parsearlos.
+
 Chequear si el numero de parámetros es correcto:
 EXPECTED_ARGS=2
 E_BADARGS=65

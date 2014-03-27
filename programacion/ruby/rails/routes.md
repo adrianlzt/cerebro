@@ -11,24 +11,31 @@ Para ver las rutas que se crean: rake routes
 Este código genera los "enlaces" entre el código (tweets_path, new_tweet_path, etc) a las url (/tweets, /tweets/new, etc) y el controlador(def index, def new, etc)
 Si queremos un enlace pero con .json lo haremos así: project_host_path(':project_id', format: :json)
 
+En rails 4 si usamos match debemos definir el verbo a usar
+match "/users/:id" => "users#show", via: :get
+get "/users/:id" => "users#show"
+match "/users" => "users#index", via: [:get, :post]
+get "/users" => "users#index"
+post "/users" => "users#index"
+
+
 Para crear rutas:
-match 'nuevo_tweet', :to => "tweets#new"
-match 'nuevo_tweet' => "tweets#new"
+match 'nuevo_tweet' => "tweets#new", via: :get
   miapp.org/nuevo_tweet -> llama al controlador Tweet funcion 'def new'
   Este match hace que /nuevo_tweet actue igual que /new
 
 Para que se cree una variable que apunte a nuestro nuevo path:
-match 'all' => "tweets#index", :as => "all_tweets"
+match 'all' => "tweets#index", via: :post, :as => "all_tweets"
   Ahora podemos usarlo: <%= link_to "All tweets", all_tweets_path %>
 
-match "account/overview"
+match "account/overview", via: :get
 es lo mismo que
-match "account/overview", :to => "account#overview"
+match "account/overview" => "account#overview", via: :get
 
 
-Para redireccionar:
-match 'all', :to => redirect('/tweets')
-match 'all' => redirect('/tweets')
+Para redireccionar (no se si está bien puesto lo de via):
+match 'all', via: :get, :to => redirect('/tweets')
+match 'all' => redirect('/tweets'), via: :get
   Cuando pongamos /all nos hará un 300 a /tweets
 
 match 'google', redirect('http://www.google.com')
@@ -47,7 +54,7 @@ root :to => "tweets#index"
 
 Obtener valores del GET:
 /local_tweets/23532
-  match 'local_tweets/:zipcode' => "tweets#index"
+  match 'local_tweets/:zipcode' => "tweets#index", via: [:get, :post]
 
 En el def index dispondremos de la variable params[:zipcode]
 
@@ -142,3 +149,8 @@ link_to "Destroy", [@zombie,tweet], method: :delete
 
 Para el form_for:
 form_for([@zombie,@tweet])
+
+
+Ruta donde un parámetro puede tener ciertos caracteres:
+  get "node/:hostname" => "node#info", :constraints  => { :hostname => /[0-z\.-]+/ }
+Esto también nos permite que el parámetro tenga un punto, si no, el punto se usa para separar el valor del formato.

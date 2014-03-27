@@ -79,3 +79,9 @@ mkdir adri-test/templates
 
 Obtener parámetros de configuración:
 /usr/bin/puppet master --configprint pidfile <- donde genera el fichero pid
+
+
+## Reinicio
+Si reiniciamos puppet master mientras se está conectando un agente saldrán distintos errores depende donde haya pillado el corte.
+En cualquier caso el último error será:
+Error: Could not send report: Connection refused - connect(2)

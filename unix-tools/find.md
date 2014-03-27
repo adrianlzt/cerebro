@@ -19,3 +19,9 @@ find . -exec file {} \; | grep -o ":[^,]*" | sort | uniq -c | sort -nr
 
 Borrar los ficheros más antiguos de 30 días
 find . -mtime +30 -exec rm {} \;
+
+
+Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".
+Nos devuelve el fichero matcheado (-H) y el número de línea (-n)
+find /tmp -name "*.txt" -exec grep -Hn cosa {} \;
+

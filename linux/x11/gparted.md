@@ -1,0 +1,1 @@
+Gestor de particiones gráfico

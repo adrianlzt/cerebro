@@ -24,5 +24,11 @@ file { '/tmp/puppet':
   ensure => directory,
   recurse => true,
   purge => true,
+  force => true, #me borra subdirectorios tambien
 }
+
+Asegurarnos que un directorio existe:
+ensure_resource('file', "${icinga_root_dir}/modules", {
+  ensure => directory,
+})
 

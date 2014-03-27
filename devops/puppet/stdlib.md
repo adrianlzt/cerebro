@@ -33,12 +33,14 @@ Takes a list of packages and only installs them if they don't already exist.
 
 
 
-Define un recurso si no está definido ya:
-user { 'dan':
-  ensure => present,
+Define un recurso si no está definido ya. Mientras en el defined_with_params no haya un parámetro que contradiga el recurso definido, dara true.
+Explicación: si no ponemos parámetros dara true. Si ponemos alguno de los parámetros dara true. Pero si ponemos algún parámetro distinto o que no está, dara false.
+file { '/tmp/prueba':
+  ensure => file,
+  content => "cosas dentro",
 }
-if ! defined_with_params(User[dan], {'ensure' => 'present' }) {
-  user { 'dan': ensure => present, }
+if defined_with_params(File['/tmp/prueba'], {}) {
+  notify{'file prueba creado':}
 }
 
 

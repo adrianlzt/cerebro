@@ -1,6 +1,8 @@
 Estado del cluster:
 curl localhost:9200/_cluster/health
 
+curl http://localhost:9200/_status
+
 "active_primary_shards":5,
 "active_shards":10
 5 shards creados para el único índice que tenemos

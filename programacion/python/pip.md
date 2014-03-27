@@ -3,6 +3,7 @@ Sería como un apt-get para python.
 $ pip search <libreria>
 $ pip install <libreria>
 $ pip install MySQL_python==1.2.2
+$ pip install --upgrade <paquete>
 $ pip install -Iv http://sourceforge.net/projects/mysql-python/files/mysql-python/1.2.2/MySQL-python-1.2.2.tar.gz/download
   -I: ignore previous versions installed
   -v: verbose

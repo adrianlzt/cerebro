@@ -1,3 +1,11 @@
+Básico:
+ps -ef
+ps aux
+
+Ver los parámetros enteros:
+ps auxww
+
+
 Ver como arbol:
 ps auxf
 ps ajxf

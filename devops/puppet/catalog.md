@@ -14,3 +14,7 @@ puppet catalog select node class
 
 Listado de las máquinas que usan este puppet master
 puppet cert list --all | awk '{print $2;}' | tr -d "\"" > lista_maquinas
+
+
+También podemos consultar via API-REST a puppetdb.
+Mirar puppetdb-query.md

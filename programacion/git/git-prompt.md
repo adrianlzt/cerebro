@@ -1,0 +1,1 @@
+../../linux/bash/git-prompt.md

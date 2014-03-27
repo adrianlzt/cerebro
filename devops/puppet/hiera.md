@@ -15,6 +15,8 @@ El backend es el lenguaje en el que se almacenará los datos.
   HTTP: https://github.com/crayfishx/hiera-http . CouchDB nos ofrece una interfaz web lista para interactuar con este backend
   GPG: https://github.com/crayfishx/puppet-gpg
   REST: https://github.com/binford2k/hiera-rest
+  PuppetDB: https://github.com/dalen/puppet-puppetdbquery
+    Podemos usar hiera para hacer queries a puppetdb y obtener información
   Mas: https://rubygems.org/search?utf8=%E2%9C%93&query=+hiera
 
 El hierarchy es como buscar la variable, de arriba a abajo.
@@ -29,6 +31,10 @@ En los datadir existirá un fichero con los nombres que hemos definido en el hie
 Ej.:
 /var/lib/hiera/global.yaml
 /var/lib/hiera/debian.yaml (si hemos definido en hierarchy a %{osfamily} y somos un SO de familia debian)
+
+
+Si ejecutamos 'puppet apply' y no tenemos ningún fichero /etc/puppet/hiera.yaml, puppet irá únicamente a buscar al fichero:
+/var/lib/hiera/common.yaml
 
 
 /etc/puppet/hiera.yaml (tras modificarlo: /etc/init.d/puppetmaster restart)

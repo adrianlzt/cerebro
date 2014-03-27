@@ -75,3 +75,13 @@ Luego hay muchos para apps determinadas. Settings -> Service Hooks
 
 
 Analytics para github: https://bitdeli.com/
+
+
+
+Poner enlaces a imágenes de servicios rollo travis-ci
+![CodeShip](https://www.codeship.io/projects/9ae74330-8697-0131-49f1-3e77f06cd138/status)
+
+
+
+## Integraciones
+https://github.com/integrations

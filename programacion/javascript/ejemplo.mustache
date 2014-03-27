@@ -1,0 +1,40 @@
+{{#Critical}}
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title">Critical Incidences</h3>
+	</div>
+{{/Critical}}
+{{^Critical}}
+<div class="panel panel-default">
+{{/Critical}}
+	<div class="panel-body">
+		{{#Critical}}
+		<table class="table table-hover table-bordered">
+			<tbody>
+		{{/Critical}}
+				{{#Incidences}}
+				<tr class="danger">
+					<td>
+						<a href="showCritical.php?id={{url}}&status=active"><div>
+							<p class="crit-number"><span class="glyphicon glyphicon-bullhorn"> {{id}}</span></p>
+							<p class="crit-ob"><span class="glyphicon glyphicon-globe"></span> {{ob}}</p>
+							<p class="crit-service"><span class="glyphicon glyphicon-cloud"></span> {{service}}</p>
+							<p class="crit-start"><span class="glyphicon glyphicon-time"></span> {{start}}</p>
+							<p class="crit-description"><span class="glyphicon glyphicon-info-sign"></span> {{description}}</p>
+						</div></a>
+					</td>
+				</tr>
+				{{/Incidences}}
+		{{#Critical}}
+			</tbody>
+		</table>
+		{{/Critical}}
+		{{^Critical}}
+		<div class="alert alert-success">
+			<h1><p class="text-center text-success">No Critical Incidences</p></h1>
+			<h4><p class="text-center">You can take a relaxing cup of café con leche.</p></h4>
+		</div>
+		{{/Critical}}
+		<p class="text-center text-info nomargin">Last critical incidences update: <strong>{{date}}</strong></p>
+	</div>
+</div>

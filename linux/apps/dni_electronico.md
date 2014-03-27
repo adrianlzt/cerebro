@@ -1,3 +1,14 @@
+## Nuevas instrucciones ##
+Bajar el paquete correspondiente de http://www.dnielectronico.es/descargas/PKCS11_para_Sistemas_Unix/distribuciones_linux.html
+dpkg/rpm -i blabla
+
+Seguir las instrucciones que se abriran en el navegador firefox
+
+Cuando nos pide importar el certificado CA, bajarlo de http://www.dnielectronico.es/seccion_integradores/certs.html , ya que el que viene empaquetado está caducado.
+
+////////// ANTIGUO ///////////////
+
+
 http://www.ubuntu-guia.com/2010/08/dni-e-electronico-ubuntu-instalar.html
 
 sudo apt-get install libccid pcscd libacr38u pinentry-gtk2 pcsc-tools libpcsclite1 libpcsclite-dev libreadline6 libreadline-dev coolkey

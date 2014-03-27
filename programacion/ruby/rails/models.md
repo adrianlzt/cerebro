@@ -28,20 +28,33 @@ has_one
 Relación M-N:
   Necesitaremos una tabla intermedia donde se haga la relación entre, por ejemplo, usuarios y roles.
   Dicha tabla tendrá belongs_to a usuarios y roles.
-  Usuarios y roles tendrán has_many a la tabla intermedia, y has_many :cosas, through: :intermedia
+  Usuarios y roles tendrán has_many a la tabla intermedia, y has_many :cosas, ambos con through: :tabla_intermedia
+  También se puede hacer con has_and_belongs_to_many :users/roles en cada model (nombre en plural)
+  El nombre de la tabla en orden alfabético? (primero el objeto alfabéticamente precedente)
   Recomendación: crear índice para los dos id de la tabla intermedia.
-    class CreateTablaIntermedia
+    rails g migration users_roles user_id:integer role_id:integer
+
+    Rellenar la migración:
+    class UsersRoles < ActiveRecord::Migration
       def change
-        create_table :intermedia do |t|
+        create_table :users_roles do |t|
 	  t.integer :user_id
 	  t.integer :role_id
+	  t.timestamp
 	end
-	add_index :intermedia, :user_id
-	add_index :intermedia, :role_id
+	add_index :users_roles, [:user_id, :role_id]
       end
     end
+
     Para agregar un role al usuario:
     user.roles << Role.last <- es lo mismo que user.roles.push Role.last
+
+
+Para crear un select donde poder elegir varios elementos:
+<%= f.select :project_ids, @projects.map {|p| [p.name, p.id]}, {}, {:multiple=>true} %>
+Es necesario en el controlador modificar el params.require y añadir al final: project_ids: []
+
+
 
 Un Tweet pertenece a un usuario:
 class Tweet < ActiveRecord::Base

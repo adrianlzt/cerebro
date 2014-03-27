@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script src="mustache.js" type="text/javascript"></script>
+    <script src="filter.js" type="text/javascript"></script>
+    <script src="simple.js" type="text/javascript"></script>
+  </head>
+  <body>
+      <input type="text" id="search_box" class="searchbox" placeholder="Type hostname...."/>
+      <div id="service_list"></div>
+      <script>
+        var services = [
+        { "title": "Mr. Ona Howe", "id": 1, },
+        { "title": "Darien Hoeger", "id": 2, },
+        { "title": "Mrs. Frederique Kris", "id": 3, },
+        { "title": "Jedediah Pouros", "id": 4, },
+        { "title": "Mrs. Daisy Macejkovic", "id": 5,
+        } ];
+      </script>
+    </div>
+    <script id="template" type="text/html">
+       <a title="{{title}}" href="/demo/{{permalink}}"> {{title}}<br> </a>
+    </script>
+  </body>
+</html>

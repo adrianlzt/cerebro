@@ -7,7 +7,7 @@
 :integer
 :primary_key
 :references
-:string
+:string  Limitado a 255 caracteres. CUIDADO, con sqlite3 no veremos esta limitación
 :text
 :time
 :timestamp

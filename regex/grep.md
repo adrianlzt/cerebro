@@ -9,6 +9,11 @@ cat fichero | grep -A 5 -B 1 cosa
 Muestra 5 lineas despues del match y 1 antes
 
 
+find /tmp -name "*.txt" -exec grep -Hn cosa {} \;
+Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".
+Nos devuelve el fichero matcheado (-H) y el número de línea (-n)
+
+
 Quita los comentarios y las líneas en blanco
 cat fichero.cnf | grep -v  -e "^#" -e "^$"
 

@@ -31,3 +31,17 @@ $sinarray = join($conprefix,",")
 m2m-grupo,m2m-boyes
 
 
+
+Usar una varible si está definida, si no, la otra:
+#$var = "hola"
+$var2 = "adios"
+notify {"mensaje":
+  message => inline_template("<% if @var %> $var <% else %> $var2 <% end %>")
+}
+
+
+Usar el contenido de una variable para generar el nombre de otra variable
+$valor = inline_template("<%= @var_${name} %>")
+$ipaddr = inline_template("<%= scope.lookupvar('::ipaddress_${var2}') %>")
+
+
