@@ -1,6 +1,7 @@
 http://mathias-kettner.de/checkmk_livestatus.html
 
 Abre un socket con Nagios/Icinga para obtener información.
+Livestatus make use of the Nagios Event Broker API
 
 
 Ejemplo de query al socket:

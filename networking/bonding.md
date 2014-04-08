@@ -1,5 +1,8 @@
 Agregar múltiples interfaces físicas a una lógica
 
+Need redundancy or increased throughput for your network? Bonding can help. Bonding allows the combination of two or more network interfaces resulting in a highly available or efficient network.
+
+https://access.redhat.com/site/articles/172483
 http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding_Driver_Options
 http://www.codekoala.com/blog/2012/bonding-eth0-and-wlan0-arch-linux/
 
