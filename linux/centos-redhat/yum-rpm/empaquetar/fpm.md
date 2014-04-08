@@ -23,6 +23,8 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
 
 -a ARCH (all para poner noarch)
 
+-x dir/*  <- Nos permite no meter ficheros en el rpm, pero no consigo que me funcione
+
 Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
 Para crear un rpm hacemos:
@@ -33,8 +35,9 @@ fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
 Para crear rpms en debian-like necesitamos: apt-get install rpm
 En RedHat like: yum install rpm-build
 
-Si queremos poner un epoch: --epoch <valor>
-Ejemplo: fpm --epoch 2 -s gem -t rpm 1.5.2 rack
+Si queremos poner un epoch: --iteration <valor>
+Ejemplo: fpm --iteration 2 -s gem -t rpm 1.5.2 rack
+
 
 ## Directorio ##
 RPM a partir de un .tar.gz
@@ -46,6 +49,11 @@ make install
 cd /tmp/fpm
 fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia .
 
+Si queremos que todos los ficheros del directorio actual se guarden en el rpm debajo de /opt/ui
+fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui .
+
+Genera una segunda iteración (a.b.c-2) para noarch, marcando dos ficheros como cofiguración (rpm guarda los antiguos al instalar el paquete)
+fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui -v 0.4.3 -a all --iteration 2 --config-files config/database.yml --config-files config/environments/production.rb .
 
 
 

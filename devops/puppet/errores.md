@@ -29,3 +29,10 @@ El problema es que cliente y servidor no tienen la misma hora.
 Al usar una función en el site.pp (hiera_resources) nos da el error: exception object expected at
 Esto quiere decir que tenemos algún fallo de sintaxis. Probar a meter la clase o el defined type directamente en el nodo, y nos dirá donde está el error.
 https://tickets.puppetlabs.com/browse/PUP-1100
+
+
+
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Puppet::Parser::AST::Resource failed with error ArgumentError: Cannot alias Package[postgresql-client] to ["postgresql"] at /etc/puppet/modules/postgresql/manifests/client.pp:12; resource ["Package", "postgresql"] already declared at /etc/puppet/modules/postgresql/manifests/client.pp:12 on node puppet.com
+Warning: Not using cache on failed catalog
+Error: Could not retrieve catalog; skipping run
+Este error daba porque un manifest hacia un ensure_resource del package postgresql y luego el manifest client.pp lo volvía a definir. Parece que es un fallo de puppet.

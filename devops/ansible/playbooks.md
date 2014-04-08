@@ -21,3 +21,11 @@ Dry-run / noop / check mode
 ansible-playbook foo.yml --check
 ansible-playbook foo.yml --check --diff  <- muestra cambios que se vayan a producir en los templates (sin --check muestra cambios producidos)
 
+
+También se pueden ejecutar únicamente algunas tasks de cierto tag:
+ansible-playbook playbooks/puppet-configured.yaml --tags=conf
+ansible-playbook playbooks/puppet-configured.yaml -t conf
+
+O limitar a que hosts se aplicarán (mirar patterns.md):
+ansible-playbook playbooks/puppet-configured.yaml --limit="webserver*"
+ansible-playbook playbooks/puppet-configured.yaml -l "webserver*"

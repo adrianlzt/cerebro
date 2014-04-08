@@ -1,1 +1,1 @@
-unix-tools/terminator.md
+../../unix-tools/terminator.md

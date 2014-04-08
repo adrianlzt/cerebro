@@ -13,6 +13,10 @@ rake db:setup RAILS_ENV=production
 Precompilar los assets:
 RAILS_ENV=production rake assets:precompile
 
+Migrar la base de datos
+RAILS_ENV=production rake db:migrate
+
+
 Por defecto solo pilla el application.js/.css
 The default matcher for compiling files includes application.js, application.css and all non-JS/CSS files (this will include all image assets automatically) from app/assets folders including your gems.
 
