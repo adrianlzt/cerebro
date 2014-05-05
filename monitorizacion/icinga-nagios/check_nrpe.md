@@ -68,3 +68,18 @@ Meter en el /etc/sysconfig/nrpe:
  export PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_SID=hhproes
 
+
+
+NRPE tiene un límite de datos que acepta de un plugin:
+http://docs.icinga.org/latest/en/nrpe.html
+
+Por defecto el output que acepta nrpe es de 1024 caracteres.
+Si queremos incrementarlo tendremos que recompilar el demonio nrpe y el plugin check_nrpe.
+Lo haremos modifando el fichero nrpe-2.14/include/common.h
+Pondremos por ejemplo
+#define MAX_INPUT_BUFFER        4096
+#define MAX_PACKETBUFFER_LENGTH 2048
+
+Y recompilaremos el .src.rpm que nos generará los dos nuevos rpms (nrpe y nagios-plugins-nrpe)
+
+Hay que tener cuidado porque distintas versiones de nrpe recompilados no son compatibles entre sí.

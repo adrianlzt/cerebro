@@ -14,6 +14,9 @@ rails generate <- genera código, nos muestra opciones de que podemos generar
     Si queremos meter una relación a otro objeto ponemos algo tipo: porject_id:integer
   controller: genera controladores y la vista asociada por cada parámetro que pasemos
     rails g controller node index info detail
+      /node/index
+      /node/info
+      /node/detail
   Un generador mejor (pero no se si vale para rails 4): https://github.com/ryanb/nifty-generators
 
 Tras hacer un scaffold tenemos que aplicar las migraciones de la base de datos (crear las nuevas tablas)

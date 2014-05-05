@@ -60,8 +60,8 @@ source => 'puppet:///modules/NOMBREMODULO/NOMBREFICHERO'
 
 Si el fichero al que apuntamos es un enlace, debemos forzarle a que lo borre.
 
-Si queremos meter un template:
-content => template('motd/motd.erb')
+Si queremos meter un template mirar templates.md:
+content => template("${module_name}/motd.erb"),
 
 
 ## Valores por defecto ##

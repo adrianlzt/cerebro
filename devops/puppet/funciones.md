@@ -1,4 +1,4 @@
-http://docs.puppetlabs.com/references/2.7.3/function.html
+http://docs.puppetlabs.com/guides/custom_functions.html
 
 Funciones para hacer cosas especiales
 

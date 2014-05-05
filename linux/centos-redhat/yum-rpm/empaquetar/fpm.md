@@ -35,7 +35,7 @@ fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
 Para crear rpms en debian-like necesitamos: apt-get install rpm
 En RedHat like: yum install rpm-build
 
-Si queremos poner un epoch: --iteration <valor>
+Si queremos poner un release (a.b.c-X): --iteration <valor>
 Ejemplo: fpm --iteration 2 -s gem -t rpm 1.5.2 rack
 
 
@@ -74,3 +74,5 @@ Para que no genere las dependencias:
 
 ## Gemas ##
 fpm -s gem -t rpm -v 1.2.3 nombre
+
+Convertir gema y todas sus dependencias: https://github.com/jordansissel/fpm/wiki/ConvertingGems#convert-a-gem-and-all-of-its-dependencies

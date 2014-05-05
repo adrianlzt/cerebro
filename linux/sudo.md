@@ -1,3 +1,13 @@
+Sintaxis:
+user    MACHINE=COMMANDS
+
+Permitir a los usuarios de "grupo" hacer sudo contra todos los comandos.
+%grupo ALL=(ALL) ALL
+
+Quitar el parámetro requiretty para el user nrpe. Permite ejecutar en todos los hosts (ALL) el comando corosync-cfgtool como root
+Defaults:nrpe !requiretty
+nrpe ALL = (root) NOPASSWD: /usr/sbin/corosync-cfgtool -s
+
 Truco de sudo: se puede hacer un include de un directorio y que parezca un comentario:
 #include /etc/sudoers.local
 

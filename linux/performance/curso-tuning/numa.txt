@@ -1,0 +1,4 @@
+Ficheros rpm en Donwloads/
+Ahí tenemos un kernel con NUMA emulado (podemos mirarlo cuando reiniciemos con ese kernel en /boot/config... (buscar por NUMA)
+
+lstopo para ver la conf de procesador que se inventa el emulador

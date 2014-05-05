@@ -1,6 +1,8 @@
 http://graphite.readthedocs.org/en/latest/whisper.html
 http://restreaming.me/2012/07/04/xfilesfactor-and-graphite-whisper/
 
+Más comandos para whisper: https://github.com/graphite-project/whisper
+
 Whisper is a fixed-size database, similar in design and purpose to RRD (round-robin-database). It provides fast, reliable storage of numeric data over time. Whisper allows for higher resolution (seconds per point) of recent data to degrade into lower resolutions for long-term retention of historical data.
 
 Los datos se almacenan en /opt/graphite/storage/whisper/servers

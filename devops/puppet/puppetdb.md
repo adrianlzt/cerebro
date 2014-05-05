@@ -74,3 +74,7 @@ master:
   facts:
     terminus: puppetdb
     cache: yaml
+
+
+Usando puppetdb con masterless
+http://docs.puppetlabs.com/puppetdb/latest/connect_puppet_apply.html

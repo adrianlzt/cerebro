@@ -13,3 +13,13 @@ gdb -p PID
 gdb> p close(FD)
 
 Lo probé con un programa y se cerro de golpe
+
+
+
+Si queremos leer el stdout del programa:
+cat /proc/PID/fd/1
+Se mantendrá el cat abierto mostrándonos la salida estandar.
+
+Parece que también puedo ver el stdin con
+cat /proc/PID/fd/0
+Pero haciendo pruebas con un script en bash no me coge todo

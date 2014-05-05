@@ -20,6 +20,7 @@ Mejora sobre rcp y scp. Hace transmisiones incrementales, evitando enviar los da
 --numeric-ids           don't map uid/gid values by user/group name
 
 Otras opciones
+-z			compress
 --exclude=PATTERN       exclude files matching PATTERN
 --exclude-from=FILE     read exclude patterns from FILE
 --include=PATTERN       don't exclude files matching PATTERN
@@ -30,3 +31,12 @@ Otras opciones
 
 Copiar una estructura de directorios excepto los directorios backup:
 rsync -av --progress --exclude backup nagiosql/  nagiosql-sin-backup
+
+
+Para ver como va el estado en la máquina que recibe el fichero:
+ps auxf | grep rsync
+cd /proc/<PID RSYNC_HIJO>/
+ls -la fd/
+  Hay podemos ver el fichero temporal que se está escribiendo
+cat io
+  También podemos ver en este fichero los bytes transmitidos

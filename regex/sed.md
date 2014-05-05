@@ -19,6 +19,13 @@ echo "hostgroups=uno,dos,tres" | sed 's@\^(hostgroups=.*\)@\1,pepe@'
 Modificar el mismo fichero que se edita:
 sed -i s/cambiaesto/poresto/ fichero.txt
 
+Borrar las lineas que empiezen por #
+sed -i '/^#/d' fichero
+
+Agregar un par de líneas tras una linea que tiene 'main'
+sed /etc/puppet/puppet.conf -i -e"/main/a storeconfigs = true\nstoreconfigs_backend = puppetdb"
+
+
 Para trabajar con el espacio en blaco -> \s
 Ej:
 retry_interval                  1               ; Schedule host check retries at 1 minute intervals
