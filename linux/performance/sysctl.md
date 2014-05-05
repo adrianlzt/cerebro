@@ -1,0 +1,16 @@
+https://www.kernel.org/doc/Documentation/sysctl/
+
+Nos permite tunear el sistema:
+
+sysctl -a
+  Nos muestra todos los tunables
+
+sysctl -e key=valor
+  Setear valor
+
+
+Para cambios persistentes:
+/etc/sysctl.conf
+vm.swappiness=60
+
+Mejor meter en ficheros separados en /etc/sysctl.d/

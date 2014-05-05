@@ -11,6 +11,9 @@ Instalar
 # yum install <paquete>.rpm //Instala dependencias en caso de necesitarlas
 # yum install <paquete>-version-1.2-3  //Podemos determinar una version en concreto
 
+No existe opcion --nodeps o similar: http://yum.baseurl.org/wiki/NoDeps
+rpm -i --nodeps paquetes.rpm
+
 Activar repositorio para busqueda, instalación...
 Si un repositorio (el fichero almacenado en /etc/yum.repos.d) esta marcado como enabled=0, para poder utilizarlo usaremos --enablerepo y el nombre del repositorio
 $ yum --enablerepo repo search...

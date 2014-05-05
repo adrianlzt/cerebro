@@ -1,0 +1,11 @@
+Syslogd flusheando mucho al disco?
+  desactivar los fsync poniendo un "hyphen" al nombre en el syslogd.conf
+
+Desactivar operaciones costosas:
+  disable reverse name lookups
+  loglevel to warn
+
+Necesitamos todas las tareas cron?
+
+Quitar servicios sin uso?
+  demonios bluetooth, etc

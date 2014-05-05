@@ -2,6 +2,8 @@ http://blog.engineyard.com/2010/the-lowdown-on-routes-in-rails-3
 
 app/config/routes.rb
 
+$ rake routes
+
 NombreApp::Application.routes.draw do
   reosurces :tweets
 end

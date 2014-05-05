@@ -33,8 +33,11 @@ Ej.:
 /var/lib/hiera/debian.yaml (si hemos definido en hierarchy a %{osfamily} y somos un SO de familia debian)
 
 
-Si ejecutamos 'puppet apply' y no tenemos ningún fichero /etc/puppet/hiera.yaml, puppet irá únicamente a buscar al fichero:
+Si ejecutamos 'puppet apply' puppet irá únicamente a buscar al fichero:
 /var/lib/hiera/common.yaml
+
+Si queremos que use un hiera.yaml
+puppet apply --hiera_config /etc/puppet/hiera.yaml test.pp
 
 
 /etc/puppet/hiera.yaml (tras modificarlo: /etc/init.d/puppetmaster restart)
@@ -58,6 +61,12 @@ Una mejor configuración para Puppet, usando además JSON (YAML parece que pasar
 Para sacar las variables de hiera:
 $pepe = hiera('dnsserver')
 notify {"variable: ${pepe}":}
+
+hiera('nombre','valor por defecto')
+
+
+Si hiera('var') devuelve "cosa ${var}" ese ${var} se pondrá como un literal (no pondrá el valor de esa variable).
+Pero si podemos hacer: hiera('var',"valor $variable")
 
 
 Para definir las variables en los yaml:

@@ -2,4 +2,8 @@ Es la parte de computación de openstack
 
 http://www.openstack.org/software/openstack-compute/
 
-Tiene un módulo para almacenar objetos (objectstore) n-obj
+
+
+Service instance groups
+Es para separar (o juntar) VMs en los mismos compute nodes.
+

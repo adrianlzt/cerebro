@@ -1,3 +1,5 @@
+http://bitcube.co.uk/content/puppet-errors-explained
+
 (Para sacar mensajes de error mirar fail.md)
 
 Intento hacer un puppet apply y me dice:
@@ -36,3 +38,8 @@ Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Puppe
 Warning: Not using cache on failed catalog
 Error: Could not retrieve catalog; skipping run
 Este error daba porque un manifest hacia un ensure_resource del package postgresql y luego el manifest client.pp lo volvía a definir. Parece que es un fallo de puppet.
+
+
+
+err: Could not retrieve catalog from remote server: wrong header line format
+One of your templates contains invalid syntax. Look for unintentional or invalid "<%" and ">%" strings. If you need to put these strings in templates you can use "<%%" and ">%%".

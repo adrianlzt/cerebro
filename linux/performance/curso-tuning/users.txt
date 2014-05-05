@@ -1,0 +1,2 @@
+usuario:usuario
+root:root

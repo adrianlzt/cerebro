@@ -26,6 +26,8 @@ Ejemplo de como podría ser el motd.ebr
 domain is <%= @domain %>
 os is <%= @operatingsystem %>
 
+Una variable @var en el manifest de puppet se debe declarar como $var = ...
+
 Variables globales con @: <%= @var %>
 Varibables locales sin arroba:
 <% servers_real.each do |server| -%> 

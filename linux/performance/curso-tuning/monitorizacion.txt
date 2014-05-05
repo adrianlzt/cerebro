@@ -1,0 +1,3 @@
+Dos formas:
+  - ad hoc: scripts que parsean datos de /proc, sar, etc
+  - snmp, bases de datos rrd
