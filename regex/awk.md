@@ -1,7 +1,17 @@
 Manual: http://www.semicomplete.com/blog/articles/week-of-unix-tools/day-3-awk.html
 
+$1 $2 $NF $NF-1, imprime la columna 1, 2, la última, la penúltima
+$0 imprime toda la línea
+
+awk '
+BEGIN { printf "solo se hace al comienzo" }
+cuerpo que se ejecuta una vez por cada línea
+END { printf "solo al final" var }'
+
+
 Imprimir el campo 7 si separamos mediante barras (/)
 cat update_database  | awk '{FS="/"; print $7;}'
+cat update_database  | awk -F "/" '{print $7;}'
 
 Imprime primero la linea hasta el primer espacio en blanco, y seguido, el campo 7 si separamos por "/"
 cat update_database  | awk '{printf $0} {FS="/"; printf ",%s\n",$7;}'

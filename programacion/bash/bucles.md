@@ -32,7 +32,10 @@ while read line; do echo $line; done < file
 
 while test `bitcoind -testnet getblockcount` -eq 50725; do sleep 10; echo yes; done
 
-for i in {1..5}
-do
+for i in {1..5}; do
    echo "Welcome $i times"
-   done
+done
+
+for i in $(seq 1 5); do
+   echo "Welcome $i times"
+done

@@ -21,8 +21,8 @@ $ rpm -qa
 Listar ficheros
 $ repoquery -ql <paquete> (ficheros de un paquete NO instalado)
 $ rpm -ql <paquete> (ficheros de un paquete instalado)
-$ rpm -qlc <paquete> (solo ficheros de configuración)
-$ rpm -qld <paquete> (solo ficheros de documentación)
+$ rpm -qc <paquete> (solo ficheros de configuración)
+$ rpm -qd <paquete> (solo ficheros de documentación)
 
 
 Para mostrar esta información sobre un .rpm
