@@ -1,0 +1,2 @@
+#!/usr/bin/stap
+probe begin { println("hello world") exit () }
