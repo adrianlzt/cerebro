@@ -1,0 +1,14 @@
+title: Track Virtual Memory System Page Reclamation
+name: mmreclaim.stp
+version: 1.0
+author: Red Hat
+keywords: memory
+subsystem: memory
+status: experimental
+exit: user-controlled
+output: sorted-list
+scope: system-wide
+description: The mmreclaim.stp script uses the virtual memory tracepoints available in some kernels to track page reclaim activity that occurred while the script was running. It's useful in debugging performance problems that occur due to page reclamation.
+test_support: stap -l 'kernel.trace("mm_directreclaim_reclaimall")' && stap -l 'kernel.trace("mm_pagereclaim_shrinkinactive")' && stap -l 'kernel.trace("mm_pagereclaim_free")' && stap -l 'kernel.trace("mm_pagereclaim_pgout")' && stap -l 'kernel.trace("mm_pagereclaim_shrinkactive_a2a")' && stap -l 'kernel.trace("mm_pagereclaim_shrinkinactive_i2a")' && stap -l 'kernel.trace("mm_pagereclaim_shrinkactive_a2i")' && stap -l 'kernel.trace("mm_pagereclaim_shrinkinactive_i2i")'
+test_check: stap -p4 mmreclaim.stp
+test_installcheck: stap mmreclaim.stp -c "sleep 0.2"

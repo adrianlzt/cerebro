@@ -13,6 +13,13 @@ sudo apt-get update
 # install
 sudo apt-get install lxc-docker
 
+# Tener cgroups de memoria y swap (no obligatorio)
+GRUB_CMDLINE_LINUX=cgroup_enable=memory swapaccount=1"
+En /etc/default/grub
+
+# Necesario para networking (creo que lo hace ya la instalación)
+sysctl -w net.ipv4.ip_forward = 1
+
 # Test
 lxc-checkconfig
 sudo docker run -i -t ubuntu /bin/bash
@@ -26,3 +33,9 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 sudo ufw reload
 
 Si tengo problemas con la red, mirar que no tenga alguna vpn montada que pueda estar fastidiando.
+
+
+# Apparmor, usado por docker para confinar los contenedores
+Si tenemos problemas con apparmor y permisos:
+apt-get install apparmor-utils
+aa-complain docker lxc-start
