@@ -61,3 +61,7 @@ ps -fea -o pcpu -o args
 
 Mostrar variables de entorno
 ps eww
+
+
+Ver procesador donde está corriendo:
+ps -e opsr,comm,pid

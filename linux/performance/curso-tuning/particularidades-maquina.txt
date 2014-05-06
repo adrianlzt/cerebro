@@ -1,3 +1,10 @@
 Instalado a "mano" (con rpm):
   sysdig
   docker
+
+
+Instalar kernel 3.13.8 y poner en la conf de grub
+numa=fake=2
+
+/boot/grub2/grub.cfg
+Meter esa conf rn rootflags

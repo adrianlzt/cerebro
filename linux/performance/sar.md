@@ -1,4 +1,5 @@
 http://sebastien.godard.pagesperso-orange.fr
+(iostat.md también forma parte de ese paquete)
 
 Sar forma parte de un conjunto de herramientas de estadísticas para linux.
 
@@ -8,9 +9,17 @@ sargraph - http://www.sargraph.com/
 http://www.sarcheck.com/ - SarCheck is a Linux & UNIX performance analysis and performance tuning tool. It is designed to help you with performance management on most Oracle Solaris, AIX, Linux, and HP-UX systems by making recommendations and explaining them with plain text, supporting graphs, and tables. Total SarCheck cost - US$9,385.00
 
 
-
 No es un comando estandar. Necesita de un demonio para estar corriendo.
-Por defecto toma un punto cada 10 minutos. No se como configurarlo para tomar más puntos. Mejor usar collectd.
+  sa1 - Collect and store binary data in the system activity daily data file
+  sa2 - Write a daily report in the /var/log/sa directory
+Por defecto toma un punto cada 10 minutos defindo en:
+/etc/cron.d/systat
+  También se define la generación de los daily summaries.
+
+No es una herramienta costosa en principio.
+
+Instalación:
+yum install systat
 
 /etc/default/sysstat
 # Should sadc collect system activity informations? Valid values

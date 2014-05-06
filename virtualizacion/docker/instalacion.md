@@ -14,6 +14,7 @@ sudo apt-get update
 sudo apt-get install lxc-docker
 
 # Test
+lxc-checkconfig
 sudo docker run -i -t ubuntu /bin/bash
 Esto bajará la imagen ubuntu (ya que no la tendremos) y arrancar la shell dentro del container
 
