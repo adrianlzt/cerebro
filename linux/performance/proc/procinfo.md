@@ -1,0 +1,1 @@
+- Información similar a /proc/vmstat pero por zona de memoria, y con datos más detallados sobre qué CPU accede a cada zona y datos para NUMA.

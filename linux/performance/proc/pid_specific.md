@@ -15,3 +15,15 @@ https://www.kernel.org/doc/Documentation/filesystems/proc.txt
 Viene explicado cada campo en su propia linea
 
 memoria, usuarios, signales, cpus, context switches...
+
+
+## /proc/$(pidof proceso)/io
+Estadísticas por proceso
+
+%rchar  bytes leidos de disco (fisico o cache)
+%wchar  bytes escritos a disco (fisico o cache)
+%syscr  num de syscalls read
+%syscw  num de syscalls write
+%read_bytes  bytes leidos de disco físico
+%write_bytes  bytes escritos a disco físico (por volcado de dirty-pages)
+%cancelled_write_bytes  bytes no escritos a disco físico (por truncado de dirty-pages)

@@ -11,4 +11,6 @@ Tuesta por exceso de syscalls
 dd if=/dev/zero of=/dev/null
 
 
-Ver stress.md
+Ver 
+stress.md
+spew.md

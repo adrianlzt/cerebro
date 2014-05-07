@@ -1,0 +1,1 @@
+caracterizar_ram.md

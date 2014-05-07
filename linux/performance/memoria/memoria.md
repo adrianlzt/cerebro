@@ -11,8 +11,7 @@ La primera linea cuenta la memoria que esta totalmente libre (no ocupada por apl
 La segunda linea nos dice la memoria que está libre para las aplicaciones (restando buffers y cache)
 
 
-Borrar disk cache (no todo):
-echo 5 > /proc/sys/vm/drop_caches
+Borrar disk cache: mirar proc/sys-vm-drop_caches.md
 
 
 

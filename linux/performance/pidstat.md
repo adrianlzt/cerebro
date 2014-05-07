@@ -27,6 +27,13 @@ Para ubuntu, pero no para CentOS
 -s     Report stack utilization.  The following values may be displayed:
 
 
+- Muestra fallos de página por segundo y datos de stack para un proceso
+pidstat -r -s -p PID
+  %StkSize      # memoria reservada para stack (usada o no)
+  %StkRef       # memoria usada para stack (referenciada por la tarea)
+  %minflt/s     # minor faults/s
+  %majflt/s     # major faults/s
+
 
 Una variante de este programa es pydstat, escrito en python, saca los logs en formato syslog, listo para ser procesado por splunk
 https://github.com/SplunkStorm/pydstat

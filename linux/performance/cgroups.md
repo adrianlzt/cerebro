@@ -176,8 +176,40 @@ cgclassify -g cpuset:solocpu0 PID
 
 
 
+## Disco ##
+traspas dia3-io/io step-66
+Limitar acceso a disco:
+cgcreate -g devices:NOMBRE
+cgset -r devices.allow "b 8:0 r"
+  b: block
+  8: minor number (ls -la /dev/sda | cut -d ' ' -f 5 | tr -d ',')
+  0: major number (ls -la /dev/sda | cut -d ' ' -f 6)
+  r: lectura
+
+Dar más prioridad a un grupo u otro
+  blkio
+  Deberemos crear dos grupos, y dar un peso a cada uno.
+
+Para tasas absolutas
+  velocidad: cgset -r blkio.throttle.read_bps_device ...
+  iops: ...
+
+
+## Memoria ##
+- Kernel arrancado con opcion "cgroup_enable=memory"
+
+cgset
+  memory.stat
+  memory.limit_in_bytes         # limite memoria del cgroup (especificar 1º)
+  memory.memsw.limit_in_bytes   # limite incluyendo swap (despues)
+  memory.swappiness             # swappiness por cgroup
+  cpuset.mems                   # afinidad NUMA
+
+
+
 
 ## Errores ## 
 Error changing group of pid 8370: No space left on device
   No se puede asignar solo cpuset.cpus, también hace falta definie cpuset.mems
   Parece que es un bug de Fedora/RedHat
+

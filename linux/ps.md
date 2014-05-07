@@ -18,6 +18,14 @@ ps auxms (dificil de leer)
 Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
+Memoria:
+ps -eLf                                         # hebras (TID)
+ps -eo pid,maj_flt,min_flt,pmem,rss,vsz,sz      # info de memoria
+  maj_flt: fallos de página
+  min_flt: la página está en RAM pero no está en la TLB, operación costosa pero no tanto como ir a disco
+  vsz: consumo de memoria virtual (total)
+  rss: consumo de memoria ram
+
 
 
 ps -fea -o pcpu -o args
