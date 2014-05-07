@@ -1,0 +1,1 @@
+- Las hebras tienen su propio mapa en /proc/<PID>/task/<TID>/maps

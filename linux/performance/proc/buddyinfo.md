@@ -3,6 +3,13 @@ https://www.kernel.org/doc/Documentation/filesystems/proc.txt
 
 
 ## /proc/buddyinfo
+
+Muestran la fragmentación de memoria producida por el Buddy Algorythm (nº de bloques libres de tamaño PAGESIZE^0, PAGESIZE^1, PAGESIZE^2...)
+
+Va fusionando páginas para hacer huecos más grandes.
+En cada columna nos dice los huecos de páginas de 4k, 8k, 16k, etc que hay.
+Cada fila es cada una de las zonas NUMA, también separa entre zona DMA y normal
+
 http://dom.as/2014/01/17/on-swapping-and-kernels/
 kmalloc though is used for device drivers when hardware is doing direct memory access (DMA) – so these address ranges have to be contiguous, and therefore to allocate it one has to find subsequent empty pages that can be used. Unfortunately, the easiest way to free up memory is looking at the tail of LRU list and drop some – but that does not give contiguous ranges.
 

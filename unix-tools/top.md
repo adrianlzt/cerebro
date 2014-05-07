@@ -11,3 +11,20 @@ vsz         VSZ       virtual memory size of the process in KiB (1024-byte units
 rss         RSS       resident set size, the non-swapped physical memory that a task has used (inkiloBytes).  (alias rssize, rsz)
 NI  --  Nice Value: The nice value of the task.  A negative nice value means higher priority, whereas a positive nice value means lower priority.
 PR  --  Priority: The scheduling priority of the task.  If you see 'rt' in this field, it means the task is running under 'real time' scheduling priority.
+
+
+top     # 'f' para mostrar campos extra
+  %VIRT # incluyendo shared libs y swapouts
+  %MEM  # % de RAM (RES)
+  %SWAP # en swap
+  %CODE # Executable code
+  %DATA # Data + Stack
+  %SHR  # shared
+  %USED # %RES + %SWAP
+  %RES  # en RAM
+  %nDRT # nº paginas dirty
+  %nMaj # major page faults
+  %nMin # minor page faults
+  %vMj  # major page faults delta (desde ultima actualizacion)
+  %vMn  # minor page faults delta (desde ultima actualizacion)
+

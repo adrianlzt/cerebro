@@ -66,3 +66,5 @@ lvcreate -s -L 100M -n testsnap /dev/testvg/testvol
 	-l|--extents LogicalExtentsNumber[%{VG|FREE|ORIGIN}]
 	-L|--size LogicalVolumeSize[bBsSkKmMgGtTpPeE]
 	-n|--name LogicalVolumeName
+
+Al crearla le decimos el tamaño máximo de cambios que puede guardar.
