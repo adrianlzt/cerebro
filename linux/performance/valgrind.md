@@ -32,3 +32,6 @@ CALLGRIND
 Call Profiler (registra llamadas entre funciones)
 valgrind --tool=callgrind
 
+
+
+Mirar memoria/tunables.md vm.max_map_count

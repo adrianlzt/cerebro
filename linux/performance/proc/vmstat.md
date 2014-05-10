@@ -1,3 +1,5 @@
+http://www.linuxinsight.com/proc_vmstat.html
+
 - Muestra contadores de VM y estadisticas desde el ultimo arranque.
 
 cat /proc/vmstat

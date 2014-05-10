@@ -1,5 +1,8 @@
 https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-memory-transhuge.html
 
+Si se producen spikes cada 500ms en el consumo de CPU puede que se por culpa de una TLB muy grande.
+Medir con perf con  mucha frecuencia (100ms)
+
 Como las páginas de memoria son pequeñas (4KiB) y la RAM es muy grande, la TLB (relación entre páginas lógicas y físicas) es muy grande.
 Esto ralentiza la consulta.
 

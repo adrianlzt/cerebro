@@ -37,3 +37,7 @@ Lo he dejado tambien en este directorio con el nombre: wireshask-tcp.mate
 
 Ahora si siltramos por: mate.tcp_ses.NumOfPdus == 3
 Estamos consiguiendo sacar las sesiones tcp que estén compuestas por tres paquetes.
+
+
+## Problemas análisis falso checksum ##
+Si wireshark nos dice que el checksum de un paquete de salida es incorrecto es porque estamos capturando el paquete entre el nivel 2 y el nivel 1, y el checksum se calcula en la tarjeta de red, por lo tanto aún no está generado y por eso falla.

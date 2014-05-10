@@ -77,6 +77,14 @@ sar -u 2 5
               Report CPU utilization for each 2 seconds. 5 lines are displayed.
 
 
+CPU:
+sar
+  -I XALL       # interrupciones (necesita "sadc -S INT -")
+  -m ALL        # power (necesita "sadc -S POWER -")
+  -u            # CPU
+
+
+
 Para obtener info de un proceso en particular
 pidstat -p PID
 

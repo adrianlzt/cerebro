@@ -206,6 +206,22 @@ cgset
   cpuset.mems                   # afinidad NUMA
 
 
+## CPU ##
+cgset
+  cpu.rt_period_us              # periodo para RT (tamaño del turno de los procesos RT, para no monopolizar la CPU)
+  cpu.rt_runtime_us             # periodo maximo running para RT (valor límite para cuando un proc RT no tiene con quien competir)
+  cpu.cfs_period_us             # periodo (clases normales, el periodo máximo del proceso que puede estar ejecutándose)
+  cpu.cfs_quota_us              # periodo running (-1 si no se limita)
+  cpu.shares                    # share relativo de CPU (para balanceo entre cpus)
+  cpuset.cpus                   # CPUs permitidas
+  cpuset.mems                   # nodos de memoria permitidos
+  cpuset.memory_migrate         # permite migrar memoria si cambia cpuset.mems
+  cpuset.cpu_exclusive          # si la cpu se comparte o no con otros cgroups
+  cpuset.mem_exclusive          # si la memoria se comparte o no con otros
+  cpuset.memory_spread_page     # distribucion de system buffers
+  cpuset.memory_spread_slab     # distribucion de slabs
+  cpuset.sched_load_balance     # activa/desactiva balanceo de carga
+  cpuset.sched_relax_domain_level  # configuracion del balanceo (1-5)
 
 
 ## Errores ## 

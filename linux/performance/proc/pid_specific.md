@@ -27,3 +27,7 @@ Estadísticas por proceso
 %read_bytes  bytes leidos de disco físico
 %write_bytes  bytes escritos a disco físico (por volcado de dirty-pages)
 %cancelled_write_bytes  bytes no escritos a disco físico (por truncado de dirty-pages)
+
+
+## proc/$(pidof proceso)/oom_*
+mirar memoria/tunables.md oom

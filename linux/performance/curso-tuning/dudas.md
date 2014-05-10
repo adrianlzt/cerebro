@@ -6,3 +6,4 @@ Algún SW para hacer pruebas de problemas de red.
 
 Como funciona el load de la máquina. Que significa, como se calcula, etc.
 
+Como hacer un backup si que se llene la cache y los buffers. O_DIRECT no usa buffers, pero los genera?

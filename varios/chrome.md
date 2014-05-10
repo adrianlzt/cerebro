@@ -21,3 +21,17 @@ TweetDeck
 Advanced REST console
 Webogram (telegram)
 Feedly
+
+
+Internals:
+
+Listado de todas las urls propias de chrome
+chrome://chrome-urls/
+
+Consumo de memoria por pestaña
+chrome://memory-redirect/
+
+
+Task Manager: consumo de memoria, cpu, red, e id del proceso
+Shift+Esc
+
