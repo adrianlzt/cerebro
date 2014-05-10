@@ -25,3 +25,6 @@ Las máquinas obtienen una ip de red local 172.x.x.x
 Podemos conectar con ellas directamente a través de esta ip.
 Si forwardeamos un puerto lo que estamos haciendo es crear una regla en iptables para enlazar un puerto local nuestro al puerto de esa máquina.
 Así podemos publicar puertos de las VM, que si no, no tienen visión desde el exterior.
+
+
+Use the net --net flag to allow advanced network configuration such as host networking so that containers can use the host's network interfaces (docker 0.11.0)

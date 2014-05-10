@@ -164,3 +164,14 @@ Linea delimitando la columna 80 (esta limitación viene de poder imprimir el có
 
 ZZ
 Guardar y salir
+
+% va al otro paréntesis, corchete, ...
+
+$ va al fin de linea
+
+0 va al comienzo de linea
+
+gg comienzo del fichero
+
+G final del fichero
+

@@ -11,3 +11,12 @@ This file provides a look at the load average in regard to both the CPU and IO o
 The first three columns measure CPU and IO utilization of the last one, five, and 15 minute periods. The fourth column shows the number of currently running processes and the total number of processes. The last column displays the last process ID used.
 
 In addition, load average also refers to the number of processes ready to run (i.e. in the run queue, waiting for a CPU share.
+
+
+cat /proc/loadavg
+  [1]   carga media ultimo minuto
+  [2]   carga media 5 ultimos minutos
+  [3]   carga media 15 ultimos minutos
+  [4]   nº procesos activos / nº total de procesos
+  [5]   ultimo nº de PID usado
+

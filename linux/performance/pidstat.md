@@ -35,6 +35,25 @@ pidstat -r -s -p PID
   %majflt/s     # major faults/s
 
 
+
+Para CPU
+pidstat -u      # CPU por proceso
+  -t              # y hebra
+    %usr          # % en userspace
+    %system       # % en kernelspace
+    %guest        # % en virtual machine
+    %CPU          # % de CPU activa (con -I se divide entre el nº de CPUs)
+    %CPU          # en qué CPU está ejecutandose
+  -T            # tiempo por proceso
+    %usr-ms       # ms en userspace
+    %system-ms    # ms en kernelspace
+    %guest-ms     # ms en virtual machine
+  -w            # task switching
+    %cswch/s      # cambios de contexto/s (bloqueo por recurso no disponible). Está esperando a un recurso, cede la CPU
+    %nvswch/s     # cambios de contexto involuntarios (por scheduling). Le echan de la CPU porque se ha quedado sin slice
+
+
+
 Una variante de este programa es pydstat, escrito en python, saca los logs en formato syslog, listo para ser procesado por splunk
 https://github.com/SplunkStorm/pydstat
 Es un fork mejorado de https://github.com/ampledata/pydstat
@@ -71,4 +90,5 @@ source="pydstat.log" | timechart span=4m avg(RSS) by Command
   notifempty 
   create 640 root root
 }
+
 

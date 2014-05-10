@@ -26,6 +26,41 @@ ps -eo pid,maj_flt,min_flt,pmem,rss,vsz,sz      # info de memoria
   vsz: consumo de memoria virtual (total)
   rss: consumo de memoria ram
 
+CPU:
+ps -e -ocomm,pid,class,cp,cputime,pri,psr,rtprio,wchan,state,stat
+  %class # Scheduling class:
+          # OTHER: scheduling por defecto
+          # FIFO: realtime sin timeslice (hasta que termina o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
+          # ROUND ROBIN: realtime con timeslice (hasta que vence timeslice o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
+          # BATCH: similar a OTHER pero con timeslice más alto para aprovechar cache (mejora throughput a costa de latencia)
+          # DEADLINE (3.14+): hard realtime (queremos garantizar ejecución en un plazo estricto)
+	  Clases que solo están en el kernel de Con Kolivas
+            # ISO (-ck): similar a Rountd Robin para usuarios (no root)
+            # IDLE (-ck): solo cuando CPU idle.
+  %cp   # CPU en decimas de %
+  %cputime      # acumulativo
+  %pri          # prioridad (mayor es menos prioridad)
+  %psr          # nº de CPU fisica
+  %rtprio       # prioridad en RT (mayor es más prioridad)
+  %wchan        # función por la que está esperando el proceso
+  %state        # estado del proceso (D, R, S, T, W, X, Z)
+                    D   uninterruptible sleep (generalmente I/O)
+                    R   en cola de ejecución (running o runnable)
+                    S   interruptible sleep (esperando evento)
+                    T   stopped (p.e. con SIGSTOP)
+                    W   -deprecado-
+                    X   dead (no debería verse)
+                    Z   defunct (zombie)
+  %stat
+                    <    high-priority (not nice to other users)
+                    N    low-priority (nice to other users)
+                    L    has pages locked into memory (for real-time and custom IO)
+                    s    is a session leader
+                    l    is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+                    +    is in the foreground process group
+
+
+
 
 
 ps -fea -o pcpu -o args

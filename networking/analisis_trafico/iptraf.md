@@ -8,3 +8,6 @@ Tambien tiene una sección para ver estadísticas generales de todas las interfa
 Otra opción es ver el tráfico de paquetes agrupados por su tamaño, o por puerto.
 
 También podemos ver por interfaz, los paquetes in/out y la velocidad
+
+
+Ve todos los tráficos: TCP / UDP / ICMP

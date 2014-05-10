@@ -60,6 +60,11 @@ perf stat -e cache-misses ./programa
   El "malo" tarda más tiempo porque tiene muchos fallos de cache (no le cabe la información en la cache L1)
 
 
+CPU
+perf stat -e cache-misses,cpu-migrations <CMD>
+perf record -e cache-misses,cpu-migrations <CMD> && perf report
+
+
 ## Flame Graph ##
 git clone https://github.com/brendangregg/FlameGraph
 cd FlameGraph/

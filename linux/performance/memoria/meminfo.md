@@ -1,3 +1,5 @@
+http://www.redhat.com/advice/tips/meminfo.html
+
 - Información detallada de memoria del sistema (usada por free y vmstat)
 
 cat /proc/meminfo 
@@ -33,7 +35,8 @@ cat /proc/meminfo
   %WritebackTmp # usada como buffer writeback por FUSE
   %CommitLimit  # memoria total disponible (overcommit_ratio*RAM+swap, solo se aplica con overcommit_ratio=2)
                 # es como el overbooking, se da más memoria de la que realmente existe porque se sabe que después los procesos no usarán toda la pedida
-  %Committed_AS  # memoria comprometida en el caso peor (overcommit)
+  %Committed_AS # The amount of memory presently allocated on the system.  The committed memory is a sum of all of the memory which has been allocated by processes, 
+                # even if it has not been "used" by them as of yet
   %VMallocTotal  # total allocated virtual address space.
   %VMallocUsed   # total amount of used virtual address space.
   %VMallocChunk  # largest contiguous block of memory of available virtual address space.
