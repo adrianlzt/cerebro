@@ -22,3 +22,8 @@ Vagrant-LXC
 https://dl.dropboxusercontent.com/s/x1085661891dhkz/lxc-centos6.5-2013-12-02.box
 
 Me funciona correctamente con vagrant 1.5.4, vagrant-lxc (1.0.0.beta1.dev), lxc-1.0.3-0ubuntu3 y ubuntu 11.04
+
+
+Con 'vagrant lxc sudoers' podemos quitar la necesidad de meter la password todo el rato.
+A partir de versión 1.0.0.alpha.2
+

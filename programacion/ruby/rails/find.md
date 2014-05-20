@@ -17,6 +17,9 @@ Nos devuelve solo 1
 Nos devuelve todos los que matchean
   Client.where(first_name: 'Lifo')
 
+Con multiples condiciones
+  Client.where("orders_count = ? AND locked = ?", params[:orders], false)
+
 Client.find([1, 10]) <- SELECT * FROM clients WHERE (clients.id IN (1,10))
 
 

@@ -31,3 +31,11 @@ addgroup <username> tcpdump // usermod -a -G tcpdump <username>
 chown root.tcpdump /usr/sbin/tcpdump
 chmod 0750 tcpdump
 setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
+
+
+Valores de los flags:
+Flags [S.] -> SYN + ACK
+P -> PSH
+F -> FIN
+S -> SYN
+. -> ACK

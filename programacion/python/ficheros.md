@@ -10,6 +10,12 @@ file = open("fichero","w")
 Append:
 file = open("fichero","a")
 
+try:
+  file = open("/mnt/file","w")
+except IOError as e:
+  print "IO ERROR " + str(e.errno)
+
+
 Otros parámetros:
 'b' -> binario
 '+' -> read+write simultaneo

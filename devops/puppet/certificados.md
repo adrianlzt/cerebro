@@ -1,3 +1,7 @@
+http://docs.puppetlabs.com/puppetdb/latest/install_from_source.html
+https://hurricanelabs.com/blog/managing-puppet-certificates/
+
+
 Para autofirmar
 
 $ cat /etc/puppet/autosign.conf 
@@ -34,3 +38,10 @@ Si el cliente nos dice: "Exiting; no certificate found and waitforcert is disabl
     Parece que el fqdn de la máquina (o el hostname en caso de no tener fqdn) no coincide con lo que ahí hemos puesto, luego tendremos problemas.
 
   Si activo el waitforcert, no veo llega el certificado al master (pero debería según http://docs.puppetlabs.com/guides/setting_up.html#verifying-installation)
+
+
+Generar certificado:
+puppet cert generate puppetdb.example.com
+Clave privada del servidor: $(puppet master --configprint ssldir)/private_keys/puppetdb.example.com.pem
+Certificado del servidor: $(puppet master --configprint ssldir)/certs/puppetdb.example.com.pem 
+Certificado autoridad: $(puppet master --configprint ssldir)/ca/ca_crt.pem

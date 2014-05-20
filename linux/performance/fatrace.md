@@ -1,5 +1,8 @@
 fatrace - report system wide file access events
 
+CentOS:
+  Parece que no hay paquete.  Tiene como dependencia a python3
+
 Traza los siguientes eventos:
   O open
   R read

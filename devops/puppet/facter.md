@@ -35,3 +35,4 @@ Mirar fqdn.md
 
 ## Agregar variables al facter desde un módulo ##
 https://github.com/pdxcat/puppet-module-collectd/blob/master/lib/facter/collectd_version.rb
+http://www.masterzen.fr/2011/10/29/puppet-extension-points-part-1/ "Want some facts?"

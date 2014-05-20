@@ -40,13 +40,20 @@ Parece que no vale para sacar una lista de nodos y luego una lista de recursos d
 Nodos activos (por defecto solo nos da los activos):
 curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
 
+Con SSL:
+curl -Gk 'https://localhost:8081/v3/nodes' NO consigo que me funcione
+curl -X GET https://puppet.com:8081/v3/nodes --cacert /etc/puppet/ssl/certs/ca.pem --cert /etc/puppet/ssl/certs/puppet.com.pem --key /etc/puppet/ssl/private_keys/puppet.com.pem
+
 Listar recursos de NODO
 curl -G http://localhost:8080/v3/catalogs/NODO
 
 curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["=", "certname", "client.com"]'
 
+
 Nodos con el fact monitoring=true
 curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
+Si puede ser true o True: 
+  '["~", ["fact","monitoring"], "[tT]rue"]'
 
 Con orden (lo que hace es meter un '&' entre order-by= y query= :
 curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'order-by=[{"field": "name", "order": "desc"}]' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
@@ -56,6 +63,10 @@ curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["and",[
 
 Obtener los ficheros de configuración de nrpe
 curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["and",["=", "certname", "client.com"],["=", "tag", "monitorizacion::check"],["=", "type", "File"]]'
+
+
+Facts de un nodo
+curl -G 'http://192.168.51.2:8080/v3/facts' --data-urlencode 'query=["=", "certname", "client2.com"]'
 
 
 Con la gema rest-client (https://github.com/rest-client/rest-client) y la gema json
