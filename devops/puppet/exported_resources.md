@@ -10,6 +10,7 @@ CUIDADO: los exported resources son "eternos". Se recomienda meterles un 'tag' p
 Cuando un recurso desaparece tenemos que ejecutar el comando puppet deactiva.
 
 
+http://docs.puppetlabs.com/puppet/latest/reference/lang_exported.html
 http://docs.puppetlabs.com/guides/exported_resources.html
 Se utiliza para que un host pueda configurar otro host.
 For instance, a host could configure its services using Puppet, and then could export Nagios configurations to monitor those services.

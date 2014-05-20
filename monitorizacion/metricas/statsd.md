@@ -13,3 +13,10 @@ https://github.com/quasor/statsd
 
 Ruby statsd
 A network daemon for aggregating statistics (counters and timers), rolling them up, then sending them to graphite or mongodb.
+
+
+##################
+
+An interesting tool that connects MySQL with statsd, simply write SQL queries and provide a metrics name and the script will do the rest.
+
+https://github.com/banyek/Mambo-collector

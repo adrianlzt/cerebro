@@ -19,3 +19,7 @@ end
 rake spec
 
 
+
+Se puede usar serverspec para monitorizar: http://fractio.nl/2014/05/10/rethinking-monitoring/
+La idea ese ejecutarlo y enviar la salida a sensu, de esta manera con un único check podemos controlar varias cosas.
+Con icinga el problema es como separar en distintas alarmas toda la salida (me parece que no hay mucha solución). Tal vez un script en python que ejecutase ese comando y devolviese muchos checks pasivos?

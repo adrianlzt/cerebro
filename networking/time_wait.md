@@ -9,6 +9,15 @@ http://tools.ietf.org/html/rfc1323
 TIME-WAIT - represents waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request.
 Solo se produce en el extremo que está cerrando la conexión.
 
+Si por ejemplo hacemos
+  curl google.es
+El TIME_WAIT aparecerá en la máquina cliente, porque el servidor nos contestará con un HTTP OK (TCP ACK) y nosotros le enviaremos el FIN+ACK.
+
+En el caso de que usásemos HTTP/1.0
+  curl -0 google.es
+El TIME_WAIT dependerá de como conteste el servidor HTTP. Podría contestar HTTP OK (TCP ACK+FIN), entonces el TIME_WAIT aparecería en el servidor, o puede contestarnos HTTP OK (TCP ACK) y esperar que nosotros cerremos, entonces el cliente tendrá el TIME_WAIT.
+
+
 Dicho por un tipo de telefonica en el curso de tunning:
   El TIME_WAIT se produce por un cierre incorrecto de la conexión 
     Podría ser culpa del cliente que ha enviado el cierre del "canuto" de envío, y el de recepción lo ha cerrado a capón.

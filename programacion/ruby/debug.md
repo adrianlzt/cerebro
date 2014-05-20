@@ -2,13 +2,40 @@ ruby -dw programa.rb
   -d debug mode
   -w verbose mode
 
+gem install ruby-debug
+En el fichero .rb meter
+  require 'ruby-debug'
+Donde queramos parar poner
+  debugger
 
+
+Esto parece que está roto en CentOS
 ruby -rdebug myscript.rb 
 then,
 
-b <line>: put break-point
-and n(ext) or s(tep) and c(ontinue)
-p(uts) for display
+Breakpoint
+  b <line>
+  b /usr/lib/ruby/site_ruby/1.8/puppet/indirector/resource/ral.rb:25
+  b /usr/lib/ruby/site_ruby/1.8/puppet/resource.rb:191 if title=="whatever"
+del 1
+  borrar breakpoint 1 (para listar, b)
+n(ext) 
+s(tep)
+c(ontinue)
+p(uts) variable
+  for display
+l
+  mostrar código donde está parada la ejecucción
+l 20,30
+  mostrar líneas entre la 20 y la 30
+v g
+ mostrar variables globales
+var instance OBJETO
+  show instance variables of object
+eval codigo-a-ejecutar
+  para llamar a funciones, evaluar código, etc
+bt
+  mostrar backtrace
 (like perl debug)
 
 

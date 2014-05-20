@@ -1,6 +1,4 @@
-http://docs.puppetlabs.com/puppetdb/1/configure.html#host
 
-Mirar storeconfigs.md
 
 
 Apagar iptables.
@@ -49,6 +47,14 @@ https://ask.puppetlabs.com/question/88/how-can-i-purge-exported-resources-from-p
 http://projects.puppetlabs.com/issues/17680
 http://projects.puppetlabs.com/issues/14721
 
+Borrar datos de puppetdb a lo bestia:
+# service puppetdb stop
+psql> DROP DATABASE puppetdb;
+psql> CREATE DATABASE puppetdb;
+# service puppetdb start
+
+Mirar ## BORRAR EXPORTED RESOURCES en exported_resources.md
+
 
 ## Sacado de http://www.allgoodbits.org/articles/view/32 ##
 
@@ -78,3 +84,21 @@ master:
 
 Usando puppetdb con masterless
 http://docs.puppetlabs.com/puppetdb/latest/connect_puppet_apply.html
+
+
+
+Cuando ejecutamos un puppet apply o puppet agent de las primeras cosas que hace el agente es enviar el comando "replace facts" a puppetdb para actualizar la base de datos de facts que mantiene el servidor del cliente.
+
+
+PuppetDB’s port for secure traffic defaults to 8081. Puppet requires use of PuppetDB’s secure, HTTPS port. You cannot use the unencrypted, plain HTTP port.
+
+
+## Certificados ##
+http://docs.puppetlabs.com/puppetdb/latest/install_from_source.html#step-3-option-b-manually-generating-and-preparing-certificates
+
+puppet cert generate puppetdb.example.com
+cp $(puppet master --configprint ssldir)/ca/ca_crt.pem /etc/puppetdb/ssl/ca.pem
+cp $(puppet master --configprint ssldir)/private_keys/puppetdb.example.com.pem /etc/puppetdb/ssl/private.pem
+cp $(puppet master --configprint ssldir)/certs/puppetdb.example.com.pem /etc/puppetdb/ssl/public.pem
+
+$(puppet master --configprint ssldir) es por defecto /var/lib/puppet/ssl

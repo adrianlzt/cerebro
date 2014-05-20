@@ -1,8 +1,12 @@
 Direcciones ip y MACs de las interfaces:
 ip addr
 ip a
-ip -4 -o a s eth1 <- nos muestra la IPv4 de la interfaz en una única linea junto más información
-ip -6 a <- IPv6
+  Info
+    ip -4 -o a s eth1 <- nos muestra la IPv4 de la interfaz en una única linea junto más información
+    ip -6 a <- IPv6
+
+  Cambiar ip
+    ip addr change 192.168.51.10 dev eth1
 
 Rutas:
 ip route

@@ -43,3 +43,16 @@ Este error daba porque un manifest hacia un ensure_resource del package postgres
 
 err: Could not retrieve catalog from remote server: wrong header line format
 One of your templates contains invalid syntax. Look for unintentional or invalid "<%" and ">%" strings. If you need to put these strings in templates you can use "<%%" and ">%%".
+
+
+Exiting; no certificate found and waitforcert is disabled
+rm -fr /var/lib/puppet/ssl
+
+
+
+Error: /File[/var/lib/puppet/facts.d]: Failed to generate additional resources using 'eval_generate': Error 400 on SERVER: Not authorized to call search on /file_metadata/pluginfacts with {:ignore=>[".svn", "CVS", ".git"], :checksum_type=>"md5", :recurse=>true, :links=>"manage"}
+Error: /File[/var/lib/puppet/facts.d]: Could not evaluate: Could not retrieve file metadata for puppet://puppet.service.dsn.inet/pluginfacts: Error 400 on SERVER: Not authorized to call find on /file_metadata/pluginfacts with {:source_permissions=>"use", :links=>"manage"}
+Wrapped exception:
+Error 400 on SERVER: Not authorized to call find on /file_metadata/pluginfacts with {:source_permissions=>"use", :links=>"manage"}
+yum downgrade puppet-3.3.2
+  El cliente puppet era 3.5.1 y el server 3.3.2

@@ -1,3 +1,5 @@
+http://puppetlabs.com/mcollective
+
 for ssh supervitaminado.
 
 Nosotros enviamos la instrucción a un servidor de colas, y este se encarga de enviar los mensajes a los servidores.
@@ -17,3 +19,11 @@ Nos da el output de cada máquina y luego un resumen general.
 
 mco rpc rpcutil inventory
 Información sobre las máquinas. Podemos ver las clases de puppet que tienen cada máquina
+
+
+## Arquitectura ##
+Mcollective + ActiveMQ en el puppetmaster
+
+mcollective-client en las máquinas administradoras
+
+mcollective instalado y configurado en los servers.
