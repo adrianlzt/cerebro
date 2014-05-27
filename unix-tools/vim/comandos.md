@@ -175,3 +175,4 @@ gg comienzo del fichero
 
 G final del fichero
 
+@: repetir último comando escrito con ":"

@@ -1,5 +1,3 @@
-https://gist.github.com/phred/2897937
-
 https://github.com/ansible/ansible-examples
 
 https://galaxy.ansible.com/

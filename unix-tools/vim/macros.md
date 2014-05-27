@@ -12,3 +12,6 @@ También:
 
 Para ejecutar en todas las líneas:
 :%normal @w
+
+Repetir última macro
+@@

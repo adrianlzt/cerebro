@@ -7,6 +7,8 @@
 // gcc -o open open_file.c
 // Crea un fichero en /mnt/testfile.txt
 // Los códigos de error varian entre no tener permisos o que el punto de montaje este en RO
+//
+// Mas sobre IO en C: http://www.cs.bu.edu/teaching/c/file-io/intro/
  
 int main()
 {

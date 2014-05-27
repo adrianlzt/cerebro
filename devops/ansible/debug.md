@@ -1,5 +1,5 @@
 http://docs.ansible.com/debug_module.html
-ansible-playbook -v  <- para poder ver los mensajes de debug
+ansible-playbook -vvvv  <- para poder ver los mensajes de debug
 
 - debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
 
@@ -7,3 +7,10 @@ ansible-playbook -v  <- para poder ver los mensajes de debug
   register: result
 
 - debug: var=result
+
+
+Podemos poner:
+- pause:
+Para para la ejecución tras cada task a la espera de un enter.
+
+ansible-playbook --step

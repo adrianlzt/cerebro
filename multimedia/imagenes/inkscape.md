@@ -1,0 +1,1 @@
+Crear imágenes vectoriales.

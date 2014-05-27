@@ -39,6 +39,9 @@ ary.bsearch {|x| x >=   4 } #=> 4
 
 envto_hostgroups.find_index {|hg| hg.name == "nuevohostgroup"}
 
+Buscar trozo de palabra en diccionario
+envto_hostgroups.find_index {|hg| hg["name"].include? "nuevo"}
+
 
 Buscar varios elementos:
 [1,2,3,4,5].select { |num|  num.even?  }   #=> [2, 4]

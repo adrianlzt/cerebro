@@ -27,6 +27,5 @@ openssl verify -verbose -CAfile Certificate-Authority.crt user.pem
 
 
 Ver certificado
-openssl x509 -in certs/server.crt -noout -text
-openssl x509 -in certs/server.pem -noout -text
+openssl x509 --noout -text in certs/server.pem 
 openssl pkcs12 -info -in keyStore.p12

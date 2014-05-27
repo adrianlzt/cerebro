@@ -18,6 +18,7 @@ También podemos usar:
 CUIDADO, si ponemos tags al command, poner la misma tag al debug!!
 
 Ejecutando puppet agent -t no consigo que me de stdout ni stderr
+Mirar /var/lib/puppet/state/resources.txt
 
 
 Solo ejecutar un comando si no se ha ejecutado antes (el creates debe apuntar a algun fichero que genere el comando)

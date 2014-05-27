@@ -10,3 +10,7 @@
 
 ...
 Mirar en la columna de la derecha de http://gskinner.com/RegExr/ para ver todas las opciones y su explicación
+
+
+[^aeiou]
+Coger cualquier cosa que no sea a,e,i,o,u

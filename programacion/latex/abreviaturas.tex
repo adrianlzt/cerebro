@@ -1,0 +1,36 @@
+% http://tex.stackexchange.com/questions/100354/list-of-abbreviations/100377#100377
+% http://osl.ugr.es/CTAN/macros/latex/contrib/nomencl/nomencl.pdf
+
+
+\documentclass{article}
+\usepackage[refpage]{nomencl}
+
+\makenomenclature
+
+\begin{document}
+Here is some text, where we use APC.\nomenclature{APC}{antigeen-presenterende cel}
+
+\printnomenclature
+\end{document}
+% pdflatex; makeindex -s nomencl.ist -t liselot.nlg -o liselot.nls liselot.nlo; pdflatex 
+
+
+
+
+\documentclass{article}
+\usepackage{glossaries}
+
+\makeglossaries
+
+\newglossaryentry{apc}{%
+name={APC},%
+description={antigeen-presenterende cel}%
+}
+
+\begin{document}
+Here is some text, where we use \gls{apc}.
+
+\printglossary[style=long]
+\end{document}
+% pdflatex; makeindex -s liselot2.ist -t liselot2.glg -o liselot2.gls liselot2.glo; pdflatex
+

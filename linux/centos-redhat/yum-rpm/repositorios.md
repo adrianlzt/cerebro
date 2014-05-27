@@ -9,3 +9,4 @@ rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6
 
 Lista de repositorios activos
 yum repolist
+Con url: yum repolist -v

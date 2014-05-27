@@ -56,3 +56,9 @@ Wrapped exception:
 Error 400 on SERVER: Not authorized to call find on /file_metadata/pluginfacts with {:source_permissions=>"use", :links=>"manage"}
 yum downgrade puppet-3.3.2
   El cliente puppet era 3.5.1 y el server 3.3.2
+
+
+# puppet resource user root
+Error: Could not run: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [Certname "" must not contain unprintable or non-ASCII characters]
+rm -fr /var/lib/puppet/ssl
+El problema es que antes habíamos conectado contra un puppetmaster, y el agente aún conserva el certificado y ve que no coincide.
