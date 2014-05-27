@@ -1,0 +1,13 @@
+# http://docs.ansible.com/playbooks_delegation.html#local-playbooks
+- name: a play that runs entirely on the ansible host
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: prueba
+    command: echo "hola"
+
+# Tambien se puede poner una task como local:
+#- name: create tempfile
+#  command: dd if=/dev/urandom of=/tmp/random.txt count=100
+#  connection: local

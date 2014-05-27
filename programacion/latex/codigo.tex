@@ -1,0 +1,30 @@
+% http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+
+\usepackage{listings}
+\lstset{language=Ruby} % el de por defecto
+
+\begin{lstlisting}
+var = [2,3,5]
+
+var.each do |c|
+  puts "hola: #{c}"
+end
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+import coso
+
+var = 3
+
+for i in var:
+  print "hola"
+  
+return 0
+\end{lstlisting}
+
+
+Para meter el código en un recuadro:
+\begin{lstlisting}[language=Ruby,frame=single]
+
+Para meter código de un fichero (deberá estar en el directorio del .tex):
+\lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}

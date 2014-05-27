@@ -19,3 +19,11 @@ cosas que hacer
 usar la variable {:ip=>"1.1.1.2"}
 valor por defecto
 
+
+
+Parece que en ruby >= 2.0 se puede hacer
+  def my_function(a = nil, b=nil, c=500)
+    ...
+  end
+  
+  my_function(b=100)

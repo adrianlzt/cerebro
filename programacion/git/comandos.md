@@ -22,10 +22,10 @@ Mostrar remotos					git remote -v
 Borrar remoto					git remote remove origin (o en vez de origin, el nombre que sea)
 Bajar código de un origin (sobreescribe local)	git fetch upstream
 Subir a remoto					git push
-Subir a determinado remoto y branch		git push -u origin master
+Subir a determinado remoto y branch		git push origin master
 						git push -u <remoto> <branch>
-						-u hace que git recuerde a que remoto debe subir
 						git push --set-upstream <remoto> <branch>
+						-u (--set-upstream) hace que git recuerde a que remoto debe subir
 Subir todas branches y tags			git push --all
 						git push --tags
 Copiar repo remoto				git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
@@ -48,6 +48,7 @@ Subir código a remoto				git push origin <branch>
 Reabase (cambios de otro branch a este)		git rebase develop   Aplica los cambios de develop sobre la rama donde estemos http://git-scm.com/book/ch3-6.html
 Definir un repo remoto por defecto para bajar	git branch --set-upstream-to=origin/develop develop
 Bajar código de remoto				git pull
+							= fetch + merge
 Diff branches					git diff <branch1> <branch2>
 						git diff <branch1>..<branch2>
 Diff branches rama contra el ancestro común	git diff <branch1>...<branch2>

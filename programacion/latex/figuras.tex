@@ -1,0 +1,27 @@
+% http://navarroj.com/latex/figuras.html
+% http://osl.ugr.es/CTAN/info/epslatex/english/epslatex.pdf
+
+% figura = grafio + titulo + numeracion
+
+% Recomendaciones:
+% Formato JPEG para mapas de bits con pérdida.
+% Formato PNG para mapas de bits sin pérdida.
+% Formato PDF para gráficos vectoriales.
+
+\usepackage{graphicx}
+
+\begin{figure}
+  \centering
+    \includegraphics{fichero}
+  \caption{pie de foto}
+  \label{fig:nombreParaReferirnos}
+\end{figure}
+
+Ajustar al ancho del texto:
+\includegraphics[width=1\textwidth]{fichero}
+
+% colocar la figura donde nosotros queramos: http://ltx.blogspot.com.es/2003/10/quiero-mi-figura-aqui.html
+% basicamente es usar \includegraphics sin \begin{figure}, pero nos quedaremos sin caption, lista de figuras, numeracion, etc.
+
+% La opción draft para borradores
+% Un problema común que nos puede ocurrir es que la gráfica no aparece y, en su lugar, sólo vemos una caja con el nombre del archivo del gráfico. Esto ocurre porque se tiene activada la opción draft, ya sea como opción del paquete en \usepackage[draft]{graphicx} o como una opción global para todo el documento en \documentclass. Esta opción puede ser útil para visualizar documentos más rápidamente si es que tienes demasiados gráficos. Sin embargo recuerda quitar esta opción, o cambiarla por final, si quieres que aparezcan los gráficos en el documento.

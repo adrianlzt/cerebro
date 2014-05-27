@@ -17,6 +17,10 @@ Nos hace un resumen de los tipos de ficheros que tenemos en este directorio y su
 find . -exec file {} \; | grep -o ":[^,]*" | sort | uniq -c | sort -nr
 
 
+Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
+find . -maxdepth 3 -exec du -h {} \; | sort -hr | uniq | head -20
+
+
 Borrar los ficheros más antiguos de 30 días
 find . -mtime +30 -exec rm {} \;
 

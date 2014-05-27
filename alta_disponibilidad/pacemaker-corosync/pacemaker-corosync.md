@@ -22,6 +22,7 @@ service {
         name: pacemaker
         ver: 0
 }
+ver: 1 <- tendremo que arrancar el demonio pacemaker a mano
 
 Mostrar configuracion:
 crm configure show

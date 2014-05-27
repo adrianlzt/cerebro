@@ -94,6 +94,9 @@ PuppetDB’s port for secure traffic defaults to 8081. Puppet requires use of Pu
 
 
 ## Certificados ##
+De forma automática:
+puppetdb ssl-setup
+
 http://docs.puppetlabs.com/puppetdb/latest/install_from_source.html#step-3-option-b-manually-generating-and-preparing-certificates
 
 puppet cert generate puppetdb.example.com

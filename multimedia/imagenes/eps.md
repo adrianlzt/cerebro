@@ -1,0 +1,2 @@
+PostScript Encapsulado
+Gráfico vectorial.

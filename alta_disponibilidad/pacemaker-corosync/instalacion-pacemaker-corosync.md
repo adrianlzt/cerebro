@@ -8,6 +8,8 @@ Esta ip virtual se considera un recurso en alta disponibilidad.
 De aqui en adelante es la forma "vieja". Lo estoy haciendo para 
 corosync-1.4.1-7.el6.x86_64 
 pacemaker-1.1.7-6.el6.x86_64
+  A partir de pacemaker 1.1.10 no viene el crmsh, se usa pcs o crm_*
+  yum install pcs
 
 Recomendacion: ntp instalado y configurado
 

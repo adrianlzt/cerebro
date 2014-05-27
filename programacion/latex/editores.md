@@ -1,3 +1,6 @@
+http://kile.sourceforge.net/
+Recomendado http://navarroj.com/latex/linux.html
+
 http://texstudio.sourceforge.net/
 Parece la mejor opción
 

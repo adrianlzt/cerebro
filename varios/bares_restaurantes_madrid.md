@@ -17,3 +17,9 @@ Heladeria en la plaza de Chueca (http://www.labonata.eu/)
 Mexicanos
   la panza es lo primero
   Tacos Chapultepec (Calle del Cardenal Cisneros, 13)
+Sani Sapori, heladeria artesanal, calle lavapies 31
+Restaurante indio en calle miguel servet, preguntar chiara
+Terraza de la cafetería de la uned, Calle Tribulete, 14
+Mercado de San Fernando. Sábados y Domingos puestos con comidas variadas. Barato.
+Parque Casino de la Reina, parrillada de carne y pescado. Barato
+

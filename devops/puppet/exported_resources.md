@@ -9,6 +9,8 @@ Acordarse de que el master tiene que tener configurado puppetdb
 CUIDADO: los exported resources son "eternos". Se recomienda meterles un 'tag' para poder distinguirlos.
 Cuando un recurso desaparece tenemos que ejecutar el comando puppet deactiva.
 
+Los recursos que se importan son todos los que esten en el puppetdb, da igual si han entrado con una configuracion puppet-server, masterless, etc.
+
 
 http://docs.puppetlabs.com/puppet/latest/reference/lang_exported.html
 http://docs.puppetlabs.com/guides/exported_resources.html

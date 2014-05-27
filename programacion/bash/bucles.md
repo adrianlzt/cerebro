@@ -3,6 +3,8 @@ do
   echo "$f"
 done
 
+for i in dsmc_pp dsmc_prod dsn_pp dsn_prod; do cd $i; git status; cd ..; done
+
 
 Bucle infinito
 while :; do
@@ -39,3 +41,8 @@ done
 for i in $(seq 1 5); do
    echo "Welcome $i times"
 done
+
+
+http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_09_05.html
+break -> para salir del bucle
+continue -> para ir a la siguiente iteración del bucle

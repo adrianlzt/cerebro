@@ -15,3 +15,7 @@ ansible host -a "pwd"
 
 Ejecutar el módulo copy localmente (copia los ficheros de /tmp/ansible1/ a /tmp/ansible2/) Cuidado con las barras (/), puede copiar un dir dentro del otro.
 ansible localhost -m copy -a "src=/tmp/ansible1/ dest=/tmp/ansible2/"
+
+-C, --check	don't make any changes; instead, try to predict some of the changes that may occur
+
+--list-hosts 	outputs a list of matching hosts; does not execute anything else

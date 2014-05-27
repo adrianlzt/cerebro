@@ -15,6 +15,9 @@ pcs property set stonith-enabled=false
 Desactivar quorum (Pacemaker’s default behavior is to stop all resources if the cluster does not have quorum):
 pcs property set no-quorum-policy=ignore
 
+Modo mantenimiento:
+pcs property set maintenance-mode=true
+
 
 Nodos/Recursos/Constraints/Propiedades:
 pcs config
@@ -40,6 +43,12 @@ Configurar un recurso:
 pcs resource create VIP IPaddr2 ip=192.168.31.99 nic=eth1
 pcs resource create NetCAT lsb:dummy
 
+Modificar recurso, poner intervalo de chequeo a 10s
+pcs resource update NetCAT op monitor interval=10s
+
+Borrar recurso
+pcs resource delete Crrrron
+
 Poner constraints (orden, colocation, etc):
 pcs constraint colocation add recursoHijo RecursoPadre INFINITY
 
@@ -50,6 +59,9 @@ pcs resource --full
 Valores por defecto para recursos y operaciones:
   pcs resource rsc defaults
   pcs resource op defaults
+
+Limpiar recurso
+pcs resource cleanup NOMBRE
 
 
 

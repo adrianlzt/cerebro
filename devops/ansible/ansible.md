@@ -9,3 +9,13 @@ Interactive ansible shell
 https://github.com/dominis/ansible-shell
 
 Tiene también funcionalidad tipo mcollective de puppet.
+
+
+Conceptos:
+
+Playbook: fichero donde se define que acciones vamos a tomar sobre que nodos
+Los playbooks están compuestos por plays.
+Los plays son cada grupo de acciones+nodos donde aplicar.
+Los plays pueden tener varias tasks o roles.
+Una task es una tarea en particular (crear un fichero, instalar un paquete, etc)
+Un role es un conjunto de tasks, donde pueden haber ficheros, templates, vars, etc.

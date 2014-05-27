@@ -11,6 +11,7 @@ linea6 otra
 adrian@adrian-Presario:/tmp$ cat test.txt | xargs echo
 linea1 param1 param2 linea2 linea3 cosa1 linea4 linea5 linea6 otra
 
+Para tratar correctamente los cambis de línea. No vale para ejecutar el comando por cada línea
 adrian@adrian-Presario:/tmp$ cat test.txt | xargs -0 echo
 linea1 param1 param2
 linea2
@@ -18,6 +19,8 @@ linea3 cosa1
 linea4
 linea5
 linea6 otra
+
+Usar -n1 para ejecutar el comando una vez por cada línea.
 
 adrian@adrian-Presario:/tmp$ cat test.txt | xargs -n2 echo
 linea1 param1
