@@ -2,6 +2,7 @@
 http://www.vagrantup.com/blog/feature-preview-vagrant-1-5-boxes-2-0.html
 https://github.com/mitchellh/vagrant/blob/master/website/docs/source/v2/boxes/versioning.html.md
 
+https://vagrantcloud.com/
 Nuevo sistema para buscar, descargar y usar las boxes, estilo index de docker.
 
 Para agregar una máquina:
@@ -27,6 +28,13 @@ https://vagrantcloud.com/discover/featured
 
 
 
+Listado de boxes publicas:
+http://www.vagrantbox.es
+  La web no se actualiza muy amenudo, pero podemos mirar en los pulls máquinas más nuevas: https://github.com/garethr/vagrantboxes-heroku/pulls
+https://github.com/fgrehm/vagrant-lxc/wiki/Base-boxes
+http://puppet-vagrant-boxes.puppetlabs.com/
+
+
 
 Mostrar boxes:
 vagrant box list -i  (para mostrar url y fecha de añadido)
@@ -41,12 +49,6 @@ vagrant box remove <nombrebox> <provider>
 
 Las boxes se almacenan en ~/.vagrant.d/boxes
 
-
-Listado de boxes publicas:
-http://www.vagrantbox.es
-La web no se actualiza muy amenudo, pero podemos mirar en los pulls máquinas más nuevas:
-https://github.com/garethr/vagrantboxes-heroku/pulls
-https://github.com/fgrehm/vagrant-lxc/wiki/Base-boxes
 
 
 ## Crear boxes ##

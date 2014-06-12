@@ -47,3 +47,4 @@ https://launchpad.net/percona-monitoring-plugins
 http://git.op5.org/git/?p=nagios/op5plugins.git;a=tree
 https://secure.opsview.com/wsvn/wsvn/opsview/trunk/opsview-core/nagios-plugins/#path_trunk_opsview-core_nagios-plugins_
 https://github.com/MonitoringPlug/monitoringplug
+https://github.com/Inuits/monitoring-plugins

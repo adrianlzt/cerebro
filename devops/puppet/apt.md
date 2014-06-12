@@ -26,6 +26,7 @@ Permite definir que
 
 Add app:
 class { 'apt': }   <-- Siempre hay que declarar primero la clase apt
+  Para no atender a las keys pasaremos el parametro: disable_keys => true,
 apt::ppa { 'ppa:drizzle-developers/ppa': }
 
 

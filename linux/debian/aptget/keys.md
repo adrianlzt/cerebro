@@ -18,3 +18,8 @@ apt-key export A88D21E9
 
 Borrar una clave
 apt-key del A88D21E9
+
+
+Desactivar:
+/etc/apt/apt.conf.d/99unauth 
+APT::Get::AllowUnauthenticated 1;

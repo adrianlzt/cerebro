@@ -1,3 +1,6 @@
+DEPRECATED en favor de systemd
+
+
 http://upstart.ubuntu.com/cookbook
 
 Nuevo sistema para levantar servicios

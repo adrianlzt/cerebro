@@ -1,1 +1,1 @@
-../../centos-redhat/yum-rpm/empaquetar/fpm.md
+../../centos/yum-rpm/empaquetar/fpm.md

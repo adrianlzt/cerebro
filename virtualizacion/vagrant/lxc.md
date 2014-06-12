@@ -1,6 +1,21 @@
 Usar LXC con vagrant
 https://github.com/fgrehm/vagrant-lxc
 
+### VAGRANT-LXC 1-0 ###
+vagrant plugin install vagrant-lxc --plugin-version 1.0.0.alpha.2
+vagrant lxc sudoers
+  Para evitar tener que meter el password para sudo
+vagrant init fgrehm/trusty64-lxc
+vagrant up --provider=lxc
+
+Para tener boxes con provisioners:
+git clone https://github.com/fgrehm/vagrant-lxc-base-boxes.git
+cd vagrant-lxc-base-boxes
+PUPPET=1 make trusty
+
+
+
+
 LXC boxes: https://github.com/fgrehm/vagrant-lxc/wiki/Base-boxes
 
 apt-get install lxc

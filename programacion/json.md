@@ -3,6 +3,9 @@ JSON (JavaScript Object Notation) is a lightweight data-interchange format. It i
 Parser: apt-get intall jq
 cat file.json | jq -r '.[0].Network.IP' <- Coge del primer elemento del array, el hash Network, y dentro el valor de IP
 
+Convertir YAML a JSON:
+ruby -r json -r yaml -e "yaml = YAML.load(File.read('./stack.yml')); print yaml.to_json" > stack.json
+
 El procesado de JSON es bastante costoso, va analizando cada caracter viendo si es un paréntesis, corchete, dato, etc. Cuando cierra alguno de los elementos, hace un cast de lo que ha leído para convertirlo a lo que toque.
 El problema es que no hay metadata, por eso tiene que hacer ese procesado tan costoso.
 Lo cuentan en el video: http://vimeo.com/64659016  16:45

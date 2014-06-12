@@ -90,3 +90,9 @@ https://github.com/integrations
 ## Comparaciones
 https://github.com/adrianlzt/puppet-monitoring-ui/compare/develop%40%7B1day%7D...develop
 En una de las ramas se puede poner: develop@{3day}
+
+
+## Token
+https://github.com/settings/applications
+"Generate new token"
+

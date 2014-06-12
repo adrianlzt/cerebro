@@ -56,14 +56,15 @@ Tambien soporta expresiones regulares:
 if $::virtual =~ /vm.*/ { ...
 
 
+$is_virtual = true
+#$is_virtual = false
 
 if $is_virtual {
       service {'ntpd':
         ensure => stopped,
         enable => false,
       }
-}
-else {
+} else {
       service { 'ntpd':
         name       => 'ntpd',
         ensure     => running,

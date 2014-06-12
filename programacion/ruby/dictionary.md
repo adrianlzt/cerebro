@@ -9,6 +9,9 @@ a = {:nombre => "adrian", :edad => 26, :gender => :male, "piso" => 6}
 a["piso"]
 a[:nombre]
 
+Hash[[:a,:b],[:c,:d]] (as well as Hash[:a,:b,:c,:d])
+produces {:a => :b, :c => :d}
+
 Otra forma más simplificada:
 a = {nombre: "adrian"}
 
@@ -35,3 +38,17 @@ hash={"pepe" => 1, "juan" => "cosa"}
 cuenta=hash.delete("pepe")
 puts hash => {"juan" => "cosa"}
 puts cuenta => 1
+
+
+Añadir valores:
+irb(main):002:0> a
+=> {:name=>"hola"}
+irb(main):003:0> a.merge!({monit: true})
+=> {:name=>"hola", :monit=>true}
+
+
+Borrar todos las keys de un array de diccionario menos uno
+=> [{:name=>"una", :id=>1231, :class=>"asda"}, {:name=>"dos", :id=>33331231, :class=>"asda"}, {:name=>"tres", :id=>124531, :class=>"as"}]
+irb(main):104:0> z.map { |n| Hash[:name,n[:name]] }
+=> [{:name=>"una"}, {:name=>"dos"}, {:name=>"tres"}]
+

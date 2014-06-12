@@ -1,5 +1,8 @@
 Formulario generado por el scaffold:
 
+La variable f es la que contiene los valores para rellenar los ya existentes:
+f.object
+
 Para enviar un formulario a un path determinado: form_tag(search_zombies_path)
 http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html#method-i-form_tag
 <%= form_tag('/posts') do -%>
@@ -47,6 +50,13 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
 <%= f.text_field :campo, :value => "test" %> <- campo de texto con valor por defecto
 
 <%= f.number_field :age %>
+  no se puede poner size a un input type="number", se hace con css:
+    input[type="number"] {
+      width:40px;
+    }
+<%= f.number_field :max_checks_attempts, min: 1 %>
+  el valor mínimo es 1 (podemos poner lo que queramos, pero las flechitas para elegir número es lo que nos pondrá)
+
 <%= f.text_area :campo %> <- campo de texto multilinea
 
 <%= f.hidden_field :_destroy %> <- oculto
@@ -59,6 +69,7 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
 # Para selects, mirar select.md
 <%= f.select :gustos, ['musica', 'deporte'] %> <- desplegable
 <%= f.select :gustos, [['musica',1], ['deporte',2]] %> <- se muestra el texto, pero se postea el valor numerico
+<%= f.select :is_volatile, [['Template',''],['True',1],['False',0]] %>
 
 Select múltiple para un elemento que tiene una relación M-N con projects
 <%= f.select :project_ids, @projects.map {|p| [p.name, p.id]}, {}, {:multiple=>true} %>
@@ -74,8 +85,10 @@ En este ejemplo, el modelo HostGroup tiene declarado, belongs_to :service)
   http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select
   Para definir el valor por defecto: ,{:selected => "whatever_value"})
     Para que no falle el valor por defecto: 
-      <%= f.collection_select(:project_id, Project.all, :id, :name, @user.project_id? ? {} : {:selected => @user.project.id}) %>
-      <%= f.collection_select(:project_id, Project.all, :id, :name, @contact.project_id? ? {:selected => @contact.project.id} : {}) %>
+      <%= f.collection_select(:project_id, Project.all, :id, :name, @contact.project_id? ? {selected: @contact.project.id} : {}) %>
+
+Si está ya definido, elegimos el definido, si no existe un comando "check_nrpe" elegimos el primero. Si existe, elegimos check_nrpe
+<%= f.collection_select :command_id, @commands.order('name ASC'), :id, :name, f.object.command_id || (@commands.find_by name: "check_nrpe").nil? ? {} : {selected: (@commands.find_by name: "check_nrpe").id}, {class: "command_select"} %>
 
 
 <%= f.password_field :pass %>

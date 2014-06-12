@@ -40,7 +40,7 @@ O limitar a que hosts se aplicarán (mirar patterns.md):
 ansible-playbook playbooks/puppet-configured.yaml --limit="webserver*"
 ansible-playbook playbooks/puppet-configured.yaml -l "webserver*"
 
-Parando en cada paso
+Parando antes de cada paso
 --step                one-step-at-a-time: confirm each task before running
 
 

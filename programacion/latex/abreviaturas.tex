@@ -1,7 +1,48 @@
+% http://en.wikibooks.org/wiki/LaTeX/Glossary
+% http://get-software.net/macros/latex/contrib/glossaries/glossaries-user.pdf
 % http://tex.stackexchange.com/questions/100354/list-of-abbreviations/100377#100377
 % http://osl.ugr.es/CTAN/macros/latex/contrib/nomencl/nomencl.pdf
 
 
+%% glossaries
+% es la pagina donde nos dice en que pagina se ha usado cada palabra
+\documentclass{article}
+\usepackage{glossaries}
+\usepackage[toc]{glossaries} % si queremos que aparezca en el indice
+\usepackage[acronym]{glossaries} % si queremos generar una lista aparte solo con los acronimos
+\usepackage[toc,acronym,nonumberlist,seeautonumberlist]{glossaries} % generar indice, distinta lista para acronimos, no poner numero de pagina
+% la ultima opcion no se muy bien para que es, pero parece que es mejor ponerla
+
+\makeglossaries % antes del \begin{document}
+
+% la idea es tener un glosario.tex donde definamos todas palabras y hacer un \include{glosario} desde nuestro tex general
+% los documentos solo aparecerán en el \makeglossaries si es usado en el documento
+\newglossaryentry{apc}{%
+name={APC},%
+description={antigeen-presenterende cel}%
+}
+
+\begin{document}
+Here is some text, where we use \gls{apc}.
+% la primera vez nos aparecera como "antigeen-presenterende cel (APC)" las siguientes entradas solo como "APC"
+\glspl{apc} %si tenemos definido un \newacronym[longplural=blablas] la primera vez nos podra eso, las siguientes APCs
+\Gls{apc} %primera letra en mayuscula
+
+\include{glosario}
+\printglossary[type=\acronymtype] % prints just the list of acronyms
+\printglossary[style=long]
+\end{document}
+% para generar el glosario:
+% pdflatex nombre; makeglossaries nombre; pdflatex nombre
+% otra forma?
+% pdflatex; makeindex -s liselot2.ist -t liselot2.glg -o liselot2.gls liselot2.glo; pdflatex
+
+% Si tenemos problemas con la compilacion borrar el fichero *.gls
+
+
+
+
+%% nomencl
 \documentclass{article}
 \usepackage[refpage]{nomencl}
 
@@ -16,21 +57,39 @@ Here is some text, where we use APC.\nomenclature{APC}{antigeen-presenterende ce
 
 
 
+Ejemplos:
 
-\documentclass{article}
-\usepackage{glossaries}
-
-\makeglossaries
-
-\newglossaryentry{apc}{%
-name={APC},%
-description={antigeen-presenterende cel}%
+\newglossaryentry{css}
+{
+  type=\acronymtype,
+  name={CSS},
+  description={Cascading Style Sheets},
+  first={Cascading Style Sheets (CSS)},
+  see=[Glossary:]{cssg}
+}
+\newglossaryentry{cssg} {
+  name={Cascading Style Sheets},
+  description={A language for specifying presentation attributed of XML documents}
 }
 
-\begin{document}
-Here is some text, where we use \gls{apc}.
 
-\printglossary[style=long]
-\end{document}
-% pdflatex; makeindex -s liselot2.ist -t liselot2.glg -o liselot2.gls liselot2.glo; pdflatex
+\newglossaryentry{computer}
+{
+  name=computer,
+  description={is a programmable machine that receives input,
+               stores and manipulates data, and provides
+               output in a useful format}
+}
+
+\newglossaryentry{Linux}
+{
+  name=Linux,
+  description={is a generic term referring to the family of Unix-like
+               computer operating systems that use the Linux kernel},
+  plural=Linuces
+}
+
+\newacronym[longplural=Frames per Second]{fpsLabel}{FPS}{Frame per Second}
+
+\newacronym{lvm}{LVM}{Logical Volume Manager}
 

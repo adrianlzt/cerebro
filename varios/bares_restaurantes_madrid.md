@@ -22,4 +22,5 @@ Restaurante indio en calle miguel servet, preguntar chiara
 Terraza de la cafetería de la uned, Calle Tribulete, 14
 Mercado de San Fernando. Sábados y Domingos puestos con comidas variadas. Barato.
 Parque Casino de la Reina, parrillada de carne y pescado. Barato
-
+Panic, la mejor panadería de Madrid, Conde Duque, 13. Madrid (Ventura Rodriguez)
+Museo del Pan Gallego, Plaza de Herradores, 9 28013 Madrid (Plaza Mayor)

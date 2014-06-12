@@ -62,7 +62,9 @@ Borrar etiqueta					git tag -d "0.1.0"
 Mirar alias					git aliases
 Dejar lo que estamos haciendo sin commit	git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
 						git stash save "mensaje"
+Mostrar stashs					git stash list
 Volver a lo que estábamos haciendo		git stash pop
+						git stash pop stash@{0}
 Listar ficheros versionados			git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
 Mostrar ficheros excluídos			git ls-files --others --exclude-from=.git/info/exclude
 

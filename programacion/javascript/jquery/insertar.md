@@ -14,5 +14,8 @@ $(elemento).after/before.("lo que quiero añadir")
 $("lo que quiero añadir").insertAfter/Before(".claseDondeInserto")
 
 
-Cambia todo el contenido por...
-.replaceWith("blabla")
+Cambia todo, includo el <div id="blabla">
+.replaceWith("#blabla")
+
+Cambia solo el contenido:
+.html("cosas")

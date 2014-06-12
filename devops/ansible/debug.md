@@ -8,6 +8,9 @@ ansible-playbook -vvvv  <- para poder ver los mensajes de debug
 
 - debug: var=result
 
+O también:
+debug: msg="{{ puppet.stdout }}"
+
 
 Podemos poner:
 - pause:
