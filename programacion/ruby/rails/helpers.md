@@ -1,3 +1,5 @@
+ui/app/helpers
+
 Son métodos de ayuda para ciertas cosas.
 Por ejemplo:
   link_to("undo", blabla_path())

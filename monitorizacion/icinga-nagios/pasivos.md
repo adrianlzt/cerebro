@@ -48,6 +48,13 @@ Creamos la configuración de checks pasivos en el host icinga:
           check_command                  check_dummy!0 "passive check"
   }
 
+Parámetros habituales en checks pasivos:
+is_volatile                     1 # Si estamos en estado no-OK y llega otro no-OK, se tratará como si fuese la primera vez que pasa de OK a no-OK
+max_check_attempts              1 # Queremos que nos avise la primera vez que llegue
+passive_checks_enabled          1
+active_checks_enabled           0
+
+
 En el cliente creamos el fichero de ejecución para check_multi, test.cmd:
   command [ Check_disk_dev-shm ] = /usr/lib64/nagios/plugins/check_disk -w 10 -c 20 -p /dev/shm
   command [ Check_disk_boot ] = /usr/lib64/nagios/plugins/check_disk -w 10 -c 20 -p /boot

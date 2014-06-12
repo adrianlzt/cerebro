@@ -82,6 +82,9 @@ gem install --local nombre-version.gem
 gem install --http-proxy http://proxy1.service.inet:6444 unicorn
 HTTP_PROXY=http://wolfbyte:secret@pigsy:8080 gem install bla
 
+## Instalar en un dir ##
+sudo gem install debugger -v '1.6.8' --install-dir /var/lib/gems/2.0.0/
+
 
 ## Bajar una gema localmente y todas sus dependencias ##
 Gemfile

@@ -62,3 +62,27 @@ yum downgrade puppet-3.3.2
 Error: Could not run: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed: [Certname "" must not contain unprintable or non-ASCII characters]
 rm -fr /var/lib/puppet/ssl
 El problema es que antes habíamos conectado contra un puppetmaster, y el agente aún conserva el certificado y ve que no coincide.
+
+
+Warning: Error 400 on SERVER: no 'environments' in ...
+Problema al actualizar de puppet 3.x a puppet 3.6.1. El fichero auth.conf necesitaba la nueva versión que lleva:
+path /v2.0/environments
+
+
+SSL_connect returned=1 errno=0 state=SSLv3 read server session ticket A: sslv3 alert certificate revoked
+rm -fr /var/lib/puppet/ssl/*
+  en el cliente
+
+Error: Could not retrieve catalog from remote server: execution expired
+Creo que puede ser porque tarda mas de 100s en compilar el catalog.
+Reiniciar puppetmaster.
+Cambiar a unicorn (en vez de webrick)?
+
+
+# java.lang.OutOfMemoryError: Java heap space
+# -XX:OnOutOfMemoryError="kill -9 %p"
+#   Executing /bin/sh -c "kill -9 5639"...
+java.lang.OutOfMemoryError: Java heap space
+Dumping heap to /var/log/puppetdb/puppetdb-oom.hprof ...
+Heap dump file created [205618378 bytes in 1,726 secs]
+  Aumentar el heap space. Mirar puppetdb-scaling.md

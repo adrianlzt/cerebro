@@ -3,6 +3,9 @@ Comillas dobles los strings con variables.
 
 Las palabras propias de puppet sin comillas. Ejemplo: true, false, running...
 
+heredoc.md
+Para meter strings largas en una variable
+
 
 Hacer regex sobre una variable:
 http://docs.puppetlabs.com/references/2.7.3/function.html#regsubst

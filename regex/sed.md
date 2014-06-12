@@ -4,6 +4,8 @@ Manual: http://www.semicomplete.com/blog/articles/week-of-unix-tools/day-1-sed.h
 Modificar fichero directamente con sed. Cambiar 127.0.0.1 por 0.0.0.0
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
 
+sed -i s/"\$variable = 3"/"\$variable = 3,\n\$otra = 2"/ fichero.pp
+
 
 cat file | sed s/”cosa fea”/”cosa buena”/
 cat file | sed s%”/cosas/con barras”%””%  #borramos /cosas/con/barras

@@ -1,0 +1,18 @@
+% http://en.wikibooks.org/wiki/LaTeX/List_Structures
+
+% Lista con sin numeracion
+\begin{itemize}
+  \item The first item
+  \item The second item
+  \item The third etc \ldots
+\end{itemize}
+
+
+% Lista con "Nombre: cosa"
+% Para poder definir style,leftmargin etc: \usepackage{enumitem}
+% si queremos que esten los item identados: labelindent=1cm
+\begin{description}[style=multiline,leftmargin=3cm,font=\normalfont]
+  \item[Name:]  Halpo
+  \item[Email Address:] halpo@users.mysite.com
+  \item[Address:]  1234 Ivy Ln \\ Springfield, USA
+\end{description}

@@ -1,6 +1,3 @@
-
-
-
 Apagar iptables.
 Con puppet: puppet module install puppetlabs/puppetdb
 En /etc/puppet/manifests/nodes.pp (configurando el nodo master):

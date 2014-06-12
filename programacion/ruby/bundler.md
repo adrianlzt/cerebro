@@ -4,6 +4,10 @@ Gestor de proyectos ruby.
 Simplifica la recolección de gemas, instalación... 
 
 
+bundle show GEMA
+
+
+
 Railcast (video) de como usarlo: http://railscasts.com/episodes/245-new-gem-with-bundler
 
 bundle gem nombre
@@ -78,3 +82,9 @@ The specifier ~> has a special meaning, best shown by example.
   ~> 2.0.3 is identical to >= 2.0.3 and < 2.1
   ~> 2.1 is identical to >= 2.1 and < 3.0
   ~> 2.2.beta will match prerelease versions like 2.2.beta.12.
+
+
+## Entornos ## 
+gem 'pg', group: :production
+gem 'sqlite3', group: [:development, :test]
+

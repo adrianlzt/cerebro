@@ -1,1 +1,1 @@
-../programacion/go/etcd.md
+../virtualizacion/coreos/etcd.md

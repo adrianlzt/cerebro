@@ -8,6 +8,10 @@ Quitar el parámetro requiretty para el user nrpe. Permite ejecutar en todos los
 Defaults:nrpe !requiretty
 nrpe ALL = (root) NOPASSWD: /usr/sbin/corosync-cfgtool -s
 
+Quitar requiretty solo para un comando:
+Defaults!/usr/lib64/nagios/plugins/check_service.py !requiretty
+nrpe  ALL=(ALL) NOPASSWD: /usr/lib64/nagios/plugins/check_service.py
+
 Truco de sudo: se puede hacer un include de un directorio y que parezca un comentario:
 #include /etc/sudoers.local
 

@@ -1,1 +1,0 @@
-hardware_info.md

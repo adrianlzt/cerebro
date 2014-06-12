@@ -1,3 +1,25 @@
+GLOBALES: declaradas al comienzo del programa
+declare -r PI=3.14
+readonly PI=3.14
+
+LOCALES: Declaradas dentro de las funciones
+declare -i i
+local i
+
+Usar declare para definir las variables http://www.tldp.org/LDP/abs/html/declareref.html
+-r readonly
+-i integer
+-a array
+-f function(s)
+-x export
+-x var=$value
+
+Entrecomillar todas las variables:
+dir="/path/to/directory/with a space/"
+cd $dir #NO funciona
+cd "$dir" #SI funciona
+
+
 VAR=cosa
 echo $VAR
 

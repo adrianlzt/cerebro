@@ -1,0 +1,47 @@
+% negrita
+
+% toda la linea. Puede que afecte a siguientes lineas?
+\bfseries Esta es una linea en negrita
+
+% Solo una/s palabra/s
+{\bfseries Titulo:} La obra
+
+% Que el siguiente elemento tenga una determinada separacion vertical
+\vspace{2cm}
+
+% Que el siguiente elemento tenga una determinada separacion horizontal
+% No siempre me funciona
+\hspace{2cm}
+
+% Alineacion de texto
+\raggedright
+\raggedleft
+\centering
+
+% Identar o no identar un parrafo
+\indent
+\noindent
+
+% rellenar hasta el final de pagina
+\vfill
+
+% lineas con doble espaciado (mas distancia entre lineas)
+\begin{doublespace}
+  Fecha de lectura:\\
+  Califaci'on:
+\end{doublespace}
+
+% pagina en blanco
+\newpage
+\thispagestyle{empty}
+\mbox{}
+% el estilo debe ser uno de:
+%  plain - Just a plain page number.
+%  empty - Produces empty heads and feet - no page numbers.
+%  headings - Puts running headings on each page. The document style specifies what goes in the headings.
+%  myheadings - You specify what is to go in the heading with the \markboth or the \markright commands.
+
+% para documentos doublesided (creo que solo vale para estos)
+% es para poner la pagina de la izquierda en blanco, si es la de la derecha, no la dejara en blanco
+\usepackage{emptypage}
+\cleardoublepage

@@ -1,4 +1,4 @@
-http://docs.puppetlabs.com/puppet/2.7/reference/lang_datatypes.html
+http://docs.puppetlabs.com/puppet/3.6/reference/lang_datatypes.html#arrays
 
 Arrays:  
 [ 'one', 'two', 'three', ]
@@ -19,3 +19,6 @@ $myhash = { key => "some value",
 notice( $myhash[key] )
 
 {a => 1} + {b => 2} # produces {a=>1, b=>2 }
+
+prefix(['a','b','c'], 'p')
+Will return: ['pa','pb','pc']

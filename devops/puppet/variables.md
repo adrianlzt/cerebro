@@ -3,7 +3,7 @@ Si van dentro de un literal ("cosa ${var} mas") se pone con corchetes.
 Las variables no pueden tener guiones (-), si pueden tener guiones bajos (_).
 Nomenclatura: $, luego ponemos el nombre de la clase y por último el nombre de la variable.
 
-true,True,false,False
+true,false
 
 Ejemplo:
 

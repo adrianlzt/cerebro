@@ -23,3 +23,30 @@ Si queremos pasarlo en la línea de comandos (cuidado con caracteres especiales,
 ansible-playbook prueba.yaml -e "ansible_sudo_pass=PASSWORD"
 
 Parece que no hay forma de definir en el playbook que nos pregunte por la password para sudo, tenemos que decirlo en el CLI con -K
+
+
+## Encriptar la password de sudo con vault y aplicandola a un grupo de hosts ##
+Suponemos que tenemos en el fichero hosts un grupo de máquinas, webserver, que comparten todas la misma password de sudo.
+Una opción es poner a cada una de las máquinas la línea ansible_sudo_pass='foobar'.
+Otra opción es al final del fichero definir:
+[webserver:vars]
+ansible_sudo_pass='foobar'
+
+Y la opción buena es crear en nuestro directorio root de ansible el directorio:
+group_vars/
+Y ahí dentro crear el fichero webserver
+Dentro de él definimos la password:
+ansible_sudo_pass: 'foobar'
+
+Para terminar lo encriptamos:
+ansible-vault encrypt group_vars/webserver
+
+Así ya podremos ejecutar nuestros playbooks o ad-hocs sin tener que escribir la password de root.
+No olvidarnos de poner
+--ask-vault-pass
+o
+--vault-password-file ~/.vault_pass.txt
+
+
+También podemos hacerlo con ansible_ssh_pass
+

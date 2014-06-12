@@ -33,6 +33,9 @@ puppet apply -e "class {'nombre': var => 'valor', var2 => 'otro',}"
 Si ejecutamos 'puppet apply' y no tenemos ningún fichero /etc/puppet/hiera.yaml, puppet irá únicamente a buscar al fichero:
 /var/lib/hiera/common.yaml
 
+Para pasarle una conf específica de hiera
+puppet apply prueba.pp --hiera_config /tmp/hiera.yaml
+
 
 Cambiar el modulepath
 puppet apply --modulepath=/root/dev/modules ...

@@ -2,6 +2,10 @@ http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-wai
 Ejemplos: http://aws.amazon.com/es/cloudformation/aws-cloudformation-templates/
 https://github.com/stelligent/devopsinthecloud/blob/master/infrastructure/templates/jenkins.template
 
+CloudFormation is part of the Amazon Web Services suite. It is a tool that automates setting up a full application stack. You describe all the AWS resources your stack needs in JSON format, and upload that JSON file to CloudFormation. CloudFormation inspects the JSON file and creates all the requested AWS resources in the right order. There are two great advantages to using CloudFormation over manually creating your AWS resources:
+  The JSON file that describes your stack can be managed by source control
+  Once you delete your stack all related resources are deleted automatically, leaving you with a nicely cleaned up AWS account
+
 Es la tecnología de amazon aws para hacer el despliegue inicial de las máquinas, y casi cualquier tipo de recurso de AWS.
 La idea es que se define en un fichero que es lo que queremos desplegar, y de un solo golpe se despliega todo. A este conjunto de cosas desplegadas se le llama stack.
 Seria como ejecutar un puppet pero una única vez, en la construcción de la máquina.

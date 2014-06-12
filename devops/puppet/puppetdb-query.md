@@ -68,6 +68,9 @@ curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["and",[
 Facts de un nodo
 curl -G 'http://192.168.51.2:8080/v3/facts' --data-urlencode 'query=["=", "certname", "client2.com"]'
 
+Obtener un fact de un nodo
+curl -G 'http://192.168.51.2:8080/v3/nodes/NOMBRE/facts/NOMBREFACT'
+
 
 Con la gema rest-client (https://github.com/rest-client/rest-client) y la gema json
 require 'rest-client'

@@ -1,0 +1,35 @@
+% para crear el "ancla" a donde nos referiremos
+\section{Vagrant}\label{sec:Vagrant}
+
+% Para hacer el enlace para apuntar al "ancla"
+~\ref{sec:Vagrant} % Pondra "3.1"
+
+~\autoref{sec:Vagrant} % Pondra "Sección 3.1"
+
+
+Para nombrar las label seguimos esta nomenclatura:
+chap:	chapter
+sec:	section
+subsec:	subsection
+fig:	figure
+tab:	table
+eq:	equation
+lst:	code listing
+itm:	enumerated list item
+app:	appendix subsection
+
+
+%% hyperref
+% Convierte las referencias en enlaces para poder movernos dentro de un pdf
+\usepackage{hyperref}
+
+% También nos deja poner la palabra que nosotros queramos en el enlace
+\hyperref[label_name]{''link text''}
+
+% Y hacer enlaces a urls
+\url{<my_url>}
+\href{<my_url>}{<description>}
+
+\href{mailto:my_address@wikibooks.org}{my\_address@wikibooks.org}
+
+

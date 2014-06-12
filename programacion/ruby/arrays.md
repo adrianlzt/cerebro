@@ -4,6 +4,10 @@ http://ruby-doc.org/core-2.0.0/Array.html
 > a << 4  <- es lo mismo que a.push 4
 => [2, "asda", 45, 4]
 
+& interseccion de arrays
++ unir arrays
+- diferencia de arrays
+
 Acceso
 array[3]
 
@@ -20,6 +24,18 @@ Queremos sacar todas las ips en un string unidas por comas, excepto la de un nod
 Cogemos los elementos del array excepto el que (drop_while) tenga como hostname "monit".
 Luego hacemos un map para coger solo las ips.
 Por último unimos esas ips con comas.
+
+
+Obtener de "prod" los elementos que estén en ambos.
+(Environment.find_by name: "prod").checks.delete_if {|c1| !(Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.map{|c| c["name"]}
+
+Obtener solo los elementos de "prod" que no estén en "pre"
+(Environment.find_by name: "prod").checks.delete_if {|c1| (Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.map{|c| c["name"]}
+
+
+CUIDADO con drop_while. Solo borra los elementos HASTA el primer elemento que devuelva nil o false, sin incluir este elemento.
+
+
 
 Tamaño:
 nodos.length
@@ -53,3 +69,11 @@ a = [1, 2, 3, 4, 5, 0]
 a.drop_while {|i| i < 3 }   #=> [3, 4, 5, 0]
 
 a = a.drop_while {|i| i < 3 } # Dejamos en el array solo los elementos con la condición
+
+# Uniq (con {|x| ...} a partir de la 1.9.3
+c = [["student","sam"], ["student","george"], ["teacher","matz"]]
+c.uniq! { |s| s.first } # => [["student", "sam"], ["teacher", "matz"]]
+
+# Modifica el array c quitando el elemento {name: "check1", params: "-AAA"}, porque ya hay uno con nombre "check1"
+c = [{name: "check1", params: "-s-d-r"},{name: "check2", params: "-123"},{name: "check1", params: "-AAA"},{name: "check4", params: "-ZZZ"}]
+c.uniq! { |s| s[:name]}

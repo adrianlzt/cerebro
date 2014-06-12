@@ -1,5 +1,6 @@
 http://jinja.pocoo.org/docs/templates/
 http://docs.ansible.com/template_module.html
+jinja.md
 
 {% for item in navigation %}
   <li><a href="{{ item.href }}">{{ item.caption }}</a></li>

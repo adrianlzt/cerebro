@@ -14,7 +14,8 @@ sense (json elasticsearch)
 speed tracer (debugger)
 Gmail checker plus
 Google calendar checker plus
-
+Escritorio remoto de Chrome (controlar pc remotamente)
+https://chrome.google.com/webstore/detail/facebook-for-chrome/gdalhedleemkkdjddjgfjmcnbpejpapp
 
 Apps:
 TweetDeck
