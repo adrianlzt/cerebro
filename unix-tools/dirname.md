@@ -1,0 +1,2 @@
+$ dirname /etc/passwd
+/etc

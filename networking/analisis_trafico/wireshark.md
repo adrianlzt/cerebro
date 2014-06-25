@@ -1,4 +1,5 @@
 cloudshark -> analisis online
+30 day free trial
 
 
 Permitir a un no-root capturar

@@ -31,3 +31,15 @@ Podemos hacerun chequeo de los parámetros con los métodos 'validate_' de stdli
 
 
 Si definimos una variable como undef, podremos llamar a la clase sin estar obligados a definir la varible, pero la variable seguirá sin estar definida al llamar a la clase.
+
+
+No se puede redefinir variables:
+class prueba (
+  $var = undef,
+) {
+  $var = "nuevo"
+  notify {"var: $var":}
+}
+Error: Cannot reassign variable var at /tmp/pruebas/test.pp:20 on node host
+
+

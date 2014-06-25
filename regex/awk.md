@@ -41,6 +41,8 @@ print epoch, $4
 Sumar una columna
 ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 
+echo -e "1\n2\n3\n6" | awk '{var+=$1} END {print var}'
+
 
 Dos columnas, una con créditos y otra con la nota. Queremos la media, calculada como SUM(nota*cred)/SUM(cred)
 cat creditos_notas.txt | awk '{NOTACRED += $1*$2; CRED += $1} END {print NOTACRED/CRED}'

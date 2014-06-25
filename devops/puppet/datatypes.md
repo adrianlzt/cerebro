@@ -6,6 +6,8 @@ Arrays:
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 notice( $foo[2] )
 
+notice {"valor: ${exec[0]}":}
+
 [1,2,3] + [4,5,6]   # produces [1,2,3,4,5,6]
 [1,2,3] << 10 # produces [1,2,3,10]
 [1,2,3] << [4,5] # produces [1,2,3,[4,5]]
@@ -22,3 +24,8 @@ notice( $myhash[key] )
 
 prefix(['a','b','c'], 'p')
 Will return: ['pa','pb','pc']
+
+
+No se puede poner [] sobre una función
+split($eexec," ")[0] INCORRECTO!
+

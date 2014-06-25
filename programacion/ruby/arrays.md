@@ -26,11 +26,19 @@ Luego hacemos un map para coger solo las ips.
 Por último unimos esas ips con comas.
 
 
+Array.delete_if {|x| CONDICION }
+  Si CONDICION == true, NO devuelve ese elmento en el array retornado
+  Si CONDICION == false, devuelve ese elmento en el array retornado
+
+Array.delete_if {|x| CONDICION }.map{|x| x.delete}
+  Si CONDICION == false, se borra el elemento
+
 Obtener de "prod" los elementos que estén en ambos.
-(Environment.find_by name: "prod").checks.delete_if {|c1| !(Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.map{|c| c["name"]}
+(Environment.find_by name: "prod").checks.delete_if {|c1| !(Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.selec(:name)
 
 Obtener solo los elementos de "prod" que no estén en "pre"
-(Environment.find_by name: "prod").checks.delete_if {|c1| (Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.map{|c| c["name"]}
+  Si el find_index devuelve un número (true), se saca del array de vuelta, por lo que solo devuelva los que no hagan match
+(Environment.find_by name: "prod").checks.delete_if {|c1| (Environment.find_by name: "pre").checks.find_index { |c2| c1["name"] == c2["name"] } }.selec(:name)
 
 
 CUIDADO con drop_while. Solo borra los elementos HASTA el primer elemento que devuelva nil o false, sin incluir este elemento.
@@ -64,6 +72,9 @@ Buscar varios elementos:
   Devuelve un array empty si no encuentra nada
   Devuelve un array siempre, aunque haya un único elemento
 
+Obtengo la lista de elementos comunes entre hgto.services y hgfrom.services
+hgto.services.select {|st| hgfrom.services.find_index {|sf| st[:name] == sf[:name] } }
+
 Eliminar elementos que no queramos:
 a = [1, 2, 3, 4, 5, 0]
 a.drop_while {|i| i < 3 }   #=> [3, 4, 5, 0]
@@ -77,3 +88,13 @@ c.uniq! { |s| s.first } # => [["student", "sam"], ["teacher", "matz"]]
 # Modifica el array c quitando el elemento {name: "check1", params: "-AAA"}, porque ya hay uno con nombre "check1"
 c = [{name: "check1", params: "-s-d-r"},{name: "check2", params: "-123"},{name: "check1", params: "-AAA"},{name: "check4", params: "-ZZZ"}]
 c.uniq! { |s| s[:name]}
+
+
+# Buscar una palabra en un array, case insensitive
+http://stackoverflow.com/questions/9333952/case-insensitive-arrayinclude
+array.any?{ |s| s.casecmp(mystr)==0 }
+  Nos dará true o false.
+
+Para obtener contenido con regexp (mirar regex.md):
+all_node_names.grep(re)
+

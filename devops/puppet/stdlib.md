@@ -70,3 +70,6 @@ Idea sacada de: http://ttboj.wordpress.com/2013/06/04/collecting-duplicate-resou
 El parámetro alias parece que tiene algun significado especial, porque al definir una defined type con nombre distinto pero igual alias me dice:
 Error: Failed to apply catalog: Parameter alias failed on Monitorizacion::Icinga::Hostgroup[m2m-client.com]: Munging failed for value "m2m generic group" in class alias: Cannot alias Monitorizacion::Icinga::Hostgroup[m2m-client.com] to "m2m generic group"; resource ["Monitorizacion::Icinga::Hostgroup", "m2m generic group"] already declared
 
+
+Convertir un "false" en false
+str2bool("false")

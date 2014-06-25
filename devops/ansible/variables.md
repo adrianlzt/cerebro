@@ -48,7 +48,9 @@ vars_files:
  - "vars/common.yml"
  - [ "vars/{{ ansible_os_family }}.yml", "vars/os_defaults.yml" ]
 	  
-
+vars:
+  contents: "{{ lookup('file', '/etc/foo.txt') }}"
+  cosa: "blabla"
 
 Se pueden pasar funciones jinja a las variables
 {{ variable.replace('a','b') }}

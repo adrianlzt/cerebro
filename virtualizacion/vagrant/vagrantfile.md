@@ -32,3 +32,17 @@ vagrant up /slave[0-9]/ -> levantaría las slave1, slave2,..., slave9
 También se puede especificar una máquina por defecto sobre la que actuarían los comandos si no se define una en particular:
 config.vm.define "web", primary: true do |web|
 
+
+## Condicionales ##
+
+if 1 == 1
+  puts "prueba"
+  exit
+end
+
+
+## Configuración ##
+
+require 'pp'
+
+pp config

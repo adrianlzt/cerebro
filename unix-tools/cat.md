@@ -6,3 +6,6 @@ $ cat <<END > fichero_salida
 > escribir en el fichero
 END
 
+
+cat -i
+  -v, --show-nonprinting

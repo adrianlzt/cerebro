@@ -79,3 +79,32 @@ resp = JSON.parse(response)
 resp.each do |h|
 h["name"]
 end
+
+
+############
+# METRICAS #
+############
+
+http://10.26.204.22:8080/dashboard/index.html
+
+http://docs.puppetlabs.com/puppetdb/1.6/api/query/v3/metrics.html
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbeans"
+  todas las métricas disponibles:
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbean/com.puppetlabs.puppetdb.command%3Atype%3Dglobal%2Cname%3Dprocessing-time"
+  stats about how long it takes to process commands
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbean/com.puppetlabs.puppetdb.query.population%3Atype%3Ddefault%2Cname%3Dnum-nodes"
+  número de nodos
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbean/com.puppetlabs.puppetdb.query.population%3Atype%3Ddefault%2Cname%3Dnum-resources"
+  número de recursos
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbean/com.jolbox.bonecp%3Atype%3DBoneCP"
+  Database connection pool metrics. How long it takes to get a free connection, average execution times, number of free connections, etc.
+
+curl -H "Accept: application/json" "http://localhost:8080/v3/metrics/mbean/java.lang%3Atype%3DMemory"
+  uso de memoria de java
+
+

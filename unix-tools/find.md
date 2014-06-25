@@ -24,6 +24,9 @@ find . -maxdepth 3 -exec du -h {} \; | sort -hr | uniq | head -20
 Borrar los ficheros más antiguos de 30 días
 find . -mtime +30 -exec rm {} \;
 
+Buscar ficheros modificados hace menos de 5 minutos
+find . -mmin -5
+
 
 Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".
 Nos devuelve el fichero matcheado (-H) y el número de línea (-n)

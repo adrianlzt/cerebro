@@ -27,6 +27,15 @@ Y para firmar un certificado:
 puppet cert sign <nombre> 
 
 
+## Puppet 3.5 en adelante ##
+Se define un directorio donde se encuentran todos los manifests. Ya no hay un site.pp.
+Cada nodo busca su "node ... {}" y se lo aplica (solo se aplicará un node a cada nodo.
+El código que este fuera de node{} se aplicará a todos los nodos.
+
+Todos los nodos deben matchear un node, por lo que casi siempre deberemos tener un "node default {}" para los nodos que no hagan match en otro node.
+
+
+
 Ahora las máquinas que se conecten contra el master mirarán el fichero: /etc/puppet/manifests/site.pp
 En este fichero podemos poner directamente código. 
 Por ejemplo podríamos poner un:

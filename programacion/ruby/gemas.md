@@ -3,11 +3,23 @@ https://www.ruby-toolbox.com/
 http://rubygems.org
 Es la paquetería de ruby
 
+Buscar gemas instaladas localmente
+gem search nombre
+
+Buscar gemas en rubygems
+gem search -r nombre
+
 Consultar info de gema no instalada:
 gem spec -r nombre
 
 Ficheros que pertenecen a una gema
 gem content nombre
+
+Instalar:
+gem install nombre
+
+Actualizar
+gem update nombre
 
 Directorio de instalación: 
 gem environment gemdir

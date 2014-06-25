@@ -20,6 +20,11 @@ s.name = ...
 s.valid?
 s.errors.messages
 
+if !st.save
+  logger.debug "DEBUG: Error actualizando service #{st.name} del hostgroup #{hgto.name}. Valid? #{st.valid?}. Errors: #{st.errors.messages}"
+end
+
+
 
 ## Boolean
 validates :field_name, inclusion: { in: [true, false] }

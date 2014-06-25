@@ -32,3 +32,12 @@ temporary_files() {
 
 
 Bash debugger: http://bashdb.sourceforge.net/
+apt-get install bashdb
+bashdb script.sh
+
+Comandos:
+l .    listar alrededor de la línea donde estamos
+n      linea siguiente
+s      linea siguiente, entrar en función
+b 192  breakpoint en linea 192 (acordarse de ponerlo en una linea donde pueda parar)
+c      continuar hasta breakpoint

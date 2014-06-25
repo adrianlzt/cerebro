@@ -46,3 +46,11 @@ Para Ubuntu Quantal:
     require     => Apt::Key['1C4CBDCDCD2EFD2A'],
   }
 
+apt::source { 'bintray':
+  ensure      => present,
+  location    => 'http://dl.bintray.com/adrianlzt/deb',
+  release     => '',
+  repos       => '/',
+  include_srv => false,
+}
+Para que no vaya a dists/RELEASE/binary-amd64/

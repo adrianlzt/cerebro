@@ -44,3 +44,32 @@ Hace una tarea u otra dependiendo si fileinline modifica o no un fichero:
 
     - debug: msg="Sin cambios"
       when: result.changed == False
+
+
+
+
+    - name: Check vpn connectivity
+      shell: ip -4 -o a | grep cscotun
+      ignore_errors: True
+      tags:
+        - test
+      register: vpn
+
+    - pause: prompt="Debes estar conectado a la vpn"
+      tags:
+        - test
+      when: vpn|failed
+
+
+Salta un prompt si no podemos hacer ping a github.com
+    - name: Check github connectivity
+      shell: ping -qc1 -W1 github.com
+      ignore_errors: True
+      tags:
+        - test
+      register: github
+
+    - pause: prompt="No llego a github.com"
+      tags:
+        - test
+      when: github|faile

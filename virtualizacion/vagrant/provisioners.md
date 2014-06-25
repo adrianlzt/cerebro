@@ -9,6 +9,7 @@ Uno sencillo es file. Que sube ficheros por scp.
 # Shell
 config.vm.provision "shell", inline: "echo Hello, World"
 
+Tiene que ir sin identar:
 $script = <<SCRIPT
 rm /home/vagrant/postinstall.sh
 apt-get update -qq -y

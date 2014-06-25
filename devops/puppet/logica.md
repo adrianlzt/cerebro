@@ -9,6 +9,16 @@ package { 'servidorssh':
 	ensure => present,
 }
 
+file { "$icinga_root_dir/icinga.cfg":
+  content => template("${module_name}/icinga.cfg.erb"),
+  owner => $monitorizacion::params::user,
+  group => $nagiosql ? {
+           true => $monitorizacion::params::apache_group,
+           false => $monitorizacion::params::group
+  },
+  ...
+}
+
 
 CASE:
 case $::osfamily {

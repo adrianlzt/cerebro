@@ -10,3 +10,13 @@ http://www.w3schools.com/html/html_tables.asp
   <td>26</td>
 </tr>
 </table>
+
+
+Bordes simples:
+<style>
+table,th,td
+{
+border:1px solid black;
+border-collapse:collapse;
+}
+</style>

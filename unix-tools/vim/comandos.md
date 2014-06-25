@@ -1,3 +1,5 @@
+http://vim.wikia.com/wiki/Search_and_replace
+
 control+a		aumenta el número que primero encuentre en la linea
 control+x		disminuye el numero primero encuentre en la linea
 
@@ -6,8 +8,25 @@ En todas las lineas, busca una linea que solo tenga el caracter r, y borrala ('d
 g/ es para get. Coge las lineas de este match y haz tal cosa
 %g/^r$/d
 
+Cambia los cambios de linea por '\n'
+:%s/\n/\\n/
+
+Cambia los '$' por '\$':
+:%s/\$/\\\$/g
+
 Cambia la letra a por un cambio de línea:
 %s/a/\r/g
+
+Busca [a-z]: LoQueSea, y borra de los dos puntos para adelante (\1 me copia lo que puse entre paréntesis)
+s/\([a-z]+\)*: .*/\1/
+
+Cambio entre las lineas 153 y 173 (incluídas)
+:153,173s/\([a-z_]*$\)/\1] = sf[:\1]
+st[:check_id  --->>> st[:check_id] = sf[:check_id]
+
+Borra lineas entre 25 y 30 (incluídas)
+:25,30d
+
 
 Inserta un cambio de línea antes de '(', ',' o ')'
 /[(,)]

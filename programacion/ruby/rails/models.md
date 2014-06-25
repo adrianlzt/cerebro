@@ -13,6 +13,12 @@ end
 Esta clase generará la tabla 'tweets' (minúsculas y plural)
 
 
+## Orden ##
+Conseguir que este elemento siempre aparezca ordenado alfabéticamente.
+app/models/elemento.rb
+default_scope { order(:name) }
+
+
 ## Validaciones ## http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html
 Hay un montón para todos los tipos de datos
 

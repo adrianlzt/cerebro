@@ -15,8 +15,15 @@ Render un partial (buscara el nombre con un guion bajo '_' delante del nombre)
 <%= render 'parte' %>
 <%= render 'host_group_field', f: builder %>
 
-Render a una variable
-script = render_to_string partial: 'script.sh.erb', locals: { project: @project, hostgroups: @hostgroups, vips: @vips }
+
+# Render a una variable #
+@script = render_to_string partial: 'script.sh.erb', locals: { project: @project, hostgroups: @hostgroups, vips: @vips }
+
+x.html.erb
+<%= @script %>
+<%= raw @script %>
+  si llega caracteres html, para que no se escapen
+
 
 Sin layout (donde suelen ir las cabeceras etc.)
 La idea es sacar únicamente lo que tengamos en el .html.erb:

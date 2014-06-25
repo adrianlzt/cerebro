@@ -14,9 +14,13 @@ Estado						git status
 Log del git (o de un fichero)			git log <fichero>
 Log mostrando los diff de los n ult commits	git log -p -2
 Log de un fichero poniendo los cambios		git log -p -2 <fichero>
+Mostrar configuración				git config -l
 Configurar remoto				git remote add origin ssh://git@bitbucket.org/pepe/pepe.git
 						git remote add origin git@bitbucket.org:pepe/dotfiles.git
 						Para usar ssh, meter mi clave pública en el servidor remoto
+Push a dos remotos				http://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes
+						git remote set-url --add --push origin git@github.com:adrianlzt/puppet-monitoring.git
+						git remote set-url --add --push origin git@miserver.com:pepe/puppet-monitoring.git
 Agregar un remoto de donde hemos hecho fork	git remote add upstream https://github.com/otheruser/repo.git
 Mostrar remotos					git remote -v
 Borrar remoto					git remote remove origin (o en vez de origin, el nombre que sea)
@@ -54,7 +58,9 @@ Diff branches					git diff <branch1> <branch2>
 Diff branches rama contra el ancestro común	git diff <branch1>...<branch2>
 Mirar cambios					git diff
 Cambios respecto al dir local (sin commit)	git diff --staged
-Borrar last commit				git reset --hard HEAD~1
+Borrar last commit: modificando ficheros	git reset --hard HEAD~1
+		    sin modificar ficheros	git reset HEAD~1
+
 Submódulos					git submodule add <url> <path>
 Añadir etiqueta					git tag -a “v1.0” -m “mensaje”
 Listar etiquetas				git tag       git tag -l “v1.*”
@@ -67,6 +73,7 @@ Volver a lo que estábamos haciendo		git stash pop
 						git stash pop stash@{0}
 Listar ficheros versionados			git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
 Mostrar ficheros excluídos			git ls-files --others --exclude-from=.git/info/exclude
+Mostrar ramas contenidas en rama develop	git branch --contains develop 
 
 
 Directorio de trabajo distinto que directorio de git
