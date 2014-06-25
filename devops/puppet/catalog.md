@@ -1,5 +1,8 @@
 http://manpages.ubuntu.com/manpages/precise/en/man8/puppet-catalog.8.html
 
+puppet catalog download
+  en un cliente, se baja su catalog del puppetmaster y lo almacena en 
+
 puppet catalog find CERTNAME
 Retrieve the catalog for a node
 

@@ -42,3 +42,10 @@ Ejemplo de uso, instalar un montón de dependencias php.
 
 Tambien se puede hacer.
 	notify => Service['ssh','ftpd']
+
+
+$var = $::osfamily ? {
+         'Debian' => 'libapache2-mod-passenger',
+         'RedHat' => 'rubygem1.9.3-passenger',
+       }
+

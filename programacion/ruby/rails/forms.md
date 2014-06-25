@@ -48,6 +48,8 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
 
 <%= f.text_field :campo %> <- campo de texto
 <%= f.text_field :campo, :value => "test" %> <- campo de texto con valor por defecto
+:placeholder => "placeholder text"
+
 
 <%= f.number_field :age %>
   no se puede poner size a un input type="number", se hace con css:
@@ -65,6 +67,11 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
 
 <%= f.radio_button :tipo, 'primero', checked: true %>
 <%= f.radio_button :tipo, 'segundo' %>
+
+
+<%= text_field "post[vip][#{vip.id}]", :name %>
+<input id="post_vip_2_name" name="post[vip][2][name]" type="text">
+
 
 # Para selects, mirar select.md
 <%= f.select :gustos, ['musica', 'deporte'] %> <- desplegable

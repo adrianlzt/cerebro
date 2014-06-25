@@ -30,6 +30,19 @@ end
 No podemos usar esta forma de configurar la red en LXC si definimos el hostname.
 En este caso podemos hacero provisionando con shell:
 config.vm.provision "shell", inline: "/sbin/ip addr add 10.0.3.100/32 dev eth0"
+  No resiste reinicios. Ver donde poner para que si los resista.
+
+Añadir un alias permanente, para Ubuntu:
+echo <<END
+auto eth0:0
+iface eth0:0 inet static
+name Ethernet alias LAN card
+address 192.168.200.2
+netmask 255.255.255.0
+broadcast 192.168.200.255
+network 192.168.200.0
+END >> /etc/network/interfaces
+
 
 
 Los nodos están conectados entre sí, por lo que con que definamos la misma red para los nodos ellos se podrán comunicar (máscara 255.255.255.0)

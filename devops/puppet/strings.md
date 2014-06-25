@@ -19,6 +19,11 @@ $a2 = regsubst($var2, '\.', '_','G')
 notify { "a2: $a2" : }
 este_es_el_fqdn
 
+Equivalente:
+$a2 = inline_template("<%= @var2.gsub('.', '_') %>")
+
+
+
 $var2 = "/"
 $a2 = regsubst($var2, '/', '_root_')
 notify { "a2: $a2" : }
@@ -41,6 +46,10 @@ $var2 = "adios"
 notify {"mensaje":
   message => inline_template("<% if @var %> $var <% else %> $var2 <% end %>")
 }
+
+Generar una variable solo con variables que estén defindas:
+$fin = inline_template("<% if @conf %>$conf <% end %><% if @tag %>$tag <% end %><% if @log %>$log<% end %>")
+
 
 
 Usar el contenido de una variable para generar el nombre de otra variable

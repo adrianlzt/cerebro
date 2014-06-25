@@ -33,6 +33,31 @@ Si solo queremos sacar un error en texto (sin formato):
 #render :status => :forbidden, :text => "Lo que queremos sacar" and return
 
 
+# Devolver correctamente una web de error, saltando desde cualquier parte el error
+http://stackoverflow.com/questions/1918373/how-do-i-raise-an-exception-in-rails-so-it-behaves-like-other-rails-exceptions
+class UsersController < ApplicationController
+  ## Exception Handling
+  class NotActivated < StandardError
+  end
+
+  rescue_from NotActivated, :with => :not_activated
+
+  # Yo uso la parte no comentada, la otra no me funciona
+  def not_activated(exception)
+    #flash[:notice] = "This user is not activated."
+    #Event.new_event "Exception: #{exception.message}", current_user, request.remote_ip
+    #redirect_to "/"
+    @error_message="lo que queramos sacar"
+    render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false) and return
+  end
+
+  def show
+      // Do something that fails..
+      raise NotActivated unless @user.is_activated?
+  end
+end
+
+
 undefined method `name' for #<Host:0x007f425032eaa8>
 respond_to do |format|
       if @host.save

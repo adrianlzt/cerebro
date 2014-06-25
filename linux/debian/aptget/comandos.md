@@ -33,3 +33,11 @@ Si falla por dependencias haremos seguidamente:
 apt-get -fy install
 Y de nuevo:
 dpkg -i /path/to/filename.deb
+
+
+Extraer contenido de un .deb
+dpkg-deb -X paquete.deb dir/
+
+
+Bajar .deb
+apt-get download paquete

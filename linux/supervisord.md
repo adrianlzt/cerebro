@@ -19,6 +19,55 @@ Comandos para controlar los recursos
   tail -f PROG <- muestra stdout del proceso
   tail PROG <- muestra las ultimas lineas del fichero de log
 
+
+## Instalacion ##
+yum install supervisor
+  version vieja
+
+Usar fpm para generar un rpm a partir de pip (python-pip). Esta versión vendrá sin init.d script
+
+Init scripts:
+https://github.com/Supervisor/initscripts
+Para redhat parece que el mejor es este: https://github.com/Supervisor/initscripts/blob/master/redhat-init-mingalevme
+
+
+## Configuracion ##
+
+Configuración básica:
+echo_supervisord_conf > /etc/supervisord.conf
+
+logfile=/var/log/supervisord.log
+
+pidfile=/var/run/supervisord.pid
+
+Al final:
+[include]
+files = /etc/supervisord.d/*.ini
+
+
+Settings para los program:
+http://supervisord.org/configuration.html#program-x-section-settings
+
+Controlled programs should themselves not be daemons, as supervisord assumes it is responsible for daemonizing its subprocesses
+
+autostart=true
+  los programas por defecto se arrancan junto con supervisor
+
+autorestart=unexpected/true/false
+  por defecto los programas se autoreiniciarán cuando salgan con un exitcode distinto de los esperados (mirar exitcodes)
+
+exitcodes=0,2
+  valores por defecto
+
+stopsignal=TERM
+  señal que enviará al proceso para que pare
+
+
+## Ejemplos ##
+
+[program:foo]
+command=/bin/cat
+
 Podemos usarlo para mantener un proceso corriendo en un container Docker.
 Ejemplo: http://docs.docker.io/en/latest/examples/running_riak_service/
 Ejemplo: https://github.com/justone/docker-mongodb
@@ -28,21 +77,16 @@ Dockerfile:
 add     supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 cmd     ["/usr/bin/supervisord", "-n"]
 
-supervisord.conf:
-[supervisord]
-nodaemon=true
 
 [program:sshd]
 command=/usr/sbin/sshd -D
 stdout_logfile=/var/log/supervisor/%(program_name)s.log
 stderr_logfile=/var/log/supervisor/%(program_name)s.log
-autorestart=true
 
 [program:mongod]
 command=/usr/bin/mongod --smallfiles
 stdout_logfile=/var/log/supervisor/%(program_name)s.log
 stderr_logfile=/var/log/supervisor/%(program_name)s.log
-autorestart=true
 
 Poner el programa sin demonizar, porque si no supervisord pensará que se ha cerrado
 [program:puppet]

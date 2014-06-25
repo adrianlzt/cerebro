@@ -10,6 +10,7 @@ Tiene como dependencia a perl-Collectd-5.1.0-1.el6.rft.x86_64.rpm
 Si puedo acceder al repo desde la máquina, lo instalo:
 rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 Y activo el rpmforge-extra y rpmforge-testing /etc/yum.repos.d/rpmforge.repo
+Collectd 5.1.0 está en rpmforge-testing.
 También instalamos EPEL
 
 Instalación:

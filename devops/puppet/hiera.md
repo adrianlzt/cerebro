@@ -2,6 +2,11 @@ http://docs.puppetlabs.com/hiera/1/hierarchy.html
 
 "Base de datos" jerárquica donde se almacenan los parametros.
 
+http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup
+Cuando puppet va a aplicar un módulo consulta a hiera "nombremodulo::parametro", y si está es el valor que aplica.
+Esto, separando por environments, osfamily (Debian y RedHat, importante las mayusculas), etc hace que no tengamos que definir prácticamente parámetros en los manifests.
+CUIDADO! Si usamos esto todas las clases para las que valen esos parámetros se verán afectadas. Limitar por host si es necesario.
+
 Instalación: puppet resource package hiera ensure=installed
 Para que puppet vea hiera: ln -s /etc/hiera.yaml /etc/puppet/
 Para el command line y ruby la localización por defecto sigue siendo /etc/hiera.yaml, por eso mejor un enlace simbólico.
@@ -96,6 +101,7 @@ sshd_settings: {root_allowed: no, password_allowed: yes}
 
 Para definir en JSON:
 {
+    "variable_booleana" : true,
     "apache-packages" : [
     "apache2",
     "apache2-common",
@@ -109,6 +115,7 @@ Para definir en JSON:
                         "password_allowed" : "no"
                       }
 }
+
 
 
 

@@ -12,6 +12,11 @@ echo 'eval "$(hub alias -s)"' >> ~/.bash_aliases
 sudo curl https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh  -o /etc/bash_completion.d/hub
 La primera vez que lo ejecutemos nos pedirá nuestras credenciales que almacenará en ~/.config/hub
 
+Si quiero usar un github enterprise:
+git config --global --add hub.host my.git.org
+
+Pero el origin deberá apuntar al enterprise.
+
 ## Comandos ##
 mkdir REPO; cd REPO; git this; git create; git browse
   Crear un nuevo repo git y crearlo también en github

@@ -78,3 +78,6 @@ Substitución de caracteres
 
 # Partials #
 <%= scope.function_template("#{el path que te mola}") %>
+
+# Conditionals
+<%= if @var != '' %>...<% end %>

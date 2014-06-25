@@ -14,6 +14,12 @@ cd vagrant-lxc-base-boxes
 PUPPET=1 make trusty
 
 
+Definir el nombre del contenedor LXC
+config.vm.provider :lxc do |lxc, override|
+  lxc.container_name = 'mysql'
+end
+
+
 
 
 LXC boxes: https://github.com/fgrehm/vagrant-lxc/wiki/Base-boxes

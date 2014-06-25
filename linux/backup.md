@@ -6,3 +6,8 @@ Un backup grande llena los buffers y cache de memoria. Luego hacer un drop_cache
 
 
 Backup de muchos ficheros pequeños. Mirar performance/memoria/tunables.md vm.vfs_cache_pressure
+
+
+
+## Dirvish ##
+Mirar dirvish.md

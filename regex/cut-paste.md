@@ -7,3 +7,9 @@ cut -d, -f1,4,8
 
 echo test | rev | cut -c 2- | rev
 Corta los dos ultimos caracteres
+
+
+echo "ruby-activerecord-4.0.2
+> ruby-activerecord-deprecated_finders-1.0.3" | rev | cut -d '-' -f 2- | rev
+ruby-activerecord
+ruby-activerecord-deprecated_finders

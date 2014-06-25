@@ -59,7 +59,7 @@ fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui -v 0.4.3 -a all --ite
 
 ## Python ##
 
-Para generar rpm necesita: yum install rpm-build
+Para generar desde python: yum install python-setuptools
 
 A partir de un setup.py local
 fpm -s python -t rpm pyramid/setup.py
@@ -70,6 +70,8 @@ fpm -s python -t rpm pyramid
 
 Para que no genere las dependencias:
 --no-depends
+
+fpm -s python -t rpm -p . --python-bin /usr/bin/python2.7 --python-package-name-prefix python27 --python-install-lib /usr/lib/python2.7/site-packages paramiko
 
 
 ## Gemas ##

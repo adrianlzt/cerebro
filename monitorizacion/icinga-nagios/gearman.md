@@ -1,3 +1,7 @@
+## Instalación en Ubuntu Trusty 14.04 ##
+Instalar gearman-job-server  (no equivocarse con gearman-server)
+
+
 Gestor de colas.
 
 El master gestiona unas colas donde pone tareas.

@@ -31,3 +31,5 @@ Bucles con número de vuelta
 [:foo, :bar, :baz].to_enum.with_index(1).each do |elem, i|
   puts "#{i}: #{elem}"
 end
+
+El index estamos diciendo que empieze en 1, pero si queremos luego coger de otro array[i] tiene que empezar en 0

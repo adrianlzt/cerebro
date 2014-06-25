@@ -100,7 +100,9 @@ Para forzar el borrado haremos:
 
 PuppetDB can automatically deactivate nodes that haven’t checked in recently. To enable this, set the node-ttl setting.
   node-ttl: Auto-deactivate nodes that haven’t seen any activity (no new catalogs, facts, etc) in the specified amount of time
+            deactivate significa borrar los recursos exportados
   node-purge-ttl: Automatically delete nodes that have been deactivated for the specified amount of time
+                  borrar todo lo que se sabe del nodo. Como si nunca lo hubiesemos visto
 
 Note: Deactivating a node does not remove (e.g. ensure => absent) exported resources from other systems; it only stops managing those resources. If you want to actively destroy resources from deactivated nodes, you will probably need to purge that resource type using the resources metatype. Note that some types cannot be purged (e.g. ssh authorized keys), and several others usually should not be purged (e.g. users).
 Para esto lo más sencillo es usar un directorio con recurse=>true y purge=>true, asi los recursos que desactivemos serán borrados.

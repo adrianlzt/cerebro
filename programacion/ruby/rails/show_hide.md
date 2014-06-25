@@ -12,3 +12,8 @@ $(document).on('click','#show_script', function() {
 
 Se puede usar tambien .toggle() para cambiar entre show y hide
 
+
+Coffee
+$(document).on 'click','#show_df_checks', ->
+  event.preventDefault()
+  $("#df_checks").toggle()
