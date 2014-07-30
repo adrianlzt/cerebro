@@ -1,2 +1,6 @@
-Donde se almacenan las máquinas:
-/var/lib/lxc/
+/var/lib/lxc (default location for containers)
+/var/lib/lxcsnap (default location for snapshots)
+/var/cache/lxc (default location for the template cache)
+$HOME/.local/share/lxc (default location for unprivileged containers)
+$HOME/.local/share/lxcsnap (default location for unprivileged snapshots)
+$HOME/.cache/lxc (default location for unprivileged template cache)

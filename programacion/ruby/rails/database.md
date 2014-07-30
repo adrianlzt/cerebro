@@ -3,6 +3,9 @@ Se configura en /config/database.yaml
 Para producción:
 rake db:setup RAILS_ENV=production
 
+Para entrar:
+rails dbconsole
+
 Para configurar mysql:
 En el Gemfile:
   gem 'mysql2'

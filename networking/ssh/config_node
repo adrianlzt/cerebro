@@ -1,0 +1,11 @@
+# The following pattern would match any host in the 192.168.0.[0-9] network range:
+Host 192.168.0.?
+  User cloud-user
+  IdentityFile ~/.ssh/file.pem
+
+Host *.co.uk
+  User pepe
+
+Host nombrecorto
+  HostName nombre.del.host.com
+  Port 2200

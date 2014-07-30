@@ -3,8 +3,25 @@ CUIDADO: borra la asosiación a los grupos que no pongamos en esta lista
 usermod -G grupo1,grupo2 usuario
 
 
-Añadir a un grupo:
+## Añadir a un grupo secundario ##
+
+General:
+gpasswd -a adrian vboxusers
+
+Ubuntu:
 adduser adrian vboxusers
+
+CentOS:
+usermod -a -G ftp tony
+
+## Borrar de un grupo secundario ##
+
+General:
+gpasswd -d adrian vboxusers
+
+Ubuntu:
+deluser adrian vboxusers
+
 
 
 Hace falta volver a loguearse para que se apliquen los cambios.

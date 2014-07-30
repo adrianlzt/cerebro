@@ -42,3 +42,8 @@ define command {
 }
  
 command[check_logfiles]=/opt/nagios/libexec/check_logfiles --config logdefs.cfg
+
+
+Cuando se ejecuta el check_logfiles se almacena información en /var/tmp/check_logfiles
+Si la primera vez que se ejecuta se hace como root este directorio puede que no tenga permisos de escrita para otros usuarios, así que cuando nrpe intente ejecutar el check nos dirá:
+cannot write status file /var/tmp/check_logfiles/...

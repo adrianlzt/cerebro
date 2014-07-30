@@ -5,3 +5,6 @@ Abre una interfaz gráfica.
 
 Dump entero:
 dconf dump "/"
+
+
+Usar mejor gsettings

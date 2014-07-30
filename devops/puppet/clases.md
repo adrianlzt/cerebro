@@ -20,3 +20,12 @@ La declaración de clases es más extricta, y si declaramos dos veces la misma f
 Además que con include no podemos usar clases parametrizadas.
 
 Mejor manera es usar instanciación: class {'motd': }
+
+
+## require => ##
+
+Para hacer un require a un include:
+include graphite
+file {"foo":
+  require => Class['graphite']
+}

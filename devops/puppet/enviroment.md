@@ -9,6 +9,12 @@ Tambien se puede definir el entorno en /etc/puppet/puppet.conf
 Asi podemos decirle al master que entorno queremos usar en el master.
 
 
+A partir de la versión 3.5.0 recomiendan usar:
+environmentpath = $vardir/initiatives
+
+Con esa línea ya estamos diciendo que modules/ y manifests/ están debajo de ese path.
+
+## VIEJO ##
 Si definimos un modulepath específico en el puppet.conf del master:
 modulepath = $vardir/initiatives/$environment/modules:$vardir/initiatives/monitoring:/etc/puppet/modules
 

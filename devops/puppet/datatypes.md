@@ -20,6 +20,9 @@ $myhash = { key => "some value",
             other_key => "some other value" }
 notice( $myhash[key] )
 
+Las "claves" deben estar entrecomilladas o en minúscula.
+NO se puede hacer { Clave => "valor" }
+
 {a => 1} + {b => 2} # produces {a=>1, b=>2 }
 
 prefix(['a','b','c'], 'p')

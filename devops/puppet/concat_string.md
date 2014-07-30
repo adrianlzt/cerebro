@@ -1,4 +1,4 @@
-source = "#{ROOT_DIR}/" + project + "/App.config"
+source = "#{ROOT_DIR}/$project/App.config"
 
 
 https://github.com/puppetlabs/puppetlabs-concat

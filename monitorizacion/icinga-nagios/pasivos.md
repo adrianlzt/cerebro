@@ -38,21 +38,25 @@ Creamos la configuración de checks pasivos en el host icinga:
   define service {
           host_name                      client.com
           service_description            Check_disk_dev-shm
-          use                            generic-service
-          check_command                  check_dummy!0 "passive check"
+          use                            generic-service-passive
   }
   define service {
           host_name                      client.com
           service_description            Check_disk_boot
-          use                            generic-service
-          check_command                  check_dummy!0 "passive check"
+          use                            generic-service-passive
   }
 
-Parámetros habituales en checks pasivos:
-is_volatile                     1 # Si estamos en estado no-OK y llega otro no-OK, se tratará como si fuese la primera vez que pasa de OK a no-OK
-max_check_attempts              1 # Queremos que nos avise la primera vez que llegue
-passive_checks_enabled          1
-active_checks_enabled           0
+Service template para generic-service-passive
+define service {
+       name                            generic-service-passive
+       register                        0
+       use                             generic-service
+       check_command                   check_dummy!0 "passive check"
+       is_volatile                     1 # Si estamos en estado no-OK y llega otro no-OK, se tratará como si fuese la primera vez que pasa de OK a no-OK
+       max_check_attempts              1 # Queremos que nos avise la primera vez que llegue
+       passive_checks_enabled          1
+       active_checks_enabled           0
+}
 
 
 En el cliente creamos el fichero de ejecución para check_multi, test.cmd:

@@ -4,6 +4,9 @@ Nos saca los ficheros que han hecho match
 grep -L cosas *
 Nos sacan los ficheros que no han hecho match
 
+grep -c ...
+cuenta ocurrencias
+
 
 cat fichero | grep -A 5 -B 1 cosa
 Muestra 5 lineas despues del match y 1 antes
@@ -23,6 +26,8 @@ du -hsc * | egrep "^[0-9,]+[MG]"
 
 
 ps aux | grep pr[o]ceso  #Truco para que el propio grep no aparezca
+
+grep -q cosa Fichero || echo "No hay cosa en Fichero"
 
 
 Expresiones regulares con egrep

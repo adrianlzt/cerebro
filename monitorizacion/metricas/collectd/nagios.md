@@ -1,7 +1,10 @@
+
+## Chequear de forma activa Collectd ##
 https://github.com/collectd/collectd/blob/master/src/collectd-nagios.pod
 http://collectd.org/documentation/manpages/collectd-nagios.1.shtml
 https://collectd.org/wiki/index.php/Collectd-nagios
 http://www.3open.org/d/collectd/working_with_nagios
+  Como configurar todo.
 
 La idea es un pequeño plugin de nagios (collectd-nagios) que chequea valores en el socket que abre collectd.
 Le dices de que host y de que valor quieres leer, y el valor crítico y warning.
@@ -34,3 +37,10 @@ NaN se considera warning, excepto si ponemos "-m" que se considerará critical.
 ## Enviar checks pasivos a nagios ##
 http://mailman.verplant.org/pipermail/collectd/2012-August/005310.html
 Programa en perl
+
+http://github.com/adrianlzt/collectd_gearman
+Programa en ruby para enviar checks pasivos a Nagios/Icinga
+Envía el threshold a todos los services que podrían estar interesados. Por lo que seguramente salten Warnings en el log de icinga indicando que ha llegado un check del que icinga no es consciente.
+
+## Ejecutar checks de nagios con collectd ##
+Mirar plugins-desarrollo/nagios.md

@@ -138,3 +138,15 @@ https://github.com/plataformatec/devise/wiki/How-To%3a-Require-admin-to-activate
 Lo mas sencillo es hacer un scaffold de uuser, y luego cambiar uuser->user y Uuser -> User, y usar ese esqueleto generado para modificar lo de approval y admin.
 
 Las rutas, debe ir antes la de devis que el resources :users
+
+
+
+## Token auth ##
+Quitada en devise 3.1: http://blog.plataformatec.com.br/2013/08/devise-3-1-now-with-more-secure-defaults/
+
+http://stackoverflow.com/questions/5973327/using-devise-1-3-to-authenticate-json-login-requests/22582952#22582952
+  esta es muy sencilla, pero no consigo que me funcione
+https://gist.github.com/josevalim/fb706b1e933ef01e4fb6
+http://matteomelani.wordpress.com/2011/10/17/authentication-for-mobile-devices/
+https://gist.github.com/jwo/1255275
+

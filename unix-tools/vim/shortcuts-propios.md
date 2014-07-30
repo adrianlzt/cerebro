@@ -56,20 +56,6 @@ s
 con un fichero seleccionado, lo abre en una ventana horizontal
 
 
-,t
-Abrimos Command-T
-
-enter
-abrir fichero seleccionado
-
-Control+c
-Salir de Command-T
-
-Tab
-saltar a la ventana con los ficheros
-
-Control+v
-abrir en una vertical split window
 
 
 ,gc

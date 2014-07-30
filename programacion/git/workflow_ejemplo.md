@@ -17,5 +17,3 @@ git checkout -b release/x.y.z
 Esta rama se usará para testear la versión, y crear ramas bugfixes en caso de ser necesario.
 
 Dede las ramas releases, tras alcanzar el último hito de estabilidad se hará pull request a la rama master.
-
-

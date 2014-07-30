@@ -5,7 +5,11 @@ psql -h hostname -U username -d database
 Con password:
 psql -h hostname -U username -d database -W
 
+Ejecutar comandos desde la línea de comandos:
+$ psql -c "drop database prueba;"
+
 Mostrar databases:
+$ psql -l
 puppetdb=> \l
 
 Cambiar de database (como "use" en mysql):

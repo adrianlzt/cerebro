@@ -1,3 +1,6 @@
+http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html
+
+
 Formulario generado por el scaffold:
 
 La variable f es la que contiene los valores para rellenar los ya existentes:
@@ -60,6 +63,7 @@ El tener o no tener |f| implica tener que definir un nuevo parámetro, que defin
   el valor mínimo es 1 (podemos poner lo que queramos, pero las flechitas para elegir número es lo que nos pondrá)
 
 <%= f.text_area :campo %> <- campo de texto multilinea
+<%= f.text_area :params, cols: 60, rows: 1 %>
 
 <%= f.hidden_field :_destroy %> <- oculto
 

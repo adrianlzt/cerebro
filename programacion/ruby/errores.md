@@ -22,3 +22,13 @@ pg.rb:6: syntax error, unexpected ':', expecting ')'
 conn = PG.connect(dbname: 'sales')
 Esto es porque estamos usando la nueva forma de pasar parámetros con una versión de ruby < 1.9
 Tenemos que cambiarlo a:  :dbname => 'sales'
+
+
+
+OpenSSL::PKey::RSAError: BN lib
+Existe /dev/urandom?
+Ejecutar con strace:
+prueba.rb
+  require 'openssl'; OpenSSL::PKey::RSA.new(3)
+
+strace ruby prueba.rb

@@ -33,6 +33,7 @@ Subir a determinado remoto y branch		git push origin master
 Subir todas branches y tags			git push --all
 						git push --tags
 Copiar repo remoto				git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
+Copiar repo remoto y submodules			git clone --recursive <url> <dir-local> (si !<dir-local> crea un dir como el repo)
 Borrar remoto					git remote rm origin
 Ver conf remoto					git remote show origin
 Nueva rama					git branch <nombre>

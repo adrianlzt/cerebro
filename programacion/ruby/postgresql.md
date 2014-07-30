@@ -29,3 +29,12 @@ res[0] <- hash con los valores de la primera fila
 Definir usuario, pass, host, etc
 PG.connect(host, port, options, tty, dbname, login, password) 
 conn = PG.connect('127.0.0.1', nil, nil, nil, 'puppet', 'puppet', 'puppet')
+
+Este no consigo que me funcione
+conn = PG::Connection.connect_start(host: POSTGRESQL_SERVER, dbname: POSTGRESQL_DBNAME, user: POSTGRESQL_USER, password: POSTGRESQL_PASS)
+
+
+## Status ##
+conn.status
+PG::CONNECTION_OK = 0
+PG::CONNECTION_BAD = 1

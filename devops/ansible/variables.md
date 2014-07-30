@@ -25,7 +25,7 @@ Almacenar variable en fichero:
     ...
     register: releases
 
-  - name: copiar a fichero
+  - name: copiar {{releases}} a fichero
     shell: echo "{{releases}}" > /tmp/otro/pruebas-assets/REGISTER
 
 

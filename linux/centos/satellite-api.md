@@ -23,6 +23,9 @@ RhnSatellite::Systemgroup.https = false
 satellite_system = RhnSatellite::System.get('HOSTNAME')
 pp satellite_system
 
+Opciones de system:
+https://github.com/duritong/ruby-rhn_satellite/blob/master/lib/rhn_satellite/system.rb
+
 
 
 Ejemplo en ruby:

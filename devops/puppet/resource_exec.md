@@ -28,6 +28,29 @@ exec { 'update_repos' :
   onlyif => '/usr/bin/test $(( $(date +%s) - $(stat -c %Z /var/cache/apt/pkgcache.bin) )) -gt $(( 24 * 60 * 60 ))',
 }
 
+# run exec only if command in onlyif returns 0.
+# Ejecuta si encuentra old_account en /etc/passwd
+exec { "run_account_purger":
+    command => "/usr/local/sbin/account_purger",
+    onlyif => "grep -c old_account /etc/passwd",
+}
+
+# si encuentra la palabra 'django' ejecuta el find
+exec { "fix_graphite_django1.6":
+  command => '/usr/bin/find /opt/graphite/webapp/graphite -iname "urls.py" -exec /bin/sed -i s/"django"/"pepe"/ {} \;',
+  onlyif => "grep -r 'django' /opt/graphite/webapp/graphite",
+}
+
+
+
+# or run multiple commands - all must succeed for exec to run
+exec { "run_account_purger":
+    command => "/usr/local/sbin/account_purger",
+    onlyif => [ 
+                "grep -c old_account /etc/passwd", 
+                "test -d /home/old_account/"
+              ]
+}
 
 
 refreshonly. solo se ejecuta si se lo pide otro módulo.

@@ -1,0 +1,5 @@
+https://code.google.com/p/badvpn/wiki/NCD
+
+NCD, the Network Configuration Daemon, is a programming/scripting language originally designed for configuration of network interfaces. It implements various functionalities, both high- and low-level, as built-in commands, which may be used from an NCD program wherever and for whatever purpose the user needs them. The primary feature that distinguishes NCD from common imperative scripting languages is backtracking, which makes writing common configuration tasks so much easier. NCD does a very good job with hotplugging in various forms, like USB network interfaces and link detection for wired devices. New features can be added by implementing commands as C-language modules using a straightforward interface. However, NCD has some features that make it possible to implement complex functionalities directly within the language without having to resort to writing C code.
+
+NCD is only available for Linux. It is included in the BadVPN software package.

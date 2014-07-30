@@ -11,9 +11,15 @@ render :otro <- otro.html.erb
 Render un error y salir
 render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false) and return
 
+render status: 400, json: "Project #{@project} does not exists" and return if proj.nil?
+
+
 Render un partial (buscara el nombre con un guion bajo '_' delante del nombre)
 <%= render 'parte' %>
 <%= render 'host_group_field', f: builder %>
+
+Render nada:
+render nothing: true
 
 
 # Render a una variable #

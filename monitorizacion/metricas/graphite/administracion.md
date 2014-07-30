@@ -9,3 +9,11 @@ Arranca listeners en:
 
 Logs
 /opt/graphite/storage/log
+
+
+Definir el superuser
+cd /opt/graphite/webapp/graphite
+python manage.py createsuperuser
+
+Entrar en la interfaz administrativa:
+/account/login

@@ -162,3 +162,30 @@ after_destroy :log_destroy
 def log_destroy
   logger.info "Elemento #{id} borrado"
 end
+
+
+# Nuevos setters o getters
+
+  def name
+    self.hostname
+  end
+
+  def name= name
+    self.hostname = name
+  end
+
+
+# Comparación
+
+  def self.attributes_to_ignore_when_comparing
+    [:id, :created_at, :updated_at, :host_group_id, :check_id, :host_id, :environment_id, :vip_id, :project_id, :command_id, :eventhandler_id]
+  end
+
+  def ==(comparison_object)
+    comparison_object.command.name == self.command.name and
+    comparison_object.check.name == self.check.name and
+    comparison_object.check.name == self.check.name and
+    self.attributes.except(*self.class.attributes_to_ignore_when_comparing.map(&:to_s)) ==
+    comparison_object.attributes.except(*self.class.attributes_to_ignore_when_comparing.map(&:to_s))
+  end
+

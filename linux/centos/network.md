@@ -28,3 +28,10 @@ DEVICE=eth0
 BOOTPROTO=dhcp
 HWADDR=00:19:D1:2A:BA:A8
 ONBOOT=yes
+
+
+## Rutas ##
+/etc/sysconfig/network-scripts/route-eth0 
+10.0.0.240/28 via 10.0.0.126
+10.0.1.0/24 via 10.0.0.126
+

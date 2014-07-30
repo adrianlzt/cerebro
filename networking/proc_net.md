@@ -31,3 +31,14 @@ cat /proc/net/tcp | tail -1 | cut -d ':' -f 1 | tr -d ' '
 
 Número de conexiones en TIME_WAIT
 cat /proc/net/tcp | grep " 06 " | wc -l
+
+
+## Estado del interfaz ##
+https://www.kernel.org/doc/Documentation/networking/operstates.txt
+https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/core/net-sysfs.c?id=refs/tags/v2.6.32.63#n144
+
+/sys/class/net/<iface>/operstate
+
+Indicates the interface RFC2863 operational state as a string.
+Possible values are:
+"unknown", "notpresent", "down", "lowerlayerdown", "testing", "dormant", "up".

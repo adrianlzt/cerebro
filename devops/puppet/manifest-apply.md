@@ -47,3 +47,5 @@ puppet apply --modulepath=/root/dev/modules ...
   failures during the transaction, and an exit code of '6' means there were both
   changes and failures.
 
+# Override facts #
+FACTER_operatingsystem=WINDOZZ puppet apply -e 'notify { "We are running on $::operatingsystem": }'

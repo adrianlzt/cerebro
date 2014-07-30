@@ -7,7 +7,8 @@ http://effbot.org/zone/python-list.htm
 lista.pop #Saca 11 y lo elimina de la lista
 lista.pop(0) #Saca 'asda' y lo elimina de la lista
 len(lista) #Longitud de la lista
-list.index(elemento) #Nos dice la posicion de un elemento, y nos vale para saber si lo contiene
+list.index(elemento) #Nos dice la posicion de un elemento
+if valor in list # Nos vale para saber si un elemento esta en un array
 lista[1] #Obtener el elemento que esta en esa posición de la lista
 
 
@@ -26,3 +27,18 @@ Operaciones sobre listas: filter, map, reduce
 ...
 >>> filter(f, range(2, 25))
 [5, 7, 11, 13, 17, 19, 23]
+
+
+# list comprehension #
+[f for f in milista if metodo(f)]
+
+Me devuelve los elementos de mi lista que cumplan metodo(f)
+
+
+# set - eliminar duplicados #
+>>> a = [1,2,3,4,2,1,5]
+>>> set(a)
+set([1, 2, 3, 4, 5])
+
+# interset - elementos en ambas listas #
+

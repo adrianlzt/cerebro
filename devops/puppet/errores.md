@@ -86,3 +86,24 @@ java.lang.OutOfMemoryError: Java heap space
 Dumping heap to /var/log/puppetdb/puppetdb-oom.hprof ...
 Heap dump file created [205618378 bytes in 1,726 secs]
   Aumentar el heap space. Mirar puppetdb-scaling.md
+
+
+Error: Could not retrieve catalog from remote server: Error 400 on SERVER: invalid byte sequence in US-ASCII at /var/lib/puppet/initiatives/dsn_dev/manifests/monitoring.pp:20 on node client2.com
+  Reiniciar el puppetmaster
+https://projects.puppetlabs.com/issues/22563
+
+
+
+Error: Could not retrieve catalog from remote server: Error 502 on SERVER: <html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx/1.4.2</center>
+</body>
+</html>
+Warning: Not using cache on failed catalog
+Error: Could not retrieve catalog; skipping run
+
+Timeout en el unicorn. Podemos verlo en el log de error de nginx.
+Aumentar el timeout en /etc/puppet/unicorn.conf
+

@@ -1,4 +1,7 @@
-Lo hacemos mediante pathongen
+http://vimawesome.com/
+
+
+Gestionar con Vundle (mirar vundle.md)
 
 Poner las extensiones en bundle, y automáticamente funcionan:
 cd ~/.vim/bundle
@@ -8,10 +11,7 @@ NertTree
 https://github.com/scrooloose/nerdtree
 ,nn -> abrir ventana de archivos
 
-Command-t
-Instalar con pathogen
-https://wincent.com/blog/command-t-1.0.1-released
-http://git.wincent.com/command-t.git/blob_plain/HEAD:/doc/command-t.txt
+
 
 Syntastic
 https://github.com/scrooloose/syntastic

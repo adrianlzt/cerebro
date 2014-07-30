@@ -65,6 +65,8 @@ class { 'foo': stage => 'pre' }
 stage { 'pre': }
 stage { 'post': }
 
+Hace falta definirlas primero
+stage { [ pre, post ]: }
 
 
 file {'/tmp/test1':

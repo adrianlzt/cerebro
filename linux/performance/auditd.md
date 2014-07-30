@@ -9,6 +9,7 @@ Mostrar todas las reglas:
 Vigila el fichero /etc/passwd ante lecturas(r), escrituras(w), ejecuciones(x) y atributos(a)
 Le asigna la palaba "password-file", para poder luego buscar estas interacciones
 # auditctl -w /etc/passwd -p rwxa -k password-file
+  IMPORTANTE! Poner -w primero y luego -p
 
 El path debe ser absoluto.
 

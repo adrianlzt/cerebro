@@ -50,3 +50,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 If the /etc/cron.allow file exists, then you must be listed (one user per line) therein in order to be allowed to use this command.   If  the  /etc/cron.allow file does not exist but the /etc/cron.deny file does exist, then you must not be listed in the /etc/cron.deny file in order to use this command.
 
+
+Background.
+Las tareas se ejecutan en background por defecto, por lo que no hace falta poner & al final del comando:
+https://help.ubuntu.com/community/CronHowto
+  "These commands (and their run times) are then controlled by the cron daemon, which executes them in the system background"
