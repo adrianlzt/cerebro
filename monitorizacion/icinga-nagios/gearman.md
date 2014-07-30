@@ -33,3 +33,7 @@ Ejemplo: (echo status ; sleep 0.1) | netcat 127.0.0.1 4730
 
 Vaciar una cola: /usr/bin/gearman -t 1000 -n -w -f function_name > /dev/null
   which basically dumps all the jobs into /dev/null
+
+
+## Servicegroups ##
+Si un service apunta a un host y tiene configurado un servicegroup, si este servicegroup está definido para generar una cola distinta, el service se meterá en esta cola en vez en la cola del hostgroup.

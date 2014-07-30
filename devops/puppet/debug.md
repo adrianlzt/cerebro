@@ -14,6 +14,15 @@ puppet apply --debug --trace cosa.pp
 ruby -dw /usr/bin/puppet apply ...
 
 
+# Trazas en código #
+warning("mensaje")
+Genera:
+  Warning: Scope(Class[main]): prueba
+
+# Inspecionar trafico #
+Mirar sniffing.md
+
+
 
 ## Debug línea por línea (mirar ruby/debug.md) ##
 gem install ruby-debug

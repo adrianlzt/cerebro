@@ -1,3 +1,8 @@
+Editar siempre con visudo.
+O si queremos editar un fichero en particular:
+visudo -f /etc/sudoers.d/fichero
+
+
 Sintaxis:
 user    MACHINE=COMMANDS
 

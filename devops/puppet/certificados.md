@@ -1,6 +1,15 @@
 http://docs.puppetlabs.com/puppetdb/latest/install_from_source.html
 https://hurricanelabs.com/blog/managing-puppet-certificates/
 
+## SSL ##
+http://www.masterzen.fr/2010/11/14/puppet-ssl-explained/
+
+Simular conexión desde un cliente
+openssl s_client -host puppet -port 8140 -cert /var/lib/puppet/ssl/certs/$(hostname).pem -key /var/lib/puppet/ssl/private_keys/$(hostname).pem -CAfile /var/lib/puppet/ssl/certs/ca.pem
+
+Esnifar tráfico entre master y slave: mirar sniffing.md
+
+
 
 Para autofirmar
 

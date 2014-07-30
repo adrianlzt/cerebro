@@ -42,19 +42,23 @@ http://api.rubyonrails.org/classes/ActiveRecord/Migration.html
 IMPORTANTE! Si cambiamos un nombre, tendremos que cambiar a mano las vistas, controllers, etc que lo use
 
 Nos generará un .rb vacío, listo para meter estos, u otros comandos:
-  add_column :tweets, :part_number, :string
-  change_column(table_name, column_name, type, options)
-  rename_column :zombies, :oldname, :newname
-  remove_column(table_name, column_names)
-
-  create_table(name, options)
-  change_table(name, options)
-  rename_table :oldname, :newname
-  drop_table :zombies
-
-  add_index(table_name, column_names, options)
-  remove_index(table_name, column: column_name)
-  remove_index(table_name, name: index_name)
+Class NombreMigracion < ActiveRecord::Migration
+  def change
+    add_column :tweets, :part_number, :string
+    change_column(table_name, column_name, type, options)
+    rename_column :zombies, :oldname, :newname
+    remove_column(table_name, column_names)
+  
+    create_table(name, options)
+    change_table(name, options)
+    rename_table :oldname, :newname
+    drop_table :zombies
+  
+    add_index(table_name, column_names, options)
+    remove_index(table_name, column: column_name)
+    remove_index(table_name, name: index_name)
+  end
+end
 
 Ejemplo sin comandos cortos:
 change_table :products do |t|
@@ -85,7 +89,8 @@ Esto crea la base de datos, las tablas (basándose en el fichero schema.rb) y ca
 
 
 # Migración para cambiar una columna de tipo string a text
-class ChangeCommandlineToText < ActiveRecord::Migration
+rails g migration ChangeCommandLineToText
+class ChangeCommandLineToText < ActiveRecord::Migration
   def change
     change_column :commands, :command_line, :text
   end

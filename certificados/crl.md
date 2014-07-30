@@ -17,7 +17,7 @@ crlnumber: a text file containing the next CRL number to use in hex. The crl num
 
 
 En CentOS para regenerar el crl de puppet:
-openssl ca -keyfile private_keys/puppet.service.dsn.inet.pem -cert certs/puppet.service.dsn.inet.pem -gencrl -out crl.pem
+openssl ca -keyfile private_keys/puppet.inet.pem -cert certs/puppet.inet.pem -gencrl -out crl.pem
 
 Antes ha sido necesario:
   touch /etc/pki/CA/index.txt

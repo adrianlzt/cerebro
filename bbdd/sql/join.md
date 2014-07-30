@@ -44,6 +44,14 @@ Select CO.Name As OwnerName ,CO.Occupation ,C.Name As CatName
   From CatOwners CO Left Join Cats C
   On C.CatOwnerName = CO.Name;
 
+SELECT h.name,tp.name AS check_period, tp2.name as notification_period
+FROM 
+host_templates AS h 
+LEFT JOIN timeperiods AS tp 
+  ON h.check_period_id = tp.id
+LEFT JOIN timeperiods AS tp2 
+  ON h.notification_period_id = tp2.id;
+
 
 
 # Right outer join

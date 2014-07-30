@@ -1,3 +1,5 @@
+http://docs.icinga.org/latest/en/clusters.html
+
 Para chequear clusters hay varias opciones.
 
 # Activo - Pasivo #

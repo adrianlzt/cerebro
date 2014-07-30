@@ -56,7 +56,7 @@ content => template('motd/motd.erb')
 <% end %>
 
 
-Iterar
+## Iterar ##
 $values = [val1, val2, otherval]
 
 <% if @values and not @values.empty? -%>
@@ -67,11 +67,14 @@ $values = [val1, val2, otherval]
   #No values in $values
 <% end -%>
 
-Syntax Checking: ERB files are easy to syntax check. For a file mytemplate.erb, run
+<%= k %> <%= if v.is_a? String; "\"#{v}\""; else;  v; end %>
+
+
+## Syntax Checking: ERB files are easy to syntax check. For a file mytemplate.erb, run
 erb -P -x -T '-' mytemplate.erb | ruby -c
 
 
-Substitución de caracteres
+## Substitución de caracteres
 <%= @fqdn.gsub(/a/, 'b') %> <-- cambia las 'a' por 'b'
 <%= @fqdn.sub(/a/, 'b') %> <-- cambia la primera 'a' por 'b'
 
@@ -81,3 +84,10 @@ Substitución de caracteres
 
 # Conditionals
 <%= if @var != '' %>...<% end %>
+<%= if v.is_a? String; "\"#{v}\""; else; v; end %>
+
+# Hiera
+<%= scope.function_hiera(['graphite_node']) %>
+
+
+

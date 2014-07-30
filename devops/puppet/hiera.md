@@ -143,6 +143,8 @@ hiera acme_version --yaml /var/lib/puppet/yaml/facts/example.com.yaml
 Devolver un valor por defecto si no se encuentra nada
 hiera acme_version 'sites/%{location}'
 
+# Templates
+<%= scope.function_hiera(['graphite_node']) %>
 
 ## Develop ##
 Read: https://github.com/puppetlabs/hiera/blob/master/CONTRIBUTING.md

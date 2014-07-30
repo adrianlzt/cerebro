@@ -21,6 +21,9 @@ Para usar esto en CSS usamos plantillas (mas en scss.md)
 app/assets/stylesheets/zombie.css.erb
 background-image: url(<%= asset_path('button.png') %>); <- de esta manera se generará un link tipop /assets/button-a7fgh834hsd.png
 
+IMPORTANTE:
+asegurarse que el directorio assets y los ficheros tienen permiso de lectura++ejecucción para others.
+
 
 ## JavaScript##
 Las librerias javascript se cargan con:

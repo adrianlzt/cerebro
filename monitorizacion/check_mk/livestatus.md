@@ -8,6 +8,9 @@ Ejemplo de query al socket:
 $ nc -U /var/spool/icinga/cmd/live
 GET services
 
+$ nc -U /var/spool/icinga/cmd/live <<< "GET services"
+
+
 Un poco más escueta (obligatorio el Limit)
 GET services
 Columns: host_name host_state service_check_command service_description service_state

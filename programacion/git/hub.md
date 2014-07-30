@@ -45,3 +45,13 @@ $ git browse REPO pulls
 $ git init -g
 > git init
 > git remote add origin git@github.com:YOUR_USER/REPO.git
+
+## Enterprise ##
+Usando git con un servidor enterprise y con github
+https://coderwall.com/p/rstnga
+No consigo que me funcione con enterprise.
+
+La variable según el man es:
+GITHUB_HOST=my.git.org git clone myproject
+
+Tampoco me funciona: "Aborted: the origin remote doesn't point to a GitHub repository."

@@ -11,8 +11,17 @@ Es lo mismo que
   for n in a
 que
   a.each do |n|
-La difenrencia es que si a es nil el segundo dará error
 
+Hay que tener cuidado si la variable "a" es nil ya que dará un error.
+myArr.each { |item| p item } unless myArr.nil?
+
+a && a.each do |x|
+  puts x
+end
+
+a.each do |x|
+  puts x
+end unless a.nil?
 
 Para arrays también:
 a=[0,1,2]
@@ -25,6 +34,7 @@ apps.each { | clave, valor| puts "clave: #{clave}   valor: #{valor} }
 
 
 next sirve para saltar a la siguiente vuelta, es como break en otros lenguajes
+Jumps to next iteration of the most internal loop. Terminates execution of a block if called within a block (with yield or call returning nil).
 
 
 Bucles con número de vuelta

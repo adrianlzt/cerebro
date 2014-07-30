@@ -14,8 +14,9 @@ define monitorizacion::deftypetest (
 
 Uso:
 monitorizacion::deftypetest {'nombre':
-  $nombre => "hola",
-  $apellido => "pepe",
+  nombre => "hola",
+  apellido => "pepe",
+  param => inline_template("<%= @var || 'por defecto' %>"),
 }
 
 

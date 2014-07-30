@@ -22,7 +22,6 @@ disk2.conf
 </Plugin>
 
 
-Pero con thresholds no está permitido, todo debe ir definido dentro del mismo <Plugin threshold>
-Si no, nos dará el error: 
+Con thresholds está permitido definir varios <Plugin threshold> pero nos dará el warning (https://github.com/collectd/collectd/issues/551): 
 Starting collectd: plugin: register_callback: a callback named `threshold' already exists - overwriting the old entry!
 

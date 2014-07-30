@@ -21,7 +21,8 @@ Para compilar nrpe en Ubuntu tuve que instalar el paquete libssl-dev y hacer el 
 
 Ejecutar todos los comandos de nrpe, si tenemos un comando por fichero:
 cd /etc/nrpe.d
-for i in `ls`; do $(cat $i| cut -d "=" -f 2); echo "" ; done
+sudo -u nrpe /bin/bash
+for i in `ls`; do echo $i; $(cat $i| cut -d "=" -f 2); echo "" ; done
 
 
 

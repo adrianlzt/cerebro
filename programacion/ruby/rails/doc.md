@@ -12,3 +12,5 @@ http://railsforzombies.org
 http://ruby.railstutorial.org/
 
 http://ruby.railstutorial.org/ruby-on-rails-tutorial-book#top
+
+http://www.railstutorial.org/book

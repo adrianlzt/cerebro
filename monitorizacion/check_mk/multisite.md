@@ -18,3 +18,8 @@ Si no definimos socket, se sobreentiende que es el localhost.
 Las configuraciones las meteremos en ficheros separados dentro de multisite.d/fichero.mk
 
 No es necesario reiniciar para ver los cambios en la interfaz
+
+
+Configurar el socket de livestatus en multisite:
+/usr/share/multisite/htdocs/defaults.py
+livestatus_unix_socket      = '/var/spool/icinga/cmd/live'

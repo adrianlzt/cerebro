@@ -17,6 +17,10 @@ gem content nombre
 
 Instalar:
 gem install nombre
+gem install mime-types --version 1.25.1
+
+Bajar el fichero .gem
+gem fetch nombre
 
 Actualizar
 gem update nombre

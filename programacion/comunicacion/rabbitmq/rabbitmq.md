@@ -1,7 +1,5 @@
 http://www.rabbitmq.com/
 
-Desarrollador de openstack dice que tienen problemas de escalabilidad con RabbitMQ
-
 Robust messaging for applications
 Easy to use
 Runs on all major operating systems

@@ -70,3 +70,15 @@ Instalarla a mano:
 sudo gem install debugger -v '1.6.8' --install-dir /var/lib/gems/2.0.0/
 Para saber el directorio:
 bundle show ALGUNAGEMA
+
+
+
+No se usan los assets en producción. Apunta directamente a javascript/application.js
+http://stackoverflow.com/questions/8760382/rails-3-1-assets-pipeline-in-production
+http://stackoverflow.com/questions/8824734/why-does-stylesheet-link-tag-not-link-to-assets-in-production
+Mi problema era que el directorio assets no tenia permisos de lectura+ejecuccion para others. En el caso de que un asset no tenga permisos de lectura sale un error, pero si el directorio es el que tiene los permisos mal no generará el asset correcto, envíandonos al application.js directamente.
+
+
+Can't verify CSRF token authenticity
+Para evitar que salte este error en un metodo de un controller, poner al commienzo:
+skip_before_filter :verify_authenticity_token, :only => [:monit_node]

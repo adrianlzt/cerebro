@@ -10,6 +10,12 @@ bundle show GEMA
 
 Railcast (video) de como usarlo: http://railscasts.com/episodes/245-new-gem-with-bundler
 
+Como crear un proyeto: http://stackoverflow.com/questions/9549450/how-to-setup-a-basic-ruby-project
+
+Ejemplos de proyectos para copiar estructura:
+https://github.com/jimweirich/rake
+https://github.com/github/hub
+
 bundle gem nombre
 Nos crea el directorio nombre con los ficheros necesarios y git iniciado
 
@@ -48,13 +54,37 @@ rake release
 
 
 Poniendo un binario (del manual de make your own gem):
+http://guides.rubygems.org/make-your-own-gem/#adding-an-executable
 mkdir bin
 touch bin/lci
 chmod a+x bin/lci
 vi bin/lci:
+
 #!/usr/bin/env ruby
-require 'hola'
-puts Hola.hi(ARGV[0])
+
+require 'rake'
+Rake.application.run
+
+
+lib/application.rb:
+require 'optparse'
+module Rake
+  class Application
+    def run
+      handle_options
+      load_blabla
+      top_level
+    end
+    def handle_options
+      # parsear opciones
+    end
+  end
+end
+
+
+En el .gemspec poner
+s.executables << 'lci'
+  No hace falta, el gemspec ya mete lo que haya en bin/
 
 Aumentar lib/nobre/version.rb ?
 
@@ -63,7 +93,7 @@ git add bin/*
 git cam "Binario de nuestra app"
 
 Podemos testear nuestro binario con (los binarios los instala en /usr/local/bin, en Ubuntu):
-ruby bin/nombre  (hace falta poner -Ilib/  ??)
+ruby -Ilib/ bin/nombre
 
 
 rake build

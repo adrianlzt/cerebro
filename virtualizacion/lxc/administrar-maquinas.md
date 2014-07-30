@@ -1,6 +1,11 @@
+## Arrancar máquina
+lxc-start -dn NOMBRE
+  arrancar en modo daemon, si no, nos entra en el login de la máquina
+
 ## Conectar a la consola de la maquina
 lxc-console --name NOMBRE
 Para salir de la consola: Control+a q
+No funciona screen.
 
 ## Deter máquina
 lxc-stop --name NOMBRE
@@ -15,3 +20,6 @@ lxc-ls --fancy
   --frozen
   --running
   --stopped
+
+## Info de una máquina
+lxc-info -n NOMBRE

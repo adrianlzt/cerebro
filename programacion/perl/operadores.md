@@ -5,3 +5,16 @@ $var =~ /regexp/;
 
 Operadores:
 http://www.tutorialspoint.com/perl/perl_operators.htm
+
+
+String Operator     Numerical Operator
+     eq                    ==
+     ne                    !=
+     gt                    >
+     lt                    <
+     ge                    >=
+     le                    <=
+
+and
+or
+not

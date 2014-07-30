@@ -95,3 +95,5 @@ Cambiar permisos a un fichero FIFO
     onlyif => '/usr/bin/test `stat -c "%G" /var/lib/icinga/rw/icinga.cmd` != www-data',
   }
 
+# Bloquear un fichero
+sudo chattr +i fichero

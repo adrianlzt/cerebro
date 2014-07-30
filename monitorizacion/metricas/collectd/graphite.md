@@ -8,9 +8,13 @@ LoadPlugin write_graphite
   <Carbon>
     Host "172.17.0.2"
     Port "2003"
-    #Protocol [tcp|udp] # tcp es eficiente, mantiene socket abierto
+    Protocol tcp|udp    # tcp es eficiente, mantiene socket abierto
                         # puede que no tenga abierto udp en el carbon
-			# definir alguno
+                        # creo que es para versiones >= 5.3
+                        # tcp por defecto para versiones <= 5.3
+                        # udp para versiones >= 5.3 (al menos para la 5.4.0 de Ubuntu)
+		# DEFINIR UNO!!
+
     #LogSendErrors [true|false] # Loguea errores en la conex con graphite
     Prefix "collectd" # cadena que se antepone al hostname
     #Postfix "collectd" # cadena que se pone al final

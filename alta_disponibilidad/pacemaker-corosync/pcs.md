@@ -8,6 +8,9 @@ http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch03.h
 Traducción crm <-> pcs
 https://github.com/ClusterLabs/pacemaker/blob/master/doc/pcs-crmsh-quick-ref.md
 
+El usuario que tiene permisos para ejecutar pcs (a parte de root) es hacluster.
+Si queremos que otros usuarios tengan permiso les agregaremos al grupo: haclient
+
 
 Desactivar STONITH:
 pcs property set stonith-enabled=false
@@ -64,6 +67,12 @@ Limpiar recurso
 pcs resource cleanup NOMBRE
 
 
+Consultar las constraint:
+pcs constraint --full
+
+Mostrar solo las location constraint:
+pcs constraint location --full
+
 
 
 ## pcsd ##
@@ -91,3 +100,4 @@ Nada, no la pilla
 
 Intento instalar la gema por mi cuenta
 Probar tambien con la gema pam a secas
+

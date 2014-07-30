@@ -1,3 +1,7 @@
+##########
+# Ubuntu #
+##########
+
 # https://help.ubuntu.com/community/BasicChroot
 Crear un entorno enjaulado para hacer pruebas:
 Como root:
@@ -32,3 +36,41 @@ cp /etc/resolv.conf /srv/chroot/precise/etc/resolv.conf
 
 Entramos en el entorno chrooteado:
 chroot /srv/chroot/precise
+
+
+
+##########
+# CentOS #
+##########
+http://geek.co.il/2010/03/14/how-to-build-a-chroot-jail-environment-for-centos
+
+mkdir /opt/puppet-simulator
+mkdir -p /opt/puppet-simulator/var/lib/rpm
+rpm --rebuilddb --root=/opt/puppet-simulator
+wget http://mirror.centos.org/centos/6.5/os/x86_64/Packages/centos-release-6-5.el6.centos.11.1.x86_64.rpm
+rpm -i --root=/opt/puppet-simulator --nodeps centos-release-6-5.el6.centos.11.1.x86_64.rpm
+yum --installroot=/opt/puppet-simulator install -y rpm-build yum
+
+# Montar /proc y /dev enlazados. OpenSSL por ejemplo necesita /dev/urandom
+mount --bind /proc /opt/puppet-simulator/proc
+mount --bind /dev /opt/puppet-simulator/dev
+
+chroot /opt/puppet-simulator
+
+
+
+
+## schroot ##
+Permitir a usuarios no root entrar y ejecutar comandos en entornos chroot.
+
+/etc/schroot/chroot.d/puppet.conf
+[puppet]
+type=plain
+description=Puppet simulator
+directory=/opt/puppet-simulator
+users=apache
+groups=apache
+root-groups=apache
+
+Permite al usuario apache ejecutar comandos como root en el chroot:
+apache$ schroot -c puppet -u root -d / yum install nc
