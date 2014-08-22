@@ -72,6 +72,15 @@ Obtener un fact de un nodo
 curl -G 'http://192.168.51.2:8080/v3/nodes/NOMBRE/facts/NOMBREFACT'
 
 
+Todos los recursos User:
+curl -X GET 'http://puppetdb:8080/v2/resources/User'
+
+Todos los recursos de la clase: monitorizacion::icinga::host_template
+curl -X GET 'http://localhost:8080/v2/resources/Monitorizacion::Icinga::Host_template'
+curl -X GET 'http://localhost:8080/v2/resources/Monitorizacion::Icinga::Host_template' --data-urlencode 'query=["=", "certnam "host1.com"]'
+  Con esta query podemos ver los parametros que se pasan.
+
+
 Con la gema rest-client (https://github.com/rest-client/rest-client) y la gema json
 require 'rest-client'
 response = RestClient.get 'http://192.168.51.2:8080/v3/nodes', {:accept => :json, :params => {:query => '["~", "name", "client.*"]'}}

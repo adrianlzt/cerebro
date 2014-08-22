@@ -29,10 +29,16 @@ Para usarlo en un playbook:
 ansible-playbook site.yml --ask-vault-pass
 ansible-playbook site.yml --vault-password-file ~/.vault_pass.txt
 
-Usar alias para no tener que escribir:
+Usar alias para no tener que escribir (VIEJO):
 alias ansible='ansible --vault-password-file ~/.ansible.vault'
 alias ansible-playbook='ansible-playbook --vault-password-file ~/.ansible.vault'
 alias ansible-vault='ansible-vault --vault-password-file ~/.ansible.vault'
+
+A partir de ansible 1.7:
+~/.ansible.cfg
+vault_password_file = ~/.ansible.vault
+
+No funciona? https://github.com/ansible/ansible/pull/7649/files
 
 
 ## Ejemplo de uso con variable ##

@@ -1,3 +1,5 @@
+Notice no devuelve un código 2 al ejecutarse, como si hace notify.
+
 check.pp:
 class check (
   $puerto

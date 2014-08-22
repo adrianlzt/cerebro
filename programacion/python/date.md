@@ -8,3 +8,6 @@ datetime.date(2013, 11, 26)
 '2013-11-26'
 
 
+import time
+int(time.time())
+unix epoch

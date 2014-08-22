@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 // Compilar
-// gcc -o open open_file.c
+// gcc -o open file_open.c
 // Crea un fichero en /mnt/testfile.txt
 // Los códigos de error varian entre no tener permisos o que el punto de montaje este en RO
 //

@@ -53,3 +53,13 @@ Instalar rpm (meter el rpm en el files/ del module):
     require => File["/tmp/${package}"],
   }
 
+
+
+## Absent en redhat family ##
+Si marcamos un paquete como absent en redhat intentará borrarlo con "rpm -e"
+Si ese paquete tiene alguna dependencia, dará un error y no se borrará.
+La opción --noop no nos avisará de este problema.
+
+Para forzar el borrado recursivo:
+ensure => purged
+

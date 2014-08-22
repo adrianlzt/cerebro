@@ -1,7 +1,6 @@
 % http://en.wikibooks.org/wiki/LaTeX/Glossary
 % http://get-software.net/macros/latex/contrib/glossaries/glossaries-user.pdf
 % http://tex.stackexchange.com/questions/100354/list-of-abbreviations/100377#100377
-% http://osl.ugr.es/CTAN/macros/latex/contrib/nomencl/nomencl.pdf
 
 
 %% glossaries
@@ -39,21 +38,6 @@ Here is some text, where we use \gls{apc}.
 
 % Si tenemos problemas con la compilacion borrar el fichero *.gls
 
-
-
-
-%% nomencl
-\documentclass{article}
-\usepackage[refpage]{nomencl}
-
-\makenomenclature
-
-\begin{document}
-Here is some text, where we use APC.\nomenclature{APC}{antigeen-presenterende cel}
-
-\printnomenclature
-\end{document}
-% pdflatex; makeindex -s nomencl.ist -t liselot.nlg -o liselot.nls liselot.nlo; pdflatex 
 
 
 

@@ -11,6 +11,9 @@ render :otro <- otro.html.erb
 Render un error y salir
 render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false) and return
 
+render inline: "Error: Project #{p} does not exists" and return if @project.nil?
+
+
 render status: 400, json: "Project #{@project} does not exists" and return if proj.nil?
 
 

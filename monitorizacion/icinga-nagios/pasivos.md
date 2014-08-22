@@ -69,3 +69,10 @@ El nombre, restricción de check_multi, solo puede tener: A–Za-z0–9_
 Para enviar los resultados al icinga:
 /usr/lib/nagios/plugins/check_multi -f test.cmd -r 256 | send_multi --server=icinga --encryption=yes --key=should_be_changed --host="client.com"
 
+
+## Perl ##
+Cliente send_gearman en perl
+https://github.com/ssm/hacks/blob/master/monitor/munin-gearman-icinga/send-mod-gearman
+
+# Python #
+https://github.com/adrianlzt/python-send_gearman

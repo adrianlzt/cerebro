@@ -1,4 +1,5 @@
 http://blog.engineyard.com/2010/the-lowdown-on-routes-in-rails-3
+http://guides.rubyonrails.org/routing.html
 
 app/config/routes.rb
 
@@ -156,3 +157,12 @@ form_for([@zombie,@tweet])
 Ruta donde un parámetro puede tener ciertos caracteres:
   get "node/:hostname" => "node#info", :constraints  => { :hostname => /[0-z\.-]+/ }
 Esto también nos permite que el parámetro tenga un punto, si no, el punto se usa para separar el valor del formato.
+
+
+Quitar el format del final:
+http://guides.rubyonrails.org/routing.html#route-globbing-and-wildcard-segments
+format: false
+
+Permitir puntos en una variable, hace falta definir un constraint para admitirlos:
+post "cyclops/v1/projects/:project/enviroments/:env/nodes/:hostname" => "cyclops#add_monit_node", format: false, :constraints  => { :hostname => /[0-9a-zA-Z_\-\.]+/ }
+

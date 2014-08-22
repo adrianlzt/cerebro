@@ -28,3 +28,6 @@ b  previous page
 &cosa  mostrar solo las líneas que tengan "cosa"
   entrar con less +F (y luego control+c) para que no se salga de less
 =  info del fichero
+
+&!PALABRA|COSA
+  Nos muestra la pantalla sin esas dos palabras
