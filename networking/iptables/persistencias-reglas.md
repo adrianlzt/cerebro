@@ -11,3 +11,6 @@ Tres ideas:
 
 ## RedHat ##
 iptables-save > /etc/sysconfig/iptables
+
+
+iptables-save guarda todas las tablas (raw, mangle, nat y filter)

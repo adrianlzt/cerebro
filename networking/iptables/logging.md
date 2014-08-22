@@ -1,3 +1,5 @@
+http://www.toastresearch.com/2011/04/09/packet-logging-with-iptables/
+
 iptables -t nat -I PREROUTING 1 -p tcp --dport 443 -j LOG
 
 Loguea los paquetes hacia la ip 192.168.157.3
@@ -5,6 +7,14 @@ iptables -I OUTPUT -p tcp -d 192.168.157.3 -j LOG
 
 Loguea los paquetes de reset (tienen flags RST,ACK) que vienen de 192.168.157.3
 iptables -I INPUT -p tcp --tcp-flags ALL RST,ACK -s 192.168.157.3 -j LOG
+
+Podemos poner un prefijo:
+--log-prefix "iptables accept "
+
+Podemos loguear el usuario:
+--log-uid
+
+Una buena idea
 
 
 Today I was trying to track down some processes that were making very odd DNS lookups. I isolated the user ID making these calls via iptables logging:

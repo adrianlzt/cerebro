@@ -2,6 +2,8 @@ http://mentalized.net/journal/2010/03/08/5_ways_to_run_commands_from_ruby/
 
 rc = system("ls")
 
+rc sera true o false (RC!=0)
+
 
 require 'open3'
 stdin, stdout, stderr, wait_thr = Open3.popen3('comando')

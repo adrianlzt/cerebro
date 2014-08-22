@@ -10,3 +10,6 @@ notify {'bignotify':
 
 
 notify  => [Exec[make-nag-cfg-readable],Service[nagios]]
+
+PROBLEMA: hace que el return code de puppet sea 2, porque considera que se ha modificado algo.
+Usar notice

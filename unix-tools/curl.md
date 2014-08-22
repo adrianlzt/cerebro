@@ -1,3 +1,5 @@
+http://curl.haxx.se/docs/httpscripting.html
+
 Hacer una petición GET a /:
 curl host:puerto
 
@@ -10,7 +12,7 @@ datos
 
 
 Post de un fichero binario:
-curl -H "Content-Type: application/zip" --data-binary @build/mac/package.zip "https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip"
+curl -H "Accept: application/json" -H "Content-Type: application/zip" --data-binary @build/mac/package.zip "https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip"
 
 Hacer un POST de un JSON
 curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: application/json" -d '

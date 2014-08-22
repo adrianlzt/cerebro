@@ -14,3 +14,11 @@ elif 1 == 1:
 else:
   print "pepe"
 
+
+Si la variable existe haz tal si no otra cosa
+try:
+  thevariable
+except NameError:
+  print "well, it WASN'T defined after all!"
+else:
+  print "sure, it was defined."

@@ -21,7 +21,6 @@ Para compilar nrpe en Ubuntu tuve que instalar el paquete libssl-dev y hacer el 
 
 Ejecutar todos los comandos de nrpe, si tenemos un comando por fichero:
 cd /etc/nrpe.d
-sudo -u nrpe /bin/bash
 for i in `ls`; do echo $i; $(cat $i| cut -d "=" -f 2); echo "" ; done
 
 
@@ -61,7 +60,7 @@ Comprobar que tiene activado el SSL:
 
 Error con chequeo Oracle:
 
-CRITICAL - cannot connect to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=haprodb-scan)(PORT=1521))(CONNECT_DATA=(SID=hhproes1)(SERVICE_NAME=hhproes.privateext.dsn.inet))). install_driver(Oracle) failed: Can't load '/usr/lib64/perl5/vendor_perl/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libocci.so.11.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
+CRITICAL - cannot connect to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=haprodb-scan)(PORT=1521))(CONNECT_DATA=(SID=hhproes1)(SERVICE_NAME=url.inet))). install_driver(Oracle) failed: Can't load '/usr/lib64/perl5/vendor_perl/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libocci.so.11.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
 
 Meter en el /etc/sysconfig/nrpe:
  export ORACLE_HOME=/usr/lib/oracle/11.2/client64
@@ -84,3 +83,8 @@ Pondremos por ejemplo
 Y recompilaremos el .src.rpm que nos generará los dos nuevos rpms (nrpe y nagios-plugins-nrpe)
 
 Hay que tener cuidado porque distintas versiones de nrpe recompilados no son compatibles entre sí.
+
+
+## xinetd ##
+Configurar nrpe con xinetd: https://wiki.icinga.org/display/howtos/Running+NRPE+Under+Xinetd
+En vez de tenerlo cmo un demonio a parte es xinetd el que se encarga de llamar a nrpe cuando alguien establezca una conexión al 5666

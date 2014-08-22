@@ -58,3 +58,8 @@ ActiveSupport.on_load(:active_record) do
  self.include_root_in_json = true
 end
 Será necesario reiniciar el server.
+
+
+
+Capturar errores de json
+http://robots.thoughtbot.com/catching-json-parse-errors-with-custom-middleware

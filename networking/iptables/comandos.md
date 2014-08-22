@@ -7,7 +7,7 @@ iptables -t mangle -L
 
 
 Borrar:
-iptables -F //todo
+iptables -F // Borra tabla filter
 iptables -t tabla -F [FORWARD/INPUT/OUTPUT]
 
 	borrar determinada regla:

@@ -17,3 +17,6 @@ FACTER_operatingsystem=WINDOZZ puppet apply -e 'notify { "We are running on $::o
 Mostrar salida en formato html (para los colores)
 puppet agent -t --color=html
 --color=false  sin colores
+
+
+Si el puppet agent corriendo como demonio (/etc/init.d/puppet) no puede conectar con el servidor, usará el ultimo catalog que encuentre.

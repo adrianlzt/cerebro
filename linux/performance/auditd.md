@@ -26,6 +26,9 @@ Por fichero:
 Si queremos que traduzca los números (por ejemplo, uid por nombre)
 # ausearch -i ...
 
+En la fecha o posterior:
+# ausearch -ts "22/8/14" "9:37:41"
+
 Borrar todas las reglas (dara como resultado un 'No rules', es lo correcto)
 # auditctl -D
 

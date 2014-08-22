@@ -1,0 +1,34 @@
+% En el general
+\usepackage{acronym}
+%...
+%table of contents
+\include{acronimos}
+\include{glosario}
+%...
+
+
+
+
+
+
+
+%acronimos.tex
+\addcontentsline{toc}{chapter}{Acrónimos}
+\chapter*{Acrónimos}
+\begin{acronym}
+\begin{tabular}{p{3cm}p{10cm}}
+
+\acro{HATS} & \vfill{Head and Torso Simulator} \\
+\acro{SOR} & \vfill{Self-to-Other Ratio} \\
+%\acro{} & \vfill{} \\
+
+\end{tabular}
+\end{acronym}
+
+
+% para hacer referencia
+\acs{SOR}
+
+
+% No usar para glosario.
+% No podemos meter tildes. No podemos referenciarlo desde una palabra en plural

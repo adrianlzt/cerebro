@@ -1,5 +1,8 @@
 http://manpages.ubuntu.com/manpages/precise/en/man8/puppet-catalog.8.html
 
+Almacenado en:
+/var/lib/puppet/client_data/catalog
+
 puppet catalog download
   en un cliente, se baja su catalog del puppetmaster y lo almacena en 
 curl --cert /var/lib/puppet/ssl/certs/$(hostname).pem --key /var/lib/puppet/ssl/private_keys/$(hostname).pem --cacert /var/lib/puts/ca.pem -H 'Accept: yaml' https://puppet:8140/dsn_dev/catalog/$(hostname)

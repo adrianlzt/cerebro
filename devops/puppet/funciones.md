@@ -37,3 +37,19 @@ Returns true if the variable passed to this function is a ip with valid masks.
     return valid_masks.include?(mask) ? true : false
   end
 end
+
+
+Ejemplo, definir un fact para la máquina segun su hostname:
+modules/NOMBRE/lib/facter/environment.rb
+Facter.add("tier") do
+  setcode do
+    hostname = Facter.value('hostname')
+    if hostname.downcase.start_with?('dev')
+      "dev"
+    elsif hostname.downcase.start_with?('qa')
+      "qa"      
+    else 
+      "pre"
+    end
+  end
+end
