@@ -1,4 +1,10 @@
 %% nomencl
+
+% Esta pensado para explicar que significa cada caracter en una ecuación.
+% No enlaza donde ponemos \nomenclature con la página generada por \printnomenclature como se hace con los acrónimos por ejemplo.
+
+% Usar mejor glossaries (mirar glosario.md)
+
 % http://cs.brown.edu/about/system/software/latex/doc/nomencl.pdf
 \documentclass{article}
 \usepackage[intoc,refpage]{nomencl} %intoc para que aparezca en el indice

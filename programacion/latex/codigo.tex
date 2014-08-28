@@ -1,4 +1,5 @@
 % http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+% https://es.sharelatex.com/learn/Code_listing#Captions_and_the_list_of_Listings
 
 \usepackage{listings}
 \lstset{language=Ruby} % el de por defecto
@@ -28,3 +29,37 @@ Para meter el código en un recuadro:
 
 Para meter código de un fichero (deberá estar en el directorio del .tex):
 \lstinputlisting[language=Python, firstline=37, lastline=45]{source_filename.py}
+
+
+Para poner un título (caption) al codigo que vamos a listar:
+\begin{lstlisting}[caption=nombre, frame=single]
+
+Esto nos pone "Listing a.b: nombre"
+
+Para cambiar la palabra "Listing" por otra (poner debajo del use package):
+\renewcommand{\lstlistingname}{Código}
+
+
+Para tener un listado de trozos de código:
+\lstlistoflistings
+
+
+
+% Para tener un lista de trozos de código, y que este aparezca en el índice, deberíamos tener:
+\usepackage{listings}
+\lstset{language=Ruby}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Índice de código}
+%...
+\begin{document}
+
+
+\begin{lstlisting}[caption=codigo, frame=single]
+if var
+  puts "hola"
+end
+\end{lstlisting}
+
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings
+\end{document}

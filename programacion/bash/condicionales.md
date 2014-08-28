@@ -6,6 +6,20 @@ if [[ $var = img* && ($var = *.png || $var = *.jpg) ]]; then
 	echo "$var starts with img and ends with .jpg or .png"
 fi
 
+if [[ $VAR ]]; then
+  echo "var definida"
+else
+  echo "var no definida"
+fi
+
+grep $1 /etc/passwd
+if [[ $? -eq 0 ]]; then
+  echo "encontrado"
+else
+  echo "not match"
+fi
+
+
 
 FORMATO ANTIGUO:
 Comprobar si una variable ha sido definida:

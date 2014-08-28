@@ -2,7 +2,21 @@ Gestor de paquetes latex
 
 tlmgr
 
-Roto en ubuntu 13.10 (parece)
+Usar el de /opt/texbin/tlmgr
+
+Para poder usarlo completamente deberemos antes:
+sudo apt-get install xzdec
+tlmgr init-usertree
+
+Buscar:
+tlmgr search concepts
+
+Instalar:
+tlmgr install concetps
+
+Listar:
+tlmgr info --only-installed
+
 
 
 Para incluir paquetes poner:

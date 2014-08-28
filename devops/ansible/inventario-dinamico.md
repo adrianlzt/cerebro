@@ -1,3 +1,6 @@
+http://docs.ansible.com/intro_dynamic_inventory.html
+Usar un script para generar dinámicamente el inventario
+
 http://docs.ansible.com/list_of_inventory_modules.html
 
 Crear hosts y hostgroups "al vuelo"

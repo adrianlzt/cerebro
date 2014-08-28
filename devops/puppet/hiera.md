@@ -29,6 +29,8 @@ Primero buscaria en defaults, luego en clientcert, etc. En el primero que lo enc
 Con el formato %{::clientcert} podemos hacer referencia a variables del facter.
 Para buscar una variable en un manifest haremos:
   hiera(nombre)
+  hiera_array(nombre)
+  hiera_hash(nombre)
 
 Mirar tambien enc_hiera.md
 
