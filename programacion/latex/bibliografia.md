@@ -7,6 +7,8 @@ Aqui se define que podemos poner en el fichero biblio.bib y con que parámetros.
 Un tipo por ejemplo es "manual" que lo veremos definido como "FUNCTION {manual}".
 Al comienzo del fichero también están definidos los parámetros aceptados como: "ENTRY".
 
+Es necesario meter: "bibtex NOMBRE" como parte de la compilación. Ponerlo dos o tres veces.
+
 Para generar la bibliografía se pondrá la orden:
 \bibliography{biblio}
 
@@ -17,12 +19,14 @@ Podemos poner:
 
 En el fichero biblio.bib habremos definido la bibliografía que queremos usar.
 
-Para citar una web:
-~\citep{prueba}
 
-@misc{prueba,
-        Title = {The geometry package},
-        Url = {tex.stackexchange.com/questions/36248/url-of-cited-web-site-in-bibliography}}
+Para citar una web:
+Puppet cuenta con la funcionalidad llamada exported resources ~\citep{exported_resources}
+
+@misc{exported_resources,
+        Title = {Puppet - Exported resources},
+        Url = {https://docs.puppetlabs.com/guides/exported_resources.html}
+} 
 
 
 

@@ -35,6 +35,10 @@ Module (load="omprog")
 	   template="RSYSLOG_TraditionalFileFormat")
 
 
+/etc/rsyslog.d/puppet-master.conf
+if $programname == 'puppet-master' then -/var/log/puppet/puppetmaster.log
+
+
 
 last message repeated N times
 The rsyslog package has a $RepeatedMsgReduction global directive which one can set to off to always log data and never log those annoying messages.

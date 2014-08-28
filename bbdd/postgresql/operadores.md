@@ -1,3 +1,5 @@
+http://www.postgresql.org/docs/8.0/static/functions-binarystring.html
+
 Concatenar strings de dos columnas distintas:
 select name||'.'||apellido as NombreCompleto from usuarios;
 

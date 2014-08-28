@@ -10,3 +10,7 @@ socket          = /var/run/mysqld/mysqld.sock
 user		= root
 password        = root
 
+
+Se puede hacer includes
+!include /srv/mysql/etc/my.cnf
+

@@ -1,4 +1,5 @@
 % http://en.wikibooks.org/wiki/LaTeX/Glossary
+% http://texblog.org/2014/01/15/glossary-and-list-of-acronyms-with-latex/
 % http://get-software.net/macros/latex/contrib/glossaries/glossaries-user.pdf
 % http://tex.stackexchange.com/questions/100354/list-of-abbreviations/100377#100377
 
@@ -16,19 +17,22 @@
 
 % la idea es tener un glosario.tex donde definamos todas palabras y hacer un \include{glosario} desde nuestro tex general
 % los documentos solo aparecerán en el \makeglossaries si es usado en el documento
-\newglossaryentry{apc}{%
-name={APC},%
-description={antigeen-presenterende cel}%
-}
+\newglossaryentry{servidor}{
+name={servidor}, %obligatorio
+plural={servidores},
+description={nodo que, formando parte de una red, provee servicios a otros nodos denominados clientes}
+} 
+
 
 \begin{document}
-Here is some text, where we use \gls{apc}.
-% la primera vez nos aparecera como "antigeen-presenterende cel (APC)" las siguientes entradas solo como "APC"
-\glspl{apc} %si tenemos definido un \newacronym[longplural=blablas] la primera vez nos podra eso, las siguientes APCs
-\Gls{apc} %primera letra en mayuscula
+Here is some text, where we use \gls{servidor}.
+\glspl{servidor} % pondra servidores. Si no definimos plural pondra una 's' al final
+\Gls{servidor} %primera letra en mayuscula, 'Servidor'
 
 \include{glosario}
 \printglossary[type=\acronymtype] % prints just the list of acronyms
+\renewcommand{\glsnamefont}[1]{\bf{#1}} % palabras del listado en negrita
+\setlength{\glsdescwidth}{0.8\linewidth} % ocupar mas ancho del documento. 1.0 descripción enana llevada al limite de la pagina
 \printglossary[style=long]
 \end{document}
 % para generar el glosario:
@@ -38,6 +42,10 @@ Here is some text, where we use \gls{apc}.
 
 % Si tenemos problemas con la compilacion borrar el fichero *.gls
 
+
+
+% Para generar enlaces cargar el paquete hyperref antes del glossaries
+% No me funciona con ezthesis. Mirar pagina 89 http://osl.ugr.es/CTAN/macros/latex/contrib/glossaries/glossaries-user.pdf
 
 
 

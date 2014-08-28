@@ -24,3 +24,4 @@ Mercado de San Fernando. Sábados y Domingos puestos con comidas variadas. Barat
 Parque Casino de la Reina, parrillada de carne y pescado. Barato
 Panic, la mejor panadería de Madrid, Conde Duque, 13. Madrid (Ventura Rodriguez)
 Museo del Pan Gallego, Plaza de Herradores, 9 28013 Madrid (Plaza Mayor)
+Terraza del Reina Sofía. Para beber algo. Pijo.
