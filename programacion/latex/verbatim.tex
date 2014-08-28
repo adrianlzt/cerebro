@@ -1,0 +1,19 @@
+% text that won't be interpreted by the compiler. If you use the verbatim environment, everything input between the begin and end commands are processed as if by a typewriter
+\begin{verbatim}
+The verbatim environment
+  simply reproduces every
+ character you input,
+including all  s p a c e s!
+\end{verbatim}
+
+% Poner solo un trozo pequeño en verbatim
+\verb+palabra+
+
+% Note: once in the verbatim environment, the only command that will be recognized is \end{verbatim}. Any others will be output. The font size in the verbatim environment can be adjusted by placing a font size command before \begin{verbatim}. If this is a problem, you can use the alltt package instead, providing an environment with the same name:
+
+\begin{alltt}
+Verbatim extended with the ability
+to use normal commands.  Therefore, it
+is possible to \emph{emphasize} words in
+this environment, for example.
+\end{alltt}
