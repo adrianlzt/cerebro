@@ -29,6 +29,8 @@ Para instalar una gema
 package { "rake":
   provider => 'gem',
 }
+Se puede pasar el proxy con:
+install_options => '--http-proxy http://rpoxy.ocm.inet:6666'
 
 Para instalar un paquete pip
 package { "django":

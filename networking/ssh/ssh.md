@@ -69,7 +69,7 @@ Crear script de rotado para el log en /etc/logrotate.d/nagios_rcmd con el conten
 
 
 Clave pública:
-host-admin# ssh-keygen  (generamos clave si no la tenemos ya)
+host-admin# ssh-keygen -t rsa "adrianlzt@gmail.com"  (generamos clave si no la tenemos ya)
 host-admin# ssh-copy-id user@host
 host-admin# ssh-copy-id "user@host-client -p 6842"  (si ssh está en otro puerto)
 

@@ -14,6 +14,9 @@ facter operatingsystem
 Para meter las variables de facter en los manifest:
 $::nombre
 
+Para los template:
+<%= @nombre %>
+
 
 Crear los nuestros propios (external facts, facter >= 1.7)
 /etc/facter/facts.d

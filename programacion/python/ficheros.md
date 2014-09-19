@@ -42,3 +42,10 @@ file.write("cosas")
 file.writelines(["una linea","otra linea"])
 file.flush() #obligar a escribir al fichero
 
+
+## shutil ##
+https://docs.python.org/2/library/shutil.html
+Operaciones de alto nivel: copiar, mover, borrar
+
+## os ##
+Mirar os.md para mas operaciones

@@ -17,6 +17,26 @@ string = ''' aqui empieza
 sigue por aqui
 aqui termina'''
 
+Lo malo de esta es que si esta tabulado el texto nos mete caracteres en blanco.
+
+
+string = 'cosa\n'\
+'mas cosas\n'\
+'aqui termina'
+
+string = (
+    'Esto es una cadena muy larga\n'
+    ' y asi es como se cambia de linea'
+)
+
+msn = (
+   'priemra %s linea\n'
+   'segunda linea %s'
+   % (4,999) 
+)
+
+
+
 >>> print "hola"+" "+"pepe"
 hola pepe
 

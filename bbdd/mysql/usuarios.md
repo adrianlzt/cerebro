@@ -29,3 +29,7 @@ mysql> set password for 'bugs'@'localhost' = PASSWORD("la pass");
 Funciona??
 
 mysqladmin -u root -p'oldpassword' password newpass
+
+
+Mostrar usuarios:
+/usr/bin/mysql -NBe "SELECT CONCAT(User, '@',Host) AS User FROM mysql.user"

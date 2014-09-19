@@ -3,6 +3,11 @@ http://curl.haxx.se/docs/httpscripting.html
 Hacer una petición GET a /:
 curl host:puerto
 
+Hacer un POST:
+curl -d 'variable=valor&otra=123' http://www.web.com
+
+Fake host:
+curl -H 'Host: be.caja-ingenieros.es' https://localhost/....
 
 Hacer un PUT con datos:
 curl -XPUT host:puerto -d '

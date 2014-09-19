@@ -14,3 +14,6 @@ Nos puede valer para dejar el tail apuntando a un fichero que aun no existe
 
 Nos muestra todo el fichero salvo la primera linea
 cat fichero | tail -n +2
+
+Borrar todos los ficheros del directorio salvo los dos más nuevos:
+ls -1t | tail -n +3 | xargs rm

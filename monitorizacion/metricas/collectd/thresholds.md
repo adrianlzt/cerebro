@@ -6,7 +6,7 @@ Que collectd nos avise cuando una métrica supere (decrezca) de cierto umbral.
 Las notificaciones se pueden "empujar" a collectd, y también collectd las "empuja" a los output plugins.
 
 CUIDADO!
-Por defecto no están definidos Persis ni PersistOK, por lo tanto las notificaciones solo se generan cuando se cambia de un estado OK a no-OK o viceversa.
+Por defecto no están definidos Persist ni PersistOK, por lo tanto las notificaciones solo se generan cuando se cambia de un estado OK a no-OK o viceversa.
 Si envíamos una notificación antes de que nagios haya configurado el service esta alarma se perderá.
 
 Si configuramos los Persist y PersistOK se enviará una notificación por cada vez que se recolecten los datos. Puede que saturemos al servidor.
@@ -28,6 +28,11 @@ No persistentes, una por cada cambio de estado.
 ## Configuración ##
 Esquema de relación entre los datos que tenemos que poner en el threshold con la cadena que se envia a graphite.
 HOST.Plugin-Instance.Type-Instance.DataSource
+
+Podemos ver si una métrica tiene varios Data Source mirando en /usr/share/collectd/types.db
+Por ejemplo: 
+HOST.processes-NOMBRE.ps_count.processes
+HOST.processes-NOMBRE.ps_count.threads
 
 
 Primeramente definimos de donde obtendremos el valor con los bloques 'Host', 'Plugin' y/o 'Type'.
@@ -144,6 +149,9 @@ Hysteresis Number
 
 Percentage
   Algunos plugins permiten sacar también los valores en porcentaje (df).
+
+Interesting true|false
+  If set to true (the default), the threshold must be treated as interesting and, when a number of Timeout values will lost, then a missing notification will be dispatched. On the other hand, if set to false, the missing notification will never dispatched for this threshold.
 
 
 ## Envio de notificaciones ##

@@ -45,3 +45,6 @@ Y ejecutamos el comando: date +%s -d"Oct  7 01:00:36"
 $ echo "Oct  7 01:00:36 adrian-Presario anacron[15891]" | cut -d' ' -f 1-4 | xargs -L1 -i= date +%s -d=
 1381100436
 
+
+Borrar ficheros mas antiguos de 7 días de forma eficiente (de 20 en 20 y con 4 procesos en paralelo)
+find /var/lib/puppet/reports/ -type f -ctime +7 | xargs -P 4 -n 20 rm -f

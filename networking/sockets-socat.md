@@ -23,6 +23,9 @@ Aunque este sistema no me ha funcionado con icinga (idomod <-> ido2db)
 Pero si funciona por ejemplo para check_mk-multisite <-> icinga
 
 
+Comunicación bidireccional:
+socat UNIX:/tmp/socket -
+
 socat UNIX-CONNECT:/var/run/blabla/nameofthe.sock STDIN
 nc -U /var/run/blabla/namedersocket.sock
 

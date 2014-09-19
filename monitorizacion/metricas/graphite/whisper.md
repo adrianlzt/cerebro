@@ -22,6 +22,8 @@ timestamp:valor
 
 
 ## Capacity planning ##
+12 bytes por métrica + cabecera fichero (64 bytes)
+
 [pepe] -> 1.1MB por fichero
 pattern = ^pepe
 retentions = 1m:7d,10m:1y,1h:3y

@@ -8,3 +8,6 @@ What manual page do you want?
 
 Mensajes en ingles:
 $ LANG=en_US comando
+
+
+https://wiki.archlinux.org/index.php/Locale#Setting_system-wide_locale
