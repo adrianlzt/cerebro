@@ -38,6 +38,7 @@ Facts, global variables, and local variables from the current scope are availabl
 
 Si queremos usar variables fuera del scope local, por ejemplo de una clase params:
 <%= scope.lookupvar('apache::user') %>
+<%= scope.lookupvar('monitorizacion::params::user') %>
 
 <%# comentario %>
 <%- como <% pero elimina espacios en blanco al comienzo

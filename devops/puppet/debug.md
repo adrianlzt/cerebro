@@ -9,6 +9,9 @@ facter -d hostname
 ## Mas trazas sobre la ejecucción de puppet ##
 puppet apply cosa --debug
 
+https://docs.puppetlabs.com/references/3.7.latest/configuration.html#httpdebug
+puppet agent --test --http_debug
+
 Para ver que línea produce el error
 puppet apply --debug --trace cosa.pp
 ruby -dw /usr/bin/puppet apply ...

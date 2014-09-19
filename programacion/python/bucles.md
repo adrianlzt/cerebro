@@ -18,3 +18,8 @@ for num in range(0,10):
   if num == 5:
     continue # pasa al siguiente loop
 	print "numero: %d" % (num)
+
+
+# Bucle infinito
+while True:
+    time.sleep(1)

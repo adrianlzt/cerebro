@@ -1,6 +1,6 @@
 http://docs.puppetlabs.com/puppet/3.6/reference/lang_datatypes.html#arrays
 
-Arrays:  
+## Arrays ##
 [ 'one', 'two', 'three', ]
 
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
@@ -12,8 +12,11 @@ notice {"valor: ${exec[0]}":}
 [1,2,3] << 10 # produces [1,2,3,10]
 [1,2,3] << [4,5] # produces [1,2,3,[4,5]]
 
+member(['a','b'], 'b')
+devuelve true o false
 
-Hashes: 
+
+## Hashes ##
 { key1 => 'val1', key2 => 'val2', }
 
 $myhash = { key => "some value", 
@@ -27,6 +30,9 @@ NO se puede hacer { Clave => "valor" }
 
 prefix(['a','b','c'], 'p')
 Will return: ['pa','pb','pc']
+
+values() nos devuelve los valores de un hash
+keys() para obtener un array con las keys
 
 
 No se puede poner [] sobre una función

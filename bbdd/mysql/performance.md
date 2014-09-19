@@ -57,3 +57,9 @@ http://anothermysqldba.blogspot.com.es/2013/09/mysql-optimization-tip-threadcach
 http://dev.mysql.com/doc/refman/5.5/en/server-system-variables.html#sysvar_thread_cache_size
 How many threads the server should cache for reuse.
 This variable can be increased to improve performance if you have a lot of new connections.
+
+
+
+https://github.com/blog/1880-making-mysql-better-at-github
+MySQL tuning is very workload specific, and well-known configuration settings like innodb_buffer_pool_size often make the most difference in MySQL's performance. But on a major change like this, we wanted to make sure we covered everything, so we took a look at settings like innodb_thread_concurrency, innodb_io_capacity, and innodb_buffer_pool_instances, among others.
+We were careful to only make one test configuration change at a time, and to run tests for at least 12 hours. We looked for query response time changes, stalls in queries per second, and signs of reduced concurrency. We observed the output of SHOW ENGINE INNODB STATUS, particularly the SEMAPHORES section, which provides information on work load contention.

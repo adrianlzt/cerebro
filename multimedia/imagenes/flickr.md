@@ -1,4 +1,14 @@
-# https://sites.google.com/site/manishrjain/flickrfs
+## flickrbackup ##
+Hacer backup de las fotos de flickr a local
+
+## DFO ##
+Excepción y peta
+
+## FrogR ##
+Parece que no conecta a flickr
+
+## FlickerFS ##
+ https://sites.google.com/site/manishrjain/flickrfs
 
 flickrfs - file system de las fotos de flickr
 

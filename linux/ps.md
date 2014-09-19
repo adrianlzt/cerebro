@@ -2,6 +2,11 @@ Básico:
 ps -ef
 ps aux
 
+--sort rss
+  ordena poniendo al final lo que más consumo de RSS tengan
+--sort -rss
+  ordena inversamente
+
 Ver los parámetros enteros:
 ps auxww
 
@@ -19,12 +24,25 @@ Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
 Memoria:
-ps -eLf                                         # hebras (TID)
-ps -eo pid,maj_flt,min_flt,pmem,rss,vsz,sz      # info de memoria
-  maj_flt: fallos de página
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | column -t | head
+
+ps aux --sort -rss | head
+
+Ver en continuo, remarcando los cambios cada 2 segundos:
+watch --differences -n 2 'ps aux --sort -rss | head'
+
+ps -eLf                                         # hebras
+ps -eo pid,maj_flt,min_flt,pmem,rss,vsz         # info de memoria
+  maj_flt: fallos de página, ir a disco a buscar la página
   min_flt: la página está en RAM pero no está en la TLB, operación costosa pero no tanto como ir a disco
-  vsz: consumo de memoria virtual (total)
+  pmem: % de memoria
   rss: consumo de memoria ram
+  vsz: consumo de memoria virtual (total)
+
+ps -eo rss,vsz,pid,cputime,cmd --width 100 --sort -rss,-vsz | head
+  Los 10 con más consumo de memoria
+
+ps aux | sort -nk +4 | tail
 
 CPU:
 ps -e -ocomm,pid,class,cp,cputime,pri,psr,rtprio,wchan,state,stat

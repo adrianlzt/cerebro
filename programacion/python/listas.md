@@ -4,7 +4,7 @@ for l in lista:
 
 Listas: http://docs.python.org/2/tutorial/datastructures.html
 http://effbot.org/zone/python-list.htm
-lista.pop #Saca 11 y lo elimina de la lista
+lista.pop() #Saca 11 y lo elimina de la lista
 lista.pop(0) #Saca 'asda' y lo elimina de la lista
 len(lista) #Longitud de la lista
 list.index(elemento) #Nos dice la posicion de un elemento

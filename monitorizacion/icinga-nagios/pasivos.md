@@ -56,6 +56,8 @@ define service {
        max_check_attempts              1 # Queremos que nos avise la primera vez que llegue
        passive_checks_enabled          1
        active_checks_enabled           0
+       freshness_threshold             300 # A los 300" sin informacion se ejecuta el check_command
+       check_freshness                 1
 }
 
 
@@ -76,3 +78,9 @@ https://github.com/ssm/hacks/blob/master/monitor/munin-gearman-icinga/send-mod-g
 
 # Python #
 https://github.com/adrianlzt/python-send_gearman
+
+
+# Ejecutar check y enviar con send_gearman #
+CMD="/usr/lib64/nagios/plugins/check_load -c 1,1,1"; OUT=$($CMD); RET=$?; echo "send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host=$(hostname) --service=$(echo $CMD | awk '{n=split ($1,a,/\//); print a[n]}') --message==\"$OUT\" -r=$RET";
+
+La idea es meter varias lineas de esas en un fichero cron

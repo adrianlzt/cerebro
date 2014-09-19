@@ -11,6 +11,10 @@ ansible web*.example.com -m ping
 
 Ejecutar comandos en la shell
 ansible host -m shell -a "pwd"
+ansible localhost -m shell -a "dpkg -l ansible | grep trusty"
+
+
+Si no se pone nada usa el modulo command
 ansible host -a "pwd"
 
 Ejecutar el módulo copy localmente (copia los ficheros de /tmp/ansible1/ a /tmp/ansible2/) Cuidado con las barras (/), puede copiar un dir dentro del otro.

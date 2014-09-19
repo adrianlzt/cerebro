@@ -1,3 +1,5 @@
+## PuppetDB 2.0 ##
+
 catalogs
 select * from catalogs order by id;
   Para cada nodo nos dice el id del catalog y cuando ha sido su última compilación.

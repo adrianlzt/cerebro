@@ -16,6 +16,7 @@ config.vm.network :private_network, ip: "192.168.50.4"
 
 Redireccionar puertos:
 config.vm.network :forwarded_port, guest: 80, host: 8080
+  Con el parámetro :host_ip se puede apuntar a una ip determinada
 
 
 Vagrant 1.4.0

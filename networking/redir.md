@@ -8,3 +8,8 @@ A port redirector, used to forward incoming connections to somewhere else. by fa
 
 redir --lport=8002 --cport=2222
 8002 -> 2222
+
+
+
+redir --laddr=192.168.1.2 --lport=8002 --caddr=192.168.1.3 --cport=2222
+192.168.1.2:8002 -> 192.168.1.3:2222

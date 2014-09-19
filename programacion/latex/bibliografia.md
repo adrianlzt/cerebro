@@ -21,7 +21,8 @@ En el fichero biblio.bib habremos definido la bibliografía que queremos usar.
 
 
 Para citar una web:
-Puppet cuenta con la funcionalidad llamada exported resources ~\citep{exported_resources}
+Puppet cuenta con la funcionalidad llamada exported resources~\citep{exported_resources}
+No dejar espacio en blanco para separar.
 
 @misc{exported_resources,
         Title = {Puppet - Exported resources},
