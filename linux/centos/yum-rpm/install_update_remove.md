@@ -7,6 +7,7 @@ No hacer caso a las gpg key
 Instalar
 # rpm -i <paquete>.rpm  //No instala dependencias automaticamente si las necesita
 # rpm -i --nodeps <paquete>.rpm  //Instala aunque haya dependencias no solucionadas
+# rpm -i --force <paquete>.rpm // Ignoramos package and file conflicts
 # yum install <paquete>
 # yum install <paquete>.rpm //Instala dependencias en caso de necesitarlas
 # yum install <paquete>-version-1.2-3  //Podemos determinar una version en concreto

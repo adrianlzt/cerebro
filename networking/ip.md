@@ -23,6 +23,8 @@ ip r
   Salir por un alias determinado:
     ip addr add 192.168.198.228/21 dev eth1
     ip route add 192.168.251.51/32 dev eth1 src 192.168.198.228
+    ip route add 81.45.59.58/32 via 192.168.1.1 dev wlan1
+      ir a la ip 81.45.59.58 a través de la puerta de enlace 192.168.1.1 a la que llegamos a través de la interfaz wlan1
 
   Mostrar rutas locales:
     ip route show table local

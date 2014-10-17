@@ -33,3 +33,11 @@ service { 'carbon-cache':
   hasstatus  => true,
 }
 
+
+service { 'cyclops':
+  ensure => running,
+  hasstatus => false,
+  start => "sudo -u cyclops /usr/bin/python2.7 ${install_dir}/src/scripts/run_server.py -c ${install_dir}/src/conf/dev.json &",
+  status => "pgrep python2.7 -u cyclops",
+}
+

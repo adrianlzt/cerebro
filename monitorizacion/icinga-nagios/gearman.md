@@ -1,3 +1,7 @@
+# Instalacion CentOS
+https://labs.consol.de/repo/stable/#_6
+
+
 ## Instalación en Ubuntu Trusty 14.04 ##
 Instalar gearman-job-server  (no equivocarse con gearman-server)
 

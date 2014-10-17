@@ -11,3 +11,11 @@ Trabajar con json:
 >>> json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 
 Para parsear la información a objetos python, tenemos bastante trabajo manual, definido que es cada estructura.
+
+>>> import json
+>>> body = {}
+>>> body["name"] = "pepe"
+>>> body["services"] = [{"name":"check1","event":"dos"},{"name":"check2"}]
+>>> json.dumps(body)
+'{"services": [{"name": "check1", "event": "dos"}, {"name": "check2"}], "name": "pepe"}'
+

@@ -1,3 +1,10 @@
+#https://github.com/lehmannro/assert.sh
+#Test unitarios en bash
+#
+#////////////////////////////////////////////////////////////////////////////////
+#
+#http://code.google.com/p/shunit2/
+
 test_config_line_paths() {
     local s='partition cpm-all, 80-90,'
 
@@ -17,5 +24,3 @@ config_line_paths() {
 }
 
 source /usr/bin/shunit2
-
-# http://code.google.com/p/shunit2/

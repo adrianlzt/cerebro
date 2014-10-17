@@ -47,6 +47,13 @@ $ yum whatprovides */dig
 inversas
 rpm -q --whatrequires <paquete>
 
+Conflictos:
+repoquery --conflicts setuptools
+rpm -qap --qf '[%{conflicts}\n]' setuptools-0.6c11-bdistrpm.noarch.rpm
+
+Obsoletes:
+rpm -qap --qf '[%{obsoletes}\n]' setuptools-0.6c11-bdistrpm.noarch.rpm
+
 
 Verificar paquete
 # rpm -vK <paquete>.rpm (comprueba la firma del paquete)

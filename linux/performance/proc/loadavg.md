@@ -20,3 +20,8 @@ cat /proc/loadavg
   [4]   nº procesos activos / nº total de procesos
   [5]   ultimo nº de PID usado
 
+
+http://stackoverflow.com/questions/21617500/understanding-load-average-vs-cpu-usage
+http://juliano.info/en/Blog%3aMemory_Leak/Understanding_the_Linux_load_average
+http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
+http://www.linuxjournal.com/article/9001

@@ -13,3 +13,13 @@ def nombre(self,param1,param2):
     ...
 
     return valor
+
+
+# Return multiple values #
+
+>>> def func():
+...     a=1
+...     b=2
+...     return a,b
+... 
+>>> x,y = func()

@@ -17,6 +17,16 @@ nodo?.tr.es
 
 
 ## Cliente ##
+RedHat:
+yum install nfs-utils
+/etc/init.d/rpcbind start
+/etc/init.d/nfslock start
+/etc/init.d/nfs start
+chkconfig rpcbind on
+chkconfig nfslock on
+chkconfig nfs on
+
+
 Mostrar recursos exportados de otro nodo
 showmount -e 192.168.1.4
 
@@ -24,6 +34,9 @@ mount -t nfs mi_equipo:/tmp /home/cliente/temp
 /etc/fstab:
 	mi_equipo:/tmp /home/cliente/temp nfs defaults,rw 0 0
 
+
+Opciones para el exports:
+Con esto podemos por ejemplo hacer que todos los usuarios que monten la unidad NFS aparezcan como si fuesen el uid/gid que digamos.
 
 root_squash
 Map requests from uid/gid 0 to the anonymous uid/gid. Note that this does not apply to any other uids or gids that might be equally sensitive, such as user bin or group staff.

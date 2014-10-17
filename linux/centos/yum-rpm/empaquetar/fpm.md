@@ -10,6 +10,9 @@ Instalación:
 
 gem install fpm
 
+Para poder generar rpms en debian-like:
+apt-get install rpm
+
 Crear paquetes:
 fpm -s <source type> -t <target type> -n <package name> -v <version> [list of sources]...
 

@@ -1,3 +1,10 @@
 Instalando icinga mediante rpm:
 https://www.icinga.org/download/packages/
 https://wiki.icinga.org/display/howtos/Setting+up+Icinga+with+IDOUtils+on+RHEL
+
+
+rpm --import http://packages.icinga.org/icinga.key
+wget http://packages.icinga.org/epel/ICINGA-release.repo -O /etc/yum.repos.d/ICINGA-release.repo
+yum makecache
+
+

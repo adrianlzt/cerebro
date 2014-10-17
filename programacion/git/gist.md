@@ -1,4 +1,5 @@
 https://gist.github.com/
+http://manpages.ubuntu.com/manpages/trusty/man1/gist-paste.1.html
 
 Compartir ficheros / configuraciones / texto mediante GitHub.
 Se puede hacer entrando en la web o desde la consola.

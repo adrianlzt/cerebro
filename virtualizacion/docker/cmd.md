@@ -18,6 +18,9 @@ docker logs <instance-id>
 ## STOP
 docker stop <container-id>
 
+## RESTART
+docker restart <container-id>
+
 ## INSERT
 Insertar ficheros en una imagen
 docker insert IMAGE URL PATH
@@ -37,3 +40,4 @@ docker inspect <image/container-id>
 Es como leer el fichero 
 /var/lib/docker/graph/<id>/json para images
 /var/lib/docker/containers/<id>/config.json para containers
+

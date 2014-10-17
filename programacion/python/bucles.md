@@ -19,6 +19,14 @@ for num in range(0,10):
     continue # pasa al siguiente loop
 	print "numero: %d" % (num)
 
+>>> for i in range(0,3):
+...     print i
+... 
+0
+1
+2
+
+
 
 # Bucle infinito
 while True:

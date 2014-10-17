@@ -16,3 +16,8 @@ Vagrant.configure("2") do |config|
 Espacio ocupado
 du -h -d0 $HOME/.vagrant.d/cache
 du -h -d0 .vagrant/machines/*/cache
+
+
+Nos puede dar problemas si levantamos varias máquinas al mismo tiempo.
+==> nodo: E: Could not get lock /var/cache/apt/archives/lock - open (11: Resource temporarily unavailable)
+==> nodo: E: Unable to lock directory /var/cache/apt/archives/

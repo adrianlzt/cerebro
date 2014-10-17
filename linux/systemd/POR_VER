@@ -1,0 +1,9 @@
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sect-Managing_Services_with_systemd-Remote.html
+
+systemctl-run
+no fona?
+
+se puede hacer para ejecutar procesos de usuario y meterle accounting?
+en fin, para separar en el user.slice?
+
+snapshots no funcionan?

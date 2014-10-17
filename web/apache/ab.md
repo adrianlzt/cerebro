@@ -4,6 +4,8 @@ Para hacer pruebas de carga
 
 an -n <num peticiones> -c <concurrencia>
 
+ab -n 10000 -c 100 http://localhost/
+
 Mándame 10000 peticiones, 100 concurrentes.
 
 Se le pueden pasar cookies, POST, PUT, etc

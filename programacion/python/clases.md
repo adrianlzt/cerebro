@@ -19,6 +19,10 @@ logger = logging.getLogger(__name__)
 class Model(object):
     """Descripcion corta."""
 
+    var = 23
+    # Variable de clase. Todas los objetos que instancien esta clase compartiran esa variable
+    # Si usamos self. haremos que sea local a cada objeto (y deberá ir dentro de una funcion, generalmente __init__)
+
     def __init__(self, name):
         """Descripción corta.
   

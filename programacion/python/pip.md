@@ -16,3 +16,10 @@ $ pip list
 https_proxy=http://web-proxy.mydomain.com pip install paquete
 pip install --proxy="user:password@server:port" yourpackage
 
+
+Mirar curdling.md para una versión más rápida
+
+
+# freeze #
+Obtener una lista de las versiones que estamos usando de las dependencias
+pip freeze > requirements.txt

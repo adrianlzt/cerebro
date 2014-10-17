@@ -55,3 +55,14 @@ hola adios pepe
 ... 
 >>> func6(a=3,z=99)
 99
+
+
+# Return multiple values #
+    
+>>> def func():
+...     a=1
+...     b=2
+...     return a,b
+... 
+>>> x,y = func()
+
