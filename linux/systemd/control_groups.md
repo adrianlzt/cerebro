@@ -6,6 +6,11 @@ Mostrar los procesos en forma de arbol según su control group
 systemd-cgtop
 Muestra el consumo de cada proceso (tasks, cpu, memoria, inputs/s, outputs/s).
 
+Activar accounting:
+systemctl set-property httpd CPUAccounting=yes
+systemctl set-property httpd MemoryAccounting=yes
+systemctl set-property httpd BlockIOAccounting=yes
+  Al activar el accounting en cualquier service se activa para todos
 
 Mostrar la prioridad:
 systemctl show -p CPUShares user.slice

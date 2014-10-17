@@ -8,8 +8,16 @@ lista.pop() #Saca 11 y lo elimina de la lista
 lista.pop(0) #Saca 'asda' y lo elimina de la lista
 len(lista) #Longitud de la lista
 list.index(elemento) #Nos dice la posicion de un elemento
+elemento in list # True or False
 if valor in list # Nos vale para saber si un elemento esta en un array
 lista[1] #Obtener el elemento que esta en esa posición de la lista
+lista.append(elemento)  equivalent to a[len(a):] = [x]
+
+sorted(list)  devuelve una lista ordenada
+
+>>> for i in range(0,len(a)):
+...  print a[i]
+
 
 
 Generar lista: emails = [u.email for u in mailUsers]
@@ -42,3 +50,7 @@ set([1, 2, 3, 4, 5])
 
 # interset - elementos en ambas listas #
 
+
+# Devolver un array tras aplicar una funcion a otro array #
+checks = ["file1","file2"]
+checks_with_dir = ["/tmp/"+c for c in checks]

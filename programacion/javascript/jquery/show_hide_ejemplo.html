@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      $(document).on('click','#show', function() {
+          event.preventDefault();
+          $("#cosa").toggle();
+      });
+      if ($.trim($(this).text()) === 'Show') {
+          $(this).text('Hide');
+      } else {
+          $(this).text('Show');
+      }
+    </script>
+</head>
+<body>
+<h2>hola</h2>
+<a href='' id="show">Show</a>
+<div id="cosa" style="display: none;">
+  Cosa escondida
+</div>
+</body>
+</html>

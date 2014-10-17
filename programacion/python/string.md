@@ -1,6 +1,11 @@
 Funcionar como cut
 'abcde:12345'.split(':')[1]
 
+"bla ble bli".split()
+["bla","ble","bli"]
+"bla-ble-bli".split('-')[-1]
+devuelve "bli"
+
 Convertir string a int
 int('233') / 3
 
@@ -54,3 +59,19 @@ este_es_elnom_bre
 >>> c="HOLAq Ue Aasd"
 >>> c.lower()
 'holaq ue aasd'
+
+
+## Quitar cambios de linea, espacios en blanco, etc ##
+>>> s = " \n  abc   def   "
+>>> s.strip()
+'abc   def'
+>>> s.rstrip()
+' \n  abc   def'
+>>> s.lstrip()
+'abc   def   '
+
+
+## Format ##
+BASE_URL_TEMPLATE = '{protocol}://{host}:{port}/api/{version}/'
+BASE_URL_TEMPLATE.format(protocol=protocol, host=host, port=port, version=version)
+

@@ -34,6 +34,7 @@ No parece que funcione como lo esperado. Nos da 1 si está dentro del rango, nad
 
 Sitios con plugins:
 https://www.monitoring-plugins.org/ <- web oficial
+https://exchange.icinga.org/
 https://wiki.icinga.org/display/howtos/Plugins
 https://trac.id.ethz.ch/projects/nagios_plugins
 http://exchange.nagios.org/

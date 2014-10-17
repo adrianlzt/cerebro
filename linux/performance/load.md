@@ -1,3 +1,6 @@
+Mirar cpu/loadavg.md para entender el significado de los valores de uptime.
+
+
 Para generar carga en una máquina.
 
 Ponerla al 100%

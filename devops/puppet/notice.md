@@ -1,5 +1,7 @@
 Notice no devuelve un código 2 al ejecutarse, como si hace notify.
 
+Un notice en un manifest dentro de node {} no muestra nada.
+
 check.pp:
 class check (
   $puerto

@@ -43,3 +43,6 @@ sysdig evt.type=open and fd.name contains /etc
 
 Nos dice a que directorio cambia cada usuario
 sysdig -p"user:%user.name dir:%evt.arg.path" evt.type=chdir
+
+Conexiónes de o hacia los puertos 8000 o 3128 (IPv4)
+sysdig fd.type=ipv4 and \( fd.port=8000 or fd.port=3128 \)

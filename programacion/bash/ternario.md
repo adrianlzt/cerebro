@@ -1,0 +1,1 @@
+operador_ternario.md

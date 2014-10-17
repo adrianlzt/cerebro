@@ -19,3 +19,31 @@ $ python setup.py install
 http_proxy=http://blabla.com:4643 easy_install paquete
 
 Parece que no funciona, probar con https_proxy
+
+
+## Clasificadores ##
+https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    classifiers=[
+            'Environment :: Web Environment',
+            ....
+    ],
+
+## Entrypoints ##
+https://pythonhosted.org/setuptools/setuptools.html#automatic-script-creation
+http://reinout.vanrees.org/weblog/2010/01/06/zest-releaser-entry-points.html
+
+setup(
+    # other arguments here...
+    entry_points={
+        'console_scripts': [
+            'foo = my_package.some_module:main_func',
+            'bar = other_module:some_func',
+        ],
+        'gui_scripts': [
+            'baz = my_package_gui:start_func',
+        ]
+    }
+)
+
+## RPMs ##
+mirar rpm.md

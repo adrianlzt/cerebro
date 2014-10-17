@@ -1,0 +1,18 @@
+---
+#
+# Quitamos host1 y host2 del grupo para ejecutarlos despues
+#
+- hosts: grupo:!host1:!host2
+  sudo: True
+  gather_facts: False
+  roles:
+    - { role: configPuppet, project: 'NOMBRE', monitoring_env: 'pre', puppet_env: 'puppet_pp' }
+
+- hosts: host1:host2
+  sudo: True
+  gather_facts: False
+  roles:
+    - { role: configPuppet, project: 'NOMBRE', monitoring_env: 'pre', puppet_env: 'puppet_pp' }
+
+# Incluimos un fichero yml a este playbook
+- include: collect_resources.yml

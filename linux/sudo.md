@@ -1,3 +1,7 @@
+Mirar gosu.md si tenemos problemas con como se comporta sudo.
+
+Cuidado con la preferencia de las reglas. Las útimas (más abajo en el fichero) tienen preferencia. A lo mejor das unos permisos a un usuario pero los sobreescribe un grupo después.
+
 Editar siempre con visudo.
 O si queremos editar un fichero en particular:
 visudo -f /etc/sudoers.d/fichero
@@ -5,6 +9,9 @@ visudo -f /etc/sudoers.d/fichero
 
 Sintaxis:
 user    MACHINE=COMMANDS
+
+dgb     boulder = (operator) /bin/ls, /bin/kill, /usr/bin/lprm
+The user dgb may run /bin/ls, /bin/kill, and /usr/bin/lprm—but only as operator in host boulder
 
 Permitir a los usuarios de "grupo" hacer sudo contra todos los comandos.
 %grupo ALL=(ALL) ALL

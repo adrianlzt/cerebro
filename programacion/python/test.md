@@ -1,6 +1,7 @@
 http://www.openp2p.com/pub/a/python/2004/12/02/tdd_pyunit.html ANTICUADO
 https://docs.python.org/2/library/unittest.html
 dummy_test_suite.py
+http://it-ebooks.info/book/3778/ Testing Python - Applying Unit Testing, TDD, BDD and Acceptance Testing
 
 
 Test Driven Develop. La idea es primero desarollar las pruebas con los resultados que queremos y luego programar hasta pasar todos los tests.
@@ -15,7 +16,7 @@ nose.md - nose tools, decoradores para testear excepciones, tiempo, etc
 TestFixture (equipo de pruebas, juntamos todas las que tengan la misma necesidad en setUp, también es buena idea que testeen la misma clase), contiene:
 setUp(), función donde creamos objetos, ficheros, etc, necesarios para las pruebas
 tearDown(), generalmente no se usa. Seria para borrar las cosas del setUp(), pero el recolector de basura de python debería hacerlo por nosotros
-test_XXX(self), son los propios tests, cada test tiene su setUp independiente, no afecta lo que han los otros tests.
+test_XXX(self), son los propios tests, cada test tiene su setUp independiente, no afecta lo que hay en los otros tests.
 
 test fixture: A test fixture represents the preparation needed to perform one or more tests, and any associate cleanup actions. This may involve, for example, creating temporary or proxy databases, directories, or starting a server process.
 
@@ -53,6 +54,7 @@ assertIsNotNone(x)               x is not None 2.7
 assertIn(a, b)                   a in b  2.7
 assertNotIn(a, b)                a not in b  2.7
 assertIsInstance(a, b)           isinstance(a, b)  2.7
+  assertIsInstance([1,2,3],list)
 assertNotIsInstance(a, b)        not isinstance(a, b)  2.7
 assertAlmostEqual(a, b)          round(a-b, 7) == 0   
 assertNotAlmostEqual(a, b)       round(a-b, 7) != 0   
@@ -64,6 +66,9 @@ assertRegexpMatches(s, r)        r.search(s) 2.7
 assertNotRegexpMatches(s, r)     not r.search(s) 2.7
 assertItemsEqual(a, b)           sorted(a) == sorted(b) and works with unhashable objs 2.7
 assertDictContainsSubset(a, b)   all the key/value pairs in a exist in b 2.7
+
+assertRaises(TipoDeExcepcion,funcion_que_tirara_exception,param1,param2)
+mirar ejemplo al final
 
 Usados para comparativas de elementos:
 assertMultiLineEqual(a, b)       strings 2.7
@@ -151,3 +156,7 @@ from nose.tools import raises
 
 También podemos especificar la excepción, por ejemplo OSError para un error al crear un directorio
 @raises(OSError)
+
+
+Para hacerlo con assert, deberemos llamar dentro del assert a la funcion y pasar los parametros:
+self.assertRaises(CyclopsException, self.api_client._obtain_task_id_from_location, url)

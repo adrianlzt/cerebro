@@ -2,7 +2,7 @@ http://docs.python.org/2/library/stdtypes.html#file-objects
 
 Usar: 
 with open('fichero', 'r') as file:
-  lines = [line.strip('\n') for line in file.readlines()]
+    lines = [line.strip('\n') for line in file.readlines()]
 
 
 Para lectura:
@@ -49,3 +49,6 @@ Operaciones de alto nivel: copiar, mover, borrar
 
 ## os ##
 Mirar os.md para mas operaciones
+
+## Touch ## 
+open('/tmp/pruebaaaa', 'a').close()

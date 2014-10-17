@@ -97,3 +97,7 @@ Cambiar permisos a un fichero FIFO
 
 # Bloquear un fichero
 sudo chattr +i fichero
+
+# Replace
+https://docs.puppetlabs.com/references/latest/type.html#file-attribute-replace
+Si lo marcamos a false no cambiará un fichero, o enlace, que ya exista.

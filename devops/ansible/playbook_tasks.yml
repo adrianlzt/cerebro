@@ -1,0 +1,14 @@
+- hosts: host1:host2
+  sudo: True
+  gather_facts: False
+  serial: 1
+  tasks:
+    - name: exec puppet agent
+      tags:
+        - recolectar
+      command: puppet agent -t
+      register: puppet
+      ignore_errors: True
+    - debug: var=puppet
+      tags:
+        - recolectar

@@ -3,6 +3,9 @@ https://wiki.archlinux.org/index.php/pacman
 Instalar:
 pacman -S paquete paquete2
 
+Instalar sin mensajes de confirmacion
+pacman -S --noconfirm ...
+
 Buscar en paquetes de los repos:
 pacman -Ss paquete
 

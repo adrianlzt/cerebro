@@ -42,3 +42,23 @@ try:
   file = open("/mnt/file","w")
 except IOError as e:
   print "IO ERROR " + str(e.errno)
+
+
+
+## Crear excepciones propias ##
+
+class CyclopsException(Exception):
+    def __init__(self, message='Cyclops is not responding properly to your request. Try again later or contact support service'):
+        super(CyclopsException, self).__init__(message)
+
+class CyclopsTaskException(CyclopsException):
+    def __init__(self, status, code, message = "Task not completed"):
+        self.status = status
+        self.code = code
+
+        super(CyclopsTaskException, self).__init__(message)
+
+try:
+    funcion_que_tira_excepcion_CyclopsTaskException()
+except CyclopsTaskException as e:
+    print "valor de status: " + e.staus

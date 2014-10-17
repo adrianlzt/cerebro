@@ -9,6 +9,10 @@ Ejecutar el comando, guardar la salida y imprimirla por pantalla (será necesari
   command: /usr/bin/puppet agent -t --noop
   register: puppet
 
+Para que no de error cuando salga un return code distinto de 0
+ignore_errors: True
+
+
 - debug: var=puppet
 
 También podemos usar:

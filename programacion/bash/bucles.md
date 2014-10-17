@@ -5,6 +5,12 @@ done
 
 for i in dsmc_pp dsmc_prod dsn_pp dsn_prod; do cd $i; git status; cd ..; done
 
+for i in `cat duplicados`; do cat <<-EOF
+UPDATE tbl_contactgroup SET config_id=(select id from tbl_datadomain where domain = "$i") WHERE contactgroup_name = "$i";
+EOF
+done
+
+
 
 Bucle infinito
 while :; do
