@@ -23,6 +23,9 @@ Keypairs:
 nova keypair-add --pub-key ~/.rackspace/rax.pub raxLondon
 nova keypair-{list,show,delete}
 
+Availability zones:
+nova availability-zone-list
+
 Levantar una máquina:
 nova boot --flavor=2 --image=f45b4de7-6013-4eb9-8df4-133b913ffb40 --key-name=raxLondon NOMBRE-VM
   --num-instances <n>  numero de instancias que arrancar
@@ -30,6 +33,9 @@ nova boot --flavor=2 --image=f45b4de7-6013-4eb9-8df4-133b913ffb40 --key-name=rax
   --file <dst-path=src-path>   poner ficheros locales en la VM
   --key-name <key-name>   pareja de claves, previamente creadas
   --user-data <user-data>  user data file to pass to be exposed by the metadata server??
+
+nova --insecure boot --image=IMAGEN --flavor=SABOR --key-name=CLAVES --nic net-id=145094f1-2c8d-40d0-82f3-2997c4aa1bcc --nic net-id=bdbf444d-8ddd-4b8c-b534-69a2936d88be --availability-zone availzone1 nombre-maquina
+  creo maquina con dos interfaces de red, cada una conectada a una de las redes internas que hayamos creando antes. Tambien elijo que se cree en una zona determinada.
 
 El comando nos devuelve cierta información de la máquina.
 Un valor importante es 'adminPass', que es la password de root, y no podremos volver a conseguirla.

@@ -7,6 +7,11 @@ tasks:
       - motd
     command: /bin/foo
 
+  - name: be sure libselinux-python are installed
+    yum: >
+      name=libselinux-python
+      state=present
+
   - include: tasks/pepe.yml
 
   - include: wordpress.yml user=timmy

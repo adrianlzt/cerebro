@@ -23,3 +23,16 @@ Si necesitamos usar templates pondemos usar directamente src=fichero.j2 y lo lee
 
 En defaults/main.yml podemos poner variables globales:
 kibana_nginx_config_path: /etc/nginx/sites-enabled
+
+
+main.yaml:
+---
+# tasks file for icinga
+- include: repos.yml
+- include: install.yml
+- include: configure.yml
+
+
+repos.yaml:
+- name: cosa
+  modulo: parametros

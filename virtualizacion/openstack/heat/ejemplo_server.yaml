@@ -1,0 +1,44 @@
+heat_template_version: 2013-05-23
+
+description: >
+  Create a server and his port
+
+parameters:
+  name:
+    type: string
+    description: Name of the server
+  key_name:
+    type: string
+    description: Name of keypair to assign to servers
+  image:
+    type: string
+    description: Name of image to use for servers
+  flavor:
+    type: string
+    description: Flavor to use for servers
+  net_id:
+    type: string
+    description: ID of Neutron network into which servers get deployed
+  subnet_id:
+    type: string
+    description: ID of Neutron sub network into which servers get deployed
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      name: { get_param: name }
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - uuid: 
+
+#        - port: { get_resource: server_port }
+
+  server_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: net_id }
+      fixed_ips:
+        - subnet_id: { get_param: subnet_id }

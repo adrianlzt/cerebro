@@ -28,3 +28,7 @@ OutputFormat: python
 KeepAlive: on
 ResponseHeader:fixed16
 
+
+## Acceso remoto
+https://mathias-kettner.de/checkmk_livestatus.html#H1:Remote access to Livestatus via SSH or xinetd
+ssh < query nagios@10.0.0.14 "unixcat /var/lib/nagios/rw/live"

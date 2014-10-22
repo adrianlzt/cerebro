@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://access.redhat.com/articles/1189123 -->
+<html lang="en" dir="ltr" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:og="http://ogp.me/ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" class="js"><head profile="http://www.w3.org/1999/xhtml/vocab"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    
+<link rel="shortcut icon" href="https://access.redhat.com/sites/default/files/shadowman.ico" type="image/vnd.microsoft.icon">
+<meta content="" id="" itemprop="articleSection">
+<meta content="&lt;h2&gt;System basics&lt;/h2&gt; &lt;table&gt; &lt;tr&gt; &lt;th&gt;Task&lt;/th&gt; &lt;th&gt;RHEL5&lt;/th&gt; &lt;th&gt;RHEL6&lt;/th&gt; &lt;th&gt;RHEL7&lt;/th&gt; &lt;/tr&gt;" id="md3" itemprop="description">
+<meta content="" id="" itemprop="product">
+<meta name="generator" content="Drupal 7 (http://drupal.org)">
+<link rel="canonical" href="./files_command/Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7 - Red Hat Customer Portal.html">
+<link rel="shortlink" href="https://access.redhat.com/node/1189123">
+<meta name="id" content="1189123">
+<meta name="doc_summary" content="Lists common administrative commands for Red Hat Enterprise Linux 5, 6 and 7. Printable poster also available.">
+<meta name="product" content="Red Hat Enterprise Linux">
+<meta name="category" content="Migrate">
+<meta name="article_type" content="General">
+<meta name="tags" content="rhel, rhel_5, rhel_6, rhel_7">
+<meta name="language" content="en">
+<meta name="publication_date" content="10 Oct 2014, 1:05 AM GMT">
+<meta name="publication_state" content="published">
+<meta name="access_state" content="Active">
+<meta name="update_date" content="10 Oct 2014, 1:05 AM GMT">
+<meta name="rating" content="94.7826">
+<meta name="comment_count" content="12">
+<meta name="requires_subscription" content="1">
+<meta name="collection_name" content="Knowledge Article">
+  <title>Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7 - Red Hat Customer Portal</title>
+  
+
+
+	
+
+	
+	 
+	
+	
+
+	<!-- metaInclude -->
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=10">
+	<meta name="avalon-host-info" content="gss-webjava02">
+	<meta name="avalon-version" content="2.0.13.4">
+	<meta name="google-site-verification" content="nP0a2DWUcOxjRgDDACHEbDptiGIGBrChbghrC0ZzcK0">
+	<!-- /metaInclude -->
+		<!--[if (!IE)|(gte IE 9)]><!-->
+			<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/font_faces.css">
+		<!--<![endif]-->
+		<!--[if lte IE 8]>
+			<link rel="stylesheet" type="text/css" media="screen, print" href="https://access.redhat.com/chrome_themes/umbra/s/font_faces_ie8.css?version=2.0.13.4" />
+		<![endif]-->
+	
+
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/global.css">
+	<link rel="stylesheet" type="text/css" media="print" href="./files_command/print.css">
+
+	<!-- cssInclude -->
+	<link rel="shortcut icon" href="https://access.redhat.com/webassets/avalon/g/favicon.ico">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/jquery-ui-1.8.7.custom.css">
+	
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/bootstrap-pieces.css">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/nav-main.css">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/header-graphics.css">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/boxes-columns.css">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/product-page.css">
+	<link rel="stylesheet" type="text/css" media="screen, print" href="./files_command/extra-icons.css">
+	<!--[if lte IE 7]><script src="https://access.redhat.com/webassets/avalon/j/lib/icon.extra.font.ie7.js"></script><![endif]-->
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<!-- /cssInclude -->
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" media="screen, print" href="https://access.redhat.com/chrome_themes/umbra/s/ielte8.css?version=2.0.13.4" /><![endif]-->
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="screen, print" href="https://access.redhat.com/chrome_themes/umbra/s/ielte7.css?version=2.0.13.4" /><![endif]-->
+	
+
+	<!-- jsInclude -->
+	<script type="text/javascript" async="" src="./files_command/elqCfg.min.js"></script><script type="text/javascript" async="" src="./files_command/tly.js"></script><script type="text/javascript">
+		window.portal = {
+			analytics             : {},
+			host                  : "https://access.redhat.com",
+			kbaseContext          : "/preview_faq",
+			cspContext            : "/preview_jbossnetwork",
+			customerCenterContext : "/wapps",
+			lang                  : "en",
+			version               : "2.0.13.4",
+			decorationWhitelist   : ["https://access.redhat.com","https://rhn.redhat.com", "docs.redhat.com"]
+		};
+
+		/*
+		* TODO
+		* deprecate this avalon object
+		*/
+		window.avalon = window.portal;
+		window.avalonHost = avalon.host; // deprecate this?
+
+		/********************************
+		*  Temporary pagename shim     *
+		*  TODO: Remove this           *
+		********************************/
+
+		portal.analytics.shim = {};
+		portal.analytics.shim.pageTitle = "";
+		portal.analytics.shim.siteMapState = "";
+
+	</script>
+	<script type="text/javascript" src="./files_command/require.js" data-main="/webassets/avalon/j/"></script>
+	<script type="text/javascript" src="./files_command/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		/*
+		 * THIS IS NEEDED! Integrated apps include their own jQuery lib.
+		 * We need this *before* base.js so we can effectvley pass messages (trigger, bind) to base.js
+		 * *DO NOT* remove! window.jQuery the object is still accessible.
+		*/
+		var ajq = jQuery.noConflict();
+	</script>
+	<script type="text/javascript" src="./files_command/jquery-ui-1.8.20.custom.min.js"></script>
+		<script type="text/javascript" src="./files_command/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript" src="./files_command/idle-timer-1.0.js"></script>
+	<script type="text/javascript" src="./files_command/jquery.blockUI.js"></script>
+
+	<script type="text/javascript" src="./files_command/jquery.menu-aim.js"></script>
+
+	<script type="text/javascript" src="./files_command/autoresize.jquery.js"></script>
+	<script type="text/javascript" src="./files_command/jsuri-1.1.1.min.js"></script>
+	<script type="text/javascript" src="./files_command/inject.js"></script>
+	<script type="text/javascript" src="./files_command/decorate.js"></script>
+	<script type="text/javascript" src="./files_command/outageJson_en.js"></script>
+	<!--[if lte IE 7]><script type="text/javascript" src="https://access.redhat.com/webassets/avalon/j/lib/icon.font.ie7.js?version=2.0.13.4"></script><![endif]-->
+	
+	
+	<script type="text/javascript" src="./files_command/base.js"></script>
+	<!-- /jsInclude -->
+	  <link type="text/css" rel="stylesheet" href="./files_command/css_pbm0lsQQJ7A7WCCIMgxLho6mI_kBNgznNUWmTWcnfoE.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/css_9aNvTRq6UH04jh5LP6xgGRN4NLtcaKkbU-tlt1vqOZc.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/css_rUP41l0tT51qtZEDPBRan4I-xy34Z7YBM3Fo6cJoC_E.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/css_pg3pE_Efphq8PlkNi4J31ugkvAw9_k9SUYj8LAx62WY.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/messages.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/css_U3tYCKahAoBczQXTgo4BAdwUa5ElZ9i12XdjGEci_L4.css" media="all">
+<link type="text/css" rel="stylesheet" href="./files_command/css_EbIxi8kXycgOJT7BSzSNmquF5Y6pL1WPipqFT9EFF54.css" media="print">
+
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="https://access.redhat.com/sites/default/files/css/css_4IP9gN5rHKyHgmNHeyyJUuHdIpJi3W2WYDFx8McGvQk.css" media="all" />
+<![endif]-->
+
+<!--[if lte IE 7]>
+<link type="text/css" rel="stylesheet" href="https://access.redhat.com/sites/default/files/css/css_pRKWqsShIuNuqjxZ91nMNlCNf4fqkTW8SFoNLBqKH0U.css" media="all" />
+<![endif]-->
+
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" href="https://access.redhat.com/sites/default/files/css/css_LJF7kSyaciq_L_6g2WZP92noiPv2VD8h4SJBg864xYA.css" media="all" />
+<![endif]-->
+  <link rel="stylesheet" type="text/css" media="all" href="./files_command/list.css">
+  <script type="text/javascript" src="./files_command/js_IkgOrrVZK1UTp2HktvFi5vo1g7b25Muyr5GoySikuic.js"></script>
+<script type="text/javascript" src="./files_command/js_ZXr1M2uHr3tOfv7n4vKCOWVF_8jsoh7TJQsSt4tnhvc.js"></script>
+<script type="text/javascript" src="./files_command/js_F9boCtSnOJmRI7i7AlQSOpNyZpUGqPHyrY43LsrNczE.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+    jQuery(function() {
+        jQuery("#edit-subscriptions-node-save-button").hover(
+          function(){
+            if(jQuery(this).val() == "Follow") {
+              jQuery(this).removeClass("btn-danger");
+              jQuery(this).addClass("btn-primary");
+            }
+            else if(jQuery(this).val() == "Following") {
+              jQuery(this).val("Unfollow");
+              jQuery(this).addClass("btn-danger");
+              jQuery(this).removeClass("btn-primary");
+            }
+          },
+          function(){
+            if(jQuery(this).val() == "Follow") {
+              jQuery(this).removeClass("btn-danger");
+              jQuery(this).addClass("btn-primary");
+            }
+            else if(jQuery(this).val() == "Unfollow") {
+              jQuery(this).val("Following");
+              jQuery(this).removeClass("btn-danger");
+              jQuery(this).removeClass("btn-primary");
+            }
+          }
+        );
+      });
+    
+//--><!]]>
+</script>
+<script type="text/javascript" src="./files_command/js_mYsAhrg1BTQaOPTB4wPC9S_XSJs2PE73ZcTXDUPwc7w.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+  breadcrumbs = [
+    ["Support", "/support/"], ["Knowledgebase", "/"],
+          ["Articles", "https://access.redhat.com/search/browse/articles/"],
+          ["Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7", "/articles/1189123"]];
+//--><!]]>
+</script>
+<script type="text/javascript" src="./files_command/js_uZ8l7xp61YQkRbLjvXXsD4VEpptUJfjCGNWYGTY5HEE.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+chrometwo_require(["analytics/attributes"], function(attributes) {attributes.set('ResourceID', 'kp-1189123');  
+attributes.set('ResourceTitle', 'Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7');  
+attributes.set('Rating', '94.7826');  
+attributes.set('Category', 'Migrate');  
+attributes.set('Products', ["Red Hat Enterprise Linux"]);  
+attributes.set('Language', 'en');  
+attributes.set('Tags', ["rhel","rhel_5","rhel_6","rhel_7"]);  
+attributes.set('PublicationState', ["active","published"]);  
+attributes.set('ContentSubType', 'General');  
+});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+            chrometwo_require(["more_like_this"], function (mlt) {
+                      mlt.create({
+                                block_header: "More Like This",
+                                id: "1189123",
+                                selector: "#sidebar .section",
+                                no_results_text: "No recommendations found.",
+                                type: "articles"
+                      });
+            });
+  
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+chrometwo_require(["analytics/main", "analytics/attributes"], function (analytics, attributes) {
+                      analytics.trigger("ABTestImpression");
+                      attributes.set("ABTestCampaign", ["MLTTitleTest", "group1"]);
+                    });
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+ajq( function() {
+                  ajq("#sidebar .section").on("click", "#moreLikeThis a", function (ev) {
+                    chrometwo_require(["analytics/main"], function (analytics) {
+                      analytics.trigger("ABTestSuccess", ev);
+                    });
+                  });
+                });
+//--><!]]>
+</script>
+<script type="text/javascript" src="./files_command/js_x5ychgWvWlxUK4EoJXU84leEwKZDs0PGRa4UIYyx1As.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(){var b=this._tly={q:[],mark:function(a,c){b.q.push(["mark",a,c||(new Date).getTime()])},measure:function(a,c,e){b.q.push(["measure",a,c,e||(new Date).getTime()])},done:function(a){b.q.push(["done",a])},cid:"Gf1RWYTZaFM4LqZzJ3SwugOCOhM=",xt:"1B9E02F4ACED4747DCC08904B412D7D552B52C4BCAEF312ADDE17DB6AB"};b.mark("firstbyte");this.onerror=function(a,c,e){b.measure(["_jserror ",a,"|",c,"|",e].join(""))};var d=this.attachEvent,f=this.addEventListener;var g=function(){b.measure("winload");b.done()};d?d("onload",g):f&&f("load",g,!1);var h=document.createElement("script");
+h.type="text/javascript";h.async=!0;h.src=("http:"===document.location.protocol?"http:":"https:")+"//d2gfdmu30u15x7.cloudfront.net/1/tly.js";var i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(h,i);}());
+
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"kcs","theme_token":"vJzFMN8Vv4zgzg35LBLVZsOlREKSMMg0MRKHDycG-jc","js":{"misc\/jquery.once.js":1,"misc\/drupal.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.core.min.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.widget.min.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.mouse.min.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.draggable.min.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.droppable.min.js":1,"modules\/jquery_update\/replace\/ui\/ui\/minified\/jquery.ui.sortable.min.js":1,"modules\/jquery_update\/replace\/ui\/external\/jquery.cookie.js":1,"modules\/jquery_update\/replace\/misc\/jquery.form.js":1,"misc\/form.js":1,"misc\/ajax.js":1,"sites\/all\/libraries\/chosen\/chosen\/chosen.jquery.min.js":1,"modules\/chosen\/chosen.js":1,"modules\/memcache\/memcache_admin\/memcache.js":1,"sites\/all\/libraries\/emphasis\/js\/emphasis.js":1,"0":1,"modules\/context\/plugins\/context_reaction_block.js":1,"1":1,"misc\/progress.js":1,"sites\/all\/modules\/custom\/fivestar\/js\/fivestar.ajax.js":1,"sites\/all\/modules\/custom\/fivestar\/js\/fivestar.js":1,"misc\/tableheader.js":1,"modules\/subscriptions\/subscriptions_tableselect.js":1,"misc\/collapse.js":1,"misc\/textarea.js":1,"modules\/filter\/filter.js":1,"sites\/all\/themes\/kcs\/js\/kcs_base.js":1,"sites\/all\/themes\/kcs\/js\/showdown.js":1,"sites\/all\/themes\/kcs\/js\/case_links.js":1,"2":1,"3":1,"4":1,"5":1,"6":1,"7":1,"8":1,"9":1,"10":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"modules\/comment\/comment.css":1,"modules\/date\/date_api\/date.css":1,"modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/user\/user.css":1,"modules\/views\/css\/views.css":1,"sites\/all\/libraries\/chosen\/chosen\/chosen.css":1,"modules\/ctools\/css\/ctools.css":1,"modules\/locale\/locale.css":1,"modules\/context\/plugins\/context_reaction_block.css":1,"sites\/all\/modules\/custom\/fivestar\/css\/fivestar.css":1,"modules\/filter\/filter.css":1,"modules\/field_group\/field_group.field_ui.css":1,"https:\/\/access.redhat.com\/webassets\/avalon\/s\/messages.css":1,"sites\/all\/themes\/kcs\/css\/html-reset.css":1,"sites\/all\/themes\/kcs\/css\/wireframes.css":1,"sites\/all\/themes\/kcs\/css\/layout-fixed.css":1,"sites\/all\/themes\/kcs\/css\/page-backgrounds.css":1,"sites\/all\/themes\/kcs\/css\/tabs.css":1,"sites\/all\/themes\/kcs\/css\/pages.css":1,"sites\/all\/themes\/kcs\/css\/blocks.css":1,"sites\/all\/themes\/kcs\/css\/navigation.css":1,"sites\/all\/themes\/kcs\/css\/views-styles.css":1,"sites\/all\/themes\/kcs\/css\/nodes.css":1,"sites\/all\/themes\/kcs\/css\/comments.css":1,"sites\/all\/themes\/kcs\/css\/forms.css":1,"sites\/all\/themes\/kcs\/css\/fields.css":1,"sites\/all\/themes\/kcs\/css\/kcs.css":1,"sites\/all\/themes\/kcs\/css\/print.css":1,"sites\/all\/themes\/kcs\/css\/ie.css":1,"sites\/all\/themes\/kcs\/css\/ie7.css":1,"sites\/all\/themes\/kcs\/css\/ie6.css":1}},"chosen":{"selector":"#edit-field-kcs-component-select-und, #edit-field-kcs-sbr-select-und, #edit-field-kcs-product-select-und, #edit-field-kcs-type-select-und, #edit-language, #edit-field-kcs-a-category-select-und, #edit-field-kcs-state-select-und, #edit-field-kcs-tags-select-und, #edit-field-kcs-state-select-value, #edit-field-vid-reference-product-und, #edit-state, #edit-product, #edit-category, #edit-field-kcs-product-select-tid, #edit-field-kcs-type-select-tid, #edit-field-kcs-a-category-select-tid, #edit-sort-bef-combine, #edit-kcs-state, #edit-field-category-tid, #edit-field-product-tid, #edit-field-tags-tid, #edit-field-category-und, #edit-field-product-und, #edit-field-tags-und, #views-exposed-form-questions-list-questions-filter-block #edit-field-category, #edit-field-tags-und, #views-exposed-form-questions-list-questions-filter-block #edit-field-product, #views-exposed-form-questions-list-questions-filter-block #edit-field-tags, #edit-field-mega-menu-tab-und, #edit-field-internal-tags-tid, #edit-tags, #edit-field-internal-tags-und, #edit-field-kcs-tags-select-tid, #edit-subscriptions-and-choose-field-select, #edit-subscriptions-and-type, #edit-vid-13, #edit-vid-4, #edit-vid-5, #edit-vid-53, #edit-vid-1, #edit-vid-3, #edit-group-blog, #edit-group-group, #edit-subscriptions-and-choose-field-select-two, #edit-subscriptions-and-type-two, #edit-vid-13-two, #edit-vid-4-two, #edit-vid-5-two, #edit-vid-53-two, #edit-vid-1-two, #edit-vid-3-two, #edit-group-blog-two, #edit-group-group-two, #edit-subscriptions-and-edit-choose-field-select, #edit-subscriptions-and-type-edit, #edit-subscriptions-and-edit-type-two, #edit-vid-13-edit-two, #edit-vid-4-edit-two, #edit-vid-5-edit-two, #edit-vid-53-edit-two, #edit-vid-1-edit-two, #edit-vid-3-edit-two, #edit-group-group-edit-two, #edit-subscriptions-and-edit-choose-field-select-two, #edit-vid-13-edit, #edit-vid-4-edit, #edit-vid-5-edit, #edit-vid-53-edit, #edit-vid-1-edit, #edit-vid-3-edit, #edit-group-group-edit, #edit-group-blog-edit, #edit-field-supported-languages-tid, #edit-field-geography-und, #edit-field-supported-products-und, #edit-field-supported-languages-und, #edit-field-vendor-und, #edit-field-errata-type-text-und, #edit-field-errata-severity-text-und, #edit-field-software-partner-level-und, #edit-field-scert-product-category-und, #edit-field-certifications-und-0-field-product-und, #edit-kcs-article-type, #edit-field-eco-industry-tag-select-tid, #edit-field-eco-software-catego-select-tid, #edit-field-ecosystem-tag-select-und, #edit-field-eco-industry-tag-select-und, #edit-field-eco-software-catego-select-und, #edit-field-vendor-tsanet-member-ref-und, #edit-field-og-vendor-ref-und-0-default, #edit-field-eco-products-enabled-col-und-0-field-eco-subscription-model-ref-und, #edit-field-eco-products-enabled-col-und-0-field-eco-support-level-ref-und, #edit-field-eco-products-enabled-col-und-0-field-eco-product-select-und, #edit-field-eco-certifications-select-und-0-field-eco-product-select-und, #edit-field-eco-certifications-select-und-0-field-eco-product-archite-select-und, #edit-field-eco-certifications-select-und-0-field-eco-certificati-lvl-select-und, #edit-field-eco-certifications-select-und-0-field-eco-hypervisor-str-und, #edit-field-eco-supported-language-ref-und, #edit-field-eco-region-ref-und, #edit-field-cs-product-category-str-und, #edit-field-eco-certifications-select-und-0-field-eco-format-ref-und, #edit-field-eco-group-access-ref-und, #edit-field-hw-category-tag-ref-und, #edit-field-profile-industry-und, #edit-field-profile-tech-interests-und, #edit-field-product-page-features-ref-und, #edit-field-eco-product-select-und, #edit-field-base-product-ref-und, #edit-field-eco-product-archite-select-und, #edit-field-eco-format-ref-und, #edit-field-certification-status-ref-und, #edit-field-certification-result-ref-und, #edit-field-og-certified-product-ref-und-0-default, #edit-field-eco-subscription-model-ref-und, #edit-field-eco-support-level-ref-und, #edit-field-eco-certificati-lvl-select-und, #edit-field-eco-hypervisor-str-und, #edit-field-ccp-thirdparty-cert-select-und, .use_chosen","minimum":"0"},"ajax":{"edit-vote--4":{"callback":"fivestar_ajax_submit","event":"change","url":"\/system\/ajax","submit":{"_triggering_element_name":"vote"}},"edit-subscriptions-node-save-button":{"callback":"redhat_subscriptions_block_form_ajax_submit","wrapper":"subscriptions_and_add_notification","method":"replaceWith","effect":"fade","event":"mousedown","keypress":true,"prevent":"click","url":"\/system\/ajax","submit":{"_triggering_element_name":"op","_triggering_element_value":"Follow"}},"edit-submit":{"callback":"ajax_comments_submit_js","wrapper":"comment-form","method":"replaceWith","effect":"fade","event":"mousedown","keypress":true,"prevent":"click","url":"\/system\/ajax","submit":{"_triggering_element_name":"op","_triggering_element_value":"Submit comment"}}},"section":"common administrative commands in red hat enterprise linux 5, 6, and 7"});
+//--><!]]>
+</script>
+    <!--[if lt IE 9]>
+  <script src="https://access.redhat.com/sites/all/themes/kcs/js/html5shiv.js"></script>
+  <![endif]-->
+  
+    
+    
+  
+
+
+    <!--kcs02-->
+<script type="text/javascript">
+  Drupal.portal = {"version":{"redhat_jnana":"4.5.435","redhat_sso":"4.5.432","redhat_jnana_themes":"4.5.321"}};
+  </script>
+
+<style type="text/css">p.emActive span { background-color:#f2f4f5; } p span.emHighlight { background-color:#fff0b3; } span.emInfo { position:absolute; margin:-1px 0px 0px -8px; padding:0; font-size:10px; background-color: transparent !important} span.emInfo a { text-decoration: none; } a.emActiveAnchor { color: #000; font-size: 11px; }</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ajax_error_handler" src="./files_command/ajax_error_handler.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="data-eh" src="./files_command/data-eh.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/attributes" src="./files_command/attributes.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="more_like_this" src="./files_command/more_like_this.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/main" src="./files_command/main.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="google_remarketing" src="./files_command/google_remarketing.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="user_info" src="./files_command/user_info.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="dismiss" src="./files_command/dismiss.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="chrome_lib" src="./files_command/chrome_lib.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="moment" src="./files_command/moment.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="load_html" src="./files_command/load_html.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="./files_command/underscore-min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="equalHeights" src="./files_command/jquery.equalheights.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/separators" src="./files_command/separators.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/omniture/old_fns" src="./files_command/old_fns.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/url" src="./files_command/url.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/sites/portal/urls" src="./files_command/urls.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jsUri" src="./files_command/jsuri-1.1.1.min(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="eloqua-cfg" src="./files_command/elqCfg.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="menu_aim" src="./files_command/jquery.menu-aim(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="eloqua-img" src="./files_command/elqImg.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="s_code" src="./files_command/s_code.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="text" src="./files_command/text.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/omniture/attributes" src="./files_command/attributes(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/eloqua/attributes" src="./files_command/attributes(2).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/omniture/events" src="./files_command/events.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/eloqua/events" src="./files_command/events(1).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/adapters/omniture/old_props" src="./files_command/old_props.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics/events" src="./files_command/events(2).js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="survey" src="./files_command/survey.js"></script></head>
+<body class="portal-page  kcs_external en loggedIn">
+
+    
+
+	<div id="outer-wrapper" class="wrapo">
+		<div id="wrapper" class="wrapo">
+<!--googleoff: all-->
+<a id="skipnav" class="nodisplay" href="https://access.redhat.com/articles/1189123#navPrimary">Skip to navigation</a>
+
+ <!-- /wrapi -->
+<!--googleon: all-->
+			<div id="main-wrap" class="wrapu">
+				
+				
+  <div id="content-narrow">
+      <script type="text/javascript">
+   siteMapState = "support";
+</script>
+<div class="wrapi">
+    <div id="container" class="clearWrap c-mF state-active status-published">
+        <div id="content" class="clearfix"><ul id="notices" class="message"></ul>
+            <div id="main" class="">
+                
+                <!-- googleoff: all-->
+                                <!--googleon: all-->
+
+                                    <article id="main-content" class="kcs_article">
+
+                      <span id="watermark"></span>
+                                <header>
+                            <h1 class="title" id="page-title">Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7</h1>                                            <div class="pubdate"><span class="icon-clock" aria-hidden="true"></span> Updated <span class="moment_date" title="October 10 2014 at 3:05 AM">October 10 2014 at 3:05 AM</span></div>
+                          </header>
+          
+                                    <div class="content-area kcs_article-area">
+                                                    
+                                
+                                                  <div id="doc">
+                                <div class="section">
+                                                                                                                        <div class="region region-content">
+        <div id="block-system-main" class="block block-system first last odd count-1">
+
+      
+  <div class="content">
+    <div id="node-1189123" class="node node-kcs-article view-mode-full clearfix">
+
+                  
+  
+    <div class="content">
+      <meta itemprop="name" content="Common administrative commands in Red Hat Enterprise Linux 5, 6, and 7" id="md32"><div class="field field-name-field-kcs-article-body field-type-text-long field-label-hidden ">
+
+    <div id="article-content">
+  <h2>System basics</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>View subscription information</td>
+<td>/etc/sysconfig/rhn/systemid</td>
+<td> /etc/sysconfig/rhn/systemid <br> subscription-manager identity </td>
+<td> subscription-manager identity </td>
+</tr>
+<tr>
+<td>Configure subscription</td>
+<td> rhn_register </td>
+<td> rhn_register <br> rhnreg_ks <br> subscription-manager </td>
+<td> subscription-manager<sup id="fnref:1"><a href="https://access.redhat.com/articles/1189123#fn:1" rel="footnote">1</a></sup> <br> rhn_register <sup id="fnref:2"><a href="https://access.redhat.com/articles/1189123#fn:2" rel="footnote">2</a></sup> </td>
+</tr>
+<tr>
+<td>View RHEL version information</td>
+<td colspan="3">/etc/redhat-release</td>
+</tr>
+<tr>
+<td>View system profile</td>
+<td> sosreport <br> dmidecode <br> hwbrowser </td>
+<td colspan="2"> sosreport <br> dmidecode <br> lshw </td>
+</tr>
+</tbody></table>
+<h2>Basic configuration</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Graphical configuration tools</td>
+<td colspan="2">system-config-*</td>
+<td>gnome-control-center</td>
+</tr>
+<tr>
+<td>Text-based configuration tools</td>
+<td colspan="2">system-config-*-tui</td>
+<td></td>
+</tr>
+<tr>
+<td>Configure printer</td>
+<td colspan="3">system-config-printer</td>
+</tr>
+<tr>
+<td>Configure network</td>
+<td colspan="2">system-config-network</td>
+<td> nmcli <br> nmtui  <br> nm-connection-editor </td>
+</tr>
+<tr>
+<td>Configure system language</td>
+<td colspan="2">system-config-language</td>
+<td>localectl</td>
+</tr>
+<tr>
+<td>Configure time and date</td>
+<td colspan="2">system-config-date</td>
+<td> timedatectl <br> date </td>
+</tr>
+<tr>
+<td>Synchronize time and date</td>
+<td colspan="2"> ntpdate <br> /etc/ntp.conf </td>
+<td> timedatectl <br> /etc/chrony.conf </td>
+</tr>
+<tr>
+<td>Configure keyboard</td>
+<td colspan="2">system-config-keyboard</td>
+<td>localectl</td>
+</tr>
+<tr>
+<td>Configure samba</td>
+<td colspan="3"> smbclient <br> /etc/samba/smb.conf <br> smbpasswd </td>
+</tr>
+<tr>
+<td>Configure SSH</td>
+<td colspan="3"> /etc/ssh/ssh_config <br> /etc/ssh/sshd_config <br> ~/.ssh/config ssh-keygen </td>
+</tr>
+</tbody></table>
+<h2>Jobs and services</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>List all services</td>
+<td colspan="2"> chkconfig --list <br> ls /etc/init.d/ </td>
+<td> systemctl -at service <br> ls /etc/systemd/system/*.service <br> ls /usr/lib/systemd/system/*.service </td>
+</tr>
+<tr>
+<td>List running services</td>
+<td colspan="2">service --status-all</td>
+<td>systemctl -t service --state=active</td>
+</tr>
+<tr>
+<td>Start/stop service</td>
+<td colspan="2">service <em>name</em> start <br> service <em>name</em> stop</td>
+<td>systemctl start <em>name</em>.service <br> systemctl stop <em>name</em>.service</td>
+</tr>
+<tr>
+<td>Enable/disable service</td>
+<td colspan="2">chkconfig <em>name</em> on <br> chkconfig <em>name</em> off</td>
+<td>systemctl enable <em>name</em>.service <br> systemctl disable <em>name</em>.service</td>
+</tr>
+<tr>
+<td>View service status</td>
+<td colspan="2">service <em>name</em> status</td>
+<td>systemctl status <em>name</em>.service</td>
+</tr>
+<tr>
+<td>Check if service is enabled</td>
+<td colspan="2">chkconfig <em>name</em></td>
+<td>systemctl is-enabled <em>name</em></td>
+</tr>
+<tr>
+<td>Create new service file or modify configuration</td>
+<td colspan="2">chkconfig --add</td>
+<td>systemctl daemon-reload</td>
+</tr>
+<tr>
+<td>View run level/target</td>
+<td colspan="2"> runlevel <br> who -r </td>
+<td> systemctl get-default <br> who -r </td>
+</tr>
+<tr>
+<td>Change run level/target</td>
+<td colspan="2">/etc/inittab <br> init <em>run_level</em></td>
+<td> systemctl isolate <em>name</em>.target<br> systemctl set-default </td>
+</tr>
+<tr>
+<td>Configure logging</td>
+<td>/etc/syslog.conf</td>
+<td>/etc/rsyslog.conf</td>
+<td> /etc/rsyslog.conf <br> /etc/rsyslog.d/*.conf <br> /var/log/journal <br> systemd-journald.service </td>
+</tr>
+<tr>
+<td>View logs</td>
+<td colspan="2">/var/log</td>
+<td> /var/log <br> journalctl </td>
+</tr>
+<tr>
+<td>Configure system audit</td>
+<td colspan="3"> add <strong>audit=1</strong> to kernel cmdline <br> auditctl <br> /etc/audit/auditd.conf <br> /etc/audit/audit.rules <br> authconfig <br> /etc/pam.d/system-auth <br> pam_tty_audit kernel module </td>
+</tr>
+<tr>
+<td>View audit output</td>
+<td colspan="3"> aureport /var/log/faillog </td>
+</tr>
+<tr>
+<td>Schedule tasks</td>
+<td colspan="3"> cron <br> at </td>
+</tr>
+<tr>
+<td>Configure batch tasks</td>
+<td colspan="3">batch</td>
+</tr>
+<tr>
+<td>Find file by name</td>
+<td colspan="3">locate</td>
+</tr>
+<tr>
+<td>Find file by characteristic</td>
+<td colspan="3">find</td>
+</tr>
+<tr>
+<td>Create archive</td>
+<td colspan="3"> tar <br> cpio <br> zip <br> gzip <br> bzip2 </td>
+</tr>
+</tbody></table>
+<h2>Kernel, boot, and hardware</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Single user/rescue mode</td>
+<td colspan="2">append <strong>1</strong> or <strong>s</strong> or <strong>init=/bin/bash</strong> to kernel cmdline</td>
+<td>append <strong>rd.break</strong> or <strong>init=/bin/bash</strong> to kernel cmdline</td>
+</tr>
+<tr>
+<td>Shut down system</td>
+<td colspan="2">shutdown</td>
+<td>systemctl shutdown</td>
+</tr>
+<tr>
+<td>Power off system</td>
+<td colspan="2">poweroff</td>
+<td>systemctl poweroff</td>
+</tr>
+<tr>
+<td>Halt system</td>
+<td colspan="2">halt</td>
+<td>systemctl halt</td>
+</tr>
+<tr>
+<td>Reboot system</td>
+<td colspan="2">reboot</td>
+<td>systemctl reboot</td>
+</tr>
+<tr>
+<td>Configure default run level/target</td>
+<td colspan="2">/etc/inittab</td>
+<td> systemctl set-default </td>
+</tr>
+<tr>
+<td>Configure GRUB bootloader</td>
+<td colspan="2">/boot/grub/grub.conf</td>
+<td> /etc/default/grub <br> grub2-mkconfig <br> grub-set-default </td>
+</tr>
+<tr>
+<td>Configure kernel module</td>
+<td colspan="3">modprobe</td>
+</tr>
+<tr>
+<td>View hardware configured</td>
+<td>hwbrowser</td>
+<td colspan="2">lshw</td>
+</tr>
+<tr>
+<td>Configure hardware device</td>
+<td colspan="3">udev</td>
+</tr>
+<tr>
+<td>View kernel parameters</td>
+<td colspan="3"> sysctl -a <br> cat /proc/cmdline </td>
+</tr>
+<tr>
+<td>Load kernel module</td>
+<td colspan="3">modprobe</td>
+</tr>
+<tr>
+<td>Remove kernel module</td>
+<td colspan="3">modprobe -r</td>
+</tr>
+<tr>
+<td>View kernel version</td>
+<td colspan="3"> rpm -q kernel <br> uname -r </td>
+</tr>
+</tbody></table>
+<h2>Software management</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Install software</td>
+<td colspan="2"> yum install <br> yum groupinstall </td>
+<td> yum install <br> yum group install </td>
+</tr>
+<tr>
+<td>View software info</td>
+<td colspan="2"> yum info <br> yum groupinfo </td>
+<td> yum info <br> yum group info </td>
+</tr>
+<tr>
+<td>Update software</td>
+<td colspan="3">yum update</td>
+</tr>
+<tr>
+<td>Upgrade software</td>
+<td colspan="3">yum upgrade</td>
+</tr>
+<tr>
+<td>Configure software repository</td>
+<td colspan="3">/etc/yum.repos.d/*.repo</td>
+</tr>
+<tr>
+<td>Find file in package</td>
+<td colspan="3">rpm -qf <em>filename</em></td>
+</tr>
+<tr>
+<td>View software version</td>
+<td colspan="3">rpm -q <em>packagename</em></td>
+</tr>
+<tr>
+<td>View installed software</td>
+<td colspan="3">rpm -qa</td>
+</tr>
+</tbody></table>
+<h2>User management</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Graphical user management</td>
+<td colspan="3">system-config-users</td>
+</tr>
+<tr>
+<td>Create user account</td>
+<td colspan="3">useradd</td>
+</tr>
+<tr>
+<td>Delete user account</td>
+<td colspan="3">userdel</td>
+</tr>
+<tr>
+<td>Change user account details</td>
+<td colspan="3">usermod</td>
+</tr>
+<tr>
+<td>View user account details</td>
+<td colspan="3"> usermod <br> /etc/passwd </td>
+</tr>
+<tr>
+<td>Create user group</td>
+<td colspan="3">groupadd</td>
+</tr>
+<tr>
+<td>Delete user group</td>
+<td colspan="3">groupdel</td>
+</tr>
+<tr>
+<td>Change group details</td>
+<td colspan="3">groupmod</td>
+</tr>
+<tr>
+<td>Change user password</td>
+<td colspan="3">passwd username</td>
+</tr>
+<tr>
+<td>Change user permissions</td>
+<td colspan="3"> usermod <br> /etc/sudoers </td>
+</tr>
+<tr>
+<td>Change group permissions</td>
+<td colspan="3"> groupmod <br> /etc/sudoers </td>
+</tr>
+<tr>
+<td>Change password policy</td>
+<td colspan="3">chage</td>
+</tr>
+<tr>
+<td>Encrypted password location</td>
+<td colspan="3">/etc/shadow</td>
+</tr>
+<tr>
+<td>View/end user sessions</td>
+<td colspan="3">w</td>
+</tr>
+</tbody></table>
+<h2>File systems, volumes, and disks</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Default file system</td>
+<td>ext3</td>
+<td>ext4</td>
+<td>xfs</td>
+</tr>
+<tr>
+<td>Create/modify disk partitions</td>
+<td colspan="2"> fdisk <br> parted </td>
+<td> fdisk <br> gdisk <br> parted <br> ssm create </td>
+</tr>
+<tr>
+<td>Format disk partition</td>
+<td colspan="2"> mkfs.filesystem_type (ext4, xfs) <br> mkswap </td>
+<td> mkfs.filesystem_type (ext4, xfs) <br> mkswap <br> ssm create </td>
+</tr>
+<tr>
+<td>Defragment disk space</td>
+<td> copy data to new file system <br> fsck (look for 'non-contiguous inodes') </td>
+<td colspan="2"> copy data to new file system <br> fsck (look for 'non-contiguous inodes') <br> xfs_fsr </td>
+</tr>
+<tr>
+<td>Mount storage</td>
+<td colspan="2"> mount <br> /etc/fstab </td>
+<td> mount <br> /etc/fstab <br> ssm mount </td>
+</tr>
+<tr>
+<td>Mount and activate swap</td>
+<td colspan="3"> /etc/fstab <br> swapon -a </td>
+</tr>
+<tr>
+<td>Automatically mount at boot</td>
+<td colspan="3">/etc/fstab</td>
+</tr>
+<tr>
+<td>View free disk space</td>
+<td colspan="3">df</td>
+</tr>
+<tr>
+<td>View logical volume info</td>
+<td colspan="3"> lvdisplay <br> lvs <br> vgdisplay <br> vgs <br> pvdisplay <br> pvs </td>
+</tr>
+<tr>
+<td>Create physical volume</td>
+<td colspan="2">pvcreate</td>
+<td> pvcreate <br> ssm create (if backend is lvm) </td>
+</tr>
+<tr>
+<td>Create volume group</td>
+<td colspan="2">vgcreate</td>
+<td> vgcreate <br> ssm create (if backend is lvm) </td>
+</tr>
+<tr>
+<td>Create logical volume</td>
+<td colspan="2">lvcreate</td>
+<td> lvcreate <br> ssm create (if backend is lvm) </td>
+</tr>
+<tr>
+<td>Enlarge volumes formatted with default file system</td>
+<td colspan="2"> vgextend <br> lvextend <br> resize2fs </td>
+<td> vgextend <br> lvextend <br> xfs_growfs <br> ssm resize </td>
+</tr>
+<tr>
+<td>Shrink volumes formatted with default file system</td>
+<td colspan="2"> resize2fs <br> lvreduce <br> vgreduce </td>
+<td> XFS cannot currently be shrunk; copy desired data to a smaller file system. </td>
+</tr>
+<tr>
+<td>Check/repair file system</td>
+<td colspan="2">fsck</td>
+<td> fsck <br> ssm check </td>
+</tr>
+<tr>
+<td>View NFS share</td>
+<td colspan="3"> showmount -e <br> mount </td>
+</tr>
+<tr>
+<td>Configure NFS share</td>
+<td colspan="2"> /etc/exports <br> service nfs reload </td>
+<td> /etc/exports <br> systemctl reload nfs.service </td>
+</tr>
+<tr>
+<td>Automatically mount after boot</td>
+<td colspan="3"> /etc/auto.master.d/*.autofs <br> /etc/auto.* </td>
+</tr>
+<tr>
+<td>Change file permissions</td>
+<td colspan="3"> chmod <br> chown <br> chgrp <br> umask </td>
+</tr>
+<tr>
+<td>Change access control list</td>
+<td colspan="3"> setfacl </td>
+</tr>
+</tbody></table>
+<h2>Networking</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Configure name resolution</td>
+<td colspan="2"> /etc/hosts <br> /etc/resolv.conf </td>
+<td> /etc/hosts <br> /etc/resolv.conf <br> nmcli con mod </td>
+</tr>
+<tr>
+<td>Configure hostname</td>
+<td colspan="2">/etc/sysconfig/network</td>
+<td> hostnamectl <br> /etc/hostname <br> nmtui </td>
+</tr>
+<tr>
+<td>View network interface info</td>
+<td colspan="2"> ip addr <br> ifconfig <br> brctl </td>
+<td> ip addr <br> nmcli dev show <br> teamdctl <br> brctl <br> bridge </td>
+</tr>
+<tr>
+<td>Configure network interface</td>
+<td colspan="2"> /etc/sysconfig/network-scripts/ifcfg-* </td>
+<td> /etc/sysconfig/network-scripts/ifcfg-* <br> nmcli con [add|mod|edit] <br> nmtui <br> nm-connection-editor </td>
+</tr>
+<tr>
+<td>View routes</td>
+<td colspan="3"> ip route </td>
+</tr>
+<tr>
+<td>Configure routes</td>
+<td colspan="3"> /etc/sysconfig/network <br> system-config-network </td>
+</tr>
+<tr>
+<td>Configure firewall</td>
+<td> iptables and ip6tables <br> /etc/sysconfig/ip*tables </td>
+<td> iptables and ip6tables <br> /etc/sysconfig/ip*tables <br> system-config-firewall </td>
+<td> firewall-cmd <br> firewall-config </td>
+</tr>
+<tr>
+<td>Configure DHCP client</td>
+<td> /etc/dhcpd.conf <br> /etc/dhcp6c.conf </td>
+<td colspan="2"> dhcpd <br> /etc/dhcp/dhcpd.conf <br> /etc/sysconfig/dhcpd </td>
+</tr>
+<tr>
+<td>View ports/sockets</td>
+<td colspan="2"> ss <br> lsof <br> netstat </td>
+<td> ss <br> lsof </td>
+</tr>
+</tbody></table>
+<h2>Security and identity</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Configure system security</td>
+<td colspan="3"> /etc/selinux/config  <br> chcon  <br> restorecon  <br> semanage  <br> setsebool  <br> system-config-selinux </td>
+</tr>
+<tr>
+<td>Report on system security</td>
+<td colspan="3">sealert</td>
+</tr>
+<tr>
+<td>LDAP, SSSD, Kerberos</td>
+<td colspan="3"> authconfig <br> authconfig-tui <br> authconfig-gtk </td>
+</tr>
+<tr>
+<td>Network users</td>
+<td colspan="3">getent</td>
+</tr>
+</tbody></table>
+<h2>Resource management</h2>
+<table>
+<tbody><tr>
+<th>Task</th>
+<th>RHEL5</th>
+<th>RHEL6</th>
+<th>RHEL7</th>
+</tr>
+<tr>
+<td>Trace system calls</td>
+<td colspan="3">strace</td>
+</tr>
+<tr>
+<td>Trace library calls</td>
+<td colspan="3">ltrace</td>
+</tr>
+<tr>
+<td>Change process priority</td>
+<td colspan="3">nice <br> renice</td>
+</tr>
+<tr>
+<td>Change process run location</td>
+<td colspan="3">taskset</td>
+</tr>
+<tr>
+<td>Kill a process</td>
+<td colspan="3"> kill <br> pkill <br> killall </td>
+</tr>
+<tr>
+<td>View system usage</td>
+<td> top <br> ps  <br> sar <br> iostat <br> netstat  <br> vmstat <br> mpstat <br> numastat </td>
+<td> top <br> ps  <br> sar  <br> iostat  <br> netstat <br> ss  <br> vmstat  <br> mpstat  <br> numastat <br> tuna </td>
+<td> top <br> ps  <br> sar  <br> iostat  <br> ss  <br> vmstat  <br> mpstat  <br> numastat <br> tuna  </td>
+</tr>
+<tr>
+<td>View disk usage</td>
+<td> df </td>
+<td colspan="2"> df <br> iostat </td>
+</tr>
+</tbody></table>
+<ol>
+<li id="fn:1">
+<p> subscription-manager is used for Satellite 6, Satellite 5.6 with SAM and newer, and Red Hat's CDN. <a href="https://access.redhat.com/articles/1189123#fnref:1" rev="footnote">↩</a> </p>
+</li>
+<li id="fn:2">
+<p> RHN tools are deprecated on Red Hat Enterprise Linux 7. rhn_register should be used for Satellite server 5.6 and newer only. For details, see: <a href="https://access.redhat.com/solutions/737373">Satellite 5.6 unable to register RHEL 7 client system due to rhn-setup package not included in Minimal installation</a><a href="https://access.redhat.com/articles/1189123#fnref:2" rev="footnote">↩</a> </p>
+</li>
+</ol>
+</div>
+</div><div class="field field-name-field-kcs-attachment-file field-type-file field-label-above ">
+	<h2 class="field-label">
+				Attachments	</h2>
+
+    <span class="file"><img class="file-icon" alt="" title="application/pdf" src="./files_command/application-pdf.png"> <a href="https://access.redhat.com/node/1189123/40/0" type="application/pdf; length=95395" title="rhel_5_6_7_cheatsheet_27x36_1014_jcs_web.pdf">Printable 27x36" poster</a></span></div><footer class="compact"></footer>    </div>
+  
+  
+</div><!-- /.node -->
+  </div>
+
+</div><!-- /.block -->
+<meta itemscope="" id="md2" itemref="md1"><meta itemscope="" itemprop="product about" id="md6" itemref="md5"><meta itemscope="" id="md8" itemref="md7"><meta itemscope="" id="md10" itemref="md9"><meta itemscope="" id="md12" itemref="md11"><meta itemscope="" id="md14" itemref="md13"><meta itemscope="" itemprop="articleSection" id="md18" itemref="md17"><meta itemscope="" itemtype="http://schema.org/Article" itemid="https://access.redhat.com/articles/1189123" itemref="md2 md3 md4 md6 md8 md10 md12 md14 md15 md16 md18 md19 md32 md33"><meta itemscope="" itemref="md20"><meta itemscope="" itemref="md21"><meta itemscope="" itemref="md22"><meta itemscope="" itemref="md23"><meta itemscope="" itemref="md24"><meta itemscope="" itemref="md25"><meta itemscope="" itemref="md26"><meta itemscope="" itemref="md27"><meta itemscope="" itemref="md28"><meta itemscope="" itemref="md29"><meta itemscope="" itemref="md30"><meta itemscope="" itemref="md31">      </div><!-- /.region -->
+  
+                                                                            
+                                </div><!-- /.section -->
+                            </div><!-- /#doc -->
+                    </div>
+                                    </article><!-- /article#main-content -->
+                            </div><!--  /#main -->
+
+                    </div><!-- /#content -->
+            </div><!-- /#container -->
+</div><!-- /.wrapi -->
+  </div>
+
+  
+
+			</div>
+			<div id="footerWrap" class="wrapu">
+	<!--googleoff: all-->
+	<!-- end footer -->
+	
+
+	
+	<!-- end bottomBar -->
+	<!--googleon: all-->
+			</div>
+			<!-- end footerWrap -->
+		</div>
+	</div>
+
+	<!--googleoff: all-->
+	<script type="text/javascript" charset="utf-8">
+		chrometwo_require(['analytics/main', 'analytics/attributes'], function (analytics, attributes) {
+			analytics.init(['omniture', 'eloqua']);
+			attributes.harvest();
+			analytics.report();
+		});
+		chrometwo_require(['google_remarketing'], function(google_remarketing) {
+			google_remarketing.add_tag();
+		});
+	</script>
+	<!-- SiteCatalyst code version: H.1 Copyright 1997-2009 Omniture, Inc. More info available at http://www.omniture.com -->
+	<noscript>
+		&lt;a href="http://www.omniture.com" title="Web Analytics"&gt;&lt;img src="https://smtrcs.redhat.com/b/ss/redhatcustomerportal,redhatglobal/1/H.2--NS/0" height="1" width="1" border="0" alt="Omniture" /&gt;&lt;/a&gt;
+	</noscript>
+	<!--/DO NOT REMOVE/-->
+	<!-- End SiteCatalyst code version: H.1 -->
+	<!--googleon: all-->
+	  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+this._tly&&this._tly.measure("domload");
+
+//--><!]]>
+</script>
+  <div id="formatHelp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formatTitle" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="formatTitle">Formatting Tips</h3>
+    </div>
+    <div class="modal-body">
+      Here are the common uses of Markdown.<dl class="formatting-help"><dt class="bold">Bold</dt><dd class="bold"><code>**I am important!**</code></dd>
+    <dt class="italics">Italics</dt><dd class="italics"><code>*I am emphasized*</code></dd>
+    <dt class="ul">Bulleted list</dt><dd class="ul"><pre><code>- Lists look great
+- I like lists
+</code></pre></dd>
+    <dt class="ol">Numbered list</dt><dd class="ul"><pre><code>1. Only for ordered steps
+2. Numbering starts over if the sequence is interrupted
+</code></pre></dd>
+    <dt class="codeblock">Code blocks</dt><dd class="codeblock"><pre><code>~~~
+Code surrounded in tildes is easier to read
+~~~</code></pre></dd>
+    <dt class="urls">Links/URLs</dt><dd class="urls"><code>[Red Hat Customer Portal](https://access.redhat.com)</code></dd></dl>
+    </div>
+    <div class="modal-footer">
+      <a target="_blank" href="https://access.redhat.com/help/markdown" class="btn btn-primary">Learn more</a>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+  </div>
+
+</body></html>

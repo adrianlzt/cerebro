@@ -1,0 +1,5 @@
+parameters:
+  key_name: nombrekey
+  flavor: m1.small
+  image: centos64
+

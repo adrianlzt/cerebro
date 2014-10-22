@@ -1,0 +1,21 @@
+box = "puppetlabs/centos-6.5-64-puppet"
+
+nodes = {node1: "192.168.51.2", node2: "192.168.51.3"}
+
+Vagrant.configure("2") do |config|
+
+  nodes.each do |hostname,ip_address|
+
+    config.vm.define hostname do |host|
+
+      host.vm.hostname = hostname
+
+      host.vm.provider :virtualbox do |vb, override|
+        override.vm.box = box
+        override.vm.network :private_network, ip: ip_address
+        #override.vm.provision :shell, inline: "puppet agent -t"
+      end
+ 
+    end
+  end
+end

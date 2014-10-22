@@ -1,0 +1,69 @@
+/* Extraicons for Non-Firefox */
+@font-face {
+	font-family: 'extraicons';
+	src:url('/webassets/avalon/f/extraicons.eot');
+	src:url('/webassets/avalon/f/extraicons.eot?#iefix') format('embedded-opentype'),
+		url('/webassets/avalon/f/extraicons.ttf') format('truetype'),
+		url('/webassets/avalon/f/extraicons.svg#extraicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	}
+/* Extraicons for Firefox */
+@font-face {
+	font-family: 'extraicons';
+	src:url(data:application/x-font-woff;charset=utf-8;base64,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) format('woff');
+	font-weight: normal;
+	font-style: normal;
+	}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-extraicon]:before {
+	font-family: 'extraicons';
+	content: attr(data-extraicon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-extra-"]:before {
+*/
+[class*="icon-extra-"]:before {
+	font-family: 'extraicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-extra-dev-tools:before {
+	content: "\25a0";
+}
+.icon-extra-integration:before {
+	content: "\25a1";
+}
+.icon-extra-integration-alt:before {
+	content: "\25a2";
+}
+.icon-extra-app-platform:before {
+	content: "\25a3";
+}
+.icon-extra-management:before {
+	content: "\25a4";
+}
+.icon-extra-cloud-hybrid:before {
+	content: "\25a5";
+}
+.icon-extra-cloud-private:before {
+	content: "\25a6";
+}
+.icon-extra-cloud-public:before {
+	content: "\25a7";
+}
+.icon-extra-cloud:before {
+	content: "\25a8";
+}

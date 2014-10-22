@@ -26,10 +26,16 @@ Nodos/Recursos/Constraints/Propiedades:
 pcs config
 
 Obtener el CIB:
-pcs cluster cib
+pcs cluster cib FICHERO
 
-Push the raw xml from <filename> to the CIB (Cluster Information Base)
-pcs cluster push cib fichero
+Hacer cambios 'offline':
+pcs -f drbd_cfg resource create ...
+
+Mostrar como queda:
+pcs -f drbd_cfg resource show
+
+Push the raw xml from FICHERO to the CIB (Cluster Information Base)
+pcs cluster cib-push FICHERO
 
 
 Resource Agents:

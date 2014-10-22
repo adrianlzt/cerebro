@@ -1,0 +1,28 @@
+heat_template_version: 2013-05-23
+
+descriptions: >
+  Create a host
+
+parameters:
+  key_name:
+    type: string
+    description: Name of keypair to assign to servers
+  image:
+    type: string
+    description: Name of image to use for servers
+  flavor:
+    type: string
+    description: Flavor to use for servers
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      key_name: { get_param: key_name }
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+
+output:
+  server_priv_ip:
+    description: ip del server
+    value: { get_attr: [ server, first_address ]}

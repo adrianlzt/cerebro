@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+box = "puppetlabs/centos-6.5-64-puppet"
+nodes = ['puppet', 'icinga', 'client1']
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  nodes.each do |hostname|
+
+    config.vm.define hostname do |host|
+
+      host.vm.hostname = hostname
+      host.vm.box = box
+
+    end
+  end
+end

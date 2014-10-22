@@ -1,28 +1,6 @@
-# http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/index.html
-# Esa referencia es mejor para versiones nuevas de pacemaker y corosync.
-# Toda la documentacion: http://clusterlabs.org/doc/
-# Estructura: http://clusterlabs.org/wiki/File:Stack.png
-
-# http://theclusterguy.clusterlabs.org/post/1262495133/pacemaker-heartbeat-corosync-wtf
-Hearbeat (deprecated): capa de mensajes para saber de la existencia (o desaparecimiento) de los otros nodos del cluster
-Corosync: igual que hearbeat.
-Pacemaker: es un CRM (Cluster Resource Manager), encargado de arrancar o parar los servicios, y que solo esten arrancados en un sitio.
-Resource Agent: forma de decirle a pacemaker que servicios queremos que sean HA. Pueden ser scripts de init.d (lsb), o usar el estandar OCF
-Listado de RAs: http://www.linux-ha.org/wiki/Resource_Agents
-
-Recomendacion: ntp instalado y configurado
-
-SELinux desactivado
-
-Para generar entropia: tar -cv / > /dev/null
-
-Acordarse de crear el fichero /etc/corosync/service.d/pcmk:
-service {
-        # Load the Pacemaker Cluster Resource Manager
-        name: pacemaker
-        ver: 0
-}
-ver: 1 <- tendremo que arrancar el demonio pacemaker a mano
+#####################
+# ANTIGUO - con crm #
+#####################
 
 Mostrar configuracion:
 crm configure show
@@ -137,3 +115,5 @@ Para hacer pruebas, apagar corosync (pacemaker arranca y para con corosync)
 En el manual dice:
 Para hacer pruebas de disponibilidad, apagar pacemaker y corosync (en ese orden).
 Para arrancar, corosync y luego pacemaker.
+
+

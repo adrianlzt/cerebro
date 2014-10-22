@@ -8,6 +8,9 @@ Repoforge
 rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 http://pkgs.repoforge.org/
 
+ElRepo
+rpm -Uvh http://elrepo.org/elrepo-release-6-5.el6.elrepo.noarch.rpm
+
 
 Lista de repositorios activos
 yum repolist

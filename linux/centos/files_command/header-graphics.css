@@ -1,0 +1,217 @@
+.header-graphic {
+	background: #be171c;
+	height: 150px;
+	margin-bottom: 20px;
+	position: relative;
+	width: 100%;
+	}
+
+	/* legacy graphic banners */
+	.header-graphic .graphic-inner {
+		background: url(/webassets/avalon/g/bg_product-default-graphic2.png) no-repeat 0 0;
+		height: 150px;
+		}
+		.header-graphic .graphic-inner2 {
+			background: url(/webassets/avalon/g/g_product-default-graphic.png) no-repeat 100% 0;
+			height: 150px;
+			width: 100%;
+			z-index: 1;
+			}
+			
+			.purple-banner {
+					background: #6227aa;
+					}
+					.purple-banner .graphic-inner {
+						background: url(/webassets/avalon/g/bg_product-purple-graphic2.png) no-repeat 0 0;
+						}
+						.purple-banner .graphic-inner2 {
+							background: url(/webassets/avalon/g/g_product-purple-graphic.png) no-repeat 100% 0;
+							}
+
+				.teal-banner {
+					background: #01646e;
+					}
+					.teal-banner .graphic-inner {
+						background: url(/webassets/avalon/g/bg_product-teal-graphic2.png) no-repeat 0 0;
+						}
+						.teal-banner .graphic-inner2 {
+							background: url(/webassets/avalon/g/g_product-teal-graphic.png) no-repeat 100% 0;
+							}
+
+
+			.redhat-banner {
+				background: url(/webassets/avalon/g/bg_product-rh1-graphic.png) repeat-x 0 0;
+				}
+				.redhat-banner .graphic-inner {
+					background: url(/webassets/avalon/g/bg_product-rh1-graphic2.png) no-repeat 0 0;
+					}
+					.redhat-banner .graphic-inner2 {
+						background: url(/webassets/avalon/g/g_product-rh1-graphic.png) no-repeat 100% 0;
+						}
+
+			.dandelion-banner {
+				background: url(/webassets/avalon/g/bg_product-rh2-graphic.png) repeat-x 0 0;
+				}
+				.dandelion-banner .graphic-inner {
+					background: url(/webassets/avalon/g/bg_product-rh2-graphic2.png) no-repeat 100% 0;
+					}
+					.dandelion-banner .graphic-inner2 {
+						background: url(/webassets/avalon/g/g_product-rh2-graphic.png) no-repeat 0 0;
+						}
+		/* /legacy graphic banners */
+			
+		.header-graphic h1,
+		.header-graphic .banner-title {
+			color: #fff;
+			font-size: 30px;
+			line-height: .9em;
+			margin: 0;
+			padding: 0;
+			position: absolute;
+				left: 30px;
+				bottom: 40px;
+			text-transform: uppercase;
+			z-index: 2;
+			}
+			.header-graphic h1 span,
+			.header-graphic .banner-title span {
+				display: block;
+				font-size: 24px;
+				}
+				.header-graphic h1 span.graphic-icon,
+				.header-graphic .banner-title span.graphic-icon { display: inline; margin-right: 8px; font-size: 28px; color: #fff; }
+			
+				.header-graphic .banner-title sup {
+					bottom: 12px;
+					}
+					.header-graphic .banner-title span sup {
+						bottom: 8px;
+						}
+
+
+			.header-graphic h2,
+			.header-graphic .banner-tagline {
+				color: white;
+				font-size: 16px;
+				letter-spacing: .15em;
+				position: absolute;
+					left: 30px;
+					bottom: 30px;
+				text-transform: uppercase;
+				}
+					
+				.custom-header-graphic h2 {
+						position: absolute;
+							left: -9000em;
+							top: 0;
+					}
+				.custom-header-graphic .banner-tagline {
+					background-position: 0 0;
+					background-repeat: no-repeat;
+					height: 150px;
+					position: absolute;
+						left: 0;
+						top: 0;
+					text-indent: -9000em;
+					width: 100%;
+				 }
+				
+
+				/* with tagline */
+				.with-tagline h1,
+				.with-tagline .banner-title,
+				.with-long-tagline .banner-title {
+					bottom: 55px;
+					}
+
+				/* with long tagline, push up title when screen resolution is minimal */
+				@media (max-width: 1130px) {
+					.with-long-tagline .banner-title {
+						bottom: 80px;
+					}
+				}
+				
+				/* for right-aligned & legacy */
+				.dandelion-banner h1 {
+					left: auto;
+					right: 30px;
+					text-align: right;
+					}					
+				.dandelion-banner h2 {
+					color: #c5f6fe;
+					left: auto;
+					right: 30px;
+					text-align: right;
+					}
+
+
+/*
+ * Portal v3 for Headers (header-graphics.css)
+/* ====================================================================== */
+
+/* Product Category Banners */
+.v3-banner {
+	background: #be171c; /* Default: red */
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	height: 150px;
+	width: 100%;
+}
+	.v3-banner .graphic-inner,
+	.v3-banner .graphic-inner2 { background: none; }
+
+	.v3-banner .banner-title,
+	.v3-banner .banner-tagline {
+		font-weight: bold;
+		font-family: Overpass, "Liberation Sans", "Trebuchet MS", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
+	}
+
+	.platform-banner,
+	.purple-banner {
+		background: #6227aa; /* purple */
+	}
+	.teal-banner {
+      background: #01646e;
+    }
+	.virtualization-banner, .grey-banner {
+		background: #d7d8da; /* grey? */
+	}
+		.virtualization-banner h1,
+		.virtualization-banner h2,
+		.virtualization-banner .banner-title,
+		.virtualization-banner .banner-tagline,
+		.grey-banner .banner-title,
+		.grey-banner .banner-tagline {
+			color: #666;
+		}
+
+	.docker-banner {
+		background: #0090d5 url(/webassets/avalon/g/g_banner-docker.png) no-repeat 100% 0;
+	}
+
+
+/* Adding icon */
+.header-graphic.with-icon span[class*="icon-"] {
+	position: absolute;
+	left: 30px;
+	top: 50%;
+	margin-top: -42px;
+	font-size: 84px;
+	color: #000;
+	opacity: 0.35;
+	filter: alpha(opacity=35);
+}
+.header-graphic.with-icon h1 > span[class*="icon-"],
+.header-graphic.with-icon .banner-title > span[class*="icon-"] {
+	/* fix if the icon is accidentally added into the h1 */
+	left: -114px;
+	margin-top: -50px;
+}
+.header-graphic.with-icon.with-tagline h1 > span[class*="icon-"],
+.header-graphic.with-icon.with-tagline .banner-title > span[class*="icon-"] { margin-top: -35px; }
+.header-graphic.with-icon h1,
+.header-graphic.with-icon h2,
+.header-graphic.with-icon .banner-title,
+.header-graphic.with-icon .banner-tagline { left: 144px; } /* push to the right for the watermark */
+

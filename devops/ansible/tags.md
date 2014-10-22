@@ -14,5 +14,9 @@ tasks:
     tags:
       - motd
 
+  - include: foo.yml tags=web,foo
+
 /usr/bin/ansible-playbooks /etc/ansible/playbooks/site.yml --tags=motd
 
+roles:
+  - { role: webserver, port: 5000, tags: [ 'web', 'foo' ] }
