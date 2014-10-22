@@ -1,5 +1,6 @@
 # Instalacion CentOS
 https://labs.consol.de/repo/stable/#_6
+rpm -Uvh "https://labs.consol.de/repo/stable/rhel6/i386/labs-consol-stable.rhel6.noarch.rpm"
 
 
 ## Instalación en Ubuntu Trusty 14.04 ##

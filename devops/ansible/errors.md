@@ -21,3 +21,7 @@ Mirar que lo estamos poniendo bien:
 ERROR: Syntax Error while loading YAML script
 Mirar que no tengamos un comando o variable donde dentro haya la cadena ': '
 Quitar el espacio en blanco soluciona el problema.
+
+
+msg: Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!
+Instalar libselinux-python en la máquina cliente.

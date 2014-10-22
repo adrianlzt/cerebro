@@ -7,3 +7,26 @@ What It Is: YAML is a human friendly data serialization
 
 Convertir YAML a JSON
 ruby -r json -r yaml -e "yaml = YAML.load(File.read('./stack.yml')); print yaml.to_json" > stack.json
+
+http://jsontoyaml.com/
+
+Array:
+  "baz": [
+    "qux",
+    "quxx"
+  ],
+
+  baz: 
+    - "qux"
+    - "quxx"
+
+
+  "garply": [
+    {"foo": "VAR", "cosa": "asd12"},
+    {"pepe":"MAR"}
+  ],
+
+  garply: 
+    - foo: "VAR"
+      cosa: "asd12"
+    - pepe: "MAR"

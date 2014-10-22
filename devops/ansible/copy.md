@@ -9,3 +9,9 @@ Copia ficheros entre la máquina local donde se ejecuta ansible y la máquina re
 No consigo pasar a content el valor de una variable tipo content="{{variable}}"
 Me dice que:
 msg: this module requires key=value arguments (
+
+- name: icinga repo
+  copy: src=ICINGA-release.repo
+        dest=/etc/yum.repos.d/
+        owner=root group=root mode=0644
+

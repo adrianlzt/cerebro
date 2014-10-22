@@ -1,0 +1,78 @@
+# Como usar:
+#
+#  net_tools_inet:
+#    type: network.yaml
+#    properties:
+#      name: dsmctools_inet
+#      dns: ['8.8.8.8','8.8.4.4']
+#      cidr: '172.12.1.0/24'
+#      gateway: '172.12.1.1'
+#      pool_start: '172.12.1.20'
+#      pool_end: '172.12.1.150'
+#      ext_net: 8a533992-6914-4847-9ce4-7645bb2f0262 # Public_External 
+#
+
+heat_template_version: 2013-05-23
+
+description: >
+  Create a network, subnetwork and router
+
+parameters:
+  name:
+    type: string
+    description: Name of network to be created
+  dns:
+    type: comma_delimited_list
+    description: DNS servers
+#  host_routes:
+#    type: string
+#    description: Host routes for the subnet
+  cidr:
+    type: string
+    description: Network address (CIDR notation)
+  gateway:
+    type: string
+    description: Private network gateway address
+  pool_start:
+    type: string
+    description: Start of network IP address allocation pool
+  pool_end:
+    type: string
+    description: End of network IP address allocation pool
+  ext_net:
+    type: string
+    description: ID or name of the external network where router is connected to
+
+resources:
+  net:
+    type: OS::Neutron::Net
+    properties:
+      name: { get_param: name }
+
+  subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: { get_resource: net }
+      cidr: { get_param: cidr }
+      gateway_ip: { get_param: gateway }
+      dns_nameservers: { get_param: dns }
+      allocation_pools:
+        - start: { get_param: pool_start }
+          end: { get_param: pool_end }
+#      value_specs:
+#        host_routes:
+#          - destination: 10.0.0.0/8
+#            nexthop: 192.168.99.22
+
+  router:
+    type: OS::Neutron::Router
+    properties:
+      value_specs:
+        external_gateway_info:
+          network_id: { get_param: ext_net }
+
+  router_interface:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router_id: { get_resource: router }
+      subnet_id: { get_resource: subnet }

@@ -50,3 +50,9 @@ curl --proxy http://proxy.com:6666 http://www.google.es
 
 Autenticatión, HTTP basic:
 curl -u user:pass http://web.com
+
+
+# SSL
+Si al hacer curl a un https nos da error:
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+Tendremos que usar --cacert certificado.pem

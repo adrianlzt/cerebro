@@ -1,0 +1,191 @@
+/* Print styles for Red Hat Customer Portal */
+
+body, html {
+	background: #fff;
+	}
+
+a:link,
+a:visited { color: blue; text-decoration: underline; }
+
+/* CSS2 selector to add visible href after links */
+#content a:link:after,
+#content a:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 0.8em;
+  font-weight: normal;
+  color: #666;
+  text-decoration: none;
+}
+
+	#content .taxonomy-list a:link:after,
+	#content .taxonomy-list a:visited:after,
+	#content .teaser-meta a:link:after, 
+	#content .teaser-meta a:visited:after,
+	#content footer.compact a:link:after,
+	#content footer.compact a:visited:after { content: ""; }
+
+#bottomBar, #outer-wrapper, #wrapi , #wrapo, #wrapper {
+	background: none;
+	}
+
+	#bottomBar {
+		border: none;
+		color: #000;
+		}
+
+/* Template parts to turn off */
+.casePreferences,
+#createNewCase,
+.dataTables_paginate,
+#downloadCaseListCsv,
+#editions,
+#footer,
+#globalSearchBlock,
+#main-top,
+#navPrimary,
+#newComment,
+#search,
+#sideNav,
+.subsection,
+#utility,
+#sidebar,
+#view-filters {
+	display: none !important;
+	}
+/* End template parts to turn off */
+
+#brand {
+	float: none;
+	margin-left: 0;
+	}
+
+#rhLogo,
+#portalHome,
+#rhLogoFooter {
+	float: none;
+	display: inline-block;
+	text-indent: 0;
+	background-image: none !important;
+	background-position: 1000% 1000%; /* make sure the bg is removed */
+	vertical-align: top;
+	}
+
+	/*#brand:after {
+		content: "Red Hat Customer Portal";
+		font-family: Overpass, "Liberation Sans", "Trebuchet MS", Helvetica, sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		text-transform: uppercase;
+		}*/
+
+#container {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	padding: 0;
+	}
+
+#header {
+	height: auto;
+	padding: 30px 0;
+	border-bottom: 3px double #aaa;
+	}
+
+#main-wrap {
+	clear: both;
+	padding: 3em 0;
+	border-bottom: 3px double #aaa;
+	}
+
+	#main {
+		margin-left: 0;
+		}
+
+	#main-wrap #container #content { padding: 0; }
+
+#bottomBar {
+	clear: both;
+	padding: 30px 0;
+}
+
+#doc,
+#sidebar + #doc {
+	width: 100%;
+	margin-right: 0;
+}
+
+
+/* Page specific items to turn off */
+#home-search,
+/*#comments-footer,*/
+.comment-form,
+#searchField,
+#watermark,
+#browse-tabs,
+#searchResultsPager,
+#noJsLinkContainer,
+.dev-query { display: none; }
+/* End Page specific items to turn off */
+
+h1.title.assistive {
+	position: static;
+	left: auto;
+	top: auto;
+	height: auto;
+	line-height: normal;
+}
+
+
+/* List / Browse Pages */
+ul#searchResults,
+.list-page-view #doc .view-content .item-list ul {
+	margin: 0 0 1.5em;
+	padding: 0;
+	list-style: none;
+}
+
+.list-page-view #doc .view-content .item-list ul li {
+	margin: 0 0 1.5em;
+	padding: 0 0 0 24px;
+	position: relative;
+}
+
+.list-page-view #doc .view-content .item-list li > [class^="icon-"] {
+	font-size: 16px;
+	position: absolute;
+	left: 0;
+	top: 1px;
+}
+.list-page-view #doc .view-content .item-list li h3 { margin-top: 0; padding-top: 0; }
+.list-page-view #doc .view-content .item-list li .taxonomy-list div {
+	display: inline-block;
+}
+
+/* Articles */
+#content header div.pubdate { color: #333; }
+#content .footer-inner { border-top-color: #999; }
+
+.field pre code { white-space: pre-wrap; }
+
+/* Comments */
+/*#comments-footer #comments .comment.private .content .tip { border-right-color: #999; border-right-color: rgba(0, 0, 0, 0.25); }*/
+#comments-footer #comments .comment.even .content .tip:after,
+#comments-footer #comments .comment.private .content .tip:after { border-right-color: #fff; }
+
+/* Header Graphics & Product Pages */
+#main .header-graphic,
+#main .header-graphic .graphic-inner,
+#main .header-graphic .graphic-inner2 { height: auto; background: none; }
+#main .header-graphic h1,
+#main .header-graphic h2 {
+	position: static !important;
+	left: auto;
+	right: auto;
+	top: auto;
+	bottom: auto;
+	text-indent: 0;
+	height: auto;
+	color: #333 !important;
+}
+.product-page .product-submenu,
+.product-page .sidebar { display: none; }

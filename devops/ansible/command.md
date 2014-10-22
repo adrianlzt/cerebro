@@ -29,3 +29,6 @@ Solo ejecutar un comando si no se ha ejecutado antes (el creates debe apuntar a 
 - name: If file don't exist run command
   command: /root/installer.sh creates=/usr/bin/wkhtmltopdf
 
+
+# Ad Hoc
+ansible -s tidcampus -m command -a "id"

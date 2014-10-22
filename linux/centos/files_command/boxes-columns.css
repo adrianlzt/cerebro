@@ -1,0 +1,469 @@
+/**
+ * Generic boxes & columns
+**/
+
+div.clear,
+li.clear {
+	clear: both;
+	}
+
+/* Main Links */
+/* These are the grey gradient horizontal boxes, like on the Knowledge landing and Help pages. Limited to 4 across. */
+.main-links-block {
+	background: #fdfdfd; /* Old browsers */
+	background: -moz-linear-gradient(top, #fdfdfd 0%, #f4f4f4 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #fdfdfd 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #fdfdfd 0%,#f4f4f4 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #fdfdfd 0%,#f4f4f4 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #fdfdfd 0%,#f4f4f4 100%); /* W3C */
+	border: 1px solid #ccc;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	margin: 0 0 20px;
+	width: 100%;
+	}
+
+#main .main-links-block ul,
+#main .main-links-block li {
+	list-style: none;
+	line-height: .75em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	}
+
+#main .main-links-block li {
+	border-left: 1px solid #ccc;
+	display: inline-block;
+	*display: inline;
+	*float: left;
+	vertical-align: top;
+	width: 24%;
+	}
+	#main .main-links-block li:first-child {
+		border: 0;
+		}
+		
+.main-links-block li a {
+	background: none;
+	color: #333;
+	float: left;
+	line-height: 1.5em;
+	/*padding: 30px 30px 25px;*/
+	padding: 30px 12.82% 25px;
+	text-decoration: none;
+	width: 74.1025%;
+	}
+		.main-links-block li a p { margin-top: .25em; line-height: 1.1em; }
+		
+.main-links-block .link-block-icon {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 40px;
+	line-height: 40px;
+	}
+	.main-links-block .link-block-icon:before {
+		color: #333;
+		}
+	
+.main-links-block h3 {
+	font-size: 1em;
+	margin: 0;
+	text-align: center;
+	text-transform: uppercase;
+	}
+	
+.main-links-block p {
+	font-size: 11px;
+	margin: 0;
+	}
+	
+	.main-links-block li a:hover,
+	.main-links-block li a:hover h3,
+	.main-links-block li a:hover .link-block-icon:before {
+		color: #06c;
+		}
+
+/* Generic Width and Margins Settings for Boxes & Columns */
+.box-column, .column, .os-column {
+	float: left;
+	margin-bottom: 20px;
+	margin-left: 2.22222%;
+	width: 48.88889%; /* At 50% for 2 columns */
+	}
+	#main.column {
+		float: none;
+		margin-bottom: 0;
+		width: auto;
+		}
+	
+	.right-column {
+		float: right;
+		}
+	
+	.three-columns,
+	.three-boxes,
+	.three-os-columns {
+		width: 31.851851851852%;
+		}
+		
+	.four-columns,
+	.four-boxes,
+	.four-os-columns {
+		width: 23.3333%;
+		}
+		
+	.full-column,
+	.full-box {
+		width: 100%;
+		}
+		
+	.two-thirds-column {
+		width: 66.6667%; /* width @ 900 = 600px */
+		}
+		.two-thirds-column.wide-margin {
+			width: 64.4444%; /* width @ 900 = 580px */
+			}
+		
+	.one-third-column {
+		width: 31.1111%;
+		}
+		
+	.three-fifths-column {
+		width: 60%; /* width @ 900 = 540px */
+		}
+		.two-fifths-column {
+			width: 37.7778%; /* width @ 900 = 340px */
+			}
+
+	/*.one-sixth-column {
+		width: 15.555555555556%
+		}
+		.five-sixths-column {
+
+			}*/
+
+	/* More like Bootstrap's - Based on 900px total width w/ 20px gutters */		
+	.column-width1 { width: 06.296296296296%; }
+	.column-width2 { width: 14.814814814815%; }
+	.column-width3 { width: 23.333333333333%; }
+	.column-width4 { width: 31.851851851852%; }
+	.column-width5 { width: 40.37037037037%; }
+	.column-width6 { width: 48.888888888889%; }
+	.column-width7 { width: 57.407407407407%; }
+	.column-width8 { width: 65.925925925926%; }
+	.column-width9 { width: 74.444444444444%; }
+	.column-width10 { width: 82.962962962963%; }
+	.column-width11 { width: 91.481481481481%; }
+	.column-width12 { width: 100%; }
+
+	.column-offset1 { margin-left: 8.518518518519%; }
+	.column-offset2 { margin-left: 17.037037037037%; }
+	.column-offset3 { margin-left: 25.555555555556%; }
+	.column-offset4 { margin-left: 34.074074074074%; }
+	.column-offset5 { margin-left: 42.592592592593%; }
+	.column-offset6 { margin-left: 51.111111111111%; }
+
+		
+	.wide-margin {
+		margin-left: 4.4444%
+		}
+		
+	.border-left {
+		margin-left: 1%;
+		padding-left: 1%;
+		border-left: 1px solid #dedede;
+		}
+	.border-right {
+		margin-right: 1%;
+		padding-right: 1%;
+		border-right: 1px solid #dedede;
+		}
+		.with-borders .column-inner { padding: 0 10px; }
+		
+/* Removing the margin on first boxes/columns */
+.first-box,
+.first-column {
+	margin-left: 0;
+	}
+		
+/* Box Columns */
+/* These are the open header, rounded corner boxes like on the Help page */
+.box-column-inner {
+	border: 1px solid #ccc;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	padding: 20px;
+	}
+	
+	.column h3,
+	.box-column h3 {
+		font-size: 1em;
+		}
+		
+	.box-column h2,
+	.box-column .box-column-inner > h3:first-child {
+		border-bottom: 1px solid #ccc;
+		font-size: 1.077em;
+		line-height: 1.2em;
+		margin: -20px -20px 1em;
+		padding: 13px 20px;
+		position: relative;
+		text-transform: uppercase;
+		}
+
+		.box-column h2 .tolower,
+		.box-column .box-column-inner > h3:first-child .tolower { text-transform: lowercase; }
+
+	/* LEGACY: Old School Columns */
+	/* Slightly modified version of the original "accent header" columns */	
+	.os-column h2,
+	h2.transitional,
+	h2.old-school,
+	h3.transitional {
+		background: #f5f5f5 url("/chrome_themes/umbra/g/headerBg.png") repeat-x;
+		*background-color: #e6e6e6;
+		background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+		background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+		background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+		background-image: linear-gradient(top, #ffffff, #e6e6e6);
+		background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+		border: 1px solid #c9cacb;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+		color: #3e464c;
+		font-size: 100%;
+		margin-bottom: 1em;
+		padding: 7px 10px;
+		}
+
+		h2 + h3.transitional { margin-top: .5em; }
+
+		.module-download + h2.old-school { clear: left;}
+	/* END LEGACY */
+		
+	/* Section Heading */
+	.section-heading {
+		padding: .5em 0;
+		border-top: 3px double #ccc;
+		border-bottom: 3px double #ccc;
+		}
+	.sub-section-heading {
+		font-size: 125%;
+		padding-bottom: .25em;
+		border-bottom: 1px solid #ccc;
+		}	
+	.box-column h2.section-heading {
+		border-top: 0;
+		border-bottom: 3px double #ccc;
+		}
+
+	/* Light Grey Headers */
+	.box-column h2.grey-header,
+	.box-column .box-column-inner > h3.grey-header:first-child {
+		background: #f4f4f4;
+		}
+	.box-column h2.grey-header:first-child,
+	.box-column .box-column-inner > h3.grey-header:first-child {
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-top-right-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-topright: 6px;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+		}
+		
+	/* Inverted Headers */
+	.box-column h2.inverted-header,
+	.box-column .box-column-inner > h3.inverted-header:first-child {
+		background: #333;
+		border-bottom-color: #333;
+		color: #fff;
+		margin: -21px -21px 1em;
+		padding: 15px 21px;
+		}
+	.box-column h2.inverted-header:first-child,
+	.box-column .box-column-inner > h3.inverted-header:first-child {
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-top-right-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-topright: 6px;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+		}
+
+	/* Other Box-specific Headings */
+	.box-column h2.insider {
+		margin-top: 20px;
+		border-top: 1px solid #ccc;
+		}
+	.box-column h2.loner {
+		border: 0;
+		margin: 0 0 1em;
+		padding: 0;
+		}
+		
+/* Message Box */
+.message-box {
+	margin-bottom: 20px;
+	}
+.message-inner {
+	border: 1px solid #ccc;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	padding: 10px 20px;
+	}
+	.message-box h2,
+	.message-box p {
+		display: inline;
+		margin: 0;
+		}
+	.message-box h2 {
+		font-size: 1em;
+		margin-right: .5em;
+		text-transform: uppercase;
+		}
+		
+		
+/* Sidebars */
+aside#sidebar > .column { width: 100%; margin: 0; } /* remove column structure width */
+.sidebar h3 {
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	}
+
+	.sidebar h3.indent { margin-left: .75em; }
+	
+	
+/* Thumbnails */
+	.thumb-inner { padding: 5px; background: #fafafa; border: 1px solid #dedede; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+	.thumb-inner .thumb-img { border: 1px solid #dedede; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; overflow: hidden; }
+	.thumb-med { width: 40%; }
+	.thumb-sm { width: 30%; }
+	.thumb-full { width: 100%; }
+	.thumb-right {
+		float: right;
+		margin: 0 0 1.5em 20px;
+		}
+	.thumb-left {
+		float: left;
+		margin: 0 20px 1.5em 0;
+		}
+	.thumb-center { width: 100%; text-align: center; margin: 1.5em 0; }
+		.thumb-center > span { margin: 0 auto; }
+	.thumb-flex img { width: 100%; }
+	.thumb-med img { max-width: 500px; }
+	.thumb-sm img { max-width: 400px; }
+	.thumb-img { display: block; }
+	.thumb-caption, .attribution { display: block; text-align: center; font-size: 0.857em; color: #666; }
+		.thumb-caption a, .attribution a { color: #666; }
+
+
+
+/*
+ * Temporary Legacy Fixes
+ * =================================================================================*/
+
+/* UI Tabs */
+#main .ui-widget {
+	font-family: "Liberation Sans", "Lucida Grande", "Trebuchet MS", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
+}
+#main .ui-tabs {
+	border: 0;
+	padding: 0;
+	}
+#main .ui-tabs-nav {
+		background: none;
+		border: 0;
+		border-bottom: 1px solid #ddd;
+		-moz-border-radius: 0;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		font: normal 14px/40px Overpass, "Liberation Sans", "Arimo", "Lucida Grande", "Trebuchet MS", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif;
+		margin: 0 0 20px;
+		}
+		#main .ui-tabs-nav li {
+			background: none;
+			border: 0;
+			}
+			#main .ui-tabs-nav li a {
+				background: none;
+				border: 0;
+				font-weight: normal;
+				padding: 1px 18px 0;
+				color: #06c;
+				}
+			#main .ui-tabs-nav li a:hover {
+				color: #222;
+				}
+			#main .ui-tabs-nav li a:focus, #main .product-page .ui-tabs-nav li a:active {
+				outline: none;
+				-moz-outline: none;
+				color: #222;
+				}
+			#main .ui-tabs-nav .ui-tabs-selected {
+				border: 1px solid #c9c9c9;
+				background: #fff url(/webassets/avalon/s/jquery-ui/cp/images/ui-bg_glass_65_ffffff_1x400.png) repeat-x 50% 50%;
+				}
+				#main .ui-tabs-nav .ui-tabs-selected a {
+					color: #000;
+					padding-top: 0;
+					}
+					
+		#main .ui-tabs-panel {
+			padding: 0;
+			}
+
+/* Drupal 6 */
+#body-wrap #main-div.column, #body-wrap #sidebar-right.column { margin-left: 0; }
+
+/* Vertical Tabs */
+#main .product-submenu .vertical-tabs {
+	line-height: 1.4em;
+	font-size: 1em;
+	font-family: "Liberation Sans", "Lucida Grande", "Trebuchet MS", "Bitstream Vera Sans", helvetica, verdana, arial, sans-serif; 
+}
+#content #main .product-submenu ul.vertical-tabs li {
+	position: static;
+		top: auto;
+	float: none;
+	padding: 0;
+	display: block;
+	white-space: normal;
+	-moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+}
+#main .product-submenu .vertical-tabs li a { float: none; display: block; padding: .75em 15px; }
+#main .product-submenu .vertical-tabs li a:hover,
+#main .product-submenu .vertical-tabs li a:focus { color: #06c; text-decoration: underline; }
+#main .product-submenu .vertical-tabs li.ui-tabs-selected {
+	position: relative;
+	margin-right: -1px;
+	padding-right: 1px;
+	background: #fff;
+	border: 0;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #fff;
+}
+	#content #main .product-submenu .vertical-tabs li:first-child.ui-tabs-selected {
+		-webkit-border-top-left-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		border-top-left-radius: 6px;
+	}
+	#content #main .product-submenu .vertical-tabs li:last-child.ui-tabs-selected {
+		-webkit-border-bottom-left-radius: 6px;
+		-moz-border-radius-bottomleft: 6px;
+		border-bottom-left-radius: 6px;
+	}
+#main .product-submenu .vertical-tabs li.ui-tabs-selected a { color: #333; font-weight: bold; text-decoration: none; background: none; }
+
+/* temporary .btn white-space issue w/ B3 & B2 */
+.box-column .btn { white-space: normal; }
+

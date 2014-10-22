@@ -27,5 +27,10 @@ openssl verify -verbose -CAfile Certificate-Authority.crt user.pem
 
 
 Ver certificado
-openssl x509 --noout -text in certs/server.pem 
+file fichero
+  nos dice que tipo de encriptación lleva, según esa información usaremos un comando u otro
+openssl rsa -pubout -in id_rsa
+  clave pública de una clave privada
+openssl rsa -text -in id_rsa
+openssl x509 -noout -text -in certs/server.pem 
 openssl pkcs12 -info -in keyStore.p12

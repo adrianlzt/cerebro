@@ -1,1 +1,1 @@
-check_mk_multisite.md
+../check_mk/multisite.md
