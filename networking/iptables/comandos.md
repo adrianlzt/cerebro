@@ -17,6 +17,8 @@ iptables -t tabla -F [FORWARD/INPUT/OUTPUT]
 		iptables -L -n --line-numbers
 		iptables -D FORWARD 3
 
+    Podemos poner la misma regla, pero en vez de con -A con -D
+
 Acción por defecto de las tablas:
 
 

@@ -21,8 +21,23 @@ send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host=
 send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --service="Check disk /dev/nuevo" --message="UNKNOWN - ein | size=100;200;300;0" -r=3
 
 # Passive checks para hosts
-send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="m2m_client.com" --message="PING OK - Packet loss = 0%, RTA = 0.49 ms|rta=0.486ms;3000;5000;0" -r=0
-send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="m2m_client.com" --message="DOWN" -r=1
+send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --message="PING OK - Packet loss = 0%, RTA = 0.49 ms|rta=0.486ms;3000;5000;0" -r=0
+send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --message="DOWN" -r=1
+
+# Envío múltiple
+send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed
+client.como   check disco   0   OK - debuti | size=100;200;300;0
+
+echo "client.com#check_proc_zombie#0#PROCS OK: 0 processes with STATE = Z" | send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed -d=#
+
+
+cat <<EOF | send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed -d=#
+client.com#check_proc_zombie#0#PROCS OK: 0 processes with STATE = Z
+client.com#check_pmp_memory#1#WARNING Memory 35% used
+client.com#check_fs_writable#0#Todo bien
+EOF
+
+
 
 
 
@@ -74,6 +89,8 @@ Para enviar los resultados al icinga:
 
 ## Perl ##
 Cliente send_gearman en perl
+https://github.com/sni/mod_gearman/blob/v1.4.14/contrib/send_gearman.pl
+  Se puede compilar para windows
 https://github.com/ssm/hacks/blob/master/monitor/munin-gearman-icinga/send-mod-gearman
 
 # Python #

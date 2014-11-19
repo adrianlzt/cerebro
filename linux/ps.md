@@ -126,3 +126,6 @@ ps eww
 
 Ver procesador donde está corriendo:
 ps -e opsr,comm,pid
+
+Procesos de un usuario
+ps -f -U nombre

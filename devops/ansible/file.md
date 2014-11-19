@@ -5,6 +5,8 @@ Generar fichero con contenido:
 - name: gen file
   file: dest=/tmp/fichero content="cosas"
 
+En modo ad-hoc no me crea el fichero si no existe :?
+
 - name: gen file
   lineinfile: dest=/tmp/ansible1/ficheroLine line="prueba contenido" create=yes
 
@@ -46,6 +48,11 @@ http://docs.ansible.com/lineinfile_module.html
 
 - name: open allowed hosts
   lineinfile: dest=/etc/nagios/nrpe.cfg regexp=^allowed_hosts= line=allowed_hosts=10.0.0.0/16
+
+Meter una linea al final
+- name: define custom host entry
+  lineinfile: dest=/etc/hosts line=10.2.23.9 nombrenodo
+
 
 # Ad-hoc
 ansible -s maquina -m lineinfile -a "dest=/etc/nagios/nrpe.cfg regexp=^allowed_hosts= line=allowed_hosts=10.0.0.0/16"

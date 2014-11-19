@@ -2,6 +2,8 @@
 
 Releer repos
 yum clean metadata
+Borrar solo los metadatos de un repo determinado
+yum clean metadata --disablerepo="*" --enablerepo="repo*"
 
 
 Información
@@ -12,6 +14,8 @@ $ yum info <paquete>
 $ rpm -qi <paquete> (sobre la base de datos local. '-q' query. '-i' info)
 $ yum search <paquete>
 $ yum check-update (nos dice si hay paquetes por actualizar. RC, =100, paquetes para actualizar, =0 no updates, =1 error)
+$ yum resolvedep httpd (dice que paquetes nos dan ese recurso)
+$ yum deplist <paquete> (nos dice las dependencias del paquete, recursivamente)
 
 
 Listar todos los paquetes instalados
@@ -39,6 +43,7 @@ Dependencias
 $ rpm -qR <paquete>
 $ rpm -qpR <paquete>.rpm
 $ yum deplist <paquete>
+  Nos dice que paquetes cumplen las dependencias que necesita el rpm
 $ yum deplist $(rpm -q <paquete>)  (para solo obtener las dependencias de la versión instalada)
 $ rpm -q --whatprovides 'gcl-selinux(x86-64)'
 $ yum whatprovides 'gcl-selinux(x86-64)'

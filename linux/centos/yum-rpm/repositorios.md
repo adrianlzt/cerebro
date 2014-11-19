@@ -15,3 +15,13 @@ rpm -Uvh http://elrepo.org/elrepo-release-6-5.el6.elrepo.noarch.rpm
 Lista de repositorios activos
 yum repolist
 Con url: yum repolist -v
+
+
+[puppet-epg]
+name=puppet-epg
+baseurl=http://repos.com/redhat/puppet-x86_64/RPMS.all/
+enabled=0
+gpgcheck=0
+#proxy=http://proxy.com:45445
+
+

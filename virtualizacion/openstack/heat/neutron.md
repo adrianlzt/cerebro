@@ -17,6 +17,9 @@ Los ejemplos son para Havana. Mirar si han añadido nuevos parámetros al schema
           - destination: 182.0.0.0/8
             nexthop: 1.18.9.22
 
+          # El destination tiene que tener mascara obligatoriamente
+          # Si es una ip pondremos /32
+
 
   router:
     type: OS::Neutron::Router

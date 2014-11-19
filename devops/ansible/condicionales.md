@@ -4,6 +4,8 @@ http://docs.ansible.com/playbooks_conditionals.html
   template: src=foo.j2 dest=/foo.txt owner=root group=wheel mode=0644
   when: ansible_hostname == "foo.example.com"
 
+Con el nombre del inventario:
+  when: inventory_hostname == "controller"
 
 
 tasks/main.yml:

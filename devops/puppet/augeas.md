@@ -1,3 +1,22 @@
+http://augeas.net/
+https://docs.puppetlabs.com/references/latest/type.html#augeas
+
+# Instalacion Ubuntu
+Herramientas de consola:
+sudo apt-get install augeas-tools
+
+Lenses: son los ficheros que determinan como se parsea un determinado fichero
+/usr/share/augeas/lenses/
+
+Arrancar augtool:
+augtool> get /files/et<tab>
+y ver que nos deja hacer.
+
+Los ficheros que puede modificar vienen definidos por el "filter" de cada "lens".
+Si el fichero no esta en su ubicacion por defecto... creo que no se puede hacer nada.
+
+
+
 Sirve para modificar ficheros de configuración.
 De esta manera nos ahorramos tener todo el fichero puppetizado, y solo cambiamos lo que nos sea necesario.
 

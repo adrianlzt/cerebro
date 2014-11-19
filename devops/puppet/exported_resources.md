@@ -91,9 +91,11 @@ select * from catalog_resources where exported='t';
 Una vez un nodo ha metido un exported resource en la puppetdb, este no se borrará (pero puede que permanezca en un catalog que no se volverá a usar).
 Para forzar el borrado haremos: 
   puppet node clean nombre-del-nodo
+    Pasar los nodos de uno en uno
     Borra el certificado, asi otra máquina distinta con el mismo hostname puede volver a registrarse en puppet
     Clean up everything a puppet master knows about a node, including certificates and storeconfigs data.
   puppet node deactivate client
+    Pasar los nodos de uno en uno
     Quita los exported resources (seguirán apareciendo en PuppetDB, pero con un catalog que no se aplicará)
     This will ensure that any resources exported by that node will stop appearing in the catalogs served to the remaining agent nodes.
     http://docs.puppetlabs.com/puppetdb/latest/maintain_and_tune.html#deactivate-decommissioned-nodes

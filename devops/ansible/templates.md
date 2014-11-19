@@ -18,5 +18,9 @@ Varible entorno: {{ ansible_env.LESSOPEN }}
 
 - name: set custom facts file
   template: src=general.json.j2 dest=/tmp/ansible/general.json backup=yes
+  notify:
+    - Restart nrpe
 
 El backup=yes hará que si existe un fichero distinto lo mueva a NOMBRE.YYYY-MM-DD@HH:MM~
+
+Será típico tambien tener el notify para reiniciar un proceso en caso de cambio.

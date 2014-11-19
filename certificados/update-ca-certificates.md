@@ -1,3 +1,6 @@
+http://kb.kerio.com/product/kerio-connect/server-configuration/ssl-certificates/adding-trusted-root-certificates-to-the-server-1605.html
+
+# Debian-like
 Utilidad para meter nuevos certificados en el sistema.
 
 update-ca-certificates is a program that updates the directory /etc/ssl/certs to hold SSL certificates and generates certificates.crt, a concatenated single-file list of certificates.
@@ -10,3 +13,10 @@ Furthermore all certificates found below /usr/local/share/ca-certificates are al
 Más sencillo, usar:
 sudo cp fichero.pem /usr/local/share/ca-certificates/fichero.crt
 sudo dpkg-reconfigure ca-certificates
+
+
+# CentOS
+yum install ca-certificates
+update-ca-trust enable
+cp foo.crt /etc/pki/ca-trust/source/anchors/
+update-ca-trust extract

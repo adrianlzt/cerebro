@@ -7,3 +7,5 @@ Keepalived is a routing software written in C. The main goal of this project is 
 Parche para unicast: http://1wt.eu/keepalived/
 
 Hace un funcionamiento parecido a Pacemaker+Corosync pero en un solo demonio, y bastante más básico.
+
+Soportado completamente en CentOS 6.6

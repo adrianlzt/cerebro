@@ -1,6 +1,8 @@
 http://www.ansibleworks.com/
 Ansible is a radically simple IT orchestration engine that makes your applications and systems easier to deploy. Avoid writing scripts or custom code to deploy and update your applications— automate in a language that approaches plain English, using SSH, with no agents to install on remote systems.
 
+For most Ansible modules a connection to the remote device will be done over ssh, then Ansible will upload Python scripts to the node which is to be managed. These scripts are then run locally on the remote machine and the result is then reported back to the initiator.
+
 Funciona en modo push (el servidor llama a los clientes)
 
 AWX: web UI de pago (10 máquinas gratis)

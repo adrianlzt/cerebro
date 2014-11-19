@@ -18,10 +18,10 @@ ansible-vault edit foo.yml
 Cambiar contraseña:
 ansible-vault rekey file1.yml file2.yml ...
 
-Encriptar fichero yaml
+Encriptar fichero yaml (coje un fichero desencriptado y lo encripta)
 ansible-vault encrypt foo.yml bar.yml baz.yml
 
-Desencriptar ficheros
+Desencriptar ficheros (coje un fichero encriptado y lo desencripta)
 ansible-vault decrypt foo.yml bar.yml baz.yml
 
 

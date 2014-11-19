@@ -75,3 +75,10 @@ este_es_elnom_bre
 BASE_URL_TEMPLATE = '{protocol}://{host}:{port}/api/{version}/'
 BASE_URL_TEMPLATE.format(protocol=protocol, host=host, port=port, version=version)
 
+
+## Comparación ##
+http://stackoverflow.com/questions/9573244/most-elegant-way-to-check-if-the-string-is-empty-in-python
+
+cmd = ''
+if not cmd:
+  print "cmd None o vacio'

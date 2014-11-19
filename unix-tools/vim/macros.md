@@ -13,5 +13,7 @@ También:
 Para ejecutar en todas las líneas:
 :%normal @w
 
+Más fácil, seleccionar líneas con Shift+v (selección vísual de líneas) y despues :normal @q
+
 Repetir última macro
 @@

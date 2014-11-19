@@ -1,3 +1,5 @@
+# https://github.com/openstack/heat/blob/havana-eol/heat/engine/resources/server.py
+
 heat_template_version: 2013-05-23
 
 description: >
@@ -22,6 +24,12 @@ parameters:
   subnet_id:
     type: string
     description: ID of Neutron sub network into which servers get deployed
+  sec_groups:
+    type: comma_delimited_list
+    description: Name of the security groups. Eg.: "sec1,sec2"
+  availability_zone:
+    type: string
+    description: availability zone to be deployed the server
 
 resources:
   server:
@@ -31,10 +39,22 @@ resources:
       image: { get_param: image }
       flavor: { get_param: flavor }
       key_name: { get_param: key_name }
+      security_groups: { get_param: sec_groups }
+      availability_zone: { get_param: availability_zone }
+      # A map of files to create/overwrite on the server upon boot. Keys are file names and values are the file contents.
+      # Icehouse
+      personality:
+        /root/.ssh/coms_rsa:
+          get_param: private_key
+        /etc/salt/grains:
+          str_replace:
+            template: "roles: [$roles]"
+            params:
+              $roles:
+                get_param: minion-roles
       networks:
-        - uuid: 
-
-#        - port: { get_resource: server_port }
+        #- port: { get_resource: server_port }
+        - uuid: { get_resource: net_id }
 
   server_port:
     type: OS::Neutron::Port

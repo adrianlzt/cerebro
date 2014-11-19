@@ -1,4 +1,5 @@
 http://docs.openstack.org/developer/glance/
+http://docs.openstack.org/user-guide/content/cli_manage_images.html
 
 Es el gestor de imágenes virtuales (AMIs en Amazon, boxes para vagrant) para Openstack.
 The Glance project provides services for discovering, registering, and retrieving virtual machine images. 
@@ -32,3 +33,9 @@ Y lo metemos en glance:
 glance image-create --is-public true --disk-format qcow2 --container-format bare --name "Ubuntu" < ubuntu-12.04-server-cloudimg-amd64-disk1.img
 
 Se pueden definir parámetros como min_disk o min_ram
+
+--is-protected [True|False]
+Prevents an image from being deleted.
+
+--is-public [True|False]
+Makes an image accessible for all the tenants (admin-only by default).

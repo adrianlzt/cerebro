@@ -57,3 +57,11 @@ irb(main):034:0> "  hola  ".strip
 => "hola"
 
 Para String.match mirar regexp.md
+
+
+# Align
+irb(main):001:0> "Name".ljust(19)
+=> "Name               "
+irb(main):002:0> "Name".rjust(19)
+=> "               Name"
+

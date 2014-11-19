@@ -1,3 +1,46 @@
+http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#getting-started
+Mirar ansible.md
+
+Ubuntu:
+Icinga ppa: https://launchpad.net/~formorer/+archive/ubuntu/icinga
+add-apt-repository ppa:formorer/icinga
+apt-get update
+apt-get install icinga2
+
+
+RedHat:
+http://packages.icinga.org/epel/
+rpm --import http://packages.icinga.org/icinga.key
+wget http://packages.icinga.org/epel/ICINGA-release.repo -O /etc/yum.repos.d/ICINGA-release.repo
+yum makecache
+yum install icinga2
+# Instalar checks basicos (metiendo EPEL)
+rpm -Uvh "http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm"
+yum install nagios-plugins-disk nagios-plugins-ping nagios-plugins-users nagios-plugins-ssh nagios-plugins-procs nagios-plugins-swap nagios-plugins-load nagios-plugins-http
+
+service icinga2 start
+Activado por defecto en el arranque (para desactivar: chkconfig icinga2 off)
+
+RHEL 7:
+systemctl enable icinga2
+systemctl start icinga2
+
+
+Por defecto se instalan las siguientes features:
+checker for executing checks
+notification for sending notifications
+mainlog for writing the icinga2.log file
+
+Podemos chequear las activas con (RHEL, paquete icinga2-bin)
+icinga2-enable-feature
+
+A mano:
+ls /etc/icinga2/features-enabled
+
+
+
+
+## Por código fuente ##
 https://git.icinga.org/?p=icinga2.git;a=blob;f=INSTALL;hb=HEAD
 
 Primero crearemos los .deb y luego existe ya el metapaquete para instalar todo (https://git.icinga.org/?p=icinga2-debian.git;a=summary)

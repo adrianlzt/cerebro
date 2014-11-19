@@ -13,6 +13,8 @@ Group variables. (from /etc/ansible/group_vars/<GROUPNAME>)
 Site default variables. ( from /etc/ansible/group_vars/all)
 Role "default" variables.
 
+No usar guiones (-) en los nombres de las varibables, porque jinja2 piensa que son restas.
+
 Ejemplo:
 kibana_nginx_config_path: /etc/nginx/sites-enabled
 

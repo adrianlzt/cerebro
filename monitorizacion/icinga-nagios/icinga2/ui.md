@@ -1,0 +1,3 @@
+Las interfaces web de Icinga 1 son compatibles.
+Simplemente habrá que ver que features necesitamos activar:
+status.dat, DB IDO, or Livestatus...

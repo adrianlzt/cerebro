@@ -13,7 +13,7 @@ exec { "logrotate":
 }
 Ejecuta si el tamaño del fichero es mayor de 100000 lineas.
 
-unless. Como onlyif, pero al reves. Si es 0 ejecuta, resto, no ejecuta.
+unless. Como onlyif, pero al reves. Si es 1 ejecuta, resto, no ejecuta.
 
 Ejecuta el comando si no existe el fichero .list
 exec { 'add-collectd-repo' :

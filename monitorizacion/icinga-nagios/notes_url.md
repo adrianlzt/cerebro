@@ -11,3 +11,10 @@ define service{
         notes_url                       http://web/wiki/index.php/Monitoring-$HOSTNAME$.$SERVICEDESC$
 }
 
+
+Se pueden poner varias urls:
+notes_url "url1" "url2"
+Pero esto no funciona en multisite.
+
+
+Tambien se pueden definir iconos nuestros (funciona en multsite?)

@@ -15,3 +15,5 @@ msg: this module requires key=value arguments (
         dest=/etc/yum.repos.d/
         owner=root group=root mode=0644
 
+
+Si uso copy en un playbook, buscará el fichero en el path donde esté el fichero yaml.
