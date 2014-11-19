@@ -56,3 +56,7 @@ curl -u user:pass http://web.com
 Si al hacer curl a un https nos da error:
 curl: (60) SSL certificate problem: unable to get local issuer certificate
 Tendremos que usar --cacert certificado.pem
+
+# Enviar datos con base64
+CONFIG_BASE64=$(base64 fichero_config.zip)
+curl -v -X POST -d '{"config": "${CONFIG_BASE64}”}' -H 'Content-type: application/json' http://localhost:8000/api

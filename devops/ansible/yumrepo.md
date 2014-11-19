@@ -29,3 +29,6 @@ gpgcheck = 0
 Otra forma más básica:
 - name: Enable Epel for RedHat OS family
   yum: name=http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm state=present
+
+
+Si metemos a mano un epel.repo, acordarse tambien de meter el fichero /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6

@@ -25,3 +25,16 @@ Quitar el espacio en blanco soluciona el problema.
 
 msg: Aborting, target uses selinux but python bindings (libselinux-python) aren't installed!
 Instalar libselinux-python en la máquina cliente.
+
+
+check mode not supported for shell
+Quitar el -C de los parametros (es el parametro para no hacer operaciones en el host atacado)
+
+
+La conexión se queda colgada cuando ejecuta el sshpass (visto con -vvvv).
+Mirar si tenemos el sftp instalado (openssh-clients)
+# pwd
+/etc/ssh
+# grep sftp *
+sshd_config:Subsystemsftp/usr/libexec/openssh/sftp-server
+

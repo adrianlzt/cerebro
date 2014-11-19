@@ -6,6 +6,10 @@ control+x		disminuye el numero primero encuentre en la linea
 Borra lineas entre 25 y 30 (incluídas)
 :25,30d
 
+Borrar lineas con un pattern
+http://vim.wikia.com/wiki/Delete_all_lines_containing_a_pattern
+:g/profile/d
+
 :Sex  Abre una nueva ventana horizontal con un navegador de ficheros
 
 Control+w [up,down] moverse entre ventanas

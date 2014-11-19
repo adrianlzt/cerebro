@@ -5,6 +5,10 @@ Para que se active la interfaz tras configurarlo: /etc/init.d/network restart
 Las opciones se almacenan en /etc/sysconfig/network-scripts/ifcfg-ethx
 Ahí por ejemplo está definido si la interfaz arranca en boot.
 
+Para configurar o desconfigurar las interfaces:
+ifup eth1
+ifdown eth1
+
 Hostname
 /etc/sysconfig/network -> hostname
 
@@ -13,6 +17,7 @@ If you associate more than one device with an Ethernet card, the subsequent devi
 
 
 Ficheros de configuración:
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s1-networkscripts-interfaces.html
 /etc/sysconfig/network-scripts/ifcfg-xxxx
 
 Configuración estática:
@@ -29,6 +34,14 @@ BOOTPROTO=dhcp
 HWADDR=00:19:D1:2A:BA:A8
 ONBOOT=yes
 
+
+PEERDNS=[yes|no]
+  si usamos dhcp, por defecto esta a yes, e indica que se debe modificar /etc/resolv.conf con las dns cogidas por dhcp
+
+DEFROUTE=no
+  si lo definimos asi estamos haciendo que no coja la ruta por defecto de esta interfaz.
+  Tipicamente se hace en la eth2 si es la eth1 la que nos da la ruta por defecto
+  https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s1-networkscripts-static-routes.html
 
 ## Rutas ##
 /etc/sysconfig/network-scripts/route-eth0 

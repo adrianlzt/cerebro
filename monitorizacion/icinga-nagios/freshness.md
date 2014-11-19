@@ -3,6 +3,8 @@ http://docs.icinga.org/latest/en/freshness.html
 Si está activo, y no contesta durante service_freshness_check_interval o host_freshness_check_interval, se lanza el check_command.
 En el check_command podemos poner un check_dummy y setearlo a WARNING o CRITICAL si queremos que salte una alarma si no ha llegado información nueva durante el periodo.
 
+Aunque los active_checks esten disabled se ejecutará el check_command cuando el freshness lo diga. No podemos evitar por lo tanto que se ejecute el freshness cada x tiempo.
+
 Ejemplo:
  define service{
         host_name               backup-server

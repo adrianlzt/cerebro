@@ -23,12 +23,22 @@ ipaddresses ['mon-LB01'] = '100.6.2.119'
 
 # Hacer inventario
 cmk -I
-Genera unos ficheros temporales internos de check_mk con los descubrimientos que haya hecho (/var/lib/check_mk/autochecks)
+Genera unos ficheros temporales internos de check_mk con los descubrimientos que haya hecho (/var/lib/check_mk/autochecks/NOMBRE_DEL_HOST.mk)
 
 cmk -II
 Como el anterior, pero borrar todo lo que había y rehace el redescubirmiento
 
+cmk --paths
+  nos dice que paths tiene configurados check_mk
+  Los ficheros de configuración para nagios se generarán en "Directory where Nagios reads all *.cfg files"
+  Generalmente:
+    /etc/icinga/conf.d/check_mk_objects.cfg
+    /etc/icinga/conf.d/check_mk_templates.cfg
+
 cmk -U
+  Hace 
+    -N: generar configuración de Nagios
+    -C: genera los ficheros .py
 Genera los ficheros de configuración de Icinga (services, servicegroups, commands, etc) y los checks.
 Los checks son ficheros python, uno por máquina, donde están dentro los programitas que comprobarán cada uno de los parámetros que se hayan detectado.
 /var/lib/check_mk/precompiled

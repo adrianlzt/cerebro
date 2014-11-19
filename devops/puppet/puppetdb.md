@@ -33,6 +33,7 @@ select * from catalog_resources where exported='t';
 
 Para "purgar" los exported resources de un nodo (borrar el nodo)
 puppet node deactivate <nodename>
+  Pasar los nodos de uno en uno
 Pero también hace falta configurar el purge en el nodo que importa los recursos.
 Para el caso de nagios:
 resources { ['nagios_service', 'nagios_host']:

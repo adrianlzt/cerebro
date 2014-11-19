@@ -12,9 +12,7 @@ Esnifar tráfico entre master y slave: mirar sniffing.md
 
 
 Para autofirmar
-
-$ cat /etc/puppet/autosign.conf 
-*
+echo "*" > /etc/puppet/autosign.conf
 
 
 Si tenemos problemas de que el cliente no se cree el certificado del puppet master:
@@ -30,6 +28,9 @@ Puppetdb al instalarse (el rpm) copia los certificados:
 PEM files in /etc/puppetdb/ssl are missing, we will move them into place for you
 Copying files: /var/lib/puppet/ssl/certs/ca.pem, /var/lib/puppet/ssl/private_keys/sr2s.pem and /var/lib/puppet/ssl/certs/sr2s.pem to /etc/puppetdb/ssl
 Tendremos que tener en cuenta que es obligatorio tener un domainname en la máquina que tenga puppetdb para que puppetmaster se pueda conectar a él.
+
+Conocer el fingerprint en un cliente:
+puppet agent --fingerprint
 
 
 Firmar:
@@ -54,3 +55,4 @@ puppet cert generate puppetdb.example.com
 Clave privada del servidor: $(puppet master --configprint ssldir)/private_keys/puppetdb.example.com.pem
 Certificado del servidor: $(puppet master --configprint ssldir)/certs/puppetdb.example.com.pem 
 Certificado autoridad: $(puppet master --configprint ssldir)/ca/ca_crt.pem
+

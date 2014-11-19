@@ -91,4 +91,6 @@ erb -P -x -T '-' mytemplate.erb | ruby -c
 <%= scope.function_hiera(['graphite_node']) %>
 
 
-
+# Align
+        var <%= @var.rjust(30) %>
+<%= "cadena".ljust(20) %> cosa

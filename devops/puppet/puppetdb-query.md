@@ -26,10 +26,10 @@ sudo gem install ruby-puppetdb
 RUBYLIB=/var/lib/gems/2.0.0/gems/ruby-puppetdb-1.4.0/lib puppet help query
 
 Nos instala el binario find-nodes (modificar manualmente para que no use ssl si no queremos)
-find-nodes --puppetdb 192.168.51.2 --port 8080 'monitoring=true'
+find-nodes --puppetdb 127.0.0.1 --port 8080 'monitoring=true'
 
 Para usar sin ssl (https://github.com/dalen/puppet-puppetdbquery/pull/26 para poder usar opción --no_ssl)
-puppet query nodes --puppetdb_host 192.168.51.2 --puppetdb_port 8080 'monitoring=true' --no_ssl
+puppet query nodes --puppetdb_host 127.0.0.1 --puppetdb_port 8080 'monitoring=true' --no_ssl
 
 No es muy potente. Solo permite hacer querys al endpoint de nodes o facts. 
 Para poder hacerlo al resources hace falta usar un parche https://github.com/dalen/puppet-puppetdbquery/pull/18
@@ -38,7 +38,7 @@ Parece que no vale para sacar una lista de nodos y luego una lista de recursos d
 #########################################################################################################
 
 Nodos activos (por defecto solo nos da los activos):
-curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
+curl -G 'http://127.0.0.1:8080/v3/nodes' --data-urlencode 'query=["=", ["node", "active"], true]'
 
 Con SSL:
 curl -Gk 'https://localhost:8081/v3/nodes' NO consigo que me funcione
@@ -47,29 +47,29 @@ curl -X GET https://puppet.com:8081/v3/nodes --cacert /etc/puppet/ssl/certs/ca.p
 Listar recursos de NODO
 curl -G http://localhost:8080/v3/catalogs/NODO
 
-curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["=", "certname", "client.com"]'
+curl -G 'http://127.0.0.1:8080/v3/resources' --data-urlencode 'query=["=", "certname", "client.com"]'
 
 
 Nodos con el fact monitoring=true
-curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
+curl -G 'http://127.0.0.1:8080/v3/nodes' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
 Si puede ser true o True: 
   '["~", ["fact","monitoring"], "[tT]rue"]'
 
 Con orden (lo que hace es meter un '&' entre order-by= y query= :
-curl -G 'http://192.168.51.2:8080/v3/nodes' --data-urlencode 'order-by=[{"field": "name", "order": "desc"}]' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
+curl -G 'http://127.0.0.1:8080/v3/nodes' --data-urlencode 'order-by=[{"field": "name", "order": "desc"}]' --data-urlencode 'query=["=", ["fact","monitoring"], "true"]'
 
 Obtener los recursos checks del nodo client.com
-curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["and",["=", "certname", "client.com"],["~", "type", "Monitorizacion::Checks.*"]]'
+curl -G 'http://127.0.0.1:8080/v3/resources' --data-urlencode 'query=["and",["=", "certname", "client.com"],["~", "type", "Monitorizacion::Checks.*"]]'
 
 Obtener los ficheros de configuración de nrpe
-curl -G 'http://192.168.51.2:8080/v3/resources' --data-urlencode 'query=["and",["=", "certname", "client.com"],["=", "tag", "monitorizacion::check"],["=", "type", "File"]]'
+curl -G 'http://127.0.0.1:8080/v3/resources' --data-urlencode 'query=["and",["=", "certname", "client.com"],["=", "tag", "monitorizacion::check"],["=", "type", "File"]]'
 
 
 Facts de un nodo
-curl -G 'http://192.168.51.2:8080/v3/facts' --data-urlencode 'query=["=", "certname", "client2.com"]'
+curl -G 'http://127.0.0.1:8080/v3/facts' --data-urlencode 'query=["=", "certname", "client2.com"]'
 
 Obtener un fact de un nodo
-curl -G 'http://192.168.51.2:8080/v3/nodes/NOMBRE/facts/NOMBREFACT'
+curl -G 'http://127.0.0.1:8080/v3/nodes/NOMBRE/facts/NOMBREFACT'
 
 
 Todos los recursos User:
@@ -80,10 +80,13 @@ curl -X GET 'http://localhost:8080/v2/resources/Monitorizacion::Icinga::Host_tem
 curl -X GET 'http://localhost:8080/v2/resources/Monitorizacion::Icinga::Host_template' --data-urlencode 'query=["=", "certnam "host1.com"]'
   Con esta query podemos ver los parametros que se pasan.
 
+Recursos de un nodo (con v3)
+curl -G http://localhost:8080/v3/resources --data-urlencode 'query=["=", "certname",  "nombrenodo]'"]
+
 
 Con la gema rest-client (https://github.com/rest-client/rest-client) y la gema json
 require 'rest-client'
-response = RestClient.get 'http://192.168.51.2:8080/v3/nodes', {:accept => :json, :params => {:query => '["~", "name", "client.*"]'}}
+response = RestClient.get 'http://127.0.0.1:8080/v3/nodes', {:accept => :json, :params => {:query => '["~", "name", "client.*"]'}}
 resp = JSON.parse(response)
 resp.each do |h|
 h["name"]

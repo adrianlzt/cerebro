@@ -43,12 +43,26 @@ If the host is named ‘foosball’, and in groups ‘raleigh’ and ‘webserve
 /etc/ansible/group_vars/webservers
 /etc/ansible/host_vars/foosball
 
-Podemos tambien crear un grupo de grupos (debera llevar la coletilla children):
+Podemos tambien crear un grupo de grupos (debera llevar la coletilla children). Solo podremos meter grupos, no hosts sueltos:
 [spain:children]
 madrid
 barcelona
 valencia
 
+[spain:vars]
+ansible_sudo_pass='pepe'
+
 Ahora podremos definir un fichero
 group_vars/spain
 Que afectará a todos esos grupos de máquinas
+
+
+No podemos definir variables complejas (por ejemplo una lista) en el inventario. Usaremos un .yaml en groups_vars o host_vars
+
+# Contraseñas / Passwords #
+Creamos un grupo (o grupo de grupos), luego creamos su ficheros en vars:
+ansible-vault create groups_vars/NOMBRE
+
+Ahí metemos las passwords:
+ansible_ssh_pass: contraseña1
+ansible_sudo_pass: contraseña2

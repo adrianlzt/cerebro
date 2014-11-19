@@ -74,8 +74,8 @@ outputs:
 outputs:
   server1_az1_floating_ip:
     description: Floating IP address of server1_az1
-    value: {"Fn::GetAtt": ["float1", "floating_ip_address"]}
-    value: { get_attr: [my_instance, first_address] }
+    value: { get_attr: ["float1", "floating_ip_address"]}
+    #value: { get_attr: [my_instance, first_address] }
 
 
 Para saber que output podemos sacar debemos mirar el código. Para este caso, network en la versión Havana: https://github.com/openstack/heat/blob/havana-eol/heat/engine/resources/neutron/net.py

@@ -15,6 +15,7 @@ Liberal (barajas, croquetas, boquerones don pedro, postres)
 Milos (griego)
 Baobab (senegales http://www.lacuchara.es/2010/12/13/baobab-un-restaurante-senegales-en-madrid)
 Alzahra (mezquita m30 http://www.restaurantealzahra.es/)
+14 Rosas, Buscar oferta con web restalo. Bueno para ir a comer queso
 Asiáticos
   Yue Lai (chino auténtico, hot-pot, http://www.gastromaniacblog.com/2010/03/yue-lai-y-el-hotpot-la-autentica.html)
   Rey de tallarines (plaza españa, http://www.reydetallarines.com/)
@@ -24,6 +25,7 @@ Asiáticos
   Tandoori Station (caro indio)
   Restaurante indio en calle miguel servet, preguntar chiara
   Indio calle Belén, cerca del comienzo de barquillo
+  Japonés barato, buffet libre, Kintaro. Fernández de la Hoz 9
 Mexicanos
   la panza es lo primero
   Tacos Chapultepec (Calle del Cardenal Cisneros, 13)

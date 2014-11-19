@@ -31,6 +31,7 @@ main.yaml:
 - include: repos.yml
 - include: install.yml
 - include: configure.yml
+  when: "'reticulating splines' in output"
 
 
 repos.yaml:

@@ -88,3 +88,8 @@ Gema en deb
 fpm -s gem -t deb -v 1.2.3 nombre
 
 Parece que no se pueden firmar los .deb
+
+
+## Ejecutar comandos en la pre/post instalacion ##
+--after-install modify_cyclops_agent_conf.sh
+  Ejecuta ese script tras la instalación

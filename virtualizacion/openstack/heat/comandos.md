@@ -17,4 +17,5 @@ heat stack-delete teststack
   borrar un stack
 
 head stack-update
-  no consigo que funcione. O no cambia nada o da error.
+  podemos modificar el template y actualizará las cosas para que se quede como la nueva definición.
+  https://github.com/rackerlabs/heat-tutorial/blob/master/105.Update-Stack/README.md#5-update-it

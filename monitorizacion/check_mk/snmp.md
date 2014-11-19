@@ -1,0 +1,1 @@
+inventario_snmp.md

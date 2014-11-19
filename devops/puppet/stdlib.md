@@ -73,3 +73,29 @@ Error: Failed to apply catalog: Parameter alias failed on Monitorizacion::Icinga
 
 Convertir un "false" en false
 str2bool("false")
+
+
+
+# file_line
+https://github.com/puppetlabs/puppetlabs-stdlib/blob/master/lib/puppet/type/file_line.rb
+
+Añadir una linea a un fichero.
+Se puede hacer que sustituya a una existente (match =>)
+'match' tiene que machear 'line' (al menos hasta que lo arreglen: https://github.com/puppetlabs/puppetlabs-stdlib/commit/a06c0d8115892a74666676b50d4282df9850a119#commitcomment-8289511)
+
+A partir de la 4.2.0 existe
+"after => "
+
+No existe "before =>"
+https://github.com/puppetlabs/puppetlabs-stdlib/pull/256
+
+file_line { 'sudo_rule':
+  path => '/etc/sudoers',
+  line => '%sudo ALL=(ALL) ALL',
+}
+
+file_line { 'change_mount':
+  path  => '/etc/fstab',
+  line  => '10.0.0.1:/vol/data /opt/data nfs defaults 0 0',
+  match => '^172.16.17.2:/vol/old',
+}

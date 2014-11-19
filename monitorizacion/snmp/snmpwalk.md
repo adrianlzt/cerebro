@@ -1,3 +1,5 @@
+snmpwalk -v 2c -c COMMUNITY DIRECIP iftable
+
 snmpwalk -v 1 -c public 10.6.6.34 .1.3.6.1
 
 
@@ -9,3 +11,7 @@ Snmpwalk nos muestra todos los mibs que cuadren (‘navega por los mibs’)
 Snmpget nos muestra solo el que solicitamos.
 Para convertir los MIBS numéricos, a nombres, en debían, instalamos snmp-mibs-downloader, y comentamos la línea “mibs :” en /etc/snmp/snmp.conf
 Directorios donde hay MIBS: /usr/share/mibs/netsnmp  y  /var/lib/mibs
+
+Si se pone mal la community la respuesta será:
+Timeout: No Response from xx.xx.xx.xx
+

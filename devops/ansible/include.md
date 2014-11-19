@@ -5,3 +5,5 @@ Ejemplo de main.yaml
 ---
 - include: kibana.yml
 - include: nginx.yml
+- include: tasks/sometasks.yml
+  when: "'reticulating splines' in output"

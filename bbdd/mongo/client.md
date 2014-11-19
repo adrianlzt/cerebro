@@ -2,6 +2,9 @@ apt-get install mongodb-clients
 
 $ mongo 192.169.0.5:9999/foo
 
+# mongo basedatos --eval 'db.collection.find().forEach(printjson)'
+
+Mongo Shell:
 # mongo
 > show dbs
 ...

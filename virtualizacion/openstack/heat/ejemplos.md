@@ -2,6 +2,9 @@
 https://github.com/openstack/heat-templates
 https://raw.githubusercontent.com/openstack/heat-templates/master/hot/hello_world.yaml
 
+Ejemplos de Rackspace:
+http://rcbops.github.io/templates/
+
 # Ejecutar ejemplo super sencillo (no tocar el heat_template_version):
 basic.yaml:
 heat_template_version: 2013-05-23

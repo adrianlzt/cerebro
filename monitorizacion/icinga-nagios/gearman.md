@@ -2,6 +2,28 @@
 https://labs.consol.de/repo/stable/#_6
 rpm -Uvh "https://labs.consol.de/repo/stable/rhel6/i386/labs-consol-stable.rhel6.noarch.rpm"
 
+yum install gearmand-server mod_gearman
+chkconfig --add mod_gearman_worker
+  no se mete en el chkconfig por defecto
+
+
+/etc/icinga/modules/mod_gearman.cfg
+define module{
+  module_name     mod_gearman
+  module_type     neb
+  path            /usr/lib64/mod_gearman/mod_gearman.o
+  args            config=/etc/mod_gearman/mod_gearman_neb.conf
+}
+
+Por defecto la configuración del neb es que no procese la perfdata
+Poner perfdata_mode=1 en /etc/mod_gearman/mod_gearman_neb.conf
+
+chgrp icinga /var/log/mod_gearman
+service gearmand start
+service mod_gearman_worker start
+gearman_top
+service icinga restart
+
 
 ## Instalación en Ubuntu Trusty 14.04 ##
 Instalar gearman-job-server  (no equivocarse con gearman-server)
@@ -42,3 +64,28 @@ Vaciar una cola: /usr/bin/gearman -t 1000 -n -w -f function_name > /dev/null
 
 ## Servicegroups ##
 Si un service apunta a un host y tiene configurado un servicegroup, si este servicegroup está definido para generar una cola distinta, el service se meterá en esta cola en vez en la cola del hostgroup.
+
+
+
+# Enviar hosts o services a un worker específico:
+https://labs.consol.de/nagios/mod-gearman/#_how_to_set_queue_by_custom_variable
+
+How to Set Queue by Custom Variable
+Set queue_custom_variable=worker in your Mod-Gearman NEB configuration. Then adjust your nagios host/service configuration and add the custom variable:
+
+  define host {
+    ...
+    _WORKER    hostgroup_test
+  }
+The test hostgroup does not have to exist, it is a virtual queue name which is used by the worker.
+
+Adjust your Mod-Gearman worker configuration and put test in the hostgroups attribute. From then on, the worker will work on all jobs in the hostgroup_test queue.
+
+
+
+# Proxy
+Proxy Gearman Jobs from one jobserver to another jobserver. This could
+be handy, when you have a worker in a remote net and only push is
+allowed.
+
+Mod-Gearman <-> Gearmand <-> Gearman-Proxy <--|--> Gearmand <-> Worker

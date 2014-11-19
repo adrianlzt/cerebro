@@ -1,3 +1,5 @@
+http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
+
 ### USAR TSHARK ###
 
 
@@ -21,6 +23,13 @@ tcpdump 'gateway snup and (port ftp or ftp-data)'
 
 Ver y guardar a fichero al mismo tiempo
 # tcpdump -l | tee dat
+
+Paquetes que entran/salen por eth1, por el puerto 4730 y desde la red 192.168/16
+# tcpdump -i eth1 'dst port 4730 and src net 192.168'
+
+# Puerto 4730, y que no sean de las maquinas HOST1 y HOST2
+tcpdump 'dst port 4730 and not ((src host HOST1) or (src host HOST2))'
+
 
 
 

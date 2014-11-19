@@ -20,3 +20,5 @@ puppet agent -t --color=html
 
 
 Si el puppet agent corriendo como demonio (/etc/init.d/puppet) no puede conectar con el servidor, usará el ultimo catalog que encuentre.
+
+puppet agent -t --vardir=VARDIR --confdir=CONFDIR --certname=CERTNAME --environment=ENV --server=puppet.service.dsn.inet --noop
