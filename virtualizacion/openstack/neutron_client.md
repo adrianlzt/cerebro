@@ -30,13 +30,16 @@ neutron --insecure router-interface-add a8abe81d-8162-40c0-8218-5202961a0c96 2de
 
 
 # Port
-neutron --insecure port-create --name int_inodos-router-port 4df1ea57-c515-4a76-968d-7a99c495ba75
+neutron port-create --name int_inodos-router-port 4df1ea57-c515-4a76-968d-7a99c495ba75
   creo puerto en la red de inodos para conectar el router
+
+Mostrar puertos de una red determinada:
+neutron port-list -- --network_id=3b7c7ead-4ee1-4fe7-a2c6-a2b7c60b9ff9
 
 
 # Floating IP
 neutron floatingip-create ext_mgmt
 
-neutron --insecure floatingip-associate <floatingIP_id> <port>
+neutron floatingip-associate <floatingIP_uuid> <port_uuid>
 
 nova add-floating-ip

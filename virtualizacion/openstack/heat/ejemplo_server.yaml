@@ -62,3 +62,4 @@ resources:
       network_id: { get_param: net_id }
       fixed_ips:
         - subnet_id: { get_param: subnet_id }
+        #- ip_address: "a.b.c.d" # Por si queremos fijar la ip a mano

@@ -21,8 +21,12 @@ No se puede usar {{item}} en el name
 - copy: src={{ item }} dest=/etc/fooapp/ owner=root mode=600
   with_fileglob:
     - /playbooks/files/fooapp/*
+  # When using a relative path with with_fileglob in a role, Ansible resolves the path relative to the roles/<rolename>/files directory.
 
-- action: shell /usr/bin/foo
+
+# Chequea un comando hasta que devuelve la cadena que queremos
+# Si al quinto intento falla, falla la task
+- shell: /usr/bin/foo
   register: result
   until: result.stdout.find("all systems go") != -1
   retries: 5

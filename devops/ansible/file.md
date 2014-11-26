@@ -15,6 +15,11 @@ En modo ad-hoc no me crea el fichero si no existe :?
         content="cosas"
         owner=icinga group=apache mode=0644
 
+# Permisos:
+- name: fix mod_gearman_neb log perms
+  file: dest=/var/log/mod_gearman/mod_gearman_neb.log state=touch
+  owner=root group=root mode=0644
+
 
 Borrar fichero
 - name: delete custom fact for hostgroups if not defined

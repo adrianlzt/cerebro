@@ -1,3 +1,18 @@
+Instalar todos los ficheros .repo de un diretorio de files/
+- name: configure repositories
+  copy: src={{ item }}
+        dest=/etc/yum.repos.d/
+        owner=root group=root mode=0644
+  with_fileglob:
+    - repos/*
+
+module/files/repos/
+nombre.repo
+otro.repo
+...
+
+
+
 De esta forma no tenemos que conocer la arquitectura de la máquina ni la versión de EPEL disponible.
 
 - name: bootstrap epel-release install

@@ -9,6 +9,9 @@ pacman -S --noconfirm ...
 Buscar en paquetes de los repos:
 pacman -Ss paquete
 
+Actualizar base de datos (como apt-get update):
+pacman -Sy
+
 Buscar en paquetes locales:
 pacman -Qs paquete
 

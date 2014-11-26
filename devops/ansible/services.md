@@ -14,6 +14,8 @@ Mirar handlers.md si queremos reiniciar un service cuando se cambie un fichero.
 - name: enable and run nrpe daemon
   service: name=nrpe state=started enabled=yes
 
+- name: stop and disable iptables
+  service: name=iptables state=stopped enabled=n
 
 # Ad-hoc
 # Desactivar puppet del inicio y pararlo

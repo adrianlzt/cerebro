@@ -32,3 +32,15 @@ Solo ejecutar un comando si no se ha ejecutado antes (el creates debe apuntar a 
 
 # Ad Hoc
 ansible -s tidcampus -m command -a "id"
+
+
+# Long
+- name: Install Drupal.
+  command: >
+    drush si -y
+    --site-name="{{ drupal_site_name }}"
+    --account-name=admin
+    --account-pass={{ drupal_admin_pass }}
+    --db-url=mysql://root@localhost/{{ domain }}
+    chdir={{ drupal_core_path }}
+    creates={{ drupal_core_path }}/sites/default/settings.php

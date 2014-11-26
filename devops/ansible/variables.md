@@ -48,6 +48,7 @@ O un json a pelo:
 
 vars_files:
  - "vars/common.yml"
+ - "vars/other.json"
  - [ "vars/{{ ansible_os_family }}.yml", "vars/os_defaults.yml" ]
 	  
 vars:
@@ -68,3 +69,64 @@ Hack para solucionarlo. Hacer un echo de la variable y guardarla en un registro:
 - name: hack, copy dsn_branch to puppet play
   shell: echo "{{ dsn_branch }}"
   register: dsn_br
+Mejor, guardarla como fact, asi perdurará entre playbooks.
+
+# Variables de entorno
+Para el primer caso hacen falta los facts, para el segundo no.
+
+  vars:
+    platon_home: "{{ ansible_env.THING_HOME }}"
+
+  gather_facts: false
+  vars:
+    platon_home: "{{ lookup('env','THING_HOME') }}"
+
+
+# Variables reservadas
+hostvars
+group_names
+groups
+environment
+
+# Magic variables
+http://docs.ansible.com/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts
+
+## hostvars
+lets you ask about the variables of another host, including facts that have been gathered about that host. If, at this point, you haven’t talked to that host yet in any play in the playbook or set of playbooks, you can get at the variables, but you will not be able to see the facts.
+
+{{ hostvars['test.example.com']['ansible_distribution'] }}
+
+
+## group_names 
+a list (array) of all the groups the current host is in.
+
+{% if 'webserver' in group_names %}
+
+
+## groups
+list of all the groups (and hosts) in the inventory
+
+{% for host in groups['app_servers'] %}
+
+
+{% for host in groups['app_servers'] %}
+  {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
+{% endfor %}
+
+
+# Usar variables del inventario de un grupo:
+- name: "Build hosts file"
+  lineinfile: dest=/etc/hosts regexp='.*{{ hostvars[item].ansible_hostname }}$' line="{{ hostvars[item].ansible_default_ipv4.address }} {{ hostvars[item].ansible_hostname }}" state=present
+  when: hostvars[item].ansible_default_ipv4.address is defined
+  with_items: groups['nginx']
+
+Respuesta del inventario dinámico:
+{
+    "nginx": {
+        "hosts": [
+            "172.16.1.24", 
+            "172.16.1.23"
+        ]
+    }, 
+...
+
