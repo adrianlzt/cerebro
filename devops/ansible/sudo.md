@@ -50,3 +50,12 @@ o
 
 También podemos hacerlo con ansible_ssh_pass
 
+
+# Definir ficheros en sudoers.d/
+- name: sudo, allow cyclops-provision restart icinga
+  copy: src=cyclops_restart_icinga.sudo
+        dest=/etc/sudoers.d/cyclops_restart_icinga
+        validate='visudo -cf %s'
+        owner=root group=root mode=0440
+
+

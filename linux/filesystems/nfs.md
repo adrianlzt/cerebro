@@ -86,3 +86,37 @@ These options explicitly set the uid and gid of the anonymous account. This opti
 http://www.cyberciti.biz/faq/centos-fedora-rhel-iptables-open-nfs-server-ports/
 
 Algunos puertos se asignan dinámicamente
+
+
+# Receta exportar directorio
+Exportar un directorio por NFS
+
+Servidor NFS
+Editar el fichero
+/etc/exports donde se incluirán los directorios
+ a compartir, qué hosts pueden acceder a ellos y una lista de opciones:
+$ cat /etc/exports
+/home/sysadmin/nfs *(rw,sync,insecure,fsid=0)
+En este caso, se exporta el directorio /home/sysadmin/nfs en modo lectura/escritura a cualquier host (*). La opción insecure es importante para que lo pueda importar un mac.
+
+Con las opciones de exportación anterior, hay conflictos de permisos cuando 2 clientes tratan de escribir en el mismo directorio compartido. Para evitarlo, se puede indicar un uid y gid determinado al usuario anónimo con el que se conectarían los clientes, junto con el all_squash:
+/home/sysadmin/nfs *(rw,sync,insecure,fsid=0,all_squash,anonuid=501,anongid=501)
+Ejecutar el siguiente comando:
+$ sudo exportfs -ra
+para que nfs tome los cambios en el fichero
+/etc/exports.
+
+Configurar NFS (fichero
+/etc/sysconfig/nfs) para que los puertos
+ sean estáticos (y se puedan abrir por iptables). Descomentar las líneas:
+RQUOTAD_PORT=875
+LOCKD_TCPPORT=32803
+LOCKD_UDPPORT=32769
+MOUNTD_PORT=892
+STATD_PORT=662
+STATD_OUTGOING_PORT=2020
+
+Abrir los puertos en iptables (/etc/sysconfig/iptables o /etc/sysconfig/ip6tables) para el servicio
+ NFS:
+-A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT

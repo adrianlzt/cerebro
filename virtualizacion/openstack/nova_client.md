@@ -7,6 +7,9 @@ Uso: supernova entorno comando (aqui omito "supernova entorno" y uso solo nova)
 Listar máquinas:
 nova list
 
+Acceder a una máquina (necesita una ip flotante accesible):
+nova ssh NOMBRE
+
 Info de una máquina:
 nova show nombreMaquina
 
@@ -26,8 +29,11 @@ nova keypair-{list,show,delete}
 Availability zones:
 nova availability-zone-list
 
+Security groups:
+nova secgroup-list
+
 Levantar una máquina:
-nova boot --flavor NOMBRE --image NOMBREIMG --key-name raxLondon --security-groups todo_abierto --nic net-id=a46asd7-2345-34-234as NOMBRE-VM
+nova boot --flavor NOMBRE --image NOMBREIMG --key-name raxLondon --security-groups todo_abierto,otro --nic net-id=a46asd7-2345-34-234as NOMBRE-VM
   --num-instances <n>  numero de instancias que arrancar
   --meta <key=value>   valores que se almacenan en /meta.js
   --file <dst-path=src-path>   poner ficheros locales en la VM

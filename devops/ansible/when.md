@@ -15,3 +15,19 @@ Si queremos que una tarea se ejecute dependiendo del resultado de otra:
 
 
 Cuando usamos ansible-playbook con --check --diff el resultado de la tarea condicionada siempre estará como skipping. Solo cuando lo ejecutemos de verdad cogerá el valor adecuado.
+
+
+
+    - name: test
+      shell: echo | grep "pepe"
+      ignore_errors: True
+      register: result
+
+    - name: tarea correcta
+      command: echo "guay"
+      when: result.rc == 0
+
+    - name: tarea MAL
+      command: echo "guay"
+      when: result.rc != 0
+

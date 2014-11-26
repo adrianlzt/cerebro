@@ -19,4 +19,4 @@ Host rebuscao
   Hostname perdido.com
   User pepe
   ProxyCommand ssh -A -X host1.com ssh -A -X user@host2.org nc %h %
-  # Como hacer con -W ?
+  # Como hacer con -W?
