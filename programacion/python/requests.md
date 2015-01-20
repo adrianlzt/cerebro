@@ -23,3 +23,7 @@ http://www.mediawiki.org/wiki/User:Sebelino7/Login_with_Python
 HTTP_PROXY="http://10.10.1.10:3128" python
 import requests
 ...
+## Códigos http
+requests.codes.ok
+
+Todos los códigos en: https://github.com/kennethreitz/requests/blob/master/requests/status_codes.py

@@ -6,3 +6,6 @@ add-apt-repository ppa:nginx/development
 
 apt-get update
 apt-get install nginx
+
+## CentOS
+Necesario EPEL

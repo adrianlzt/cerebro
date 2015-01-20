@@ -25,9 +25,9 @@ Cuando usamos ansible-playbook con --check --diff el resultado de la tarea condi
 
     - name: tarea correcta
       command: echo "guay"
-      when: result.rc == 0
+      when: result|success
 
     - name: tarea MAL
       command: echo "guay"
-      when: result.rc != 0
+      when: result|failed
 

@@ -18,3 +18,7 @@ Al hacer benchmarks de disco tenemos que tener cuidado de que no estemos usando 
 
 El disco tiene un lookahead (readahead es a nivel lógico, este es a nivel físico), cuando le mandas leer un bloque el lee los siguientes.
 
+
+
+Testear velocidad
+sudo hdparm -t /dev/sdb

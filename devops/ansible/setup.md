@@ -3,10 +3,26 @@ http://docs.ansible.com/setup_module.html
 Esto es como los facts de puppet:
 ansible all -m setup
 
-Nos devuelve todas las varibables que luego podremos usar en los plays.
+Nos devuelve todas las varibables que luego podremos usar en los plays como {{ ansible_devices.sda.model }}
 
-También nos devuelve las variables del propio facter (si está instalado):
-facter_*
+También nos devuelve las variables del propio facter 
+
+Si ejecutamos un playbook y limitamos por tags, si una máquina no tiene ninguna tarea que ejecutar, no se recoletarán sus facts.
+
+# Fact caching
+Podemos usar facts caching (version >= 1.8) para almacenar estos valores entre ejecuciones
+http://docs.ansible.com/playbooks_variables.html#fact-caching
+sudo apt-get install redis-server
+sudo pip install redis
+  esto es para tener la ultima libreria python para redis
+
+~/.ansible.cfg
+[defaults]
+fact_caching = redis
+fact_caching_timeout = 86400
+# in seconds
+
+Ahora si ejecutamos un playbook, los facts se almacenarán en la redis.
 
 
 Para obtener un fact en particular:
@@ -15,6 +31,9 @@ ansible localhost -m setup -a 'filter=*uptime'
 
 The filter option filters only the first level subkey below ansible_facts.
 
+
+Una variable cualquier la metemos como:
+nombre.valor.cosa
 
 
 Definir un fact en un playbook:

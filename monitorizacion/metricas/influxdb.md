@@ -1,1 +1,0 @@
-../../bbdd/influxdb.md

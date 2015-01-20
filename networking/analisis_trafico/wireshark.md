@@ -9,6 +9,13 @@ Y permitir a non-root capturar paquetes.
 Y para definir que usuarios pueden, hay que añadirles al grupo wireshark:
 # adduser <usuario> wireshark
 
+Instalacion dumpcap:
+Ubuntu:
+apt-get install wireshark-common
+
+CentOS:
+yum install wireshark
+
 
 dumpcap, similar a tcpdump
 dumpcap -f "port 25" -w -

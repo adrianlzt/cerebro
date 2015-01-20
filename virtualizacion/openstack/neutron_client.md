@@ -33,6 +33,9 @@ neutron --insecure router-interface-add a8abe81d-8162-40c0-8218-5202961a0c96 2de
 neutron port-create --name int_inodos-router-port 4df1ea57-c515-4a76-968d-7a99c495ba75
   creo puerto en la red de inodos para conectar el router
 
+Crear puerto de la red private_management con una ip fija y sacando los datos en estilo 'clave="valor"'
+neutron --insecure port-create --name icinga-vip_mgmt-port private_management -f shell --fixed-ip ip_address=172.16.1.200
+
 Mostrar puertos de una red determinada:
 neutron port-list -- --network_id=3b7c7ead-4ee1-4fe7-a2c6-a2b7c60b9ff9
 

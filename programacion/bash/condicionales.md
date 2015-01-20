@@ -19,6 +19,11 @@ else
   echo "not match"
 fi
 
+grep $1 /etc/passwd
+if [[ $? -ne 0 ]]; then
+  echo "not match"
+fi
+
 
 
 FORMATO ANTIGUO:

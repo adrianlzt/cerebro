@@ -23,6 +23,8 @@ Con multiples condiciones
 Client.find([1, 10]) <- SELECT * FROM clients WHERE (clients.id IN (1,10))
 
 
+Service.where("environment_id=? AND command_id=? AND name like(?)", 1, 118, "MySQL%").count
+
 
 Client.select("viewable_by, locked")
 SELECT viewable_by, locked FROM clients

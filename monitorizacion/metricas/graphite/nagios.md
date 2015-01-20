@@ -1,3 +1,7 @@
+https://github.com/etsy/nagios_tools
+Alert on data, based on number from Graphite.
+Permite hacer checks contra estimaciones Holt-Winters
+
 https://github.com/olivierHa/check_graphite
 Nagios plugin to poll Graphite for data.
 

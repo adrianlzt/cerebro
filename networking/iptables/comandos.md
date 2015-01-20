@@ -35,6 +35,9 @@ Denega ping:
 Abrir puertos:
 iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 
+Cerrar puerto de entrada
+iptables -A INPUT -p tcp --dport 80 -j DROP
+
 Cerrar puerto de salida:
 iptables -A OUTPUT -p tcp --dport 45 -j DROP
 

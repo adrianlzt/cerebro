@@ -40,3 +40,11 @@ keystone service-create --name nova --type compute --description 'OpenStack Comp
 
 Crear endpoints:
 keystone endpoint-create --region KEYSTONE_REGION --service-id $COMPUTE_SERVICE --publicurl 'http://'"$KEYSTONE_HOST"':8774/v2/$(tenant_id)s' --adminurl 'http://'"$KEYSTONE_HOST"':8774/v2/$(tenant_id)s' --internalurl 'http://'"$KEYSTONE_HOST"':8774/v2/$(tenant_id)s'
+
+
+
+# Añadir endpoint cinder v2
+keystone service-create --name=cinderv2 --type=volumev2 --description="Cinder Volume Service V2"
+  Note the id property returned and use it to create the endpoint.
+
+keystone endpoint-create --service-id=the_service_id_above --publicurl='https://ost-controller-lb-dev.service-d.dsn.inet:8776/v2/%\(tenant_id\)s' --internalurl='https://ost-controller-lb-dev.om-d.dsn.inet:8776/v2/%\(tenant_id\)s' --adminurl='https://ost-controller-lb-dev.om-d.dsn.inet:8776/v2/%\(tenant_id\)s'

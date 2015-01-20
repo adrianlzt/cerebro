@@ -14,8 +14,8 @@ ip r
   Añadir ruta
     ip route add {NETWORK/MASK} via {GATEWAYIP}
     ip route add {NETWORK/MASK} dev {DEVICE}
-    ip route add default {NETWORK/MASK} dev {DEVICE}
-    ip route add default {NETWORK/MASK} via {GATEWAYIP}
+    ip route add default dev {DEVICE}
+    ip route add default via {GATEWAYIP}
 
   Cambiar ruta por defecto:
     ip r change default via 192.168.1.1 dev wlan1
@@ -25,6 +25,7 @@ ip r
     ip route add 192.168.251.51/32 dev eth1 src 192.168.198.228
     ip route add 81.45.59.58/32 via 192.168.1.1 dev wlan1
       ir a la ip 81.45.59.58 a través de la puerta de enlace 192.168.1.1 a la que llegamos a través de la interfaz wlan1
+    ip route change default via 192.168.2.1 via eth1
 
   Mostrar rutas locales:
     ip route show table local
@@ -60,6 +61,14 @@ Definir IP / Agregar ip alias:
 ip addr add 192.168.198.228/32 dev eth1
 ip addr add 192.168.0.1/255.255.255.0 dev eth1
 
+
+Crear una interfaz virtual con diferente MAC (MAC-VLAN virtual interface), backed by eth0:
+ip link add dev macvlan0 link eth0 type macvlan
+
+Borrarla:
+ip link delete dev macvlan0
+
+
 Asignar IP de broadcast (por defecto, ninguna)
 ip addr add brd {ADDDRESS-HERE} dev {interface}
 
@@ -92,6 +101,7 @@ ip link set mtu {NUMBER} dev {DEVICE}
 Interfaces 
 ip link / ip l
 ip link ls up <- interfaces lenvantadas
+ip l set eth1 down
 
 # http://www.cyberciti.biz/faq/linux-ip-command-examples-usage-syntax/ #
 ip OBJECT help

@@ -1,6 +1,3 @@
-Si quiero entrar a una imagen pero tiene un entrypoint y no me deja con el típico: docker run -t -i imagen /bin/bash, puedo hacer:
-docker run -t -i -entrypoint="/bin/bash" imagen -i
-
 Si queremos analizar un container primero lo tendremos que convertir a imagen:
 docker commit <container-id> <nombre-tag>
 

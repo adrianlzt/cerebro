@@ -13,3 +13,35 @@ Crear hosts y hostgroups "al vuelo"
             ansible_ssh_user=root lb_id={{ lb.balancer.id }}
             groups=web
   with_items: lb.balancer.nodes
+
+
+# Crear script
+Tiene que ser un archivo ejecutable y que empieze con el shebang (#!/).
+Tiene que devolver un json con los grupos y sus nodos.
+Si queremos meter variables irán al final del json.
+Ejemplo de salida:
+
+{
+    "load_balancer": {
+        "hosts": [
+            "172.16.1.23"
+        ]
+    }, 
+    "management": {
+        "hosts": [
+            "manage_node"
+        ]
+    }, 
+    "icinga": {
+        "hosts": [
+            "172.16.1.201"
+        ]
+    },
+    "_meta" : {
+       "hostvars" : {
+          "manage_node"     : { "ansible_ssh_host" : "192.168.213.86" },
+          "llama.example.com"      : { "asdf" : 5678 }
+       }
+    }
+}
+

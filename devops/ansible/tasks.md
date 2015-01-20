@@ -26,3 +26,12 @@ tasks:
           - beta
           - gamma
 
+
+# run once
+Ejecutar solo una vez una tarea (one time and one host)
+
+- command: /opt/application/upgrade_db.py
+  run_once: true
+
+Parece que lo ejecuta siempre en el primer host del grupo "all"
+No se puede poner con un include: blabla.yml

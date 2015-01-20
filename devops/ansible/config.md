@@ -16,3 +16,11 @@ Tambien ansible usará la conf de .ssh/config
 
 Los playbooks los podemos meter, por ejemplo, en .ansible/playbooks/
 
+
+# Hostfile
+Parece que se pueden pasar varios ficheros en la variable hostfile separados por coma: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L71
+
+Tambien puede ser un directorio: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L97
+
+Aqui comprueba si el fichero es ejecutable: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L116
+Si es ejecutable se trata por https://github.com/ansible/ansible/blob/devel/lib/ansible/inventory/script.py

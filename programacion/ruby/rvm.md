@@ -12,9 +12,9 @@ curl -sSL https://get.rvm.io | bash -s stable
     in all your open shell windows, in rare cases you need to reopen all shell windows.
 
 
-Instalar ruby 1.9.2:
-rvm install ruby-1.9.2
-rvm install --proxy http://blabla.com:4322 ruby-1.9.2
+Instalar ruby 1.9.3:
+rvm install ruby-1.9.3
+rvm install --proxy http://blabla.com:4322 ruby-1.9.3
 
 Para usar el ruby del sistema:
 rvm use system

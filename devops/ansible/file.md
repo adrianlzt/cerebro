@@ -3,7 +3,7 @@ Mirar copy.md para copiar ficheros de un role a la máquina.
 Generar fichero con contenido:
 
 - name: gen file
-  file: dest=/tmp/fichero content="cosas"
+  copy: dest=/tmp/fichero content="cosas\notralinea\n"
 
 En modo ad-hoc no me crea el fichero si no existe :?
 
@@ -11,7 +11,7 @@ En modo ad-hoc no me crea el fichero si no existe :?
   lineinfile: dest=/tmp/ansible1/ficheroLine line="prueba contenido" create=yes
 
 - name: icinga passwd
-  file: dest=/etc/icinga/passwd
+  copy: dest=/etc/icinga/passwd
         content="cosas"
         owner=icinga group=apache mode=0644
 

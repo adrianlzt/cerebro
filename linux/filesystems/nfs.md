@@ -25,7 +25,7 @@ Instalar
 apt-get install nfs-common nfs-kernel-server
 
 RedHat:
-nfs-utils
+yum install nfs-utils
 
 /etc/exports:
 	directorio equipo1(opcion11,opcion12) equipo2(opcion21,opcion22)

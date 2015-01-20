@@ -28,6 +28,8 @@ gem update nombre
 Directorio de instalación: 
 gem environment gemdir
 
+gem query -l -d json
+
 Los binarios para ejecutar gemas en
 /usr/local/bin
 

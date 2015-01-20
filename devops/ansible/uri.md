@@ -2,6 +2,11 @@ http://docs.ansible.com/uri_module.html
 
 Hacer GET/POST/... a urls
 
+Hace falta tener el paquete httplib2.
+Para centos:
+- name: httplib2 package is needed to register the host
+  yum: name=python-httplib2 state=latest
+
 Obtener releases de un repo de github  
 tasks:
   - name: ver releases 

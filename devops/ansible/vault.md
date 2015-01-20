@@ -11,6 +11,8 @@ Una vez puesta la contraseña nos abrirá vim para meter datos.
 Podemos meter por ejemplo una variable:
 variable: 1234
 
+Ver fichero
+ansible-vault view foo.yml
 
 Para editar:
 ansible-vault edit foo.yml

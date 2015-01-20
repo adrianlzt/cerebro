@@ -8,3 +8,7 @@ Test:
 $ python
 >>> import cv2
 >>> print cv2.__version__
+
+
+OpenCV 3
+http://opencv.org/downloads.html

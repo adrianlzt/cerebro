@@ -38,3 +38,6 @@ Mirar si tenemos el sftp instalado (openssh-clients)
 # grep sftp *
 sshd_config:Subsystemsftp/usr/libexec/openssh/sftp-server
 
+
+ValueError: No JSON object could be decoded
+El inventario dinámico no está funcionando

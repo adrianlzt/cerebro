@@ -1,0 +1,102 @@
+#!/bin/bash
+#
+##########################################################################
+# This file is centrally managed, any manual changes will be OVERWRITTEN #
+##########################################################################
+#
+# puppetunicorn  This shell script enables the unicorn process.
+#
+# Authors:       Christian Foronda
+#
+# chkconfig: - 65 45
+#
+# description: Server for the puppet system management tool.
+# processname: puppetunicorn
+
+PATH=/usr/bin:/sbin:/bin:/usr/sbin
+export PATH
+
+lockfile=/var/lock/puppetunicorn
+pidfile=/var/run/puppet/puppetunicorn.pid
+
+USER="puppet"
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+if [ -f /etc/sysconfig/puppetmaster ]; then
+    . /etc/sysconfig/puppetmaster
+fi
+
+RETVAL=0
+DAEMON=/usr/bin/unicorn
+DAEMON_OPTS="-D -c /etc/puppet/unicorn.conf"
+
+start() {
+    echo -n $"Starting puppetunicorn: "
+    daemon sudo -u $USER $DAEMON $DAEMON_OPTS
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && touch "$lockfile"
+    echo
+    return $RETVAL
+}
+
+stop() {
+    echo -n  $"Stopping puppetunicorn: "
+    #killproc -p $pidfile $DAEMON
+    killall unicorn
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f "$lockfile"
+    return $RETVAL
+}
+
+restart() {
+    stop
+    sleep 1
+    start
+    RETVAL=$?
+    echo
+    [ $RETVAL -ne 0 ] && rm -f "$lockfile"
+    return $RETVAL
+}
+
+condrestart() {
+    status
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && restart
+}
+
+status() {
+    ps ax | egrep "unicorn (worker|master)"
+    RETVAL=$?
+    return $RETVAL
+}
+
+usage() {
+    echo "Usage: $0 {start|stop|restart|status|condrestart}" >&2
+    return 3
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    condrestart)
+        condrestart
+        ;;
+    status)
+        status
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+exit $RETVAL

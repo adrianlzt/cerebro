@@ -31,3 +31,12 @@ Playbook con roles, los leerá de .ansible/roles
 - hosts: all
   roles:
     - nombre.del.rol
+
+
+
+Ejecutar ansible contra una maquina vagrant provisionada con ansible
+$ ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant playbook.yml
+
+El inventario que genera es algo tipo:
+machine ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+

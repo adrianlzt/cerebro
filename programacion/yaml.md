@@ -30,3 +30,13 @@ Array:
     - foo: "VAR"
       cosa: "asd12"
     - pepe: "MAR"
+
+
+  "emptyObject": {
+      "uno" : "cpsp",
+      "dos" : "http"
+  },
+
+  emptyObject: 
+    uno: "cpsp"
+    dos: "http"

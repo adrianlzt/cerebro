@@ -30,3 +30,7 @@ $ sudo su
 # login adrian
 $ id
 Aparecerán los grupos nuevos, pero si lo queremos para una app X11 no nos dejará
+
+O
+% su adrian
+$ id

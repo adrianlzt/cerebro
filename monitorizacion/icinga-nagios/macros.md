@@ -16,14 +16,14 @@ define service{
 ## Custom macros
 http://docs.icinga.org/latest/en/macros.html#customvar
 
-Se definen poniendo _nombre y se usan:
-  Si son de host: $_HOSTnombre$
-  Si son de service: $_SERVICEnombre$
-  Si son de contact: $_CONTACTnombre$
+Se definen poniendo _nombre y se usan (en mayusculas!):
+  Si son de host: $_HOSTNOMBRE$
+  Si son de service: $_SERVICENOMBRE$
+  Si son de contact: $_CONTACTNOMBRE$
 test.cfg
 define host {
     ...
-    _prueba                        pepito
+    _nombre                        pepito
     notes_url                      http://server.com/query?$_HOSTprueba$
 }
 
@@ -39,3 +39,14 @@ for hosts and services: HOSTNAME, HOSTDISPLAYNAME, HOSTALIAS, HOSTADDRESS, HOSTO
 for services: SERVICEDESC, SERVICEDISPLAYNAME, SERVICEOUTPUT, LONGSERVICEOUTPUT, SERVICEPERFDATA, SERVICECHECKCOMMAND
 all custom macros on hosts and services (beginning with _HOST or _SERVICE)
 all $USER...$ macros
+
+
+# Environment variables
+Si queremos hacer un dump:
+https://wiki.icinga.org/display/testing/Icinga+Plugin+Testing
+define command {
+    command_name        3322check_env
+    command_line        /usr/bin/env >> /tmp/3322_icinga.$TIMET$.env
+}
+
+service_notification_commands  notify-service-by-email,3322check_env

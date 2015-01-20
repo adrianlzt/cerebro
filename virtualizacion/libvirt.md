@@ -1,6 +1,26 @@
 http://wiki.libvirt.org/
 
-Permitir a otros usuarios ejecutar virsh:
+# Instalacion
+sudo apt-get install libvirt-bin
+
+
+Hace falta definir el endpoint para que funcione:
+virsh -c qemu:///system list --name --state-running
+
+
+virsh #
+  help - ayuda
+  help cmd - ayuda comand cmd
+  list - ver maquinas corriendo
+
+# VirtualBox
+virsh -c vbox:///session
+
+Localmente funciona, pero no se puede hacer vbox+ssh://
+
+
+
+# Permitir a otros usuarios ejecutar virsh:
 http://libvirt.org/auth.html#ACL_server_unix_perms
 http://wiki.libvirt.org/page/SSHPolicyKitSetup
 https://www.rockpenguin.com/2014/03/allowing-non-root-users-access-to-libvirt-and-virsh-using-polkit/
@@ -23,5 +43,3 @@ ResultAny=yes
 ResultInactive=yes
 ResultActive=yes
 
-Hace falta definir el endpoint para que funcione:
-virsh -c qemu:///system list --name --state-running

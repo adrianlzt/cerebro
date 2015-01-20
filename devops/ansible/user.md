@@ -12,3 +12,6 @@ Ejecutar tasks como otro usuario:
   git: repo=https://github.com/some/repo.git version=master dest={{ dst }}
   sudo: yes
   sudo_user: some_user
+
+# Ad-hoc
+ansible -s maquina -m user -a "name=james shell=/bin/bash groups=admins,developers append=yes"

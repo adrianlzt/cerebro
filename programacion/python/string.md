@@ -71,6 +71,18 @@ este_es_elnom_bre
 'abc   def   '
 
 
+>>> cadena = "--hola"
+>>> cadena.__contains__('--')
+True
+
+
+
+>>> cadena
+'--hola'
+>>> cadena.lstrip('-')
+'hola'
+
+
 ## Format ##
 BASE_URL_TEMPLATE = '{protocol}://{host}:{port}/api/{version}/'
 BASE_URL_TEMPLATE.format(protocol=protocol, host=host, port=port, version=version)

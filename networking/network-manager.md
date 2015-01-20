@@ -18,3 +18,11 @@ nmcli
 nm-tool: estado de las interfaces y de NetworkManager
 
 nm-connection-editor: editor gráfico de las conexiones de red
+
+
+En entornos desktop ubuntu dnsmasq corre debajo de NetworkManager
+
+Para meter configuraciones de dnsmasq hacerlo en: /etc/NetworkManager/dnsmasq.d
+Y reiniciar NetworkManager:
+restart network-manager
+
