@@ -10,6 +10,8 @@ except ExceptionII:
    ......................
 else:
    If there is no exception then execute this block.
+finally:
+   This would always be executed.
 
 
 try:

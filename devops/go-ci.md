@@ -2,9 +2,10 @@ http://www.go.cd/
 Free, open source
 
 Herramienta de continuous delivery desarrollada por thoughtworks
-
-
 Permite separar entre pipes y elementos generados.
+
+Go vs Jenkins:
+http://highops.com/insights/continuous-delivery-pipelines-gocd-vs-jenkins/
 
 
 A la pipeline le asociamos un template, y lo unimos a un repo.

@@ -16,12 +16,6 @@ Si queremos definir un host a una ip de manera fija, editamos /etc/dnsmasq.conf
 address=/sro.whatsapp.net/192.168.1.33
 
 
-dnsmasq corre debajo de NetworkManager
-
-Para meter configuraciones de dnsmasq hacerlo en: /etc/NetworkManager/dnsmasq.d
-Y reiniciar NetworkManager:
-restart network-manager
-
 Se pueden crear alias:
 address=/double-click.net/127.0.0.1
 
@@ -29,3 +23,34 @@ Alias de otros hosts (estos hosts deben estar en /etc/hosts o tener resolucion p
 cname=pepe,ordenador-de-pepe
 
 Para crear alias de hostnames mirar linux/hostaliases.md
+
+
+# PXE
+mirar networking/pxe.md
+
+
+
+# DHCP
+Opciones: https://www.ietf.org/rfc/rfc2132.txt
+
+/etc/dnsmasq.conf
+dhcp-range=192.168.1.200,192.168.1.220,12h
+# magic number 3 here is the DHCP standard option number for "router"
+dhcp-option=3,192.168.1.1
+# DNS (6)
+dhcp-option=6,8.8.8.8,8.8.4.4
+# Domain Name (15)
+#dhcp-option=15,dhcp.edoceo.com
+# IP Forward (19) no
+#dhcp-option=19,0
+# Source Routing (20)
+#dhcp-option=20,0
+# NTP Server (42)
+#dhcp-option=42,0.0.0.0
+
+
+
+# Opciones interesantes
+       --all-servers
+              By default, when dnsmasq has more than one upstream server available, it will send queries to just one server. Setting this flag forces dnsmasq to send
+              all queries to all available servers. The reply from the server which answers first will be returned to the original requester.

@@ -10,3 +10,7 @@ noauto_da_alloc     # deshabilita fsync() automatico
 journal_ioprio=N    # modifica prioridad del journal sobre I/O normal
                     # los procesos jbd* son los encargados de escribir el journal
 		    # con este parámetro podemos modificar esa prioridad
+
+
+Format:
+mkfs.ext4 /dev/vdb

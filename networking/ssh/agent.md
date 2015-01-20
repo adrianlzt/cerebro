@@ -8,3 +8,6 @@ ssh -A maquina
 
 3.- Al saltar desde 'maquina' a 'otramaquina' se usará clave.pem
 maquina$ ssh otramaquina
+
+
+Tambien nos sirve para meter distintas claves en el agente de distintas ubicaciones, y luego siempre que usemos -A probará todas esas claves.

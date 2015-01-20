@@ -1,50 +1,58 @@
 acalendar
+accuwheather
 aemet
-andie graphs https://play.google.com/store/apps/details?id=net.supware.tipro ROMS: Dropbox/TI-Andie-graphs/ usar TI-86
-astro
+andie graphs (calculadora) https://play.google.com/store/apps/details?id=net.supware.tipro ROMS: Dropbox/TI-Andie-graphs/ usar TI-86
+auto rotate widget
 Bitbeaker (para conectar a los repos git de bitbucket)
-bump (transferir entre moviles)
-busybox
-caja ingenieros
+blablacar
+camara de google
 chrome
-dolphin browser (navegador ligero)
+color flashlight (linterna) https://play.google.com/store/apps/details?id=com.socialnmobile.flashlight
+color note (widgets)
+drive
 dropbox
+echo lockscreen
 eltiempo
-e-park (para la zona azul de las ciudades)
+es file explorer
 facebook
 facebook messenger
 feedly (lector rss online)
 feedme (usa la conf de feedly pero para ver offline)
-fidme (tarjetas fidelizacion)
 fing (escaner de redes)
+flickr
 github
 gmail
 google maps
 google googles
 google sky maps
-google talk
-google traductor
+hanghouts
+inbox
 ingenieros movil (caja de ingenieros)
 juicessh
+jump (vnc client) (tienda amazon)
 keepass2android 
-lbe privacy guard (firewall)
-Linterna https://play.google.com/store/apps/details?id=com.socialnmobile.flashlight
+mb-wheather (meteo blue)
 network signal strength -> widget para ver que tipo de red y dBs tenemos
 oruxmaps (gps para hacer y seguir tracks)
+paypal
+pocket
 pushbullet (enviar notificaciones push a/desde pc/movil/amigos etc) (tambien envia al chrome las notificaciones del movil)
+qpython
 quickoffice
-root app delete (borrar apps del sistema)
 settle up
 skype
+slack
 snapseed (edición de imágenes)
 SuperBeam | WiFi Direct Share
-superuser (para dar permisos de root)
-swype
-telegram (whatsapp killer). Cliente linux: https://github.com/vysheng/tg. Cliente chrome: https://chrome.google.com/webstore/detail/telegram-unofficial/clhhggbfdinjmjhajaheehoeibfljjno
+teclado de google
+tienda apps amazon
+torque
 traductor
-twitter / tweedle / carbon
+tuenti
+twitter
 vlc
 waze (gps para el coche)
 whatsapp
+wolfram alpha (tienda amazon)
 wunderlist
-yahoo tiempo <- bajar fotos solo por wifi!
+youtube downloader

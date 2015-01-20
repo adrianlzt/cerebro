@@ -18,3 +18,17 @@ reverse.sh (local)
 
 Reducir tamaño
 avconv -i input.mp4 -s 640x480 output.mp4
+
+Rotar video:
+avconv -i video.mp4 -vf transpose=1 out.mkv
+  90 grados
+
+avconv -i video.mp4 -vf transpose=1,transpose=1 out.mkv
+  180 grados (dos veces 90)
+
+
+# Calidad
+http://askubuntu.com/questions/269429/how-can-i-rotate-video-by-180-degrees-with-avconv
+avconv -i original.mp4 -vf "hflip,vflip" -codec:v libx264 -preset slow -crf 20 -codec:a copy flipped.mp4
+Notice the -crf option. That sets the output quality. It goes from 0 (lossless) upwards logarithmically. You'll probably want a value between 19 and 25 in most cases. -preset sets the speed of the encoding, either "slow", "medium", or "fast". Slow should get you smaller file sizes with an obvious tradeoff. You should adjust -codec:v to match the original. If you don't set these options you'll get the defaults, which don't work well when flipping iphone video.
+

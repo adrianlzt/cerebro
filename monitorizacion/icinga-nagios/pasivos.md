@@ -101,3 +101,15 @@ https://github.com/adrianlzt/python-send_gearman
 CMD="/usr/lib64/nagios/plugins/check_load -c 1,1,1"; OUT=$($CMD); RET=$?; echo "send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host=$(hostname) --service=$(echo $CMD | awk '{n=split ($1,a,/\//); print a[n]}') --message==\"$OUT\" -r=$RET";
 
 La idea es meter varias lineas de esas en un fichero cron
+
+
+## DEBUG ##
+A bajo nivel, mod_gearman codifica esta información en base64 y la envía el servidor:
+host_name=group-a-ci
+core_start_time=1417082677.0
+start_time=1417082683.886000
+finish_time=1417082683.888092
+return_code=3
+exited_ok=1
+service_description=TEST
+output=Uso:\ncheck_procs -w <range> -c <range> [-m metric] [-s state] [-p ppid]\n [-u user] [-r rss] [-z vsz] [-P %cpu] [-a argument-array]\n [-C command] [-k] [-t timeout] [-v]\n\n[/usr/lib/nagios/plugins/check_procs: opción incorrecta -- «H»]

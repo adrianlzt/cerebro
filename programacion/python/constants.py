@@ -1,15 +1,8 @@
-#-*- coding: utf-8 -*-
+Mejor meter estas constantes en cada módulo (en cada fichero .py)
+Si los tenemos que reutilizar, importarlos desde la clase donde estén definidos.
+Usar un fichero de constants luego es un saco donde van muchas cosas, algunas se quedan sin usar, o son antiguas, etc.
 
-u"""
-(c) Copyright 2014 XXXXXXXXXX. Printed in Spain (Europe). All Rights
-Reserved.
 
-The copyright to the software program(s) is property of XXXXXXXXXXXX.
-The program(s) may be used and or copied only with the express written
-consent of XXXXXXXXXXX or in accordance with the terms and conditions
-stipulated in the agreement/contract under which the program(s) have
-been supplied.
-"""
 #Log level
 LOG_LEVEL_DEBUG = 'DEBUG'
 LOG_LEVEL_INFO = 'INFO'

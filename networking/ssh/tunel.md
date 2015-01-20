@@ -1,11 +1,12 @@
 ## Tunel directo##
 # Nos conectamos al remote-host a través del gateway #
 
-ssh -f -L <local-port-to-listen>:<remote-host>:<remote-port> gateway -N
+ssh -f -L <local-ip-to-listen>:<local-port-to-listen>:<remote-host>:<remote-port> gateway -N
 -f: go to background
 -L: create tunnel
 -N: not execute command on the remote machine
 En caso de ser necesario tambien se puede especificar user@gateway
+Si no ponemos <local-ip-to-listen> cogerá 127.0.0.1
 
 Si tenemos el control master configurado (~/.ssh/config -> ControlMaster ...), y necesitamos hacer varios túneles al mismo host:
 ssh -f -o ControMaster=no -L ...
@@ -13,6 +14,8 @@ ssh -f -o ControMaster=no -L ...
 Ejemplo para 'publicar' un puerto de una máquina a la que solo tenemos acceso ssh:
 ssh -f -L 10025:localhost:25 smtpserver -N
 
+Publicar el puerto 8140 de puppet en todas las interfaces de esta máquina
+ssh -f -L 0.0.0.0:8140:localhost:8140 puppet -N
 
 Configuración .ssh/config para hacerlo más facil
 Host tunnel

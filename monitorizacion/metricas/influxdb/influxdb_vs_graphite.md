@@ -1,0 +1,1 @@
+When trying to replace Graphite the first thing I missed was the functions; such as aliasByNode. Depending on your usage of Graphite a simple regexp like mentioned in Query Language may not be enough.

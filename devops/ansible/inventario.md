@@ -6,6 +6,9 @@ http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parame
 
 Podemos pasarlo por linea de comandos: ansible -i fichero ...
 
+Para ver nuestro inventario:
+ansible all --list-hosts
+
 Aqui definimos los grupos de máquinas.
 También podemos definir variables de esas máquinas.
 
@@ -66,3 +69,6 @@ ansible-vault create groups_vars/NOMBRE
 Ahí metemos las passwords:
 ansible_ssh_pass: contraseña1
 ansible_sudo_pass: contraseña2
+
+# SSH key
+ansible_ssh_private_key_file=~/fichero

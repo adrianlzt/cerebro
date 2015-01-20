@@ -29,7 +29,7 @@ Operaciones sobre listas: filter, map, reduce
   filter(func, sequence): devuelve una lista donde los objetos han hecho match
   map(func, seq1, seq2): hace operaciones con los elementos de las secuencias
   reduce(func,seq): hace operaciones sobre los dos primeros elementos, luego sobre el resultado y el siguiente elemento, etc
-
+Mirar lambda para ver como meter inline esas func.
 
 >>> def f(x): return x % 2 != 0 and x % 3 != 0
 ...

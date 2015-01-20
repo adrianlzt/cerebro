@@ -1,5 +1,8 @@
 ## Ejemplos ## https://github.com/draios/sysdig/wiki/Sysdig%20Examples
 
+tcpdump por proceso
+sysdig fd.type=ipv4 and proc.name=cur
+
 echo "hola mundo" > index.html
 while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html; } | nc -l 8080; done
 sysdig fd.type=ipv4 and \( proc.name=curl or proc.name=nc \)

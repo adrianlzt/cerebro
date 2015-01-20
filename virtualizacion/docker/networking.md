@@ -1,3 +1,5 @@
+Mirar weave.md
+
 Correr un servicio y mapear un puerto:
 docker run -p 80 user/image /usr/bin/httpd
   -p mapea el puerto 80 a uno local. Podemos ver cual con docker ps

@@ -29,10 +29,13 @@ docker ps
 docker ps -l  (histórico)
 
 # Commit. Los cambios no se guardan por defecto, tenemos que crear un commit para guardar las diferencias entre la imagen bajada y la modificada, que se meteran en una nueva capa (layer). El docker-id lo sacamos del 'docker ps -l -q' (ultimo container ejecutado). El usuario repo sería mi nombre, y el nombre del nuevo container que he generado.
-docker commit <docker-id> usuario/repo
+docker commit <docker-id|docker-name> usuario/repo
 
 # Info sobre el docker. JSON con la ip, puertos mapeados, comando al arrancar la instancia, volumenes, etc
 docker inspect <docker-id>
 
 # Pull images al index oficial de docker. Se hace layer por layer
 docker pull usuario/imagen
+
+# Mirar que cambios hemos hecho
+docker diff <container>

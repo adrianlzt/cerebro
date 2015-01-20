@@ -10,9 +10,6 @@ Instalación:
 
 gem install fpm
 
-Para poder generar rpms en debian-like:
-apt-get install rpm
-
 Crear paquetes:
 fpm -s <source type> -t <target type> -n <package name> -v <version> [list of sources]...
 
@@ -55,8 +52,8 @@ fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia .
 Si queremos que todos los ficheros del directorio actual se guarden en el rpm debajo de /opt/ui
 fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui .
 
-Genera una segunda iteración (a.b.c-2) para noarch, marcando dos ficheros como cofiguración (rpm guarda los antiguos al instalar el paquete)
-fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui -v 0.4.3 -a all --iteration 2 --config-files config/database.yml --config-files config/environments/production.rb .
+Genera una segunda iteración (a.b.c-2) para noarch, marcando dos ficheros como cofiguración (rpm guarda los antiguos al instalar el paquete). Si ponemos un --prefix hay que poner la ruta absoluta de los --config-files
+fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui -v 0.4.3 -a all --iteration 2 --config-files /opt/ui/config/database.yml --config-files /opt/ui/config/environments/production.rb .
 
 
 

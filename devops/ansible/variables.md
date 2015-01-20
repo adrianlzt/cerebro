@@ -13,6 +13,31 @@ Group variables. (from /etc/ansible/group_vars/<GROUPNAME>)
 Site default variables. ( from /etc/ansible/group_vars/all)
 Role "default" variables.
 
+# Del código: /home/adrian/.virtualenvs/platon/local/lib/python2.7/site-packages/ansible/runner/__init__.py(634)get_inject_vars()
+# default vars are the lowest priority
+inject = utils.combine_vars(inject, self.default_vars)
+# next come inventory variables for the host
+inject = utils.combine_vars(inject, host_variables)
+# then the setup_cache which contains facts gathered
+inject = utils.combine_vars(inject, self.setup_cache.get(host, {}))
+# next come variables from vars and vars files
+inject = utils.combine_vars(inject, self.play_vars)
+inject = utils.combine_vars(inject, self.play_file_vars)
+# next come variables from role vars/main.yml files
+inject = utils.combine_vars(inject, self.role_vars)
+# then come the module variables
+inject = utils.combine_vars(inject, module_vars)
+# followed by vars_cache things (set_fact, include_vars, and
+# vars_files which had host-specific templating done)
+inject = utils.combine_vars(inject, self.vars_cache.get(host, {}))
+# role parameters next
+inject = utils.combine_vars(inject, self.role_params)
+# and finally -e vars are the highest priority
+inject = utils.combine_vars(inject, self.extra_vars)
+# and then special vars
+inject.setdefault('ansible_ssh_user', self.remote_user)
+
+
 No usar guiones (-) en los nombres de las varibables, porque jinja2 piensa que son restas.
 
 Ejemplo:
@@ -91,6 +116,13 @@ environment
 # Magic variables
 http://docs.ansible.com/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts
 
+## inventory_hostname
+nombre del host en el inventario
+
+## inventory_hostname_short
+fqdn hasta el primer punto
+
+
 ## hostvars
 lets you ask about the variables of another host, including facts that have been gathered about that host. If, at this point, you haven’t talked to that host yet in any play in the playbook or set of playbooks, you can get at the variables, but you will not be able to see the facts.
 
@@ -106,12 +138,31 @@ a list (array) of all the groups the current host is in.
 ## groups
 list of all the groups (and hosts) in the inventory
 
+- name: disable nagios alerts for this host webserver service
+  nagios: action=disable_alerts host={{ inventory_hostname }} services=webserver
+  delegate_to: "{{ item }}"
+  with_items: groups.monitoring
+
 {% for host in groups['app_servers'] %}
 
 
 {% for host in groups['app_servers'] %}
   {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}
 {% endfor %}
+
+
+## play_hosts
+list of hostnames that are in scope for the current play
+
+## delegate_to
+inventory hostname of the host that the current task has been delegated to using ‘delegate_to’.
+
+## inventory_dir
+pathname of the directory holding Ansible’s inventory host file
+
+## inventory_file
+pathname and the filename pointing to the Ansible’s inventory host file
+
 
 
 # Usar variables del inventario de un grupo:

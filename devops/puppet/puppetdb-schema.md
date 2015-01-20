@@ -87,3 +87,6 @@ encode(digest('Monitorizacion::Icinga::Host xmen_ciclope.com', 'sha1'), 'hex'),
 '/var/lib/puppet/initiatives/dsn_dev/modules/monitorizacion/manifests/basic.pp'
 ,64);
 
+
+# Borrar las entradas exportadas de Hostgroup que no tengan 'viptools' entre sus tags:
+DELETE from catalog_resources catalog_resources where type like '%Hostgroup%' and exported='t' and NOT ( ARRAY['viphost'] <@ tags );

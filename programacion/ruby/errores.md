@@ -32,3 +32,11 @@ prueba.rb
   require 'openssl'; OpenSSL::PKey::RSA.new(3)
 
 strace ruby prueba.rb
+
+
+http://stackoverflow.com/questions/14994468/ruby-cant-load-json-gem
+LoadError: no such file to load -- json
+
+Si usamos una versión antigua de ruby (1.8), debemos primero cargar rubygems:
+require 'rubygems'
+require 'json'

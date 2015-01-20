@@ -1,6 +1,12 @@
 Usar LXC con vagrant
 https://github.com/fgrehm/vagrant-lxc
 
+# Para que funcione con Ubuntu 14.10 hayq que agregar al Vagrantfile
+https://github.com/fgrehm/vagrant-lxc/issues/333
+  config.vm.provider :lxc do |lxc|
+    lxc.customize "aa_allow_incomplete", 1
+  end
+
 ### VAGRANT-LXC 1-0 ###
 vagrant plugin install vagrant-lxc --plugin-version 1.0.0.alpha.2
 vagrant lxc sudoers

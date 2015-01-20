@@ -1,6 +1,12 @@
+https://docs.python.org/2/library/configparser.html
+
+
 prueba.cfg:
 [agent]
 hola=123
+
+Tambien vale:
+hola: 123
 
 
 prueba.py
@@ -9,8 +15,14 @@ config = ConfigParser.RawConfigParser()
 config.read("prueba.cfg")
 config.get('agent','hola')
 
+get()
+getint()
+getfloat()
+getboolean()
+
+
 if config.has_option('agent','PERIOD'):
-    self.period = config.get('agent','PERIOD')
+    self.period = config.getfloat('agent','PERIOD')
 else:
     self.period = 10
 
@@ -38,3 +50,9 @@ except IOError:
     print 'Error reading file \"' + path + '\"'
     raise 
 parser.readfp(pseudo_config)
+
+
+# Convertir a diccionario un fichero:
+for section in config.sections:
+    my_dict[section] = dict(config.items(section))
+

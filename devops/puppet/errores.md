@@ -47,6 +47,7 @@ One of your templates contains invalid syntax. Look for unintentional or invalid
 
 Exiting; no certificate found and waitforcert is disabled
 rm -fr /var/lib/puppet/ssl
+También lo vi una vez por apuntar a un environment que no existia. Creando el env y regenerando los certs funciono.
 
 
 
@@ -106,4 +107,5 @@ Error: Could not retrieve catalog; skipping run
 
 Timeout en el unicorn. Podemos verlo en el log de error de nginx.
 Aumentar el timeout en /etc/puppet/unicorn.conf
+nginx hace la pregunta al unicorn pero como este no contesta en x, pues cierra y te dice timeout
 

@@ -5,6 +5,7 @@ It allows you to replace parts of your system under test with mock objects and m
 
 pip install mock
 
+Usar MagickMock() ?
 
 Usar mejor mockito.
 
@@ -159,3 +160,28 @@ mock = Mock()
 s.api_client = mock
 s.execute() ## llama a internamente a self.api_client.send_alarm(...)
 mock.send_alarm.assert_called_with(hostname, name, output, 'OK')
+
+
+# Patch el open de un file
+@patch("__builtin__.open")
+def test_xxx(self, mock_open):
+
+
+# Falsear la lectura de un fichero
+from mock import mock_open
+def test_read_template(self):
+    # Successful case with relative path
+    with patch('__builtin__.open', mock_open()) as open_mock:
+        open_mock().read.return_value = 'test template'
+
+Se pueden encadenar patchs:
+with patch("cyclops_agent.logger.config_logging") as mock, patch("cyclops_agent.agent") as mock2:
+    ...
+
+
+Si usamos
+cosa.py:
+from xxx import blabla
+
+Al hacer el patch tendremos que hacerlo de
+"cosa.blabla"

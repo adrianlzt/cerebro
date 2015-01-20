@@ -33,6 +33,13 @@ No se puede usar {{item}} en el name
   delay: 10
 
 
+- command: /bin/false
+  register: result
+  until: result|success
+  retries: 3
+  delay: 1
+
+
 ## Ejecutar un comando sobre las lineas de stdout de otro comando
 - name: Example of looping over a REMOTE command result
   shell: /usr/bin/something

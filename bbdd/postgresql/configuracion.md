@@ -1,5 +1,6 @@
 Directorio donde se mantienen los ficheros de configuración:
-/var/lib/pgsql/data
+CentOS: /var/lib/pgsql/data
+Ubuntu: /etc/postgresql/9.3/main
 
 postgresql.conf <- parámetros de la base de datos
  listen_addresses = 'localhost'         # what IP address(es) to listen on;

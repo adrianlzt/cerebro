@@ -89,3 +89,19 @@ be handy, when you have a worker in a remote net and only push is
 allowed.
 
 Mod-Gearman <-> Gearmand <-> Gearman-Proxy <--|--> Gearmand <-> Worker
+
+
+# HA / escalabilidad
+Se pueden declarar varios servers gearmans en _neb y _worker. Se usará el primero disponible
+
+Se pueden declarar tambien varios dupserver, donde se enviarán otra vez los resultados. Useful for duplicating results for a reporting installation or remote gui.
+
+
+Icinga, si tiene configurado en mod_gearman_neb varios servers, leera de todas las colas check_results de esos servidores.
+
+Los workers, si tienen configurados varios servers, también leen de las colas de ambos servidores gearman simultaneamente.
+
+Si tiro unos de los gearman servers todo sigue funcionando correctamente.
+
+
+Varias instancias de icinga pueden usar un mismo servidor gearman modificando un parámetro para definir el nombre de la cola check_results.
