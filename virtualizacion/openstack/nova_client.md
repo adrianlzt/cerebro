@@ -9,6 +9,7 @@ nova list
 
 Acceder a una máquina (necesita una ip flotante accesible):
 nova ssh NOMBRE
+nova ssh NOMBRE --network uuid
 
 Info de una máquina:
 nova show nombreMaquina

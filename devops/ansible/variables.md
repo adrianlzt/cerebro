@@ -128,6 +128,12 @@ lets you ask about the variables of another host, including facts that have been
 
 {{ hostvars['test.example.com']['ansible_distribution'] }}
 
+Accediendo a las variables de la primera máquina del grupo 'nfs'
+hostvars[groups['nfs'][0]
+
+Podemos usar debug para ir viendo como sacar lo que queremos:
+- debug: var=hostvars[groups['nfs'][0]].ansible_eth0.ipv4.address
+
 
 ## group_names 
 a list (array) of all the groups the current host is in.

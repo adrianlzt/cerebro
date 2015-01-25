@@ -1,0 +1,1 @@
+Para la programación de videojuegos: en este caso podríamos mencionar al conocido Pygame o también a Pyglet. Si combinamos estos con la librería Kivy mencionada anteriormente, seremos capaces de hacer juegos para Android

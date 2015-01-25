@@ -15,3 +15,11 @@ output = p.communicate()[0]
 
 print(p.returncode)
 
+
+# Mandar stderr a /dev/null
+import os
+from subprocess import Popen, PIPE
+
+FNULL = open(os.devnull, 'w')
+proc = Popen(["/home/adrian/dsn/platon/src/scripts/inventory.py"], stdout=PIPE, stderr=FNULL)
+

@@ -10,6 +10,12 @@ primitive vip ocf:heartbeat:IPaddr2 \
         meta target-role="Started"
 colocation apache_with_vip inf: apache vip
 
+pcs constraint colocation add apache with vip
+  apache debe correr siempre (por defecto el score es INFINITY) con vip
+
+pcs constraint order VIP then Icinga
+  VIP debe arrancarse antes de Icinga
+
 
 
 Creo que una vez vi una máquina que había configurado una vip como dirección ip primaria de la interfaz.

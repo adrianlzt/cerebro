@@ -1,1 +1,1 @@
-iscpy.md
+../../networking/dhcp/python.md

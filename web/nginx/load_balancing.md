@@ -1,6 +1,8 @@
 http://nginx.org/en/docs/http/load_balancing.html
 http://stackoverflow.com/questions/16283045/trouble-with-nginx-and-multiple-meteor-nodejs-apps/16289251#16289251
 
+No hay problema porque uno de los nodos/sockets de upstream este apagado.
+Incluso si todos estan apagados, pero nginx no intenta enrutar a esa dirección, no habrá problemas.
 
 Conf simple:
 http {

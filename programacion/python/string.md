@@ -16,6 +16,8 @@ float('3.2')
 Convertir a string
 str(43)
 
+string = "escapar caracter %% y aqui ponemos algo %s" % 4
+
 
 String largo:
 string = ''' aqui empieza

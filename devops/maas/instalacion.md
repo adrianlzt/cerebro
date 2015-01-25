@@ -36,37 +36,3 @@ apt-get install wakeonlan
   si vamos a usar wakeonlan
 
 Mirar configuracion.md
-
-maas-region-controller depende de postgresql
-
-
-Servicios instalados:
-/etc/init/maas-cluster-celery.conf
-  /usr/bin/python -m provisioningserver start-cluster-controller http://10.0.2.15/MAAS -u maas -g maas
-
-/etc/init/maas-dhcp-server.conf
-
-/etc/init/maas-pserv.conf
-  /usr/bin/python /usr/bin/twistd -n --uid=maas --gid=maas --pidfile=/run/maas-pserv.pid --logfile=/dev/null maas-pserv --config-file=/etc/maas/pserv.yaml
-
-  Arranca el servidor tftp
-
-/etc/init/maas-region-celery.conf
-  Depende de /etc/init.d/rabbitmq-server
-  /usr/bin/python /usr/bin/celeryd --logfile=/var/log/maas/celery-region.log --schedule=/var/lib/maas/celerybeat-region-schedule --loglevel=INFO --beat --queues=celery,master
-
-/etc/init/maas-txlongpoll.conf
-  Depende de /etc/init.d/rabbitmq-server
-  /usr/bin/twistd -n --uid=maas --gid=maas --pidfile=/run/maas-txlongpoll.pid --logfile=/dev/null txlongpoll --config-file=/etc/maas/txlongpoll.yaml
-
-/etc/init.d/bind9
-  /usr/sbin/named -u bind
-  conf en /etc/bind/maas
-
-/etc/init.d/apache2
-  /etc/apache2/conf-enabled/maas-cluster-http.conf
-  /etc/apache2/conf-enabled/maas-http.conf
-
-squid3: proxy
-tgt: scsi red
-epmd: erlan port mapper

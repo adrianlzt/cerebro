@@ -1,3 +1,7 @@
+Virtualbox.
+No pueden correr al mismo tiempo.
+
+
 Si las redes virtuales no arrancan:
 http://wiki.libvirt.org/page/Virtual_network_'default'_has_not_been_started
 
@@ -12,3 +16,9 @@ interface=
 
 service dnsmasq restart
 virsh net-start nombre_red_virtual
+
+
+Cannot find suitable CPU model for given data during VM starting
+Solución:
+This was fixed by stopping libvirt, removing all files on /var/cache/libvirt/qemu/capabilities/ and starting it again.
+https://bugzilla.redhat.com/show_bug.cgi?id=1160318

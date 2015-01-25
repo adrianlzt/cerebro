@@ -10,5 +10,6 @@ sudo apt-get install virtinst
 
 sudo apt-get install virt-manager
 ubuntu-virt-mgmt: Common packages useful for managing virtual machines graphically -> virt-manager, python-vm-builder, virt-viewer
+apt-get install ubuntu-virt-mgmt
 
 El resto de cosas se hace con el interfaz gráfico de manera sencilla virt-manager

@@ -8,6 +8,8 @@ ansible-playbook -vvvv  <- para poder ver los mensajes de debug
 
 - debug: var=result
 
+- debug: var=hostvars[groups['nfs'][0]].ansible_eth0.ipv4.address
+
 O también:
 debug: msg="{{ puppet.stdout }}"
 

@@ -11,3 +11,7 @@ Backup de muchos ficheros pequeños. Mirar performance/memoria/tunables.md vm.vf
 
 ## Dirvish ##
 Mirar dirvish.md
+
+## Rsnapshot ##
+Para tener un servidor donde almacenar backups
+mirar rsnapshot.md
