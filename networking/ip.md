@@ -41,7 +41,7 @@ ip neigh
          REACHABLE - The neighbour is valid and apparently reachable.
 
 Meter entrada ARP
-ip neigh add {IP-HERE} lladdr {MAC/LLADDRESS} dev {DEVICE} nud {STATE}
+ip n add {IP-HERE} lladdr {MAC/LLADDRESS} dev {DEVICE} nud {STATE}
 
    neighbour state (nud)	meaning
    permanent			The neighbour entry is valid forever and can be only be removed administratively
@@ -51,10 +51,10 @@ ip neigh add {IP-HERE} lladdr {MAC/LLADDRESS} dev {DEVICE} nud {STATE}
    reachable			The neighbour entry is valid until the reachability timeout expires.
 
 Borrar una entrada:
-ip neigh del {IPAddress} dev {DEVICE}
+ip n del {IPAddress} dev {DEVICE}
 
 Borra cache:
-ip neigh flush eth0
+ip n flush eth0
 
 
 Definir IP / Agregar ip alias:
@@ -120,3 +120,7 @@ maddress	m maddr			Multicast address.
 mroute		mr			Multicast routing cache entry.
 tunnel		t			Tunnel over IP.
 xfrm		x			Framework for IPsec protocol.
+
+
+# Tun / Tap
+Mirar tap.md

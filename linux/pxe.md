@@ -97,3 +97,8 @@ https://www.centos.org/forums/viewtopic.php?t=20038
 http://gparted.org/livepxe.php
 
 Se carga un kernel y un initrd. Este initrd se baja la imagen del livecd por http.
+
+
+# Diskless
+http://backreference.org/2013/12/23/diskless-iscsi-boot-with-pxe-howto/
+https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt

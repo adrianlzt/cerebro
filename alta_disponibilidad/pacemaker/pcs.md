@@ -107,3 +107,11 @@ Nada, no la pilla
 Intento instalar la gema por mi cuenta
 Probar tambien con la gema pam a secas
 
+
+# Constraint
+pcs constraint colocation add apache with vip
+  apache debe correr siempre (por defecto el score es INFINITY) con vip
+
+pcs constraint order VIP then Icinga
+  VIP debe arrancarse antes de Icinga
+

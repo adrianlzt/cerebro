@@ -19,6 +19,19 @@ virsh -c vbox:///session
 Localmente funciona, pero no se puede hacer vbox+ssh://
 
 
+# Comandos
+start <domain> --console
+  arranca y nos attacha a la consola de la máquina
+  Control+5 para salir de la consola
+
+console <domain>
+
+reset <domain>
+  Restablecer un dominio. Lo apaga
+
+reboot <domain>
+
+
 
 # Permitir a otros usuarios ejecutar virsh:
 http://libvirt.org/auth.html#ACL_server_unix_perms

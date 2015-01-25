@@ -1,6 +1,6 @@
 http://docs.python.org/2/library/stdtypes.html#file-objects
 
-Usar: 
+Leer sin meter los cambios de linea
 with open('fichero', 'r') as file:
     lines = [line.strip('\n') for line in file.readlines()]
 

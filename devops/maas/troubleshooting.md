@@ -21,3 +21,12 @@ sudo ./backdoor-image/backdoor-image --dry-run -v --user=backdoor --password-aut
 
 
 Nos creará un usuario 'backdoor' con password 'ubuntu'
+
+
+
+# Otra opcion
+Bloquear el acceso a la API cuando está ejecutando los scripts de enlisment:
+iptables -A INPUT -i eth1 -p tcp --dport 80 -s 192.168.1.205 -j DROP
+
+Al no poder registrarse, nos abrirá una shell.
+Tardará 4' en abrirla porque esperará dos timeouts de 2'

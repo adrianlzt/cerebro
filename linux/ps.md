@@ -1,3 +1,5 @@
+Mirar pstree.md
+
 Básico:
 ps -ef
 ps aux

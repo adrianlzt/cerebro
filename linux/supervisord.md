@@ -18,6 +18,7 @@ Comandos para controlar los recursos
   stop PROG
   tail -f PROG <- muestra stdout del proceso
   tail PROG <- muestra las ultimas lineas del fichero de log
+  tail PROG stderr <- muestra últimas lineas de stderr
 
 
 ## Instalacion ##

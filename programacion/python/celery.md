@@ -10,3 +10,8 @@ Muy malo! (charla ducksboard)
 Deja de ejecutar cosas sin razón ninguna, y sin dejar trazas en ningún lado.
 
 Mejor usar python-rq
+
+
+
+# Inspecionar workers
+http://docs.celeryproject.org/en/latest/userguide/workers.html?highlight=revoke#inspecting-workers

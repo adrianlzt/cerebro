@@ -4,6 +4,8 @@ http://www.rabbitmq.com/man/rabbitmqctl.1.man.html
 rabbitmqctl status
 Saldida JSON de que está corriendo, versiones, memoria, etc
 
+Si reiniciamos el servidor no se pierden los mensajes en la cola.
+
 
 Creo user: rabbitmqctl add_user graphite amqp-password
 Creo vhost: rabbitmqctl add_vhost graphite  
@@ -33,3 +35,6 @@ amqp-consume --vhost="graphite" --username="graphite" --password="graphite" -q p
 
 Borrar la cola
 amqp-delete-queue -q pepito --vhost=graphite --username=graphite --password=graphite
+
+
+Para ver datos usar la interfaz web: webinterface.md

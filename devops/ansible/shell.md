@@ -15,3 +15,6 @@
   args:
     creates: /home/cyclops/.ssh/known_hosts
 
+
+# Ad-Hoc
+ansible icinga -m shell -a "/usr/sbin/ss -lntp | grep 80"

@@ -1,3 +1,24 @@
+Ejecutar este comando para definir la ip correcta (si no es la de la interfaz por defecto):
+Conf actual:
+  debconf-show maas-region-controller (no aparece la ip)
+dpkg-reconfigure maas-region-controller
+  Ejecuta (o al menos en parte): /var/lib/dpkg/info/maas-region-controller.postinst
+  Esto cambia:
+    maas/maas_local_celeryconfig.py
+      BROKER_URL = 'amqp://maas_workers:QshtMhSlwxSo1BU1AQRF@192.168.222.111:5672//maas_workers'
+    maas/maas_local_settings.py
+      DEFAULT_MAAS_URL = "http://192.168.222.111/MAAS"
+      RABBITMQ_PASSWORD = 'HD97IbdOUCfKCEngt67s'
+    maas/txlongpoll.yaml
+      password: "HD97IbdOUCfKCEngt67s"
+
+  Tambien cambiarla en:
+    maas_cluster.conf MAAS_URL
+    pserv.conf generator
+    restart maas-pserv
+
+  Cierta información referente al cluster reside en la tabla de postgrelsql: maasserver_nodegroup
+
 Ya podemos acceder a la web del region controller:
 http://a.b.c.d/MAAS
 
@@ -49,11 +70,6 @@ maas <profile> node-group-interface update $uuid eth0 \
         management=2                     \
         broadcast_ip=192.168.123.255     \
         router_ip=192.168.123.1          \
-
-
-Problema, me está configurando como servidor DNS la ip de eth0, cuando yo estoy usando eth0.
-Ejecutar este comando para definir la ip correcta:
-dpkg-reconfigure maas-region-controller
 
 
 

@@ -30,6 +30,12 @@ Paquetes que entran/salen por eth1, por el puerto 4730 y desde la red 192.168/16
 # Puerto 4730, y que no sean de las maquinas HOST1 y HOST2
 tcpdump 'dst port 4730 and not ((src host HOST1) or (src host HOST2))'
 
+# Paquetes con destino UDP:68 en la interfaz eth1. Mostrando contenido
+sudo tcpdump -i eth1 -A udp dst port 68
+
+# Paquetes TFTP, mostrando contenido
+sudo tcpdump -A udp port 69
+
 
 
 

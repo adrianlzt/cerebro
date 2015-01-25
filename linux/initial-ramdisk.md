@@ -8,3 +8,11 @@ An initial ramdisk is a temporary file system used in the boot process of the Li
 https://www.kernel.org/pub/linux/utils/boot/dracut/dracut.html
 NAME
 dracut - low-level tool for generating an initramfs image
+
+
+
+Para ver el contenido:
+http://linux.koolsolutions.com/2009/11/12/initramfs-ramfs-tmpfs-compressed-image/
+mv fichero fichero.gz
+gunzip fichero
+cpio -o < fichero
