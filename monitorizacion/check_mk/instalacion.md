@@ -1,5 +1,17 @@
 http://mathias-kettner.com/check_mk_download.html
 
+
+El rpm esta en EPEL.
+https://dl.fedoraproject.org/pub/epel/6/x86_64/
+check-mk
+  instala nagios como dependencia
+check-mk-agent
+check-mk-docs
+check-mk-livestatus
+  instala check-mk como dependencia
+check-mk-multisite
+  instala check-mk como dependencia
+
 (se da por hecho que icinga ya está instaldo)
 
 Bajar: Complete tarball including all agents and MK Livestatus
@@ -17,6 +29,8 @@ un fichero con las opciones.
 Uno de ejemplo se encuentra en este directorio (check_mk_setup.conf)
 
 ./setup.sh --yes
+
+Si queremos empaquetar en rpm mirar rpm.md
 
 
 Para una instalación con preguntas:

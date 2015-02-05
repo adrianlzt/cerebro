@@ -1,1 +1,0 @@
-../linux/filesystems/nfs.md

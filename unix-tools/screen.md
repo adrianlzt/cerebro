@@ -78,3 +78,6 @@ screen -S bash_shell -X stuff $'exit\r'
 
 Meter comandos
 C-A
+
+
+# Bash history

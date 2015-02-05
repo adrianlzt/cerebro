@@ -43,3 +43,7 @@ maas adrian node details node-3c0daaa...
 # Tags
 Poner tags a los nodos:
 http://astokes.org/using-fastpath-installer-maas/
+
+
+# Boot images
+maas unica boot-images read adeccd8b-a408-4a74-b3b9-78cea17d2b50

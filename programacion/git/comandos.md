@@ -1,80 +1,81 @@
 http://www.polinux.upv.es/drupal/node/1062
 
-Crear repositorio				git init
-Añadir ficheros					git add  	git add -f (si el fichero esta conf como ignorado .gitignore)
-Borrar ficheros					git rm
-Quitar ficheros del staged sin borrar		git reset fichero.txt
-Quitar cambios del staged sin commit		git checkout -- fichero.txt
-						Si habiamos hecho algún cambio, pero aun no commit, este comando devuelve el fichero al estado que tiene en el repo
-Commit only new files				git commit -m “mensaje”
-Commit changes					git commit -a -m “mensaje”
-Rehacer un commit				git commit --all --amend <- el --all es necesario?
-Restaurar un fichero a un commit		git checkout <commit> path/to/file
-Estado						git status
-Log del git (o de un fichero)			git log <fichero>
-Log mostrando los diff de los n ult commits	git log -p -2
-Log de un fichero poniendo los cambios		git log -p -2 <fichero>
-Mostrar configuración				git config -l
-Configurar remoto				git remote add origin ssh://git@bitbucket.org/pepe/pepe.git
-						git remote add origin git@bitbucket.org:pepe/dotfiles.git
-						Para usar ssh, meter mi clave pública en el servidor remoto
-Push a dos remotos				http://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes
-						git remote set-url --add --push origin git@github.com:adrianlzt/puppet-monitoring.git
-						git remote set-url --add --push origin git@miserver.com:pepe/puppet-monitoring.git
-Agregar un remoto de donde hemos hecho fork	git remote add upstream https://github.com/otheruser/repo.git
-Mostrar remotos					git remote -v
-Borrar remoto					git remote remove origin (o en vez de origin, el nombre que sea)
-Bajar código de un origin (sobreescribe local)	git fetch upstream
-Subir a remoto					git push
-Subir a determinado remoto y branch		git push origin master
-						git push -u <remoto> <branch>
-						git push --set-upstream <remoto> <branch>
-						-u (--set-upstream) hace que git recuerde a que remoto debe subir
-Subir todas branches y tags			git push --all
-						git push --tags
-Copiar repo remoto				git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
-Copiar repo remoto y submodules			git clone --recursive <url> <dir-local> (si !<dir-local> crea un dir como el repo)
-Borrar remoto					git remote rm origin
-Ver conf remoto					git remote show origin
-Nueva rama					git branch <nombre>
-Renombrar rama					git branch -m old_branch new_branch
-Listar ramas locales y remotas			git branch --all   git br -a
-Borrar rama local				git branch -d <branch>
-Borra rama remota				git push origin :<branch>
-Movernos de rama o tag				git checkout <nombre>
-Movernos a rama orphaned			git checkout --orphan <nombre>    will have no parents / new history totally disconnected 
-Salirnos de un branch forzadamente		git checkout -f <nombre>
-New branch & move				git checkout -b <nombre>
-Coger branch remota				git checkout -b blabla origin/blabla
-Merge con la actual				git merge <branch>
-Solucionar merges				git mergetool
-Mergear contra otro origin			git merge upstream/master
-Subir código a remoto				git push origin <branch>
-Reabase (cambios de otro branch a este)		git rebase develop   Aplica los cambios de develop sobre la rama donde estemos http://git-scm.com/book/ch3-6.html
-Definir un repo remoto por defecto para bajar	git branch --set-upstream-to=origin/develop develop
-Bajar código de remoto				git pull
-							= fetch + merge
-Diff branches					git diff <branch1> <branch2>
-						git diff <branch1>..<branch2>
-Diff branches rama contra el ancestro común	git diff <branch1>...<branch2>
-Mirar cambios					git diff
-Cambios respecto al dir local (sin commit)	git diff --staged
-Borrar last commit: modificando ficheros	git reset --hard HEAD~1
-		    sin modificar ficheros	git reset HEAD~1
+Crear repositorio                                   git init
+Añadir ficheros                                     git add            git add -f (si el fichero esta conf como ignorado .gitignore)
+Borrar ficheros                                     git rm
+Quitar ficheros del staged sin borrar               git reset fichero.txt
+Quitar cambios del staged sin commit                git checkout -- fichero.txt
+                                                    Si habiamos hecho algún cambio, pero aun no commit, este comando devuelve el fichero al estado que tiene en el repo
+Commit only new files                               git commit -m “mensaje”
+Commit changes                                      git commit -a -m “mensaje”
+Rehacer un commit                                   git commit --all --amend <- el --all es necesario?
+Restaurar un fichero a un commit                    git checkout <commit> path/to/file
+Restaurar todo a un commmit                         git checkout <commit>
+Estado                                              git status
+Log del git (o de un fichero)                       git log <fichero>
+Log mostrando los diff de los n ult commits         git log -p -2
+Log de un fichero poniendo los cambios              git log -p -2 <fichero>
+Mostrar configuración                               git config -l
+Configurar remoto                                   git remote add origin ssh://git@bitbucket.org/pepe/pepe.git
+                                                    git remote add origin git@bitbucket.org:pepe/dotfiles.git
+                                                    Para usar ssh, meter mi clave pública en el servidor remoto
+Push a dos remotos                                  http://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes
+                                                    git remote set-url --add --push origin git@github.com:adrianlzt/puppet-monitoring.git
+                                                    git remote set-url --add --push origin git@miserver.com:pepe/puppet-monitoring.git
+Agregar un remoto de donde hemos hecho fork         git remote add upstream https://github.com/otheruser/repo.git
+Mostrar remotos                                     git remote -v
+Borrar remoto                                       git remote remove origin (o en vez de origin, el nombre que sea)
+Bajar código de un origin (sobreescribe local)      git fetch upstream
+Subir a remoto                                      git push
+Subir a determinado remoto y branch                 git push origin master
+                                                    git push -u <remoto> <branch>
+                                                    git push --set-upstream <remoto> <branch>
+                                                    -u (--set-upstream) hace que git recuerde a que remoto debe subir
+Subir todas branches y tags                         git push --all
+                                                    git push --tags
+Copiar repo remoto                                  git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
+Copiar repo remoto y submodules                     git clone --recursive <url> <dir-local> (si !<dir-local> crea un dir como el repo)
+Borrar remoto                                       git remote rm origin
+Ver conf remoto                                     git remote show origin
+Nueva rama                                          git branch <nombre>
+Renombrar rama                                      git branch -m old_branch new_branch
+Listar ramas locales y remotas                      git branch --all   git br -a
+Borrar rama local                                   git branch -d <branch>
+Borra rama remota                                   git push origin :<branch>
+Movernos de rama o tag                              git checkout <nombre>
+Movernos a rama orphaned                            git checkout --orphan <nombre>    will have no parents / new history totally disconnected 
+Salirnos de un branch forzadamente                  git checkout -f <nombre>
+New branch & move                                   git checkout -b <nombre>
+Coger branch remota                                 git checkout -b blabla origin/blabla
+Merge con la actual                                 git merge <branch>
+Solucionar merges                                   git mergetool
+Mergear contra otro origin                          git merge upstream/master
+Subir código a remoto                               git push origin <branch>
+Reabase (cambios de otro branch a este)             git rebase develop   Aplica los cambios de develop sobre la rama donde estemos http://git-scm.com/book/ch3-6.html
+Definir un repo remoto por defecto para bajar       git branch --set-upstream-to=origin/develop develop
+Bajar código de remoto                              git pull
+                                                    = fetch + merge
+Diff branches                                       git diff <branch1> <branch2>
+                                                    git diff <branch1>..<branch2>
+Diff branches rama contra el ancestro común         git diff <branch1>...<branch2>
+Mirar cambios                                       git diff
+Cambios respecto al dir local (sin commit)          git diff --staged
+Borrar last commit: modificando ficheros            git reset --hard HEAD~1
+                    sin modificar ficheros          git reset HEAD~1
 
-Submódulos					git submodule add <url> <path>
-Añadir etiqueta					git tag -a “v1.0” -m “mensaje”
-Listar etiquetas				git tag       git tag -l “v1.*”
-Borrar etiqueta					git tag -d "0.1.0"
-Mirar alias					git aliases
-Dejar lo que estamos haciendo sin commit	git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
-						git stash save "mensaje"
-Mostrar stashs					git stash list
-Volver a lo que estábamos haciendo		git stash pop
-						git stash pop stash@{0}
-Listar ficheros versionados			git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
-Mostrar ficheros excluídos			git ls-files --others --exclude-from=.git/info/exclude
-Mostrar ramas contenidas en rama develop	git branch --contains develop 
+Submódulos                                          git submodule add <url> <path>
+Añadir etiqueta                                     git tag -a “v1.0” -m “mensaje”
+Listar etiquetas                                    git tag       git tag -l “v1.*”
+Borrar etiqueta                                     git tag -d "0.1.0"
+Mirar alias                                         git aliases
+Dejar lo que estamos haciendo sin commit            git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
+                                                    git stash save "mensaje"
+Mostrar stashs                                      git stash list
+Volver a lo que estábamos haciendo                  git stash pop
+                                                    git stash pop stash@{0}
+Listar ficheros versionados                         git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
+Mostrar ficheros excluídos                          git ls-files --others --exclude-from=.git/info/exclude
+Mostrar ramas contenidas en rama develop            git branch --contains develop 
 
 
 Directorio de trabajo distinto que directorio de git
@@ -139,14 +140,14 @@ Remotes
 El remote ‘origin’ es a donde se hace push y pull por defecto.
 Si queremos tener varios remotos sincronizados mediante push, podemos hacer lo siguiente en .git/config
 [remote "origin"]
-	url = git@bitbucket.org:adrit/dotfiles.git
-	url = ssh://asda@sun/home/repositorios/dotfiles
+          url = git@bitbucket.org:adrit/dotfiles.git
+          url = ssh://asda@sun/home/repositorios/dotfiles
 [remote "bitbucket"]
-	fetch = +refs/heads/*:refs/remotes/origin/*
-	url = git@bitbucket.org:asda/dotfiles.git
+          fetch = +refs/heads/*:refs/remotes/origin/*
+          url = git@bitbucket.org:asda/dotfiles.git
 [remote "sun"]
-	url = ssh://er@sun/home/repositorios/dotfiles
-	fetch = +refs/heads/*:refs/remotes/sun/*
+          url = ssh://er@sun/home/repositorios/dotfiles
+          fetch = +refs/heads/*:refs/remotes/sun/*
 
 ## Alias ##
         ci = commit

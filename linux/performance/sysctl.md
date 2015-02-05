@@ -6,7 +6,7 @@ Nos agrega los tunales de /proc y /sys
 sysctl -a
   Nos muestra todos los tunables
 
-sysctl -e key=valor
+sysctl -w key=valor
   Setear valor
 
 

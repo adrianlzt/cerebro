@@ -40,3 +40,15 @@ puesta la MAC en mayúsculas?
 MAC de la tarjeta de red ethernet?
 servicio maas-cluster-celery arrancado?
 Con el portatil, probar a entrar en la bios y desactivar/activar el network boot
+
+
+
+# En el enlistment
+No space on device
+Es porque la máquina está montado un overlayfs con su memoria ram, pero tiene toda la ram ocupada. Incrementar la ram.
+Lo he visto con VMs de 256MB de ram.
+
+
+Algunas veces falla al enlistar. Timeout?
+
+

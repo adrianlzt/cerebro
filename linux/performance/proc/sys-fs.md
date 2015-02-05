@@ -18,3 +18,8 @@ kmalloc though is used for device drivers when hardware is doing direct memory a
 Actual solution for ages was to organize the free memory available into powers-of-2 sized buckets (4k pages, 8k, 16k, ) – called Buddy Allocator (interesting – it was implemented first by Nobel Prize winner in Economics Harry Markowitz back in 1964). Any request for any memory size can be satisfied from larger buckets, and once there’s nothing in larger buckets one would compact the free memory by shuffling bits around.
 
 (Columns on the left are indicating numbers of small memory segments available, columns on the right – larger).
+
+
+## /proc/sys/fs/file-max
+The maximum number of concurrently open files. We recommend a limit of at least 32,832.
+

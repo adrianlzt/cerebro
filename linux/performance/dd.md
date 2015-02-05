@@ -18,3 +18,13 @@ dd if=/srv/boot.img of=/dev/sda1
 Con compresión:
 dd if=/dev/sda1 | bzip2 -9f >/srv/boot2.img.bz2
 bunzip2 -dc /srv/boot2.img.bz2 | dd of=/dev/sda1
+
+
+# Probar performance
+https://www.thomas-krenn.com/en/wiki/Linux_I/O_Performance_Tests_using_dd
+
+dd if=/dev/zero of=/root/testfile bs=1G count=1 oflag=direct
+
+
+
+I would not recommend using /dev/urandom because it's software based and slow as pig

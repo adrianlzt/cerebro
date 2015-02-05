@@ -20,6 +20,9 @@ nova flavor-list
 Lista de imágenes disponibles:
 nova image-list
 
+Lista de interfaces de una máquina:
+nova interface-list <id-o-nombre-maquin>
+
 Más info de una imagen:
 nova image-show <id-imagen>
 

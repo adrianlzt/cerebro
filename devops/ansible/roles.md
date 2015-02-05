@@ -11,12 +11,19 @@ Para usarlo dentro de un playbook:
 - hosts: webservers
   roles:
     - common
-    - { role: foo_app_instance, dir: '/opt/a',  port: 5000 } <- deberan estar definidas en defaults/main.yml, y aqui les haremos override
+    - { role: foo_app_instance, dir: '/opt/a',  port: 5000 } <- haremos override de lo que esté definido en defaults/ o vars/
     - { role: some_role, when: "ansible_os_family == 'RedHat'" }
     - { role: foo, tags: ["bar", "baz"] }  <- asigno tags a un rol
 
 
-El directorio vars/ tiene mayor preferencia que defaults/ y que las definidas por parámetro al definir el role
+Preferencias versión reducida (de mayor a menor). Mirar variables.md para la versión completa:
+  parámetros al definir el rol
+  directorio vars/
+  directorio defaults/
+
+Si hacemos uso de una variable en un task y no está definida en ninguno de estos tres sitios fallará.
+Si un rol tiene una variable que se llama {{nombre}}, esa variable puede estar definida en cualquier sitio aceptado por variables. Por ejemplo, puede ser un valor que coja el playbook mediante un vars_files
+
 
 El fichero importante será tasks/main.yaml
 El deteminará las tareas a ejecutar.

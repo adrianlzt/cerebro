@@ -25,6 +25,8 @@ sysdig -r fichero.scap [podemos poner filtros, parámetros, etc]
 
      evt.num 	is the incremental event number
      evt.time 	is the event timestamp
+     evt.latency cuando tarda en ejecutarse
+     evt.latency.s cuando tarda en ejecutarse en segundos
      evt.cpu 	is the CPU number where the event was captured
      proc.name 	is the name of the process that generated the event
      thread.tid is the TID that generated the event, which corresponds to the PID for single thread processes

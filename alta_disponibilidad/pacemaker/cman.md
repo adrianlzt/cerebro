@@ -45,7 +45,8 @@ ccs -f /etc/cluster/cluster.conf --setcman keyfile="/etc/corosync/authkey" trans
 corosync-keygen
 # Para generar entropia: 
 tar zx / > /dev/null
-find . -exec file {} \; > /dev/null
+find / -exec file {} \; > /dev/null
+  para openstack
 
 # Copiamos la clave al otro nodo
 scp /etc/corosync/authkey nodoN:/etc/corosync/authkey
@@ -74,6 +75,7 @@ NODENAME # definir el nombre de este nodo, si no, lo pilla automaticamente. Debe
 # Configuramos CMAN para arrancar al inicio y lo arrancamos
 chkconfig cman on
 service cman start
+  arrancar todos los nodos al mismo tiempo. El script de init.d esperará a encontrar al resto de nodos "Waiting for quorum..."
 
 # Check the rings
 corosync-objctl | fgrep members

@@ -7,3 +7,6 @@ gpgcheck=0
 enabled=1
 
 yum install -y mongodb-org
+
+
+mirar credenciales.md si queremos activar usuarios

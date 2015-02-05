@@ -1,3 +1,6 @@
+www.polarr.co
+
+
 apt-get install gimp-ufraw
 
 Abrir las imágenes CR2 con gimp y nos aparecerá el plugin para revelar la foto.

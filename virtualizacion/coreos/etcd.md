@@ -19,3 +19,7 @@ curl -L http://127.0.0.1:4001/v1/keys/message -d value="Hello world"
 
 Read the value of message back:
 curl -L http://127.0.0.1:4001/v1/keys/message
+
+
+Ejemplo teórico de un HA de postgresql usando etcd
+https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/

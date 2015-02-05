@@ -2,6 +2,11 @@ http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
 ### USAR TSHARK ###
 
+No traducir hosts y puertos (los puertos los sigue traduciendo)
+# tcpdump -n ...
+
+Mostrar más información (TCP/UDP, flafs, checksum, etc)
+# tcpdump -v ...
 
 Muestra el tráfico en ASCII
 # tcpdump -A port 80 
@@ -41,10 +46,7 @@ sudo tcpdump -A udp port 69
 
 Permitir a un no root ejecutar tcpdump:
 http://www.stev.org/post/2012/01/19/Getting-tcpdump-to-run-as-non-root.aspx
-groupadd tcpdump
-addgroup <username> tcpdump // usermod -a -G tcpdump <username>
-chown root.tcpdump /usr/sbin/tcpdump
-chmod 0750 tcpdump
+setfacl -m u:adrian:rx /usr/sbin/tcpdump
 setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
 
 

@@ -4,6 +4,8 @@ http://mywiki.wooledge.org/BashFAQ/031
 Multiples condiciones:
 if [[ $var = img* && ($var = *.png || $var = *.jpg) ]]; then
 	echo "$var starts with img and ends with .jpg or .png"
+elif [[ 1 == 1 ]]; then
+  echo "elif"
 fi
 
 if [[ $VAR ]]; then

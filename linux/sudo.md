@@ -1,5 +1,8 @@
 Mirar gosu.md si tenemos problemas con como se comporta sudo.
 
+http://linux.die.net/man/5/sudoers
+http://www.sudo.ws/sudoers.man.html
+
 Cuidado con la preferencia de las reglas. Las útimas (más abajo en el fichero) tienen preferencia. A lo mejor das unos permisos a un usuario pero los sobreescribe un grupo después.
 
 Editar siempre con visudo.
@@ -8,7 +11,8 @@ visudo -f /etc/sudoers.d/fichero
 
 
 Sintaxis:
-user    MACHINE=COMMANDS
+user    MACHINES= (como_que_usuario) FLAGS: COMMANDS
+  en FLAGS puede ir por ejemplo NOPASSWD
 
 dgb     boulder = (operator) /bin/ls, /bin/kill, /usr/bin/lprm
 The user dgb may run /bin/ls, /bin/kill, and /usr/bin/lprm—but only as operator in host boulder
@@ -36,3 +40,12 @@ Ejecutar comandos en una máquina con sudo sin entrar: http://www.shermann.name/
 ssh -t -t -t $host sudo -S command <<EOF
 <enter your password here>
 EOF
+
+
+# Debug
+/etc/sudo.conf
+Debug sudo /var/log/sudo_debug all@debug
+
+debug saca muuuucha informacion. Orden:
+crit, err, warn, notice, diag, info, trace and debug
+

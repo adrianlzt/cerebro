@@ -1,3 +1,23 @@
+# Fast boot
+Para poder arrancar más rápido icinga hacer uso del precache, y meter este en memoria:
+precached_object_file=/dev/shm/icinga/objects.precache
+
+Para arrancar, primero chequeamos la conf, y si es buena precacheamos toda la conf en el fichero de precache (memoria):
+icinga -pv /etc/icinga/icinga.cfg
+
+Arrancamos con el fichero de memoria:
+icinga -ud /etc/icinga/icinga.cfg
+
+Se produce un gran incremento.
+Con los ficheros en NFS pasamos de ~10s a ~1s
+Con disco normal, de ~5s a >1s.
+Hablando de unos 2700 ficheros pequeños.
+
+Si estamos usando precache, los reload tambien son mucho más rápidos. Más rápidos que un reload sin precache y más rápido que un restart con precache.
+
+
+
+
 Si necesitamos ido2db.
 
   Icinga ---unix socket--- Ido2DB ----tcp socket----BBDD  <- MAL

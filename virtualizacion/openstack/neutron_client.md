@@ -39,6 +39,8 @@ neutron --insecure port-create --name icinga-vip_mgmt-port private_management -f
 Mostrar puertos de una red determinada:
 neutron port-list -- --network_id=3b7c7ead-4ee1-4fe7-a2c6-a2b7c60b9ff9
 
+neutron port-update --security-group UUID1 --security-group UUID2 nombre
+
 
 # Floating IP
 neutron floatingip-create ext_mgmt

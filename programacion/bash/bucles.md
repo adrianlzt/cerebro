@@ -52,3 +52,6 @@ done
 http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_09_05.html
 break -> para salir del bucle
 continue -> para ir a la siguiente iteración del bucle
+
+Bucle para ir esperando cada vez más: 0.1s, 0.2s, ..., 1.5s
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do printf "."; sleep $(echo $i | awk '{printf "%.2f \n", $1/10}'); done

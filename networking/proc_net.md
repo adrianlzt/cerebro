@@ -2,6 +2,9 @@ http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
 https://www.kernel.org/doc/Documentation/filesystems/proc.txt 1.4
 /proc/net
 
+Para modificar valores:
+sysctl -w net.core.somaxconn=1024
+
 
 ## tcp ##
 st: status  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/net/tcp_states.h?id=HEAD
@@ -42,3 +45,16 @@ https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/co
 Indicates the interface RFC2863 operational state as a string.
 Possible values are:
 "unknown", "notpresent", "down", "lowerlayerdown", "testing", "dormant", "up".
+
+
+## Somaxconn ##
+/proc/sys/net/core/somaxconn
+
+Limit of socket listen() backlog, known in userspace as SOMAXCONN. Defaults to 128. The value should be raised substantially to support bursts of request. For example, to support a burst of 1024 requests, set somaxconn to 1024.
+
+
+## tcp_max_syn_backlog ##
+/proc/sys/net/ipv4/tcp_max_syn_backlog
+
+Maximum number of remembered connection requests, which are still did not receive an acknowledgment from connecting client. The default value is 1024 for systems with more than 128Mb of memory, and 128 for low memory machines. If server suffers of overload, try to increase this number.
+/proc/sys/net/core/somaxconn: Limit of socket listen() backlog, known in userspace 

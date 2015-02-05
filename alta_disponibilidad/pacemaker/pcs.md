@@ -1,6 +1,7 @@
 https://github.com/feist/pcs
 Usar la ultima versión de github
 
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Reference/s1-resourceopts-HAAR.html
 
 http://clusterlabs.org/quickstart-redhat.html
 http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Clusters_from_Scratch/ch03.html
@@ -71,6 +72,11 @@ Valores por defecto para recursos y operaciones:
 
 Limpiar recurso
 pcs resource cleanup NOMBRE
+
+Reiniciar recurso (crmsh lo hace asi https://github.com/crmsh/crmsh/blob/01e984c4d4dec2607877af627f10ad9232e34bff/modules/ui_resource.py#L272)
+pcs resource meta Icinga target-role=Stopped
+pcs resource meta Icinga target-role=Started
+
 
 
 Consultar las constraint:

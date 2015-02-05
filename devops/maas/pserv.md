@@ -1,4 +1,5 @@
 Es el servidor que contesta a TFTP y genera los ficheros PXE (preguntando a la API).
+/etc/init/maas-clusterd.conf
 
 
 /usr/bin/python /usr/bin/twistd -n --uid=maas --gid=maas --pidfile=/run/maas-pserv.pid --logfile=/tmp/pserv.log maas-pserv --config-file=/etc/maas/pserv.yaml
@@ -22,3 +23,14 @@ nomodeset iscsi_target_name=iqn.2004-05.com.ubuntu:maas:ephemeral-amd64-generic-
 
 La IP que se pone para temas iSCSI es la que tenga el servidor tftp, que se pone en la query como parámetro ('local').
 Para ver como se forma la respuesta leer api_server.md
+
+
+# Debug
+Modificar /etc/init/maas-clusterd.conf para poner un fichero en '--logfile'
+
+    exec /usr/bin/authbind --deep /usr/bin/twistd \
+        --nodaemon --uid=maas --gid=maas --pidfile=/run/maas-cluster.pid \
+        --logfile=/var/log/maas/pserv.debug maas-pserv --config-file=/etc/maas/pserv.yaml
+
+stop maas-clusterd
+start maas-clusterd
