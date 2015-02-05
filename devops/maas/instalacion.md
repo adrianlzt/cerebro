@@ -23,7 +23,19 @@ Para usar otros repos:
     Para trusty (14.04 LTS) la versión es MAAS 1.5
   sudo apt-get update
 
-Instalar todo en el mismo servidor (si no, tendremos que distinguir entre maas-cluster-controller y maas-region-controller)
+# Instalacion
+
+## Instalacion region controller
+apt-get install maas-region-controller
+
+## Instalacion cluster controller
+apt-get install maas-cluster-controller maas-dns
+
+apt-get install wakeonlan
+  si vamos a usar wakeonlan
+
+
+## Instalar todo en el mismo servidor (si no, tendremos que distinguir entre maas-cluster-controller y maas-region-controller)
 sudo apt-get install maas
   como servidor de dns instala bind9
     /etc/init.d/bind9

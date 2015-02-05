@@ -35,6 +35,8 @@ when: not var
 Contenido de la salida:
 when: "'reticulating splines' in output"
 
+Que haya algo en la salida:
+when: pepe.stdout.strip('') != ""
 
 Hace una tarea u otra dependiendo si fileinline modifica o no un fichero:
     - name: gen file

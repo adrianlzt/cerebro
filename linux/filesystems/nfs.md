@@ -9,6 +9,7 @@ Cuando un cliente desea montar un volumen nfs, primero contacta con el puerto 11
 rpcbind une procesos RPC con puertos, y publica la lista a los clientes.
 La lista la podemos consultar con:
 rpcinfo [host] 
+RedHat/CentOS intenta montar nfsv2/3 por defecto. Usar mount.nfs4
 
 NFSv4
 /etc/sysconfig/nfs
@@ -38,7 +39,7 @@ exportfs -o opciones 1.2.3.4:/path
 exportfs -o rw,nohide,insecure,no_subtree_check :/path
   opciones típicas:
     se esta exportando a todo el mundo (al no poner ip)
-    estará activado por defecto all_squash, que mapea todos los usuarios al anon user y group a nfsnobody:nfsnobody
+    estará activado por defecto all_squash, que mapea todos los usuarios al anon user y group a nfsnobody:nfsnobody (todos los ficheros con nfsnobody)
     las opciones que pongo (nohide,insecure,no_subtree_check) son recomendadas siempre (mirar más abajo)
 exportfs -a
   sync /etc/exports para que empiezen a estar exportados
@@ -47,7 +48,7 @@ exportfs -a
 Para quitar un path: 
 exportfs -u host:/path
 exportfs -r
-  sincronizar
+  sincronizar. Es como "reiniciar" el server nfs para que coja las nuevas opciones.
 
 
 o el fichero /etc/exports:
@@ -89,6 +90,7 @@ showmount -e 192.168.1.4
 mount -t nfs servernfs:/tmp /home/cliente/temp
 /etc/fstab:
 	servernfs:/tmp /home/cliente/temp nfs defaults,rw 0 0
+	servernfs:/tmp /home/cliente/temp nfs4 defaults,rw 0 0
 
 
 ## Opciones para el exports
@@ -191,3 +193,39 @@ mnt  srv
 # ls /mnt
 fileSRV-nfs1
 
+
+## Configuraciones avanzadas
+/etc/sysconfig/nfs
+/etc/nfsmount.conf
+
+
+## idmapd
+rpc.idmapd is the NFSv4 ID <-> name mapping daemon. It provides functionality to the NFSv4 kernel client and server, to which it communicates via upcalls, by translating user and group IDs to names, and vice versa.
+
+
+## Problemas
+Todos los ficheros se ponen a nobody:nobody
+https://www.novell.com/support/kb/doc.php?id=7014266
+Parece que es porque en el servidor no existe el uid que está creando los ficheros en el cliente.
+Esto tiene que ver con /etc/idmapd.conf
+En el log veremos trazas:
+rpc.idmapd[3053]: nss_getpwnam: name '497' does not map into domain 'localdomain'
+
+NFSv4 doesn't use UIDs (http://serverfault.com/questions/98741/files-mounted-over-nfsv4-are-owned-by-4294967294-uids-and-gids-match)
+Check that domain in /etc/idmapd.conf is the same on the client and server. Check that rpc.idmapd is running on the client and the server. And, of course, user should exist on the client and server. NFSv4 uses user principals on the wire and it's responsibility the client and server to provide a propper mapping. As you use AUTH_SYS local uid/gid propogated to the server on create, but 'ls' rquires mapping to work.
+
+Debe estar deshabilitado el nfsv4 id mapping.
+En los clientes (lo veo desactivado por defecto en CentOS 6.5)
+cat /sys/module/nfs/parameters/nfs4_disable_idmapping
+Y
+
+En el servidor (activado por defecto):
+cat /sys/module/nfsd/parameters/nfs4_disable_idmapping 
+Y
+
+Para desactivarlo en el servidor (por si estuviese a 'N'. Tiene que haber arrancado al menos una vez el server nfs):
+echo "1" > /sys/module/nfsd/parameters/nfs4_disable_idmapping
+
+Para marcarlo en el arranque:
+# cat /etc/modprobe.d/nfsd.conf 
+options nfsd nfs4_disable_idmapping=1

@@ -3,6 +3,8 @@ http://mathias-kettner.de/checkmk_livestatus.html
 Abre un socket con Nagios/Icinga para obtener información.
 Livestatus make use of the Nagios Event Broker API
 
+Si se intenta reiniciar icinga cuando hay una conexión al socket, el script de init.d no podrá parar icinga y terminará matándolo con un kill -9
+
 
 Ejemplo de query al socket:
 $ nc -U /var/spool/icinga/cmd/live

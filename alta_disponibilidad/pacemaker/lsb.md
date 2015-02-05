@@ -1,3 +1,7 @@
+Comprobar si el script es compatible:
+http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Pacemaker_Explained/ap-lsb.html
+
+
 Este recurso es para arrancar servicios que usen scripts de init.d (tambien llamados scripts LSB, linux standar base)
 
 primitive splunk_MASTERS-TEST lsb:splunk \

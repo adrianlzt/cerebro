@@ -1,3 +1,5 @@
+https://wiki.archlinux.org/index.php/Master_Boot_Record
+
 http://www.cyberciti.biz/tips/10-boot-time-parameters-you-should-know-about-the-linux-kernel.html
 
 

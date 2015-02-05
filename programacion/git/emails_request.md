@@ -38,7 +38,7 @@ what it solves. This helps others who are reading
 the log why this commit is so useful
 
 
-Crear el patchfile
+Crear el patchfile (mirar patch.md)
 git format-patch master -o /path/to/your/patchfiles/
 
 

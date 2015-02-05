@@ -72,8 +72,8 @@ O un json a pelo:
 
 
 vars_files:
- - "vars/common.yml"
- - "vars/other.json"
+ - vars/common.yml
+ - vars/other.json
  - [ "vars/{{ ansible_os_family }}.yml", "vars/os_defaults.yml" ]
 	  
 vars:

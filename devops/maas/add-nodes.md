@@ -37,3 +37,9 @@ ssh-keygen
 ssh-copy-id login@server
 ssh login@server
   testear si puedo conectar
+
+virsh -c qemu+ssh://adrian@192.168.200.1/system
+
+
+
+Si instalamos una imagen ubuntu, el usuario será 'ubuntu'

@@ -28,7 +28,7 @@ bind9utils
   conf en /etc/bind/maas
 maas-dhcp
 tgt (iSCSI)
-/etc/init/maas-pserv.conf
+/etc/init/maas-clusterd.conf
   /usr/bin/python /usr/bin/twistd -n --uid=maas --gid=maas --pidfile=/run/maas-pserv.pid --logfile=/dev/null maas-pserv --config-file=/etc/maas/pserv.yaml
   servidor TFTP
 /etc/init/isc-dhcp-server.override

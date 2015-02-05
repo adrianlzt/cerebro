@@ -9,6 +9,8 @@ pacman -Suy
 pacman -S packer
 
 
+Para usar packer tenemos que hacerlo como usuario no root.
+
 packer -S paquete
   Instalar paquete con los repos AUR (si no lo encuentra en pacman)
 

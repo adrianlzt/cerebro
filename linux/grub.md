@@ -27,3 +27,8 @@ GRUB_DEFAULT=saved
   Aqui podemos definir el kernel que queremo que arranque, empezando por 0.
   'saved' es el último que arrancamos.
   No tocar directamente, ya que grub2-mkconfig lo sobreescribirá
+
+
+Reinstalar grub (boot loader)
+http://askubuntu.com/questions/126541/how-to-manually-install-boot-loader
+grub-install --recheck --no-floppy --root-directory=/ /dev/sda

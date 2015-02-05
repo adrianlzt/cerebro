@@ -26,6 +26,13 @@ Borrar fichero
   file: dest="{{ facter_dir }}/hostgroup.json" backup=yes state=absent
   when: hostgroup != ""
 
+Link:
+- file: src=/tmp/{{ item.path }} dest={{ item.dest }} state=link
+  si ponemos force=yes, el link se va a crear aunque el source no exista; el link se va a crear aunque el destino ya exista y sea un fichero
+
+ad-hoc
+ansible -s cliente3 -m file -a "src=/usr/share/zoneinfo/Europe/Madrid dest=/etc/localtime state=link force=true"
+
 
 Si hay definida una variable aplicamos un template, si no, nos aseguramos de que el fichero no exista:
 - name: set custom fact for hostgroups if defined

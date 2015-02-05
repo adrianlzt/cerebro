@@ -5,3 +5,5 @@ Nos permite "conectar" lo que pasa en la máquina (procesos) con la red (paquete
 Es un tcpdump hipervitaminado
 
 
+
+Sysdig is built to run in production. By running as little code as possible in the kernel, sysdig minimizes performance overhead and the risk of crashes.

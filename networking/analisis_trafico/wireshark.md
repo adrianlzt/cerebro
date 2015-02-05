@@ -23,8 +23,10 @@ dumpcap -f "port 25" -w -
 
 Ver captura remota
 http://wiki.wireshark.org/CaptureSetup/Pipes
-$ wireshark -k -i <(ssh hostname dumpcap -w -)
-Mirar el tcpdump.md para ver como dar permisos a un usuario normal a ejecutar dumpcap
+wireshark -k -i <(ssh compaq "dumpcap -P -w - -i any -f 'not tcp port 22'")
+apt-get install wireshark-common
+setfacl -m u:adrian:rx /usr/bin/dumpcap
+setcap "CAP_NET_RAW+eip" /usr/bin/dumpcap
 
 Si no podemos hacer ssh como root tendremos que permitir a un usuario normal tener permisos para capturar con dumpcap
 

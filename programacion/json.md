@@ -10,7 +10,7 @@ El procesado de JSON es bastante costoso, va analizando cada caracter viendo si 
 El problema es que no hay metadata, por eso tiene que hacer ese procesado tan costoso.
 Lo cuentan en el video: http://vimeo.com/64659016  16:45
 
-Solución messagepack
+Solución messagepack, protocol buffers?
 Enviar informacion json desde la linea de comandos
 
 

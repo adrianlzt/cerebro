@@ -10,7 +10,10 @@ Dos instancias de haproxy corren en activo-pasivo. Estas instancias redirigen el
 
 Permite balancear http, websocket, etc
 
+SSL: http://blog.haproxy.com/haproxy/haproxy-and-ssl/
 
+
+Monitorización: http://blog.scoutapp.com/articles/2011/10/21/monitoring-haproxy
 
 
 https://github.com/Wizcorp/frontrunner

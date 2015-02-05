@@ -17,3 +17,6 @@ Si hacemos port-show veremos que sigue diciendo:
 | status                | DOWN
 Omitirlo, porque funciona a pesar de esto.
 
+
+Para varias ips:
+neutron port-update 12bf9ea4-4845-4e2c-b511-3b8b1ad7291d –allowed_address_pairs list=true type=dict ip_address=10.0.0.201,ip_address=y.y.y.y etc

@@ -1,0 +1,3 @@
+Mostrar:
+
+sysdig -L | less

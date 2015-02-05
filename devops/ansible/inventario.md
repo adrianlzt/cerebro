@@ -6,6 +6,8 @@ http://docs.ansible.com/intro_inventory.html#list-of-behavioral-inventory-parame
 
 Podemos pasarlo por linea de comandos: ansible -i fichero ...
 
+Es case-sensitive.
+
 Para ver nuestro inventario:
 ansible all --list-hosts
 
@@ -72,3 +74,12 @@ ansible_sudo_pass: contraseña2
 
 # SSH key
 ansible_ssh_private_key_file=~/fichero
+
+
+# Añadir máquinas al inventario desde un playbook, solo para esa ejecucción (in-memory)
+http://docs.ansible.com/add_host_module.html
+
+- add_host: hostname={{ new_ip }}
+            ansible_ssh_host={{ inventory_hostname }}
+            ansible_ssh_port={{ new_port }}
+            groups=just_created foo=42

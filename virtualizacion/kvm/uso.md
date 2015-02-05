@@ -10,6 +10,9 @@ Para crear maquinas usar:
 virt-manager
 Salir de la pantalla: Control+Alt
 
+virt-install para consola.
+mirar virt-install.md
+
 Con virt-manager tambien podemos arrancar una máquina a partir de una imagen qcow2 disponible.
 virt-manager genera una serie de ficheros xml para luego llamar a kvm/qemu.
 Con ps podemos ver que parametros ha usado.
@@ -26,6 +29,9 @@ ubuntu-vm-builder kvm trusty
 
 # Manual
 Poner --enable-kvm se nota muuuucho en la velocidad
+
+Parametros disponibles:
+kvm -cpu \?
 
 ## Qemu-launcher
 apt-get install qemu-launcher qemuctl

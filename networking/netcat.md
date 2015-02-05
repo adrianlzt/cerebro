@@ -1,10 +1,16 @@
 Para sockets mirar socat.md
 
 Testear una conexión: nc -vz ip port
-  export testNODE=puppet.service.dsn.inet; export testPORT=8140; (cat < /dev/tcp/$testNODE/$testPORT) & sleep 1;  ss -n | grep $testPORT ; kill %
 Testear una conex udp: nc -vuz ip port
+>/dev/tcp/ip/port
+  Si retorna 0 es que hay conexion
 
 Copiar ficheros entre maquinas
+El que recibe: nc -l -p 1234 | cat - > fichero
+El que envia: cat fichero | nc ip 1234
+
+
+copiar directorios:
 Destination box: nc -l -p 2342 | tar -C /target/dir -xzf -
 Source box: tar -cz /source/dir | nc Target_Box 2342
 

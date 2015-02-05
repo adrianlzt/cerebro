@@ -1,6 +1,8 @@
+yum install mongodb-org-shell
 apt-get install mongodb-clients
 
 $ mongo 192.169.0.5:9999/foo
+
 
 # mongo basedatos --eval 'db.collection.find().forEach(printjson)'
 
@@ -32,3 +34,17 @@ function () {
 > db.site.find({'site.code': "3"})		Busca en un parametro anidado
 
 
+
+## Replica set
+Conectar al primerio de un replica set:
+mongo --nodb
+> conn = new Mongo("myReplicaSet/A:27017,B:27017,C:27017")
+
+Otra opción:
+mongo --host `mongo --host unserver --quiet --eval "db.isMaster()['primary']"`
+
+
+Permitir leer en un secundario
+rs.slaveOk()
+db.getMongo().setSlaveOk()
+This allows the current connection to allow read operations to run on secondary members.

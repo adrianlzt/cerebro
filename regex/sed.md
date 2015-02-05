@@ -59,3 +59,8 @@ $ echo "[1381467600] SERVICE STATE: CURRENT;icaro;processes;OK;HARD;1;" | sed "s
 ### DUDAS ###
 "[1381467600] SERVICE STATE: CURRENT;icaro;processes;OK;HARD;1;" -> quiero cambiar processes (segundo campo tras ';') por CMDprocesses
 
+
+
+# return group a mayúsculas
+echo "group_a_master_ci_3:27017" | sed s/'group_\(\w\)_.*'/'\U\1'/
+A

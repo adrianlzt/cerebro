@@ -14,6 +14,7 @@ dropbox
 echo lockscreen
 eltiempo
 es file explorer
+facebook lite (menos pesada y consume menos recursos) (http://www.apkmirror.com/apk/facebook-2/lite/facebook-lite-1-0-0-0-0-official-apk/)
 facebook
 facebook messenger
 feedly (lector rss online)

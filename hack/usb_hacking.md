@@ -6,3 +6,7 @@ Es un pendrive pero que se registra como un teclado y realiza acciones.
 
 Para ejecutarlo en un arduino:
 https://github.com/Plazmaz/Duckuino
+
+
+Man in the middle
+https://archive.org/details/ShmooCon2014_An_Open_and_Affordable_USB_Man_in_the_Middle_Device

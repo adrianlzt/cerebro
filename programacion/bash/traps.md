@@ -22,3 +22,21 @@ Si hacemos
 ./programa &
 kill %1
 Enviaremos la señal a todo el grupo del proceso, por lo que también al sleep
+
+
+# Ejemplo traps:
+reload() {
+    for pid in $pids; do
+        kill -HUP $pid;
+    done
+}
+
+stop() {
+    for pid in $pids; do
+        kill -TERM $pid;
+    done
+}
+
+trap reload SIGHUP;
+trap stop SIGTERM;
+trap stop SIGINT;

@@ -25,6 +25,8 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
 
 -x dir/*  <- Nos permite no meter ficheros en el rpm, pero no consigo que me funcione
 
+--config-files file/path <- nos permite marcar en los rpms que estos ficheros son de configuracion
+
 Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
 Para crear un rpm hacemos:

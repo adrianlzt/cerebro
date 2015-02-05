@@ -11,6 +11,9 @@ ip a
 Rutas:
 ip route
 ip r
+  Mirar porque ruta salimos a una determinada IP:
+    ip route get <ip>
+  
   Añadir ruta
     ip route add {NETWORK/MASK} via {GATEWAYIP}
     ip route add {NETWORK/MASK} dev {DEVICE}

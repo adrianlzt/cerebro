@@ -11,3 +11,10 @@ Ejemplo, sacar un nodo de un Load Balancer:
   nagios: action=disable_alerts host={{ inventory_hostname }} services=webserver
   delegate_to: "{{ item }}"
   with_items: groups.monitoring
+
+
+Crear en cada máquina del grupo replication_servers un directorio por cada máquina del grupo
+- name: create data directory for mongodb
+  file: path={{ mongodb_datadir_prefix }}/mongo-{{ inventory_hostname }} state=directory owner=mongod group=mongod
+  delegate_to: '{{ item }}'
+  with_items: groups.replication_servers

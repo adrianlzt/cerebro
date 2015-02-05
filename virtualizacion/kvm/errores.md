@@ -22,3 +22,9 @@ Cannot find suitable CPU model for given data during VM starting
 Solución:
 This was fixed by stopping libvirt, removing all files on /var/cache/libvirt/qemu/capabilities/ and starting it again.
 https://bugzilla.redhat.com/show_bug.cgi?id=1160318
+
+
+
+Failed to access perfctr msr error
+Al cargar el cd de ubuntu.
+No es importante el mensaje, se puede omitir: http://unix.stackexchange.com/questions/140973/arch-linux-in-qemu-failed-to-access-perfctr-msr-error

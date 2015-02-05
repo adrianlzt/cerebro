@@ -1,4 +1,7 @@
 http://refspecs.linuxbase.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html
+http://www.thegeekstuff.com/2012/03/lsbinit-script/
+https://gist.github.com/naholyr/4275302
+https://wiki.debian.org/LSBInitScripts
 
 Scripts de init.d
 
@@ -13,3 +16,10 @@ If the status action is requested, the init script will return the following exi
 100-149	reserved for distribution use
 150-199	reserved for application use
 200-254	reserved
+
+
+Pruebas para ver si un script es LSB
+http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Pacemaker_Explained/ap-lsb.html
+
+# Python
+https://lionfacelemonface.wordpress.com/2009/12/29/python-init-scripts/

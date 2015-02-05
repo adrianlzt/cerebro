@@ -1,4 +1,5 @@
 http://cloudinit.readthedocs.org/en/latest/
+https://www.youtube.com/watch?v=-zL3BdbKyGY
 http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/
 
 Everything about cloud-init, a set of python scripts and utilities to make your cloud images be all they can be!
@@ -18,3 +19,17 @@ De esta manera, sin tener que entrar por consola a la máquina, tendríamos una 
 Se puede ver como un puppet minimalista para máquinas virtuales.
 Se pueden crear usuarios, grupos, repositorios, dns, instalar puppet, etc
 http://cloudinit.readthedocs.org/en/latest/topics/examples.html
+
+
+Una de las maneras de pasar valores a cloud-init es pasar un cloud-config-url en los parametros de inicializacion del kernel.
+Cloud-init al arrancar hará un GET de esa url y lo ejecutará.
+Asi se hace en MAAS (devops/maas/internals.md)
+
+Tipicos endpoints
+/metadata/2012-03-01/meta-data/instance-id
+/metadata/2012-03-01/meta-data/local-hostname
+/metadata/2012-03-01/meta-data/public-keys
+/metadata/2012-03-01/user-data
+
+Podemos usar la extension de Chrome "REST Console" para generar el auth header para usar oauth.
+

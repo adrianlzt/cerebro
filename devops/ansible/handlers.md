@@ -11,6 +11,12 @@ Se ejecutan en el orden de escritura, no el orden que sean llamados.
     - name: Restart application
       command: /srv/myapp/restart.sh
 
+    # Pacemaker con pcs:
+    - name: Restart pnp4nagios worker
+      run_once: True
+      shell: /usr/sbin/pcs resource meta {{rsc}} target-role=Stopped; sleep 3; /usr/sbin/pcs resource meta {{rsc}} target-role=Started
+
+
 
 Se llaman desde un comando con:
     - name: roll out new code

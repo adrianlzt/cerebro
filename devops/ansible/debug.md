@@ -19,3 +19,8 @@ Podemos poner:
 Para para la ejecución tras cada task a la espera de un enter.
 
 ansible-playbook --step
+
+
+# Sacar script ejecutado en la máquina remota
+cd /home/USUARIO/.ansible/
+while true; do find . -type f -exec cp {} /tmp/prueba.py \;; done
