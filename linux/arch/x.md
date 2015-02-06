@@ -10,7 +10,9 @@ pacman -S xf86-video-intel
 
 
 
-pacman -S gnome-shell gdm gnome-control-center gnome-tweak-tool network-manager-applet system-config-printer
+pacman -S gnome-shell gdm gnome-control-center gnome-tweak-tool network-manager-applet system-config-printer gnome-shell-extensions
+pacman -S gnome-extra
+  300MiB, contains further GNOME applications, including an archive manager, disk manager, text editor, games, etc.
 systemctl enable gdm
 systemctl start gdm
 

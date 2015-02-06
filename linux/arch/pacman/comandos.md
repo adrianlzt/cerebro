@@ -31,6 +31,11 @@ pacman -R paquete
   -s: borrar tambien dependencias que se queden sin uso
   -c: borrar paquetes que dependan de 'paquete'
 
+Instalar un paquete local:
+pacman -U file.pkg.tar.xz
+  Upgrade or add package(s) to the system and install the required dependencies from sync repos.
+  Either a URL or file path can be specified. This is a “remove-then-add” process.
+
 
 ## Pkgfile ##
 pacman -S pkgfile

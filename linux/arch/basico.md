@@ -1,16 +1,19 @@
 Editar /etc/pacman.conf
 Descomentar [multilib] (solo 64 bits)
 
-pacman -S openssh sshpass sshfs screen git hub meld vim ansible sudo bc cups gnu-netcat nmap ntp socat strace tree unrar wget xclip
-pacman -S chromium skype dropbox gimp imagemagick
-pacman -S virtualbox vagrant lxc docker
+pacman -S --needed openssh sshpass sshfs screen git hub meld vim ansible sudo bc cups gnu-netcat nmap ntp socat strace tree unrar wget xclip pkgfile
+pkgfile --update
+pacman -S --needed chromium skype dropbox
 
-pacman -S wireshark-gtk
+pacman -S --needed openconnect
 
-pacman -S nautilus terminator vlc youtube-dl
-pacman -S libreoffice-fresh
+pacman -S --needed virtualbox vagrant lxc docker
+pacman -S --needed wireshark-gtk
 
-pacman -S openconnect
+pacman -S --needed nautilus terminator vlc youtube-dl
+pacman -S --needed libreoffice-fresh
+pacman -S --needed gimp imagemagick
+
 
 
 packer (mirar pacman/packer.md)
