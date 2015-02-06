@@ -1,5 +1,7 @@
+CUIDADO, el directorio origen, NO poner "directorio/", porque entonces copiará lo que hay dentro, pero no el directorio.
+
 Mejora sobre rcp y scp. Hace transmisiones incrementales, evitando enviar los datos de los que ya dispone la otra parte.
-# rsync -ahHPv --stats --numeric-ids . pepe@10.5.2.1:/rsinc/
+# rsync -ahH --stats --numeric-ids directorio pepe@10.5.2.1:/rsinc/
 -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
 	-r, --recursive             recurse into directories
 	-l, --links                 copy symlinks as symlinks
@@ -13,13 +15,15 @@ Mejora sobre rcp y scp. Hace transmisiones incrementales, evitando enviar los da
 
 -h, --human-readable        output numbers in a human-readable format
 -H, --hard-links            preserve hard links 
--v, --verbose               increase verbosity
--P, --progress              show progress during transfer
 
 --stats                 give some file-transfer stats
 --numeric-ids           don't map uid/gid values by user/group name
 
 Otras opciones
+-P, --progress              show progress during transfer
+  mucho output
+-v, --verbose               increase verbosity
+  muestra todos los ficheros que se van copiando
 -z			compress
 --exclude=PATTERN       exclude files matching PATTERN
 --exclude-from=FILE     read exclude patterns from FILE
