@@ -6,7 +6,7 @@ SigLevel    = Optional TrustedOnly
 Server = http://repo.archlinux.fr/$arch
 
 pacman -Suy
-pacman -S packer
+pacman -S packer binutils
 
 
 Para usar packer tenemos que hacerlo como usuario no root.

@@ -42,6 +42,7 @@ Hacer pruebas con el facter de producción para ver si falla.
 Usar defined types con hiera como ENC (el del blog no funciona con puppet 3.3.2, mirar mi github para un ejemplo que funciona, y que permite repetir defined types):
 http://blog.yo61.com/assigning-resources-to-nodes-with-hiera-in-puppet/
 https://github.com/adrianlzt/puppet-monitoring/tree/hiera_resources
+https://tickets.puppetlabs.com/browse/HI-121
 
 En RHEL:
 /usr/lib/ruby/site_ruby/1.8/puppet/parser/functions/hiera_resources.rb

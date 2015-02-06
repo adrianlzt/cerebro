@@ -19,6 +19,9 @@ Con compresión:
 dd if=/dev/sda1 | bzip2 -9f >/srv/boot2.img.bz2
 bunzip2 -dc /srv/boot2.img.bz2 | dd of=/dev/sda1
 
+Dump 6 bloques de 4k cada uno del comienzo del disco:
+dd if=/dev/sdb of=sdb.part bs=4k count=6
+
 
 # Probar performance
 https://www.thomas-krenn.com/en/wiki/Linux_I/O_Performance_Tests_using_dd
