@@ -1,10 +1,13 @@
 https://wiki.archlinux.org/index.php/pacman
 
-Instalar:
-pacman -S paquete paquete2
+Instalar (con Sync, -S):
+pacman -S paquete paquete2 "bash>=3.2" testing/qt
 
 Instalar sin mensajes de confirmacion
 pacman -S --noconfirm ...
+
+Instalar, pero no reinstalar lo que ya esté instalado:
+pacman -S --needed paquete1 paquete_ya_instalado paquete2
 
 Buscar en paquetes de los repos:
 pacman -Ss paquete

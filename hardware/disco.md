@@ -22,3 +22,42 @@ El disco tiene un lookahead (readahead es a nivel lógico, este es a nivel físi
 
 Testear velocidad
 sudo hdparm -t /dev/sdb
+
+
+
+# Geometria
+
+Inicialmente los discos se nombraban en:
+CHS - Cylinders, Heads, Sector
+
+Ahora se usa LBA, porque CHS tiene limitación de 8GiB.
+
+De todas maneras se puede seguir diciendo los valores en CHS, aunque no cumplan el estandar por tener mas de 1024 cilindros.
+
+Un ejemplo, un disco de 238Gib tiene:
+CHS= 3891 255 63
+3891 * 255 * 63 = 62508915
+Multiplicado por el logical sector, que suele ser 512bytes o 4KiB:
+62508915 * 4096 = 256036515840
+256036515840 / (1024)^3 = 238.45 GiB
+
+
+Para convertir entre CHS y LBA:
+(C x TH x TS) + (H x TS) + (S - 1) = LBA
+Where:
+C = the sector's Cylinder#
+TH = the Total Heads of the hard drive according to the BIOS translation in effect
+TS = the Total Sectors/Track of the hard drive
+H = the sector's Head#
+S = the sector's Sector#
+
+(3891 * 255 * 63) +  (255 * 63) + (63 - 1)
+
+
+
+# MBR, analisis hexadecimal
+http://blog.creativeitp.com/posts-and-articles/bios/analysing-the-master-boot-record-mbr-with-a-hex-editor-hex-workshop/
+
+
+# Herramientas de disco
+Mirar en linux/filesystem/data_recover.md

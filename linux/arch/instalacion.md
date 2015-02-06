@@ -79,20 +79,6 @@ arch-chroot /mnt
 grub-mkconfig -o /mnt/boot/grub/grub.cfg
 
 
-Sistema gráfico:
-pacman -S xorg-server xorg-server-utils xorg-apps mesa
-
-Portatil con nvidia
-pacman -S xf86-video-nouveau
-reboot
-
-Portatil con intel:
-pacman -S xf86-video-intel
-
-
-pacman -S gnome-shell gdm gnome-control-center
-systemctl enable gdm
-systemctl start gdm
 
 Editar /etc/pacman.conf
 Descomentar [multilib] (solo 64 bits)
@@ -109,7 +95,7 @@ Descomentar de /etc/sudoers
 
 Mirar:
 basico.md
-wifi.md
+red.md
 x.md
 trackpad.md
 
