@@ -1,4 +1,7 @@
 pacman -S networkmanger
+systemctl enable NetworkManager
+systemctl start NetworkManager
+
 nmtui
   para cofigurar la red desde la shell
 
