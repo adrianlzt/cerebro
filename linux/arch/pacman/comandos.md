@@ -18,13 +18,22 @@ pacman -Sy
 Buscar en paquetes locales:
 pacman -Qs paquete
 
-Actualizar paquetes:
+Actualizar base de datos
+pacman -Sy
+
+Actualizar base de datos y paquetes:
 pacman -Suy
 
 Lista paquetes instalados:
 pacman -Q
 pacman -Qs
   algo más de info
+
+Muestra ficheros de un paquete:
+pacman -Ql <nombre>
+
+A que paquete pertenece un fichero
+pacman -Qo <fichero>
 
 Borrar paquete y dependencias no utilizadas:
 pacman -R paquete
@@ -35,12 +44,3 @@ Instalar un paquete local:
 pacman -U file.pkg.tar.xz
   Upgrade or add package(s) to the system and install the required dependencies from sync repos.
   Either a URL or file path can be specified. This is a “remove-then-add” process.
-
-
-## Pkgfile ##
-pacman -S pkgfile
-pkgfile --update
-
-Buscar que paquetes tiene un fichero (necesario instalar pkgfile)
-pkgfile -r ".*nombre.*"
-

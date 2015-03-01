@@ -1,4 +1,14 @@
 man limits.conf
+http://serverfault.com/questions/356962/where-are-the-default-ulimit-values-set-linux-centos
+http://tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/x4733.html
+
+
+Definir límites por usuario o proceso de:
+máxima apertura de ficheros
+consumo de cpu
+maximo tamaño de ficheros cores
+etc
+
 
 Nos vale para poner límites a los usuarios, grupos, rangos de usuarios (por UIDs) o rangos de grupos (rango de GIDs).
 No vale para limitar procesos o comandos.
@@ -9,7 +19,7 @@ ulimit -a
   Mirar límites del usuario actual
 
 Cada usuario e item tiene un limite soft y uno hard (*).
-Los limites los asignamos desde /etc/security/limits.conf o /etc/security/limits.d
+Los limites los asignamos desde /etc/security/limits.conf o /etc/security/limits.d/fichero
 nombre/grupo    soft/hard       item            limite
 
 No es necesario reiniciar tras modificar este archivo, pero será necesario que el usuario se vuelva a logear para aplicar los cambios.
@@ -18,6 +28,9 @@ Cada usuario puede aumentar su límite soft hasta su hard (*).
 Para ver el límite soft: ulimit -Sa
 Para ver el límite hard: ulimit -Ha
 
+
+## Running process
+cat /proc/PID/limits
 
 
 ## Opciones

@@ -45,6 +45,23 @@ Si hay definida una variable aplicamos un template, si no, nos aseguramos de que
 
 
 
+# Crear fichero vacío si no existe, asegurar permisos y usuario si existe
+  - name: existe fichero pepe
+    stat: path=pepe
+    register: fichero
+
+  - name: crealo si no existe
+    file: dest=pepe state=touch
+          owner=adrian group=adrian mode=0664
+    when: not fichero.stat.exists
+
+  - name: crealo si no existe
+    file: dest=pepe state=file
+          owner=adrian group=adrian mode=0664
+    when: fichero.stat.exists
+
+
+
 ## Descomprimir un fichero ##
 http://docs.ansible.com/unarchive_module.html
 # Example from Ansible Playbooks
@@ -64,6 +81,9 @@ http://docs.ansible.com/lineinfile_module.html
 Meter una linea al final
 - name: define custom host entry
   lineinfile: dest=/etc/hosts line=10.2.23.9 nombrenodo
+
+create=yes
+  para crear el fichero si no existe
 
 
 # Ad-hoc

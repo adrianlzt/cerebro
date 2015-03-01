@@ -61,3 +61,13 @@ http://blog.creativeitp.com/posts-and-articles/bios/analysing-the-master-boot-re
 
 # Herramientas de disco
 Mirar en linux/filesystem/data_recover.md
+
+
+# IOPS (http://www.mongodb.com/presentations/webinar-capacity-planning)
+7.200 RPM                75-100
+15.0000 RPM              175-210
+Amazon EBS/Provisioned   100, up to 2.000
+Amazon SSD               9.000 - 120.000
+Intel X25-E (SLC)        5.000
+Fuion IO                 135.000
+Violin Memory 6000       1.000.000

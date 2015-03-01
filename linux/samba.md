@@ -13,6 +13,10 @@
 # service samba restart
 
 
+
+## Cliente
+pacman -S smbclient
+
 Montar unidad remota:
 
 findsmb -> buscar unidades compartidas por samba

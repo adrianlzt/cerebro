@@ -13,6 +13,13 @@ sudo apt-get update
 # install
 sudo apt-get install lxc-docker
 
+# Activar en systemd
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Meter a los usuarios en el grupo docker
+sudo gpasswd -a adrian docker
+
 # Tener cgroups de memoria y swap (no obligatorio)
 GRUB_CMDLINE_LINUX=cgroup_enable=memory swapaccount=1"
 En /etc/default/grub

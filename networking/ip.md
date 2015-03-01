@@ -42,6 +42,7 @@ ip neigh
          STALE - The neighbour is valid, but is probably already unreachable, so the kernel will try to check it at the first transmission.
          DELAY - A packet has been sent to the stale neighbour and the kernel is waiting for confirmation.
          REACHABLE - The neighbour is valid and apparently reachable.
+         FAILED - No consigue la MAC, o la hemos marcado para flush
 
 Meter entrada ARP
 ip n add {IP-HERE} lladdr {MAC/LLADDRESS} dev {DEVICE} nud {STATE}
@@ -57,7 +58,9 @@ Borrar una entrada:
 ip n del {IPAddress} dev {DEVICE}
 
 Borra cache:
-ip n flush eth0
+ip n flush dev eth0
+
+ip n flush 10.95.168.220 dev eth0
 
 
 Definir IP / Agregar ip alias:
@@ -127,3 +130,26 @@ xfrm		x			Framework for IPsec protocol.
 
 # Tun / Tap
 Mirar tap.md
+
+
+# Namespaces
+Una interfaz de red solo puede estar en un Namespace al mismo tiempo
+
+ip netns list
+  listar namespaces
+
+ip netns add NOMBRE
+  crear namespace
+
+ip netns exec NOMBRE COMANDO
+  ejecutar comando como si estuviesemos en el NS NOMBRE
+  ej.: ip netns exec virtual1 ip a
+
+ip link add eth1 type veth peer name veth1
+  creamos dos interfaces virtuales conectadas entre si (como si estuviesen unidas por un cable directo)
+
+ip link set eth1 netns NOMBRE
+  movemos una de las dos interfaces creadas antes al nuevo namespace
+
+ip l set veth2 up
+  activamos la interfaz creada

@@ -65,3 +65,15 @@ Variables con las que se ejecuta un recurso se pueden ver en /proc/<PID>/environ
 Tracear los Resource Agents:
 trace
 http://www.nongnu.org/crmsh/crm.8.html
+
+
+
+
+## Debug Pacemaker ##
+Mirar en /etc/sysconfig/pacemaker
+PCMK_debug
+No consigo que haga caso de esas variables.
+
+
+# Arranque a mano
+

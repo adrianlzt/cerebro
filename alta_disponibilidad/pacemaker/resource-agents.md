@@ -15,3 +15,6 @@ crm(live)ra# list ocf pacemaker
 Para ver las posibles configuraciones
 crm(live)ra# meta nombrescript
 
+
+
+Los timeouts de start, stop, status vienen definidos, sus valores por defecto, en los agentes.

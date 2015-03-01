@@ -42,3 +42,31 @@ $ expr
 
 Convertir hexadecimal en decimal:
 echo "ibase=16; 7F" | bc
+
+Octal a hexadecimal
+echo "obase=16; ibase=8; octal-number-here" | bc
+
+Decimal to Binary
+echo "obase=2; 23" | bc
+
+Decimal to Octal number
+echo "obase=8; 23" | bc
+
+Decimal to Hex number
+echo "obase=16; 23" | bc
+
+Binary to decimal
+echo "ibase=2; 11010101" | bc
+
+Oct to decimal
+echo "ibase=8; 723" | bc
+
+Hex to decimal
+echo "ibase=16; 23" | bc
+
+How about converting binary to Oct?
+echo "ibase=2;obase=8; 1010101" | bc
+
+Decimal to any base number
+convert decimal number to base 4 number system
+echo "obase=4; 23" | bc

@@ -18,6 +18,9 @@ screen -r
 Attaches to a screen session. If the session is attached elsewhere, detaches that other display. If no session exists, creates one. If multiple sessions exist, uses the first one
 screen -dRR 
 
+Crear una sesion de nombre adrian. Unirse a ella aunque este attached
+screen -dR adrian
+
 Unirse a una screen multiple
 screen -rx
 

@@ -21,3 +21,8 @@ yum install ca-certificates
 update-ca-trust enable
 cp foo.crt /etc/pki/ca-trust/source/anchors/
 update-ca-trust extract
+
+
+# Arch
+cp fichero.crt /etc/pki/ca-trust/source/anchors/
+trust extract-compat

@@ -2,6 +2,10 @@ http://en.wikipedia.org/wiki/Cgroups
 http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf
 yum install kernel-doc; cd /usr/share/doc/kernel-doc-3.14.2/Documentation/cgroups/
 
+Para usarlo en sistemas con systemd mirar cgroups-systemd.md
+
+
+
 cGroups (control groups) is a Linux kernel feature to limit, account and isolate resource usage (CPU, memory, disk I/O, etc.) of process groups
 
 Muchos de los problemas vienen por la exhaustación de recursos.
@@ -110,6 +114,7 @@ chown USUARIO2:GRUPO2 /cgroup/jcpu/GRUPO1/SUBGRUPO1/* # defino el admin
 chown USUARIO1:GRUPO1 /cgroup/jcpu/GRUPO1/SUBGRUPO1/tasks # defino el usuario que puede añadir tasks
 echo "1000" > /cgroup/jcpu/GRUPO1/SUBGRUPO1/cpu.shares
 echo PID > /cgroup/jcpu/GRUPO1/SUBGRUPO1/tasks # no hace falta hacer append (>>), es una orden y el ya sabe como tratarlo
+  para sacar una task de un group, podemos hacer el echo PID al grupo general
 
 Esta configuración se aplicaría en el mismo momento, pero no sería persistente.
 Si quisieramos hacerlo persistente:
@@ -207,6 +212,8 @@ cgset
 
 
 ## CPU ##
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-cpuset.html
+
 cgset
   cpu.rt_period_us              # periodo para RT (tamaño del turno de los procesos RT, para no monopolizar la CPU)
   cpu.rt_runtime_us             # periodo maximo running para RT (valor límite para cuando un proc RT no tiene con quien competir)
@@ -217,6 +224,7 @@ cgset
   cpuset.mems                   # nodos de memoria permitidos
   cpuset.memory_migrate         # permite migrar memoria si cambia cpuset.mems
   cpuset.cpu_exclusive          # si la cpu se comparte o no con otros cgroups
+                                # 0 se comparte, 1 uso exclusivo del cgroup
   cpuset.mem_exclusive          # si la memoria se comparte o no con otros
   cpuset.memory_spread_page     # distribucion de system buffers
   cpuset.memory_spread_slab     # distribucion de slabs
@@ -229,3 +237,8 @@ Error changing group of pid 8370: No space left on device
   No se puede asignar solo cpuset.cpus, también hace falta definie cpuset.mems
   Parece que es un bug de Fedora/RedHat
 
+
+# echo 1 > cpuset.cpu_exclusive 
+bash: echo: error de escritura: Argumento inválido
+bash: echo: write error: Invalid argument
+Porque hay ya una tarea en tasks

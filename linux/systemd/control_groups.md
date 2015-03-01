@@ -1,3 +1,6 @@
+Para más info mirar cgroups.md
+
+
 Los procesos del system.slice y user.slice tienen el mismo tiempo en el scheduler.
 
 systemd-cgls
@@ -18,3 +21,21 @@ systemctl show -p CPUShares system.slice
 
 Modificar la prioridad:
 systemctl set-property --runtime user.slice CPUShares=1500
+
+
+# Crear un grupo cpuset
+mkdir /sys/fs/cgroup/cpuset/my_cpuset
+cd /sys/fs/cgroup/cpuset/my_cpuset
+
+echo 0 > cpuset.cpus
+  este cgroup solo puede usar la cpu 0
+  Obligatorio definirlo
+echo 0 > cpuset.mems
+  este cgroup solo puede usar el nodo de memoria 0
+  Obligatorio definirlo
+
+echo $$ > tasks
+  meto el PID de mi shell en el cgroup. Todo lo que cree con esta shell heredará las restricciones de este cgroup
+
+echo $$ > /sys/fs/cgroup/cpuset/tasks
+  para sacarlo del grupo my_cpuset y meterlo en el general

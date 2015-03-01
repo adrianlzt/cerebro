@@ -17,6 +17,11 @@ Ejemplo con un job por stage:
   package -> bdist_rpm
   upload_to_artifacts -> upload_rpm
 
+Ejemplo: creamos un template que haga compilación, testeo, generacion rpm y subir a un repo.
+Ahora vamos creando distintas pipelines, y a cada pipelinele asignamos este template.
+De esta manera solo tenemos que definir una vez las tareas a realizar, y luego crear pipelines es inmediato. Solo diremos nombre, que repo y ya lo tendremos hecho.
+En Jenkins, por cada nuevo repo tendríamos que volver a definir las tareas a ejecutar.
+
 Go permite definir varios entornos.
 
 
@@ -54,3 +59,43 @@ Ejemplo, un template sería generar un testear/generar/uplodear un código como 
 
 
 Cuando hagamos un push a un repo, este estará asociado a una pipe en concreto, esta se ejecutará, y subirá el rpm.
+
+
+
+# configuracion
+/etc/go/cruise-config.xml
+Aqui estarán configurados los usuarios y que rol.
+No hace falta reiniciar el servicio para que se apliquen los cambios.
+
+Ejemplo:
+  <server artifactsdir="artifacts" purgeStart="1.0" purgeUpto="3.0" commandRepositoryLocation="default" serverId="xxxxxxxxxxxx">
+    <security>
+      <ldap uri=" ldap://server.ldap" searchFilter="(uid={0})">
+        <bases>
+          <base value="o=NOMBRE" />
+        </bases>
+      </ldap>
+      <roles>
+        <role name="user" />
+        <role name="dev">
+          <users>
+            <user>DDD</user>
+          </users>
+        </role>
+        <role name="guest">
+          <users>
+            <user>CCC</user>
+        </role>
+        <role name="admin">
+          <users>
+            <user>BBBB</user>
+          </users>
+        </role>
+      </roles>
+      <admins>
+        <user>AAA</user>
+      </admins>
+    </security>
+    <mailhost hostname="servidor.de.mail.com" port="25" tls="false" from="go@ci-server.com" admin="admin@admin.es" />
+  </server>
+

@@ -8,3 +8,11 @@ Las transiciones se van guardando en ficheros xml en este directorio
 
 /var/lib/corosync
 Alamacena un fichero binario sobre corosync
+
+
+/var/lib/pacemaker
+almacena los CIBs
+
+
+/var/lib/cluster
+almacena cosas de cman

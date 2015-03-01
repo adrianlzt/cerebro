@@ -32,5 +32,6 @@ file fichero
 openssl rsa -pubout -in id_rsa
   clave pública de una clave privada
 openssl rsa -text -in id_rsa
+openssl rsa -text -in id_rsa.pem
 openssl x509 -noout -text -in certs/server.pem 
 openssl pkcs12 -info -in keyStore.p12

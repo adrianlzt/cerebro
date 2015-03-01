@@ -23,3 +23,11 @@ Si estamos sobre kvm (podria ser openstack), actualizar a 6.6 kernel kernel-2.6.
 vale kernel-2.6.32-431.23.1.el6 en centos 6.5?
 
 Usar udpu (mirar unicast.md)
+
+
+
+Feb 17 11:39:59 ESJC-DSMM-MS10S attrd[41413]:    error: cluster_connect_cpg: Could not connect to the Cluster Process Group API: 2
+Feb 17 11:39:59 ESJC-DSMM-MS10S attrd[41413]:    error: main: HA Signon failed
+Feb 17 11:39:59 ESJC-DSMM-MS10S attrd[41413]:    error: main: Aborting startup
+Mirar los permisos de /dev/shm
+Tiene que ser root:root 777

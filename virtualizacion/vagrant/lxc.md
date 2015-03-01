@@ -1,6 +1,38 @@
 Usar LXC con vagrant
 https://github.com/fgrehm/vagrant-lxc
 
+# Arch
+https://github.com/fgrehm/vagrant-lxc/issues/109#issuecomment-21274392
+  pacman -S dnsmasq
+  crear dos unit en systemd, meterlos en /etc/systemd/system/ (una copia esta en este directorio)
+    lxc-dhcp.service
+    lxc-network.service
+      en este tenemos que decir sobre que interfaz se va a montar el bridge (wlan0, eth1, etc)
+  arrancar:
+    systemctl start lxc-dhcp
+    systemctl start lxc-network
+      con esto creamos el bridge necesario y las reglas de iptables
+  /etc/lxc/default.conf
+    lxc.network.type = veth
+    lxc.network.link = lxcbr0
+    lxc.network.ipv4 = 0.0.0.0/24
+
+Si ya tenemos dnsmasq en nuestra máquina:
+/etc/dnsmasq.d/lxc.conf
+interface=lo,lxcbr0
+no-dhcp-interface=lo
+dhcp-leasefile=/var/run/lxc-dnsmasq.leases
+dhcp-range=192.168.150.2,192.168.150.254
+
+Y borraremos:
+lxc-dhcp.service
+
+
+
+https://wiki.archlinux.org/index.php/Vagrant#vagrant-lxc
+https://github.com/fgrehm/vagrant-lxc/issues/109
+
+
 # Para que funcione con Ubuntu 14.10 hayq que agregar al Vagrantfile
 https://github.com/fgrehm/vagrant-lxc/issues/333
   config.vm.provider :lxc do |lxc|

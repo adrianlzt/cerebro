@@ -1,3 +1,5 @@
+http://docs.icinga.org/latest/en/faststartup.html
+
 # Fast boot
 Para poder arrancar más rápido icinga hacer uso del precache, y meter este en memoria:
 precached_object_file=/dev/shm/icinga/objects.precache

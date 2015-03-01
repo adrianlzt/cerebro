@@ -4,6 +4,13 @@
 /boot/grub2/grub.cfg
   Están las distintas configuraciones de arranque. Comienzan por "menuentry"
   En la línea linux /vmli... se meten las configuraciones de arranque.
+  Este fichero se genera con update-grub o grub-mkconfig -o /boot/grub/grub.cfg
+
+
+# Quitar timeout
+/etc/default/grub
+GRUB_TIMEOUT=0
+grub-mkconfig -o /boot/grub/grub.cfg
 
 
 
@@ -12,6 +19,12 @@ http://fedoraproject.org/wiki/GRUB_2/es
 
 Abra /etc/default/grub y asegúrese de que existe esta línea:
   GRUB_DEFAULT=saved
+
+Generar el fichero de conf de grub:
+update-grub
+o
+grub-mkconfig -o /boot/grub/grub.cfg
+
 
 grep ^menuentry /boot/grub2/grub.cfg | cut -d "'" -f2
   mostrar opciones

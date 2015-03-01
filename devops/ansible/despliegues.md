@@ -1,4 +1,7 @@
+http://docs.ansible.com/playbooks_delegation.html
 https://groups.google.com/forum/#!topic/Ansible-project/MU_ws7zynnI
+
+Mirar serial.md
 
 You can set the attribute "max_fail_percentage" on a 1.3 playbook and control the amount of failures to tolerate in a single batch size from within a rolling update.
 

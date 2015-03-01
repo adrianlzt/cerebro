@@ -1,5 +1,6 @@
 El fichero de configuración es /etc/collectd.conf
 También se pueden meter configuraciones en /etc/collect.d
+  con collectd 5.1 meto cosas ahi con nombre.conf y no parece leerlos
 
 
 Debemos configurar una salida de log: syslog o logfile
@@ -36,5 +37,8 @@ Hace falta que creemos los directorios donde se van a guardar los ficheros rrd (
 
 Ahora deberemos decidir que plugins cargamos (cpu, load, memoria, interfaces, etc), y mirar sus configuraciones por si hiciese falta tunear algo.
 Documentación sobre configuración de plugins la dejo en nuevos ficheros o en plugins.md si es poca cosa.
+
+Chequear conf:
+collectd -t -C /etc/collectd.conf
 
 service collectd start

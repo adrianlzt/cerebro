@@ -21,6 +21,12 @@ mkvirtualenv proyecto
   -i package    Install a package after the environment is created. This option may be repeated
   -r requirements_file   Provide a pip requirements file to install a base set of packages into the new environment
 
+Si nuestro SO tiene por defecto python3 y queremos el virtualenv con 2.7
+mkvirtualenv -p /usr/bin/python2.7 test
+pip2 install cosa
+python --version
+
+
 workon proyecto
   nos carga el venc "proyecto"
 

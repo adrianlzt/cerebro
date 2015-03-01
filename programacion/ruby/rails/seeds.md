@@ -11,3 +11,13 @@ Ejemplo:
     end
   end
 end
+
+
+para importar los datos
+RAILS_ENV=production rake db:seed
+
+
+/usr/local/rvm/gems/ruby-1.9.3-p551/gems/rake-10.3.2/lib/rake/trace_output.rb:16:in `block in trace_on': invalid byte sequence in US-ASCII (ArgumentError)
+Add
+#encoding: utf-8
+at the top of the file

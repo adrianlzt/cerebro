@@ -23,6 +23,10 @@ No se puede usar {{item}} en el name
     - /playbooks/files/fooapp/*
   # When using a relative path with with_fileglob in a role, Ansible resolves the path relative to the roles/<rolename>/files directory.
 
+Si queremos usar with_fileglob con templates:
+  with_fileglob:
+  ¦ - ../templates/*
+
 
 # Chequea un comando hasta que devuelve la cadena que queremos
 # Si al quinto intento falla, falla la task

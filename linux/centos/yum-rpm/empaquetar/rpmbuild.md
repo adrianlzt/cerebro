@@ -13,3 +13,9 @@ $ rpmbuild --help
   -ta                           build source and binary packages from <tarball>
   -tb                           build binary package only from <tarball>
   -ts                           build source package only from <tarball>
+
+
+Generar rpm a partir de un .tar.gz
+Tiene el fichero .spec en un directorio support/
+wget http://www.mod-gearman.org/download/v1.5.0/src/mod_gearman-1.5.0.tar.gz
+rpmbuild -tb mod_gearman-1.5.0.tar.gz

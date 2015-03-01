@@ -2,6 +2,8 @@ Para vaciar las caches.
 Depende que número le enviemos borrará unas caches, otras o todo.
 
 
+free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+
 
 Writing to this will cause the kernel to drop clean caches, dentries and inodes from memory, causing that memory to become free.
 

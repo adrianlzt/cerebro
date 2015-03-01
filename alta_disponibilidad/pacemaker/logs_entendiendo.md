@@ -4,4 +4,7 @@ Born nos informa de cuando se unió el nodo al cluster (buscar una línea anteri
 Seen nos indica el último membership donde se vio al nodo.
 
 
+pacemakerd:     info: crm_ipc_connect:  Could not establish pacemakerd connection: Connection refused (111)
+pacemakerd checking for another instance of itself.
+
 

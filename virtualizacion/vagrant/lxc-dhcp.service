@@ -1,0 +1,18 @@
+[Unit]
+Requires=lxc-network.service
+Requires=sys-devices-virtual-net-lxcbr0.device
+After=sys-devices-virtual-net-lxcbr0.device
+
+[Service]
+ExecStart=/sbin/dnsmasq \
+            --dhcp-leasefile=/var/run/lxc-dnsmasq.leases \
+            --user=dnsmasq \
+            --group=dnsmasq \
+            --keep-in-foreground \
+            --listen-address=192.168.150.1 \
+            --except-interface=lo \
+            --bind-interfaces \
+            --dhcp-range=192.168.150.2,192.168.150.254
+
+[Install]
+WantedBy=default.target

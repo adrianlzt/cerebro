@@ -5,7 +5,7 @@ http://docs.ansible.com/list_of_packaging_modules.html
 
 Instalar varios paquetes:
   - name: install Visual software
-    yum: pkg={{item}} state=installed
+    yum: name={{item}} state=installed
     with_items:
      - wxmacmolplt
      - dia
@@ -13,6 +13,19 @@ Instalar varios paquetes:
 
 - name: install foo package
   yum: name=foo-1.0-1.el6.x86_64 state=present
+
+- name: install foo package
+  yum: name=http://www.web.com/foo-1.0-1.el6.x86_64 state=present
+
+- name: install foo package
+  yum: name=/tmp/foo-1.0-1.el6.x86_64 state=present
+
+
+enablerepo=nombre
+para activar un repo desactivado solo para esta instalación
+
+disablerepo=nombre
+
 
 Ad-Hoc
 ansible -s MAQUINAS -m yum -a "name=screen"

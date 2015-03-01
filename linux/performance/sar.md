@@ -5,6 +5,8 @@ Sar forma parte de un conjunto de herramientas de estadísticas para linux.
 
 sar - Collect, report, or save system activity information.
 ksar - a sar grapher (http://sourceforge.net/projects/ksar/). ~/Descargas/kSar-5.0.6/./run.sh
+  packer -S ksar_bin
+  /usr/bin/kSar
 sargraph - http://www.sargraph.com/
 http://www.sarcheck.com/ - SarCheck is a Linux & UNIX performance analysis and performance tuning tool. It is designed to help you with performance management on most Oracle Solaris, AIX, Linux, and HP-UX systems by making recommendations and explaining them with plain text, supporting graphs, and tables. Total SarCheck cost - US$9,385.00
 

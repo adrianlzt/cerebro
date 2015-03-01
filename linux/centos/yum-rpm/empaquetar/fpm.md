@@ -1,4 +1,4 @@
- https://github.com/jordansissel/fpm#readme
+https://github.com/jordansissel/fpm#readme
 https://github.com/jordansissel/fpm/wiki
 
 Software para hacer mas sencillo el empaquetamiento
@@ -18,6 +18,10 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
 "Target type" is what your output package form should be. Most common are "rpm" and "deb" but others exist (solaris, etc)
 
 -d <dependencia>
+  -d 'name'
+  -d 'name > version'
+  -d 'clog = 0.33-1'
+ 
 
 -e <- Nos deja editar el .spec antes de generar el rpm
 
@@ -36,6 +40,7 @@ fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
 ## RPMS ##
 Para crear rpms en debian-like necesitamos: apt-get install rpm
 En RedHat like: yum install rpm-build
+Archlinux: packer -S rpm-org
 
 Si queremos poner un release (a.b.c-X): --iteration <valor>
 Ejemplo: fpm --iteration 2 -s gem -t rpm 1.5.2 rack
@@ -92,3 +97,5 @@ Parece que no se pueden firmar los .deb
 ## Ejecutar comandos en la pre/post instalacion ##
 --after-install modify_cyclops_agent_conf.sh
   Ejecuta ese script tras la instalación
+
+--before-install fichero.sh

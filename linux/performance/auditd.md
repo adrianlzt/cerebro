@@ -15,13 +15,13 @@ El path debe ser absoluto.
 
 Para buscar sucesos:
 Por clave
-# ausearch -k clave
+# ausearch -ik clave
 
 Por comando que lo abre/ejecuta/escribe/añade
-# ausearch -c cmd
+# ausearch -ic cmd
 
 Por fichero:
-# ausearch -f /path/to/file
+# ausearch -if /path/to/file
 
 Si queremos que traduzca los números (por ejemplo, uid por nombre)
 # ausearch -i ...

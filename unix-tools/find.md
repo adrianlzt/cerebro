@@ -37,3 +37,9 @@ find /tmp -name "*.txt" -exec grep -Hn cosa {} \;
 
 Buscar solo en el sistema de ficheros actual (por ejemplo, no buscar en /var/log)
 find /var -mount
+
+Return code 1 si no se encuentra nada:
+find directorio -mmin -1 | egrep ".*"
+
+Si encuentra algun fichero, ejecuta el comando
+find directorio -mmin -1 | egrep ".*" && comando
