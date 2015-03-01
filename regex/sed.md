@@ -54,6 +54,12 @@ $ echo "[1381467600] SERVICE STATE: CURRENT;icaro;processes;OK;HARD;1;" | sed "s
 [1381467600] SERVICE STATE: CURRENT;XXXicaroXXX;processes;OK;HARD;1;
 
 
+# Mostrar contenido entre dos patterns
+sed -n '/WORD1/,/WORD2/p' /path/to/file
+
+# Coger la primera linea
+cat fichero | sed 1q
+
 
 
 ### DUDAS ###

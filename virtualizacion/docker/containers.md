@@ -1,4 +1,4 @@
-Listado de containers públicos: index.docker.io
+Mirar boxes.md
 
 Localmente se almacenan en: /var/lib/docker/containers/
 

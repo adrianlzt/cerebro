@@ -1,1 +1,1 @@
-../dns/dnsmasq.md
+../../linux/dnsmasq.md

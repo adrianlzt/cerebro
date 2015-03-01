@@ -8,6 +8,7 @@
 Description=My Advanced Service
 After=etcd.service
 After=docker.service
+Requires=network.target dnsmasq.service
 
 # Service: como arrancar, parar, recargar, acciones previas, etc
 # No daemonizar los procesos para que systemd pueda mantener el control
@@ -23,6 +24,10 @@ ExecStopPost=/usr/bin/etcdctl rm /domains/example.com/10.10.10.123:8081
 # http://www.freedesktop.org/software/systemd/man/systemd.target.html
 [Install]
 WantedBy=multi-user.target
+
+
+Este Install lo que hará es:
+ln -s /etc/systemd/system/NUESTRO.service /etc/systemd/system/multi-user.target.wants/NUESTRO-network.service
 
 
 Variables que nos proporciona systemd:

@@ -2,9 +2,12 @@ https://collectd.org/wiki/index.php/First_steps
 
 Se debe usar la versión 5.x de collectd. En los repos oficiales de 6.4 solo viene la 4.x
 
+Con el tar.gz
+https://gist.github.com/ashrithr/9224450#install-collectd
+
 RPMs actualizados se encuentran en http://pkgs.repoforge.org/collectd/
-Utilizo: http://pkgs.repoforge.org/collectd/collectd-5.1.0-1.el6.rft.x86_64.rpm
-Tiene como dependencia a perl-Collectd-5.1.0-1.el6.rft.x86_64.rpm
+Utilizo:
+yum install http://pkgs.repoforge.org/collectd/collectd-5.1.0-1.el6.rft.x86_64.rpm http://pkgs.repoforge.org/collectd/perl-Collectd-5.1.0-1.el6.rft.x86_64.rpm
 
 
 Si puedo acceder al repo desde la máquina, lo instalo:
@@ -12,6 +15,7 @@ rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6
 Y activo el rpmforge-extra y rpmforge-testing /etc/yum.repos.d/rpmforge.repo
 Collectd 5.1.0 está en rpmforge-testing.
 También instalamos EPEL
+rpm -Uvh "http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm"
 
 Instalación:
 yum install collectd perl-Compress-Raw-Zlib-2.052-1.el6.rfx.x86_64

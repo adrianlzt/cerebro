@@ -22,3 +22,7 @@ puppet agent -t --color=html
 Si el puppet agent corriendo como demonio (/etc/init.d/puppet) no puede conectar con el servidor, usará el ultimo catalog que encuentre.
 
 puppet agent -t --vardir=VARDIR --confdir=CONFDIR --certname=CERTNAME --environment=ENV --server=puppet.service.dsn.inet --noop
+
+
+Si corremos el agente con -t, y encuentra un fallo, por ejemplo un "duplicated resources", se para la ejecucción.
+En cambio, si corremos el agente con "puppet agent", saca el error por stderr y continúa con la ejecucción.

@@ -63,6 +63,11 @@ exitcodes=0,2
 stopsignal=TERM
   señal que enviará al proceso para que pare
 
+stopasgroup=true
+  mata al proceso que haya arrancado y todos los hijos que este pueda haber creado.
+  muy util cuando supervisord llama a un script en bash, el que llama a más procesos.
+  si no lo ponemos, supervisord matará al script bash, pero se quedarán corriendo los otros hijos que haya ejecutado el script
+
 
 ## Ejemplos ##
 

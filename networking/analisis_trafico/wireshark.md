@@ -7,7 +7,7 @@ Permitir a un no-root capturar
 dpkg-reconfigure wireshark-common
 Y permitir a non-root capturar paquetes.
 Y para definir que usuarios pueden, hay que añadirles al grupo wireshark:
-# adduser <usuario> wireshark
+sudo gpasswd -a USUARIO wireshark
 
 Instalacion dumpcap:
 Ubuntu:
@@ -15,6 +15,9 @@ apt-get install wireshark-common
 
 CentOS:
 yum install wireshark
+
+Arch:
+pacman -S wireshark-gtk
 
 
 dumpcap, similar a tcpdump

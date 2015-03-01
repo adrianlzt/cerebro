@@ -82,6 +82,15 @@ The test hostgroup does not have to exist, it is a virtual queue name which is u
 Adjust your Mod-Gearman worker configuration and put test in the hostgroups attribute. From then on, the worker will work on all jobs in the hostgroup_test queue.
 
 
+# Monitorizar
+Viene una herramienta con el paquete mod_gearman
+/usr/bin/check_gearman
+
+Si ponemos -c o -w estamos chequeando que no haya más de x tareas waiting.
+Si usamos -C o -W estamos chequeando que no haya más de x workers
+Podemos usar -q nombre para chequear una cola determinada.
+
+
 
 # Proxy
 Proxy Gearman Jobs from one jobserver to another jobserver. This could
@@ -105,3 +114,157 @@ Si tiro unos de los gearman servers todo sigue funcionando correctamente.
 
 
 Varias instancias de icinga pueden usar un mismo servidor gearman modificando un parámetro para definir el nombre de la cola check_results.
+
+
+
+# Errores
+mod_gearman_neb.log
+2015-02-26 03:14:07][18632][ERROR] worker error: flush(Too many open files) socket -> libgearman/connection.cc:635
+
+https://groups.google.com/forum/#!msg/gearman/nyvLh0ZhmvA/Fj1cjIAtJu8J
+Parar:
+mod_gearman_worker
+pnp_gearman_worker
+icinga
+gearmand
+
+Arrancar en orden inverso
+
+
+
+[2015-02-27 13:14:46][6193][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+Esto se produce porque tenemos configurados en el _neb varios servidores gearman pero uno no está levantado.
+Si el servidor está levantado pero con gearmand apagado no tenemos este problema.
+Podemos comprobarlo bloqueando el tráfico arp en el servidor que queremos gearmand que podria estar apagado:
+arptables -A IN -z 00:50:56:a2:4f:4f -j DROP
+
+
+
+Pruebas de errores en log al dar fallos los gearmand-servers
+Con mod_gearman 1.5.2
+mod_gearman_neb.log
+
+Servidor localhost configurado pero apagado:
+gearmanlib 0.33:
+[2015-02-27 10:31:32][2335][ERROR] sending job to gearmand failed: connect_poll(Connection refused) getsockopt() failed -> libgearman/connection.cc:104 (3 lost jobs so far)
+[2015-02-27 10:33:12][2335][ERROR] sending job to gearmand failed: connect_poll(Connection refused) getsockopt() failed -> libgearman/connection.cc:104 (5 lost jobs so far)
+repite periódicamente
+
+gearmanlib 1.0.6:
+[2015-02-27 10:34:39][2213][ERROR] sending job to gearmand failed: flush(GEARMAN_COULD_NOT_CONNECT) localhost:4730 -> libgearman/connection.cc:684
+no vuelve a emitir mas mensajes
+
+
+Servidor con una ip no existente configurado:
+gearmanlib 0.33:
+[2015-02-27 10:38:50][2522][ERROR] sending job to gearmand failed: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:38:50][2522][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:38:53][2522][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:38:56][2522][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+lanza periódicamente estos últimos mensajes
+
+gearmanlib 1.0.6:
+[2015-02-27 10:38:40][2307][ERROR] sending job to gearmand failed: flush(GEARMAN_COULD_NOT_CONNECT) 172.16.1.31:4730 -> libgearman/connection.cc:684
+no vuelve a emitir mas mensajes
+
+
+Dos servidores configurados, localhost con gearmand-server parado + ip inventada:
+gearmanlib 0.33:
+[2015-02-27 10:41:01][2655][ERROR] sending job to gearmand failed: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:41:04][2655][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:41:07][2655][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:41:10][2655][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+lanza periódicamente estos últimos mensajes
+
+
+gearmanlib 1.0.6:
+[2015-02-27 10:40:54][2413][ERROR] sending job to gearmand failed: _client_run_tasks(GEARMAN_LOST_CONNECTION) detected lost connection in _client_run_tasks() -> libgearman/client.cc:1430
+no vuelve a emitir mas mensajes
+
+
+Dos servidores configurados, localhost con gearmand-server corriendo + ip inventada:
+gearmanlib 0.33:
+[2015-02-27 10:43:51][2769][ERROR] sending job to gearmand failed: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:43:51][2769][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:43:54][2769][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+lanza periódicamente estos últimos mensajes
+
+
+gearmanlib 1.0.6:
+sin mensajes de error
+
+
+mod_gearman_worker.log
+
+Dos servidores configurados, localhost con gearmand-server corriendo + ip inventada:
+gearmanlib 0.33:
+[2015-02-27 10:45:53][2838][ERROR] worker error: connect_poll(GEARMAN_TIMEOUT) timeout occurred while trying to connect -> libgearman/connection.cc:109
+[2015-02-27 10:45:53][2836][ERROR] worker error: connect_poll(GEARMAN_TIMEOUT) timeout occurred while trying to connect -> libgearman/connection.cc:109
+[2015-02-27 10:45:53][2837][ERROR] worker error: connect_poll(GEARMAN_TIMEOUT) timeout occurred while trying to connect -> libgearman/connection.cc:109
+[2015-02-27 10:45:55][2826][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:45:55][2835][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+[2015-02-27 10:45:55][2834][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+
+
+gearmanlib 1.0.6:
+sin mensajes de error
+
+
+
+
+# Generar rpm
+yum install bison rpm-build gcc-c++ libevent-devel gcc boost-devel
+wget https://launchpad.net/gearmand/1.0/0.41/+download/gearmand-0.41.tar.gz
+tar zxvf gearmand-0.41.tar.gz
+cp gearmand-0.41/support/gearmand.init .
+vi gearmand-0.41/support/gearmand.spec
+en la linea 100, borrar las dos manpages
+tar zcvf gearmand-0.41.tar.gz gearmand-0.41
+rpmbuild -tb gearmand-0.41.tar.gz
+
+mod_gearman
+wget http://www.mod-gearman.org/download/v1.5.0/src/mod_gearman-1.5.0.tar.gz
+yum install autoconf automake ncurses-devel libtool libtool-ltdl-devel perl-ExtUtils-Embed
+yum install /tmp/gearmand-devel-1.0.6-1.x86_64.rpm
+  instalo el gearmand-devel que he generado en el paso anterior
+rpmbuild -tb mod_gearman-1.5.0.tar.gz
+
+
+# Dev
+https://github.com/sni/mod_gearman/blob/master/neb_module/mod_gearman.c
+Llamadas que hace mod_gearman_neb
+
+int nebmodule_init( int flags, char *args, nebmodule *handle ) {
+
+->
+
+  neb_register_callback( NEBCALLBACK_PROCESS_DATA, gearman_module_handle, 0, handle_process_events );
+  ->
+    static int handle_process_events( int event_type, void *data ) {
+    ->
+      register_neb_callbacks();
+      ->
+        static void register_neb_callbacks(void) {
+        ->
+          neb_register_callback( NEBCALLBACK_HOST_CHECK_DATA,    gearman_module_handle, 0, handle_host_check );
+          neb_register_callback( NEBCALLBACK_SERVICE_CHECK_DATA, gearman_module_handle, 0, handle_svc_check );
+          neb_register_callback( NEBCALLBACK_EVENT_HANDLER_DATA, gearman_module_handle, 0, handle_eventhandler );
+          neb_register_callback( NEBCALLBACK_HOST_CHECK_DATA, gearman_module_handle, 0, handle_perfdata );
+          neb_register_callback( NEBCALLBACK_SERVICE_CHECK_DATA, gearman_module_handle, 0, handle_perfdata );
+
+      start_threads();
+      -> tantas como results_workers
+        pthread_create ( &result_thr[x], NULL, result_worker, (void *)&result_threads_running);
+ 
+  neb_register_callback( NEBCALLBACK_TIMED_EVENT_DATA, gearman_module_handle, 0, handle_timed_events );
+
+->
+
+
+
+Del error hacia atrás:
+[2015-02-27 09:06:30][10615][ERROR] worker error: connect_poll(No route to host) getsockopt() failed -> libgearman/connection.cc:104
+        ret = gearman_worker_work( &worker );
+        if ( ret != GEARMAN_SUCCESS && ret != GEARMAN_WORK_FAIL ) {
+            if ( ret != GEARMAN_TIMEOUT)
+                gm_log( GM_LOG_ERROR, "worker error: %s\n", gearman_worker_error( &worker ) );

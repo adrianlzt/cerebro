@@ -17,6 +17,11 @@ Mirar handlers.md si queremos reiniciar un service cuando se cambie un fichero.
 - name: stop and disable iptables
   service: name=iptables state=stopped enabled=n
 
+# Simplemente lo quitamos del arranque, no nos metemos en si esta arrancado o parado
+- name: enable and run icinga daemon
+  service: name=icinga enabled=no
+
+
 # Ad-hoc
 # Desactivar puppet del inicio y pararlo
 ansible MAQUINAS -s -m service -a "name=puppet state=stopped enabled=no"

@@ -7,3 +7,6 @@ pgrep -P PID
 
 pgrep PATTERN
   nos busca el pid
+
+pgrep -f PATTERN
+  busca el pattern en toda la linea de ejecucción

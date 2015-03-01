@@ -1,4 +1,6 @@
-Vagrant 1.4.0
+https://www.vagrantup.com/blog/feature-preview-vagrant-1-6-docker-dev-environments.html
+
+Vagrant 1.6.0
 No funciona sobre LXC
 New provisioner: Docker. Install Docker, pull containers, and run containers easier than ever
 http://docs.vagrantup.com/v2/provisioning/docker.html

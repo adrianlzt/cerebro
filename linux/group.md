@@ -25,6 +25,10 @@ deluser adrian vboxusers
 
 
 Hace falta volver a loguearse para que se apliquen los cambios.
+O ejecutar el comando:
+newgrp NOMBREGRUPO
+
+
 Podemos hacer también:
 $ sudo su
 # login adrian

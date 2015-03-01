@@ -40,3 +40,18 @@ stop() {
 trap reload SIGHUP;
 trap stop SIGTERM;
 trap stop SIGINT;
+
+# Trap para matar procesos hijos sin hacen un kill al script bash
+#!/bin/bash
+
+trap 'kill $(jobs -p)' EXIT
+
+echo "hola"
+python -c "
+import time
+while True:
+  print 'vuelta'
+  time.sleep(1)
+"
+echo "fin"
+

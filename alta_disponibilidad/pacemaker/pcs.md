@@ -13,7 +13,7 @@ El usuario que tiene permisos para ejecutar pcs (a parte de root) es hacluster.
 Si queremos que otros usuarios tengan permiso les agregaremos al grupo: haclient
 
 
-Desactivar STONITH:
+## Desactivar STONITH:
 pcs property set stonith-enabled=false
 
 Desactivar quorum (Pacemaker’s default behavior is to stop all resources if the cluster does not have quorum):
@@ -23,7 +23,7 @@ Modo mantenimiento:
 pcs property set maintenance-mode=true
 
 
-Nodos/Recursos/Constraints/Propiedades:
+## Nodos/Recursos/Constraints/Propiedades:
 pcs config
 
 Obtener el CIB:
@@ -84,6 +84,13 @@ pcs constraint --full
 
 Mostrar solo las location constraint:
 pcs constraint location --full
+
+
+## Nodos
+pcs cluster standby NODO
+  poner un nodo en standby
+
+
 
 
 

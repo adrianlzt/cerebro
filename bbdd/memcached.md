@@ -1,4 +1,5 @@
 http://memcached.org/
+http://www.cyberciti.biz/faq/howto-install-memcached-on-ubuntu-linux-1204-1404/
 
 What is Memcached?
 

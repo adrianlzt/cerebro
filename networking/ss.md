@@ -17,6 +17,10 @@ ss
   %cwnd   # Congestion Window
   %ssthresh  # Slow Start Threshold
 
+ss -s
+  estadisticas
+  parecido a /proc/net/sockstat
+Más info: nstat lnstat
 
 ss -a
   muestra todas las conexiones (establecidas, listen, timewait, etc)
@@ -33,6 +37,9 @@ ss -ap
 
 ss -o state established '( dport = :ssh or sport = :ssh )'
   Display all established ssh connections.
+
+ss -ant sport = :9999
+  mostrar todas las conexiones tcp, sin traducir y que el source port sea 9999
 
 ss -o state fin-wait-1 '( sport = :http or sport = :https )' dst 193.233.7/24
   List all the tcp sockets in state FIN-WAIT-1 for our apache to network 193.233.7/24 and look at their timers.
@@ -78,3 +85,15 @@ EXPRESSION
   <, >, =, >=, =, ==, !=, eq, ge, lt, ne
   and, or, not para separar expresiones
   no olvidar de escapar expresiones
+
+
+Columas:
+ss -ntp
+
+Send-Q
+  Para estado LISTEN, significa la cola backlog (conexiones establecidas pendientes de contestar). Esta cola está limitada por el valor del argumento 'backlog' pasado en la syscall listen() y truncado por somaxconn (valor máximo definido por el sistema).
+
+  Para conexiones establecidas, es la cantidad de bytes en espera de ser reportados a la aplicación.
+
+Recv-Q
+  Para conexiones establecidas, cantidad de bytes a la espera de ser enviados al cliente (esto lo induzco por como funciona Send-Q)

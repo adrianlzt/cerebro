@@ -2,8 +2,16 @@ http://grafana.org/
 
 A beautiful, easy to use and feature rich Graphite dashboard replacement and graph editor.
 
-# Docker: grafana para influxdb
+# Docker
 https://registry.hub.docker.com/u/tutum/grafana/
+grafana para influxdb
+
+https://registry.hub.docker.com/u/grafana/grafana/
+develop 2.0
+
+https://registry.hub.docker.com/u/choopooly/grafana-graphite/
+grafana + graphite + statsd
+
 
 ## Instalacion ##
 Descargar la última versión de https://github.com/torkelo/grafana/releases

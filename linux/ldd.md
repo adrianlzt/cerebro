@@ -1,3 +1,7 @@
+Un binario linkado estaticamente no requiere de ningún otro fichero para funcionar.
+Uno linkado dinámicamente si necesita otros ficheros (ldd nos dirá cuales)
+
+
 ldd fichero.so
   Nos dice que librerias require
 

@@ -1,3 +1,4 @@
+https://docs.puppetlabs.com/references/latest/type.html#service
 puppet describe service | less
 
 

@@ -28,6 +28,8 @@ Meter en .vimrc la configuración.
 ## Plugins ##
 Meter en .vimrc con el formato:
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'https://github.com/wincent/Command-T.git'
+
 
 Luego ejecutar:
 vim +BundleInstall

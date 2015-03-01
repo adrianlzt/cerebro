@@ -1,5 +1,7 @@
 https://collectd.org/wiki/index.php/Plugin:Write_Graphite
 
+A partir de la versión 5.1
+
 Configuración (en caso de varias opciones, pongo primero el valor por defecto):
 
 LoadPlugin write_graphite
@@ -16,7 +18,7 @@ LoadPlugin write_graphite
 		# DEFINIR UNO!!
 
     #LogSendErrors [true|false] # Loguea errores en la conex con graphite
-    Prefix "collectd" # cadena que se antepone al hostname
+    Prefix "collectd" # cadena que se antepone al hostname 'collectdNOMBREMAQUINA'
     #Postfix "collectd" # cadena que se pone al final
     #StoreRates [true|false] # enviar el rate calculado o el valor total
     #SeparateInstances [false|true] # separar por puntos la instancia, tipo, etc

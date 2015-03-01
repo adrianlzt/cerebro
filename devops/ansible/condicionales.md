@@ -77,3 +77,7 @@ Salta un prompt si no podemos hacer ping a github.com
       tags:
         - test
       when: github|faile
+
+
+  roles:
+    - { role: cyclops, when: "{{MONITORING.active}}" }

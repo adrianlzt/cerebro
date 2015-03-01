@@ -1,0 +1,1 @@
+objdump -d binario

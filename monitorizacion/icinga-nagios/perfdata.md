@@ -11,3 +11,6 @@ Mirar metricfactory si queremos pasar esta perfdata a otros sistemas (como graph
 Si vemos que no se está generando perfdata, comprobar que los datos enviados cumplen la especificación.
 He visto por ejemplo con check_disk cadenas truncadas (faltaban caracteres) y por eso no se generaba.
 
+
+Ejemplo:
+|time=0.008093s;;;0.000000 size=4184B;;;0

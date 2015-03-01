@@ -1,0 +1,7 @@
+http://www.freedesktop.org/software/systemd/man/coredumpctl.html
+http://stackoverflow.com/a/14082174
+
+Se almacenan binariamente con journalctl.
+Si queremos sacar uno a un fichero:
+
+coredumpctl dump -o coredump 1549

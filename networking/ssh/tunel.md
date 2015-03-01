@@ -34,6 +34,9 @@ Util cuando un pc no tenemos acceso ssh desde el exterior hacia la máquina
 En la máquina 192.168.253.16 se levanta el puerto 8080 que conecta con localhost (donde se ejecuta el comando) en el puerto 3000
 ssh -f -R 8080:localhost:3000 192.168.253.16 -N
 
+ssh -f -R 8080:172.17.0.2:2003 maquina -N
+en 'maquina' se abre el puerto 8080 que conecta con la maquina 172.17.0.2:2003
+
 ssh -f -R <local-port-to-listen>:<remote-host>:<remote-port> external -N
 
 Ejemplo, ejecutado en un pc con ip privada tras un firewall, nos va a permitir conectarnos a la red interna desde nuestra casa

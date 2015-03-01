@@ -11,7 +11,7 @@ pg_restore -l prueba.custom
 
 Restaurar:
 createdb prueba
-pg_restore -v -e -Fc -d prueba fichero.sql
+pg_restore -v -e -Fc -d prueba /backup/prueba.custom
   -v verbose
   -e exit on error
   -Fc format custom

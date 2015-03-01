@@ -1,6 +1,13 @@
 https://gist.github.com/
 http://manpages.ubuntu.com/manpages/trusty/man1/gist-paste.1.html
 
+# Para arch
+https://github.com/defunkt/gist
+packer -S gist-git
+gist --login
+
+
+# Ubuntu
 Compartir ficheros / configuraciones / texto mediante GitHub.
 Se puede hacer entrando en la web o desde la consola.
 

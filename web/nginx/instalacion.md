@@ -1,3 +1,5 @@
+http://nginx.org/en/linux_packages.html
+
 ## Ubuntu
 
 Elegimos el ppa que queramos:
@@ -8,4 +10,7 @@ apt-get update
 apt-get install nginx
 
 ## CentOS
-Necesario EPEL
+http://nginx.org/packages/rhel/6/noarch/RPMS/nginx-release-rhel-6-0.el6.ngx.noarch.rpm
+
+## Centos 7
+http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm

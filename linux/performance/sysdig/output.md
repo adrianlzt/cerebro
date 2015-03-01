@@ -14,6 +14,7 @@
      "%evt.num %evt.time %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.args" <- formato por defecto
 
      proc.cmdline  muestra la linea completa del comando ejecutado
+     proc.args  argumentos pasados al comando
 
      evt.num 	is the incremental event number
      evt.time 	is the event timestamp
