@@ -18,3 +18,7 @@ esto es lo q t comentaba q hace icinga, espacia los checks cuando arranca para n
 
 y si quieres que procese mas rapido la cola check_results:
  check_result_reaper_frequency=1
+
+
+Usar ram para meter los ficheros de precache, cache y status.dat
+Si tenemos un cluster y balancea, la información en status.dat se pierde. Debemos tener el retention.dat actualizado para que el nodo que tome el testigo tenga una visión lo más exacta del estado cuando se reinicio el cluster.

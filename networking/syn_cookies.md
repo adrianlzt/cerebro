@@ -40,3 +40,27 @@ Enabling SYN cookies is a very simple way to defeat SYN flood attacks
 while using only a bit more CPU time for the cookie creation and
 verification. Since the alternative is to reject all incoming
 connections, enabling SYN cookies is an obvious choice.
+
+
+
+# Pruebas
+
+# sysctl -a | grep -e max_syn -e cook -e backlog
+net.core.netdev_max_backlog = 1000
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_max_syn_backlog = 1
+
+Intentando conectar el máximo de clientes, veo:
+  3 ESTAB
+  ~16 SYN-RECV
+
+El número de SYN-RECV varía en ese número si mantenemos lo reintentos. Si lo dejamos estabilizarse se queda en unos 6/7
+
+
+
+Aumento
+sysctl -w net.ipv4.tcp_synack_retries=20
+Para que el SO no termine ninguna SYN-RECV que le llegue.
+
+El sistema va aceptando conexiones en la cola SYN-RECV hasta 7, más o menos. A partir de ahí, si el número crece, el sistema indiscriminadamente (parece) se dedica a ir eliminando conexiones de esa cola.
+Da igual el tamaño de la cola syn (he llegado a poner net.ipv4.tcp_max_syn_backlog=100 y actua igual).

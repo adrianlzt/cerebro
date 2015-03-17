@@ -1,5 +1,9 @@
 http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
 
+/etc/anacrontab
+Donde se define cuando se va a ejecutar el daily, weekly, monthly
+Suele llevar un random delay para que no se ejecute siempre exactamente a la misma hora
+
 # .---------------- minute (0 - 59)
 # |  .------------- hour (0 - 23)
 # |  |  .---------- day of month (1 - 31)

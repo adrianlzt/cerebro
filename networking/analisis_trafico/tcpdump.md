@@ -2,8 +2,11 @@ http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
 ### USAR TSHARK ###
 
-No traducir hosts y puertos (los puertos los sigue traduciendo)
+No traducir hosts
 # tcpdump -n ...
+
+No traducir hosts y puertos (los puertos los sigue traduciendo)
+# tcpdump -nn ...
 
 Mostrar más información (TCP/UDP, flafs, checksum, etc)
 # tcpdump -v ...
@@ -13,6 +16,9 @@ Muestra el tráfico en ASCII
 
 Por defecto se usa la interfaz eth0, para cambiarla:
 # tcpdump -i wlan0 -A host 80.23.224.121
+
+Filtrar por tcp flag (tcp-fin, tcp-syn, tcp-rst, tcp-push, tcp-act, tcp-urg):
+'tcp[tcpflags] & tcp-push != 0'
 
 Guardar la salida a un fichero
 # tcpdump -w fichero

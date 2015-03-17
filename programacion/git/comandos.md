@@ -62,6 +62,7 @@ Mirar cambios                                       git diff
 Cambios respecto al dir local (sin commit)          git diff --staged
 Borrar last commit: modificando ficheros            git reset --hard HEAD~1
                     sin modificar ficheros          git reset HEAD~1
+Undo un reset                                       git reset HEAD@{1}
 
 Submódulos                                          git submodule add <url> <path>
 Añadir etiqueta                                     git tag -a “v1.0” -m “mensaje”

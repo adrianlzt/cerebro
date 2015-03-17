@@ -5,6 +5,7 @@ $ mongo 192.169.0.5:9999/foo
 
 
 # mongo basedatos --eval 'db.collection.find().forEach(printjson)'
+--quiet para no sacar infor sobre a donde conectamos, shell version, etc
 
 Mongo Shell:
 # mongo
@@ -42,6 +43,12 @@ mongo --nodb
 
 Otra opción:
 mongo --host `mongo --host unserver --quiet --eval "db.isMaster()['primary']"`
+
+Saber si estamos en el master:
+db.isMaster().ismaster
+
+Ejecutar acción si es el master:
+db.isMaster().ismaster && db.users.findOne()
 
 
 Permitir leer en un secundario

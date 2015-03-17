@@ -1,6 +1,8 @@
 ## Formato ##
 sysdig [parámetros] [chisels] [filtros]
 
+Todos los fields:
+sysdig -l
 
 ## Guardar información para analizarla posteriormente ##
 sysdig -w fichero.scap

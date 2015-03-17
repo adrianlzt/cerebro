@@ -13,3 +13,6 @@ If the "persistent" option is set to one (1), the comment associated with the ac
 
 Para enviar un external command:
 external-command.sh
+
+
+/usr/bin/printf "[%lu] SCHEDULE_SVC_CHECK;HOSTNAME;Check load by NRPE;$(date +%s)\n" $(date +%s) > /var/spool/icinga/cmd/icinga.cmd

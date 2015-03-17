@@ -21,3 +21,35 @@ sysdig –r trace.scap –c fdbytes_by proc.name "fd.directory=/tmp/ and fd.file
 sysdig -A –r trace.scap –c echo_fds "fd.filename=ccJvb4Mi.s"
   ver la actividad de escritura a un fichero
 
+
+Errores:
+See the files where most time has been spent
+sysdig -c topfiles_time
+
+See the files where apache spent most time
+sysdig -c topfiles_time proc.name=httpd
+
+See the top processes in terms of I/O errors
+sysdig -c topprocs_errors
+
+See the top files in terms of I/O errors
+sysdig -c topfiles_errors
+
+See all the failed disk I/O calls
+sysdig fd.type=file and evt.failed=true
+
+See all the failed file opens by httpd
+sysdig "proc.name=httpd and evt.type=open and evt.failed=true"
+
+See the system calls where most time has been spent
+sysdig -c topscalls_time
+
+See the top system calls returning errors
+sysdig -c topscalls "evt.failed=true"
+
+snoop failed file opens as they occur
+sysdig -p "%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name" evt.type=open and evt.failed=true
+
+Print the file I/O calls that have a latency greater than 1ms:
+sysdig -c fileslower 1
+

@@ -12,7 +12,9 @@ Pasos:
   7.- El nodo aparece en MAAS como "Declared"
   8.- Podemos verlo en la interfaz web y definir su "Power type" en caso de que no lo haya cogido automáticamente
 
-Seguir en accept_and_commission.md
+
+
+
 
 
 Deberemos aceptar manualmente los nodos, o poner aceptación automática:
@@ -40,6 +42,10 @@ ssh login@server
 
 virsh -c qemu+ssh://adrian@192.168.200.1/system
 
+Al editar el nodo:
+Power address: qemu+ssh://adrian@192.168.200.1/system
+Power ID: NOMBRE_DEL_HOST_EN_QEMU
 
 
-Si instalamos una imagen ubuntu, el usuario será 'ubuntu'
+
+Seguir en commission.md

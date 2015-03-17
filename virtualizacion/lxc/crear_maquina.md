@@ -7,6 +7,13 @@ sudo lxc-create -t ubuntu -n nombreContainer -- --auth-key /home/adrian/.ssh/id_
 # The default user is 'ubuntu' with password 'ubuntu'!
 # Use the 'sudo' command to run tasks as root in the container.
 
+Crear CentOS:
+arch: packer -S yum
+root_display_password=yes sudo lxc-create -t centos -n centos-base -- -R 7 --repo http://nervion.us.es/centos/7/os/x86_64/
+La password de root la encontraremos en: /var/lib/lxc/centos-base/tmp_root_pass
+  Parece que no funciona bien este template con centos7. systemd parece que tiene problemas
+
+
 $ sudo lxc-ls --fancy
 nombreContainer               STOPPED  -     -     NO         
 

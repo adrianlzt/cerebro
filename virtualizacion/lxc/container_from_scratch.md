@@ -126,3 +126,51 @@ vsftpd
 
 También podríamos hacer:
 ip netns exec minimal chroot ftpserver /usr/sbin/vsftpd
+
+
+# Base layer centos
+mkdir /dir/base
+yum -c yum.conf --installroot=/dir/base install basesystem
+  200MB
+  a partir de ahora podremos quitar el "-c yum.conf", porque yum encontrará la configuración en el installroot
+
+
+
+# AUFS para ir creando capas
+mkdir /dir/app /dir/tmp
+mount -t aufs -o br=/dir/app:/dir/base none /dir/tmp
+
+sed -i s/'gpgcheck=1'/'gpgcheck=0'/ /dir/tmp/etc/yum.repos.d/*
+  si no, intentará buscar la key en nuestro host
+yum --installroot=/dir/tmp/ install vsftpd
+
+
+Ahora si queremos empaquetar nuestra app solo necesitaremos el directorio app/
+find app -print | cpio -o | pbzip2 -c > app.cpio.bz2
+
+Se supongo que la base layer ya está disponible, nosotros solo realizamos cambios sobre la app.
+
+Ahora en un servidor remoto, volverán a usar aufs para ir montando la base con las versiones de la app que le vayamos enviando.
+
+
+
+# Instalar un sistema entero (~850MB)
+mkdir /tmp/centos-rootfs
+yum -c yum.conf --installroot=/tmp/centos-rootfs groupinstall core
+  puede que falle btrfs-progs.i686, pero si lo queremos para un container nos dara igualç
+
+Un poco de cleanup
+chroot /tmp/centos-rootfs
+passwd root
+sed -i '/selinux/d' /etc/pam.d/login
+sed -i '/pam_loginuid.so/d' /etc/pam.d/login
+  desactivar selinux
+systemd-nspawn --private-network -D centos-rootfs/ /sbin/init
+
+No necesitamos arrancar el sistema entero, podríamos hacer por ejemplo:
+systemd-nspawn --private-network -D centos-rootfs/ /usr/bin/app
+
+
+
+# Seguridad
+Aun no está suficientemente desarrollado para fiarse del aislamiento que puede ofrecer los containers

@@ -11,7 +11,14 @@ Lo mismo con
 ss -s
 
 ## tcp ##
+https://www.kernel.org/doc/Documentation/networking/proc_net_tcp.txt
 http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
+
+These /proc interfaces provide information about currently active TCP connections, and are implemented by tcp4_seq_show() in net/ipv4/tcp_ipv4.c
+https://github.com/torvalds/linux/blob/v2.6.38/net/ipv4/tcp_ipv4.c#L2459
+La columna rx_queue es el backlog en conexiones LISTEN:
+  if (sk->sk_state == TCP_LISTEN)
+      rx_queue = sk->sk_ack_backlog;
 
 st: status  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/net/tcp_states.h?id=HEAD
   TCP_ESTABLISHED = 01,

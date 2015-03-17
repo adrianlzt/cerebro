@@ -1,9 +1,39 @@
 http://linux.die.net/man/8/logrotate
 
+Ejecutado por:
+/etc/cron.daily/logrotate
+
+Conf:
+/etc/logrotate.conf
+/etc/logrotate.d/
+
+Se hace caso a la instrucción que ultimo se lea (si ponemos varios "daily x", solo hará caso a la última)
+
+Fichero de estado:
+/var/lib/logrotate.status
+
+En este fichero se guarda la fecha del último rotado.
+Si usamos rotado por fecha, se consultará esta fecha para decidir si rotar.
+Si ejecutamos logrotate por nuestra cuenta meterá su entrada en el fichero de estado sin tocar al resto
+
+No se puede definir dos políticas de rotado para el mismo fichero:
+"duplicate log entry for"
+
+Cuidado con el orden de las instrucciones.
+Si ponemos por ejemplo:
+  daily
+  size 1M
+Solo hará caso a la última, solo rotará por tamaño.
+NO se pueden poner dos reglas simultáneamente.
+
+As of logrotate 3.8.1, maxsize and timeperiod are supported
+maxsize & timeperiod rotate when either size exceeds maxsize, or after elapsed timeperiod. logrotate may need to be run more than the default once per day in this case.
+
+
 Cuando rotar:
 size n[k|M|G] : rota cuando el tamaño del fichero sea mayor del especificado
 minsize n[k|M|G] : rota cuando el tamaño del fichero es mayor del espeficado y también se cumple una orden temporal (daily, weekly, monthly)
-daily
+daily. Se suele poner a 1 para no rotar ficheros vacios.
 weekly: rota cuando el día de la semana es menor que el día del último rotado, o si ha pasado más de una semana desde el último rotado
 monthly: rota el primer día de cada mes (si logrotate corre todos los días, si no, el primer día que se ejecute logrotate en el mes)
 
@@ -12,12 +42,29 @@ rotate n : mantiene n ficheros. Si ponemos 0, no mantiene ficheros antiguos.
 maxage count : elimina ficheros rotados mayores que count días
 notifempty: Do not rotate the log if it is empty (this overrides the ifempty option).
 missingok: If the log file is missing, go on to the next one without issuing an error message. See also nomissingok.
-delaycompress: mantiene el ultimo fichero rotado sin comprimir
+delaycompress: mantiene el ultimo fichero rotado sin comprimir. Esquema de nombrado: nombre -> nombre.1 -> nombre.2.gz
 nodelaycompress
 copytruncate: copia el fichero y luego lo trunca (echo "" > fichero). Pueden perderse algunos datos que se escriban entre el copiado y el truncado. Esto es útil para algunos programas que no podemos decirles que vuelvan a abrir el fichero de log, y se mantenga escribiendo al mismo file descriptor
 create mode owner group: permisos y dueños del nuevo fichero que se crea tras el rotado.
 compress: comprimir archivos antiguos
 sharedscripts: solo ejecutamos el prescript y/o postscript una vez (para el caso de tener varios ficheros en el mismo logrotate). No se ejecuta nada si no se rota.
+dateext: use date as a suffix of the rotated file
+
+
+
+/var/log/fichero.log { 
+  daily # rota cada dia
+  maxsize 100M # maximo tamaño de 100M; ejecutar varias veces al dia; solo logrotate > 3.8.1
+  minsize 1 # no rota si el fichero esta vacio
+  rotate 10 # mantiene 10 ficheros
+  compress 
+  delaycompress 
+  missingok 
+  notifempty 
+  copytruncate
+  dateext
+  create
+}
 
 
 Mantiene 5 ficheros (el log principal, último rotado sin comprimir, y 4 más comprimidos)
@@ -39,3 +86,9 @@ Si tenemos logs que se generan con el syslog (o rsyslog) tenemos que reiniciarlo
     /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
   endscript
 
+
+
+# Errores
+logrotate: ALERT exited abnormally with [1]
+Ejecutar a mano.
+Puede ser por tener dos definiciones que atacan a los mismos ficheros

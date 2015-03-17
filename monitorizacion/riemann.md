@@ -5,3 +5,8 @@ Riemann provides low-latency, transient shared state for systems with many movin
 
 
 Reinicio lento, necesario al meter cada regla.
+
+
+Ejemplos:
+https://github.com/guardian/riemann-config
+https://github.com/jamtur01/riemann.config#other-configurations

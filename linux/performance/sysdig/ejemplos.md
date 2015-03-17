@@ -1,4 +1,5 @@
 ## Ejemplos ## https://github.com/draios/sysdig/wiki/Sysdig%20Examples
+http://www.sysdig.org/wiki/sysdig-examples/
 
 tcpdump por proceso
 sysdig fd.type=ipv4 and proc.name=cur

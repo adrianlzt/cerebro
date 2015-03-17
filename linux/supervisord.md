@@ -1,4 +1,5 @@
 http://supervisord.org/
+http://supervisord.org/configuration.html#program-x-section-settings
 
 Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
 
@@ -56,6 +57,9 @@ autostart=true
 
 autorestart=unexpected/true/false
   por defecto los programas se autoreiniciarán cuando salgan con un exitcode distinto de los esperados (mirar exitcodes)
+  si lo ponemos a unexpected, solo se reiniciará si sale con un código distinto de los puestos en exitcode. Pero esto tiene una excepcion
+  https://github.com/Supervisor/supervisor/issues/260  si el programa termina antes de startsecs supervisord volverá a intentar arrancarlo
+  tendremos que forzar startsecs=0 para que esto funcione
 
 exitcodes=0,2
   valores por defecto

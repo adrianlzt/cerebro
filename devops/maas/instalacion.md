@@ -8,11 +8,18 @@ Ubuntu Server 12.04 LTS is what is recommended for enterprise deployments (http:
 Las recomendaciones son 4GB de RAM.
 Con 512MB falla. Pruebo 2GB.
 
+Script para automatizar la instalación:
+https://github.com/gabriel-samfira/maas-hacks/blob/master/automation/deploy_maas.sh
+
 # Instalacion
 sudo apt-get update
 
-Para usar otros repos:
-  sudo apt-get install python-software-properties
+
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:maas-maintainers/stable
+sudo apt-get update
+
+Otros repos:
     Versiones más nuevas para Precise:
       sudo add-apt-repository cloud-archive:tools
     Para test build:
@@ -20,8 +27,8 @@ Para usar otros repos:
     Para daily builds:
       sudo apt-add-repository ppa:maas-maintainers/dailybuilds
   
-    Para trusty (14.04 LTS) la versión es MAAS 1.5
-  sudo apt-get update
+    sudo apt-get update
+
 
 # Instalacion
 

@@ -20,6 +20,7 @@ Un ejemplo fácil es con las redes. Podemos tener un namespace donde tengamos un
 La interfaz física solo puede vivir en uno de los namespaces.
 
 /proc/[pid]/ns/ 
+  no se para que puede servir. Siempre aparecen los mismos ficheros
 
 
 # PID

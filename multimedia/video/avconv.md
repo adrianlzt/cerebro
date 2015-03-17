@@ -26,6 +26,22 @@ avconv -i video.mp4 -vf transpose=1 out.mkv
 avconv -i video.mp4 -vf transpose=1,transpose=1 out.mkv
   180 grados (dos veces 90)
 
+Convertir a mkv (H.264)
+https://trac.ffmpeg.org/wiki/Encode/H.264
+ffmpeg -i drop.avi -c:v libx264 -preset slow -crf 22 -c:a copy output.mkv
+
+Convertir a webm
+https://trac.ffmpeg.org/wiki/Encode/VP8
+/usr/local/bin/ffmpeg -i drop.avi -c:v libvpx -b:v 1M -c:a libvorbis output.webm
+
+Convertir a ogg
+/usr/local/bin/ffmpeg -i drop.avi -acodec libvorbis -ac 1 -b 768k output.ogg
+
+Convertir a ogv (libtheora)
+https://trac.ffmpeg.org/wiki/TheoraVorbisEncodingGuide
+ffmpeg -i drop.avi -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 output.ogvavi -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale
+
+
 
 # Calidad
 http://askubuntu.com/questions/269429/how-can-i-rotate-video-by-180-degrees-with-avconv

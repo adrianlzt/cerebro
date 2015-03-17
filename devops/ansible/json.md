@@ -23,3 +23,21 @@ config.json:
     }
 }
 
+
+Extraer info de un json devuelto por un comando:
+# maas root node-groups list
+[   
+    {   
+        "cluster_name": "Cluster master",
+        "status": 1,
+        "name": "maas",
+        "uuid": "bb1748f7-a612-48d4-ae55-92db2d7579a2"
+    }
+]
+
+
+- name: obtain cluster uuid
+  command: /usr/bin/maas root node-groups list
+  register: cluster_uuid
+
+- debug: var={{ (cluster_uuid.stdout|from_json)[0].uuid}}

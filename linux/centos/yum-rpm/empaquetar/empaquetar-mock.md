@@ -1,3 +1,5 @@
+http://developerblog.redhat.com/2015/01/07/using-mock-to-build-python27-software-collections-packages-for-rhel6/#more-414639O
+
 https://fedoraproject.org/wiki/Projects/Mock
 
 Mock takes a srpm and builds it in a chroot. This ensures that your BuildRequires lines are correct, that there are no missing dependencies, and that it builds cleanly.

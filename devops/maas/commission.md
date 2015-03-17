@@ -4,3 +4,6 @@ Esto se hará tamién con la imagen ephemeral, pero esta vez cloud-init enviará
 
 Una vez hecho el commission el nodo pasará a status "Ready".
 Dispondremos de su información de HW.
+
+
+Seguir en nodo-instalacion.md

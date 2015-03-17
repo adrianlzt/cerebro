@@ -59,8 +59,11 @@ Debemos hacerlo cada vez que añadamos un nuevo cluster controller
 
 Hacerlo desde la interfaz web:
 MAAS/images/
-
 Ahí podemos seleccionar la release y  las arquitecturas.
+
+O con la CLI:
+maas LOGIN boot-resources import
+  por defecto baja la ultima LTS de la arch amd64
 
 La ip configurada en maas_local_settings.py:DEFAULT_MAAS_URL en el region controller debe ser accesible por el cluster-controller.
 Si no, no funcionará la importación de imágenes.
@@ -111,12 +114,18 @@ Hacer desde la interfaz web.
 En la 1.7 han añadido algunos campos nuevos (rangos para ips estaticas)
 
 API
-maas <profile> node-group-interface update $uuid eth0 \
-        ip_range_high=192.168.123.200    \
-        ip_range_low=192.168.123.100     \
-        management=2                     \
-        broadcast_ip=192.168.123.255     \
-        router_ip=192.168.123.1          \
+/usr/bin/maas root node-group-interfaces new UUID
+        name=eth2_net
+        interface=eth2
+        ip=172.16.101.1
+        router_ip=172.16.101.1
+        static_ip_range_low=172.16.101.50
+        static_ip_range_high=172.16.101.99
+        ip_range_low=172.16.101.101
+        ip_range_high=172.16.101.200
+        subnet_mask=255.255.255.0
+        management=2
+
 
 
 

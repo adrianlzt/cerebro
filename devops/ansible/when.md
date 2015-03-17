@@ -31,3 +31,8 @@ Cuando usamos ansible-playbook con --check --diff el resultado de la tarea condi
       command: echo "guay"
       when: result|failed
 
+
+
+Ejecuta si en el stderr de la variable maas_superuser encuentra la cadena 'User does not exist'
+when: maas_superuser.stderr.find('User does not exist') != -1
+

@@ -14,3 +14,12 @@ rpm -i http://mirror.us.leaseweb.net/epel/6/i386/epel-release-6-8.noarch.rpm
 
 yum install -y kernel-devel-$(uname -r)
 yum install -y sysdig
+
+
+Si nos dice:
+error opening device /dev/sysdig0. Make sure you have root credentials and that the sysdig-probe module is loaded.
+
+Ejecutar
+sysdig-probe-loader
+
+Parece que este programa, si no tenemos el módulo compilado lo intenta bajar ya compilado desde la web de sysdig

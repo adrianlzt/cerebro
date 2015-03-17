@@ -47,3 +47,17 @@ http://astokes.org/using-fastpath-installer-maas/
 
 # Boot images
 maas unica boot-images read adeccd8b-a408-4a74-b3b9-78cea17d2b50
+
+
+
+# Api con curl
+Para generar la info para poder atacar la api, con la utilidad maas, una vez logueado:
+# maas root account create-authorisation-token
+{
+    "consumer_key": "pBGvYNES5fMhMNSVRm", 
+    "token_key": "yuq9GXb9jL3BKNpSX8", 
+    "token_secret": "LHA6r8EnvtegZRp3nLDLnuaL3VFgRVry"
+}
+
+Ahora podemos usar el python de: https://maas.ubuntu.com/docs1.7/api_authentication.html?highlight=api
+para hacer un login.

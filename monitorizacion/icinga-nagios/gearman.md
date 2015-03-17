@@ -1,3 +1,7 @@
+Versiones de geramand soportadas: http://labs.consol.de/nagios/mod-gearman/#_supported_dependencies
+NO usar 1.0.6, mirar en Errores.
+
+
 # Instalacion CentOS
 https://labs.consol.de/repo/stable/#_6
 rpm -Uvh "https://labs.consol.de/repo/stable/rhel6/i386/labs-consol-stable.rhel6.noarch.rpm"
@@ -90,6 +94,13 @@ Si ponemos -c o -w estamos chequeando que no haya más de x tareas waiting.
 Si usamos -C o -W estamos chequeando que no haya más de x workers
 Podemos usar -q nombre para chequear una cola determinada.
 
+/usr/bin/check_gearman -H 127.0.0.1 -q check_results -C 2
+solo un icinga corriendo simultáneamente
+
+/usr/lib64/nagios/plugins/check_tcp -H 127.0.0.1 -p 4730
+/usr/lib64/nagios/plugins/check_procs -C gearmand -c 1:1
+/usr/bin/check_gearman -H 127.0.0.1 -w 5 -c 20
+
 
 
 # Proxy
@@ -118,6 +129,14 @@ Varias instancias de icinga pueden usar un mismo servidor gearman modificando un
 
 
 # Errores
+NO usar con otra version de libgearman que no sea la 0.33
+
+Probando con mod_gearman-1.5.2 y gearmand-1.0.6, si icinga no puede conectar con ningún servidor gearman empieza a usar todos los sockets hasta que llega al límite de file descriptors abiertos por el proceso icinga y lo mata.
+
+Lo malo de la versión 0.33 es que si configuramos varios nodos de gearmand y uno se cae (se cae el nodo entero) deja de balancear.
+
+
+
 mod_gearman_neb.log
 2015-02-26 03:14:07][18632][ERROR] worker error: flush(Too many open files) socket -> libgearman/connection.cc:635
 

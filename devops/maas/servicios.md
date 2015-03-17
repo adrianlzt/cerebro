@@ -35,3 +35,6 @@ tgt (iSCSI)
 /etc/init/maas-cluster-celery.conf
   /etc/maas/maas_cluster.conf
   /usr/bin/python -m provisioningserver start-cluster-controller http://10.0.2.15/MAAS -u maas -g maas
+
+Aqui corre el provisioning server:
+/usr/lib/python2.7/dist-packages/provisioningserver

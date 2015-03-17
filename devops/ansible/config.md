@@ -1,9 +1,10 @@
 http://docs.ansible.com/intro_configuration.html
 
+Un fichero ansible.cfg en el mismo directorio tiene preferencia.
+
 Por defecto la configuración se enuentra en /etc/ansible
 
-
-Crearemos un ~/.ansible.cfg con:
+Tambien podemos crearlo en ~/.ansible.cfg con:
 [defaults]
 hostfile       = ~/.ansible/hosts
 roles_path    = ~/.ansible/roles

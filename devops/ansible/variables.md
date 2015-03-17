@@ -187,3 +187,7 @@ Respuesta del inventario dinámico:
     }, 
 ...
 
+
+
+# ansible_managed
+ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid} on {host}

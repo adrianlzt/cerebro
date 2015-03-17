@@ -2,6 +2,7 @@ http://guides.rubyonrails.org/active_record_querying.html
 http://rubydoc.info/gems/activerecord/4.0.2/frames/ActiveRecord
 
 Project.find(3)
+Project.find(3).delete
 
 Client.first
 
@@ -16,6 +17,8 @@ Nos devuelve solo 1
 
 Nos devuelve todos los que matchean
   Client.where(first_name: 'Lifo')
+
+Service.where("check_id=? AND host_group_id is NULL",53)
 
 Con multiples condiciones
   Client.where("orders_count = ? AND locked = ?", params[:orders], false)

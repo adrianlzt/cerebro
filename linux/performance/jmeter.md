@@ -7,9 +7,19 @@ Apache JMeter may be used to test performance both on static and dynamic resourc
 
 
 Ubuntu, para testear HTTP: apt-get install jmeter-http
+Arch: packer -S jmeter
+
+Plugins útiles:
+http://jmeter-plugins.org/downloads/all/
+Standar y ExtrasLibs.
+Descomprimir el .zip en la carpeta raiz de jmeter
+
 
 https://jmeter.apache.org/usermanual/build-test-plan.html
 https://jmeter.apache.org/usermanual/build-web-test-plan.html
+
+
+Ejemplo para hacer peticiones TCP: http://abh1sh3k.blogspot.com.es/2013/11/simple-tcp-server-and-jmeter-as-client.html?q=jmeter
 
 
 The Thread Group tells JMeter the number of users you want to simulate, how often the users should send requests, and the how many requests they should send.

@@ -43,12 +43,26 @@ Mirar lambda para ver como meter inline esas func.
 Me devuelve los elementos de mi lista que cumplan metodo(f)
 
 
+## Sets
+https://docs.python.org/2/library/stdtypes.html#set
+
 # set - eliminar duplicados #
 >>> a = [1,2,3,4,2,1,5]
 >>> set(a)
 set([1, 2, 3, 4, 5])
 
 # interset - elementos en ambas listas #
+>>> b1 = [1,2,3,4,5,9,11,15]
+>>> b2 = [4,5,6,7,8]
+>>> set(b1).intersection(b2)
+set([4, 5])
+
+# Elementos en b1 que no estan en b2
+>>> b1 = [1,2,3,4,5,9,11,15]
+>>> b2 = [4,5,6,7,8]
+>>> set(b1).difference(b2)
+set([1, 2, 3, 9, 11, 15])
+
 
 
 # Devolver un array tras aplicar una funcion a otro array #

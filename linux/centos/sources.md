@@ -3,3 +3,5 @@ ftp://ftp.redhat.com/redhat/linux/enterprise/
 
 Para RHEL 6 Server:
 ftp://ftp.redhat.com/redhat/linux/enterprise/6Server/en/os/SRPMS
+
+https://git.centos.org

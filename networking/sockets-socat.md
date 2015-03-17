@@ -6,6 +6,8 @@ socat para analizar sockets de fichero.
 Leer un socket de fichero ignorando si termina el fichero
 # socat -u /var/spool/icinga/ido.sock,ignoreeof -
 
+# Proxy de socket
+socat -d -d -x -v unix-listen:NUEVO,fork unix-connect:EXISTENTE
 
 El truco es poner a socat en medio:
 1.- Arrancar la aplicación que escucha del socket
