@@ -1,3 +1,5 @@
+http://linux-ip.net/html/tools-ip-route.html
+
 Direcciones ip y MACs de las interfaces:
 ip addr
 ip a
@@ -30,12 +32,23 @@ ip r
       ir a la ip 81.45.59.58 a través de la puerta de enlace 192.168.1.1 a la que llegamos a través de la interfaz wlan1
     ip route change default via 192.168.2.1 via eth1
 
+  Mostrar por que ruta vamos a salir
+    ip route get 10.4.5.2
+    ip -s route get 127.0.0.1/32
+      esto es un "truco" para actualizar las rutas para una subred entera
+
   Mostrar rutas locales:
     ip route show table local
+
+  Mostrar cache de rutas
+    ip route show cache
+    ip route show cache 10.4.5.2
 
   Borrar rutas:
     ip r del 10.6.0.0/16 dev tun0  scope link
 
+  Prohibir ruta:
+    ip route add prohibit 209.10.26.51
 
 Ver cache de ip-mac
 ip neigh

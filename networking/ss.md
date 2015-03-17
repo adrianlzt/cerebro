@@ -47,6 +47,10 @@ ss -o state fin-wait-1 '( sport = :http or sport = :https )' dst 193.233.7/24
 ss -a exclude listening
   muestra todas las conex menos las listening
 
+ss -a -f unix
+  estado unix sockets
+  -l para sockets listening
+
 state / exclude / excl:
   established
   syn-sent

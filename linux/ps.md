@@ -28,6 +28,7 @@ ps -eo pid,user,args,pri,ni
 Memoria:
 ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | column -t | head
 
+
 ps aux --sort -rss | head
 
 Ver en continuo, remarcando los cambios cada 2 segundos:

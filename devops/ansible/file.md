@@ -5,6 +5,9 @@ Generar fichero con contenido:
 - name: gen file
   copy: dest=/tmp/fichero content="cosas\notralinea\n"
 
+ansible all -s -m copy -a "dest=/etc/ntp.conf content='server 10.6.5.1\nserver 10.6.35.2\n'"
+
+
 En modo ad-hoc no me crea el fichero si no existe :?
 
 - name: gen file
@@ -18,7 +21,7 @@ En modo ad-hoc no me crea el fichero si no existe :?
 # Permisos:
 - name: fix mod_gearman_neb log perms
   file: dest=/var/log/mod_gearman/mod_gearman_neb.log state=touch
-  owner=root group=root mode=0644
+        owner=root group=root mode=0644
 
 
 Borrar fichero

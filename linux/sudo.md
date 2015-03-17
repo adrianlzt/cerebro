@@ -17,6 +17,9 @@ user    MACHINES= (como_que_usuario) FLAGS: COMMANDS
 dgb     boulder = (operator) /bin/ls, /bin/kill, /usr/bin/lprm
 The user dgb may run /bin/ls, /bin/kill, and /usr/bin/lprm—but only as operator in host boulder
 
+Permitir a un usuario todos los comandos sin password
+NOMBRE ALL=(ALL) NOPASSWD: ALL
+
 Permitir a los usuarios de "grupo" hacer sudo contra todos los comandos.
 %grupo ALL=(ALL) ALL
 

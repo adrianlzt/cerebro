@@ -1,6 +1,8 @@
 http://bazaar.launchpad.net/~curtin-dev/curtin/trunk/view/head:/doc/topics/overview.rst
 http://astokes.org/customizing-fastpath-curtin-installations/
 
+Crear imagenes para curtin: image-builder.md
+
 
 A usage of curtin will go through the following stages:
 

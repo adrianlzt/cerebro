@@ -19,6 +19,17 @@ Ejemplo: vim-updated.yaml
  
 gather_facts: False on a playbook allows this implicit fact gathering to be skipped
 
+Tambien podemos tener un playbook donde primero se ejecuten unos roles y luego una tasks:
+- hosts: all
+  sudo: True
+  gather_facts: False
+  serial: 1
+  roles:
+    - { role: rvm_io.rvm1-ruby, rvm1_rubies: 'ruby-2.0.0', tags: ruby }
+  tasks:
+    - name: Install mysql client
+      yum: name=mysql state=presen
+
 
 Para ver donde se va a aplicar:
 ansible-playbook playbook.yml --list-hosts

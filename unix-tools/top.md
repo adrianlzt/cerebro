@@ -1,3 +1,7 @@
+top version 3.3.10
+P - ordenar por CPU
+
+
 M - ordenar por uso de memoria
 1 - mostrar el uso de todas las CPUs
 c - mostrar el path de los comandos

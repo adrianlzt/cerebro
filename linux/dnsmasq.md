@@ -51,6 +51,16 @@ no-poll
 # dnsmasq.
 #log-queries
 
+
+# This option forces dnsmasq to really bind only the interfaces 
+# it is listening on. About the only time when this is useful is
+# when running another nameserver (or another instance of dnsmasq)
+# on the same machine. Setting this option also enables multiple
+# instances of dnsmasq which provide DHCP service to run in the
+# same machine.
+bind-interfaces
+
+
 # Internet server
 # Telefonica
 server=80.58.61.250

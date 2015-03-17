@@ -45,6 +45,8 @@ maas unica boot-resource read 1
 
 
 Cargar otros SOs:
+mirar image-builder.md
+
 maas root boot-resources create name=windows/win2012r2 title="Windows Server 2012 R2" architecture=amd64/generic filetype=ddtgz content@=/home/ubuntu/windows-server-2012-r2.tar.gz
   Crear una imagen. Tenemos que pasar un .tar.gz de una imagen del disco
   si no ponemos filetype por defecto se pondra a 'tgz'

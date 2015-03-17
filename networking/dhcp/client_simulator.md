@@ -1,3 +1,11 @@
+Usar el binario dhtest de este directorio:
+sudo ./dhtest -i eth1 -m 00:11:22:33:44:55 --verbose
+
+
+Mirar networking/scapy.md
+Buscar en #DHCP
+
+
 https://sargandh.wordpress.com/2012/02/23/linux-dhcp-client-simulation-tool/
 https://github.com/saravana815/dhtest
 

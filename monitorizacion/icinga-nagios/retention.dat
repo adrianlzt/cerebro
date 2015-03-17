@@ -6,3 +6,9 @@ commandfile='/srv/nagios/icinga/spool/cmd/icinga.cmd'
 /usr/bin/printf "[%lu] SAVE_STATE_INFORMATION\n" $now > $commandfile
 
 Para cargar el fichero: READ_STATE_INFORMATION
+
+
+Tiempo, en minutos, cada cuanto se actualiza este fichero.
+retention_update_interval=60
+
+Es importante si tenemos un cluster, para que el nodo que tome el testigo (en caso de caida del nodo activo) tenga una visión lo más parecida al nodo anterior antes de caer.

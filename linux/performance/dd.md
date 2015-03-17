@@ -1,4 +1,4 @@
-dd if=/dev/zero of=file count=2048
+dd if=/dev/zero of=file bs=1M count=1
   crear fichero de 1MB
 
 Se puede pasar un parámetro para escribir con O_DIRECT (sin caches ni readahead)

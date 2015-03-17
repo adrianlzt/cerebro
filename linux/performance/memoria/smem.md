@@ -1,3 +1,5 @@
+http://www.selenic.com/smem/
+
 Nos ayuda con los "problemas" con memoria compartida.
 
 - Usa %Pss%smaps para dar una idea del consumo de RAM por proceso.

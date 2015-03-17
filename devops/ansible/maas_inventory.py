@@ -1,0 +1,1 @@
+../maas/ansible_inventory.py

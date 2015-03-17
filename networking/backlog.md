@@ -24,7 +24,12 @@ Cola backlog estab:
     ss -antp sport = :5060
       Recv-Q es el número de elementos en la cola
 
-Cola backlog syn-rech:
+Cola backlog syn-recv (/proc/sys/net/ipv4/tcp_syncookies=1, por defecto):
+  Cola sync-recv virtualmente infinita.
+  Con ss podemos ver cada conexión que ha enviado un SYN, pero la cola no se llena.
+  Las conexiones válidas, que contestan con la ACK correctamente, son aceptadas.
+
+Cola backlog syn-recv (/proc/sys/net/ipv4/tcp_syncookies=0):
   Valor máximo: /proc/sys/net/ipv4/tcp_max_syn_backlog
   Siempre que este a 0: /proc/sys/net/ipv4/tcp_syncookies
   Tamaño de la cola, serán las conexiones en estado SYN-RECV
@@ -34,6 +39,12 @@ Cola backlog syn-rech:
      backlog=4096 nos dará un tamaño de cola de 8192 (4097 redondeado a la siguiente potencia de 2)
      Memoria de la cola: 64bit system the size of the request_sock is 56 bytes+8bytes=64bytes per entry. 4096 entries would only take up 0.25 MB.
 
+
+Clientes en la cola backlog:
+  Los clientes aquí (tras haber hecho el tripe hand-shake (THS)), si envian datos reciben un ACK por parte del sistema.
+  La info que vayan enviando se va almacenando en la cola Recv-Q (cada valor equivale a un byte). Ej.:
+    State      Recv-Q Send-Q        Local Address:Port          Peer Address:Port
+    ESTAB      20     0             192.168.33.10:9999          192.168.33.1:49967
 
 
 Cuando la cola backlog está llena, sucede lo siguiente:
@@ -45,9 +56,21 @@ Cuando la cola backlog está llena, sucede lo siguiente:
     Esta operación se realiza el número de veces definido en /proc/sys/net/ipv4/tcp_synack_retries , por defecto 5
     Los tiempos son exponenciales: 1s, 2s, 4s, 8s, 16s y 32s (63s en total)
     Tras la última espera de 32s se saca a la conexión de la cola syn-recv
-    
 
-Cola syn-recv llena:
+
+Clientes en la cola sync-rev:
+  El cliente piensa que ha está conectado (estado ESTAB visto con ss en el lado cliente), porque ha relizado el triple HS.
+  El servidor en realidad lo tiene en la cola SYN-RECV, porque está rechazando su último ACK.
+  El cliente, tras el THS intenta enviar sus datos (paquete PSH+ACK). Como estos no son ackeados, lo va reintentando.
+  También, de vez en cuando recibe por parte del servidor de nuevo el paquete SYN+ACK, al que vuelve a contestar con ACK.
+  El éxito de que el cliente logre contactar con el servidor dependerá de su insistencia, que logre enviar su dato cuando le pasen a la cola estab
+
+
+Cola syn-recv llena (/proc/sys/net/ipv4/tcp_syncookies=1):
+  En realidad aquí parece que no existe una cola como tal.
+  
+
+Cola syn-recv llena (/proc/sys/net/ipv4/tcp_syncookies=0):
   Cliente envia un SYN
   El servidor no contesta (no veo ningún contandor que se incremente con nstat)
   Por defecto la syscall connect se queda reintentando tantas veces como diga /proc/sys/net/ipv4/tcp_syn_retries y de forma exponencial
@@ -75,7 +98,7 @@ Si tenemos un servidor que atiende a múltiples peticiones (ej.: http://haifux.o
 
 Podemos modificar https://www.cs.utah.edu/~swalton/listings/sockets/programs/part2/chap6/simple-server.c para solo pasar '1' como parámetro backlog de la llamada liste().
 Luego conectamos (nc 127.0.0.1 9999) un cliente, y vemos que se pone en estado ESTAB
-watch -d -n 1 "ss -antp | grep 9999"
+watch -d -n 1 "ss -antp sport = :9999"
 
 Para los clientes meter una traza antes y otra después de la syscall connect(), así podemos ver cuando ha enviado el SYN (antes de connect) y cuando ha recibido el SYN+ACK (traza después de connect)
 
@@ -85,3 +108,21 @@ Conectamos un cuarto cliente, y como no cabe en la cola, se va a la cola SYN-REC
 Si seguimos metiendo clientes se llenará la cola SYN-RECV y los clientes enviarán el SYN pero no recibirán respuesta.
 
 Según el servidor vaya procesando elementos irá pasando tareas de la cola SYN-RECV a la cola ESTAB.
+
+
+
+No enviar paquetes ACK ni RST (para simular un ataque SYN flood):
+sudo iptables -A OUTPUT -p tcp --tcp-flags ALL ACK -d 192.168.33.10 --dport 9999 -j DROP
+sudo iptables -A OUTPUT -p tcp --tcp-flags ALL RST -d 192.168.33.10 --dport 9999 -j DROP
+
+Enviar un paquete SYN (necesario haber puesto las reglas anteriores para que linux no envie automaticamente el RST):
+sudo hping3 -p 9999 -S -c 1 192.168.33.10
+
+O con scapy:
+send(IP(dst="192.168.33.10")/TCP(sport=40000,dport=9999))
+
+
+
+# Dudas
+somaxconn aplica a sockets?
+

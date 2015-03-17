@@ -107,9 +107,13 @@ group GRUPO1/SUBGRUPO1 {
 
 
 Toda esta configuración tiene una representación a nivel de ficheros.
-mkdir -p /cgroup/jcpu
-mount -t cgroup -o cpu,cpuacct jcpu /cgroup/jcpu
-mkdir -p /cgroup/jcpu/GRUPO1/SUBGRUPO1 # me crea ficheros para los subsistemas que haya definido
+      mkdir -p /cgroup/jcpu
+      mount -t cgroup -o cpu,cpuacct jcpu /cgroup/jcpu
+      mkdir -p /cgroup/jcpu/GRUPO1/SUBGRUPO1 # me crea ficheros para los subsistemas que haya definido
+En sistemas con systemd ya lo tenemos montado en
+/sys/fs/cgroup/
+blkio  cpu  cpuacct  cpu,cpuacct  cpuset  devices  freezer  memory  net_cls  systemd
+
 chown USUARIO2:GRUPO2 /cgroup/jcpu/GRUPO1/SUBGRUPO1/* # defino el admin
 chown USUARIO1:GRUPO1 /cgroup/jcpu/GRUPO1/SUBGRUPO1/tasks # defino el usuario que puede añadir tasks
 echo "1000" > /cgroup/jcpu/GRUPO1/SUBGRUPO1/cpu.shares
@@ -136,10 +140,18 @@ cgdelete cpuset:GRUPO # borrar cgroup
 
 
 Arrancar un proceso en un cgroup:
-echo $$ > /cgroup/jcpu/GRUPO1/SUBGRUPO1/tasks && CMD
+echo $$ > /sys/fs/cgroup/cpuset/pruebaadri/tasks
+CMD
+  esto mete el PID de la shell actual en el cgroup
+  todo lo que arranquemos en la shell ahora correrá en este cgroup
 
 Mejor, no deja arrancada una shell en el cgroup
-sh -c "echo \$$" > /cgroup/jcpu/GRUPO1/SUBGRUPO1/tasks && CMD
+sh -c "echo \$$" > /sys/fs/cgroup/cpuset/pruebaadri/tasks && CMD
+
+Si queremos sacar un PID de un cgroup, lo metemos en el grupo padre
+echo $(cat /sys/fs/cgroup/cpuset/pruebaadri/tasks) > /sys/fs/cgroup/cpuset/tasks)
+
+Si metemos un proceso corriendo en un cgroup, no va a cambiar el caliente el uso limitado de cpus, por ejemplo.
 
 Con cgexec (sticky los hijos también pertenecerán al mismo grupo)
 cgexec -g cpu:grupo1 CMD --sticky
@@ -167,6 +179,9 @@ cat /proc/cgroups
 
 ps con info de cgroups
 ps -e opid,comm,cgroup
+
+cat /proc/PID/cpuset
+  nos dice a que cpuset pertenece. Será '/' si es el general
 
 Listar cgroups
 lscgroup

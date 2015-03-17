@@ -18,13 +18,17 @@ Agregar algo al final de una cadena:
 echo "hostgroups=uno,dos,tres" | sed 's@\^(hostgroups=.*\)@\1,pepe@'
 
 
-Modificar el mismo fichero que se edita:
+# Modificar el mismo fichero que se edita:
 sed -i s/cambiaesto/poresto/ fichero.txt
 
-Borrar las lineas que empiezen por #
+# Borrar las lineas que empiezen por #
 sed -i '/^#/d' fichero
 
-Agregar un par de líneas tras una linea que tiene 'main'
+# Modificar solo parte de una línea
+ echo "session inforce pam_loginuid.so pepeito" | sed  '/^session.*pam_loginuid.so/s/^session/# session/'
+ # session inforce pam_loginuid.so pepeito
+
+# Agregar un par de líneas tras una linea que tiene 'main'
 sed /etc/puppet/puppet.conf -i -e"/main/a storeconfigs = true\nstoreconfigs_backend = puppetdb"
 
 

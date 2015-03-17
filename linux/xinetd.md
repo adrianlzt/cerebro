@@ -5,6 +5,21 @@ chkconfig xinetd on
 service xinetd start
 
 
+# Logging
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/3/html/Reference_Guide/s1-tcpwrappers-xinetd-config.html#S3-TCPWRAPPERS-XINETD-ALT-LOG
+
+Por defecto a syslog.
+Cada conexión genera:
+Mar 10 15:15:13 HOSTNAME xinetd[21478]: START: livestatus from=::ffff:127.0.0.1
+Mar 10 15:15:13 HOSTNAME xinetd[21478]: EXIT: livestatus duration=0(sec)
+
+Para desactivarlo:
+log_on_success =
+
+Tambien se puede enviar a fichero y marcar límites de tamaño para que deje de escribir
+
+
+
 Ejemplo:
 /etc/xinetd.d/livestatus
 service livestatus

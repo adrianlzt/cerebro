@@ -89,6 +89,12 @@ http://docs.mongodb.org/manual/reference/replication/
 Estado:
 > rs.status()
 
+mongo --quiet --eval "rs.status().ok"
+0  -> no hay replica set
+1  -> replica set activado
+
+
+
 Borrar un replicaset:
 > use local;
 > db.dropDatabase()

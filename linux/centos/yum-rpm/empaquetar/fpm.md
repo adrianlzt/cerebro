@@ -21,6 +21,9 @@ fpm -s <source type> -t <target type> -n <package name> -v <version> [list of so
   -d 'name'
   -d 'name > version'
   -d 'clog = 0.33-1'
+
+Para mirar las deps de un binario:
+ldd /usr/bin/xxx
  
 
 -e <- Nos deja editar el .spec antes de generar el rpm
@@ -45,6 +48,14 @@ Archlinux: packer -S rpm-org
 Si queremos poner un release (a.b.c-X): --iteration <valor>
 Ejemplo: fpm --iteration 2 -s gem -t rpm 1.5.2 rack
 
+--epoch N
+  esto vale mas que el numero de release
+  se suele escribir como: EPOCH:nombre-a.b.c-release
+
+Poner dependencias como librerias:
+-d 'libspeex.so.1()(64bit)'
+en general
+-d 'libXXX.so.N()(64bit)'
 
 ## Directorio ##
 RPM a partir de un .tar.gz

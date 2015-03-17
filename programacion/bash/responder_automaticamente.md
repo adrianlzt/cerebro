@@ -1,5 +1,8 @@
 http://expect.sourceforge.net/
 
+# Inline
+expect -c 'spawn ./script.sh; expect "pepe: "; send "123\r"; expect eof'
+
 #!/usr/bin/expect -f
 spawn comando o script
 expect "Username: *" # El asterisco coge cualquier cosa, porque no pillaba los '['

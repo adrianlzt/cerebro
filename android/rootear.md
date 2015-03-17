@@ -1,3 +1,6 @@
+http://www.shuame.com/en/root/
+
+
 Xperia Neo V:
 
 Android 2.x

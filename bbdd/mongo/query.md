@@ -18,3 +18,8 @@ LIMIT 5
 
 > db.assurance.tt.incidence.distinct('responsible.historical.group', {contact_eid: { $gt: 12000}})
 Saca los elementos distintos de responsible.historical.group con contact_eid>12000
+
+
+
+Contar salidas de un find:
+db.users.find({'_id':'admin'}).count()

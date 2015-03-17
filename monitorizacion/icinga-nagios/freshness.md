@@ -16,3 +16,15 @@ Ejemplo:
         check_command           no-backup-report        ; this command is run only if the service results are "stale"
         ...other options...
         }
+
+
+tiempo configurado - tiempo real en ejecutar el command
+5 min - 6 min
+30 sg -  1 min
+1 min - 1min
+1 min 5 sg - 2 min
+
+parece que el chequeo lo hace una vez por minuto
+así que tarda 1 min mínimo
+y si le pilla 1 min 1 sg tarde, no lo va a ver hasta el siguiente minuto
+así que el margen es de unos 65 sg

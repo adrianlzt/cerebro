@@ -8,3 +8,10 @@ nginx.conf
 Podemos comprobarlo con
 cat /proc/PID/limits | grep open
 mirar uno de los nginx worker, no el nginx master
+
+
+413 Request entity too large
+http://www.cyberciti.biz/faq/linux-unix-bsd-nginx-413-request-entity-too-large/
+nginx:
+client_max_body_size 5M;
+

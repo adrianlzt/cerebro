@@ -36,12 +36,17 @@ ssh -f -R 8080:localhost:3000 192.168.253.16 -N
 
 ssh -f -R 8080:172.17.0.2:2003 maquina -N
 en 'maquina' se abre el puerto 8080 que conecta con la maquina 172.17.0.2:2003
+en 'maquina' solo se abre en la interfaz loopback
 
-ssh -f -R <local-port-to-listen>:<remote-host>:<remote-port> external -N
+ssh -f -R <local-addres-to-listen><local-port-to-listen>:<remote-host>:<remote-port> external -N
 
 Ejemplo, ejecutado en un pc con ip privada tras un firewall, nos va a permitir conectarnos a la red interna desde nuestra casa
 ssh -f -R 10080:web-interna.com:80 home -N
 En casa: chrome localhost:10080 nos conecta a web-interna.com
+
+ssh -f -R 0.0.0.0:2221:HOST:22 sysadmin@MIDDLE -N
+  en MIDDLE abrimos el puerto 2221 en todas las interfaces, ese puerto conecta con HOST:22. La conexión con HOST:22 se establece desde el PC que ejecuta este comando.
+  en MIDDLE hace falta que este la opcion "GatewayPorts=yes"
 
 
 

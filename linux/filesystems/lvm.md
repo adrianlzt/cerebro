@@ -47,6 +47,10 @@ lvdisplay   (más verboso)
 # Mostrar los puntos /dev de los LVM que tengamos
 lvdisplay  | grep Path
 
+# Tamaño de los bloques del sistema
+lvdisplay
+  busar por "Block"
+
 
 ## Eliminar volumen lógico
 lvremove /dev/pruebasLVM/snapOPT1

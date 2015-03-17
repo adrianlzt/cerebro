@@ -1,4 +1,7 @@
 ## Formato de salida ##
+
+"%evt.num %evt.time %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.args" <- formato por defecto
+
   Sin nada -> texto
   -x <- hexadecimal
   -X <- hexadecimal con una columa traducción a ASCII

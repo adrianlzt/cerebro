@@ -4,12 +4,16 @@ systemctl start gdm
 
 systemctl
   lista de unidades
-systemctl list-units --all
-  mostrar todas las unidades, cargadas o no
-systemctl list-units --type service
+
+systemctl list-unit-files
+  muestra todos las unidades que existen en el sistema (/usr/lib/systemd/system/ and /etc/systemd/system/)
 systemctl list-unit-files --type service
   ver que servicios están activados
   static: funciona como dependencia de otros services
+
+systemctl list-units --all
+  mostrar todas las unidades, cargadas o no
+systemctl list-units --type service
 systemctl disable rsyslog
 systemctl enable rsyslog
   ln -s '/lib/systemd/system/rsyslog.service' '/etc/systemd/system/multi-user.target.wants/rsyslog.service'

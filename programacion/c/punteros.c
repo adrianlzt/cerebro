@@ -16,6 +16,7 @@ int main(void)
     j = 1;
     k = 2;
     ptr = &k; //ptr toma la posicion de memoria de k
+    int *otra = &k; //equivalente a lo que hemos hecho con ptr
     printf("\n");
     printf("j has the value %d and is stored at %p\n", j, (void *)&j);
     printf("k has the value %d and is stored at %p\n", k, (void *)&k);

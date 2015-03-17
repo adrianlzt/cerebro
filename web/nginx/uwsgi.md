@@ -1,6 +1,17 @@
+http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html
+
 uwsgi es un programa aparte al que se conectará nginx
+tambien es el protocolo de comunicación que se utilizará en la comunicación.
 
 Mirar como configuro graphite con nginx
+
+
+# Colas de sockets
+Mirar network/unix_sockets.md
+
+nginx no le gusta estar en la cola de RefCount.
+Si la cola backlog está llena dará el error:
+2015/03/05 13:14:52 [error] 1579#0: *51 connect() to unix:///var/run/uwsgi.sock failed (11: Resource temporarily unavailable) while connecting to upstream, client: 127.0.0.1, server: , request: "GET / HTTP/1.1", upstream: "uwsgi://unix:///var/run/uwsgi.sock:", host: "localhost:8002"
 
 
 
@@ -38,3 +49,25 @@ uswgi --max-requests-delta
 --listen
   tamaño de la cola de escucha que va a usar uwsgi
   si subimos esto, subir el tamaño de la cola en el sistema operativa
+
+
+Ejemplo:
+
+upstream alarmer {
+  least_conn;
+  keepalive 32;
+  server unix:///tmp/uwsgi.sock;
+}
+
+server {
+  listen    8003;
+  server_name cyclops.net;
+  charset   utf-8;
+
+  location /cyclops/v1/projects/ {
+    uwsgi_pass alarmer;
+    include uwsgi_params;
+  }
+
+}
+
