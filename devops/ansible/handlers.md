@@ -7,6 +7,10 @@ Se ejecutan en el orden de escritura, no el orden que sean llamados.
     - name: Restart nginx
       service: name=nginx state=restarted
 
+    # Tambien podemos meter chequeos
+    - name: Check nginx
+      wait_for: port={{ nginx_port }} delay=5 timeout=10
+
     # Any module can be used for the handler action
     - name: Restart application
       command: /srv/myapp/restart.sh

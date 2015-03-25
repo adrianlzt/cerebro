@@ -16,6 +16,14 @@ tasks/main.yml:
 Tambien tenemos el "VARIABLE is not defiend"
 
 
+{% if 'http://gogolg.es/asd' | match("http://.*") %}
+es http
+{% else %}
+es otra cosa
+{% endif %}
+
+
+
 Ejecutar tareas dependiendo de el valor del último task:
 tasks:
   - command: /bin/false
@@ -27,6 +35,10 @@ tasks:
     when: result|success
   - command: /bin/still/something_else
     when: result|skipped
+  - command: /bin/still/otro
+    when: result|changed
+
+
 
 Variable definida o no definida:
 when: var

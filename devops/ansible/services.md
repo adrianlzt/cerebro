@@ -15,7 +15,7 @@ Mirar handlers.md si queremos reiniciar un service cuando se cambie un fichero.
   service: name=nrpe state=started enabled=yes
 
 - name: stop and disable iptables
-  service: name=iptables state=stopped enabled=n
+  service: name=iptables state=stopped enabled=no
 
 # Simplemente lo quitamos del arranque, no nos metemos en si esta arrancado o parado
 - name: enable and run icinga daemon

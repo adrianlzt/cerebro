@@ -58,3 +58,8 @@ awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}"
 
 Imprimir variables de entorno:
 print ENVIRON["file"]
+
+
+Division:
+$ awk "BEGIN {print 5/2}"
+2.5

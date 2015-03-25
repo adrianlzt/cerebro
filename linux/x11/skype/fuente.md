@@ -8,3 +8,7 @@ font="Droid Sans,11,-1,5,50,0,0,0,0,0"
 
 
 set the Clearlooks theme in Skype and restart.
+
+
+Otra forma para arch?
+sudo pacman -S lib32-gtk2

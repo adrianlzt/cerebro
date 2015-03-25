@@ -7,6 +7,8 @@ Nos sacan los ficheros que no han hecho match
 grep -c ...
 cuenta ocurrencias
 
+grep -3 cosa fichero
+muestra tres lineas por encima y por debajo
 
 cat fichero | grep -A 5 -B 1 cosa
 Muestra 5 lineas despues del match y 1 antes

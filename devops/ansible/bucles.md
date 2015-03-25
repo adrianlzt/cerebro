@@ -25,7 +25,14 @@ No se puede usar {{item}} en el name
 
 Si queremos usar with_fileglob con templates:
   with_fileglob:
-  ¦ - ../templates/*
+    - ../templates/*
+
+dir/* no pilla ficheros "ocultos" (por ejemplo .fichero)
+
+Podemos poner
+  with_fileglob:
+    - ../templates/*
+    - ../templates/.*
 
 
 # Chequea un comando hasta que devuelve la cadena que queremos
@@ -53,6 +60,9 @@ Si queremos usar with_fileglob con templates:
   until: icinga_ports_uuids.stdout.strip('') != ""
   retries: 5
   delay: 5
+
+# Ejecutar algo sobre todos los hosts
+groups['all']
 
 
 ## Ejecutar un comando sobre las lineas de stdout de otro comando

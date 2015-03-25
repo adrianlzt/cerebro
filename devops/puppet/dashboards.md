@@ -1,3 +1,4 @@
+# Foreman
 http://theforeman.org
 The Foreman is a complete lifecycle management tool for physical and virtual servers.
 Instalarlo con el modulo de puppet
@@ -17,3 +18,14 @@ API foreman:
 curl -u guest:guest -H "Accept:application/json" http://foreman.inet
 
 Para instalar foreman -> foreman.pp (en este dir)
+
+
+# Puppet explorer
+https://github.com/spotify/puppetexplorer
+http://demo.puppetexplorer.io
+Puppet web interface written in CoffeeScript using AngularJS 
+
+
+# Puppet Board
+https://github.com/puppet-community/puppetboard
+Web frontend for PuppetDB

@@ -50,6 +50,7 @@ service livestatus
 }
 
 PROBLEMA, xinetd mantiene una conexión establecida con el socket unix del livestatus y no permite reiniciarse correctamente a icinga (el script de init.d termina matándolo con un kill -9)
+Creo que esto era por activar la opción "Use persistent connections"
 
 chkconfig xinetd on
 service xinetd start
@@ -57,10 +58,26 @@ service xinetd start
 Testear:
 nc 192.168.82.235 6557 <<< "GET services"
 
+nc 10.26.236.179  6557 <<< "GET services
+Columns: host_name host_state service_description
+Limit: 2"
+
 
 Configurar multisite:
 https://mathias-kettner.de/checkmk_multisite_setup.html
 Tamien en la interfaz gráfica, en "WATO - Configuration" -> "Distributed Monitoring"
+Si está vacío usa el local.
+Si queremos añadir un externo, primero meter el "local site" y luego el remoto.
+Si solo metemos el remoto, no veremos el local.
+El cambio se producirá automaticamente tras darle a guardar.
+
+Si usamos pnp4nagios deberemos definir el "URL prefix" con la url de donde obtener el pnp4nagios.
+Este pnp4nagios debe ser accesible directamente por los usuarios que están consultando multisite.
+Debe ir con una barra al final:
+Ej: http://el-otro.icinga.com/
+
+
+
 
 Multisite lee el fichero multisite.mk y los que haya en multisite.d/
 
@@ -83,9 +100,9 @@ sites = \
     'multisiteurl': '',
     'persist': False,
     'repl_priority': 0,
-    'socket': 'tcp:10.95.82.235:6557',
+    'socket': 'tcp:10.9.2.35:6557',
     'timeout': 10,
-    'url_prefix': 'http://10.95.82.235/'
+    'url_prefix': 'http://10.9.2.35/'
   }
 }
 
@@ -107,6 +124,9 @@ Si el otro site (no local) no se puede acceder al livestatus remoto, la interfaz
 
 service apache2 restart
 
+
+
+Si queremos que un contacto vea cosas en el interfaz local y en el remoto, el mismo contacto (mismo nombre) deberá existir en ambos icingas.
 
 
 Para que el multisite que quiere ver todo pueda meter graficas de pnp del segundo nodo, hace falta en este segundo nodo, en el fichero de apache de configuración de pnp4nagios meter esta linea:

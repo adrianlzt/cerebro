@@ -88,3 +88,11 @@ http {
         }
     }
 }
+
+
+
+Para usar http 1.1 y mantener las conexiones activas entre el balanceador y el endpoint http:
+proxy_pass http://cyclops_provisioner;
+proxy_http_version 1.1;
+proxy_set_header Connection "";
+

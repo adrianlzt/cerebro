@@ -12,6 +12,8 @@ Crear tag:
     "kernel_opts": ""
 }
 
+Lista de nodos:
+maas root nodes list
 
 Asignar tag:
 # maas root tag update-nodes ndb add="node-13bad364-c5a3-11e4-9f63-5254009dc409"

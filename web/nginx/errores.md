@@ -15,3 +15,12 @@ http://www.cyberciti.biz/faq/linux-unix-bsd-nginx-413-request-entity-too-large/
 nginx:
 client_max_body_size 5M;
 
+
+
+
+Too many open files
+http://www.cyberciti.biz/faq/linux-unix-nginx-too-many-open-files/
+Hay que definir un nuevo límite en el limits de la máquina y aumentar el parámetro worker_rlimit_nofile en la conf de nginx
+
+Si hemos tocado el sysctl.conf necesitamos hacer sysctl -p
+Si hemos cambiando el limits.d/ o limits.conf tendremos que reiniciar nginx

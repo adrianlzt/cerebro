@@ -16,3 +16,9 @@ Android 4.x
 
 Parece que si ponemos esto y luego reiniciamos, arranca en root
 echo "ro.kernel.qemu=1" > /data/local.prop
+
+
+Moto G - Lollipop:
+http://www.ibtimes.co.uk/how-root-moto-x-moto-g-1st-2nd-gen-models-android-5-0-lollipop-1474981
+
+Hace falta desbloquear el bootloader, esto borra todo el teléfono.

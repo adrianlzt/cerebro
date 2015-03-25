@@ -1,0 +1,2 @@
+objeto.__dict__
+

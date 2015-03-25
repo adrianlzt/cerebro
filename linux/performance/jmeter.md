@@ -8,6 +8,8 @@ Apache JMeter may be used to test performance both on static and dynamic resourc
 
 Ubuntu, para testear HTTP: apt-get install jmeter-http
 Arch: packer -S jmeter
+CentOS: Descargar de http://jmeter.apache.org/download_jmeter.cgi
+        Hace falta java: yum install -y java-1.8.0-openjdk
 
 Plugins útiles:
 http://jmeter-plugins.org/downloads/all/
@@ -60,4 +62,5 @@ The HTTP(S) Test Script Recorder allows JMeter to intercept and record your acti
 
 
 
-
+# Consola
+jmeter -n -t testplan.jmx -l listener.jtl
