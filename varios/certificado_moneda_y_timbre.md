@@ -1,6 +1,8 @@
 Bajar los certificados:
 https://www.sede.fnmt.gob.es/preguntas-frecuentes/obtencion-de-certificados/-/asset_publisher/nN14PjDrlrQn/content/1351-%C2%BFque-pasos-debo-seguir-para-instalar-importar-los-certificados-raices-de-fnmt-en-el-navegador-mozilla-firefox-?redirect=https%3A%2F%2Fwww.sede.fnmt.gob.es%2Fpreguntas-frecuentes%2Fobtencion-de-certificados%3Fp_p_id%3D101_INSTANCE_nN14PjDrlrQn%26p_p_lifecycle%3D0%26p_p_state%3Dnormal%26p_p_mode%3Dview%26p_p_col_id%3Dcolumn-2%26p_p_col_count%3D1
 
+Hecho con firefox y arch linux.
+Si sale en algún momento un mensaje de incompatibildiad, volver a pinchar sobre el link.
 
 Solicitar cert:
 https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software/solicitar-certificado
@@ -15,10 +17,8 @@ Puede que sea necesario pedir cita previa: https://sede.madrid.es/portal/site/tr
 Una vez pasado por la oficina, nos llegará un email con un link de donde descargar el certificado.
 https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software/descargar-certificado
 
-Me da problemas con firefox y chrome en Arch Linux.
+Deberemos abrir este link con el mismo navegador que hicimos la petición.
+
+Una vez instalado, hacer copia de seguridad exportándolo desde el gestor de certificados de firefox.
 
 
-"
-Se ha producido un error
-Su navegador o sistema operativo no es soportado
-"

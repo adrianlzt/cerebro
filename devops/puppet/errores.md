@@ -109,3 +109,7 @@ Timeout en el unicorn. Podemos verlo en el log de error de nginx.
 Aumentar el timeout en /etc/puppet/unicorn.conf
 nginx hace la pregunta al unicorn pero como este no contesta en x, pues cierra y te dice timeout
 
+
+
+Failed to apply catalog: Parameter alias failed on Nagios_hostgroup[dsn-Tools]: dsn-Tools can not create alias DSMC Tools: object already exists at /var/lib/puppet/initiatives/dsn_pp/modules/monitorizacion/manifests/icinga/hostgroup.pp:54
+Dos elementos definiendo el mismo alias?

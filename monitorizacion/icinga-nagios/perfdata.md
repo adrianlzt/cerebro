@@ -1,3 +1,6 @@
+Mirar plugins.md
+
+
 Activarlo en icinga:
 process_performance_data=1
 

@@ -17,6 +17,15 @@ hola service
 {% endif %}
 
 
+{% if 'http://gogolg.es/asd' | match("http://.*") %}
+es http
+{% else %}
+es otra cosa
+{% endif %}
+
+
+
+
 Una variable definida en ansible como:
 variable: ""
 En un if se considera false

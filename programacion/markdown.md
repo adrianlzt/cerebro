@@ -1,0 +1,73 @@
+Sintaxis: http://daringfireball.net/projects/markdown/syntax
+
+Online:
+http://dillinger.io/
+https://stackedit.io/editor
+  editar markdown almacenados en google drive
+
+This is an H1
+=============
+
+This is an H2
+-------------
+
+
+# This is an H1
+
+## This is an H2
+
+###### This is an H6
+
+> esto es una prueba
+> con texto quotado
+>
+> ## This is a header.
+> 
+> 1.   This is the first list item.
+> 2.   This is the second list item.
+> 
+> Here's some example code:
+> 
+>     return shell_exec("echo $input | $markdown_script");
+
+
+Listas
++ Uno
++ Dos
++ Tres
+
+Tambien vale con * y -
+
+Lista ordenada
+1. Cosa
+2. Otra
+3. Mas
+
+
+Codigo (4 espacios en blanco)
+    return shell_exec("echo $input | $markdown_script");
+
+`return shell_exec("echo $input | $markdown_script");`
+
+```
+multilinea de codigo
+varias lineas
+```
+
+
+Linea horizontal
+- - -
+
+
+Links
+This is [an example](http://example.com/ "Title") inline link.
+
+
+Estilos (depende de quien lo renderice?):
+*cursiva*
+_otro_
+**negrita**
+
+
+Imagenes
+![Alt text](/path/to/img.jpg "Optional title")

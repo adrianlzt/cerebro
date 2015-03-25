@@ -59,6 +59,16 @@ ss -a -f unix
   Un cliente fuera de, backlog?:
     No se muestra por el bug
 
+Podemos ver el tamaño de la cola con:
+ss -x state SYN-SENT | grep nombre-socket | wc -l
+  contamos el numero de conexiones en estado syn-sent para el socket que coja grep
+
+Con un check de nagios:
+/usr/lib64/nagios/plugins/check_generic.pl -n "backlog_queue" -e "MAX=$(cat /proc/sys/net/core/somaxconn); CPUNUM=$(cat /proc/cpuinfo | grep processor | wc -l); NUM=$(/usr/sbin/ss -x state SYN-SENT | grep cyclops-alarmer | wc -l); awk \"BEGIN {print 100*\$NUM/\$MAX/\$CPUNUM/2 }\"" -w '>50' -c '>80'
+
+Estamos convirtiendo el valor a un porcentaje respecto a somaxconn*num_cpus*2 (que es el numero de file sockets abiertos)
+
+
 
 http://www.toptip.ca/2013/02/overflow-in-datagram-type-sockets.html
 /proc/sys/net/unix/max_dgram_qlen

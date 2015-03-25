@@ -9,7 +9,19 @@ OK - no errors or warnings|default_lines=0 default_warnings=0 default_criticals=
 CRITICAL - (1 errors in check_logfiles.protocol-2013-06-25-08-49-20) - blabla ERROR blabla |default_lines=1 default_warnings=0 default_criticals=1 default_unknowns=0
 
 Varios check patterns:
---warningpattern=["WARN","PEPE"]
+--warningpattern='WARN|PEPE'
+
+Por defecto mete los seek files en /var/tmp/check_logiles/check_logfiles._var_log_fichero.log.seek
+Y los protocol (trazas por las que ha saltado el regex) en /tmp/check_logfiles.protocol-YYYY-MM-DD-HH-MM-SS
+  Esto genera bastante fichero. Podemos hacer que no genere los protocol con --noprotocol (no poner como último parámetro, falla)
+
+--sticky
+  si lo ponemos, la alarma no se irá hasta que no borremos el fichero seek, o ejecutemos con --unstick
+  se le puede poner un lifetime, tiempo que estará en critical hasta que ella sola vuelva a ok si no ha encontrado más trazas
+  lo solemos usar cuando tenemos okpattern
+
+--nologfilenocry
+  no da UNKOWN si el fichero de lo no está, da OK.
 
 
 Ejemplo de uso con fichero de configuración:

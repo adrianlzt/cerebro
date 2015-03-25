@@ -49,6 +49,11 @@ Para ejecutar todos los /tmp/*.cmd
 # Ejecutar todos los comandos definidos para nrpe
 /usr/lib64/nagios/plugins/check_multi -f /etc/nrpe.d -s file_extension=cfg
 
+# Inline
+Comprobar la hora contra dos servidores NTP. Si uno es OK -> OK. Si los dos CRITICAL -> CRITICAL
+Ignoramos fallo UNKNOWN.
+/usr/lib64/nagios/plugins/check_multi.pl -x 'command[ntp1]=/usr/lib64/nagios/plugins/check_ntp_time -H 0.es.pool.ntp.org -c 10' -x 'command[ntp2]=/usr/lib64/nagios/plugins/check_ntp_time -H 1.europe.pool.ntp.org -c 10' -x 'state[OK]=COUNT(OK)>0' -x 'state[CRITICAL]=COUNT(OK)<1' -x 'state[UNKNOWN]=(1==0)'
+
 
 ## Timeouts ##
 Hay que tener cuidado con los timeouts.

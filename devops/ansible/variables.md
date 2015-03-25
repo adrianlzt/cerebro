@@ -144,6 +144,10 @@ a list (array) of all the groups the current host is in.
 ## groups
 list of all the groups (and hosts) in the inventory
 
+Todos los hosts
+{% for host in groups['all'] %}
+with_items: groups['all']
+
 - name: disable nagios alerts for this host webserver service
   nagios: action=disable_alerts host={{ inventory_hostname }} services=webserver
   delegate_to: "{{ item }}"
