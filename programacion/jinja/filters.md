@@ -18,3 +18,7 @@ Borrar parte de una variable:
   - name: prueba
     pause: prompt="echo {{ 'ansible' | regex_replace('^a.*i(.*)$', 'a\\1') }}"
 
+
+
+Dar un valor por defecto si la variable no esta definida:
+{{adri_pepe1 | default('pepito')}}

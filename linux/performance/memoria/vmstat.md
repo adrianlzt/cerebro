@@ -4,6 +4,9 @@ vmstat 5
 Podemos ver si la máquina está swapeando mirando las columnas si/so
 
 vmstat -s
+vmstat -s -S M
+  mostar en MB
+
 vmstat -a
   %pages paged in       # page-in a RAM (bloques de 1k)
   %pages paged out      # page-out a disco

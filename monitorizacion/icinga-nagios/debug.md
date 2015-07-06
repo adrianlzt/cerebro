@@ -8,3 +8,15 @@ Para que el paquete icinga-debuginfo venga con toda la información tenemos que 
 
 Mirar el fichero objects.cache para ver como ve icinga los objetos.
 # Tip: Use that file to debug your configuration with fully resolved objects like the core sees them.
+
+
+Bajar zip de github
+https://github.com/Icinga/icinga-core
+
+yum groupinstall -y "Development tools"
+
+
+./configure --enable-idoutils=no
+  si lo queremos sin idoutils, si no, necesitaremos alguna libreria de conex con una BD
+make icinga
+  para compilar solo icinga core

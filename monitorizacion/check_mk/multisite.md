@@ -9,12 +9,17 @@ La idea de esta interfaz es para usarse en monitorización distribuída. Multisi
 Si no usamos su setup.sh es un poco infierno la instalación.
 
 
-
-
-
 Permite leer de varios livestatus de icingas disintos
 Hace falta configurar livestatus para poder ser accedido desde el exterior.
 Luego configurar multisite para poder leerlo.
+
+Gestion de usuarios/contactos en caso de varios sites:
+para poder tener acceso a la interfaz web tiene que dejarte pasar apache
+una vez entras en apache
+se mapea el usuario de htpasswd con un contacto del mismo nombre, en ambos icinga
+si solo existe el contacto en un icinga, solo se verá el contenido de ese icinga
+si el contacto existe en los dos, se verán ambas cosas
+
 
 https://mathias-kettner.de/checkmk_livestatus.html#H1:Remote a
 

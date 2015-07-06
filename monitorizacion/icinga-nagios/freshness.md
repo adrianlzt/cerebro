@@ -28,3 +28,15 @@ parece que el chequeo lo hace una vez por minuto
 así que tarda 1 min mínimo
 y si le pilla 1 min 1 sg tarde, no lo va a ver hasta el siguiente minuto
 así que el margen es de unos 65 sg
+
+
+Si el freshness_threshold es 0 icinga calcula automáticamente su valor:
+https://github.com/Icinga/icinga-core/blob/e96037c176aa05011115b24286b9331655e9f31d/base/checks.c#L2273
+
+  if (temp_service->freshness_threshold == 0) {
+    if (temp_service->state_type == HARD_STATE || temp_service->current_state == STATE_OK)
+      freshness_threshold = (temp_service->check_interval * interval_length) + temp_service->latency + additional_freshness_latency;
+    else
+      freshness_threshold = (temp_service->retry_interval * interval_length) + temp_service->latency + additional_freshness_latency;
+  } else
+    freshness_threshold = temp_service->freshness_threshold;

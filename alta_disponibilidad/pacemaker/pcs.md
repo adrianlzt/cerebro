@@ -90,6 +90,7 @@ pcs constraint location --full
 pcs cluster standby NODO
   poner un nodo en standby
 
+Si el nodo es DC se mantendrá, pero ya no podrá ser el activo.
 
 
 

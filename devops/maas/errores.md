@@ -44,11 +44,19 @@ Con el portatil, probar a entrar en la bios y desactivar/activar el network boot
 
 
 # En el enlistment
+No puede bajarse el pxelinux.0
+El cluster controller tiene algo en /var/lib/maas/boot-resources/current ?
+Tiene ahí el fichero pxelinux.0?
+Se está realizando la sync entre cluster-controller y region-controller?
+
+
+
 No space on device
 Es porque la máquina está montado un overlayfs con su memoria ram, pero tiene toda la ram ocupada. Incrementar la ram.
 Lo he visto con VMs de 256MB de ram.
 
 
 Algunas veces falla al enlistar. Timeout?
+
 
 

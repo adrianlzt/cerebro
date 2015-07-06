@@ -86,7 +86,12 @@ Si tenemos logs que se generan con el syslog (o rsyslog) tenemos que reiniciarlo
     /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true
   endscript
 
+# Permisos y usuarios
+create 640 root root
+  el nuevo fichero creado tras rotar tendrá esos permisos
 
+# Clusters con directorios compartidos
+Activar sharedscripts y poner una condición en el de pre para ver si el nodo es el cluster activo
 
 # Errores
 logrotate: ALERT exited abnormally with [1]

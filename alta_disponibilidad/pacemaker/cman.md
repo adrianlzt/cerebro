@@ -9,7 +9,7 @@ http://clusterlabs.org/quickstart-redhat.html
 FAQ: https://fedorahosted.org/cluster/wiki/FAQ/CMAN
 
 
-yum install cman ccs pacemaker
+yum install cman ccs pacemaker pcs
 
 Primero metemos en el /etc/hosts las interfaces para los dos anillos que crearemos (importante tener redundancia)
 vim /etc/hosts
@@ -61,6 +61,15 @@ Toda esta configuracion la he dejado en el fichero cluster.conf-basic
 
 # Comprobamos la configuración
 ccs_config_validate -f /etc/cluster/cluster.conf
+
+
+# Parámetros específicos de corosync:
+http://linux.die.net/man/5/cman
+Other corosync parameters
+Here's how to set the token timeout to five seconds:
+<totem token="5000"/>
+
+
 
 En este momento, si no estabamos ejecutando los comandos en los dos nodos, copiaremos el fichero /etc/cluster/cluster.conf al otro nodo.
 

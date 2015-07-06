@@ -20,6 +20,9 @@ Instalar varios paquetes:
 - name: install foo package
   yum: name=/tmp/foo-1.0-1.el6.x86_64 state=present
 
+- name: install foo package
+  yum: name=foo-1.0-1.el6.x86_64 state=absent
+
 Instalar groups:
 - name: install the 'Development tools' package group
   yum: name="@Development tools" state=present
@@ -28,7 +31,7 @@ Instalar groups:
 enablerepo=nombre
 para activar un repo desactivado solo para esta instalación
 
-disablerepo=nombre
+disablerepo=nombre,otro
 
 
 Ad-Hoc

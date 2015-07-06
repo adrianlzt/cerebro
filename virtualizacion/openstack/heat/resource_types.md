@@ -1,6 +1,7 @@
 http://docs.openstack.org/developer/heat/template_guide/openstack.html
 https://github.com/openstack/heat/tree/master/heat/engine/resources
 https://github.com/openstack/heat/tree/havana-eol/heat/engine/resources
+https://github.com/openstack/heat/tree/stable/icehouse/heat/engine/resources
 
 OS::Neutron::FloatingIP
 OS::Neutron::FloatingIPAssociation

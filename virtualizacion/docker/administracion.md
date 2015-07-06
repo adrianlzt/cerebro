@@ -29,7 +29,7 @@ docker inspect $(docker ps -q -l) | jq -r '.[0].NetworkSettings.IPAddress'
 
 
 Variables de entorno
-docker run ubuntu env HOME=/ PATH=/usr/bin:/usr/sbin HOSTNAME=asdads
+docker run -e "deep=purple" --rm ubuntu /bin/bash
 
 
 Gráfica de dependencias entre imágenes:

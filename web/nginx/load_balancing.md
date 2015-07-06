@@ -96,3 +96,11 @@ proxy_pass http://cyclops_provisioner;
 proxy_http_version 1.1;
 proxy_set_header Connection "";
 
+Mirar traza de como funciona un balanceador con esto en privado: web/nginx/captura-balanceo-conex-persistentes-nginx.cap
+ - cliente establece el triple handshake contra el balanceador
+ - envia la peticion http
+ - el LB envia la peticion http a uno de los servers del pool (sin tripe hand shake)
+ - el server del pool devuelve un http OK
+ - el LB devuelve al el cliente el http OK
+ - el cliente envia un TCP FIN al LB
+ - el LB envia FIN+ACK

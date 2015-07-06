@@ -92,6 +92,7 @@ cmd     ["/usr/bin/supervisord", "-n"]
 command=/usr/sbin/sshd -D
 stdout_logfile=/var/log/supervisor/%(program_name)s.log
 stderr_logfile=/var/log/supervisor/%(program_name)s.log
+# autorestart=true
 # redirect_stderr = true
 # para hacer 2>&1
 

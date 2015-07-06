@@ -1,4 +1,5 @@
 http://jinja.pocoo.org/docs/dev/templates/#tests
+http://jinja.pocoo.org/docs/dev/templates/#expressions
 
 {% if service %}
 hola service
@@ -7,6 +8,9 @@ hola service
 # Poner una coma solo si no es el último elemento
 "DB_HOSTS": "{% for ip in mongodb_hosts %} {{ip}}:27017{% if not loop.last %},{% endif %}{% endfor %}",
 
+{% if ansible_distribution_major_version == 6 or ansible_distribution_major_version == 7 %}
+...
+{% endif %}
 
 {% if kenny.sick %}
     Kenny is sick.
@@ -21,6 +25,14 @@ hola service
 es http
 {% else %}
 es otra cosa
+{% endif %}
+
+
+# Maquina pertenece a un hostgroup
+{% if inventory_hostname in groups['coso'] %}
+{{ inventory_hostname }} pertenece al hostgroup coso
+{% else %}
+{{ inventory_hostname }} no pertenece al hostgroup coso
 {% endif %}
 
 

@@ -63,3 +63,8 @@ print ENVIRON["file"]
 Division:
 $ awk "BEGIN {print 5/2}"
 2.5
+
+
+Random entre 0 y 1:
+awk -v seed=$RANDOM 'BEGIN{srand(seed); print rand();}'
+

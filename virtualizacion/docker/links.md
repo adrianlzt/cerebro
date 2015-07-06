@@ -5,7 +5,7 @@ En este caso, crosbymichael/redis hace expose del puerto 6379.
 docker run -d -name redis crosbymichael/redis
 
 Ahora corremos un segundo container linkándolo al primero:
-docker run -t -i -link redis:db -name webapp ubuntu bash
+docker run -t -i --link redis:db -name webapp ubuntu bash
   -t -i bash -> para abrir una shell en el container
   -link, me uno al container "redis" y le asigno internamente el nombre "db".
 

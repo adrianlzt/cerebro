@@ -1,4 +1,6 @@
-http://docs.docker.io/en/latest/use/port_redirection/
+http://docs.docker.com/articles/networking/#binding-container-ports-to-the-host
+http://docs.docker.com/userguide/dockerlinks/
+http://stackoverflow.com/questions/19897743/exposing-a-port-on-a-live-docker-container
 
 # Find IP address of container with ID <container_id>
 docker inspect <container_id> | grep IPAddress | cut -d '"' -f 4

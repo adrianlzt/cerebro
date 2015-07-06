@@ -46,6 +46,9 @@ Al editar el nodo:
 Power address: qemu+ssh://adrian@192.168.200.1/system
 Power ID: NOMBRE_DEL_HOST_EN_QEMU
 
+Si es un kvm local:
+Power address: qemu:///system
+
 
 
 Seguir en commission.md

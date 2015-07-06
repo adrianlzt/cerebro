@@ -1,5 +1,6 @@
 Mostrar bonito un fichero json (con los cambios de línea y tabulado):
 cat example.json | python -m json.tool
+python -m json.tool example.json 
 
 
 http://docs.python.org/2/library/json.html

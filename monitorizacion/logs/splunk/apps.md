@@ -10,3 +10,31 @@ apps.splunk.com
 
 http://apps.splunk.com/app/1306/
 Prelert Anomaly Detective
+
+
+
+La configuracion está en
+/opt/splunk/etc/apps/NOMBRE/local
+Los ficheros importantes son:
+props.conf
+transforms.conf
+
+
+Ejemplo: estamos filtrando que cada host(s) puedan enviar un tipo de sourcetype
+En el ejemplo, las máquinas loadbalancer-dev-01 y loadbalancer-del-01 pueden enviar el sourcetype "misourcetipo"
+
+props:
+por cada máquina (filtrando por hostname) le dice que filtros aplicar a los datos.
+Generalmente se pone:  null_queue_filter,mifiltro
+Que quiere decir que todo lo que no pille mifiltro se descarta. Parece que hace un OR de los filtros que pongamos.
+
+[host::loadbalancer-(dev|del)-01]
+TRANSFORMS-tics = null_queue_filter,mifiltro
+
+
+transforms:
+[mifiltro]
+SOURCE_KEY = MetaData:Sourcetype
+REGEX = misourcetipo
+DEST_KEY = queue
+FORMAT = indexQueue

@@ -25,6 +25,10 @@ Existen dos tipos comunes de LB:
     Ej.: vienen peticiones SQL, si son tipo INSERT,UPDATE,DELETE lo envío al master, si es un SELECT, al master y al slave.
 
 
+## Persistencia
+Si tenemos multitud de clientes realizando conexiones pequeñas contra el balanceador de forma muy seguida, puede que el LB se quede sin puertos para conectar contra el pool de servidores.
+En el caso HTTP podemos usar keepalive / http1.1 / http reuse para que el LB mantena el "tubo" abierto con cada uno de los servidores del pool.
+
 ## Comparativas
 
 https://github.com/observing/balancerbattle

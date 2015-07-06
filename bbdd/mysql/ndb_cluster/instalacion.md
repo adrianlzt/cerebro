@@ -92,6 +92,9 @@ create table simples (id int not null primary key) engine=ndb;
 insert into simples values (1),(2),(3),(4); 
 select * from simples;
 
+En el otro nodo:
+use clusterdb;select * from simples;
+
 
 # Shutdown
 The MySQL Server must be shut down manually but then the other Cluster nodes can be stopped using the ndb_mgm tool: 

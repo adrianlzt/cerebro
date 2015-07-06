@@ -1,3 +1,4 @@
+http://docs.ansible.com/developing_plugins.html#callbacks
 https://github.com/ansible/ansible/tree/devel/plugins/callbacks
 http://jpmens.net/2012/09/11/watching-ansible-at-work-callbacks/
 

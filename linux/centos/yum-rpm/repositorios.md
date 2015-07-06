@@ -1,6 +1,13 @@
 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Configuring_Yum_and_Yum_Repositories.html
 http://linux.die.net/man/5/yum.conf
 
+Explicación de las variables:
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Using_Yum_Variables.html
+
+Para conocer los valores:
+python -c 'import yum, pprint; yb = yum.YumBase(); pprint.pprint(yb.conf.yumvar, width=1)'
+
+
 Configuracion:
 [main]
 cachedir=/var/cache/yum/$basearch/$releasever
@@ -53,6 +60,10 @@ IUS
 https://iuscommunity.org/pages/Repos.html
 http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/x86_64/ius-release-1.0-13.ius.centos6.noarch.rpm
 http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/
+
+Remirepo:
+Para rhel6
+http://rpms.famillecollet.com/enterprise/6/remi/x86_64/repoview/
 
 
 Lista de repositorios activos

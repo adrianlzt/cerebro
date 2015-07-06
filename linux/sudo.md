@@ -27,6 +27,10 @@ Quitar el parámetro requiretty para el user nrpe. Permite ejecutar en todos los
 Defaults:nrpe !requiretty
 nrpe ALL = (root) NOPASSWD: /usr/sbin/corosync-cfgtool -s
 
+Con expr regular en el comando:
+Defaults:nrpe !requiretty
+nrpe ALL = (root) NOPASSWD: /sbin/ip netns exec * /usr/lib64/nagios/plugins/check_ping *
+
 Quitar requiretty solo para un comando:
 Defaults!/usr/lib64/nagios/plugins/check_service.py !requiretty
 nrpe  ALL=(ALL) NOPASSWD: /usr/lib64/nagios/plugins/check_service.py

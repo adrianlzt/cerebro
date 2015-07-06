@@ -1,5 +1,8 @@
-Añadir usuario a un grupo:
+Añadir usuario a un grupo (ubuntu):
 adduser usuario grupo
+
+Centos:
+gpasswd -a usuario grupo
 
 Hacer que el cambio tenga efecto inmediato (en vez de tener que logout login)
 newgrp grupo  //tenemos que poner como parámetro el grupo al que hemos añadido el usuario

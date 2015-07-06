@@ -23,6 +23,10 @@ En modo ad-hoc no me crea el fichero si no existe :?
   file: dest=/var/log/mod_gearman/mod_gearman_neb.log state=touch
         owner=root group=root mode=0644
 
+- name: pone permisos al directorio y recursivamente a lo que contenga
+  file: dest=/var/dir state=directory recurse=yes
+        owner=root group=root
+
 
 Borrar fichero
 - name: delete custom fact for hostgroups if not defined
@@ -32,6 +36,10 @@ Borrar fichero
 Link:
 - file: src=/tmp/{{ item.path }} dest={{ item.dest }} state=link
   si ponemos force=yes, el link se va a crear aunque el source no exista; el link se va a crear aunque el destino ya exista y sea un fichero
+
+- name: set time zone to Europe/Madrid
+  file: src=/usr/share/zoneinfo/Europe/Madrid dest=/etc/localtime state=link force=true
+
 
 ad-hoc
 ansible -s cliente3 -m file -a "src=/usr/share/zoneinfo/Europe/Madrid dest=/etc/localtime state=link force=true"
@@ -65,9 +73,10 @@ Si hay definida una variable aplicamos un template, si no, nos aseguramos de que
 
 
 
-## Descomprimir un fichero ##
+## Descomprimir un fichero ## tar zip etc
 http://docs.ansible.com/unarchive_module.html
 # Example from Ansible Playbooks
+- yum: name=tar state=present
 - unarchive: src=foo.tgz dest=/var/lib/foo
 
 # Unarchive a file that is already on the remote machine
@@ -78,6 +87,7 @@ http://docs.ansible.com/unarchive_module.html
 ## lineinfile - Modificar un archivo ##
 http://docs.ansible.com/lineinfile_module.html
 
+Crea la linea si no existe
 - name: open allowed hosts
   lineinfile: dest=/etc/nagios/nrpe.cfg regexp=^allowed_hosts= line=allowed_hosts=10.0.0.0/16
 

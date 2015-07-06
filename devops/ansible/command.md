@@ -44,3 +44,5 @@ ansible -s tidcampus -m command -a "id"
     --db-url=mysql://root@localhost/{{ domain }}
     chdir={{ drupal_core_path }}
     creates={{ drupal_core_path }}/sites/default/settings.php
+
+Creates: no ejecuta el command si el fichero existe

@@ -10,4 +10,8 @@ Comandos:
 slabtop
 cat /proc/slabinfo
 vmstat -m
+atop
 
+
+con el drop caches podemos liberar esa memoria:
+sync; echo 2 > /proc/sys/vm/drop_caches

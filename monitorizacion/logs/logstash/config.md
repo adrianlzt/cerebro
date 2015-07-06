@@ -5,6 +5,45 @@ Las configuraciones seguirán el 'flow' de logstash: INPUT->FILTERS->OUTPUT
 Las configuraciones las meteremos, si hemos instalado desde el .deb, en /etc/logstash/conf.d
 Mejor separar un flow input-filter-output en cada fichero
 
+If you specify multiple filters, they are applied in the order of their appearance in the configuration file.
+
+Chequeo conf:
+logstash --configtest -f /etc/logstash/conf.d/
+
+-f fichero.conf
+-f /directorio/
+-f '/dir/lo*conf'
+
+En caso de directorio o wildcard se leeran los ficheros en orden alfabético.
+CUIDADO con los wildcards, si no lo ponemos entre comillas simples la shell lo expandera y le dará a logstash algo estilo
+logstash -f fichero1.conf fichero2.conf fichero3.conf
+Y logstash solo hará caso al primero.
+
+
+
+## Sacar valores de un evento ##
+
+Ejemplo de evento:
+{
+  "type": "web",
+  "response": {
+    "status": 200
+  },
+  "ua": {
+    "os": "Windows 7"
+  }
+}
+
+[type]
+[ua][os]
+
+output {
+  statsd {
+    increment => "apache.%{[response][status]}"
+  }
+}
+
+
 ## Ejemplo básico ##
 Lee un fichero de log apache combined y lo escribe directamente a logstash:
 Ficheros de ejemplo de apache combined: http://www.monitorware.com/en/logsamples/download/apache-samples.rar

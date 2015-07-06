@@ -11,4 +11,12 @@ Para hacerlo persistente:
 /etc/sysctl.conf
 net.ipv4.ip_forward = 1
 
-Solo hace falta esto??
+
+# SNAT
+Para una máquina que tiene varias interfaces.
+Por ejemplo tiene la red 10.0.2.0/24 configurada en eth1
+Por eth0 se sale a internet
+root@ubuntu-maas:~# iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MASQUERADE
+
+Con esta regla le decimos que todo el tráfico de 10.0.2.0/24 salga por la interfaz eth0 y que se aplique MASQUERADE (se ponga como la ip origen la ip que tenga en ese momento la eth0; esto es por si dicha ip es dinamica)
+

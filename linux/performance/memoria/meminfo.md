@@ -2,9 +2,17 @@ http://www.redhat.com/advice/tips/meminfo.html
 
 - Información detallada de memoria del sistema (usada por free y vmstat)
 
+
+http://stackoverflow.com/questions/658411/entries-in-proc-meminfo
+MemTotal = MemFree + Active + Inactive + Slab + PageTables + VmallocUsed + X (X : alloc_pages() (get_free_pages(), etc))
+MemUsed = Active + Inactive + Slab + PageTables + VmallocUsed + X (X : alloc_pages() (get_free_pages(), etc))
+Active + Inactive = Buffers + Cached + SwapCached + AnonPages
+Total PageCache = Buffers + Cached + SwapCached
+Slab = SReclaimable + SUnreclaim
+
 cat /proc/meminfo 
   %MemTotal     # RAM total usable (menos reservada por kernel)
-  %MemFree      # memoria usada (incluyendo buffers y pagecache)
+  %MemFree      # memoria libre (incluyendo buffers y pagecache)
   %Buffers      # buffer cache en RAM (filesystem metadata)
   %Cached       # pagecache en RAM (contenido de ficheros cacheados)
   %SwapCached   # pagecache en swap que también está en RAM (por tanto
@@ -25,7 +33,7 @@ cat /proc/meminfo
   %AnonPages    # paginas anonimas (no file-backed) mapeadas
   %Mapped       # ficheros mapeados en memoria con mmap()
   %Shmem        # memoria compartida (fundamentalmente IPC)
-  %Slab         # slab cache de objetos del kernel
+  %Slab         # slab cache de objetos del kernel (=SReclaimable+SUnreclaim)
   %SReclaimable # slab reclamable (p.e. caches de inodes y dentries)
   %SUnreclaim   # slab no reclamable
   %KernelStack  # stack en modo supervisor, usada por el kernel

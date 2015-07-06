@@ -43,6 +43,9 @@ maas unica boot-resources read
 Para tener más detalles, pasando su id:
 maas unica boot-resource read 1
 
+Forzar que los cluster se bajen las nuevas imagenes:
+maas root node-groups import-boot-images
+
 
 Cargar otros SOs:
 mirar image-builder.md

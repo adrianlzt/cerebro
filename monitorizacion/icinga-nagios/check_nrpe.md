@@ -87,3 +87,18 @@ Pondremos por ejemplo
 Y recompilaremos el .src.rpm que nos generará los dos nuevos rpms (nrpe y nagios-plugins-nrpe)
 
 Hay que tener cuidado porque distintas versiones de nrpe recompilados no son compatibles entre sí.
+Solucion?
+http://comments.gmane.org/gmane.network.nagios.devel/8291
+http://www.opsview.com/whats-new/blog/enhancing-nrpe-large-output
+https://web.archive.org/web/20120309192252/http://labs.opsview.com/2008/08/enhancing-nrpe-for-large-output
+
+Note: during testing, we found that the limit for returned data from some linux kernels was 4K, even though nrpe was coded with 16K as the limit. This is due to kernel limitations in using pipe() for the interprocess communication."
+
+
+# Ejecucción de una subshell
+con comillas de ejecucción
+command[check_tcp_riak_8087]=/usr/lib64/nagios/plugins/check_tcp -H `ip -4 -o addr show eth2|awk '{print $$4}'|cut -f1 -d/` -p 8087 -4
+
+# Escapar dolar
+Se debe usar doble dolar ($$)
+command[check_tcp_riak_8087]=/usr/lib64/nagios/plugins/check_tcp -H `ip -4 -o addr show eth2|awk '{print $$4}'|cut -f1 -d/` -p 8087 -4

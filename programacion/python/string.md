@@ -6,6 +6,9 @@ Funcionar como cut
 "bla-ble-bli".split('-')[-1]
 devuelve "bli"
 
+platform.node().split('.', 1)[0]
+te aseguras tener un elemento en el split y que no sale el keyError
+
 Convertir string a int
 int('233') / 3
 
@@ -83,6 +86,13 @@ True
 '--hola'
 >>> cadena.lstrip('-')
 'hola'
+
+
+http://www.quora.com/Whats-the-difference-between-partition-and-split-for-strings-in-Python
+>>> 'master-1.novalocal'.partition('.')[0]
+'master-1'
+partition devuelve una tupla
+
 
 
 ## Format ##

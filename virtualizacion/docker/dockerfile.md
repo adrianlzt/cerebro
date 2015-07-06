@@ -1,5 +1,10 @@
+https://docs.docker.com/reference/builder/#volume
 http://www.docker.io/learn/dockerfile/level1/
-ejemplos: https://github.com/search?q=dockerfile&ref=cmdform
+http://docs.docker.com/articles/dockerfile_best-practices/
+ejemplos:
+  https://github.com/search?q=dockerfile&ref=cmdform
+  https://github.com/CentOS/CentOS-Dockerfiles
+  https://github.com/docker-library/postgres/blob/e616341507a7beec3a161b0a366ba0d3400328fd/9.4/Dockerfile
 
 Fichero estilo Vagrantfile donde se dan una serie de ordenes para generar un container.
 IDEA IMPORTANTE: intentar tratar 'docker run user/container' como si fuese un comando, donde le podemos pasar parámetros, nos saca la ayuda en caso de error, etc.
@@ -26,6 +31,13 @@ Para meter repos:
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list  (activar repo universe en Ubuntu)
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN rpm -Uhv http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+Instalar rpms:
+RUN rpm --rebuilddb && yum install -y sudo npm tar && yum clean all
+
+Para ejecutar como otro user:
+run su - contint -c "comando"
+
 
 Acordarse de actualizar los metadatos
 Ubuntu: apt-get update
@@ -79,25 +91,24 @@ ENV: pasar variables de entorno al programa
 ENV <key> <value>
 
 
-ADD: añadir ficheros al container
-ADD <src> <dest>
-src debe ser un fichero o directorio con path relativo al workdir actual, o una url
-
 
 ### BEST PRACTICES ###
+http://docs.docker.com/articles/dockerfile_best-practices/
 http://crosbymichael.com/dockerfile-best-practices.html
 
 * Mantener la mayor parte del comienzo del fichero Dockerfile común, de esta manera las nuevas imágenes empezarán a partir de la nueva instrucción, y no tendrán que rehacer los primeros pasos (apt-get update por ejemplo)
-Personalmente organizo (la primera linea fuerza a rehacer el cache (ADD no se cachea), necesario si hace mucho que hicimos la cache y queremos obtener los nuevos paquetes):
-  ENV REFRESHED_AT YYYY_MM_DD
-
-  Partes del SO
-  FROM ...
-  MAINTAINER (debe ir después del FROM)
+Personalmente organizo:
+  FROM ubuntu / centos:centos6 / centos
+  MAINTAINER Blabla Blabla <correo@dom.com> (debe ir después del FROM)
+  
+  Instalar repos # Date: yyyy-mm-dd (lo del date es por si queremos borrar la cache y que se baje los nuevos paquetes, en vez de usar ENV)
   
   Paquetes adicionales (EPEL, repos extras)
   
-  Software a instalar
+  Software a instalar, unir varias instalaciones en un solo RUN. Siempre limiar la cache tras instalar
+  (si hacemos varios RUN para instalar paquetes y luego limpiamos cache de yum, esta cache se queda almacenada en alguno de los commits)
+
+* Cuidado con los ADD, que no se cachean. Parece que si desde la 0.8. se hace un checksum del fichero para decidir si debe meterse de nuevo
 
 * Nunca 'expose' el puerto público, ya que no podríamos correr dos containers iguales (querrían ocupar el mismo puerto en la máquina hoster)
 

@@ -56,6 +56,7 @@ file { '/etc/puppet/modules':
 
 Si queremos usar un fichero que tenemos en el directorio files/ del modulo
 source => 'puppet:///modules/NOMBREMODULO/NOMBREFICHERO'
+source => "puppet:///modules/${module_name}/icinga.init.d",
 
 
 Si el fichero al que apuntamos es un enlace, debemos forzarle a que lo borre.

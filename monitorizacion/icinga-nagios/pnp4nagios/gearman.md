@@ -40,3 +40,15 @@ Cambiar los permisos de:
 
 Si cambiamos de dir de /etc/ tendremos que tambien tocar:
 /usr/share/nagios/html/pnp4nagios/index.php
+
+
+
+# Almacenamiento de métricas
+Entender como almacena pnp4nagios en los rrd
+
+
+# Log
+/usr/libexec/pnp4nagios/process_perfdata.pl
+rota por defecto cuando el tamaño del log crece por encima de 10MB
+    LOG_FILE_MAX_SIZE  => "10485760",               #Truncate after 10MB
+

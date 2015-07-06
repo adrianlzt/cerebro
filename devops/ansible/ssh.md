@@ -23,3 +23,6 @@ Host *
     StrictHostKeyChecking  no
     PasswordAuthentication no
 
+
+Modulo known_hosts: manages the ssh known_hosts file
+

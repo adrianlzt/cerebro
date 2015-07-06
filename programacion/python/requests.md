@@ -8,6 +8,10 @@ import requests
 r = requests.get('http://github.com/')
 
 
+## Proxy
+Se pasan como variable de entorno. Uno para http y otro para https
+HTTPS_PROXY="http://proxy2pdi.service.dsn.inet:6666" HTTP_PROXY="http://proxy2pdi.service.dsn.inet:6666" python
+
 ## SSL
 Peticion ssl, comprobando que el certificado sea válido
 import requests

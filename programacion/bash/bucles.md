@@ -12,7 +12,7 @@ done
 
 
 
-Bucle infinito
+Bucle infinito (tambien: while true; do)
 while :; do
   blabla
 done

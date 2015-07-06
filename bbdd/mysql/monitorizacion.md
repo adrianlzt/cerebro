@@ -12,3 +12,8 @@ http://www.mysqlperformanceblog.com/2010/05/05/checking-for-a-live-database-conn
 
 
 No chequear con check_tcp porque mysql lo cuenta como conexión errónea.
+
+
+
+A partir de la 5.6
+http://githubengineering.com/using-mysql-performance-schema-for-workload-analysis/

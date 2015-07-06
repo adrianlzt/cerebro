@@ -3,6 +3,9 @@ Usar un script para generar dinámicamente el inventario
 
 http://docs.ansible.com/list_of_inventory_modules.html
 
+vbox: virtualbox
+
+
 Crear hosts y hostgroups "al vuelo"
 
 # add host to group 'just_created' with variable foo=42

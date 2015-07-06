@@ -1,4 +1,5 @@
 /usr/share/zookeeper/bin/zkCli.sh
+/opt/zookeeper/bin/zkCli.sh
   nos conecta con un cliente java a localhost:2181
 
 ls /

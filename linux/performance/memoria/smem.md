@@ -17,3 +17,6 @@ smem
   %PSS          # proportional: USS + (shared / nº proc. que comparten)
   %RSS          # total en RAM (shared + unshared)
 
+
+smem -rt
+  nos muestra totales de memoria usada de cada tipo

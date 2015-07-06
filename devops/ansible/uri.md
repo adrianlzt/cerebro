@@ -1,11 +1,17 @@
 http://docs.ansible.com/uri_module.html
 
+Otros modulos
+dig: does dns resolution and returns IPs.
+get_url: allows pulling data from a url.
+
 Hacer GET/POST/... a urls
 
 Hace falta tener el paquete httplib2.
 Para centos:
 - name: httplib2 package is needed to register the host
   yum: name=python-httplib2 state=latest
+
+Para ubuntu se llama: python-httplib2
 
 Obtener releases de un repo de github  
 tasks:

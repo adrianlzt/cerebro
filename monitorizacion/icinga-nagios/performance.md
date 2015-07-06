@@ -70,6 +70,10 @@ external_command_buffer_slots=32768
 #check_result_reaper_frequency=1
 check_result_reaper_frequency=1
 
+Esto significa cada cuando se lee la cola de checks results.
+Si usamos gearman, el módulo mod_gearman_neb irá leyendo la cola check_results de gearmand y metiendolo en la cola interna results de icinga
+Si ese valor es muy alto, mod_gearman_neb los irá metiendo en la cola, y si no se produce ningún reaper antes de un reinicio, todos esos checks se perderán.
+
 
 
 # MAX CHECK RESULT REAPER TIME

@@ -6,7 +6,7 @@ Por defecto la configuración se enuentra en /etc/ansible
 
 Tambien podemos crearlo en ~/.ansible.cfg con:
 [defaults]
-hostfile       = ~/.ansible/hosts
+inventory = ~/.ansible/hosts
 roles_path    = ~/.ansible/roles
 [ssh_connection]
 ssh_args = -o ForwardAgent=yes -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o StrictHostKeyChecking=no -F /home/adrian/.ssh/config
@@ -19,7 +19,7 @@ Los playbooks los podemos meter, por ejemplo, en .ansible/playbooks/
 
 
 # Hostfile
-Parece que se pueden pasar varios ficheros en la variable hostfile separados por coma: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L71
+Parece que se pueden pasar varios ficheros en la variable inventory separados por coma: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L71
 
 Tambien puede ser un directorio: https://github.com/ansible/ansible/blob/v1.8.0/lib/ansible/inventory/__init__.py#L97
 
