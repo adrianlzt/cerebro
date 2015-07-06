@@ -1,3 +1,5 @@
+https://docs.ansible.com/playbooks_filters.html
+
   - name: prueba
     command: echo -e "group_a_master_ci_3:27017\npepe\ncosa"
     register: prueba
@@ -17,4 +19,24 @@ ok: [127.0.0.1] => {
         "cosa"
     ]
 }
+
+
+
+Diferencia entre listas
+{{ list1 | difference(list2) }}
+
+ej.:
+
+  - name: obtener lista de las apps en git
+    shell: ls apps/
+    register: apps_git
+
+  - name: obtener lista de las apps en local
+    shell: ls apps_local/
+    register: apps_local
+
+  - debug: var=apps_git.stdout_lines
+  - debug: var=apps_local.stdout_lines
+  - debug: msg="{{ item }}"
+    with_items: "{{ apps_git.stdout_lines| difference(apps_local.stdout_lines) }}"
 

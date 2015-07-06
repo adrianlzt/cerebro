@@ -43,6 +43,7 @@ ansible-playbook foo.yml --check --diff  <- muestra cambios que se vayan a produ
 También se pueden ejecutar únicamente algunas tasks de cierto tag:
 ansible-playbook playbooks/puppet-configured.yaml --tags=conf
 ansible-playbook playbooks/puppet-configured.yaml -t conf
+--list-tags
 
 Modificar parámetros en la CLI:
 ansible-playbook -e "var=cosa var2=otro" ...
@@ -53,6 +54,9 @@ ansible-playbook playbooks/puppet-configured.yaml -l "webserver*"
 
 Parando antes de cada paso
 --step                one-step-at-a-time: confirm each task before running
+
+Empezar en una tarea determinada
+--start-at="nombre de tarea"
 
 
 Si queremos un playbook generico y despues por linea de comandos decidir a donde aplicarlo:

@@ -118,3 +118,11 @@ Hay que hacer el with_item sobre VARIABLE.results
 - copy: content={{item.stdout}} dest="/tmp/ansible.prueba.{{item.item}}"
   with_items: icinga_ports_uuids.results
 
+
+
+# Iterar conociendo el índice
+Tengo dos listas, collector_ips y collectors_port_uuid.
+Itero sobre collectors_port_uuid y voy usando el indice para iterar tambien sobre collector_ips
+
+- pause: prompt="{{item.0}} --> uuid {{item.1.stdout}} {{collector_ips[item.0]}} "
+  with_indexed_items: collectors_port_uuid.results

@@ -1,6 +1,7 @@
 http://cloudinit.readthedocs.org/en/latest/
 https://www.youtube.com/watch?v=-zL3BdbKyGY
 http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/
+https://access.redhat.com/articles/rhel-atomic-cloud-init-faq
 
 Everything about cloud-init, a set of python scripts and utilities to make your cloud images be all they can be!
 Cloud-init is the defacto multi-distribution package that handles early initialization of a cloud instance.

@@ -10,10 +10,14 @@ https://maas.ubuntu.com/docs/hacking.html
 bzr branch lp:maas
 cd maas
 
+
+# Servidor django
 cd src/maasserver
-servidor django
 
 Código:
 http://bazaar.launchpad.net/~maas-committers/maas/trunk/files
 http://bazaar.launchpad.net/~maas-committers/maas/1.7/files
 http://bazaar.launchpad.net/~maas-committers/maas/1.6/files
+
+
+Mirar debug.md para ver como activar django para el desarrollo

@@ -41,3 +41,5 @@ Es como leer el fichero
 /var/lib/docker/graph/<id>/json para images
 /var/lib/docker/containers/<id>/config.json para containers
 
+## Conectar a docker no localhost
+docker -H servidor:2375 ....

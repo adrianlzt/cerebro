@@ -22,3 +22,10 @@ Extraer información de distintos sitios:
 
      - debug: msg="{{ lookup('template', './some_template.j2') }} is a value from evaluation of this template"
 
+
+
+vars:
+  motd_value: "{{ lookup('file', '/etc/motd') }}"
+
+tasks:
+  - debug: msg="motd value is {{ motd_value }}"

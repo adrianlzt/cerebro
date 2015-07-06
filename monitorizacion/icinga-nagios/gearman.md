@@ -127,6 +127,12 @@ Si tiro unos de los gearman servers todo sigue funcionando correctamente.
 Varias instancias de icinga pueden usar un mismo servidor gearman modificando un parámetro para definir el nombre de la cola check_results.
 
 
+# Relación con icinga
+mod_gearman_neb lee de forma contínua de la cola check_results y lo va metiendo en una cola de resultados de icinga.
+icinga lee cada check_result_reaper_frequency esta cola interna.
+Lo que escriba mod_gearman_neb en esa cola, si icinga se reinicia antes de que el reaper haga una pasada por ahí, se pierde.
+
+
 
 # Errores
 NO usar con otra version de libgearman que no sea la 0.33

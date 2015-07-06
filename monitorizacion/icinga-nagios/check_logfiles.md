@@ -8,6 +8,11 @@ OK - no errors or warnings|default_lines=0 default_warnings=0 default_criticals=
 [root@localhost libexec]# ./check_logfiles --logfile=/usr/local/nagios/libexec/file.log --criticalpattern=ERROR
 CRITICAL - (1 errors in check_logfiles.protocol-2013-06-25-08-49-20) - blabla ERROR blabla |default_lines=1 default_warnings=0 default_criticals=1 default_unknowns=0
 
+Para hacer test:
+mkdir tmp/
+touch log
+/usr/lib64/nagios/plugins/check_logfiles.pl --seekfilesdir=tmp/ --protocolsdir=tmp/ --logfile=log --criticalpattern="error" --sticky=30
+
 Varios check patterns:
 --warningpattern='WARN|PEPE'
 
@@ -19,6 +24,10 @@ Y los protocol (trazas por las que ha saltado el regex) en /tmp/check_logfiles.p
   si lo ponemos, la alarma no se irá hasta que no borremos el fichero seek, o ejecutemos con --unstick
   se le puede poner un lifetime, tiempo que estará en critical hasta que ella sola vuelva a ok si no ha encontrado más trazas
   lo solemos usar cuando tenemos okpattern
+--sticky=100
+  mantiene la alarma 100s
+--unstick
+  volver a poner un log que estaba en critical o warning a ok
 
 --nologfilenocry
   no da UNKOWN si el fichero de lo no está, da OK.
@@ -96,6 +105,9 @@ CRITICAL Errors in messages (tag default)
 Mar  8 03:41:02 ESJC-DSMM-MS12S logrotate: ALERT exited abnormally with [1]
 
 
+# Multilinea
+https://labs.consol.de/nagios/check_logfiles/#comment-413
+
 # Rotate
 Ejemplo con los ficheros de message de centos
 
@@ -108,8 +120,9 @@ Esto, si nota un cambio de inodo (creo), busca ficheros con el tipo que hayamos 
 No me queda muy claro como hace para no coger las alarmas de los archvies ya vistos.
 
 
+CUIDADO! esto busca primero nombre.0 y linux parece que rota a nombre.1
 rotation=loglog0log1gz
-para delaycompress (nombre -> nombre.1 -> nombre.2.gz)
+para delaycompress (nombre -> -> nombre.0 -> nombre.2.gz)
 
 Ejemplo rotate para icinga:
 check_logfiles.pl --logfile=icinga.log --criticalpattern="] Error:" --archivedir="archives" --rotation="icinga-\d{2}-\d{2}-\d{4}-\d{2}\.log"

@@ -55,6 +55,10 @@ Ignoramos fallo UNKNOWN.
 /usr/lib64/nagios/plugins/check_multi.pl -x 'command[ntp1]=/usr/lib64/nagios/plugins/check_ntp_time -H 0.es.pool.ntp.org -c 10' -x 'command[ntp2]=/usr/lib64/nagios/plugins/check_ntp_time -H 1.europe.pool.ntp.org -c 10' -x 'state[OK]=COUNT(OK)>0' -x 'state[CRITICAL]=COUNT(OK)<1' -x 'state[UNKNOWN]=(1==0)'
 
 
+Con Macros, OK si las 4 ips responden bien. Warning si alguna contesta mal. Critical si todas mal
+/usr/lib64/nagios/plugins/check_multi.pl -s PORT=35357 -x 'command[vip1_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.131 -p $PORT$' -x 'command[vip2_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.132 -p $PORT$' -x 'command[vip1_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.5 -p $PORT$' -x 'command[vip2_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.6 -p $PORT$' -x 'state[OK]=COUNT(OK)>0' -x 'state[CRITICAL]=COUNT(OK)<1' -x 'state[UNKNOWN]=(1==0)' -x 'state[WARNING]=COUNT(OK)<4' 
+
+
 ## Timeouts ##
 Hay que tener cuidado con los timeouts.
 Si ejecutamos con un solo check_multi gran cantidad de comandos, y uno de ellos tarda mucho en contestar, la respuesta de todos tardará en llegar.

@@ -1,3 +1,4 @@
+https://oss.oetiker.ch/rrdtool/doc/rrdinfo.en.html
 man rrdtutorial
 
 Con rrdtool podemos leer estos ficheros:
@@ -29,3 +30,9 @@ rrdtool graph
 Para obtener datos:
 rrdtool fetch
   man rrdfetch
+
+rrdtool fetch cpu.rrd AVERAGE
+  obtener las métricas del último día con la máxima resolución posible
+
+rrdtool fetch cpu.rrd AVERAGE -s -2h
+  ver solo los valores de las ultimas 2 horas

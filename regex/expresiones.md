@@ -9,6 +9,9 @@
 \S cualquier cosa que no sea nada de lo anterior
 \t tabulador
 
+\s? a lo mejor hay un espacio, a lo mejor no
+([a-z]*)\? a lo mejor está ese capturing group, a lo mejor no
+
 ...
 Mirar en la columna de la derecha de http://regexr.com/ para ver todas las opciones y su explicación
 

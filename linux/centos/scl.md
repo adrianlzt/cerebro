@@ -38,4 +38,34 @@ eval scl $@
 
 
 /nuestro/programa.py
-#!/usr/local/bin/scl-shebang enable python27 -- python
+#!/usr/bin/scl-shebang enable python27 -- python
+
+
+
+
+Para versiones más nuevas se puede usar shebang
+This works as of scl-utils-2.0:
+#!/usr/bin/scl enable <collection> -- <command>
+
+
+
+
+
+
+# SCL internals
+Lo que configura si hacemos:
+scl enable python27 bash
+
+Importantes:
+PATH=/opt/rh/python27/root/usr/bin:$PATH
+LD_LIBRARY_PATH=/opt/rh/python27/root/usr/lib64
+
+Menos importantes:
+MANPATH=/opt/rh/python27/root/usr/share/man:
+PKG_CONFIG_PATH=/opt/rh/python27/root/usr/lib64/pkgconfig
+XDG_DATA_DIRS=/opt/rh/python27/root/usr/share
+X_SCLS='python27 '
+
+
+
+PATH=/opt/rh/python27/root/usr/bin:$PATH LD_LIBRARY_PATH=/opt/rh/python27/root/usr/lib64 ./check_netinterfaces.py 

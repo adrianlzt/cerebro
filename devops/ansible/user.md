@@ -1,5 +1,8 @@
 http://docs.ansible.com/user_module.html
 
+- user: name=pepe
+crea el user pepe, y su grupo primario pepe
+
 - user: name=james shell=/bin/bash groups=admins,developers append=yes
 
 # Le mete en el grupo haclient, además de los que ya pudiese tener
@@ -10,6 +13,10 @@ http://docs.ansible.com/user_module.html
   user: name=cyclops-provisioner generate_ssh_key=yes ssh_key_bits=2048
 # Genera .ssh/id_rsa y .ssh/id_rsa.pub
 
+# Password
+Meter tal como aparece en el shadow
+password='$1$oZRMStM5$1YfqleGXUbcHm8YCDhpwV.'
+
 
 Ejecutar tasks como otro usuario:
 - name: checkout repo
@@ -19,3 +26,5 @@ Ejecutar tasks como otro usuario:
 
 # Ad-hoc
 ansible -s maquina -m user -a "name=james shell=/bin/bash groups=admins,developers append=yes"
+
+ansible localhost -m user -sa "name=pepe"

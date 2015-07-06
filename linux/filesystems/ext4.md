@@ -14,3 +14,11 @@ journal_ioprio=N    # modifica prioridad del journal sobre I/O normal
 
 Format:
 mkfs.ext4 /dev/vdb
+
+
+
+Crear ext4 sin journal, por si sale este error:
+JBD2: no valid journal superblock found
+EXT4-fs (sdf1): error loading journal
+
+mke2fs -t ext4 -O ^has_journal /dev/sdf1

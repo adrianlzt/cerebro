@@ -1,7 +1,7 @@
 Primero:
-instalacion-corosync.md
+  Con corosync (no centos 6) instalacion-corosync.md
 
-Para CentOS 6 mirar cman.md
+  Para CentOS 6 mirar cman.md
 
 Segundo:
 instalacion-pacemaker.md

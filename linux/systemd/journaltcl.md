@@ -12,3 +12,7 @@ journalctl -u UNIDAD
     muestra toda la información, pid, priority, hostname, code, etc
 
 Si vemos lineas truncadas podemos movernos con las flechas de izquierda y derecha
+
+
+sudo journalctl --vacuum-time=04222015
+Borrar ficheros más antiguos de 22/4/2015

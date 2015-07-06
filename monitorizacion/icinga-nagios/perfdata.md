@@ -17,3 +17,4 @@ He visto por ejemplo con check_disk cadenas truncadas (faltaban caracteres) y po
 
 Ejemplo:
 |time=0.008093s;;;0.000000 size=4184B;;;0
+|disk=20%

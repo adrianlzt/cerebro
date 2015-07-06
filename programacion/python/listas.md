@@ -19,6 +19,12 @@ sorted(list)  devuelve una lista ordenada
 ...  print a[i]
 
 
+# Condicional
+lista = []
+if not lista:
+ print "lista vacia"
+
+
 
 Generar lista: emails = [u.email for u in mailUsers]
 

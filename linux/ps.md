@@ -22,11 +22,17 @@ Ver los threads:
 ps -efL | grep proc
 ps auxms (dificil de leer)
 
+Orden por start time (más jovenes abajo):
+ps -ef --sort=start_time
+
 Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
 Memoria:
 ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | column -t | head
+
+Total memoria usada en MB
+ps --no-headers -eo rss | awk '{ SUM += $1} END { print SUM/1024 }'
 
 
 ps aux --sort -rss | head

@@ -10,11 +10,26 @@ pacman -S xf86-video-intel
 
 
 
-pacman -S gnome-shell gdm gnome-control-center gnome-tweak-tool network-manager-applet system-config-printer gnome-shell-extensions guake
-pacman -S gnome-extra
-  300MiB, contains further GNOME applications, including an archive manager, disk manager, text editor, games, etc.
+pacman -S gnome gnome-extra guake
+  gnome-extra: 300MiB, contains further GNOME applications, including an archive manager, disk manager, text editor, games, etc.
 systemctl enable gdm
 systemctl start gdm
+
+# Iconos bonitos
+packer -S numix-circle-icon-theme-git numix-themes-git gnome-shell-theme-elegance-colors-git
+elegance-colors
+cd /usr/share/elegance-colors/templates
+sudo ln -s gs-3.14/ gs-3.16
+  si tenemos gnome shell 3.16 (mirar si lo han arreglado ya)
+elegance-colors-prefs
+  preset -> numix
+gnome-tweak-tool
+  Aparariencia -> Iconos -> Numix-Circle
+  Aparariencia -> GTK+ -> Numix
+  Aparariencia -> Tema de la shell -> Numix
+  Extensiones -> User themes -> activar
+  Apariencia -> Tema de la shell -> numix
+
 
 # Fuentes
 sudo mkdir /root/.gnupg/

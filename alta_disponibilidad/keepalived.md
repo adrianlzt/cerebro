@@ -10,3 +10,6 @@ Parche para unicast: http://1wt.eu/keepalived/
 Hace un funcionamiento parecido a Pacemaker+Corosync pero en un solo demonio, y bastante más básico.
 
 Soportado completamente en CentOS 6.6
+
+
+Con ansible: http://everythingshouldbevirtual.com/ansible-keepalived

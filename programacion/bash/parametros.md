@@ -22,6 +22,22 @@ $*	all positional parameters except $0, see mass usage
 $@	all positional parameters except $0, see mass usage
 $#	the number of arguments, not counting $0
 
+Si llamamos a un script como:
+./script "param" "otro param"
+Los valores serán
+  $1="param"
+  $2="otro param"
+
+Pero si dentro del script hacemos:
+  ./otro_script $@
+  Los valores serán:
+    $1="param"
+    $2="otro"
+    $3="param"
+
+Para que lo haga correctamente:
+  ./otro_script "$@"
+
 
 Sobre convertir variables "al vuelo"
 http://www.ibm.com/developerworks/opensource/library/l-bash-parameters/index.html

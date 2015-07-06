@@ -5,7 +5,10 @@
 - hosts: grupo:!host1:!host2
   sudo: True
   gather_facts: False
+  tags:
+    - templates
   roles:
+    - common
     - { role: configPuppet, project: 'NOMBRE', monitoring_env: 'pre', puppet_env: 'puppet_pp' }
 
 - hosts: host1:host2

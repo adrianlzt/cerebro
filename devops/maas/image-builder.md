@@ -7,11 +7,17 @@ https://code.launchpad.net/~maas-maintainers/maas/maas-image-builder
 Chef recipe que crea una imagen centos y la sube a maas:
 https://github.com/jjasghar/maas/blob/centos/recipes/centos.rb
 
+# Nuevo
+bzr branch lp:maas-image-builder
+cd maas-image-builder
+make
 
+# Viejo
 bzr branch lp:~maas-maintainers/maas/maas-image-builder
 cd maas-image-builder/bin
 ./build --install-deps
 
+apt-get install maas-image-builder
 
 
 Basically, an image gets installed into a QEMU VM, a snapshot is taken, and that is the image that MaaS pushes to provision servers.
@@ -37,6 +43,10 @@ Me genera la imagen en: build-output/centos7-amd64-root-tgz
 
 Para meterla en maas:
 maas root boot-resources create name=centos/centos70 architecture=amd64/generic content@=/opt/maas-image-builder/build-output/centos7-amd64-root-tgz
+
+Forzar la sync de los nodos:
+maas root node-groups import-boot-images
+
 
 http://.../MAAS/images/
 Podremos ver nuestra imagen en "Generated images"

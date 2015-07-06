@@ -9,6 +9,12 @@
 's': si estamos leyendo de un pipe (ps aux | less), nos pide un nombre de fichero donde guardará el contenido.
      tambien se puede hacer con "-o fichero". O tambien "-O fichero" sobreescribiendo.
 
+Uso como tail
+less +F fichero
+  Con control+c saltamos al modo normal de less
+  Con 'F' volvemos al modo 'tail -f'
+  Para varios ficheros, mejor usar tail -f
+
 ~/.lesskey 
 #env
 LESS = -X -i -R -F -M

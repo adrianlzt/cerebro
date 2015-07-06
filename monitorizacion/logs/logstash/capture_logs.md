@@ -12,7 +12,44 @@ An alternative seems to be Beaver -- a Python daemon that chews on logs and send
 
 Lumberjack: https://github.com/jordansissel/lumberjack
 Coge logs, o stdin, les asigna unas etiquetas, los comprime y protege (SSL) y los envía a un servidor de logstash.
+Muy ligero, escrito en go
+Ahora se llama logstash-forwarder: https://github.com/elastic/logstash-forwarder
+
+Descarga: tgz, rpm, deb, etc: https://www.elastic.co/downloads/logstash
+
+Para tener HA, configurar el servidor a un dns round robin. El cliente intentará conectar haciendo distintas peticiones dns hasta que encuentre un server que conteste correctamente:
+https://discuss.elastic.co/t/logstash-forwarder-reconnect-with-round-robin-dns/2101
+https://github.com/elastic/logstash-forwarder/blob/master/publisher1.go#L168
+
+Performance, en mi portatil, enviando a un server externo:
+42" 168000 lineas
 
 
+# Otras opciones
 Beaver: https://github.com/josegonzalez/beaver
 Coge logs y los envia a logstash mediante algún broker, redis, ZMQ, Rabbit... O directamente, TCP, UDP...
+
+
+# Instalar
+git clone git://github.com/elasticsearch/logstash-forwarder.git
+cd logstash-forwarder
+go build -o logstash-forwarder
+
+# Configurar
+lumberjack.json hay una copia de lumberjack.json en este mismo dir
+
+Hace falta configurar el "ssl ca" con el certificado del servidor donde atacamos o la autoridad certificadora que haya firmado.
+Si atacamos ips y no están metidas como SAN en el certificado nos dirá:
+Failed to tls handshake with 172.16.1.28 x509: cannot validate certificate for 172.16.1.28 because it doesn't contain any IP SANs
+
+# Arrancar
+logstash-forwarder -config lumberjack.json
+
+Por defecto lee ficheros de /var/log/messages /var/log/*.log /var/log/http/... y stdin
+
+Al meter algo en stdin nos dirá:
+2015/06/09 10:50:10.806524 Registrar: processing 1 events
+
+
+# Parar
+Al pararlo escribirá en .logstash-forwarder el offset de los ficheros que ha leído.

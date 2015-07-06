@@ -9,8 +9,12 @@ apt-cache search -f <pkg>
 
 dpkg-query para consultar información de paquetes instalados.
 
+dpkg-query -p <paquete>
+  info extendida de un paquete instalado
+
 dpkg-deb para consultar paquetes .deb
   -I info general y dependencias
   -c contenido del paquete
   -X dir  extrae el contenido al directorio 'dir'
   
+

@@ -1,6 +1,7 @@
 free
 ps
 smem
+atop
 slabtop
 top
 vmstat

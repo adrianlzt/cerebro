@@ -166,3 +166,11 @@ ip link set eth1 netns NOMBRE
 
 ip l set veth2 up
   activamos la interfaz creada
+
+
+# Errores
+
+Añadiendo una nueva ruta
+RTNETLINK answers: Invalid argument
+Mirar que estamos metiendo correctamente la network. Usar ipcal.
+https://access.redhat.com/solutions/37921

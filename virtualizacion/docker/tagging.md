@@ -8,4 +8,6 @@ docker commit -m "commit message" -author "autor" <container-id> adrianlzt/image
 También podemos tagear una imagen:
 docker tag imagen adrianlzt/imagen 1.5
 
-
+Tagear para un repo externo
+docker tag adrianlzt/image:1.5 externo.registry.com/adrianlzt/imagen:1.5
+docker push externo.registry.com/adrianlzt/imagen:1.5

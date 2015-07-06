@@ -1,5 +1,12 @@
 Usage: docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 
+docker run --rm -P --name=pepe CONTENEDOR
+  corre el CONTENEDOR con el nombre 'pepe' exportando los puertos que estén como EXPOSE en el dockerfile.
+  se borra el container cuando lo finalicemos
+
+docker run -d -P --name=pepe CONTENEDOR
+  como antes, pero se pone en daemon. No se borra el container al final (no se puede poner --rm con -d)
+
 Run a command in a new container
 
   -a=map[]: Attach to stdin, stdout or stderr.
@@ -18,7 +25,7 @@ Run a command in a new container
   -dns=[]: Set custom dns servers for the container
   -v=[]: Create a bind mount with: [host-dir]:[container-dir]:[rw|ro]. If "host-dir" is missing, then docker creates a new volume.
   -volumes-from="": Mount all volumes from the given container.
-  -entrypoint="": Overwrite the default entrypoint set by the image.
+  --entrypoint="": Overwrite the default entrypoint set by the image.
   -w="": Working directory inside the container
   -lxc-conf=[]: Add custom lxc options -lxc-conf="lxc.cgroup.cpuset.cpus = 0,1"
 
@@ -30,7 +37,7 @@ sudo docker run -i -t ubuntu /bin/bash
   -t=false: Allocate a pseudo-tty
 
 Si quiero entrar a una imagen pero tiene un entrypoint y no me deja con el típico: docker run -t -i imagen /bin/bash, puedo hacer:
-docker run -t -i -entrypoint="/bin/bash" imagen -i
+docker run -t -i --entrypoint="/bin/bash" imagen -i
 
 
 Correr un mysql:
@@ -59,4 +66,4 @@ El código que devuelve vendrá por el código que de la aplicación que corramo
 
 
 Variables de entorno
-docker run ubuntu env HOME=/ PATH=/usr/bin:/usr/sbin HOSTNAME=asdads
+docker run -e "deep=purple" --rm ubuntu /bin/bash

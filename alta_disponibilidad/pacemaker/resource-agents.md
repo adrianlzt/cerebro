@@ -2,6 +2,12 @@ Resource Agents:
 /usr/lib/ocf/
 /usr/share/cluster
 
+Ejecutar a mano un ocf (ejemplo con lvm):
+export OCF_ROOT=/usr/lib/ocf
+export OCF_RESKEY_volgrpname="vg_MySQL"
+/usr/lib/ocf/resource.d/heartbeat/LVM status
+
+
 # crm ra
 Mirar las clases de resources disponibles:
 crm(live)ra# classes

@@ -1,4 +1,5 @@
 # http://www.sslshopper.com/article-most-common-openssl-commands.html
+http://starnixhacks.blogspot.com.es/2010/06/openssl-command-is-amazing.html
 
 pxf: llave + certificado unidos
 pem / cer: certificados
@@ -26,12 +27,17 @@ http://www.openssl.org/docs/apps/verify.html
 openssl verify -verbose -CAfile Certificate-Authority.crt user.pem 
 
 
-Ver certificado
+#Ver certificado
+
 file fichero
   nos dice que tipo de encriptación lleva, según esa información usaremos un comando u otro
 openssl rsa -pubout -in id_rsa
   clave pública de una clave privada
+
+Datos de una clave privada (.key normalmente)
 openssl rsa -text -in id_rsa
-openssl rsa -text -in id_rsa.pem
-openssl x509 -noout -text -in certs/server.pem 
+
+Datos de un certificado (crt, pem, etc)
+openssl x509 -noout -text -in certs/server.crt
+
 openssl pkcs12 -info -in keyStore.p12

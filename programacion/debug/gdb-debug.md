@@ -1,6 +1,7 @@
 http://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
 http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/
 http://beej.us/guide/bggdb/#qref
+http://www.yolinux.com/TUTORIALS/GDB-Commands.html
 
 Como hacer debug de programas con gdb.
 

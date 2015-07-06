@@ -20,3 +20,16 @@ Host rebuscao
   User pepe
   ProxyCommand ssh -A -X host1.com ssh -A -X user@host2.org nc %h %
   # Como hacer con -W?
+
+
+
+
+
+Host *+*
+  StrictHostKeyChecking no
+  ProxyCommand ssh -q $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') nc $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+
+Con esto puedes hacer
+ssh alice+bob
+Y te conectaras a bob a través de alice
+

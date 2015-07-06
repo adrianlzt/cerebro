@@ -1,5 +1,16 @@
-# Region controller
-Ejecutar este comando para definir la ip correcta (si no es la de la interfaz por defecto):
+# Cambio de ip del region controller
+
+## cambios en region controller
+/etc/maas/maas_local_settings.py
+DEFAULT_MAAS_URL
+/etc/init.d/apache2 restart
+
+## cambios en cluster controller
+Este comando cambia a donde apunta el cluster controller
+maas-provision configure-maas-url http://192.168.122.151/MAAS
+  cambia /etc/maas/maas_cluster.conf
+  MAAS_URL=
+
 Conf actual:
   debconf-show maas-region-controller (no aparece la ip)
 dpkg-reconfigure maas-region-controller

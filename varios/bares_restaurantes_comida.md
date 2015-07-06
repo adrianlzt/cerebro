@@ -23,6 +23,8 @@ Casa Hortensia. Recomendación Luis. Asturiano. Raciones abundantes. Fabes con a
 Ojalá, Hawaianno. Reservar y pedir la planta de abajo, para comer sobre arena de playa. ~20€
 http://www.sumorestaurante.com/. Descuento el tenedor. Buen sushi, calidad precio.
 Sala de despiece. http://www.academiadeldespiece.com/saladedespiece-carta/ Carne! ~30€
+Goikogrill, Hamburguesería, 10/12€. No pedir carne doble
+Pizza Sana
 Vegetarianos:
   Viva la vida. Latina
 Asiáticos
@@ -39,6 +41,9 @@ Asiáticos
 Mexicanos
   la panza es lo primero
   Tacos Chapultepec (Calle del Cardenal Cisneros, 13)
+Peruano
+  Sabor norteño, Vázquez de Mella 37 (Ciudad Lineal)
+  A&G, Ayala 27. Muy caro. Menu degustación ~50€ sin bebida
 
 Las Tablas
   La mano de pablo
@@ -54,6 +59,8 @@ Poncelet, tienda de quesos. Calle Genova
 Panic, la mejor panadería de Madrid, Conde Duque, 13. Madrid (Ventura Rodriguez)
 Museo del Pan Gallego, Plaza de Herradores, 9 28013 Madrid (Plaza Mayor)
 
+# Cuenca
+Mesón José.  Calle de San Francisco, 18, 16001 Cuenca
 
 # Barcelona
 http://www.eltenedor.es/restaurante/tantarantana/33542

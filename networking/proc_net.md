@@ -63,6 +63,14 @@ Possible values are:
 "unknown", "notpresent", "down", "lowerlayerdown", "testing", "dormant", "up".
 
 
+## /proc/net/dev
+cat /proc/net/dev | tr '|:' ' ' | column -t
+
+Vemos los bytes recibidos/transmitidos por cada interfaz, más errores, drope, fifo, frame, compressed y multicast.
+
+Si estamos buscando errores podremos ir a /sys/class/net/INTERFAZ/statistics/ para verlo con más detalle.
+
+
 Para estos dos siguientes, mirar networking/backlog.md
 ## Somaxconn ##
 /proc/sys/net/core/somaxconn

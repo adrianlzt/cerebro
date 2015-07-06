@@ -22,6 +22,10 @@ es http
 es otra cosa
 {% endif %}
 
+Ternary:
+ternary: allows for trueval/falseval assignement dependint on conditional
+
+
 
 
 Ejecutar tareas dependiendo de el valor del último task:
@@ -93,3 +97,10 @@ Salta un prompt si no podemos hacer ping a github.com
 
   roles:
     - { role: cyclops, when: "{{MONITORING.active}}" }
+
+
+# Ejecutar algo si la máquina pertenece a un hostgroup
+- name: prueba
+  debug: msg="hola"
+  when: inventory_hostname in groups['coso']
+

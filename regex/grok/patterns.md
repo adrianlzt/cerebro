@@ -20,4 +20,11 @@ match {
   reaction: "%{nombre} suma %{NUMBER}"
 
 
-Patterns de logstash: https://github.com/elasticsearch/logstash/tree/master/patterns
+Patterns de logstash: https://github.com/logstash-plugins/logstash-patterns-core
+
+Apache combined:
+COMBINEDAPACHELOG
+
+
+TIMESTAMP_ISO8601
+2015-06-11T23:59:56.489+0200

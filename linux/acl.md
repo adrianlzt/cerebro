@@ -17,7 +17,7 @@ Borrar una acl:
   setfacl -x u:nrpe <file>
 
 Borrar todas las acl:
-  setfacl -b
+  setfacl -b <file>
 
 Definir máscara:
 setfacl -m m::r <file>

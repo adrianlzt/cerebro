@@ -5,6 +5,11 @@ Livestatus make use of the Nagios Event Broker API
 
 Si se intenta reiniciar icinga cuando hay una conexión al socket, el script de init.d no podrá parar icinga y terminará matándolo con un kill -9
 
+# LQL
+Query lenguage para livestatus
+status - general performance and status information. This table contains exactly one dataset.
+columns - a complete list of all tables and columns available via Livestatus, including descriptions!
+
 
 Ejemplo de query al socket:
 $ nc -U /var/spool/icinga/cmd/live
@@ -20,6 +25,12 @@ Limit: 1001
 
 echo -e "GET services\nColumns: host_name host_state service_description\nLimit: 2" | nc -U /var/spool/icinga/cmd/live
 
+Servicios staled más de 1.5 time periods:
+echo -e "GET services\nColumns: host_name service_description host_staleness staleness\nFilter: service_staleness >= 1.5" | nc -U /var/spool/icinga/cmd/live
+
+Staled y con un mensaje distinto de:
+echo -e "GET services\nColumns: host_name service_description plugin_output host_staleness staleness\nFilter: service_staleness >= 1.5\nFilter: plugin_output != CRITICAL: Data not received" | nc -U /var/spool/icinga/cmd/live
+
 Más complejo:
 GET services
 Columns: host_scheduled_downtime_depth service_last_check service_action_url_expanded service_icon_image service_notifications_enabled service_perf_data service_check_command service_custom_variable_names service_comments_with_extra_info host_filename service_scheduled_downtime_depth service_accept_passive_checks host_custom_variable_names host_state service_has_been_checked service_notes_url_expanded service_downtimes service_modified_attributes_list service_custom_variable_values service_acknowledged service_plugin_output host_has_been_checked service_last_state_change service_description service_in_notification_period service_active_checks_enabled service_pnpgraph_present host_custom_variable_values host_name service_is_flapping service_state
@@ -33,6 +44,76 @@ KeepAlive: on
 ResponseHeader:fixed16
 
 
+# Condicionales
+GET services
+Filter: state = 1
+Filter: state = 3
+Or: 2
+
+
+GET services
+Filter: state = 2
+Filter: acknowledged = 1
+And: 2
+Filter: state = 0
+Or: 2
+
+
+# Contar
+echo -e "GET services\nStats: service_staleness >= 1.5\nFilter: plugin_output != CRITICAL: Data not received" | nc -U /var/spool/icinga/cmd/live
+Devuelve el número de servicios staled que cumplan el filtro
+
+Servicios totales en estado OK:
+echo -e "GET services\nStats: state = 0" | nc -U /var/spool/icinga/cmd/live
+
+Servicios totales en estado OK y stalled:
+echo -e "GET services\nStats: state = 0\nFilter: service_staleness >= 1.5" | nc -U /var/spool/icinga/cmd/live
+
+
+
+
+
+## Acceso remoto
+https://mathias-kettner.de/checkmk_livestatus.html#H1:Remote access to Livestatus via SSH or xinetd
+ssh < query nagios@10.0.0.14 "unixcat /var/lib/nagios/rw/live"
+
+# cat /etc/xinetd.d/livestatus
+service livestatus
+{ 
+  type = UNLISTED
+  port = 6557
+  socket_type = stream
+  protocol = tcp
+  wait = no
+  # limit to 100 connections per second. Disable 3 secs if above.
+  cps = 100 3
+  # set the number of maximum allowed parallel instances of unixcat.
+  # Please make sure that this values is at least as high as
+  # the number of threads defined with num_client_threads in
+  # etc/mk-livestatus/nagios.cfg
+  instances = 500
+  # limit the maximum number of simultaneous connections from
+  # one source IP address
+  per_source = 250
+  # Disable TCP delay, makes connection more responsive
+  flags = NODELAY
+  user = icinga
+  server = /usr/bin/unixcat
+  server_args = /var/spool/icinga/cmd/live
+  # configure the IP address(es) of your Nagios server here:
+  only_from = 127.0.0.1 0.0.0.0/0
+  disable = no
+
+  # Disable logging
+  log_on_success =
+}
+
+
+echo -e "GET services\nColumns: host_name host_state service_description\nLimit: 2" | nc 10.0.26.19 6557
+
+
+
+# Columas posibles
 Para conocer todas las columnas posibles para host:
 GET hosts
 ColumnHeaders: on
@@ -351,9 +432,3 @@ staleness
 state
 state_type
 
-
-
-
-## Acceso remoto
-https://mathias-kettner.de/checkmk_livestatus.html#H1:Remote access to Livestatus via SSH or xinetd
-ssh < query nagios@10.0.0.14 "unixcat /var/lib/nagios/rw/live"

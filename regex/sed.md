@@ -71,6 +71,14 @@ cat fichero | sed 1q
 
 
 
-# return group a mayúsculas
+# return group a mayúsculas - uppercase
 echo "group_a_master_ci_3:27017" | sed s/'group_\(\w\)_.*'/'\U\1'/
 A
+
+# a minúsculas - lowercase
+$ echo "    type: OS::Neutron::Net" | sed s/'\(type: .*\)'/'\L\1'/
+    type: os::neutron::net
+
+
+# sed
+sed -i "8iInserta una nueva linea en la linea 8"

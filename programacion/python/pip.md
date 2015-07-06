@@ -24,3 +24,7 @@ Mirar curdling.md para una versión más rápida
 # freeze #
 Obtener una lista de las versiones que estamos usando de las dependencias
 pip freeze > requirements.txt
+
+
+# Requested XXXX==N, but installing version M
+Borrar /tmp/pip-build-root/XXXX

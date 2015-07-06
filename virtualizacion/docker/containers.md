@@ -1,9 +1,11 @@
-Mirar boxes.md
+index.docker.io
+https://quay.io/
 
 Localmente se almacenan en: /var/lib/docker/containers/
 
 # Busqueda de containers:
 docker search <string>
+docker search external.registry.com/nombre
 
 # Bajar container:
 docker pull <username>/<repository>
@@ -39,3 +41,15 @@ docker pull usuario/imagen
 
 # Mirar que cambios hemos hecho
 docker diff <container>
+
+
+# Usar un repo externo
+docker login http://reg.externo.com
+
+O crear un fichero en ~/.dockercfg estilo:
+{
+  "https://url.com" : {
+    "auth" : "YWxMkOF349dhbxQBR1BXY=",
+    "email" : "email@email.com"
+  }
+}

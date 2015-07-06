@@ -4,6 +4,7 @@ Si se reclama una página que está en swap, ocurre un fallo de página y se hac
 
 http://www.slideshare.net/raghusiddarth/memory-management-in-linux-11551521
 
+# Velocidades de acceso
 CPU registers ~1 ciclo
 CPU cache (L1, L2, ...) 3-14 ciclos
 RAM ~250 ciclos

@@ -1,6 +1,8 @@
 DEPRECATED en favor de systemd
 http://www.markshuttleworth.com/archives/1316
 
+CentOS 6.x tiene upstart
+
 
 http://upstart.ubuntu.com/cookbook
 

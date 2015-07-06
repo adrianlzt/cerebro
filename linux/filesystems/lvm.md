@@ -77,3 +77,12 @@ http://raldaz.wordpress.com/2008/01/10/haciendo-un-backup-usando-snapshot-de-lvm
 
 # Snapshot
 lvm-snapshots.md
+
+
+# Automontaje
+Por defecto los volumegroups se montan automáticamente y a su vez se montan los lv's que estén en estos grupos.
+
+Estado de los LVs
+lvdisplay -a | grep -e Status -e Name
+
+Si queremos que no se monten los vg/lv en el arranque tendremos que editar el parametro auto_activation_volume_list en /etc/lvm/lvm.conf

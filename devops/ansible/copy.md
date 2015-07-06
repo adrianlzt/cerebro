@@ -6,9 +6,18 @@ Copia ficheros entre la máquina local donde se ejecuta ansible y la máquina re
 
 - copy: src=/srv/myfiles/foo.conf dest=/etc/foo.conf owner=foo group=foo mode=0644
 
+# Ad-hoc
+ansible all -m copy -a "src=/srv/myfiles/foo.conf dest=/etc/foo.conf owner=foo group=foo mode=0644"
+
 Si el dest es un diretorio, se copiará con el nombre del src. Si no, usará el nombre allí declarado
 
-- copy: content="contenido del fichero" dest=/tmp/prueba
+
+- name: autofs conf
+  copy: content="CONTENIDO"
+        dest=/etc/fichero
+        owner=root group=root mode=0644
+
+
 
 No consigo pasar a content el valor de una variable tipo content="{{variable}}"
 Me dice que:

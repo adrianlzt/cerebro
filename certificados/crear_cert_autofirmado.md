@@ -1,8 +1,12 @@
 http://www.cyberciti.biz/faq/nginx-self-signed-certificate-tutorial-on-centos-redhat-linux/
 
-openssl genrsa -des3 -out self-ssl.key 2048
+En RedHat/CentOS usar
+/etc/pki/tls/certs/Makefile
+
+
+openssl genrsa -out self-ssl.key 2048
   generate an SSL private key
-  If you don't want your key to be protected by a password, remove the flag '-des3' from the command line
+  If you want your key to be protected by a password, add the flag '-des3' from the command line
 
 openssl req -new -key self-ssl.key -out self-ssl.csr
   generate a CSR

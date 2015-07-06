@@ -2,6 +2,7 @@ http://docs.ansible.com/setup_module.html
 
 Esto es como los facts de puppet:
 ansible all -m setup
+ansible localhost -m setup | less
 
 Nos devuelve todas las varibables que luego podremos usar en los plays como {{ ansible_devices.sda.model }}
 
@@ -35,7 +36,15 @@ The filter option filters only the first level subkey below ansible_facts.
 Una variable cualquier la metemos como:
 nombre.valor.cosa
 
+Ejemplo, ip de la interfaz 'docker0':
+ansible_docker0.ipv4.address
 
+Usando una variable para definir la interfaz:
+{{hostvars[inventory_hostname][iface].ipv4.address}}
+
+
+
+# Set fact
 Definir un fact en un playbook:
 http://docs.ansible.com/set_fact_module.html
 Las variables definidas así sobreviven a distintos plays dentro de un mismo playbook (mirar ejemplo debajo)
@@ -62,3 +71,8 @@ Luego la podremos usar como {{ virtual_ip }}
     - name: escupe variables
       debug: msg={{adri_pepe}}
 
+
+Asignar un id a cada maquina de un grupo
+- name: Assign id for each zookeeper host
+  set_fact:
+    "id": "{% for host in groups['broker'] %}{% if host == inventory_hostname %}{{ loop.index }}{% endif %}{% endfor %}"

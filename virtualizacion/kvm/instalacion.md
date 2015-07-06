@@ -44,7 +44,10 @@ sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
 
 sudo gpasswd -a adrian wheel
+  este no es para ubuntu
 sudo gpasswd -a adrian kvm
+sudo gpasswd -a maas libvirtd
+  este ultimo es para ubuntu
 
 virt-manager
 pedira la password del usuario
