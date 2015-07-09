@@ -8,3 +8,5 @@ Puerto por defecto:
 
 curl con proxy socks5:
 curl --proxy socks5://localhost:9050 sdfouhafhiosdadfas.onion
+
+Mirar torsocks.md

@@ -1,0 +1,32 @@
+https://bugzilla.redhat.com/show_bug.cgi?id=714426
+
+
+[root@testserver:~]$ cat /lib/systemd/system/mysqld.service 
+[Unit]
+Description=MySQL Database
+After=sockets.target syslog.target 
+Before=httpd.service postfix.service
+
+[Service]
+Type=simple
+PIDFile=/var/run/mysqld/mysqld.pid
+ExecStart=/usr/libexec/mysqld --defaults-file=/etc/my.cnf --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/lib/mysql/mysql.sock --user=mysql
+ExecStop=/bin/kill -15 $MAINPID
+Restart=always
+RestartSec=2
+TimeoutSec=60
+
+[Install]
+WantedBy=multi-user.target
+Also=mysqld.socket 
+
+
+[root@testserver:~]$ cat /lib/systemd/system/mysqld.socket
+[Unit]
+Description=MySQL Database activation socket
+
+[Socket]
+ListenStream=/var/lib/mysql/mysql.sock
+
+[Install]
+WantedBy=sockets.target

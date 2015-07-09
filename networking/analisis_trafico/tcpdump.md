@@ -1,6 +1,13 @@
 http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
+Mostrar a que interfaz pertenece cada paquete
+http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
+
+
 ### USAR TSHARK ###
+
+Tipica instruccion para escuchar en todas las interfaces quitando ssh, dns, arp y ntp
+# tcpdump -nn -i any not port 22 and not arp and not port 53 and not port 123
 
 No traducir hosts
 # tcpdump -n ...

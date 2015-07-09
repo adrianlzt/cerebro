@@ -1,0 +1,1 @@
+pacman -S fuse-exfat
