@@ -1,0 +1,166 @@
+RESUMEN:
+To resume, in all hosts (some are not needed in all types of hosts, but for simplicity): 
+ - disable selinux and iptables
+ - install the .tar.gz in /usr/mysql
+ - create /data/, /data/backup, /var/lib/mysql
+ - copy /etc/my.cnf and /etc/config.ini (have to be customized with nodes info)
+ - create mysql:mysql
+ - create /etc/init.d/mysql
+ - create /etc/init.d/ndbd (modifying NODEID=)
+ - create /etc/init.d/ndb_mgmd (modifying NODEID= and CONNECTSTRING=)
+
+Initiate databases in mysql nodes:
+ - /usr/mysql/scripts/mysql_install_db --defaults-file=/etc/my.cnf --force --datadir=/data/ --basedir=/usr/mysql
+
+Then, start cluster.
+For mgm nodes (one by one):
+ - chkconfig ndb_mgmd on
+ - /usr/mysql/bin/ndb_mgmd --ndb-nodeid=${nodeid} -c "$host:1186"  -f /etc/config.ini --configdir=/etc/ --initial
+
+For ndbd nodes (one by one):
+ - chkconfig ndbd on
+ - /usr/mysql/bin/ndbmtd --ndb-nodeid=$id -c "$host:1186" --initial
+ - wait 180" until nodes started. Asking: /usr/mysql/bin/ndb_waiter -t 1 -c "$host:1186" | grep "OK"
+
+For mysql nodes (one by one):
+ - chkconfig mysql on
+ - service mysql start
+ - wait until mysql answers to 'select 1'
+ - define root user without password for host ip and 127.0.0.1
+
+
+
+
+General steps to build a node:
+  ** note that NDB nodes have to be deployed in pairs - it isn't enough to build
+     a single node and add to the cluster! 
+
+  ** secondly, ignore any referecne to cmon in these scripts. The monitoring software has changed 
+     since the build scripts and cmon listed here is much different from the new mechanism used to 
+     monitor the cluster.
+
+Review the bootstrap.sh found in the scripts\install directory.
+	Drive layout for all machines has /data on largest partition with xfs formatting.
+	mysql db files should live on that path: /data/
+
+Next review the add-mysqld.sh
+
+mysql user is root and the pass is sandybridge ALL privs on the db.
+
+
+The build script is customized for a 2 master, 4 data node cluster specific to our environment. In general, the bootstrap checks for ssh access to all the machines, kills selinux and iptables, sets up the path info and then calls the build scripts.
+
+The build scripts then scp the config files based on personality (master, node), the specific config file for identity (node 1, node 2, node 3, node 4), the mysql/ndbd binaries to each node, and the init.d files.
+
+Once all the parts are in place, the masters are turned on, then the data nodes. There’s a very long period of time for the data nodes during the initial boot phase (you might see the command ndbd —initial in the scripts) as there is a great deal of traffic flowing between the nodes during this initial setup phase. When that’s complete, the masters finalize and the cluster is online.
+
+There is also a script that is run post build and validation that prepares the cluster for production. It essentially adds a few lines in the configuration files and does a rolling restart of the cluster. There was a problem with the script as it did not wait long enough for the nodes to come back into a ready state and I ended up manually handling any rolling restarts.
+
+
+
+deploy ->
+  .s9s/hostnames -> maquinas donde instalar
+  .s9s/help_func -> funciones para subir ficheros, ejecutar comandos, etc en los nodos mediante ssh
+  .s9s/config -> variables de instalación, puertos, usuarios, paths, etc
+  shared-ssh-keys.sh
+
+  ! desactivar selinux
+  ! desactivar iptables (lo hace en otro lado, pero para ansible lo ponemos aqui)
+  ! instalar: yum -y install perl rsync libaio
+  ! sysctl -w vm.swappiness=0
+  ! /etc/sysctl.conf -> vm.swappiness=0
+
+  download-binary.sh
+    se baja mysql-cluster-gpl-7.2.5-linux-x86_64-glibc23.tar.gz y lo guarda en repo/
+
+  ! mysql-cluster-gpl-7.2.5-linux-x86_64-glibc23.tar.gz
+
+  install-cluster.sh
+  ! cuatro tipos de nodos: mysql, repl, ndbd, mgm
+  !   2 mysql, los mismos que mgm. 4 ndbd. 0 repl
+
+  ! para cada nodo
+  ! descomprime mysql-cluster-gpl-7.2.5-linux-x86_64-glibc23.tar.gz en /usr
+  ! ln -s /usr/mysql-cluster-gpl-7.2.5-linux2.6-x86_64 /usr/mysql
+
+  bootstrap.sh ->
+    "Run this script only the first time you install MySQL Cluster."
+  ! cada maquina tiene un id: las mgm el 1 y el 2. Para las ndbd, 3,4,5 y 6
+
+    install_initd_linux.sh (las dos primeras lineas son del bootstrp.sh realmente)
+    ! Para las mysql: cp tgz/support-files/mysql.server /etc/init.d/mysql (root:root 0755)
+    ! Marcar este script para el arranque (chkconfig)
+
+    ! Para las ndb, se instala el script mysqlcluster-72/cluster/init.d/ndbd en /etc/init.d/ndbd_$ID (root:root 0755)
+    ! Para cada host, se modifica el parámetro NODEID=X para poner su id
+    ! Marcar este script para el arranque (chkconfig)
+
+    ! Para las mgm, se instala el script mysqlcluster-72/cluster/init.d/ndb_mgmd en /etc/init.d/ndbd_$IP (root:root 0755)
+    ! Para cada host, se modifica el parámetro NODEID=X para poner su id y CONNECTSTRING=$IP:1186
+    ! Marcar este script para el arranque (chkconfig)
+
+  ! Para las mysql
+  ! cp mysqlcluster-72/cluster/config/my.cnf /etc/
+  ! crea user y group mysql
+  ! mkdir /data /var/lib/mysql (mysql:mysql)
+  ! /usr/mysql/scripts/mysql_install_db --defaults-file=/etc/my.cnf --force --datadir=/data/ --basedir=/usr/mysql
+  ! chown mysql:mysql -R /data/
+  ! chown mysql:mysql -R /var/lib/mysql
+
+  ! Para las mgm
+  ! mkdir /data/
+  ! cp mysqlcluster-72/cluster/config/config.ini /etc/
+
+    start-mgmd.sh
+    ! Arrancar ( las dos siguientes lineas) secuencialmente, de una en una
+    ! /usr/mysql/bin/ndb_mgmd --ndb-nodeid=${nodeid} -c "$host:1186"  -f /etc/config.ini --configdir=/etc/ --initial
+    ! Esperar hasta que aparezca un proceso que se llame ndb_mgmd
+
+  ! Una vez arrancados los dos mgmd: /usr/mysql/bin/ndb_config -c "$host:1186" --type=ndbd --query=hostname
+  ! Ejecutar eso en uno de los nodos, y si retorna "", fallar
+
+  ! Para las ndbd
+  ! mkdir -p /data/backup
+  ! ejecutar en una mgm: /usr/mysql/bin/ndb_config -c "$host:1186" --type=ndbd --query=nodeid,hostname
+  ! Para cada elemento devuelto por este comando
+    start-ndbd.sh
+    ! Secuencialmente, de una en una
+    ! Chequea que no esta encendido ya (preguntando a un nodo mgmt y mirando que no esté el proceso corriendo)
+    ! /usr/mysql/bin/ndbmtd --ndb-nodeid=$id -c "$host:1186" --initial
+    ! Esperar a que el proceso con nombre ndbmtd aparezca
+  ! Esperar a que el cluster este listo. En una mgm: /usr/mysql/bin/ndb_waiter -t 1 -c "$host:1186" | grep "OK"
+  ! Esperar 180" (el pone 90), fallar si no se pone a listo: http://johanandersson.blogspot.com/2009/05/cluster-fails-to-start-self-diagnosis.html
+
+  ! Para los mysql, secuencialmente
+  ! service mysql start
+  ! Esperar a que se levante el server: LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -e 'select 1'
+  ! Definir passwd de root: LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysqladmin --defaults-file=/etc/my.cnf -uroot password ''
+  ! LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -p'' -e "SET SQL_LOG_BIN=0; GRANT ALL ON *.* TO 'root'@'$HOST_IP_DE_LA_MAQUINA' IDENTIFIED BY ''
+  ! LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -p'' -e "SET SQL_LOG_BIN=0; GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY ''
+
+  Cosas de repl (que no pongo porque no hay ningun nodo de este tipo y cosas de la instalacion de cmon)
+
+  ! para terminar, mostrar, ejecutado en un mgmt: /usr/mysql/bin/ndb_mgm -c "$host:1186" -e show
+
+add-mysqld.sh ->
+  install-host.sh
+  ! descomprime mysql-cluster-gpl-7.2.5-linux-x86_64-glibc23.tar.gz en /usr
+  ! ln -s /usr/mysql-cluster-gpl-7.2.5-linux2.6-x86_64 /usr/mysql
+! cp tgz/support-files/mysql.server /etc/init.d/mysql
+! Marca mysql para el arranque
+! copia el /etc/my.cnf de la maquina donde se ejecuta el script a la nueva maquina
+! crea user y group mysql
+! mkdir /data
+! chown mysql:mysql /data
+! /usr/mysql/scripts/mysql_install_db  --defaults-file=/etc/my.cnf --force --datadir=/data --basedir=/usr/mysql
+! /etc/init.d/mysql start
+! Esperar a que se levante el server: LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -e 'select 1'
+! Definir passwd de root: LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysqladmin --defaults-file=/etc/my.cnf -uroot password ''
+! LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -p'' -e "SET SQL_LOG_BIN=0; GRANT ALL ON *.* TO 'root'@'$HOST_IP_DE_LA_MAQUINA' IDENTIFIED BY ''
+! LD_LIBRARY_PATH=/usr/mysql/lib:/usr/mysql/lib/mysql /usr/mysql/bin/mysql --defaults-file=/etc/my.cnf -uroot -p'' -e "SET SQL_LOG_BIN=0; GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY ''
+
+fix_libexec.sh
+
+download-and-compile.sh
+  esta vacío, le faltan definir las variables que dirían donde se instala
+

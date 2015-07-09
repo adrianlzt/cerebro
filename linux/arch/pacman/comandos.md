@@ -24,6 +24,9 @@ pacman -Sy
 Actualizar base de datos y paquetes:
 pacman -Suy
 
+Actualizar un paquete:
+pacman -S paquete
+
 Lista paquetes instalados:
 pacman -Q
 pacman -Qs

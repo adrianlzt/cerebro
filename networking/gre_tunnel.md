@@ -19,6 +19,7 @@ TYPE=GRE
 PEER_OUTER_IPADDR=52.26.93.113
 PEER_INNER_IPADDR=192.168.168.1
 MY_INNER_IPADDR=192.168.168.2
+MY_OUTER_IPADDR=52.24.132.107
 
 52.26.93.113 es la ip pública del otro nodo
 192.168.168.2 es una ip interna para la interfaz tungre
@@ -33,7 +34,10 @@ TYPE=GRE
 PEER_OUTER_IPADDR=52.24.132.107
 PEER_INNER_IPADDR=192.168.168.2
 MY_INNER_IPADDR=192.168.168.1
+MY_OUTER_IPADDR=52.26.93.113
 
+
+ifup vpc
 
 
 La configuración con comandos ip no consigo que me funcione.

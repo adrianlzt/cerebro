@@ -112,6 +112,11 @@ service livestatus
 echo -e "GET services\nColumns: host_name host_state service_description\nLimit: 2" | nc 10.0.26.19 6557
 
 
+# API
+## Python
+http://www.eldespistado.com/mk-livestatus-acceso-datos-nagios-mediante-api-python/
+https://pypi.python.org/pypi/python-mk-livestatus/0.3
+
 
 # Columas posibles
 Para conocer todas las columnas posibles para host:
