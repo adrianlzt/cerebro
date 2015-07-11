@@ -1,3 +1,7 @@
+Descomprimir fichero:
+tar xvf fichero.LOQUESEA
+  tar detecta automaticamente las extensiones para saber como descomprimirlo
+
 Crear tgz
 tar zcvf comprimido.tgz dir1/ dir2/ fiche1 fiche2
 

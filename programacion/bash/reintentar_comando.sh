@@ -5,4 +5,4 @@
 CMD=$1
 SLEEP=2
 false
-while [[ ! $? -eq 0 ]]; do sleep $SLEEP; echo "otra vuelta"; $CMD; done
+while [[ ! $? -eq 0 ]]; do sleep $SLEEP; echo "otra vuelta"; bash -c "$CMD"; done
