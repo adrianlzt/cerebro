@@ -1,14 +1,13 @@
+piratebay
+http://uj3wazyk5u4hnvtk.onion
+--
+"name": "Facebook"
+"url": "https://www.facebookcorewwwi.onion/"
+no fiable
+--
 "name": "MediaCrush",
 "url": "http://mediacrs5ujufxog.onion/"
 Equivalente a http://imgur.com/ o tinypic.com
---
-"name": "Onionweb filehosting",
-"url": "http://3fnhfsfc2bpzdste.onion/"
-Equivalente wetransfer
---
-"name": "DOXBIN - Post Dox",
-"url": "http://doxbinzqkeoso6sl.onion/"
-rollo pastebin donde la gente pone datos de hackeos
 --
 "name": "[TorBox] The Tor Mail Box",
 "url": "http://torbox3uiot6wchz.onion/"

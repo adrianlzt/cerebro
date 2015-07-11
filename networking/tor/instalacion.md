@@ -1,3 +1,7 @@
+También es posible hacer uso del tor-browser, que ya levanta el la conexión contra la red tor.
+Mirar navegador.md
+
+
 # Ubuntu
 sudo apt-get install tor
 
