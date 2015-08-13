@@ -92,6 +92,8 @@ pcs cluster standby NODO
 
 Si el nodo es DC se mantendrá, pero ya no podrá ser el activo.
 
+pcs node unstandby NODO
+
 
 
 

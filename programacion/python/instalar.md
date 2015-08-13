@@ -47,3 +47,13 @@ setup(
 
 ## RPMs ##
 mirar rpm.md
+
+## Python 2.7 en CentOS 5
+wget http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz
+tar -xzvf Python-2.7.3.tgz
+cd Python-2.7.3
+./configure
+make altinstall
+
+Si queremos tener zlib, tendremos que tener instalado zlib-devel antes de dar al configure
+para tener https, necesitamos tener instalado: openssl-devel

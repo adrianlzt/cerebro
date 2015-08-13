@@ -3,6 +3,8 @@ Herramienta ncurses para debugear python PuDB
 http://docs.python.org/2/library/pdb.html
 http://www.doughellmann.com/PyMOTW/pdb/
 
+Mirar pudb.md
+
 Probar ejemplo debug-test.py
 
 $ vi programa.py

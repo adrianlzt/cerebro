@@ -48,6 +48,10 @@ Seguir enlaces blandos:
 find -L . -iname "*cosa*"
 
 
+Buscar ficheros ejecutables:
+find /bin -type f -perm /111
+
+
 # Exec
 http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories  
 note that with GNU find, using + instead of ; as the terminator to the -exec will be more efficient as it will use the minimum needed number of forks to chown instead of one fork per file/directory 

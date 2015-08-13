@@ -27,10 +27,20 @@ Cloud-init al arrancar hará un GET de esa url y lo ejecutará.
 Asi se hace en MAAS (devops/maas/internals.md)
 
 Tipicos endpoints
-/metadata/2012-03-01/meta-data/instance-id
-/metadata/2012-03-01/meta-data/local-hostname
-/metadata/2012-03-01/meta-data/public-keys
-/metadata/2012-03-01/user-data
+http://169.254.169.254/metadata/2012-03-01/meta-data/instance-id
+http://169.254.169.254/metadata/2012-03-01/meta-data/local-hostname
+http://169.254.169.254/metadata/2012-03-01/meta-data/public-keys
+http://169.254.169.254/metadata/2012-03-01/user-data
 
 Podemos usar la extension de Chrome "REST Console" para generar el auth header para usar oauth.
+
+
+Se ejecuta mediante el script
+/etc/rc3.d/S51cloud-init
+
+En /var/lib/cloud podemos encontrar ficheros relativos a la ejecucción.
+
+Y los ficheros de log:
+/var/log/cloud-init.log
+/var/log/cloud-init-output.log
 

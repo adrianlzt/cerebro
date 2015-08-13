@@ -25,8 +25,18 @@ http://www.sumorestaurante.com/. Descuento el tenedor. Buen sushi, calidad preci
 Sala de despiece. http://www.academiadeldespiece.com/saladedespiece-carta/ Carne! ~30€
 Goikogrill, Hamburguesería, 10/12€. No pedir carne doble
 Pizza Sana
+Restaurante Lago, en la casa de campo. Bonito ambiente.
+Molino taller del agua, Manzanares el Real. Caro ~30€. Bonito ambiente. Camino Peña Sacra, 36, 28410. Solo findes
+La Jota, raciones caseras. Plaza de la luna, Callao. Calle Silva 23
+Rey del pollo, al lado del rey del tallarín, con terraza. Barato
+Bolero, eat my balls. Bocadillos de albóndigas, cerca de Callao
+La buga del lobo, terraza lavapies. Bebidas para verano
+Poncelet cheese bar
+The hall (antiguo nodo)
+Iroco (bonito, para ir en pareja)
 Vegetarianos:
   Viva la vida. Latina
+  Sopa (vegano)
 Asiáticos
   Yue Lai (chino auténtico, hot-pot, http://www.gastromaniacblog.com/2010/03/yue-lai-y-el-hotpot-la-autentica.html)
   Rey de tallarines (plaza españa, http://www.reydetallarines.com/)
@@ -41,6 +51,7 @@ Asiáticos
 Mexicanos
   la panza es lo primero
   Tacos Chapultepec (Calle del Cardenal Cisneros, 13)
+  Takos al pastor, entre Gran Vía y Sol. Dicho que estaban buenos por unos mejicanos.
 Peruano
   Sabor norteño, Vázquez de Mella 37 (Ciudad Lineal)
   A&G, Ayala 27. Muy caro. Menu degustación ~50€ sin bebida
@@ -52,10 +63,13 @@ Las Tablas
 
 ## Tomar algo
 Terraza del Reina Sofía. Para beber algo. Pijo.
+terraza m40 madrid, Av de Miguel Hernández, 94. Vistas sobre el cerro de los ángeles.
+
 
 ## Tiendas
 Quesería Conde Duque, Conde Duque, 15 (L-V 11:00 - 21:00, S 10:00 - 17:00)
 Poncelet, tienda de quesos. Calle Genova
+Bon Fromage, Mercado de Chamartín
 Panic, la mejor panadería de Madrid, Conde Duque, 13. Madrid (Ventura Rodriguez)
 Museo del Pan Gallego, Plaza de Herradores, 9 28013 Madrid (Plaza Mayor)
 

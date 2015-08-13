@@ -93,7 +93,25 @@ create 640 root root
 # Clusters con directorios compartidos
 Activar sharedscripts y poner una condición en el de pre para ver si el nodo es el cluster activo
 
+
+
+# A mano
+logrotate -d prueba.conf
+  con -d no hace nada, solo informa.
+
+Para rotar pero sin tocar el fichero de estado del sistema:
+logrotate --state=status.logrotate -v prueba.conf
+
+prueba.conf:
+/tmp/prueba-ans/dir/nova.log {
+   notifempty
+   size 1k
+   rotate 3
+}  
+
+
 # Errores
 logrotate: ALERT exited abnormally with [1]
 Ejecutar a mano.
 Puede ser por tener dos definiciones que atacan a los mismos ficheros
+

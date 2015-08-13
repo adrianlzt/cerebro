@@ -23,3 +23,19 @@ convert -rotate -90 a.jpg a.jpg
 Cortar:
 convert in.jpg -crop 350x280+7+184 out.jpg
   Tamaño (ancho x alto) + desplazamiento (x + y)
+
+
+# Paint
+Un circulo
+convert prueba.gif -draw 'circle 400,400 410,410' nueva.gif
+  el centro en 400,400 hasta. El radio llega hasta la coordenada 410,410
+
+convert prueba.gif -draw 'fill red circle 525,405 527,407' -draw 'fill red circle 600,610 605,615' nueva.gif
+  dibujo dos puntos rojos
+
+# Texto
+Fuentes disponibles
+convert -list font
+
+convert prueba.gif -draw 'text 610,620 "Chamonix"' nueva.gif
+  pinta "Chamonix" empezando en esas coordeandas con la fuente Ubuntu

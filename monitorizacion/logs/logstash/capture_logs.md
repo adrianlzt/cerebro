@@ -1,3 +1,5 @@
+mirar beats.md
+
 Copy logfiles via the "traditional" methods (e.g. rsync) to the Logstash server and use a "file" input.
 
 I can run Logstash' "syslog" input on individual servers or centrally, and have, say, syslogd forward messages to that.

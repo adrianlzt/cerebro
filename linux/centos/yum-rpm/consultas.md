@@ -25,6 +25,7 @@ $ rpm -qa
 Listar ficheros
 $ repoquery -ql <paquete> (ficheros de un paquete NO instalado)
 $ rpm -ql <paquete> (ficheros de un paquete instalado)
+$ rpm -qlv <paquete> (ficheros de un paquete instalado, mostrar tambien permisos, usuario, grupo, etc)
 $ rpm -qc <paquete> (solo ficheros de configuración)
 $ rpm -qd <paquete> (solo ficheros de documentación)
 
@@ -41,6 +42,9 @@ $ rpm -qf `which vim`
 
 Dependencias
 $ rpm -qR <paquete>
+    que dependencias necesita este paquete
+$ rpm -q --provides <paquete>
+    que librerias provee este paquete
 $ rpm -qpR <paquete>.rpm
 $ yum deplist <paquete>
   Nos dice que paquetes cumplen las dependencias que necesita el rpm
@@ -51,6 +55,10 @@ $ yum whatprovides */dig
 
 inversas
 rpm -q --whatrequires <paquete>
+  nos dice que rpms necesita
+
+repoquery --whatrequires nagios-plugins-perl
+  nos dice que paquetes (de todos los que estén en los repos) necesitan a ese paquete
 
 Conflictos:
 repoquery --conflicts setuptools
@@ -58,6 +66,7 @@ rpm -qap --qf '[%{conflicts}\n]' setuptools-0.6c11-bdistrpm.noarch.rpm
 
 Obsoletes:
 rpm -qap --qf '[%{obsoletes}\n]' setuptools-0.6c11-bdistrpm.noarch.rpm
+rpm -qp --obsoletes fichero.rpm
 
 
 Verificar paquete

@@ -33,3 +33,7 @@ Con esto puedes hacer
 ssh alice+bob
 Y te conectaras a bob a través de alice
 
+
+
+# Inline
+ssh -o "VerifyHostKeyDNS=no" -o ProxyCommand="ssh -A -o BatchMode=yes -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p cloud-user@10.95.83.146" cloud-user@172.16.1.22

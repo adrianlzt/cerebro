@@ -16,6 +16,12 @@ http://docs.ansible.com/acl_module.html
 - acl: name=/etc/foo.conf
   register: acl_info
 
+Aplicar a muchos ficheros:
+  - name: prueba
+    acl: name={{item}} entity=adrian etype=user permissions='rw' state=present
+    with_fileglob: /tmp/prueba-ans/dir/file*
+
+
 
 Ad-Hoc
 ansible master-1 -m acl -sa "name=/var/log/messages entity=cyclops etype=user permissions="r" state=present"

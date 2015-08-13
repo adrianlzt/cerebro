@@ -7,3 +7,7 @@ area2=( zero one two three four )
 
 echo -n "area[11] = "
 echo ${area[11]}    #  {curly brackets} needed.
+
+
+Acceso con variable:
+${host_gb[$i]}

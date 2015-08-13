@@ -3,3 +3,5 @@ Compresión sin pérdidas.
 Mapa de bits.
 Viejo.
 Para poca cantidad de colores.
+
+mirar crear_gif.md
