@@ -11,3 +11,9 @@ Más sencillo:
   Si está cerrado:
   bash: connect: Conexión rehusada
   bash: /dev/tcp/localhost/23: Conexión rehusada
+
+
+# Abrir puerto
+nc -kl PUERTO
+
+python -m SimpleHTTPServer PUERTO

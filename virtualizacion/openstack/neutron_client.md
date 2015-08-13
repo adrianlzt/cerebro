@@ -41,6 +41,9 @@ neutron port-list -- --network_id=3b7c7ead-4ee1-4fe7-a2c6-a2b7c60b9ff9
 
 neutron port-update --security-group UUID1 --security-group UUID2 nombre
 
+Borrar todos los puertos:
+for i in $(neutron port-list --quote nonnumeric -c id -f value); do neutron port-delete $i; done
+
 
 # Floating IP
 neutron floatingip-create ext_mgmt

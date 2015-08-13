@@ -112,6 +112,8 @@ https://labs.consol.de/nagios/check_logfiles/#comment-413
 Ejemplo con los ficheros de message de centos
 
 Tenemos que definir que tipo de rotado lleva (mirar rotation en http://labs.consol.de/lang/en/nagios/check_logfiles/)
+Hay mas tipos de rotado que los que pone en la web: https://gist.github.com/adrianlzt/c654b7323903a9a9b982
+
 Tambien podemos pasarle una expresión regular.
 Por ejemplo, para los ficheros message, que son: message -> message-$(date +%Y%m%d) pondremos:
 --rotation="messages-\d{8}"

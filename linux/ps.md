@@ -16,6 +16,8 @@ ps auxww
 Ver como arbol:
 ps auxf
 ps ajxf
+ps -ef --forest
+ps -ef f
 
 
 Ver los threads:

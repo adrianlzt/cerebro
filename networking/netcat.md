@@ -1,5 +1,8 @@
 Para sockets mirar socat.md
 
+Pequeña implementación en python: netcat.py
+Permite escuchar en sockets y establecer conexión
+
 Testear una conexión: nc -vz ip port
 Testear una conex udp: nc -vuz ip port
 >/dev/tcp/ip/port

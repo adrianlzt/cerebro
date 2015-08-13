@@ -17,6 +17,10 @@ define name (param) {}
 Ejemplos:
 pi=$(echo "scale=10; 4*a(1)" | bc -l)
 
+Redondear:
+$ echo "scale=0;90/24" | bc -s
+3
+
 Se puede usar para programar, en cuyo caso podemos usar read() para leer de la entrada estandar
 
 

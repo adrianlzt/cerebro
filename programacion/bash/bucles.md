@@ -48,6 +48,12 @@ for i in $(seq 1 5); do
    echo "Welcome $i times"
 done
 
+seq 0 6 240
+de 0 a 240 en incrementos de 6 en 6
+
+seq -f "%02g" 0 6 240
+padding with zeroes
+
 
 http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_09_05.html
 break -> para salir del bucle
@@ -55,3 +61,12 @@ continue -> para ir a la siguiente iteración del bucle
 
 Bucle para ir esperando cada vez más: 0.1s, 0.2s, ..., 1.5s
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do printf "."; sleep $(echo $i | awk '{printf "%.2f \n", $1/10}'); done
+
+
+
+Bucle escribiendo array:
+for (( i=1; i <= 3; ++i ))
+do
+  host[$i]="pepe"
+  echo "Valor: ${host_gb[$i]}"
+done

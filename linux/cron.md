@@ -61,3 +61,8 @@ Background.
 Las tareas se ejecutan en background por defecto, por lo que no hace falta poner & al final del comando:
 https://help.ubuntu.com/community/CronHowto
   "These commands (and their run times) are then controlled by the cron daemon, which executes them in the system background"
+
+
+# Problemas
+Si el fichero de cron de un usuario tiene permisos de escritura no se ejecutará.
+Si lo reeditamos con "crontab -e" cogerá los permisos adecuados.

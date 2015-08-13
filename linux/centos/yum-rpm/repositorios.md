@@ -37,6 +37,7 @@ http://ftp.jaist.ac.jp/pub/Linux/CentOS/6.6/os/x86_64/Packages/
 EPEL CentOS 6: 
 rpm -Uvh "http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm"
 http://dl.fedoraproject.org/pub/epel/6/x86_64/
+src.rpms: http://mirror.uv.es/mirror/fedora-epel/6/SRPMS/
 
 EPEL CentOS 7:
 yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm

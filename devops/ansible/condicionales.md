@@ -54,7 +54,7 @@ when: "'reticulating splines' in output"
 Que haya algo en la salida:
 when: pepe.stdout.strip('') != ""
 
-Hace una tarea u otra dependiendo si fileinline modifica o no un fichero:
+Hace una tarea u otra dependiendo si lineinfile modifica o no un fichero:
     - name: gen file
       lineinfile: dest=/tmp/ansible1/ficheroLine line="prueba contenido" create=yes
       register: result

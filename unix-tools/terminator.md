@@ -111,6 +111,8 @@ Open a new window (note: unlike in previous releases, this window is part of the
 Super+i
 Spawn a new Terminator process
 
+Doble click sobre la barra de separación entre terminales para hacerlas iguales
+
 
 Layouts:
 
