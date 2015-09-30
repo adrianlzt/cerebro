@@ -1,5 +1,9 @@
 https://mathias-kettner.de/checkmk_devel_multisite_icons.html
 
+El python se ejecuta en la carga de la página. La función tiene a mano las variables abajo listadas y tiene que devolver una cadena html que se pondrá en la página.
+Típicamente devolverá un link con un icono:
+<a href="blabla"><img bla></a>
+
 Mirar ejemplo en:
 multisite_add_custom_icons_test.py
 
@@ -49,3 +53,7 @@ Variables disponibles:
  'service_is_flapping': 0,
  'service_state': 0
 }
+
+service_comments_with_extra_info aqui estarán los mensajes de ack.
+Ej.:
+service_comments_with_extra_info': [[1, u'USUARIO', u'MENSAJE', 4, 1442915859]]

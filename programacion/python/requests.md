@@ -48,3 +48,8 @@ import requests
 requests.codes.ok
 
 Todos los códigos en: https://github.com/kennethreitz/requests/blob/master/requests/status_codes.py
+
+
+# Auth
+from requests.auth import HTTPBasicAuth
+requests.get('https://api.github.com/user', auth=HTTPBasicAuth('user', 'pass'))

@@ -12,3 +12,15 @@ Copiar ficheros en la misma máquina con rsync. Hace falta que el usuario pueda 
 
 Copiar directorio recursivamente manteniendo permisos y usuarios (es necesario tener 'sudo: true' para poder mantener los usuarios):
 - synchronize: src=/tmp/prueba dest=/tmp/otra owner=yes
+
+
+Copiando entre dos maquinas remotas
+- hosts: hostA
+  sudo: True
+  gather_facts: False
+  tasks:
+    - name: copiamos del hostA a hostB
+      synchronize: mode=pull src=/tmp/check_mk.tar dest=/tmp/check_mk.tar
+      sudo_user: skypebot
+      delegate_to: hostB
+

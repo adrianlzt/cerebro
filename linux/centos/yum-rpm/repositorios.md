@@ -43,6 +43,9 @@ EPEL CentOS 7:
 yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
+EPEL CentOS 5:
+rpm -Uvh http://mirror.uv.es/mirror/fedora-epel//5Server/x86_64/epel-release-5-4.noarch.rpm
+
 
 Repoforge
 http://pkgs.repoforge.org/

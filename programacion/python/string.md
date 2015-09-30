@@ -76,6 +76,9 @@ este_es_elnom_bre
 'abc   def   '
 
 
+# Ver si una palabara esta en una cadena
+'adri' in variable
+True
 >>> cadena = "--hola"
 >>> cadena.__contains__('--')
 True

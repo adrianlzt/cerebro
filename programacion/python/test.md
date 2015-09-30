@@ -3,6 +3,8 @@ https://docs.python.org/2/library/unittest.html
 dummy_test_suite.py
 http://it-ebooks.info/book/3778/ Testing Python - Applying Unit Testing, TDD, BDD and Acceptance Testing
 
+Mirar nosetests.md para buscar y ejecutar los tests
+
 
 Test Driven Develop. La idea es primero desarollar las pruebas con los resultados que queremos y luego programar hasta pasar todos los tests.
 

@@ -15,3 +15,6 @@ Tener cuidado con las locale (intentar pasar una fecha en español a un sistema 
 
 $ date -Ins
 2015-03-09T10:09:17,292535328+0100
+
+Poner la hora actual más una hora:
+date -d '+1 hour' "+%d.%m.%Y %H:%M:%S"

@@ -16,3 +16,18 @@ tiempo()
 time.sleep(5)
 print "fin programa"
 
+
+
+
+Escribe a los dos segundos, termina a los 5:
+from threading import Timer
+import time
+
+def timeout():
+    print("Dos segundos")
+
+t = Timer(2, timeout)
+t.start()
+
+# do something else, such as
+time.sleep(5)

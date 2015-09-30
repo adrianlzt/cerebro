@@ -1,3 +1,6 @@
+Es como crear un switch virtual y pinchar interfaces en él.
+
+
 Para máquinas virtuales mejor usar MacVTap
 http://wiki.math.cmu.edu/iki/wiki/tips/20140303-kvm-macvtap.html
 

@@ -11,6 +11,7 @@
 #- name: create tempfile
 #  command: dd if=/dev/urandom of=/tmp/random.txt count=100
 #  connection: local
+# No funciona!
 
 
 # Ad-hoc

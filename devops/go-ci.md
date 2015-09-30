@@ -99,3 +99,6 @@ Ejemplo:
     <mailhost hostname="servidor.de.mail.com" port="25" tls="false" from="go@ci-server.com" admin="admin@admin.es" />
   </server>
 
+
+# Añadir un proyecto al cruise-config.xml
+go-ci_add_project.md NOMBRE

@@ -26,5 +26,5 @@ update-ca-trust extract
 # Arch
 pacman -S ca-certificates
 sudo update-ca-trust enable
-cp fichero.crt /etc/ca-certificates/trust-source/anchors
-trust extract-compat
+sudo cp fichero.crt /etc/ca-certificates/trust-source/anchors
+sudo trust extract-compat

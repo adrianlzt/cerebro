@@ -10,6 +10,12 @@ Calidad del enlace
 sudo iwconfig wlo1 | grep -i --color quality
 
 
+# Conectar a una wifi con wpa:
+wpa_passphrase SSID PASSPHRASE >> /etc/wpa_supplicant.conf
+wpa_supplicant -Dwext -iwlan0 -c /etc/wpa_supplicant.conf
+dhclient wlan0
+ip r add default wlan0 via 192.168.1.1
+
 
 10.58.242.242
 255.248.0.0
@@ -23,6 +29,7 @@ sudo ifconfig wlo1 up
 
 # NetworkManager
 El mejor sin duda.
+Entorno gráfico: https://wiki.archlinux.org/index.php/NetworkManager#Other_desktops_and_window_managers
 
 Para desactivar el que maneje una cierta interfaz:
 /etc/NetworkManager/NetworkManager.conf

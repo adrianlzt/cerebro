@@ -1,3 +1,5 @@
+Mejor usar yaourt.md
+
 Helper para instalar los paquetes AUR.
 
 Configurar el repo archlinuxfr (mirar repositorios.md)

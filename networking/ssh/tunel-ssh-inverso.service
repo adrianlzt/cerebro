@@ -1,0 +1,18 @@
+#
+# La maquina HOST, haciendo 'ssh localhost -p 2222' estara conectando al 22 de la maquina donde se lanza este service
+#
+[Unit]
+Description=Tunel inverso configurado con systemd
+ConditionPathExists=|/usr/bin
+After=network.target
+
+[Service]
+User=skype
+ExecStart=/usr/bin/ssh -TN -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no -R 2222:localhost:22 HOST
+
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

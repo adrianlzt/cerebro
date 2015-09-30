@@ -82,3 +82,11 @@ $ echo "    type: OS::Neutron::Net" | sed s/'\(type: .*\)'/'\L\1'/
 
 # sed
 sed -i "8iInserta una nueva linea en la linea 8"
+
+
+# Cambios de linea
+echo -e "uno\ndos\ntres\ncuatro" | sed -e ':a' -e 'N' -e '$!ba' -e s/'dos\n'/'MIL'/
+uno
+MILtres
+cuatro
+

@@ -68,3 +68,6 @@ $ awk "BEGIN {print 5/2}"
 Random entre 0 y 1:
 awk -v seed=$RANDOM 'BEGIN{srand(seed); print rand();}'
 
+
+Quedarme con una linea:
+cat fichero | awk 'NR==4'

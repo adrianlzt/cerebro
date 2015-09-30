@@ -150,3 +150,7 @@ https://gist.github.com/josevalim/fb706b1e933ef01e4fb6
 http://matteomelani.wordpress.com/2011/10/17/authentication-for-mobile-devices/
 https://gist.github.com/jwo/1255275
 
+
+
+# Login con curl
+http://stackoverflow.com/questions/28841168/devise-authentication-using-curl

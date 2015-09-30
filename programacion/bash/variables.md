@@ -6,6 +6,11 @@ LOCALES: Declaradas dentro de las funciones
 declare -i i
 local i
 
+Si hacemos
+local var=$(cmd)
+la variable $? siempre será 0
+
+
 Usar declare para definir las variables http://www.tldp.org/LDP/abs/html/declareref.html
 -r readonly
 -i integer
@@ -49,23 +54,7 @@ ${parameter:+word}
 If parameter is null or unset, nothing is substituted, otherwise the expansion of word is substituted.
 
 
-
-${parameter:-defaultValue}    ValueGet default shell variables value
-${parameter:=defaultValue}    ValueSet default shell variables value
-${parameter:?"Error Message"}     Display an error message if parameter is not set
-${#var}    Find the length of the string
-${var%pattern}    Remove from shortest rear (end) pattern
-${var%%pattern}    Remove from longest rear (end) pattern
-${var:num1:num2}    Substring
-${var#pattern}    Remove from shortest front pattern
-${var##pattern}    Remove from longest front pattern
-${var/pattern/string}   Find and replace (only replace first occurrence)
-${var//pattern/string}    Find and replace all occurrences
-
-
-
 Mas acciones con las variables según si están definidas o no:
-http://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
 http://www.debuntu.org/how-to-bash-parameter-expansion-and-default-values/
 
 

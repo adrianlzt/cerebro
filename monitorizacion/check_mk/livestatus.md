@@ -437,3 +437,25 @@ staleness
 state
 state_type
 
+
+
+# Errores
+[1275563434] livestatus: error: Client connection terminated while request 
+
+Parece poco importante.
+https://www.mail-archive.com/checkmk-en@lists.mathias-kettner.de/msg00253.html
+http://mathias-kettner.de/checkmk_livestatus.html#H1:Timeouts
+
+
+check_mk/livestatus/src/Store.cc
+bool Store::answerRequest(InputBuffer *input, OutputBuffer *output)
+{
+    output->reset();
+    int r = input->readRequest();
+    if (r != IB_REQUEST_READ) {
+        if (r != IB_END_OF_FILE)
+            output->setError(RESPONSE_CODE_INCOMPLETE_REQUEST,
+                "Client connection terminated while request still incomplete");
+        return false;
+    }
+

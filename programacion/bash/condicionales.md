@@ -26,6 +26,9 @@ if [[ $? -ne 0 ]]; then
   echo "not match"
 fi
 
+# Regexp
+if [[ "hola" =~ ^h.l[aA] ]]; then echo "match"; fi
+
 
 
 FORMATO ANTIGUO:
@@ -73,3 +76,8 @@ if [[ -d /ttmp ]]; then
 else 
   echo "NO existe"
 fi
+
+Para meterlas en condicionales:
+if fun param1 param2; then
+  ...
+
