@@ -1,3 +1,5 @@
+Definir las funciones antes de usarlas.
+
 kk () {
 echo hola
 }
@@ -16,3 +18,8 @@ change_owner_of_files() {
         chown $user:$group $i
     done
 }
+
+
+Para meterlas en condicionales:
+if fun param1 param2; then
+  ...

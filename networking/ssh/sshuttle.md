@@ -20,3 +20,14 @@ De esta manera podremos, por ejemplo, acceder al puerto 3306 de una máquina 192
 
 Matar con
 kill $(cat sshuttle.pid)
+
+
+Hace uso de iptables
+adrian:~$ sudo iptables-save | grep sshu
+:sshuttle-12300 - [0:0]
+-A PREROUTING -j sshuttle-12300
+-A OUTPUT -j sshuttle-12300
+-A sshuttle-12300 -d 192.168.42.0/24 -p tcp -m ttl ! --ttl-eq 42 -j REDIRECT --to-ports 12300
+-A sshuttle-12300 -d 127.0.0.0/8 -p tcp -j RETURN
+
+Abre un puerto en localhost y nos redirige el tráfico de la red que hayamos configurado a ese puerto.

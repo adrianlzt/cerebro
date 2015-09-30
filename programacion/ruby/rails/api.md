@@ -63,3 +63,14 @@ Será necesario reiniciar el server.
 
 Capturar errores de json
 http://robots.thoughtbot.com/catching-json-parse-errors-with-custom-middleware
+
+
+# Curl
+curl -b "env=4"  http://puppet.service.dsn.inet/services.json
+
+http://stackoverflow.com/questions/18690196/how-should-i-format-a-json-post-request-to-my-rails-app
+
+curl -X POST -H "Content-Type: application/json" -d '{"player": {"name": "test","room_id": 0,"skin_id": 1,"head_id": 2,"torso_id": 3,"legs_id": 4,"x_position": 5,"y_position": 6,"direction": 7,"action": "","gender": "f"}}' localhost:3000/players.json
+
+
+

@@ -3,6 +3,9 @@ https://help.ubuntu.com/community/Router
 iptables/redireccionar_trafico.md
 
 
+No podemos redirigir tráfico a una máquina que no esté en nuestra subred.
+Mirar ssh/sshuttle.md para encaminar las conex via ssh
+
 
 Si solo queremos comunicar dos interfaces, para que los nodos conectados a una interfaz puedan hablar con los nodos de la otra interfaz:
 sysctl -w net.ipv4.ip_forward=1

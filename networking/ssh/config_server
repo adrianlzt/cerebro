@@ -1,0 +1,4 @@
+You can have multiple AcceptEnv, AllowGroups, AllowUsers, DenyGroups, DenyUsers, HostKey, PermitOpen, Port and Subsystem lines, and each line adds one or more (or sometimes zero) elements to the list.
+
+
+Se pueden definir varias lineas con AllowGroups

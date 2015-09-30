@@ -15,3 +15,18 @@ Mirar dirvish.md
 ## Rsnapshot ##
 Para tener un servidor donde almacenar backups
 mirar rsnapshot.md
+
+# Con git
+cd dir/
+git init .
+git add *
+git commit -a -m "initial commit"
+
+Cron:
+cd dir/
+git add *
+git commit -a -m "dd/mm/yyyy"
+
+# etckeeper
+mirar unixi-tools/etckeeper.md
+nos mantiene /etc bajo control de versiones

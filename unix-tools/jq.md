@@ -9,3 +9,16 @@ cat fichero.json | jq '.key'
 
 
 jq '.parent' fichero.json
+
+jq '.data[]._id' /tmp/incidencias
+nos da todos los ids del array data
+
+
+jq -r '.data[] | {id: .eid, status: .status, subject: .contact.subject}' /tmp/incidencias
+un array con un monton de valores, simplificarlo para solo tener un monton de diccionarios con unos pocos valores
+
+
+Borrar
+del(.[].foo,.[].bar)
+input: [{"foo": 42, "bar": 9001, "baz": 42},{"foo": 42, "bar": 9001, "baz": 42}]
+output: [{"baz":42},{"baz":42}]

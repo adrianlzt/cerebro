@@ -48,3 +48,10 @@ Loop sobre el diccionario
 >>> cmd
 'alarm-send'
 
+
+# Comparar
+>>> a = {"pepe":[1,2,3],"maria":[4,5,6]}
+>>> b = {"pepe":[1,2,3],"maria":[4,5,6]}
+>>> a==b
+True
+

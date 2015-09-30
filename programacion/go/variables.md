@@ -90,6 +90,9 @@ b = append(b,3)
 
 # Maps
 Une keys a valores
+
+map([TIPO_DATO_CLAVE]TIPO_DATO_VALOR)
+
 mapa := make(map[string]int)
 mapa["uno"]=1
 fmt.Println(mapa["uno"])

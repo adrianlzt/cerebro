@@ -8,3 +8,6 @@ cyclops:PRIMARY> db.users.update({"_id" : "admin"},{$set:{"password" : "NUEVA"}}
 
 cyclops:PRIMARY> db.users.find()
 { "_id" : "admin", "password" : "NUEVA" }
+
+
+unset: borra la entrada entera

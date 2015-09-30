@@ -24,6 +24,7 @@ Ojalá, Hawaianno. Reservar y pedir la planta de abajo, para comer sobre arena d
 http://www.sumorestaurante.com/. Descuento el tenedor. Buen sushi, calidad precio.
 Sala de despiece. http://www.academiadeldespiece.com/saladedespiece-carta/ Carne! ~30€
 Goikogrill, Hamburguesería, 10/12€. No pedir carne doble
+Tate's hamburguesería
 Pizza Sana
 Restaurante Lago, en la casa de campo. Bonito ambiente.
 Molino taller del agua, Manzanares el Real. Caro ~30€. Bonito ambiente. Camino Peña Sacra, 36, 28410. Solo findes
@@ -48,6 +49,7 @@ Asiáticos
   Indio calle Belén, cerca del comienzo de barquillo
   Japonés barato, buffet libre, Kintaro. Fernández de la Hoz 9
   Korea, comida coreana. Recomendacion Luis ~20€
+  Hattori hanzo, sobre 20€. Comida japonesa, no sushi.
 Mexicanos
   la panza es lo primero
   Tacos Chapultepec (Calle del Cardenal Cisneros, 13)
@@ -82,3 +84,17 @@ Hamburguesa muy rica
 
 www.mirablaubcn.com
 buenas vistas sobre barcelona
+
+Calle blai, tapeo
+La tasqueta de blai
+Blai to night
+Blai to night 2
+
+Cerca del mercat del born
+Tasca i vins
+
+El nacional, paseo de gracia
+Estilo mercado de san Miguel en Madrid
+
+# Lleida
+Can Ramon, comida griega-catalana con productos de la zona

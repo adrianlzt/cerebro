@@ -40,3 +40,10 @@ ej.:
   - debug: msg="{{ item }}"
     with_items: "{{ apps_git.stdout_lines| difference(apps_local.stdout_lines) }}"
 
+
+
+De un array que nos interesa un subvalor, crear con ellos otro array:
+remote_users.json.entry|map(attribute='name')|list
+
+La estructura de datos es tipo:
+remote_users.json.entry[0].name="pepe"

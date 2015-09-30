@@ -1,0 +1,1 @@
+Check clock skew between nodes using watch date or similar. Make sure your clocks are in UTC, not local time. Never local time. Especially never Daylight Savings Time. You can use Riemann's clock-skew stream to measure clock skew as seen by the Riemann node as well.

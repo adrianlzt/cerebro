@@ -3,3 +3,6 @@ ifconfig mtu 9000 # habilita jumbo frames. Nos dará más velocidad, menor overh
 
 
 Jumbo frames cuando mtu >= 9000
+
+
+ifconfig eth0 mtu 1492

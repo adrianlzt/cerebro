@@ -1,4 +1,4 @@
-https://help.ubuntu.com/10.04/serverguide/etckeeper.html
+http://etckeeper.branchable.com/
 
 ## Configuracion inicial
 
@@ -19,3 +19,8 @@ Si hacemos alguna modificación manual, pues:
 Para el resto de comandos git:
  etckeeper vcs CMD
    CMD = log, diff, ...
+
+
+No permite vigilar otros directorios que no sean etc
+http://superuser.com/questions/367729/how-to-reuse-extend-etckeepers-metadata-engine-for-git-control-of-non-etc-file
+http://serverfault.com/questions/211425/can-etckeeper-be-used-to-track-config-files-outside-of-etc

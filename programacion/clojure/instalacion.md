@@ -1,0 +1,2 @@
+# Arch
+pacman -S clojure

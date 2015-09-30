@@ -2,6 +2,7 @@ http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
 Mostrar a que interfaz pertenece cada paquete
 http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
+Mirar anydump.sh
 
 
 ### USAR TSHARK ###

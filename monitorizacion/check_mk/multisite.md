@@ -81,6 +81,8 @@ Este pnp4nagios debe ser accesible directamente por los usuarios que están cons
 Debe ir con una barra al final:
 Ej: http://el-otro.icinga.com/
 
+Si vamos a usar el multisite (UI primaria) con https, deberemos configurar el "URL prefix" con https. Si no lo hacemo así, cuando intente cargar una gráfica del pnp4nagios nos dirá que no lo hace por que estamos metiendo contenido inseguro (http) en una web https.
+
 
 
 

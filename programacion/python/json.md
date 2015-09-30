@@ -20,3 +20,10 @@ Para parsear la información a objetos python, tenemos bastante trabajo manual, 
 >>> json.dumps(body)
 '{"services": [{"name": "check1", "event": "dos"}, {"name": "check2"}], "name": "pepe"}'
 
+
+# Ficheros
+Se pueden pasar directamente filedescriptors:
+
+json.loads(fd)
+
+json.dump(data,fd,indent=1)

@@ -16,6 +16,15 @@ touch log
 Varios check patterns:
 --warningpattern='WARN|PEPE'
 
+Para poner ignore case:
+--nocase
+
+Poner un critical con excepciones:
+--criticalpattern="error" --criticalexception="\[[0-9]*\] (SERVICE|HOST) ALERT.*
+
+Solo se puede definir una vez el criticalpattern
+
+
 Por defecto mete los seek files en /var/tmp/check_logiles/check_logfiles._var_log_fichero.log.seek
 Y los protocol (trazas por las que ha saltado el regex) en /tmp/check_logfiles.protocol-YYYY-MM-DD-HH-MM-SS
   Esto genera bastante fichero. Podemos hacer que no genere los protocol con --noprotocol (no poner como último parámetro, falla)
