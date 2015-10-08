@@ -7,17 +7,41 @@ http://effbot.org/zone/python-list.htm
 lista.pop() #Saca 11 y lo elimina de la lista
 lista.pop(0) #Saca 'asda' y lo elimina de la lista
 len(lista) #Longitud de la lista
-list.index(elemento) #Nos dice la posicion de un elemento
+list.index(elemento) #Nos dice la posicion de la primera aparicion de 'elemento'
+Salta excepción si no existe ese elemento:
+try:
+  b.index('23')
+except ValueError as e:
+  e
+
+
 elemento in list # True or False
 if valor in list # Nos vale para saber si un elemento esta en un array
 lista[1] #Obtener el elemento que esta en esa posición de la lista
 lista.append(elemento)  equivalent to a[len(a):] = [x]
+lista.insert(0,'/') añade al comienzo del la lista. No sobreescribe, añade.
 
 sorted(list)  devuelve una lista ordenada
 
 >>> for i in range(0,len(a)):
 ...  print a[i]
 
+# Generar array
+>>> range(5)
+[0, 1, 2, 3, 4]
+>>> range(2,6)
+[2, 3, 4, 5]
+>>> range(1,10,3)
+[1, 4, 7]
+
+Generar teniendo start, step y numero de elementos:
+range(start,start+step*n_elements,step)
+
+Generar n elementos de step en step hasta llegar a stop (stop no será parte del array)
+range(stop-n*step,stop,step)
+
+Si queremos que stop sea parte del array:
+range(stop-(n-1)*step,stop+1,step)
 
 # Condicional
 lista = []
@@ -74,3 +98,15 @@ set([1, 2, 3, 9, 11, 15])
 # Devolver un array tras aplicar una funcion a otro array #
 checks = ["file1","file2"]
 checks_with_dir = ["/tmp/"+c for c in checks]
+
+
+# Generar array de iguales elementos
+>>> [3] * 5
+[3, 3, 3, 3, 3]
+
+# Imprimir array
+>>> a
+[1, 2, 3]
+>>> ",".join(str(item) for item in a)
+'1,2,3'
+

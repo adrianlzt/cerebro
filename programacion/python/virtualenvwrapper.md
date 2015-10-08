@@ -14,7 +14,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
 # Funcionamiento
-mkvirtualenv proyecto
+mkvirtualenv -p python2.7 proyecto
   creamos y entramos en un nuevo vevn que se llama "proyecto"
   nos genera los ficheros en ~/.virtualenvs/proyecto
   -a project_path   Provide a full path to a project directory to associate with the new environment
@@ -22,7 +22,7 @@ mkvirtualenv proyecto
   -r requirements_file   Provide a pip requirements file to install a base set of packages into the new environment
 
 Si nuestro SO tiene por defecto python3 y queremos el virtualenv con 2.7
-mkvirtualenv -p /usr/bin/python2.7 test
+mkvirtualenv -p /usr/bin/python2.7 -r requisitos.txt test
 pip2 install cosa
 python --version
 

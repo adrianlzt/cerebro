@@ -78,6 +78,8 @@ Ejemplos:
 sar -u 2 5
               Report CPU utilization for each 2 seconds. 5 lines are displayed.
 
+Disco (espacio)
+sar -F 1 1
 
 CPU:
 sar

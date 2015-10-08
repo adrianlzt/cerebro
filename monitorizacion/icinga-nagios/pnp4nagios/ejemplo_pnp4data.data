@@ -1,0 +1,111 @@
+Array ( 
+[MACRO] => 
+  Array ( 
+    [AUTH_HOSTNAME] => dsmctools_master-1 
+    [AUTH_SERVICEDESC] => disk 
+    [CHECK_COMMAND] => check_dummy!2 "Data not received" 
+    [DATATYPE] => SERVICEPERFDATA 
+    [DISP_HOSTNAME] => dsmctools_master-1 
+    [DISP_SERVICEDESC] => disk 
+    [HOSTNAME] => dsmctools_master-1 
+    [MULTI_PARENT] => 
+    [PERFDATA] => /=7071MB;12094;13606;0;15118 /dev/shm=42MB;1532;1723;0;1915 /srv/nagios=1830MB;12095;13607;0;15119 /srv/pnp4nagios=1830MB;12095;13607;0;15119 
+    [RRDFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.rrd 
+    [SERVICECHECKCOMMAND] => check_dummy!2 "Data not received" 
+    [SERVICEDESC] => disk 
+    [SERVICEPERFDATA] => /=7071MB;12094;13606;0;15118 /dev/shm=42MB;1532;1723;0;1915 /srv/nagios=1830MB;12095;13607;0;15119 /srv/pnp4nagios=1830MB;12095;13607;0;15119 
+    [TIMET] => 1443691200 
+    [XMLFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.xml
+  ) 
+  [DS] => 
+  Array ( 
+    [0] => Array ( 
+      [TEMPLATE] => check_dummy 
+      [RRDFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.rrd 
+      [RRD_STORAGE_TYPE] => SINGLE 
+      [RRD_HEARTBEAT] => 8460 
+      [IS_MULTI] => 0 
+      [DS] => 1 
+      [NAME] => _ 
+      [LABEL] => / 
+      [UNIT] => MB 
+      [ACT] => 7071 
+      [WARN] => 12094 
+      [WARN_MIN] => 
+      [WARN_MAX] => 
+      [WARN_RANGE_TYPE] => 
+      [CRIT] => 13606 
+      [CRIT_MIN] => 
+      [CRIT_MAX] => 
+      [CRIT_RANGE_TYPE] => 
+      [MIN] => 0 
+      [MAX] => 15118
+    ) 
+    [1] => Array ( 
+      [TEMPLATE] => check_dummy 
+      [RRDFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.rrd 
+      [RRD_STORAGE_TYPE] => SINGLE 
+      [RRD_HEARTBEAT] => 8460 
+      [IS_MULTI] => 0 
+      [DS] => 2 
+      [NAME] => _dev_shm 
+      [LABEL] => /dev/shm 
+      [UNIT] => MB 
+      [ACT] => 42 
+      [WARN] => 1532 
+      [WARN_MIN] => 
+      [WARN_MAX] => 
+      [WARN_RANGE_TYPE] => 
+      [CRIT] => 1723 
+      [CRIT_MIN] => 
+      [CRIT_MAX] => 
+      [CRIT_RANGE_TYPE] => 
+      [MIN] => 0 
+      [MAX] => 1915
+    ) 
+    [2] => Array ( 
+      [TEMPLATE] => check_dummy 
+      [RRDFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.rrd 
+      [RRD_STORAGE_TYPE] => SINGLE 
+      [RRD_HEARTBEAT] => 8460 
+      [IS_MULTI] => 0 
+      [DS] => 3 
+      [NAME] => _srv_nagios 
+      [LABEL] => /srv/nagios 
+      [UNIT] => MB 
+      [ACT] => 1830 
+      [WARN] => 12095 
+      [WARN_MIN] => 
+      [WARN_MAX] => 
+      [WARN_RANGE_TYPE] => 
+      [CRIT] => 13607 
+      [CRIT_MIN] => 
+      [CRIT_MAX] => 
+      [CRIT_RANGE_TYPE] => 
+      [MIN] => 0 
+      [MAX] => 15119
+    ) 
+    [3] => Array ( 
+      [TEMPLATE] => check_dummy 
+      [RRDFILE] => /srv/pnp4nagios/var//dsmctools_master-1/disk.rrd 
+      [RRD_STORAGE_TYPE] => SINGLE 
+      [RRD_HEARTBEAT] => 8460 
+      [IS_MULTI] => 0 
+      [DS] => 4 
+      [NAME] => _srv_pnp4nagios 
+      [LABEL] => /srv/pnp4nagios 
+      [UNIT] => MB 
+      [ACT] => 1830 
+      [WARN] => 12095 
+      [WARN_MIN] => 
+      [WARN_MAX] => 
+      [WARN_RANGE_TYPE] => 
+      [CRIT] => 13607 
+      [CRIT_MIN] => 
+      [CRIT_MAX] => 
+      [CRIT_RANGE_TYPE] => 
+      [MIN] => 0 
+      [MAX] => 15119
+    )
+  )
+)

@@ -36,3 +36,6 @@ rrdtool fetch cpu.rrd AVERAGE
 
 rrdtool fetch cpu.rrd AVERAGE -s -2h
   ver solo los valores de las ultimas 2 horas
+
+Consolidación:
+http://www.vandenbogaerdt.nl/rrdtool/min-avg-max.php

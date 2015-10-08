@@ -113,3 +113,8 @@ nginx hace la pregunta al unicorn pero como este no contesta en x, pues cierra y
 
 Failed to apply catalog: Parameter alias failed on Nagios_hostgroup[dsn-Tools]: dsn-Tools can not create alias DSMC Tools: object already exists at /var/lib/puppet/initiatives/dsn_pp/modules/monitorizacion/manifests/icinga/hostgroup.pp:54
 Dos elementos definiendo el mismo alias?
+
+
+Error: Could not request certificate: Neither PUB key nor PRIV key:: header too long
+Exiting; failed to retrieve certificate and waitforcert is disabled
+/var/log lleno?

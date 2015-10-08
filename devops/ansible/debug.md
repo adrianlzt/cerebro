@@ -22,5 +22,4 @@ ansible-playbook --step
 
 
 # Sacar script ejecutado en la máquina remota
-cd /home/USUARIO/.ansible/
-while true; do sleep 0.2; find . -type f -exec cp {} /tmp/ \;; done
+while true; do sleep 0.2; find ~/.ansible/tmp/ -type f -exec cp {} /tmp/ \;; done

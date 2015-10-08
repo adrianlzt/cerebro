@@ -5,6 +5,12 @@ date -d @1012312312
 Convertir fecha a unix timestamp:
 date -d "Wed, 6 Oct 2010 10:43:25 +0200" +"%s"
 
+$ LC_ALL=C date
+Thu Oct  1 08:47:24 CEST 2015
+$ LC_ALL=C date -d "Thu Oct  1 08:47:24 CEST 2015" +%s
+1443682044
+
+
 Sacar date:
 date +%H%M
 

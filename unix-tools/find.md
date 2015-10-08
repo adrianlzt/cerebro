@@ -30,6 +30,10 @@ find . -mtime +30 -exec rm {} +
 Buscar ficheros modificados hace menos de 5 minutos
 find . -mmin -5
 
+Orden de todos los ficheros en este directorio y subdirectorios:
+ls -lart $(find . -type f)
+
+
 
 Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".
 Nos devuelve el fichero matcheado (-H) y el número de línea (-n)

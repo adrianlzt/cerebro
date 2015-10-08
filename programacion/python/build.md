@@ -7,3 +7,7 @@ requires = python >= 2.1
 
 
 python2.7 setup.py bdist_rpm
+
+
+Crear egg (mirar egg.md):
+python setup.py bdist_egg

@@ -28,6 +28,8 @@ El comando ssh-agent lo que hace es exportar a la variable de entorno SSH_AUTH_S
 
 # Listar identidades
 ssh-add -L
+ssh-add -l
+  más resumido, con el sha256sum de la clave (creo)
 
 # Borrar identidades
 ssh-add -D

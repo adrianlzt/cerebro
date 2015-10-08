@@ -8,9 +8,25 @@ datetime.date(2013, 11, 26)
 '2013-11-26'
 
 
+# Unix epoch
+
+## con time
+time -> epoch
 import time
 int(time.time())
-unix epoch
+
+epoch -> time
+time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
+
+
+## con datetime
+datetime -> epoch
+datetime.datetime.now().strftime('%s')
+
+epoch -> datetime
+datetime.datetime.fromtimestamp(1284286794)
+
+
 
 
 # medir tiempo
@@ -27,3 +43,9 @@ datetime.timedelta(0, 4, 316543)
 4
 >>> c.microseconds
 316543
+
+
+# Hora dentro de 10 minutos
+now = datetime.datetime.now()
+now_plus_10 = now + datetime.timedelta(minutes = 10)
+now_plus_10.strftime('%s')

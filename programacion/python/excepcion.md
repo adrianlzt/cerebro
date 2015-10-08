@@ -64,3 +64,9 @@ try:
     funcion_que_tira_excepcion_CyclopsTaskException()
 except CyclopsTaskException as e:
     print "valor de status: " + e.staus
+
+
+# Lanzar una excepcion
+raise Exception("Network %s not found" % network)
+raise ValueError('A very specific bad thing happened')
+

@@ -7,6 +7,8 @@ if (edad >= 18 and edad < 24) or (edad > 50):
 if a != 3:
 	ablab
 
+a = 3 if b else 4
+
 if 1 == 2:
   print "iguales"
 elif 1 == 1:

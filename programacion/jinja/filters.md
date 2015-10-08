@@ -22,3 +22,6 @@ Borrar parte de una variable:
 
 Dar un valor por defecto si la variable no esta definida:
 {{adri_pepe1 | default('pepito')}}
+
+
+{{ convertir_a_json | to_json }}
