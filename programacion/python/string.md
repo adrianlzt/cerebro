@@ -1,3 +1,13 @@
+cadena="hola"
+cadena[2]
+'l'
+
+Para poder modificar:
+a = list("hello")
+a[2] = 'm'
+print ''.join(a)
+
+
 Funcionar como cut
 'abcde:12345'.split(':')[1]
 
@@ -14,6 +24,27 @@ int('233') / 3
 
 A float
 float('3.2')
+
+# Chequear si es un numero
+a="3"
+a.isdigit()
+True
+
+a=u'3'
+a.isnumeric()
+True
+a.isdecimal()
+True 
+
+No vale para los float. Usar: http://stackoverflow.com/questions/736043/checking-if-a-string-can-be-converted-to-float-in-python
+def isfloat(value):
+  try:
+    float(value)
+    return True
+  except ValueError:
+    return False
+
+
 
 
 Convertir a string
@@ -46,9 +77,15 @@ msn = (
 )
 
 
-
+# Concatenar
 >>> print "hola"+" "+"pepe"
 hola pepe
+
+>>> hola="pepe"
+>>> hola+="maria"
+>>> hola
+'pepemaria'
+
 
 Meter variables en string estilo C
 container_id = "%s_%s_%s_graph" % (sitename, host, service)
@@ -80,7 +117,7 @@ este_es_elnom_bre
 'adri' in variable
 True
 >>> cadena = "--hola"
->>> cadena.__contains__('--')
+>>> "--" in cadena
 True
 
 
@@ -109,3 +146,7 @@ http://stackoverflow.com/questions/9573244/most-elegant-way-to-check-if-the-stri
 cmd = ''
 if not cmd:
   print "cmd None o vacio'
+
+## Replace
+"hola".replace('o','a')
+"hala"

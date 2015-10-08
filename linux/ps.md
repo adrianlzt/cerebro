@@ -140,3 +140,11 @@ ps -e opsr,comm,pid
 
 Procesos de un usuario
 ps -f -U nombre
+
+
+# Fecha
+ls -lad /proc/8311
+para ver cuando empezó el proceso
+
+ps -eo pid,cmd,etime --forest
+  elapsed time, formato: DIAS-HH:MM:SS

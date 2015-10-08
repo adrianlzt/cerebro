@@ -57,6 +57,9 @@ Cambiar type (chcon = change context) (no sobrevive a un 'file system relabel'):
 chcon -t TYPE FICHERO
   -R: recursive
 
+Cambiar usuario:
+chcon -u unconfined_u /etc/fichero
+
 matchpathcon -V FICHERO/DIR
 comprobar que tiene los permisos por defecto
 

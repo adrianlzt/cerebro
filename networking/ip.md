@@ -50,6 +50,18 @@ ip r
   Prohibir ruta:
     ip route add prohibit 209.10.26.51
 
+  Rutas con tablas:
+    crear tabla 'hof'
+      echo 1 hof >> /etc/iproute2/rt_tables
+
+    meter una ruta
+      ip route add default via 192.168.1.1 dev wlo1 table hof
+
+    mostrar rutas
+      ip route list table hof
+
+
+
 Ver cache de ip-mac
 ip neigh
          STALE - The neighbour is valid, but is probably already unreachable, so the kernel will try to check it at the first transmission.

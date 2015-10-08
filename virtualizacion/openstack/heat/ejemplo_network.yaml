@@ -10,6 +10,13 @@
 #      pool_start: '172.12.1.20'
 #      pool_end: '172.12.1.150'
 #      ext_net: 8a533992-6914-4847-9ce4-7645bb2f0262 # Public_External 
+#      host_routes: {"map":[{"destination":"10.0.0.0/8","nexthop":"192.168.99.22"}]
+#
+#
+# Si queremos llamarlo desde la linea de comandos:
+# - Quitar el apaño del map del host_routes
+# heat -k stack-create -f network.yaml -P ext_net=ext_inet -P dns="8.8.8.8,8.8.4.4" -P cidr=172.16.1.0/24 -P gateway=172.16.1.1 -P pool_start=172.16.1.20 -P pool_end=172.16.1.150 -P host_routes='[{"nexthop": "172.16.1.1", "destination": "0.0.0.0/1"}, {"nexthop": "172.16.1.1", "destination": "128.0.0.0/1"}]' -P name=internet_network internet_network 
+#
 #
 
 heat_template_version: 2013-05-23
@@ -24,9 +31,9 @@ parameters:
   dns:
     type: comma_delimited_list
     description: DNS servers
-#  host_routes:
-#    type: string
-#    description: Host routes for the subnet
+  host_routes:
+    type: json
+    description: Host routes for the subnet
   cidr:
     type: string
     description: Network address (CIDR notation)
@@ -59,20 +66,33 @@ resources:
       allocation_pools:
         - start: { get_param: pool_start }
           end: { get_param: pool_end }
-#      value_specs:
-#        host_routes:
-#          - destination: 10.0.0.0/8
-#            nexthop: 192.168.99.22
+      host_routes: { get_param: host_routes }
+      #host_routes: { get_param: [ host_routes, map ] }
 
   router:
     type: OS::Neutron::Router
     properties:
-      value_specs:
-        external_gateway_info:
-          network_id: { get_param: ext_net }
+      external_gateway_info:
+        network: { get_param: ext_net }
 
   router_interface:
     type: OS::Neutron::RouterInterface
     properties:
       router_id: { get_resource: router }
       subnet_id: { get_resource: subnet }
+
+outputs:
+  net_id:
+    description: Network ID
+    value: { "Fn::Select" : [ "id", { get_attr: [net, show]} ] }
+  subnet_id:
+    description: Subnet Network ID
+    value: { "Fn::Select" : [ "id", { get_attr: [subnet, show]} ] }
+  router_id:
+    description: Router ID
+    value: { "Fn::Select" : [ "id", { get_attr: [router, show]} ] }
+
+# este ultimo no funciona
+#  router_iface_id:
+#    description: Router Interface ID
+#    value: { "Fn::Select" : [ "id", { get_attr: [router_interface, show]} ] }

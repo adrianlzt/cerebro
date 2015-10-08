@@ -22,7 +22,7 @@ Matar con
 kill $(cat sshuttle.pid)
 
 
-Hace uso de iptables
+Hace uso de iptables (tabla NAT)
 adrian:~$ sudo iptables-save | grep sshu
 :sshuttle-12300 - [0:0]
 -A PREROUTING -j sshuttle-12300
@@ -31,3 +31,6 @@ adrian:~$ sudo iptables-save | grep sshu
 -A sshuttle-12300 -d 127.0.0.0/8 -p tcp -j RETURN
 
 Abre un puerto en localhost y nos redirige el tráfico de la red que hayamos configurado a ese puerto.
+La primera y segunda regla dice que todo el tráfico de PREROUTING y OUTPUT debe pasar por la Chain "sshuttle-12300"
+Esta Chain dice que si queremos enviar un paquete a 192.168.42.0/24 lo redirijamos al puerto 12300
+La última regla es para que el tráfico localhost no se toque (creo).

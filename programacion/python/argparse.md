@@ -35,5 +35,9 @@ Parsear numeros (type=[float,int]):
       dest=OpenstackConstants.KEY_TIMEOUT_CINDER, action='store',required=False, default=OpenstackConstants.DEFAULT_TIMEOUT_CINDER,type=int)
 
 
+p.add_argument("-G", "--no_graph", action="store_const", dest="graph", help="Not show graphic", default=True, const=False)
+  Si ponemos '-G', la variable "graph" se pone a False, si no, True.
+
+
 # Subcomandos
 Mirar parser_subcommands.py

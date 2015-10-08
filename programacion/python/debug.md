@@ -3,6 +3,10 @@ Herramienta ncurses para debugear python PuDB
 http://docs.python.org/2/library/pdb.html
 http://www.doughellmann.com/PyMOTW/pdb/
 
+# Interactivo tras fallo
+python -i script.py
+  tras fallar nos deja una traceback de donde ha parado y la consola abierta
+
 Mirar pudb.md
 
 Probar ejemplo debug-test.py

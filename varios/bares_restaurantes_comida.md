@@ -74,6 +74,7 @@ Poncelet, tienda de quesos. Calle Genova
 Bon Fromage, Mercado de Chamartín
 Panic, la mejor panadería de Madrid, Conde Duque, 13. Madrid (Ventura Rodriguez)
 Museo del Pan Gallego, Plaza de Herradores, 9 28013 Madrid (Plaza Mayor)
+Pastafresca, Glorieta de Quevedo
 
 # Cuenca
 Mesón José.  Calle de San Francisco, 18, 16001 Cuenca

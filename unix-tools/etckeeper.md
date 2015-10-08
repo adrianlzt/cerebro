@@ -1,5 +1,8 @@
 http://etckeeper.branchable.com/
 
+CUIDADO!
+Al restaurar ficheros (etckeer vcs checkout -- fichero) NO respeta los permisos
+
 ## Configuracion inicial
 
 Mantener bajo revisión los ficheros de /etc

@@ -1,5 +1,7 @@
 http://www.secnetix.de/olli/Python/lambda_functions.hawk
 
+Mirar functional_programming.md
+
 anonymous functions (i.e. functions that are not bound to a name) at runtim
 
 >>> def f (x): return x**2

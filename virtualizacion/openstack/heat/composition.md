@@ -12,10 +12,17 @@ Para no terminar con un YAML gigante, dividiremos nuestro template HOT en varios
 
 Por ejemplo, tendremos un yaml para definir un servidor y luego el yaml principal que cada vez que quiera crear un servidor llamará a ese yaml de servidor.
 
+Acceso a recursos nested:  Accessing nested attributes requires heat_template_version 2014-10-16 or higher
+outputs:
+  test_out:
+      value: {get_attr: my_server, resource.server, first_address}
+
+
 PROBLEMA: como hacemos un get_resource desde un fichero nomain2.yaml a otro elemento de nomain1.yaml? El nombre del recurso es el mismo solo que se ha llamado dos veces.
 Tal vez se pueda hacer un output en el nomainN.yaml usado, y coger desde el main.yaml el valor. Como se sacaria un uuid por output?
 https://github.com/openstack/heat/blob/5683185f2ad2ff5bcfe0757f988dc5c57d69aebc/heat/engine/resources/template_resource.py
   "This implementation passes resource properties as parameters to the nested stack. Outputs of the nested stack are exposed as attributes of this resource"
+
 
 my_nova.yaml
 heat_template_version: 2013-05-23

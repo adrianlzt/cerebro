@@ -11,7 +11,7 @@ Para usarlo dentro de un playbook:
 - hosts: webservers
   roles:
     - common
-    - { role: foo_app_instance, dir: '/opt/a',  port: 5000 } <- haremos override de lo que esté definido en defaults/ o vars/
+    - { role: foo_app_instance, dir: '/opt/a',  port: {{puerto_http}} } <- haremos override de lo que esté definido en defaults/ o vars/
     - { role: some_role, when: "ansible_os_family == 'RedHat'" }
     - { role: foo, tags: ["bar", "baz"] }  <- asigno tags a un rol
 

@@ -8,3 +8,7 @@ Entrecomilla los nombres, así podríamos ver si tenemos algún caracter en blan
 
 ls -1t
 Ordenar por orden de más nuevo a más antiguo, solo el nombre del fichero.
+
+
+Orden de todos los ficheros en este directorio y subdirectorios:
+ls -lart $(find . -type f)

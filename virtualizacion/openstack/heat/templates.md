@@ -75,7 +75,7 @@ outputs:
   server1_az1_floating_ip:
     description: Floating IP address of server1_az1
     value: { get_attr: ["float1", "floating_ip_address"]}
-    #value: { get_attr: [my_instance, first_address] }
+
 
 
 Para saber que output podemos sacar debemos mirar el código. Para este caso, network en la versión Havana: https://github.com/openstack/heat/blob/havana-eol/heat/engine/resources/neutron/net.py
@@ -109,3 +109,7 @@ outputs
     "output_key": "net_show_all"
   }
 ]
+
+
+Para sacar un elemento determinado (no me funciona cambiando "all" por "id"):
+value: { "Fn::Select" : [ "id", { get_attr: [net, show]} ] }

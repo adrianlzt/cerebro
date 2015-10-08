@@ -10,3 +10,6 @@ Stacks, conjunto de elementos que desplegaremos.
 Se puede usar el lenguaje HOT o CFN (cloud formation).
 
 http://docs.openstack.org/developer/heat/glossary.html
+
+
+Los parámetros se pueden pasar como yml o json

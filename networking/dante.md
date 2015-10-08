@@ -3,6 +3,8 @@ https://www.inet.no/dante/doc/latest/config/socks.html
 
 Dante funciona modificando el LD_PRELOAD (https://www.inet.no/dante/doc/faq.html#socksify_system) de manera que las syscalls connect, bind y udpassociate ejecutan unas llamadas modificadas que meten el tráfico en un proxy. Más información en su [https://www.inet.no/dante/doc/latest/config/socks.html web].
 
+Algunos programas, por ejemplo openvpn, escapan de socksify. No sabemos muy bien como. Por un fork?
+
 # RPM
 El .tar.gz viene con el .spec para gener un rpm
 

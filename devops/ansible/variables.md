@@ -213,3 +213,7 @@ ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid}
 
 # variables entre plays
 No sobrevien, pero se pueden acceder mediante la variable hostvars
+
+
+# Valor por defecto / default value
+{{ some_variable | default(5) }}

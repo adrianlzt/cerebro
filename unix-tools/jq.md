@@ -22,3 +22,10 @@ Borrar
 del(.[].foo,.[].bar)
 input: [{"foo": 42, "bar": 9001, "baz": 42},{"foo": 42, "bar": 9001, "baz": 42}]
 output: [{"baz":42},{"baz":42}]
+
+
+Indices
+Localizar un elemento en un array:
+  jq 'indices(1)'
+  Input[0,1,2,1,3,1,4]
+  Output[1,3,5]
