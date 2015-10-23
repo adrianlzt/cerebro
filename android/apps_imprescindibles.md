@@ -45,6 +45,7 @@ settle up
 skype
 slack
 snapseed (edición de imágenes)
+Startup Manager - gestion de programas al arranque
 SuperBeam | WiFi Direct Share
 teclado de google
 tienda apps amazon

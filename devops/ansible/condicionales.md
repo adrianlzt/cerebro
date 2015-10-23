@@ -26,6 +26,13 @@ Ternary:
 ternary: allows for trueval/falseval assignement dependint on conditional
 
 
+Ansible 2.0
+{% if variable is undefined %}
+
+Ya no se puede hacer (fallará si no esta definida):
+{% if variable %}
+
+
 
 
 Ejecutar tareas dependiendo de el valor del último task:

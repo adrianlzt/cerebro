@@ -25,3 +25,7 @@ loop.length: The number of items in the sequence.
 loop.depth: Indicates how deep in a recursive loop the rendering is. Starts at level 1.
 loop.depth0: As before, but starting with level 0.
 loop.cycle: A helper function to cycle between a list of sequences. See the Jinja documentation for more details on how to use this.
+
+
+# diccionario
+{% for k,v in groups.iteritems() %}{{k}}{{v}}{% endfor %}

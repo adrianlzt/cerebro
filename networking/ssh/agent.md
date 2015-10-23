@@ -1,3 +1,11 @@
+Para tenerlo al inicio y siempre configurado usar keychain:
+Meter en el ~/.bashrc
+eval $(keychain -q -Q --eval --agents ssh ~/.ssh/tdaf.pem ~/.ssh/cyclops ~/.ssh/dsmctools.pem)
+
+  necesitará esos ficheros y sus correspondientes .pub (el mismo nombre acabado en .pub)
+
+
+
 Arrancar un "agente" ssh para poder ir pasando nuestra clave pública entre máquinas
 
 1.- Arrancar el agente

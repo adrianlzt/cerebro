@@ -2,6 +2,65 @@
 
 /etc/systemd
 
+# Unit files
+/etc/systemd/system
+  admin customized files
+/run/systemd/system
+/usr/lib/systemd/system
+  los creados por los RPMs
+  /etc tiene precedencia sobre /usr
+/etc/systemd/system/unit.d/
+  aqui pondremos ficheros .conf
+  confs adicionales
+
+Ejemplo:
+/etc/systemd/system/unit.d/customdependency.conf
+  [Unit]
+  Requires=new dependency
+  After=new dependency
+
+Editar unidades:
+https://wiki.archlinux.org/index.php/Systemd#Editing_provided_unit_files
+
+
+
+# Ejemplo básico
+[Unit]
+Description=Foo
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/foo-daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+
+
+# Dependencias / Orden
+dependency significa que si la unidad A se activa, la unidad B debe activarse también
+order significa que la unidad A debe activarse antes de la B
+[Install]
+WantedBy=multi-user.target
+
+Esto hará que al habilitar nuestra unidad se cree un enlace entre esta unidad y /etc/systemd/system/multi-user.target.wants/
+
+
+Dependencias que requiere nuestra unidad:
+systemctl list-dependencies sshd
+
+Unidades que dependende de nuestra unidad:
+systemctl list-dependencies --reverse sshd
+
+
+El sistema arranca default.target y este arrancará todas las dependencias que dependan de él.
+Se activarán en paralelo excepto si hay orden entre ellas.
+[Unit]
+After=network.target
+
+
+
+
 # Unit: descripción, ordenación, dependencias
 # http://www.freedesktop.org/software/systemd/man/systemd.unit.html
 [Unit]
@@ -37,3 +96,15 @@ Variables que nos proporciona systemd:
 %H	Hostname	Allows you to run the same unit file across many machines. Useful for service discovery. Example: /domains/example.com/%H:8081
 
 A full list is on the systemd man page.
+
+
+
+# Dynamic generators
+http://www.freedesktop.org/software/systemd/man/systemd.generator.html
+
+/usr/lib/systemd/system-generators
+/run/systemd/generator
+
+
+# Templates
+foo@.service funciona como configuración para cualquier foo<CUALQUIERCOSA>.service

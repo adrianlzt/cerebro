@@ -55,6 +55,8 @@ find -L . -iname "*cosa*"
 Buscar ficheros ejecutables:
 find /bin -type f -perm /111
 
+Buscar set suid:
+find / -user root -perm -4000 -exec ls -ldb {} \;
 
 # Exec
 http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories  

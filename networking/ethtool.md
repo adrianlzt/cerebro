@@ -1,3 +1,5 @@
+Útil para saber si está conectada
+
 Información de la tarjeta de red:
 ethtool eth1
 ethtool -i eth1

@@ -1,3 +1,14 @@
+# systemctl
+Listar zonas horarias
+timedatectl list-timezones
+
+Setear zona
+sudo timedatectl set-timezone zone
+
+
+
+
+# Antiguo
 Cambiar zona horaria en ubuntu:
 sudo dpkg-reconfigure tzdata
 service cron restart

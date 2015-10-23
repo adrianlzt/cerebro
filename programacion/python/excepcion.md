@@ -60,6 +60,10 @@ class CyclopsTaskException(CyclopsException):
 
         super(CyclopsTaskException, self).__init__(message)
 
+
+Lanzar una excepcion:
+raise CyclopsException("Service '{}' failed: {}".format(self.name, str(e)))
+
 try:
     funcion_que_tira_excepcion_CyclopsTaskException()
 except CyclopsTaskException as e:

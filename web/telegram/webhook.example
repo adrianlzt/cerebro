@@ -1,0 +1,13 @@
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: f85fc3a6-b9a8-ec03-6e5d-1ae4045521ec" -d '{
+    "update_id":7,
+    "message": {
+        
+        "message_id": 123,
+        "date": "hoy",
+        "text": "texto",
+        "from": "from",
+        "chat": {
+            "id": 123
+        }
+    }
+}' 'http://localhost:8080/webhook'

@@ -1,5 +1,6 @@
 top version 3.3.10
 P - ordenar por CPU
+c - mostrar comando entero
 
 
 M - ordenar por uso de memoria

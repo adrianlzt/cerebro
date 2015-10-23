@@ -21,25 +21,48 @@ Conectar por vnc.
 Entrar en skype
 Algunas modificaciones (mirar web)
 
-virtualenv venv
-. venv/bin/activate
+mkvirtualenv -p /usr/bin/python2 sevabot
+o si no tenemos el virtualenvwrapper:
+  virtualenv venv
+  . venv/bin/activate
 python setup.py develop
 cp settings.py.example settings.py
+Modificar:
+  SHARED_SECRET
+  ADMINS
+  MODULE_PATHS = ["modules", "custom"]
 
 
 Arrancar a mano:
 DISPLAY=:1 venv/bin/sevabot
+
+# Reiniciar
+cd sevabot
+SERVICES="sevabot" scripts/start-server.sh stop
+SERVICES="sevabot" scripts/start-server.sh start
+
 
 
 Navegador a: http://localhost:5000/
 
 curl http://localhost:5000/msg/ --data-urlencode chat=fc259eced4be29dcb6ee4136a5d43547 --data-urlencode msg=pepito --data-urlencode md5='552860a713a08cf23fd335c5b930d09c'
 
+Obtener chats:
+curl http://localhost:5000/chats/ --data-urlencode secret=7y7yg6fgj8 
+curl -H "Content-Type: application/json" http://localhost:5000/chats/ -d '{"secret":"7y7yg6fgj8"}'
+  con mi modificación
+
 # Comandos para el bot
 https://sevabot-skype-bot.readthedocs.org/en/latest/commands.html
 
 # Custom scripts
 https://sevabot-skype-bot.readthedocs.org/en/latest/commands.html#id5
+Variables de entorno disponibles:
+SKYPE_USERNAME
+SKYPE_FULLNAME
+SKYPE_CHATNAME
+SKYPE_CHATID (añadido por mi)
+
 
 el bot cuando llamemos a: !script bla ble
 llamar a custom:

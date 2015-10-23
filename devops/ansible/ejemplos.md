@@ -15,3 +15,7 @@ Para usarlo creamos un playbook diciendo donde instalar este role:
 - hosts: hostdondeaplicar
   roles:
      - { role: valentinogagliardi.sysdig }
+
+
+Update roles:
+https://github.com/ansible/ansible/issues/6466

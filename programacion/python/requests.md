@@ -7,6 +7,29 @@ Python’s standard urllib2 module provides most of the HTTP capabilities you ne
 import requests
 r = requests.get('http://github.com/')
 
+r.content
+  valor devuelto
+r.ok
+  si todo fue bien
+r.status_code
+  codigo HTTP devuelto
+r.request
+  lo que hemos enviado
+r.request.headers
+r.request.body
+r.json()
+r.request.method
+  GET, POST, etc
+
+## Headers
+headers = {"Authorization": "Bearer HVKAB34N3SMRDRL5PIYR"}
+r = requests.get("https://api.wit.ai/message?v=20151022&q=crear%20nueva%20wo", headers=headers)
+
+## Parametros
+>>> payload = {'key1': 'value1', 'key2': 'value2'}
+>>> r = requests.get("http://httpbin.org/get", params=payload)
+>>> print(r.url)
+http://httpbin.org/get?key2=value2&key1=value1
 
 ## Proxy
 Se pasan como variable de entorno. Uno para http y otro para https

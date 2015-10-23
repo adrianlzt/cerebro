@@ -6,3 +6,12 @@ Borrar ficheros           svn del
 Actualiar repo            svn up
 Historial                 svn up; svn log
 Commit                    svn commit -m "mensaje"
+
+
+# Bajar partes de un repo
+Primero chequear lo que queremos:
+svn ls https://web.com/repo/trunk/src/templates/project.template
+
+Luego bajar
+svn export https://web.com/TDAF/repo/trunk/src/templates/project.template
+

@@ -15,6 +15,16 @@ rrd_data : {
 }
 
 
-
+# Filter
 filter(lambda x: 'NaN' not in x['v'], json_data['data']['row'])
 devuelve solo las filas que no tengan 'NaN' entre los valores de su array de clave 'v' (mirar estructura de arriba)
+
+
+# Reduce
+numeros=[1,2,3,4]
+reduce(lambda x,y: x+y, numeros)
+
+Esto hace:
+1+2=3
+3+3=6
+6+4=10

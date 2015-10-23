@@ -1,5 +1,8 @@
 http://docs.ansible.com/intro_patterns.html
 
+# Ansible 2.0
+Usar ',' en vez de ':'
+
 webser*
 
 Afecta a todos los webservers y todos los ftpservers

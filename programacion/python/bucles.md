@@ -27,6 +27,9 @@ for num in range(0,10):
 2
 
 
+# Inline
+squares = [x**2 for x in range(10)]
+
 
 # Bucle infinito
 while True:

@@ -14,3 +14,10 @@ vim -p file1 file2 file3
 :tabn siguiente fichero
 :tabp anterior fichero
 :wq guarda y sale de la tab
+
+
+
+:Sex  Abre una nueva ventana horizontal con un navegador de ficheros
+
+Control+w [up,down] moverse entre ventanas
+

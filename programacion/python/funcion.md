@@ -1,3 +1,9 @@
+def fun(*args, **kwargs)
+  args son los argumentos
+  **kwargs son los keyword arguments (estilo func(a=3))
+
+
+
 def nombre(self,param1,param2):
     """Resumen corto.
     

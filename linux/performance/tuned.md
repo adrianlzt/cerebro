@@ -1,3 +1,5 @@
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Power_Management_Guide/Tuned.html
+
 Herramienta de tuning de RedHat.
 Es un demonio (tuned) y una herramienta de cliente (tuned-adm)
 

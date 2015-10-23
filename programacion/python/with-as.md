@@ -14,3 +14,7 @@ with controlled_execution() as thing:
 Se suele usar para abrir ficheros:
 with open(mtab_location, 'r') as mtab:
     lines = [line.strip('\n') for line in mtab.readlines()]
+
+python2.7, 3.1:
+with open("input", "r") as inp, open("output", "w") as out:
+    out.write(inp.read())

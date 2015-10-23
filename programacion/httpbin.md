@@ -10,3 +10,6 @@ r = s.get("http://httpbin.org/cookies")
 
 print r.text
 # '{"cookies": {"sessioncookie": "123456789"}}'
+
+
+curl -XPOST http://httpbin.org/post -H "Content-Type: application/json" -d '{"test":123}'
