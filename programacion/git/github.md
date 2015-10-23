@@ -21,6 +21,12 @@ Y unirlos con mi código
 git merge upstream/master
 
 
+# Bajar una PR de un repo remoto
+git remote add upstream https://github.com/opensourcehacker/sevabot.git
+git fetch upstream pull/72/head:fix_68_missing_messages
+git branch -la
+
+
 
 https://help.github.com/articles/using-pull-requests
 Git pull request: hacer cambios en mi fork y enviarselos a la rama principal
@@ -95,4 +101,12 @@ En una de las ramas se puede poner: develop@{3day}
 ## Token
 https://github.com/settings/applications
 "Generate new token"
+
+
+# Bajar directorio de un repo
+Primero chequear lo que queremos:
+svn ls https://web.com/repo/trunk/src/templates/project.template
+
+Luego bajar
+svn export https://web.com/TDAF/repo/trunk/src/templates/project.template
 

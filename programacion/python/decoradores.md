@@ -1,6 +1,26 @@
 https://docs.python.org/2/glossary.html#term-decorator
 http://www.artima.com/weblogs/viewpost.jsp?thread=240808
 
+Libreria de decoradores: https://wiki.python.org/moin/PythonDecoratorLibrary
+
+
+Con los decorades tenemos ciertas limitaciones. 
+Para estos casos mirar functools.md wrappers
+
+
+Mirar ejemplo de una función decoradora para comprobar un login:
+decorador_app.py
+decorador_login.py
+
+# Notas
+el problema aquí es que la decoración es en import time
+y la ejecución en run time
+tu decoras la función de la clase cuando aún es unbounded
+de ahí que si lo haces en el init te funcione
+porque ahí ya es bounded
+
+
+
 @staticmethod
 def f(...):
     ...

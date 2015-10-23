@@ -11,7 +11,7 @@ Mantener bajo revisión los ficheros de /etc
 Edito /etc/etckeeper/etckeeper.conf para seleccionar git
 Inicio el repositorio
  etckeeper init
- etckeeper commit “Primera importación”
+ etckeeper commit "Primera importación"
 
 Cada vez que se instale, o desinstale, un paquete etckeeper hará un commit automáticamente.
 También cada día hace un commit y lo llama "daily autocommit"

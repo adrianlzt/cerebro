@@ -95,6 +95,8 @@ groups['all']
 command[smart{{ disk.replace('/','_') }}]=/usr/lib64/nagios/plugins/check_smart -d {{ disk }}} -i scsi
 {% endfor %}
 
+ansible MAQUINA -m shell -a 'echo "{% for k,v in groups.iteritems() %} {{v}} {% endfor %}"'
+
 
 
 # Loops con register:

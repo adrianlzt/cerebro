@@ -20,6 +20,11 @@ Para para la ejecución tras cada task a la espera de un enter.
 
 ansible-playbook --step
 
+# Ad-hoc
+ansible MAQUINA -m debug -a var=groups
+ansible MAQUINA -m debug -a msg="{{groups}}"
+  con bucles no me saca nada, usar mejor:
+ansible MAQUINA -m shell -a 'echo "{% for k,v in groups.iteritems() %} {{v}} {% endfor %}"'
 
 # Sacar script ejecutado en la máquina remota
 while true; do sleep 0.2; find ~/.ansible/tmp/ -type f -exec cp {} /tmp/ \;; done

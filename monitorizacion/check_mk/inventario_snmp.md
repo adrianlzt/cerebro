@@ -1,4 +1,5 @@
 http://mathias-kettner.com/checkmk_configvars.html
+Plugins: http://git.mathias-kettner.de/git/?p=check_mk.git;a=tree;f=checkman;h=aef5c3c2dc532356cd50218a9dee27253481a99a;hb=HEAD
 
 Check_mk lee todos los ficheros .mk de /etc/check_mk/conf.d/
 Siempre hay que ir haciendo append para all_hosts para no cargarse la lista.

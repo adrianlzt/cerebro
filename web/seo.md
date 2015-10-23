@@ -1,0 +1,1 @@
+../../priv-adrianRepo/web/seo.md

@@ -42,6 +42,8 @@ ej.:
 
 
 
+# map
+http://jinja.pocoo.org/docs/dev/templates/#map
 De un array que nos interesa un subvalor, crear con ellos otro array:
 remote_users.json.entry|map(attribute='name')|list
 

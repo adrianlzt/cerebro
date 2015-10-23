@@ -1,3 +1,5 @@
+Nuevo (rhel7): team driver
+
 Agregar múltiples interfaces físicas a una lógica
 
 Need redundancy or increased throughput for your network? Bonding can help. Bonding allows the combination of two or more network interfaces resulting in a highly available or efficient network.

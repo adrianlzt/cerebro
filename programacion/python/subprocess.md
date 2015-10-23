@@ -9,9 +9,28 @@ Backport of the subprocess module from Python 3.2/3.3 for use on 2.x.
 subprocess.Popen
   ejecuta el programa en un nuevo proceso
 
-from subprocess32 import Popen
-with Popen(["ifconfig"], stdout=PIPE) as proc:
-    log.write(proc.stdout.read())
+from subprocess32 import Popen,PIPE,STDOUT
+with Popen(["ls","-a"], stdout=PIPE, stderr=STDOUT) as proc:
+    print(proc.stdout.read())
+
+También se le puede pasar
+cwd=
+env=
+etc
+
+proc.pid
+prod.returncode
+proc.args
+...
+
+Escribir en un fichero:
+fd = open('output.txt', 'w')
+Popen(["ls","-7a"], stdout=fd, stderr=STDOUT)
+
+si queremos sacarlo tambien por stdout
+fd.flush()
+fd.seek(0)
+fd.readlines()
 
 
 
@@ -23,6 +42,12 @@ with Popen(["/tmp/script.sh"], stdout=PIPE) as proc:
   for line in iter(proc.stdout.readline, ''):
     print(line.rstrip()) #rstrip() para no pintar lineas en blanco
 
+
+Reglas para usar subprocess
+Never use shell=True. It needlessy invokes an extra shell process to call your program.
+When calling processes, arguments are passed around as lists. sys.argv in python is a list, and so is argv in C. So you pass a list to Popen to call subprocesses, not a string.
+Don't redirect stderr to a PIPE when you're not reading it.
+Don't redirect stdin when you're not writing to it.
 
 
 # VIEJO #

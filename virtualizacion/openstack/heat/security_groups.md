@@ -21,8 +21,8 @@ List of security group names or IDs. Cannot be used if neutron ports are associa
 
 # Definir un sec group. No existe elemento propio de Openstack hasta Available since 2014.1 (Icehouse).
   ssh_security_group:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
+    type: AWS::EC2::SecurityGroup
+    properties:
       GroupDescription: Enable SSH access
       VpcId:
       SecurityGroupIngress:

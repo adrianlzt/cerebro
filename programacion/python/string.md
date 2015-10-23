@@ -96,11 +96,17 @@ container_id = "%s_%s_%s_graph" % (sitename, host, service)
 >>> print re.sub('\.', '_', host)
 este_es_elnom_bre
 
+## Uppercase ##
+"asda".upper()
 
 ## Lowercase ##
 >>> c="HOLAq Ue Aasd"
 >>> c.lower()
 'holaq ue aasd'
+
+## Capital / Title ##
+>>> "hola pepe".title()
+'Hola Pepe'
 
 
 ## Quitar cambios de linea, espacios en blanco, etc ##

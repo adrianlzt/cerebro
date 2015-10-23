@@ -1,3 +1,13 @@
+# Systemd
+hostnamectl set-hostname nombre.com
+
+Si usamos NM lo cambiaremos con:
+nmcli g hostname nombre.com
+
+
+
+
+
 Debian like usan hostname tipo BSD
 
 RedHat like usan SystemV

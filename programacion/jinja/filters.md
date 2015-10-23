@@ -2,6 +2,9 @@
 
 {{ variable.replace('a','b') }}
 
+{{group_names|map('replace','m','X')|join(',')}}
+{{group_names|map('regex_replace','^','monitoring_net_')|join(',')}}
+
 
 
 Solo de ansible:
@@ -25,3 +28,10 @@ Dar un valor por defecto si la variable no esta definida:
 
 
 {{ convertir_a_json | to_json }}
+
+
+# map
+http://jinja.pocoo.org/docs/dev/templates/#map
+Users on this page: {{ users|map(attribute='username')|join(', ') }}
+Users on this page: {{ titles|map('lower')|join(', ') }}
+

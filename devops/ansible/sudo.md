@@ -1,3 +1,12 @@
+http://docs.ansible.com/ansible/become.html
+
+# Ansible 2.0
+sudo -> become
+sudo_user -> becomse_user
+
+No me funciona bien, version 2.0 beta
+
+
 Podemos configurar un playbook para que siempre use sudo
 
   sudo: True

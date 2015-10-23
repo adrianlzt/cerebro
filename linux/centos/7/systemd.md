@@ -1,0 +1,1 @@
+Tiempo de inicio reducido.

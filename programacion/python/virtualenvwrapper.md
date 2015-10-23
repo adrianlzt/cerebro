@@ -30,6 +30,9 @@ python --version
 workon proyecto
   nos carga el venc "proyecto"
 
+Para salir:
+deactivate
+
 Ficheros interesantes:
   ~/.virtualenvs/postmkvirtualenv 
     Ejecutar algo tras crear cualquier mkvirtualenv

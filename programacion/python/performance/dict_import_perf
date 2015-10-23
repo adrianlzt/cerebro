@@ -1,0 +1,10 @@
+diccionario_1000000_json.py: 0.63
+diccionario_100000_json.py: 0.07
+diccionario_10000_json.py: 0.02
+diccionario_1000_json.py: 0.02
+diccionario_100_json.py: 0.02
+diccionario_1000000_json_literales.py: 0.63
+diccionario_100000_json_literales.py: 0.07
+diccionario_10000_json_literales.py: 0.02
+diccionario_1000_json_literales.py: 0.02
+diccionario_100_json_literales.py: 0.02

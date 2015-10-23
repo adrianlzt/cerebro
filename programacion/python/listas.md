@@ -74,7 +74,20 @@ Me devuelve los elementos de mi lista que cumplan metodo(f)
 
 
 ## Sets
+Listas inmutables.
+Más pequeñas. Menos memoria
 https://docs.python.org/2/library/stdtypes.html#set
+
+Convertir array a set
+set(array)
+
+Convertir dict a set:
+set(dicc.items)
+>>> set({"clave": "valor", "otro": 2}.items())
+set([('clave', 'valor'), ('otro', 2)])
+>>> set({"clave": "valor", "otro": 2})
+set(['otro', 'clave'])
+
 
 # set - eliminar duplicados #
 >>> a = [1,2,3,4,2,1,5]

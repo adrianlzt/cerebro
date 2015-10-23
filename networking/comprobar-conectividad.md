@@ -17,3 +17,10 @@ Más sencillo:
 nc -kl PUERTO
 
 python -m SimpleHTTPServer PUERTO
+
+
+# IP publica para ping
+ping 8.8.8.8
+
+# IP publica para http
+curl 14.4.4.4

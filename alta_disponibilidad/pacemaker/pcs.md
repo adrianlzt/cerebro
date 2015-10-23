@@ -131,3 +131,7 @@ pcs constraint colocation add apache with vip
 pcs constraint order VIP then Icinga
   VIP debe arrancarse antes de Icinga
 
+
+
+# Stonish
+pcs stonith --help

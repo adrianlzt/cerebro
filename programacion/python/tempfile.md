@@ -8,14 +8,16 @@ a.write("Hello World!\n")
 
 # fichero temporal con nombre (un fichero "normal" en /tmp)
 a = tempfile.NamedTemporaryFile()
+a = tempfile.NamedTemporaryFile(delete=False) # si no queremos que se borre al hacer el close()
 a.write("Hello World!\n")
+a.name
 a.flush()
 a.close()
 
 The returned object is always a file-like object whose file attribute is the underlying true file object. This file-like object can be used in a with statement, just like a normal file.
-Como usar esto?
-with open('fichero', 'r') as file:
-  lines = [line.strip('\n') for line in file.readlines()]
+
+with tempfile.NamedTemporaryFile(delete=False) as b:
+  b.write("pepe")
 
 
 

@@ -1,5 +1,7 @@
 http://serverspec.org/
 
+En python: testinfra.md
+
 With serverspec, you can write RSpec tests for checking your servers are configured correctly.
 
 Serverspec tests your servers' actual state through SSH access, so you don't need to install any agent softwares on your servers and can use any configuration management tools, Puppet, Chef, CFEngine and so on.

@@ -31,3 +31,21 @@ request = urllib2.Request("http://api.foursquare.com/v1/user")
 base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
 request.add_header("Authorization", "Basic %s" % base64string)   
 result = urllib2.urlopen(request)
+
+
+
+# Internals
+>>> result = urllib2.urlopen(request)
+>>> dir(result)
+['__doc__', '__init__', '__iter__', '__module__', '__repr__', 'close', 'code', 'fileno', 'fp', 'getcode', 'geturl', 'headers', 'info', 'msg', 'next', 'read', 'readline', 'readlines', 'url']
+
+if result.getcode() == "200":
+  ...
+
+result.msg
+  "OK"
+
+body = result.readlines()
+
+Obtener un body json:
+data = json.load(result)

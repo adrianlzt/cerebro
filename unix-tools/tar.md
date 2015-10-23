@@ -5,16 +5,19 @@ tar xvf fichero.LOQUESEA
 Crear tgz
 tar zcvf comprimido.tgz dir1/ dir2/ fiche1 fiche2
 
+Crear tgz sin el directorio principal (descomprime directamente el contenido del dir):
+tar -cvzf proyecto.tgz -C proyecto/ .
+
 Ver fichero tgz
 tar ztvf fichero.tgz
 
 Descomprimir tgz
 tar zxvf fichero.tgz -C dir-extraer-en/
 
-Crear tgz
+Crear tar.bz2
 tar jcvf comprimido.tar.bz2 dir1/ dir2/ fiche1 fiche2
 
-Ver fichero tgz
+Ver fichero tar.bz2
 tar jtvf fichero.tar.bz2
 
 Descomprimir .tar.bz2
