@@ -30,3 +30,8 @@ mount -t smbfs -o username=<username>,password=<password> //<win-box>/<share> /m
 
 Caracteres especiales: 
 Using '\040' replace blank space character, and '\134' replaces backslash character
+
+
+## Nautilus
+Control+l
+smb://server/unidad

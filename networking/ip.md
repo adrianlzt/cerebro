@@ -186,3 +186,22 @@ Añadiendo una nueva ruta
 RTNETLINK answers: Invalid argument
 Mirar que estamos metiendo correctamente la network. Usar ipcal.
 https://access.redhat.com/solutions/37921
+
+
+# Monitor
+ip -o monitor address
+Nos saca trazas cada vez que se produce un cambio de las addresses.
+Ejemplo:
+Deleted 3: wlo1    inet6 fe80::76de:2bff:feef:5b71/64 scope link \       valid_lft forever preferred_lft forever
+Deleted 3: wlo1    inet 192.168.1.128/24 brd 192.168.1.255 scope global dynamic wlo1\       valid_lft 59961sec preferred_lft 59961sec
+
+
+Con timestamp:
+$ ip -o -t monitor a
+Timestamp: Mon Nov  2 16:13:33 2015 307215 usec
+3: wlo1    inet 10.95.228.89/22 brd 10.95.231.255 scope global dynamic wlo1\       valid_lft 3605sec preferred_lft 3605sec
+Timestamp: Mon Nov  2 16:13:33 2015 702189 usec
+3: wlo1    inet6 fe80::76de:2bff:feef:5b71/64 scope link \       valid_lft forever preferred_lft forever
+Timestamp: Mon Nov  2 16:13:33 2015 705077 usec
+3: wlo1    inet6 fe80::76de:2bff:feef:5b71/64 scope link \       valid_lft forever preferred_lft forever
+

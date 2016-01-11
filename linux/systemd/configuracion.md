@@ -108,3 +108,17 @@ http://www.freedesktop.org/software/systemd/man/systemd.generator.html
 
 # Templates
 foo@.service funciona como configuración para cualquier foo<CUALQUIERCOSA>.service
+
+
+# Restart
+http://www.freedesktop.org/software/systemd/man/systemd.service.html
+
+Restart=
+no
+always
+on-success
+on-failure
+on-abnormal
+on-abort
+on-watchdog
+

@@ -1,6 +1,7 @@
 https://docs.python.org/2.7/library/argparse.html
 
 mejora sobre optparse
+A partir de python2.7
 
 mirar docopt.md
 

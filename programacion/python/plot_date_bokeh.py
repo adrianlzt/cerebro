@@ -1,4 +1,9 @@
 from bokeh.plotting import figure, show, output_file, vplot
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig()
+logger.setLevel(logging.DEBUG)
 
 TOOLS = "pan,wheel_zoom,box_zoom,reset,save"
 

@@ -2,6 +2,8 @@ https://www.nomachine.com/
 
 Es como el VNC pero más rápdio
 
+Mueve el raton de la sessión gráfica que esté arrancada.
+
 Permite grabar el desktop.
 Fácil compartir dispositivos (imprimir en una impresora local algo de un pc remoto)
 Dice que funcion bien con videos, dvd, gráficos, etc

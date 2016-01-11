@@ -64,11 +64,17 @@ Possible values are:
 
 
 ## /proc/net/dev
+http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
+  "Interface statistics"
+
 cat /proc/net/dev | tr '|:' ' ' | column -t
 
 Vemos los bytes recibidos/transmitidos por cada interfaz, más errores, drope, fifo, frame, compressed y multicast.
 
 Si estamos buscando errores podremos ir a /sys/class/net/INTERFAZ/statistics/ para verlo con más detalle.
+
+Velocidad:
+IFACE=eno1; TIME=2; RX_0=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); TX_0=$(cat /sys/class/net/$IFACE/statistics/tx_bytes); sleep $TIME; RX_1=$(cat /sys/class/net/$IFACE/statistics/rx_bytes); TX_1=$(cat /sys/class/net/$IFACE/statistics/tx_bytes); echo -n "Velocidad interfaz $IFACE (medido en $TIME segundos): "; V_RX=$(echo "($RX_1-$RX_0)/($TIME*1024)" | bc); V_TX=$(echo "($TX_1-$TX_0)/($TIME*1024)" | bc); echo "RX: $V_RX KB/s   TX:$V_TX KB/s"
 
 
 Para estos dos siguientes, mirar networking/backlog.md

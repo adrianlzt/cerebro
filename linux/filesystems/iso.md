@@ -1,5 +1,5 @@
 Montar iso:
-sudo mount -o loop rhel-server-6.3-x86_64-dvd.iso /nmt/
+sudo mount -o loop rhel-server-6.3-x86_64-dvd.iso /mnt/
 
 Create iso:
 http://www.ispexperts.com.np/?p=650

@@ -20,6 +20,7 @@ Se pueden juntar varias expresiones: 1,2,10-15
 * significa first-last (para horas ocurriría 0,1,2,3...,23
 h 10-23/2 entre las 10 y las 23 cada dos horas
 m */10 cada diez minutos
+*/X, se ejecuta cuando el resto de la división sea 0
 
 
 string         meaning

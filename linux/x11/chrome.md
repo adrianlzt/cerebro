@@ -20,6 +20,9 @@ Google calendar checker plus
 Escritorio remoto de Chrome (controlar pc remotamente)
 https://chrome.google.com/webstore/detail/facebook-for-chrome/gdalhedleemkkdjddjgfjmcnbpejpapp
 
+https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif/related
+Proxy SwitchyOmega
+
 Apps:
 TweetDeck
 Advanced REST console
@@ -45,3 +48,12 @@ Shift+Esc
 packer -S chromium-pepper-flash
 chrome://plugins
   activarlo
+
+# Proxy
+
+## Socks
+https://www.chromium.org/developers/design-documents/network-stack/socks-proxy
+
+
+Usar localhost:8888 como proxy socks
+chromium --proxy-server="socks5://localhost:8888" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"

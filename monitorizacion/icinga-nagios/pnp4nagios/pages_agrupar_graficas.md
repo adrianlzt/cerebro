@@ -3,7 +3,7 @@ https://docs.pnp4nagios.org/pnp-0.6/pages
 “pages” provide the opportunity to collect graphs of different hosts/services on one page. That way - as an example - you can display the traffic rates of all tape libraries.
 
 
-http://10.95.83.172/pnp4nagios/page
+http://10.0.0.172/pnp4nagios/page
 
 
 Ejemplo, una pagina con todas las gráficas de disco de la partición "/" de las máquinas master:

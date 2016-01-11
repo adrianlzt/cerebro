@@ -12,6 +12,13 @@ https://github.com/ClusterLabs/pacemaker/blob/master/doc/pcs-crmsh-quick-ref.md
 El usuario que tiene permisos para ejecutar pcs (a parte de root) es hacluster.
 Si queremos que otros usuarios tengan permiso les agregaremos al grupo: haclient
 
+En RHE7 parece que no funciona (o tal vez sea cosa del selinux).
+En cualquier cosa, para poder preguntar a corosync sin ser root: https://github.com/sheepdog/sheepdog/wiki/Corosync-config
+/etc/corosync/uidgid.d/sdog
+uidgid {
+   uid: sdog
+   gid: sdog
+}
 
 ## Desactivar STONITH:
 pcs property set stonith-enabled=false
@@ -98,30 +105,11 @@ pcs node unstandby NODO
 
 
 ## pcsd ##
-yum install ruby-devel
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/High_Availability_Add-On_Reference/ch-pcsd-HAAR.html
+Viene con pcs-0.9.137-13.el7_1.4.x86_64
 
-You can also install pcsd which operates as a GUI and remote server for pcs.  To install pcsd run the following commands from the root of your pcs directory.
-# cd pcsd ; make get_gems ; cd ..
-# make install_pcsd
+Interfaz web para pacemaker
 
-Parece que hace falta ruby1.9 por el modulo rpam-ruby19
-
-Cambio ese por rpam a secas:
-pcsd/Makefile
-PCSD_GEMS=sinatra sinatra-contrib json highline rack rack-protection tilt eventmachine rack-test backports sinatra-sugar monkey-lib rpam
-
-Da un error.
-
-Quito la gema del Makefile. Consigo que el install funcione
-La instalación es para systemd, que parece que no viene con CentOS
-
-De todas maneras queda claro que el arranque es: ExecStart=/usr/lib/pcsd/pcsd start
-Falla, pide rack: gem install rack
-Nada, no la pilla
-
-
-Intento instalar la gema por mi cuenta
-Probar tambien con la gema pam a secas
 
 
 # Constraint
@@ -133,5 +121,5 @@ pcs constraint order VIP then Icinga
 
 
 
-# Stonish
+# Stonith
 pcs stonith --help

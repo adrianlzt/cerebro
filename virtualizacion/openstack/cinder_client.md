@@ -17,3 +17,6 @@ mkfs.ext4 /dev/vdb
 
 nova volume-deattach INSTANCE_ID VOLUME_ID
 
+
+
+nova volume-detach <server> <volume>

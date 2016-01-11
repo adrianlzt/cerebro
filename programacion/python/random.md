@@ -2,7 +2,12 @@ https://docs.python.org/2/library/random.html
 
 from random import random
 random()
-# numero entre 0 y 1
+  numero entre 0 y 1
+
+from random import randint
+randint(0,10)
+  numero entero entre 0 y 10
+
 
 
 # Strings

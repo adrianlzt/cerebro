@@ -9,6 +9,7 @@ Quitar cambios del staged sin commit                git checkout -- fichero.txt
 Commit only new files                               git commit -m “mensaje”
 Commit changes                                      git commit -a -m “mensaje”
 Rehacer un commit                                   git commit --all --amend <- el --all es necesario?
+Cambiar mensaje del ultimo commit                   git commit --amend --message "nuevo mensaje"
 Restaurar un fichero a un commit                    git checkout <commit> path/to/file
 Restaurar todo a un commmit                         git checkout <commit>
 Estado                                              git status

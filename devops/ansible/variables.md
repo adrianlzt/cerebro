@@ -148,6 +148,9 @@ hostvars[groups['nfs'][0]]
 Podemos usar debug para ir viendo como sacar lo que queremos:
 - debug: var=hostvars[groups['nfs'][0]].ansible_eth0.ipv4.address
 
+hostvars tambien guarda variables que hayamos generado con "register: variable".
+Así, en otro play, podemos obtener la salida de una task de otro host como: hostvars.HOST.variable
+
 
 ## group_names 
 a list (array) of all the groups the current host is in.

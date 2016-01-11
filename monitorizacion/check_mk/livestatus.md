@@ -1,4 +1,5 @@
 http://mathias-kettner.de/checkmk_livestatus.html
+http://git.mathias-kettner.de/git/?p=check_mk.git;a=summary
 
 Abre un socket con Nagios/Icinga para obtener información.
 Livestatus make use of the Nagios Event Broker API
@@ -9,6 +10,11 @@ Si se intenta reiniciar icinga cuando hay una conexión al socket, el script de 
 Query lenguage para livestatus
 status - general performance and status information. This table contains exactly one dataset.
 columns - a complete list of all tables and columns available via Livestatus, including descriptions!
+ description;name;table;type
+
+Salida en json, añadir: "OutputFormat: json"
+
+Para saber si hay un elemento en una lista: >=
 
 
 Ejemplo de query al socket:
@@ -24,6 +30,9 @@ Columns: host_name host_state service_check_command service_description service_
 Limit: 1001
 
 echo -e "GET services\nColumns: host_name host_state service_description\nLimit: 2" | nc -U /var/spool/icinga/cmd/live
+
+Con auth (icingaadmin no es un user valido para poner en esta cabecera):
+echo -e "GET services\nColumns: host_name host_state service_description\nLimit: 2\nAuthUser: x" | nc -U /var/spool/icinga/cmd/live
 
 Servicios staled más de 1.5 time periods:
 echo -e "GET services\nColumns: host_name service_description host_staleness staleness\nFilter: service_staleness >= 1.5" | nc -U /var/spool/icinga/cmd/live
@@ -74,6 +83,8 @@ echo -e "GET services\nStats: state = 0\nFilter: service_staleness >= 1.5" | nc 
 
 
 ## Acceso remoto
+mirar en API, más abajo
+
 https://mathias-kettner.de/checkmk_livestatus.html#H1:Remote access to Livestatus via SSH or xinetd
 ssh < query nagios@10.0.0.14 "unixcat /var/lib/nagios/rw/live"
 
@@ -116,6 +127,68 @@ echo -e "GET services\nColumns: host_name host_state service_description\nLimit:
 ## Python
 http://www.eldespistado.com/mk-livestatus-acceso-datos-nagios-mediante-api-python/
 https://pypi.python.org/pypi/python-mk-livestatus/0.3
+livestatus-service -> expone la API como http
+livestatus-objects -> nos devuelve los elementos como objetos
+
+## livestatus-service
+https://github.com/ImmobilienScout24/livestatus_service
+
+Necesita mod_wsgi para apache: 
+  centos: yum install mod_wsgi.x86_64
+pip install livestatus-serviceA
+chown icinga /var/www/livestatus_service.wsgi
+chmod 644 /var/www/livestatus_service.wsgi
+chmod -R og+rX /usr/lib/python2.6/site-packages/
+/etc/init.d/httpd restart
+
+vi /etc/livestatus.cfg
+[livestatus-service]
+log_file=/var/log/icinga/livestatus.log
+livestatus_socket=/usr/lib64/check_mk/livestatus.o
+icinga_command_file=/var/spool/icinga/cmd/icinga.cmd
+
+chown icinga:icinga /etc/livestatus.cfg
+setfacl -m u:icinga:rwx /usr/lib64/check_mk/livestatus.o
+
+Para meter auth es con la auth basic de apache: https://github.com/ImmobilienScout24/livestatus_service#server-side-httpd-authentication
+
+Query:
+Si hacemos un GET para un command, siempre contesta "OK", aunque el host no exista.
+
+curl localhost:8080/query?q=GET%20hosts
+
+Poner el host NOMBREHOST en downtime durante una hora desde ya:
+curl "http://localhost:8080/cmd?q=SCHEDULE_HOST_DOWNTIME;NOMBREHOST;$(date +%s);$(date -d '+1 hour' +%s);1;0;;USUARIO;COMENTARIO"
+
+Quitar downtime:
+curl "http://localhost:8080/cmd?q=DEL_DOWNTIME_BY_HOST_NAME;NOMBREHOST"
+
+Downtime para un hostgroup:
+curl "http://localhost:8080/cmd?q=SCHEDULE_HOSTGROUP_HOST_DOWNTIME;NOMBREHOSTGROUP;$(date +%s);$(date -d '+1 hour' +%s);1;0;;USUARIO;COMENTARIO"
+
+Obtener todos los services de nombre 'cpu':
+curl -G --data-urlencode "q=GET services\nFilter: description = cpu" localhost:8080/query
+
+Obtener host_name, description, state y perf_data de todos los services de nombre 'cpu':
+curl -s -G --data-urlencode "q=GET services\nColumns: host_name description state perf_data\nFilter: description = cpu" localhost:8080/query?
+
+Obtener host_name, description, state y perf_data de todos los services de nombre 'cpu' y host NOMBREHOST. Nos quedamos solo con perf_data:
+curl -s -G --data-urlencode "q=GET services\nColumns: host_name description state perf_data\nFilter: description = cpu\nFilter: host_name = NOMBREHOST" localhost:8080/query? | jq '.[0].perf_data'
+
+Obtener los datos en modo diccionario en vez de array (un diccionario por cada entrada)
+https://github.com/TDAF/livestatus_service/blob/master/src/integrationtest/python/should_parse_socket_output_when_query_with_key_is_executed_tests.py:
+curl -G --data-urlencode "q=GET services\nFilter: description = cpu\nColumns: host_display_name description host_last_check last_check" --data-urlencode "key=description" "http://10.95.83.172/api/query"
+
+{
+    "cpu": {
+        "host_display_name": "dsmctools_master-2",
+        "last_check": 1449825605,
+        "description": "cpu",
+        "host_last_check": 1449825614
+    }
+}
+
+
 
 
 # Columas posibles
@@ -458,4 +531,17 @@ bool Store::answerRequest(InputBuffer *input, OutputBuffer *output)
                 "Client connection terminated while request still incomplete");
         return false;
     }
+
+
+
+# Internals
+Cuando enviamos una query la recoge la función:
+src/Store.cc bool Store::answerRequest(InputBuffer *input, OutputBuffer *output)
+
+Si es un GET se llama a:
+void Store::answerGetRequest(InputBuffer *input, OutputBuffer *output, const char *tablename)
+
+Se pregunta a findTable a que tabla debemos preguntar segun el primer parámetro que hayamos pasado.
+
+Cada tabla tiene sus ficheros y sus funciones particulares: src/TableXXX.cc y .h
 

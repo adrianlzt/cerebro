@@ -1,10 +1,28 @@
 https://gist.github.com/
 http://manpages.ubuntu.com/manpages/trusty/man1/gist-paste.1.html
+https://gist.github.com/caspyin/2288960
+  api con curl
+
+# Post anonimo
+curl  -X POST --data '{"description":"Created via API","public":"true","files":{"file1.txt":{"content":"Demo"}}' https://api.github.com/gists
+En la respuesta el link está en: "html_url"
+
+# Post de un fichero
+http://stackoverflow.com/questions/26484337/upload-a-file-to-a-gist-with-bash
+
+FNAME="pepito.yml"
+CONTENT=$(sed -e 's/\r//' -e's/\t/\\t/g' -e 's/"/\\"/g' "${FNAME}" | awk '{ printf($0 "\\n") }')
+curl  -X POST --data '{"description":"Created via API","public":"true","files":{"'"$FNAME"'":{"content":"'"$CONTENT"'"}}}' https://api.github.com/gists
+
 
 # Para arch
 https://github.com/defunkt/gist
 packer -S gist-git
 gist --login
+
+wget https://gist.githubusercontent.com/adrianlzt/1a5815d125c9a5fbce6b/raw/c44e43d610be25c3b6970744769aa4c4443e0081/gist
+chmod a+x gist
+./gist fichero.para.subir
 
 
 # Ubuntu

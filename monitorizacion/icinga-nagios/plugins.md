@@ -34,11 +34,11 @@ No parece que funcione como lo esperado. Nos da 1 si está dentro del rango, nad
 
 Sitios con plugins:
 https://www.monitoring-plugins.org/ <- web oficial
+https://github.com/monitoring-plugins/repositories <- codigo
 https://exchange.icinga.org/
 https://wiki.icinga.org/display/howtos/Plugins
 https://trac.id.ethz.ch/projects/nagios_plugins
 http://exchange.nagios.org/
-https://www.monitoringexchange.org/
 https://wiki.icinga.org/display/howtos/Netways+Plugins 
 https://github.com/kumina/nagios-plugins-kumina 
 https://svn.id.ethz.ch/projects/nagios_plugins 
@@ -49,3 +49,4 @@ http://git.op5.org/git/?p=nagios/op5plugins.git;a=tree
 https://secure.opsview.com/wsvn/wsvn/opsview/trunk/opsview-core/nagios-plugins/#path_trunk_opsview-core_nagios-plugins_
 https://github.com/MonitoringPlug/monitoringplug
 https://github.com/Inuits/monitoring-plugins
+https://github.com/harisekhon/nagios-plugins

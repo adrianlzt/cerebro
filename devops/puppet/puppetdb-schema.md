@@ -1,5 +1,11 @@
 ## PuppetDB 2.0 ##
 
+Para entrar:
+su -c psql postgres
+postgres=# \c puppetdb
+
+
+
 catalogs
 select * from catalogs order by id;
   Para cada nodo nos dice el id del catalog y cuando ha sido su última compilación.
@@ -41,6 +47,10 @@ resource_params
 resource_params_cache
   Para un recurso de cachea un json con los valores. Es como resource_params pero tenemos un json con los valores en vez de varias entradas de la base de datos.
   Esta es la tabla que usa realmente puppet. Cada cierto tiempo se regenera a partir de resource_params
+
+
+# Obener catalog de un nodo
+select cr.type,cr.title from catalog_resources as cr, catalogs as c where cr.catalog_id=c.id and c.certname='prueba_ms04s';
 
 
 

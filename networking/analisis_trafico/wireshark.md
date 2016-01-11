@@ -54,3 +54,7 @@ Estamos consiguiendo sacar las sesiones tcp que estén compuestas por tres paque
 
 ## Problemas análisis falso checksum ##
 Si wireshark nos dice que el checksum de un paquete de salida es incorrecto es porque estamos capturando el paquete entre el nivel 2 y el nivel 1, y el checksum se calcula en la tarjeta de red, por lo tanto aún no está generado y por eso falla.
+
+
+# HTTP/2.0
+https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=9042

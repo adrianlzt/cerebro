@@ -7,8 +7,25 @@ pacman -S python2-yaml
 
 
 # Ficheros
+witai.yml:
+---
+  clave: "nig8abuasd"
+
+  array: 
+    - "elem1"
+    - "elem2"
+
+  array_dicc: 
+    - foo: "VAR"
+      cosa: "asd12"
+    - pepe: "MAR"
+
+
+
 import yaml
-vars = yaml.load(open('botools.yml','r'))
-print(vars['clave'])
-yaml.dump(vars, file('otro.yml','w'), default_flow_style=False)
+with open("witai.yml") as fd:
+    config = yaml.load(fd)
+
+print(config['clave'])
+yaml.dump(config, file('otro.yml','w'), default_flow_style=False)
 

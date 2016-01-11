@@ -1,6 +1,7 @@
 http://fuse.sourceforge.net/sshfs.html
 
 Montar el home de un servidor como un sistema de ficheros local.
+lento
 
 
 sudo apt-get install sshfs

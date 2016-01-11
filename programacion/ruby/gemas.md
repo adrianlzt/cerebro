@@ -18,6 +18,9 @@ gem content nombre
 Instalar:
 gem install nombre
 gem install mime-types --version 1.25.1
+gem install -l gema.gem
+gem install --ignore-dependencies gema
+gem install -f gema
 
 Bajar el fichero .gem
 gem fetch nombre

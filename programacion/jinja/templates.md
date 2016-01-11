@@ -2,12 +2,16 @@ Cogiendo templates de un directorio:
 http://jinja.pocoo.org/docs/dev/api/#basics
 app/src/NOMBRE/templates/mytemplate.html
 
+from jinja2 import Environment,PackageLoader
 env = Environment(loader=PackageLoader('NOMBRE', 'templates'))
 template = env.get_template('mytemplate.html')
 
 
 # Cargar todas las variables locales en el contexto de jinja
 http://webpy.org/cookbook/template_jinja
+
+from jinja2 import Environment,FileSystemLoader
+import os
 
 body = render_template('dynamic_info.html', **locals())
 

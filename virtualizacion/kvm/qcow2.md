@@ -11,3 +11,14 @@ qemu -m 256 -hda test01.img -kernel-kqemu &
   Arrancamos la maquina, y esta imagen se monta como un dispositivo de bloques.
   Lo que la vm ve al inicio es el contenido de winxp.img
   Según vaya haciendo cambios en el sistema, estos se guardan en test01.img
+
+
+Montar imagen
+
+sudo guestmount -a master-2.img -i /mnt
+  esto pertenece al paquete libguestfs
+  la imagen primero la converti de qcow2 a raw: qemu-img convert -O raw master-2.qcow2 master-2.img
+
+
+Cambiar password de root:
+virt-customize -a master-2.qcow2 --root-password password:prueba

@@ -29,50 +29,6 @@ for i in `ls`; do echo $i; $(cat $i| cut -d "=" -f 2); echo "" ; done
 
 
 
-FALLOS TÍPICOS
-
-Fallos típicos que pueden provocar que no funcione un check por NRPE
-
-Comprobar que el demonio NRPE se está ejecutando (service nrpe status)
-
-Reiniciar el servicio NRPE para que cargue la nueva configuración (service nrpe restart)
-
-Mirar si el usuario con el que corre el demonio NRPE (/etc/nagios/nrpe.cfg -> nrpe_user) tiene permisos para ejecutar los checks
-
-Ejecutar como usuario nrpe el comando que tenemos configurado en NRPE (plugins instalados?)
-
-Desactivar (o configurar correctamente) SELinux (setenforce Permissive && vi /etc/sysconfig/selinux -> SELINUX=permissive). Puede producir el error NRPE: Unable to read output
-
-Mirar que las reglas de IPTables permiten el acceso al puerto 5666 por parte de los nagiosslave
-
-Comprobar que NRPE acepta conexiones de nuestros slaves (/etc/nagios/nrpe.cfg -> allowed_hosts)
-  Un error que puede producir tener mal configurado esto: CHECK_NRPE: Error - Could not complete SSL handshake.
-  O también: CHECK_NRPE: Received 0 bytes from daemon. Check the remote server logs for error messages.
-
-Comprobar que existe el comando en la configuración de NRPE (/etc/nrpe.d/*.cfg)
-  Nos debería dar el error: Command 'check_disk' not defined
-  Si se están pasando parámetros por NRPE (no recomendable por seguridad), y el comando no está definido, nos dará el error: CHECK_NRPE: Received 0 bytes from daemon. Check the remote server logs for error messages.
-
-Comprobar que existe el script. Puede producir el error NRPE: Unable to read output
-
-Si es necesario definir variables de entorno, hacerlo en /etc/sysconfig/nrpe
-
-Comprobar que tiene activado el SSL:
-  Sin SSL check_nrpe nos devolverá CHECK_NRPE: Socket timeout after 10 seconds.
-  Para probar sin SSL: check_nrpe -n -H <ip>
-
-
-Error con chequeo Oracle:
-
-CRITICAL - cannot connect to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=haprodb-scan)(PORT=1521))(CONNECT_DATA=(SID=hhproes1)(SERVICE_NAME=hhproes.privateext.dsn.inet))). install_driver(Oracle) failed: Can't load '/usr/lib64/perl5/vendor_perl/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libocci.so.11.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.
-
-Meter en el /etc/sysconfig/nrpe:
- export ORACLE_HOME=/usr/lib/oracle/11.2/client64
- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
- export PATH=$ORACLE_HOME/bin:$PATH
-export ORACLE_SID=hhproes
-
-
 
 NRPE tiene un límite de datos que acepta de un plugin:
 http://docs.icinga.org/latest/en/nrpe.html
@@ -102,3 +58,54 @@ command[check_tcp_riak_8087]=/usr/lib64/nagios/plugins/check_tcp -H `ip -4 -o ad
 # Escapar dolar
 Se debe usar doble dolar ($$)
 command[check_tcp_riak_8087]=/usr/lib64/nagios/plugins/check_tcp -H `ip -4 -o addr show eth2|awk '{print $$4}'|cut -f1 -d/` -p 8087 -4
+
+
+# Troubleshooting
+== NRPE ==
+Fallos típicos que pueden provocar que no funcione un check por NRPE
+*Comprobar que el demonio NRPE se está ejecutando (service nrpe status)
+*Reiniciar el servicio NRPE para que cargue la nueva configuración (service nrpe restart)
+*Mirar si el usuario con el que corre el demonio NRPE (/etc/nagios/nrpe.cfg -> nrpe_user) tiene permisos para ejecutar los checks
+*Ejecutar como usuario nrpe el comando que tenemos configurado en NRPE (plugins instalados?)
+*El check debe devolver algo por stderr o stdout. Si no, dará el error NRPE: Unable to read output
+*Desactivar (o configurar correctamente) SELinux (setenforce Permissive && vi /etc/sysconfig/selinux -> SELINUX=permissive). Puede producir el error NRPE: Unable to read output
+*Mirar que las reglas de IPTables permiten el acceso al puerto 5666 por parte de los nagiosslave
+*Comprobar que NRPE acepta conexiones de nuestros slaves (/etc/nagios/nrpe.cfg -> allowed_hosts)
+**Un error que puede producir tener mal configurado esto: CHECK_NRPE: Error - Could not complete SSL handshake.
+**Puede producirse por tener mal configurada la interfaz de acceso para Nrpe - Could not complete SSL handshake.
+**O también: CHECK_NRPE: Received 0 bytes from daemon.  Check the remote server logs for error messages.
+*Comprobar que existe el comando en la configuración de NRPE (/etc/nrpe.d/*.cfg)
+**Nos debería dar el error: Command 'check_disk' not defined
+**Si se están pasando parámetros por NRPE (no recomendable por seguridad), y el comando no está definido, nos dará el error: CHECK_NRPE: Received 0 bytes from daemon. Check the remote server logs for error messages.
+*Comprobar que existe el script. Puede producir el error ''NRPE: Unable to read output''
+*Si es necesario definir variables de entorno, hacerlo en /etc/sysconfig/nrpe
+*Comprobar que tiene activado el SSL:
+**Sin SSL check_nrpe nos devolverá ''CHECK_NRPE: Socket timeout after 10 seconds.''
+**Para probar sin SSL: check_nrpe -n -H <ip>
+*Error con chequeo Oracle:
+''CRITICAL - cannot connect to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=haprodb-scan)(PORT=1521))(CONNECT_DATA=(SID=hhproes1)(SERVICE_NAME=hhproes.privateext.dsn.inet))). install_driver(Oracle) failed: Can't load '/usr/lib64/perl5/vendor_perl/auto/DBD/Oracle/Oracle.so' for module DBD::Oracle: libocci.so.11.1: cannot open shared object file: No such file or directory at /usr/lib64/perl5/DynaLoader.pm line 200.''
+
+Meter en el /etc/sysconfig/nrpe:
+
+ export ORACLE_HOME=/usr/lib/oracle/11.2/client64
+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+ export PATH=$ORACLE_HOME/bin:$PATH
+ export ORACLE_SID=hhproes
+
+*Error con chequeo jmx:
+[aarbaizar@ESJC-DSMM-MS03S ~]$ /usr/lib64/nagios/plugins/check_nrpe -H 172.3.2.2 -c check_jmx_memoria
+NRPE: Unable to read output
+
+Meter en el /etc/sysconfig/nrpe (Versión de Java que queremos que ejecute):
+
+ PATH=/usr/java/latest/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+*Error Connection refused by host
+El problema es que estará mal configurado el server_address en /etc/nagios/nrpe.cfg
+
+== NRPE WINDOWS ==
+
+*CHECK_NRPE: Error - Could not complete SSL handshake.
+Este error se produce al no añadir en el cliente el allowed_host necesario.
+*CHECK_NRPE: Socket timeout after 10 seconds.
+Este error se produce al no tener el servicio NRPE corriendo en el cliente o que no tiene activado SSL=1 en el fichero de configuración del nsclient.ini

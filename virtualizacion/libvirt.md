@@ -25,6 +25,8 @@ start <domain> --console
   Control+5 para salir de la consola
 
 console <domain>
+  Para salir:
+  Control+AltGr+]
 
 reset <domain>
   Restablecer un dominio. Lo apaga

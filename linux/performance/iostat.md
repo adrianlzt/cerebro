@@ -33,6 +33,8 @@ rrqm/s: The number of read requests merged per second that were queued to the de
 wrqm/s: The number of write requests merged per second that were queued to the device.
 r/s: The number (after merges) of read requests completed per second for the device.
 w/s: The number (after merges) of write requests completed per second for the device.
+rsec/s: The number of sectors read from the device per second.
+wsec/s: The number of sectors written to the device per second.
 rkB/s: The number of sectors (kilobytes, megabytes) read from the device per second. (~100 en SATA)
 wkB/s: The number of sectors (kilobytes, megabytes) written to the device per second. (~50 en SATA)
 avgrq-sz: The average size (in sectors) of the requests that were issued to the device.

@@ -1,3 +1,5 @@
+http://linux-nfs.org/wiki/index.php/Main_Page
+
 # Doc para ubuntu: http://revartm.wordpress.com/2007/03/06/servidor-nfs-bajo-ubuntu/
 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Storage_Administration_Guide/s2-nfs-methodology-portmap.html
 https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-nfs-server-config-exports.html
@@ -87,6 +89,8 @@ apt-get install nfs-common
 Mostrar recursos exportados de otro nodo
 showmount -e 192.168.1.4
 
+Este comando manda tráfico UDP al puerto 111 (portmapper).
+
 mount -t nfs servernfs:/tmp /home/cliente/temp
 /etc/fstab:
 	servernfs:/tmp /home/cliente/temp nfs defaults,rw 0 0
@@ -129,6 +133,7 @@ mejor ponerlo, puede producir problemas si no lo ponemos
 # Iptables
 http://www.cyberciti.biz/faq/centos-fedora-rhel-iptables-open-nfs-server-ports/
 http://www.cyberciti.biz/faq/centos-fedora-rhel-nfs-v4-configuration/
+Para NFSv3 mirar más abajo, en "# Servidor NFS"
 
 Para NFSv4 solo 2049/UDP  (client 701 <---TCP---> 2049 server)
 -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 2049 -j ACCEPT
@@ -140,7 +145,7 @@ Algunos puertos se asignan dinámicamente
 # Receta exportar directorio
 Exportar un directorio por NFS
 
-Servidor NFS
+# Servidor NFS
 Editar el fichero
 /etc/exports donde se incluirán los directorios
  a compartir, qué hosts pueden acceder a ellos y una lista de opciones:
@@ -158,6 +163,7 @@ para que nfs tome los cambios en el fichero
 
 NFS v2 y v3:
 Configurar NFS (fichero /etc/sysconfig/nfs) para que los puertos sean estáticos (y se puedan abrir por iptables). Descomentar las líneas:
+Si no forzamos estos puertos, cada vez que arranque el demonio NFS elegirá unos dinámicamente (se pueden consultar con rpcinfo -p)
 RQUOTAD_PORT=875
 LOCKD_TCPPORT=32803
 LOCKD_UDPPORT=32769
@@ -169,6 +175,16 @@ Abrir los puertos en iptables (/etc/sysconfig/iptables o /etc/sysconfig/ip6table
  NFS:
 -A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 32803 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 32769 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 662 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 662 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 2020 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 2020 -j ACCEPT
 
 
 NFSv4:

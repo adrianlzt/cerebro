@@ -69,6 +69,9 @@ assertNotRegexpMatches(s, r)     not r.search(s) 2.7
 assertItemsEqual(a, b)           sorted(a) == sorted(b) and works with unhashable objs 2.7
 assertDictContainsSubset(a, b)   all the key/value pairs in a exist in b 2.7
 
+Funcion:
+perm.assert_called_with('FOO;bar', '/path/to/socket', None, auth='admin')
+
 assertRaises(TipoDeExcepcion,funcion_que_tirara_exception,param1,param2)
 mirar ejemplo al final
 

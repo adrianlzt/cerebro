@@ -49,3 +49,8 @@ datetime.timedelta(0, 4, 316543)
 now = datetime.datetime.now()
 now_plus_10 = now + datetime.timedelta(minutes = 10)
 now_plus_10.strftime('%s')
+
+
+# Miliseconds
+int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds() * 1000)
+1448563403750

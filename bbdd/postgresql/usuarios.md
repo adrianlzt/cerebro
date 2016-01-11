@@ -7,7 +7,7 @@ SELECT * FROM pg_roles; <- se puede ejecutar estando en cualquier bd
 http://www.postgresql.org/docs/8.4/interactive/sql-createuser.html
 http://www.postgresql.org/docs/8.4/interactive/app-createuser.html
 postgre lo llama roles
-su postrgres
+sudo -u postgres /bin/bash
 createuser -DRSP nombre
   -D: no podrá crear bbdd
   -R: no podrá crear otros usuarios (roles)

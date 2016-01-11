@@ -45,4 +45,6 @@ Cuando se ejecuta el script la variable 'flock' no está definida, por lo que se
 Si es la primera ejecucción, se ejecutará el script con flock y creará el fichero de lock.
 Las siguientes ejecucciónes, mientras el fichero de lock está presente, serán descartadas por el "flock -w 0".
 
+La idea es que se ejecuta en dos vueltas. En la primera se llama a si mismo con flock delante. En la segunda, ya como flock, ejecuta el comando de verdad.
+
 Nota: exec rompe la ejecucción normal para ejecutar el comando. No vuelve al script.

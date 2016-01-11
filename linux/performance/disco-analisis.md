@@ -1,3 +1,4 @@
+iozone.md
 sysbench.md
 bonnie.md
 mongoperf.md

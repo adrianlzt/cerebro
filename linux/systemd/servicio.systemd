@@ -1,0 +1,19 @@
+# Zonas donde poner el fichero
+# /lib/systemd/system/*.service
+# /etc/systemd/system/*.service
+#
+[Unit]
+Description=Nombre
+After=network.target
+# Para ver los targets disponibles
+# systemctl  list-units --type=target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/test
+#WorkingDirectory=
+Restart=always
+# Valores posibles: no always on-success on-failure on-abnormal on-abort on-watchdog
+
+[Install]
+WantedBy=multi-user.target

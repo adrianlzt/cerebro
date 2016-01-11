@@ -1,0 +1,12 @@
+[Unit]
+Description=ngrok client
+After=network.target
+
+[Service]
+User=skype
+Type=simple
+ExecStart=/home/skype/ngrok http 8080
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,7 @@ Software para hacer mas sencillo el empaquetamiento
 Instalación:
   Dependencias:
     Debian-like: sudo apt-get install rubygems ruby1.9.1-dev
-    En centos: yum install rubygems ruby-devel.
+    En centos: yum install rubygems ruby-devel
 
 gem install fpm
 

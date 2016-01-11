@@ -1,21 +1,25 @@
-Es necesario activarlo:
-https://github.com/influxdb/influxdb/blob/master/etc/config.sample.toml#L73
+https://github.com/influxdata/influxdb/tree/master/services/graphite
 
-Necesario definir puerto y database:
-[input_plugins]
-  # Configure the graphite api
-  [input_plugins.graphite]
+
+
+[[graphite]]
   enabled = true
-  # address = "0.0.0.0" # If not set, is actually set to bind-address.
-  port = 2003
-  database = "grafito"  # store graphite data in this database
-  # udp_enabled = true # enable udp interface on the same port as the tcp interface
+  database = "graphite"
+  bind-address = ":2003"
 
-Necesitamos crear la bbdd "grafito"
+  templates = [
+     "sensu.metric.* ..measurement.host.interface.field",
 
-Timestamp: date +%s
-echo "region.uu.hostname.server01.cpu 3 1420791394" | nc localhost 2003
+     # default template. Ignore the first graphite component "servers"
+     ".measurement*",
+  ]
 
-Problema, no me está descomponiendo la metrica en tags + nombre
-Creo esto aún no está en la version 0.8.8, pero si está en la rama master del github
-region.us-west.hostname.server01.cpu -> tags -> region: us-west, hostname: server01, metric name -> cpu
+echo "sensu.metric.net.server0.eth0.rx_dropped 0 1444234982" > /dev/tcp/10.95.82.180/2003
+
+
+> select * from net
+name: net
+---------
+time                    host    interface       rx_dropped
+1444234982000000000     server0 eth0            0
+

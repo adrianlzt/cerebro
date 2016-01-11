@@ -1,9 +1,10 @@
 http://word.bitly.com/post/69080588278/logging-locals
 Para crear un handler que nos de más información, por ejemplo las variables locales.
 
+Para loggear en JSON: https://github.com/telefonicaid/pylogops
+
 
 import logging
-
 logger = logging.getLogger(__name__)
 logging.basicConfig()
 logger.setLevel(logging.DEBUG)
@@ -121,6 +122,10 @@ INFO	    20
 DEBUG	    10
 NOTSET	  0
 
+logger.debug("...
+logger.warn("...
+logger.warning("...
+
 
 # Parametros custom
 logger.debug("test",extra={"skype":"pepito"})
@@ -148,3 +153,9 @@ class SkypeFilter(logging.Filter):
 
 logger.debug("test",extra={"skype":False})
 logger.debug("test2",extra={"skype":False})
+
+
+# Internals
+dir(logger)
+['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_log', 'addFilter', 'addHandler', 'callHandlers', 'critical', 'debug', 'disabled', 'error', 'exception', 'fatal', 'filter', 'filters', 'findCaller', 'getChild', 'getEffectiveLevel', 'handle', 'handlers', 'info', 'isEnabledFor', 'level', 'log', 'makeRecord', 'manager', 'name', 'parent', 'propagate', 'removeFilter', 'removeHandler', 'root', 'setLevel', 'warn', 'warning']
+

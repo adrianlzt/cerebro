@@ -13,6 +13,12 @@ Mem%cached   # paginas mapeadas en memoria, excluyendo buffers
 -/+%free     # free + (buffers + cached): memoria disponible
 
 
-buffers: cache de bloques
-almac / cached: buffers de ficheros
+buffers: cache de bloques (block device I/O)
+almac / cached: buffers de ficheros (usado por el file system)
 Ambos se almacenan en la estructura de kernel pagecache
+
+Linux uses free memory for the caches, but can reclaim it quickly if applications need it. So in a way the cached memory should be included in the free memory column, which this line does. There’s even a website, linuxatemyram (http://www.linuxatemyram.com/), about this confusion. 
+
+# ZFS
+It can be additionally confusing if ZFS on Linux is used, as we do for some services, as ZFS has its own file system cache that isn’t reflected properly by the free -m columns. It can appear that the system is low on free memory, when that memory is in fact available for use from the ZFS cache as needed. 
+

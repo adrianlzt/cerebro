@@ -10,6 +10,9 @@ Borrar lineas con un pattern
 http://vim.wikia.com/wiki/Delete_all_lines_containing_a_pattern
 :g/profile/d
 
+Borrar newline al final de linea:
+:%s/\n/
+
 :Sex  Abre una nueva ventana horizontal con un navegador de ficheros
 
 Control+w [up,down] moverse entre ventanas

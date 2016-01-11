@@ -19,7 +19,7 @@ func swap(x, y string) (string, string) {
  
 a, b := swap("hello", "world")
 
-Si solo queremos el primer elemento: a := swap(c,d)
+Si solo queremos el primer elemento: a,_ := swap(c,d)
 Si solo queremos el segundo elemento: _,b := swap(c,d)
  
 Se pueden declarar las variables que se van a retornar al construir la función, y ya no tendremos que decirle a return que devolvemos

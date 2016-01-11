@@ -11,6 +11,9 @@ nmcli c s
 nmcli d s
   mostrar devices
 
+Servers DNS cogidos por DHCP:
+  nmcli dev show | grep DNS
+
 nmcli c e
   nos abre una "shell" inteligente para editar una conexión
   nos preguntará que tipo de conex queremos crear
@@ -71,3 +74,9 @@ https://wiki.gnome.org/Projects/NetworkManager/Debugging
 sudo dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager /org/freedesktop/NetworkManager org.freedesktop.NetworkManager.SetLogging string:"debug" string:""
 
 journalctl -u NetworkManager.service
+
+# HotSpot
+Configuración:
+/etc/NetworkManager/system-connections/Hotspot
+Si tocamos el fichero:
+systemctl restart NetworkManager

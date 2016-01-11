@@ -94,6 +94,11 @@ cname=pepe,ordenador-de-pepe
 Para crear alias de hostnames mirar linux/hostaliases.md
 
 
+# Comprobar conf
+dnsmasq --test
+
+
+
 # PXE
 mirar networking/pxe.md
 

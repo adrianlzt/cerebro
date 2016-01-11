@@ -5,8 +5,12 @@ Almacenado en:
 
 puppet catalog download
   en un cliente, se baja su catalog del puppetmaster y lo almacena en 
-curl --cert /var/lib/puppet/ssl/certs/$(hostname).pem --key /var/lib/puppet/ssl/private_keys/$(hostname).pem --cacert /var/lib/puts/ca.pem -H 'Accept: yaml' https://puppet:8140/dsn_dev/catalog/$(hostname)
+curl --cert /var/lib/puppet/ssl/certs/$(hostname).pem --key /var/lib/puppet/ssl/private_keys/$(hostname).pem --cacert /var/lib/puppet/ssl/certs//ca.pem https://puppet:8140/dsn_dev/catalog/$(hostname)
+  Devuelve un JSON
   mirar api.md
+  Ahi un bug en versions antiguas (<3.8.2 parece). El parche en https://tickets.puppetlabs.com/browse/PUP-3182
+
+  Mirar en puppetdb-schema.md como obtenerlo de la bbdd
 
 puppet catalog find CERTNAME
 Retrieve the catalog for a node

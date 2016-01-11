@@ -78,3 +78,21 @@ class ChildModel(Model):
       super(ChildModel, self).save(*args, **kwargs)
     else:
       return None
+
+
+
+class Persona(object):
+  nombre = None
+  edad = None
+  def getEdad(self):
+      return self.edad
+
+class Trabajador(Persona):
+  empresa = None
+
+t = Trabajador()
+t.nombre = "pepe"
+t.edad = 25
+t.empresa = "guacon"
+t.getEdad()
+

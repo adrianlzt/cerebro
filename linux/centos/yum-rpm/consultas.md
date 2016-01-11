@@ -16,6 +16,7 @@ $ yum search <paquete>
 $ yum check-update (nos dice si hay paquetes por actualizar. RC, =100, paquetes para actualizar, =0 no updates, =1 error)
 $ yum resolvedep httpd (dice que paquetes nos dan ese recurso)
 $ yum deplist <paquete> (nos dice las dependencias del paquete, recursivamente)
+$ repoquery -R <paquete> (nos dice las dependencias del paquete)
 
 
 Listar todos los paquetes instalados

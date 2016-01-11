@@ -6,3 +6,6 @@ Buscar hacia atrás
 
 Resaltar resultados:
 :set hlsearch
+
+Para desactivar el resaltado:
+:set hlsearch!

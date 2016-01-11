@@ -5,6 +5,10 @@ $ python prueba/manage.py runserver
 Servidor de development
 # python manage.py runserver [ip-addr:port]
 
+
+# Crear superuser
+python manage.py createsuperuser
+
 $ python manage.py shell
 $ from <proyecto> import *
 

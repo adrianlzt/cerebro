@@ -123,3 +123,37 @@ checks_with_dir = ["/tmp/"+c for c in checks]
 >>> ",".join(str(item) for item in a)
 '1,2,3'
 
+
+# Copia
+nueva = vieja
+nueva copia la referencia de vieja. Lo que hagamos en nueva afectará a vieja.
+
+Para hacer una copia de los datos:
+
+nueva = list(vieja)
+
+Otra forma:
+from copy import copy
+nueva = copy(vieja)
+
+
+# Buscar una cadena en un array de cadenas
+some_list = ['abc-123', 'def-456', 'ghi-789', 'abc-456']
+if any("abc" in s for s in some_list):
+
+# Buscar si hay un elemento en un array de diccionarios
+data = [
+    {'site': 'Stackoverflow', 'id': 1},
+    {'site': 'Superuser', 'id': 2}, 
+    {'site': 'Serverfault', 'id': 3}
+]
+
+any(d['site'] == 'Superuser' for d in data)
+
+
+# Extend / juntar dos arrays
+>>> a=[1,2,3,4]
+>>> b=[9,9]
+>>> a.extend(b)
+>>> a
+[1, 2, 3, 4, 9, 9]

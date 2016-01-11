@@ -12,6 +12,14 @@ http://www.linuxjournal.com/article/8478?page=0,3
 Artículo completo. Como librería C y también con las inotify-tools
 http://www.ibm.com/developerworks/linux/library/l-ubuntu-inotify/index.html?ca=drs-
 
+# Máximo número de watches
+http://askubuntu.com/questions/154255/how-can-i-tell-if-i-am-out-of-inotify-watches
+
+sysctl fs.inotify.max_user_watches
+
+Subirlo a 524288 podría consumir como máximo unos 512MB
+
+
 
 Vigilar un directorio y sus subdirectorios:
 inotifywait -r -m /dir

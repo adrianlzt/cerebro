@@ -21,16 +21,16 @@ done
 Bucle FOR con nombre con espacios en blanco
 http://www.cyberciti.biz/tips/handling-filenames-with-spaces-in-bash.html
 
+En este caso se pasara $f como un solo parametro
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
-for f in *
-do
+for f in *; do
  echo "$f"
 done
 IFS=$SAVEIFS
 
 
-Más sencillo:
+Más sencillo (en este caso, si la linea tiene espacios en blanco, cada uno será un parametro):
 while read line           
 do           
      echo $line           

@@ -1,0 +1,15 @@
+Currently there is a problem with very long MySQL error log files when
+the check_errorlog_mysql.pl script is run the first time.
+
+You will get a [service check time out] from Nagios.
+
+We think about skipping the first scan or similar ways to circumwent. But
+have not decided yet about.
+
+Further there is a potential problem when too many error messages were
+found...
+
+Your opinion is appreciated!
+
+Please report bugs, findings, suggestions and comments to bugs@fromdual.com
+Recent updates you can find at: http://www.fromdual.com/download

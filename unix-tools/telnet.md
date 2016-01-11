@@ -1,0 +1,2 @@
+Para salir:
+Control+AltGr+]

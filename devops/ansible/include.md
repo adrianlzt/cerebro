@@ -39,3 +39,6 @@ all.yml:
   connection: local
   tasks:
     - debug: msg='play 2'
+
+
+No se puede hacer include con with_items

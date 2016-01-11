@@ -34,6 +34,7 @@ http://169.254.169.254/metadata/2012-03-01/user-data
 
 En Openstack:
 curl http://169.254.169.254/1.0/meta-data/instance-id
+http://169.254.169.254/2009-04-04/meta-data/public-hostname 
 
 Podemos usar la extension de Chrome "REST Console" para generar el auth header para usar oauth.
 

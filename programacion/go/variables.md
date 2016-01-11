@@ -73,36 +73,3 @@ var n *Vertex = new(Vertex)
 n.X = 3
 fmt.Println(n) -> &{3 0} 
 
-# Arrays. Go le llama 'Slices'. Un 'slice' apunta a un array y tiene un tamaño
-http://golang.org/doc/articles/slices_usage_and_internals.html
-p := []int{1,2,3,4}
-p[0] = 1
-len(p) = 4
-fmt.Println lo muestra [1 2 3 4]
-p[1:3] = [2 3]
-p[2:2] = null
-
-Se pueden crear arrays con un tamaño máximo
-b := make([]int, 2, 5)  Array con capacidad para 5 elementos, inicializado con dos ceros
-cap(b): capacidad de b
-b[3] = 3  da error, los valores se meten con append.
-b = append(b,3)
-
-# Maps
-Une keys a valores
-
-map([TIPO_DATO_CLAVE]TIPO_DATO_VALOR)
-
-mapa := make(map[string]int)
-mapa["uno"]=1
-fmt.Println(mapa["uno"])
-
-var mapa = map[string]Punto {
-  "Bell": {3.4, 45.3},
-  "Google": {34.23,45.4},
-}
-Hace falta esa coma para este literal para poder poner una nueva línea
-
-m["key"] = valor
-delete(m,"key")  //borra la pareja clave-valor
-valor,existe = m["key"]  //existe=false, el valor estará al por defecto del tipo de dato (int=0, string='', etc)
