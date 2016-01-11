@@ -2,6 +2,20 @@ http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/
 
 Escaner de red.
 
+# Sondeos
+-sS
+  SYN
+
+-sT
+  tcp connect
+
+-sP
+  ping
+
+-sV
+  obtener servicios y sus versiones
+
+
 Escaneo de red descubriendo SO
 nmap -sS -O 192.168.1.1/24
 
@@ -10,3 +24,5 @@ nmap -p 22 192.168.1.1/24
 
 Escanear una red:
 nmap 192.168.55.*
+
+

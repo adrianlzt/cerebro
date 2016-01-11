@@ -2,6 +2,9 @@ Convertir fecha unix timestamp a normal:
 date --date @1012312312
 date -d @1012312312
 
+Fecha en timestamp con nanoseconds
+date +%s.%N
+
 Convertir fecha a unix timestamp:
 date -d "Wed, 6 Oct 2010 10:43:25 +0200" +"%s"
 

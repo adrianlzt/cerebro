@@ -1,1 +1,0 @@
-../../nube/google-compute-engine.md

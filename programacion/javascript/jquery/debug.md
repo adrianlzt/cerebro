@@ -1,1 +1,1 @@
-Usar: alert("mensaje " + variable)
+../debug.md

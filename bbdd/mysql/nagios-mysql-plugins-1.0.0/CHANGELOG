@@ -1,0 +1,85 @@
+#
+# FromDual Nagios/Icinga plugins for MySQL and MariaDB (http://www.fromdual.com)
+# CHANGELOG
+#
+
+Version 1.0.0
+-------------
+
+Change #54
+* Build ready and release tag.
+
+Change #53
+* All modules fix in test automatization.
+
+Change #40
+* Error log check finding entry point problem fixed and many more rules applied.
+
+Change #38
+* Test data for check error log added.
+
+Change #37
+* mysqladmin ping replaced and implemented in Perl.
+
+Change #34
+* Filter rules separated in own file.
+
+Change #33
+* Testautomatizing infrastructure implemented.
+
+Change #32
+* Some log filter rule cleanup work done.
+
+Change #31
+* -epn tag for Icinga added.
+
+Change #30
+* Unknown command problem with Galera Clusters caught.
+
+Change #29
+* New host/socket convention similar to MySQL implemented in all scripts.
+
+Change #25
+* Module improved for Icinga.
+  Connect in check_db improved (BjBo).
+
+Change #23
+* /tmp location is bad use alternatives.
+
+Change #22
+* Many new rules for check_error_log_mysql added.
+  Examples added to all help output.
+
+Change #18
+* Needed GRANT for scrips added to usage.
+
+Change #17
+* Contacts in script headers updated.
+
+Change #15
+* Skrip name of heartbeat check fixed to check_repl_mysql_heartbeat.pl
+
+Change #14
+* MySQL error log filtering rules added and some bugs fixed.
+
+Change #13
+* CHANGELOG updated.
+
+
+Version 0.4
+-----------
+
+Change #12
+* Plugin for Galara Cluster for MySQL added.
+
+
+Version 0.3.1
+-------------
+
+* Usage improved, made more user friednly and standard conforme.
+* Socket flag added.
+* Some examples added.
+* Filter rules for check_errorlog_mysql.pl improved.
+  They should now cover MySQL 5.1, 5.5, 5.6, PBMS, PBXT, MySQL Cluster (NDB),
+  Percona-Server, XtraDB, etc...
+* Single digigt timestamp problem fixed in check_errorlog_mysql.pl

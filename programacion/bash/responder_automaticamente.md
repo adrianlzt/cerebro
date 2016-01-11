@@ -24,3 +24,12 @@ if { $host == "" }  {
  exit 1
 }
 
+
+
+# Condicionales
+Según que lea, hace una cosa u otra
+
+expect {
+    "password for user:"  {send -- "password\n"}
+    "user"
+}

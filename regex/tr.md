@@ -21,3 +21,9 @@ echo "qwert" | tr [:upper:] [:lower:]
 Borrar minúsculas
 echo "qwEeBrNt" | tr -d [:lower:]
   EBN
+
+Convertir muchos caracteres a uno solo, squeeze:
+tr -s ' '
+
+$ echo "hola    como   estas" | tr -s ' '
+hola como estas

@@ -15,6 +15,12 @@ datos
 '
   -d: envia esos datos al servidor
 
+Curl GET con urlencode:
+curl -G --data-urlencode "GET hosts" httpbin.org/get
+  -> http://httpbin.org/get?GET hosts
+
+curl -G --data-urlencode "q=GET services" --data-urlencode "key=description" "http://10.95.83.172/api/query"
+  -> http://10.95.83.172/api/query?q=GET%20services&key=description
 
 Post de un fichero binario:
 curl -H "Accept: application/json" -H "Content-Type: application/zip" --data-binary @build/mac/package.zip "https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip"
@@ -47,6 +53,9 @@ curl -Ns http://www.climagic\.org/uxmas/[1-12]
 A través de proxy
 curl --proxy http://proxy.com:6666 http://www.google.es
 
+--socks5 <host[:port]>
+
+
 
 Autenticatión, HTTP basic:
 curl -u user:pass http://web.com
@@ -59,4 +68,11 @@ Tendremos que usar --cacert certificado.pem
 
 # Enviar datos con base64
 CONFIG_BASE64=$(base64 fichero_config.zip)
-curl -v -X POST -d '{"config": "${CONFIG_BASE64}”}' -H 'Content-type: application/json' http://localhost:8000/api
+curl -v -X POST -d '{"config": "${CONFIG_BASE64}"}' -H 'Content-type: application/json' http://localhost:8000/api
+
+
+# Variable en la data
+curl  -X POST --data '{"description":"Created via API","public":"true","files":{"file1.txt":{"content":"'"$FICHERO"'"}}}' https://api.github.com/gists
+
+El tema es que hay que cerrar las simples y meter la variable en dobles:
+'esta es una frase '"$variable"' y por aqui sigue'

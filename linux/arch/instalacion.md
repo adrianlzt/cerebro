@@ -20,7 +20,8 @@ mkfs.XXXX /dev/sda3
   btrfs parece que mola, pero inestable y no permite swap (como particion tampoco?)
   ext4 paree que sigue siendo el rey para sistemas desktop.
 
-# Si estamos instalando con el disco duro montado en otro linux:
+
+# Si estamos instalando con el disco duro montado en otro linux, si no, saltar hasta "Si estamos en el propio ...":
 https://wiki.archlinux.org/index.php/Install_from_existing_Linux
 Bajar bootstrap desde https://mirrors.kernel.org/archlinux/iso/
 Descomprimir en algun dir
@@ -34,8 +35,9 @@ mkdir /run/shm
 
 Seguimos como si ya estuviesemos en el propio sistema a instalar
 
-# Si estamos en el propio sistema a instalar
 
+
+# Si estamos en el propio sistema a instalar
 mkdir /mnt
 mount /dev/sda1 /mnt
 mkdir /mnt/home
@@ -72,11 +74,8 @@ echo "KEYMAP=es" > vconsole.conf
 mkinitcpio -p linux
 passwd
 pacman -S grub
-grub-install --root-directory=/ --target=i386-pc --recheck --debug /dev/sda
-
-Esto no se si hace falta:
-arch-chroot /mnt
-grub-mkconfig -o /mnt/boot/grub/grub.cfg
+grub-install --target=i386-pc --recheck --debug /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
 
 
 

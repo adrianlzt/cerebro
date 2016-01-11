@@ -1,4 +1,6 @@
 http://sebastien.godard.pagesperso-orange.fr
+rpm: http://sebastien.godard.pagesperso-orange.fr/download.html
+    sysstat-11.0.8-1.x86_64.rpm en este dir para centos6.5
 (iostat.md también forma parte de ese paquete)
 
 Sar forma parte de un conjunto de herramientas de estadísticas para linux.
@@ -101,3 +103,14 @@ http://sebastien.godard.pagesperso-orange.fr/man_iostat.html
 
 # Sockets
 http://sebastien.godard.pagesperso-orange.fr/man_sar.html
+
+
+# Compilar
+wget http://perso.orange.fr/sebastien.godard/sysstat-11.0.8.tar.xz
+yum install gcc gettext
+cd sysstat*
+./configure
+  por defecto instala en /usr/local
+  usar --prefix si queremos cambiarlo
+make
+make install

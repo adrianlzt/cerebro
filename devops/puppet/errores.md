@@ -118,3 +118,7 @@ Dos elementos definiendo el mismo alias?
 Error: Could not request certificate: Neither PUB key nor PRIV key:: header too long
 Exiting; failed to retrieve certificate and waitforcert is disabled
 /var/log lleno?
+
+
+Error: Could not create instance of Puppet configuration client: PRNG not seeded
+El sistema no tiene /dev/urandom

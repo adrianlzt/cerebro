@@ -1,3 +1,5 @@
+mirar time.md (info sobre iowait)
+
 dd if=/dev/zero of=file bs=1M count=1
   crear fichero de 1MB
 
@@ -31,3 +33,10 @@ dd if=/dev/zero of=/root/testfile bs=1G count=1 oflag=direct
 
 
 I would not recommend using /dev/urandom because it's software based and slow as pig
+
+dd if=/dev/urandom of=500megabytes bs=1M count=500
+524288000 bytes (524 MB) copied, 112.743 s, 4.7 MB/s
+
+dd if=/dev/zero of=500megabytesbis bs=1M count=500
+524288000 bytes (524 MB) copied, 1.33937 s, 391 MB/s
+

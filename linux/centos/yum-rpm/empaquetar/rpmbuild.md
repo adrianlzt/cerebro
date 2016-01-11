@@ -1,3 +1,6 @@
+yum install rpm-build
+
+
 $ rpmbuild --help
 
   -bp                           build through %prep (unpack sources and apply patches) from <specfile>

@@ -38,11 +38,29 @@ http://stackoverflow.com/questions/3061/calling-a-function-of-a-module-from-a-st
 ...   print "valor de x: " + str(x)
 >>> globals()["otra"](1)
 valor de x: 1
+>>> eval("otra")(4)
+valor de x: 4
 
 locals() es para funciones locales (de la misma clase?)
 
 
-Otra opción:
-m = __import__ ('foo')
+Otra opción (fichero foo.py con clase o funcion 'bar'):
+m = importlib.import_module('foo')
 func = getattr(m,'bar')
 func()
+
+Si fuese una clase:
+getattr(module,"Witai")()
+
+
+
+Llamar a una func con un array (splash operator)
+v = ["arg1","arg2"]
+func(*v)
+
+
+Nombre de la funcion donde estamos:
+import sys
+def what_is_my_name():
+    print(sys._getframe().f_code.co_name)
+

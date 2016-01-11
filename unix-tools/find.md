@@ -61,3 +61,7 @@ find / -user root -perm -4000 -exec ls -ldb {} \;
 # Exec
 http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories  
 note that with GNU find, using + instead of ; as the terminator to the -exec will be more efficient as it will use the minimum needed number of forks to chown instead of one fork per file/directory 
+
+# Print
+Mirar el man, nos da un montón de opciones de como sacar los datos.
+Info del inodo de los ficheros, permisos, last access, etc

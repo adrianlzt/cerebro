@@ -31,3 +31,11 @@ while (cars[i]) {
 
 
 Se puede usar 'break' o 'continue' en los bucles para saltar al siguiente paso o salir del bucle.
+
+
+# For con indice
+var myArray = [123, 15, 187, 32];
+
+myArray.forEach(function (value, i) {
+    console.log('%d: %s', i, value);
+});

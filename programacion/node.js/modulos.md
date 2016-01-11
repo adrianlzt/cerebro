@@ -10,3 +10,7 @@ Me baja los módulos en el directorio que esté
 
 Instalar un módulo de forma global:
 npm -g install NOMBRE
+
+
+npm i PAQUETE --save-dev
+  guardarlo en el package.json como dep de desarrollo

@@ -8,3 +8,8 @@ Por defecto los clientes pueden escribir.
 
 Al arrancar tmate nos pone una línea que deberan usar los clientes estilo:
 ssh 2HbKwmSfXqwFrJAdFAKEiY7dw@am1.tmate.io
+
+Para conocer la url donde conectar para read-only, una vez arrancado tmate, escribir:
+tmate show-messages
+
+Ahí veremos la url para read-only y la normal

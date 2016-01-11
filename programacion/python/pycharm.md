@@ -1,7 +1,15 @@
 La versión de pago dice que lineas tienen coverage
 
+# Virtualenv
+
 Recordar poner nuestro virtualenv.
 Settings -> Python Interpreter
+
+Poner un virtualenv para un proyecto.
+Ir a las settings del proyecto -> project interpreter
+
+
+# Shortcuts
 
 Control+N
   buscar/abrir una clase
@@ -64,3 +72,5 @@ IdeaVim
 # GIT #
 Control+k
   commit
+
+

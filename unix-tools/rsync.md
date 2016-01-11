@@ -44,3 +44,73 @@ ls -la fd/
   Hay podemos ver el fichero temporal que se está escribiendo
 cat io
   También podemos ver en este fichero los bytes transmitidos
+
+# Copias directorios, contenido
+rsync -av datos backup
+  copia datos/ dentro de backup. Crea backup si no existe
+
+rsync -av datos/ backup
+  copia el contenido de datos/ dentro de backup
+
+
+# Hard links
+-H
+  si copiamos varios ficheros que entre ellos estan "hard linking", se mantiene esta relación.
+
+http://earlruby.org/2013/05/creating-differential-backups-with-hard-links-and-rsync/
+
+si copiamos el fichero 'x' al fichero 'y' con rsync, y resulta que 'y' es un hardlink. 'y' se convertira en un nuevo fichero.
+
+Pero si el contenido de 'x' e 'y' es el mismo se mantendrá el hard link.
+
+
+# Backup
+Esta funcionalidad (la de hardlink) es perfecta para cuando queremos hacer backups recursivos.
+dia 0:
+rsync -av /data /opt/backup0
+ln -s /opt/backup0 /opt/last_backup
+
+dia 1:
+rsync -av --link-dest=$PWD/last datos/ backup1
+ln -snf backup1 last
+
+dia 2:
+rsync -av --link-dest=$PWD/last datos/ backup1
+ln -snf backup1 last
+
+Lo que estamos haciendo es copiar los nuevos ficheros de datos/ a backup1/. Pero los ficheros que ya existen (en last/) se copian a backup1/ como hard links
+
+Más compacto:
+export BAK=$(date +%Y%m%d%H%M%S); rsync -av --link-dest=$PWD/last datos/ $BAK; ln -sfn $BAK last
+
+
+Cuidado con este método si tenemos mucho muchos ficheros. Tener los inodos también cuesta espacio.
+
+Mirar rbackup, rsnapshot y backuppc. Nos gestionan esto de manera sencilla.
+
+Mirar también si podemos usar un FS que nos de esto: ZFS, btrfs, ...
+
+
+
+# compare-dest
+rsync -av --compare-dest=DIR ORIGEN/ DESTINO/
+  Solo copiamos de ORIGEN a DESTINO los ficheros que NO esten en DIR.
+  Es decir, si en DIR teníamos una copia antigua de ORIGEN, acabaremos en DESTINO con una copia de solo los ficheros nuevos.
+  Si DIR es un relative-path, es relativo a DESTINO/
+
+# copy-dest
+rsync -av --copy-dest=DIR ORIGEN/ DESTINO/
+  Copiamos los ficheros de ORIGEN a DESTINO que NO estén en DIR. Luego copiamos localmente los ficheros de DIR a DESTINO 
+  Es decir, si en DIR teníamos una copia antigua de ORIGEN. Solo copiamos a DESTINO los ficheros nuevos, y luego con una copia local el resto.
+  Si DIR es un relative-path, es relativo a DESTINO/
+
+# link-dest
+rsync -av --link-dest=DIR ORIGEN/ DESTINO/
+  Copiamos los ficheros de ORIGEN a DESTINO que NO estén en DIR. Luego hacemos hardlink de los ficheros de DIR a DESTINO 
+  Es decir, si en DIR teníamos una copia antigua de ORIGEN. Solo copiamos a DESTINO los ficheros nuevos, y luego hardlink para el resto.
+  Si DIR es un relative-path, es relativo a DESTINO/
+  Los ficheros deben ser IDENTICOS, tiempos de modificación, owner, group, etc.o
+
+Solemos usarlo como
+rsync -av --link-dest=$PWD/backup1 datos/ backup2
+

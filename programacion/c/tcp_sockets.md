@@ -1,3 +1,11 @@
+mirar simple-client.c
+simple-server.c
+
+# Crear socket simple
+man 2 socket
+s = socket(AF_INET, SOCK_STREAM, 0)
+
+
 Consultar el tamaño de la cola 'unacked' de un socket tcp: https://github.com/unbit/uwsgi/blob/2.0.9/core/master.c#L209
 Para un socket LISTEN:
   ti.tcpi_unacked: tamaño ocupado de la cola backlog

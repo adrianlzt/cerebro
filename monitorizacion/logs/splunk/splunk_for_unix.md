@@ -1,4 +1,5 @@
 http://apps.splunk.com/app/273/
+https://splunkbase.splunk.com/app/833/ (add-on)
 http://docs.splunk.com/Documentation/UnixApp/5.0.2TA/User/Whatdataarecollected
 http://docs.splunk.com/Documentation/UnixApp/latest/User/AbouttheSplunkAppforUnix
 

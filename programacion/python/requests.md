@@ -31,9 +31,26 @@ r = requests.get("https://api.wit.ai/message?v=20151022&q=crear%20nueva%20wo", h
 >>> print(r.url)
 http://httpbin.org/get?key2=value2&key1=value1
 
+## Post
+r = requests.post("http://httpbin.org/post", data = {"key":"value"})
+
+Post de JSON:
+r = requests.post(url, data=json.dumps(payload))
+
 ## Proxy
 Se pasan como variable de entorno. Uno para http y otro para https
 HTTPS_PROXY="http://proxy2pdi.service.dsn.inet:6666" HTTP_PROXY="http://proxy2pdi.service.dsn.inet:6666" python
+
+### Socks
+https://pypi.python.org/pypi/requesocks/0.10.8
+
+session = requesocks.session()
+session.proxies = {'http': 'socks5://127.0.0.1:9050', 'https': 'socks5://127.0.0.1:9050'}
+r = session.get('https://api.github.com', auth=('user', 'pass')) # no obligatorio
+print(r.status_code)
+print(r.headers['content-type'])
+print(r.text)
+
 
 ## SSL
 Peticion ssl, comprobando que el certificado sea válido
@@ -76,3 +93,9 @@ Todos los códigos en: https://github.com/kennethreitz/requests/blob/master/requ
 # Auth
 from requests.auth import HTTPBasicAuth
 requests.get('https://api.github.com/user', auth=HTTPBasicAuth('user', 'pass'))
+
+
+# Timeout
+http://docs.python-requests.org/en/latest/user/quickstart/#timeouts
+requests.get('http://github.com', timeout=0.001)
+

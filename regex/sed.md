@@ -90,3 +90,14 @@ uno
 MILtres
 cuatro
 
+
+# Negativo / not / nor / excepto
+[^abc] cualquier cosa excepto a, b o c
+
+Coger todo hasta que encuentre un espacio en blanco.
+sed s/"\([^\s]\).*"/"\1"/
+
+
+# Hacer match e imprimir la parte no matcheada
+echo "fichero: parametros" | sed -n s/:.*//p
+fichero

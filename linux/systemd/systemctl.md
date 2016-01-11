@@ -53,6 +53,9 @@ systemctl list-units --all
 systemctl list-units --type service
   mostrar las unidades tipo service
 
+systemctl  list-units --type=target
+  mostrar targets
+
 
 # Activar o desactivar
 systemctl disable rsyslog

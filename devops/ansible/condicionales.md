@@ -58,6 +58,9 @@ when: not var
 Contenido de la salida:
 when: "'reticulating splines' in output"
 
+O que no este en la salida
+when: "pepe" not in users.stdout
+
 Que haya algo en la salida:
 when: pepe.stdout.strip('') != ""
 

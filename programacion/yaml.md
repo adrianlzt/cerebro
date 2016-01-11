@@ -10,6 +10,12 @@ ruby -r json -r yaml -e "yaml = YAML.load(File.read('./stack.yml')); print yaml.
 
 http://jsontoyaml.com/
 
+basic.yml:
+--
+- key: value
+
+
+
 Array:
   "baz": [
     "qux",

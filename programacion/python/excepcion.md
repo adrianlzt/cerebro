@@ -74,3 +74,10 @@ except CyclopsTaskException as e:
 raise Exception("Network %s not found" % network)
 raise ValueError('A very specific bad thing happened')
 
+
+# Traceback
+Si queremos soltar un stackstrace de donde viene la excepcion: mirar traceback.md
+Otra forma:
+logger.exception(ex)
+
+Estas dos formas nos sacan la cadena de funciones que han procovado la excepcion

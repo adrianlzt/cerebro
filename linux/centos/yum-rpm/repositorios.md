@@ -4,12 +4,19 @@ http://linux.die.net/man/5/yum.conf
 Explicación de las variables:
 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/sec-Using_Yum_Variables.html
 
-Para conocer los valores:
+Para conocer los valores (basearch, releasever, etc):
 python -c 'import yum, pprint; yb = yum.YumBase(); pprint.pprint(yb.conf.yumvar, width=1)'
 
+# Releasever
+Parece que centos devuelve 7 y redhat 7Server
+You can use this variable to reference the release version of Red Hat Enterprise Linux. Yum obtains the value of $releasever from the distroverpkg=value line in the /etc/yum.conf configuration file. If there is no such line in /etc/yum.conf, then yum infers the correct value by deriving the version number from the redhat-releaseproduct package that provides the redhat-release file.
+
+
+Si tenemos que usar el repo para algo utilizaremos la key (entre corchetes)
 
 Configuracion:
 [main]
+name=nombre descriptivo
 cachedir=/var/cache/yum/$basearch/$releasever
 keepcache=0
 debuglevel=2
@@ -103,3 +110,12 @@ Para acceder a este repo hace falta un client cert valido
 
 Local
 crear_repo.md
+
+
+
+# Funcionamiento
+Cuando definimos un repo, el cliente yum va a preguntar por el fichero REPO/repodata/repomd.xml
+
+La especificación de este fichero está en: https://github.com/openSUSE/libzypp/blob/master/zypp/parser/yum/schema/repomd.rng
+
+En repomd.xml se definen los ficheros other filelists y primary que se bajará después donde está la información de los rpms.

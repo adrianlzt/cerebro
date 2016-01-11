@@ -7,6 +7,15 @@ Mirar archivo de ejempolo en este directorio: setup-example.py
 
 $ python setup.py build
 $ python setup.py bdist_egg    # Genera un .egg
+  Como parte del proceso ejecuta:
+  python2.7 setup.py install_egg_info
+  que genera el fichero, o directorio, xxx-egg-info
+  Fichero en versiones viejas de setuptools
+  http://perso.crans.org/besson/_static/python/lib/python2.7/distutils/command/install_egg_info.py
+  f = open(target, 'w')
+    Segun ese fichero siempre va a generar un egg-info fichero
+
+
 $ python setup.py install
 
 

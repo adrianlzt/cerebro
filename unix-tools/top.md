@@ -2,6 +2,9 @@ top version 3.3.10
 P - ordenar por CPU
 c - mostrar comando entero
 
+Control+s pause
+Control+q continue
+
 
 M - ordenar por uso de memoria
 1 - mostrar el uso de todas las CPUs
@@ -11,6 +14,7 @@ k - matar un proceso (nos pregunta el pid)
 s - cambiar intervalo de refresco
 h - ayuda
 W - guarda la configuración que hayamos hecho en ~/.toprc
+t - cambia varias veces la info de las CPUs. Puede darnos la info de en que gasta el tiempo cada cpu (user, sys, id, wait, etc)
 
 vsz         VSZ       virtual memory size of the process in KiB (1024-byte units).  Device mappings are currently excluded; this is subject to change.  (alias vsize)
 rss         RSS       resident set size, the non-swapped physical memory that a task has used (inkiloBytes).  (alias rssize, rsz)

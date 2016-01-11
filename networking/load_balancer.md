@@ -36,3 +36,14 @@ https://github.com/observing/balancerbattle
 
 HAProxy is a superior load balancer to nginx. HAProxy can do out-of-band health checks, whereas nginx only knows a backend to be "down" when it serves a 500. Also, HAProxy is a general TCP load balancer, whereas nginx will work only on HTTP traffic.
 Others in this thread say that nginx does "complicated tasks" better, but chances are, if you're doing a "complicated task" in your load balancer, you've made a mistake somewhere in your application design.
+
+
+# Arquitecturas
+
+## VIP
+Un balanceador configurado en una VIP. Este balanceador reenvia el tráfico a los nodos activos
+Problema, si se cae el balanceador nos quedamos sin servicio.
+
+## Activo-Activo
+Los registros DNS apuntan a varios nodos simultáneamente. Cada uno de estos nodos a su vez balancea internamente (mirar haproxy.md)
+Problema, si se cae uno de los nodos se perderán esas peticiones? Al menos 1 de cada 3 que vayan contra esa ip.

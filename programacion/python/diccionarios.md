@@ -9,16 +9,23 @@ b['one']
 b.get('four','no existe')
   devuelve el valor de la key 'four', o, si no existe esa key, devolverá 'no existe'
 
+b.has_key("cosa")
+
 Añadir otro elemento:
 b['key'] = value
 
 'one' in b #Devuelve true si 'one' es key del diccionario
 
+Borrar elemento:
+del(b['key'])
+
+
 >>> inventario={}
 >>> inventario.update({"asd":2})
 >>> inventario.update({"BBB":1111})
+>>> inventario.update({"asd":3})
 >>> inventario
-{'BBB': 1111, 'asd': 2}
+{'BBB': 1111, 'asd': 3}
 
 
 
@@ -62,4 +69,14 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 >>> variable=[{'name':123},{'name':000,'pepe':2}]
 >>> [x['name'] for x in variable]
 [123, 0]
+
+
+# Default value / Añadir un elemento si no existe
+>>> data = {}
+>>> data.setdefault("p3",[]).append({"t":1111})
+>>> data
+{'p3': [{'t': 1111}]}
+>>> data.setdefault("p3",[]).append({"t":2222})
+>>> data
+{'p3': [{'t': 1111}, {'t': 2222}]}
 

@@ -4,8 +4,14 @@ Nos saca los ficheros que han hecho match
 grep -L cosas *
 Nos sacan los ficheros que no han hecho match
 
+grep -h cosa *
+Solo saca el match, no el nombre del fichero
+
 grep -c ...
 cuenta ocurrencias
+
+grep -o ...
+  solo nos devuelve el trozo de linea que matchea
 
 grep -3 cosa fichero
 muestra tres lineas por encima y por debajo
@@ -44,3 +50,10 @@ $ (Question)     =    match expression at the end of a line, as in A$.
 \{x,y\}          =    match x to y occurrences of the preceding.
 \{x\}            =    match exactly x occurrences of the preceding.
 \{x,\}           =    match x or more occurrences of the preceding.
+
+
+Quitar ficheros binarios:
+grep -I ...
+
+Tratar ficheros binarios como texto (necesario para ficheros codigo fuente de c):
+grep -a ... fichero.c

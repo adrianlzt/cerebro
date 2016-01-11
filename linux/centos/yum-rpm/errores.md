@@ -24,3 +24,11 @@ rpm -ivvh package-name-version.arch.rpm --noscripts
 
 O desinstalar:
 rpm --erase package-name-version.arch.rpm --noscripts
+
+
+
+Error unpacking rpm package package-1.1.0-20151028161843.4e81cafb.noarch
+error: unpacking of archive failed on file /usr/lib/python2.7/site-packages/package-1.1.0-py2.7.egg-info: cpio: rename
+Parece un bug de rpm:
+http://www.redhat.com/archives/rhl-devel-list/2007-August/msg01626.html
+https://bugzilla.redhat.com/show_bug.cgi?id=1177479

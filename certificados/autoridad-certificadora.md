@@ -1,3 +1,14 @@
+mirar lets_encrypt.md
+
+# StarSSL
+Nos da certificado simplemente demostrando que el dominio es tuyo.
+Aceptado todos los certificados.
+Los wildcard los cobran.
+Para que se ponga el icono verde de los navegadores también cobran.
+
+
+
+
 http://www.g-loaded.eu/2005/11/10/be-your-own-ca/
 
 Hacer todo como root, si no, falla al firmar el certificado.

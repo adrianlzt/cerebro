@@ -104,3 +104,11 @@ stderr_logfile=/var/log/supervisor/%(program_name)s.log
 Poner el programa sin demonizar, porque si no supervisord pensará que se ha cerrado
 [program:puppet]
 command=/usr/bin/ruby /usr/bin/puppet master --no-daemonize
+
+
+# Errores
+Error: Another program is already listening on a port that one of our HTTP servers is configured to use.  Shut this program down first before starting supervisord.
+
+http://serverfault.com/questions/114477/supervisor-http-server-port-issue
+sudo unlink /tmp/supervisor.sock
+sudo unlink /var/run/supervisor.sock

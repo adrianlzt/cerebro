@@ -1,3 +1,13 @@
+# En funciones
+Si hacemos un import dentro de una función, este solo estará disponible dentro de esa función.
+
+# Intento de carga
+try:
+    import dns.resolver
+    dnspython_available = True
+except ImportError:
+    dnspython_available = False
+
 # Carga dinámica
 import importlib
 pepe = importlib.import_module("sys")
@@ -16,6 +26,8 @@ def parse_email():
     if email is None:
         import email
 
+# En directorios
+Si queremos separar en directorios, asegurarnos que dentro de los nuevos directorios existe un fichero __init__.py para permitir que este se meta en el package python.
 
 # Ejemplo de clases
 fichero.py

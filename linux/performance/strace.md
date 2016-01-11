@@ -25,8 +25,16 @@ strace -s 80 ...
 Para mostrar tambien los hilos:
 strace -f
 
-Mostrar tiempo
+# Tiempo
 strace -t
+strace -tt
+  microseconds
+strace -ttt
+  microseconds y epoch (creo)
+
+strace -r
+  timestamps relativos
+
 
 Guardar a fichero
 strace -o fichero
@@ -36,6 +44,13 @@ strace -s 100 -t -o /home/alopez/cmon.strace -ff -p $(pidof cmon)
 
 Mirar solo ciertas llamadas
 strace -e trace=open,write ls
+strace -e trace=network ...
+
+strace -e file
+  operaciones con ficheros
+
+Tambien: process, network, signal, ipc, desc (file descriptor), memory
+
 
 Para hacer recuento de las llamadas y nos dice el tiempo que ha llevado cada una
 strace -c
@@ -53,3 +68,5 @@ strace -e poll,select,connect,recvfrom,sendto nc www.news.com 80
 
 Punto 5) de
 http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
+
+

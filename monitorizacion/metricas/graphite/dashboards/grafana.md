@@ -14,19 +14,44 @@ grafana + graphite + statsd
 
 
 ## Instalacion ##
-Descargar la última versión de https://github.com/torkelo/grafana/releases
-Descomprimir en /var/www/html/grafana
-Editar /var/www/html/grafana/config.js para definir la url del server graphite, y la url del server elasticsearch (si lo tenemos).
-Entrar en http://localhost/grafana
+
+### RPM
+sudo yum install https://grafanarel.s3.amazonaws.com/builds/grafana-2.6.0-1.x86_64.rpm
+
+/etc/yum.repos.d/grafana.repo
+
+[grafana]
+name=grafana
+baseurl=https://packagecloud.io/grafana/stable/el/6/$basearch
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 
 ## Configuración ##
-Para poder almacenar los dashboards necesitaremos elasticsearch.
-Si no, podemos generarlos a mano, en formato json, y ponerlos en /var/www/html/grafana/app/dashboards
+/etc/grafana/grafana.ini
+
+Configurar una fuente de datos (graphite, influxdb, opentsdb)
+http://docs.grafana.org/installation/rpm/#adding-data-sources
+
+service grafana-server start
+
+por defecto: admin:admin
+
 
 ## Generar dashboards ##
+
 Para editar un dashboard, pinchamos sobre su nombre y damos a editar.
 Para volver al dashboard, pulsamos escape.
 
 En la izquierda vemos unas pestañas de color azul y naranja, eso es para editar las filas.
 
 Un dashboard de ejemplo esta en dashboard-ejemplo.json
+
+
+## InfluxDB
+http://docs.grafana.org/datasources/influxdb/
+Al configurar el server, si ponemos Access: proxy, estaremos accediendo mediante Grafana. Direct quiere decir que nuestro navegador pregunta directamente a influxdb.
+

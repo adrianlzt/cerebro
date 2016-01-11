@@ -1,7 +1,28 @@
-http://influxdb.com/docs/v0.7/api/query_language.html
+https://influxdb.com/docs/v0.9/query_language/data_exploration.html
+
+# Database
+show databases
+
+select * from DATABASE..CAMPO
+
+Si no ponemos database, usará la que hayamos dicho mediante:
+use DATABASE
+
+
+# Series
+Nos muestra para cada medida, que diferentes tipos de cosas tenemos almacenadas.
+Por ejemplo, para swap, veremos que hay 4 nodos enviando metricas y que cada uno envia el swapip y el swapout
+SHOW SERIES
+
+# Medidas
+Nos muestra las diferentes medidas que tenemos en esta base de datos
+SHOW MEASUREMENTS
+
+DROP MEASUREMENT "anca.pepe.cpu"
+
 
 # Getting a List of Time Series
-list series
+show series
 -- or this
 select * from /.*/ limit 1
   esta dará un error si alguna serie no tiene ningún dato
@@ -11,6 +32,9 @@ select * from /.*/ limit 1
 select value from response_times where time > '2013-08-12 23:32:01.232' and time < '2013-08-13';
 
 select value from response_times where time > now() - 1h limit 1000;
+
+SELECT "value" FROM "icinga".."cpu" WHERE time > now() - 4h
+  esto es: de la base de datos icinga, la metrica cpu
 
 select value from response_times where time > 1388534400s
 
@@ -66,3 +90,9 @@ select hosta.value + hostb.value
 from cpu_load as hosta
 inner join cpu_load as hostb
 where hosta.host = 'hosta.influxdb.orb' and hostb.host = 'hostb.influxdb.org';
+
+# Sort
+https://influxdb.com/docs/v0.9/query_language/data_exploration.html#sort-query-returns-with-order-by-time-desc
+
+Ordenar de la fecha más reciente a la más antigua
+select * from load order by time DESC

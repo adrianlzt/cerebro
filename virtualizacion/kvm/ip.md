@@ -18,10 +18,12 @@ ping -b 192.168.1.255
 ip n
 
 Si no funciona con el broadcast:
+RED=192.168.100
 for i in {1..249}
  do
-  ping -c 1 -n -q -r  -t 1 -s 1  -W 1   192.168.100.$i > /dev/null &
+  ping -c 1 -n -q -r -t 1 -s 1 -W 1 ${RED}.$i > /dev/null &
 done
+ip n
 
 
 Leer un fichero de la VM

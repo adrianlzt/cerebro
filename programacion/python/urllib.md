@@ -7,6 +7,14 @@ import urllib2
 response = urllib2.urlopen('http://python.org/')
 html = response.read()
 
+# Encode
+Si queremos generar algo tipo: 
+import urllib
+cadena = urllib.urlencode({"Cabecera": "valor", "xx": 3})
+'Cabecera=valor&xx=3'
+Si la cabecera o el valor pueden tener tildes:
+cadena.encode("utf8")
+
 
 ## Cookies ##
 req1 = urllib2.Request(url1)
@@ -17,6 +25,11 @@ cookie = response.headers.get('Set-Cookie')
 req2 = urllib2.Request(url2)
 req2.add_header('cookie', cookie)
 response = urllib2.urlopen(req2)
+
+
+## POST ##
+import urllib2
+response = urllib2.urlopen('https://48465678.ngrok.io/skype/adrianlzt', "DATOS")
 
 
 
@@ -31,6 +44,46 @@ request = urllib2.Request("http://api.foursquare.com/v1/user")
 base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
 request.add_header("Authorization", "Basic %s" % base64string)   
 result = urllib2.urlopen(request)
+
+
+# Headers
+import urllib
+import urllib2
+
+url = 'http://www.someserver.com/cgi-bin/register.cgi'
+user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
+values = {'name' : 'Michael Foord',
+          'location' : 'Northampton',
+          'language' : 'Python' }
+headers = { 'User-Agent' : user_agent }
+
+data = urllib.urlencode(values)
+req = urllib2.Request(url, data, headers)
+response = urllib2.urlopen(req)
+the_page = response.read()
+
+
+# Errores
+https://docs.python.org/2/howto/urllib2.html#handling-exceptions
+
+Si no puede conectar lanzará una excepcion:
+urllib2.URLError: <urlopen error [Errno -2] Name or service not known>
+
+Error 404 también genera una excepcion:
+urllib2.HTTPError: HTTP Error 404: Not Found
+
+from urllib2 import Request, urlopen, URLError, HTTPError
+req = Request(someurl)
+try:
+    response = urlopen(req)
+except HTTPError as e:
+    print 'The server couldn\'t fulfill the request.'
+    print 'Error code: ', e.code
+except URLError as e:
+    print 'We failed to reach a server.'
+    print 'Reason: ', e.reason
+else:
+    # everything is fine
 
 
 
@@ -49,3 +102,23 @@ body = result.readlines()
 
 Obtener un body json:
 data = json.load(result)
+
+
+# Timeout
+import socket
+import urllib2
+
+# timeout in seconds
+timeout = 10
+socket.setdefaulttimeout(timeout)
+
+# this call to urllib2.urlopen now uses the default timeout
+# we have set in the socket module
+req = urllib2.Request('http://www.voidspace.org.uk')
+response = urllib2.urlopen(req)
+
+# Imagen
+img = urllib2.urlopen("http://static3.rutinasentrenamiento.com/wp-content/uploads/Curl-Biceps-Alterno-tipo-Martillo.jpg")
+img sera un objecto file descriptor
+img.read()
+etc

@@ -6,6 +6,7 @@ Borrar ficheros           svn del
 Actualiar repo            svn up
 Historial                 svn up; svn log
 Commit                    svn commit -m "mensaje"
+Diff                      svn diff -r 90:91
 
 
 # Bajar partes de un repo

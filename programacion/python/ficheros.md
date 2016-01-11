@@ -1,8 +1,8 @@
 http://docs.python.org/2/library/stdtypes.html#file-objects
 
 Leer sin meter los cambios de linea
-with open('fichero', 'r') as file:
-    lines = [line.strip('\n') for line in file.readlines()]
+with open('fichero', 'r') as fd:
+    lines = [line.strip('\n') for line in fd.readlines()]
 
 python2.7, 3.1:
 with open("input", "r") as inp, open("output", "w") as out:

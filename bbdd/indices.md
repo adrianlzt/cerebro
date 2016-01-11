@@ -1,3 +1,6 @@
+La diferencia de performance entre una tabla no indexada y una si indexada puede ser del orden de 10000x (http://computers-are-fast.github.io/)
+
+
 ## MySQL indexes http://dev.mysql.com/doc/refman/5.0/es/mysql-indexes.html ##
 Most MySQL indexes (PRIMARY KEY, UNIQUE, INDEX, and FULLTEXT) are stored in B-trees. Exceptions are that indexes on spatial column types use R-trees, and that MEMORY tables also support hash indexes.
 http://en.wikipedia.org/wiki/B-tree

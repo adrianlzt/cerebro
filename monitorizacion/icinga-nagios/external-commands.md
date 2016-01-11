@@ -55,6 +55,8 @@ STOP_OBSESSING_OVER_SVC_CHECKS
 
 
 # Comandos con parametros (132)
+# 80 con host_name
+# 
 ACKNOWLEDGE_HOST_PROBLEM;<host_name>;<sticky>;<notify>;<persistent>;<author>;<comment>
 ACKNOWLEDGE_HOST_PROBLEM_EXPIRE;<host_name>;<sticky>;<notify>;<persistent>;<timestamp>;<author>;<comment>
 ACKNOWLEDGE_SVC_PROBLEM;<host_name>;<service_description>;<sticky>;<notify>;<persistent>;<author>;<comment>

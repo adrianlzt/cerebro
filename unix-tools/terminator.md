@@ -1,3 +1,7 @@
+http://gnometerminator.blogspot.com.es/p/introduction.html
+https://launchpad.net/terminator/
+
+
 Terminal X11 que permite dividir la pantalla en cuadrados y retransmitir lo que escribimos a todas las pantallas.
 
 Ctrl+Shift+O

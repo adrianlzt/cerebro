@@ -36,6 +36,7 @@ keepass2android
 mb-wheather (meteo blue)
 network signal strength -> widget para ver que tipo de red y dBs tenemos
 oruxmaps (gps para hacer y seguir tracks)
+packet capture (nos permite ver el trafico de las apps. Hace un MitM para ver el trafico ssl)
 paypal
 pocket
 pushbullet (enviar notificaciones push a/desde pc/movil/amigos etc) (tambien envia al chrome las notificaciones del movil)

@@ -26,7 +26,24 @@ printf 'GET / HTTP/1.0\r\n\r\n' | openssl s_client -ign_eof -connect 127.0.0.1:4
 
 
 Veremos trafico HTTP, que estará por debajo de una capa SSL.
+Si el protocol no pone que es TLS, forzarlo (boton derecho > Decode As.. -> TLS)
+Y para meter la key, boton derecho, protocol preferences -> RSA key list
+Hay metemos una entrada nueva con la ip address, port, protocol y el fichero con la key
+Protocol: sdpy para http2.0
+Si metemos algo sin sentido nos dice los que se aceptan.
 
+
+# Navegadores
+https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
+
+Básicamente es arrancar el navegador como:
+SSLKEYLOGFILE=/tmp/sslkeylog.log firefox
+
+Luego en el wireshark:
+Edit -> Preferences -> Protocols -> SSL -> (Pre)-Master-Secret log filename: /tmp/sslkeylog.log
+
+No veo el trafico http2 correctamente (4/11/2015)
+Ni el https normal.
 
 
 # Socat #
