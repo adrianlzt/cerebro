@@ -3,6 +3,8 @@ https://docs.python.org/2/library/unittest.html
 dummy_test_suite.py
 http://it-ebooks.info/book/3778/ Testing Python - Applying Unit Testing, TDD, BDD and Acceptance Testing
 
+Mirar pytest.md
+
 Mirar nosetests.md para buscar y ejecutar los tests
 
 

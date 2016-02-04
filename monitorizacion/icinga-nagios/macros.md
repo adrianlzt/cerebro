@@ -24,8 +24,10 @@ test.cfg
 define host {
     ...
     _nombre                        pepito
-    notes_url                      http://server.com/query?$_HOSTprueba$
+    notes_url                      http://server.com/query?$_HOSTPRUEBA$
 }
+
+Poner todo en mayusculas!
 
 ## Livestatus
 Livestatus tiene su propia implementación de la expansión de macros:

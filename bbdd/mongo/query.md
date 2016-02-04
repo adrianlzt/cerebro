@@ -23,3 +23,6 @@ Saca los elementos distintos de responsible.historical.group con contact_eid>120
 
 Contar salidas de un find:
 db.users.find({'_id':'admin'}).count()
+
+
+db.users.find({'_id':/expr regular/})

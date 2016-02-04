@@ -62,6 +62,9 @@ from subprocess import Popen, PIPE
 
 p = Popen(["ls", "-l", "file"], stdout=PIPE)
 # Al ejecutar Popen se arranca el nuevo proceso en segundo plano
+# No termina, se queda en modo defunct.
+# Si lo que estamos lanzando es un proceso con sudo, el hijo sera de root y no podremos matarlo con p.kill() o similares
+# http://stackoverflow.com/questions/21886828/killing-a-subprocess-started-via-sudo
 
 output = p.communicate()[0]
 # Si pedimos el output antes de que termine el programa parara la ejecuccion hasta tener el valor

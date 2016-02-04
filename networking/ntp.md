@@ -18,6 +18,9 @@ chkconfig ntpd on
 service ntpd start
 
 
+Comprobar el estado
+ntpstat
+
 http://support.ntp.org/bin/view/Support/TroubleshootingNTP
 Comprobar que el servidor ya está en proceso de sincronización ejecutando la siguiente sentencia:
 ntpq -n -c pe
@@ -29,3 +32,11 @@ ntpq
 Pueden suceder dos cosas:
 El servidor ha alcanzado las referencias de tiempo y está sincronizando. Todo bien.
 El servidor está en fase de inicialización o no llega (columna reach con valor de cero). El motivo puede ser que la máquina no llega al servidor de hora. En ese caso, comprobar en primer que el tráfico no está cortado en el servidor mediante algún tipo de firewall (iptables)
+
+
+# Stratum
+ntpdc -c sysinfo
+
+El nivel de stratum es uno menos del que nos estamos conectando
+
+Nivel 11 es que no esta bien sincronizada (se está sincronizando contra si misma)

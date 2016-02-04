@@ -11,8 +11,11 @@ WARNING: The vboxdrv kernel module is not loaded. Either there is no module
          You will not be able to start VMs until this problem is fixed.
 
 
-Se arregla con:
+Se arregla con (podemos instalar solo uno, depende que kernel tengamos, linux o linux-lts):
+pacman -S virtualbox-host-modules virtualbox-host-modules-lts
 sudo modprobe vboxdrv
+
+Mirar tener el kernel actualizado.
 
 sudo vi /etc/modules-load.d/virtualbox.conf
 vboxdrv

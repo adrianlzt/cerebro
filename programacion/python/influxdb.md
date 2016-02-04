@@ -1,4 +1,5 @@
 https://github.com/influxdata/influxdb-python
+http://influxdb-python.readthedocs.org/en/latest/
 
 Iniciar cliente sin ddbb específica, especificar en la query:
 
@@ -22,6 +23,8 @@ json_body = [
     }
 ]
 client.write_points(json_body, database="test")
+
+Tambien se puede pasar un tags={} que se mergeara con los tags de cada punto
 
 
 write_points() hace unas transformaciones y llama a write()

@@ -67,6 +67,11 @@ And: 2
 Filter: state = 0
 Or: 2
 
+Services con perfdata:
+Filter: perf_data ~ .+
+
+Obtener hosts de un hostgroup:
+GET hosts\nColumns: host_name host_groups\nFilter: host_groups >= NOMBRE
 
 # Contar
 echo -e "GET services\nStats: service_staleness >= 1.5\nFilter: plugin_output != CRITICAL: Data not received" | nc -U /var/spool/icinga/cmd/live

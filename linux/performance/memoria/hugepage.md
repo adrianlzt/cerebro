@@ -41,3 +41,15 @@ En redhat también existen las transparent huge pages, que transparentemente cog
 # agresividad en compactacion de memoria para hugepages
 /sys/kernel/mm/transparent_hugepage/defrag
 
+
+
+# Problemas con free
+https://access.redhat.com/solutions/57741
+En pdf en este dir
+
+Páginas reservadas para hugepages:
+cat /proc/sys/vm/nr_hugepages 
+
+cat /proc/meminfo | grep Hugepagesize
+
+Con este valor, lo multiplicamos por el número de huge pages y sabremos el espacio reservado para estas páginas

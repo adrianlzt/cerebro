@@ -14,3 +14,25 @@ print('.'),
 print('.', end="")
 print('.',end="",flush=True)
    Or if you are having trouble with the buffer
+
+
+# Imprimir en la misma parte de la pantalla / imprimir al comienzo de la linea
+print("a", end='\r')
+Esto imprime 'a' y deja el "seek" listo para imprimir al comienzo de la linea de nuevo
+
+Si antes teniamos una cadena larga, solo sustituira el primer caracter
+
+
+Muestra una barra dando vueltas
+
+import time
+
+print("-", end="\r")
+time.sleep(.5)
+print("\\", end="\r")
+time.sleep(.5)
+print("|", end="\r")
+time.sleep(.5)
+print("/", end="\r")
+time.sleep(.5)
+print("-", end="\r")

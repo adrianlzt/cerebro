@@ -6,3 +6,5 @@ un server basico: 15$/año
 
 http://vpsdime.com/
 Prometeus
+
+http://www.kimsufi.com/fr/

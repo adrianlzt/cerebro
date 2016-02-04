@@ -3,18 +3,25 @@ https://github.com/influxdata/telegraf
 Telegraf is an agent written in Go for collecting metrics from the system it's running on, or from other services, and writing them into InfluxDB.
 
 # Instalación
+https://github.com/influxdata/telegraf#linux-deb-and-rpm-packages
+
 Bajando el rpm linkado en la web e instalado a mano
 
-Instalado la 0.3.0-beta2
+Instalado la 0.10.0
+
+yum install telegraf
 
 
 # Configuración
 Por defecto el rpm genera:
-/etc/opt/telegraf/telegraf.conf
+/etc/telegraf/telegraf.conf
 
 Tambien  podemos pedir al binario que genere una conf de ejemplo.
 Esta conf nos da mucha más opciones configuradas, mas outputs y plugins.
-/opt/telegraf/versions/0.3.0-beta2/telegraf -sample-config
+telegraf -sample-config
+
+También se pueden meter configs en:
+/etc/telegraf/telegraf.d
 
 ## Conf server
 [[outputs.influxdb]]
@@ -28,9 +35,18 @@ Esta conf nos da mucha más opciones configuradas, mas outputs y plugins.
 
 # Run
 Ver que metricas se generan por stdout y salir:
-/opt/telegraf/versions/0.3.0-beta2/telegraf -config /etc/opt/telegraf/telegraf.conf -test
+telegraf -config /etc/telegraf/telegraf.conf -test
+
+## Centos 7
+systemctl start telegraf
+
+## Centos 6
+service telegraf start
+
 
 # Plugins
 Para ver ayuda de un cierto plugin:
 
-/opt/telegraf/versions/0.3.0-beta2/telegraf -usage NOMBRE
+telegraf -usage NOMBRE
+
+

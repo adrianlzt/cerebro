@@ -23,6 +23,9 @@ https://chrome.google.com/webstore/detail/facebook-for-chrome/gdalhedleemkkdjddj
 https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif/related
 Proxy SwitchyOmega
 
+Usar chrome como vim
+https://chrome.google.com/webstore/detail/vrome/godjoomfiimiddapohpmfklhgmbfffjj/related
+
 Apps:
 TweetDeck
 Advanced REST console

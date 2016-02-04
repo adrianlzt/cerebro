@@ -3,6 +3,7 @@ man rrdtutorial
 
 Con rrdtool podemos leer estos ficheros:
 
+rrdtool dump fichero.rrd dump.xml
 rrdtool dump fichero.rrd > dump_texto_plano.txt
 
 Ultima fecha añadida:

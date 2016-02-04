@@ -20,6 +20,7 @@ if valor in list # Nos vale para saber si un elemento esta en un array
 lista[1] #Obtener el elemento que esta en esa posición de la lista
 lista.append(elemento)  equivalent to a[len(a):] = [x]
 lista.insert(0,'/') añade al comienzo del la lista. No sobreescribe, añade.
+todo = lista1 + lista2 # concatenar dos listas
 
 sorted(list)  devuelve una lista ordenada
 
