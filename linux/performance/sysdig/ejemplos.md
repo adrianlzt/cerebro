@@ -3,6 +3,7 @@ http://www.sysdig.org/wiki/sysdig-examples/
 
 tcpdump por proceso
 sysdig fd.type=ipv4 and proc.name=cur
+   podemos usar tambien proc.pid
 
 echo "hola mundo" > index.html
 while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html; } | nc -l 8080; done

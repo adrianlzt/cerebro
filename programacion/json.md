@@ -41,3 +41,11 @@ Mostrar JSON con desplegables: http://jsonviewer.stack.hu/
         "cosa2": 23
     }
 }
+
+
+# Tipos de datos
+http://www.tutorialspoint.com/json/json_data_types.htm
+
+## Boolean
+true
+false

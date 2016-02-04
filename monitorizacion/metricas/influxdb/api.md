@@ -9,6 +9,11 @@ curl -X POST 'http://localhost:8086/db?u=root&p=root' -d '{"name": "site_develop
 # Procolo INLINE
 curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
 
+El timestamp debe ser en microsegundos.
+
+Si queremos pasar un timestamp en segundos debemos especificarlo:
+curl -i -XPOST 'http://localhost:8086/write?db=tools&precision=s' --data-binary 'prueba value=99.0 1452594857'
+
 
 [key] [fields] [timestamp]
 
@@ -18,6 +23,7 @@ fields: mirar tipos_de_datos.md
 
 Timestamp: opcional (heredará el timestamp del server en el momento actual)
 Se pone un unix epoch, que puede tener hasta microsegundos: 1434055562000000000
+Si no especificamos la unidad del timestamp, se asume que esta en microsegundos (timestamp normal + 000000000)
 
 Ejemplos:
 cpu,host=server01,region=uswest value=1 1434055562000000000

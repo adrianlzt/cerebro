@@ -22,3 +22,9 @@ Linux uses free memory for the caches, but can reclaim it quickly if application
 # ZFS
 It can be additionally confusing if ZFS on Linux is used, as we do for some services, as ZFS has its own file system cache that isn’t reflected properly by the free -m columns. It can appear that the system is low on free memory, when that memory is in fact available for use from the ZFS cache as needed. 
 
+
+
+# Problemas
+Si tenemos resultados inconsistentes mirar:
+ballooning.md si estamos sobre vmware
+hupepages.md si estamos en un SO con Huge Pages

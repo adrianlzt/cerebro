@@ -1,5 +1,7 @@
 redis-cli -h hostname -p puerto
 
+echo "pepe" | redis -x SET CLAVE
+
 redis 127.0.0.1:6379> SET persona:nombre "adri"
 OK
 redis 127.0.0.1:6379> KEYS *

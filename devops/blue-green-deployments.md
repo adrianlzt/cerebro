@@ -16,3 +16,10 @@ Por ejemplo, si necesitamos una nueva tabla, mantener las dos e ir migrando los 
 Cuando estemos completamente en la nueva versión ya podremos borrar las tablas antiguas.
 
 bbdd es un problema en cualquier caso: http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/#comment-2174931973
+
+
+# Toggle features
+https://github.com/juandebravo/hanoi
+
+Python para ver que funcionalidades se muestran a los usuarios dependiendo de algunas variables o porcentajes.
+Se hacen con decoradores en python.

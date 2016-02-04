@@ -10,3 +10,10 @@ pacman-key --lsign-key 962DDE58
 No hacer caso a las claves:
 /etc/pacman.conf
 SigLevel = Never
+
+
+# Errores
+error: XXXX: signature from "NOMBRE <EMAIL@EMAIL.com>" is unknown trust
+
+Arreglar con:
+pacman-key --refresh-keys

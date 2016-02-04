@@ -1,3 +1,10 @@
+Mirar arrow.md
+Librería para gestionar de forma sencilla las fechas
+
+
+
+
+
 http://docs.python.org/2/library/datetime.html
 
 >>> from datetime import date

@@ -36,3 +36,12 @@ curl -H 'Content-Type: application/json' -H 'Access-Token: MITOKEN' https://api.
 Enviar un push con un enlace:
 curl -H 'Content-Type: application/json' -H 'Access-Token: MITOKEN' https://api.pushbullet.com/v2/pushes -d '{"body":"Nueva casa de 500€ con tal","title":"Idealista, nueva casa","type":"link", "url":"http://www.google.es"}'
 
+Enviar a otra persona:
+Poner "email": "otra@persona.com" en el JSON
+
+
+# Programar envio
+at 14:50
+source ~/.bash_aliases
+pushbullet Titulo Mensaje largo con varias cosas
+Control+D

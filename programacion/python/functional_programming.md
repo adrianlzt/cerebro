@@ -32,6 +32,9 @@ Obtener la key del diccionario que contiene un valor:
 filter(lambda x: 'NaN' not in x['v'], json_data['data']['row'])
 devuelve solo las filas que no tengan 'NaN' entre los valores de su array de clave 'v' (mirar estructura de arriba)
 
+Para devolver una lista:
+list(filter(lambda x: ..., array))
+
 
 # Reduce
 numeros=[1,2,3,4]

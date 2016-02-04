@@ -21,3 +21,7 @@ Esto NO se puede hacer:
   app alarm-send --status=<status> --message=<message>
   app task-show [--status]
 
+
+Default:
+--coefficient=K  The K coefficient [default: 2.95]
+

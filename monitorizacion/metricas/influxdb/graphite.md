@@ -1,5 +1,13 @@
 https://github.com/influxdata/influxdb/tree/master/services/graphite
 
+Se pueden poner varias veces "measurement":
+servers.localhost.cpu.cpu0.user
+  Template: .host.measurement.cpu.measurement
+  Output: measurement = cpu.user tags = host=localhost cpu=cpu0
+
+Si enviamos varias metricas con el mismo al mismo measurement se pisan.
+Hace falta configurar el engine a tsm1
+
 
 
 [[graphite]]

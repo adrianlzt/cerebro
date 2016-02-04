@@ -1,0 +1,1 @@
+wrapper_capturar_stdin_stdout.sh

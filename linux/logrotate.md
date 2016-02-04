@@ -115,3 +115,13 @@ logrotate: ALERT exited abnormally with [1]
 Ejecutar a mano.
 Puede ser por tener dos definiciones que atacan a los mismos ficheros
 
+
+
+# Rotar ficheros en un cluster activo pasivo
+Para comprobar que estamos en la maquina activa:
+
+prerotate
+    killall -0 snmptt
+
+Este comando devolverá 0 si el proceso está corriendo.
+Si no está corriendo devolverá 1 y no se seguirá ejecutando el logrotate.

@@ -1,6 +1,8 @@
 http://pyyaml.org/
 http://pyyaml.org/wiki/PyYAMLDocumentation
 
+# Pip
+pip install pyaml
 
 # Arch
 pacman -S python2-yaml

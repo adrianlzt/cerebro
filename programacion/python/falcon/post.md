@@ -3,4 +3,4 @@
         resp.content_type = 'text/plain'
         body = req.stream.read()
         body_json = json.loads(body)
-        resp.body = "DATOS: " + body_json['clave']
+        resp.body = "DATOS: %s" % body_json['clave']

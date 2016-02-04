@@ -21,6 +21,8 @@ $1 ... $9 ${10} ${11} ...
 $*	all positional parameters except $0, see mass usage
 $@	all positional parameters except $0, see mass usage
 $#	the number of arguments, not counting $0
+${@:2} Parametros 2,3,4,5...N
+${@:2:4} Parametros 2 3 y 4
 
 Si llamamos a un script como:
 ./script "param" "otro param"

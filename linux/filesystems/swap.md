@@ -14,10 +14,15 @@ swapon /dev/sda2
 
 
 # Fichero
-fallocate -l 512M /swapfile
+fallocate -l 4096M /swapfile
+  con XFS: dd if=/dev/zero of=/swapfile count=4096 bs=1MiB
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 
 /etc/fstab
 /swapfile none swap defaults 0 0
+
+# Errores
+"Invalid argument" should be read as "Your filesystem do not support swap file"
+  con xfs era que fallocate creaba mal el fichero.

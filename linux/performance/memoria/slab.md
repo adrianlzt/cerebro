@@ -1,3 +1,5 @@
+https://www.toofishes.net/blog/linux-command-day-slabtop/
+
 Aqui suelen almacenarse los metadatos del sistema de ficheros.
   dentry -> directorios
   inodos -> ficheros

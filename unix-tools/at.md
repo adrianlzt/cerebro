@@ -12,3 +12,13 @@ Es necesario tener el atd corriendo: /etc/init.d/atd start
 
 
 'echo start_backup.sh | at midnight' starts a command at the specified time
+
+
+# Consultar tareas
+atq
+
+Más detalle:
+at -c <num>
+
+# Borrar tarea
+atrm <num>

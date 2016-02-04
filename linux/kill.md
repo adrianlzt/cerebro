@@ -30,7 +30,7 @@ SIGSEGV      11       Core    Invalid memory reference
 SIGPIPE      13       Term    Broken pipe: write to pipe with no
                               readers
 SIGALRM      14       Term    Timer signal from alarm(2)
-SIGTERM      15       Term    Termination signal
+SIGTERM      15       Term    Termination signal (por defecto si hacemos kill)
 SIGUSR1   30,10,16    Term    User-defined signal 1
 SIGUSR2   31,12,17    Term    User-defined signal 2
 SIGCHLD   20,17,18    Ign     Child stopped or terminated

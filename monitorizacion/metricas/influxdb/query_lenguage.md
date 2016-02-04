@@ -1,5 +1,7 @@
 https://influxdb.com/docs/v0.9/query_language/data_exploration.html
 
+select * from cpu where check = 'cpu_sys' and time > now() - 1h order by time desc
+
 # Database
 show databases
 
@@ -8,17 +10,47 @@ select * from DATABASE..CAMPO
 Si no ponemos database, usará la que hayamos dicho mediante:
 use DATABASE
 
+# Fecha
+Si queremos ver el formato de fecha en algo más legible:
+precision rfc3339
+
+
+# Output
+Podemos dedicir el formato de output que queremos
+format <json|csv|column>
+
 
 # Series
 Nos muestra para cada medida, que diferentes tipos de cosas tenemos almacenadas.
 Por ejemplo, para swap, veremos que hay 4 nodos enviando metricas y que cada uno envia el swapip y el swapout
 SHOW SERIES
 
-# Medidas
+# Medidas / measurements
 Nos muestra las diferentes medidas que tenemos en esta base de datos
 SHOW MEASUREMENTS
 
+Borrar medida
 DROP MEASUREMENT "anca.pepe.cpu"
+
+# Values
+Los valores que pueden estar almacenados en una serie
+Si queremos ver los que tenemos:
+SHOW FIELD KEYS
+
+SHOW FIELD KEYS FROM "uptime"
+
+
+
+# Tags
+Tags asociados con cada serie.
+
+Si queremos ver todos los tags por cada measurement:
+SHOW TAG KEYS
+
+SHOW TAG VALUES WITH KEY = "environment"
+  obtiene todos los posibles valores de la columna environment
+
+
 
 
 # Getting a List of Time Series
@@ -38,6 +70,12 @@ SELECT "value" FROM "icinga".."cpu" WHERE time > now() - 4h
 
 select value from response_times where time > 1388534400s
 
+
+# Regex
+https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#regular-expressions-in-queries
+
+SELECT * FROM /.*temperature.*/
+SELECT * FROM h2o_feet WHERE location !~ /.*a.*/
 
 # Multiples series
 select * from events, errors;
@@ -91,8 +129,21 @@ from cpu_load as hosta
 inner join cpu_load as hostb
 where hosta.host = 'hosta.influxdb.orb' and hostb.host = 'hostb.influxdb.org';
 
-# Sort
+# Order / Sort
 https://influxdb.com/docs/v0.9/query_language/data_exploration.html#sort-query-returns-with-order-by-time-desc
 
 Ordenar de la fecha más reciente a la más antigua
 select * from load order by time DESC
+
+# Operaciones / Funciones
+https://docs.influxdata.com/influxdb/v0.9/query_language/functions/
+
+# Borrar
+DROP SERIES FROM wo_start WHERE iniciativa = 'ADRI' AND subject = 'Manual'
+  no se puede meter en el where ni time ni values
+
+# Continuous Queries
+SHOW CONTINUOUS QUERIES
+
+
+

@@ -2,6 +2,9 @@ http://www.redhat.com/advice/tips/meminfo.html
 
 - Información detallada de memoria del sistema (usada por free y vmstat)
 
+mostrar en GB
+cat /proc/meminfo | awk  '{x=$2;x=x/1024/1024;$2=x;$3="GB"}1'
+
 
 http://stackoverflow.com/questions/658411/entries-in-proc-meminfo
 MemTotal = MemFree + Active + Inactive + Slab + PageTables + VmallocUsed + X (X : alloc_pages() (get_free_pages(), etc))
