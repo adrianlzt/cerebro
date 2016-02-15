@@ -27,6 +27,8 @@ Instalar groups:
 - name: install the 'Development tools' package group
   yum: name="@Development tools" state=present
 
+update_cache=yes
+   Force updating the cache. Has an effect only if state is present or latest.
 
 enablerepo=nombre
 para activar un repo desactivado solo para esta instalación

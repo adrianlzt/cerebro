@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <stdio.h>
 
+// Mejor hacer como en file_read.c
+//
 // Compilar
 // gcc -o open file_open.c
 // Crea un fichero en /mnt/testfile.txt

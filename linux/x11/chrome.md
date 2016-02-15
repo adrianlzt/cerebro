@@ -60,3 +60,17 @@ https://www.chromium.org/developers/design-documents/network-stack/socks-proxy
 
 Usar localhost:8888 como proxy socks
 chromium --proxy-server="socks5://localhost:8888" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost"
+
+
+# Bug chrome X11
+Si vemos que renderiza mal:
+
+/etc/X11/xorg.conf.d/20-intel.conf
+# Fix Chrom[e,ium] tab swiching and refresh/redraw issue
+# https://bugs.freedesktop.org/show_bug.cgi?id=91558
+Section "Device"
+        Identifier  "Intel Graphics"
+        Driver      "intel"
+        Option      "AccelMethod"  "uxa"
+EndSection
+

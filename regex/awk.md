@@ -71,3 +71,8 @@ awk -v seed=$RANDOM 'BEGIN{srand(seed); print rand();}'
 
 Quedarme con una linea:
 cat fichero | awk 'NR==4'
+
+
+Coger un valor de una columna de un fichero: grep + cut
+awk '/processes/ {print $2}' /proc/stat
+  De la linea que tiene "processes" coge la segunda columna

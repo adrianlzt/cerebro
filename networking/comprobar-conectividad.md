@@ -12,6 +12,9 @@ Más sencillo:
   bash: connect: Conexión rehusada
   bash: /dev/tcp/localhost/23: Conexión rehusada
 
+> /dev/udp/IP/PUERTO
+NO sirve para comprobar si un puerto está abierto
+
 
 # Abrir puerto
 nc -kl PUERTO

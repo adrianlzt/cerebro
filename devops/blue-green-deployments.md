@@ -19,6 +19,7 @@ bbdd es un problema en cualquier caso: http://blog.christianposta.com/deploy/blu
 
 
 # Toggle features
+http://martinfowler.com/articles/feature-toggles.html#ToggleConfiguration
 https://github.com/juandebravo/hanoi
 
 Python para ver que funcionalidades se muestran a los usuarios dependiendo de algunas variables o porcentajes.

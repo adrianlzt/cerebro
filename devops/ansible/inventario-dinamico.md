@@ -48,3 +48,14 @@ Ejemplo de salida:
     }
 }
 
+
+
+# Parsear un fichero normal de inventory a format json
+>>> from ansible.inventory import Inventory
+>>> from ansible.parsing import DataLoader
+>>> from ansible.vars import VariableManager
+>>> d = DataLoader()
+>>> vm = VariableManager()
+>>> i = Inventory(d,vm,"inventory-dsn")
+>>> i.get_hosts()
+[nodo1, nodo2]

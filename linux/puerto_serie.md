@@ -10,5 +10,11 @@ C^a z x -> salir
 Para conectar a un cable usb-serie:
 minicom --device /dev/ttyUSB0 --baudrate 9600
 
+pacman -S community/uucp
 
 cu -l /dev/ttyUSB0 -s 9600
+
+Otras opciones:
+sudo picocom -b 9600 /dev/ttyUSB0
+sudo minicom -b 9600 -D /dev/ttyUSB0
+

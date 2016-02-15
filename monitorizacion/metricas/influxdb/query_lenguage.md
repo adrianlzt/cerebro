@@ -19,6 +19,9 @@ precision rfc3339
 Podemos dedicir el formato de output que queremos
 format <json|csv|column>
 
+Y ver el json ordenado:
+pretty
+
 
 # Series
 Nos muestra para cada medida, que diferentes tipos de cosas tenemos almacenadas.

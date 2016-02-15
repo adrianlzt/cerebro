@@ -7,6 +7,9 @@ Instalar módulo
 nmp install --save express
 Me baja los módulos en el directorio que esté
 
+Instalar una version
+npm install cosa@3.4.5
+
 
 Instalar un módulo de forma global:
 npm -g install NOMBRE

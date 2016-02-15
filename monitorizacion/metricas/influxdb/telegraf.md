@@ -50,3 +50,20 @@ Para ver ayuda de un cierto plugin:
 telegraf -usage NOMBRE
 
 
+
+# Internals
+Si usamos UDP envia tramas de payload 512bytes:
+https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L21
+https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L334
+
+Si usamos HTTP:
+Envia toda la info que le pasamos a la función Write:
+https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L354
+
+Parece que telegraf genera un gran array de metricas y se lo pasa a write:
+https://github.com/influxdata/telegraf/blob/master/plugins/outputs/influxdb/influxdb.go#L135
+
+Por aqui está como corre el agente:
+https://github.com/influxdata/telegraf/blob/master/agent/agent.go
+
+No me queda claro como hace el write y si lo hace de todas las métricas de golpe

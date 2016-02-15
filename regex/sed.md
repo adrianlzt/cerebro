@@ -7,8 +7,8 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
 sed -i s/"\$variable = 3"/"\$variable = 3,\n\$otra = 2"/ fichero.pp
 
 
-cat file | sed s/”cosa fea”/”cosa buena”/
-cat file | sed s%”/cosas/con barras”%””%  #borramos /cosas/con/barras
+cat file | sed s/"cosa fea"/"cosa buena"/
+cat file | sed s%"/cosas/con barras"%""%  #borramos /cosas/con/barras
 
 echo ‘blackberry:$1$YctCf123456asdUwWnBl0:9081:9000:Usuario fabricante ftp KOSA:/KOSA-FTP/blackberry/:’ | sed 's@\(.*\)\(KOSA-FTP\).*@\1\2\/:@'
 Con el \1 imprimimos todo lo que esté encerrado dentro del primer paréntesis
@@ -101,3 +101,8 @@ sed s/"\([^\s]\).*"/"\1"/
 # Hacer match e imprimir la parte no matcheada
 echo "fichero: parametros" | sed -n s/:.*//p
 fichero
+
+# Sed como grep
+sed -n '/^pepe/p'
+  solo saca las lineas que empiecen por pepe
+  -n es quiet, para solo sacar lineas matcheadas

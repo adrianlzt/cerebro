@@ -1,4 +1,5 @@
-https://influxdb.com/docs/v0.9/write_protocols/line.html
+https://docs.influxdata.com/influxdb/v0.10/guides/writing_data/
+https://docs.influxdata.com/influxdb/v0.10/write_protocols/line/
 
 localhost:8086
 
@@ -14,6 +15,8 @@ El timestamp debe ser en microsegundos.
 Si queremos pasar un timestamp en segundos debemos especificarlo:
 curl -i -XPOST 'http://localhost:8086/write?db=tools&precision=s' --data-binary 'prueba value=99.0 1452594857'
 
+Para meter varias métricas separarlas por cambios de linea (no vale con poner \n, al menos no funciona con curl, parece que lo escapa)
+
 
 [key] [fields] [timestamp]
 
@@ -28,6 +31,13 @@ Si no especificamos la unidad del timestamp, se asume que esta en microsegundos 
 Ejemplos:
 cpu,host=server01,region=uswest value=1 1434055562000000000
 cpu,host=server\ 01,region=uswest value=1,msg="all systems nominal"
+
+Ejemplo para cargar datos random:
+while true; do
+curl -i -XPOST 'http://localhost:8086/write?db=test' --data-binary "random value=$[ ($RANDOM % 10) +1 ]i"
+sleep 5
+done
+
 
 
 

@@ -46,7 +46,7 @@ class Client(object):
     A client which executes some docopt.
     """
 
-    def __init__(self):
+    def __init__(self, args):
         pass
 
     ############################################################################
@@ -144,7 +144,7 @@ def main():
     if args['--debug']:
         logger.setLevel(logging.DEBUG)
 
-    cli = Client()
+    cli = Client(args)
 
     cmd = args['<command>']
 

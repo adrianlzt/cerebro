@@ -10,3 +10,8 @@ Y almacena en $2 Icinga_ESJC-DSMM-CLS0XS
 
 Almacenar un regexp en variable:
 my $re = qr/location cli-(prefer|standby)-\S+\s+(\S+)/;
+
+DB<19> $op = qr/ksd/           
+DB<20> if ( "ksdertsd" =~ $op) { print "ok"; }
+ok
+

@@ -28,6 +28,10 @@ Permite añadir datos a una serie ya creada.
 Permite modificar values.
 La time + las tags es la primary key.
 
+https://docs.influxdata.com/influxdb/v0.10/concepts/storage_engine/
+It has a write ahead log, a collection of data files which are read-only indexes similar in structure to SSTables in an LSM Tree, and a few other files that keep compressed metadata.
+
+InfluxDB will create a shard for each block of time. For example, if you have a retention policy with an unlimited duration, shards will get created for each 7 day block of time. Each of these shards maps to an underlying storage engine database. Each of these databases has its own WAL, compressed metadata that describe which series are in the index, and the index data files.
 
 # BZ1
 http://roobert.github.io/2015/10/10/Columned-Graphite-Data-in-InfluxDB/
@@ -40,3 +44,4 @@ Por defecto: /var/lib/influxdb/data/NOMBRE_BBDD/
 
 Para unos 90 services de Icinga, tomando datos de 90 días:
 6.3MB
+
