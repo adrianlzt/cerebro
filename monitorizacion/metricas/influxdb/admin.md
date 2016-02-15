@@ -22,4 +22,6 @@ REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>
 # Database
 CREATE DATABASE <name>
 
+Crear database con una policy por defecto distinta de la DEFAULT
+CREATE DATABASE [IF NOT EXISTS] <database_name> [WITH [DURATION <duration>] [REPLICATION <n>] [NAME <retention-policy-name>]]
 

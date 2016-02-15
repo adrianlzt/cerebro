@@ -54,3 +54,7 @@ wavemon is a ncurses-based monitoring application for wireless network devices. 
 
 packer -S wavemon
 
+
+
+# HotSpot
+https://wiki.archlinux.org/index.php/software_access_point

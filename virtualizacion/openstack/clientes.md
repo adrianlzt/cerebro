@@ -1,3 +1,4 @@
+pip install python-openstackclient
 A partir de Kilo un único CLI: openstack
 Luego ese lleva los módulos de nova, cinder, etc
 

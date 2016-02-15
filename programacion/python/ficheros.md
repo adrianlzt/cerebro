@@ -39,6 +39,7 @@ file.close()
 
 Leer:
 sietecaracteres = file.read(7)
+  tras leer estos 7 caracteres el puntero estará listo para leer el octavo
 todo = file.read()
 linea = file.readline()
 linea4carac = file.readline(4)

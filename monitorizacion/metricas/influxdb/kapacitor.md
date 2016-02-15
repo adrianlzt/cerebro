@@ -13,6 +13,9 @@ https://github.com/influxdata/kapacitor/blob/master/etc/kapacitor/kapacitor.conf
 # Tareas
 Se pueden meter muchas definiciones en el mismo fichero .tick.
 
+# API
+Kapacitord levanta una api mediante la que se comunica el CLI kapacitor
+
 
 ## Stream
 Ej.: https://github.com/influxdata/kapacitor/blob/master/examples/scores/top_scores.tick

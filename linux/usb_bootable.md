@@ -1,5 +1,6 @@
 Depende de lo que lleve el .iso deberemos usar una u otra
 
+Boton derecho sobre el raton, grabar a una unidad
 
 # dd
 dd if=/dev/sdX of=fichero.iso bs=512k

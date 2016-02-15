@@ -10,4 +10,11 @@ pacman -S bpython2
 pacman -S bpython
 
 
+Mejor usar
+bpython-curses
+bpython2-curses
+
 Otra opcion es ipython
+
+
+Para virtualevns hará falta instalarlo dentro del venv

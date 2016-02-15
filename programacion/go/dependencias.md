@@ -3,6 +3,7 @@ mkdir -p ~/go/{bin,src}
 
 meter en el .bashrc:
 export GOPATH=~/go
+export PATH="~/go/bin:$PATH"
 
 
 

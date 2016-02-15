@@ -26,3 +26,27 @@ Escanear una red:
 nmap 192.168.55.*
 
 
+
+# Escaneo de puertos
+
+## TCP
+nmap 127.0.0.1 -p 80
+
+Envia un paquete SYN al puerto.
+Si el server, o u firewall en medio, rechaza el paquete:
+  ICMP - Destination unreachable (Port unreachable)
+nmap no devuelve:
+  STATE: filtered
+
+iptables devuelve este mensaje (si está configurado como REJECT).
+Otros firewall pueden devolver:
+  ICMP - Destination unreachable  (Host administratively prohibited)
+
+Si iptables está configurado como DROP contesta igual:
+  STATE: filtered
+
+En caso de estar cerrado el SO contesta con un TCP [RST,ACK] y es cunado nmap contesta
+  STATE: closed
+
+## UDP
+Parece que no es fácil comprobar que un puerto UDP está abierto.

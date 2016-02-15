@@ -1,3 +1,8 @@
+http://tldp.org/LDP/abs/html/arithexp.html 
+num=$((num1 + num2))
+num=$(($num1 + $num2))       # also works
+num=$((num1 + 2 + 3))        # ...
+
 http://www.sal.ksu.edu/faculty/tim/unix_sg/bash/math.html
 
 En pricipio bash solo acepta integers.

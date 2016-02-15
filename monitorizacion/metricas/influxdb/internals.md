@@ -1,3 +1,5 @@
+https://influxdata.com/blog/how-to-use-the-show-stats-command-and-the-_internal-database-to-monitor-influxdb/
+
 # Databases
 /var/lib/influxdb/data
 
@@ -14,3 +16,7 @@
 > use _internal
 > show STATS
 
+# Memoria
+select last(Sys)/(1024*1024) AS Mem_MB from runtime
+
+No me cuadra 100% con la memoria RSS que dice el sistema que ocupa influxdb, pero se acerca bastante

@@ -9,7 +9,7 @@ Iniciar cliente sin ddbb específica, especificar en la query:
 ResultSet({'(u'measurements', None)': [{u'name': u'cpu'}]})
 
 
-json_body = [
+data = [
     {
         "measurement": "cpu_load_short",
         "tags": {
@@ -22,7 +22,10 @@ json_body = [
         }
     }
 ]
-client.write_points(json_body, database="test")
+client.write_points(data, database="test")
+
+time_precision='s'
+batch_size = n
 
 Tambien se puede pasar un tags={} que se mergeara con los tags de cada punto
 
