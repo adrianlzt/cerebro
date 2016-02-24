@@ -1,4 +1,9 @@
-Configurar un virtual env
+Configurar un virtual env:
+```
+mkvirtualenv test
+```
+
+Instalar Click, nuestro paquete y ejecutar:
 ```
 $ pip install click
 $ pip install --editable .
