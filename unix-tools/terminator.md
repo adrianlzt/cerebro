@@ -127,3 +127,7 @@ Para arrancar con ese layout: terminator -l nombre
 
 En el fichero terminator.config tengo un par de ejemplos
 El fichero debe estar en ~/.config/terminator/config
+
+
+Mover ventanas
+Podemos mover ventanas a otra instancia arrastrando. No valen pestañas, tienen que ser ventanas partidas.

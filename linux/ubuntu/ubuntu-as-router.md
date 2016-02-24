@@ -23,3 +23,7 @@ root@ubuntu-maas:~# iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -o eth0 -j MAS
 
 Con esta regla le decimos que todo el tráfico de 10.0.2.0/24 salga por la interfaz eth0 y que se aplique MASQUERADE (se ponga como la ip origen la ip que tenga en ese momento la eth0; esto es por si dicha ip es dinamica)
 
+
+# Router wifi con OpenWRT
+20€
+http://es.aliexpress.com/item/GL-iNet-6416A-150Mbps-802-11g-b-n-SMART-Mini-WiFi-Wireless-Router-OPENWRT-ENGLISH-Firmware/32273181856.html

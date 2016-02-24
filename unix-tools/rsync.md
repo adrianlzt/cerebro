@@ -114,3 +114,8 @@ rsync -av --link-dest=DIR ORIGEN/ DESTINO/
 Solemos usarlo como
 rsync -av --link-dest=$PWD/backup1 datos/ backup2
 
+
+# Backup muy grandes
+Hacer un primer rsync
+Luego ir ejecutando rsync seguidos, y cuando estos rsync tarden muy poco, hacer una pequeña parada de la app, hacer otro rsync y reiniciar la app.
+De esta manera tendremos un backup consistente.

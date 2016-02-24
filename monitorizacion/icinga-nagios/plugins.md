@@ -7,8 +7,13 @@ Return code:
 
 Salida de texto:
 TEXT OUTPUT | OPTIONAL PERFDATA
-LONG TEXT LINE 1 LONG TEXT LINE 2 ... LONG TEXT LINE N | PERFDATA LINE 2
-PERFDATA LINE 3 ... PERFDATA LINE N
+LONG TEXT LINE 1
+LONG TEXT LINE 2
+...
+LONG TEXT LINE N | PERFDATA LINE 2
+PERFDATA LINE 3
+...
+PERFDATA LINE N
 
 Perfdata: 'label'=value[UOM];[warn];[crit];[min];[max]
 UOM (unit of measurement) is one of:

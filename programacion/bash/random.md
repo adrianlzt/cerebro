@@ -11,3 +11,7 @@ elif [ $numero -eq 3 ]; then
 else   
         echo "0 sacado"
 fi
+
+
+Cadena alfanumerica de 32 caracteres
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1

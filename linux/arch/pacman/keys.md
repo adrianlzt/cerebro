@@ -16,4 +16,4 @@ SigLevel = Never
 error: XXXX: signature from "NOMBRE <EMAIL@EMAIL.com>" is unknown trust
 
 Arreglar con:
-pacman-key --refresh-keys
+sudo pacman-key --refresh-keys

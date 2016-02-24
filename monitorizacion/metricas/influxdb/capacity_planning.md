@@ -1,9 +1,15 @@
+# Queries
+Parece que un problema es si almacenamos todas las métricas con poca resolución y después pedimos un time range grande la query tarda mucho en rertornar.
+Esto debería solucionarse si estuviese el down sampling integrado en InfluxDB.
+
+
 # Disco / IOPS
 0.10.0
 With a test on a 4 core system with 16GB of RAM we wrote 100B data points in 5,000 point batches. The sustained write load over the course of the test was >350,000 points per second and IOPS were fairly steady around 750.
 
 This makes it feasible to run TSM and InfluxDB under significant write load on hardware with spinning disks. The write performance at this point is mostly CPU bound. Servers with more CPUs will be able to support higher write throughput.
 
+Que sistema de ficheros es mejor para almacenar los datos?
 
 # Compression
 0.10.0
@@ -41,3 +47,15 @@ Necesidad:
 2.25*1.87 = 4.2GB
 
 8GB de Ram deberian ser suficientes
+
+
+# Red: HTTP/UDP
+Parece que UDP mejora mucho la performance: https://github.com/influxdata/influxdb/issues/4656#issuecomment-158656672
+Today, we are injecting 200 megabit of metrics per second from ~4k telegraf clients with a low and stable CPU usage (using about 6 cores).
+
+mirar udp.md
+
+Lanzando localmente peticiones con el cliente python con el protocolo http obtengo unas 450 peticiones/s
+Con UDP unas 20k
+
+Server -> 16GB RAM | 4 VCPU

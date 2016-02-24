@@ -40,3 +40,6 @@ nc -U /var/run/docker.sock
 
 Escucha de forma continuada (sin -k, tras el primer cliente, se cierra)
 nc -kl 8080
+
+Para udp
+nc -klu 8080

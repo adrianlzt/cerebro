@@ -1,3 +1,6 @@
+Mirar autocomplete.md
+
+
 Una opción que no me vale:
 apt-get install vim-syntax-go
 

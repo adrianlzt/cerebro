@@ -17,3 +17,7 @@ nginx_status,check=RBytes value=1.0 1452530015'
 
 {"error":"write failed: field type conflict: input field \"value\" on measurement \"nginx_status\" is type float64, already exists as type integer"}
 
+
+Schemas para definir a priori los tipos de datos:
+The idea is to give users who know their schema up-front the ability to then lock it down, thereby avoiding all the problems of writing data as the wrong type. If we ever do it, it would be post 1.0.
+https://github.com/influxdata/influxdb/issues/3006
