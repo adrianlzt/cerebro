@@ -1,5 +1,11 @@
 https://docs.influxdata.com/influxdb/v0.10/guides/downsampling_and_retention/
 
+# Down sampling automatico??
+https://github.com/influxdata/influxdb/issues/4605
+
+https://github.com/influxdata/influxdb/issues/2625
+ hacen un proxy para convertir las queries en otras queries a unos RP que deben estar previamente creados con CQs
+
 # Retention Policy
 A retention policy (RP) is the part of InfluxDB’s data structure that describes for how long InfluxDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor). A database can have several RPs and RPs are unique per database.
 

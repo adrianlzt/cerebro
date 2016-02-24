@@ -16,3 +16,9 @@ echo "$IMG_WIDTH $IMG2_WIDTH" | awk '{printf "%.2f \n", $1/$2}'
 Mejorado:
 TW_PERCENTAGE=$(awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}")
 
+
+
+# Numeros flotantes
+[[ 3.0 < 5.4 ]]
+
+con -eq, -gt, etc solo valen números enteros

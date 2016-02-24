@@ -61,3 +61,8 @@ now_plus_10.strftime('%s')
 # Miliseconds
 int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds() * 1000)
 1448563403750
+
+
+# Time zones
+Convertir mi hora local de Madrid en UTC:
+datetime.datetime.now().replace(tzinfo=tz.gettz('Europe/Madrid')).astimezone(tz.gettz('UTC')).strftime('%Y-%m-%d %H:%M:%S.%f')

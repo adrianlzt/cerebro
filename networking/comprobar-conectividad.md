@@ -26,4 +26,4 @@ python -m SimpleHTTPServer PUERTO
 ping 8.8.8.8
 
 # IP publica para http
-curl 14.4.4.4
+curl 190.9.9.190

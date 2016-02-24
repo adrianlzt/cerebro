@@ -159,3 +159,19 @@ logger.debug("test2",extra={"skype":False})
 dir(logger)
 ['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_log', 'addFilter', 'addHandler', 'callHandlers', 'critical', 'debug', 'disabled', 'error', 'exception', 'fatal', 'filter', 'filters', 'findCaller', 'getChild', 'getEffectiveLevel', 'handle', 'handlers', 'info', 'isEnabledFor', 'level', 'log', 'makeRecord', 'manager', 'name', 'parent', 'propagate', 'removeFilter', 'removeHandler', 'root', 'setLevel', 'warn', 'warning']
 
+
+
+# Rotate
+https://docs.python.org/2.6/library/logging.html#rotating-file-handler
+https://docs.python.org/2/howto/logging-cookbook.html#using-file-rotation
+
+log_handler = logging.handlers.RotatingFileHandler(
+    cfg["log_file"], maxBytes=log_max_bytes, backupCount=4,
+    # encoding='bz2')
+)
+formatter = logging.Formatter(
+    "%(asctime)s %(filename)s %(levelname)s %(message)s",
+    "%B %d %H:%M:%S")
+log_handler.setFormatter(formatter)
+log.addHandler(log_handler)
+

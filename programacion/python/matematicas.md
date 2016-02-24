@@ -11,6 +11,27 @@ forecast.md
 
 statsmodel.md
 
+# Conversiones
+import locale
+locale.atof("2.2")
+locale.atoi("2")
+
+
+CUIDADO con el locale a español.
+>>> atof("2,2")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python2.7/locale.py", line 316, in atof
+    return func(string)
+ValueError: invalid literal for float(): 2,2
+
+def str_to_float(value):
+  try:
+    return atof(value)
+  except ValueError as e:
+    return str_to_float(value.replace(',','.'))
+
+
 
 # NaN
 Checks if the float x is a NaN (not a number). NaNs are part of the IEEE 754 standards. Operation like but not limited to inf * 0, inf / inf or any operation involving a NaN, e.g. nan * 1, return a NaN.

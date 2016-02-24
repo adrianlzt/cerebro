@@ -8,7 +8,13 @@ curl -X POST 'http://localhost:8086/db?u=root&p=root' -d '{"name": "site_develop
 
 
 # Procolo INLINE
+curl -G 'http://localhost:8086/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT value FROM cpu_load_short WHERE region='us-west'"
+
 curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'
+
+udp:
+echo "medida value=3" > /dev/udp/127.0.0.1/8086
+
 
 El timestamp debe ser en microsegundos.
 
@@ -38,47 +44,20 @@ curl -i -XPOST 'http://localhost:8086/write?db=test' --data-binary "random value
 sleep 5
 done
 
+## Databases
+curl -u "admin:IadminInflux10" "http://192.168.22.95:8086/query?q=SHOW+DATABASES
+
+
+# Errores
+
+## Tipos de datos
+Cuidado con enviar datos de tipo integer y luego intentar enviar tipo double:
+
+curl -i -XPOST 'http://192.168.22.95:8086/write?db=test&precision=s' -d "prueba1 value=1i"
+curl -i -XPOST 'http://192.168.22.95:8086/write?db=test&precision=s' -d "prueba1 value=1.2"
+{"error":"write failed: field type conflict: input field \"value\" on measurement \"prueba1\" is type float64, already exists as type integer"}
 
 
 
-# Protocolo JSON DEPRECATED
-Insertar dato
-curl -XPOST 'http://localhost:8086/db/site_development/series?u=root&p=root' -H "Content-Type: application/json" -d '
-[
-  {
-    "name" : "hd_used",
-    "columns" : ["value", "host", "mount"],
-    "points" : [
-      [23.2, "serverA", "/mnt"]
-    ]
-  }
-]
-'
-
-
-Insertar datos especificando el timestamp (ms)
-curl -XPOST 'http://localhost:8086/db/site_development/series?u=root&p=root' -H "Content-Type: application/json" -d '
-[
-  {
-    "name": "log_lines",
-    "columns": ["time", "line"],
-    "points": [
-      [1400425947368, "here is some useful log info"]
-    ]
-  }
-]
-'
-
-Insertar varios datos asegurando un orden absoluto (al tener el mismo timestamp, si no damos el sequence_number, podría ordenarlo de cualquier manera)
-curl -XPOST 'http://localhost:8086/db/site_development/series?u=root&p=root' -H "Content-Type: application/json" -d '
-[
-  {
-    "name": "log_lines",
-    "columns": ["time", "sequence_number", "line"],
-    "points": [
-      [1400425947368, 1, "this line is first"],
-      [1400425947368, 2, "and this is second"]
-    ]
-  }
-]
-'
+## Protocolo inline
+Si enviamos varias métricas en un único curl y algunas de ellas tiene un formato incorrecto, se desecharán todas.

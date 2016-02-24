@@ -36,3 +36,7 @@ mosquitto_sub -h test.mosquitto.org -t "pepito/" -v
 
 Enviar mensaje con publicador:
 mosquitto_pub -h test.mosquitto.org -t "pepito/" -m "mensaje"
+
+Con ssl:
+mosquitto_pub -h m20.cloudmqtt.com -u USUARIO -P PASSWORD -p 28517 -t "otro/" -m "prueba de mensaje" --cafile /etc/ssl/certs/ca-certificates.crt
+

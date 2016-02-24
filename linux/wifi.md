@@ -58,3 +58,10 @@ packer -S wavemon
 
 # HotSpot
 https://wiki.archlinux.org/index.php/software_access_point
+
+https://github.com/oblique/create_ap
+
+Crear red con WPA+WPA2 en la interfaz wlan0 con salida a internet por eth0
+create_ap wlan0 eth0 MyAccessPoint MyPassPhrase
+
+sudo create_ap wlo1 enp8s0 Red caballo33

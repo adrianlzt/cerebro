@@ -26,7 +26,7 @@ import sys
 try:
     from docopt import docopt, DocoptExit, DocoptLanguageError
 except ImportError:
-    print "docopt module has to be installed"
+    print("docopt module has to be installed")
     sys.exit(1)
 
 import logging

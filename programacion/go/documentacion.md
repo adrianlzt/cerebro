@@ -19,3 +19,10 @@ LearningGo.pdf
 a2pi1.GoinAction.epub
 goeg/
 en ~/priv-adrianRepo/programacion/go/
+
+
+De https://github.com/influxdata/influxdb/blob/master/CODING_GUIDELINES.md :
+http://arslan.io/ten-useful-techniques-in-go
+http://peter.bourgon.org/go-in-production/
+https://inconshreveable.com/07-08-2014/principles-of-designing-go-apis-with-channels/
+http://soryy.com/blog/2014/common-mistakes-with-go-lang/

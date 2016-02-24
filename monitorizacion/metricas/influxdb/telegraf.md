@@ -1,4 +1,5 @@
 https://github.com/influxdata/telegraf
+https://docs.influxdata.com/telegraf/v0.10/introduction/getting-started-telegraf/
 
 Telegraf is an agent written in Go for collecting metrics from the system it's running on, or from other services, and writing them into InfluxDB.
 
@@ -48,6 +49,61 @@ service telegraf start
 Para ver ayuda de un cierto plugin:
 
 telegraf -usage NOMBRE
+
+## dig / dns
+Nos devuelve tiempos de respuesta del servidor dns
+
+
+## Apache
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/apache
+
+[[inputs.apache]]
+  urls = ["http://127.0.0.1/server-status?auto"]
+
+## MongoDB
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mongodb
+
+/etc/telegraf/telegraf.d/mongodb.conf
+[[inputs.mongodb]]
+  servers = ["127.0.0.1:27017"]
+
+## httpjson
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/httpjson
+
+Hace un get a un endpoint y espera un json con valores que sean métricas.
+
+## json - influxdb
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/influxdb
+
+Como el anterior, pero esperando un formato determinado del json
+
+## net response / check_tcp check_udp
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net_response
+
+Conecta a un puerto y ve cuanto tiempo tarda en contestar.
+
+## nginx
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/nginx
+
+[[inputs.nginx]]
+  ## An array of Nginx stub_status URI to gather stats.
+  urls = ["http://localhost/status"]
+
+## ping
+envia ping a un server y mide tiempo de respuesta
+
+## procstat
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat
+
+Monitoriza un proceso usando los valores de /proc/PID/...
+
+## sensors
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sensors
+
+Utiliza lm-sensors para obtener información de temperatura, ventiladores, etc
+
+## snmp
+Obtiene valores de snmp
 
 
 

@@ -6,7 +6,7 @@ Por defecto:
 sudo picocom -b 9600 /dev/ttyUSB0
 
 Si queremos podemos subir la velocidad:
-> uart.setup(0, 115200, 8, 0, 1, 1 )
+uart.setup(0, 115200, 8, 0, 1, 1 )
 sudo picocom -b 115200 /dev/ttyUSB0
 
 
@@ -21,6 +21,8 @@ http://nodemcu.readthedocs.org/en/dev/en/modules/wifi/
 wifi.setmode(wifi.STATION)
 wifi.sta.config("moto","pass") 
 print(wifi.sta.getip())
+
+Puede funcionar como AP y cliente simultáneamente.
 
 # Conex tcp
 conn=net.createConnection(net.TCP, 0)

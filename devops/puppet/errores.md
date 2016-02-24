@@ -122,3 +122,7 @@ Exiting; failed to retrieve certificate and waitforcert is disabled
 
 Error: Could not create instance of Puppet configuration client: PRNG not seeded
 El sistema no tiene /dev/urandom
+
+
+/usr/lib/ruby/site_ruby/1.8/puppet/util/monkey_patches.rb:378: uninitialized constant OpenSSL::SSL::SSLContext::DEFAULT_PARAMS
+Version de ruby desactualizada
