@@ -1,3 +1,13 @@
+SSL Strip
+http://www.thoughtcrime.org/software/sslstrip/
+
+Se trata de modificar todas las webs que recibe la victima (si somos MiTM) para cambiar los links https por http
+Parece que esto dejó de funcionar con la introducción de HSTS en 2010. Con esta política de seguridad los servidores web obligan a los navegadores a conectarse obligatoriamente via https.
+
+Como contraataque se usa ssltrip+ (o ssltrip2), que a parte de quitar el https, modifica ligeramente el dominio (wwww en vez de www, por ejemplo).
+Este dominio no es válido, pero como somos MiTM lo resolveremos nosotros correctamente.
+
+
 Hack de HTTPS con macspoof
 
 https://github.com/moxie0/sslstrip

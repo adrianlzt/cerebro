@@ -3,6 +3,12 @@ http://curl.haxx.se/docs/httpscripting.html
 Hacer una petición GET a /:
 curl host:puerto
 
+Ver todas las cabeceras:
+curl -v ...
+
+Ver cabeceras de la respuesta
+curl -D - ...
+
 Hacer un POST:
 curl -d 'variable=valor&otra=123' http://www.web.com
 
@@ -66,6 +72,9 @@ Si al hacer curl a un https nos da error:
 curl: (60) SSL certificate problem: unable to get local issuer certificate
 Tendremos que usar --cacert certificado.pem
 
+curl -k ...
+para no chequear el certificado
+
 # Enviar datos con base64
 CONFIG_BASE64=$(base64 fichero_config.zip)
 curl -v -X POST -d '{"config": "${CONFIG_BASE64}"}' -H 'Content-type: application/json' http://localhost:8000/api
@@ -76,3 +85,33 @@ curl  -X POST --data '{"description":"Created via API","public":"true","files":{
 
 El tema es que hay que cerrar las simples y meter la variable en dobles:
 'esta es una frase '"$variable"' y por aqui sigue'
+
+# Compressed / gzip
+si queremos forzar el envio de la cabecera:
+Accept-Encoding: deflate, gzip
+
+Podemos poner:
+--compress
+
+# Medir tiempo
+curl -s -w "Time total: %{time_total}\n" http://localhost:8086/ -o /dev/null
+
+Mirar en la sección de -w para ver que más valores podemos obtener
+
+# timeout
+--connect-timeout
+--max-time -m
+
+# Gestionar errores
+-f
+En vez de devovlernos la web del fallo 404, curl falla con una linea de error:
+curl: (22) The requested URL returned error: 404 Not Found
+
+-sS silent, y -S hace que se muestren errores si suceden (si no, un 404 no muestra nada)
+
+# Redirect
+-L
+sigue redirecciones (HTTP 30x)
+Si muestra cabeceras, primero mostrará la primera petición y luego la redirección
+
+

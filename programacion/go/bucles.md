@@ -26,3 +26,13 @@ v es el valor devuelto. No se puede usar como un puntero para poner el valor en 
 # Channels
 The loop for i := range c receives values from the channel repeatedly until it is closed.
 Para este loop es necesario que el escritor cierre el canal, si no el for no sabrá cuando terminar.
+
+Veo a veces que cuando se usa range se pone de este modo:
+  _, variable := range lista
+
+El primero valor que descartamos es el indice: 0,1,2,3...
+
+
+# Control
+break, termina el bucle
+continue, sigue con la proxima vuelta

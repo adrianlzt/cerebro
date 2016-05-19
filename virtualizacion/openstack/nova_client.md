@@ -1,8 +1,4 @@
-https://github.com/major/supernova
-
-Use novaclient with multiple nova environments the easy way
-
-Uso: supernova entorno comando (aqui omito "supernova entorno" y uso solo nova)
+https://github.com/openstack/python-novaclient
 
 Listar máquinas:
 nova list
@@ -48,6 +44,9 @@ nova boot --flavor NOMBRE --image NOMBREIMG --key-name raxLondon --security-grou
 nova --insecure boot --image=IMAGEN --flavor=SABOR --key-name=CLAVES --nic net-id=145094f1-2c8d-40d0-82f3-2997c4aa1bcc --nic net-id=bdbf444d-8ddd-4b8c-b534-69a2936d88be --availability-zone availzone1 nombre-maquina
   creo maquina con dos interfaces de red, cada una conectada a una de las redes internas que hayamos creando antes. Tambien elijo que se cree en una zona determinada.
 
+Si queremos desplegar en un compute node determinado:
+--availability-zone availzoneX:computenode
+
 El comando nos devuelve cierta información de la máquina.
 Un valor importante es 'adminPass', que es la password de root, y no podremos volver a conseguirla.
 El usuario parece que siempre es root, asi que para conectar a la máquina, obtendríamos la ip pública con: nova show NOMBRE-VM, y haríamos:
@@ -85,3 +84,5 @@ OS_TENANT_NAME = nova-development
 
 
 
+# Posibles estados de una VM
+https://github.com/openstack/nova/blob/ec04d3bcaf5d7a182ea5aba804447ef60677d01a/api-guide/source/server_concepts.rst

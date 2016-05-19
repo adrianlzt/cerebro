@@ -539,6 +539,17 @@ bool Store::answerRequest(InputBuffer *input, OutputBuffer *output)
 
 
 
+2016-04-13 08:15:30 More than 1000000 lines in /srv/nagios/icinga/log/archives/icinga-04-13-2016-00.log. Ignoring the rest!
+Si un fichero de log tiene mas de 1.000.000 de lineas no parsea las mayores
+
+Para habilitar más lineas
+broker_module=/some/path/livestatus.o max_lines_per_logfile=20000000
+
+Otra opción es deshabilitar el logging.
+https://github.com/Icinga/icinga-core/blob/dfc478aa4635bc9ba62a743af6ed98f3da495f72/base/checks.c#L2244
+https://github.com/Icinga/icinga-core/blob/dfc478aa4635bc9ba62a743af6ed98f3da495f72/base/checks.c#L2332
+
+
 # Internals
 Cuando enviamos una query la recoge la función:
 src/Store.cc bool Store::answerRequest(InputBuffer *input, OutputBuffer *output)
@@ -549,4 +560,29 @@ void Store::answerGetRequest(InputBuffer *input, OutputBuffer *output, const cha
 Se pregunta a findTable a que tabla debemos preguntar segun el primer parámetro que hayamos pasado.
 
 Cada tabla tiene sus ficheros y sus funciones particulares: src/TableXXX.cc y .h
+
+
+
+## Que busca livestatus en los ficheros de log
+
+$ grep strncmp LogEntry.cc 
+    if (!strncmp(_text, "INITIAL HOST STATE: ", 20)
+     || !strncmp(_text, "CURRENT HOST STATE: ", 20)
+     || !strncmp(_text, "HOST ALERT: ", 12))
+    else if (!strncmp(_text, "HOST DOWNTIME ALERT: ", 21))
+    else if (!strncmp(_text, "HOST FLAPPING ALERT: ", 21))
+    else if (!strncmp(_text, "INITIAL SERVICE STATE: ", 23)
+          || !strncmp(_text, "CURRENT SERVICE STATE: ", 23)
+          || !strncmp(_text, "SERVICE ALERT: ", 15))
+    else if (!strncmp(_text, "SERVICE DOWNTIME ALERT: ", 24))
+    else if (!strncmp(_text, "SERVICE FLAPPING ALERT: ", 24))
+    else if (!strncmp(_text, "TIMEPERIOD TRANSITION: ", 23))
+    if (!strncmp(_text, "HOST NOTIFICATION: ", 19)
+        || !strncmp(_text, "SERVICE NOTIFICATION: ", 22))
+    if (!strncmp(_text, "PASSIVE SERVICE CHECK: ", 23)
+        || !strncmp(_text, "PASSIVE HOST CHECK: ", 20))
+    if (!strncmp(_text, "EXTERNAL COMMAND:", 17))
+    if (!strncmp(_text, "LOG VERSION: 2.0", 16))
+    else if (!strncmp(_text, "logging initial states", 22)
+           || !strncmp(_text, "logging intitial states", 23))
 

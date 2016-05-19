@@ -1,0 +1,88 @@
+{
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_request_id": "req-2bed263f-8d7f-4f74-8eea-8340c9efb653",
+  "event_type": "port.create.start",
+  "timestamp": "2016-03-31 15:17:14.323172",
+  "_context_tenant_id": "06abd49655b148f084c8d8e4f164e983",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "29640e3dcff048559fda0110dbc02e8a",
+  "_context_tenant_name": "admin",
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "port": {
+      "network_id": "bef632e6-be49-4989-851d-a58229f41f9b",
+      "fixed_ips": [
+        {
+          "ip_address": "192.168.0.132"
+        }
+      ],
+      "name": "PUERTO_PRUEBA_ADRI",
+      "admin_state_up": true
+    }
+  },
+  "_context_project_name": "admin",
+  "_context_read_deleted": "no",
+  "_context_auth_token": "02a8f314331a482aa651501d169fe55a",
+  "_context_tenant": "06abd49655b148f084c8d8e4f164e983",
+  "priority": "INFO",
+  "_context_is_admin": true,
+  "_context_project_id": "06abd49655b148f084c8d8e4f164e983",
+  "_context_timestamp": "2016-03-31 15:17:14.321430",
+  "_context_user_name": "admin",
+  "publisher_id": "network.pre-epg-ostkc-01",
+  "message_id": "b0856a0e-36cf-4d18-ab11-7f8e29e1f5e2"
+}
+{
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_request_id": "req-2bed263f-8d7f-4f74-8eea-8340c9efb653",
+  "event_type": "port.create.end",
+  "timestamp": "2016-03-31 15:17:14.506423",
+  "_context_tenant_id": "06abd49655b148f084c8d8e4f164e983",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "8b58acae2195448b83afbdb6c0840e4a",
+  "_context_tenant_name": "admin",
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "port": {
+      "status": "DOWN",
+      "binding:host_id": "",
+      "allowed_address_pairs": [],
+      "device_owner": "",
+      "binding:profile": {},
+      "fixed_ips": [
+        {
+          "subnet_id": "593af493-66d7-412a-8bdd-969cd5ef35b5",
+          "ip_address": "192.168.0.132"
+        }
+      ],
+      "id": "3d114957-b91a-44a1-9b00-0d280bb2be19",
+      "security_groups": [
+        "dc28968f-004c-4810-be2b-b1cefb92c474"
+      ],
+      "device_id": "",
+      "name": "PUERTO_PRUEBA_ADRI",
+      "admin_state_up": true,
+      "network_id": "bef632e6-be49-4989-851d-a58229f41f9b",
+      "tenant_id": "06abd49655b148f084c8d8e4f164e983",
+      "binding:vif_details": {},
+      "binding:vnic_type": "normal",
+      "binding:vif_type": "unbound",
+      "mac_address": "fa:16:3e:4d:bf:e8"
+    }
+  },
+  "_context_project_name": "admin",
+  "_context_read_deleted": "no",
+  "_context_auth_token": "02a8f314331a482aa651501d169fe55a",
+  "_context_tenant": "06abd49655b148f084c8d8e4f164e983",
+  "priority": "INFO",
+  "_context_is_admin": true,
+  "_context_project_id": "06abd49655b148f084c8d8e4f164e983",
+  "_context_timestamp": "2016-03-31 15:17:14.321430",
+  "_context_user_name": "admin",
+  "publisher_id": "network.pre-epg-ostkc-01",
+  "message_id": "44070622-59fb-4801-8aba-593f10a8f58a"
+}

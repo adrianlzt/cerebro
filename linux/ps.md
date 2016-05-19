@@ -3,6 +3,8 @@ Mirar pstree.md
 Básico:
 ps -ef
 ps aux
+  la columna TIME es "accumulated cpu time, user + system"
+  Si queremos ver el tiempo que lleva corriendo el comando usaremos: ps -eo 'etime'
 
 --sort rss
   ordena poniendo al final lo que más consumo de RSS tengan

@@ -20,6 +20,7 @@ pip install pushbullet.py
 from pushbullet import Pushbullet
 pb = Pushbullet(api_key)
 push = pb.push_link("Cool site", "https://github.com", body="texto")
+pb.push_note("titulo","texto")
 
 
 https://docs.pushbullet.com/#get-user

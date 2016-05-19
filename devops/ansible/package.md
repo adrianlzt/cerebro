@@ -1,7 +1,7 @@
 http://docs.ansible.com/list_of_packaging_modules.html
 
 - name: install foo package
-  yum: name=foo state=latest
+  yum: name=foo state=latest update_cache=yes
 
 Instalar varios paquetes:
   - name: install Visual software

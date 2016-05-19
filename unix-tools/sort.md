@@ -31,3 +31,7 @@ git tag -l | LANG=en_US.UTF-8 sort -n
 0.2.0
 0.3.0
 0.4.0
+
+
+Desordenar
+sort --random-sort

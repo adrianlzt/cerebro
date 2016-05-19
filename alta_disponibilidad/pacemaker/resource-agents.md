@@ -1,3 +1,5 @@
+https://github.com/ClusterLabs/resource-agents
+
 Resource Agents:
 /usr/lib/ocf/
 /usr/share/cluster

@@ -27,3 +27,6 @@ git format-patch -2 <sha1>
 
 Genera un parche entre el commit aaaa (viejo) y el commit bbbb (nuevo):
 git format-patch --stdout aaaa^..bbbb > fichero.patch
+
+
+Latest versions of patch command (2.7, released in September 2012) support most features of the "diff --git" format, including renames and copies, permission changes, and symlink diffs (but not yet binary diffs) (release announcement).

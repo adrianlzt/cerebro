@@ -32,3 +32,8 @@ Para europa tenemos el parte cada 6h:
 
 Para la zona de alemania (comprende chamonix) cada 3h
 00, 03, 06, ..., 240
+
+# estaciones metereologicas
+http://www.meteoclimatic.net/
+
+https://www.wunderground.com/

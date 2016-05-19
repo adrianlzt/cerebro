@@ -20,3 +20,11 @@ tasks:
 
 roles:
   - { role: webserver, port: 5000, tags: [ 'web', 'foo' ] }
+
+
+# Ansible 2.0
+No meter tags dentro de un fichero que hacemos include, funcionará peor por la carga dinámica de tags.
+https://www.ansible.com/blog/ansible-2.0-launch
+
+Ansible no protestará si especificamos una tag que no existe con --tags o --skip-tags
+

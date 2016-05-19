@@ -11,3 +11,19 @@ This app is designed to help you determine optimal parameters for creating ext3/
 https://exchange.icinga.org/exchange/check_md_raid/files/661/check_md_raid.sh
 
 Mira en /proc/mdstat
+
+
+# Raid 0
+Distribuye escrituras en varios discos, mejor throughput
+
+# Raid 1
+Replica los datos en todos los discos
+
+# Raid 5
+Las escrituras se hacen con Read-Modify-Write, requires two reads and two writes per write request. 
+Costoso para la CPU si no va integrado en HW
+Lectura, alto throughput
+
+# Raid 6
+Read-Modify-Write requires three reads and three writes per write request. No usar si no es por HW
+

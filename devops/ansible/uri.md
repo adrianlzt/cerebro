@@ -41,3 +41,23 @@ dest=FICHERO
 Hacer un post de un fichero (subir una release a github):
   - name: subir release
     command: "curl -H 'Authorization:token {{github_token}}' -H 'Accept:application/vnd.github.manifold-preview' -H 'Content-Type:application/octet-stream' --data-binary @issue.rpm {{var.replace('{?name}','?name=')}}issue.rpm"
+
+# Basic auth
+- name: crear database en influxdb
+  uri:
+    url: "http://localhost:8086/query?q=CREATE%20DATABASE%20nombre"
+    method: GET
+    force_basic_auth: yes
+    user: admin
+    password: "lapass"
+
+
+# urlencode
+Si tenemos que pasar algo en la url tendremos que codificarlo:
+http://localhost:8086/query?q=CREATE DATABASE nombre
+->
+http://localhost:8086/query?q=CREATE%20DATABASE%20nombre
+
+Podemos usar tambien
+{{variable|urlencode}}
+{{variable|urlencode()}}

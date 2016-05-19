@@ -9,6 +9,12 @@ dig server.com MX
 Servidor autoridad de un dominio
 dig pepe.com SOA
 
+Resolución inversa:
+dig -x 216.58.211.227
+
+Equivalente a hacer:
+dig 227.211.58.216.in-addr.arpa. PTR
+
 
 Tipos registros:
 A, AAAA, MX, AXFR, NS, SOA, TXT, PTR, CNAME

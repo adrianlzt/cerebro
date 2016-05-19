@@ -17,3 +17,11 @@ Requires the MySQLdb Python package on the remote host. For Ubuntu, this is as e
 
 # Create database user with name 'bob' and password '12345' with all database privileges
 - mysql_user: name=bob password=12345 priv=*.*:ALL state=present
+
+priv tiene el formato:
+db.table:priv1,priv2
+
+Ejemplos:
+priv=*.*:ALL,GRANT
+priv="*.*:REPLICATION CLIENT"
+mydb.*:INSERT,UPDATE/anotherdb.*:SELECT/yetanotherdb.*:ALL

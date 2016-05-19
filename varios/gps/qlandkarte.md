@@ -54,3 +54,7 @@ Cargar mapa georeferenciado (jpg+jgw)
 Se puede obtener de iberpix
 Mirar gdal.md
 
+
+
+# Configuración
+/home/adrian/.config/QLandkarteGT

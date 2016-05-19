@@ -23,3 +23,7 @@ http://clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Pacemaker_Explained/ap-lsb.h
 
 # Python
 https://lionfacelemonface.wordpress.com/2009/12/29/python-init-scripts/
+Escribir un script de init.d en python
+
+# Funciones
+http://refspecs.linuxbase.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptfunc.html

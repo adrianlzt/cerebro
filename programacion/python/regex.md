@@ -1,3 +1,5 @@
+Nuevo modulo que sustituira a re: https://pypi.python.org/pypi/regex
+
 http://docs.python.org/2/library/re.html
 re — Regular expression operations
 
@@ -32,4 +34,13 @@ Devuelve True si encuentra la regex en la frase
 'esta es la WO 34556 y aqui no'
 >>> r.group(1)
 '34556'
+
+
+# Multilinea
+>>> texto = '''hola que tal time=1
+... pepe time=2
+... maria time=3 asda'''
+>>> rrr = re.compile(r".*time=([0-9]+).*", re.MULTILINE)
+>>> for r in rrr.finditer(a):
+...   r.groups()
 

@@ -19,4 +19,10 @@ Omitirlo, porque funciona a pesar de esto.
 
 
 Para varias ips:
-neutron port-update 12bf9ea4-4845-4e2c-b511-3b8b1ad7291d –allowed_address_pairs list=true type=dict ip_address=10.0.0.201,ip_address=y.y.y.y etc
+neutron port-update 12bf9ea4-4845-4e2c-b511-3b8b1ad7291d –allowed_address_pairs list=true type=dict ip_address=10.0.0.201 ip_address=y.y.y.y etc
+
+Dar unos segundos tras ejecutar este comando para que se aplique en las VMs
+
+
+
+Si esto no está configurado veremos como el SYN llega hasta el servidor, este contesta con SYN+ACK pero ese paquete no llega hasta el cliente.

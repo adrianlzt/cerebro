@@ -1,4 +1,6 @@
-https://docs.influxdata.com/influxdb/v0.9/query_language/functions/
+https://docs.influxdata.com/influxdb/v0.10/query_language/functions/
+
+ToDo: https://github.com/influxdata/influxdb/issues/5930
 
 
 # Mean / Media
@@ -32,3 +34,15 @@ Si no, estaremos viendo MegaBytes/s, pero de esta manera no es como se suele med
 Esta query sirve si usamos Telegraf con el modulo net.
 Por defecto envía las métricas cada 10s, por lo que tenemos que hacer la derivada cada ese tiempo y agrupar también por cada ese tiempo.
 
+
+# Moving average
+https://docs.influxdata.com/influxdb/v0.12/query_language/functions/#moving-average
+
+SELECT MOVING_AVERAGE(<field_key>,<window>) FROM <measurement_name> [WHERE <stuff>]
+
+
+# Difference
+https://docs.influxdata.com/influxdb/v0.12/query_language/functions/#difference
+Calcula la diferencia respecto al valor anterior
+
+SELECT DIFFERENCE(<field_key>) FROM <measurement_name> [WHERE <stuff>]

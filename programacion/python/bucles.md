@@ -14,6 +14,16 @@ lista=['asda','2342','bbbb',11]
 for l in lista:
 	print l
 
+Con indices:
+>>> cosas =  ["casa", "sillA", "mesa"]
+>>> for i,v in enumerate(cosas):
+...   print("indice: %s, valor: %s" % (i,v))
+... 
+indice: 0, valor: casa
+indice: 1, valor: sillA
+indice: 2, valor: mesa
+
+
 for num in range(0,10):
   if num == 5:
     continue # pasa al siguiente loop

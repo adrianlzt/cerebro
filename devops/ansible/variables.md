@@ -82,8 +82,8 @@ vars:
 
 vars/common.yml:
 ---
-  var: "cosa"
-  numero: 3
+var: "cosa"
+numero: 3
 
 vars/other.json
 {

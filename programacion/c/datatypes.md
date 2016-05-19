@@ -1,6 +1,10 @@
 Limites:  http://www.tutorialspoint.com/c_standard_library/limits_h.htm
 Tamaño de cada tipo: http://www.tutorialspoint.com/cprogramming/c_data_types.htm
 
+https://github.com/srdja/Collections-C
+A library of generic data structures including a list, array, hashtable, deque etc..
+
+
 sizeof(char);
 
 Tipos estandar:

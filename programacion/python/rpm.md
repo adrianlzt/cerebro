@@ -11,6 +11,15 @@ python setup.py bdist_rpm
 
 los genera en dist/
 
+Si queremos editar el .spec antes de empaquetar:
+python setup.py bdist_rpm --spec-only
+python setup.py bdist_rpm --spec-file=dist/nombre.spec NO IMPLEMENTADO https://docs.python.org/2.0/dist/creating-rpms.html
+
+Podemos hacer:
+python setup.py bdist_rpm -k
+El comando que se ejecuta
+rpmbuild -ba --define '_topdir /path/programa/build/bdist.linux-x86_64/rpm' build/bdist.linux-x86_64/rpm/SPECS/graphios.spec
+
 
 Codigo fuente (creo que usa mas ficheros):
 ./site-packages/setuptools/command/bdist_rpm.py
@@ -18,6 +27,10 @@ distutils/command/bdist_rpm.py
 
 https://hg.python.org/releasing/2.7.9/file/tip/Lib/distutils/command/bdist_rpm.py#l410
 Ahi se va generando el fichero en la variable spec_file
+
+En "def run (self):" del bdist_rpm.py parece que es donde esta la chicha.
+
+Aqui "rpm_cmd.append(spec_path)" es donde podríamos modificar el spec que va a utilzar
 
 
 Para añadir ficheros sueltos:

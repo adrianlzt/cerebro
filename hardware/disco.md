@@ -24,6 +24,14 @@ Testear velocidad
 sudo hdparm -t /dev/sdb
 
 
+# Boot
+https://0xax.gitbooks.io/linux-insides/content/Booting/linux-bootstrap-1.html
+
+On hard drives partitioned with an MBR partition layout, the boot sector is stored in the first 446 bytes of the first sector (which is 512 bytes). The final two bytes of the first sector are 0x55 and 0xaa, which signals the BIOS that this device is bootable
+
+La imagen que aquí se encuentra sera el bootloader quien será quien continue con la carga del sistema.
+
+
 
 # Geometria
 
@@ -64,8 +72,10 @@ Mirar en linux/filesystem/data_recover.md
 
 
 # IOPS (http://www.mongodb.com/presentations/webinar-capacity-planning)
+5.400 RPM                50-80
 7.200 RPM                75-100
-15.0000 RPM              175-210
+10.000 RPM               125-150
+15.000 RPM               175-210
 Amazon EBS/Provisioned   100, up to 2.000
 Amazon SSD               9.000 - 120.000
 Intel X25-E (SLC)        5.000

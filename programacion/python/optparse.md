@@ -51,3 +51,28 @@ Ejemplo:
 
 
 
+Otro ejemplo con logger, debug, info:
+
+    from optparse import OptionParser
+    import sys
+    
+    import logging
+    logger = logging.getLogger(__name__)
+    logging.basicConfig()
+    logger.setLevel(logging.CRITICAL)
+    
+    if __name__ == '__main__':
+        parser = OptionParser()
+        parser.add_option("-v", action="store_true", dest="verbose")
+        parser.add_option("-d", action="store_true", dest="debug")
+        (options, args) = parser.parse_args(sys.argv)
+    
+        if options.verbose:
+            logger.setLevel(logging.INFO)
+            logger.info("Logger set to INFO level")
+        if options.debug:
+            logger.setLevel(logging.DEBUG)
+            logger.info("Logger set to DEBUG level")
+    
+        print("Starting proxy server")
+    

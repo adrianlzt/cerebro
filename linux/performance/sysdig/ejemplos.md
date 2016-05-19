@@ -5,6 +5,9 @@ tcpdump por proceso
 sysdig fd.type=ipv4 and proc.name=cur
    podemos usar tambien proc.pid
 
+Show the network data that apache exchanged with 192.168.0.1.
+sysdig -A -c echo_fds fd.sip=192.168.0.1 and proc.name=httpd
+
 echo "hola mundo" > index.html
 while true; do { echo -e 'HTTP/1.1 200 OK\r\n'; cat index.html; } | nc -l 8080; done
 sysdig fd.type=ipv4 and \( proc.name=curl or proc.name=nc \)
@@ -17,6 +20,9 @@ Veremos una especie de strace de los comandos
 
 Espiar que hace cada usuario:
 sysdig -c spy_users
+
+Espiar comandos debajo de una shell (el pid corresponderá a la shell):
+sudo sysdig -c spy_users proc.loginshellid=11174
 
 Ver el consumo de red de cada proceso (en el último segundo):
 sysdig -c topprocs_net
@@ -39,9 +45,6 @@ sysdig -c topfiles_time
 
 Print process name and connection details for each incoming connection not served by apache.
 sysdig -p "%proc.name %fd.name" "evt.type=accept and proc.name!=httpd"
-
-Show the network data that apache exchanged with 192.168.0.1.
-sysdig -A -c echo_fds fd.sip=192.168.0.1 and proc.name=httpd
 
 Show every time a file is opened under /etc.
 sysdig evt.type=open and fd.name contains /etc

@@ -74,3 +74,6 @@ load1_critical      load1_min       load1_warning   load5   load5_critical  load
 
 
 Como hago el downsampling?
+Por resolver: https://github.com/influxdata/influxdb/issues/5750
+
+Me han dicho que esta en el road map

@@ -56,7 +56,7 @@ disas
   muestra el codigo ensamblador y donde estamos parados
 
 break *0x00000000004005c1 
-  punto de break en esa posicion de memoria
+  punto de break en esa posicion de memoria*
 cont 
   continuar
 p $rsp 
@@ -69,3 +69,15 @@ x/10i 0x400470
 
 x/x displays elements in hex, x/d displays them as signed decimals, x/c displays characters, x/i disassembles memory as instructions, and x/s interprets memory as C strings.
   nos muestra el contenido de las 10 siguientes posiciones de memoria, traducidas a instrucciones (i), a partir de la posicion 0x400470
+
+x/nfu addr
+  n: numero de bloques de memoria que mostrar
+  f: format (d, c, i, s, x)
+  u: tamaño de los bloques (b, h, w, g). Por defecto words, 4 bytes
+
+Ejemplo
+(gdb) p format
+$9 = 0x7ffff1916425 "%a %b %e %H:%M:%S %Z %Y"
+(gdb) x/8c 0x7ffff1916425
+0x7ffff1916425: 37 '%'  97 'a'  32 ' '  37 '%'  98 'b'  32 ' '  37 '%'  101 'e'
+

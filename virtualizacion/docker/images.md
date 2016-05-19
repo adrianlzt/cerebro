@@ -1,3 +1,6 @@
+mirar containers.md
+
+
 Podemos crear una imagen también a partir de un .tar con import
 http://docs.docker.io/en/latest/commandline/command/import/
 

@@ -1,3 +1,8 @@
+# Editor grafico
+grub-customizer
+
+
+
 /boot/config-3.13.8
   Configuración del kernel
 
@@ -45,3 +50,14 @@ GRUB_DEFAULT=saved
 Reinstalar grub (boot loader)
 http://askubuntu.com/questions/126541/how-to-manually-install-boot-loader
 grub-install --recheck --no-floppy --root-directory=/ /dev/sda
+
+
+# Internals
+https://0xax.gitbooks.io/linux-insides/content/Booting/linux-bootstrap-1.html
+
+Primero se carga http://git.savannah.gnu.org/gitweb/?p=grub.git;a=blob;f=grub-core/boot/i386/pc/boot.S;hb=HEAD
+Este salta a la imagen core de GRUB2
+
+The core image begins with diskboot.img, which is usually stored immediately after the first sector in the unused space before the first partition. The above code loads the rest of the core image into memory, which contains GRUB 2's kernel and drivers for handling filesystems. After loading the rest of the core image, it executes grub_main.+
+
+

@@ -3,7 +3,7 @@
 # Quitamos host1 y host2 del grupo para ejecutarlos despues
 #
 - hosts: grupo:!host1:!host2
-  sudo: True
+  become: True
   gather_facts: False
   tags:
     - templates

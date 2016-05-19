@@ -138,6 +138,8 @@ https://influxdb.com/docs/v0.9/query_language/data_exploration.html#sort-query-r
 Ordenar de la fecha más reciente a la más antigua
 select * from load order by time DESC
 
+No se permite ordenar por otra cosa que no sea time: https://github.com/influxdata/influxdb/issues/2341
+
 # Operaciones / Funciones
 https://docs.influxdata.com/influxdb/v0.9/query_language/functions/
 
@@ -149,4 +151,10 @@ DROP SERIES FROM wo_start WHERE iniciativa = 'ADRI' AND subject = 'Manual'
 SHOW CONTINUOUS QUERIES
 
 
+# Ver queries en ejecucción
+https://docs.influxdata.com/influxdb/v0.12/troubleshooting/query_management/#list-currently-running-queries-with-show-queries
+SHOW QUERIES
 
+# Matar una query
+https://docs.influxdata.com/influxdb/v0.12/troubleshooting/query_management/#stop-currently-running-queries-with-kill-query
+KILL QUERY x

@@ -1,3 +1,6 @@
+http://blog.codeship.com/an-intro-to-concurrency-patterns-in-go/?utm_campaign=Weekly%20Newsletters&utm_content=concurrency%20in%20go&utm_medium=newsletter&utm_source=email&utm_campaign=Weekly+Newsletters&utm_source=hs_email&utm_medium=email&utm_content=26891717&_hsenc=p2ANqtz-9-haV8Zf1MI8VK9n6mC4cWT_utyGwbXOqk2upRikBt_7jSGuKKzwnjE56xQ1miGnxzlAFZZ3CDEGKMUFSI2jpdSE48wQ&_hsmi=26891717
+
+
 go f(x,y,z)
 Crea un nuevo thread y ejecuta f en el.
 La evaluación de x,y,z se hace en el thread actual, y la ejecución de f en el nuevo thread.

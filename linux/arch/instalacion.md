@@ -1,3 +1,6 @@
+Más facil usar: architect.md
+
+
 https://wiki.archlinux.org/index.php/Installation_guide
 
 Cargar desde usb, nos abre un terminal como root:

@@ -96,8 +96,14 @@ Activar sharedscripts y poner una condición en el de pre para ver si el nodo es
 
 
 # A mano
-logrotate -d prueba.conf
+logrotate -d /etc/logrotate.conf
   con -d no hace nada, solo informa.
+
+CUIDADO!
+Si ponemos un fichero de logrotate.d directamente, no estaremos pillando los default de /etc/logrotate.conf
+
+Lo mejor es hacer un cat >> de /etc/logrotate.conf y del logrotate.d que nos interese a otro fichero y ejecutar
+logrotate --state=/tmp/prueba.logrotate -v nuevo_fichero
 
 Para rotar pero sin tocar el fichero de estado del sistema:
 logrotate --state=status.logrotate -v prueba.conf
@@ -114,6 +120,20 @@ prueba.conf:
 logrotate: ALERT exited abnormally with [1]
 Ejecutar a mano.
 Puede ser por tener dos definiciones que atacan a los mismos ficheros
+
+Mirar el /var/spool/mail/root
+
+
+Si el fichero de status esta corrompido puede ser por un bug de logrotate https://bugzilla.redhat.com/show_bug.cgi?id=625034
+Actualizar la version
+
+
+
+
+error: dracut.log:1 duplicate log entry for /var/log/dracut.log
+error: found error in /var/log/dracut.log , skipping
+
+Esto es porque hay dos ficheros con políticas para rotar /var/log/dracut.log
 
 
 

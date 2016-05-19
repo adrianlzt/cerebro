@@ -149,3 +149,49 @@ Si un estamos usando socksify con un programa que crea un socket y le define un 
 Esto es es por un bug con el tratamiento de la interrupción EINTR en python.
 Arreglado en 3.5.0 https://www.python.org/dev/peps/pep-0475/
 
+
+
+Interfiere con date.
+LD_PRELOAD="libdsocks.so" date -d@0 +"%Y-%m"
+1970-04
+
+El primer valor los saca bien, pero el resto de valores (en este caso el mes) pone la fecha actual.
+
+Debugeando he llegado hasta aquí:
+(gdb) watch tp->tm_mon
+Hardware watchpoint 4: tp->tm_mon
+(gdb) c
+Continuing.
+Hardware watchpoint 4: tp->tm_mon
+
+Old value = 0
+New value = 3
+0x00007ffff76508d2 in __offtime () from /lib64/libc.so.6
+(gdb) where
+#0  0x00007ffff76508d2 in __offtime () from /lib64/libc.so.6
+#1  0x00007ffff7652b07 in __tz_convert () from /lib64/libc.so.6
+#2  0x00007ffff7b7f685 in getlogprefix (priority=6, buf=0x7fffffffa010 "", buflen=10240) at ../lib/log.c:1251
+#3  0x00007ffff7b7fdb5 in vslog (priority=6, message=0x7ffff7b9580e "%s: pthread locking enabled", ap=0x7fffffffc880, apcopy=0x7fffffffc860)
+    at ../lib/log.c:916
+#4  0x00007ffff7b80404 in slog (priority=<value optimized out>, message=<value optimized out>) at ../lib/log.c:809
+#5  0x00007ffff7b5ec16 in socks_addrinit () at ../lib/address.c:1212
+#6  0x00007ffff7b62fc9 in clientinit () at ../lib/client.c:94
+#7  0x00007ffff7b6019e in socks_addaddr (clientfd=1, socksfd=0x7fffffffcff0, takelock=0) at ../lib/address.c:162
+#8  0x00007ffff7b561f9 in socks_syscall_start (s=1) at interposition.c:440
+#9  0x00007ffff7b5651c in sys_fwrite (ptr=0x7fffffffe403, size=4, nmb=1, stream=0x7ffff79437a0) at interposition.c:1475
+#10 0x0000000000406a35 in strftime_case_ (upcase=false, s=0x7ffff79437a0, format=<value optimized out>, tp=0x7ffff7948420, ut=0, ns=0)
+    at strftime.c:1004
+#11 0x00000000004019d0 in show_date (format=0x7fffffffe90d "%Y %m", when=...) at date.c:538
+#12 0x000000000040250d in main (argc=<value optimized out>, argv=<value optimized out>) at date.c:514
+
+
+date usa aqui https://github.com/coreutils/gnulib/blob/e91c0d4f942e90b4af98c6bf17079ed5530d9e05/lib/strftime.c#L408 la estructura de datos tp para almecenar la fecha que luego mostrara por pantalla.
+Tras guardar en el buffer el primer dato (el año por ejemplo) (https://github.com/coreutils/gnulib/blob/e91c0d4f942e90b4af98c6bf17079ed5530d9e05/lib/strftime.c#L1024) parece que el cpy lanza sys_fwrite, que es capturada por dante.
+Dante comienza a iniciar su cliente y en alguna parte (getlogprefix) usa cosas de fecha que pisan los datos de tp
+
+Este es la parte del codigo de dante que rompe date lib/log.c:1251:
+      struct tm *tm;
+
+      if (sockscf.state.insignal
+      ||  (tm = localtime(&secondsnow)) == NULL) {
+

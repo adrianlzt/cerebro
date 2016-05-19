@@ -26,3 +26,22 @@ db.users.find({'_id':'admin'}).count()
 
 
 db.users.find({'_id':/expr regular/})
+
+
+# Fecha
+cyclops:PRIMARY> db.tasks.find({"updated_at": {"$gte": ISODate("2016-04-26T00:00:00.000Z")}})
+43434
+
+
+# And / Or / Not / Nor / Ne
+https://docs.mongodb.org/manual/reference/operator/query-logical/
+https://docs.mongodb.org/manual/reference/operator/query/ne/
+
+{ $and: [ { <expression1> }, { <expression2> } , ... , { <expressionN> } ] }
+
+db.inventory.find( { $and: [ { price: { $ne: 1.99 } }, { price: { $exists: true } } ] } )
+
+
+
+Ne es !=
+db.inventory.find( { qty: { $ne: 20 } } )

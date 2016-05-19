@@ -41,6 +41,9 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 Cerrar puerto de salida:
 iptables -A OUTPUT -p tcp --dport 45 -j DROP
 
+Cerrar puerto y dirección de salida:
+iptables -A OUTPUT -p tcp -d 81.45.59.233 --dport 443 -j DROP
+
 
 Comprobar si están capturando tráfico las reglas:
 iptables -L -v

@@ -1,3 +1,8 @@
+Para buscar paquetes:
+http://go-search.org/
+
+
+
 https://wiki.archlinux.org/index.php/Go#.24GOPATH
 mkdir -p ~/go/{bin,src}
 

@@ -1,0 +1,8 @@
+# Percona XtraBackup for database backup
+# Backups de los ultimos 7 dias, las ultimas 4 semanas y los ultimos 12 meses
+@daily mysql chronic innobackupex --user=mysql --password={{ lookup('password', 'mariadb_backup_pass chars=ascii_letters')}} --compress /opt/mariadb_backup/daily
+@daily mysql chronic find /opt/mariadb_backup/daily -maxdepth 1 -type d -mtime +7 -exec rm -fr {} \;
+@weekly mysql chronic innobackupex --user=mysql --password={{ lookup('password', 'mariadb_backup_pass chars=ascii_letters')}} --compress /opt/mariadb_backup/weekly
+@weekly mysql chronic find /opt/mariadb_backup/weekly -maxdepth 1 -type d -mtime +30 -exec rm -fr {} \;
+@monthly mysql chronic innobackupex --user=mysql --password={{ lookup('password', 'mariadb_backup_pass chars=ascii_letters')}} --compress /opt/mariadb_backup/monthly
+@monthly mysql chronic find /opt/mariadb_backup/monthly -maxdepth 1 -type d -mtime +360 -exec rm -fr {} \;

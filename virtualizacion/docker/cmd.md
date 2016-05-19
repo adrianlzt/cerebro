@@ -37,6 +37,7 @@ Borra un container
 ## INSPECT
 Información sobre un container o imagen
 docker inspect <image/container-id>
+docker image nombre:tag
 Es como leer el fichero 
 /var/lib/docker/graph/<id>/json para images
 /var/lib/docker/containers/<id>/config.json para containers

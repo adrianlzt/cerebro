@@ -24,6 +24,9 @@ else:
    fh.close()
 
 
+Capturar varias excepciones:
+except (IDontLIkeYouException, YouAreBeingMeanException) as e:
+
 
 import sys
 try:

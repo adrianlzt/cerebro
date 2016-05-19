@@ -6,3 +6,11 @@ Avisar a otros hostgroups cuando se produzcan más notificaciones.
 No me queda claro si avisar a la segunda notificación es:
 ok->crit->ok->crit
 o, ok->crit (y que los siguientes checks sigan petando)
+
+
+No se puede poner * es host y service.
+http://docs.icinga.org/latest/en/objecttricks.html
+
+Dara el error:
+Error: Could not expand services specified in service escalation
+

@@ -1,6 +1,20 @@
 Control del terminal android desde un pc:
 
-# apt-get install android-tools-adb
+Para permitirlo tenemos que ir a las opciones de desarrollo y habilitar "Depuracion USB"
+
+# Arch
+yaourt -S android-sdk-platform-tools aur/android-sdk
+
+sudo systemctl start adb
+/opt/android-sdk/platform-tools/adb devices
+/opt/android-sdk/platform-tools/adb shell
+
+
+# Ubuntu
+apt-get install android-tools-adb
+
+
+
 # adb devices ()
 	La primera vez que ejecutemos este comando debe ser obligatoriamente como root, ya que iniciará el 'daemon' que nos unirá a los dispositivos.
 	Este comando nos listará los dispositivos conectados, asignándoles un identificador (solo necesario si tenemos más de uno conectado)

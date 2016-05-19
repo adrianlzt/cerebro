@@ -22,6 +22,10 @@ $ python
 >>> pdb.run('simple.main()')
 (Pdb) 
 
+Otra forma, metiendo un punto de parada en el programa:
+import pdb
+pdb.set_trace()
+
 Otra forma:
 $ python -m pdb script.py
 

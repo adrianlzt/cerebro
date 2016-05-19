@@ -24,3 +24,7 @@ Ver directorio donde están las mibs:
 snmptranslate -Dinit_mib .1.3 2>&1 |grep MIBDIR
 o
 net-snmp-config --default-mibdirs
+
+
+Lista de nombre y numero
+snmptranslate -m all -Tz -On

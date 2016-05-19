@@ -5,6 +5,17 @@ http://www.sudo.ws/sudoers.man.html
 
 Cuidado con la preferencia de las reglas. Las útimas (más abajo en el fichero) tienen preferencia. A lo mejor das unos permisos a un usuario pero los sobreescribe un grupo después.
 
+Cuidado con dar acceso a programas que otorguen shell.
+Por ejemplo, dar permiso a: vi /etc/services
+ERROR! porque el usuario podrá hacer: :!bash y estara con shell de root
+Para editar ficheros usar:
+testuser    ALL = (root) NOPASSWD: sudoedit /etc/services
+
+Y el usuario tendrá que usar: sudoedit /etc/services
+
+
+
+
 Editar siempre con visudo.
 O si queremos editar un fichero en particular:
 visudo -f /etc/sudoers.d/fichero

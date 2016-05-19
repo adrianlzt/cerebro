@@ -1,4 +1,5 @@
-# http://www.linode.com/wiki/index.php/Linux_Packaging
+http://www.linode.com/wiki/index.php/Linux_Packaging
+http://yum.baseurl.org/wiki/RepoQuery
 
 Releer repos
 yum clean metadata

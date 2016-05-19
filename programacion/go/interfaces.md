@@ -1,3 +1,5 @@
+https://gobyexample.com/interfaces
+
 Un tipo interfaz está definido por un conjunto de métodos:
 
 type ValorAbsoluto interface {

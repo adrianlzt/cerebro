@@ -1,0 +1,1373 @@
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:15.671326",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "aa206974ead94b7db6dd3ebd738360cc",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "scheduling",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": null,
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": null,
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15.638124+00:00",
+    "old_task_state": "scheduling",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": "scheduling",
+    "audit_period_ending": "2016-03-31T14:44:15.666981",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "api.pre-epg-ostkc-01",
+  "message_id": "486f22bd-f5f1-4dbd-98f2-0ed53e12e6a9",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "scheduler.select_destinations.start",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:16.804485",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "7efe0aa49d1240dfa9784a69bf54ecb4",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "request_spec": {
+      "instance_properties": {
+        "vm_state": "building",
+        "pci_requests": {
+          "instance_uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+          "requests": []
+        },
+        "availability_zone": null,
+        "terminated_at": null,
+        "ephemeral_gb": 0,
+        "instance_type_id": 8,
+        "user_data": null,
+        "numa_topology": null,
+        "cleaned": false,
+        "vm_mode": null,
+        "deleted_at": null,
+        "reservation_id": "r-4ebj6j1i",
+        "id": 428,
+        "security_groups": [],
+        "disable_terminate": false,
+        "display_name": "pruebaAdri",
+        "uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+        "default_swap_device": null,
+        "info_cache": {
+          "instance_uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+          "deleted": false,
+          "created_at": "2016-03-31T14:44:15.000000",
+          "updated_at": null,
+          "network_info": [],
+          "deleted_at": null
+        },
+        "hostname": "pruebaadri",
+        "launched_on": null,
+        "display_description": "pruebaAdri",
+        "key_data": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDF6O82etN61u1OeV6L18RhV7AqYMuj43x2OLmdo4w+OQ6pFbulDOqeKkB0saBLoqH+8SoCw3pHKhyKBKQEgmxq/t10iPZ45rUyy4r6a4FH6eKtcSNDtHdetW759u9vxEZwS+Fx//BUcXYMbDXkBnke3lJ6bos6H8p++sRCk69eCCv5MhXBIM0atIcNZm4IvHFhCTAtHdapyPzTwKFWfaBN9Snlin3ykLFb/yoq0O6rr/+xhcHK3NiXdaOiushHaF7SM7KuNXFciyUWJmrd+MRyEXmhKlKXHLJtQH3WI04U6XvnWIVfmuZtNViayuTYBrkeX5WjWqc6slFsmT0bZfnj root@pre-epg-ostkc-01",
+        "kernel_id": "",
+        "power_state": 0,
+        "default_ephemeral_device": null,
+        "progress": 0,
+        "project_id": "882f9abf240f414a86f687388cecc3b1",
+        "launched_at": null,
+        "config_drive": "",
+        "node": null,
+        "ramdisk_id": "",
+        "access_ip_v6": null,
+        "access_ip_v4": null,
+        "deleted": false,
+        "key_name": "admin",
+        "updated_at": null,
+        "host": null,
+        "ephemeral_key_uuid": null,
+        "architecture": null,
+        "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+        "system_metadata": {
+          "instance_type_memory_mb": 512,
+          "instance_type_swap": 0,
+          "instance_type_vcpu_weight": 0,
+          "instance_type_root_gb": 20,
+          "instance_type_name": "TID-01CPU-512MB-20GB",
+          "instance_type_id": 8,
+          "instance_type_ephemeral_gb": 0,
+          "instance_type_rxtx_factor": 1,
+          "image_disk_format": "qcow2",
+          "instance_type_flavorid": "103",
+          "image_container_format": "bare",
+          "instance_type_vcpus": 1,
+          "image_min_ram": "0",
+          "image_min_disk": "20",
+          "image_base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+        },
+        "task_state": "scheduling",
+        "shutdown_terminate": false,
+        "cell_name": null,
+        "root_gb": 20,
+        "locked": false,
+        "name": "instance-000001ac",
+        "created_at": "2016-03-31T14:44:15.000000",
+        "locked_by": null,
+        "launch_index": 0,
+        "metadata": {},
+        "memory_mb": 512,
+        "vcpus": 1,
+        "image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+        "root_device_name": null,
+        "auto_disk_config": true,
+        "os_type": null,
+        "scheduled_at": null
+      },
+      "instance_type": {
+        "memory_mb": 512,
+        "root_gb": 20,
+        "deleted_at": null,
+        "name": "TID-01CPU-512MB-20GB",
+        "deleted": false,
+        "created_at": "2015-11-19T08:44:55.000000",
+        "ephemeral_gb": 0,
+        "updated_at": null,
+        "disabled": false,
+        "vcpus": 1,
+        "extra_specs": {},
+        "swap": 0,
+        "rxtx_factor": 1,
+        "is_public": true,
+        "flavorid": "103",
+        "vcpu_weight": 0,
+        "id": 8
+      },
+      "image": {
+        "status": "active",
+        "created_at": "2015-11-19T09:21:59.000000",
+        "name": "TID-RH6-1NIC.20150701",
+        "deleted": false,
+        "container_format": "bare",
+        "min_ram": 0,
+        "disk_format": "qcow2",
+        "updated_at": "2015-11-19T09:22:03.000000",
+        "id": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+        "min_disk": 15,
+        "checksum": "691eb85275cebe0b9c78bdf2a9b0753f",
+        "owner": "06abd49655b148f084c8d8e4f164e983",
+        "is_public": true,
+        "deleted_at": null,
+        "properties": {},
+        "size": 388628480
+      },
+      "num_instances": 1
+    }
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "scheduler.pre-epg-ostkc-01",
+  "message_id": "566f2a64-ef8e-4218-b28d-80735bc477b9",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "scheduler.select_destinations.end",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:17.877966",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "014387578ec84bf6a7ce7ced9b2af293",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "request_spec": {
+      "instance_properties": {
+        "vm_state": "building",
+        "pci_requests": {
+          "instance_uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+          "requests": []
+        },
+        "availability_zone": null,
+        "terminated_at": null,
+        "ephemeral_gb": 0,
+        "instance_type_id": 8,
+        "user_data": null,
+        "numa_topology": null,
+        "cleaned": false,
+        "vm_mode": null,
+        "deleted_at": null,
+        "reservation_id": "r-4ebj6j1i",
+        "id": 428,
+        "security_groups": [],
+        "disable_terminate": false,
+        "display_name": "pruebaAdri",
+        "uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+        "default_swap_device": null,
+        "info_cache": {
+          "instance_uuid": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+          "deleted": false,
+          "created_at": "2016-03-31T14:44:15.000000",
+          "updated_at": null,
+          "network_info": [],
+          "deleted_at": null
+        },
+        "hostname": "pruebaadri",
+        "launched_on": null,
+        "display_description": "pruebaAdri",
+        "key_data": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDF6O82etN61u1OeV6L18RhV7AqYMuj43x2OLmdo4w+OQ6pFbulDOqeKkB0saBLoqH+8SoCw3pHKhyKBKQEgmxq/t10iPZ45rUyy4r6a4FH6eKtcSNDtHdetW759u9vxEZwS+Fx//BUcXYMbDXkBnke3lJ6bos6H8p++sRCk69eCCv5MhXBIM0atIcNZm4IvHFhCTAtHdapyPzTwKFWfaBN9Snlin3ykLFb/yoq0O6rr/+xhcHK3NiXdaOiushHaF7SM7KuNXFciyUWJmrd+MRyEXmhKlKXHLJtQH3WI04U6XvnWIVfmuZtNViayuTYBrkeX5WjWqc6slFsmT0bZfnj root@pre-epg-ostkc-01",
+        "kernel_id": "",
+        "power_state": 0,
+        "default_ephemeral_device": null,
+        "progress": 0,
+        "project_id": "882f9abf240f414a86f687388cecc3b1",
+        "launched_at": null,
+        "config_drive": "",
+        "node": null,
+        "ramdisk_id": "",
+        "access_ip_v6": null,
+        "access_ip_v4": null,
+        "deleted": false,
+        "key_name": "admin",
+        "updated_at": null,
+        "host": null,
+        "ephemeral_key_uuid": null,
+        "architecture": null,
+        "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+        "system_metadata": {
+          "instance_type_memory_mb": 512,
+          "instance_type_swap": 0,
+          "instance_type_vcpu_weight": 0,
+          "instance_type_root_gb": 20,
+          "instance_type_name": "TID-01CPU-512MB-20GB",
+          "instance_type_id": 8,
+          "instance_type_ephemeral_gb": 0,
+          "instance_type_rxtx_factor": 1,
+          "image_disk_format": "qcow2",
+          "instance_type_flavorid": "103",
+          "image_container_format": "bare",
+          "instance_type_vcpus": 1,
+          "image_min_ram": "0",
+          "image_min_disk": "20",
+          "image_base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+        },
+        "task_state": "scheduling",
+        "shutdown_terminate": false,
+        "cell_name": null,
+        "root_gb": 20,
+        "locked": false,
+        "name": "instance-000001ac",
+        "created_at": "2016-03-31T14:44:15.000000",
+        "locked_by": null,
+        "launch_index": 0,
+        "metadata": {},
+        "memory_mb": 512,
+        "vcpus": 1,
+        "image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+        "root_device_name": null,
+        "auto_disk_config": true,
+        "os_type": null,
+        "scheduled_at": null
+      },
+      "instance_type": {
+        "memory_mb": 512,
+        "root_gb": 20,
+        "deleted_at": null,
+        "name": "TID-01CPU-512MB-20GB",
+        "deleted": false,
+        "created_at": "2015-11-19T08:44:55.000000",
+        "ephemeral_gb": 0,
+        "updated_at": null,
+        "disabled": false,
+        "vcpus": 1,
+        "extra_specs": {},
+        "swap": 0,
+        "rxtx_factor": 1,
+        "is_public": true,
+        "flavorid": "103",
+        "vcpu_weight": 0,
+        "id": 8
+      },
+      "image": {
+        "status": "active",
+        "created_at": "2015-11-19T09:21:59.000000",
+        "name": "TID-RH6-1NIC.20150701",
+        "deleted": false,
+        "container_format": "bare",
+        "min_ram": 0,
+        "disk_format": "qcow2",
+        "updated_at": "2015-11-19T09:22:03.000000",
+        "id": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+        "min_disk": 15,
+        "checksum": "691eb85275cebe0b9c78bdf2a9b0753f",
+        "owner": "06abd49655b148f084c8d8e4f164e983",
+        "is_public": true,
+        "deleted_at": null,
+        "properties": {},
+        "size": 388628480
+      },
+      "num_instances": 1
+    }
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "scheduler.pre-epg-ostkc-01",
+  "message_id": "495e6af4-583a-41db-8c4c-f9e32859e721",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:18.163248",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "b6e41844530e4ece9ba79b582a7990c8",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": null,
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": null,
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": "scheduling",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": null,
+    "audit_period_ending": "2016-03-31T14:44:18.157984",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "47f3f738-119b-49bb-b20f-657c62b09f32",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.create.start",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:18.228280",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "4dd3c883e81f4dd3baaf0ca1c26479f1",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": null,
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "image_name": "TID-RH6-1NIC.20150701",
+    "host": null,
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "296644ef-27d1-4164-bb6c-bac3e0910827",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:18.659218",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "50ac2e5e24b242ed84bd7eb5b4a09575",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": null,
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": null,
+    "audit_period_ending": "2016-03-31T14:44:18.500537",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "conductor.pre-epg-ostkc-01",
+  "message_id": "42064dc4-38b2-4523-a3b6-9afe30c3ad12",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:18.897509",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "2c27d3cde21544f9a41a0aaeeea533db",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "networking",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": "networking",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": "networking",
+    "audit_period_ending": "2016-03-31T14:44:18.892840",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "bf6a3b9a-b57f-49d2-87db-8e5e281bb57a",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:19.160672",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "1c7607380b544b8bb7924bc2de35bd69",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "block_device_mapping",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": "networking",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": "block_device_mapping",
+    "audit_period_ending": "2016-03-31T14:44:19.155906",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "5440efb5-8f58-4a75-875a-544cfb76d826",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:19.331404",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "a80c5c56d6834ef78dcf628b0458bcb7",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "spawning",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "building",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": "block_device_mapping",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": "spawning",
+    "audit_period_ending": "2016-03-31T14:44:19.327993",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "9cb05cf8-3347-4c80-aff6-94c9536cd475",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.update",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:29.173056",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "f8724e04428846518e83b99382bea9ab",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "bandwidth": {},
+    "deleted_at": "",
+    "reservation_id": "r-4ebj6j1i",
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "hostname": "pruebaadri",
+    "state": "active",
+    "old_state": "building",
+    "progress": "",
+    "launched_at": "2016-03-31T14:44:28.000000",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "audit_period_beginning": "2016-03-31T14:00:00.000000",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "old_task_state": "spawning",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "new_task_state": null,
+    "audit_period_ending": "2016-03-31T14:44:29.166345",
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "2487c91a-1690-4038-b583-6baa47583bd3",
+  "_context_remote_address": "10.95.51.200"
+}
+{
+  "_context_domain": null,
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_quota_class": null,
+  "event_type": "compute.instance.create.end",
+  "_context_request_id": "req-113e08cd-7c73-4a44-9863-d0d6e6d686dc",
+  "_context_service_catalog": [
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "1a0bc3bc69004cc7b849eced56f5e8d0",
+          "internalURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v2/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volumev2",
+      "name": "cinderv2"
+    },
+    {
+      "endpoints": [
+        {
+          "adminURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "region": "RegionOne",
+          "id": "97e88978d3e64e23b9f6da92b61df5cd",
+          "internalURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1",
+          "publicURL": "http://10.95.51.200:8776/v1/882f9abf240f414a86f687388cecc3b1"
+        }
+      ],
+      "endpoints_links": [],
+      "type": "volume",
+      "name": "cinder"
+    }
+  ],
+  "timestamp": "2016-03-31 14:44:29.252631",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "fae79b6b974145a089cd17cd402741d1",
+  "_context_resource_uuid": null,
+  "_context_instance_lock_checked": false,
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "state_description": "",
+    "availability_zone": null,
+    "terminated_at": "",
+    "ephemeral_gb": 0,
+    "instance_type_id": 8,
+    "message": "Success",
+    "deleted_at": "",
+    "fixed_ips": [
+      {
+        "version": 4,
+        "vif_mac": "fa:16:3e:47:64:b3",
+        "floating_ips": [],
+        "label": "private-managment",
+        "meta": {},
+        "address": "192.168.0.90",
+        "type": "fixed"
+      }
+    ],
+    "instance_id": "42a4fd45-909a-4678-8d68-5bed2698d5b1",
+    "display_name": "pruebaAdri",
+    "reservation_id": "r-4ebj6j1i",
+    "hostname": "pruebaadri",
+    "state": "active",
+    "progress": "",
+    "launched_at": "2016-03-31T14:44:28.870676",
+    "metadata": {},
+    "node": "pre-epg-ostkc-01",
+    "ramdisk_id": "",
+    "access_ip_v6": null,
+    "disk_gb": 20,
+    "access_ip_v4": null,
+    "kernel_id": "",
+    "host": "pre-epg-ostkc-01",
+    "user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+    "image_ref_url": "http://10.95.51.200:9292/images/0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a",
+    "cell_name": "",
+    "root_gb": 20,
+    "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+    "created_at": "2016-03-31 14:44:15+00:00",
+    "memory_mb": 512,
+    "instance_type": "TID-01CPU-512MB-20GB",
+    "vcpus": 1,
+    "image_meta": {
+      "min_disk": "20",
+      "container_format": "bare",
+      "min_ram": "0",
+      "disk_format": "qcow2",
+      "base_image_ref": "0e62e87e-5a89-4c25-ac9c-d0cfc8f5528a"
+    },
+    "architecture": null,
+    "os_type": null,
+    "instance_flavor_id": "103"
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_user_identity": "b8c6d91708314e8abc1f8cd8f375cc06 882f9abf240f414a86f687388cecc3b1 - - -",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_show_deleted": false,
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_read_only": false,
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_project_domain": null,
+  "_context_timestamp": "2016-03-31T14:44:15.084331",
+  "_context_user_domain": null,
+  "_context_user_name": "admin",
+  "publisher_id": "compute.pre-epg-ostkc-01",
+  "message_id": "c280ea20-0b2f-4de1-ae8b-6985d7f7bea3",
+  "_context_remote_address": "10.95.51.200"
+}

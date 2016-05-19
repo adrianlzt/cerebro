@@ -2,10 +2,17 @@ index.docker.io
 https://quay.io/
 
 Localmente se almacenan en: /var/lib/docker/containers/
+Se puede cambiar: mirar config.md
+
 
 # Busqueda de containers:
 docker search <string>
 docker search external.registry.com/nombre
+
+Con search no podemos obtener los tags, pero lo podemos hacer con curl atacando al registry:
+curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/centos/tags/' | jq '."results"[]["name"]' |sort
+
+O mirando en: https://hub.docker.com/
 
 # Bajar container:
 docker pull <username>/<repository>

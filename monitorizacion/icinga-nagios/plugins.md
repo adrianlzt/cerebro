@@ -55,3 +55,8 @@ https://secure.opsview.com/wsvn/wsvn/opsview/trunk/opsview-core/nagios-plugins/#
 https://github.com/MonitoringPlug/monitoringplug
 https://github.com/Inuits/monitoring-plugins
 https://github.com/harisekhon/nagios-plugins
+https://github.com/appfirst/nagios-plugins
+https://github.com/dataloop/plugins
+https://github.com/scoutapp/scout-plugins <- en ruby, no de icinga, pero pueden valer como ideas
+https://github.com/MeetMe/newrelic-plugin-agent/tree/master/newrelic_plugin_agent/plugins <- en python para newrelic, valen como ideas
+https://github.com/nickanderson/check-sar-perf
