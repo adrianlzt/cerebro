@@ -1,3 +1,6 @@
+http://skunksworkedp2cg.onion/
+lista de sitios .onion
+
 piratebay
 http://uj3wazyk5u4hnvtk.onion
 --

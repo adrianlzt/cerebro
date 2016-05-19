@@ -6,7 +6,7 @@ Se puede usar http auth basic, pero mejor crear una API key desde la interfaz we
 Por defecto estaremos en una orga y los cambios aplicaran a esa orga. Mirar en la sección de orgas para ver como cambiar de una a otra
 
 Con basic auth:
-curl -XPOST -s -u "admin:adminDASH" -H "Content-Type: application/json" http://192.168.22.95/api/user/using/16
+curl -XPOST -s -u "admin:pass" -H "Content-Type: application/json" http://192.168.22.95/api/user/using/16
 
 Con API:
 curl -H "Authorization: Bearer your_key_above" http://your.grafana.com/api/dashboards/db/mydash

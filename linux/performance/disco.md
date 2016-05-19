@@ -16,3 +16,7 @@ Tamaño de la cola de peticiones a disco.
 Un valor alto puede ser bueno porque ordena las peticiones y junta las peticiones más próximas en disco.
 La desventaja es que la latencia es mayor.
 
+
+Disk IO:
+http://blog.scoutapp.com/articles/2011/02/10/understanding-disk-i-o-when-should-you-be-worried
+http://www.cmdln.org/2010/04/22/analyzing-io-performance-in-linux/

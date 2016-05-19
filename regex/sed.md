@@ -64,6 +64,10 @@ sed -n '/WORD1/,/WORD2/p' /path/to/file
 # Coger la primera linea
 cat fichero | sed 1q
 
+# Mostrar una, o unas lineas de un fichero
+sed -n 42p fichero
+cat fichero | sed -n 10,20p
+
 
 
 ### DUDAS ###

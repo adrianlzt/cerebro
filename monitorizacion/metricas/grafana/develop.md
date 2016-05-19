@@ -1,12 +1,23 @@
-https://github.com/grafana/grafana/blob/master/CONTRIBUTING.md
+https://github.com/grafana/grafana/#run-from-master
 
-git clone https://github.com/grafana/grafana.git
-cd grafana
+gvm install go1.5.3
+gvm use go1.5.3
+go get github.com/grafana/grafana
+cd $GOPATH/src/github.com/grafana/grafana
+go run build.go setup
+godep restore
+go run build.go build
 npm install
-grunt server
+sudo npm install -g grunt-cli
 grunt
+./bin/grafana-server
+
+navegador: http://localhost:3000
+admin:admin
 
 
-A 5/2/2015 he tenido que usar la tag v2.6.0
-No lo he conseguido
-Fichero CONTRIBUTING.md muy viejo, me han dicho que lo van a actualizar.
+Si tocamos el código javascript tendremos, parar el servidor, correr grunt de nuevo y arrancar de nuevo el server.
+
+No he probado si el "bra" que dice la doc soluciona esto.
+
+

@@ -19,6 +19,14 @@ TW_PERCENTAGE=$(awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}")
 
 
 # Numeros flotantes
-[[ 3.0 < 5.4 ]]
+echo | awk -v n1=5.65 -v n2=3.14e-22  '{if (n1<n2) printf ("%s < %s\n", n1, n2); else printf ("%s >= %s\n", n1, n2);}' 
 
-con -eq, -gt, etc solo valen números enteros
+
+El símbolo '>' en el echo es solamente por completitud, no esta haciendo nada
+
+echo "100 > 67" | awk '{if ($1 > $3) exit 0; else exit 1;}'
+if [[ $? == 0 ]]; then
+    echo "100 es mayor que 67"
+else
+    echo "100 es menor que 67"
+fi

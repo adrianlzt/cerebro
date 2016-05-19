@@ -1,0 +1,67 @@
+{
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_request_id": "req-b23266d3-a6d2-4aef-a987-4323c7429eda",
+  "event_type": "floatingip.update.start",
+  "timestamp": "2016-03-31 15:11:28.877820",
+  "_context_tenant_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "1e38a7a72fcd4b61aeabef3150e9037a",
+  "_context_tenant_name": "Designate",
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "id": "371d7b59-9b35-41c0-b165-6a7c8a5ff120",
+    "floatingip": {
+      "fixed_ip_address": "192.168.0.90",
+      "port_id": "e8c90b40-0279-431b-a078-4381f7eb34ee"
+    }
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_timestamp": "2016-03-31 15:11:28.875697",
+  "_context_user_name": "admin",
+  "publisher_id": "network.pre-epg-ostkc-01",
+  "message_id": "9b7b7d38-c651-4a88-820a-362e5b82a8d9"
+}
+{
+  "_context_roles": [
+    "admin"
+  ],
+  "_context_request_id": "req-b23266d3-a6d2-4aef-a987-4323c7429eda",
+  "event_type": "floatingip.update.end",
+  "timestamp": "2016-03-31 15:11:29.142029",
+  "_context_tenant_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_user": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "_unique_id": "464cdd9a32124c2b8d961cd677cdd5f1",
+  "_context_tenant_name": "Designate",
+  "_context_user_id": "b8c6d91708314e8abc1f8cd8f375cc06",
+  "payload": {
+    "floatingip": {
+      "floating_network_id": "07dda449-9d7d-4eaf-991d-d81a0231d25c",
+      "router_id": "dada9d39-91aa-4937-92e3-eca54a1609e0",
+      "fixed_ip_address": "192.168.0.90",
+      "floating_ip_address": "10.95.51.213",
+      "tenant_id": "882f9abf240f414a86f687388cecc3b1",
+      "status": "DOWN",
+      "port_id": "e8c90b40-0279-431b-a078-4381f7eb34ee",
+      "id": "371d7b59-9b35-41c0-b165-6a7c8a5ff120"
+    }
+  },
+  "_context_project_name": "Designate",
+  "_context_read_deleted": "no",
+  "_context_auth_token": "6859063698ce4a05b5f1204fe4542396",
+  "_context_tenant": "882f9abf240f414a86f687388cecc3b1",
+  "priority": "INFO",
+  "_context_is_admin": true,
+  "_context_project_id": "882f9abf240f414a86f687388cecc3b1",
+  "_context_timestamp": "2016-03-31 15:11:28.875697",
+  "_context_user_name": "admin",
+  "publisher_id": "network.pre-epg-ostkc-01",
+  "message_id": "a2110498-c6eb-4167-8e8c-72c61161b789"
+}

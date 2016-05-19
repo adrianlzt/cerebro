@@ -1,6 +1,6 @@
 # http://docs.ansible.com/playbooks_delegation.html#local-playbooks
 - name: a play that runs entirely on the ansible host
-  hosts: 127.0.0.1
+  hosts: localhost
   connection: local
   gather_facts: false
   tasks:

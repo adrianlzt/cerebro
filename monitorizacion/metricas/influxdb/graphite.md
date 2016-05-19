@@ -25,6 +25,10 @@ Hace falta configurar el engine a tsm1
 echo "sensu.metric.net.server0.eth0.rx_dropped 0 1444234982" > /dev/tcp/10.95.82.180/2003
 
 
+#5562, #5419: Graphite: Support matching tags multiple times Thanks @m4ce
+
+
+
 > select * from net
 name: net
 ---------

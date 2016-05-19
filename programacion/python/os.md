@@ -45,3 +45,8 @@ Subir por un directorio
 
 os.getpid()
 current pid
+
+
+HOME
+from os.path import expanduser
+home = expanduser("~")

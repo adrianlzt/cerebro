@@ -57,3 +57,6 @@ grep -I ...
 
 Tratar ficheros binarios como texto (necesario para ficheros codigo fuente de c):
 grep -a ... fichero.c
+
+fgrep "$" pepe.txt
+no trata la busqueda como una expresion regex

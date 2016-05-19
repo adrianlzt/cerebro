@@ -1,10 +1,15 @@
-https://docs.influxdata.com/influxdb/v0.10/guides/writing_data/
-https://docs.influxdata.com/influxdb/v0.10/write_protocols/line/
+https://docs.influxdata.com/influxdb/v0.11/guides/writing_data/
+https://docs.influxdata.com/influxdb/v0.11/write_protocols/line/
 
 localhost:8086
 
 create a database
-curl -X POST 'http://localhost:8086/db?u=root&p=root' -d '{"name": "site_development"}'
+curl -G http://localhost:8086/query --data-urlencode "q=CREATE DATABASE mydb"
+
+https://docs.influxdata.com/influxdb/v0.13/administration/012_vs_013/#deprecated-query-endpoint-request-behavior
+Al endpoint query/ se debe usar:
+ GET para SELECT y SHOW
+ POST para el resto
 
 
 # Procolo INLINE
@@ -14,6 +19,10 @@ curl -i -XPOST 'http://localhost:8086/write?db=mydb' --data-binary 'cpu_load_sho
 
 udp:
 echo "medida value=3" > /dev/udp/127.0.0.1/8086
+
+
+curl -su "USER:PASS" -i -XPOST 'http://esjc-dsmm-ws01p.service.dsn.inet:8086/write?db=insurance-telematics-cyclops' --data-binary 'mlaratest,title=titulo\ ejemplo tag="tagejemplo",texto="Texto de_prueba"'
+
 
 
 El timestamp debe ser en microsegundos.

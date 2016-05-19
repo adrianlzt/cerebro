@@ -15,6 +15,14 @@ Traceback (most recent call last):
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 1: ordinal not in range(128)
 
 
+Podemos hacer que si encuentra un caracter raro se lo salte:
+https://docs.python.org/2.7/library/codecs.html#codec-base-classes
+
+>>> "ñasdás".decode("ascii", "ignore")
+u'asds'
+
+
+
 Encoding from unicode to str.
 
 >>> u"a".encode("utf-8")

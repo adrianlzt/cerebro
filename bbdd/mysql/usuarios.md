@@ -18,6 +18,7 @@ Acceso desde cualquier ip:
 Mostrar credenciales:
 mysql> SHOW GRANTS;
 mysql> SHOW GRANTS FOR 'user'@'ip';
+mysql> select host, user, password from mysql.user;
 
 Borrar usuario:
 mysql> DROP USER 'user'@'localhost';

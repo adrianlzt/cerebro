@@ -1,0 +1,1 @@
+../../virtualizacion/openstack/ceph/go.md

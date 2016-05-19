@@ -1,0 +1,20 @@
+- name: install percona-xtrabackup
+  yum: name=percona-xtrabackup state=latest
+
+- name: install moreutils to have chronic
+  yum: name=moreutils state=latest
+
+- name: crear estructura de directorios
+  file: dest=/etc/automysqlbackup state=directory
+        owner=mysql group=mysql mode=0755
+  with_items:
+    - /opt/mariadb_backup
+    - /opt/mariadb_backup/daily
+    - /opt/mariadb_backup/weekly
+    - /opt/mariadb_backup/monthly
+
+- name: create mysql user for backups
+  mysql_user: name=mysql password="{{ lookup('password', 'mariadb_backup_pass chars=ascii_letters')}}" "priv=*.*:RELOAD,LOCK TABLES,REPLICATION CLIENT" state=present
+
+- name: cron para realizar los backups
+  template: src=mariadb_backup.j2 dest=/etc/cron.d/mariadb_backup

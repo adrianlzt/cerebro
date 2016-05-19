@@ -15,3 +15,8 @@ Event handlers are optional system commands (scripts or executables) that are ru
         event_handler           restart-httpd
         ...
         }
+
+# Global
+http://docs.icinga.org/latest/en/eventhandlers.html
+
+Global host and service event handlers are run for every host or service state change that occurs, immediately prior to any host- or service-specific event handler that may be run

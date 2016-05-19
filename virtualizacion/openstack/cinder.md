@@ -11,3 +11,8 @@ A partir de la release Icehouse se puede dar valores a los backend donde se alma
 
 Volume Types: para poder elegir en que Storage Tier queremos nuestro volumen (HDD, HDD-SSD, SSD, ...)
 Con volume retype podemos cambiar esto una vez creado el volumen.
+
+
+Mostrar imagenes almacenadas en ceph:
+rados ls --pool images | grep "rbd_id"
+

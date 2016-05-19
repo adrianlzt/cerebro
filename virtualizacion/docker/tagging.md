@@ -11,3 +11,7 @@ docker tag imagen adrianlzt/imagen 1.5
 Tagear para un repo externo
 docker tag adrianlzt/image:1.5 externo.registry.com/adrianlzt/imagen:1.5
 docker push externo.registry.com/adrianlzt/imagen:1.5
+
+
+## Listar tags
+curl -s -S 'https://registry.hub.docker.com/v2/repositories/library/centos/tags/' | jq '."results"[]["name"]' |sort

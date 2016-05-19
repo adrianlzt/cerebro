@@ -1,3 +1,6 @@
+http://www.rpm.org/max-rpm-snapshot/rpmbuild.8.html
+https://github.com/rpm-software-management/rpm
+
 yum install rpm-build
 
 
@@ -17,6 +20,17 @@ $ rpmbuild --help
   -tb                           build binary package only from <tarball>
   -ts                           build source package only from <tarball>
 
+-ba es: -bp -bc -bi -bb
+
+bc hace %prep antes
+
+Si queremos hacer %build sin %prep:
+rpmbuild -bc --short-circuit
+
+Ejecutar las fases por separado:
+rpmbuild -bp ...
+rpmbuild -bc --short-circuit ...
+rpmbuild -bi --short-circuit
 
 Generar rpm a partir de un .tar.gz
 Tiene el fichero .spec en un directorio support/

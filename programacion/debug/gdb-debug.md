@@ -2,6 +2,10 @@ http://darkdust.net/files/GDB%20Cheat%20Sheet.pdf
 http://www.thegeekstuff.com/2010/03/debug-c-program-using-gdb/
 http://beej.us/guide/bggdb/#qref
 http://www.yolinux.com/TUTORIALS/GDB-Commands.html
+http://linux.bytesex.org/gdb.html
+
+Para cosas mas especificas de ASM:
+programacion/ensamblador/gdb.md
 
 Como hacer debug de programas con gdb.
 
@@ -10,6 +14,8 @@ Como hacer debug de programas con gdb.
 
 2. Arrancar el gdb con el programa
 	gdb programa
+
+	Si no encuentra las fuentes: gdb --directory=fuentes/ ...
 
 Si queremos interrumpir el programa mientras está ejecutándose haremos Control+C
 
@@ -62,4 +68,13 @@ show environment: muestra las variables de entorno
 whatis: información sobre el tipo de una variable
 set var variable=34, definir el valor de una variable
 j,jump <linea>: continua la ejecución en esa linea
+watch variable: para la ejecucción cuando se modifique esa variable
+
+
+# Breakpoints
+Podemos poner breakpoints en ficheros que aun no han sido cargados:
+(gdb) b build/build.c:299
+No source file named build/build.c.
+Make breakpoint pending on future shared library load? (y or [n]) y
+Breakpoint 1 (build/build.c:299) pending.
 

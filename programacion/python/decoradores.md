@@ -7,6 +7,8 @@ Libreria de decoradores: https://wiki.python.org/moin/PythonDecoratorLibrary
 Con los decorades tenemos ciertas limitaciones. 
 Para estos casos mirar functools.md wrappers
 
+Ejemplo simple:
+decorador_simple.py
 
 Mirar ejemplo de una función decoradora para comprobar un login:
 decorador_app.py

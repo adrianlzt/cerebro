@@ -1,3 +1,6 @@
+mirar inside.md
+
+
 Si queremos extraer un kernel de un vmlinuz podemos usar el script
 https://github.com/torvalds/linux/blob/master/scripts/extract-vmlinux
 

@@ -1,5 +1,8 @@
 nfsiostat dentro del paquete nfs-utils
 
+Parte del paquete systat: http://sebastien.godard.pagesperso-orange.fr/index.html
+https://github.com/sysstat/sysstat
+
 
 The iostat command is used for monitoring system input/output device loading by observing the time the devices are active in relation to their average transfer rates. The  iostat  command  generates  reports that can be used to change system configuration to better balance the input/output load between physical disks.
 
@@ -65,3 +68,20 @@ Info de CPU
   			el hipervisor va asignado ciclos a el host y a las vm. En el host veremos aquí los ciclos que se están asginando a las vm
   %idle		% de tiempo de CPU libre y no esperando IO
   			el tiempo total que la CPU está parada es %idle + %iowait
+
+
+
+
+# Calculo await
+https://github.com/sysstat/sysstat/blob/414e420b31983dfde62d844c4491dd881802a41e/common.c#L683
+
+iostat toma medidas cada x segundos.
+Para calcular el await, w_await y r_await lo que hace es:
+tiempo dedicado a IO / numero de operaciones
+
+Este tiempo se obtiene de /proc/diskstats, haciendo la diferencia entre el contador actual y la medida anterior.
+El número de operaciones se obtiene de la misma manera.
+
+
+Calculo r_arait, w_await:
+https://github.com/sysstat/sysstat/blob/master/iostat.c#L942

@@ -2,6 +2,10 @@ http://docs.ansible.com/ansible/list_of_cloud_modules.html
 
 Auth: ~/.config/openstack/clouds.yaml
 
+Los nuevos modulos (os...) tiran de la lib shade
+http://docs.openstack.org/infra/shade/usage.html
+https://github.com/openstack-infra/shade
+
 
 
 # Network

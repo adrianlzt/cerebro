@@ -1,3 +1,5 @@
+http://docs.ceph.com/docs/hammer/rados/operations/user-management/
+
 /usr/bin/ceph auth get-or-create client.cyclops mon 'allow r' > /etc/ceph/client.cyclops.keyring
 
 ceph -k /etc/ceph/client.cyclops.keyring -n client.cyclops health

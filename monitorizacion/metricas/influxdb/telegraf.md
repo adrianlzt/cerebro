@@ -50,8 +50,14 @@ Para ver ayuda de un cierto plugin:
 
 telegraf -usage NOMBRE
 
+## nagios
+https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md#nagios
+
 ## dig / dns
 Nos devuelve tiempos de respuesta del servidor dns
+
+## exec
+Ejecuta un programa que debe devolver las métricas en formato inline, graphite o json
 
 
 ## Apache
@@ -96,6 +102,14 @@ envia ping a un server y mide tiempo de respuesta
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat
 
 Monitoriza un proceso usando los valores de /proc/PID/...
+Si en el regex ponemos "." monitorizará todos los procesos
+
+/etc/telegraf/telegraf.d/procs.conf 
+[[inputs.procstat]]
+  user = "icinga"
+[[inputs.procstat]]
+  pattern = "graphios"
+
 
 ## sensors
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sensors
@@ -105,6 +119,50 @@ Utiliza lm-sensors para obtener información de temperatura, ventiladores, etc
 ## snmp
 Obtiene valores de snmp
 
+Tendremos que cargar el mapeo de nombre de oid a número.
+
+collect = ["interface_speed", "if_number", "if_out_octets"]
+aqui ponemos nombre de cosas que vamos a definir mas tarde
+
+Si queremos coger un único valor:
+  [[inputs.snmp.get]]
+    name = "if_number"
+    oid = "ifNumber"
+
+Si hay ese oid es un arbol y solo queremos coger uno:
+  [[inputs.snmp.get]]
+    name = "interface_speed"
+    oid = "ifSpeed"
+    instance = "1"
+
+Si queremos coger todo un arbol:
+  [[inputs.snmp.bulk]]
+    name = "if_out_octets"
+    oid = "ifOutOctets"
+
+Este último creará una medida ifOutOctets con un único valor (ifOutOctets) y tags por cada uno de los elementos del arbol
+
+## sysstat
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sysstat
+
+## http reponse
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response
+
+## Github
+Puede levantar un puerto donde apuntamos un webhook de github
+
+
+# Consumo
+Con la instalación básica haciendo pooling cada 10"
+  15MB 0.25%
+
+Metiendo procstat para todos los procesos (el resto básico, con pooling cada 10"):
+  17.7MB 2.29%
+  aunque la memoria seguia creciendo poco a poco
+  el consumo de cpu tenia bastante variación
+
+Metiendo procstat para todos los procesos (el resto básico, con pooling cada 30"):
+  16.4MB 0.7%
 
 
 # Internals

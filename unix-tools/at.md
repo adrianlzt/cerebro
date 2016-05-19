@@ -1,5 +1,10 @@
 http://www.thegeekstuff.com/2010/06/at-atq-atrm-batch-command-examples/
 
+# Instalar
+
+## Centos
+yum install at
+
 Comando para ejecutar tareas en hora determinada:
 
 $ at 22:00

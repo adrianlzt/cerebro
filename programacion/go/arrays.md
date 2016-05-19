@@ -1,4 +1,5 @@
-# Arrays. Go le llama 'Slices'. Un 'slice' apunta a un array y tiene un tamaño
+Arrays. Go le llama 'Slices'. Un 'slice' apunta a un array y tiene un tamaño
+
 http://golang.org/doc/articles/slices_usage_and_internals.html
 p := []int{1,2,3,4}
 p[0] = 1
@@ -13,3 +14,30 @@ cap(b): capacidad de b
 b[3] = 3  da error, los valores se meten con append.
 b = append(b,3)
 
+
+# Comparar
+https://golang.org/pkg/reflect/#DeepEqual
+
+reflect.DeepEqual(a,b)
+
+In general DeepEqual is a recursive relaxation of Go's == operator.
+
+
+# Ordenar
+a1 := []string{"hola", "ananas", "aaa"} 
+sort.Strings(a1) 
+// Tras la funcion a1 estará ordenada
+
+# Diferencia
+http://stackoverflow.com/questions/19374219/how-to-find-the-difference-between-two-slices-of-strings-in-golang
+
+A base de bucles for o con map
+
+# Copia
+http://stackoverflow.com/a/30182622
+
+arr := []int{1, 2, 3}
+tmp := make([]int, len(arr))
+copy(tmp, arr)
+fmt.Println(tmp)
+fmt.Println(arr)

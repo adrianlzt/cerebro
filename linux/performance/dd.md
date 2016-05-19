@@ -40,3 +40,6 @@ dd if=/dev/urandom of=500megabytes bs=1M count=500
 dd if=/dev/zero of=500megabytesbis bs=1M count=500
 524288000 bytes (524 MB) copied, 1.33937 s, 391 MB/s
 
+
+# Con barra de progreso
+dd if=/lugar/de/origen |pv|dd of=/lugar/de/destino

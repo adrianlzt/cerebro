@@ -29,6 +29,14 @@ fi
 # Regexp
 if [[ "hola" =~ ^h.l[aA] ]]; then echo "match"; fi
 
+# Glob
+Si queremos comprobar que existen fichero con un determinado patron podemos hacer:
+if [[ $(compgen -G /tmp/*.tar.gz) ]]; then
+  echo "Si hay ficheros .tar.gz en /tmp"
+else
+  echo "No hay ficheros .tar.gz en /tmp"
+fi
+
 
 
 FORMATO ANTIGUO:

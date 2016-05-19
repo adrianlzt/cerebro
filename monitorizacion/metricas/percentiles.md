@@ -6,3 +6,12 @@ Use percentiles, not averages. Percentiles (50th, 99th, 99.9th, 99.99th) are mor
 En InfluxDB la función nos devuelve el valor que cumple el percentil que estamos pidiendo.
 Ejemplo, almacenamos el tiempo de respuesta de una página web.
 Si preguntamos por el percentil 90%, nos dará un número, donde el 90% de las peticiones tardan menos que ese tiempo en ser contestadas.
+
+
+Mirar percentiles.png
+En el se muestran con los puntos morados los valores que tenemos almacenados.
+Con la línea azul la media de dichos puntos.
+Y con las barras stacked, los distintos valores de percentil calculados.
+Podemos ver que si hiciesemos caso a la media obtendríamos una visión incorrecta. Podríamos pensar que la mayoría de la gente carga la web en 50ms.
+Mirando los percentiles obtenemos una visión más cercana a la realidad. Vemos que el 50% de la gente carga la web en 9ms o menos.
+Y que el 75% carga la web en 105ms o menos.

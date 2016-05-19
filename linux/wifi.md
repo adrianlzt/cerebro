@@ -9,6 +9,18 @@ sudo iwconfig wlo1
 Calidad del enlace
 sudo iwconfig wlo1 | grep -i --color quality
 
+Datos sobre los interfaces de red:
+lshw -C network
+
+Dominio regulador para la wifi:
+sudo iw reg get
+
+Para modificarlo: http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+sudo iw reg set ES
+
+vi /etc/default/crda
+REGDOMAIN=ES
+
 
 # Conectar a una wifi con wpa:
 wpa_passphrase SSID PASSPHRASE >> /etc/wpa_supplicant.conf

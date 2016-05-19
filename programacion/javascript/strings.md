@@ -27,3 +27,9 @@ txt.replace(/xx/g, "aa")
 var cadena = "hht://idealista.com/asd"
 cadena.includes("idealista")
 => true
+
+# Join
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+var energy = fruits.join();
+Banana,Orange,Apple,Mango
+

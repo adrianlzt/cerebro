@@ -20,6 +20,9 @@ find . -exec file {} + | grep -o ":[^,]*" | sort | uniq -c | sort -nr
 Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
 find . -maxdepth 3 -exec du -h {} + | sort -hr | uniq | head -20
 
+Uso de inodos:
+find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n | tail -20
+
 Buscar ficheros que no acaben en .cfg
 find . ! -iregex ".*\.cfg$" -type f
 
@@ -57,6 +60,13 @@ find /bin -type f -perm /111
 
 Buscar set suid:
 find / -user root -perm -4000 -exec ls -ldb {} \;
+
+Mostrar ficheros ocultos (dot files)
+find . -maxdepth 1 -name ".[^.]*"
+
+Contar todo el espacio que consumen:
+find . -maxdepth 1 -name ".[^.]*" | xargs du -hsc
+
 
 # Exec
 http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories  

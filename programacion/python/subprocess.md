@@ -1,3 +1,5 @@
+mirar sh.md
+
 Usar https://docs.python.org/3.2/library/subprocess.html
 https://pypi.python.org/pypi/subprocess32/
 Para usarlo en python2.7

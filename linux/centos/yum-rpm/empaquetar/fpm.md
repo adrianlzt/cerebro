@@ -10,6 +10,10 @@ Instalación:
 
 gem install fpm
 
+Para centos6:
+gem install fpm -v 1.4.0
+  https://github.com/jordansissel/fpm/issues/1090
+
 Crear paquetes:
 fpm -s <source type> -t <target type> -n <package name> -v <version> [list of sources]...
 

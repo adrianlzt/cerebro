@@ -27,3 +27,14 @@ Para poder hacer MitM SSL.
 Sacar el certificado raiz de Charles para instalarlo en chrome:
 Help menu and choose "SSL Proxying > Save Charles Root Certificate"
 Añadirlo como entidad emisora
+
+
+
+# ICMP redirect
+https://blog.zimperium.com/doubledirect-zimperium-discovers-full-duplex-icmp-redirect-attacks-in-the-wild/
+
+Se trata de enviar un paquete ICMP especial a la victima indicandole una mejor ruta para una determinada ip.
+De esta manera le podemos decir que para 8.8.8.8 vaya a nuestra ip, como si fuesemos un gateway de salida a internet.
+
+La mayoría de linux y windows no aceptan este tipo de peticiones.
+La mayoría de móviles si las aceptan.

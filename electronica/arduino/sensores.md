@@ -1,3 +1,6 @@
+https://tkkrlab.nl/wiki/
+web donde explican cada uno de los sensores y cual es cada pata
+
 http://www.aliexpress.com/snapshot/7178966306.html?orderId=71581860628313
 Kit por 11€ de 37 sensores
 

@@ -41,6 +41,9 @@ chrome://chrome-urls/
 Consumo de memoria por pestaña
 chrome://memory-redirect/
 
+Caches DNS
+chrome://net-internals/#dns
+
 
 Task Manager: consumo de memoria, cpu, red, e id del proceso
 Shift+Esc

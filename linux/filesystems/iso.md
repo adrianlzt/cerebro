@@ -9,3 +9,6 @@ mkisofs -r -o /fully-qualified-file-name-of-iso-image.iso /name-of-directory-con
 Descomprimir iso
 apt-get install p7zip-full
 
+
+Crear iso a partir de un cd:
+dd if=/dev/cdrom of=/tmp/cdimg1.iso

@@ -22,6 +22,9 @@ sysdig -A –r trace.scap –c echo_fds "fd.filename=ccJvb4Mi.s"
   ver la actividad de escritura a un fichero
 
 
+Ver lo que han hecho los usuarios. Nos dice en cada hora que usuario a ejecuta que comando.
+sysdig -c spy_users
+
 Errores:
 See the files where most time has been spent
 sysdig -c topfiles_time

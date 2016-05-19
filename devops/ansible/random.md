@@ -21,3 +21,14 @@ Para tener solo un único valor
  - set_fact:
      r: "{{ 100 | random }}"
    run_once: yes
+
+
+# Generar password
+http://docs.ansible.com/ansible/playbooks_lookups.html#the-password-lookup
+
+{{ lookup('password', '/tmp/passwordfile chars=ascii_letters')}}
+
+Lo saca por return value y la almacena en /tmp/passwordfile (en el host que lanza el ansible)
+
+Si el fichero ya existe leera el valor ya generado.
+Tambien se puede poner un path relativo a donde estemos ejecutando el playbook (no si si relativo al dir del playbook a al working dir)

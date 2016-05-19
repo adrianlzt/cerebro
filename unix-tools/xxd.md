@@ -12,3 +12,7 @@ echo "515545" | xxd -r -p
 Convertir texto a hex
 echo -n QUE | xxd -p
 515545
+
+
+Editor hexadecimal:
+xxd $file | vipe | xxd -r | sponge $file

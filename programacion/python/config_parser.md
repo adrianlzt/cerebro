@@ -11,6 +11,7 @@ hola: 123
 
 prueba.py
 import ConfigParser
+#import configparse #en python3
 config = ConfigParser.RawConfigParser()
 config.read("prueba.cfg")
 config.get('agent','hola')

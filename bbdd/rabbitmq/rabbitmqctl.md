@@ -1,0 +1,3 @@
+rabbitmqctl status
+
+rabbitmqctl stop

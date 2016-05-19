@@ -10,6 +10,9 @@ b.get('four','no existe')
   devuelve el valor de la key 'four', o, si no existe esa key, devolverá 'no existe'
 
 b.has_key("cosa")
+Mejor asi (en python3 no hay has_key):
+"cosa" in b
+
 
 Añadir otro elemento:
 b['key'] = value
@@ -33,6 +36,11 @@ Loop sobre el diccionario
 >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
 >>> for k, v in knights.iteritems():
 ...     print k, v
+
+Python3:
+for k, v in knights.tems():
+    print(k,v)
+
 
 >>> cosa
 {'--hola': 123, 'adios': 666}
@@ -80,3 +88,11 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 >>> data
 {'p3': [{'t': 1111}, {'t': 2222}]}
 
+
+# Obtener la key desde la value
+mydict = {'george':16,'amber':19}
+print mydict.keys()[mydict.values().index(16)] # Prints george
+
+Or in Python 3.x:
+mydict = {'george':16,'amber':19}
+print(list(mydict.keys())[list(mydict.values()).index(16)]) # Prints george

@@ -51,6 +51,21 @@ Control+Alt+F10
   run tests
   No hay shortcut para ejecutar tests con coverage
 
+## Folding
+Collapse
+Control+'-' (del num pad)
+
+Expand
+Control+'+' (del num pad)
+
+Collapse all
+Control+Mayus+'-' (del num pad)
+
+Expand all
+Control+Mayus+'+' (del num pad)
+
+
+
 # Tests #
 http://confluence.jetbrains.com/display/PYH/Creating+and+running+a+Python+unit+test#CreatingandrunningaPythonunittest-CreatingasimplePythonproject
 

@@ -1,3 +1,12 @@
+El cluster es solo para la version de pago:
+https://influxdata.com/blog/update-on-influxdb-clustering-high-availability-and-monetization/
+Parece que el precio será: $399 per month
+
+Para la version opensource hay disponible high availability: mirar ha.md
+
+
+# ANTIGUO
+
 https://docs.influxdata.com/influxdb/v0.10/guides/clustering/
 0.10.0
 

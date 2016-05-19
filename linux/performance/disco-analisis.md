@@ -58,3 +58,7 @@ collectl
 cifsiostat/nfsiostat
 
 (faltan 2)
+
+https://github.com/brendangregg/perf-tools/blob/master/fs/cachestat
+show Linux page cache hit/miss statistics
+WARNING: This uses dynamic tracing of kernel functions, and could cause kernel panics or freezes.

@@ -1,3 +1,7 @@
+Actualizar keys:
+sudo pacman -S archlinux-keyring
+
+
 sudo mkdir /root/.gnupg/
 sudo touch /root/.gnupg/dirmngr_ldapservers.conf
 sudo pacman-key -r 962DDE58

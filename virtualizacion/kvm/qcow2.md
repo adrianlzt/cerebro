@@ -13,11 +13,21 @@ qemu -m 256 -hda test01.img -kernel-kqemu &
   Según vaya haciendo cambios en el sistema, estos se guardan en test01.img
 
 
+Info:
+qemu-img info imagen.qcow2
+
+Cambiar imagen base (para renombrar la imagen base):
+qemu-img rebase -u -b nuevabase disco2.qcow2
+
+
 Montar imagen
 
 sudo guestmount -a master-2.img -i /mnt
   esto pertenece al paquete libguestfs
   la imagen primero la converti de qcow2 a raw: qemu-img convert -O raw master-2.qcow2 master-2.img
+
+Desmontar
+sudo umount /mnt
 
 
 Cambiar password de root:

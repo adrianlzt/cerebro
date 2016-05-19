@@ -63,7 +63,28 @@ Las tareas se ejecutan en background por defecto, por lo que no hace falta poner
 https://help.ubuntu.com/community/CronHowto
   "These commands (and their run times) are then controlled by the cron daemon, which executes them in the system background"
 
+# Gestion del stdout/stderr
+unix-tools/chronic.md
+
+Con esta utilidad solo tendremos stdout/stderr si el comando tiene un RC!=0
+
+# Timeout
+http://mywiki.wooledge.org/BashFAQ/068
+
+0 * * * *  you  timeout 10s cron-task
+
+# Evitar que el mismo cron corra antes de que termine el ultimo
+http://mywiki.wooledge.org/BashFAQ/045
+
+0 * * * *  you  flock -nx /var/lock/cron-task cron-task
 
 # Problemas
 Si el fichero de cron de un usuario tiene permisos de escritura no se ejecutará.
 Si lo reeditamos con "crontab -e" cogerá los permisos adecuados.
+
+
+The crontab command has one of the worst UI problems:
+1. "crontab -e" lets you edit your crontab file, and "crontab -r" deletes it (without asking). The two keys are next to each other.
+2. "crontab" (no arg) reads the contents of the crontab file from stdin and replaces it. When you accidentally hit Ctrl-D after it, your crontab is replaced with an empty file.
+reply
+
