@@ -1,1 +1,0 @@
-../networking/nmap.md

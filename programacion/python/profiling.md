@@ -3,3 +3,9 @@ It relies on greenlet profiler (http://emptysqua.re/blog/greenletprofiler/) whic
 The main advantage of these profilers over cProfile or hotshot (which is also deprecated) is that they can trace multithreaded programs and support using cpu time instead of wall clock time. Moreover, the callgrind output format is supported, so we can use fancy graphical tools such as kcachegrind (http://kcachegrind.sourceforge.net/html/Home.html) to analyze the results.
 
 Mirar gprofile.py
+
+
+https://github.com/nvdv/vprof
+Nos hace flame graphs
+Dice como gasta la memoria.
+Analiza que parte del código se usa más

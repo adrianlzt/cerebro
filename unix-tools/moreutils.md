@@ -22,6 +22,10 @@ zrun: automatically uncompress arguments to command
 
 
 # chronic
+https://git.joeyh.name/?p=moreutils.git;a=blob;f=chronic;h=7cfc2d69d326c71c0f71d7e97785dd01fb186ff1;hb=HEAD
+
+Implementación en bash: http://habilis.net/cronic/cronic
+
 Solo muestra el stdout/stderr si el comando sale con RC!=0
 Útil para poner como prefijo a tareas de cron
 
@@ -71,3 +75,6 @@ cat fichero | grep -v lineafea > fichero
 
 Sería:
 cat fichero | grep -v lineafea | sponge fichero
+
+Otro ejempli tipico:
+cat fichero | sort | sponge fichero

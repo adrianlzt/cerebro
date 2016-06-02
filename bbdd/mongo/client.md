@@ -35,15 +35,17 @@ function () {
 > db.site.find({'site.code': "3"})		Busca en un parametro anidado
 
 
+Sacar un json por pantalla:
+mongo --eval "printjson(rs.status())"
+
 
 ## Replica set
+mongo `mongo --host localhost --quiet --eval "db.isMaster()['primary']"`/database
+
+Otra opción:
 Conectar al primerio de un replica set:
 mongo --nodb
 > conn = new Mongo("myReplicaSet/A:27017,B:27017,C:27017")
-
-Otra opción:
-mongo --host `mongo --host unserver --quiet --eval "db.isMaster()['primary']"`
-
 Saber si estamos en el master:
 db.isMaster().ismaster
 

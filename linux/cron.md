@@ -1,5 +1,8 @@
 http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
 
+Para systemd tenemos un susituto:
+Mirar linux/systemd/timer_example.systemd
+
 /etc/anacrontab
 Donde se define cuando se va a ejecutar el daily, weekly, monthly
 Suele llevar un random delay para que no se ejecute siempre exactamente a la misma hora
@@ -13,6 +16,11 @@ Suele llevar un random delay para que no se ejecute siempre exactamente a la mis
 # *  *  *  *  * user-name command to be executed
 
 Si se mete en el "crontabe -e" de cada usuario, no hace falta poner el 'user-name'
+
+Se puede instalar el cron de cada user a partir de un fichero con:
+crontab fichero
+
+Este fichero lo podemos tener giteado por ejemplo.
 
 
 m 0-5 ocurre todos los minutos 0,1,2,3,4,5

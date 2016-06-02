@@ -25,6 +25,10 @@ pass generate -n Amazon/amazonemail@email.com 21
   con -c no la muestra, solo la pone en el clipboard
   si quitamos -n nos pone caracteres no alfanuméricos
 
+pass generate -ni path/ya/existente
+  genera una clave alfanumerica para una entrada que ya existe
+  el resto de metadatos los conserva
+
 # Insertar una clave
 pass insert email/gmail/pepito@gmail.com
   aqui pregunta por la clave

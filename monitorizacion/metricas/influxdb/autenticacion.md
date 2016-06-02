@@ -45,7 +45,7 @@ GRANT ALL PRIVILEGES TO <username>
 REVOKE ALL PRIVILEGES FROM <username>
   quitar permisos de admin a un user
 
-GRANT [READ,WRITE,ALL] ON <database_name> TO <username>
+GRANT [READ,WRITE,ALL] ON "<database_name>" TO "<username>"
 
 REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>
 

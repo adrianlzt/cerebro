@@ -1,6 +1,6 @@
 http://www.madrid.org/cs/Satellite?pagename=Contribuyente%2FPage%2FCONT_contenidoFinal&cid=1142344016924
 
-Bajar programa con el que se rellena el modulo 620 (pago impuesto sobre Transmisión de Vehículos Usados) y también nos genera un contrato de compraventa.
+Bajar programa con el que se rellena el modelo 620 (pago impuesto sobre Transmisión de Vehículos Usados) y también nos genera un contrato de compraventa.
 Este impuesto es un 4% sobre el valor de la compra.
 Como mínimo habrá que pagar el 4% sobra unas tablas que tiene hacienda.
 
@@ -28,3 +28,9 @@ Hace falta pedir cita:
 https://sede.dgt.gob.es/es/tramites-y-multas/cita-previa/jefaturas/
 
 Fotocopia dni vendedor, DNI vendedor (el real), ficha técnica, permiso de circulación, modelo 620 pagado, formulario de trafico (https://sede.dgt.gob.es/Galerias/tramites-y-multas/tu-coche/cambio-titularidad/9.050_Castellano.pdf) firmado por ambos, contrato de compraventa firmado por ambos.
+
+Tiene que tener pagado el impuesto de circulación del año en curso.
+
+Una buena idea es sacar un informe del estado del vehículo: multas, etc
+8.3€
+https://sede.dgt.gob.es/es/tramites-y-multas/tu-coche/informe-de-vehiculo/

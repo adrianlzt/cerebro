@@ -47,7 +47,7 @@ http://dl.fedoraproject.org/pub/epel/6/x86_64/
 src.rpms: http://mirror.uv.es/mirror/fedora-epel/6/SRPMS/
 
 EPEL CentOS 7:
-yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
 http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
 EPEL CentOS 5:

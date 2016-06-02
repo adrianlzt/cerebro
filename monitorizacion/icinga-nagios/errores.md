@@ -27,3 +27,9 @@ a
 Parece que esto tambien provoca estas trazas:
 icinga: Warning: Breaking out of check result reaper: max reaper time (30) exceeded. Reaped 172 results, but more checkresults to process. Perhaps check core performance tuning tips?
 
+
+
+
+# Icinga se muere sin dar informacion
+Si usamos mod_gearman, mirar que el german server está levantado.
+Si no lo está, icinga muere.

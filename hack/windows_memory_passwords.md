@@ -1,1 +1,0 @@
-mimikatz.md

@@ -21,9 +21,9 @@ docker stop <container-id>
 ## RESTART
 docker restart <container-id>
 
-## INSERT
-Insertar ficheros en una imagen
-docker insert IMAGE URL PATH
+## CP
+Copia ficheros a/desde un container
+docker cp IMAGE URL PATH
 
 ## RMI
 Borra una imagen y todas sus dependencias (hacia abajo) no usadas.
