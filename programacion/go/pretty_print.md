@@ -8,3 +8,7 @@ import "github.com/k0kubun/pp"
 
 m := map[string]string{"foo": "bar", "hello": "world"}
 pp.Print(m)
+
+
+# Otra alternativa
+https://github.com/davecgh/go-spew

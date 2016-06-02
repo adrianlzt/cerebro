@@ -2,7 +2,7 @@ http://docs.mongodb.org/manual/reference/operator/query/
 
 db.COLECION.find(
 { age: { $gt: 18 } },    <- clausula "where"
-{ name: 1, address: 1 }   <- los datos que queremos sacar
+{ name: 1, address: 1 }   <- los datos que queremos sacar (por defecto saca el _id, lo podemos quitar con _id:0)
 ).limit(5)
 
 name: 1, quiere decir que saquemos ese campo

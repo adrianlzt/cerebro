@@ -87,6 +87,7 @@ Si vamos a usar el multisite (UI primaria) con https, deberemos configurar el "U
 
 
 Multisite lee el fichero multisite.mk y los que haya en multisite.d/
+Esta conf se guarda en sites.mk
 
 
 Ejemplo generado con wato:

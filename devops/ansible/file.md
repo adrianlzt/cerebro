@@ -1,3 +1,5 @@
+http://docs.ansible.com/ansible/list_of_files_modules.html
+
 Mirar copy.md para copiar ficheros de un role a la máquina.
 
 Generar fichero con contenido:

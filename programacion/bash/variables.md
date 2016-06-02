@@ -53,6 +53,12 @@ If parameter is null or unset, the expansion of word (or a message to that effec
 ${parameter:+word}
 If parameter is null or unset, nothing is substituted, otherwise the expansion of word is substituted.
 
+Variable en mayusculas:
+"${y^^}"
+
+Variable en minusculas:
+"${y,,}"
+
 
 Mas acciones con las variables según si están definidas o no:
 http://www.debuntu.org/how-to-bash-parameter-expansion-and-default-values/

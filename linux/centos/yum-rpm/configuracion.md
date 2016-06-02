@@ -18,5 +18,6 @@ $arch
   This will be replaced with your architecture as listed by os.uname()[4] in Python.
 $basearch 
   This will be replaced with your base architecture in yum. For example, if your $arch is i686 your $basearch will be i386.
+  x86_64
 $uuid 
   This will be replaced with a unique but persistent uuid for this machine. The value that is first generated will be stored in /var/lib/yum/uuid and reused until this file is deleted.

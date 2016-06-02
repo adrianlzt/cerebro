@@ -1,5 +1,6 @@
 [Unit]
 Description=Run DuckDNS every 5 minutes
+# https://www.freedesktop.org/software/systemd/man/systemd.timer.html
 
 [Timer]
 OnCalendar=*:0/15

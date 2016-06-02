@@ -1,7 +1,7 @@
 https://github.com/grafana/grafana/#run-from-master
 
-gvm install go1.5.3
-gvm use go1.5.3
+gvm install go1.6.2
+gvm use go1.6.2
 go get github.com/grafana/grafana
 cd $GOPATH/src/github.com/grafana/grafana
 go run build.go setup

@@ -36,3 +36,8 @@ Nos sirve para poder meter funciones dentro de funciones (que de otra manera no 
 funcion := func(x,y int) int {
   return x+y
 }
+
+
+Si vemos algo tipo:
+func (f MyFloat) Abs() float64 {}
+Es una interfaz

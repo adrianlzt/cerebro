@@ -2,6 +2,8 @@ Si queremos meter un link podemos meter código HTML en el campo text.
 
 Si queremos múltiples tags las separaremos con comas.
 
+Annotations can now use a template variable as data source (https://github.com/grafana/grafana/issues/5054)
+
 
 # PR para que funcione el multiple tag con influx
 https://github.com/grafana/grafana/pull/4550

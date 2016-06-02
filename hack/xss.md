@@ -1,1 +1,0 @@
-cross-site-scripting.md

@@ -1,6 +1,9 @@
 http://skunksworkedp2cg.onion/
 lista de sitios .onion
 
+logs de los chats de onionIRC
+http://xerxesolusfedexu.onion/
+
 piratebay
 http://uj3wazyk5u4hnvtk.onion
 --

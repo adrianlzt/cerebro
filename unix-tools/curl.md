@@ -61,6 +61,11 @@ curl --proxy http://proxy.com:6666 http://www.google.es
 
 --socks5 <host[:port]>
 
+Para resolver dns por el proxy:
+--proxy socks5h://
+o
+--socks5-hostname <host[:port]>
+
 
 
 Autenticatión, HTTP basic:

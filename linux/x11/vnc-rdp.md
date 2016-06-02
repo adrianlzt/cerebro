@@ -4,6 +4,7 @@ Clientes de vnc y rdp
 
 remmina - el más completo, pero creo que no funcionaba bien el RDP. Parece que no tiene vnc
   para que tenga vnc: extra/libvncserver
+  para ver una contraseña guardada usar seahorse
 freerdp
 rdesktop
 

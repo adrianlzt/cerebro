@@ -11,3 +11,14 @@ python2.7 setup.py bdist_rpm
 
 Crear egg (mirar egg.md):
 python setup.py bdist_egg
+
+
+# Compilar python
+./configure --prefix=/usr --enable-shared --libdir=/usr/lib64/
+  --enable-shared genera la libs
+  --libdir hace que se instalen las libs en /usr/lib64, que es donde esperan encontrarlos los rhel/centos 64bits
+make install DESTDIR=/tmp/test
+
+Luego usar fpm para generar el fpm
+
+

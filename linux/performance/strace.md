@@ -70,3 +70,5 @@ Punto 5) de
 http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
 
+# Internals
+http://blog.packagecloud.io/eng/2016/02/29/how-does-strace-work/

@@ -21,4 +21,4 @@ var (
 		version_app = "NA"
 )
 
-LDFLAGS=-ldflags "-X main.version_app 1.5"
+LDFLAGS=-ldflags "-X main.version_app=1.5"

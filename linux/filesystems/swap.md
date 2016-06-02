@@ -4,6 +4,9 @@ A swap partition provides memory that can be used as virtual RAM. A swap file sh
 
 Swap space is generally recommended for users with less than 1 GB of RAM, but becomes more a matter of personal preference on systems with gratuitous amounts of physical RAM (though it is required for suspend-to-disk support).
 
+# Info
+swapon --show
+cat /proc/swaps
 
 # Particion
 mkswap /dev/sda2

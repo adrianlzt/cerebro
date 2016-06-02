@@ -11,3 +11,9 @@ testing, community-testing y multilib-testing
 
 
 pacman -Sy
+
+
+
+Connectical
+varios binarios de aur
+http://repo.connectical.com/README.txt
