@@ -8,6 +8,9 @@ psql -h hostname -U username -d database -W
 Ejecutar comandos desde la línea de comandos:
 $ psql -c "drop database prueba;"
 
+Ejecutar un fichero .sql:
+% psql basededatos -f fichero.sql
+
 Mostrar databases:
 $ psql -l
 puppetdb=> \l

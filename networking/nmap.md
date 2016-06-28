@@ -48,5 +48,8 @@ Si iptables está configurado como DROP contesta igual:
 En caso de estar cerrado el SO contesta con un TCP [RST,ACK] y es cunado nmap contesta
   STATE: closed
 
+Si NMAP nos dice "Note: Host seems down. If it is really up, but blocking our ping probes" probar con
+-Pn
+
 ## UDP
 Parece que no es fácil comprobar que un puerto UDP está abierto.

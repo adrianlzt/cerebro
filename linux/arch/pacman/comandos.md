@@ -32,6 +32,9 @@ pacman -Q
 pacman -Qs
   algo más de info
 
+Paquetes de yaourt (foreign):
+pacman -Qm
+
 Muestra ficheros de un paquete:
 pacman -Ql <nombre>
 

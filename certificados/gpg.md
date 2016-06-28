@@ -77,6 +77,18 @@ default-cache-ttl 60
 ## Cambiar como nos pide la clave en X11
 https://wiki.archlinux.org/index.php/GnuPG_(Espa%C3%B1ol)#pinentry
 
+## Poder seleccionar el pinentry dependiendo de una variable de entorno
+http://unix.stackexchange.com/questions/236746/change-pinentry-program-temporarily-with-gpg-agent
+
+Copiamos el fichero gnupg_pinentry-env.sh a /usr/bin/pinentry-env
+Lo elegimos como pinentry program en el .gnupg/gpg-agent.conf
+
+Para elegir pinentry:
+PINENTRY_USER_DATA=gnome3 APP ...
+
+Ejemplo:
+PINENTRY_USER_DATA=gnome3 pass internet/servicio
+
 
 
 # Apps

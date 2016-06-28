@@ -121,11 +121,15 @@ select percentile(value, 95) from response_times group by time(30s);
 select count(type) from events group by time(1h) fill(0) where time > now() - 3h
 
 
-# Merge series
+# Merge series - DEPRECATED
+http://stackoverflow.com/questions/33264655/merging-time-series-in-influxdb-0-9-x
+
 select count(type) from user_events merge admin_events group by time(10m)
 
 
-# Join
+# Join - DEPRECATED
+http://stackoverflow.com/questions/33264655/merging-time-series-in-influxdb-0-9-x
+
 -- Return a time series of the combined cpu load for hosts a and b. The individual points will be coerced into the closest time frames to match up.
 select hosta.value + hostb.value
 from cpu_load as hosta

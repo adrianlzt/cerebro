@@ -32,6 +32,9 @@ Advanced REST console
 Webogram (telegram)
 Feedly
 
+https://chrome.google.com/webstore/detail/full-page-screen-capture/fdpohaocaechififmbbbbbknoalclacl
+hace una captura de pantalla de una web entera, haciendo el scroll necesario
+
 
 Internals:
 

@@ -1,4 +1,5 @@
 sudo npm install -g live-server
+live-server
 
 Levanta un server web estático en localhost:8080
 

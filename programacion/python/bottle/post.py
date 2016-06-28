@@ -5,7 +5,7 @@ from bottle import run, post, request
 
 @post('/user/<user>')
 def index(user):
-    edad = request.son['edad']
+    edad = request.json['edad']
     return "hola %s. edad=%s \n" % (user,edad)
 
 run(host='localhost', port=9000)

@@ -29,3 +29,18 @@ t0 := time.Now()
 time.Sleep(1*time.Second)
 t1 := time.Now()
 fmt.Printf("The call took %v to run.\n", t1.Sub(t0))
+
+diff := t1.Sub(t0)
+Tenemos disponibles:
+diff.Hours()
+diff.Minutes()
+diff.Seconds()
+diff.Nanoseconds()
+
+# zona horaria
+Imprime la fecha en otra zona horaria
+
+now := time.Now()
+l,_ := time.LoadLocation("CET")
+fmt.Println(now)
+fmt.Println(now.In(l))

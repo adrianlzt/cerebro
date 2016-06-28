@@ -37,6 +37,8 @@ with open("fichero.json", "w") as fd:
 ## Serializar datetime.datetime
 TypeError: datetime.datetime(2012, 8, 8, 21, 46, 24, 862000) is not JSON serializable
 
+CUIDADO! Con fechas no UTC parece que no funciona tan bien
+
 def default(obj):
     """Default JSON serializer."""
     import calendar, datetime

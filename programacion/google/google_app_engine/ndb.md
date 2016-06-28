@@ -59,9 +59,16 @@ for casa in casas:
 
 Obtener por id:
 c = Casa.get_by_id(id)
+  Si no existe devuelve None
+  Si encuentra devuelve un objeto del tipo Casa
 
 Obtener el id de un elemento:
 c.key.id()
+
+
+# Modificar / Actualizar
+c.parametro = "valor"
+c.put()
 
 
 ## Date

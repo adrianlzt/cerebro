@@ -1,0 +1,106 @@
+<html>
+  <!-- online: http://output.jsbin.com/ziteniciwa -->
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="jquery.blockUI.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $("#iframe").on("mouseout", function(e) {
+          console.log("fuera mouse del ifram");
+
+          $.blockUI({message:
+            `<h1>Blocked!</h1>
+             <div id='msg'>Enter password to unblock</div>
+             <form>
+               <input type='text' id="password" name='password' placeholder='password'>
+               <button>Send</button>
+             </form>`
+          });
+          
+
+          $("form").submit(function(event) {
+           event.preventDefault();
+            if ($("#password").val() == "123") {
+              $.unblockUI();
+            } else {
+              $("#msg").html("Password incorrecta!");
+            }
+          });
+        });
+      });
+
+     
+
+      // Este caso peta porque si estamos en el iframe y salimos fuera no se entera
+      
+      $(window).on("blur focus", function(e) {
+          var prevType = $(this).data("prevType");
+      
+          if (prevType != e.type) {   //  reduce double fire issues
+              switch (e.type) {
+                  case "blur":
+                      if (document.activeElement == $("iframe")[0]) {
+                        console.log("estamos en el iframe");
+                        break;
+                      }
+                      console.log("Se ha ido!");
+
+                      //$.blockUI({message:
+                      //  `<h1>Blocked!</h1>
+                      //   <div id='msg'>Enter password to unblock</div>
+                      //   <form>
+                      //     <input type='text' id="password" name='password' placeholder='password'>
+                      //     <button>Send</button>
+                      //   </form>`
+                      //});
+                      
+
+                      //window.setInterval(function(){
+                      //  $.unblockUI();
+                      //}, 20000);
+
+                      $("form").submit(function(event) {
+                        event.preventDefault();
+
+                        //$.ajax({
+                        //  type: 'POST',
+                        //  url: "http://httpbin.org/post",
+                        //  dataType: 'json',
+                        //  contentType: 'application/json; charset=UTF-8',
+                        //  data: JSON.stringify({"pass": $("#password").val()})
+                        //})
+                        //.done(function( msg ) {
+                        //  if (msg.json.pass == "333") {
+                        //    $.unblockUI();
+                        //  }
+                        //})
+                        //.fail(function( msg ) {
+                        //  alert( "Error " + msg );
+                        //});
+                        
+
+                        if ($("#password").val() == "123") {
+                          $.unblockUI();
+                        } else {
+                          $("#msg").html("Password incorrecta!");
+                        }
+                      });
+                      break;
+                  case "focus":
+                      console.log("Ha vuelto!");
+                      break;
+              }
+          }
+      
+          $(this).data("prevType", e.type);
+      })
+      
+
+    </script>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <iframe id="iframe" src="http://www.w3schools.com" allowtrancparency="yes" frameborder="o" style="height: 100%; width: 100%"></iframe>
+</body>
+</html>

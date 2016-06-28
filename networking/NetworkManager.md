@@ -1,1 +1,1 @@
-../linux/NetworkManager.md
+../linux/NetworkManager/NetworkManager.md

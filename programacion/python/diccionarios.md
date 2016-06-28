@@ -38,7 +38,7 @@ Loop sobre el diccionario
 ...     print k, v
 
 Python3:
-for k, v in knights.tems():
+for k, v in knights.items():
     print(k,v)
 
 

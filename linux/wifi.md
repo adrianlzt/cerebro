@@ -1,5 +1,8 @@
 http://substack.net/wireless_from_the_command_line_in_linux
 
+Mostrar redes:
+nmcli device wifi list
+
 Numero de redes en cada canal
 sudo iwlist wlo1 scan | grep Frequency | sort | uniq -c | sort -n
 

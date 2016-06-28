@@ -1,0 +1,43 @@
+wsgi.version : (1, 0)
+REQUEST_ID_HASH : BB857FD4
+SERVER_SOFTWARE : Google App Engine/1.9.38
+SCRIPT_NAME : 
+HTTP_X_APPENGINE_CITYLATLONG : 38.968032,-0.184467
+HTTP_X_CLOUD_TRACE_CONTEXT : 838ad756c4175e643b3c924c3172e522/4125519987707779766;o=1
+PATH_INFO : /test
+SERVER_PROTOCOL : HTTP/1.1
+QUERY_STRING : 
+DEFAULT_VERSION_HOSTNAME : ing-notificator.appspot.com
+wsgi.url_scheme : https
+APPENGINE_RUNTIME : python27
+TZ : UTC
+SERVER_NAME : ing-notificator.appspot.com
+REMOTE_ADDR : 85.59.183.194
+INSTANCE_ID : 00c61b117cb0f42ed8d0feff88f2100b0643b1655b4dc9e126439429a7a6d0d202
+SERVER_PORT : 443
+PATH_TRANSLATED : /base/data/home/apps/s~ing-notificator/1.393732541160561015/main.pyc
+REQUEST_LOG_ID : 576d1acd00ff073f11bb857fd40001737e696e672d6e6f746966696361746f72000131000100
+HTTP_X_APPENGINE_REGION : v
+USER_IS_ADMIN : 0
+CURRENT_MODULE_ID : default
+CLOUD_TRACE_ENABLE_STACK_TRACE : 0
+CURRENT_VERSION_ID : 1.393732541160561015
+USER_ORGANIZATION : 
+wsgi.input : <cStringIO.StringI object at 0xfbe72800>
+HTTP_USER_AGENT : curl/7.48.0
+HTTP_HOST : ing-notificator.appspot.com
+HTTPS : on
+wsgi.multithread : True
+APPLICATION_ID : s~ing-notificator
+USER_EMAIL : 
+HTTP_ACCEPT : */*
+DATACENTER : us9
+USER_ID : 
+HTTP_X_APPENGINE_CITY : gandia
+wsgi.run_once : False
+wsgi.errors : <google.appengine.api.logservice.logservice._LogsDequeBuffer object at 0xfbe40f70>
+wsgi.multiprocess : True
+HTTP_X_APPENGINE_COUNTRY : ES
+REQUEST_METHOD : GET
+AUTH_DOMAIN : gmail.com
+USER_NICKNAME : 

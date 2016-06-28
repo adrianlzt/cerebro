@@ -9,6 +9,12 @@ Tambíen podemos montar nosotros el servidor.
 
 Usar version 2.x
 
+# Linux
+https://ngrok.com/download
+https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+Nos da un binario
+
+Empaquetados: https://dl.equinox.io/ngrok/ngrok/stable
 
 # Arch
 mejor la version -bin para no tener que compilar
@@ -29,6 +35,12 @@ SSL parece que es de pago.
 
 Nos da una web donde analizar las peticiones que están atravesando ngrok
 
+# Login / Auth
+Si queremos usar ciertas funcionalidades tenemos que meter el token de nuestra cuenta.
+Lo obtenemos en https://dashboard.ngrok.com/auth
+
+./ngrok authtoken XXXXXXXXXXXXX
+
 
 # Conf
 https://ngrok.com/docs/1
@@ -41,6 +53,10 @@ log_level: error
 update: false
 log: /home/skype/.ngrok2/ngrok.log
 
+
+# Service / daemon
+Podemos usar systemd para mantener un tunel siempre levantado:
+ngrok.service
 
 
 # API

@@ -15,3 +15,9 @@ Parar el setinterval
 var refreshIntervalId = setInterval(fname, 10000);
 /* later */
 clearInterval(refreshIntervalId);
+
+
+function pepe() {
+  console.log(Date();)
+}
+setInterval(pepe, 2000);

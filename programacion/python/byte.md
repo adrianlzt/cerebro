@@ -59,8 +59,18 @@ Esto ha dividido entre 16
 1    4
 
 
+## Python2
 >>> "asdas".encode("hex")
 '6173646173'
 >>> '6173646173'.decode("hex")
 'asdas'
+
+## Python3
+>>> import binascii
+>>> binascii.hexlify(b'asdas')
+b'6173646173'
+
+>>> coso="cadena"
+>>> binascii.hexlify(coso.encode('ascii'))
+b'636164656e61'
 

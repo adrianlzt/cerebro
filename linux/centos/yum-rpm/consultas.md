@@ -16,7 +16,7 @@ $ rpm -qi <paquete> (sobre la base de datos local. '-q' query. '-i' info)
 $ yum search <paquete>
 $ yum check-update (nos dice si hay paquetes por actualizar. RC, =100, paquetes para actualizar, =0 no updates, =1 error)
 $ yum resolvedep httpd (dice que paquetes nos dan ese recurso)
-$ yum deplist <paquete> (nos dice las dependencias del paquete, recursivamente)
+$ yum deplist <paquete> (nos dice las dependencias del paquete, recursivamente. Busca un provider, un rpm, para solventar la dep)
 $ repoquery -R <paquete> (nos dice las dependencias del paquete)
 
 

@@ -19,3 +19,6 @@ Cambia todo, includo el <div id="blabla">
 
 Cambia solo el contenido:
 .html("cosas")
+
+
+$("coso").append("mas texto");

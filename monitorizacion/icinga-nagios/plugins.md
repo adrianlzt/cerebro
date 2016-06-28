@@ -49,6 +49,7 @@ https://github.com/kumina/nagios-plugins-kumina
 https://svn.id.ethz.ch/projects/nagios_plugins 
 http://labs.consol.de/lang/en/nagios/ 
 http://www.percona.com/doc/percona-monitoring-plugins/1.0/nagios/
+https://github.com/harisekhon/nagios-plugins
 https://launchpad.net/percona-monitoring-plugins
 http://git.op5.org/git/?p=nagios/op5plugins.git;a=tree
 https://secure.opsview.com/wsvn/wsvn/opsview/trunk/opsview-core/nagios-plugins/#path_trunk_opsview-core_nagios-plugins_

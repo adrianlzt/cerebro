@@ -56,3 +56,6 @@ sysdig -p "%12user.name %6proc.pid %12proc.name %3fd.num %fd.typechar %fd.name" 
 Print the file I/O calls that have a latency greater than 1ms:
 sysdig -c fileslower 1
 
+# Graficas
+subsecoffset.md
+spectrogram.md

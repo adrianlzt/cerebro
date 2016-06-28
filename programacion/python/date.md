@@ -65,4 +65,11 @@ int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds()
 
 # Time zones
 Convertir mi hora local de Madrid en UTC:
+from dateutil import tz
 datetime.datetime.now().replace(tzinfo=tz.gettz('Europe/Madrid')).astimezone(tz.gettz('UTC')).strftime('%Y-%m-%d %H:%M:%S.%f')
+
+# Parsear fecha
+>>> import datetime
+>>> datetime.datetime.strptime("10/11/2015","%d/%m/%Y")
+datetime.datetime(2015, 11, 10, 0, 0)
+

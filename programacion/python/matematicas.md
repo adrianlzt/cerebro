@@ -6,6 +6,8 @@ Si queremos hacer divisiones con números dobles:
 
 si no ponemos el .0 usará números enteros
 
+O podemos usar float(v1)/v2
+
 Prediccion de valores en timeseries:
 forecast.md
 

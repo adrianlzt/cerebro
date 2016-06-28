@@ -32,3 +32,7 @@ error: unpacking of archive failed on file /usr/lib/python2.7/site-packages/pack
 Parece un bug de rpm:
 http://www.redhat.com/archives/rhl-devel-list/2007-August/msg01626.html
 https://bugzilla.redhat.com/show_bug.cgi?id=1177479
+
+
+[Errno -1] Package does not match intended download
+El sha1sum no coincide
