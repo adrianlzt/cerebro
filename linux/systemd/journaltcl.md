@@ -60,6 +60,12 @@ journalctl _PID=8088
 journalctl /usr/bin/bash
   mostrar todas las trazas generadas por ese binario
 
+Filtrar por el nombre que pone despues del host:
+jun 10 09:36:04 archer nm-dispatcher[14263]: req:3 'up' [tun1]: new request (2 scripts)
+
+journalctl -fn 100 _COMM=nm-dispatcher
+  sacar las ultimas 100 lineas y seguir
+
 
 ## User / Group
 journalctl _UID=33 --since today

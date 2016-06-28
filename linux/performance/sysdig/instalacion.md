@@ -1,4 +1,6 @@
-Instalación automatica: 
+Necesita compilar un módulo para el kernel y cargarlo (se necesitan las fuentes del kernel que estemos corriendo)
+
+Instalación automatica:
 curl -s https://s3.amazonaws.com/download.draios.com/stable/install-sysdig | sudo bash
 
 Máquina vagrant:
@@ -21,7 +23,7 @@ sudo pacman -S sysdig
 
 # CentOS
 Instalacion manual centos:
-rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public  
+rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public
 curl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo
 
 Hace falta epel

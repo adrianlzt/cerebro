@@ -1,3 +1,9 @@
+https://developer.github.com
+
+Generar token:
+settings/tokens
+
+
 gem install github_api
 require 'github_api'
 

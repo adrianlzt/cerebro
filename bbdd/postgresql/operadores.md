@@ -1,3 +1,4 @@
+https://www.postgresql.org/docs/8.1/static/sql-createfunction.html
 http://www.postgresql.org/docs/8.0/static/functions-binarystring.html
 
 Concatenar strings de dos columnas distintas:
@@ -21,3 +22,10 @@ Elegir elementos según los valores de un array
 
 # Convertir una serie de resultados a una string separada por comas
 select array_to_string(array(select name from projects),',') AS cosa, id FROM tabla;
+
+
+
+# Funciones
+CREATE OR REPLACE FUNCTION test() RETURNS text AS
+...
+LANGUAGE 'xxx';

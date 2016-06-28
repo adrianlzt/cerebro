@@ -145,6 +145,14 @@ partition devuelve una tupla
 BASE_URL_TEMPLATE = '{protocol}://{host}:{port}/api/{version}/'
 BASE_URL_TEMPLATE.format(protocol=protocol, host=host, port=port, version=version)
 
+Otra cosa útil es especificar el espacio que ocupa una string:
+"{0:20} - {1:10}".format(var1,var2)
+
+Da igual la lontigud de la cadena var1, con :20 lo que hacemos es que al menos ocupe 20 espacios:
+>>> print("{0:20} texto".format("titulo"))
+titulo               texto
+
+
 
 ## Comparación ##
 http://stackoverflow.com/questions/9573244/most-elegant-way-to-check-if-the-string-is-empty-in-python

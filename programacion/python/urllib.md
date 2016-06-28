@@ -15,6 +15,17 @@ cadena = urllib.urlencode({"Cabecera": "valor", "xx": 3})
 Si la cabecera o el valor pueden tener tildes:
 cadena.encode("utf8")
 
+req = urllib2.Request("http://httpbin.org/get?" + urllib.urlencode({"pepe":123}))
+urllib2.urlopen(req).read()
+
+Para codificar en formato uri:
+>>> urllib2.quote("http://localhost:8080")
+'http%3A//localhost%3A8080'
+
+Para codificar tambien las / (http://stackoverflow.com/questions/1695183/how-to-percent-encode-url-parameters-in-python):
+>>> urllib2.quote("http://localhost:8080", safe="")
+'http%3A%2F%2Flocalhost%3A8080'
+
 
 ## Cookies ##
 req1 = urllib2.Request(url1)
@@ -31,6 +42,11 @@ response = urllib2.urlopen(req2)
 import urllib2
 response = urllib2.urlopen('https://48465678.ngrok.io/skype/adrianlzt', "DATOS")
 
+## PUT ##
+import urllib2
+req = urllib2.Request("http://httpbin.org/put", data="pepe=3")
+req.get_method = lambda: "PUT"
+urllib2.urlopen(req).read()
 
 
 # Auth
@@ -85,6 +101,8 @@ except URLError as e:
 else:
     # everything is fine
 
+Con e.read() podemos leer el contenido de la respuesta
+
 
 
 # Internals
@@ -122,3 +140,9 @@ img = urllib2.urlopen("http://static3.rutinasentrenamiento.com/wp-content/upload
 img sera un objecto file descriptor
 img.read()
 etc
+
+# Proxy
+proxy = urllib2.ProxyHandler({'http': '127.0.0.1', 'https': '127.0.0.1:8080'})
+opener = urllib2.build_opener(proxy)
+urllib2.install_opener(opener)
+urllib2.urlopen('http://www.google.com')

@@ -2,6 +2,19 @@ Core:
 https://golang.org/pkg/log/
 Bastante limitado. No tiene niveles
 
+Truco para implementarlos: https://www.goinggo.net/2013/11/using-log-package-in-go.html
+
+Uso simple:
+import "log"
+log.Println("traza")
+
+
+# Log15
+https://github.com/inconshreveable/log15
+
+El que usan en grafana:
+https://github.com/grafana/grafana/issues/4590#issuecomment-224503589
+
 
 # Logrus
 https://github.com/Sirupsen/logrus

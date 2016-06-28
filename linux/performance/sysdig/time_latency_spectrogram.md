@@ -1,5 +1,8 @@
 https://sysdigcloud.com/aws-storage-latency-sysdig-spectrogram/
 
+Es el tiempo de las llamadas al sistema.
+Va poniéndose más rojo según la cantidad de llamadas al sistema que tarden en ejecutarse ese tiempo.
+
 Espectrograma general:
 sysdig -c spectrogram [resolucion]
   la resolucion es cada cuanto tiempo nos sacará datos en pantalla.

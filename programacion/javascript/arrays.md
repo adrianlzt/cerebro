@@ -25,3 +25,7 @@ Comprueba que todos los elementos de un array cumplan una funcion
 
 # Map
 Transformar cada uno de los elementos de un array
+
+
+# Mostrar contenido
+array.toString()

@@ -24,6 +24,9 @@ Cortar:
 convert in.jpg -crop 350x280+7+184 out.jpg
   Tamaño (ancho x alto) + desplazamiento (x + y)
 
+# Borde
+Añadir un borde negro de 1px alrededor de la imagen
+convert imagen.png -bordercolor Black -border 1 nueva.png
 
 # Paint
 Un circulo

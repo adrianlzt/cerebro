@@ -11,3 +11,7 @@ mirar tambien execsnoop
 
 atopsar -c 5
  ir sacando un resumen del sistema (CPU) cada 5 segundos
+
+# Netatop
+http://www.atoptool.nl/netatop.php
+Modulo del kernel para registrar que paquetes de red corresponden a cada proceso

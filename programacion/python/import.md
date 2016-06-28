@@ -1,6 +1,11 @@
 # En funciones
 Si hacemos un import dentro de una función, este solo estará disponible dentro de esa función.
 
+# Varios imports
+from clase import (
+            cosa1,
+            cosa2)
+
 # Intento de carga
 try:
     import dns.resolver

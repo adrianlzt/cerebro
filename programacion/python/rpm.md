@@ -59,3 +59,13 @@ Añadir requisitos de paquetes:
 requires = python-flask = 0.10.1
     python-gevent
     python-sqlalchemy
+
+
+Si estamos generando el rpm desde un virtualenv y queremos que los binarios se instalen en las rutas estandar:
+https://docs.python.org/2/install/#custom-installation
+setup.cfg:
+[install]
+install-scripts=/usr/bin
+install-lib=/usr/lib/python2.7/site-packages
+[bdist_rpm]
+python = /usr/bin/python

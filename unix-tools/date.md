@@ -13,8 +13,24 @@ Thu Oct  1 08:47:24 CEST 2015
 $ LC_ALL=C date -d "Thu Oct  1 08:47:24 CEST 2015" +%s
 1443682044
 
+date +%F
+YYYY-MM-DD
 
-Sacar date:
+Mes del año sin cero delante:
+date +%-m
+6
+
+Se puede poner más cosas:
+- sin padding
+_ padding con espacios
+0 padding con ceros
+^ uppercase
+# downcase
+
+date +%j
+dia del año
+
+Horas y minutos:
 date +%H%M
 
 Definir fecha:

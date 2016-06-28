@@ -16,12 +16,16 @@ Send addresses that take you right into Google Maps for easy directions.
 
 
 # API
+
+## Python
 pip install pushbullet.py
 from pushbullet import Pushbullet
 pb = Pushbullet(api_key)
 push = pb.push_link("Cool site", "https://github.com", body="texto")
 pb.push_note("titulo","texto")
 
+## Go
+programacion/go/pushbullet.md
 
 https://docs.pushbullet.com/#get-user
 https://docs.pushbullet.com/#list-devices
@@ -43,6 +47,9 @@ Poner "email": "otra@persona.com" en el JSON
 
 # Programar envio
 at 14:50
-source ~/.bash_aliases
+source .zsh/auto.d/alias.zsh
 pushbullet Titulo Mensaje largo con varias cosas
 Control+D
+
+
+source ~/.bash_aliases

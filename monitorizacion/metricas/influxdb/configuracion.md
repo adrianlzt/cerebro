@@ -21,3 +21,6 @@ Aparecerá en el log este mensaje:
 
 [query] 2016/05/13 14:41:29 Detected slow query: SELECT * FROM cpu LIMIT 10000000 (qid: 5, database: telegraf, threshold: 1s)
 
+
+# Proteccion contra ataques http
+https://github.com/influxdata/influxdb/issues/6559

@@ -9,6 +9,7 @@ Si un fichero tienen definido ACL, al hacer 'ls -la' tendrá un '+' al final de 
 
 Definir ACL:
 setfacl -m u:nrpe:rw <file>
+setfacl -m u:cyclops:r <file>
   Permitimos que el usuario nrpe tenga acceso de escritura y lectura al fichero
 setfacl -m g:nrpe:r <file>
   Permitimos que el grupo nrpe tenga acceso de lectura al fichero

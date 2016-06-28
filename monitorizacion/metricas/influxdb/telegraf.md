@@ -148,6 +148,9 @@ https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sysstat
 ## http reponse
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response
 
+## Parse logs
+https://github.com/influxdata/telegraf/blob/master/plugins/inputs/logparser/README.md
+
 ## Github
 Puede levantar un puerto donde apuntamos un webhook de github
 

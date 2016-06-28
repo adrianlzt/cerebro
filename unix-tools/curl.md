@@ -120,3 +120,15 @@ sigue redirecciones (HTTP 30x)
 Si muestra cabeceras, primero mostrará la primera petición y luego la redirección
 
 
+
+# HTTP2
+yaourt -S aur/curl-http2-git
+
+--http2
+       (HTTP) Tells curl to issue its requests using HTTP 2. This requires that the underlying libcurl was built to support it.  (Added  in
+       7.33.0)
+
+para saber si tenemos soporte:
+curl --version
+
+Hace uso de https://nghttp2.org/

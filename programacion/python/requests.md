@@ -180,3 +180,9 @@ r.raw.data tambien cierra el fichero
 # Redirects
 No seguir redirects:
 allow_redirects=False
+
+# Guardar un pdf
+r_casa = requests.get("http://www.casareal.es/ES/Transparencia/InformacionJuridica/Documents/RegalosInstitucionales2015.pdf", stream=True)
+with open("casa.pdf", "w") as f:
+  f.write(r_casa.content)
+

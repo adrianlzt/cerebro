@@ -60,6 +60,12 @@ ssh -t -t -t $host sudo -S command <<EOF
 EOF
 
 
+# X11
+Arrancar aplicaciones x11 como root:
+https://wiki.archlinux.org/index.php/Running_X_apps_as_root
+
+gksu xeyes
+
 # Debug
 /etc/sudo.conf
 Debug sudo /var/log/sudo_debug all@debug

@@ -1,3 +1,5 @@
+Si queremos generar un rpm a partir de un rpm ya instalado: rpmrebuild.md
+
 http://wiki.centos.org/HowTos/RebuildSRPM
 
 yum install -y rpmdevtools make

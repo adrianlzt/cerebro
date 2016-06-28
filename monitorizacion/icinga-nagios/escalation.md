@@ -14,3 +14,10 @@ http://docs.icinga.org/latest/en/objecttricks.html
 Dara el error:
 Error: Could not expand services specified in service escalation
 
+
+
+Esto nos puede servir para que ciertos contactos solo sean avisados para ciertos services.
+
+
+CUIDADO! no meter al contacto de escalado en el contact group de los hosts que van a levantar el escalado.
+Parece que asi no avisa ni al usuario de forma normal ni mediante el escalado.

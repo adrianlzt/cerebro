@@ -7,3 +7,7 @@ Used to force the package to be seen as newer than any previous versions with a 
 
 Obtener el epoch de un rpm:
 rpm -qp --queryformat "%{EPOCH}:%{NAME}-%{VERSION}-%{RELEASE}\n " 
+
+
+
+Para obtener el valor de las macros ver repositorios.md

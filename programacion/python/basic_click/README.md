@@ -6,6 +6,7 @@ mkvirtualenv test
 Instalar Click, nuestro paquete y ejecutar:
 ```
 $ pip install --editable .
+$ rehash (si es zsh)
 $ gradmin
 ```
 

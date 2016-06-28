@@ -23,6 +23,9 @@ zrun: automatically uncompress arguments to command
 
 # chronic
 https://git.joeyh.name/?p=moreutils.git;a=blob;f=chronic;h=7cfc2d69d326c71c0f71d7e97785dd01fb186ff1;hb=HEAD
+raw:
+curl 'https://git.joeyh.name/?p=moreutils.git;a=blob_plain;f=chronic;h=7cfc2d69d326c71c0f71d7e97785dd01fb186ff1;hb=HEAD' -o chronic
+Depende de perl-IPC-Run
 
 Implementación en bash: http://habilis.net/cronic/cronic
 

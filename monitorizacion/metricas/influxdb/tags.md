@@ -8,6 +8,7 @@ Tags asociados con cada serie.
 Si queremos ver todos los tags por cada measurement:
 SHOW TAG KEYS
 
+SHOW TAG VALUES WITH KEY = "host"
 SHOW TAG VALUES WITH KEY = "environment"
   obtiene todos los posibles valores de la columna environment
 

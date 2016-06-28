@@ -7,6 +7,27 @@ App para android: https://play.google.com/store/apps/details?id=com.zeapo.pwdsto
 App X11: qtpass
 yaourt -S qtpass
 
+# gopass
+App en go estilo spotlight de mac
+https://github.com/cortex/gopass
+Instalar: go get github.com/cortex/gopass
+Llamar como: PINENTRY_USER_DATA=gnome3 /home/adrian/.gvm/pkgsets/go1.6.2/global/bin/gopass
+  Mirar en gnupg.md el tema de tener un pinentry que se pueda modificar con una variable de entorno
+
+Crear /usr/local/bin/gopass:
+PINENTRY_USER_DATA=gnome3 /home/adrian/.gvm/pkgsets/go1.6.2/global/bin/gopass
+
+Y asociar el key-binding Ctrl+Mays+s
+
+# pext
+https://github.com/TheLastProject/Pext
+
+como gopass pero en python
+
+# rofi-pass
+https://github.com/carnager/rofi-pass
+
+
 Migrar de otras plataformas: https://www.passwordstore.org/#migration
 Exportar de keepassx en csv y usar keepass2csv2pass.py (en este dir)
 

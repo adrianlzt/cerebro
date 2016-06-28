@@ -10,6 +10,9 @@ cat fichero.json | jq '.key'
 
 jq '.parent' fichero.json
 
+jq -r '.cosa'
+  quitamos las comillas
+
 jq '.data[]._id' /tmp/incidencias
 nos da todos los ids del array data
 
@@ -17,11 +20,18 @@ nos da todos los ids del array data
 jq -r '.data[] | {id: .eid, status: .status, subject: .contact.subject}' /tmp/incidencias
 un array con un monton de valores, simplificarlo para solo tener un monton de diccionarios con unos pocos valores
 
+Añadir:
+Añadir un objecto al final
+.+{"obj":true}
+
 
 Borrar
 del(.[].foo,.[].bar)
 input: [{"foo": 42, "bar": 9001, "baz": 42},{"foo": 42, "bar": 9001, "baz": 42}]
 output: [{"baz":42},{"baz":42}]
+
+Borrar una parte y agregar otra:
+del(.meta)|.+{"overwrite":true}
 
 
 Indices
