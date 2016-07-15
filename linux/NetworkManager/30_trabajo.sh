@@ -18,6 +18,12 @@ function horario_de_trabajo() {
   local mes=$(date +%-m)
   local dia=$(date +%-d)
   local hora=$(date +%-H)
+  local dia_semana=$(date +%u)
+
+  if [[ ${dia_semana} -ge 6 ]]; then
+    # fin de semana
+    return 1 # false
+  fi
 
   if [[ $mes -le 5 || $mes -ge 10 || ( $mes -eq 6 && $dia -le 14 ) || ($mes -eq 9 && $dia -ge 15) ]]; then
     # jornada de invierno
@@ -35,7 +41,7 @@ function horario_de_trabajo() {
     fi
   fi
 
-  return 1
+  return 1 # false
 }
 
 if [[ $interface == "wlo1" && $status == "up" ]]; then

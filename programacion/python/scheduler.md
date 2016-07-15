@@ -4,12 +4,12 @@ https://docs.python.org/2/library/sched.html
 import time
 from threading import Timer
 
-def hola():
-    print "mensaje"
+def hola(msg):
+    print(msg)
 
 def tiempo():
     print "mensaje scheduled"
-    Timer(2, hola, ()).start()
+    Timer(2, hola, ["hola"]).start()
 
 print "inicio programa"
 tiempo()

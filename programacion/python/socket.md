@@ -11,3 +11,9 @@ sock.settimeout(timeout)
 sock.connect(sa)
 sock.close()
 
+
+# SSL
+import ssl
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock_ssl = ssl.wrap_socket(sock)
+

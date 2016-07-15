@@ -3,6 +3,8 @@ http://stockrt.github.io/p/emulating-a-browser-in-python-with-mechanize/
 
 programmatic web browsing
 
+Sobre todo está orientada a hacer un get a una web, rellenar un formulario y enviarlo.
+
 Es como requests pero nos va guardando el estado (cookies, etc)
 Funciona como la lib de urllib más extensiones para hacer scrapping
 
@@ -70,3 +72,10 @@ except AttributeError:
 else:
     # Handle target environment that doesn't support HTTPS verification
     ssl._create_default_https_context = _create_unverified_https_context
+
+
+# HTTP code
+res = br.open(req)
+res.code
+
+Es un integer

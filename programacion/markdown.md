@@ -5,6 +5,9 @@ http://dillinger.io/
 https://stackedit.io/editor
   editar markdown almacenados en google drive
 
+grip fichero.md
+  monta un server en localhost:5000 mostrando el fichero
+
 This is an H1
 =============
 

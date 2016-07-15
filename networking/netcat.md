@@ -43,3 +43,6 @@ nc -kl 8080
 
 Para udp
 nc -klu 8080
+
+# SSL
+ncat --ssl ing.ingdirect.es 443

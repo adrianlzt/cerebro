@@ -45,6 +45,7 @@ strace -s 100 -t -o /home/alopez/cmon.strace -ff -p $(pidof cmon)
 Mirar solo ciertas llamadas
 strace -e trace=open,write ls
 strace -e trace=network ...
+  operaciones de red
 
 strace -e file
   operaciones con ficheros

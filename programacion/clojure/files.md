@@ -6,6 +6,9 @@ Read a file into one long string
 Escribir a fichero:
 (spit "fichero.txt" "cosas que guardar")
 
+Añadir:
+(spit "foo.txt" "file content" :append true)
+
 
 Convertir un fichero con estructura de clojure a clojure:
 user=> (def laconf (read-string (slurp "prueba.txt")))

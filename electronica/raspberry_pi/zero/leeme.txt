@@ -1,0 +1,10 @@
+Para empezar hará falta al menos:
+
+ - adaptador mini-hdmi a hdmi + cable hdmi (o cable mini-hdmi a hdmi)
+ - pantalla hdmi
+ - alimentador micro-usb (como el del móvil)
+ - adaptador usb-otg, para poder conectar un teclado usb
+
+
+Lo mejor es conectar al usb-otg un switch alimentado para poder conectar más dispositivos usb
+

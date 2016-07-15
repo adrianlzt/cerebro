@@ -1,0 +1,77 @@
+En el servidor de heroku:
+
+Request vars (con bottle: request.environ.iteritems()):
+HTTP_ACCEPT=*/*
+HTTP_X_FORWARDED_PROTO=https
+PS1=\[\033[01;34m\]\w\[\033[00m\] \[\033[01;32m\]$ \[\033[00m\]
+HTTP_TOTAL_ROUTE_TIME=2002
+CONTENT_LENGTH=
+PYTHONPATH=/app/
+HTTP_USER_AGENT=curl/7.48.0
+WEB_CONCURRENCY=2
+_=/app/.heroku/python/bin/python
+SERVER_SOFTWARE=WSGIServer/0.1 Python/2.7.11
+PYTHONHASHSEED=random
+wsgi.version=(1, 0)
+SHLVL=1
+HTTP_X_FORWARDED_PORT=443
+PATH_INFO=/
+CONTENT_TYPE=text/plain
+HTTP_CONNECT_TIME=0
+LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:
+SERVER_PROTOCOL=HTTP/1.1
+PORT=35610
+SCRIPT_NAME=
+REMOTE_ADDR=10.10.158.88
+REQUEST_METHOD=GET
+SERVER_NAME=dad82520-4190-4332-b657-4acf1c048231.prvt.dyno.rt.heroku.com
+wsgi.multithread=True
+wsgi.run_once=False
+GATEWAY_INTERFACE=CGI/1.1
+wsgi.errors=<open file '<stderr>', mode 'w' at 0x7fe83a2b71e0>
+DYNO_RAM=512
+LANG=en_US.UTF-8
+HTTP_VIA=1.1 vegur
+DYNO=web.1
+PWD=/app
+wsgi.multiprocess=False
+HTTP_HOST=ing-notificador.herokuapp.com
+QUERY_STRING=
+PATH=/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin
+HOME=/app
+HTTP_CONNECTION=close
+PYTHONUNBUFFERED=true
+HTTP_X_FORWARDED_FOR=195.235.92.36
+route.handle=<GET '/' <function index at 0x7fe83a19eb18>>
+wsgi.url_scheme=http
+LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:
+route.url_args={}
+SERVER_PORT=35610
+wsgi.file_wrapper=wsgiref.util.FileWrapper
+wsgi.input=<socket._fileobject object at 0x7fe83a129350>
+REMOTE_HOST=
+HTTP_X_REQUEST_START=1467196882820
+FORWARDED_ALLOW_IPS=*
+PYTHONHOME=/app/.heroku/python
+HTTP_X_REQUEST_ID=d33e7469-1fcd-488b-a621-294d051c4a98
+
+Environment vars (os.environ):
+WEB_CONCURRENCY=2
+PYTHONUNBUFFERED=true
+PS1=\[\033[01;34m\]\w\[\033[00m\] \[\033[01;32m\]$ \[\033[00m\]
+LD_LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:
+_=/app/.heroku/python/bin/python
+PYTHONPATH=/app/
+FORWARDED_ALLOW_IPS=*
+PYTHONHASHSEED=random
+PORT=35610
+DYNO_RAM=512
+LANG=en_US.UTF-8
+PYTHONHOME=/app/.heroku/python
+HOME=/app
+DYNO=web.1
+PATH=/app/.heroku/python/bin:/usr/local/bin:/usr/bin:/bin
+PWD=/app
+LIBRARY_PATH=/app/.heroku/vendor/lib:/app/.heroku/python/lib:
+SHLVL=1
+

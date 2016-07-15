@@ -132,7 +132,7 @@ jun 10 08:15:57 archer nm-dispatcher[11642]: hola
 
 journalctl -fn 100 _COMM=nm-dispatcher
 
-Ejemplo gestion redes en: 30_trabajo.sh
+Ejemplo gestion redes en: linux/NetworkManager/30_trabajo.sh
 
 
 # Configuracion

@@ -1,4 +1,5 @@
 http://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html
+http://dev.mysql.com/doc/refman/5.7/en/date-calculations.html
 
 
 El tipo DATETIME se usa cuando necesita valores que contienen información de fecha y hora. MySQL recibe y muestra los valores DATETIME en formato 'YYYY-MM-DD HH:MM:SS'
@@ -8,8 +9,15 @@ El tipo DATE se usa cuando necesita sólo un valor de fecha, sin una parte de ho
 El tipo TIMESTAMP tiene varias propiedades, en función de la versión de MySQSL y el modo SQL que esté ejecutando el servidor.
 
 
-Fecha aMctual:
-curdate()
+MariaDB [prueba]> select NOW();
+2016-07-05 08:31:03
+
+MariaDB [prueba]> select CURDATE();
+2016-07-05
+
+MariaDB [prueba]> select CURTIME();
+08:31:10
+
 
 Quitar un dia al tiempo actual:
 ColumnaTiempo >= CURDATE() - INTERVAL 1 DAY
@@ -52,3 +60,21 @@ INSERT INTO tabla2 SELECT count(id),@fecha,iniciativa FROM tabla1 WHERE (@fecha 
 UNTIL @fecha >= fin END REPEAT;
 END
 //
+
+
+# TIMESTAMPDIFF
+http://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_timestampdiff
+
+mysql> SELECT TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01');
+        -> 3
+mysql> SELECT TIMESTAMPDIFF(YEAR,'2002-05-01','2001-01-01');
+        -> -1
+mysql> SELECT TIMESTAMPDIFF(MINUTE,'2003-02-01','2003-05-01 12:05:55');
+        -> 128885
+
+# UTC
+http://dev.mysql.com/doc/refman/5.7/en/date-and-time-functions.html#function_utc-timestamp
+
+SELECT UTC_TIMESTAMP();
+
+Nos da la hora en UTC

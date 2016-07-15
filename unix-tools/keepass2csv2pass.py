@@ -13,10 +13,14 @@
 import csv
 import itertools
 import sys
+import os
 from subprocess import Popen, PIPE
 
 def pass_import_entry(path, data):
 	""" Import new password entry to password-store using pass insert command """
+    if os.path.isfile(".password-store/"+path+".gpg"):
+        print("Path %s ya existe, no se sobreescribe")
+        return
 	proc = Popen(['pass', 'insert', '--multiline', path], stdin=PIPE, stdout=PIPE)
 	proc.communicate(data.encode('utf8'))
 	proc.wait()

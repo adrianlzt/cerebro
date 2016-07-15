@@ -40,3 +40,7 @@ echo "<175>abcdefgh cosas y mas cosas" | socat unix-sendto:/dev/log STDIN
 
 socat TCP4-LISTEN:1234,fork TCP4:192.168.1.1:22
 forwards your port 1234 to another machine's port 22. Very useful for quick NAT redirection.
+
+
+# SSL
+echo "GET / HTTP/1.0\n\n" | socat openssl:server.es:443 stdio

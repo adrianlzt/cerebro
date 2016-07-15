@@ -2,7 +2,9 @@ Añadir trazas en la configuracion:
 
 (streams
   ...
-  #(info "traza %))
+  #(info "traza" %))
+
+#(info %) expands into (fn [x] (info x))
 
 Creamos la función anónima que pondrá la cadena de texto que le digamos más un dump del objeto
 

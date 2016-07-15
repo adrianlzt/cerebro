@@ -1,8 +1,13 @@
+https://clojuredocs.org/clojure.core/defn
 Ejemplos complejos: https://github.com/mythz/clojure-linq-examples
 
 
 Llamar a una función.
-(NOMBREFUNC, PARAM1, PARAM2, ...)
+(NOMBREFUNC PARAM1 PARAM2 ...)
+
+(defn name doc-string? attr-map? [params*] prepost-map? body)
+
+(defn nombre "texto de ayuda" [param1 param2] (que hacer))
 
 
 Definir función:
@@ -56,7 +61,8 @@ Mirar funciones_high_order.md
 # Funciones modificadoras
 Mirar funciones_listado.md
 
-# Parámetros / argumentos
+# Parámetros / argumentos / variadic
+http://clojure-doc.org/articles/language/functions.html#variadic-functions
 Mirar desctructuring.md
 Si en los parámetros ponemos "& NOMBRE", todos los parámetros que excedan los definidos se meterán en un array accesible mediante NOMBRE.
 
@@ -100,9 +106,27 @@ Obtener valores de un map sin destruirlo:
   Tambien seguimos teniendo disponible la variable user (que será algo tipo {:id "nombre" :pass "pwd" :repeat-pass "pwd"})
 
 
+# Multi-arity / diferente numero de argumentos
+http://theburningmonk.com/2013/09/clojure-multi-arity-and-variadic-functions/
+
+(defn greet
+     ([] (greet "you"))
+     ([name] (print "Hello" name)))
+
+(greet) 
+;; => Hello you
+
+(greet "World")
+;; => Hello World
+
 # Threading expressions
 Organización más sencilla
 
 (reduce + (interpose 5 (map inc (range 10))))
 (->> (range 10) (map inc) (interpose 5) (reduce +))
 
+
+# Funciones privadas
+https://clojuredocs.org/clojure.core/defn-
+
+(defn- foo [] "World!")

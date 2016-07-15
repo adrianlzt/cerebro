@@ -21,3 +21,10 @@ appcfg.py cron_info .
 
 # Actualizar solo el cron
 appcfg.py update_cron .
+
+# Borrar crons
+Dejar el cron.yml a
+cron:
+
+y actualizar:
+appcfg.py update_cron .

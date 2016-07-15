@@ -19,5 +19,4 @@ Ejemplo:
 curl -o imagen.png -H "Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXX" "http://influxdb.inet/render/dashboard-solo/db/detailed-status?panelId=9&from=1463115647752&to=1463126447752&var-Host=All&width=1000&height=500"
 
 
-Issue abierta para poder generar un png de todo un dashboard
-https://github.com/grafana/grafana/issues/2085
+Mirar dashboard.md para generar un pdf de todo el dashboard

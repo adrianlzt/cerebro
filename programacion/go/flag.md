@@ -28,6 +28,10 @@ var (
   ip      = kingpin.Arg("ip", "IP address to ping.").Required().IP()
   count   = kingpin.Arg("count", "Number of packets to send").Int()
 )
+func main() {
+	kingpin.Parse()
+	fmt.Printf("Would ping: %s with timeout %s and count %d", *ip, *timeout, *count)
+}
 
 Flag son --cosa = valor
 Arg son [cosa]

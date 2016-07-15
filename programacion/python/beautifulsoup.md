@@ -20,3 +20,8 @@ with open("fichero.html") as fd:
 soup = BeautifulSoup(html, 'html.parser')
 soup.title
 
+
+
+Obtener el valor de esta linea de la cabecera de un html:
+<meta content="J0lD46c5jAKbAX5wrf7Dv+Yt9yctNCkiVcFUkRZUwjg=" name="csrf-token" />
+soup.find(name="meta",attrs={"name": "csrf-token"}).get("content")

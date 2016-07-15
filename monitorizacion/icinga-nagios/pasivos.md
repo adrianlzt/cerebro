@@ -15,6 +15,8 @@ La mejora es que interponemos un intermediario entre icinga y los hosts monitori
 
 
 # Passive checks para servicios
+Aunque no haya encryption hay que poner --encryption=no
+
 send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --service="Check disk /dev/nuevo" --message="OK - debuti | size=100;200;300;0" -r=0
 send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --service="Check disk /dev/nuevo" --message="WARNING - cuidado | size=100;200;300;0" -r=1
 send_gearman --server=127.0.0.1 --encryption=yes --key=should_be_changed --host="client.com" --service="Check disk /dev/nuevo" --message="CRITICAL - alerrrrta | size=100;200;300;0" -r=2
@@ -74,6 +76,10 @@ define service {
        freshness_threshold             300 # A los 300" sin informacion se ejecuta el check_command
        check_freshness                 1
 }
+
+Resumen, para host y service:
+active_checks_enabled 0
+passive_checks_enabled 1
 
 
 En el cliente creamos el fichero de ejecución para check_multi, test.cmd:

@@ -162,14 +162,18 @@ Ejemplo, si ponemos TIEMPO=10 y enviamos, durante un periodo de 10" dos métrica
 
 
 # rollup
+http://riemann.io/api/riemann.streams.html#var-rollup
 (rollup N TIEMPO
   ...)
+
+Pasa un array de eventos al children
+TIEMPO en segundos
 
   Deja pasar N mensajes en TIEMPO segundos. Si llegan más mensajes los guarda y los escupe todos de golpe pasados esos segundos.
   Por ejemplo, envia 3 emails máximo en una hora. El resto de eventos que lleguen durante la hora se envian todos juntos en un solo email al final de la hora
 
 
-# splitp
+# splitp / switch
 http://riemann.io/api/riemann.streams.html#var-splitp
 
 Es como el típico switch-case
@@ -184,6 +188,15 @@ Es como el típico switch-case
     "malo" (with :skype_id "23b45" prn)
     "bueno" (with :state "ok" prn)
             (with :state "warn" prn)))
+
+(splitp = (:state event)
+  "ok"        #(info "Alarma ok" %)
+  "warning"   #(alerta %)
+  "critical"  #(alerta %)
+  "unknown"   #(alerta %)
+              #(alerta %)
+)
+
 
 El ultimo caso es el que matchea en caso de que ninguno de los anteriores lo haya hecho. Si no poemos esta condicion, cuando algo no matchee nos saltará una expceción.
 

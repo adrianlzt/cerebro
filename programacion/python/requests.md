@@ -186,3 +186,11 @@ r_casa = requests.get("http://www.casareal.es/ES/Transparencia/InformacionJuridi
 with open("casa.pdf", "w") as f:
   f.write(r_casa.content)
 
+
+# Time
+>>> import requests
+>>> response = requests.get('http://www.google.com')
+>>> print response.elapsed
+0:00:01.762032
+>>> response.elapsed
+datetime.timedelta(0, 1, 762032)

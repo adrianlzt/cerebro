@@ -10,7 +10,7 @@ Indicando que mediante 'cli' (command line interface) hemos forzado al recurso t
 
 Si luego volvemos a migrar al nodo 1 (WS01P), nos quedarían dos reglas puestas en el fichero de configuración:
   Migrar a nodo 1 (la ultima que hemos puesto) aparecerá más arriba, y por lo tanto será la que tenga efecto
-  
+
 location cli-prefer-tomcat tomcat \
         rule $id="cli-prefer-rule-vip" inf: #uname eq WS01P
 location cli-prefer-vip vip \
@@ -29,3 +29,9 @@ PT2M indica que:
   T: vamos a dar un tiempo (horas, minutos o segundos)
   2M: 2 minutos
 
+
+# PCS
+pcs resource move RECURSO NODO
+
+pcs resource move RECURSO
+  mueve RECURSO al nodo donde ejecutamos el comando

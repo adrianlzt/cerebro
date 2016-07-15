@@ -61,6 +61,9 @@ PUT /api/datasources/:datasourceId
 # Organizaciones
 GET /api/org
 
+GET /api/orgs/:orgId
+GET /api/orgs/name/:name
+
 ## Cambiar mi usuario de organizacion
 curl -XPOST -s -u "user:pass" -H "Content-Type: application/json" http://192.168.22.95/api/user/using/16
 

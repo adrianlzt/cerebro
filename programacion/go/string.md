@@ -5,7 +5,8 @@ string (por defecto '')
 var data string
 a := "hola"
 
-vacia? http://stackoverflow.com/questions/18594330/the-best-way-to-test-for-an-empty-string-in-go
+La cadena vacía es ""
+http://stackoverflow.com/questions/18594330/the-best-way-to-test-for-an-empty-string-in-go
 if len(s) > 0 { ... }
 if s != "" { ... }
 
@@ -32,6 +33,9 @@ database = []byte("block")
 Byte array -> string
 s := string(byteArray[:n])
 
+
+int -> string
+t := strconv.Itoa(123)
 
 float -> string
 https://golang.org/pkg/strconv/#FormatFloat

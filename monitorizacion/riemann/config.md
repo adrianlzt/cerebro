@@ -26,6 +26,15 @@ The TCP and UDP servers listen on port 5555 for TCP connections and UDP datagram
 ; Include a whole directory (coge los *.config y los *.clj)
 (include "/usr/local/riemann/config")
 
+Cuando hacemos un include, si en el fichero que incluimos tenemos una serie de instrucciones, deberemos poner:
+(stream
+  (func1 ...)
+  (func2 ...)
+  ...
+)
+
+Si no ponemos stream, solo se ejecutará la última función definida
+
 
 # Log file
 (logging/init {:file "/path/to/some/riemann.log"})

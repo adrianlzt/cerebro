@@ -7,3 +7,6 @@ program:
 	gcc file.c -o ejecutable
 
 Tener en cuenta que es un tabulador lo que hay antes de gcc
+
+Si queremos meter un script en bash:
+$$(echo "hola")

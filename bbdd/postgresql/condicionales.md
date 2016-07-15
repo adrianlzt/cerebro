@@ -14,3 +14,6 @@ ELSE
         pretty_sex := 'woman';
     END IF;
 END IF;
+
+# null
+NULL

@@ -1,5 +1,6 @@
 http://blog.golang.org/error-handling-and-go
 https://gobyexample.com/errors
+http://www.golangpatterns.info/error-handling
 
 Mirar tambien panic.md
 
@@ -47,3 +48,22 @@ type error interface {
 }
 
 Podemos definirlo de cualquier manera con total que tengamos esa interfaz para sacar el texto
+
+
+# Named return values
+http://golangtutorials.blogspot.com.es/2011/06/return-values-from-go-functions.html
+
+Damos un nombre a las variables de retorno, las poblamos y al final llamamos simplemente a return sin parametros.
+
+func MySqrt2(f float64) (ret float64, err error) {
+    if (f < 0) {
+        //then you can use those variables in code
+        ret = float64(math.NaN())
+        err = errors.New("I won't be able to do a sqrt of negative number!")
+    } else {
+        ret = math.Sqrt(f)
+        //err is not assigned, so it gets default value nil
+    }
+    //automatically return the named return variables ret and err
+    return
+}

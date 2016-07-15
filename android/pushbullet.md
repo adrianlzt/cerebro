@@ -53,3 +53,16 @@ Control+D
 
 
 source ~/.bash_aliases
+
+
+# Envios con imagen custom
+Creamos un cliente: https://www.pushbullet.com/#settings/clients
+En website ponemos cualquier cosa: http://cosa.null
+Ponemos la imagen que queramos
+En redirect_uri ponemos: https://www.pushbullet.com/login-success
+
+Guardamos y pinchamos sobre el link de "oauth test url: click here"
+Luego damos a "Approved"
+Nos redireccionará a una web. En la URL encontraremos el token para enviar peticiones como esta app
+
+Puede que tarde un rato en dejarnos enviar pushes (en el json nos pondra dismissed a true)

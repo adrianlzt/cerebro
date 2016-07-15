@@ -21,3 +21,15 @@ error: XXXX: signature from "NOMBRE <EMAIL@EMAIL.com>" is unknown trust
 
 Arreglar con:
 sudo pacman-key --refresh-keys
+
+
+# Opciones cuando falla
+• import the key and sign it locally
+gpg --recv-keys 5A92E04305696D78
+gpg --lsign-key 5A92E04305696D78
+
+• add the key to the 'validpgpkeys' array in the PKGBUILD
+validpgpkeys=('2E708FB2FCECA07FF8184E275A92E04305696D78')
+
+• use makepkg --skippgpcheck
+

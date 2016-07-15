@@ -38,6 +38,7 @@ SREM clave "valor" <- elimina ese elemento de la lista
 SISMEMBER clave "valor" <- nos devuelve 0 o 1 si "valor" pertenece al set clave
 SMEMBERS clave <- nos devuelve los elementos del set
 SUNION clave1 clave2 <- nos devuelvo un set con la unión de ambas claves
+SCARD clave <- numero de elementos
 
 
 ## Sorted Sets ##

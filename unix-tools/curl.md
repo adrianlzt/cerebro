@@ -6,6 +6,11 @@ curl host:puerto
 Ver todas las cabeceras:
 curl -v ...
 
+Ver todo el contenido de la comunicación
+curl --trace-ascii - ...
+
+--trace hace un dump hex+ascii
+
 Ver cabeceras de la respuesta
 curl -D - ...
 
