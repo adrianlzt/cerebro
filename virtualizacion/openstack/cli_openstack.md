@@ -1,3 +1,5 @@
+pip install python-openstackclient
+
 Esta cli sustituye a las antiguas que estaban separadas: nova, neutron, keystone, etc
 
 openstack availability zone list - Lista las AZs

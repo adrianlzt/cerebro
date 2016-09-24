@@ -6,3 +6,12 @@ curl -v -c cookies.txt -d "tfUsername=admin&tfPassword=admin&Submit=Login" http:
 
 Con la cookie del logueo, enviamos una petición post:
 curl -v -b cookies.txt -d "butValue1=Do+it" http://10.2.2.1/nagiosql/admin/verify.php
+
+# LDAP
+http://whataniceblogtitle.blogspot.com.es/2014/03/curl-as-ldap-client.html
+
+necesita compilarse con esa opcion
+
+
+# Protocolos que puede soportar
+DICT FILE FTP FTPS GOPHER HTTP HTTPS IMAP IMAPS POP3 POP3S RTMP RTSP SCP SFTP SMB SMBS SMTP SMTPS TELNET TFTP LDAP LDAPS SSH

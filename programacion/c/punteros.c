@@ -1,3 +1,5 @@
+//https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C/Punteros
+//
 #include <stdio.h>
 
 // p variable
@@ -25,3 +27,32 @@ int main(void)
 
     return 0;
 }
+
+/*
+ * Si en una función está definida como: func(char *)
+ * nos está pidiendo que le pasemos la dirección de memoria de un char
+ * char a;
+ * func(&a);
+ *
+ * Podemos crear tambien punteros directamente, reservando un trozo de memoria para ellos
+ * char *a = (char) malloc (sizeof (char));
+ * func(a);
+ * Aqui hemos reservado un trozo de memoria de tamaño char que es donde apunta a
+ * En *a tendremos el valor del char que guardemos ahí.
+*/
+
+/*
+ * Arrays
+ * int x[10]={0,2,3,5];
+ * x es un puntero que apunta a la dirección de memoria donde comienza el array
+ * *x es el primer valor del array (0 en este caso)
+*/
+
+/*
+ * Funciones
+ * Si una función esta declarada como: char *func()
+ * Para almacenar el valor retornado usaremos un puntero del mismo tipo
+ * char *valor;
+ * valor = func();
+ * printf("%s\n", valor);
+*/

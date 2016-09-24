@@ -145,3 +145,14 @@ https://wiki.archlinux.org/index.php/Systemd#Editing_provided_unit_files
 
 Poner vim como editor por defecto
 update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
+
+
+# Escribir al journald
+systemd-cat -t MIAPP -p 3 echo "pepe"
+echo "coso" | systemd-cat -t MIAPP -p 3
+
+Con journalctl veremos:
+jul 20 11:27:18 archer MIAPP[1234]: pepe
+
+Podemos filtrar con -t MIAPP
+

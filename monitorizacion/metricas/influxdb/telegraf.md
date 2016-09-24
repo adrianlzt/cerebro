@@ -150,6 +150,7 @@ https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response
 
 ## Parse logs
 https://github.com/influxdata/telegraf/blob/master/plugins/inputs/logparser/README.md
+https://influxdata.com/blog/telegraf-correlate-log-metrics-data-performance-bottlenecks/
 
 ## Github
 Puede levantar un puerto donde apuntamos un webhook de github

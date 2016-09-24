@@ -20,3 +20,35 @@ err := ioutil.WriteFile("/tmp/dat1", d1, 0644)
 if err != nil {
   panic(err)
 }
+
+## Append
+Crea el fichero si no existe
+
+f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+if err != nil {
+    panic(err)
+}
+
+defer f.Close()
+
+if _, err = f.WriteString(text); err != nil {
+    panic(err)
+}
+
+# Temporal
+https://golang.org/pkg/io/ioutil/#TempFile
+
+	tmpfile, err := ioutil.TempFile("", "example")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer os.Remove(tmpfile.Name()) // clean up
+
+	if _, err := tmpfile.Write(content); err != nil {
+		log.Fatal(err)
+	}
+	if err := tmpfile.Close(); err != nil {
+		log.Fatal(err)
+	}
+
+Podemos cerrar el fichero y luego leerlo, pero si hacemos el defer lo borramos.

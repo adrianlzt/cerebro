@@ -125,3 +125,12 @@ Parece que a todos los módulos se les puede poner el parámetro 'debug' para qu
 # Módulos externos
 Módulo CAPTCHA para pam: http://www.semicomplete.com/projects/pam_captcha/
 Screenshot: http://www.semicomplete.com/images/pamchallenge.png
+
+
+# No delay
+Si no queremos tener delay tras meter la password mal:
+/etc/pam.d/system-auth
+
+Añadimos "nodelay" en
+auth      required  pam_unix.so 
+password  required  pam_unix.so

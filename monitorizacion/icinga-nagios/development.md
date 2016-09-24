@@ -40,3 +40,31 @@ https://github.com/Icinga/icinga-core/blob/fb5e3c84d6401a2e82815e544bc2cc0c81bc7
 
 Aqui se separa, de la primera linea, el output del perfdata:
 https://github.com/Icinga/icinga-core/blob/fb5e3c84d6401a2e82815e544bc2cc0c81bc7f8a/base/checks.c#L4543
+
+
+# Señales / kill / restart / reload
+Captura de señales
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/utils.c#L2244
+
+Función a la que se salta al recibir una señal
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/utils.c#L2281
+
+El loop principal donde está el programa
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/icinga.c#L888
+doesn't return until a restart or shutdown signal is encountered
+
+
+## Reload
+Si la señal es SIGHUP:
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/utils.c#L2305
+sigrestart = TRUE;
+
+
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/icinga.c#L895
+
+
+
+# Modulos neb
+https://github.com/Icinga/icinga-core/blob/v1.11.6/base/nebmods.c
+
+Se cargan con dlopen

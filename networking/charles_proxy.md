@@ -1,3 +1,9 @@
+# eBPF / bcc / kprobes
+Con la herramienta trace podemos meter una kprobe en la instruccion SSL_write o SSL_read para ver el trafico que se envia/recibe:
+./trace -Z 200 'p:/usr/lib/libssl.so.1.0.0:SSL_write "%s", arg2'
+./trace -Z 200 'p:/usr/lib/libssl.so.1.0.0:SSL_read "%s", arg2'
+  el read solo me muestra el comienzo
+
 https://www.charlesproxy.com
 
 Proxy para meter entre el pc y los endpoints.

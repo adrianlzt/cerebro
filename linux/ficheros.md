@@ -3,6 +3,10 @@ http://www.cyberciti.biz/faq/linux-increase-the-maximum-number-of-open-files/
 Para ver todos los límites soft de un usuario (entrando como el usuario)
   ulimit -a
 
+De un proceso:
+cat /proc/PID/limits
+
+
 Mirar performance/ulimit.md
 
 Otro límite distinto es el del sistema operativo, que lo podemos ver:

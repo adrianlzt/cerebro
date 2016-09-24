@@ -14,6 +14,7 @@ var html = `
 `;
 
 # Replace
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String/replace
 http://www.w3schools.com/jsref/jsref_replace.asp
 
 var str = "Visit Microsoft!";
@@ -22,6 +23,9 @@ Visit W3Schools!
 
 Cambiar todas las apariciones
 txt.replace(/xx/g, "aa")
+
+"hola pepe adios".replace(/hola ([a-z]*) adios/gi, "-$1-");
+-pepe-
 
 # Contains
 var cadena = "hht://idealista.com/asd"
@@ -33,3 +37,6 @@ var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var energy = fruits.join();
 Banana,Orange,Apple,Mango
 
+
+# Uppercase
+"cosa".toUpperCase()

@@ -7,6 +7,11 @@ https://gist.github.com/caspyin/2288960
 curl  -X POST --data '{"description":"Created via API","public":"true","files":{"file1.txt":{"content":"Demo"}}' https://api.github.com/gists
 En la respuesta el link está en: "html_url"
 
+Si queremos buscar un gist anonimo tendremos que poner
+cadena anon:true
+
+Ej.: https://gist.github.com/search?utf8=%E2%9C%93&q=cadena+anon%3Atrue&ref=searchresults
+
 # Post de un fichero
 http://stackoverflow.com/questions/26484337/upload-a-file-to-a-gist-with-bash
 

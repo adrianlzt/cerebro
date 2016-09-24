@@ -29,3 +29,20 @@ Transformar cada uno de los elementos de un array
 
 # Mostrar contenido
 array.toString()
+
+# Eliminar elemento
+http://stackoverflow.com/questions/5767325/how-to-remove-a-particular-element-from-an-array-in-javascript
+
+var array = [2, 5, 9];
+var index = array.indexOf(5);
+if (index > -1) {
+    array.splice(index, 1); //aqui devolvera el elemento eliminado
+}
+// la variable array aqui ya no tendra el '5'
+
+# indexOf / Contiene
+pepe = ["hola","adios"]
+pepe.indexOf("hola")
+
+Devuelve un int con el número de posisión.
+-1 si no lo encuentra

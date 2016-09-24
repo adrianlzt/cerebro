@@ -20,5 +20,9 @@ true
 # Custom attributes
 Usarlos como si fuese un parámetro más. Aunque en el protocolo vayan dentro de la estructura attributes, se llaman directamente en las queries.
 
+'(tagged "icinga" and project = "sm2m")'
+
 # Tiempo
 time > 1468410837
+
+

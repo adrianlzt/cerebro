@@ -36,6 +36,7 @@ La buga del lobo, terraza lavapies. Bebidas para verano
 Poncelet cheese bar
 The hall (antiguo nodo)
 Iroco (bonito, para ir en pareja)
+Gramabar (arepas. Como entrantes, los tequeños, cerca de Callao)
 Vegetarianos:
   Viva la vida. Latina
   Sopa (vegano)

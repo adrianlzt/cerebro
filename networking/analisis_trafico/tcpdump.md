@@ -28,6 +28,9 @@ Por defecto se usa la interfaz eth0, para cambiarla:
 Filtrar por tcp flag (tcp-fin, tcp-syn, tcp-rst, tcp-push, tcp-act, tcp-urg):
 'tcp[tcpflags] & tcp-push != 0'
 
+Escuchar solo las peticiones entrantes al puerto 9080 en ascii, con ips y puertos con numeros y solo los paquetes PUSH (los que tienen datos):
+tcpdump -Ann -i any 'dst port 9080 and tcp[tcpflags] & tcp-push != 0' 
+
 Guardar la salida a un fichero
 # tcpdump -w fichero
 

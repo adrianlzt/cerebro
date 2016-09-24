@@ -13,9 +13,20 @@ if s != "" { ... }
 # Concatenar
 concatenated := fmt.Sprint(chinese +" "+ english +" "+ malay)
 
+# sustituir
+https://golang.org/pkg/strings/#Replace
+fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
+
+# Join
+strings.Joins(["a","b"], "")
+"ab"
+
 # Split
 strings.Split("a,b,c", ",")
   devuelve: ["a" "b" "c"]
+
+strings.Split("60123234","")
+[6 0 1 2 3 2 3 4]
 
 # Contains
 strings.Contains("seafood", "foo")

@@ -31,8 +31,11 @@ echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
 -a es por si el contenido cifrado lo tenemos que pegar en ASCII
 -r es la clave publica de a quien queremos enviar el mensaje. Debemos tener su clave publica disponible
 -e es el fichero a encriptar, o en este caso stdout
+-se firmara y cifrará el fichero
+Podemos poner -o file, para enviar la encriptación a un fichero
 
 -d es descriptar, en este caso stdout (podría ser un fichero)
+gpg -o fichero.tar -d fichero.tar.pgp
 
 ## Importar una clave
 gpg --import fichero.key

@@ -1,6 +1,10 @@
 Generador de JSONs: http://beta.json-generator.com/
 Se le puede pasar un template
 
+Comparador:
+http://tlrobinson.net/projects/javascript-fun/jsondiff
+http://json-diff.com/
+
 
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.
 

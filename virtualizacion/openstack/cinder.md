@@ -16,3 +16,6 @@ Con volume retype podemos cambiar esto una vez creado el volumen.
 Mostrar imagenes almacenadas en ceph:
 rados ls --pool images | grep "rbd_id"
 
+
+Mostrar estado de los servicios:
+cinder-manage service list

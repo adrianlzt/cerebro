@@ -9,3 +9,9 @@ gdisk es la variante gráfica
 
 
 Partición FAT32 es el código: b
+
+
+# Imagen
+También podemos aplicar fdisk contra una imagen raw (sacada de dd por ejemplo)
+fdisk -l imagen.raw
+  para mostrar las particiones

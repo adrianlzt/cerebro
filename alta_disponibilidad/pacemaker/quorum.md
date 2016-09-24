@@ -9,3 +9,7 @@ property $id="cib-bootstrap-options" \
 
 
 Podemos ver si hay o no quorum mirando en la línea "Current DC" del crm_mon.
+
+
+pcs property set no-quorum-policy=ignore
+

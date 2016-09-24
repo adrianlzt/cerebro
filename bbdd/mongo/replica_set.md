@@ -110,3 +110,15 @@ http://docs.mongodb.org/manual/core/replica-set-oplog/#replica-set-oplog-sizing
 http://docs.mongodb.org/manual/tutorial/change-oplog-size/
 A larger oplog can give a replica set a greater tolerance for lag, and make the set more resilient.
 rs.printReplicationInfo() 
+
+
+## Pasar de replica set a standalone
+
+Cuando no tenemos mayoría: https://docs.mongodb.com/manual/tutorial/reconfigure-replica-set-with-unavailable-members/
+
+cfg = rs.conf()
+cfg.members = [cfg.members[X]] //Poner el nodo que sigue vivo
+rs.reconfig(cfg, {force : true})
+
+El nodo que sigue vivo se habrá puesto como primario
+

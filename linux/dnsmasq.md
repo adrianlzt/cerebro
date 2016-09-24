@@ -16,6 +16,10 @@ vi /etc/resolvconf.conf
 nameserver=127.0.0.1
 
 
+# Flush cache
+systemctl restart dnsmasq
+
+
 vi /etc/dnsmasq.conf
 # By  default,  dnsmasq  will  send queries to any of the upstream
 # servers it knows about and tries to favour servers to are  known
@@ -85,8 +89,13 @@ Si queremos definir un host a una ip de manera fija, editamos /etc/dnsmasq.conf
 address=/sro.whatsapp.net/192.168.1.33
 
 
-Se pueden crear alias:
+Se pueden registros A:
 address=/double-click.net/127.0.0.1
+
+Registro A con wildcard
+address=/.pepe.net/127.0.0.1
+  xxx.pepe.net resolvera a 127.0.0.1
+
 
 Alias de otros hosts (estos hosts deben estar en /etc/hosts o tener resolucion por dhcp):
 cname=pepe,ordenador-de-pepe

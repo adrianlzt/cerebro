@@ -1,5 +1,7 @@
 http://haproxy.1wt.eu/
 
+mirar github_load_balancer.md
+
 HAProxy is a free, very fast and reliable solution offering high availability, load balancing, and proxying for TCP and HTTP-based applications.
 
 Interfaz web para consultar el estado: http://demo.1wt.eu/

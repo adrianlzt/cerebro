@@ -1,0 +1,1 @@
+../../linux/systemd/coredump

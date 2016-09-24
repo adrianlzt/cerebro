@@ -23,6 +23,10 @@ if !exists {
 }
 fmt.Printf("m->key = %v", value)
 
+if _,exists := mapa[clave]; !exists {
+  fmt.Errorf("No existe la clave\n")
+}
+
 
 
 pepe := make(map[string][]int)
@@ -58,3 +62,6 @@ Ejemplo:
 http://play.golang.org/p/S3wj1EJGjH
 
 Si queremos copiar el valor usar la copia de maps que pongo más arriba.
+
+# Mapa de mapa
+make(map[string]map[int]UnStruct)

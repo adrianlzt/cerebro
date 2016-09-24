@@ -205,3 +205,11 @@ Timestamp: Mon Nov  2 16:13:33 2015 702189 usec
 Timestamp: Mon Nov  2 16:13:33 2015 705077 usec
 3: wlo1    inet6 fe80::76de:2bff:feef:5b71/64 scope link \       valid_lft forever preferred_lft forever
 
+
+# Blackhole
+Crear rutas blackhole para dropear ciertas IPs:
+http://www.cyberciti.biz/tips/how-do-i-drop-or-block-attackers-ip-with-null-routes.html
+ip route add blackhole 202.54.5.2/29
+ip route add blackhole from 202.54.1.2
+ip rule add blackhole to 10.18.16.1/29
+ip route

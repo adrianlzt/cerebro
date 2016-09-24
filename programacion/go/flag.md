@@ -1,7 +1,12 @@
 https://golang.org/pkg/flag/
+https://gobyexample.com/command-line-flags
 
-  var ip = flag.Int("flagname", 1234, "help message for flagname")
-  fmt.Printf("hello, world: %v\n", *ip)
+  var num = flag.Int("flagname", 1234, "help message for flagname")
+  var coso = flag.String("nombreflag", "default value", "help")
+  flat.Parse()
+  fmt.Printf("hello, world: %v\n", *num)
+
+  go run programa.go -nombreflag pepe -flagname 12
 
 
 https://github.com/codegangsta/cli
@@ -21,6 +26,7 @@ Genera automáticamente bash y zsh completion
 Ejemplos: https://github.com/alecthomas/kingpin/tree/master/_examples
 Tipos de datos: https://github.com/alecthomas/kingpin/blob/master/values.json
 
+import "gopkg.in/alecthomas/kingpin.v2"
 
 var (
   debug   = kingpin.Flag("debug", "Enable debug mode.").Bool()
@@ -43,20 +49,48 @@ Si hemos usado kingpin.New() usar
 app.HelpFlag.Short('h')
 
 # Version
+Sin kingping.New:
+var (
+  app_version = "NA"
+  _ = kingpin.Version(app_version)
+
+Con kingping.New
 var (
   app_version = "NA"
 
-	// opciones generales
-	app      = kingpin.New("check_openstack", "Check different data of OpenStack")
-	verbose  = app.Flag("verbose", "Have more verbose output. Twice for debug").Short('v').Counter()
-	v = app.Version(app_version)
+  // opciones generales
+  app      = kingpin.New("check_openstack", "Check different data of OpenStack")
+  _ = app.Version(app_version)
+  verbose  = app.Flag("verbose", "Have more verbose output. Twice for debug").Short('v').Counter()
 )
 
+
+func main() {
+	kingpin.CommandLine.HelpFlag.Short('h')
+	kingpin.CommandLine.VersionFlag.Short('V')
+	kingpin.Parse()
 ...
-	app.VersionFlag.Short('V')
 
 ./app -V
 ./app --version
 
 go run  -ldflags "-X main.app_version 1.5" *.go -V
 go build -o app -ldflags "-X main.app_version 1.5" *.go
+
+
+# Verbose
+var (
+        verbose  = kingpin.Flag("verbose", "Have more verbose output. Twice for debug").Short('v').Counter()
+)
+
+func main() {
+  ...
+	switch *verbose {
+	case 0:
+		log.SetLevel(log.WarnLevel)
+	case 1:
+		log.SetLevel(log.InfoLevel)
+	default:
+		log.SetLevel(log.DebugLevel)
+	}
+}

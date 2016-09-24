@@ -35,6 +35,26 @@ adb install [-l] [-r] [-s] [--algo <algorithm name> --key <hex-encoded key> --iv
                                  ('-s' means install on SD card instead of internal storage)
                                  ('--algo', '--key', and '--iv' mean the file is encrypted already)
 adb uninstall [-k] <package> - remove this app package from the device
+                                '-k' means keep the data and cache directories
 
 Mirar logs de android
 adb logcat
+
+
+# adb con root
+Settings -> Developer options -> Root access
+
+
+
+# Listar paquetes
+adb shell 'pm list packages -f' | sed -e 's/.*=//' | sort
+
+With google play links, no matter the app installer:
+
+## all third-party apps (slow because of pm)
+
+adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>'; pm list packages -3 | sed -e 's/-.*//' | sed -e 's/.*://' | sort | while read -r line; do echo $'<a href="https://play.google.com/store/apps/details?id='$line$'" target="_blank">'$line$'</a><br/>'; done; echo $'</body></html>'" > ./myapps.html
+
+## external apps only (at least on marshmallow), assuming only one expandable device, and might include duplicates
+
+adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>'; ls /mnt/expand/$(ls /mnt/expand/ | head)/app | sed -e 's/-.*//' | sed -e 's/.*://' | sort | while read -r line; do echo $'<a href="https://play.google.com/store/apps/details?id='$line$'" target="_blank">'$line$'</a><br/>'; done; echo $'</body></html>'" > ./myapps.html

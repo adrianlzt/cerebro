@@ -1,6 +1,10 @@
-http://blog.codeship.com/an-intro-to-concurrency-patterns-in-go/?utm_campaign=Weekly%20Newsletters&utm_content=concurrency%20in%20go&utm_medium=newsletter&utm_source=email&utm_campaign=Weekly+Newsletters&utm_source=hs_email&utm_medium=email&utm_content=26891717&_hsenc=p2ANqtz-9-haV8Zf1MI8VK9n6mC4cWT_utyGwbXOqk2upRikBt_7jSGuKKzwnjE56xQ1miGnxzlAFZZ3CDEGKMUFSI2jpdSE48wQ&_hsmi=26891717
+https://talks.golang.org/2016/applicative.slide#36
+http://blog.codeship.com/an-intro-to-concurrency-patterns-in-go/
+https://blog.golang.org/pipelines
+https://blog.mozilla.org/services/2014/03/12/sane-concurrency-with-go/
 
 
+# goroutines / threads
 go f(x,y,z)
 Crea un nuevo thread y ejecuta f en el.
 La evaluación de x,y,z se hace en el thread actual, y la ejecución de f en el nuevo thread.
@@ -27,6 +31,8 @@ func main() {
   go sum(4,c)
   m,n := <- c, <- c
 
+Almacenar valor:
+p := <- c
 
 Un channel puede tener un buffer; su capacidad la sabemos con cap(ch): 
 ch := make(chan int, 20)
@@ -44,7 +50,7 @@ The loop for i := range c receives values from the channel repeatedly until it i
 Para este loop es necesario que el escritor cierre el canal, si no el for no sabrá cuando terminar.
 
 select
-Podemos tener varios canales configurados, y con select actuar sobre el que nos llegue información. Generalmente tendremos un for forever por encima.
+Podemos tener varios canales configurados, y con select actuar sobre el que nos llegue información. Generalmente tendremos un for forever por encima. Este es el tipico esquema de envio, recibo:
 select {
   case c1 <- x:
     f1()
@@ -60,3 +66,52 @@ Si llega algún dato por c2, hará c2
 
 Si necesitamos un reloj podemos usar time.Tick.
 O un 'despertador', time.After
+
+
+
+Para cosas en paralelo:
+func SearchParallel(query string) ([]Result, error) {
+    c := make(chan Result)
+    go func() { c <- Web(query) }()
+    go func() { c <- Image(query) }()
+    go func() { c <- Video(query) }()
+
+    return []Result{<-c, <-c, <-c}, nil
+}
+
+
+# Cerrar un canal
+https://gobyexample.com/closing-channels
+
+close(c)
+
+
+# Timeout
+
+  link_chan := make(chan string)
+  go wait_for_success(body_json.Jid, link_chan)
+  select {
+  case link := <- link_chan:
+    fmt.Printf("Link: %v\n", link)
+  case <- time.After(2 * time.Second):
+    fmt.Printf("Mucho tiempo esperando")
+  }
+
+
+# Stateful goroutines
+https://gobyexample.com/stateful-goroutines
+
+# Waiting groups
+https://golang.org/pkg/sync/#example_WaitGroup
+https://play.golang.org/p/j3aHaeMyjt
+
+import "sync"
+var wg sync.WaitGroup
+wg.Add(1)
+go rutina(&wg)
+wg.Wait()
+
+func rutina(wg *sync.WaitGroup) {
+  defer wg.Done()
+  ...
+}

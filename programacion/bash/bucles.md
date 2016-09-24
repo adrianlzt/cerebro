@@ -70,3 +70,16 @@ do
   host[$i]="pepe"
   echo "Valor: ${host_gb[$i]}"
 done
+
+
+Bucle leyendo array
+for element in "${array[@]}"
+do
+    echo "$element"
+done
+
+con indice
+for index in "${!array[@]}"
+do
+    echo "$index ${array[index]}"
+done

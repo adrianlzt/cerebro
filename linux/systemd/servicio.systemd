@@ -1,6 +1,8 @@
 # Zonas donde poner el fichero
 # /lib/systemd/system/*.service
 # /etc/systemd/system/*.service
+# 
+# Como escribir una unidad: http://hokstadconsulting.com/devops/writing-systemd-units
 #
 [Unit]
 Description=Nombre

@@ -117,3 +117,15 @@ go-agent
 
 Configurar:
 /etc/default/go-agent
+
+
+
+# API
+
+## Pipeline
+Ejecutar una pipeline
+https://api.go.cd/current/#scheduling-pipelines
+curl 'http://ci.example.com/go/api/pipelines/pipeline1/schedule' -u 'username:password' -H 'Confirm: true' -X POST
+
+Mostrar nombres de las pipelines del primer grupo:
+curl 'http://ci.example.com/go/api/config/pipeline_groups' | jq -r '.[0].pipelines[].name'

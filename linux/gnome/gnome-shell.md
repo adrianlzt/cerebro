@@ -11,3 +11,6 @@ Alt+F2: ventana para ejecutar comandos del entorno gráfico
 Super+M : ver barra de abajo
 
 Alt+º : saltar entre ventanas de una misma app
+
+# Shortcuts
+https://wiki.gnome.org/Design/OS/KeyboardShortcuts

@@ -41,3 +41,7 @@ sshd_config:Subsystemsftp/usr/libexec/openssh/sftp-server
 
 ValueError: No JSON object could be decoded
 El inventario dinámico no está funcionando
+
+
+FATAL: no hosts matched or all hosts have already failed -- aborting
+Con la version 1.9.3, si el nombre del host tiene ":" lo ignora

@@ -40,9 +40,14 @@ nc -U /var/run/docker.sock
 
 Escucha de forma continuada (sin -k, tras el primer cliente, se cierra)
 nc -kl 8080
+  netcat openbsd
+
+nc -l 127.0.0.1 -p 8080
+  netcat gnu, pero al salir la primera conex muere
 
 Para udp
 nc -klu 8080
 
 # SSL
 ncat --ssl ing.ingdirect.es 443
+  creo que esta es la version de nmap

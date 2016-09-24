@@ -24,6 +24,13 @@ int main( )
  
    /* book 1 specification */
    strcpy( Book1.title, "C Programming");
+   /*
+    * Otra forma de meter valores en el array char si no podemos usar strcpy
+    * Book1.title[0] = 'C';
+    * Book1.title[1] = ' ';
+    * Book1.title[2] = 'P';
+    * Book1.title[3] = '\0';
+   */
    strcpy( Book1.author, "Nuha Ali"); 
    strcpy( Book1.subject, "C Programming Tutorial");
    Book1.book_id = 6495407;

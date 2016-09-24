@@ -5,3 +5,7 @@ Ejemplo
 *.pyc
 *.swp
 ~*
+
+
+Ver que ficheros se están ignorando:
+git ls-files --others -i --exclude-standard

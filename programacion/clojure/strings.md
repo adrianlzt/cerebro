@@ -8,6 +8,8 @@ Clojure strings are Java strings. This means that you can use any of the Java st
 Concatenar:
 (clojure.string/join ["pedro" "juan" "mario"])
 
+(apply str "pepe" "-" "maria")
+
 
 
 Convetir una string que "parece" un elemento de clojure a clojure:

@@ -1,4 +1,7 @@
 https://golang.org/pkg/fmt/
+http://go-search.org/
+https://golanglibs.com
+  para buscar librerias
 
 ## FMT (ForMaT)##
 Printf("tipo %T. Valor=%v",var,var)

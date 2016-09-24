@@ -1,7 +1,17 @@
+Instalarlas con firefox desde la web:
+https://extensions.gnome.org/
+
+
 Las que tengo instaladas:
 
+# extensiones para dividir la pantalla
+https://extensions.gnome.org/extension/28/gtile/ para dividir la pantalla en cuadrados
+http://gfxmonk.net/shellshape/
+
+Con Win+izq Win+dcha podemos poner la ventana en la mitad izquierda o derecha
+
 Place status indicator
-Top Icons
+Top Icons Plus (para que los iconos se pongan en la barra superior)
 Applications menu
 
 Integración con Skype

@@ -1,20 +1,48 @@
+https://hubot.github.com/docs/
+https://github.com/github/hubot/blob/master/src/
+
 Bot para meter en distintos chats.
 Integración con: skype, slack, etc
 
 Los scripts se hacen en coffee o binarios (con el modulo shellcmd)
 
-Suele ser comodo arrancar el bot como:
-hubot -l .
-De esta manera podemos ejecutar los comandos como:
-.comando
+# Instalación
+Necesitamos nodejs y npm
 
+sudo npm install -g yo generator-hubot
+npm install -g yo generator-hubot
+mkdir myhubot
+cd myhubot
+yo hubot
+  nos hace unas preguntas para configurar el owner, nombre del bot, descripcion y adaptador
+  Para usar skype poner skype-bot en el adaptador
+
+Probar (arranca por defecto con el adapter shell):
+bin/hubot
+myhubot> myhubot ping
+myhubot> PONG
+
+# Uso
+Suele ser comodo arrancar el bot como:
+bin/hubot -a ADAPTADOR
+
+Por ejemplo, para skype:
+bin/hubot -a skype-bot
+
+MICROSOFT_APP_PASSWORD="XXXXXXXXX" MICROSOFT_APP_ID="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" bin/hubot -a skype-bot
 
 Si queremos que la interfaz http arranque en otro puerto (por defecto 8080):
 PORT=8081 hubot
 
 
 Para recargar el bot y que lea nuevos scripts coffee:
-.reload
+myhubot reload
+
+## Adaptadores
+Podemos configurar un adaptador para recibir los mensajes via ese servicio: skype, slack, etc
+
+hubot -a skype-bot
+
 
 # Modulos
 Hubot viene con muchos modulos útiles: https://github.com/github/hubot-scripts/tree/master/src/scripts
@@ -43,6 +71,21 @@ https://github.com/coderofsalvation/hubot-script-shellcmd
   Asi usaremos: .exec script
 
   Los scripts se guardan en: node_modules/hubot-script-shellcmd/bash/handlers
+
+# Brain
+Es donde almacenamos datos para utilizarlos en otro momento.
+Si queremos persistencia entre reinicios -> https://github.com/hubot-scripts/hubot-redis-brain
+
+
+# Commands generales
+ADAPTER
+ECHO cosa
+TIME
+PING
+help
+
+# Logging
+@robot.logger.error "Enviando mensaje a skype #{err}"
 
 
 # Crear modulos

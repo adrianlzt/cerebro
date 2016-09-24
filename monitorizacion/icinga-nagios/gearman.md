@@ -238,6 +238,7 @@ sin mensajes de error
 
 
 # Generar rpm
+Modificar .tar.gz y generar rpm
 yum install bison rpm-build gcc-c++ libevent-devel gcc boost-devel
 wget https://launchpad.net/gearmand/1.0/0.41/+download/gearmand-0.41.tar.gz
 tar zxvf gearmand-0.41.tar.gz
@@ -246,6 +247,15 @@ vi gearmand-0.41/support/gearmand.spec
 en la linea 100, borrar las dos manpages
 tar zcvf gearmand-0.41.tar.gz gearmand-0.41
 rpmbuild -tb gearmand-0.41.tar.gz
+
+Manual:
+yum install bison rpm-build gcc-c++ libevent-devel gcc boost-devel gearmand-1.1.8
+wet https://launchpad.net/gearmand/1.2/1.1.8/+download/gearmand-1.1.8.tar.gz
+tar zxvf gearmand-1.1.8.tar.gz
+cd gearmand-1.1.8
+./configure
+make
+
 
 mod_gearman
 wget http://www.mod-gearman.org/download/v1.5.0/src/mod_gearman-1.5.0.tar.gz

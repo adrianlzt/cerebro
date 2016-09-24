@@ -130,7 +130,8 @@ hace man de la palabra que tengmos en el cursor
 !comando
 Ejecuta el comando externo (execute external command)
 
-:set ft?
+:set filetype?
+:se ft
 Nos dice que filetype tiene definido actualmente
 
 

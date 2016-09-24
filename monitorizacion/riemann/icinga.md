@@ -29,8 +29,12 @@ Conf en icinga.
 
 Definir el command:
 define command {
-        command_line                   /usr/local/bin/submit_ocsp $HOSTNAME$ $SERVICEDESC$ $SERVICESTATEID$ $SERVICEDESC$ $_PROJECT$
-        command_name                   riemann_submit
+        command_line                   /usr/local/bin/submit_ocsp $HOSTNAME$ $SERVICEDESC$ $SERVICESTATEID$ $SERVICEDESC$ $_PROJECT$ $SERVICEDOWNTIME$
+        command_name                   submit_ocsp
+}
+define command {
+        command_line                   /usr/local/bin/submit_ocsp $HOSTNAME$ $HOSTSTATEID$ $HOSTOUTPUT$ $_PROJECT$ $HOSTDOWNTIME$
+        command_name                   submit_ochp
 }
 
 Crear el script /usr/local/bin/submit_ocsp (recordar chmod a+rx):
@@ -40,7 +44,16 @@ if [[ ! -z "$5" ]]; then
 else
   PROJECT = ""
 fi
-/usr/local/bin/riemann_ocsp -h "$1" -s "$2" -r "$3" -m "$4" $PROJECT
+/usr/local/bin/riemann_ocsp -h "$1" -s "$2" -r "$3" -m "$4" -p "$PROJECT" -d $6
+
+Crear el script /usr/local/bin/submit_ochp (recordar chmod a+rx):
+#!/bin/sh
+if [[ ! -z "$4" ]]; then
+  PROJECT="-p $4"
+else
+  PROJECT = ""
+fi
+/usr/local/bin/riemann_ocsp -h "$1" -s "HOSTSTATE" -r "$2" -m "$3" -p "$PROJECT" -d $5
 
 
 
@@ -50,9 +63,9 @@ Copiar el binario (recordar chmod a+rx)
 Habilitarlo en icinga:
 # Integracion con Riemann
 obsess_over_services=1
-ocsp_command=riemann_submit
-obsess_over_hosts=0
-#ochp_command=somecommand
+ocsp_command=submit_ocsp
+obsess_over_hosts=1
+ochp_command=submit_ochp
 
 
 Añadir un fichero especifico a la config de riemann:
@@ -74,6 +87,26 @@ Añadir un fichero especifico a la config de riemann:
 En icinga.clj ponemos las reglas. Ejemplo:
 (streams
   #(info %))
+
+
+
+Notifica un cambio de estado similar a como funciona icinga con los estados soft y hard
+Por cada pareja host/service, si llegan 3 estados consecutivos no-ok, se notifica
+Si llega un estado ok, se pone a ok.
+(by [:host :service]
+  (pipe -
+    (where (not (state "ok"))
+      (runs 3 :state
+        -
+      )
+    (else
+      -
+    ))
+    (changed :state {:init "ok"}
+      #(warn "Ha cambiado de estado" %)
+    )
+  )
+)
 
 
 

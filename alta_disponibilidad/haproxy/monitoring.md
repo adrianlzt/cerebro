@@ -2,3 +2,5 @@ https://exchange.nagios.org/directory/Plugins/Network-Connections,-Stats-and-Ban
 
 /check_haproxy.rb -u http://192.0.2.16:9000/
 
+
+Mirar estadisticas.md para habilitar el puerto de estadísticas que necesita el check.

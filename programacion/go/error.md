@@ -2,6 +2,8 @@ http://blog.golang.org/error-handling-and-go
 https://gobyexample.com/errors
 http://www.golangpatterns.info/error-handling
 
+https://godoc.org/github.com/spacemonkeygo/errors
+
 Mirar tambien panic.md
 
 # Error handling
@@ -67,3 +69,23 @@ func MySqrt2(f float64) (ret float64, err error) {
     //automatically return the named return variables ret and err
     return
 }
+
+# Custom error
+https://gobyexample.com/errors
+https://blog.golang.org/error-handling-and-go
+
+type dashboardExistsError struct {
+	code int
+	msg string
+}
+
+func (e *dashboardExistsError) Error() string {
+	return fmt.Sprint("Ya existe un dashboard con ese nombre")
+}
+
+
+...
+return &dashboardExistsError{
+			code: resp.StatusCode,
+			msg: resp.Body,
+		}

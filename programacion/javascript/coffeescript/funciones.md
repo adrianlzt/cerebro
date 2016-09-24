@@ -12,6 +12,9 @@ ping = (msj) ->
 
 ping('pepe')
 
+## Default values
+shootLaserBeam = (color = "red") ->
+
 
 # Splat parámetros #
 #Pasar un número indeterminado de parámetros

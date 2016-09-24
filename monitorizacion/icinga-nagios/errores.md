@@ -28,8 +28,23 @@ Parece que esto tambien provoca estas trazas:
 icinga: Warning: Breaking out of check result reaper: max reaper time (30) exceeded. Reaped 172 results, but more checkresults to process. Perhaps check core performance tuning tips?
 
 
+Creo que este error también se producia por un globaleventhandler que no era lo suficientemente rápido y colapsaba Icinga.
+
 
 
 # Icinga se muere sin dar informacion
 Si usamos mod_gearman, mirar que el german server está levantado.
 Si no lo está, icinga muere.
+
+
+
+# Too many open files
+Could not open check result queue directory '/dev/shm' for reading.
+
+[2016-09-08T20:29:20.000+02:00] Error: Unable to open file '/dev/shm/icinga.tmp1QFtqV' for reading: Too many open files
+[2016-09-08T20:29:20.000+02:00] Error: Unable to rename file '/dev/shm/icinga.tmp1QFtqV' to '/srv/nagios/icinga/spool/retention.dat': Too many open files
+[2016-09-08T20:29:20.000+02:00] Error: Unable to update retention file '/srv/nagios/icinga/spool/retention.dat': Too many open files
+
+Estos mensajes los hemos visto cuando Icinga estaba al limite de su max open files.
+
+En este caso se debía a un bug de icinga+mod_gearman+libuuid, mirar error_mod_gearman_dev_urandom.md

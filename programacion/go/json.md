@@ -5,12 +5,48 @@ libreria para facilitar el acceso a los json
 # Original
 http://blog.golang.org/json-and-go
 https://golang.org/pkg/encoding/json/
+https://gobyexample.com/json
 
 Si queremos tener una clave de json diferente al nombre de la key del struct:
 type T struct {
     FieldA int    `json:"field_a"`
     FieldB string `json:"field_b,omitempty"`
 }
+
+IMPORTANTE: los fields del struct deben empezar por mayúscula
+
+
+# Struct a JSON
+type FileContent struct {
+  LastScan time.Time
+  Msg string
+}
+res2D := &FileContent{
+    Msg:   "asd1",
+    LastScan: time.Now(),
+}
+res2B, _ := json.Marshal(res2D)
+fmt.Println(string(res2B))
+
+Y a un fichero:
+err = ioutil.WriteFile("/tmp/dat1", res2B, 0644)
+if err != nil {
+  panic(err)
+}
+
+
+# JSON a struct
+type FileContent struct {
+  LastScan time.Time
+  Msg string
+}
+var prev_exec FileContent
+err = json.Unmarshal(file_read, &prev_exec)
+if err != nil {
+  panic(err)
+}
+
+
 
 
 Desempaquetar cuando conocemos la estructura:
@@ -33,6 +69,11 @@ Para generar la estructura de datos automaticamente podemos usar esta web:
 https://mholt.github.io/json-to-go/
 
 
+# Optional fields
+    Pepe string `json:"pepe,omitempty"`
+    Field int `json:",omitempty"` // si el campo se llama "Field"
+
+
 # Problemas
 Si tenemos algo tipo:
 
@@ -50,3 +91,21 @@ Si tenemos algo tipo:
 El tipo de dato deberia llamarse hostA, pero eso no vale, porque ese valor
 es dinámico.
 
+
+# Doble array
+
+type Response1 struct {
+    Page   int
+    Fruits [][]string
+}
+res1D := &Response1{
+    Page:   1,
+    Fruits: [][]string{[]string{"apple", "peach", "pear"}}}
+res1B, _ := json.Marshal(res1D)
+fmt.Println(string(res1B))
+
+{"Page":1,"Fruits":[["apple","peach","pear"]]}
+
+
+# Escapar caracteres
+https://play.golang.org/p/SJM3KLkYW-

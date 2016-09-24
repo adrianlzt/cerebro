@@ -1,5 +1,12 @@
 https://gobyexample.com/interfaces
 
+El concepto es:
+  definmos una interfaz con las funciones que debe cumplir un "objeto"
+  luego creamos varios "objetos" con esas funciones implementadas
+  pasamos uno de esos objetos como si fuese el tipo de la interfaz, en vez del tipo específico.
+
+
+Una interfaz es una colección de métodos que debe cumplir quien quiera implementar esa interfaz.
 Un tipo interfaz está definido por un conjunto de métodos:
 
 type ValorAbsoluto interface {
@@ -7,8 +14,13 @@ type ValorAbsoluto interface {
 }
 
 Ahora puedo definir varias implementaciones de los métodos de ese interfaz:
-func (f MyFloat) Abs() float64 {}
-func (v *Vertex) Abs() float64 {}
+func (f MyFloat) Abs() float64 {
+  ...
+}
+
+func (v *Vertex) Abs() float64 {
+  ...
+}
 
 var interfaz ValorAbsoluto
 interfaz = MyFloat(-3.43)
@@ -50,3 +62,51 @@ type ReadWriter interface {
     Reader
     Writer
 }
+
+# Ejemplo cliente
+https://play.golang.org/p/f65A9LKxLw
+
+// Interfaz del tipo cliente
+type Cliente interface {
+  GetUrl() string
+  GetData() []string
+}
+
+// Un tipo de cliente para github
+type GithubClient struct {
+}
+
+// Otro cliente para bitbucket
+type BitbucketClient struct {
+}
+
+// Si queremos que GithubClient implemente la interfaz Cliente, debemos definir las funciones GetUrl y GetData
+func (c GithubClient) GetUrl() string {
+  return "www.github.com"
+}
+
+func (c GithubClient) GetData() []string {
+  return []string{"git","hub"}
+}
+
+// Lo mismo para BitbucketClient
+func (c BitbucketClient) GetUrl() string {
+  return "www.bitbucket.com"
+}
+
+func (c BitbucketClient) GetData() []string {
+  return []string{"git","bit","bucket"}
+}
+
+// Creamos uno de los clientes y se lo pasamos a una funcion
+func main() {
+  c := BitbucketClient{}
+  otrafun(c)
+}
+
+// Ahora usamos el cliente en una funcion, agnosticamente de que tipo particular sea
+func otrafun(c Client) {
+  fmt.Println(c.GetUrl())
+  fmt.Println(c.GetData())
+}
+

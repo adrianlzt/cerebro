@@ -1,3 +1,6 @@
+mirar ripgrep.md (rg) más rápido
+
+
 grep -l cosas *
 Nos saca los ficheros que han hecho match
 

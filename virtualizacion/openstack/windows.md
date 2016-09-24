@@ -3,6 +3,7 @@ https://cloudbase.it/windows-cloud-images/
 
 Una vez levantada la instancia obtendremos la pass del usuario "Admin" para acceder por RDP con el comando:
 nova get-password <instance> <SSH_private_key>
+Esto no me funciona
 
 
 Otra forma es entrar por la consola de openstack

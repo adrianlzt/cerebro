@@ -7,6 +7,10 @@ App para android: https://play.google.com/store/apps/details?id=com.zeapo.pwdsto
 App X11: qtpass
 yaourt -S qtpass
 
+# Para grupos
+https://github.com/keymon/password-store-for-teams
+http://git.ucc.asn.au/?p=zanchey/uccpass.git;a=summary
+
 # gopass
 App en go estilo spotlight de mac
 https://github.com/cortex/gopass

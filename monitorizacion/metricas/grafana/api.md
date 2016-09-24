@@ -72,3 +72,6 @@ curl -XPOST -s -u "user:pass" -H "Content-Type: application/json" http://192.168
 No documentada
 
 curl -s -u "" -H "Content-Type: application/json" http://192.168.22.95/api/orgs -d '{"name":"pepe"}'
+
+# Render
+Mirar render.md

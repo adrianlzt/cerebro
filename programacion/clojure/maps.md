@@ -13,3 +13,5 @@ Clojure collections are immutable - they can never change. When you do anything 
 user=> (get {:name "adri" :edad 4} :name)
 "adri"
 
+
+(get-in {:project "sm2m", :service "pepe"} [:project :service])

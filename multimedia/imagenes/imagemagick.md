@@ -3,6 +3,7 @@ http://www.imagemagick.org/Usage/
 Información sobre la imagen:
 http://www.imagemagick.org/script/identify.php
 identify file.jpg
+identify -verbose file.jpg
 
 
 Resize
@@ -42,3 +43,13 @@ convert -list font
 
 convert prueba.gif -draw 'text 610,620 "Chamonix"' nueva.gif
   pinta "Chamonix" empezando en esas coordeandas con la fuente Ubuntu
+
+# Modificar/añadir comment
+convert imagen.jpg -set comment "comentario" out.jpg
+identify -verbose out.jpg | grep comment
+
+# Crear imagenes
+http://www.imagemagick.org/Usage/canvas/
+
+Imagen con ruido:
+convert -size 100x100 xc: +noise Random random.jpg

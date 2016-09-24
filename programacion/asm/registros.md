@@ -10,7 +10,9 @@ Return value: %rax (64 bits, %eax en 32 bits
 
 EAX,EBX,ECX,EDX - "general purpose", more or less interchangeable
 
-RSP puntero de pila para 64bits
+ESP stack pointer 32 bits
+RSP puntero de pila para 64bits, points to the top of the current stack frame
+RBP base pointer, which points to the base of the current stack frame
 
 Segmentos:
 http://stackoverflow.com/questions/10810203/what-is-the-fs-gs-register-intended-for
@@ -22,3 +24,18 @@ ES = Destination Segment (used for MOVS, etc.)
 SS = Stack Segment (used for SP)
 FS = "File Segment"?
 GS = ???
+SI = Source Index (sdi)
+DI = Destination Index (edi)
+
+
+# function calling
+http://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-x86-64
+
+Cuando llamamos a una función los parámetros se pasan en distintos registros:
+%rdi -> primer parametro
+%rsi -> segundo
+%rdx
+%rcx
+%r8
+%r9
+Si hay más, se pasan por el stack

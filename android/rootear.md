@@ -24,3 +24,7 @@ http://www.androidpit.es/como-rootear-motorola-moto-g
 
 Hace falta desbloquear el bootloader, esto borra todo el teléfono.
 
+
+
+# adb con root
+Settings -> Developer options -> Root access

@@ -9,12 +9,19 @@ Tambíen podemos montar nosotros el servidor.
 
 Usar version 2.x
 
+Otra opcion es localtunnel.md
+
 # Linux
 https://ngrok.com/download
 https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 Nos da un binario
 
 Empaquetados: https://dl.equinox.io/ngrok/ngrok/stable
+
+Version 1.x: https://s3-eu-west-1.amazonaws.com/sequenceiq/ngrok_linux
+
+# Mac OSX
+Version 1.x: https://s3-eu-west-1.amazonaws.com/sequenceiq/ngrok_darwin
 
 # Arch
 mejor la version -bin para no tener que compilar
@@ -67,3 +74,47 @@ curl http://127.0.0.1:4040/api/tunnels | jq '.'
 
 Public URLs
 curl http://127.0.0.1:4040/api/tunnels | jq '.tunnels[].public_url'
+
+
+Para la v1:
+curl -s http://127.0.0.1:4040/http/in | grep "window.data" | cut -d '=' -f 2 | cut -d "(" -f 2 | cut -d ")" -f 1 | cut -c 2- | rev | cut -c 2- | rev | tr -d '\\' | jq '.'
+
+
+# ngrokd / server
+ngrokd compilado para linux
+https://s3-eu-west-1.amazonaws.com/sequenceiq/ngrokd_linux
+
+./ngrokd -domain=midominio.com
+
+Tendremos que tener un wildcard dns para resolver .midominio.com a la ip del server, o ponerlo en los clientes (con dnsmasq por ejemplo).
+Por ejemplo, que xxxx.midomino.com resuelva la ip del server
+
+En los clientes tenemos que usar un cliente version 1.x y configurar
+~/.ngrok
+server_addr: midominio.com:4443
+trust_host_root_certs: false
+tunnels:
+  test:
+    proto:
+      tcp: 9090
+
+Con esta definicion podemos hacer: ./ngrok start test
+y levantaremos un tunel tcp en el puerto 9090
+
+A los clientes se les darán dominios del estilo:
+https://xxxx.midominio.com:443
+http://xxxx.midominio.com:80
+tcp://midominio.com:nnnnn
+
+
+Con un docker https://hub.docker.com/r/sequenceiq/ngrokd
+docker run -d --name ngrokd \
+  --restart=always \
+  -p 4480:4480 \
+  -p 4444:4444 \
+  -p 4443:4443 \
+  sequenceiq/ngrokd \
+    -httpAddr=:4480 \
+    -httpsAddr=:4444 \
+    -domain=ngrok.sequenceiq.com
+

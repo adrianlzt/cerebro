@@ -8,3 +8,6 @@ db
 
 show dbs
   muestra que dbs hay
+
+db.dropDatabase()
+  borra la database donde nos encontremos

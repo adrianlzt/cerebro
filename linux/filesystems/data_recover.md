@@ -2,6 +2,16 @@ http://blog.creativeitp.com/posts-and-articles/linux/disk-analysis-with-fdisk-mm
 https://help.ubuntu.com/community/DataRecovery
 sleuthkit.md
 testdisk.md
+debugfs.md
+mirar analisis_forense/
+https://www.cs.montana.edu/courses/309/topics/4-disks/debugfs_example.html
+  buscar "# You inadvertently delete a file you want back"
+
+http://www.cgsecurity.org/wiki/PhotoRec  recuperar ficheros borrados
+Scalpel
+foremost
+  usan la técnica carving. Va analizando el contenido de los inodos e identificando el tipo de fichero (analiza los magic files)
+  no suelen recuperar el nombre (ext*), porque se almacena en la tabla de inodos
 
 
 Si tenemos problemas para montar una partición, podemos escanear las particiones con mmls (de sleuthkit.md) y luego montarlas definiendo el offset:
@@ -27,3 +37,10 @@ sudo mmls -t gpt /dev/sdb
 
 sudo mount --ro -o loop,offset=944766976 -t ntfs /dev/sdb /mnt
 
+
+
+disk_stat: muestra si hay HPA (https://en.wikipedia.org/wiki/Host_protected_area) en el disco
+
+
+sorter -f <filetype> -d <dir_out> image/fs
+  nos hace un resumen de lo que contiene la imagen o el fs (sin montar)

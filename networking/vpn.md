@@ -1,3 +1,10 @@
+# VPN con docker
+http://www.jorgefaba.com/2016/08/montar-una-vpn-en-tu-servidor-usando-un.html
+https://hub.docker.com/r/kylemanna/openvpn/~/dockerfile/
+
+
+
+
 Si tengo problemas con la VPN, que se cae al transferir algún fichero (scp o sftp) cambiar el MTU.
 ifconfig vpn0 mtu 600
 

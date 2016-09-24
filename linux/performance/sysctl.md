@@ -10,8 +10,9 @@ sysctl -w key=valor
   Setear valor
 
 
-Para cambios persistentes:
-/etc/sysctl.conf
-vm.swappiness=60
+Para cambios persistentes meter en ficheros separados en /etc/sysctl.d/*conf
 
-Mejor meter en ficheros separados en /etc/sysctl.d/
+Unidad de systemd:
+systemd-sysctl
+
+/etc/sysctl.conf deprecated desde systemd 207

@@ -1,4 +1,14 @@
-if a<3 {
+https://golang.org/ref/spec#Logical_operators
+and -> &&
+or -> ||
+not -> !
+
+if a<3 && b<2 {
+  ...
+} else if (b==2) {
+  ...
+} else {
+  ...
 }
 
 if !true {

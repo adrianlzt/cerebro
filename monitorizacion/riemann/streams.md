@@ -7,6 +7,13 @@ Si queremos guardar un evento, al final del stream pondremos "index".
 
 You can think of streams like rivers in the real world. Events flow through tributaries and streams, pool in lakes and dams, and are filtered by grates and boulders. Riemann streams aren't really queries; they're more like pipelines which events flow through.
 
+(stream) lo que hace es llamar a cada función que pongamos por debajo con el arg del evento (o eventos):
+(streams
+  prn ; esta ejecutando (prn evento)
+  #(info %) ; funcion anonima donde % es el evento
+  (fn [e] (prn "hola")) ; e sera el evento
+)
+
 
 
 The prn prints all events to STDOUT and the #(info %) sends events to the log file
@@ -18,6 +25,9 @@ The prn prints all events to STDOUT and the #(info %) sends events to the log fi
 
 
 # where
+http://riemann.io/api/riemann.streams.html#var-where
+Hace magias varias para conseguir comparar cosas con los atributos de los eventos
+
 (where (host "db04")
 
 custom attributes:
@@ -27,6 +37,17 @@ custom attributes:
   (notify-www-team)
   (else
     (notify-misc-team)))
+
+# where*
+http://riemann.io/api/riemann.streams.html#var-where*
+Pasa el evento a la función de comparación:
+
+(where* (fn [e]
+          (< 2 (:metric e))
+        )
+  prn
+)
+
 
 # match
 http://riemann.io/api/riemann.streams.html#var-match
@@ -159,6 +180,10 @@ Suma todas las métricas durante TIEMPO (en segundos) y pasado ese tiempo, divid
 Ejemplo, si ponemos TIEMPO=10 y enviamos, durante un periodo de 10" dos métricas con valor=1:
 (1+1)/10=0.2
 
+Solo devuele un evento que contiene: {:metric VALOR, :time TIEMPO}
+
+Devuelve ese tipo de métricas cada TIEMPO segundos.
+
 
 
 # rollup
@@ -171,6 +196,19 @@ TIEMPO en segundos
 
   Deja pasar N mensajes en TIEMPO segundos. Si llegan más mensajes los guarda y los escupe todos de golpe pasados esos segundos.
   Por ejemplo, envia 3 emails máximo en una hora. El resto de eventos que lleguen durante la hora se envian todos juntos en un solo email al final de la hora
+
+
+# batch / agrupar
+http://riemann.io/api/riemann.streams.html#var-batch
+
+Agrupa n eventos y los envía juntos. Si pasa mas de dt tiempo los envia igualmente aun sin llegar al número especificado
+
+
+# throttle
+http://riemann.io/api/riemann.streams.html#var-throttle
+
+Deja pasar como mucho n eventos en dt segundos.
+Si llegan más de n eventos en dt segundos, los tira.
 
 
 # splitp / switch
@@ -241,3 +279,21 @@ Calls children with (f event)
 
 (smap :metric prn) ; prints the metric of each event.
 (smap #(assoc % :state "ok") index) ; Indexes each event with state "ok"
+
+
+
+# inifity
+Si queremos poner un valor muy alto o muy bajo podemos usar
+infinity
+-infinity
+
+# search / lookup
+mirar search.md
+
+# runs
+Coge varios eventos consecutivos y nos devuelve el último si se mantiene un campo.
+
+Ejemplo: si nos llegan tres eventos críticos, retorna el último evento:
+(runs 3 :state prn)
+
+Hace uso de moving-event-window

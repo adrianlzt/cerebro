@@ -31,3 +31,9 @@ Estadísticas por proceso
 
 ## proc/$(pidof proceso)/oom_*
 mirar memoria/tunables.md oom
+
+# /proc/PID/maps
+  mapas de memoria y librerias usadas
+
+# /proc/PID/mount*
+  info de los puntos de montaje

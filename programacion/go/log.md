@@ -9,6 +9,9 @@ import "log"
 log.Println("traza")
 
 
+# SpaceMonkey
+https://godoc.org/github.com/spacemonkeygo/spacelog
+
 # Log15
 https://github.com/inconshreveable/log15
 

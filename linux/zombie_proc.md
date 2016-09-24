@@ -1,4 +1,5 @@
 https://en.wikipedia.org/wiki/Zombie_process
+http://www-cdf.fnal.gov/offline/UNIX_Concepts/concepts.zombies.txt
 
 Los procesos zombies son childs que han terminado (con la syscall exit) pero sus proceso padre no ha leído el estado de salida (con la syscall wait)
 

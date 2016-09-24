@@ -1,3 +1,8 @@
+mirar guymager.md, gráfica
+
+https://www.vidarholen.net/contents/blog/?p=479
+  Want to simulate a lseek+execve? Use dd! Want to open a file with O_SYNC? Use dd! Want to read groups of three byte pixels from a PPM file? Use dd
+
 mirar time.md (info sobre iowait)
 
 dd if=/dev/zero of=file bs=1M count=1
@@ -42,4 +47,17 @@ dd if=/dev/zero of=500megabytesbis bs=1M count=500
 
 
 # Con barra de progreso
-dd if=/lugar/de/origen |pv|dd of=/lugar/de/destino
+dd if=/lugar/de/origen | pv | dd of=/lugar/de/destino
+
+
+# Crear sistema de ficheros en un fichero
+dd if=/dev/zero of=file bs=1M count=1
+mkfs.ext2 file
+sudo mount file /mnt
+
+
+# Montar una imagen .dd
+mirar unix-tools/losetup.md
+
+# Analizar una imagen .dd
+fdisk -l imagen.dd

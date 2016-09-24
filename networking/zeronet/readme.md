@@ -13,7 +13,7 @@ mkvirtualenv2 zeronet
 pip install msgpack-python gevent
 git clone git@github.com:HelloZeroNet/ZeroNet.git
 cd ZeroNet
-python zeronet.py
+./zeronet.py
 http://127.0.0.1:43110/
 
 

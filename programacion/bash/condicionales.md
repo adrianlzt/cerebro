@@ -8,6 +8,8 @@ elif [[ 1 == 1 ]]; then
   echo "elif"
 fi
 
+! negacion
+
 if [[ $VAR ]]; then
   echo "var definida"
 else

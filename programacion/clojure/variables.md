@@ -38,8 +38,16 @@ user=> user/pedro
 1239
 
 # Asignacion - let
+https://clojuredocs.org/clojure.core/let
+
 (let [variable valor]
   scope donde podemos usar la variable)
 aqui la variable ya no vale
+
+(let
+  [a 1
+   b 2]
+  ()
+)
 
 "user/" indica el namespace

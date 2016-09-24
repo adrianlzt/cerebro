@@ -1,3 +1,6 @@
+Si tenemos systemd mirar linux/systemd/socket-proxyd.md
+
+
 http://www.debuntu.org/how-to-redirecting-network-traffic-to-a-new-ip-using-iptables/
 http://www.cyberciti.biz/faq/linux-port-redirection-with-iptables/
 

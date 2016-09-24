@@ -49,6 +49,6 @@ function test() {
   fi
 }
 
-if test; then
+if test; then # Aqui estamos usando el valor de retorno $? para el if
   echo "test true"
 fi

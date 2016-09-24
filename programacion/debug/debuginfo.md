@@ -3,6 +3,8 @@ Para instalar paquetes debuginfo en CentOS/RHEL tenemos la utilidad debuginfo-in
 
 Tendremos que irnos a /etc/yum.repos.d y activar en los distintos ficheros los repositorios de debuginfo (enabled=1)
 
+http://debuginfo.centos.org/6/x86_64/
+
 
 # Arch
 https://wiki.archlinux.org/index.php/Debug_-_Getting_Traces

@@ -6,7 +6,7 @@ Herramienta similar a top pero que muestra en una sola ventana información de p
 Nos muestra información sobre el slab.
 
 Nos permite ver short_live_process
-mirar tambien execsnoop
+mirar tambien execsnoop de las herramientas de bcc (eBPF). Tambien filelife para short-lived-files
 
 
 atopsar -c 5

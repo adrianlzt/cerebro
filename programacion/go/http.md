@@ -1,3 +1,7 @@
+gorequest.md
+una lib un poco más sencilla para hacer http como cliente
+
+
 https://golang.org/pkg/net/http/
 
 https://github.com/gorilla/mux
@@ -8,6 +12,11 @@ https://go-macaron.com/
 A high productive and modular web framework in Go.
 Group Routing, Easy Templating, Localization
 
+
+Si usamos https, net/http intenta usar http2.
+
+https://github.com/valyala/fasthttp
+Versión más rápida de net/http, pero no soporta http2
 
 
 import "net/http"
@@ -54,7 +63,7 @@ req, err := http.NewRequest("GET", dashURL, nil)
 if err != nil {
   panic(err)
 }
-req.SetBasicAuth("admin", "adminGRAFOS")
+req.SetBasicAuth("admin", "admin")
 resp, err := client.Do(req)
 if err != nil {
   panic(err)
@@ -69,3 +78,55 @@ client := &http.Client{ CheckRedirect: func(req *http.Request, via []*http.Reque
 
 ## JSON
 https://kev.inburke.com/kevin/golang-json-http/
+
+## Parametros
+https://golang.org/pkg/net/url/#example_Values
+https://play.golang.org/p/s41cuIyM7a
+
+req, _ := http.NewRequest("GET", "http://api.themoviedb.org/3/tv/popular", nil)
+q := req.URL.Query()
+q.Add("api_key", "key_from_environment_or_flag")
+q.Add("another_thing", "foo & bar")
+req.URL.RawQuery = q.Encode()
+
+## Headers
+req.Header.Add("If-None-Match", `W/"wyzzy"`)
+
+
+## TLS/SSL sin chequear
+http://stackoverflow.com/questions/12122159/golang-how-to-do-a-https-request-with-bad-certificate
+
+tr := &http.Transport{
+  TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+}
+client := &http.Client{Transport: tr}
+
+## Proxy
+http://stackoverflow.com/questions/14661511/setting-up-proxy-for-http-client
+
+HTTP_PROXY="http://proxyIp:proxyPort" go run main.go
+
+En el codigo:
+proxyUrl, err := url.Parse("http://proxyIp:proxyPort")
+myClient := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
+
+
+## POST con file multipart
+post_multipart_file.go
+
+# URL
+https://golang.org/pkg/net/url/
+http://stackoverflow.com/a/34668130
+
+import "net/url"
+import "path"
+
+u, err := url.Parse("http://foo")
+u.Path = path.Join(u.Path, "bar")
+s := u.String()
+
+
+Escape:
+fmt.Println(url.QueryEscape("hola que tal"))
+hola+que+tal
+

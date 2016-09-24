@@ -11,6 +11,9 @@ yum verify-all
 # Verificaar paquete
 yum verify NOMBRE
 
+Creo que también vale:
+rpm -V pkg
+
 
 
 Ejemplo de salida:

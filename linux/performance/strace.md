@@ -4,7 +4,7 @@ http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
 Nos sirve para ver que instrucciones ejecuta un binario.
 
-strace -fs 200 programa
+strace -tt -fs 200 programa
 
 
 También podemos ver el estado de un binario que ya se está ejecutando:
@@ -30,7 +30,7 @@ strace -t
 strace -tt
   microseconds
 strace -ttt
-  microseconds y epoch (creo)
+  microseconds y formato unix epoch
 
 strace -r
   timestamps relativos
@@ -49,6 +49,8 @@ strace -e trace=network ...
 
 strace -e file
   operaciones con ficheros
+  podemos usar tambien opensnoop de bcc (linux/performance/bcc), que analiza todo el sistema en busca de llamadas a open()
+  tambien puede filtrar por llamadas fallidas.
 
 Tambien: process, network, signal, ipc, desc (file descriptor), memory
 

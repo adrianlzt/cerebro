@@ -36,3 +36,10 @@ vi ~/.nx/config/authorized.crt
 Advanced
 Private Key
 
+
+# Windows
+Enviar control+alt+supr
+https://www.nomachine.com/AR02L00784
+
+Pulsar Control+Alt+0
+Buscar un icono abajo a la derecha, al pulsar nos saldrá un desplegable, pichamos y eso envia el ctrl+alt+supr

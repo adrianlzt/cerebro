@@ -1,3 +1,4 @@
+https://github.com/golang/go/wiki/SliceTricks
 Arrays. Go le llama 'Slices'. Un 'slice' apunta a un array y tiene un tamaño
 
 http://golang.org/doc/articles/slices_usage_and_internals.html
@@ -14,6 +15,14 @@ cap(b): capacidad de b
 b[3] = 3  da error, los valores se meten con append.
 b = append(b,3)
 
+
+# Join / Unir
+append([]int{1,2},[]int{3,4}...)
+
+Si queremos usar esto es una func:
+func foo(is []int) {
+   nil
+}
 
 # Comparar
 https://golang.org/pkg/reflect/#DeepEqual

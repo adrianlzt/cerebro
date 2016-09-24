@@ -1,15 +1,56 @@
+# Elegir un buen password
+https://www.schneier.com/blog/archives/2014/03/choosing_secure_1.html
+
+Por que no forzar a la gente a cambiar el password periódicamente:
+https://www.schneier.com/blog/archives/2016/08/frequent_passwo.html
+
+
+
+
 Borrar password de usuario:
 passwd -d usuario
 
 /etc/shadow
+$id$salt$encrypted
 man 3 crypt
+
+IDs
 $1$ stands for MD5
 $2a$ is Blowfish
 $2y$ is Blowfish (correct handling of 8-bit chars)
 $5$ is SHA-256
 $6$ is SHA-512
 
-hack/md5_search.md
+En /etc/login.defs estará el método de encriptación a usar.
+En arch SHA-512, con 5000 vueltas (valor por defecto) (mirar man passwd)
+A más vueltas, más dificil de hacer brute-force, pero también más CPU le cuesta loguear a los usuarios.
+
+Si queremos forzar un método de encriptación:
+echo "pepe:password" | chpasswd -c MD5
+
+Si queremos generar la clave a mano (nos devolverá una cadena igual a la que se almacena en /etc/shadow):
+openssl passwd -1 -salt SALT PASSWORD
+
+Programa en c para encriptar una pass con un métdo determinado y una salt dada. Compilar con: gcc -lcrypt hash.c
+#include<stdio.h>
+#include <crypt.h>
+void main() {
+ printf("%s\n", crypt("password", "$1$r7cA0J32"));
+ // Para sha256 seria: crypt("password", "$6$v6vDH8sX"));
+ // Para sha256 cambiando el numero de vueltas: crypt("password", "$6$rounds=5000$v6vDH8sX"));
+}
+
+Las passwords encriptadas no se parecen a un tipico hash (letras y números en minúsculas).
+https://www.vidarholen.net/contents/blog/?p=32
+Ejemplo de como generar un md5crypt: https://www.vidarholen.net/contents/junk/files/md5crypt.bash
+De forma muy resumida hace esto:
+1. Generate a simple md5 hash based on the salt and password
+2. Loop 1000 times, calculating a new md5 hash based on the previous hash concatenated with alternatingly the password and the salt.
+3. Use a special base64 encoding on the final hash to create the password hash string
+
+Como se genera el hash de SHA-512: https://www.vidarholen.net/contents/blog/?p=33
+
+hack/hash.md
 
 
 # Expire

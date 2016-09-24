@@ -11,3 +11,16 @@ echo ${area[11]}    #  {curly brackets} needed.
 
 Acceso con variable:
 ${host_gb[$i]}
+
+Iterar
+for element in "${array[@]}"
+do
+    echo "$element"
+done
+
+
+Iterar con indice:
+for index in "${!array[@]}"
+do
+    echo "$index ${array[index]}"
+done

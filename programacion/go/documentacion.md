@@ -26,3 +26,12 @@ http://arslan.io/ten-useful-techniques-in-go
 http://peter.bourgon.org/go-in-production/
 https://inconshreveable.com/07-08-2014/principles-of-designing-go-apis-with-channels/
 http://soryy.com/blog/2014/common-mistakes-with-go-lang/
+
+
+Para documentar el código, escribir comentarios sobre la función.
+https://blog.golang.org/godoc-documenting-go-code
+Ejemplo:
+// Fprint formats using the default formats for its operands and writes to w.
+// Spaces are added between operands when neither is a string.
+// It returns the number of bytes written and any write error encountered.
+func Fprint(w io.Writer, a ...interface{}) (n int, err error) {

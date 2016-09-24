@@ -15,3 +15,24 @@
 (require '[clj-http.client :as client]
          '[cheshire.core :as json]
          '[riemann.query :as query])
+
+Multieventos.
+En el caso de funciones que nos vayan a pasar varios eventos lo hacen como un array.
+Ejemplo:
+(batch 3 10 funcion)
+
+(defn funcion [events]
+  (prn (type events))
+  (prn (count events))
+)
+
+Esto nos devolvera:
+clojure.lang.PersistentVector
+3
+
+
+; anonimas (pensadas para funcionar debajo de stream, donde se pasa siempre un evento como argumento
+#(prn (:host %))
+
+; equivalente
+(fn [e] (prn (:host e)))

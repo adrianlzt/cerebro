@@ -21,8 +21,17 @@ updated, err := time.Parse(longForm, "2016-03-14 17:52:24")
 Devuelve:
 2016-03-14 17:52:24 +0000 UTC
 
+Otra opcion: %Y-%m-%d %H:%M:%S.%f
+t.Format("2006-01-02 15:04:05.000000000")
+
 # Now
 time.Now()
+
+# Agregar/quitar una duracion
+https://play.golang.org/p/gVXMfuzztC
+
+fmt.Println("Unix format:", time.Now().Format(time.UnixDate))
+fmt.Println("Unix format:", time.Now().Add(-time.Duration(3)*time.Hour).Format(time.UnixDate))
 
 # Diferencia de tiempos
 t0 := time.Now()

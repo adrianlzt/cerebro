@@ -1,3 +1,20 @@
+# Run apps
+http://www.shashlik.io/
+
+yaourt -S shashlik-bin
+
+Mirar que el .apk esté para x86
+aapt dump badging File.apk | grep native-code
+
+Instalar la apk:
+shashlik-install File.apk
+
+Ejecutarla:
+shashlik-run ? ?
+
+
+
+
 ## Android emulator ##
 http://developer.android.com/sdk/installing/index.html?pkg=tools
 

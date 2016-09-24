@@ -1,3 +1,5 @@
+mirar latency.md
+
 Ejecutar en el servidor mysqltuner.pl (esta el código en este directorio)
 https://launchpad.net/mysql-tuning-primer
 

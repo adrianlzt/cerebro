@@ -1,3 +1,11 @@
+Si la web es accesible desde internet podemos pedir a esta web que nos de un resumen de su análisis:
+https://www.ssllabs.com/ssltest/
+
+También podemos usar esta herramienta: http://www.bolet.org/TestSSLServer/
+yaourt -S aur/testsslserver
+/usr/bin/TestSSLServer www1.agenciatributaria.gob.es
+
+
 Comprobar el certificado de una web:
 gnutls-cli google.es
   podemos especificar el puerto con -p xxx

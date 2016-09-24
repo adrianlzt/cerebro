@@ -31,3 +31,13 @@ Feb 17 11:39:59 ESJC-DSMM-MS10S attrd[41413]:    error: main: HA Signon failed
 Feb 17 11:39:59 ESJC-DSMM-MS10S attrd[41413]:    error: main: Aborting startup
 Mirar los permisos de /dev/shm
 Tiene que ser root:root 777
+
+
+
+Loading kernel modules... FATAL: Error inserting dlm (/lib/modules/2.6.32-504.3.3.el6.x86_64/kernel/fs/dlm/dlm.ko): Unknown s
+dlm: Unknown symbol sctp_do_peeloff
+https://www.centos.org/forums/viewtopic.php?t=50450
+Editar /etc/modprobe.d/CIS.conf
+y comentar la linea
+install sctp /bin/true
+

@@ -7,6 +7,8 @@ http://pam-python.sourceforge.net/examples/
 https://sources.debian.net/src/python-pam/0.4.2-13.1/examples/pamtest.py/
 
 apt-get install python-pam
+pip install python-pam
+
 #!/usr/bin/python
 import PAM
 auth=PAM.pam()

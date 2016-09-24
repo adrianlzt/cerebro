@@ -73,3 +73,51 @@ Debug sudo /var/log/sudo_debug all@debug
 debug saca muuuucha informacion. Orden:
 crit, err, warn, notice, diag, info, trace and debug
 
+
+# Alias
+
+Tipo_Alias NOMBRE_MAYUSCULAS = item1, item2
+Tipo_Alias NOMBRE_MAYUSCULAS = item1, item2 : OTRONOMBRE = item3, item4
+
+User_Alias
+Runas_Alias
+Host_Alias
+Cmnd_Alias
+
+
+
+# Defaults
+Si queremos cambiar una opción genérica para un caso particular usaremos esta opción.
+CUIDADO, se aplica para todo.
+
+Si ponemos:
+  Defaults:usuario insults
+Se aplicará siempre para el usuario (podríamos pensar que solo sería para el comando que definamos en el mismo fichero)
+
+     Default_Type ::= 'Defaults' |
+                      'Defaults' '@' Host_List |
+                      'Defaults' ':' User_List |
+                      'Defaults' '!' Cmnd_List |
+                      'Defaults' '>' Runas_List
+
+     Después pondremos una opción.
+
+
+Ejemplos:
+Defaults:USUARIO !requiretty
+
+Defaults!/usr/bin/cmd !requiretty
+
+Cmnd_Alias IDG = /usr/bin/id -g
+Defaults!IDG insults
+
+
+## Opciones
+man sudoers
+/^SUDOERS OPTIONS
+
+!requiretty
+quita la opción de que necesitemos un tty
+
+insults
+insulta al usuario si mete mal la pass

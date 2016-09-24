@@ -20,3 +20,8 @@ Se sigue el proceso de boot: the boot process will load the kernel and an initia
 
 
 El contenido de initrd se puede ver, mirar linux/initramfs.md
+
+
+# boot dir
+fichero vmlinux*.hmac
+parece que es un checksum del kernel

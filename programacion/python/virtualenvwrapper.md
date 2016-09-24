@@ -59,6 +59,8 @@ lssitepackages
 add2virtualenv directory1 directory2 ...
   Adds the specified directories to the Python path for the currently-active virtualenv. This will be done by placing the directory names in a path file named
 
+toggleglobalsitepackages
+  permite al virtualenv acceder a las libs instaladas en el sistema
 
 # Templates
 http://virtualenvwrapper.readthedocs.org/en/latest/extensions.html#extensions-templates

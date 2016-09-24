@@ -56,6 +56,9 @@ systemctl list-units --type service
 systemctl  list-units --type=target
   mostrar targets
 
+systemctl cat postfix.service
+  mostrar el contenido de la unidad
+
 
 # Activar o desactivar
 systemctl disable rsyslog

@@ -1,1 +1,1 @@
-install.html
+install.md
