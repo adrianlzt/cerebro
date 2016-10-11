@@ -1,5 +1,7 @@
 Sintaxis: http://daringfireball.net/projects/markdown/syntax
 
+Typora, editor x11 simple WYSIWYG
+
 Online:
 http://dillinger.io/
 https://stackedit.io/editor

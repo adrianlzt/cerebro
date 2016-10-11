@@ -195,3 +195,7 @@ https://f-droid.org/repository/browse/?fdid=org.adaway
 
 https://play.google.com/store/apps/details?id=com.linkbubble.playstore
 Navegador que permite cargar links en burbujas para seguir trabajando y luego leerlas
+
+HTTP shortcuts
+https://github.com/Waboodoo/HTTP-Shortcuts
+Permite lanzar peticiones GET/POST/etc desde un icono. También podemos pasarle parámetros que nos preguntará al pinchar sobre el icono

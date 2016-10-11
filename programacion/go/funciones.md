@@ -62,3 +62,11 @@ func MySqrt2(f float64) (ret float64, err error) {
     return
 }
 
+
+# vararg / splash / llamar una funcion con un array
+http://stackoverflow.com/questions/17555857/go-unpacking-array-as-arguments
+
+func my_func( args ...int) int {
+
+arr := []int{2,4}
+sum := my_func(arr...

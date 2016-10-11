@@ -37,6 +37,8 @@ datetime.datetime.fromtimestamp(1284286794)
 
 
 # medir tiempo
+mirar time_measure.py para ver como medir el tiempo usado por una función mediante decoradores
+
 >>> import datetime
 >>> a = datetime.datetime.now()
 >>> b = datetime.datetime.now()
@@ -50,6 +52,11 @@ datetime.timedelta(0, 4, 316543)
 4
 >>> c.microseconds
 316543
+
+
+>>> c=datetime.timedelta(days=2, hours=4, minutes=22, seconds=45,  microseconds=237432)
+>>> str(c)
+'2 days, 4:22:45.237432'
 
 
 # Hora dentro de 10 minutos

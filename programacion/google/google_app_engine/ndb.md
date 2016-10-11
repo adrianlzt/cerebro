@@ -10,12 +10,16 @@ ndb.IntegerProperty(default=0)
 ndb.FloatProperty(required=True)
 ndb.StringProperty()
 ndb.TextProperty()
+ndb.EmailProperty() -> no fona
 ndb.LinkProperty() -> no fona, usar StringProperty
 
 DateTimeProperty guarda dia y hora
 actualizacion = ndb.DateProperty(auto_now=True) # se actualiza con dia y hora cada vez que lo actualizamos
 auto_now_add=True, se guarda la fecha de creacion
 ...
+actualizacion = ndb.DateProperty(auto_now=True)
+creacion = ndb.DateProperty(auto_now_add=True)
+
 
 Para python:
 https://cloud.google.com/appengine/docs/python/ndb/properties#types
@@ -53,6 +57,9 @@ Si vuelvo a guardar una casa con id=1 sobreescribira a esta.
 
 
 # Query/Leer
+Un elemento:
+conf = Conf.query().get()
+
 casas = Casa.get_all()
 for casa in casas:
     print(casa.titulo)

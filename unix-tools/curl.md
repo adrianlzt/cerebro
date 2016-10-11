@@ -14,7 +14,7 @@ curl --trace-ascii - ...
 Ver cabeceras de la respuesta
 curl -D - ...
 
-Hacer un POST:
+Hacer un POST (mejor no poner -XPOST, mirar en redirects):
 curl -d 'variable=valor&otra=123' http://www.web.com
 
 Fake host:
@@ -124,6 +124,14 @@ curl: (22) The requested URL returned error: 404 Not Found
 sigue redirecciones (HTTP 30x)
 Si muestra cabeceras, primero mostrará la primera petición y luego la redirección
 
+Si hacemos un POST y nos devuelven un redirect lo normal es hacer un GET a la web que nos dicen.
+Si tenemos puesto -XPOST volverá a hacer un POST al redirect (incorrecto generalmente!).
+
+Si queremos que haga un post completo tras el redirect usar alguno de estos:
+--post301
+--post302
+--post303
+
 
 
 # HTTP2
@@ -137,3 +145,9 @@ para saber si tenemos soporte:
 curl --version
 
 Hace uso de https://nghttp2.org/
+
+
+
+# Errores
+curl: (3) [globbing] bad range in column 90
+Tenemos una url con "[" o "]"? Usar -g

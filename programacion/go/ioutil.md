@@ -2,6 +2,8 @@ https://golang.org/pkg/io/ioutil/
 
 Package ioutil implements some I/O utility functions.
 
+import "io/ioutil"
+
 
 func NopCloser(r io.Reader) io.ReadCloser
 func ReadAll(r io.Reader) ([]byte, error)

@@ -35,3 +35,27 @@ func (f MyFloat) Abs() float64 {}
 f := MyFloat(3.23)
 
 Estos tipos básicos no tenemos que usarlos con punteros, ya que no hay nada que modificar.
+
+
+
+# Errores
+panic: runtime error: invalid memory address or nil pointer dereference
+
+Si en uno de los métodos creamos una variable y la pasamos por su dirección de memoria, cuando intentemos usar ese valor fuera de ese método ya no existirá.
+Ejemplo:
+
+
+type Cliente struct {
+	user	*string
+}
+
+func (c Cliente) init() {
+	cadena := "pepito"
+	c.user = &cadena
+	fmt.Println(*c.user) // Esto funciona
+}
+func main() {
+	cli := Cliente{}
+	cli.init()
+	fmt.Println(*cli.user) // Aqui salta el panic
+}

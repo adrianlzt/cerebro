@@ -13,6 +13,12 @@ python -i script.py
 
 Mirar pudb.md
 
+Con bpython, poner al principio:
+import bpdb
+bpdb.set_trace()
+  con 'B' se salta al bpython
+
+
 Probar ejemplo debug-test.py
 
 $ vi programa.py

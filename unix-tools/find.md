@@ -79,3 +79,10 @@ note that with GNU find, using + instead of ; as the terminator to the -exec wil
 # Print
 Mirar el man, nos da un montón de opciones de como sacar los datos.
 Info del inodo de los ficheros, permisos, last access, etc
+
+Buscar hard links
+find . -samefile fichero
+
+Buscar por numero de inodo
+find . -inum NNNN
+

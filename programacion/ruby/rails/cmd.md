@@ -25,6 +25,8 @@ rake db:migrate
 Arrancar el servidor web. No hace falta reiniciarlo ante cambios en el código
 rails s
 rails s -p 3001
-      
+
+
 Arrancar el terminal rails/ruby
 rails c
+RAILS_ENV=production rails c

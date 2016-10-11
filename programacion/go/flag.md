@@ -78,7 +78,7 @@ go run  -ldflags "-X main.app_version 1.5" *.go -V
 go build -o app -ldflags "-X main.app_version 1.5" *.go
 
 
-# Verbose
+# Verbose, con Sirupsen/logrus
 var (
         verbose  = kingpin.Flag("verbose", "Have more verbose output. Twice for debug").Short('v').Counter()
 )

@@ -1,5 +1,7 @@
 http://stackoverflow.com/questions/1401359/understanding-linux-proc-id-maps
 
+address           perms offset  dev   inode   pathname
+
 - Muestra el mapa de memoria del proceso (direcciones, permisos, inodos)
 - Permisos:
 

@@ -23,3 +23,8 @@ translate mesa to french
 
 sqrt(cos(x))*cos(300x)+sqrt(abs(x))-0.7)*(4-x*x)^0.01, sqrt(6-x^2), -sqrt(6-x^2) from -4.5 to 4.5
   poner fórmulas matemáticas para ver su gráfica
+
+
+
+http://lmgtfy.com/
+le pones una búsqueda y te genera un enlace para pasarselo a alguien donde se ve un gif de como se busca en google (estilo RTFM)

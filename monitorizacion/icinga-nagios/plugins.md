@@ -15,6 +15,7 @@ PERFDATA LINE 3
 ...
 PERFDATA LINE N
 
+http://docs.icinga.org/latest/en/perfdata.html
 Perfdata: 'label'=value[UOM];[warn];[crit];[min];[max]
 UOM (unit of measurement) is one of:
   no unit specified - assume a number (int or float) of things (eg, users, processes, load averages)

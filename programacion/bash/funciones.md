@@ -1,9 +1,12 @@
 Definir las funciones antes de usarlas.
 
 function kk () {
+  param=$1
   echo hola
   return 0
 }
+
+output=$(kk "parametro uno")
 
 
 # Usar variables locales dentro de las funciones

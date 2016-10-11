@@ -44,3 +44,12 @@ squares = [x**2 for x in range(10)]
 # Bucle infinito
 while True:
     time.sleep(1)
+
+
+# List comprehensions
+https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
+
+>>> variable=[{'name':123},{'name':000,'pepe':2}]
+>>> [x['name'] for x in variable]
+[123, 0]
+

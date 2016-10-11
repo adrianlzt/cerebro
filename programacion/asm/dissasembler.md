@@ -1,3 +1,6 @@
+mirar radare.md
+mirar frida.md
+mirar capstone.md
 mirar emilpro.md
 
 online:

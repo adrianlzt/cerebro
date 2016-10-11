@@ -58,6 +58,10 @@ sudo tcpdump -i eth1 -A udp dst port 68
 # Paquetes TFTP, mostrando contenido
 sudo tcpdump -A udp port 69
 
+# Filtrar por tráfico de salida, entrada o ambos (por defecto)
+-Q in/out/inout
+-P in/out/inout (versiones viejas)
+
 
 
 

@@ -31,3 +31,9 @@ json.dumps([dict(p.to_dict(), **dict(id=p.key.id())) for p in Pasta.query().fetc
 
 json.dumps([p.to_dict() for p in Pasta.query(Pasta.name == "Ravioli").fetch()])
 
+
+# Logger
+import logging
+logging.debug("traza")
+
+aparecera en la zona de Registros

@@ -4,6 +4,21 @@ Con la herramienta trace podemos meter una kprobe en la instruccion SSL_write o 
 ./trace -Z 200 'p:/usr/lib/libssl.so.1.0.0:SSL_read "%s", arg2'
   el read solo me muestra el comienzo
 
+# Frida
+SSL_read no funciona bien, seguramente por lo que me decian que no está relleno aún el buffer
+
+frida-trace -i "SSL_read" -i "SSL_write" -n link
+
+onEnter: function (log, args, state) {
+  log("SSL_write " + "num=" + args[2].toInt32() + "  buf=\n" + Memory.readUtf8String(args[1]));
+}
+
+onEnter: function (log, args, state) {
+  log("SSL_read" + "num=" + args[2].toInt32() + "  buf=\n" + Memory.readUtf8String(args[1]));
+},
+
+
+# Charles proxy
 https://www.charlesproxy.com
 
 Proxy para meter entre el pc y los endpoints.

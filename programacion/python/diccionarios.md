@@ -96,3 +96,7 @@ print mydict.keys()[mydict.values().index(16)] # Prints george
 Or in Python 3.x:
 mydict = {'george':16,'amber':19}
 print(list(mydict.keys())[list(mydict.values()).index(16)]) # Prints george
+
+
+# dict_values
+list(d.values())[0]

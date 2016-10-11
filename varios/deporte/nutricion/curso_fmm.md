@@ -1,4 +1,4 @@
-Principio de individualización:
+Principio de individualización: http://www.vicenteubeda.com/el-principio-de-individualizacion-del-entrenamiento/
  - tipo de actividad
  - condiciones en que se desarrolla
  - características personales
@@ -6,20 +6,23 @@ Principio de individualización:
 
 
 Supercompensación, principio básico del entrenamiento.
-(grafica supercomensación)
+http://i.imgur.com/jOuhwx8.jpg
 Debemos hacer cargas en los puntos de supercomensación para lograr mejora.
 Otros casos sería empeorar el rendimiento o no mejorar.
 
 # Dietas
-(traspa de dietas milagro)
+Cuidado con las dietas milagro:
+http://www.vitonica.com/tag/analisis-de-dietas-milagro
+http://fedn.es/docs/grep/docs/dietas_milagro.pdf
 
 No a la pirámide alimenticia.
-(traspa american college of sports medicine)
+https://www.choosemyplate.gov/
 
 
 # Que comer y cuando
 (traspa se organizaciones de comida según cuando realizemos la actividad)
-(traspa organización para una carrera) guíon para correr la UTMB. No es matemáticas, tenemos que ir ajustando, pero tenemo que llevar el planning.
+Recomendaciones organización UTMB: http://utmbmontblanc.com/en/page/29/Ultra%20Trail%20du%20Mont-Blanc%20and%20Sports%20Nutrition.html
+Ejemplo de organización para el UTMB: http://i.imgur.com/ukhPrQ5.png
 keepgoing.es/planifica
 
 La alimentación depende de la biomecánica de la digestión.
@@ -36,17 +39,16 @@ Cuanto cuesta digerir.
 Cuesta digerir: fibra (provoca gases, diarrea), grasa (frutos secos, se digieron muy despacio)
 Las bebidas energétias están medidas para la cantidad que indican, si no, podemos estar con una bebida hipotonica (perder sales?)
 
-Agua.
-
 
 
 
 # Sistemas energéticos
-(gráfica muñeco duracell)
+http://i.imgur.com/QmQh3T6.jpg
 El consumo de energía se mezcla entre estos tres fosfágenos, anaeróbica, aeróbico
 Siempre se quema grasa, es un mito lo de que hace falta hacer más de x minutos
 
 Depende de nuestro nivel de forma se quema de una manera u otra. Diferencias en la quema de grasas y glucógeno.
+http://i.imgur.com/N4nBVsT.jpg
 
 
 Los productos se organizan en:
@@ -54,6 +56,9 @@ Los productos se organizan en:
  - durante
  - después
 
+
+http://www.ellocoquecorre.com/carga-de-carbohidratos-como-cuando-y-por-que/
+leer
 
 Grasa ~ diesel
 Hidratos de carbono ~ gasolina

@@ -32,3 +32,6 @@ cp -l
   user    0m0.067s
   sys     0m0.683s
 
+
+Cambiar un hard link por una copia normal (borra el destino antes de la copia)
+cp --remove-destination file1 file2

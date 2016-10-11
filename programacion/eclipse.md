@@ -31,3 +31,11 @@ Añadirlo a la lista de urls disponibles para obtener software.
 
 # Mylyn #
 which talks to all the major issue trackers (Jira, Bugzilla, Redmine, Github etc.). - See more at: http://puppetlabs.com/blog/geppetto-a-puppet-ide#sthash.cPhE8Sko.dpuf
+
+# CDT
+/home/adrian/adrianRepo/programacion/eclipse.md
+Para programar en c
+
+Help -> Install New software...
+Work with: http://download.eclipse.org/tools/cdt/releases/9.0
+Mirar cual es la última versión

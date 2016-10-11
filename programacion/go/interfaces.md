@@ -110,3 +110,10 @@ func otrafun(c Client) {
   fmt.Println(c.GetData())
 }
 
+
+# Problemas
+panic: runtime error: invalid memory address or nil pointer dereference
+
+Lo vi cuando creaba un httpclient usando la dirección de memoria de un struct que creaba en una función.
+tiene pinta de que al salir de esa función se borraba ese objecto y la dirección de memoria apuntaba a un sitio no permitido
+

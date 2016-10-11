@@ -1,5 +1,6 @@
 http://guides.rubyonrails.org/active_record_querying.html
 http://rubydoc.info/gems/activerecord/4.0.2/frames/ActiveRecord
+crud.md
 
 Project.find(3)
 Project.find(3).delete

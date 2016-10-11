@@ -16,3 +16,11 @@ echo -n QUE | xxd -p
 
 Editor hexadecimal:
 xxd $file | vipe | xxd -r | sponge $file
+
+
+
+hex to char: rax2 -s 43 4a 50
+char to hex: rax2 -S A J A
+int to hex: rax2 100
+hex to int: rax2 0x1A
+

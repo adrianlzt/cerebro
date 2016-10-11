@@ -40,6 +40,8 @@ type FileContent struct {
   LastScan time.Time
   Msg string
 }
+
+file_read, err := ioutil.ReadFile("/tmp/jobs_list.json") // file_read es un []byte
 var prev_exec FileContent
 err = json.Unmarshal(file_read, &prev_exec)
 if err != nil {

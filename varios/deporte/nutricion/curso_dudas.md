@@ -1,8 +1,12 @@
-330km y 40000m desnivel, una carrera, buscar.
-
-
+Algún libro recomendado
 
 Y para los que hacemos ejercicio (Escalada) el finde?
+
+Como saber si el alimento tiene mezcla de HCs
+
+HC de cena?
+
+Hidratación?
 
 IG?
 

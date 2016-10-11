@@ -15,6 +15,8 @@ bpython-curses
 bpython2-curses
 
 Otra opcion es ipython
+Mejor Jupyter
+sudo pacman -S jupyter
 
 
 Para virtualevns hará falta instalarlo dentro del venv

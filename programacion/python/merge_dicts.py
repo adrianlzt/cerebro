@@ -1,3 +1,6 @@
+# Para hacer merges con ficheros yaml: https://github.com/zerwes/hiyapyco/
+#
+# Almacena en a el merge
 def merge_dicts(a, b):
    for key in b:
        if key in a:

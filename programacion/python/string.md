@@ -164,3 +164,6 @@ if not cmd:
 ## Replace
 "hola".replace('o','a')
 "hala"
+
+# Reverse
+'hello world'[::-1]

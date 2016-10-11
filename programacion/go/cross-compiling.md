@@ -7,4 +7,6 @@ GOOS=linux GOARCH=amd64 go build -o hello main.go
 En linux generar mac:
 GOOS=darwin GOARCH=amd64 go build/install...
 
+GOOS=windows GOARCH=amd64 go build/install
+
 Siempre poner las dos variables!

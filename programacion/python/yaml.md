@@ -13,11 +13,11 @@ witai.yml:
 ---
   clave: "nig8abuasd"
 
-  array: 
+  array:
     - "elem1"
     - "elem2"
 
-  array_dicc: 
+  array_dicc:
     - foo: "VAR"
       cosa: "asd12"
     - pepe: "MAR"
@@ -29,5 +29,11 @@ with open("witai.yml") as fd:
     config = yaml.load(fd)
 
 print(config['clave'])
-yaml.dump(config, file('otro.yml','w'), default_flow_style=False)
 
+with open("otro.yml", "w") as fd:
+    yaml.dump(config, fd, default_flow_style=False)
+
+
+
+Si queremos mergear ficheros yaml
+https://github.com/zerwes/hiyapyco/

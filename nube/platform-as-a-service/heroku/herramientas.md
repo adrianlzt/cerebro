@@ -4,6 +4,7 @@ yaourt -S aur/heroku-toolbelt
 # Registro
 Para registrarnos:
 heroku login
+  crea ~/.heroku con un certificado y librerias ruby
 
 # Comandos
 heroku help

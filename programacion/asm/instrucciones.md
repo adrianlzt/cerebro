@@ -12,3 +12,33 @@ lea — Load effective address
     carga la dirección de memoria de rdi en la pila (rsp) desplazada
 
   Suele usarse para cargar el principio de un array
+  También nos permite:
+    perform addition with either two or three operands, and
+    store the result in any register; not just one of the source operands.
+
+
+push -> meter a la pila. Equivalente a:
+                                        sub  $8,%rsp        # subtract 8 from rsp
+                                        mov  reg,(%rsp)     # store, using rsp as the address
+pop -> sacar de la pila. Equivalente a:
+                                        mov  (%rsp),reg     # load, using rsp as the address
+                                        add  $8,%rsp        # add 8 to the rsp
+
+callq -> hacer una llamda a una función. Equivalente a:
+                                                        push return_address
+                                                        jmp call_address
+
+
+Al hacer pop estamos copiando el valor de:
+x/1xg $sp  (para 64 bits)
+a la variable que ponga el pop
+
+
+TEST %eax, %eax
+JE   400e77 <phase_1+0x23>
+jumps if the %eax is zero.
+
+jnz (jump if not zero)
+
+
+JE [Jump if Equals] tests the zero flag and jumps if the flag is set. JE is an alias of JZ [Jump if Zero]

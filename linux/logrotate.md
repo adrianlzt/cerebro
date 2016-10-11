@@ -52,15 +52,15 @@ dateext: use date as a suffix of the rotated file
 
 
 
-/var/log/fichero.log { 
+/var/log/fichero.log {
   daily # rota cada dia
   maxsize 100M # maximo tamaño de 100M; ejecutar varias veces al dia; solo logrotate > 3.8.1
   minsize 1 # no rota si el fichero esta vacio
   rotate 10 # mantiene 10 ficheros
-  compress 
-  delaycompress 
-  missingok 
-  notifempty 
+  compress
+  delaycompress
+  missingok
+  notifempty
   copytruncate
   dateext
   create
@@ -70,16 +70,16 @@ dateext: use date as a suffix of the rotated file
 Mantiene 5 ficheros (el log principal, último rotado sin comprimir, y 4 más comprimidos)
 Los rota cada semana si ocupan al menos 5MB
 
-/var/log/cluster/corosync.log { 
+/var/log/cluster/corosync.log {
   minsize 5M
-  weekly 
-  rotate 5 
-  compress 
-  delaycompress 
-  missingok 
-  notifempty 
-  create 640 root root 
-} 
+  weekly
+  rotate 5
+  compress
+  delaycompress
+  missingok
+  notifempty
+  create 640 root root
+}
 
 Si tenemos logs que se generan con el syslog (o rsyslog) tenemos que reiniciarlo tras el rotado:
   postrotate
@@ -89,6 +89,8 @@ Si tenemos logs que se generan con el syslog (o rsyslog) tenemos que reiniciarlo
 # Permisos y usuarios
 create 640 root root
   el nuevo fichero creado tras rotar tendrá esos permisos
+
+Si tenemos definido un ACL en el fichero original se matendrá (podríamos pensar que al generar el nuevo fichero de log vacío se perderían estos atributos)
 
 # Clusters con directorios compartidos
 Activar sharedscripts y poner una condición en el de pre para ver si el nodo es el cluster activo
@@ -113,7 +115,7 @@ prueba.conf:
    notifempty
    size 1k
    rotate 3
-}  
+}
 
 
 # Errores

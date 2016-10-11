@@ -106,3 +106,12 @@ https://github.com/gogap/logrus_mate
 
 ## Testing
 https://github.com/Sirupsen/logrus#testing
+
+## A un fichero
+func init() {
+	logFile,err := os.OpenFile("/tmp/dcip_eventhandler.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	log.SetOutput(logFile)
+}

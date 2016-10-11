@@ -110,6 +110,16 @@ En el codigo:
 proxyUrl, err := url.Parse("http://proxyIp:proxyPort")
 myClient := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
 
+Definir proxy si lo tenemos
+var myClient *http.Client
+if variable {
+  proxyUrl,_ := url.Parse("http://proxy.com:343")
+  myClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
+} else {
+  myClient = &http.Client{Transport: &http.Transport{}}
+}
+
+
 
 ## POST con file multipart
 post_multipart_file.go
@@ -125,8 +135,18 @@ u, err := url.Parse("http://foo")
 u.Path = path.Join(u.Path, "bar")
 s := u.String()
 
+fmt.Println(path.Join([]string{"hola","aduios"}...))
+
 
 Escape:
 fmt.Println(url.QueryEscape("hola que tal"))
 hola+que+tal
 
+
+
+# Copiar objeto
+original := url.Parse("http://example.com")
+copia := *original
+puntero_copia := &copia
+
+fmt.Printl(puntero_copia)

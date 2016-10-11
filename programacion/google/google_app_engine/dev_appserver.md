@@ -6,7 +6,9 @@ dev_appserver.py --log_level debug .
 
 # Limpiar data store
 Lanzar con:
---clear_datastore
+--clear_datastore true
+
+dev_appserver-go --clear_datastore true .
 
 
 Si la consola interactiva no me funciona, probar con una sessión oculta de chrome:

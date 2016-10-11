@@ -25,10 +25,12 @@ En /etc/login.defs estará el método de encriptación a usar.
 En arch SHA-512, con 5000 vueltas (valor por defecto) (mirar man passwd)
 A más vueltas, más dificil de hacer brute-force, pero también más CPU le cuesta loguear a los usuarios.
 
+Generador online para blowfish: http://www.passwordtool.hu/blowfish-password-hash-generator
+
 Si queremos forzar un método de encriptación:
 echo "pepe:password" | chpasswd -c MD5
 
-Si queremos generar la clave a mano (nos devolverá una cadena igual a la que se almacena en /etc/shadow):
+Si queremos generar la clave a mano (crypt o md5 -1) (nos devolverá una cadena igual a la que se almacena en /etc/shadow):
 openssl passwd -1 -salt SALT PASSWORD
 
 Programa en c para encriptar una pass con un métdo determinado y una salt dada. Compilar con: gcc -lcrypt hash.c

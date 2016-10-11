@@ -46,3 +46,11 @@ pepe.indexOf("hola")
 
 Devuelve un int con el número de posisión.
 -1 si no lo encuentra
+
+
+# Sort
+http://www.w3schools.com/jsref/jsref_sort.asp
+
+Se pueden pasar funciones custom para hacer el sort:
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return a-b});
