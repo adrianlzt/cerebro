@@ -25,7 +25,10 @@ git format-patch -2
 Genera el parche del commit que pasamos y el anterior:
 git format-patch -2 <sha1>
 
-Genera un parche entre el commit aaaa (viejo) y el commit bbbb (nuevo):
+Genera parches entre el commit aaaa (viejo, incluido) y el commit bbbb (nuevo):
+git format-patch aaaa^..bbbb > fichero.patch
+
+Para generar un único fichero (aunque dentro son varios patchs juntos)
 git format-patch --stdout aaaa^..bbbb > fichero.patch
 
 

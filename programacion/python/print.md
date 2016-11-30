@@ -1,3 +1,11 @@
+Con colores: https://pypi.python.org/pypi/termcolor
+termcolor.md
+colorama.md
+
+Tabulado:
+https://pypi.python.org/pypi/tabulate
+
+
 print ("Cruze por critical: %s" % crit_fecha if crit_fecha else "Sin cruze por critical")
 
 

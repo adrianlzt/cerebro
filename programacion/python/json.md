@@ -26,8 +26,16 @@ Para parsear la información a objetos python, tenemos bastante trabajo manual, 
 # Ficheros
 Se pueden pasar directamente filedescriptors:
 
+json.load(file("/tmp/test.json")) # python2
+json.load(open("/tmp/test.json")) # python3
+
 with open("fichero.json") as fd:
     data = json.load(fd)
+
+
+
+json.dump(data, file("/tmp/test.json","w")) # python2
+json.dump(data, open("/tmp/test.json","w")) # python3
 
 with open("fichero.json", "w") as fd:
     json.dump(data,fd,indent=4)

@@ -11,6 +11,9 @@ DriveApp.getFoldersByName("JAcobo Garcia - jaco@garc.om").hasNext()
 direc.addFile(fichero)
 Pone el fichero en los dos sitios al mismo tiempo (https://developers.google.com/apps-script/reference/drive/folder#addfilechild)
 
+Comprobar que existe un fichero en un directorio:
+dir.getFilesByName(name).hasNext()
+
 Si queremos copiarlo:
 fichero.makeCopy(direc)
 

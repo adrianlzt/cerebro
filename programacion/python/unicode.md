@@ -35,3 +35,14 @@ Decoding from str to unicode.
 
 >>> "a".decode("utf-8")
 u'a'
+
+
+# Errores
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 20: ordinal not in range(128)
+
+Es posible que estamos haciendo algo tipo:
+"cosa: %s" % valor
+siendo valor unicode
+
+Se arregla con:
+u"cosa: %s" % valor

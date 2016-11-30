@@ -1,4 +1,5 @@
 https://docs.python.org/2/library/sched.html
+mirar ejemplo en scheduler.py
 
 
 import time

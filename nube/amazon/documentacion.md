@@ -1,4 +1,5 @@
 http://answersforaws.com/
+https://github.com/open-guides/og-aws
 
 -Web con 400 preguntas certificación AWS associate
 http://www.aiotestking.com/amazon/category/exam-aws-saa-aws-certified-solutions-architect-associate/

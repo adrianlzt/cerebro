@@ -1,0 +1,3 @@
+null
+
+if (cosa == null)

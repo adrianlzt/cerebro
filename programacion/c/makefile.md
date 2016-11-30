@@ -10,3 +10,31 @@ Tener en cuenta que es un tabulador lo que hay antes de gcc
 
 Si queremos meter un script en bash:
 $$(echo "hola")
+
+
+# Autoconf
+The file 'configure.ac' (or 'configure.in') is used to create 'configure' by a program called 'autoconf'.
+
+Tambien puede ser que necesitemos el:
+autoreconf
+
+
+Ejemplo de Makefile:
+
+# This is how we want to name the binary output
+BINARY=dcip_eventhandler
+
+# These are the values we want to pass for Version and BuildTime
+VERSION=0.2.0
+
+# Setup the -ldflags option for go build here, interpolate the variable values
+LDFLAGS=-ldflags "-X main.app_version=${VERSION}"
+
+all: build rpm
+
+build:
+	go build ${LDFLAGS} -o ${BINARY} *.go
+
+rpm:
+	fpm -s dir -t rpm -n dcip_eventhandler -a x86_64 --prefix /usr/bin -v ${VERSION} ${BINARY}
+

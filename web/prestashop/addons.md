@@ -1,0 +1,1 @@
+http://addons.prestashop.com/

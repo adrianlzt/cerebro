@@ -7,3 +7,14 @@ Necesita
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
+
+<div id="dialog" title="Cargando...">
+  <p>Estamos cargando los datos. Espera unos segundos.</p>
+</div>
+
+
+Abrirlo:
+$( "#dialog" ).dialog();
+
+Cerrarlo:
+$( "#dialog" ).dialog("close");

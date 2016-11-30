@@ -4,3 +4,7 @@ The functools module is for higher-order functions: functions that act on or ret
 
 
 # Wraps
+
+
+# Partial
+currying.md

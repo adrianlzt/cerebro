@@ -4,3 +4,9 @@ Durante esta generación de las RC podría producirse un cambio en la rama devel
 
 Para unir los cambios entre las RC y la develop se puede hacer un squash en la rama de release, para unir todos los commit en uno único (rebase -i ?)
 Luego se haría un cherry-pick de este único commit de la rama release sobre la rama develop.
+
+https://ariejan.net/2011/07/05/git-squash-your-latests-commits-into-one/
+git rebase -i HEAD~3
+
+Los commits que queramos "squashear" cambiamos "pick" por squash
+Y si quiero squashear a un commit posterior?

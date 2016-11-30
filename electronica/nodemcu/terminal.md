@@ -2,12 +2,14 @@
 Esto deberia devolvernos un prompt ('>') segun conectemos.
 Si no lo vemos, pulsar el boton de reset.
 
-Por defecto: 
+Por defecto:
 sudo picocom -b 9600 /dev/ttyUSB0
 
 Si queremos podemos subir la velocidad:
 uart.setup(0, 115200, 8, 0, 1, 1 )
 sudo picocom -b 115200 /dev/ttyUSB0
+
+Para salir, Control+a Control+q
 
 
 Parece que por defecto el nodemcu monta una red wifi (ESP_xxxx) donde el se conecta con ip 192.168.4.1
@@ -19,7 +21,7 @@ Si intento enviar un paquete a otra ip no parece funcionar
 # Wifi
 http://nodemcu.readthedocs.org/en/dev/en/modules/wifi/
 wifi.setmode(wifi.STATION)
-wifi.sta.config("moto","pass") 
+wifi.sta.config("moto","pass")
 print(wifi.sta.getip())
 
 Puede funcionar como AP y cliente simultáneamente.

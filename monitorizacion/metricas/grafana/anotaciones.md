@@ -4,6 +4,8 @@ Si queremos múltiples tags las separaremos con comas.
 
 Annotations can now use a template variable as data source (https://github.com/grafana/grafana/issues/5054)
 
+SELECT * FROM tabla WHERE $timeFilter
+
 
 # PR para que funcione el multiple tag con influx
 https://github.com/grafana/grafana/pull/4550

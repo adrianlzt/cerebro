@@ -54,6 +54,11 @@ Variables disponibles:
  'service_state': 0
 }
 
+Si tenemos definidos varios intentos tambien tendremos las variables:
+ 'service_max_check_attempts': 2
+ 'service_current_attempt': 1
+
+
 service_comments_with_extra_info aqui estarán los mensajes de ack.
 Ej.:
 service_comments_with_extra_info': [[1, u'USUARIO', u'MENSAJE', 4, 1442915859]]

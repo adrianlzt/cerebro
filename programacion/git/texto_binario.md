@@ -1,3 +1,12 @@
+Diff branches                                       git diff <branch1> <branch2>
+                                                    git diff <branch1>..<branch2>
+Diff branches rama contra el ancestro común         git diff <branch1>...<branch2>
+Mirar cambios                                       git diff
+Cambios respecto al dir local (sin commit)          git diff --staged
+Cambios entre HEAD y dos commits antes							git diff HEAD~1..HEAD
+
+
+# Diff con un programa determinado
 https://git.wiki.kernel.org/index.php/GitTips#How_to_use_git_to_track_OpenDocument_.28OpenOffice.2C_Koffice.29_files.3F
 http://git-scm.com/book/ch7-2.html
 
@@ -21,3 +30,7 @@ En nuestro proyecto git definir que extensiones pertenecen a ese formato:
 
 
 También podemos hacer diff entre imágenes a partir de la metadata.
+
+
+# Ficheros modificados entre dos commits
+git diff --name-only $GIT_PREVIOUS_SUCCESSFUL_COMMIT $GIT_COMMIT

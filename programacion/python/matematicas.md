@@ -42,3 +42,9 @@ import math
 math.isnan(x)
 
 a = float("NaN")
+
+
+
+# Ceil, siguiente numero entero
+from math import ceil
+ceil(3.2) # Da 4.0

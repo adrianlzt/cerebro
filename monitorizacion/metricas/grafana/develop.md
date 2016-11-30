@@ -1,15 +1,18 @@
 https://github.com/grafana/grafana/#run-from-master
 
-gvm install go1.6.2
-gvm use go1.6.2
+
+gvm install go1.7
+gvm use go1.7
 go get github.com/grafana/grafana
 cd $GOPATH/src/github.com/grafana/grafana
 go run build.go setup
-godep restore
 go run build.go build
+
 npm install
+npm run build
+
 sudo npm install -g grunt-cli
-grunt
+grunt watch
 ./bin/grafana-server
 
 navegador: http://localhost:3000

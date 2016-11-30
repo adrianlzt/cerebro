@@ -53,3 +53,18 @@ http://www.tutorialspoint.com/json/json_data_types.htm
 ## Boolean
 true
 false
+
+
+
+# JSON firmados
+jwt.io
+https://github.com/dgrijalva/jwt-go#what-the-heck-is-a-jwt
+In short, it's a signed JSON object that does something useful (for example, authentication). It's commonly used for Bearer tokens in Oauth 2. A token is made of three parts, separated by .'s. The first two parts are JSON objects, that have been base64url encoded. The last part is the signature, encoded the same way.
+
+It's important to know that JWT does not provide encryption, which means anyone who has access to the token can read its contents. If you need to protect (encrypt) the data, there is a companion spec, JWE, that provides this functionality. JWE is currently outside the scope of this library.
+
+Python: https://github.com/jpadilla/pyjwt (pacman -S python-pyjwt)
+Desencriptar, comprobando con la key que los datos son legitimos:
+jwt --key="this_is_my_secret_long_enough_to_be_valid" eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImRlbW8xMCJ9.eyJzdWIiOiIxMjM0In0.-4hQDsVN5XQY5LTmbx5atWCZMnSFKpaNSwG12jK0qHI
+
+

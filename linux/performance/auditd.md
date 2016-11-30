@@ -27,7 +27,10 @@ Si queremos que traduzca los números (por ejemplo, uid por nombre)
 # ausearch -i ...
 
 En la fecha o posterior:
-# ausearch -ts "22/8/2015" "9:37:41"
+# ausearch -ts "8/22/2015" "9:37:41"
+
+Solo mostrar los mensajes de ejeucción
+ausearch -m EXECVE ...
 
 Borrar todas las reglas (dara como resultado un 'No rules', es lo correcto)
 # auditctl -D

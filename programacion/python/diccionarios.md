@@ -100,3 +100,13 @@ print(list(mydict.keys())[list(mydict.values()).index(16)]) # Prints george
 
 # dict_values
 list(d.values())[0]
+
+
+
+# Comprobar que un diccionario tiene las claves que queremos
+all(key in body for key in ('name', 'services'))
+
+Esto chequeará que el diccionario "body" tiene las claves "name" y "services".
+Devolverá True en ese caso.
+Si tiene esas más otras -> True
+Si le falta alguna -> False

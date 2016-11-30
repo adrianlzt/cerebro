@@ -18,6 +18,20 @@ Crear hosts y hostgroups "al vuelo"
   with_items: lb.balancer.nodes
 
 
+# Usar un primer play para decidir dinámicamente donde se ejecutará el segundo play
+- hosts: localhost
+  tasks:
+    - add_host: name="xxx" ansible_ssh_host="{{servidor}}"
+
+- hosts: xxx
+  tasks:
+    - name: prueba uname
+      shell: uname -a
+
+ansible-playbook -e "servidor=server.com" check.yml
+
+
+
 # Crear script
 Tiene que ser un archivo ejecutable y que empieze con el shebang (#!/).
 Tiene que devolver un json con los grupos y sus nodos.

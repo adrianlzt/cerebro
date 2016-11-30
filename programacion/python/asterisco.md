@@ -66,3 +66,11 @@ hola adios pepe
 ... 
 >>> x,y = func()
 
+
+
+
+# Un asterisco solo como parametro
+http://stackoverflow.com/questions/14301967/python-bare-asterisk-in-function-argument
+
+def compare(a, b, *, key=None):
+In simple english, it means that to pass the value for key, you will need to explicitly pass it as key="value".

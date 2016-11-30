@@ -21,12 +21,15 @@ fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
 strings.Joins(["a","b"], "")
 "ab"
 
-# Split
+# Split / Fields
 strings.Split("a,b,c", ",")
   devuelve: ["a" "b" "c"]
 
 strings.Split("60123234","")
 [6 0 1 2 3 2 3 4]
+
+strings.Fields("  foo bar  baz   ")
+["foo", "bar", "baz"]
 
 # Contains
 strings.Contains("seafood", "foo")

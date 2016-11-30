@@ -16,6 +16,7 @@ import argparse
 parser = argparse.ArgumentParser(prog="cyclops", description='Monitoring as a service')
 parser.add_argument("-c", "--config", action="store", dest="input_config_file",
                             help="Path to the cyclops configuration file.", default=None)
+parser.add_argument("cuenta", metavar="cuenta", help="Mostrar únicamente esta cuenta") # Esto genera algo tipo: prg [-c] cuenta
 args = parser.parse_args()
 
 if args.input_config_file:
@@ -47,3 +48,27 @@ parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFo
 
 # Subcomandos
 Mirar parser_subcommands.py
+
+# Grupos excluyentes
+http://stackoverflow.com/questions/11154946/argparse-require-either-of-two-arguments
+
+Solo puede ponerse una de las dos opciones
+
+group = parser.add_mutually_exclusive_group(required=True)
+group.add_argument('--foo',action=.....)
+group.add_argument('--bar',action=.....)
+args = parser.parse_args()
+
+
+# Incluyentes
+http://stackoverflow.com/questions/19414060/argparse-required-argument-y-if-x-is-present
+
+No hay una opción para esto, pero lo podemos implementar fácilmente:
+
+if args.prox and args.lport is None and args.rport is None:
+    parser.error("--prox requires --lport and --rport.")
+
+Cuidado porque si usamos grupos tal vez args.prox no exista. Mejor usar algo tipo:
+if hasattr(args, "cuenta_destino") and args.cuenta_destino and args.titular_destino is None:
+En este caso el segundo args.xx si lo usamos porque existirá siempre que exista "cuenta_destino"
+

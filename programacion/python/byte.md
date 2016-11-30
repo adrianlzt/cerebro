@@ -1,5 +1,7 @@
-https://docs.python.org/3.1/library/functions.html#bytes
+https://docs.python.org/3/library/functions.html#bytes
 https://wiki.python.org/moin/BitwiseOperators
+
+b'hola'
 
 >>> c = bytearray("252")
 >>> c[0]
@@ -74,3 +76,18 @@ b'6173646173'
 >>> binascii.hexlify(coso.encode('ascii'))
 b'636164656e61'
 
+
+Hexadecimal a bytes
+bytes.fromhex("0405AABB")
+
+
+String hex a int
+int("8A", 16)
+
+
+Int a hexadecimal formato XX
+'{:06x}'.format(5)
+
+
+byte string to string (py3)
+str(bytes_string,'utf-8')

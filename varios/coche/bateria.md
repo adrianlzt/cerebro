@@ -16,3 +16,10 @@ mayor de 0,2 voltios -> mal
 http://www.actualidadmotor.com/se-me-descarga-la-bateria-coche-como-comprobar-si-hay-consumos-electricos/
 
 Un consumo normal debería rondar los 0.2A
+
+
+# Garantia
+Las baterías de más de 60A no suelen dar más de un año de garantía.
+En las baterías de menos de 60A solo primeras marcas dan 2 años de garantía.
+
+Preguntar en cada marca, porque las hay que si dan esa garantía.

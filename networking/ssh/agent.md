@@ -42,3 +42,18 @@ ssh-add -l
 # Borrar identidades
 ssh-add -D
   borra todas
+
+ssh-add -d clave
+  borrar una clave
+
+
+# Elegir una única clave para usar
+http://serverfault.com/questions/599560/use-a-specific-forwarded-key-from-ssh-agent
+
+Obtener la clave pública y apuntar con el Identities a esa clave pública
+
+ssh-add -L | grep /Users/doxna/.ssh/id_rsa.github > ~/.ssh/id_rsa.github.pub
+ssh -v -o IdentitiesOnly=yes -i .ssh/id_rsa.github.pub git@github.com
+
+# No usar el agente
+SSH_AUTH_SOCK="" ssh -i clave.pem user@host

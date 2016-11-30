@@ -5,3 +5,6 @@ if(typeof e == "undefined") {
 if(typeof e !== "undefined") {
     console.log("e definida");
 }
+
+
+Variable nula es: null

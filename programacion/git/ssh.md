@@ -8,3 +8,5 @@ Host gh
         IdentityFile ~/.ssh/somekey
 
 git clone ssh://gh/username/repo.git
+
+Mirar debug.md si tenemos problemas.

@@ -11,6 +11,8 @@ Logger = BetterLog.useSpreadsheet('your-spreadsheet-key-goes-here');
 //Now you can log and it will also log to the spreadsheet
 Logger.log("That's all you need to do");
 
+Cuidado, porque ralentiza la ejecucción. Comentarlas cuando ya no sean necesarias
+
 
 
 # El de google

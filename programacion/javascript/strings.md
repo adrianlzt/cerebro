@@ -32,6 +32,10 @@ var cadena = "hht://idealista.com/asd"
 cadena.includes("idealista")
 => true
 
+# Split
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String/split
+cadena.split([separador][,limite])
+
 # Join
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var energy = fruits.join();

@@ -53,3 +53,8 @@ http://www.imagemagick.org/Usage/canvas/
 
 Imagen con ruido:
 convert -size 100x100 xc: +noise Random random.jpg
+
+
+# Unir
+montage *.png -mode concatenate -tile 3x1 output.png
+Une las imagenes en una sola fila de 3 columnas

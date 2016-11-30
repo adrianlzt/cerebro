@@ -34,6 +34,8 @@ Otros parámetros:
 'b' -> binario
 'r+', 'w+' o 'a+' -> read+write simultaneo
 
+Leer binario 'br'
+
 Cerrar:
 file.close()
 

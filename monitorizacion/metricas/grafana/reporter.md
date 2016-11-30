@@ -19,6 +19,10 @@ Si dos dashboards se llaman igual, de que orga lo coge?
 cd ~/.gvm/pkgsets/go1.6.2/global/src/github.com/izakmarais/reporter
 go run cmd/grafana-reporter/* -ip influxdb-int.hi.inet:80
 
+Si usamos src/github.com/adrianlzt/reporter tendremos que cambiar los import de izakmarais por adrianlzt
+
+
+
 curl "http://localhost:8686/api/report/test?apitoken=eyJrIjoiQ1BxNXNEWFVDRk5Td0MwVUdhYmZuWHRYTDdMdERhZEUiLCJuIjoicmVwb3J0ZXIiLCJpZCI6Mjl9" > /tmp/2.pdf
 
 El apitoken va asociado a una orga

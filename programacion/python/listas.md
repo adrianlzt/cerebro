@@ -26,6 +26,9 @@ todo = lista1 + lista2 # concatenar dos listas
 
 sorted(list)  devuelve una lista ordenada
 
+>>> list(reversed([1,2,3]))
+[3, 2, 1]
+
 >>> for i in range(0,len(a)):
 ...  print a[i]
 
@@ -168,4 +171,37 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 >>> variable=[{'name':123},{'name':000,'pepe':2}]
 >>> [x['name'] for x in variable]
 [123, 0]
+
+
+
+# Lista de integer a string y viceversa
+map(str, [1,2,3])
+map(int, ["1","2"])
+
+
+
+# Heapq
+http://stackoverflow.com/questions/19979518/what-is-pythons-heapq-module
+
+Interesante si queremos siempre obtener el elemento más pequeño de una lista.
+Este objeto nos asegura que al hacer pop obtendremos el más pequeño, pero no asegura que el resto de la lista esté ordenada
+
+Heapq llamará a las funciones __eq__ y __lt__ para comparar los objetos y decidir su orden (por si queremos crear nosotros una clase y ordenarla según nuestro criterio. Ejemplo en http://www.snarky.ca/how-the-heck-does-async-await-work-in-python-3-5 "class Task:")
+
+>>> from heapq import heappop,heappush
+>>> lista = []
+>>> heappush(lista, 10)
+>>> heappush(lista, 14)
+>>> heappush(lista, 17)
+>>> heappush(lista, 5)
+>>> lista
+[5, 10, 17, 14]
+>>> heappop(lista)
+5
+>>> heappop(lista)
+10
+>>> heappop(lista)
+14
+>>> heappop(lista)
+17
 

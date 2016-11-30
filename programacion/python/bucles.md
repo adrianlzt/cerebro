@@ -53,3 +53,20 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 >>> [x['name'] for x in variable]
 [123, 0]
 
+
+Obtener de un dict solo la clave filtrando por los valores
+>>> [k for k,v in cuentas.iteritems() if v == "alias2"]
+['alias2']
+
+
+
+
+
+# Contador
+>>> import itertools
+>>> counter = itertools.count()
+>>> next(counter)
+0
+>>> next(counter)
+1
+

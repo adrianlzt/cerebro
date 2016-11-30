@@ -61,3 +61,6 @@ Este salta a la imagen core de GRUB2
 The core image begins with diskboot.img, which is usually stored immediately after the first sector in the unused space before the first partition. The above code loads the rest of the core image into memory, which contains GRUB 2's kernel and drivers for handling filesystems. After loading the rest of the core image, it executes grub_main.+
 
 
+
+# Grub protected password
+linux/protect_physical_access.md

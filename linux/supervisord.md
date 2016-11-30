@@ -1,6 +1,9 @@
 http://supervisord.org/
 http://supervisord.org/configuration.html#program-x-section-settings
 
+Por ahora, Nov'2016, no funciona con Python 3.
+Otra opción: http://circus.readthedocs.io/en/latest/
+
 Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
 
 It shares some of the same goals of programs like launchd, daemontools, and runit. Unlike some of these programs, it is not meant to be run as a substitute for init as “process id 1”. Instead it is meant to be used to control processes related to a project or a customer, and is meant to start like any other program at boot time.

@@ -16,8 +16,11 @@ Ejemplo: vim-updated.yaml
   tasks:
     - name: keep vim-enhanced package up to date
       yum: name=vim-enhanced state=latest
- 
+
 gather_facts: False on a playbook allows this implicit fact gathering to be skipped
+  Si queremos un filtrado de facts, o algún otro parámetro del módulo setup, pondremos esto a false y llamaremos al módulo setup posteriormente
+  mirar en facts.md
+
 
 Tambien podemos tener un playbook donde primero se ejecuten unos roles y luego una tasks:
 - hosts: all
@@ -64,3 +67,7 @@ playbook.yaml
 - hosts: all
 
 ansible-playbook playbook.yaml -l "grupo"
+
+
+Usando una variable para decidir donde se ejecuta un play
+- hosts: "{{ server }}"

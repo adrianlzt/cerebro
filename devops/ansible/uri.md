@@ -61,3 +61,7 @@ http://localhost:8086/query?q=CREATE%20DATABASE%20nombre
 Podemos usar tambien
 {{variable|urlencode}}
 {{variable|urlencode()}}
+
+
+# Proxy
+mirar proxy.md

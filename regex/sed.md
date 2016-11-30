@@ -95,6 +95,13 @@ MILtres
 cuatro
 
 
+echo -e "hola\nque tal" | sed ':a;N;$!ba;s/\n/\\n/g'
+hola\nque tal
+
+Si el cambio de linea es CRNL (\r\n) usaremos:
+sed ':a;N;$!ba;s/\r\n/\\n/g'
+
+
 # Negativo / not / nor / excepto
 [^abc] cualquier cosa excepto a, b o c
 
@@ -110,3 +117,7 @@ fichero
 sed -n '/^pepe/p'
   solo saca las lineas que empiecen por pepe
   -n es quiet, para solo sacar lineas matcheadas
+
+
+Eliminar ultimo caracter de un fichero, en este caso, una coma
+sed "$ s/,//"

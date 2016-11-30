@@ -17,7 +17,9 @@ new Date().getTime()/1000
 1475861659.487
 
 epoch to javascript date
-new Date(1475871691.823*1000)
+d = new Date(1475871691.823*1000)
+d.toUTCString()
+t.getDay() // 0 domino, 6 sabado
 
 
 function epochToHHMMSS(totalSec) {

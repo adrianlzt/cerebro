@@ -31,9 +31,9 @@ IFS=$SAVEIFS
 
 
 Más sencillo (en este caso, si la linea tiene espacios en blanco, cada uno será un parametro):
-while read line           
-do           
-     echo $line           
+while read line
+do
+  echo $line
 done <file
 
 while read line; do echo $line; done < file

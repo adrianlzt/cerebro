@@ -51,3 +51,4 @@ HSET user:1000 password "s3cret"
 HGETALL user:1000 <- nos devuelve todos los valores
 HMSET user:1001 name "Mary Jones" password "hidden" email "mjones@example.com" <- definir varios de golpe
 HGET user:1001 name => "Mary Jones"
+HLEN coso   número de elementos del hash

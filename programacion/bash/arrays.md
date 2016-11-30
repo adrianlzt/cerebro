@@ -5,6 +5,9 @@ area[13]=37
 area[51]=UFOs
 area2=( zero one two three four )
 
+Añadir elemento
+area+="pepe"
+
 echo -n "area[11] = "
 echo ${area[11]}    #  {curly brackets} needed.
 

@@ -1,10 +1,12 @@
-import cv
+import cv2
 
-cv.NamedWindow("webcam", 1)
-
-cam = cv.CaptureFromCAM(-1)
+cap = cv2.VideoCapture(-1)
 
 while True:
-  feed = cv.QueryFrame(cam)
-  cv.ShowImage("webcam", feed)
-  cv.WaitKey(1)
+    ret ,frame = cap.read()
+    if ret:
+        cv2.imshow('img2',frame)
+        cv2.waitKey(60)
+
+cv2.destroyAllWindows()
+cap.release()

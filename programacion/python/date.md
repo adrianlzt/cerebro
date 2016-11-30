@@ -34,7 +34,8 @@ epoch -> datetime
 datetime.datetime.fromtimestamp(1284286794)
 
 
-
+>>> print(datetime.now().strftime("%H:%M:%S"))
+17:08:51
 
 # medir tiempo
 mirar time_measure.py para ver como medir el tiempo usado por una función mediante decoradores

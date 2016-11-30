@@ -11,3 +11,7 @@ pdfinfo file.pdf
 
 Editar metadatos
 pdftk
+
+Unir dos pdfs
+pdfjoin /tmp/salida.pdf /tmp/salida.pdf
+genera salida-joined.pdf

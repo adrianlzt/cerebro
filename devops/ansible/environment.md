@@ -1,3 +1,6 @@
+mirar variables.md
+
+
 - name: Output env vars
   shell: echo $PATH $ANDROID_HOME > path.txt
   environment:
@@ -13,3 +16,5 @@ Los {{}} no se cambiarán por sus valores e irán tal cual al PATH
     http_proxy: "{{proxy}}"
 
 
+
+"{{ lookup('env','HOME') }}"

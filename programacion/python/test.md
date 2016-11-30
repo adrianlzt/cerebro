@@ -31,6 +31,15 @@ test suite: A test suite is a collection of test cases, test suites, or both. It
 test runner: A test runner is a component which orchestrates the execution of tests and provides the outcome to the user. The runner may use a graphical interface, a textual interface, or return a special value to indicate the results of executing the tests.
 
 
+## Estructura de un fichero _test.py
+from unittest import TestCase
+from ficheroQueProbamos import *
+
+class TestTransferencia(TestCase):
+    def test_transferencia(self):
+				transferencia()
+        self.fail()
+
 ## Estructura de un test ##
 
 @decoradores
@@ -47,10 +56,10 @@ end
 
 
 ## Asserts ##
-assertEqual(a, b)                a == b   
-assertNotEqual(a, b)             a != b   
-assertTrue(x)                    bool(x) is True  
-assertFalse(x)                   bool(x) is False   
+assertEqual(a, b)                a == b
+assertNotEqual(a, b)             a != b
+assertTrue(x)                    bool(x) is True
+assertFalse(x)                   bool(x) is False
 assertIs(a, b)                   a is b  2.7
 assertIsNot(a, b)                a is not b  2.7
 assertIsNone(x)                  x is None 2.7
@@ -60,8 +69,8 @@ assertNotIn(a, b)                a not in b  2.7
 assertIsInstance(a, b)           isinstance(a, b)  2.7
   assertIsInstance([1,2,3],list)
 assertNotIsInstance(a, b)        not isinstance(a, b)  2.7
-assertAlmostEqual(a, b)          round(a-b, 7) == 0   
-assertNotAlmostEqual(a, b)       round(a-b, 7) != 0   
+assertAlmostEqual(a, b)          round(a-b, 7) == 0
+assertNotAlmostEqual(a, b)       round(a-b, 7) != 0
 assertGreater(a, b)              a > b 2.7
 assertGreaterEqual(a, b)         a >= b  2.7
 assertLess(a, b)                 a < b 2.7

@@ -64,6 +64,9 @@ Division:
 $ awk "BEGIN {print 5/2}"
 2.5
 
+Numero a entero
+echo "5.2" | awk '{printf "%i", $1;}'
+
 
 Random entre 0 y 1:
 awk -v seed=$RANDOM 'BEGIN{srand(seed); print rand();}'
@@ -76,3 +79,18 @@ cat fichero | awk 'NR==4'
 Coger un valor de una columna de un fichero: grep + cut
 awk '/processes/ {print $2}' /proc/stat
   De la linea que tiene "processes" coge la segunda columna
+
+
+Convertir hex a int:
+% echo "82 80 70 80 04" | awk $([[ $(awk --version) = GNU* ]] && echo --non-decimal-data) -F ' ' '
+    BEGIN {OFS = FS}
+    {
+        $1 = sprintf("%d", "0x" $1)
+        $2 = sprintf("%d", "0x" $2)
+        $3 = sprintf("%d", "0x" $3)
+        $4 = sprintf("%d", "0x" $4)
+        $5 = sprintf("%d", "0x" $5)
+        print
+    }'
+130 128 112 128 4
+

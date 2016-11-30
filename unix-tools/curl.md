@@ -46,6 +46,10 @@ curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: app
 }'
 
 
+Multipart
+curl -F "clave=valor" ...
+
+
 curl -L http://web.com/mensaje300.html
   -L: si la web nos redirecciona, sigue dicha redirección.
 

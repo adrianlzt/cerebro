@@ -6,9 +6,28 @@ ansible localhost -m setup | less
 
 Nos devuelve todas las varibables que luego podremos usar en los plays como {{ ansible_devices.sda.model }}
 
-También nos devuelve las variables del propio facter 
+También nos devuelve las variables del propio facter
 
 Si ejecutamos un playbook y limitamos por tags, si una máquina no tiene ninguna tarea que ejecutar, no se recoletarán sus facts.
+
+No obtener los facts de facter:
+ansible all -m setup -a 'gather_subset=!facter'
+
+  si ponemos !all aun tendremos unos cuanto de ansible_*
+
+También se le puede espicificar un gather_timeout (por cada grupo de facts)
+
+Grupos: all, hardware, network, virtual, ohai, and facter
+
+
+Si queremos filtrar de esta manera en un playbook tendremos que desactivar la captura de facts:
+gather_facts: False
+
+Y luego poner un primer play que solo haga esto. O un pre_tasks:
+    - name: obtener facts
+      setup: gather_subset="!facter"
+
+
 
 # Fact caching
 Podemos usar facts caching (version >= 1.8) para almacenar estos valores entre ejecuciones

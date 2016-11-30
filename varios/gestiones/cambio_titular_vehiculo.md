@@ -2,7 +2,7 @@ http://www.madrid.org/cs/Satellite?pagename=Contribuyente%2FPage%2FCONT_contenid
 
 Bajar programa con el que se rellena el modelo 620 (pago impuesto sobre Transmisión de Vehículos Usados) y también nos genera un contrato de compraventa.
 Este impuesto es un 4% sobre el valor de la compra.
-Como mínimo habrá que pagar el 4% sobra unas tablas que tiene hacienda.
+Como mínimo habrá que pagar el 4% sobra unas tablas que tiene hacienda (http://gestiona.madrid.org/vlin_valora_bienes/html/web/blank.htm?ESTADO_MENU=1_2)
 
 Para pagar telemáticamente la autoliquidación generada por el programa anterior tenemos que entrar en: https://gestiona4.madrid.org/optima_usuario
 Necesitamos tener un certificado válido (dnie, certificado de la casa de moneda y timbre, etc)
@@ -16,7 +16,7 @@ En la app, una vez rellenados los datos (consultar la ayuda para entender todos 
 
 
 Para pagar en persona:
-Presencialmente en: martinez campos 30 
+Presencialmente en: martinez campos 30
 Horario: 09:00 - 14:30
 
 
@@ -27,7 +27,7 @@ https://sede.dgt.gob.es/es/tramites-y-multas/tu-coche/cambios-titularidad-o-tran
 Hace falta pedir cita:
 https://sede.dgt.gob.es/es/tramites-y-multas/cita-previa/jefaturas/
 
-Fotocopia dni vendedor, DNI vendedor (el real), ficha técnica, permiso de circulación, modelo 620 pagado, formulario de trafico (https://sede.dgt.gob.es/Galerias/tramites-y-multas/tu-coche/cambio-titularidad/9.050_Castellano.pdf) firmado por ambos, contrato de compraventa firmado por ambos.
+Fotocopia dni vendedor (hace falta llevar el real??), DNI comprador, ficha técnica, permiso de circulación, modelo 620 pagado, formulario de trafico (https://sede.dgt.gob.es/Galerias/tramites-y-multas/tu-coche/cambio-titularidad/9.050_Castellano.pdf) firmado por ambos, contrato de compraventa firmado por ambos.
 
 Tiene que tener pagado el impuesto de circulación del año en curso.
 

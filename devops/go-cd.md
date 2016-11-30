@@ -129,3 +129,18 @@ curl 'http://ci.example.com/go/api/pipelines/pipeline1/schedule' -u 'username:pa
 
 Mostrar nombres de las pipelines del primer grupo:
 curl 'http://ci.example.com/go/api/config/pipeline_groups' | jq -r '.[0].pipelines[].name'
+
+
+
+# Ejecutando comandos
+El workdir es: /var/lib/go-agent/pipelines/NOMBREPIPELINE
+En ese workdir tendremos los ficheros del repo.
+El usuario es go
+Los parametros, meter uno por cada línea.
+
+Lo mejor es poner esta extension: https://github.com/gocd-contrib/script-executor-task
+Nos deja escribir directamente scripts de shell
+
+
+GO_FROM_REVISION primer commit de git que se va a aplicar
+GO_TO_REVISION ultimo commit

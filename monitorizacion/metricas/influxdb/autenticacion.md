@@ -27,10 +27,10 @@ $ influx -username user -password pass
 
 # Administración de usuarios
 # Crear
-CREATE USER <username> WITH PASSWORD '<password>' WITH ALL PRIVILEGES
+CREATE USER "<username>" WITH PASSWORD '<password>' WITH ALL PRIVILEGES
   crea un user admin
 
-CREATE USER <username> WITH PASSWORD '<password>'
+CREATE USER "<username>" WITH PASSWORD '<password>'
   crea un user normal
 
 # Listar

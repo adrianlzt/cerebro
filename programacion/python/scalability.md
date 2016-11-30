@@ -1,0 +1,5 @@
+https://www.quora.com/Is-it-possible-to-build-Quora-Facebook-WhatsApp-and-Twitter-using-only-the-Python-programming-language
+
+Python could be used to support certain parts of these sites, but it wouldn’t be able to handle everything. Python doesn’t scale well when it comes to large numbers of users, simultaneous connections, and real-time workloads. One of the main limitations is the GIL (Global Interpreter Lock).
+
+The GIL was created to make sure that multi-threaded Python applications don’t try to manipulate the same memory space at the same time. Because threads are used to increase application responsiveness, if only one thread is operating at a time (in practical terms), it means that Python is limited in the scalability it can handle. Where other languages can create more threads to handle concurrent requests, Python would still be using only one thread at a time. The other threads could work, but if they have to deal with memory, they would wait in the queue until their number is called.

@@ -178,4 +178,3 @@ formatter = logging.Formatter(
     "%B %d %H:%M:%S")
 log_handler.setFormatter(formatter)
 log.addHandler(log_handler)
-

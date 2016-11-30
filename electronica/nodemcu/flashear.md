@@ -13,6 +13,7 @@ http://nodemcu.readthedocs.org/en/dev/en/flash/
 Instalarlo en arch:
 yaourt -S aur/esptool-git
 
+Firmwares ya bajados: Documentos/arduino/nodemcu_firmware
 
 Cargar el firmware en el nodemcu:
 sudo esptool.py --port /dev/ttyUSB0 write_flash -fm dio -fs 32m 0x00000 nodemcu-master-6-modules-2016-02-14-23-31-55-integer.bin

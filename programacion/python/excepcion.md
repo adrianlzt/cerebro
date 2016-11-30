@@ -52,6 +52,10 @@ except IOError as e:
 
 ## Crear excepciones propias ##
 
+class MiExcepcion(Exception):
+    pass
+
+
 class CyclopsException(Exception):
     def __init__(self, message='Cyclops is not responding properly to your request. Try again later or contact support service'):
         super(CyclopsException, self).__init__(message)

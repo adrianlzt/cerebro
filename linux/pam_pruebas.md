@@ -1,3 +1,10 @@
+# auth contra el pam del sistema
+http://stackoverflow.com/questions/26313894/flask-login-using-linux-system-credentials
+
+
+
+Modulos pam
+
 # Ejemplo con c
 Creo que es viejo y no funciona
 https://sources.debian.net/src/python-pam/0.4.2-13.1/examples/pamexample.c/

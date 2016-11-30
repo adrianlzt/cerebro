@@ -7,3 +7,6 @@ git blame -L 10,20 file.txt
   -l para poner el sha1 largo
 
 
+
+Buscar una linea borrada:
+git log -S <string> path/to/file

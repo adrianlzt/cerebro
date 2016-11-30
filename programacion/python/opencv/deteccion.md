@@ -1,7 +1,5 @@
 Detectar cara:
-/usr/share/doc/opencv-doc/examples/python
-python facedetect.py --cascade=/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml 0
-
+python /usr/share/opencv/samples/python/facedetect.py --cascade /usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml
 
 Palma de la mano:
 https://github.com/Aravindlivewire/Opencv/blob/master/haarcascade/palm.xml

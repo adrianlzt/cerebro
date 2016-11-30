@@ -1,5 +1,15 @@
 mirar sh.md
 
+
+try:
+    p = subprocess.run(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+    stdout = p.stdout
+    return_code = p.returncode
+    message = stdout.strip()
+except Exception as e:
+    raise Exception("Error executin command: {}".format(str(e)))
+
+
 Usar https://docs.python.org/3.2/library/subprocess.html
 https://pypi.python.org/pypi/subprocess32/
 Para usarlo en python2.7

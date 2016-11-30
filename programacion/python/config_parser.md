@@ -32,7 +32,9 @@ else:
 Es obligatorio que el fichero tenga secciones ([cosa])
 
 
-# Fichero sin secciones #
+# Fichero sin secciones
+http://stackoverflow.com/questions/2885190/using-pythons-configparser-to-read-a-file-without-section-name
+
 from io import StringIO
 from ConfigParser import ConfigParser
 try:
@@ -49,8 +51,18 @@ try:
            raise
 except IOError:
     print 'Error reading file \"' + path + '\"'
-    raise 
+    raise
 parser.readfp(pseudo_config)
+
+
+Python3:
+from configparser import ConfigParser
+from itertools import chain
+
+parser = ConfigParser()
+with open("foo.conf") as lines:
+    lines = chain(("[top]",), lines)  # This line does the trick.
+    parser.read_file(lines)
 
 
 # Convertir a diccionario un fichero:

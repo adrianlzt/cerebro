@@ -26,6 +26,8 @@ Proxy SwitchyOmega
 Usar chrome como vim
 https://chrome.google.com/webstore/detail/vrome/godjoomfiimiddapohpmfklhgmbfffjj/related
 
+http://www.microsiervos.com/archivo/internet/extension-chrome-tomar-notas-video.html
+
 Apps:
 TweetDeck
 Advanced REST console

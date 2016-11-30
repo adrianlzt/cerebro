@@ -17,9 +17,9 @@ import time
 
 def timing_clk(function):
     @wraps(function)
-    def wrapper(*args):
+    def wrapper(*args,**kwargs):
         time1 = time.clock()
-        ret = function(*args)
+        ret = function(*args,**kwargs)
         time2 = time.clock()
         return ret, (function.__str__(), (time2 - time1))
     return wrapper
@@ -32,9 +32,9 @@ def workclk():
 
 def timing_tm(function):
     @wraps(function)
-    def wrapper(*args):
+    def wrapper(*args,**kwargs):
         time1 = time.time()
-        ret = function(*args)
+        ret = function(*args,**kwargs)
         time2 = time.time()
         return ret, (function.__str__(), (time2 - time1))
     return wrapper
@@ -47,9 +47,9 @@ def worktm():
 
 def timing_dt(function):
     @wraps(function)
-    def wrapper(*args):
+    def wrapper(*args,**kwargs):
         time1 = datetime.now()
-        ret = function(*args)
+        ret = function(*args,**kwargs)
         time2 = datetime.now()
         return ret, (function.__str__(), (time2 - time1))
     return wrapper
@@ -69,3 +69,4 @@ if __name__ == "__main__":
 
     ret,timing = worktm()
     print("timing de work con time.time: %s  %s" % timing)
+    # timing[1].total_seconds() si queremos obtener los segundos que ha tardado

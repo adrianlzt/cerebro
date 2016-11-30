@@ -26,7 +26,8 @@ Nos devuelve solo el numero
 # Matchea?
 frase = "tenemos una bonita plaza de garaje"
 re_garaje = '.*[gG]araje.*'
-not re.match(re_garaje, frase) is None
+if re.match(re_garaje, frase):
+  process()
 
 Devuelve True si encuentra la regex en la frase
 

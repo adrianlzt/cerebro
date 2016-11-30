@@ -27,3 +27,17 @@ function doPost(e) {
   ret = {"ok": true};
   return ContentService.createTextOutput(JSON.stringify(ret)).setMimeType(ContentService.MimeType.JSON);
 }
+
+
+
+
+Si necesitamos almacenar un JSON de gran tamaño lo mejor es que usemos un fichero de google drive
+function saveFile(){
+  var transactions = {'ben@gmail.com ': 1238190238, 'dora@gmail.com' : 1238190238, 'ksd@gmail.com' : 1238190238};
+  return DriveApp.createFile('Transactions', JSON.stringify(transactions ));
+}
+
+function getFile(){
+  var file = DriveApp.getFilesByName('Transactions').next();
+  return JSON.parse(file.getAs("application/none").getDataAsString());
+}

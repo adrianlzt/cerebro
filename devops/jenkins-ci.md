@@ -49,8 +49,11 @@ https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API
 
 Hacer un build de un job:
 curl -i -X POST  http://jenkins.example.com/job/Blank_Job/buildWithParameters --user $username:$password
-En la cabecera "Location" tenemos el id por el que preguntar luego
 
+Con parámetros
+buildWithParameters?token=testing&SERVICE_STATE=CRITICAL&SERVER=mongo
+
+En la cabecera "Location" tenemos el id por el que preguntar luego
 curl -X POST http://jenkins.example.com/queue/item/336/api/json --user $username:$password
 
 Obtener nombres de jobs bajando tres niveles
@@ -86,3 +89,125 @@ https://python-jenkins.readthedocs.io/en/latest/
 Es posible llamar jobs remotamente, es una conf del job. Esta en "Disparadores de ejecucciones", "Lanzar ejecuciones remotas"
 
 
+# Badge
+Iconito para poner en nuestro repo para ver como va los checks, despliege, etc
+
+protected exposes the badge to users having at least Read permission on the job
+unprotected exposes the badge to users having at least ViewStatus permission on the job
+
+# GitHub Hooks
+Configurar el origen del código fuente -> Git
+Disparadores de ejecuciones -> Build when a change is pushed to GitHub
+
+Cuando se recibe un hook del repo configurado, se hace el build.
+
+En el repo debemos configurar el hook como:
+Service -> Add Jenkins (GitHub plugin)
+Y meter la url del jenkins como: http://ci.jenkins-ci.org/github-webhook/
+
+Entrar de nuevo en la conf del job de jenkins.
+Si vemos un mensaje tipo "Hook for repo orga/repo on github.com failed to be registered or were removed. More info can be found on global manage page. This message will be dismissed if Jenkins receives a PING event from repo or repo will be ignored in global configuration."
+Hacer una prueba del hook desde la web de github (pulsando en el hook recién configurado, "Test Service")
+
+Parece que ese error puede aparecer aunque esté funcionando correctamente.
+
+Si mandamos un "Test Service" y Jenkins detecta que ya ha hecho build de ese commit, no hará nada.
+Lo podemos ver en "Last GitHub Push"
+
+
+
+# Post Build Tasks
+https://wiki.jenkins-ci.org/display/JENKINS/Post+build+task
+
+Parece que no coge las ssh keys pasadas a las tasks normales.
+
+No veo forma de en este paso cambiar el status del build.
+
+http://stackoverflow.com/questions/8148122/how-to-mark-a-build-unstable-in-jenkins-when-running-shell-scripts
+http://www.tikalk.com/devops/JenkinsJobStatusChange/
+
+
+
+
+# CLI
+http://JENKINSSERVER/cli/
+
+CLI para lanzar con java y modificar, crear, etc
+
+Intentará usar nuestra clave SSH.
+
+Entrar en http://jenkins/me/configure para poner nuestra clave ssh pública
+
+## JAR
+java -jar jenkins-cli.jar -s http://jenkinsserver/ set-build-result RESULT
+Establece el resultado del trabajo actual. Sólo se puede ejecutar desde un build.
+  RESULT puede ser: ABORTED FAILURE NOT_BUILT SUCCESS UNSTABLE
+
+## SSH
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+SSH
+
+Ejecutar comandos cli en jenkins via ssh.
+ssh -p 38844 usuario@example.com who-am-i
+
+Para obtener el puerto:
+curl -s -D - example.com | grep SSH
+X-SSH-Endpoint: example.com:52658
+
+
+## Pasar variables entre steps
+step1: echo "PEPE=3" > env.properties
+step2: Inject environment variables
+       Properties File Path: env.properties
+step3: echo "PEPE=${PEPE}"
+
+
+# DSL
+Escribir scripts para, por ejemplo, crear a partir de un job, una serie de jobs con unas configuraciones específicas.
+La documentación está en: http://JENKINS_SERVER/plugin/job-dsl/
+https://github.com/jenkinsci/job-dsl-plugin/wiki
+
+Podemos obtener un poco de pistas creando una con la interfaz web y luego viendo su definición en XML:
+http://JENKINS_SERVER/job/NOMBRE/config.xml
+
+Crear directorio
+folder(folderName) {
+  displayName("path1/path2")
+}
+
+Definir un array e iterar por él:
+def environments = ['int', 'pre', 'pro'] as String[]
+environments.eachWithIndex{ environment, idx ->
+  ...
+}
+
+Crear un job tipo freesyle:
+freeStyleJob( serviceName +'/'+ phase + '_' + environment ) { ... }
+
+
+
+
+A veces tenemos que formar una string para pasarla como parámetro. Si se queja haciendo esto:
+projects("${serviceName}/${phase}_int")
+
+Probar con:
+def nextBuild = "${serviceName}/${phase}_int" as String
+projects(nextBuild)
+
+
+
+Si es obligatorio definir un parámetro pero no queremos darle valor
+block null
+
+Si tuviesemos que darle valor sería:
+block {
+  buildStepFailureThreshold("...")
+  ...
+}
+
+
+# Errores
+Problemas con ansible:
+'ascii' codec can't encode character u'\xf3' in position 122: ordinal not in range(128)
+Solo sale si lo ejecutamos con jenkins, ejecutándolo manualmente no da problemas
+Lanzar ansible con:
+PYTHONIOENCODING=UTF-8

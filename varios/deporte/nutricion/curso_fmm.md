@@ -210,7 +210,8 @@ Cafeína (evidencia)
 El té tiene cafeína, varia la cantidad.
 Guaraná, menos problemas.
 
-Mejora de 0.3-17.3% (diferencia entre los competidores del 1500, 0.05%)
+Mejora de 0.3-17.3% (diferencia entre los competidores del 1500, 0.05%) -> exageración, es un 2.6%. Un 0.05% es entre el primero y el segundo
+https://www.rio2016.com/en/athletics-standings-at-mens-1500m
 
 Cuanto tomar:
  - antes: 3-6m/kg . Más para más intensos, para esfuerzos largos no hace falta tanto
