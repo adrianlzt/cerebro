@@ -5,7 +5,7 @@ pacman -S --needed openssh sshpass sshfs screen git hub meld vim ansible sudo bc
 systemctl start sshd.service
 systemctl enable sshd.service
 pkgfile --update
-pacman -S --needed chromium skype dropbox
+pacman -S --needed chromium dropbox
 
 pacman -S --needed virtualbox vagrant lxc docker
 pacman -S --needed wireshark-gtk
@@ -20,10 +20,7 @@ pacman -S --needed smbclient nautilus-share
 pacman -S --needed openconnect perl-term-readkey perl-http-message perl-libwww perl-lwp-protocol-https net-tools
 
 
+yaourt -S skypeforlinux-bin
 
-packer (mirar pacman/packer.md)
-packer -S sysdig
-packer -S keepassx2 gist-git
-packer -S nautilus-megasync
-
-packer -S eclipse-pydev
+packer (mirar pacman/yaourt.md)
+yaourt -S sysdig gist-git nautilus-megasync eclipse-pydev

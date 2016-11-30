@@ -16,7 +16,7 @@ systemctl enable gdm
 systemctl start gdm
 
 # Iconos bonitos
-packer -S numix-circle-icon-theme-git numix-themes-git gnome-shell-theme-elegance-colors-git
+yaourt -S numix-circle-icon-theme-git numix-themes-git gnome-shell-theme-elegance-colors-git
 elegance-colors
 cd /usr/share/elegance-colors/templates
 sudo ln -s gs-3.14/ gs-3.16
@@ -55,7 +55,7 @@ Server = http://bohoomil.com/repo/fonts
 '''
 
 sudo pacman -Sy
-packer -S infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended ttf-brill otf-neris ttf-aller ttf-envy-code-r ttf-powerline-fonts-git
+yaourt -S infinality-bundle infinality-bundle-multilib ibfonts-meta-base ibfonts-meta-extended ttf-brill otf-neris ttf-aller ttf-envy-code-r ttf-powerline-fonts-git
 Aceptar las dos primeras preguntas para instalar todo.
 Las siguientes (de sustituir), decir 's', para cambiar las normales por las infinality
   Y si algun paquete de los de AUR te falla ni caso
