@@ -40,3 +40,22 @@ rrdtool fetch cpu.rrd AVERAGE -s -2h
 
 Consolidación:
 http://www.vandenbogaerdt.nl/rrdtool/min-avg-max.php
+
+
+
+# Crear graficas
+https://oss.oetiker.ch/rrdtool/doc/rrdgraph_examples.en.html
+
+Para saber los nombres de los ds:
+rrdtool info Interface_TenGigE0_0_2_3.400.rrd | less
+ds[1].index = 0  -> el ds se llama "1"
+
+
+
+rrdtool graph imagen.png --end 1484218667 --start 1484204267 --width 800 --height 800 DEF:inbytes=Interface_TenGigE0_0_2_3.400.rrd:1:MAX CDEF:intraffic=inbytes,8,* CDEF:inmb=intraffic,1000000,/ AREA:inmb#00e060:"in            " GPRINT:intraffic:LAST:"%7.1lf %sbit/s last"
+
+
+Esto lo que hace es generar la imagen imagen.png a partir del fichero rrd Interface_TenGigE0_0_2_3.400.rrd
+Del fichero se coge el DS (data source) 1.
+Los valores de este DS se consolidan con la función (CF) MAX (las posibles son AVERAGE, MINIMUM, MAXIMUM, and LAST)
+En este ejemplo por tanto, si se consolidan varios puntos, se coge el mayor de ellos para generar el punto consolidado (CDP)

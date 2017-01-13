@@ -7,7 +7,7 @@ try:
     return_code = p.returncode
     message = stdout.strip()
 except Exception as e:
-    raise Exception("Error executin command: {}".format(str(e)))
+    raise Exception("Error executing command: {}".format(str(e)))
 
 
 Usar https://docs.python.org/3.2/library/subprocess.html

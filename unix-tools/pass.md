@@ -7,9 +7,15 @@ App para android: https://play.google.com/store/apps/details?id=com.zeapo.pwdsto
 App X11: qtpass
 yaourt -S qtpass
 
+Mi version modificada (ultimos commits del repo oficial mas mi cambio para tener -e. Lo ultimo del repo oficial está más adelantado de la 1.6.3):
+https://github.com/adrianlzt/password-store/releases/tag/1.6.3-1
+
 # Para grupos
 https://github.com/keymon/password-store-for-teams
 http://git.ucc.asn.au/?p=zanchey/uccpass.git;a=summary
+
+# Para ssh
+https://github.com/jlesquembre/pass-sshaskpass
 
 # gopass
 App en go estilo spotlight de mac

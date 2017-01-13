@@ -40,6 +40,7 @@ Subir todas branches y tags                         git push --all
                                                     git push --tags
 Copiar repo remoto                                  git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
  Con credenciales                                   git clone https://user:pass@github.com/asdasd.git
+ Clonar y saltar directamente a una rama            git clone -b rama http...
 Copiar repo remoto y submodules                     git clone --recursive <url> <dir-local> (si !<dir-local> crea un dir como el repo)
 Borrar remoto                                       git remote rm origin
 Ver conf remoto                                     git remote show origin
@@ -82,7 +83,9 @@ Volver a lo que estábamos haciendo                  git stash pop
                                                     git stash pop stash@{0}
 Listar ficheros versionados                         git ls-files  merges file listing in the dir cache index with actual workdir list.shows different combinations of the two.
 Mostrar ficheros excluídos                          git ls-files --others --exclude-from=.git/info/exclude
-Mostrar ramas contenidas en rama develop            git branch --contains develop 
+Mostrar ramas contenidas en rama develop            git branch --contains develop
+Contenido de un fichero                             git show HEAD:nuevo
+
 
 
 Directorio de trabajo distinto que directorio de git

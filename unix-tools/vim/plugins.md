@@ -1,5 +1,8 @@
 http://vimawesome.com/
 
+Lista de un programador
+https://github.com/joshdmiller/vim/blob/master/vim/lib/plugins.vim
+
 
 # Plug
 https://github.com/junegunn/vim-plug

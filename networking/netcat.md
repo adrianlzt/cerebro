@@ -41,6 +41,8 @@ nc -U /var/run/docker.sock
 Escucha de forma continuada (sin -k, tras el primer cliente, se cierra)
 nc -kl 8080
   netcat openbsd
+nc -6kl 8080
+  para escuchar en ipv6
 
 nc -l 127.0.0.1 -p 8080
   netcat gnu, pero al salir la primera conex muere

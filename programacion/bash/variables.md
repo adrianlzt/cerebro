@@ -60,6 +60,20 @@ Variable en minusculas:
 "${y,,}"
 
 
+${SERVICE/A/B}
+Cambia la primera A por B
+
+${SERVICE//A/B}
+Cambia todas las A por B
+
+Cambia todas las barras "/" por "_"
+SERVICE=${SERVICE//\//_}
+
+Cambiar la primera barra "/" por "_"
+SERVICE=${SERVICE/\//_}
+
+
+
 Mas acciones con las variables según si están definidas o no:
 http://www.debuntu.org/how-to-bash-parameter-expansion-and-default-values/
 

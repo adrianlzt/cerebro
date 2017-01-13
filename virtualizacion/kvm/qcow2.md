@@ -20,11 +20,29 @@ Cambiar imagen base (para renombrar la imagen base):
 qemu-img rebase -u -b nuevabase disco2.qcow2
 
 
-Montar imagen
+# Montar imagen
 
+## Montar directamente qcow2
+http://zeeshanali.com/sysadmin/mounting-qcow2-image-in-linux-without-kvm/
+
+
+## Convertir el .qcow2 a .raw y luego montar0
+la imagen primero la converti de qcow2 a raw: qemu-img convert -O raw master-2.qcow2 master-2.img
+
+Una vez convertida a raw
+https://major.io/2010/12/14/mounting-a-raw-partition-file-made-with-dd-or-dd_rescue-in-linux/
+fdisk -l harddrive.imb
+  cogemos el valor de "start" y lo multiplicamos por el tamaño de bloque (512 generalmente)
+sudo mount -o ro,loop,offset=32256 harddrive.img /mnt/loop
+
+Si da problemas al montar:
+sudo fsck /dev/loop2
+mount /dev/loop2 /mnt/loop
+
+
+## Con libguestfs
 sudo guestmount -a master-2.img -i /mnt
   esto pertenece al paquete libguestfs
-  la imagen primero la converti de qcow2 a raw: qemu-img convert -O raw master-2.qcow2 master-2.img
 
 Desmontar
 sudo umount /mnt

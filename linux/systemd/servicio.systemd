@@ -14,6 +14,7 @@ After=network.target
 Type=simple
 ExecStart=/usr/bin/test
 #WorkingDirectory=
+#EnvironmentFile=/etc/myservice.conf
 Restart=always
 # Valores posibles: no always on-success on-failure on-abnormal on-abort on-watchdog
 

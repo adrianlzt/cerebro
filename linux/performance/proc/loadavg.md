@@ -25,3 +25,15 @@ http://stackoverflow.com/questions/21617500/understanding-load-average-vs-cpu-us
 http://juliano.info/en/Blog%3aMemory_Leak/Understanding_the_Linux_load_average
 http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
 http://www.linuxjournal.com/article/9001
+http://www.howtogeek.com/194642/understanding-the-load-average-on-linux-and-other-unix-like-systems/
+
+
+Load: Numero de procesos (o accesos a disco) en cada momento
+Load average: media de cuantos procesos (o accesos a disco) en media durante el último minuto (también se muestran para 5' y 15')
+
+Para un solo CPU:
+load avg=1 significa que la cpu estuvo al 100%
+load avg=2, 200%, un proceso esperando todo el rato
+
+Si tenemos varios procesadores, por ejemplo 4:
+load avg=4, 4 procesos trabajando, como tenemos 4cpus, 100% de carga

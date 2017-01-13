@@ -1,6 +1,15 @@
+Mejor, mirar snapshot.md "Grafana-snapshot docker"
+Nos saca un snapshot en png o pdf
+Es un servicio web muy facil de usar.
+Se pueden poner tasks para generar periódicamente los reportes.
+
+# IzakMarais reporter
 https://github.com/IzakMarais/reporter
 
 Service that genereates a PDF report from a Grafana dashboard
+Genera un latex con las capturas y luego genera el pdf.
+
+Una PR que no se acepto para hacer eso: https://github.com/grafana/grafana/pull/6028
 
 
 # Instalar

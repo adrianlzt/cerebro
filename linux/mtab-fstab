@@ -1,3 +1,16 @@
 fstab: puntos de montaje para el arranque
 
 mttab: puntos de montaje actualmente montados
+
+
+para ext4 ssd poner las opciones
+rw,lazytime,stripe=8191,data=ordered
+  lazytime es para minimizar las escrituras a disco y en equipos que tienen batería
+
+Para VFAT
+rw,lazytime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
+
+
+
+https://lwn.net/Articles/620086/
+Add a new mount option which enables a new "lazytime" mode.  This mode causes atime, mtime, and ctime updates to only be made to the in-memory version of the inode.  The on-disk times will only get updated when  when the inode table block for the inode needs to be updated for some non-time related change involving any inode in the block,  if userspace calls fsync(), or  the refcount on an undeleted inode goes to zero (in most cases, when the last file descriptor assoicated with the inode is closed).

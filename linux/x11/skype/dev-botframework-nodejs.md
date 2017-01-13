@@ -25,7 +25,8 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 bot.dialog('/', function (session) {
-      session.send('Hello World'); 
+      session.send('Hello World');
+      session.send("[prueba](coso)", {style: "markdown"});
 });
 
 
@@ -90,3 +91,42 @@ Si queremos ir pasando por las funciones de un dialog:
             return
         ]
 
+
+# Almacenar información
+https://docs.botframework.com/en-us/node/builder/guides/core-concepts/#adding-dialogs-and-memory
+
+Hay distintos tipos de sitios donde almacenar info: userData, conversationData, privateConversationData, dialogData.
+Para activar conversationData: bot.settings.persistConversationData = true; (bot es lo creado con new UniversalBot)
+
+Guardar:
+session.userData.name = results.response;
+
+Consultar:
+if (!session.userData.name) {
+...
+
+La información se almacena si despues hacemos un session.send o session.beginDialog. Si no, podemos forzar que lo guarde con:
+session.save()
+https://github.com/Microsoft/BotBuilder/issues/1158
+https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save
+
+
+# Enviar que estamos escribiendo
+session.sendTyping()
+
+
+# Cards
+https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html
+
+Ejemplos:
+https://github.com/Microsoft/BotBuilder/blob/master/Node/examples/demo-skype/app.js#L223
+
+Podemos enviar tarjetas, envia un titulo, subtitulo, texto, link e imagen o video.
+También se le pueden poner botones, que abren webs o escriben de nuevo en el chat.
+
+Si enviamos un mensaje con varias cards, paraece que acepta como máximo 10.
+Con 11 me da este error:
+Error: Request to 'https://smba.trafficmanager.net/v3/conversations/29%3A1VZ1kZyZYHBjeLsAMwZ9dygGIjl4AFfagzZ4RIwAwT2c/activities' failed: [400] Bad Request
+
+
+Solo se pueden poner 5 botones

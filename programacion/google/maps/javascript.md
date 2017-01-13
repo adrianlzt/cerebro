@@ -1,6 +1,9 @@
 https://github.com/googlemaps/js-samples
 
 
+# Javascript
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
 # Draw
 https://github.com/googlemaps/js-samples/blob/gh-pages/drawing/drawing-tools.html
 

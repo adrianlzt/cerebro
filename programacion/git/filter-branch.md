@@ -17,6 +17,12 @@ git push
   El push me salta algunos mensajes de "deny updating a hidden ref" pero parece que funciona correctamente
 
 
+Borrar ficheros más grandes de 100MB
+java -jar bfg.jar --strip-blobs-bigger-than 100M some-big-repo.git
+
+Replace all passwords listed in a file (prefix lines 'regex:' or 'glob:' if required) with ***REMOVED*** wherever they occur in your repository :
+$ bfg --replace-text passwords.txt  my-repo.git
+
 
 
 ## Forma con git directamente ##

@@ -94,3 +94,15 @@ Convertir hex a int:
     }'
 130 128 112 128 4
 
+
+
+# Ejecutar comandos:
+awk 'BEGIN{x=system("echo hello"); print x}'
+  en x tendremos el return code
+
+awk 'BEGIN{"date" |getline x; print x}'
+  en x tendremos el contenido del stdout del comando
+
+
+Numero random entre 0 y 1 (nunca será 1):
+awk 'BEGIN { "date +%N" | getline seed; srand(seed); print rand(); }';

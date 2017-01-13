@@ -2,6 +2,7 @@ var hello = "foo";
 var my_string = "I pity the " + hello;
 
 var coso = `valor de x=${x} y fin`
+mirar template_literals.md
 
 # Multiline
 "foo \
@@ -44,3 +45,11 @@ Banana,Orange,Apple,Mango
 
 # Uppercase
 "cosa".toUpperCase()
+
+
+# Capitalize
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+'string'.capitalizeFirstLetter()

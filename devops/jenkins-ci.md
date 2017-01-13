@@ -211,3 +211,8 @@ Problemas con ansible:
 Solo sale si lo ejecutamos con jenkins, ejecutándolo manualmente no da problemas
 Lanzar ansible con:
 PYTHONIOENCODING=UTF-8
+
+
+# Acceder a ultimas ejecuciones sin poner el numero del build
+https://wiki.jenkins-ci.org/display/JENKINS/Terminology
+lastBuild, lastStableBuild, lastSuccessfulBuild, lastFailedBuild, lastUnstableBuild, lastUnsuccessfulBuild, lastCompletedBuild

@@ -19,3 +19,12 @@ https://extensions.gnome.org/extension/696/skype-integration/
 
 Nos pone en el menu de configuración rápido la opción de elegir la entrada/salida de audio
 https://extensions.gnome.org/extension/906/sound-output-device-chooser/
+
+Comprobar si hay actualizaciones para arch
+https://extensions.gnome.org/extension/1010/archlinux-updates-indicator/
+
+Gpaste
+Gestor del clipboard
+
+Gnome shell audio output switcher
+Para cambiar rapidamente el output del sonido

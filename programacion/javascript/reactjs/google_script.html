@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Estas versiones de libs de react son para usar en desarrollo -->
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <!-- Esta lib de babel hace el compiling en el navegador del usuario. En produccion se deben usar scripts precompilados -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+  <div id="container"></div>
+  </body>
+  <script type="text/babel">
+
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+ReactDOM.render(
+  <Welcome name="google" />,
+  document.getElementById('container')
+);
+  </script>
+</html>

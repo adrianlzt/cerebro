@@ -72,3 +72,17 @@ Cuidado porque si usamos grupos tal vez args.prox no exista. Mejor usar algo tip
 if hasattr(args, "cuenta_destino") and args.cuenta_destino and args.titular_destino is None:
 En este caso el segundo args.xx si lo usamos porque existirá siempre que exista "cuenta_destino"
 
+
+
+# Validar datos
+https://docs.python.org/2.7/library/argparse.html#type
+
+def perfect_square(string):
+    value = int(string)
+    sqrt = math.sqrt(value)
+    if sqrt != int(sqrt):
+        msg = "%r is not a perfect square" % string
+        raise argparse.ArgumentTypeError(msg)
+    return value
+
+parser.add_argument('foo', type=perfect_square)

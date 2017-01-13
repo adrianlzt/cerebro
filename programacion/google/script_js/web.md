@@ -35,6 +35,10 @@ doPost(e)
 
 Parámetros de un get: e.parameter
 
+Ejemplo: si pedimos la web poniendo al final ?pepe=juan
+e tendra esta estructura:
+{"parameter":{"pepe":"juan"},"contextPath":"","contentLength":-1,"queryString":"pepe=juan","parameters":{"pepe":["juan"]}}
+
 
 # Respuestas
 Si el return es un HtmlService la web se mostrará directamente, pero con un frame de google arriba.

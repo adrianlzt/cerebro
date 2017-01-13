@@ -33,12 +33,25 @@ array.toString()
 # Eliminar elemento
 http://stackoverflow.com/questions/5767325/how-to-remove-a-particular-element-from-an-array-in-javascript
 
+slice -> no modifica el array original (start,end), el elemento que hay en end no lo coge. slice(1,1) => []
+splice -> modifica el array original. Coge a partir de una posición, un número de elementos
+
 var array = [2, 5, 9];
 var index = array.indexOf(5);
 if (index > -1) {
     array.splice(index, 1); //aqui devolvera el elemento eliminado
 }
 // la variable array aqui ya no tendra el '5'
+
+splice(posicion_inicio, num_elementos)
+
+Trocear un array en x arrays de N elementos:
+let dest = []
+while(array.length) {
+  dest.push(array.splice(0,5))
+}
+
+
 
 # indexOf / Contiene
 pepe = ["hola","adios"]

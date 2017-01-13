@@ -9,3 +9,7 @@ Resumen sobre la escritura a disco
 Para conocer los nombres de los discos cuando son tipo dev...
 lsblk
 /proc/diskstats
+
+
+Nombres uuid:
+sudo blkid

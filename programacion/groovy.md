@@ -12,3 +12,6 @@ increases developer productivity by reducing scaffolding code when developing we
 simplifies testing by supporting unit testing and mocking out-of-the-box
 seamlessly integrates with all existing Java classes and libraries
 compiles straight to Java bytecode so you can use it anywhere you can use Java
+
+
+repl online: https://groovyconsole.appspot.com/

@@ -77,3 +77,7 @@ _otro_
 
 Imagenes
 ![Alt text](/path/to/img.jpg "Optional title")
+
+
+Texto pequeño
+<sub><sup>texto</sup></sub>

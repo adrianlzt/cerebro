@@ -199,3 +199,14 @@ Navegador que permite cargar links en burbujas para seguir trabajando y luego le
 HTTP shortcuts
 https://github.com/Waboodoo/HTTP-Shortcuts
 Permite lanzar peticiones GET/POST/etc desde un icono. También podemos pasarle parámetros que nos preguntará al pinchar sobre el icono
+
+
+DroidMote
+http://www.videomap.it/dmcguide.htm
+https://play.google.com/store/apps/details?id=org.videomap.droidmoteclient
+Para usar el movil como un raton
+
+
+https://termux.com/
+Terminar linux. Se puede instalar paquetes con apt
+Tiene nodejs, python, etc

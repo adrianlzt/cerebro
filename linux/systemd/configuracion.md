@@ -22,6 +22,20 @@ Ejemplo:
 Editar unidades:
 https://wiki.archlinux.org/index.php/Systemd#Editing_provided_unit_files
 
+Ver que unidades han sido modificadas:
+systemd-delta
+
+Mostrar el contenido de una:
+systemctl cat unit
+
+Crear un fichero de override para cambiar ciertos parametros (/etc/systemd/system/unit.d/override.conf)
+systemctl edit unit
+
+Copiar una unidad al directorio de unidades custom (/etc/systemd/system/unit) y editarla (intentar usar el método anterior mejor):
+systemctl edit --full unit
+
+
+
 
 
 # Ejemplo básico
@@ -35,6 +49,16 @@ Restart=on-failure
 
 [Install]
 WantedBy=default.target
+
+
+# Tipos (en la sección [Service])
+https://wiki.archlinux.org/index.php/Systemd#Service_types
+Type=simple (default)
+Type=forking
+Type=oneshot (You may want to set RemainAfterExit=yes as well so that systemd still considers the service as active after the process has exited.)
+Type=notify
+Type=dbus
+Type=idle
 
 
 # Dependencias / Orden
@@ -63,11 +87,13 @@ After=network.target
 
 # Unit: descripción, ordenación, dependencias
 # http://www.freedesktop.org/software/systemd/man/systemd.unit.html
+# https://wiki.archlinux.org/index.php/Systemd#Handling_dependencies
 [Unit]
 Description=My Advanced Service
 After=etcd.service
 After=docker.service
 Requires=network.target dnsmasq.service
+# Wants=... # Es un require opcional
 
 # Service: como arrancar, parar, recargar, acciones previas, etc
 # No daemonizar los procesos para que systemd pueda mantener el control

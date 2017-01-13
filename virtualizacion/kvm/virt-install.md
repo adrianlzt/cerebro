@@ -10,3 +10,9 @@ por defecto nos pone un procesador de 32 bits
 Creo que es la opción --cpu pero no se que parametros.
 Opciones:
 kvm -cpu \?
+
+
+Usar una imagen ya existente:
+virt-install --name githubEnterprise --memory 1024 --disk /adri/github-enterprise-2.3.0.qcow2 --import
+
+tuve que poner 777 a /adri/* no entiendo muy bien que permisos espera

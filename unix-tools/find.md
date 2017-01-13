@@ -28,7 +28,7 @@ find . ! -iregex ".*\.cfg$" -type f
 
 
 Borrar los ficheros más antiguos de 30 días
-find . -mtime +30 -exec rm {} +
+find . -mtime +30 -exec rm -fr {} +
 
 Buscar ficheros modificados hace menos de 5 minutos
 find . -mmin -5

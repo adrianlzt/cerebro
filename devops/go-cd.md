@@ -1,4 +1,4 @@
-http://www.go.cd/
+http://www.gocd.io/
 Free, open source
 
 Herramienta de continuous delivery desarrollada por thoughtworks
@@ -121,15 +121,19 @@ Configurar:
 
 
 # API
+https://api.gocd.io/
 
 ## Pipeline
 Ejecutar una pipeline
-https://api.go.cd/current/#scheduling-pipelines
+https://api.gocd.io/current/#scheduling-pipelines
 curl 'http://ci.example.com/go/api/pipelines/pipeline1/schedule' -u 'username:password' -H 'Confirm: true' -X POST
 
 Mostrar nombres de las pipelines del primer grupo:
 curl 'http://ci.example.com/go/api/config/pipeline_groups' | jq -r '.[0].pipelines[].name'
 
+
+Script para meter pipelines editando el xml (muy customizado para el caso de las tools):
+go-cd-add_pipeline.sh
 
 
 # Ejecutando comandos

@@ -29,7 +29,7 @@ journalctl --list-boots
 journalctl -b
   mostrar logs desde el arranque
 journalctl -b -1
-  logs del dia anterior
+  logs del anterior arranque
 journalctl -b ID
   poner el ID que nos dio el --list-boots
 

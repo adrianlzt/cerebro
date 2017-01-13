@@ -11,6 +11,7 @@ Variables passed from inventory.
 Host variables. (from /etc/ansible/host_vars/<HOSTNAME>)
 Group variables. (from /etc/ansible/group_vars/<GROUPNAME>)
 Site default variables. ( from /etc/ansible/group_vars/all)
+  ansible buscará los dirs host_vars y group_vars en el mismo path que esté el inventario y donde este el playbook
 Role "default" variables.
 
 # Del código: /home/adrian/.virtualenvs/platon/local/lib/python2.7/site-packages/ansible/runner/__init__.py(634)get_inject_vars()

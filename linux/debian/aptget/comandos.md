@@ -16,6 +16,8 @@ Meter en source.list la versión de la que queramos el paquete
 deb http://es.archive.ubuntu.com/ubuntu/ raring-updates universe
 
 Mirar con apt-cache showpkg (o madison) que aparecen más versiones
+apt install apt-show-versions
+
 
 Instalar la versión que queremos:
 apt-get install -t raring lxc

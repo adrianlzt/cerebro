@@ -1,6 +1,9 @@
 cadena="hola"
 cadena[2]
 'l'
+cadena[2:4]
+'la'
+
 
 Para poder modificar:
 a = list("hello")
@@ -167,3 +170,11 @@ if not cmd:
 
 # Reverse
 'hello world'[::-1]
+
+
+# Binary string <-> string
+>>> b'a string'.decode('utf-8')
+'a string'
+
+>>> 'a string'.encode('utf-8')
+b'a string'

@@ -30,6 +30,9 @@ q["columns"]  nombres de las columnas
 q["rows"]  datos
 
 
+## Interseccion de coordenadas geograficas
+var q = FusionTables.Query.sql("SELECT name,location FROM "+BBDD+" WHERE ST_INTERSECTS(location, RECTANGLE(LATLNG(37.2, -3), LATLNG(40, -0)));");
+El rectangle se define <lower_left_corner>, <upper_right_corner>
 
 
 ## Insertar datos

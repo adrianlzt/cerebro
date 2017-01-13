@@ -64,6 +64,10 @@ http-post-say
 para enviar con post
 curl -XPOST "http://localhost:8081/hubot/say" -d "message=prueba mensaje" -d 'room=#nombre/$36e8ecdba2f81cc'
 
+hubot-conversation
+https://github.com/lmarkus/hubot-conversation
+Para hacer conversaciones con los usuarios
+
 ## Externos
 https://github.com/coderofsalvation/hubot-script-shellcmd
   Se le puede cambiar el nombre para ejecutar el modulo con la var HUBOT_SHELLCMD_KEYWORD

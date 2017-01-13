@@ -3,7 +3,9 @@
 diff -Naur standard_moodle my_moodle > patch.txt
 
 patch < /path/to/file
-  para hacerlo así el fichero debe decir a quien va a patchear. No tengo muy claro como se hace
+  para hacerlo así el fichero debe decir a quien va a patchear
+  En principio buscará ficheros definidos desde root /dir/fichero
+  Si nuestros ficheros estan definidos tipo a/direct/fichero, para que ignore ese "a/" pondremos patch -p1
 
 Otra opción
 patch fichero_a_parchear < parche

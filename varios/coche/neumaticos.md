@@ -1,8 +1,56 @@
 # Código
 https://www.firststop.es/cms/como-leer-neumatico.html
+https://carloscampeche2012.wordpress.com/2013/04/30/caracteristicas-para-leer-o-entender-un-neumatico-llantas-o-goma-de-auto/
 
 Anchura/altura Rdiametro IndiceDeCarga Velocidad
 205/55 R16 91W
+
+Si cambiamos unos neumáticos tiene que coincidir todos los valores, salvo que el índice de carga y de velocidad pueden ser mayores.
+En el caso de los neumáticos de invierno, el índice de velocidad puede ser inferior, pero habrá que tener una pegatina indicando la velocidad máxima de este neumático.
+http://www.neumaticos-pneus-online.es/indices-de-carga-y-velocidad-consejos.html
+http://clubzafira.com/index.php?topic=32389.0
+
+Para que una llanta sea compatible hay que comprobar (ejemplos de valores entre paréntesis):
+ - anclaje. Número de tornillos y diámetro del círculo que forman (5x110)
+ - agujero central, diámetro del agujero donde apoya el buje (65.1mm)
+ - ET, offset. Lo que sobresalen del coche (ET37)
+
+Para que una neumático sea compatible hay que comprobar:
+ - ancho (205)
+ - relación de aspecto (55)
+ - diámetro de la llanta (R16)
+ - índice de carga (91). Debe ser igual o mayor al homologado
+ - índice de velocidad (V). Debe ser igual o mayor (en ruedas de invierno puede bajar un número. O si es menor llevar una pegatina visible con el nuevo límite)
+
+
+# Fecha
+Suelen poner la fecha en formato SSAA (semana y año)
+Si se recorren 44.000 km al año, los neumáticos de verano deberían cambiarse a los 3 años y medio, los de invierno, a los 7 años como máximo (siempre y cuando sólo se conduzca con ellos en la estación fría).
+10 años máximo, aunque estén en buen estado.
+
+Al comprarlos de segundamano, no más de 2/3 años. Fijarnos en si están agrietados.
+
+# Duracion
+http://www.michelin.es/neumaticos/consejos/guia-de-compra/cuando-tengo-que-cambiar-mis-neumaticos
+Las Dunlop Sport Blueresponse que puse en el eje delantero me duraron 33000km y un año. Estaban totalmente gastadas por la parte interior. Posiblemente mal montadas.
+
+Mirar si el desgaste es homogéneo
+Mirar que no esten agrietadas
+Deformaciones?
+
+Desgaste en un borde: rueda desequilibrada o mal alineada.
+Desgaste en ambos bordes: neumáticos mal inflados.
+Desgaste a lo largo de la superficie central del neumático: inflado en exceso.
+
+
+Surcos.
+Mínimo legal: 1,6mm
+Mínimo invierno: 4mm
+
+Calculo porcentaje vida:
+Verano: (x-1.6)/(max-1.6)  max entre 7 y 8mm
+Invierno: (x-4)/(max-4)    max entre 8 y 9mm
+
 
 
 # Medir desgaste
@@ -23,6 +71,10 @@ También pensemos que los neumáticos deben guardarse en un lugar con unas condi
 
 # Comprar de segunda mano
 Cosas que mirar: http://www.motorpasion.com/seguridad/son-peligrosos-los-neumaticos-de-segunda-mano-de-ocasion-o-usados
+
+Años (2,3), desgaste
+
+En Francia, poner 4 neumáticos, equilibrado y paralelo: 83€ (Midas)
 
 # Información avanzada
 http://llantasneumaticos.com/

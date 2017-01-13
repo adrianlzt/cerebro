@@ -1,6 +1,8 @@
 https://cran.r-project.org/web/packages/forecast/index.html
 https://github.com/robjhyndman/forecast
 
+Mirar estimar_curva.md para hacerlo con wolframalpha
+
 Ejemplo de uso
 http://www.rdatamining.com/examples/time-series-forecasting
 

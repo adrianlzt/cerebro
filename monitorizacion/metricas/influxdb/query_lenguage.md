@@ -1,4 +1,4 @@
-https://influxdb.com/docs/v0.9/query_language/data_exploration.html
+https://docs.influxdata.com/influxdb/latest/query_language/data_exploration/
 
 select * from cpu where check = 'cpu_sys' and time > now() - 1h order by time desc
 

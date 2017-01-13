@@ -8,6 +8,8 @@ Uso simple:
 import "log"
 log.Println("traza")
 
+# Zap
+https://godoc.org/go.uber.org/zap
 
 # SpaceMonkey
 https://godoc.org/github.com/spacemonkeygo/spacelog

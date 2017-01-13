@@ -29,7 +29,7 @@ https://wiki.archlinux.org/index.php/Install_from_existing_Linux
 Bajar bootstrap desde https://mirrors.kernel.org/archlinux/iso/
 Descomprimir en algun dir
 vi root.x86_64/etc/pacman.d/mirrorlist
-  desocmentar nuestro proxy más cercano
+  descomentar nuestro proxy más cercano
 Entrar con el chroot
   root.x86_64/bin/arch-chroot /mnt/bootstrap/root.x86_64
 
@@ -65,6 +65,7 @@ pacstrap /mnt base base-devel
 
 
 genfstab -p /mnt >> /mnt/etc/fstab
+Quitar la linea de swap (si esta presente) https://bbs.archlinux.org/viewtopic.php?pid=1558001#p1558001
 arch-chroot /mnt
 echo "hostname" > /etc/hostname
 ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime

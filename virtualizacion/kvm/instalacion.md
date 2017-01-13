@@ -64,3 +64,6 @@ polkit.addRule(function(action, subject) {
         return polkit.Result.YES;
     }
 });
+
+
+Si tenemos problemas tras la instalación, reiniciar.

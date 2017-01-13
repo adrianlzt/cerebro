@@ -1,5 +1,7 @@
 Repo oficial de sqlite: http://repo.or.cz/sqlite.git
 
+repl online: https://www.tutorialspoint.com/execute_sql_online.php
+
 sqlitebrowser - Editor de interfaz de usuario para bases de datos SQLite
 
 Los paquetes sqlite y sqlite3 traen un cliente para ver/editar una base de datos sqlite.
@@ -28,3 +30,11 @@ cursor.execute("select * from sqlite_master")
 Database activada:
 cursor.execute("PRAGMA database_list;").fetchall()[0][2]
 
+
+
+# Extender sqlite
+http://charlesleifer.com/blog/extending-sqlite-with-python/
+
+Podemos conectar sqlite con cualquier software definiendo una serie de funciones.
+Luego usaremos el lenguaje sql para comunicarnos con eso.
+Un ejemplo podría ser git, y hacer "select author from commits"

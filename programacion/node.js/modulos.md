@@ -17,3 +17,7 @@ npm -g install NOMBRE
 
 npm i PAQUETE --save-dev
   guardarlo en el package.json como dep de desarrollo
+
+
+Si estamos en un dir de un proyecto con su package.json, para instalar las dependencias:
+npm install
