@@ -1,3 +1,33 @@
+# Oficial
+https://hub.docker.com/_/influxdb/
+
+docker run -d -p 8086:8086 --name influx influxdb:alpine
+
+cliente:
+docker run --rm --link=influx -it influxdb:alpine influx -host influx
+
+
+
+## Con ssl, configuracion propia y directorios locales
+mkdir -p /home/rancher/influxdb/{var,etc}
+docker run --rm influxdb:alpine influxd config > etc/influxdb.conf
+modificar la conf para poner:
+[monitor] store-enabled = false
+[http]
+  auth-enabled = true
+  https-enabled = true
+  https-certificate = "/etc/ssl/influxdb.pem"
+  https-private-key = "/etc/ssl/influxdb.key"
+
+He obtenido certificados con letsencrypt y puesto en /home/rancher/letsencrypt/xxx.duckdns.org
+
+docker run -d -p 8086:8086 -v /home/rancher/influxdb/etc/influxdb.conf:/etc/influxdb/influxdb.conf:ro -v /home/rancher/letsencrypt/xxx.duckdns.org/fullchain.pem:/etc/ssl/influxdb.pem:ro -v /home/rancher/letsencrypt/xxx.duckdns.org/privkey.pem:/etc/ssl/influxdb.key:ro -v /home/rancher/influxdb/var:/var/lib/influxdb --name influx influxdb:alpine influxd -config /etc/influxdb/influxdb.conf
+
+
+
+
+
+# Otros
 Usar mi adrianlzt/influxdb
 
 

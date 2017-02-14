@@ -1,12 +1,14 @@
 http://www.micropython.org/
 
+https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot
+
 Start guide: https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro
 
 1.- Bajar el firmware de http://www.micropython.org/download
 
 2.- Flashearlo (pacman -S esptool)
 sudo esptool --port /dev/ttyUSB0 erase_flash
-sudo esptool --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266-20161110-v1.8.6.bin
+sudo esptool --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266*.bin
 
 3.- Acceder a la consola
 sudo picocom -b 115200 /dev/ttyUSB0

@@ -94,6 +94,10 @@ delete from /^stats.*/ where time < now() - 7d
 
 delete from response_times where user = 'foo'
 
+# Borrar
+DROP SERIES FROM wo_start WHERE iniciativa = 'ADRI' AND subject = 'Manual'
+  no se puede meter en el where ni time ni values
+
 
 # Where
 select * from events where state = 'NY';
@@ -147,10 +151,6 @@ No se permite ordenar por otra cosa que no sea time: https://github.com/influxda
 # Operaciones / Funciones
 https://docs.influxdata.com/influxdb/v0.9/query_language/functions/
 
-# Borrar
-DROP SERIES FROM wo_start WHERE iniciativa = 'ADRI' AND subject = 'Manual'
-  no se puede meter en el where ni time ni values
-
 # Continuous Queries
 SHOW CONTINUOUS QUERIES
 
@@ -162,3 +162,12 @@ SHOW QUERIES
 # Matar una query
 https://docs.influxdata.com/influxdb/v0.12/troubleshooting/query_management/#stop-currently-running-queries-with-kill-query
 KILL QUERY x
+
+
+
+
+# Subqueries
+https://github.com/influxdata/influxdb/tree/master/influxql#subqueries
+
+SELECT mean(max) FROM (SELECT max(value) FROM cpu GROUP BY host, time(20s)) GROUP BY time(20s)
+

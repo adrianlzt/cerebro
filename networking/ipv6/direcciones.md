@@ -23,3 +23,6 @@ Interface identifier:
 
 Para formar una dirección local, añadiremos este identificador a la red FE80::/64
 FF80::02:11:22:FF:FE:33:44:55/64
+
+localhost especificando puerto:
+[::1]:80

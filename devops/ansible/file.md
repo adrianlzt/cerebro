@@ -29,6 +29,9 @@ En modo ad-hoc no me crea el fichero si no existe :?
   file: dest=/var/dir state=directory recurse=yes
         owner=root group=root
 
+Permisos para todos r y X en carpeta y owner write:
+mode=a+rX,u+w
+
 
 Borrar fichero
 - name: delete custom fact for hostgroups if not defined

@@ -18,3 +18,7 @@ Obtener el valor de un campo de unos objetos:
 var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
 _.pluck(stooges, 'name');
 => ["moe", "larry", "curly"]
+
+
+_.flatten([1, [2], [3, [[4]]]]);
+=> [1, 2, 3, 4];

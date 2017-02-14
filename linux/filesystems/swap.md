@@ -17,7 +17,10 @@ swapon /dev/sda2
 
 
 # Fichero
-fallocate -l 4096M /swapfile
+http://www.faqs.org/docs/linux_admin/x1762.html
+
+dd if=/dev/zero of=/swapfile bs=1M count=4096
+  fallocate -l 4096M /swapfile <-- NO usar, puede generar "holes" que no permiten activar la swap
   con XFS: dd if=/dev/zero of=/swapfile count=4096 bs=1MiB
 chmod 600 /swapfile
 mkswap /swapfile
@@ -29,3 +32,6 @@ swapon /swapfile
 # Errores
 "Invalid argument" should be read as "Your filesystem do not support swap file"
   con xfs era que fallocate creaba mal el fichero.
+
+Al ejecutar swapon (el error lo vemos en el dmesg)
+swapon: swapfile has holes

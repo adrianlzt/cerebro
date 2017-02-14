@@ -4,8 +4,10 @@ Mostrar a que interfaz pertenece cada paquete
 http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
 Mirar anydump.sh
 
+Otra opcion es tshark
 
-### USAR TSHARK ###
+Si queremos filtrar de una forma más extensa mirar ngrep.md
+
 
 Tipica instruccion para escuchar en todas las interfaces quitando ssh, dns, arp y ntp
 # tcpdump -nn -i any not port 22 and not arp and not port 53 and not port 123

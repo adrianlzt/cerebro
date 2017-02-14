@@ -22,3 +22,12 @@ https://play.golang.org/p/wRUmxj1naS
 Si tenemos un map dentro del struct necesitaremos usar reflect
 https://play.golang.org/p/O5sUzjxAHE
 reflect.DeepEqual(session,Session{})
+
+
+# Comparar
+s1 == s2
+
+Pero si tienen mas valores dentro, maps, etc, tendremos que usar
+https://golang.org/pkg/reflect/#DeepEqual
+
+func DeepEqual(x, y interface{}) bool

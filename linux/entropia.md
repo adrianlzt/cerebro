@@ -44,3 +44,15 @@ Quiere decir que va a afectar a lo que se lea de los devices, pero no a incremen
 
 El generador de numeros aleatorios del kernel esta creado para producir poco material de alta calidad.
 Realizar muchas lecturas de mucha cantidad de entropía puede tener impacto en otros usuarios usando el device
+
+
+
+
+# Generar entropia
+yum install rng-tools
+rngd -r /dev/urandom
+
+
+Medir cuanta entropia tenemos y como se va generando
+http://1wt.eu/tools/readspeed/
+http://serverfault.com/questions/214605/gpg-not-enough-entropy

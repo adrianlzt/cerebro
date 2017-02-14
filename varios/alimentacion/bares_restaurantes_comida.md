@@ -10,7 +10,7 @@ Sani Sapori, heladeria artesanal, calle lavapies 31
 Mercado de San Fernando. Sábados y Domingos puestos con comidas variadas. Barato.
 
 ## Restaurantes
-El capricho de Osuna. Gente de la Alameda Muy buena comida. Unos 20€. Espectaculares croquetas
+El capricho de Opera. Gente de la Alameda Muy buena comida. Unos 20€. Espectaculares croquetas
 Stop (General Pardiñas, menu del día muy bueno: https://plus.google.com/108757226478557903208/about?gl=es&hl=es)
 Parque Casino de la Reina, parrillada de carne y pescado. Barato
 Liberal (barajas, croquetas, boquerones don pedro, postres)

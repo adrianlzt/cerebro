@@ -1,29 +1,19 @@
 https://wiki.archlinux.org/index.php/VirtualBox#Installation_steps_for_Arch_Linux_hosts
 
+pacman -S virtualbox virtualbox-guest-iso
+yaourt -S virtualbox-ext-oracle
 
-WARNING: The vboxdrv kernel module is not loaded. Either there is no module
-         available for the current kernel (3.18.5-1-ARCH) or it failed to
-         load. Please reinstall the kernel module virtualbox-host-modules or
-         if you don't use our stock kernel compile the modules with
+Si estamos usando el kernel "linux" será suficiente con la dependencia que instalará: virtualbox-host-modules-arch
+Comprobar que es para la versión de kernel que tenemos.
 
-           sudo dkms autoinstall
+Debemos tener el ultimo paquete "linux" instalado. Parece que los modulos virtualbox-host-modules-arch son para ese último kernel.
 
-         You will not be able to start VMs until this problem is fixed.
+Si tengo problemas con estos modulos usar dkms:
+pacman -S linux-headers virtualbox-host-dkms virtualbox-guest-dkms
+
+Para cargarlos
+systemctl start systemd-modules-load.service
 
 
-Se arregla con (podemos instalar solo uno, depende que kernel tengamos, linux o linux-lts):
-pacman -S virtualbox-host-modules virtualbox-host-modules-lts
-sudo modprobe vboxdrv
-
-Mirar tener el kernel actualizado.
-
-sudo vi /etc/modules-load.d/virtualbox.conf
-vboxdrv
-vboxnetadp
-vboxnetflt
-vboxpci
-
-Para añadir acceso host-only
+# Para añadir acceso host-only
 Settings > Network > Host-only Networks > Edit host-only network (space) > Adapter.
-
-

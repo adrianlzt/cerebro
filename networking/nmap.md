@@ -16,6 +16,9 @@ Escaner de red.
   obtener servicios y sus versiones
 
 
+Escaneo de una red para ver que ips contestan
+nmap -sP x.x.x.x/a
+
 Escaneo de red descubriendo SO
 nmap -sS -O 192.168.1.1/24
 

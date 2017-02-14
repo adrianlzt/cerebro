@@ -126,6 +126,22 @@ Cuidado, una corutina (task) puede que ser cancelada. Cuidado con suponer que no
 
 
 
+# Ejecutar corutina con un timeout
+https://docs.python.org/3/library/asyncio-task.html#asyncio.wait_for
+
+result = yield from asyncio.wait_for(fut, 60.0)
+
+Para evitar que cuando salte el timeout cancelemos la corutina usamos shield:
+https://docs.python.org/3/library/asyncio-task.html#asyncio.shield
+
+res = yield from shield(something())
+
+Quedaría (no probado):
+result = yield from shield(asyncio.wait_for(fut, 60.0))
+
+
+
+
 # Multithreading
 https://docs.python.org/3/library/asyncio-dev.html#concurrency-and-multithreading
 
@@ -168,3 +184,23 @@ Si queremos usar HTTP:
 to do HTTP requests you either have to construct the HTTP request yourself by hand, use a project like the aiohttp framework (https://pypi.python.org/pypi/aiohttp) which adds HTTP on top of another event loop (in this case, asyncio), or hope more projects like the hyper library (https://pypi.python.org/pypi/hyper) continue to spring up to provide an abstraction for things like HTTP which allow you to use whatever I/O library you want (although unfortunately hyper only supports HTTP/2 at the moment).
 
 Requests no se puede usar: the synchronous I/O that requests uses is baked into its design (https://github.com/kennethreitz/requests/issues/2801)
+
+
+
+# Ejemplos
+https://docs.python.org/3/library/asyncio-dev.html
+
+asyncio.ensure_future(create())
+asyncio.ensure_future(write())
+asyncio.ensure_future(close())
+yield from asyncio.sleep(2.0)
+
+Llama a create, write y close de manera asíncrona, se van ejecutando en paralelo.
+
+
+yield from asyncio.ensure_future(create())
+yield from asyncio.ensure_future(write())
+yield from asyncio.ensure_future(close())
+yield from asyncio.sleep(2.0)
+
+Se llama a create, write y close secuencialmente

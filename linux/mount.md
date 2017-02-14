@@ -10,3 +10,7 @@ Ideas: arrancar en single-user. Pasar a otro runlevel single user. Probar el par
 
 Remontar en read write:
 mount -o remount,rw /
+
+
+# Bind
+mirar filesystems/mount-bind.md

@@ -1,6 +1,8 @@
 https://github.com/dhylands/rshell
 
-rshell -p /dev/ttyUSB0
+rshell -p /dev/ttyUSB0 --buffer-size=128
+
+El buffer size es necesario para nodemcu (https://github.com/dhylands/rshell/issues/15)
 
 repl
 saltar al repl de la placa

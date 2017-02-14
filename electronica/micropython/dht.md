@@ -2,11 +2,11 @@ http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/dht.html
 
 >>> import dht
 >>> import machine
->>> d = dht.DHT11(machine.Pin(4))
+>>> d = dht.DHT11(machine.Pin(0))
 
 >>> import dht
 >>> import machine
->>> d = dht.DHT22(machine.Pin(4))
+>>> d = dht.DHT22(machine.Pin(0)) # D3 en NodeMCU
 
 >>> d.measure()
 >>> d.temperature()

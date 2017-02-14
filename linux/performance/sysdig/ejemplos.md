@@ -58,3 +58,6 @@ sysdig fd.type=ipv4 and \( fd.port=8000 or fd.port=3128 \)
 
 Mostrar los comandos ejecutados por el usuario ricci
 sysdig -p "%proc.cmdline" user.name=ricci and evt.type=execve
+
+Mostrar signals (kill) enviados al proceso top:
+sysdig evt.type=signaldeliver and proc.name=top

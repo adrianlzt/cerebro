@@ -10,6 +10,20 @@ log.Println("traza")
 
 # Zap
 https://godoc.org/go.uber.org/zap
+Usado por influxdb
+
+Niveles:
+Debug -> [D]
+Info -> [I]
+Warn -> [W]
+Error -> [E]
+DPanic -> ??
+Panic -> [P]
+Fatal -> [F]
+
+https://github.com/uber-go/zap/blob/master/text_encoder_test.go#L154
+
+
 
 # SpaceMonkey
 https://godoc.org/github.com/spacemonkeygo/spacelog

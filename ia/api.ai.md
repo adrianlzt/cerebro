@@ -26,6 +26,11 @@ Si queremos pillar un parametro tal cual (por si menten puntos etc)
 https://docs.api.ai/docs/concept-actions#section-extracting-original-value
 Lo que hacemos es crear otro parametro tipo "nombreOriginal" y en value le ponemos $nombre.original
 
+https://docs.api.ai/docs/profile-bot-example-agent#section-cards
+En las respuestas podemos enviar un texto, una card, imagen o quick reply.
+Las card pueden tener botones, por ejemplo mostrar una receta y poner si quiere buscar otra u obtener más info.
+Las quick replies muestran un texto y unos botones con lo que típicamente querría escribir el usuario: Si o No, por ejemplo
+
 
 
 # Intents
@@ -132,6 +137,92 @@ Ejemplo de endpoint corriendo en local con ngrok:
 https://ca42a500.ngrok.io/chat
 
 
+## Google assistant
+Asignaremos una palabra, o varias, código que será como le digamos al asistente de google que queremos hablar con nuestro bot:
+Para hablar con el podremos llamarle:
+"Let me talk to XXX"
+"Talk to XXX"
+"At XXX" (este no me suele funcionar, porque no pilla el "At")
+
+Mirar programacion/google/apps/assistant.md
+
+
+## Facebook Messenger
+https://docs.api.ai/docs/facebook-integratio://docs.api.ai/docs/facebook-integration
+
+Tenemos que crearnos una cuenta en https://developers.facebook.com
+Tambien tendremos que tener una página en fb para nuestro boot para conseguir el token.
+
+Cosas que podemos devolver al user:
+https://developers.facebook.com/docs/messenger-platform/send-api-reference
+
+
+Mensaje con quick replies
+{"message":"prueba con cosas", "target": "xxxxxxxxxxx", "data":{"quick_replies":[{"content_type":"text","title":"Red","payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"}]}}
+
+Mensaje con adjunto (un mp3):
+{"message":"prueba con cosas", "target": "xxxxxxxxxx", "data":{"attachment":{ "type":"audio", "payload":{ "url":"http://www.noiseaddicts.com/samples_1w72b820/4929.mp3" } }}}
+
+Adjunto imagen:
+{"message":"prueba con cosas", "target": "xxxxxxxxx", "data":{"attachment":{ "type":"image", "payload":{ "url":"https://i.ytimg.com/vi/Bor5lkRyeGo/hqdefault.jpg" } }}}
+
+Video adjunto:
+{"message":"prueba con cosas", "target": "xxxxxxxxxx", "data":{"attachment":{ "type":"video", "payload":{ "url":"http://techslides.com/demos/sample-videos/small.mp4" } }}}
+
+
+Card (titulo, subtitulo, texto y botones):
+{"message":"prueba con cosas", "target": "xxxxxxxxx", "data":{"attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+          {
+            "title":"Welcome to Peters Hats",
+            "item_url":"https://petersfancybrownhats.com",
+            "image_url":"https://i.ytimg.com/vi/Bor5lkRyeGo/hqdefault.jpg",
+            "subtitle":"Weve got the right hat for everyone.",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":"https://petersfancybrownhats.com",
+                "title":"View Website"
+              },
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"que temperatura hace en casa?"
+              }              
+            ]
+          }
+        ]
+      }
+    }}}
+
+
+Botones:
+{"message":"prueba con cosas", "target": "xxxxxxxxx", "data":{"attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":"https://petersapparel.parseapp.com",
+            "title":"Show Website"
+          },
+          {
+            "type":"postback",
+            "title":"Start Chatting",
+            "payload":"USER_DEFINED_PAYLOAD"
+          }
+        ]
+      }
+    }
+}}
+
+
+
 ## Node js
 var apiai = require("apiai");
 var app = apiai("ACCESS_TOKEN");
@@ -147,6 +238,8 @@ var request = app.textRequest('mostrar wo', {sessionId: '34534534a', contexts: [
 ## Webhooks
 https://docs.api.ai/docs/webhook#webhook-example
 Podemos hacer que para determinandos intents, su action sea llamar a un webservice que será quien aporte la respuesta
+
+Ejemplo en python: https://github.com/api-ai/apiai-weather-webhook-sample
 
 
 # Machine Learning settings

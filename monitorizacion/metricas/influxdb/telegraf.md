@@ -44,11 +44,16 @@ systemctl start telegraf
 ## Centos 6
 service telegraf start
 
+# Test
+telegraf --input-filter logparser config > example.conf
+telegraf --config example.conf -test
+  run a single telegraf collection, outputing metrics to stdout
+
 
 # Plugins
 Para ver ayuda de un cierto plugin:
 
-telegraf -usage NOMBRE
+telegraf --usage NOMBRE
 
 ## nagios
 https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md#nagios
@@ -150,7 +155,11 @@ https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response
 
 ## Parse logs
 https://github.com/influxdata/telegraf/blob/master/plugins/inputs/logparser/README.md
-https://influxdata.com/blog/telegraf-correlate-log-metrics-data-performance-bottlenecks/
+https://www.influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/
+
+https://github.com/influxdata/telegraf/blob/master/plugins/inputs/tail/README.md
+esto hace un tail -f de un fichero y va consumiendo las líneas, que deben estar en formato aceptado por influx
+
 
 ## Github
 Puede levantar un puerto donde apuntamos un webhook de github
@@ -185,3 +194,23 @@ Por aqui está como corre el agente:
 https://github.com/influxdata/telegraf/blob/master/agent/agent.go
 
 No me queda claro como hace el write y si lo hace de todas las métricas de golpe
+
+
+# Aggregator & Processor
+https://docs.influxdata.com/telegraf/v1.1/concepts/aggregator_processor_plugins/
+
+Plugins que se encuentran entre los inputs y los outputs y nos permiten modificar la información
+
+Los procesadores permiten hacer transformaciones, decoraciones o filtrar.
+Los agregadores nos permiten hacer medias, percentiles, min/mas, contar
+
+
+# Monitorizar el propio telegraf
+Los logs meten dos caracteres para distinguir el tipo de error:
+https://github.com/influxdata/telegraf/pull/1838
+
+D!   debug
+I!   info
+E!   error
+
+Buscar el patrón "E!"

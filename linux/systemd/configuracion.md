@@ -62,10 +62,13 @@ Type=idle
 
 
 # Dependencias / Orden
-dependency significa que si la unidad A se activa, la unidad B debe activarse también
+dependency significa que si la unidad A se activa, la unidad B debe activarse también (se arrancarán en paralelo)
 order significa que la unidad A debe activarse antes de la B
-[Install]
-WantedBy=multi-user.target
+Si nuestra app, grafana por ejemplo, necesita de mysql, meteremos un override (systemctl edit grafana-server) con:
+[Unit]
+Requires=mariadb.service
+After=mariadb.service
+
 
 Esto hará que al habilitar nuestra unidad se cree un enlace entre esta unidad y /etc/systemd/system/multi-user.target.wants/
 
@@ -92,8 +95,9 @@ After=network.target
 Description=My Advanced Service
 After=etcd.service
 After=docker.service
-Requires=network.target dnsmasq.service
-# Wants=... # Es un require opcional
+Requires=network.target dnsmasq.service # Si alguna unidad de esta lista no exista, fallará el arranque. Porque se pare un Require no quiere decir que se pare el que lo necesita
+Before=xxx.service
+# Wants=... # Es un require opcional, si no existe la otra unidad, no aplica
 
 # Service: como arrancar, parar, recargar, acciones previas, etc
 # No daemonizar los procesos para que systemd pueda mantener el control
@@ -147,4 +151,15 @@ on-failure
 on-abnormal
 on-abort
 on-watchdog
+
+
+
+# Unidad para hacer pruebas
+[Unit]
+Description=Probando cosas
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/echo "he arrancado"
 

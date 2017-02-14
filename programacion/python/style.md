@@ -1,3 +1,6 @@
+mirar validacion.md para ver herramientas que comprueban el buen estilo
+
+
 pip-0008
 https://www.python.org/dev/peps/pep-0008/
 

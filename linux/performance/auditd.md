@@ -1,4 +1,7 @@
-#http://www.cyberciti.biz/tips/linux-audit-files-to-see-who-made-changes-to-a-file.html
+http://www.cyberciti.biz/tips/linux-audit-files-to-see-who-made-changes-to-a-file.html
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sec-Defining_Audit_Rules_and_Controls.html
+
+GUI: audit-viewer
 
 Nos sirve para guardar registro de cualquier cambio que se produzca en nuestro sistema: ficheros, syscalls, etc
 Se debe ejecutar como root.
@@ -15,10 +18,10 @@ El path debe ser absoluto.
 
 Para buscar sucesos:
 Por clave
-# ausearch -ik clave
+# ausearch -i -k clave
 
 Por comando que lo abre/ejecuta/escribe/añade
-# ausearch -ic cmd
+# ausearch -i -c cmd
 
 Por fichero:
 # ausearch -if /path/to/file
@@ -28,6 +31,8 @@ Si queremos que traduzca los números (por ejemplo, uid por nombre)
 
 En la fecha o posterior:
 # ausearch -ts "8/22/2015" "9:37:41"
+-ts recent   ultimos 10 minutos
+-ts $(date -d '-1 hour' +%H:%M:%S)   ultima hora
 
 Solo mostrar los mensajes de ejeucción
 ausearch -m EXECVE ...
@@ -43,8 +48,56 @@ O alguna en concreto:
 Para borrar los resultados deberemos borrar los ficheros que están en /var/log/auditd/
 
 
-Auditar el comando kill -9
-auditctl -a always,exit -S kill -F a1=9
+# Parametros
+
+-a [action,list]   (tambien se puede poner list,action)
+action:
+  task: cuando se crea un proceso (fork, clone)
+  exit: cuando termina una syscall
+  user: eventos en user space
+  exlude: para excluir eventos
+list:
+  never: no almacenar el evento
+  always: almacenar el evento
+
+-k asignarle una key para luego buscar por ella (tambien se puede poner como -F key=nombre)
+
+-p [r|w|x|a]  filtrar por tipo de acceso, read, write, execute, all (tambien como -F perm=x)
+
+-S: nombre de la syscall, o número, que queremos tracear
+    listado de todas las syscall: /usr/include/asm/unistd_64.h
+
+-F: filtrar por algún campo. Por ejemplo, para la syscall kill, el campo a1 contiene que señal estamos usando (SIGKILL, etc)
+    a0, a1, a2, a3 Respectively, the first 4 arguments to a syscal
+    auid The original ID the user logged in with
+    dir Full Path of Directory to watch. This will place a recursive watch on the directory and its whole subtree. It can only be used on exit list. See "-w".
+    muchos otros campos: egid euid exit fsgid fsuid filetype gid inode key msgtype path perm pid ppid success suid uid ...
+
+    Ejemplos:
+      perm=x
+      auid>=500
+      auid!=-1
+
+-w fichero    para vigilar un fichero o dir
+              si estamos poniendo una syscall tendremos que hacero con -F path=xxx
+
+
+# Performance
+Syscall rules get evaluated for each syscall for every program. If you have 10 syscall rules, every program on your system will delay during a syscall while the audit system evaluates each rule. Too many syscall rules will hurt performance
+
+Intentar filtrar por directorio/fichero para conseguir mayor performance (solo se evaluará la regla en caso de que matchee el fichero)
+
+-F path=/mi/path/fichero
+
+
+# Ejemplos
+
+Analizar llamadas a un binario:
+auditctl -a exit,always -F arch=b64 -F path=/usr/bin/icinga -S execve -k icinga
+ausearch -i -k icinga
+
+Auditar kills -9
+auditctl -a always,exit -F arch=b64 -S kill -F a1=9
 
 To see files opened by a specific user:
 auditctl -a always,exit -S open -F auid=510
@@ -54,6 +107,13 @@ auditctl -a always,exit -S open -F success=0
 
 To see if an admin is accessing other user's files:
 auditctl -a always,exit -F dir=/home/ -F uid=0 -C auid!=obj_uid
+
+
+  
+Encontrar que proceso esta generando trafico UDP:
+auditctl -a exit,always -F arch=b64 -F a0=2 -F a1=2 -S socket -k SOCKET
+ausearch -i -ts today -k SOCKET
+
 
 
 Meter reglas persistentes:
@@ -67,6 +127,17 @@ service auditd start
 
 
 Parece que con LXC no funciona
+
+
+# Errores
+The audit system is in immutable mode, no rules loaded
+https://access.redhat.com/solutions/33395
+
+Hace falta reiniciar
+Suele estar configurado en la última línea de /etc/audit/audit.rules
+ #5.2.18 Make the Audit Configuration Immutable (Scored)
+ -e 2
+
 
 
 # Ejemplos de reglas
@@ -130,4 +201,3 @@ Parece que con LXC no funciona
 
 #5.2.12 Collect Use of Privileged Commands (Scored)
 find / -xdev \( -perm -4000 -o -perm -2000 \) -type f | awk '{print "-a always,exit -F path=" $1 " -F perm=x -F auid>=500 -F auid!=4294967295 -k privileged" }' >> /etc/audit/audit.rules
-

@@ -17,3 +17,16 @@ lsof -P -> no traduce nombres de puertos
 
 
 lsof -i TCP:80 # Show what processes are using port 80 either locally or remotely. Need to be root for unowned processes
+
+
+lsof +D /dir
+  ficheros abiertos debajo de ese directorio
+
+lsof -c telegraf
+  ficheros del proceso telegraf
+
+lsof -c /[tT]elegr/
+  se pueden poner regex
+
+lsof -c /^t.*/ -c ^telegraf
+  que empiezen por t pero no sea telegraf

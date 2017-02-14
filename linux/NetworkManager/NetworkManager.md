@@ -11,6 +11,10 @@ Connection contiene nombre, firewall zone, ipv4 addr, ipv6 addr and interface
 nmcli device wifi list
   mostrar WiFis disponibles
 
+nmcli device wifi connect '(your wifi network name/SSID)' ifname wlan0
+nmcli device wifi connect '(your wifi network name/SSID)' password '(your wifi password)' ifname wlan0
+  Conectar a una wifi
+
 nmcli c s
   mostrar conexiones
 

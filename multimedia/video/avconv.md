@@ -26,3 +26,11 @@ ffmpeg -re -f lavfi -i aevalsrc="sin(400*2*PI*t)" -ar 8000 -f mulaw -f rtp rtp:/
 
 To play the stream with ffplay (which has some caveats, see above), run the command:
 ffplay rtp://127.0.0.1:1234
+
+
+# Recibir streaming
+## HTTP
+ffplay http://127.0.0.1:8081/video
+
+## RTSP
+ffplay rtsp://127.0.0.1:8554/video

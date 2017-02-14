@@ -1,5 +1,14 @@
 https://nodejs.org/api/debugger.html
 
+# Inspector, debug con google chrome
+node --inspect --debug-brk app.js
+
+Nos permite usar el chrome dev tools para debugear un programa.
+
+
+
+# Funcionalidad basica, tipo gdb o python -m pdb
+
 node debug script.js
 
 sb(4)

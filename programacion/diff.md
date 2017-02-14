@@ -9,3 +9,7 @@ programacion/parches_diff_patch.md
 
 Usar subshell para comparar
 diff -B <( sort A | tr [:lower:] [:upper:] ) <( sort B | tr [:lower:] [:upper:] )
+
+
+Comparar ficheros binarios
+vbindiff

@@ -19,5 +19,20 @@ En Ver -> Transcripción de la ejecucción, podemos ver las trazas de la última
 Si es un trigger que ha ejecutado la función también lo veremos.
 
 
+# Test
+http://stackoverflow.com/questions/16089041/how-can-i-test-a-trigger-function-in-gas
+
+
 # Errores
 Se llama a la función trigger muchas veces -> mirar a ver si tenemos el trigger definido varias veces
+
+No consigo recuperar los valores con un trigger sobre un formulario. Al final lo he hecho con el trigger sobre la hoja excel que recibe los valores.
+Siempre devuelve algo tipo
+{
+  "response": {},
+  "source": {},
+  "authMode": {},
+  "triggerUid": 528490824
+}
+
+

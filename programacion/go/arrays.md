@@ -50,3 +50,12 @@ tmp := make([]int, len(arr))
 copy(tmp, arr)
 fmt.Println(tmp)
 fmt.Println(arr)
+
+
+# Sacar el último elemento
+p := []int{1,2,3,4}
+p[len(p)-1]
+p[:len(p)-1]
+
+Quedarnos con todo menos el primer elemento:
+p[1:len(p)]

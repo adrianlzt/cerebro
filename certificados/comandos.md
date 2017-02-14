@@ -1,13 +1,7 @@
 # http://www.sslshopper.com/article-most-common-openssl-commands.html
 http://starnixhacks.blogspot.com.es/2010/06/openssl-command-is-amazing.html
 
-pxf: llave + certificado unidos
-pem / cer: certificados
-key: llave
-
-
 Convert a DER file (.crt .cer .der) to PEM
-openssl x509 -in certificate.crt -out certificate.der -outform DER
 openssl x509 -inform DER -in certificate.der -outform PEM -out certificate.pem
 
 Convert a PEM file to DER
@@ -27,7 +21,8 @@ http://www.openssl.org/docs/apps/verify.html
 openssl verify -verbose -CAfile Certificate-Authority.crt user.pem 
 
 
-#Ver certificado
+# Ver certificado
+certificateReader.sh
 
 file fichero
   nos dice que tipo de encriptación lleva, según esa información usaremos un comando u otro
@@ -38,6 +33,16 @@ Datos de una clave privada (.key normalmente)
 openssl rsa -text -in id_rsa
 
 Datos de un certificado (crt, pem, etc)
-openssl x509 -noout -text -in certs/server.crt
+openssl x509 -noout -text -in server.crt
+  estos ficheros (encoding pem) son ficheros ascii
+openssl x509 -noout -text -in server.der -inform der
+  estos certificados son ficheros binarios
+
+Mostrar todos los certificados (certificado + cadena) de un pkcs7
+openssl pkcs7 -print_certs -text -noout -in fichero.p7b
+
+Si el fichero .pem tiene varios certificados podemos ver todos con (con todos los certificados generamos un pkcs7 que luego mostramos):
+openssl crl2pkcs7 -nocrl -certfile certificado.pem | openssl pkcs7 -print_certs -text -noout
+
 
 openssl pkcs12 -info -in keyStore.p12

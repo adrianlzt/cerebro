@@ -2,7 +2,7 @@ http://www.linode.com/wiki/index.php/Linux_Packaging
 http://yum.baseurl.org/wiki/RepoQuery
 
 Releer repos
-yum clean metadata
+yum clean expire-cache
 Borrar solo los metadatos de un repo determinado
 yum clean metadata --disablerepo="*" --enablerepo="repo*"
 

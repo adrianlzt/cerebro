@@ -2,6 +2,7 @@
 https://gist.github.com/bengarrett/9cfac5e4d736fa92bf66
 Permisos necesarios: https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/privileges.html
 
+
 mirar backup_ansible/
 
 yum install percona-xtrabackup
@@ -12,6 +13,12 @@ mysql
 CREATE USER 'mysql'@'localhost' IDENTIFIED BY '8h5rgfbgD3hda';
 GRANT RELOAD, LOCK TABLES, REPLICATION CLIENT ON *.* TO 'mysql'@'localhost';
 FLUSH PRIVILEGES;
+
+Este esquema no es incremental.
+Para backups incrementales mirar: https://www.percona.com/doc/percona-xtrabackup/2.1/innobackupex/incremental_backups_innobackupex.html
+Restaurar incrementales conlleva un paso intermedio, preparar el backup.
+
+Para backups parciales: https://www.percona.com/doc/percona-xtrabackup/2.1/innobackupex/partial_backups_innobackupex.html
 
 vi /etc/cron.d/mariadb_backup
 # Percona XtraBackup for database backup
@@ -27,6 +34,21 @@ Si quiero correr innobackupex con mas trazas de debug:
 PTDEBUG=1 /usr/bin/innobackupex
 
 chronic hace que solo tengamos stdout si el comando falla (es parte del paquete moreutils)
+
+## Restaurar
+https://www.percona.com/doc/percona-xtrabackup/2.1/innobackupex/restoring_a_backup_ibk.html
+
+Restaurar full:
+systemctl stop mariadb
+rm -fr /opt/mariadb/*
+innobackupex --copy-back /path/to/BACKUP-DIR
+chown -R mysql:mysql /opt/mariadb
+systemctl start mariadb
+
+
+Restauración parcial:
+TODO
+
 
 
 

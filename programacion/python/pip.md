@@ -1,3 +1,9 @@
+# Instalacion a mano
+curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+python /tmp/get-pip.py
+
+
+
 Gestión de librerías para python.
 Sería como un apt-get para python.
 $ pip search <libreria>

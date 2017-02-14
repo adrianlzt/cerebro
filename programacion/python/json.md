@@ -63,3 +63,10 @@ def default(obj):
 
 json.dumps(datos, default=default)
 Esto lo que hace es usar un serializador custom para convertir la fecha en un unix timestamp con milisegundos
+
+
+
+# Encodings
+Cuando estabamos creando la vaultier cli teniamos un problema porque los ficheros binarios que almacenabamos eran incorrectos.
+Resultó ser al guardar a un fichero binario el contenido de uno de los campos de json, no le decíamos que era un tipo binary , y lo trataba como utf-8.
+El fichero resulta que estaba codificado con iso-8859-1.

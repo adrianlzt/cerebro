@@ -46,6 +46,8 @@ nc -6kl 8080
 
 nc -l 127.0.0.1 -p 8080
   netcat gnu, pero al salir la primera conex muere
+nc --continuous -e /bin/id -lp 80
+  netcat gnu, al conectar le da al cliente el output del comando id
 
 Para udp
 nc -klu 8080

@@ -30,3 +30,9 @@ source="pydstat.log" | timechart span=4m avg(pct_CPU) by Command
 Chart type: Area
 Missin values: Connect
 Stack mode: podemos usar cualquiera, el None se entiende bastante bien
+
+
+
+Calcular la resta de dos valores, tirando de dos sourcetypes distintos.
+Nos da una gráfica basada en tiempo con la diferencia de número de resultados de las trazas encontradas en dos ficheros:
+index=index host="icinga01" "Icinga restarted successfully" OR "Icinga 1.11.6 starting..." | timechart span=1d count(eval(source="/nagios/log/cyclops.log")) as cyclops count(eval(source="/nagios/log/icinga.log")) as icinga | eval diff=abs(icinga-cyclops) | table _time diff

@@ -1,3 +1,9 @@
+# Pacemaker
+Para activar las trazas de pacemaker editar
+/etc/sysconfig/pacemaker
+
+
+# Coroysnc
 Corosync escribe por defecto en /var/log/messages
 Podemos distinguir varios tipos de mensajes:
 

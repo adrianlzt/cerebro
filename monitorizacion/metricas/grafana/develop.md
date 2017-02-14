@@ -3,7 +3,7 @@ https://github.com/grafana/grafana/#run-from-master
 
 gvm install go1.7
 gvm use go1.7
-go get github.com/grafana/grafana
+go get -u github.com/grafana/grafana
 cd $GOPATH/src/github.com/grafana/grafana
 go run build.go setup
 go run build.go build
@@ -19,8 +19,5 @@ navegador: http://localhost:3000
 admin:admin
 
 
-Si tocamos el código javascript tendremos, parar el servidor, correr grunt de nuevo y arrancar de nuevo el server.
-
-No he probado si el "bra" que dice la doc soluciona esto.
-
-
+Si tocamos el código javascript tendremos, grunt se encargará de recompilarlo.
+Tendremos que recargar la web

@@ -7,3 +7,8 @@ jar cvfm archivo.jar META-INF/MANIFEST.MF .
 El nombre del nuevo .jar tiene que ser igual al que descomprimimos.
 
 En ubuntu, el comando jar lo podemos encontrar en el paquete: default-jdk
+
+
+
+Ejecutar:
+java -jar fichero.jar

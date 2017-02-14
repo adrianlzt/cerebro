@@ -22,3 +22,8 @@ var (
 )
 
 LDFLAGS=-ldflags "-X main.version_app=1.5"
+
+
+# build.go
+Programa en propio go que lleve todo el proceso.
+Ejemplo: https://github.com/grafana/grafana/blob/master/build.go

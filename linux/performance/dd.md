@@ -8,6 +8,9 @@ mirar time.md (info sobre iowait)
 dd if=/dev/zero of=file bs=1M count=1
   crear fichero de 1MB
 
+Si usamos un bs alto, necesitaremos tanta memoria disponible como tamaño del bs.
+Asi que mejor coger un bs pequeño y subir el count.
+
 Se puede pasar un parámetro para escribir con O_DIRECT (sin caches ni readahead)
 
 

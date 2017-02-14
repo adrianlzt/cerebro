@@ -40,3 +40,5 @@ Ejecutar
 sudo sysdig-probe-loader
 
 Parece que este programa, si no tenemos el módulo compilado lo intenta bajar ya compilado desde la web de sysdig
+
+Para CentOS6 parece que no hay modulo precompilado: 2.6.32-642.6.2.el6.x86_64

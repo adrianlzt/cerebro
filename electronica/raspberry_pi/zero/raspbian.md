@@ -1,7 +1,11 @@
 # Raspbian
 https://www.raspberrypi.org/downloads/raspbian/
+https://www.raspberrypi.org/documentation/installation/installing-images/README.md
 
 Version de Debian para la raspberry
+
+Flashear:
+dcfldd bs=4M if=2017-01-11-raspbian-jessie.img of=/dev/sdd
 
 
 # NOOBS

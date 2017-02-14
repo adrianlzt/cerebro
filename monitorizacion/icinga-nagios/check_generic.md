@@ -40,3 +40,8 @@ Si no es el nodo activo, chequea que no haya ningun proceso corriendo:
 
 Chequear estado de un fichero
 /usr/lib64/nagios/plugins/check_generic.pl -e 'stat -c"%a-%U-%G" /etc/passwd' -o "=~/^644-root-root$/"
+
+
+
+Chequear dos veces un proceso esperando 5s (no se porque, pero si el if no funciona):
+/usr/lib64/nagios/plugins/check_generic.pl -n "test_icinga_pacemaker" -e "if [[ 1 ]]; then OUTPUT=\$(/usr/lib64/nagios/plugins/check_procs -C top -c 1:1) && echo \$OUTPUT || (sleep 5 && /usr/lib64/nagios/plugins/check_procs -C top -c 1:1) ; fi" -o '=~/(.*OK.*)/' --print_match --ignore_rc -d /var/tmp/prueba

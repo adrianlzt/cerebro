@@ -1,3 +1,38 @@
+https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla
+https://golang.org/doc/faq#testing_framework esta lib de testing es bastante básica, aquí se justifica el por qué
+https://www.youtube.com/watch?v=ndmB0bj7eyw
+https://talks.golang.org/2014/testing.slide#4
+https://github.com/golang/example
+
+
+Crearemos fichero *_test.go para probar cada uno de los ficheros go.
+Por ejemplo: main.go -> main_test.go
+
+El "pacakge" deberá ser el mismo que el del fichero go principal.
+Ejemplo: "package main"
+
+Importaremos la libreria de testing:
+import "testing"
+
+Cada función a testear empezará por "Test" y llevará un único parámetro *testing.T:
+func TestSomething(t *testing.T) {
+  // test stuff here...
+}
+
+Para pasar los tests a mano:
+go test -v
+
+
+# Log / Errores
+t.Logf("mensaje")
+t.Errorf("coso %d", numero)
+t.Fatalf("asd")
+
+# Skip
+t.Skip("no ejecutar")
+
+
+
 # Mock
 Si queremos mockear una función tendrá que ser parte de una interfaz, y lo que haremos es redifinir esa interfaz con las funciones mockeadas.
 Ej.:
@@ -41,4 +76,21 @@ So(cosa1, ShouldEqual, cosa2)
 
 Para arrays, slices, maps y structs
 So(cosa1, ShouldResemble, cosa2)
+
+
+# Cover
+Ver cuando código está testeado
+Genera un html donde marca que no está testeado
+
+go tool cover -html=cover.out
+
+
+# Race detector
+A data race occurs when two goroutines access the same variable concurrently and at least one of the accesses is a write.
+To help diagnose such bugs, Go includes a built-in data race detector.
+
+$ go test -race mypkg    // to test the package
+$ go run -race mysrc.go  // to run the source file
+$ go build -race mycmd   // to build the command
+$ go install -race mypkg // to install the package
 

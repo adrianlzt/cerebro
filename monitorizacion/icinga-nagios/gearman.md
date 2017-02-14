@@ -1,6 +1,9 @@
 Versiones de geramand soportadas: http://labs.consol.de/nagios/mod-gearman/#_supported_dependencies
 NO usar 1.0.6, mirar en Errores.
 
+La configuración ha cambiado bastante para la version 3.x
+
+
 
 # Instalacion CentOS
 https://labs.consol.de/repo/stable/#_6
@@ -50,6 +53,17 @@ Este software lo usamos junto con icinga para distribuir la carga de los checks.
 
 perfdata_mode=1
 Setting the value to 1 makes sure that performance data doesn't pile up endlessly in the queue when perfdata worker isn't consuming.  It's basically a precaution which prevents the queue to fill up to a point all available system memory is consumed. 
+
+
+A partir de la version 3.x se puede enviar la información de perfdata a varias colas distintas /home/adrian/adrianRepo/monitorizacion/icinga-nagios/mod_gearman.md
+Se puede poner de dos maneras, reptiendo el parámetro:
+perfdata=perfdata
+perfdata=influxdb
+
+o con comas
+perfdata=perfdata,influxdb
+
+
 
 
 Eventhandlers
@@ -132,6 +146,10 @@ mod_gearman_neb lee de forma contínua de la cola check_results y lo va metiendo
 icinga lee cada check_result_reaper_frequency esta cola interna.
 Lo que escriba mod_gearman_neb en esa cola, si icinga se reinicia antes de que el reaper haga una pasada por ahí, se pierde.
 
+
+
+# Mostrar el trafico perfdata en plano
+ngrep -q -d any -W byline 'perfdata' port 4730 | grep "REFUQV" | sed "s/^.*\(REFUQVRZ.*\)/\1/" | base64 --decode
 
 
 # Errores
@@ -303,3 +321,14 @@ Del error hacia atrás:
         if ( ret != GEARMAN_SUCCESS && ret != GEARMAN_WORK_FAIL ) {
             if ( ret != GEARMAN_TIMEOUT)
                 gm_log( GM_LOG_ERROR, "worker error: %s\n", gearman_worker_error( &worker ) );
+
+
+
+## Compilando
+yum install -y libtool-ltdl-devel ncurses-devel libgearman-devel
+yum groupinstall "Development tools"
+
+./autogen.sh
+./configure --disable-nagios4-neb-module --disable-naemon-neb-module
+make
+make install

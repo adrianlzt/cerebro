@@ -1,3 +1,5 @@
+Mejor usar httpie.md
+
 http://curl.haxx.se/docs/httpscripting.html
 
 Hacer una petición GET a /:
@@ -149,6 +151,15 @@ para saber si tenemos soporte:
 curl --version
 
 Hace uso de https://nghttp2.org/
+
+
+
+# IPv6
+curl [::1]
+curl http://[fe80::aaaa:bbbb:cccc]
+curl http://[::1]:80
+curl -g http://[::1]:80
+  si tenemos una versión más vieja de curl
 
 
 

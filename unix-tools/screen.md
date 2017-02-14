@@ -48,6 +48,7 @@ C-a Q  //sale del split (nos quedamos en la que tenga el foco)
 C-a tab //salta entre los splits
 C-a X  //cierra la ventana que tenga el foco
 C-a :resize =  //todos los splits del mismo tamaño
+C-a :resize +5  //agrandar la screen actual
 
 C-a [0-9] //selecciona ventana
 C-a C-a //salta a la ultima ventana

@@ -1,10 +1,17 @@
 https://github.com/influxdata/influxdb-python
 http://influxdb-python.readthedocs.org/en/latest/
 
+pip install influxdb
+
+from influxdb import InfluxDBClient
+client = InfluxDBClient('127.0.0.1',database="prueba")
+client.write_points([{"measurement": "prueba2", "tags": {"host":"somehome"}, "time": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1486384163)), "fields": {"load":3}}], time_precision='s')
+
+
 Iniciar cliente sin ddbb específica, especificar en la query:
 
 >>> from influxdb import InfluxDBClient
->>> client = InfluxDBClient('10.5.2.180','8086',user,password)
+>>> client = InfluxDBClient('127.0.0.1','8086',user,password)
 >>> client.query('show measurements', database='test')
 ResultSet({'(u'measurements', None)': [{u'name': u'cpu'}]})
 

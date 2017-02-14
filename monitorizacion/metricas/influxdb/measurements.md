@@ -1,0 +1,1 @@
+SHOW MEASUREMENTS [ON database]

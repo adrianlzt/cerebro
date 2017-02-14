@@ -3,6 +3,8 @@ https://docs.influxdata.com/kapacitor/v0.2/introduction/getting_started/
 Generar alarmas a partir de los datos indexados:
 Hacer procesado batch sobre la informacion
 
+Se subscribe a influxdb y este (mediante el componente "subscriber") le envía las métricas via UDP.
+
 # Configuración
 Podemos generar un fichero de configuración de ejemplo con:
 kapacitord config
@@ -54,6 +56,9 @@ Todos los resultados, valores de cpu_usage_idle, los escribe como un único even
 curl http://localhost:9092/api/v1/pibatch/pepe
 {"Series":[{"name":"cpu_usage_idle","columns":["time","value"],"values":[["2016-01-18T11:37:53Z",233],["2016-01-18T11:38:03Z",1111]]}],"Err":null}
 
+
+Ejemplo obteniendo una nueva métrica para la resta de dos:
+https://groups.google.com/forum/#!topic/influxdb/ByouQpznxTY
 
 ## Outputs
 ### http

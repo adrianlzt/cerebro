@@ -18,6 +18,9 @@ Para lectura:
 file = open("fichero")
 file = open("fichero",'r')
 
+Leer backwards:
+https://pypi.python.org/pypi/file-read-backwards
+
 Escritura:
 file = open("fichero","w")
 
@@ -31,7 +34,7 @@ except IOError as e:
 
 
 Otros parámetros:
-'b' -> binario
+'b' -> binario (si usamos binario tenemos que pasar codificacion, generalmente sera UTF-8, pero puede tambien ser otras, como iso-8859-1)
 'r+', 'w+' o 'a+' -> read+write simultaneo
 
 Leer binario 'br'

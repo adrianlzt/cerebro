@@ -19,3 +19,6 @@ Cuidado, porque ralentiza la ejecucción. Comentarlas cuando ya no sean necesari
 https://developers.google.com/apps-script/reference/base/logger
 
 Logger.log(JSON.stringify(var))
+
+Logger.log( JSON.stringify( event , null, 2 ) );
+  tabulado

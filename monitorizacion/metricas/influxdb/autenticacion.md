@@ -12,10 +12,17 @@ service influxdb restart
 
 Una vez reiniciado, solo aceptará peticiones autenticadas.
 Si no había ningún usuario, solo aceptara la query para generar un usuario admin.
+curl http://localhost:8086/query --data-urlencode "q=CREATE USER \"admin\" WITH PASSWORD 'admin' WITH ALL PRIVILEGES"
 
 La auth se puede realizar con cabecera o por parámetros (esta última tiene prioridad):
 curl -G http://localhost:8086/query -u todd:influxdb4ever --data-urlencode "q=SHOW DATABASES"
 curl -G http://localhost:8086/query --data-urlencode "u=todd" --data-urlencode "p=influxdb4ever" --data-urlencode "q=SHOW DATABASES"
+
+# Secuencia de crear database, usuario y dar permisos
+curl http://localhost:8086/query -u admin:admin --data-urlencode "q=CREATE USER \"homeassistant\"  WITH PASSWORD 'homeassistant'"
+curl http://localhost:8086/query -u admin:admin --data-urlencode "q=create database homeassistant"
+curl http://localhost:8086/query -u admin:admin --data-urlencode "q=GRANT ALL ON \"homeassistant\" TO \"homeassistant\""
+
 
 
 Para la cli
@@ -23,6 +30,8 @@ $ influx
 > auth user pass
 
 $ influx -username user -password pass
+
+INFLUX_USERNAME=admin INFLUX_PASSWORD=admin influx -execute "show databases"
 
 
 # Administración de usuarios
@@ -45,6 +54,7 @@ GRANT ALL PRIVILEGES TO <username>
 REVOKE ALL PRIVILEGES FROM <username>
   quitar permisos de admin a un user
 
+GRANT ALL ON "db" TO "user"
 GRANT [READ,WRITE,ALL] ON "<database_name>" TO "<username>"
 
 REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>

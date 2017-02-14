@@ -6,9 +6,27 @@ rpm: http://sebastien.godard.pagesperso-orange.fr/download.html
 Sar forma parte de un conjunto de herramientas de estadísticas para linux.
 
 sar - Collect, report, or save system activity information.
-ksar - a sar grapher (http://sourceforge.net/projects/ksar/). ~/Descargas/kSar-5.0.6/./run.sh
-  packer -S ksar_bin
+
+
+# ksar
+A sar grapher (http://sourceforge.net/projects/ksar/)
+  yaourt -S ksar_bin
   /usr/bin/kSar
+
+  Abrir, aplicación x11.
+  En la ventana que vemos, pulsar sobre Data -> Launch SSH command
+  Poner nuestro user@host que queremos investigar.
+  Nos pedirá la password también (podemos meter una ssh key en las preferencias)
+  Luego por defecto pondrá el comando "sar -A" que parece que coje todo desde las 00:00 de hoy
+
+  En Data -> Select time range podemos cambiar la ventana de tiempo donde vemos las gráficas
+
+  Si abrimos varias ventanas dentro de SAR, estarán sincronizadas. Si en una veo la CPU0, en la otra veremos lo mismo.
+
+  Para conocer que disco es cada uno usaremos lsblk
+
+
+
 sargraph - http://www.sargraph.com/
 http://www.sarcheck.com/ - SarCheck is a Linux & UNIX performance analysis and performance tuning tool. It is designed to help you with performance management on most Oracle Solaris, AIX, Linux, and HP-UX systems by making recommendations and explaining them with plain text, supporting graphs, and tables. Total SarCheck cost - US$9,385.00
 

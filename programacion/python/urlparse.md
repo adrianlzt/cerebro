@@ -1,3 +1,10 @@
+# Python3
+https://docs.python.org/3.6/library/urllib.parse.html?highlight=urlparse#urllib.parse.urlparse
+
+from urllib.parse import urljoin
+
+
+# Python2
 https://docs.python.org/2/library/urlparse.html
 
 >>> from urlparse import urljoin

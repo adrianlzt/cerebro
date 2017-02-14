@@ -1,6 +1,7 @@
 https://docs.docker.com/reference/builder/#volume
 http://www.docker.io/learn/dockerfile/level1/
 http://docs.docker.com/articles/dockerfile_best-practices/
+https://resources.codeship.com/ebooks/dockerfile-guide
 ejemplos:
   https://github.com/search?q=dockerfile&ref=cmdform
   https://github.com/CentOS/CentOS-Dockerfiles
@@ -67,6 +68,10 @@ Si siempre vamos a ejecutar 'programa' haremos:
 ENTRYPOINT ["programa"]
 CMD ["--help"]
 Y arrancaremos la máquina como: docer run user/container --arg3 --arg4
+
+Modificar al arrancar el entrypoint:
+docker run -t -i --entrypoint="/bin/bash" imagen
+
 
 
 CMD: comando a ejecutar cuando se arranca la máquina.

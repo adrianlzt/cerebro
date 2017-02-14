@@ -1,5 +1,6 @@
-https://docs.influxdata.com/influxdb/v0.11/guides/writing_data/
-https://docs.influxdata.com/influxdb/v0.11/write_protocols/line/
+https://docs.influxdata.com/influxdb/latest/guides/writing_data/
+https://docs.influxdata.com/influxdb/latest/guides/querying_data/
+https://docs.influxdata.com/influxdb/latest/write_protocols/line/
 
 localhost:8086
 
@@ -21,7 +22,7 @@ udp:
 echo "medida value=3" > /dev/udp/127.0.0.1/8086
 
 
-curl -su "USER:PASS" -i -XPOST 'http://esjc-dsmm-ws01p.service.dsn.inet:8086/write?db=insurance-telematics-cyclops' --data-binary 'mlaratest,title=titulo\ ejemplo tag="tagejemplo",texto="Texto de_prueba"'
+curl -su "USER:PASS" -i -XPOST 'http://esjc-dsmm-ws01p.service.dsn.inet:8086/write?db=mydb' --data-binary 'mtest,title=titulo\ ejemplo tag="tagejemplo",texto="Texto de_prueba"'
 
 
 
@@ -29,6 +30,8 @@ El timestamp debe ser en microsegundos.
 
 Si queremos pasar un timestamp en segundos debemos especificarlo:
 curl -i -XPOST 'http://localhost:8086/write?db=tools&precision=s' --data-binary 'prueba value=99.0 1452594857'
+
+Para las querys, si queremos el timestamp en unix epoch: epoch=[h,m,s,ms,u,ns]
 
 Para meter varias métricas separarlas por cambios de linea (no vale con poner \n, al menos no funciona con curl, parece que lo escapa)
 

@@ -8,6 +8,8 @@ date +%s.%N
 Convertir fecha a unix timestamp:
 date -d "Wed, 6 Oct 2010 10:43:25 +0200" +"%s"
 
+Cuidado con meterle una fecha tipo "6/11/2016", por en españa es 6 de Noviembre, pero en US es 11 de Junio
+
 $ LC_ALL=C date
 Thu Oct  1 08:47:24 CEST 2015
 $ LC_ALL=C date -d "Thu Oct  1 08:47:24 CEST 2015" +%s

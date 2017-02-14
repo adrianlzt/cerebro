@@ -1,5 +1,7 @@
 http://vim.wikia.com/
 
+'' -> volver a última posición
+
 Start searching with spacebar
 F2 -> Save file
 F3 -> Toggle line numbers

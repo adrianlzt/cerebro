@@ -3,6 +3,39 @@ https://wiki.python.org/moin/BitwiseOperators
 
 b'hola'
 
+
+Imprimir el caracter ascii de una representacion hexadicemal:
+>>> print(b'\x41')
+A
+
+Hexadicimal a la representacion decimal
+>>> struct.unpack('B', '\x41')[0]
+65
+
+Para varios valores:
+>>> map(lambda x: struct.unpack('B', x)[0], b'\x41\x42')
+[65, 66]
+
+
+Representaciones decimales a string de bytes:
+>>> "".join(map(chr, [91, 175, 250, 131, 65, 60]))
+'[\xaf\xfa\x83A<'
+
+
+Bytes a bytearray y a byte
+>>> l = bytearray('\x41\x42\xa5')
+>>> l
+bytearray(b'AB\xa5')
+>>> bytes(l)
+'AB\xa5'
+
+
+
+
+Representacion decimal de cada caracter:
+>>> map(ord,'hello')
+[104, 101, 108, 108, 111]
+
 >>> c = bytearray("252")
 >>> c[0]
 50
@@ -10,6 +43,13 @@ b'hola'
 53
 >>> c[2]
 50
+
+Tambien:
+>>> ord('a')
+97
+>>> chr(98)
+'b'
+
 
 Bytearray de 16 veces 0
 >>> bytearray(16)
@@ -66,6 +106,13 @@ Esto ha dividido entre 16
 '6173646173'
 >>> '6173646173'.decode("hex")
 'asdas'
+
+>>> binascii.a2b_hex("d49d99699b59b739")
+'\xd4\x9d\x99i\x9bY\xb79'
+
+
+binascii.a2b_*   ascii -> binario
+binascii.b2a_*   binario -> ascii
 
 ## Python3
 >>> import binascii

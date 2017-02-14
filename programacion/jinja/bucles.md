@@ -3,6 +3,8 @@ http://jinja.pocoo.org/docs/dev/templates/#for
 {% for hostgroup in hostgroups %}
     <a href="{{wiki_url}}/{{hostname}}">{{wiki_url}}/{{hostname}}</a>
     <br>
+{% else %}
+  que hacer si no hay elementos en hostgroups
 {% endfor %}
 
 

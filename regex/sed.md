@@ -89,6 +89,10 @@ sed -i "8iInserta una nueva linea en la linea 8"
 
 
 # Cambios de linea
+echo "hola } host" | sed "s/}/\n/"
+  cambiar caracter por un cambio de linea
+
+
 echo -e "uno\ndos\ntres\ncuatro" | sed -e ':a' -e 'N' -e '$!ba' -e s/'dos\n'/'MIL'/
 uno
 MILtres

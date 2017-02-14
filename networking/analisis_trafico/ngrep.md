@@ -30,8 +30,14 @@ Buscar una cadena hexadecimal
 Mostrar lo que no matchee
 -v
 
-dst host HOST
-src host HOST
+No mostrar los # por cada paquete matcheado
+-q
+
+Mostrar fecha
+-t
+
+dst HOST
+src HOST
 host HOST
 gateway HOST
   paquetes que usan a este HOST como gateway

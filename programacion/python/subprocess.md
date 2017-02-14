@@ -1,5 +1,8 @@
 mirar sh.md
 
+python2
+import subprocess
+subprocess.call(["ls", "-l"])
 
 try:
     p = subprocess.run(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)

@@ -1,0 +1,1 @@
+../nodemcu/mapa_pines.md

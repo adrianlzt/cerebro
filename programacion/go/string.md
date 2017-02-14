@@ -21,6 +21,9 @@ fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
 strings.Joins(["a","b"], "")
 "ab"
 
+# Cortar
+"cadena"[2:5] -> "den"
+
 # Split / Fields
 strings.Split("a,b,c", ",")
   devuelve: ["a" "b" "c"]

@@ -44,6 +44,8 @@ Si queremos salir fallando de manera controlada podemos hacer:
        - debug: msg='error en mio'
        - fail: msg="saliendo tras enviar el mensaje"
 
+Si la tarea dentro del block falla, ejecutará rescue, finally y terminará correctamente.
+
 
 Los blocks son tasks.
-No se puede hacer un playbook empezando con un block.
+No se puede hacer un playbook empezando con un block, debe empezar con un play.

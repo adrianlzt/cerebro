@@ -1,3 +1,6 @@
+https://github.com/nodemcu/nodemcu-devkit-v1.0
+
+
 # ESP12-E
 Datasheet del chip principal, ESP12-E
 

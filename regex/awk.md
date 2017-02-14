@@ -38,6 +38,9 @@ print epoch, $4
 1380715965 3
 
 
+echo "6/11/2016 17:30:36 5266683 2013 4545218" | gawk '{split($1, d, "/");split($2, t, ":");epoch = mktime(d[3] " " d[2] " " d[1] " " t[1] " " t[2] " " t[3]);print epoch " " $3 " " $4 " " $5}'
+
+
 Sumar una columna
 ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 

@@ -5,6 +5,9 @@ dig @ns.domain.com dominio.com AXFR
 MX de un server
 dig server.com MX
 
+IPv6 de un dominio
+dig dominio.com AAAA
+
 
 Servidor autoridad de un dominio
 dig pepe.com SOA

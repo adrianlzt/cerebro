@@ -14,3 +14,7 @@ Más verboso:
 
 Mostrar y no borrar el directorio de trabajo:
 -work
+
+
+# Tener un build.go que gestione todo los pasos
+Ejemplo: https://github.com/grafana/grafana/blob/master/build.go

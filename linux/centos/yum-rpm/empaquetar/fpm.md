@@ -9,6 +9,9 @@ Instalación:
     En centos: yum install rubygems ruby-devel
     Arch (al menos): yaourt -S rpm-org
 
+Con Docker:
+  docker run -v "$PWD:/mnt" tenzer/fpm fpm -C /mnt -p /mnt -s dir -t rpm -n PackageName app/
+
 gem install fpm
 
 Para centos6:
@@ -81,6 +84,7 @@ fpm -s dir --prefix /opt/ui -t rpm -n puppet-monitoring-ui -v 0.4.3 -a all --ite
 
 
 ## Python ##
+https://github.com/jordansissel/fpm/wiki/ConvertingPython
 
 Para generar desde python: yum install python-setuptools
 

@@ -56,3 +56,27 @@ int main(void)
  * valor = func();
  * printf("%s\n", valor);
 */
+
+/*
+ * Comprobar si esta definido un puntero
+ * if (ptr) {}
+ *
+*/
+
+/*
+ * Recorrer un struct que va enlazando otros struct (con el puntero next)
+ */
+
+typedef struct customvariablesmember_struct{
+	char    *variable_name;
+	char    *variable_value;
+	int     has_been_modified;
+	struct customvariablesmember_struct *next;
+}customvariablesmember;
+
+temp_customvariablesmember = hst->custom_variables;
+
+for(; temp_customvariablesmember != NULL; temp_customvariablesmember = temp_customvariablesmember->next) {
+    snprintf( target_queue, GM_BUFFERSIZE-1, "%s", temp_customvariablesmember->variable_value );
+}
+

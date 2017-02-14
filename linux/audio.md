@@ -1,6 +1,7 @@
 PulseAudio
 
 Herramienta
+pavucontrol - gestion grafica del sonido
 pacmd
 
 stat

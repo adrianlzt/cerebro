@@ -3,6 +3,9 @@ http://go-search.org/
 https://golanglibs.com
   para buscar librerias
 
+Fichero de test mostrando todas las posibilidades:
+https://golang.org/src/fmt/fmt_test.go
+
 ## FMT (ForMaT)##
 Printf("tipo %T. Valor=%v",var,var)
 %T -> imprime el tipo de dato

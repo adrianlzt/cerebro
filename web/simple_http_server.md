@@ -15,3 +15,5 @@ Nos lista los ficheros y nos los permite bajar
 
 python2 -m SimpleHTTPServer <puerto>
 
+
+Con IPv6: ipv6-httpd.py

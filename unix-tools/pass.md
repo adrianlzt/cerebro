@@ -89,3 +89,8 @@ pass -c path/clave
 # Push/pull
 pass git push
 pass git pull
+
+
+# Almacenar ficheros
+pass insert secret-image -m <icon.png
+pass show secret-image >retrieved-image.jpg

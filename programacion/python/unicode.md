@@ -1,3 +1,4 @@
+http://crysol.org/es/node/454
 https://pythonhosted.org/kitchen/unicode-frustrations.html
 https://pythonhosted.org/kitchen/unicode-frustrations.html
 

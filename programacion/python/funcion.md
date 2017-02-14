@@ -58,6 +58,12 @@ Llamar a una func con un array (splash operator)
 v = ["arg1","arg2"]
 func(*v)
 
+Llamar a una func con un dict
+>>> def mifun(uno="1", dos="2"): print("uno " + uno + "   dos="+dos)
+>>> mifun(**{"uno": "111", "dos":"dosdos"})
+uno 111   dos=dosdos
+
+
 
 Nombre de la funcion donde estamos:
 import sys

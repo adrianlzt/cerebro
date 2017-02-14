@@ -6,10 +6,15 @@ import machine
 machine.reboot()
 
 # Pinnes (GPIO)
-Encender LED en GPIO2
+
+0 -> D3
+1 -> D4
+2 -> LED
+
+Encender LED de NodeMCU, asociado a GPIO2 (y parece que tambien al pin D4)
 pin = machine.Pin(2, machine.Pin.OUT)
-pin.high() # apagar
-pin.low() # encender
+pin.high() # apagar el led (pin voltaje a 3.3v)
+pin.low() # encender el led
 pin.value() # valor actual
 pin.value(0) # encender, 1 para apagar
 

@@ -37,3 +37,18 @@ Para la zona de alemania (comprende chamonix) cada 3h
 http://www.meteoclimatic.net/
 
 https://www.wunderground.com/
+
+
+# Mapa de viento
+https://earth.nullschool.net/#current/wind/surface/level/orthographic=6.94,46.98,2078
+
+
+
+# Mapas con gráficos bonitos mostrando el viento
+https://www.windytv.com/45.172/5.722?2017-02-07-15,38.169,2.725,4
+  GFS model
+  también tiene datos históricos de estaciones cercanas
+  nubes, lluvia, nieve, temperatura, etc
+
+https://www.ventusky.com/
+  modelos: ICON, GFS, GEM

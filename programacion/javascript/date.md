@@ -42,6 +42,20 @@ var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
 Date.parse("March 21, 2012");
 let d = new Date(Date.parse("2016-09-28 14:00:38.000000"))
 
+CUIDADO! Si tenemos el locale americano y parseamos una fecha tipo: "30/01/2017 13:58:22" nos dará una fecha en el futuro sin sentido. (al menos en google scripts)
+En node da un error
+Parece que tambien depende del navegador puede o no funcionar http://stackoverflow.com/questions/2587345/why-does-date-parse-give-incorrect-results
+Mejor trocear a mano y crear el objeto Date nosotros.
+
+var fecha = "30/01/2017 13:58:22";
+var parts = fecha.split(' ');
+var day_month_year = parts[0];
+var hour_min_sec = parts[1];
+var parts_dmy = day_month_year.split("/");
+var parts_hms = hour_min_sec.split(":");
+
+var date = new Date(parts_dmy[2], parts_dmy[1]-1, parts_dmy[0], parts_hms[0], parts_hms[1], parts_hms[2]);
+
 
 # Moment y moment-timezone
 http://momentjs.com/

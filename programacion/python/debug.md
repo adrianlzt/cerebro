@@ -77,6 +77,7 @@ Parece que no existe una solución para debuggear un python en caliente: https:/
 http://www.dalkescientific.com/writings/diary/archive/2005/04/20/tracing_python_code.html
 
 Redirigir output a un fichero, puede generar ficheros muy grandes (con la CLI de ceph me generó un fichero de 27MB)
+Con una prueba con yum me petaba
 
 Meter este código:
 
@@ -97,4 +98,3 @@ def traceit(frame, event, arg):
 
 sys.settrace(traceit)
 main()
-

@@ -24,6 +24,7 @@ int(time.time())
 
 epoch -> time
 time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
+NO USAR! time.localtime() parece que no entiende de timezones
 
 
 ## con datetime
@@ -31,7 +32,10 @@ datetime -> epoch
 datetime.datetime.now().strftime('%s')
 
 epoch -> datetime
-datetime.datetime.fromtimestamp(1284286794)
+import datetime
+import pytz
+datetime.datetime.fromtimestamp(1284286794, pytz.utc)
+print(datetime.datetime.fromtimestamp(1486398480, pytz.utc).strftime("%d/%m/%Y %H:%M:%S %z"))
 
 
 >>> print(datetime.now().strftime("%H:%M:%S"))

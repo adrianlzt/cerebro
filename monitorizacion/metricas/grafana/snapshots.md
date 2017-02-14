@@ -78,4 +78,7 @@ helper_generate.js [Path] [Dashboard] [outputType] [waitTime in Seconds] [paperF
     outputType: pdf, png, jpg
 
 A3: {"height":2500,"width":1635}
+A4: {"height":2500,"width":1122}
+Tabloid: {"height":2432,"width":1532}
+
 

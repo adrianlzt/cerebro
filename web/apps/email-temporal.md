@@ -1,4 +1,8 @@
 http://temp-mail.org/es/
+https://www.mailinator.com/  permite recibir correos antes de generar el correo
+https://10minutemail.com/
+
+# Temp-mail
 
 API
 https://temp-mail.org/es/api

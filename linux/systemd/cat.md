@@ -1,0 +1,3 @@
+systemd-cat [OPTIONS...] {COMMAND} ...
+
+Execute process with stdout/stderr connected to the journal.

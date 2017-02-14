@@ -9,6 +9,18 @@ export OCF_ROOT=/usr/lib/ocf
 export OCF_RESKEY_volgrpname="vg_MySQL"
 /usr/lib/ocf/resource.d/heartbeat/LVM status
 
+Debug del lvm status
+OCF_ROOT=/usr/lib/ocf OCF_RESKEY_volgrpname="vg_pnp4nagios" bash -x  /usr/lib/ocf/resource.d/heartbeat/LVM status
+
+
+# Como funciona el ocf de LVM
+Comprueba si el directorio /dev/NOMBREVOLUMEN existe
+Si existe, hace un cd dentro y un ls. Si el ls está vacío 
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Configuring_the_Red_Hat_High_Availability_Add-On_with_Pacemaker/s1-exclusiveactive-HAAA.html
+
+
+
+
 
 # crm ra
 Mirar las clases de resources disponibles:

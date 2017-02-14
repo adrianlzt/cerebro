@@ -1,5 +1,5 @@
 Releer repos
-yum clean metadata
+yum clean expire-cache
 
 No hacer caso a las gpg key
 --nogpgcheck

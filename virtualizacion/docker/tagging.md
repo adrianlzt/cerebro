@@ -11,7 +11,7 @@ Taggear un container:
 docker commit -m "commit message" -author "autor" <container-id> adrianlzt/imagen 4.2
 
 También podemos tagear una imagen:
-docker tag imagen adrianlzt/imagen 1.5
+docker tag XXXXXXX adrianlzt/imagen 1.5
 
 Poner el tag latest a una version
 docker tag tools/coso:1.5 tools/coso:latest

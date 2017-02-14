@@ -32,6 +32,9 @@ pacman -Q
 pacman -Qs
   algo más de info
 
+Info de un paquete instalado (nos dice tambien quien depende del paquete):
+pacman -Qi
+
 Paquetes de yaourt (foreign):
 pacman -Qm
 
