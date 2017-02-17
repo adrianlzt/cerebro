@@ -9,7 +9,7 @@ if this then that
 
 ## Trigger
 Usar un curl para iniciar un IFTTT
-Entrar en https://maker.ifttt.com/use/bgnEtvX0mVoFGPueo04Vx6 para ver las URLs y el formato de envio
+Entrar en https://maker.ifttt.com/use/bntv0VFPe0V para ver las URLs y el formato de envio
 
 ## Actions
 Usar un webservice para terminar un IFTTT

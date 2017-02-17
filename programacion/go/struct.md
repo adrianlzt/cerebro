@@ -1,5 +1,8 @@
 https://gobyexample.com/structs
 
+Libreria para trabajar con structs: https://github.com/fatih/structs
+Simplifica algunas tareas, como crear un mapping a partir de un struct, comprobar valores, etc
+
 type person struct {
     name string
     age  int

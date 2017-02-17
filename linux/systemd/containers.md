@@ -1,0 +1,1 @@
+../../virtualizacion/lxc/container_from_scratch.md

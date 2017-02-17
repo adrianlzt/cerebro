@@ -1,9 +1,62 @@
+https://www.freedesktop.org/software/systemd/man/systemd.timer.html
+https://wiki.archlinux.org/index.php/Systemd/Timers
+
+Ver times activados:
+systemctl list-timers
+
+Debemos activar y arrancar el timer:
+systemctl enable xxx.timer
+systemctl start xxx.timer
+
+Tenemos que declarar el service y el timer
+
+Se pueden definir timer relativos a el boot del sistema, arranque/parada del servicio, etc
+
+
+Formato de la fecha https://www.freedesktop.org/software/systemd/man/systemd.time.html#
+Thu,Fri 2012-*-1,5 11:12:13
+The above refers to 11:12:13 of the first or fifth day of any month of the year 2012, but only if that day is a Thursday or Friday.
+
+minutely, hourly, daily, monthly, weekly, yearly, quarterly, semiannually
+
+Cada 15 minutos:
+OnCalendar=*:0/15
+
+Cada 10 segundos:
+OnCalendar=*:*:0/10
+
+
+Persistent=true
+It starts once immediately if it missed the last start time
+
+
+Lanzar acciones dentro de un tiempo:
+systemd-run --user --on-active=4 echo "jose"
+
+Ejecutar algo cada 5s, pero por lo que veo en los logs no hace mucho caso
+systemd-run --user --on-calendar="*:*:0/5" echo "xxx"
+
+
+
+
+nombre.timer
 [Unit]
-Description=Run DuckDNS every 5 minutes
-# https://www.freedesktop.org/software/systemd/man/systemd.timer.html
+Description=Run DuckDNS every minute
 
 [Timer]
-OnCalendar=*:0/15
+OnCalendar="minutely"
 
 [Install]
 WantedBy=timers.target
+
+
+
+
+nombre.service
+[Unit]
+Description=DuckDNS update job
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/duckdns
+

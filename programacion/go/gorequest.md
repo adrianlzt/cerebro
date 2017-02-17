@@ -5,7 +5,8 @@ resp, body, errs := gorequest.New().Get("http://example.com/").End()
 
 CUIDADO! si nos devuelven un codigo 40x, 50x, etc, no lo considera error
 
-
+Mirar ejemplo:
+gorequest_json.go
 
 # Proxy
 request := gorequest.New().Proxy("http://proxy:999")

@@ -115,3 +115,10 @@ func rutina(wg *sync.WaitGroup) {
   defer wg.Done()
   ...
 }
+
+
+# Extraer un valor de un canal tipo X para meterlo en un canal tipo []X
+input :=  make(chan int, 100)
+...
+output := make(chan []int, 100)
+output <- []int{<-input} // Generamos un array de int y lo inicializamos con el valor obtenido de input

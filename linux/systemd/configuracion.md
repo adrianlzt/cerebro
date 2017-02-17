@@ -105,6 +105,7 @@ Before=xxx.service
 [Service]
 ExecStart=/bin/bash -c '/usr/bin/docker start -a apache || /usr/bin/docker run --name apache -p 80:80 coreos/apache /usr/sbin/apache2ctl -D FOREGROUND'
 ExecStartPost=/usr/bin/etcdctl set /domains/example.com/10.10.10.123:8081 running
+# ExecStartPre=
 ExecStop=/usr/bin/docker stop apache
 ExecStopPost=/usr/bin/etcdctl rm /domains/example.com/10.10.10.123:8081
 
@@ -144,14 +145,39 @@ foo@.service funciona como configuración para cualquier foo<CUALQUIERCOSA>.serv
 http://www.freedesktop.org/software/systemd/man/systemd.service.html
 
 Restart=
-no
-always
-on-success
-on-failure
-on-abnormal
-on-abort
-on-watchdog
+no (por defecto)
+always (the service will be restarted regardless of whether it exited cleanly or not, got terminated abnormally by a signal, or hit a timeout)
+on-success (solo se reinicia si el proceso ha salido con un RC=0, o tras una señal SIGHUP, SIGINT, SIGTERM or SIGPIPE, o con un RC o señal especificado en SuccessExitStatus)
+on-failure (the service will be restarted when the process exits with a non-zero exit code, is terminated by a signal (including on core dump, but excluding the aforementioned four signals), when an operation (such as service reload) times out, and when the configured watchdog timeout is triggered)
+on-abnormal (the service will be restarted when the process is terminated by a signal (including on core dump, excluding the aforementioned four signals), when an operation times out, or when the watchdog timeout is triggered)
+on-abort (the service will be restarted only if the service process exits due to an uncaught signal not specified as a clean exit status)
+on-watchdog (the service will be restarted only if the watchdog timeout for the service expires)
 
+As exceptions to the setting above, the service will not be restarted if the exit code or signal is specified in RestartPreventExitStatus= (see below). Also, the services will always be restarted if the exit code or signal is specified in RestartForceExitStatus= (see below).
+
+Setting this to on-failure is the recommended choice for long-running services, in order to increase reliability by attempting automatic recovery from errors. For services that shall be able to terminate on their own choice (and avoid immediate restarting), on-abnormal is an alternative choice.
+
+RestartSec=100ms
+Tiempo que espera antes de reiniciar (por defecto 100ms)
+
+
+# Watchdog
+Podemos diseñar nuestra app para que envie periódicamente señales a systemd de que está bien, y actuar si no se recibe esta señal.
+WatchdogSec
+
+
+# User
+https://www.freedesktop.org/software/systemd/man/systemd.exec.html#
+
+[Service]
+User=someuser
+
+
+# Kill
+https://www.freedesktop.org/software/systemd/man/systemd.kill.html
+
+KillSignal=SIGINT
+por defecto, para parar un servicio, se envia SIGTERM
 
 
 # Unidad para hacer pruebas

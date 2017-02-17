@@ -37,6 +37,11 @@ ejemplo de implementacion
 
 Se deben usar claves de al menos 2048 bits, 1024 puede que sean inseguras.
 
+https://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.ht://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.htm
+NIST offered a table of proposed key sizes for discussion at its key management workshop in November 2001 [7]. For data that needs to be protected no later than the year 2015, the table indicates that the RSA key size should be at least 1024 bits. For data that needs to be protected longer, the key size should be at least 2048 bits.
+
+https://www.keylength.com/en/4/
+
 https://www.openssl.org/docs/manmaster/man1/rsautl.html
 
 echo 'Hi Alice! Please bring malacpörkölt for dinner!' |

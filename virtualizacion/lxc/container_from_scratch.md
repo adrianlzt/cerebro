@@ -4,12 +4,12 @@
 Practicas sobre una debian 7.7
 
 Notas para hacerlo en arch:
-Usar busybox de la web, el de pacman tiene linkado dinámico, por lo que nos pedirá tambien ciertas librerias en /lib
+  (parece que ya funciona con el de pacman) Usar busybox de la web, el de pacman tiene linkado dinámico, por lo que nos pedirá tambien ciertas librerias en /lib
 Cambiar el PATH, ya que el del sistema no tiene /bin, /sbin...
 
 
 Necesitamos tener instalado:
-  ystemd
+  systemd
   busybox
 
 mkdir /contenedor
@@ -24,7 +24,7 @@ touch etc/os-release
 cd ..
 
 Antes de hacer un container, vamos a entrar como chroot
-chroot minimal /bin/sh
+sudo chroot minimal /bin/sh
   cambiamos el namespace mount para que ahora nuestro root sea minimal/, y ejecutamos dentro de ese namespace, el comando /bin/sh
 ps
   no funciona, porque tenemos un container pero faltan algunas piezas para que sea completo.
@@ -32,7 +32,7 @@ ps
 exit
   salimos del chroot
 
-systemd-nspawn -D minimal /bin/sh
+sudo systemd-nspawn -D minimal /bin/sh
   aqui, además del namespace mount tenemos el pid.
 
 ps aux

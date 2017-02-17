@@ -1,9 +1,27 @@
+https://www.maikel.pro/blog/current-state-certificate-revocation-crls-ocsp/
+
+# OCSP
+Online Certificate Status Protocol
+
+Se pregunta a la CA solo por el certificado que necesitamos.
+Tiene problemas de privacidad, la CA sabe lo que están haciendo los usuarios
+
+## OCSP Stapling
+El servidor contacta con la CA y le envia al cliente su certificado junto (grapado = stapled) con la verificación de que sigue siendo válido.
+
+
+
+# CRL
 http://www.openssl.org/docs/apps/crl.html
 
 Certificate revocation list 
 
 A certificate revocation list (CRL) is a list of certificates (or more specifically, a list of serial numbers for certificates) that have been revoked, and therefore, entities presenting those (revoked) certificates should no longer be trusted.
 
+Problemas que intenta solventar OCSP:
+  - crece mucho con el tiempo
+  - la sincronización se hace solo de vez en cuando por los clientes
+  - puede que haya un problema solicitando la CRL
 
 Ver la lista de certificados revocados de un fichero crl
 openssl crl -in crl.pem -text -noout

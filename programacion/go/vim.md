@@ -8,3 +8,7 @@ deoplete-go
 
 Comandos:
 :Go<TAB>
+
+
+Instalar dependencias de go:
+:GoInstallBinaries

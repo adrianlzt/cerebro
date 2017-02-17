@@ -1,6 +1,9 @@
 gorequest.md
 una lib un poco más sencilla para hacer http como cliente
 
+ejemplo de cliente con net/http parseando json
+http_client_json.go
+
 
 https://golang.org/pkg/net/http/
 

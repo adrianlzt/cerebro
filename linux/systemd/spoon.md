@@ -5,7 +5,7 @@ Run in isolated containers. Share with collaborators. Migrate between devices.
 
 Correr apps en contenedores.
 
-Mirar virtualizacion/lxc/container_from_scratch.md
+Mirar containers.m.d
 
 
 Requisitos:
