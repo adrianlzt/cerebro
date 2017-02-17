@@ -1,3 +1,7 @@
+# Para generar containers
+https://github.com/systemd/mkosi
+
+
 # Demo - minimal container
 
 

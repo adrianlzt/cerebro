@@ -5,7 +5,10 @@ Run in isolated containers. Share with collaborators. Migrate between devices.
 
 Correr apps en contenedores.
 
-Mirar containers.m.d
+Mirar containers.md
+
+Para generar containers de un SO
+https://github.com/systemd/mkosi
 
 
 Requisitos:
