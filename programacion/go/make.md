@@ -1,4 +1,5 @@
 https://ariejan.net/2015/10/03/a-makefile-for-golang-cli-tools/
+Ejemplo: https://github.com/jwilder/docker-gen/blob/master/Makefile
 
 Makefile:
 # This is how we want to name the binary output

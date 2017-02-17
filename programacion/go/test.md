@@ -4,6 +4,12 @@ https://www.youtube.com/watch?v=ndmB0bj7eyw
 https://talks.golang.org/2014/testing.slide#4
 https://github.com/golang/example
 
+Correr test a mano:
+go test -v
+go test -v -run NameOfTest
+
+Mejor usar Goconvey
+
 
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.
 Por ejemplo: main.go -> main_test.go
