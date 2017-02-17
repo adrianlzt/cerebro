@@ -12,3 +12,48 @@ sudo mkosi --password root
 sudo systemd-nspawn -bi image.raw
 
 La imagen esta pelada, no tiene dnf, ni rpm, ni yum, ni vi, etc
+
+
+
+sudo systemd-nspawn -bi image.raw
+bash-4.3# mkdir -p /root/.config/systemd/user/
+bash-4.3# echo -e "[Unit]\nDescription=test\n\n[Service]\nType=oneshot\nExecStart=/bin/false" > /root/.config/systemd/user/test.service
+bash-4.3# systemctl --user daemon-reload
+bash-4.3# systemctl --user start test
+Job for test.service failed because the control process exited with error code.
+See "systemctl --user status test.service" and "journalctl --user -xe" for details.
+
+
+
+
+
+int bus_wait_for_jobs(BusWaitForJobs *d, bool quiet, const char* const* extra_args)
+->
+static int check_wait_response(BusWaitForJobs *d, bool quiet, const char* const* extra_args)
+->
+static void log_job_error_with_service_result(const char* service, const char *result, const char* const* extra_args)
+
+
+
+
+Antes:
+const char *extra_args
+systemctl_extra_args = strjoin("systemctl ", extra_args, " ", NULL);
+
+
+Primer cambio:
+const char** extra_args
+if (extra_args && extra_args[1]) {
+        assert(extra_args[0] == NULL);
+        extra_args[0] = "systemctl";
+        systemctl = _systemctl = strv_join((char**) extra_args, " ");
+
+Segundo cambio:
+const char* const* extra_args
+if (extra_args && extra_args[1]) {
+        _cleanup_free_ char *t;
+
+        t = strv_join((char**) extra_args, " ");
+        systemctl = strjoina("systemctl ", t ? : "<args>");
+        journalctl = strjoina("journalctl ", t ? : "<args>");
+
