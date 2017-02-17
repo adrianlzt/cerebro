@@ -33,6 +33,8 @@ systemctl edit unit
 
 Copiar una unidad al directorio de unidades custom (/etc/systemd/system/unit) y editarla (intentar usar el método anterior mejor):
 systemctl edit --full unit
+systemctl edit --full -force unit.service
+  la genera si no existe
 
 
 
