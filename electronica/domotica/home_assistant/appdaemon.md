@@ -62,6 +62,11 @@ El callback se definirá con estos params:
 def state_change(self, entity, attribute, old, new, kwargs):
 
 
+### Leer un estado
+https://home-assistant.io/ecosystem/appdaemon/api/#get_state
+get_state(entity = None, attribute = None)
+
+
 ### Loop
 do_every(period,f)
 
@@ -82,3 +87,18 @@ self.toggle("light.living_room")
 self.turn_on("light.drive")
 self.set_state("sensor.lavadora", state = "6")
   state debe ser una string
+
+
+
+### Scheduler
+https://home-assistant.io/ecosystem/appdaemon/api/#run_minutely
+Correr un callback cada minuto
+self.run_minutely(self.run_minutely_c)
+
+def run_minutely_c(self, kwargs):
+  ...
+
+
+### Time / Date
+Para trabajar con horas y fechas homeassistant tiene una lib
+https://github.com/home-assistant/home-assistant/blob/master/homeassistant/util/dt.py

@@ -85,3 +85,4 @@ datetime.datetime.now().replace(tzinfo=tz.gettz('Europe/Madrid')).astimezone(tz.
 >>> datetime.datetime.strptime("10/11/2015","%d/%m/%Y")
 datetime.datetime(2015, 11, 10, 0, 0)
 
+datetime.datetime.strptime("2008-09-03T20:56:35.450686Z", "%Y-%m-%dT%H:%M:%S.%fZ")
