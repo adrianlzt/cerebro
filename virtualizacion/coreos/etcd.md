@@ -11,6 +11,13 @@ Fast: benchmarked 1000s of writes/s per instance
 Reliable: Properly distributed using Raft
 
 
+
+Cliente etcdctl con docker:
+docker pull tenstartups/etcdctl
+docker run -it --rm tenstartups/etcdctl -C http://172.16.2.23:2379 member list
+
+
+
 Ejemplos:
 
 Set a key message with value Hello world:
