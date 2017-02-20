@@ -12,20 +12,31 @@ Reliable: Properly distributed using Raft
 
 
 
-Cliente etcdctl con docker:
-docker pull tenstartups/etcdctl
+# etcdctl / CLI
+https://github.com/coreos/etcd/tree/master/etcdctl
+
+
+## con docker
 docker run -it --rm tenstartups/etcdctl -C http://172.16.2.23:2379 member list
 
 
 
+# API
+
+Parece que la v3 no soporta JSON, es gRPC.
+v2 si soporta JSON
+
 Ejemplos:
 
+Ver keys definidas:
+curl -L http://127.0.0.1:2379/v2/keys
+
 Set a key message with value Hello world:
-curl -L http://127.0.0.1:4001/v1/keys/message -d value="Hello world"
+curl -L http://127.0.0.1:2379/v2/keys/message -d value="Hello world"
 
 
 Read the value of message back:
-curl -L http://127.0.0.1:4001/v1/keys/message
+curl -L http://127.0.0.1:2379/v2/keys/message
 
 
 Ejemplo teórico de un HA de postgresql usando etcd
