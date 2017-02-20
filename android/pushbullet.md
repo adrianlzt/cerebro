@@ -44,6 +44,9 @@ curl -H 'Content-Type: application/json' -H 'Access-Token: MITOKEN' https://api.
 Enviar a otra persona:
 Poner "email": "otra@persona.com" en el JSON
 
+Borar push
+curl -XDELETE -H 'Content-Type: application/json' -H 'Access-Token: MITOKEN' https://api.pushbullet.com/v2/pushes/udxSasjz2LcxwwXk
+
 
 # Programar envio
 at 14:50
