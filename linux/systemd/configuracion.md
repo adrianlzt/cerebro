@@ -29,6 +29,7 @@ Mostrar el contenido de una:
 systemctl cat unit
 
 Crear un fichero de override para cambiar ciertos parametros (/etc/systemd/system/unit.d/override.conf)
+Para hacer override de algunos parametros (como ExecStart), tendremos que definirlo primero vacio y luego con el valor que queremos poner.
 systemctl edit unit
 
 Copiar una unidad al directorio de unidades custom (/etc/systemd/system/unit) y editarla (intentar usar el método anterior mejor):
