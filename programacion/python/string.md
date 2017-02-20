@@ -178,3 +178,10 @@ if not cmd:
 
 >>> 'a string'.encode('utf-8')
 b'a string'
+
+
+
+# Fuzzy search
+http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
+
+Buscar cadenas parecidas

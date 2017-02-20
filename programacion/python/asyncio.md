@@ -1,4 +1,5 @@
 https://docs.python.org/3/library/asyncio.html
+https://pymotw.com/3/asyncio/
 http://www.snarky.ca/how-the-heck-does-async-await-work-in-python-3-5
   este último es muy bueno. Tiene un ejemplo casi al final muy bueno para entender todo esto. Lo he comentado aún más en async_snarky_example.py
 curio.md  coroutine concurrency library. Más rápida y pequeña que asyncio. No extensible
@@ -179,11 +180,16 @@ logging.getLogger('asyncio').setLevel(logging.WARNING)
 
 
 # Librerias para asyncio
+https://github.com/aio-libs
 
 Si queremos usar HTTP:
 to do HTTP requests you either have to construct the HTTP request yourself by hand, use a project like the aiohttp framework (https://pypi.python.org/pypi/aiohttp) which adds HTTP on top of another event loop (in this case, asyncio), or hope more projects like the hyper library (https://pypi.python.org/pypi/hyper) continue to spring up to provide an abstraction for things like HTTP which allow you to use whatever I/O library you want (although unfortunately hyper only supports HTTP/2 at the moment).
 
 Requests no se puede usar: the synchronous I/O that requests uses is baked into its design (https://github.com/kennethreitz/requests/issues/2801)
+
+https://github.com/aio-libs/async-timeout
+Para lanzar bloques de código con un timeout maximo
+Puede sustituir a asyncio.wait_for()
 
 
 
@@ -204,3 +210,7 @@ yield from asyncio.ensure_future(close())
 yield from asyncio.sleep(2.0)
 
 Se llama a create, write y close secuencialmente
+
+
+Ejemplo de producer/consumer con asyncio.Queue
+https://gist.github.com/akrylysov/ebab39ca9dafd292916e
