@@ -12,6 +12,8 @@ flake8
 pylint
 pydocstyle
 
+pip install flake8 pylint pydocstyle
+
 Ejemplo de como usarlos: https://home-assistant.io/developers/development_testing/
 
 
