@@ -13,6 +13,9 @@ Si el certificado del servidor lleva alguna autoridad certificadora adjunto, ten
 
 # Openssl
 http://www.openssl.org/docs/apps/verify.html
-openssl verify -verbose -CAfile Certificate-Authority.crt user.pem 
+openssl verify -verbose -CApath /dev/null -CAfile Certificate-Authority.crt user.pem 
 
 Hay que tener cuidado con el comando openssl, porque puede coger los certificados del SO
+
+No podemos crear un dir para pasarlo a CAfile, necesita un formato especial.
+Si no pasamos un dir valido, usa el del SO.

@@ -40,3 +40,23 @@ def lazy_range(up_to):
             yield index
             index += 1
     yield from gratuitous_refactor()
+
+
+
+
+Ejemplo facil de un generador
+def multiple(cadena):
+    split = cadena.split(".")
+
+    if len(split) == 2:
+        yield cadena
+    else:
+        for i in split:
+            yield i+"."
+
+cadena = "mi.texto.con.cosas"
+for x in multiple(cadena):
+    print(x)
+
+Si "cadena" tiene solo un punto, nos devuelve la cadena tal cual.
+Si tienes más de un punto, nos devuelve la cadena troceada: "mi.", "texto.", etc
