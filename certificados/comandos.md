@@ -22,6 +22,7 @@ openssl verify -verbose -CAfile Certificate-Authority.crt user.pem
 
 
 # Ver certificado
+https://raw.githubusercontent.com/adrianlzt/certificateReader/master/certificateReader.sh
 certificateReader.sh
 
 file fichero
