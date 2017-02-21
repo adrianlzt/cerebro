@@ -6,5 +6,5 @@ on_die()
 	exit 0
 }
  
-# register on_die on TERM signal (SIGTERM) and INTERRUPT
-trap 'on_die' TERM
+# register on_die on SIGTERM signal
+trap 'on_die' SIGTERM
