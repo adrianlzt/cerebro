@@ -36,6 +36,11 @@ Parsear numeros (type=[float,int]):
   parser.add_argument('--timeout-cinder', '-C', help='Number of seconds to wait for volume creation before timeout',
       dest=OpenstackConstants.KEY_TIMEOUT_CINDER, action='store',required=False, default=OpenstackConstants.DEFAULT_TIMEOUT_CINDER,type=int)
 
+Tambien se pueden pasar ficheros:
+parser.add_argument("-c", "--cert", type=file, dest="cert", help="Server cert to check")
+contenido_fichero = args.cert.read()
+
+
 
 p.add_argument("-G", "--no_graph", action="store_const", dest="graph", help="Not show graphic", default=True, const=False)
   Si ponemos '-G', la variable "graph" se pone a False, si no, True.
