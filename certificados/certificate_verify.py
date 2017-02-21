@@ -2,20 +2,32 @@
 #
 # http://www.yothenberg.com/validate-x509-certificate-in-python/
 #
-# Los certificados deben ser tipo pem
+# Los certificados deben ser tipo pem o der
 #
 
 from OpenSSL import crypto
 import argparse
 
-def verify(cert_pem, trusted_cert_pems):
+def read_cert(cert):
+    cert_content = cert.read()
 
-    certificate = crypto.load_certificate(crypto.FILETYPE_PEM, cert_pem.read())
+    try:
+        certificate = crypto.load_certificate(crypto.FILETYPE_PEM, cert_content)
+    except crypto.Error:
+        # Fallo al leer certificado tipo PEM, probamos con DER (ASN1)
+        certificate = crypto.load_certificate(crypto.FILETYPE_ASN1, cert_content)
+        pass
+
+    return certificate
+
+
+def verify(cert, trusted_certs):
+    certificate = read_cert(cert)
 
     # Create and fill a X509Sore with trusted certs
     store = crypto.X509Store()
-    for trusted_cert_pem in trusted_cert_pems:
-        trusted_cert = crypto.load_certificate(crypto.FILETYPE_PEM, trusted_cert_pem.read())
+    for tc in trusted_certs:
+        trusted_cert = read_cert(tc)
         store.add_cert(trusted_cert)
 
     # Create a X590StoreContext with the cert and trusted certs

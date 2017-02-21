@@ -4,7 +4,7 @@ key: llave
 
 X509: estandar que define certificados
 Estos certificados pueden tener dos encodings:
-  - der: binario. Suelen tener la extension .der, .cer o .crt
+  - der (ASN.1): binario. Suelen tener la extension .der, .cer o .crt
   - pem: ascii, comiezan por "--- BEGIN". Suelen tener la extension .cer o .crt
 
 Los certificandos siempre almacenan claves públicas
