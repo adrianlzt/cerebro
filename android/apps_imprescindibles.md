@@ -89,8 +89,6 @@ ConnectBot
 	org.connectbot
 Cámara
 	com.google.android.GoogleCamera
-Danone
-	com.innofis.danone.pincode.mobile.android
 DIoTY
 	co.dioty.app654321
 Dropbox
@@ -117,20 +115,14 @@ Inbox
 	com.google.android.apps.inbox
 ING Direct
 	www.ingdirect.nativeframe
-Ingenieros
-	com.cajaingenieros.android.bancamovil
 Juasapp
 	es.mrcl.app.juasapp
 Keep
 	com.google.android.keep
-Keepass2Android
-	keepass2android.keepass2android
 List My Apps
 	de.onyxbits.listmyapps
 Marcador de Hangouts
 	com.google.android.apps.hangoutsdialer
-Mi Fibra Ono
-	es.ono.MiOno
 My Maps
 	com.google.android.apps.m4b
 mytaxi
