@@ -5,6 +5,10 @@ http://www.electrodragon.com/
 
 https://www.elecrow.com
 
+# Amazon
+Mirar la tienda SODIAL
+https://www.amazon.fr/s/ref=bl_dp_s_web_590748031?ie=UTF8&node=590748031&field-brandtextbin=SODIAL%28R%29
+
 # Australia
 http://www.buildcircuit.com.au/
 parece que envios gratis a francia
