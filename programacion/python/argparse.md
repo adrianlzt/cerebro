@@ -50,6 +50,9 @@ Si queremos que la ayuda muestre los valores por defecto:
 http://stackoverflow.com/questions/12151306/argparse-way-to-include-default-values-in-help
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
+Tambien tenemos disponible la variable "defaults". Ejemplo con python3:
+help='One or more RegEx that match the names of the container(s) to check. If omitted all containers are checked. (default: %(default)s)')
+
 
 # Subcomandos
 Mirar parser_subcommands.py

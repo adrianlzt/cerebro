@@ -4,13 +4,16 @@ http://www.shashlik.io/
 yaourt -S shashlik-bin
 
 Mirar que el .apk esté para x86
-aapt dump badging File.apk | grep native-code
+/opt/android-sdk/build-tools/25.0.1/aapt dump badging File.apk | grep native-code
 
 Instalar la apk:
 shashlik-install File.apk
 
+Ver apks instaladas:
+ls -la /home/adrian/.local/share/shashlik/
+
 Ejecutarla:
-shashlik-run ? ?
+shashlik-run com.carrefour.android.app.eshop Drive
 
 
 

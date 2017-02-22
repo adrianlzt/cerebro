@@ -192,6 +192,9 @@ Para lanzar bloques de código con un timeout maximo
 Puede sustituir a asyncio.wait_for()
 
 
+https://aiomas.readthedocs.io/en/latest/
+Paso de mensajes (RPC) para multi-systems
+
 
 # Ejemplos
 https://docs.python.org/3/library/asyncio-dev.html
