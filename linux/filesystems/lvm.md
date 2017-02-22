@@ -95,3 +95,9 @@ vgchange -ay vg_XXX
 
 Desactivar:
 vgchange -an vg_XXX
+
+
+
+# Autoextension
+ejemplo de conf para que un pool se pueda extender automáticamente sobre un group
+https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/for-a-direct-lvm-mode-configuration
