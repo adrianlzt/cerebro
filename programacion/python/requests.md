@@ -37,7 +37,7 @@ http://httpbin.org/get?key2=value2&key1=value1
 r = requests.post("http://httpbin.org/post", data = {"key":"value"})
 
 Post de JSON:
-r = requests.post(url, data=json.dumps(payload))
+r = requests.post(url, json=payload)
 
 
 ### multipart/form-data

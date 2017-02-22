@@ -185,3 +185,12 @@ b'a string'
 http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
 
 Buscar cadenas parecidas
+
+
+
+# String literals / Python3
+https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
+Meter variables directamente en una string
+
+f"Mi nombre es {nombre}"
+
