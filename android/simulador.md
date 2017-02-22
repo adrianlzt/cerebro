@@ -15,6 +15,11 @@ ls -la /home/adrian/.local/share/shashlik/
 Ejecutarla:
 shashlik-run com.carrefour.android.app.eshop Drive
 
+Podemos configurarle un proxy https modificando el /usr/bin/shashlik-run
+En emulator_args agregamos:
+-http-proxy https://localhost/
+
+
 
 
 
