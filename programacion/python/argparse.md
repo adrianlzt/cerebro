@@ -40,6 +40,13 @@ Tambien se pueden pasar ficheros:
 parser.add_argument("-c", "--cert", type=file, dest="cert", help="Server cert to check")
 contenido_fichero = args.cert.read()
 
+Repetir varias veces un parametro:
+parser.add_argument('-i','--input',action='append')
+ asi podemos poner: -i 1 -i 2
+
+parser.add_argument('-i','--input',action='append',nargs=2)
+ esto hace que podamos poner: -i uno dos
+
 
 
 p.add_argument("-G", "--no_graph", action="store_const", dest="graph", help="Not show graphic", default=True, const=False)
@@ -94,3 +101,12 @@ def perfect_square(string):
     return value
 
 parser.add_argument('foo', type=perfect_square)
+
+
+
+# Debug
+import argparse
+parser=argparse.ArgumentParser()
+parser.add_argument("-i", "--input")
+args = parser.parse_args(["-i","coso"])
+args.input
