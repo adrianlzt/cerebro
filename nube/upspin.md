@@ -137,6 +137,29 @@ Como saber que upspin nos ha dado por bueno el dominio?
 Para compbrobar que se ha aplicado el cambio:
 dig -t TXT upspin.undo.it
 
+Ahora parece que tenemos que levantar el server, para luego con el comando setupserver avisar al servidor de claves para que lo verifique.
+
+## Arrancar el server
+Posiblemente tendremos ya el binario construido, si es asi:
+upspinserver -https=localhost:8443
+  asi parece que intenta configurar unos certificados de LetsEncrypt
+
+Si queremos usar self signed certs:
+upspinserver -https=localhost:8443 -log debug -letscache ''
+  los coje de $GOPATH/src/upspin.io/rpc/testdata/{key,cert}.pem
+
+$ curl -k https://localhost:8443
+Unconfigured Upspin Server
+
+Si queremos definir unos certs propios:
+vi ~/upspin/server/serverconfig.json
+{
+  "LetsEncryptCache": "",
+  "CertFile": "/home/adrian/upspin/certs/cert.pem",
+  "KeyFile": "/home/adrian/upspin/certs/key.pem"
+}
+
+
 
 # Dudas
 Un user tiene un unico dir y storage servers? O puede tener varios
