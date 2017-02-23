@@ -14,3 +14,11 @@ export PATH="~/go/bin:$PATH"
 
 Instalar dep:
 go get github.com/rcrowley/go-metrics
+
+
+
+# Gestores dependencias
+Mirar:
+govendor.md
+glock.md
+gdm.md
