@@ -130,15 +130,19 @@ Cuidado, una corutina (task) puede que ser cancelada. Cuidado con suponer que no
 # Ejecutar corutina con un timeout
 https://docs.python.org/3/library/asyncio-task.html#asyncio.wait_for
 
-result = yield from asyncio.wait_for(fut, 60.0)
+result = await asyncio.wait_for(fut, 60.0)
+
+Si salta excepcion la podemos capturar con:
+except asyncio.TimeoutError:
+
 
 Para evitar que cuando salte el timeout cancelemos la corutina usamos shield:
 https://docs.python.org/3/library/asyncio-task.html#asyncio.shield
 
-res = yield from shield(something())
+res = await shield(something())
 
 Quedaría (no probado):
-result = yield from shield(asyncio.wait_for(fut, 60.0))
+result = await shield(asyncio.wait_for(fut, 60.0))
 
 
 

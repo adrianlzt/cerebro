@@ -4,6 +4,9 @@ Podemos atacar la api con curl --unix-socket
 
 curl --unix-socket /var/run/docker.sock http:/v1.22/containers/json
 
+Eventos:
+curl --unix-socket /var/run/docker.sock -X GET http:/v1.22/events?since=1487864355
+
 O si tenemos ip:
 curl 172.16.1.24:2376/containers/json
 
