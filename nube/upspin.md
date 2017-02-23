@@ -151,14 +151,21 @@ upspinserver -https=localhost:8443 -log debug -letscache ''
 $ curl -k https://localhost:8443
 Unconfigured Upspin Server
 
-Si queremos definir unos certs propios:
-vi ~/upspin/server/serverconfig.json
-{
-  "LetsEncryptCache": "",
-  "CertFile": "/home/adrian/upspin/certs/cert.pem",
-  "KeyFile": "/home/adrian/upspin/certs/key.pem"
-}
 
+
+Mirando como obtener certs de LetsEncrypt
+https://github.com/google/acme/releases
+
+Me peto en el container de docker al escribir la conf:
+[root@b7e6b2c919f1 opt]# ./acme reg -gen mailto:adrianlzt@gmail.com
+CA requires acceptance of their Terms and Services agreement:
+https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf
+Do you accept? (Y/n) 
+write config: mkdir : no such file or directory
+
+https://github.com/google/acme/blob/48ecb3cc25766a1a64257f2acd1778904753c434/config.go#L56
+https://github.com/google/acme/blob/48ecb3cc25766a1a64257f2acd1778904753c434/config.go#L98
+Puede que pete u.HomeDir ?
 
 
 # Dudas
