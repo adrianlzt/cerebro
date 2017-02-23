@@ -11,6 +11,10 @@ Fast: benchmarked 1000s of writes/s per instance
 Reliable: Properly distributed using Raft
 
 
+Tamaño máximo de las values:
+https://github.com/coreos/etcd/issues/2992
+The recommended value size is < 1MB
+
 
 # etcdctl / CLI
 https://github.com/coreos/etcd/tree/master/etcdctl
@@ -41,3 +45,4 @@ curl -L http://127.0.0.1:2379/v2/keys/message
 
 Ejemplo teórico de un HA de postgresql usando etcd
 https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/
+
