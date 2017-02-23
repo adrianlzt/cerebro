@@ -1,6 +1,8 @@
 https://github.com/kardianos/govendor
 Go vendor tool that works with the standard vendor file.
 
+Con comandos para facilitar la gestión
+
 Usado por:
   github.com/google/keytransparency/
 

@@ -1,3 +1,5 @@
+pycrypto esta abandonada, usar: https://github.com/Legrandin/pycryptodome
+
 Otra alternativa: M2Crypto
 https://docs.launchkey.com/developer/encryption/python/python-encryption.html
 
