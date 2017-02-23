@@ -1,6 +1,14 @@
 https://upspin.io
+https://news.ycombinator.com/item?id=13700492
 
 Upspin provides a global name space to name all your files. Given an Upspin name, a file can be shared securely, copied efficiently without “download” and “upload”, and accessed from anywhere that has a network connection.
+
+Upspin aims to be a unified protocol for all applications to access (and possibly modify) data, wherever it is: maybe it is your website on your server, maybe it's a NASA dataset on some S3 tenant, maybe it's an imgur gallery, maybe it's an OpenStreetMap dump of their DB; the goal AFAICS is to give any application access to data regardless of where and how it is stored, so that applications can do what they're best at.
+
+Relacion con:
+Camlistore aims to be your repo of all your stuff that you may want to share with other people at a later time. It wants to be the repository of all your life and everything that happens.
+
+Parece que alguno de sus desarrolladores son leyendas de UNIX/Plan9: Rob Pike, David Presotto, Eric Groosse
 
 
 # Usuarios
@@ -99,9 +107,29 @@ Nos genera un comando para recuperar la pareja de claves generadas
 Envia un email de confirmación. En ese email se envia como argumentos el dir y store servers, nuestro email, la clave publica y la fecha.
 
 
+En el log del server de claves de upspin vemos:
+2017-02-23 10:38:32.456037018 +0000 UTC: put attempt by "user@gmail.com": {"Name":"user@gmail.com","Dirs":["remote,dir.upspin.io:443"],"Stores":["remote,store.upspin.io:443"],"PublicKey":"p256\n54412559877835795967908359557052759554876170303422813539464768746508958612212\n57976894149077595223332210302199011153507595840080648007996147972742660618567\n"}
+SHA256:6d4294e999e1ace2997f7fc4be6b30d283be8f40cb51e5f762197090ffe0ed9c
+2017-02-23 10:38:32.874738496 +0000 UTC: put success by "user@gmail.com": {"Name":"user@gmail.com","Dirs":["remote,dir.upspin.io:443"],"Stores":["remote,store.upspin.io:443"],"PublicKey":"p256\n54412559877835795967908359557052759554876170303422813539464768746508958612212\n57976894149077595223332210302199011153507595840080648007996147972742660618567\n"}
+SHA256:ee8667c6a3c2a928027fcb4ef05d24806020818f6e434d76690949b1ae53f2fd
+2017-02-23 10:38:33.171364949 +0000 UTC: put attempt by "user+snapshot@gmail.com": {"Name":"user+snapshot@gmail.com","Dirs":null,"Stores":null,"PublicKey":"p256\n54412559877835795967908359557052759554876170303422813539464768746508958612212\n57976894149077595223332210302199011153507595840080648007996147972742660618567\n"}
+SHA256:ad46d39f6fab36713aab50101bcf262533d80b3da2b540fd22cd6f328623de73
+2017-02-23 10:38:33.696948147 +0000 UTC: put success by "user+snapshot@gmail.com": {"Name":"user+snapshot@gmail.com","Dirs":null,"Stores":null,"PublicKey":"p256\n54412559877835795967908359557052759554876170303422813539464768746508958612212\n57976894149077595223332210302199011153507595840080648007996147972742660618567\n"}
+SHA256:eae82534c01a4ce5011bbfc18aeca35a0b21afa30858fe38d3fa6d3d6fbb9176
+
+
 ## upspinfs
 Montar "fichero" de upspin como un sistema de ficheros local.
 
 
+# Montar un server upsin directory / storage
+https://upspin.io/doc/server_setup.md
+
+
 # Dudas
 Un user tiene un unico dir y storage servers? O puede tener varios
+
+Como se puede cambiar el dir/storage servers que he registrado?
+
+Si se cae el server de claves?
+
