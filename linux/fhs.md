@@ -1,5 +1,6 @@
 http://www.pathname.com/fhs/pub/fhs-2.3.html
 http://es.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
+https://debian-handbook.info/browse/stable/sect.filesystem-hierarchy.html
 
 /bin		: Essential user command binaries (for use by all users)
 /boot		: Static files of the boot loader
@@ -19,3 +20,8 @@ http://es.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
 /sbin		: System binaries
 /srv		: Data for services provided by this system
 /tmp		: Temporary files
+
+
+
+Gestion de ficheros del home:
+https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
