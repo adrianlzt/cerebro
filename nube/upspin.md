@@ -125,6 +125,18 @@ Montar "fichero" de upspin como un sistema de ficheros local.
 # Montar un server upsin directory / storage
 https://upspin.io/doc/server_setup.md
 
+upspin setupdomain -domain=upspin.undo.it
+
+Esto crea un usuario upspin@upspin.undo.it
+La pareja de claves las mete en /home/adrian/upspin/deploy/upspin.undo.it junto con un json de configuración (Addr, User, Bucket)
+Y nos pasa un comando para recuperar en caso de perderlas.
+
+El usuario que tengamos configurado en el fichero de conf de upspin (nuestro user "normal") será el que quede registrado como dueño de este server.
+Para que se pueda verificar que somos dueños del dominio nos pedirá que metamos una entrada TXT en el servidor DNS.
+Como saber que upspin nos ha dado por bueno el dominio?
+Para compbrobar que se ha aplicado el cambio:
+dig -t TXT upspin.undo.it
+
 
 # Dudas
 Un user tiene un unico dir y storage servers? O puede tener varios
@@ -132,4 +144,3 @@ Un user tiene un unico dir y storage servers? O puede tener varios
 Como se puede cambiar el dir/storage servers que he registrado?
 
 Si se cae el server de claves?
-

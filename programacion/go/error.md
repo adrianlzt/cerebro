@@ -6,6 +6,9 @@ https://godoc.org/github.com/spacemonkeygo/errors
 
 Mirar tambien panic.md
 
+Un ejemplo de como gestionar los errores:
+https://github.com/upspin/upspin/blob/master/errors/errors.go
+
 # Error handling
 Tipica estructura de manejo de error
 
