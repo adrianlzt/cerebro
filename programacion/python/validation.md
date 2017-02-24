@@ -17,6 +17,12 @@ pip install flake8 pylint pydocstyle
 Ejemplo de como usarlos: https://home-assistant.io/developers/development_testing/
 
 
+py3status usa
+pytest-flake8
+pytest
+Ejecucción: py.test --flake8
+
+
 Para usar con git:
 https://houndci.com/
 Hound comments on style violations in GitHub pull requests, allowing you and your team to better review and maintain a clean codebase.
