@@ -221,3 +221,9 @@ Se llama a create, write y close secuencialmente
 
 Ejemplo de producer/consumer con asyncio.Queue
 https://gist.github.com/akrylysov/ebab39ca9dafd292916e
+
+
+# REPL
+import asyncio
+loop = asyncio.get_event_loop()
+loop.run_until_complete(etcdcli.read("/prueba"))
