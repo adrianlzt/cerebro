@@ -200,6 +200,15 @@ Ahora si funciona.
 Cambio la conf de /home/adrian/upspin/config para usar el nuevo server
 
 
+Errores en el server:
+2017/02/23 23:55:47.932406 dir/server/tree.sendCurrentAndWatch: error adding watcher: user upspin@upspin.undo.it: dir/server/tree.LogIndex.Root: item
+ does not exist: no root for user
+
+2017/02/23 23:55:48.124979 dir/remote.Put("remote,upspin.undo.it:443")("upspin@upspin.undo.it/") error: I/O error:
+        rpc.Invoke: Post https://upspin.undo.it:443/api/Dir/Put: x509: certificate signed by unknown authority
+
+
+
 
 
 
