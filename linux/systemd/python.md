@@ -16,3 +16,9 @@ svc.Get('org.freedesktop.systemd1.Unit', 'ActiveState')
 
 >>> bus.get('.systemd1', systemd.LoadUnit('vpn-dsn.service')).Get('org.freedesktop.systemd1.Unit', 'ActiveState')
 'active'
+
+
+Para comprobar si existe
+>>> bus.get('.systemd1', systemd.LoadUnit('noexiste123.service')).Get('org.freedesktop.systemd1.Unit', 'LoadState')
+'not-found'
+
