@@ -140,6 +140,8 @@ dig -t TXT upspin.undo.it
 Ahora parece que tenemos que levantar el server, para luego con el comando setupserver avisar al servidor de claves para que lo verifique.
 
 ## Arrancar el server
+
+En el docker:
 Posiblemente tendremos ya el binario construido, si es asi:
 upspinserver -https=localhost:8443
   asi parece que intenta configurar unos certificados de LetsEncrypt
@@ -166,6 +168,50 @@ write config: mkdir : no such file or directory
 https://github.com/google/acme/blob/48ecb3cc25766a1a64257f2acd1778904753c434/config.go#L56
 https://github.com/google/acme/blob/48ecb3cc25766a1a64257f2acd1778904753c434/config.go#L98
 Puede que pete u.HomeDir ?
+
+
+# mkdir /opt/certs
+# ACME_CONFIG=/opt/certs ./acme reg -gen mailto:adrianlzt@gmail.com
+# ACME_CONFIG=/opt/certs ./acme update -accept
+# ACME_CONFIG=/opt/certs ./acme cert upspin.undo.it
+upspin.undo.it: acme: identifier authorization failed
+
+Al final con el container de letsencrypt.
+Copiadas la key y el cert a /opt/upspin_lets/src/upspin.io/rpc/testdata/{key,cert}.pem
+GOPATH=/opt/upspin_lets ./upspinserver -https=0.0.0.0:443 -log debug -letscache ''
+
+
+En mi portatil:
+~/upspin $ upspin setupserver -domain=upspin.undo.it -host=upspin.undo.it
+Successfully put "upspin@upspin.undo.it" to the key server.
+upspin: setupserver: Post https://upspin.undo.it:443/setupserver: x509: certificate signed by unknown authority
+
+Falla porque mi portatil no reconoce la auth LetsEncrypt (curl https://upspin.undo.it falla)
+Meto los certs
+https://letsencrypt.org/certificates/
+~/upspin $ sudo cp /var/tmp/letsencryptauthorityx3.pem /etc/ca-certificates/trust-source/anchors/letsencryptauthorityx3.crt
+~/upspin $ sudo cp /var/tmp/lets-encrypt-x3-cross-signed.pem /etc/ca-certificates/trust-source/anchors/lets-encrypt-x3-cross-signed.crt
+~/upspin $ sudo trust extract-compat
+
+Rehago:
+~/upspin $ upspin setupserver -domain=upspin.undo.it -host=upspin.undo.it
+Ahora si funciona.
+
+Cambio la conf de /home/adrian/upspin/config para usar el nuevo server
+
+
+
+
+
+
+En los logs del key server aparece:
+2017-02-23 23:48:10.94865133 +0000 UTC: put attempt by "adrianlzt@gmail.com": {"Name":"upspin@upspin.undo.it","Dirs":["remote,upspin.undo.it:443"],"Stores":["remote,upspin.undo.it:443"],"PublicKey":"p256\n41873911461133456434581425276487873957514912475078276041559532039115448408110\n75184241457733780434292648239137770537326210917631932241289891072850945979992\n"}
+SHA256:06910008cb38cf7782723baba4c19a2c9771760a0d449654ce19c0ae47703b6a
+2017-02-23 23:48:11.638451515 +0000 UTC: put success by "adrianlzt@gmail.com": {"Name":"upspin@upspin.undo.it","Dirs":["remote,upspin.undo.it:443"],"Stores":["remote,upspin.undo.it:443"],"PublicKey":"p256\n41873911461133456434581425276487873957514912475078276041559532039115448408110\n75184241457733780434292648239137770537326210917631932241289891072850945979992\n"}
+SHA256:84dbd02563ba19fadb753080bc4b98d11c59a1b9c219410263101d3674d1cc4c
+
+
+
 
 
 # Dudas
