@@ -11,6 +11,9 @@ Tener en cuenta que es un tabulador lo que hay antes de gcc
 Si queremos meter un script en bash:
 $$(echo "hola")
 
+Pillar version de un fichero:
+VERSION=$$(cat VERSION)
+
 
 # Autoconf
 The file 'configure.ac' (or 'configure.in') is used to create 'configure' by a program called 'autoconf'.
