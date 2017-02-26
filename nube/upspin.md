@@ -268,9 +268,12 @@ Registrar dirserver y storeserver contra keyserver
 
 It generates keys and config files for Upspin server users, placing them in $where/$domain and generates a signature that proves that the calling Upspin user has control over domain.
 
-./upspin -config ~/upspin/dev/config.dev setupdomain -where /home/adrian/upspin/dev/setupdomain -domain localhost
-Esto unicamente crea las claves en /home/adrian/upspin/dev/setupdomain/DOMINIO/ y un fichero de configuracion (User: upspin@DOMINIO)
 
+/home/adrian/.gvm/pkgsets/go1.8/global/src/upspin.io/cmd/upspin/upspin -config ~/upspin/dev/config.dev setupdomain -where /home/adrian/upspin/dev/setupdomain -domain localhost -cluster
+
+Esto unicamente crea las claves en /home/adrian/upspin/dev/setupdomain/DOMINIO/ y un fichero de configuracion (User: upspin@DOMINIO)
+Un dir para dirserver y otro para storeserver
+Si no especificamos "-cluster" sera solo una conf para todo el server (ya que correran juntos)
 
 
 
