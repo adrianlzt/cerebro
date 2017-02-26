@@ -234,9 +234,44 @@ Si se cae el server de claves?
 
 
 # Develop
-Usar nuestro propio keyserver
+config.dev
+username: adrianlzt@gmail.com
+secrets: /home/adrian/.ssh
+storeserver: remote,store.localhost:8445
+dirserver: remote,dir.localhost:8444
+packing: ee
+keyserver: remote,localhost:8443
+
+Crear un cert autofirmado para *.localhost para usarlo con los servers
+Tendremos que meterlo en el SO para que lo traguen.
+
+## keyserver
 Tendremos que meter el cert de localhost en los certificados que se crea nuestro SO
-keyserver --https 0.0.0.0:8443 -tls_cert localhost.crt -tls_key localhost.key
+Si no definimos mail_config, no levanta el endpoint /signup, suficente con meter tres lineas con algun caracter.
+En el codigo cambiaremos las lineas del m.mail.Send por un log.Printf para ver por el log el link generado.
+
+/home/adrian/.gvm/pkgsets/go1.8/global/src/upspin.io/cmd/keyserver/keyserver -https 0.0.0.0:8443 -tls_cert localhost.crt -tls_key localhost.key -log debug -mail_config mailconfig
+
+Con esto ya podremos registrar usuarios y preguntar por usuarios.
+
+
+## Dirserver
+dirserver -config /home/adrian/upspin/dev/config.dev -https 0.0.0.0:8444 -tls_cert localhost.crt -tls_key localhost.key -log debug
+
+# StoreServer
+Levantar primero el dirserver, ya que al arrancar le preguntara
+storeserver -config /home/adrian/upspin/dev/config.dev -https 0.0.0.0:8445 -tls_cert localhost.crt -tls_key localhost.key -log debug
+
+
+
+Registrar dirserver y storeserver contra keyserver
+
+It generates keys and config files for Upspin server users, placing them in $where/$domain and generates a signature that proves that the calling Upspin user has control over domain.
+
+./upspin -config ~/upspin/dev/config.dev setupdomain -where /home/adrian/upspin/dev/setupdomain -domain localhost
+Esto unicamente crea las claves en /home/adrian/upspin/dev/setupdomain/DOMINIO/ y un fichero de configuracion (User: upspin@DOMINIO)
+
+
 
 
 # Internals
@@ -251,3 +286,37 @@ user@email.com
 
 Se añaden unas cabeceras Upspin-Auth-Request con el usuario que hace le petición, fecha y unas firmas.
 Parece que se gestiona en la funcion Lookup de https://github.com/upspin/upspin/blob/master/key/remote/remote.go
+
+
+
+
+# Contribuir
+https://github.com/upspin/upspin/blob/master/CONTRIBUTING.md#contributing-code
+https://golang.org/doc/contribute.html#Code_review
+
+Se hace usando Gerrit: https://upspin-review.googlesource.com
+
+Hacer signup para registrarnos
+
+Generar password: https://upspin.googlesource.com/new-password
+
+Firmar CLA https://developers.google.com/open-source/cla/individual
+
+Bajar git-codereview
+go get -u golang.org/x/review/git-codereview
+
+
+git co master
+git sync
+Hacer cambios
+git add ficheros
+git change nombre_rama
+  Esto nos abre la ventana de commit. La primera linea debe ser
+  pkg afectado: que sucede (aqui debe ir lo que siguiria a "Este cambio modifica upspin para....")
+  subject debe ser <= que 64 chars
+  las lineas <= 70 chars
+Si queremos, podemos meter mas ficheros en el git y volver a hacer el git change.
+
+Cuando querramos enviar:
+git mail
+
