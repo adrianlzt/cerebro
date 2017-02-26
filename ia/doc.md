@@ -68,3 +68,8 @@ An all-in-one Docker image for deep learning. Contains all the popular DL framew
 https://www.floydhub.com/
 FloydHub is Heroku for DL
 
+
+Machine Learning from scratch: Bare bones implementations in Python
+https://news.ycombinator.com/item?id=13732288
+https://github.com/eriklindernoren/ML-From-Scratch
+
