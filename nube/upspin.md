@@ -235,11 +235,16 @@ Si se cae el server de claves?
 
 # Develop
 Usar nuestro propio keyserver
+Tendremos que meter el cert de localhost en los certificados que se crea nuestro SO
+keyserver --https 0.0.0.0:8443 -tls_cert localhost.crt -tls_key localhost.key
 
 
 # Internals
 
 ## Keyserver
+Registro:
+POST /signup?dir=dir.example.com%3A443&key=p256%0A54412559877960618567%0A&name=user%40gmail.com&store=store.example.com%3A443
+
 Cuando el cliente necesita obtener el DirServer de un cliente envia al keyserver:
 POST /api/Key/Lookup
 user@email.com
