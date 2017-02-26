@@ -57,3 +57,7 @@ ncat --ssl ing.ingdirect.es 443
   creo que esta es la version de nmap
 
   ncat -kl -p 8443 --ssl --ssl-cert /etc/ssl/host.crt --ssl-key /etc/ssl/host.key
+
+
+Tunel, escucho ssl en 8446 y lo redirigo a https://127.0.0.1:8445
+ncat -kl 8446 --ssl  -c 'tee /dev/stderr | ncat -v --ssl 127.0.0.1 8445 | tee /dev/stderr'

@@ -245,6 +245,9 @@ keyserver: remote,localhost:8443
 Crear un cert autofirmado para *.localhost para usarlo con los servers
 Tendremos que meterlo en el SO para que lo traguen.
 
+Para hacer pruebas con mi user parece que es suficiente con usar un store y dir server.
+Los levantamos, creamos un dir y metemos un fichero.
+
 ## keyserver
 Tendremos que meter el cert de localhost en los certificados que se crea nuestro SO
 Si no definimos mail_config, no levanta el endpoint /signup, suficente con meter tres lineas con algun caracter.
@@ -274,6 +277,7 @@ It generates keys and config files for Upspin server users, placing them in $whe
 Esto unicamente crea las claves en /home/adrian/upspin/dev/setupdomain/DOMINIO/ y un fichero de configuracion (User: upspin@DOMINIO)
 Un dir para dirserver y otro para storeserver
 Si no especificamos "-cluster" sera solo una conf para todo el server (ya que correran juntos)
+
 
 
 
