@@ -7,3 +7,7 @@ Otra opción:
 go run *.go
 
 Se buscará la función main en todos ellos.
+
+
+Para proyectos grandes haremos:
+go build && ./program

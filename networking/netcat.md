@@ -55,3 +55,5 @@ nc -klu 8080
 # SSL
 ncat --ssl ing.ingdirect.es 443
   creo que esta es la version de nmap
+
+  ncat -kl -p 8443 --ssl --ssl-cert /etc/ssl/host.crt --ssl-key /etc/ssl/host.key

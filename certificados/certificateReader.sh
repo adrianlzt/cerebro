@@ -1,1 +1,1 @@
-/home/adrian/dsn/certificateReader/certificateReader.sh
+/home/adrian/dsn/certificateUtils/certificateReader.sh

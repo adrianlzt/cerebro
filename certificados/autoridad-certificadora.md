@@ -15,11 +15,13 @@ Hacer todo como root, si no, falla al firmar el certificado.
 
 
 # Estructura básica
-mkdir -m 0755 /etc/pki_jungle/{myCA,myCA/private,myCA/certs,myCA/newcerts,myCA/crl}
-cp /etc/pki/tls/openssl.cnf /etc/pki_jungle/myCA/openssl.my.cnf
+mkdir -p -m 0755 /etc/pki_jungle/{myCA,myCA/private,myCA/certs,myCA/newcerts,myCA/crl}
+cp /etc/ssl/openssl.cnf /etc/pki_jungle/myCA/openssl.my.cnf
 chmod 0600 /etc/pki_jungle/myCA/openssl.my.cnf
 touch /etc/pki_jungle/myCA/index.txt
 echo '01' > /etc/pki_jungle/myCA/serial
+
+en vez de /etc/ssl puede ser /etc/pki/tls
 
 
 # Crear CA
@@ -33,6 +35,9 @@ openssl req -config openssl.my.cnf -new -x509 -extensions v3_ca -keyout private/
 
 chmod 0400 /etc/pki_jungle/myCA/private/myca.key
 
+Debemos editar /etc/pki_jungle/myCA/openssl.my.cnf para definir el dir de la seccion [CA_default] a /etc/pki_jungle/myCA/
+
+Estos comando creo que son para OS redhat/centos:
 sed -i s#'/etc/pki/CA'#'.'# /etc/pki_jungle/myCA/openssl.my.cnf
 sed -i  s/'\(^certificate.*\/\).*'/'\1certs\/myca.crt'/ /etc/pki_jungle/myCA/openssl.my.cnf
 sed -i s#'private/cakey.pem'#'private/myca.key'# /etc/pki_jungle/myCA/openssl.my.cnf

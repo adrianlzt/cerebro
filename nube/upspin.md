@@ -229,3 +229,20 @@ Un user tiene un unico dir y storage servers? O puede tener varios
 Como se puede cambiar el dir/storage servers que he registrado?
 
 Si se cae el server de claves?
+
+
+
+
+# Develop
+Usar nuestro propio keyserver
+
+
+# Internals
+
+## Keyserver
+Cuando el cliente necesita obtener el DirServer de un cliente envia al keyserver:
+POST /api/Key/Lookup
+user@email.com
+
+Se añaden unas cabeceras Upspin-Auth-Request con el usuario que hace le petición, fecha y unas firmas.
+Parece que se gestiona en la funcion Lookup de https://github.com/upspin/upspin/blob/master/key/remote/remote.go
