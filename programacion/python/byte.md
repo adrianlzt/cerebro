@@ -138,3 +138,7 @@ Int a hexadecimal formato XX
 
 byte string to string (py3)
 str(bytes_string,'utf-8')
+
+string a bytes (py3)
+bytes("some text", "UTF-8")
+b'some text'
