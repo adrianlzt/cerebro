@@ -2,6 +2,18 @@ https://github.com/golang/dep
 Go dependency tool
 It IS, however, the consensus effort of most of the Go community, and being integrated into the go toolchain is the goal.
 
+Obtener herramienta:
+go get -u github.com/golang/dep/...
+
+
+Crear los ficheros:
+dep init
+
+Meter una dep:
+dep ensure github.com/some/repo@v0.2.1
+
+Si queremos master:
+dep ensure github.com/some/repo@master
 
 
 The tool will use a “two-file system” - a manifest that describes constraints, and a lock that describes a precisely reproducible build
@@ -38,3 +50,8 @@ lock.json
             ]
         }
 }
+
+
+# Errores
+No funciona si el repo es un link
+https://github.com/golang/dep/issues/218
