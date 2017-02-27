@@ -15,6 +15,12 @@ dep ensure github.com/some/repo@v0.2.1
 Si queremos master:
 dep ensure github.com/some/repo@master
 
+Nos mete las dependencias en el directorio vendor/ del proyecto
+
+
+Dep status nos muestra info de las libs que tenemos marcadas, que limitaciones le hemos puesto
+
+
 
 The tool will use a “two-file system” - a manifest that describes constraints, and a lock that describes a precisely reproducible build
 
@@ -55,3 +61,4 @@ lock.json
 # Errores
 No funciona si el repo es un link
 https://github.com/golang/dep/issues/218
+https://github.com/golang/dep/pull/247

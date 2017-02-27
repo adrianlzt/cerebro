@@ -1,6 +1,4 @@
-https://github.com/rackspace/gophercloud
-
-Parece que este es el binding que queda más activo
+https://github.com/gophercloud/gophercloud
 
 
 Llamar a un endpoint que no esta implementado directamente (/v2/3c07d00408924c6081aebacb8e33c4e9/os-availability-zone/detail):
