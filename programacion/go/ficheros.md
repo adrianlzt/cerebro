@@ -4,6 +4,7 @@ https://gobyexample.com/reading-files
 # Leer
 import "io/ioutil"
 dat, err := ioutil.ReadFile("/tmp/dat")
+dat es []byte
 
 Mirar fichero.go
 
