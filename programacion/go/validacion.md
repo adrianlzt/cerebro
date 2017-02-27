@@ -27,3 +27,20 @@ gocyclo -over 15 .
 # Golint
 go get -u github.com/golang/lint/golint
 Corregir el estilo del código
+golint .
+
+
+# ineffassign
+go get github.com/gordonklaus/ineffassign
+variables asignadas y no usadas
+
+ineffassign
+
+
+
+# misspell
+Correct commonly misspelled words in source files
+go get -u github.com/client9/misspell/cmd/misspell
+
+misspell all.html your.txt important.md files.go
+

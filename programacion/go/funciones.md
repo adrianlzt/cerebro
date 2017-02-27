@@ -1,5 +1,7 @@
 ## Funciones ## 
 El tipo de retorno se define al final
+
+Si empiezan por mayúscula se exportan (se pueden llamar desde fuera). Con minúscula son de uso interno.
  
 func add(x int, y int) int {
   return x+y
