@@ -2,6 +2,8 @@ http://docs.python.org/2/tutorial/datastructures.html#looping-techniques
 
 >>> for i, v in enumerate(['tic', 'tac', 'toe']):
 ...     print i, v
+Se puede cambiar el comienzo del index: enumerate([], start=1)
+Por defecto empieza en 0
 
 
 >>> questions = ['name', 'quest', 'favorite color']
