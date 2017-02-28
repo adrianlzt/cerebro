@@ -146,6 +146,15 @@ fmt.Println(url.QueryEscape("hola que tal"))
 hola+que+tal
 
 
+Definir a mano una URL
+u := &url.URL {
+    Scheme: "http",
+    Host: "www.example.com:6000",
+    Path: "recon/diskusage",
+}
+fmt.Println(u)
+
+
 
 # Copiar objeto
 original := url.Parse("http://example.com")
