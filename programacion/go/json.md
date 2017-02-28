@@ -15,6 +15,11 @@ type T struct {
 
 IMPORTANTE: los fields del struct deben empezar por mayúscula
 
+Si vamos a parsear un numero es mejor usar json.Number
+Esta estructura captura el valor, pero no falla si por ejemplo en vez de un número tenemos "".
+A posteriori realizamos la conversión, gestionando si no se puede parsear correctamente.
+Ejemplo: https://play.golang.org/p/9noIXK9imm
+
 
 # Struct a JSON
 type FileContent struct {

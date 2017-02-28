@@ -15,13 +15,16 @@ p[1:3] = [2 3]
 p[2:2] = null
 
 Se pueden crear arrays con un tamaño máximo
-b := make([]int, 2, 5)  Array con capacidad para 5 elementos, inicializado con dos ceros
+b := make([]int, 2, 5)  Array con capacidad para 5 elementos, inicializado con dos ceros (len=2)
 cap(b): capacidad de b
 b[3] = 3  da error, los valores se meten con append.
 b = append(b,3)
 
 
-# Join / Unir
+# Join / Unir / append
+https://play.golang.org/p/x_2tFngxFI
+En ese ejemplo vemos como funciona append. Append agrega elementos al mismo array si hay capacidad, si no, genera uno nuevo doblando la capacidad
+
 append([]int{1,2},[]int{3,4}...)
 
 Si queremos usar esto es una func:

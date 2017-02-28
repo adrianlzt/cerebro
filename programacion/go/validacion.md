@@ -33,6 +33,7 @@ golint .
 # ineffassign
 go get github.com/gordonklaus/ineffassign
 variables asignadas y no usadas
+Go puede que no la detecte porque se use en otra parte, pero que no tenga que ver con la asignación que hemos hecho
 
 ineffassign
 
