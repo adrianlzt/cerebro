@@ -1,5 +1,10 @@
+https://blog.golang.org/slices
 https://github.com/golang/go/wiki/SliceTricks
-Arrays. Go le llama 'Slices'. Un 'slice' apunta a un array y tiene un tamaño
+Una slice se puede pensar como un struct que contiene un puntero a un array, su longitud. y una capacidad.
+Cuando pasamos una slice por parametro, la función puede modificar el contenido del array, pero no de la cabecera (len).
+Si queremos modificar la cabecera pasaremos el slice como puntero y modificaremos el puntero en la función.
+Este ejemplo muestra bien lo que ocurre: https://play.golang.org/p/SvvN1HkUtq
+El array siempre es el mismo (la letra 'B' se modifica), pero el len que tiene cada slice varia, por eso muestran cosas distintas.
 
 http://golang.org/doc/articles/slices_usage_and_internals.html
 p := []int{1,2,3,4}
