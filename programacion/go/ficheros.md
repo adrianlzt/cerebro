@@ -6,6 +6,10 @@ import "io/ioutil"
 dat, err := ioutil.ReadFile("/tmp/dat")
 dat es []byte
 
+Si queremos abrir el fichero como un io.Reader
+dat, err := os.Open("object.ring")
+os.Open nos devuelve un *os.File, que implementa la interfaz io.Reader
+
 Mirar fichero.go
 
 

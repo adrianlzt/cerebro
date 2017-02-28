@@ -9,7 +9,7 @@ sizeof(char);
 
 Tipos estandar:
 #include <stdint.h>
-int8_t, int16_t, int32_t, int64_t - enteros con signo
+int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 bytes = 8 bits)
 uint8_t, uint16_t, uint32_t, uint64_t - enteros sin signo
 float - coma flotante de 32 bits
 double - coma flotante de 64 bits

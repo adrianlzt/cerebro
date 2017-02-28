@@ -142,3 +142,19 @@ str(bytes_string,'utf-8')
 string a bytes (py3)
 bytes("some text", "UTF-8")
 b'some text'
+
+
+
+
+# Struct
+https://docs.python.org/2/library/struct.html
+Interpretar ficheros binarios que almacenan structs de C
+
+Tenemos que ir pasando valores y diciendole que tipo es.
+
+Ejemplo, interpretamos los dos primeros bytes como unsigned short big endian, y los 4 siguientes como unsigned int big endian (nos devuelve una tupla donde el primer elemento es lo que queremos):
+file = open("object.ring",'rb')
+version = file.read(2)
+struct.unpack('!H', version)
+len = file.read(4)
+struct.unpack('!I', len)

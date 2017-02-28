@@ -9,6 +9,8 @@ Variable nula: nil
 Se declaran:
 var var1 TIPO
 var var1,var2,var3 TIPO
+
+tmp := make([]int, len(arr)) // para mas sobre arrays ir a arrays.md
  
 Si las inicializamos no hace falta decir el tipo:
 var var1,var2,var3 = 4,true,"bla"
