@@ -19,6 +19,15 @@ Si vamos a parsear un numero es mejor usar json.Number
 Esta estructura captura el valor, pero no falla si por ejemplo en vez de un número tenemos "".
 A posteriori realizamos la conversión, gestionando si no se puede parsear correctamente.
 Ejemplo: https://play.golang.org/p/9noIXK9imm
+type User struct {
+  Otro     json.Number
+}
+...
+y,err := user.Otro.Float64()
+if err != nil {
+  fmt.Printf("Error parseando Otro: %v\n", err)
+  y = 0.0
+}
 
 
 # Struct a JSON
