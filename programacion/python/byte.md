@@ -12,9 +12,15 @@ Hexadicimal a la representacion decimal
 >>> struct.unpack('B', '\x41')[0]
 65
 
+struct.unpack('B', b'\x41')[0]
+py3
+
 Para varios valores:
 >>> map(lambda x: struct.unpack('B', x)[0], b'\x41\x42')
 [65, 66]
+
+list(map(lambda x: x, clave))
+py3
 
 
 Representaciones decimales a string de bytes:
