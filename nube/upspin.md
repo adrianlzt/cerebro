@@ -328,3 +328,10 @@ Si queremos, podemos meter mas ficheros en el git y volver a hacer el git change
 Cuando querramos enviar:
 git mail
 
+
+Si necesitamos hacer un cambio de algo ya enviado:
+git change rama
+vi fichero
+git add fichero
+git commit --amend
+git mail
