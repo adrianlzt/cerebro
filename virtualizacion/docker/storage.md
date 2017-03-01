@@ -12,6 +12,17 @@ Para producción se debe usar direct-lvm.
 https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/for-a-direct-lvm-mode-configuration
 Debemos crear dos volúmenes LVM (data y metadata) con algunas configuraciones particulares (meten unas configuraciones para que el pool pueda extenderse por el espacio sobrante del group en caso de que fuera necesario).
 
+Para rhel/centos usar el docker-storage-setup
+vi /etc/sysconfig/docker-storage-setup
+VG=vg_docker
+DATA_SIZE=90%FREE
+
+Crear ese volumegroup.
+Ejecutar:
+docker-storage-setup
+
+
+
 
 Ejemplo, configuración de storage de una CentOS7 con un lvm:
 # cat /etc/sysconfig/docker-storage
@@ -26,6 +37,8 @@ https://github.com/docker/docker/issues/21701
 En RedHat, con meter un nuevo disco al volumegroup y extender el lvs el resto se hará automáticamente.
 
 Si tenemos un disco vacío, crearemos una partición tipo linux para poder meterla en el volumegroup.
+fdisk /dev/vdc -> tipo linux (todo por defecto, enter, enter...)
+vgextend vg_docker /dev/vdc1
 
 He agregado otro disco a un vg y sin llegar a hacer la parte de dmsetup reload parece que se ha extendido solo :?
 Tenía configurado las reglas para autoextenderse. Tal vez las ha aplicado al encontrar más espacio.
