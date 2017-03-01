@@ -1,4 +1,5 @@
 http://docs.docker.io/en/latest/use/working_with_links_names/
+DEPRECATED mirar user_defined_networks.md
 
 Corremos una imagen dándole un nombre ('redis'). Dicha imagen tiene que 'exposes' algún puerto, pero no será necesario pasar el parámetro -p para verlo en el host.
 En este caso, crosbymichael/redis hace expose del puerto 6379.
