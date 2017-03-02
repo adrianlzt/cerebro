@@ -163,7 +163,7 @@ step3: echo "PEPE=${PEPE}"
 
 # DSL
 Escribir scripts para, por ejemplo, crear a partir de un job, una serie de jobs con unas configuraciones específicas.
-La documentación está en: http://JENKINS_SERVER/plugin/job-dsl/
+La documentación está en: http://JENKINS_SERVER/plugin/job-dsl/api-viewer/index.html
 https://github.com/jenkinsci/job-dsl-plugin/wiki
 
 Podemos obtener un poco de pistas creando una con la interfaz web y luego viendo su definición en XML:

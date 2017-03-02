@@ -8,3 +8,6 @@ systemctl start docker
 docker swarm init
 
 Nos pasa un comando para agregar mas dockerd a este swarm (cluster)
+Para mostrar el comando de nuevo:
+
+docker swarm join-token worker
