@@ -12,3 +12,8 @@ Comandos:
 
 Instalar dependencias de go:
 :GoInstallBinaries
+
+
+:GoDef
+gd
+Ir a la definición de la interfaz, funcion, struct, etc
