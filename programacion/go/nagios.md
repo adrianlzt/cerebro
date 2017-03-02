@@ -10,3 +10,8 @@ check.AddResult(nagiosplugin.UNKNOWN, "error parsing warning range")
 
 Si queremos meter formato
 check.AddResultf(nagiosplugin.UNKNOWN, "error parsing warning range %s", var)
+
+
+
+Otra opcion:
+/home/adrian/.gvm/gos/go1.8/src/github.com/newrelic/go_nagios

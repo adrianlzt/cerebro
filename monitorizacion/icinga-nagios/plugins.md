@@ -42,10 +42,8 @@ Sitios con plugins:
 https://www.monitoring-plugins.org/ <- web oficial
 https://github.com/monitoring-plugins/repositories <- codigo
 https://exchange.icinga.org/
-https://wiki.icinga.org/display/howtos/Plugins
 https://trac.id.ethz.ch/projects/nagios_plugins
 http://exchange.nagios.org/
-https://wiki.icinga.org/display/howtos/Netways+Plugins 
 https://github.com/kumina/nagios-plugins-kumina 
 https://svn.id.ethz.ch/projects/nagios_plugins 
 http://labs.consol.de/lang/en/nagios/ 
