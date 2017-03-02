@@ -5,8 +5,10 @@ Herramienta similar a top pero que muestra en una sola ventana información de p
 
 Nos muestra información sobre el slab.
 
-Nos permite ver short_live_process
+Nos permite ver short_live_process (https://github.com/brendangregg/perf-tools/blob/master/execsnoop)
 mirar tambien execsnoop de las herramientas de bcc (eBPF). Tambien filelife para short-lived-files
+Hace falta ejecutarlo como root y montar el /sys/kernel/debug
+mount -t debugfs debugfs /sys/kernel/debug
 
 
 atopsar -c 5
