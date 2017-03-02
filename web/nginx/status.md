@@ -10,14 +10,17 @@ configurar si está disponible:
 nginx -V | grep -o with-http_stub_status_module
 
 
+/etc/nginx/conf.d/status.conf
 server {
-  ...
+  server_name 127.0.0.1;
   location /status {
     stub_status on;
     allow 127.0.0.1;
     deny all;
   }
 }
+
+
 
 # curl localhost:8000/status
 Active connections: 1 

@@ -117,3 +117,5 @@ Salta un prompt si no podemos hacer ping a github.com
   debug: msg="hola"
   when: inventory_hostname in groups['coso']
 
+Ejecutar algo cuando no perteneces a un grupo
+when: "'cluster' not in group_names"

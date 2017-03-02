@@ -101,3 +101,8 @@ vgchange -an vg_XXX
 # Autoextension
 ejemplo de conf para que un pool se pueda extender automáticamente sobre un group
 https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/for-a-direct-lvm-mode-configuration
+
+
+# Monitorizar
+Pasa sacar los datos en formato monitorización:
+lvs --noheadings --options data_percent
