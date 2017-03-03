@@ -160,6 +160,9 @@ https://www.influxdata.com/telegraf-correlate-log-metrics-data-performance-bottl
 https://github.com/influxdata/telegraf/blob/master/plugins/inputs/tail/README.md
 esto hace un tail -f de un fichero y va consumiendo las líneas, que deben estar en formato aceptado por influx
 
+## docker
+recordar que el socket de docker debe tener permisos de lectura para el user telegraf
+
 
 ## Github
 Puede levantar un puerto donde apuntamos un webhook de github
