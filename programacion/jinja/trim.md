@@ -15,3 +15,30 @@ You can also strip whitespace in templates by hand. If you put an minus sign (-)
 {% for item in seq -%}
   {{ item }}
 {%- endfor %}
+
+
+
+Algo                        Algo
+{{ VARIABLE }}       --->   VARIABLE
+fin                         fin
+
+Algo                        AlgoVARIABLE
+{{- variable }}      --->   fin
+fin
+
+Algo                       AlgoVARIABLEfin
+{{- variable -}}     --->
+fin
+
+
+/usr/bin/cmd --some param
+{%- if mivariable is defined %}
+ {{ mivariable }}
+{%- endif %}
+ --more params
+
+/usr/bin/cmd --some param True --more params
+
+
+{%- hace que se borren todos los espacios en blanco y cambios de linea desde ese simbolo hasta el anterior caracter.
+-%} lo mismo hacia la derecha
