@@ -5,12 +5,15 @@ Tirar paquetes entrantes al puerto 53/UDP de la IP 192.168.0.5 por la interfaz e
 iptables -A INPUT -i eth0 -p udp --dport 53 -s 192.168.0.5 -j DROP
 
 
+
 Source port
 --sport
 
 Destination ip
 -d IP
 
+Tirar paquetes salientes hacia 104.154.19.111:443
+iptables -A OUTPUT -p tcp --dport 443 -d 104.154.19.111 -j DROP
 
 
 No permitir conexiones desde el host 192.168.0.5:
