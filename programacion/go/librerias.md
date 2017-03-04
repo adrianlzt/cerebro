@@ -1,3 +1,5 @@
+mirar awesome.md
+
 https://golang.org/pkg/fmt/
 http://go-search.org/
 https://golanglibs.com

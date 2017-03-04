@@ -9,6 +9,14 @@ go get -u github.com/golang/dep/...
 Crear los ficheros:
 dep init
 
+Si hacemos
+dep ensure
+sobre un repo, analizará las dependencias que tengamos y las metera en vendor/
+
+Si el repo tiene releases, cogerá la última release.
+Si no tiene releases, cogera la rama master.
+
+
 Meter una dep:
 dep ensure github.com/some/repo@v0.2.1
 
