@@ -1,0 +1,2 @@
+sagecloud.md
+wolframslpha.md
