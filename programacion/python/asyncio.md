@@ -2,6 +2,9 @@ https://docs.python.org/3/library/asyncio.html
 https://pymotw.com/3/asyncio/
 http://www.snarky.ca/how-the-heck-does-async-await-work-in-python-3-5
   este último es muy bueno. Tiene un ejemplo casi al final muy bueno para entender todo esto. Lo he comentado aún más en async_snarky_example.py
+http://sahandsaba.com/understanding-asyncio-node-js-python-3-4.html
+  entendiendo un event loop con python
+
 curio.md  coroutine concurrency library. Más rápida y pequeña que asyncio. No extensible
 
 Asynchronous I/O, event loop, coroutines and tasks. Muy orientado a conexiones.
