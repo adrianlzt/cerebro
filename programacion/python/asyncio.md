@@ -4,6 +4,8 @@ http://www.snarky.ca/how-the-heck-does-async-await-work-in-python-3-5
   este último es muy bueno. Tiene un ejemplo casi al final muy bueno para entender todo esto. Lo he comentado aún más en async_snarky_example.py
 http://sahandsaba.com/understanding-asyncio-node-js-python-3-4.html
   entendiendo un event loop con python
+http://latentflip.com/loupe
+  ejemplo de como funciona un event loop de javascript a camara lenta
 
 curio.md  coroutine concurrency library. Más rápida y pequeña que asyncio. No extensible
 
