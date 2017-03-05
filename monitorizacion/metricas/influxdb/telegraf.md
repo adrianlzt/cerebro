@@ -217,3 +217,15 @@ I!   info
 E!   error
 
 Buscar el patrón "E!"
+
+
+# Develop
+https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md
+
+go get github.com/influxdata/telegraf
+cd $GOPATH/src/github.com/influxdata/telegraf
+make default
+make test-short
+Hacer modificaciones
+make test-short
+O si queremos probar solo uno: go test -short github.com/influxdata/telegraf/plugins/inputs/docker

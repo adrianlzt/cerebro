@@ -1,5 +1,12 @@
 http://substack.net/wireless_from_the_command_line_in_linux
 
+Comprobar si esta habilitado:
+rfkill list
+
+Habilitar
+rfkill unblock wifi
+
+
 Mostrar redes:
 nmcli device wifi list
 
