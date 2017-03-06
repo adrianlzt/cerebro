@@ -1,5 +1,10 @@
 http://docs.ansible.com/list_of_packaging_modules.html
 
+http://docs.ansible.com/ansible/package_module.html
+Modulo generico que llama por debajo a quien toque: yum, apt, etc
+package: name=nombre
+
+
 - name: install foo package
   yum: name=foo state=latest update_cache=yes
 
