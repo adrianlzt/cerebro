@@ -15,11 +15,15 @@ nmcli device wifi connect '(your wifi network name/SSID)' ifname wlan0
 nmcli device wifi connect '(your wifi network name/SSID)' password '(your wifi password)' ifname wlan0
   Conectar a una wifi
 
-nmcli c s
-  mostrar conexiones
-
 nmcli d s
   mostrar devices
+
+nmcli c s
+  mostrar conexiones. Cada una dira si es ethernet o wifi
+
+nmcli -a c up Nombre
+  Conectar a la red "Nombre". -a es --ask, pregunta user y pass si tenemos 802.1X
+
 
 Servers DNS cogidos por DHCP:
   nmcli dev show | grep DNS
