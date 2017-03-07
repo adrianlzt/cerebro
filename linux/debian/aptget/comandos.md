@@ -1,5 +1,8 @@
+apt update
+  bajar la lista de paquetes al SO
+
 Instalar respondiendo a yes a todo:
-  apt-get install -y paquete
+  apt install -y paquete
 
 Si un paquete se muestra como retenido (Held Back en inglés), puede ser porque no solo basta con actualizar el paquete.
 Para forzar su actualización usaremos:
