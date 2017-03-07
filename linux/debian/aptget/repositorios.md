@@ -48,3 +48,9 @@ https://wiki.debian.org/es/AptPreferences#A.2Fetc.2Fapt.2Fpreferences
 Package: *
 Pin: release a=testing
 Pin-Priority: 900
+
+
+# Internals
+Los repos parece que se bajan a un fichero tipo
+/var/lib/apt/lists/artifactory.inet_artifactory_apt-tools_dists_trusty_dev_binary-amd64_Packages.gz
+Luego parsea ese fichero
