@@ -10,7 +10,7 @@ Instalación:
     Arch (al menos): yaourt -S rpm-org
 
 Con Docker:
-  docker run -v "$PWD:/mnt" tenzer/fpm fpm -C /mnt -p /mnt -s dir -t rpm -n PackageName app/
+  docker run --rm -v "$PWD:/mnt" tenzer/fpm fpm -C /mnt -p /mnt -s dir -t rpm -n PackageName app/
 
 gem install fpm
 

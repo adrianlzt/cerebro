@@ -1,3 +1,17 @@
+https://wiki.debian.org/SourcesList
+
+deb http://site.example.com/debian distribution component1 component2 component3
+deb-src http://site.example.com/debian distribution component1 component2 component3
+
+distribution suele ser el nombre de la version: wheezy, jessie, stretch, sid o un alias: oldstable, stable, testing, unstable
+
+Los componentes serán de que repos tira.
+Por ejemplo, lo de arriba tirará de:
+http://archive.ubuntu.com/ubuntu/dists/distribution/component1
+http://archive.ubuntu.com/ubuntu/dists/distribution/component2
+http://archive.ubuntu.com/ubuntu/dists/distribution/component3
+
+
 Si ponemos un repo tipo:
 deb http://get.docker.io/ubuntu docker main
 
@@ -11,6 +25,11 @@ Repo
 deb http://dl.bintray.com/adrianlzt/deb /
 equivale a
 http://dl.bintray.com/adrianlzt/deb/
+
+
+Normalmente se usa como
+deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted
+deb http://archive.ubuntu.com/ubuntu/ VERSION 
 
 
 Para usar el comando add-apt-repository
