@@ -85,6 +85,7 @@ vars/common.yml:
 ---
 var: "cosa"
 numero: 3
+otra: "{% if something == 'cosa' %}valor1{% else %}valor2{% endif %}"
 
 vars/other.json
 {

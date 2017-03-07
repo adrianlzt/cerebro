@@ -86,3 +86,5 @@ find . -samefile fichero
 Buscar por numero de inodo
 find . -inum NNNN
 
+Buscar por el path:
+find . -path "*dir/fichero.yml"
