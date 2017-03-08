@@ -3,6 +3,19 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Se
 
 GUI: audit-viewer
 
+aureport: generar informes más sencillos de leer
+aureport --avc
+  The aureport utility is designed to create column-based reports that show the events recorded in the audit log files.
+aureport -x
+  list of executable files
+aureport -au -i
+  full authentication report
+aureport -au --summary -i --failed
+  list the failed authentication events
+aureport -au --summary -i --success
+  summary of successful authentication events
+
+
 Nos sirve para guardar registro de cualquier cambio que se produzca en nuestro sistema: ficheros, syscalls, etc
 Se debe ejecutar como root.
 
@@ -127,6 +140,7 @@ service auditd start
 
 
 Parece que con LXC no funciona
+
 
 
 # Errores
