@@ -10,3 +10,13 @@ La idea de que varias lineas valgan viene desde los inicios:
 http://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/servconf.c?rev=1.1&content-type=text/x-cvsweb-markup
 Desde la version 1.2.0: ssh-1.2.0 is now available from Tatu Ylonen <ylo@cs.hut.fi> on Wed, 6 Sep 1995 23:53:50 +0300
 
+
+
+Generar las claves de server
+/usr/bin/ssh-keygen -A
+
+
+
+Para que el servidor ssh vaya rapido:
+UseDNS no
+GSSAPIAuthentication no
