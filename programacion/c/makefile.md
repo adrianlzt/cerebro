@@ -10,9 +10,15 @@ Tener en cuenta que es un tabulador lo que hay antes de gcc
 
 Si queremos meter un script en bash:
 $$(echo "hola")
+`echo "otra opcion"`
 
 Pillar version de un fichero:
 VERSION=$$(cat VERSION)
+
+Loops y usar la variable ($$ para que no la resuelva antes de llamar al echo):
+for num in 1 2 3 4 ; do \
+  echo $$num ; \
+done
 
 
 # Autoconf
