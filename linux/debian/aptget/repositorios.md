@@ -54,3 +54,20 @@ Pin-Priority: 900
 Los repos parece que se bajan a un fichero tipo
 /var/lib/apt/lists/artifactory.inet_artifactory_apt-tools_dists_trusty_dev_binary-amd64_Packages.gz
 Luego parsea ese fichero
+
+
+# Proxy
+
+Proxy para todo apt
+/etc/apt/apt.conf.d/05proxy
+Acquire::http::Proxy "http://yourproxyaddress:proxyport";
+Acquire::https::Proxy "http://yourproxyaddress:proxyport";
+Acquire::ftp::Proxy "http://yourproxyaddress:proxyport";
+Acquire::socks::Proxy "http://yourproxyaddress:proxyport";
+
+Proxy para un host en particular:
+Acquire::http::proxy::artifactory.inet "http://proxy.inet:6666";
+
+No proxy para un host
+Acquire::http::proxy::artifactory.inet "DIRECT";
+

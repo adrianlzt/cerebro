@@ -18,7 +18,7 @@ v <- ch   espera un valor del canal ch (se queda esperando hasta que consigue el
 
 Los canales se crean: ch := make(chan <tipo dato>)
 Y se les pasa a la función que va a ser un nuevo thread como parámetro
-Se puede pasar el mismo canal ha varias hebras distintas.
+Se puede pasar el mismo canal a varias hebras distintas.
 
 func sum(x int ,ch chan int) {
   ...
