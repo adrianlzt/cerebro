@@ -1,3 +1,4 @@
+# Este version es para docker-compose, no tocar
 version: '2'
 services:
   web:
