@@ -12,7 +12,7 @@ http://docs.ansible.com/ansible/playbooks_blocks.html
 
          - service: name=bar state=started enabled=True
 
-       when: ansible_distribution == 'CentOS'
+       when: ansible_os_family == 'RedHat'
        become: true
        become_user: root
 
