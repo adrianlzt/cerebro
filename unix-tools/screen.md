@@ -86,3 +86,14 @@ C-A
 
 
 # Bash history
+
+
+
+# Arrancar una session con distintas screens
+screen -t top    0 top
+screen -t syslog 1 tail -F /var/log/syslog
+
+
+Save the above to a file, say "fancy.screenrc". Then start screen with:
+Code:
+screen -c fancy.screenrc
