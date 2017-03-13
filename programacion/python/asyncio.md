@@ -232,3 +232,13 @@ https://gist.github.com/akrylysov/ebab39ca9dafd292916e
 import asyncio
 loop = asyncio.get_event_loop()
 loop.run_until_complete(etcdcli.read("/prueba"))
+
+
+
+# Tests
+https://pypi.python.org/pypi/pytest-asyncio
+https://stefan.sofa-rockers.org/2015/04/22/testing-coroutines/
+https://stefan.sofa-rockers.org/2016/03/10/advanced-asyncio-testing/
+
+pip install pytest pytest_asyncio
+
