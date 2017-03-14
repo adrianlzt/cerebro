@@ -47,3 +47,11 @@ build:
 rpm:
 	fpm -s dir -t rpm -n dcip_eventhandler -a x86_64 --prefix /usr/bin -v ${VERSION} ${BINARY}
 
+
+
+# Leer de user:
+test:
+  read -p "Dime tu user de LDAP: " user; \
+  read -p "Dime tu pass de LDAP: " pass; \
+  echo "Tus cred son $$user $$pass"
+
