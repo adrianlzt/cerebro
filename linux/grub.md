@@ -81,3 +81,9 @@ grub> find /[tab]
 
 Intentando arrancar de un usb netinstall con centos estaba en hd1,1.
 Haciendo un cat /efi/boot/grub.cfg supe que era el netinstall.
+
+Una vez tenemos seleccionado el "root", para arrancar ese:
+chainloader +1
+boot
+
+Pero me decia que no era un disk bootable.
