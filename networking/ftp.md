@@ -23,3 +23,12 @@ curlftpfs ftp-user:ftp-pass@my-ftp-location.local /mnt/my_ftp/
 # Servidor
 vsftpd
 por defecto el anon dir es /srv/ftp
+
+En RH/CentOS -> /var/ftp
+
+Por defecto esta activo. Para configurar como pasivo:
+pasv_enable=YES
+pasv_min_port=10090
+pasv_max_port=10100
+pasv_addr_resolve=YES
+pasv_address=IP.PUBLICA.DEL.HOST
