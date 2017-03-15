@@ -64,3 +64,20 @@ The core image begins with diskboot.img, which is usually stored immediately aft
 
 # Grub protected password
 linux/protect_physical_access.md
+
+
+# Grub cli
+Arrancando desde USB
+
+grub> root (hd0,0)   # first harddrive, first partition
+grub> find /[tab]    # type the slash then press [tab], and it will try to list files on this partition
+Error 17: Cannot mount selected partition   # Oops no file system here
+grub> root (hd0,1)   # first harddrive, second partition
+grub> find /[tab]
+Possible files are: lost+found var etc media ...   # That was my hard drive with my linux install
+grub> root (hd1,0)   # second hard drive usually is the USB drive if you have only one internal drive
+grub> find /[tab]
+ Possible files are: ldlinux.sys mydoc myfile mystick syslinux.cfg  # Bingo, that's the USB stick
+
+Intentando arrancar de un usb netinstall con centos estaba en hd1,1.
+Haciendo un cat /efi/boot/grub.cfg supe que era el netinstall.
