@@ -34,3 +34,24 @@ tasks:
    - shell: some tasks go here
    - meta: flush_handlers
    - shell: some other tasks
+
+
+
+# Handler con varias tasks
+http://stackoverflow.com/questions/31618967/how-do-i-write-an-ansible-handler-with-multiple-tasks
+
+- name: Restart conditionally
+  include: restart_tasks.yml
+
+Y en restart_tasks.yml metemos las tareas que queremos hacer
+
+
+- name: comprobamos si apache se encuentra corriendo
+  shell: pgrep -P 1 httpd
+  register: httpd_status
+  ignore_errors: True 
+
+- name: recargamos apache si esta ejecutandose
+  service: name=httpd state=restarted
+  when: httpd_status.rc == 0
+

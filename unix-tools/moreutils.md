@@ -3,7 +3,7 @@ https://joeyh.name/code/moreutils/discussion/
 http://www.chainsawonatireswing.com/2012/04/22/how-can-you-tell-if-a-file-is-utf-8-encoded-or-not/
 
 apt-get install moreutils
-pacman -S bug/adapt_cinder_to_kilo_develop
+pacman -S moreutils
 
 chronic: runs a command quietly unless it fails
 combine: combine the lines in two files using boolean operations

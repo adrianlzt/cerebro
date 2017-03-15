@@ -86,6 +86,11 @@ http://mywiki.wooledge.org/BashFAQ/045
 
 0 * * * *  you  flock -nx /var/lock/cron-task cron-task
 
+
+Solo saca mensaje si el comando falla.
+Flock lo ponemos para evitar la tarea se ejecute si ya se está ejecutando (y sale con codigo 0 si esto ocurre)
+0 * * * *  you  chronic flock -nxE 0 /var/lock/cron-task cron-task
+
 # Problemas
 Si el fichero de cron de un usuario tiene permisos de escritura no se ejecutará.
 Si lo reeditamos con "crontab -e" cogerá los permisos adecuados.
