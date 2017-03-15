@@ -6,3 +6,5 @@ Para este de lantronix, para funcionar en linux necesitaremos icedtea para abrir
 Si el spider tiene USB y la máquina no carga el USB hasta que llegue al SO, no funcionará el teclado y ratón en la bios y grub.
 Para estos casos, por ejemplo para configurar la BIOS, usar una spider por PS/2.
 O alimentarla externamiente (esto se puede?)
+
+Opción sencilla, a mano entrar hasta la bios y luego conectar el KVM spider

@@ -11,6 +11,7 @@ fichero.iso: DOS/MBR boot sector ISO 9660 CD-ROM filesystem data (DOS/MBR boot s
 
 # gnome-disks
 Otra de gnome grafica
+este no parece que sea para meter un iso en un usb. Deja particionar etc
 
 # usb-creator
 yaourt -S aur/usb-creator
