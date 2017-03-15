@@ -2,6 +2,10 @@
 grub-customizer
 
 
+# Centos
+Modificar /etc/grub.conf
+No hace falta ejecutar luego ningún comando
+
 
 /boot/config-3.13.8
   Configuración del kernel
