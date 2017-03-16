@@ -17,3 +17,9 @@ seleccionar lo que queramos, y 's'
 Otra forma, una vez en el mensaje:
 |
 cat > fichero
+
+
+# Carpetas
+https://dev.mutt.org/trac/wiki/MuttGuide/Folders
+
+Si una carpeta empieza por "=" o "+", eso se sustituye por el valor de $folder
