@@ -1,5 +1,7 @@
 Hay varias razones por las que el contador de agua puede leer erróneamente.
 
+https://news.ycombinator.com/item?id=13794518
+
 
 
 averagewall
