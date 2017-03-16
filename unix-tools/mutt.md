@@ -33,5 +33,15 @@ Si una carpeta empieza por "=" o "+", eso se sustituye por el valor de $folder
 # Trash / Papelera
 https://www.neomutt.org/feature/trash
 
-
+# Contactos
 abook para gestionar contactos
+
+# Comandos
+:exec comando
+
+# Bindings
+bind index G imap-fetch-mail
+
+
+# Sincronizar
+$

@@ -7,3 +7,34 @@ yum install psacct
 apt-get install accto
 
 Arch, esta en los archived de aur: https://github.com/aur-archive/acct
+
+
+# Activar
+/etc/init.d/psacct start
+
+
+# Comandos
+
+## ac
+ac
+  tiempo total de conexión en horas
+
+ac -d
+  por dias
+
+ac -p
+  por usuarios
+
+ac usuario
+
+ac -d usuario
+  usuario por dia
+
+
+## sa
+commands executed
+primera columna, número de veces que se ha ejecutado el comando
+XXre tiempo real usado, en minutos de reloj
+XXcp suma de tiempo de sys + user en minutos
+XXXXk cpu-time averaged core usage
+comando
