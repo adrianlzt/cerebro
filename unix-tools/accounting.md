@@ -38,3 +38,12 @@ XXre tiempo real usado, en minutos de reloj
 XXcp suma de tiempo de sys + user en minutos
 XXXXk cpu-time averaged core usage
 comando
+
+
+Probando algunos sleeps no parece funcionar exactamente asi:
+python -c "import time; time.sleep(5)"
+Eso dos veces devuelve:
+2       0.17re       0.00cp    29280k   python
+
+
+
