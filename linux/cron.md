@@ -91,6 +91,18 @@ Solo saca mensaje si el comando falla.
 Flock lo ponemos para evitar la tarea se ejecute si ya se está ejecutando (y sale con codigo 0 si esto ocurre)
 0 * * * *  you  chronic flock -nxE 0 /var/lock/cron-task cron-task
 
+
+Ejemplo completo
+/usr/local/bin/cronic /usr/bin/flock -nxE 0 /srv/nagios/dcip_jobs.lck pgrep -P 1 icinga && /usr/bin/curl -f http://example.com
+
+cronic (version shell de chronic, hacen lo mismo) evita que salta stdout/stderr cuando el comando funciona correctamente (RC=0).
+flock -x hace un lock exclusivo usando el fichero /srv/nagios/dcip_jobs.lck. Evita que otro nodo (/srv/nagios es un NFS) comienze el cron si existe ese fichero
+  -n hace que no se espere a que se libere el flock. -E 0, es que cuando haya lock el return code sea 0
+pgrep, solo ejecuta el curl si esta corriendo icinga con parent pid = 1 (para evitar que matchee otros procesos icinga que no sean la monitorizacion, comprobación de configuración por ejemplo)
+curl -f hace que curl retorne un código de error (rc=22) en caso de que el server nos devuelva un error (5xx, 4xx). Aunque la doc dice que no es completamente fiable
+
+
+
 # Problemas
 Si el fichero de cron de un usuario tiene permisos de escritura no se ejecutará.
 Si lo reeditamos con "crontab -e" cogerá los permisos adecuados.
