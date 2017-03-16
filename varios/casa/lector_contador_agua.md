@@ -28,4 +28,4 @@ It was a fun one especially because I had moved into the apartment and immediate
 En mi casa de Grenoble el contador tambien mide mal. Cuando se cierra el agua de golpe el contador tiene inercia y sigue girando durante un corto periodo.
 Llenando una botella a base de golpes de grifo (esperando unos 4 segundos entre cierre y apertura) el contador registra el doble (registró 1L cuando había llenado 0.5L en la botella).
 No se si esto es por la inercia del contador (que esté mal diseñado) o por el efecto Golpe de Ariete (se escucha al cerrar de golpe) donde las ondas de presión hagan que se mida.
-
+Se lleno una botella sin andar abriendo y cerrando el grifo si cuenta correctamente.
