@@ -45,3 +45,8 @@ El inventario dinámico no está funcionando
 
 FATAL: no hosts matched or all hosts have already failed -- aborting
 Con la version 1.9.3, si el nombre del host tiene ":" lo ignora
+
+
+Status code was not [404, 200]: An unknown error occurred: coercing to Unicode: need string or buffer, NoneType found
+La máquina tenia un proxy configurado a nivel de profile de OS que no me dejaba enviar la peticion (fallaba el modulo url)
+Solucionado definiendo la variable de entorno "https_proxy" a vacio

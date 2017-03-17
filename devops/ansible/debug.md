@@ -56,6 +56,25 @@ Para ejecutar directamente el modulo de ansible
 cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py
 
+Para hacer debug:
+ En una terminal:
+  mkfifo stdin
+  mkfifo stdout
+  cat stdout &
+  cat > stdin
+ 
+ En otra terminal (en el mismo dir):
+  modificamos el .py para meterle el set_trace() de la siguiente manera:
+    import pdb
+    mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
+    pdb.set_trace=mydbp.set_trace
+ 
+  arrancamos el programa que necesita stdin:
+    cat args | PYTHONPATH=. python ansible_module_*.py
+ 
+ En la primera terminal tendremos el pdb.
+
+
 
 
 El fichero con el nombre de modulo:
