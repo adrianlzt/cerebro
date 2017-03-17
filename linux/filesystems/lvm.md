@@ -106,3 +106,14 @@ https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/fo
 # Monitorizar
 Pasa sacar los datos en formato monitorización:
 lvs --noheadings --options data_percent
+
+
+# Cambiar nombre volume group o logical volume
+MALA idea! No hacer en producción
+http://askubuntu.com/questions/765058/how-do-you-rename-the-volume-group-that-contains-the-root-volume-in-lvm
+
+vgrename vg02 my_volume_group
+
+Tendremos que cambiar el fstab y puede que el grub
+
+Hacer un grep -r sobre /etc u /boot para ver donde queda el nombre viejo.
