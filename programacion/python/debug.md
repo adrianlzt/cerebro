@@ -35,6 +35,28 @@ pdb.set_trace()
 Otra forma:
 $ python -m pdb script.py
 
+
+Cuando estamos pasando stdin al comando: http://stackoverflow.com/questions/17074177/how-to-debug-python-cli-that-takes-stdin
+El truco es que pdb va a usar el stdin y stdout de los fifo que creamos.
+En una terminal:
+ mkfifo stdin
+ mkfifo stdout
+ cat stdout &
+ cat > stdin
+
+En otra terminal (en el mismo dir):
+ modificamos el .py para meterle el set_trace() de la siguiente manera:
+   import pdb
+   mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
+   pdb.set_trace=mydbp.set_trace
+
+ arrancamos el programa que necesita stdin:
+   cat args | PYTHONPATH=. python ansible_module_*.py
+
+En la primera terminal tendremos el pdb.
+
+
+
 h(elp) [command]
 w(here)
 s(tep) # Se introduce en las funciones
