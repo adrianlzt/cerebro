@@ -26,6 +26,14 @@ accton
 
 
 
+# Información que se almacena
+https://github.com/torvalds/linux/blob/master/include/uapi/linux/acct.h#L73
+tty, exitcode, uid, gid, pid, ppid, creation time, command name
+elapsed time, user time, system time, avg memory used, chars transferred, blocks read of written, minor/major pagefaults, swaps
+super user, dumped core, killed by a signal (https://github.com/torvalds/linux/blob/master/include/uapi/linux/acct.h#L104)
+
+
+
 # Comandos
 
 
@@ -109,7 +117,7 @@ kernel.acct = 4 2       30
 
 Si queda menos de un 2% libre -> parar accounting
 Si tenemos más de un 4% libre -> reactivar accounting
-Chequear esto cada 30"
+Chequear esto cada 30" (creo que son segundos)
 
 
 
