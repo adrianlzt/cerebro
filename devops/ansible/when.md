@@ -36,3 +36,13 @@ Cuando usamos ansible-playbook con --check --diff el resultado de la tarea condi
 Ejecuta si en el stderr de la variable maas_superuser encuentra la cadena 'User does not exist'
 when: maas_superuser.stderr.find('User does not exist') != -1
 
+
+
+Valor de un "register" cuando no se ejecuta la task por no cumplir el "when":
+{
+    "XXXX": {
+        "changed": false, 
+        "skip_reason": "Conditional check failed", 
+        "skipped": true
+    }
+}

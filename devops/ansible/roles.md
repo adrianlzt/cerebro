@@ -18,7 +18,7 @@ Para usarlo dentro de un playbook:
 
 Preferencias versión reducida (de mayor a menor). Mirar variables.md para la versión completa:
   parámetros al definir el rol
-  directorio vars/
+  directorio vars/ (aqui siempre se usará main.yml, a no ser que usemos un include_vars en algun task)
   directorio defaults/
 
 Si hacemos uso de una variable en un task y no está definida en ninguno de estos tres sitios fallará.
