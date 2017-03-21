@@ -1,40 +1,9 @@
 https://docs.docker.com/engine/swarm/swarm-mode/
 
-Gestión de varios docekr host como uno solo.
+Gestión de varios docker host como uno solo.
 Nos permite asignar recursos
 
-
-systemctl start docker
-docker swarm init
-
-Nos pasa un comando para agregar mas dockerd a este swarm (cluster)
-Para mostrar el comando de nuevo:
-
-docker swarm join-token worker
-
-
-# Discovery
-bbdd clave-valor donde se almacena el estado del cluster y su configuración
-
-Posibilidades: Consul, etcd, Zookeper
-La libreria libvkv se encarga de hablar con estos backends
-
-La configuración se puede regenerar en caso de que la bbdd se perdiese.
-
-La bbdd lo mejor es que sea HA para evitar tener una pérdida.
-
-
-# Swarm manager
-El que recibe las ordenes y ve donde ejecutarlas
-Soporta HA y es importante tenerlo configurado.
-En caso de que se cayese el cluster seguiría funcionando, pero no podría desplegar nuevos contenedores.
-
-
-## HA
-Se elige un primario que es el único que manda comandos.
-Podemos atacar a un secundario, que solo hará de proxy y enviará la petición al primario.
-Si el primario cae, se hace una votación para elegir otro primario.
-
+Swarm manager: el que recibe las ordenes y ve donde ejecutarlas
 
 # Filtering
 Cada docker host se etiqueta con las "cualidades" que tiene. Por ejemplo, donde se encuentra, que tipo de discos tiene, entorno, etc.
@@ -64,6 +33,58 @@ Este método siempre escoge los nodos más pequeños primero, dejando lo más gr
 El "problema" es que podemos estar dejando el docker host más potente sin usar.
 
 
+# Desplegar
+systemctl start docker
+docker swarm init
+
+Nos pasa un comando para agregar mas dockerd a este swarm (cluster)
+Para mostrar el comando de nuevo: docker swarm join-token worker
+
+Si queremos agregar mas manager tendremos que usar otro token, que conseguimos asi:
+docker swarm join-token manager
+
+
+# Administracion
+
+## nodos
+docker node list
+  para ver la lista de managers y nodes
+
+
+## Services
+Es el concepto "container" para cluster.
+Le decimos que service queremos crear un cuantas copias debe haber.
+El se encarga donde levantar los containers que sean necesarios
+
+
+
+# Instrucciones para montar un docker swarm usando la imagen swarm (antiguo)
+
+# Discovery
+bbdd clave-valor donde se almacena el estado del cluster y su configuración
+
+Posibilidades: Consul, etcd, Zookeper
+La libreria libvkv se encarga de hablar con estos backends
+
+La configuración se puede regenerar en caso de que la bbdd se perdiese.
+
+La bbdd lo mejor es que sea HA para evitar tener una pérdida.
+
+
+# Swarm manager
+El que recibe las ordenes y ve donde ejecutarlas
+Soporta HA y es importante tenerlo configurado.
+En caso de que se cayese el cluster seguiría funcionando, pero no podría desplegar nuevos contenedores.
+
+
+## HA
+Se elige un primario que es el único que manda comandos.
+Podemos atacar a un secundario, que solo hará de proxy y enviará la petición al primario.
+Si el primario cae, se hace una votación para elegir otro primario.
+
+
+
+
 
 # Despliegue
 Desplegamos el discovery y docker manager sobre tres VMs distintas (y a ser posible, separadas físicamente, evitando SPoF)
@@ -91,3 +112,17 @@ curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/leader | python -m "json.too
 
 Ahora si atacamos con docker-cli cualquiera de los puertos 3375 será el lider quien conteste (el resto solo harán de proxy contra él)
 docker -H 127.0.0.1:3375 ps
+
+
+
+## Agregar docker host al cluster
+Estos comandos los ejecutaremos en las máquinas donde se van a montar los containers.
+
+Levantaremos un container swarm al que le pasaremos la info para acceder al store k-v.
+Este container se registrará (cada minuto por defecto) en la store k-v, de esta manera el manager leader podrá saber que docker host estan activos y enviarles comandos
+docker run -d -h join --name join swarm join --advertise=${IP}:2375 etcd://172.16.1.28:2379,172.16.1.29:2379,172.16.1.30:2379/
+
+El parametro --advertise será el IP:Puerto donde los manager deberán enviar los comandos para ejcutar cosas en este docker host.
+
+Podemos consultar los docker host (nodes) registrados con:
+curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/nodes | python -m "json.tool"
