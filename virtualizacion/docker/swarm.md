@@ -43,6 +43,8 @@ Para mostrar el comando de nuevo: docker swarm join-token worker
 Si queremos agregar mas manager tendremos que usar otro token, que conseguimos asi:
 docker swarm join-token manager
 
+Por defecto los nodos manager también corren containers.
+
 
 # Administracion
 
@@ -50,11 +52,63 @@ docker swarm join-token manager
 docker node list
   para ver la lista de managers y nodes
 
+### info de un nodo
+docker node inspect --pretty <NODE-ID>
+
+
+### downtime
+docker node update --availability drain <NODE-ID>
+  saca los containers y los arranca en otro lado antes de pararlo
+
+docker node update --availability active <NODE-ID>
+  para volverlo a poner en active
+
 
 ## Services
 Es el concepto "container" para cluster.
 Le decimos que service queremos crear un cuantas copias debe haber.
-El se encarga donde levantar los containers que sean necesarios
+El se encarga donde levantar los containers que sean necesarios y mantenerlos activos (levantar nuevos si alguno se detiene)
+
+### Arrancar un service
+docker service create --replicas 1 --name helloworld alpine ping docker.com
+
+Usaremos --publish NN:BB para publicar puertos
+Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (docker enrutara la peticion hasta el nodo correcto)
+Swarm hará de balanceador
+
+Haciendo una prueba no funciona, no contesta en el puerto en ninguna de las máquinas.
+Parece que falta algo para enrutar correctamente. Si hago un inspect del container tiene una ip de una red overlay que ha creado el swarm, pero parece que el SO no conoce como enrutar los paquets (no veo nada que parezca server en 'ip r' ni en iptables?
+
+Si queremos publicar un puerto de un servicio ya activo (parará los containers ejecutándose y levantará unos nuevos):
+docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
+
+
+### Escalar un servicio (arrancar mas copias)
+docker service scale helloworld=5
+
+### Listar services
+docker service ls
+
+### Info de un service
+docker service inspect --pretty helloworld
+docker service ps helloworld
+  este nos dice donde está corriendo
+
+### Borrar un service
+docker service rm helloworld
+
+### Actualizando containers
+https://docs.docker.com/engine/swarm/swarm-tutorial/rolling-update/
+
+Caso, tenemos containers de una version y queremos actualizarlos:
+docker service create --replicas 3 --name redis --update-delay 10s redis:3.0.6
+  --update-delay tiempo de espera entre actualizaciones de containers
+
+docker service update --image redis:3.0.7 redis
+Este comando irá deteniendo los containers antiguos y desplegando la nueva versión.
+
+
+
 
 
 
