@@ -6,3 +6,5 @@ Service Discovery
 Health Checking
 Key/Value Store
 Multi Datacenter
+
+Provee un servidor DNS donde podemos consultar que servicios tenemos.

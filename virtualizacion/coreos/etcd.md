@@ -46,3 +46,26 @@ curl -L http://127.0.0.1:2379/v2/keys/message
 Ejemplo teórico de un HA de postgresql usando etcd
 https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/
 
+
+
+
+# Cluster
+https://coreos.com/etcd/docs/latest/v2/docker_guide.html#running-a-3-node-etcd-cluster
+
+Instrucciones para montar un cluster de etcd.
+Cada container irá sobre una VM distinta.
+Lo que hacemos es levantar cada nodo pasandole las direcciones del resto de nodos del cluster.
+Cada container expone los puertos que necesita para comunicarse en la VM
+
+IP="poner_la_ip_de_cada_maquina"
+LISTA_NODOS="http://IPNODO1:2380,etcd1=http://IPNODO2:2380,etcd1=http://IPNODO3:2380"
+docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 -p 2380:2380 -p 2379:2379 \
+ --name etcd quay.io/coreos/etcd \
+ etcd -name etcd-$(hostname) \
+ -advertise-client-urls http://${IP}:2379,http://${IP}:4001 \
+ -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
+ -initial-advertise-peer-urls http://${IP}:2380 \
+ -listen-peer-urls http://0.0.0.0:2380 \
+ -initial-cluster-token etcd-cluster-1 \
+ -initial-cluster etcd0=${LISTA_NODOS} \
+ -initial-cluster-state new
