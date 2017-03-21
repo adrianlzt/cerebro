@@ -68,3 +68,26 @@ El "problema" es que podemos estar dejando el docker host más potente sin usar.
 # Despliegue
 Desplegamos el discovery y docker manager sobre tres VMs distintas (y a ser posible, separadas físicamente, evitando SPoF)
 La VM tendrá a su vez docker. Discovery y Manager serán containers corriendo dentro de esta vm.
+
+
+## Discovery
+Montar un cluster de etcd
+alta_disponibilidad/etcd.md
+
+## Manager
+Ahora vamos a levantar los manager.
+Tendremos que pasarle la key-value store que hayamos elegido. En este ejemplo, etcd
+
+Lanzamos esto en las 3 VMs:
+docker run --restart=unless-stopped -d -h manager_$(hostname) --name manager_$(hostname) -p 3375:2375 swarm manage --replication --advertise ${IP}:3375 etcd://172.16.1.28:2379,172.16.1.29:2379,172.16.1.30:2379/miswarm
+  --replication es para decirle que va a ser parte de un multi manager config
+  --advertise sera la ip de la VM, donde deberan poder llegar los otros swarm manager que vamos a montar
+  etcd:// las ips del cluster de etcd (puerto cliente, 2379). Creará ahi un arbol tipo: /docker/swarm/... Podemos ponerle un prefijo, como "miswarm" para que cree las cosas bajo el
+
+Si vemos las trazas (con docker logs ID), veremos que el primer nodo que arrancamos se vuelve el leader del cluster. Los otros al conectar advierten que que ese primero es el lider.
+Se utiliza la store k-v para almacenar quien es el lider.
+En el caso de etcd lo podemos consultar con:
+curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/leader | python -m "json.tool"
+
+Ahora si atacamos con docker-cli cualquiera de los puertos 3375 será el lider quien conteste (el resto solo harán de proxy contra él)
+docker -H 127.0.0.1:3375 ps

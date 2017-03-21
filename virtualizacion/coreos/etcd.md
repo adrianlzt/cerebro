@@ -21,7 +21,7 @@ https://github.com/coreos/etcd/tree/master/etcdctl
 
 
 ## con docker
-docker run -it --rm tenstartups/etcdctl -C http://172.16.2.23:2379 member list
+docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
 
 
 
@@ -56,16 +56,23 @@ Instrucciones para montar un cluster de etcd.
 Cada container irá sobre una VM distinta.
 Lo que hacemos es levantar cada nodo pasandole las direcciones del resto de nodos del cluster.
 Cada container expone los puertos que necesita para comunicarse en la VM
+Los nombres de LISTA_NODOS deben matchear con lo que pasemos en "etcd -name XXX"
 
 IP="poner_la_ip_de_cada_maquina"
-LISTA_NODOS="http://IPNODO1:2380,etcd1=http://IPNODO2:2380,etcd1=http://IPNODO3:2380"
-docker run -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 -p 2380:2380 -p 2379:2379 \
- --name etcd quay.io/coreos/etcd \
- etcd -name etcd-$(hostname) \
+LISTA_NODOS="etcd_HOSTNAME1=http://IPNODO1:2380,etcd_HOSTNAME2=http://IPNODO2:2380,etcd_HOSTNAME3=http://IPNODO3:2380"
+docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 -p 2380:2380 -p 2379:2379 \
+ --name "etcd_$(hostname)" quay.io/coreos/etcd \
+ etcd -name "etcd_$(hostname)" \
  -advertise-client-urls http://${IP}:2379,http://${IP}:4001 \
  -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
  -initial-advertise-peer-urls http://${IP}:2380 \
  -listen-peer-urls http://0.0.0.0:2380 \
  -initial-cluster-token etcd-cluster-1 \
- -initial-cluster etcd0=${LISTA_NODOS} \
+ -initial-cluster ${LISTA_NODOS} \
  -initial-cluster-state new
+
+
+Comprobar:
+docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
+
+Para los clientes el puerto es el 2379
