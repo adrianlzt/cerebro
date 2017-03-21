@@ -29,7 +29,6 @@ El que recibe las ordenes y ve donde ejecutarlas
 Soporta HA y es importante tenerlo configurado.
 En caso de que se cayese el cluster seguiría funcionando, pero no podría desplegar nuevos contenedores.
 
-Desplegar tres al menos, entres VMs separadas sobre tres nodos físicos distintos.
 
 ## HA
 Se elige un primario que es el único que manda comandos.
@@ -66,4 +65,6 @@ El "problema" es que podemos estar dejando el docker host más potente sin usar.
 
 
 
-
+# Despliegue
+Desplegamos el discovery y docker manager sobre tres VMs distintas (y a ser posible, separadas físicamente, evitando SPoF)
+La VM tendrá a su vez docker. Discovery y Manager serán containers corriendo dentro de esta vm.

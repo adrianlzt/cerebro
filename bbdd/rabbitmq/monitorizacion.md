@@ -2,6 +2,9 @@ Habilitar interfaz administrativa:
 
 https://www.rabbitmq.com/management.html
 rabbitmq-plugins enable rabbitmq_management
+Estado de los plugins
+rabbitmq-plugins list
+  "E" es activado explicitamente. "e" implicitamente
 
 
 User para monitorizar:
