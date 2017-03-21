@@ -40,6 +40,24 @@ reflect.DeepEqual(a,b)
 In general DeepEqual is a recursive relaxation of Go's == operator.
 
 
+# Elemento dentro del array
+http://stackoverflow.com/a/33323321
+
+No hay función, tendremos que implementarla.
+Si es pequeño podremos recorrerlo con un for. Cuidado si es grande
+
+Si esta ordenado, podemos usar Sort.Search
+
+A lo mejor nos vale hacer algo tipo?
+    switch category {
+    case
+        "auto",
+        "news",
+        "sport",
+        "music":
+        return true
+    }
+
 # Ordenar
 a1 := []string{"hola", "ananas", "aaa"} 
 sort.Strings(a1) 
