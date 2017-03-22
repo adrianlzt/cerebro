@@ -20,6 +20,7 @@ Arch, esta en los archived de aur: https://github.com/aur-archive/acct
 Este script llama a accton (https://linux.die.net/man/8/accton)
 accton /var/account/pacct
   activar
+  lanza la syscall: acct("/var/account/pacct");
 
 accton
   desactivar (llamar sin params)
