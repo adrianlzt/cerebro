@@ -1,3 +1,6 @@
+Flas es para hacer: -h -param X
+os.Args para acceder directamente a los argumentos
+
 https://golang.org/pkg/flag/
 https://gobyexample.com/command-line-flags
 
@@ -8,6 +11,13 @@ https://gobyexample.com/command-line-flags
 
   go run programa.go -nombreflag pepe -flagname 12
 
+
+import os
+...
+os.Args[0]
+
+
+Mirar cobra.md para crear una CLI
 
 https://github.com/codegangsta/cli
 Permite crear una cli mas completa con subcomandos, etc
