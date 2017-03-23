@@ -1,2 +1,6 @@
 http://highscalability.com/blog/2013/8/26/reddit-lessons-learned-from-mistakes-made-scaling-to-1-billi.html
 Did not account for increased latency after moving to EC2. In the datacenter they had submillisecond access between machines so it was possible to make a 1000 calls to memache for one page load. Not so on EC2. Memcache access times increased 10x to a millisecond which made their old approach unusable. Fix was to batch calls to memcache so a large number of gets are in one request.
+
+
+https://segment.com/blog/the-million-dollar-eng-problem/
+Cuidado con los costes
