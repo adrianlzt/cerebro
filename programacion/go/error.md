@@ -1,3 +1,5 @@
+https://golang.org/pkg/errors/
+https://golang.org/pkg/builtin/#error
 http://blog.golang.org/error-handling-and-go
 https://gobyexample.com/errors
 http://www.golangpatterns.info/error-handling
