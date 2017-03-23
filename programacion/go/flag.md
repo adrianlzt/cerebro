@@ -6,7 +6,7 @@ https://gobyexample.com/command-line-flags
 
   var num = flag.Int("flagname", 1234, "help message for flagname")
   var coso = flag.String("nombreflag", "default value", "help")
-  flat.Parse()
+  flag.Parse()
   fmt.Printf("hello, world: %v\n", *num)
 
   go run programa.go -nombreflag pepe -flagname 12

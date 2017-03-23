@@ -4,6 +4,7 @@ import "time"
 
 # Sleep
 time.Sleep(100 * time.Millisecond)
+time.Sleep(time.Duration(tiempo) * time.Millisecond) // siendo tiempo un int
 
 # Parsear fecha
 const longForm = "Jan 2, 2006 at 3:04pm (MST)"
