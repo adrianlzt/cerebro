@@ -21,6 +21,10 @@ Este script llama a accton (https://linux.die.net/man/8/accton)
 accton /var/account/pacct
   activar
   lanza la syscall: acct("/var/account/pacct");
+  El fichero debe existir
+
+  Solo se puede escribir en ficheros regulares (https://github.com/torvalds/linux/blob/master/kernel/acct.c#L212)
+  Nada de mkfifo
 
 accton
   desactivar (llamar sin params)
@@ -30,7 +34,7 @@ accton
 # Información que se almacena
 https://github.com/torvalds/linux/blob/master/include/uapi/linux/acct.h#L73
 tty, exitcode, uid, gid, pid, ppid, creation time, command name
-elapsed time, user time, system time, avg memory used, chars transferred, blocks read of written, minor/major pagefaults, swaps
+elapsed time, user time, system time, avg memory used, chars transferred (parece que siempre es 0), blocks read of written (parece que siempre es 0), minor/major pagefaults, swaps
 super user, dumped core, killed by a signal (https://github.com/torvalds/linux/blob/master/include/uapi/linux/acct.h#L104)
 
 
