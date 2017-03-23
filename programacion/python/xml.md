@@ -1,3 +1,6 @@
+Mirar beautifulsoup.md
+
+
 from lxml.etree import parse
 tree = parse('status.xml')
 tree.xpath('//resource[@id="haproxy"]/@role')

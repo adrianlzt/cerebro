@@ -2,6 +2,9 @@ Utilidades para parsear html
 
 http://www.w3.org/Tools/HTML-XML-utils/README
 
+Mirar con python:
+programacion/python/beautifulsoup.md
+
 
 
 http://developerblog.redhat.com/2013/12/05/xml-editing-bash-script/

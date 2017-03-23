@@ -25,3 +25,15 @@ soup.title
 Obtener el valor de esta linea de la cabecera de un html:
 <meta content="J0lD46c5jAKbAX5wrf7Dv+Yt9yctNCkiVcFUkRZUwjg=" name="csrf-token" />
 soup.find(name="meta",attrs={"name": "csrf-token"}).get("content")
+
+
+
+Parsear fichero xml obtenido de un GET:
+
+import requests
+from bs4 import BeautifulSoup
+r = requests.get("http://httpbin.org/xml")
+soup = BeautifulSoup(r.content)
+for e in soup.slideshow.findAll("slide"):
+  print(e.title.string)
+
