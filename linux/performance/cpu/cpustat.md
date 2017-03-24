@@ -10,9 +10,8 @@ go get github.com/uber-common/cpustat
 ## Arch
 yaourt -S cpustat
 
-falla
-error: no se pudo realizar la operación (archivos en conflicto)
-cpustat: /usr/sbin existe en el sistema de archivos
+falla la instalacion porque fallan los tests
+Pero se puede instalar con go get
 
 
 # Uso
