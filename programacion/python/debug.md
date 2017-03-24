@@ -49,6 +49,7 @@ En otra terminal (en el mismo dir):
    import pdb
    mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
    pdb.set_trace=mydbp.set_trace
+   pdb.set_trace()
 
  arrancamos el programa que necesita stdin:
    cat args | PYTHONPATH=. python ansible_module_*.py

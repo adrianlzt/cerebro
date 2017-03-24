@@ -1,3 +1,5 @@
+mirar linux/performance/taskstats.md parece mas potente
+
 http://www.tecmint.com/how-to-monitor-user-activity-with-psacct-or-acct-tools/
 https://linux.die.net/man/5/acct
 https://linux.die.net/man/2/acct
@@ -72,6 +74,16 @@ Información sobre los últimos comandos ejecutados
 Usa el fichero /var/account/pacct
 https://linux.die.net/man/8/sa
 
+sa
+ejecuciones     real_time       system_time+user_time(min)      cpu_time(1k unit)       command
+
+sa -u (por usuario)
+usuario         cpu     memoria         comando
+
+sa -m
+usuario         ejecuciones     real_time       user_time+cpu_time      cpu_time
+
+
 commands executed
 primera columna, número de veces que se ha ejecutado el comando
 XXre tiempo real usado, en minutos de reloj
@@ -108,6 +120,16 @@ lastcomm usuario
 
 lastcomm ejecutable
   que hayan lanzado este ejecutable
+
+Sintaxis de la salida del lastcomm
+comando         flags   user    terminal        runtime
+
+Flags:
+S -- command executed by super-user
+F -- command executed after a fork but without a following exec
+D -- command terminated with the generation of a core file
+X -- command was terminated with the signal SIGTERM
+
 
 
 

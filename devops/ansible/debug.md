@@ -68,6 +68,7 @@ Para hacer debug:
     import pdb
     mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
     pdb.set_trace=mypdb.set_trace
+    pdb.set_trace()
  
   arrancamos el programa que necesita stdin:
     cat args | PYTHONPATH=. python ansible_module_*.py
