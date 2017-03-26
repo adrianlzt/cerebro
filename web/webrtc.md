@@ -44,7 +44,12 @@ Signaling necesario para:
 ICE:
   https://en.wikipedia.org/wiki/Interactive_Connectivity_Establishment
   https://www.html5rocks.com/en/tutorials/webrtc/basics/#ice
+
 Este framework es lo que se utiliza para establecer un camino entre los peers.
+
+El cliente envia una petición de BIND a un servidor STUN (por ejemplo: stun.l.google.com:19302)
+El servidor nos contesta con la IP pública que él ve y el puerto que hemos usado para conectarnos con él.
+Cuando conectamos con un peer, parece que nosotros enviamos paquetes UDP (por defecto, si no parece que salta a HTTP o HTTPS) al server STUN y este se los reenvia al peer.
 
 
 
