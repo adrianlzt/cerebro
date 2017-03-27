@@ -68,5 +68,7 @@ To cope with network address translators (NATs) and firewalls.
 
 
 # Librerias
+http://io13webrtc.appspot.com/#69
+
 http://peerjs.com/
 Facilita la conexión p2p. Se puede usar un broker suyo o montar el nuestro propio.
