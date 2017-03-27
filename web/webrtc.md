@@ -1,5 +1,8 @@
+https://webrtc.org/start/
 https://www.html5rocks.com/en/tutorials/webrtc/basics/
 https://tokbox.com/about-webrtc
+https://codelabs.developers.google.com/codelabs/webrtc-web/#0
+Ejemplo: https://apprtc.appspot.com
 
 Real-time communication without plugins
 Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to add video chat and peer-to-peer data sharing to your web application. That's the vision of WebRTC.
@@ -66,7 +69,14 @@ WebRTC still needs servers:
 For clients to exchange metadata to coordinate communication: this is called signaling.
 To cope with network address translators (NATs) and firewalls.
 
-Server TURN/STUN: https://github.com/coturn/coturn/
+Server TURN/STUN:
+https://github.com/coturn/coturn/
+
+Paquetes para deb, arch.
+En el repo hay un .tar.gz con los RPMs para Fedora/Centos/Redhat
+http://turnserver.open-sys.org/downloads/
+Necesita EPEL
+yum -y install epel-release
 
 
 # Librerias
