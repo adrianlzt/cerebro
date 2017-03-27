@@ -66,6 +66,8 @@ WebRTC still needs servers:
 For clients to exchange metadata to coordinate communication: this is called signaling.
 To cope with network address translators (NATs) and firewalls.
 
+Server TURN/STUN: https://github.com/coturn/coturn/
+
 
 # Librerias
 http://io13webrtc.appspot.com/#69

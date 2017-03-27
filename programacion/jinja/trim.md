@@ -39,6 +39,9 @@ fin
 
 /usr/bin/cmd --some param True --more params
 
+CUIDADO!
+Si tenemos dos frases entre el {% %} y el {% fin %}, la segunda si tendrá los espacios en blanco
+
 
 {%- hace que se borren todos los espacios en blanco y cambios de linea desde ese simbolo hasta el anterior caracter.
 -%} lo mismo hacia la derecha
