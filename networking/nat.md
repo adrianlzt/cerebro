@@ -18,6 +18,7 @@ Este es el que suele significar NAT.
 
 # Formas de realizar el mapeo
 
+En la vida real, los nateadores pueden mezclar estas técnicas.
 
 ## Full-cone NAT
 Se mapea iIP:iPort con eIP:ePort, todos los paquetes de iIP:iPort se enviarán por eIP:ePort
