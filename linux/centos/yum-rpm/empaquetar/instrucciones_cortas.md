@@ -1,7 +1,7 @@
 # https://wiki.icinga.org/display/howtos/Build+Icinga+RPMs
 
 RPMs utiles:
-yum install groupinstall "Development tools"
+yum groupinstall "Development tools"
 
 
 yum install rpmdevtools make
