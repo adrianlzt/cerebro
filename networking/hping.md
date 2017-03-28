@@ -1,4 +1,5 @@
 http://wiki.hping.org
+http://www.rationallyparanoid.com/articles/hping.html
 
 pacman -S hping
 
@@ -11,3 +12,6 @@ sudo hping -i vboxnet0 -c 1 -S 192.168.33.10 -p 9998
 
 Escaneo de puertos
 hping -i eth0 --scan 20-25,80,443 -S 217.146.186.51
+
+Enviar un único paquete UDP desde un puerto determinado con los primeros 5 bytes del fichero especificado:
+sudo hping -c 1 -V -s 52125 --udp -p 8000 52.59.227.93 --file /tmp/data --data 5
