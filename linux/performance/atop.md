@@ -32,6 +32,7 @@ mount -t debugfs debugfs /sys/kernel/debug
 # atop
 Comenzar a almacenar datos de los procesos en un fichero cada 5s (captura short lived procs)
 atop -w atop.data 5
+  los procesos que empiezen entre el último intervalo y la parada de atop los perderemos (si no se termina un intervalo, no almacena info)
 
 leer el fichero
 atop -t atop.data
@@ -44,6 +45,9 @@ U buscar por nombre de user
 I seleccionar por PID
 
 v mostrar datos del proceso (start and end time, comand, etc)
+
+
+## Analizar short lived procs
 
 
 # atopsar
