@@ -48,6 +48,22 @@ v mostrar datos del proceso (start and end time, comand, etc)
 
 
 ## Analizar short lived procs
+Arrancamos el atop con un intervalo mas pequeño, por ejemplo:
+atop 3
+
+En la casilla superior derecha veremos algo como: # exit NNN
+Eso nos dirá la cantidad de procesos que han terminado en los últimos 3 segundos.
+
+Pulsamos dos veces 'f' para limitar la cantidad de datos agregados (el menu superior).
+Tambien podemos pulsar 'l' y poner a 0 los campos para deducir más el menú superior.
+
+Pulsamos 'p' para ver la información agregada por proceso. No podemos ordenar por número de procesos.
+Podemos parar atop 'z', e ir mirando las distintas páginas de procesos (Control+f Control+b)
+
+Pulstamos 'P' para escribir una expresion regular aplicada sobre el nombre de los procesos.
+
+Pulsamos 'v' para ver más datos de los procesos (parent pid, uid, gid, etc)
+
 
 
 # atopsar
