@@ -17,6 +17,11 @@ Con python3.6 no me funciona bien
 Con python2.7 si funciona correctamente.
 
 
+https://bitbucket.org/gsauthof/tstime
+dentro de este repo el programa tsmon nos va sacando un listado de los procesos que van terminando.
+Nos dice PID, nombre, tiempo, memoria y cpu.
+
+
 
 Atop tambien usa esta forma de conexión con el kernel:
 netlink.c:netlink_open(void)
