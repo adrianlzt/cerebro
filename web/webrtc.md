@@ -54,6 +54,8 @@ El cliente envia una petición de BIND a un servidor STUN (por ejemplo: stun.l.g
 El servidor nos contesta con la IP pública que él ve y el puerto que hemos usado para conectarnos con él.
 Cuando conectamos con un peer, parece que nosotros enviamos paquetes UDP (por defecto, si no parece que salta a HTTP o HTTPS) al server STUN y este se los reenvia al peer.
 
+Parece que si montamos un servidor TURN este hace las veces de servidor STUN tambien.
+
 
 
 # Tokbox
@@ -84,3 +86,8 @@ http://io13webrtc.appspot.com/#69
 
 http://peerjs.com/
 Facilita la conexión p2p. Se puede usar un broker suyo o montar el nuestro propio.
+
+
+# Usos
+http://moose-team.github.io/friends/
+chat p2p
