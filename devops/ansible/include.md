@@ -42,3 +42,11 @@ all.yml:
 
 
 No se puede hacer include con with_items
+
+
+
+# static
+Define si los includes deben ser dinámicos o estáticos.
+Se intenta autodetectar.
+Se puede forzar:
+static: no
