@@ -2,6 +2,13 @@ https://api.ai
 de google
 
 wit.ai es lo mismo, pero de facebook
+/home/adrian/adrianRepo/ia/api.ai.md 
+
+Luis, de microsoft
+https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis
+
+Otra opcion que parece similar:
+http://kitt.ai
 
 Esta pensado para integrarse con google assistant, slack, telegram, kik, facebook messenger
 
