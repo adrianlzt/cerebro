@@ -1,4 +1,5 @@
 https://webrtc.org/start/
+https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC
 https://www.html5rocks.com/en/tutorials/webrtc/basics/
 https://tokbox.com/about-webrtc
 https://codelabs.developers.google.com/codelabs/webrtc-web/#0
@@ -91,3 +92,12 @@ Facilita la conexión p2p. Se puede usar un broker suyo o montar el nuestro prop
 # Usos
 http://moose-team.github.io/friends/
 chat p2p
+
+https://github.com/strukturag/spreed-webrtc/
+solucion de videoconferencia, chat, compartición de archivos OpenSource.
+
+https://github.com/Temasys/SkylinkJS/tree/0.6.x/master/demo
+Demos de WebRTC (hace falta una API key, version freemium limitada)
+
+https://shanetully.com/2014/09/a-dead-simple-webrtc-example/
+Ejemplo simple de videoconferencia entre dos personas
