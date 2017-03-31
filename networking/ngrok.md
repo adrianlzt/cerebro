@@ -12,7 +12,7 @@ Usar version 2.x
 Otra opcion es localtunnel.md
 
 Usar docker para levantar varios ngrok:
-docker run --rm --name ngrok -e "HTTP_PORT=8080" m2i3/ngrok
+docker run --rm -e "HTTP_PORT=8080" m2i3/ngrok
 
 # Linux
 https://ngrok.com/download
