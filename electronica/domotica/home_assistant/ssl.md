@@ -9,3 +9,8 @@ secrets.yaml
 ssl_cert: /etc/letsencrypt/live/DOMINIO/fullchain.pem
 ssl_key: /etc/letsencrypt/keys/0000_key-certbot.pem
 
+
+
+# Renovar
+./certbot-auto renew --no-self-upgrade --standalone --preferred-challengues tls-sni-01
+Cambiar la key privada
