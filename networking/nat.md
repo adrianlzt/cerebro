@@ -42,3 +42,4 @@ Solo el receptor de la conexión puede enviar paquetes de vuelta a iIP:iPort
 
 
 Para saber que tipo de nateo tenemos mirar stun.md
+
