@@ -7,6 +7,9 @@ https://gist.github.com/caspyin/2288960
 curl  -X POST --data '{"description":"Created via API","public":"true","files":{"file1.txt":{"content":"Demo"}}' https://api.github.com/gists
 En la respuesta el link está en: "html_url"
 
+En python/requests:
+r=requests.post("https://api.github.com/gists", json={"description":"algoqueprobar","public":"true","files":{"data":{"content":"Demo"}}})
+
 Si queremos buscar un gist anonimo tendremos que poner
 cadena anon:true
 
