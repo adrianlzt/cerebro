@@ -30,3 +30,10 @@ https://wiki.python.org/moin/UdpCommunication
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 
+
+Recibir mensajes UDP:
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind(("0.0.0.0", SOURCE_PORT))
+sock.settimeout(1)
+data,client = sock.recvfrom(1024)
+// Si tras 1 segundo no recibe datos saltara la excepcion socket.timeout (esto es por poner el timeout)
