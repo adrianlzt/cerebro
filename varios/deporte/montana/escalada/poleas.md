@@ -2,4 +2,5 @@ https://en.wikiversity.org/wiki/Upper_Limb_Orthotics/Rupture_of_the_Finger_Flexo
 
 
 https://youtu.be/0ThzPFaxgEE?t=71
+http://www.rockandice.com/video-gallery/climbing-tips-how-to-tape-your-finger-a3-pulley
 vendaje en H
