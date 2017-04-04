@@ -48,3 +48,10 @@ Could not open check result queue directory '/dev/shm' for reading.
 Estos mensajes los hemos visto cuando Icinga estaba al limite de su max open files.
 
 En este caso se debía a un bug de icinga+mod_gearman+libuuid, mirar error_mod_gearman_dev_urandom.md
+
+
+
+# Icinga se cae al intentar ejecutar un check
+Moria sin más, sin decir nada en los logs de icinga.
+Parece que es porque el mod_gearman no podia conectar con el server de gearman (que estaba parado).
+
