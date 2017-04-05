@@ -40,3 +40,15 @@ http://letsencrypt.readthedocs.io/en/latest/install.html?highlight=docker#runnin
 mkdir -p /var/tmp/letsencrypt/{etc,var}
 docker run -it --rm -p 443:443 --name certbot -v "/var/tmp/letsencrypt/etc:/etc/letsencrypt" -v "/var/tmp/letsencrypt/var:/var/lib/letsencrypt" quay.io/letsencrypt/letsencrypt:latest certonly
 Usar la opcion 2
+
+
+# Manual
+https://certbot.eff.org/docs/using.html#manual
+
+mkdir letsencrypt
+docker run -it --rm -v "$PWD/letsencrypt:/etc/letsencrypt" quay.io/letsencrypt/letsencrypt:latest certonly --manual
+
+Nos dara instrucciones de como levantar un server http con python en el puerto 80 para poner el fichero que nos piden.
+
+
+Otra opcion, poniendo ficheros en webroot:
