@@ -35,6 +35,9 @@ es otra cosa
 {{ inventory_hostname }} no pertenece al hostgroup coso
 {% endif %}
 
+Otra forma:
+{% if 'compute' in group_names %}
+
 
 
 
