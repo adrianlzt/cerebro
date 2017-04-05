@@ -45,3 +45,14 @@ bind index G imap-fetch-mail
 
 # Sincronizar
 $
+
+
+# Buscar
+/ cosa
+  por defecto solo en los subjects
+
+/ ~b cosa
+  busca en los bodies
+
+/ ~B cosa
+  en todo el mensaje
