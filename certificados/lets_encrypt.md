@@ -52,3 +52,4 @@ Nos dara instrucciones de como levantar un server http con python en el puerto 8
 
 
 Otra opcion, poniendo ficheros en webroot:
+docker run -it --rm -v "$PWD/letsencrypt:/etc/letsencrypt" quay.io/letsencrypt/letsencrypt:latest certonly --webroot

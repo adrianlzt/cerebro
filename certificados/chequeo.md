@@ -45,7 +45,14 @@ If you want to trust the certificate, you can append it to your cert bundle or u
 
 # Comprobar que un certificado o CSR pertenece a una clave
 https://kb.wisc.edu/middleware/page.php?id=4064
+https://www.sslshopper.com/certificate-key-matcher.html
 
 diff <(openssl x509 -noout -modulus -in *.crt) <(openssl rsa -noout -modulus -in *.key); echo $?
 
 Si devuelve 0 es que el crt corresponde a la key
+
+
+El crt (certificado), privatekey y csr (certificate signing request) deben tener el mismo modulus:
+openssl x509 -noout -modulus -in certificate.crt | openssl md5
+openssl rsa -noout -modulus -in privateKey.key | openssl md5
+openssl req -noout -modulus -in CSR.csr | openssl md5
