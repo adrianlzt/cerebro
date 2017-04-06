@@ -13,6 +13,5 @@ rpm2cpio logrotate-1.0-1.i386.rpm |cpio -ivd etc/logrotate.conf
 
 
 Extraer scripts del rpm:
-rpm -qp --scripts some_package.rpm >wherever 
-
-rpm -qp --triggers some_package.rpm >wherever 
+rpm -qp --scripts *.rpm > scripts
+rpm -qp --triggers *.rpm > triggers
