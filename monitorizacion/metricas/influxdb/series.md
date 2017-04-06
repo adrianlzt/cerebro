@@ -18,9 +18,13 @@ No entiendo muy bien como, pero si tenemos dos tags
 user_id y run_id, y cada run_id solo pertenece a un user_id, no se incrementa el número de uniq_series por cada run_id nuevo.
 
 
-No debemos pasar de 1.000.000 de series:
+No debemos pasar de 1.000.000 de series: -> en principio se soluciona con el nuevo motor TSI (1.3.0)
 Your series cardinality is very high (numSeries 3113798), presumably due to the arbitrary tagging. When series cardinality rises above 1 million the database needs significant amounts of RAM just for the index. As the index consumes more RAM, it reduces the scratch space available for queries.
 https://groups.google.com/forum/#!searchin/influxdb/enforce$20uniqueness$20while$20still$20being$20performant/influxdb/JjpVu_9RF8c/lHItTFHoAQAJ
+
+https://github.com/influxdata/influxdb/issues/7195
+Implementación de un comando: SHOW CARDINALITY
+
 
 
 # Muchas series
