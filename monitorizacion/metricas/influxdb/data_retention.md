@@ -1,13 +1,30 @@
-https://docs.influxdata.com/influxdb/v0.10/guides/downsampling_and_retention/
+https://docs.influxdata.com/influxdb/latest/guides/downsampling_and_retention/
+
+Un problema es luego como lanzar las queries para pillar los datos normales y los downsampled.
+Según me han dicho en un webmeeting (6/4/2017) está en el roadmap.
+También han dicho que van a implementar autoretention policy para el proximo año (2018)
+
 
 # Down sampling automatico??
+El problema mayoritariamente es que se pueden almacenar strings y no esta claro como gestionar esto.
+
+Parece que no se puede aplicar un CQ a todas las measurements de todas las DBs.
+Se puede usar el splash operator para reducir todas las values de un measurement, pero solo sin todas númericas.
+¿Que hacer con las de texto?
+
+Otras formas:
 https://github.com/influxdata/influxdb/issues/4605
 
 https://github.com/influxdata/influxdb/issues/2625
  hacen un proxy para convertir las queries en otras queries a unos RP que deben estar previamente creados con CQs
 
+
+
 # Retention Policy
 A retention policy (RP) is the part of InfluxDB’s data structure that describes for how long InfluxDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor). A database can have several RPs and RPs are unique per database.
+Por debajo lo que va a hacer es borrar ciertos shards. 
+Podemos ver cuando ocupa cada field mirando los ficheros (un shard por fichero) y con esta query podemos ver cada shard que zona de tiempo ocupa.
+influx -execute "SHOW SHARDS" | less
 
 El truco es crear una RP por defecto de duración corta (horas).
 Todos los usuario escribiran en esa RP con mucha frecuencia y el admin se encargará en Influx de ir pasando esos datos a otras RPs de mayor duración pero menor sampling
