@@ -1,5 +1,8 @@
 https://docs.influxdata.com/influxdb/v0.10/query_language/continuous_queries/
 
+CUIDADO! consume bastante CPU. Mejor hacerlo en Kapacitor, así podremos sacarlo a otra máquina en caso de ser necesario y eliminaremos parte de la carga de CPU.
+
+
 Las CQ solo se aplican a datos posteriores a la creación de la CQ
 
 The time ranges of the CQ results have round-number boundaries that are set internally by the database. There is currently no way for users to alter the start or end times of the intervals.
