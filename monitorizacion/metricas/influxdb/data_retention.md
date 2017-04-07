@@ -30,7 +30,7 @@ influx -execute "SHOW SHARDS" | less
 El truco es crear una RP por defecto de duración corta (horas).
 Todos los usuario escribiran en esa RP con mucha frecuencia y el admin se encargará en Influx de ir pasando esos datos a otras RPs de mayor duración pero menor sampling
 
-InfluxDB aplica, por defecto, los RP cada 30'. Configurable
+InfluxDB aplica, por defecto, los RP cada 30'. Configurable (If you lower that value, the check will run more frequently. Running it too frequently can cause adverse performance issues though.)
 [retention]
   enabled = True
   check-interval = “30m”
@@ -38,8 +38,11 @@ InfluxDB aplica, por defecto, los RP cada 30'. Configurable
 Cada vez que se ejecuta esto se mete esta traza en el log:
 [retention] 2017/04/07 07:18:58 retention policy shard deletion check commencing
 
-Cuando se borra un shard se ejecuta una traza tipo:
+Cuando se borra un shard de la base de datos se ejecuta una traza tipo:
 [retention] 2017/04/07 13:18:58 deleted shard group 499 from database NOMBREDATABASE, retention policy default
+
+En la siguiente vuelta se borrará el fichero sacando una traza:
+[retention] 2017/04/07 14:22:02 shard ID 572 from database NOMBREDATABASE, retention policy default, deleted
 
 
 ## DEFAULT
