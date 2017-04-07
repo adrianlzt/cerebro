@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# https://github.com/adrianlzt/influxdb-utils
+# mirar utils.py
 
 """capacity_influxdb.py
 

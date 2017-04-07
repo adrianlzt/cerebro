@@ -24,6 +24,7 @@ https://github.com/influxdata/influxdb/issues/2625
 A retention policy (RP) is the part of InfluxDB’s data structure that describes for how long InfluxDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor). A database can have several RPs and RPs are unique per database.
 Por debajo lo que va a hacer es borrar ciertos shards. 
 Podemos ver cuando ocupa cada field mirando los ficheros (un shard por fichero) y con esta query podemos ver cada shard que zona de tiempo ocupa.
+Cuando tipo ocupa cada shar lo podemos ver con: SHOW RETENTION POLICIES ON database (campo shardGroupDuration)
 influx -execute "SHOW SHARDS" | less
 
 El truco es crear una RP por defecto de duración corta (horas).
@@ -33,6 +34,13 @@ InfluxDB aplica, por defecto, los RP cada 30'. Configurable
 [retention]
   enabled = True
   check-interval = “30m”
+
+Cada vez que se ejecuta esto se mete esta traza en el log:
+[retention] 2017/04/07 07:18:58 retention policy shard deletion check commencing
+
+Cuando se borra un shard se ejecuta una traza tipo:
+[retention] 2017/04/07 13:18:58 deleted shard group 499 from database NOMBREDATABASE, retention policy default
+
 
 ## DEFAULT
 Es un RP proporcionado por Influx a falta de otro
@@ -50,11 +58,19 @@ CREATE RETENTION POLICY nombre_policy ON base_de_datos DURATION 2h REPLICATION 1
   Poner "DEFAULT" al final hace que esta RP se vuelva la de por defecto
   Minimo 1h
 
+Las durations se definen con:
+h hour
+d day
+w week
+
 ## Ver
 SHOW RETENTION POLICIES ON base_de_datos
 
 ## Modificar
 ALTER RETENTION POLICY <retention_policy_name> ON <database_name> DURATION <duration> REPLICATION <n> [DEFAULT]
+
+Ejemplo (6 meses):
+ALTER RETENTION POLICY default ON midb DURATION 26w
 
 ## Borrar
 DROP RETENTION POLICY <retention_policy_name> ON <database_name>
