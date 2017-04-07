@@ -22,7 +22,7 @@ Al generar el container, por cada RUN se hace automáticamente un commit.
 Para generar el container podemos usar:
 docker build -t nombre .  (de esta manera asignamos el nombre directamente, evitándonos el comando 'docker tag <id> nombre')
 docker build .  (si el Dockerfile esta en el workingdir)
-docker build - < Dockerfile
+docker build - < Dockerfile (con esta forma no me funcionan los ADD)
 docker build github.com/creack/docker-firefox  (hará automáticamente un git clone de ese repo y usará el Dockerfile que estará dentro)
 
 Por defecto la imagen creada no tendrá nombre. Se lo podemos asignar con:
