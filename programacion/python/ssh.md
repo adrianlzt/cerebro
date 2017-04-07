@@ -22,5 +22,32 @@ ssh.connect('127.0.0.1', username='jesse', password='lol')
 │     - Plain username/password auth, if a password was given
 
 Ejemplo
-http://sebastiandahlgren.se/2012/10/11/using-paramiko-to-send-ssh-commands/
-No es trivial enviar un comando y recibir la respuesta.
+http://stackoverflow.com/questions/9470584/python-paramiko-run-command
+
+#!/usr/bin/env python
+hostname = '192.168.3.4'    
+port = 22
+username = 'username'
+password = 'mypassword'
+y = "2012"
+m = "02"
+d = "27"
+
+def do_it():
+    s = paramiko.SSHClient()
+    s.load_system_host_keys()
+    s.connect(hostname, port, username, password)
+    command = 'ls /home/user/images/cappi/03000/' + y + '/' + m + '/' + d
+    (stdin, stdout, stderr) = s.exec_command(command)
+    for line in stdout.readlines():
+        print line
+    s.close()
+
+if __name__ == "main":
+    do_it()
+
+
+
+Si queremos tener tty (para sudo por ejemplo:
+stdin, stdout, stderr = client.exec_command(command,  get_pty=True)
+
