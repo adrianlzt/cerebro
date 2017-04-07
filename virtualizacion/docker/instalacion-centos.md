@@ -1,9 +1,13 @@
 https://docs.docker.com/installation/centos/
 
+
 # Centos 7
+yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum install docker-ce
+Mirar lvm.md si queremos usar el drive lvm-direct
 systemctl start docker
+docker run hello-world
 
 
 
