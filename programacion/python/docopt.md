@@ -1,4 +1,6 @@
 http://docopt.org/
+http://try.docopt.org/
+  probar online
 
 docopt helps you:
 define interface for your command-line app, and
