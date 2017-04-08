@@ -1,36 +1,49 @@
+swarm-mode implementacion de swarmkit.
+
+# Swarm Mode (v >= 1.12)
 https://docs.docker.com/engine/swarm/swarm-mode/
+
+built into docker engine
+dynamic by design (?)
+based on service model (desplegamos servicios)
+higly scalable
+multi-host networking by default (redes overlay) (mesh networking)
+internal service descovery
+internal load balancer
+secure by default (comunicaciones entre containers seguras por defecto y entre hosts)
+Rolling updates (podemos hacer actualizaciones de las versiones de los containers)
+No hace falta un almacenamiento KV externa
+
+Al iniciar un swarm:
+ - se crea un storage distribuido
+ - red de tráfico compartida (overlay, encriptada, con su propia CA)
+
+Despliegue de contenedores Spread (menos cargado).
 
 Gestión de varios docker host como uno solo.
 Nos permite asignar recursos
 
-Swarm manager: el que recibe las ordenes y ve donde ejecutarlas
+## nodes
+Es el rol del host: manager (con un lider) y workers
+Solo el lider hace cambios
+5,7 manager son más que suficientes
 
-# Filtering
-Cada docker host se etiqueta con las "cualidades" que tiene. Por ejemplo, donde se encuentra, que tipo de discos tiene, entorno, etc.
-Cuando lanzamos un container especifícamos unos tags para decir donde debe correr.
-Filtering coge la lista de hosts y nos devuelve los que cuadran según las necesidades que hemos pedido.
+## servicios
+Tres tipos: replicated, global, host
 
-## Affinity
-Ejecutar un container donde esté otro container y una imagen
+Host: asociados a un host a un puerto (está anclado a una máquina, por ejemplo por cirsustancias esciales de conectividad de red)
 
-## Resource
-Ejecutar un container donde haya un recurso que queremos libre. Por ejemplo, donde esté el puerto 8080 libre
+## tasks
+Son contenedores corriendo.
+El cluster se encarga de mantener siempre el número de containers que hayamos especificado.
+Si se cae una, el container levanta otra
 
-## Contraint
-Filtrar usando las variables que devuelve "docker info"
-Tambíen podemos poner custom labs
-
-
-# Scheduling
-Una vez tenemos la lista de docker host provista por Filtering, tenemos que elegir en que host en particular lanzamos nuestro container.
-Solo puede haber una estrategia de scheduling para todo el cluster.
-
-Hay tres estrategias: Random (parece útil solo para testear), Spread (por defecto), Binpack. Tambien podemos crear el nuestro propio
-Spread y Binpack son conscientes de la CPU y RAM de los docker host. Los container stop también cuentan.
-
-Binpack: almacenar todos los containers en el mismo docker host hasta llegar al máximo que hayamos marcado.
-Este método siempre escoge los nodos más pequeños primero, dejando lo más grandes por si luego hiciese falta montar un container más grande (si tenemos dos docker host, uno con 2GB y otro con 4GB; primero se le pide montar un container de 2GB y luego otro de 3GB; al hacerlo primero en el más pequeño luego podremos montar el de 3GB; si lo hiciesemos al revés no habría hueco para el segundo container)
-El "problema" es que podemos estar dejando el docker host más potente sin usar.
+## stacks
+Es lo que nosotros desplegamos.
+Donde ponemos que queremos desplegar, como se comunican, etc
+Fichero YAML
+Parecido a compose.
+No usar bundles (ya no se usan)
 
 
 # Desplegar
@@ -113,6 +126,33 @@ Este comando irá deteniendo los containers antiguos y desplegando la nueva vers
 
 
 # Instrucciones para montar un docker swarm usando la imagen swarm (antiguo)
+
+# Filtering
+Cada docker host se etiqueta con las "cualidades" que tiene. Por ejemplo, donde se encuentra, que tipo de discos tiene, entorno, etc.
+Cuando lanzamos un container especifícamos unos tags para decir donde debe correr.
+Filtering coge la lista de hosts y nos devuelve los que cuadran según las necesidades que hemos pedido.
+
+## Affinity
+Ejecutar un container donde esté otro container y una imagen
+
+## Resource
+Ejecutar un container donde haya un recurso que queremos libre. Por ejemplo, donde esté el puerto 8080 libre
+
+## Contraint
+Filtrar usando las variables que devuelve "docker info"
+Tambíen podemos poner custom labs
+
+
+# Scheduling
+Una vez tenemos la lista de docker host provista por Filtering, tenemos que elegir en que host en particular lanzamos nuestro container.
+Solo puede haber una estrategia de scheduling para todo el cluster.
+
+Hay tres estrategias: Random (parece útil solo para testear), Spread (por defecto), Binpack. Tambien podemos crear el nuestro propio
+Spread y Binpack son conscientes de la CPU y RAM de los docker host. Los container stop también cuentan.
+
+Binpack: almacenar todos los containers en el mismo docker host hasta llegar al máximo que hayamos marcado.
+Este método siempre escoge los nodos más pequeños primero, dejando lo más grandes por si luego hiciese falta montar un container más grande (si tenemos dos docker host, uno con 2GB y otro con 4GB; primero se le pide montar un container de 2GB y luego otro de 3GB; al hacerlo primero en el más pequeño luego podremos montar el de 3GB; si lo hiciesemos al revés no habría hueco para el segundo container)
+El "problema" es que podemos estar dejando el docker host más potente sin usar.
 
 # Discovery
 bbdd clave-valor donde se almacena el estado del cluster y su configuración
