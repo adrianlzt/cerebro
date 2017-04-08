@@ -27,3 +27,18 @@ VOLUME ["/var/log/", "/opt/bla"]
 VOLUME "/var/log/" "/opt/bla"
 
 Estos containers permaneceran cuando hagamos stop al container. Por ejemplo, si en un container de mongo ponemos "VOLUME /data/db", podremos parar el container, volverlo a arrancar y mantendremos los datos.
+
+
+
+# Persistencia
+Podemos usar plugins de storage para docker para tener almacenamiento persistente.
+
+# REX-Ray
+https://github.com/codedellemc/rexray
+
+Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, Amazon S3, etc)
+
+
+# Infinit
+En alpha (8/4/2017)
+Mirar storage/intinit.md

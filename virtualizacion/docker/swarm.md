@@ -9,7 +9,8 @@ built into docker engine
 dynamic by design (?)
 based on service model (desplegamos servicios)
 higly scalable
-multi-host networking by default (redes overlay) (mesh networking)
+multi-host networking by default (redes overlay) (mesh networking) (pueden estar encriptadas)
+  las redes overlay solo existen en los manager, hasta que alguna task que necesita esa red en un worker
 internal service descovery
 internal load balancer
 secure by default (comunicaciones entre containers seguras por defecto y entre hosts)
@@ -234,6 +235,10 @@ Esto parece que es porque la imagen no existe
 Como hacer routing con dns round robin? El routing mesh nos envia a una VIP y de ahi a cualquiera de los servers. La de DNS como funciona? Algo ha dicho que nos da la ip de alguno de los hosts directamente?
 
 Swarm no creaba un storage compartido? Con el stack que creado para WP no veo que se comparta. Algo que poner?
+Usar drivers se storage. En principio buscar una cabina que tenga driver certificado.
+
+Para tener entornos de dev, int, prod. Montas todas las maquinas creando un unico cluster, o distintos clusters?
+Parece que google datacenter tiene gestion de usuarios y puede hacer que un usuario solo pueda lanzar en una etiqueta.
 
 
 
