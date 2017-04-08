@@ -73,30 +73,40 @@ Para clusters pequeños 3, para culster más grandes 5 o 7 (parece que no hace f
 La bbdd del cluster se distribuye entre los master.
 
 
-# Administracion
 
-## nodos
+
+# Administrar nodos
 docker node list
   para ver la lista de managers y nodes
 
-docker node update --role manager <NODE-ID>
+docker node promote <NODE>
+docker node update --role manager <NODE>
   pasar un nodo worker a master
 
-docker node update --role worker <NODE-ID>
+docker node demote <NODE>
+docker node update --role worker <NODE>
   pasar un nodo master a worker
 
-### info de un nodo
-docker node inspect --pretty <NODE-ID>
+## info de un nodo
+docker node inspect --pretty <NODE>
 
 
-### downtime
-docker node update --availability drain <NODE-ID>
+## pause
+docker node update --availability pause <NODE>
+  Este nodo no acepta nuevas tasks
+
+## downtime / drain
+docker node update --availability drain <NODE>
   saca los containers y los arranca en otro lado antes de pararlo
+  tambien quita los containers globales, si tiene
+  Podriamos forzar la vuelta de containers con un rolling update --force
 
-docker node update --availability active <NODE-ID>
+## active
+docker node update --availability active <NODE>
   para volverlo a poner en active
+  no vuelven tareas (si los globales)
 
-### sacar nodo de un cluster
+## sacar nodo de un cluster
 docker swarm leave
   en el nodo que quremos sacar
   previamente tenemos que quitarnos de master
@@ -104,10 +114,19 @@ docker swarm leave
   Para volverlo a meter al cluster tendremos que volverle a pasar el cmd de swarm join
   Si no lo habiamos borrado, veremos dos nodos con el mismo nombre, borraremos el antiguo.
 
-### borrar nodos
-docker node rm <NODE-ID>
+## borrar nodos
+docker node rm <NODE>
   previamente habremos quitado el rol manager, luego hecho un drain y un leave
   esto lo ejecutamos en uno de los nodos que si se mantienen en el cluster
+
+## tags
+docker node update --label-add tipo=mega <NODE>
+  añadir tag a un nodo
+
+docker node inspect <NODE>
+  consultar tags (junto con el resto de datos)
+
+
 
 
 ## Services
@@ -122,10 +141,12 @@ docker service create --name websrv --limit-memory 32MB --publish 8080:80 --mode
   este comando lo podremos lanzar desde cualquier manager (no desde los workers)
 
 Opciones:
+--constraint node.labels.tipo==xxx   ejecutar un service en unos nodos concretos filtrando por label. Con inspect veremos esto
 --limit-memory 32MB
---mode replicated (este es el por defecto)
---mode global (el servicio estará en todos los nodos)
 --replicas 1 (por defecto 1 replica)
+--mode replicated (este es el por defecto)
+--mode global (el servicio estará en todos los nodos. Si publicamos puertos, cada uno constestara con su container local)
+Una vez arrancado el servicio no se puede cambiar el "--mode"
 
 Usaremos --publish NN:BB para publicar puertos
 https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer
@@ -139,6 +160,8 @@ Parece que falta algo para enrutar correctamente. Si hago un inspect del contain
 Si queremos publicar un puerto de un servicio ya activo (parará los containers ejecutándose y levantará unos nuevos):
 docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
 
+Si el servicio se para, automaticamente se arrancará de nuevo.
+
 
 ### Listar services
 docker service ls
@@ -148,25 +171,33 @@ docker service inspect --pretty helloworld
 docker service ps helloworld
   este nos dice donde está corriendo
 
-### Escalar un servicio (arrancar mas copias)
+### Escalar un servicio (hacia arriba o abajo)
 docker service scale helloworld=5
+
+### Parar un servicio
+docker service scale helloworld=0
 
 ### Borrar un service
 docker service rm helloworld
 
-### Actualizando containers
+### Actualizando servicios / rolling updates
 https://docs.docker.com/engine/swarm/swarm-tutorial/rolling-update/
 
 Caso, tenemos containers de una version y queremos actualizarlos:
 docker service create --replicas 3 --name redis --update-delay 10s redis:3.0.6
   --update-delay tiempo de espera entre actualizaciones de containers
+  tambien se puede definir que pasa si falla la actualizacion
+  y de cuantas en cuantas se deben hacer (paralelismo)
 
 docker service update --image redis:3.0.7 redis
 Este comando irá deteniendo los containers antiguos y desplegando la nueva versión.
 
+Tambien tenemos --rollback, para volver a la anterior (sabe que imagen estaba antes)
+
 
 ## Producción
 Que todos los hosts tengan descargados todos los containers, para en caso de caida se levanten más rápido.
+Tambien para que los updates se hagan más rápidos.
 
 
 ## Pruebas cluster
@@ -182,6 +213,9 @@ En pocos segundos (<10") se ha elegido un nuevo lider.
 Y en menos de un minuto los containers ya se encuentran corriendo en otro nodo.
 
 
+## Secretos
+mirar secrets.md
+
 
 ## Errores
 
@@ -194,6 +228,9 @@ Esto parece que es porque la imagen no existe
 
 
 
+
+## Dudas
+Como hacer routing con dns round robin? El routing mesh nos envia a una VIP y de ahi a cualquiera de los servers. La de DNS como funciona? Algo ha dicho que nos da la ip de alguno de los hosts directamente?
 
 
 

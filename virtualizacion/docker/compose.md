@@ -1,4 +1,7 @@
 https://docs.docker.com/compose/
+Si usamos docker swarm -> stacks.md
+Los compose en swarm solo se despliegan en un nodo (tal vez cambia)
+
 
 # Instalacion
 pacman -S docker-compose
