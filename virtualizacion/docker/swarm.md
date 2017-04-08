@@ -3,6 +3,7 @@ swarm-mode implementacion de swarmkit.
 # Swarm Mode (v >= 1.12)
 https://docs.docker.com/engine/swarm/swarm-mode/
 https://docs.docker.com/engine/swarm/swarm-tutorial/#set-up
+https://www.youtube.com/watch?v=_o9hQ5CRCWs&feature=youtu.be
 
 built into docker engine
 dynamic by design (?)
