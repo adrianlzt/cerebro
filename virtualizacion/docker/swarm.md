@@ -232,6 +232,7 @@ Esto parece que es porque la imagen no existe
 ## Dudas
 Como hacer routing con dns round robin? El routing mesh nos envia a una VIP y de ahi a cualquiera de los servers. La de DNS como funciona? Algo ha dicho que nos da la ip de alguno de los hosts directamente?
 
+Swarm no creaba un storage compartido? Con el stack que creado para WP no veo que se comparta. Algo que poner?
 
 
 

@@ -1,0 +1,68 @@
+version: "3.1"
+networks:
+  # Crea una red interna (solo accesibles por los containers que esten en ella)
+  # La red tiene un servidor de dns interno
+  wplabnet:
+    driver: "overlay"
+    internal: true
+volumes:
+  # Estos volumenes estaran compartidos por los nodos
+  # Si no especificamos nada seran locales (driver local) en el host donde corran los containers, no estara compartido entre nodos
+  db_data:
+  wp_data:
+secrets:
+  mysqlpassword:
+    external:
+      name: "wplab_mysqlpassword" # este sera el secret que se leera y se pondra disponible a los services como mysqlpassword
+  mysqlrootpassword:
+    external:
+      name: "wplab_mysqlrootpassword"
+
+services:
+  db:
+    image: "mysql:latest"
+    networks:
+      # Unimos el container a esta red y su nombre sera db (el resto de nodos resolveran 'db' por su ip)
+      wplabnet:
+        aliases: ["db"]
+    volumes:
+      - "db_data:/var/lib/mysql"
+    secrets:
+      - source: mysqlpassword
+        target: mysqlpassword
+      - source: mysqlrootpassword
+        target: mysqlrootpassword
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: "/var/run/secrets/mysqlrootpassword"
+      MYSQL_PASSWORD_FILE: "/var/run/secrets/mysqlpassword"
+      MYSQL_USER: "wordpress"
+      MYSQL_DATABASE: "wordpress"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.labels.server_type==bigserver"
+  web:
+    image: "wordpress:latest"
+    ports:
+      - "8080:80"
+    volumes:
+      - "wp_data:/var/www/html"
+    networks:
+      wplabnet:
+        aliases: ["web"]
+    depends_on:
+      - db
+    secrets:
+      - source: mysqlpassword
+        target: mysqlpassword
+    environment:
+      WORDPRESS_DB_USER: "wordpress"
+      WORDPRESS_DB_PASSWORD_FILE: "/var/run/secrets/mysqlpassword"
+      WORDPRESS_DB_HOST: "db:3306"
+      WORDPRESS_DB_NAME: "wordpress"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.role==worker"

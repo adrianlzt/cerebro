@@ -1,7 +1,8 @@
-https://docs.docker.com/docker-cloud/apps/stack-yaml-reference/
-https://docs.docker.com/docker-cloud/apps/stacks/
+https://docs.docker.com/compose/bundles/#overview
+https://docs.docker.com/engine/reference/commandline/stack/#child-commands
+https://docs.docker.com/compose/compose-file/
 
-Fichero YAML donde definimos nuestra arquitectura para que se despliegue sobre un docker swarm.
+Fichero YAML (usa la v3 del fichero compose) donde definimos nuestra arquitectura para que se despliegue sobre un docker swarm.
 
 Tiene algunas limitaciones.
  - No puedes hacer un build de todas las imagenes de un repo
@@ -10,4 +11,21 @@ Tiene algunas limitaciones.
 Stack es solo para lanzar.
 
 
-Tenemos directivas globales
+Ejemplo de fichero: stack_example_wp.yml
+
+Tenemos directivas globales:
+networks
+volumes
+secrets
+
+
+# Despliegue
+docker stack deploy --compose-file fichero.yml nombre
+
+# Listado
+docker stack ls
+  nos dice el stack y cuantos services tiene corriendo (cada service puede tener varias replicas)
+
+# Info
+docker stack ps <NAME>
+  veermos ya todas las tareas (tasks) ejecutandose
