@@ -53,7 +53,8 @@ systemctl start docker
 
 docker swarm init
   en uno de los nodos
-  ha creado la red overlay y un storage distribuido
+  ha creado la red overlay (podemos verla con: docker network ls, se llamara "ingress". Routing mesh)
+  y un storage distribuido (como funciona?)
 
 Mirar los logs de docker por si ha dado algún fallo (tambien al unir los workers y managers):
 journalctl -n 100 -u docker
@@ -98,6 +99,10 @@ docker node update --availability active <NODE-ID>
 ### sacar nodo de un cluster
 docker swarm leave
   en el nodo que quremos sacar
+  previamente tenemos que quitarnos de master
+  aparecerá como down en "docker node list"
+  Para volverlo a meter al cluster tendremos que volverle a pasar el cmd de swarm join
+  Si no lo habiamos borrado, veremos dos nodos con el mismo nombre, borraremos el antiguo.
 
 ### borrar nodos
 docker node rm <NODE-ID>
@@ -111,17 +116,22 @@ Le decimos que service queremos crear un cuantas copias debe haber.
 El se encarga donde levantar los containers que sean necesarios y mantenerlos activos (levantar nuevos si alguno se detiene)
 
 ### Arrancar un service
+https://docs.docker.com/engine/swarm/services/
+https://docs.docker.com/engine/reference/commandline/service_create/#usage
 docker service create --name websrv --limit-memory 32MB --publish 8080:80 --mode replicated nginx:alpine
   este comando lo podremos lanzar desde cualquier manager (no desde los workers)
 
-Opcines:
+Opciones:
 --limit-memory 32MB
 --mode replicated (este es el por defecto)
+--mode global (el servicio estará en todos los nodos)
 --replicas 1 (por defecto 1 replica)
 
 Usaremos --publish NN:BB para publicar puertos
-Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (docker enrutara la peticion hasta el nodo correcto)
-Swarm hará de balanceador
+https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer
+Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (managers y workers, docker enrutara la peticion hasta el nodo correcto)
+Swarm hará de balanceador.
+Para probar atacar a 127.0.0.1:puerto (localhost:puerto no funciona porque intenta acceder por IPv6 por defecto)
 
 Haciendo una prueba no funciona, no contesta en el puerto en ninguna de las máquinas.
 Parece que falta algo para enrutar correctamente. Si hago un inspect del container tiene una ip de una red overlay que ha creado el swarm, pero parece que el SO no conoce como enrutar los paquets (no veo nada que parezca server en 'ip r' ni en iptables?
@@ -155,11 +165,40 @@ docker service update --image redis:3.0.7 redis
 Este comando irá deteniendo los containers antiguos y desplegando la nueva versión.
 
 
+## Producción
+Que todos los hosts tengan descargados todos los containers, para en caso de caida se levanten más rápido.
+
+
+## Pruebas cluster
+
+### Hacemos un drain de un host
+Tiene un container nginx corriendo
+En unos 8" ya se ha levantado en otro nodo
+La velocidad dependerá de si el host donde se mueve tiene ya el container
+
+### Tirar el manager, donde estan corriendo dos containers
+Reiniciamos de forma brusca el host lider
+En pocos segundos (<10") se ha elegido un nuevo lider.
+Y en menos de un minuto los containers ya se encuentran corriendo en otro nodo.
+
+
+
+## Errores
+
+Al crear un service:
+unable to pin image nrpe to digest: errors:
+denied: requested access to the resource is denied
+unauthorized: authentication required
+
+Esto parece que es porque la imagen no existe
 
 
 
 
-# Instrucciones para montar un docker swarm usando la imagen swarm (antiguo)
+
+
+
+# Instrucciones para montar un docker swarm usando la imagen swarmkit (antiguo)
 
 # Filtering
 Cada docker host se etiqueta con las "cualidades" que tiene. Por ejemplo, donde se encuentra, que tipo de discos tiene, entorno, etc.
