@@ -2,6 +2,7 @@ swarm-mode implementacion de swarmkit.
 
 # Swarm Mode (v >= 1.12)
 https://docs.docker.com/engine/swarm/swarm-mode/
+https://docs.docker.com/engine/swarm/swarm-tutorial/#set-up
 
 built into docker engine
 dynamic by design (?)
@@ -48,9 +49,17 @@ No usar bundles (ya no se usan)
 
 # Desplegar
 systemctl start docker
-docker swarm init
+  en todos los nodos
 
-Nos pasa un comando para agregar mas dockerd a este swarm (cluster)
+docker swarm init
+  en uno de los nodos
+  ha creado la red overlay y un storage distribuido
+
+Mirar los logs de docker por si ha dado algún fallo (tambien al unir los workers y managers):
+journalctl -n 100 -u docker
+
+
+Nos pasa un comando para agregar mas dockerd a este swarm (cluster) como workers (luego podremos cambiar su rol a master)
 Para mostrar el comando de nuevo: docker swarm join-token worker
 
 Si queremos agregar mas manager tendremos que usar otro token, que conseguimos asi:
@@ -58,12 +67,22 @@ docker swarm join-token manager
 
 Por defecto los nodos manager también corren containers.
 
+Deberemos tener un número impar de managers.
+Para clusters pequeños 3, para culster más grandes 5 o 7 (parece que no hace falta subir más de 7, muchos managers puede tardar mucho en elegir un nuevo lider en caso de que se pierda)
+La bbdd del cluster se distribuye entre los master.
+
 
 # Administracion
 
 ## nodos
 docker node list
   para ver la lista de managers y nodes
+
+docker node update --role manager <NODE-ID>
+  pasar un nodo worker a master
+
+docker node update --role worker <NODE-ID>
+  pasar un nodo master a worker
 
 ### info de un nodo
 docker node inspect --pretty <NODE-ID>
@@ -76,6 +95,15 @@ docker node update --availability drain <NODE-ID>
 docker node update --availability active <NODE-ID>
   para volverlo a poner en active
 
+### sacar nodo de un cluster
+docker swarm leave
+  en el nodo que quremos sacar
+
+### borrar nodos
+docker node rm <NODE-ID>
+  previamente habremos quitado el rol manager, luego hecho un drain y un leave
+  esto lo ejecutamos en uno de los nodos que si se mantienen en el cluster
+
 
 ## Services
 Es el concepto "container" para cluster.
@@ -83,7 +111,13 @@ Le decimos que service queremos crear un cuantas copias debe haber.
 El se encarga donde levantar los containers que sean necesarios y mantenerlos activos (levantar nuevos si alguno se detiene)
 
 ### Arrancar un service
-docker service create --replicas 1 --name helloworld alpine ping docker.com
+docker service create --name websrv --limit-memory 32MB --publish 8080:80 --mode replicated nginx:alpine
+  este comando lo podremos lanzar desde cualquier manager (no desde los workers)
+
+Opcines:
+--limit-memory 32MB
+--mode replicated (este es el por defecto)
+--replicas 1 (por defecto 1 replica)
 
 Usaremos --publish NN:BB para publicar puertos
 Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (docker enrutara la peticion hasta el nodo correcto)
@@ -96,9 +130,6 @@ Si queremos publicar un puerto de un servicio ya activo (parará los containers 
 docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
 
 
-### Escalar un servicio (arrancar mas copias)
-docker service scale helloworld=5
-
 ### Listar services
 docker service ls
 
@@ -106,6 +137,9 @@ docker service ls
 docker service inspect --pretty helloworld
 docker service ps helloworld
   este nos dice donde está corriendo
+
+### Escalar un servicio (arrancar mas copias)
+docker service scale helloworld=5
 
 ### Borrar un service
 docker service rm helloworld

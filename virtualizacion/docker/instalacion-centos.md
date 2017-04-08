@@ -9,6 +9,18 @@ Mirar lvm.md si queremos usar el drive lvm-direct
 systemctl start docker
 docker run hello-world
 
+Tras instalar, ejecutar este script https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh
+Nos dirá si tenemos algún problema (es normal que falten algunos drivers de storage y network, posiblemente no los vamos a usar)
+
+Buscar si tenemos algún error en
+journalctl -n 100 -u docker
+
+Este parece que no es importante (https://github.com/docker/docker/issues/13969)
+Apr 08 08:59:35 dockerswarm-4 dockerd[18618]: time="2017-04-08T08:59:35.895169788Z" level=warning msg="Running modprobe bridge br_netfilter failed with message: modprobe: WARNING: Module br_netfilter not found.\
+
+Este puede ser por esta opcion de la que queja el check-config (CONFIG_CGROUP_PIDS: missing)
+Apr 08 08:59:35 dockerswarm-4 dockerd[18618]: time="2017-04-08T08:59:35.823687099Z" level=warning msg="mountpoint for pids not found"
+
 
 
 # Centos 6 (no usar en centos6 -> problemas)
