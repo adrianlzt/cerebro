@@ -81,6 +81,40 @@ sudo mv /etc/yum.repos.d/ceph.repo /etc/yum.repos.d/ceph-deploy.repo
 
 Add the initial monitor(s) and gather the keys:
 ceph-deploy mon create-initial
+Si falla con esto:
+[ceph_deploy.mon][WARNIN] mon.ceph-2 monitor is not yet in quorum, tries left: 1
+[ceph_deploy.mon][WARNIN] waiting 20 seconds before retrying
+[ceph_deploy.mon][ERROR ] Some monitors have still not reached quorum:
+[ceph_deploy.mon][ERROR ] ceph-1
+[ceph_deploy.mon][ERROR ] ceph-2
+
+Darle más tiempo y luego volver a ejecutarlo.
+
+
+Preparar directorios de nodos (OSDs) para añadirlos al cluster (osd.md info especifica):
+ceph-deploy osd prepare ceph-1:/dev/vdb ceph-2:/dev/vdb
+  Debemos, por cada nodo, leer un mensaje tipo: [ceph_deploy.osd][DEBUG ] Host ceph-1 is now ready for osd use.
+  Tambien podemos meter directorios. Ej: ceph-1:/var/local/ceph1 (aunque algo me fallo probando, tal vez permisos en ese dir?)
+
+Activamos los OSDs:
+ceph-deploy osd activate ceph-1:/dev/vdb ceph-2:/dev/vdb
+
+Error:
+[ceph-1][WARNIN] ceph_disk.main.FilesystemTypeError: Cannot discover filesystem type: device /dev/vdb: Line is truncated:
+https://github.com/ceph/ceph-docker/issues/324
+El problema es: https://github.com/ceph/ceph-docker/issues/324#issuecomment-231120652
+Bug en ceph cerrado por el autor (erroneamente creo): http://tracker.ceph.com/issues/16649
+
+
+Al final he visto que ya habia montado en cada nodo:
+/var/lib/ceph/osd/ceph-X
+Asi que hago:
+ceph-deploy osd prepare ceph-1:/var/lib/ceph/osd/ceph-1 ceph-2:/var/lib/ceph/osd/ceph-2
+
+Nada! Falla con:
+[ceph-1][WARNIN] ceph_disk.main.Error: Error: No cluster conf found in /etc/ceph with fsid 8726370b-d0b6-49a3-9071-00faf78bd0c8
+[ceph-1][ERROR ] RuntimeError: command returned non-zero exit status: 1
+[ceph_deploy][ERROR ] RuntimeError: Failed to execute command: /usr/sbin/ceph-disk -v activate --mark-init systemd --mount /var/lib/ceph/osd/ceph-1
 
 
 

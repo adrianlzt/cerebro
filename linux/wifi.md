@@ -1,5 +1,7 @@
 http://substack.net/wireless_from_the_command_line_in_linux
 
+mirar NetworkManager/nmcli.md
+
 Comprobar si esta habilitado:
 rfkill list
 
@@ -7,8 +9,11 @@ Habilitar
 rfkill unblock wifi
 
 
-Mostrar redes:
+Conectar a una wifi:
 nmcli device wifi list
+sudo ifconfig wlo1 up
+nmcli device wifi connect 'nombrred' password 'contraseña' ifname wlo1
+
 
 Numero de redes en cada canal
 sudo iwlist wlo1 scan | grep Frequency | sort | uniq -c | sort -n
