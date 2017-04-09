@@ -7,6 +7,7 @@ http://docs.ceph.com/docs/master/start/os-recommendations/
 
 Recomiendan kernels nuevos (4.4, 4.9)
 CentOS 7 vale
+As of December 2014, XFS is the recommended underlying filesystem type for production environments, while Btrfs is recommended for non-production environments. ext4 filesystems are not recommended because of resulting limitations on the maximum RADOS objects length.[11]
 
 # Manual
 Montar 4 nodos, 1 ceph-deploy mas 3 servers
@@ -60,7 +61,7 @@ cd cluster
 Comprobar que no tenemos requiretty para sudo en este nodo tampoco.
 
 ## Despliegue
-ceph-deploy new node1 node2
+ceph-deploy new ceph-1 ceph-2 
 
 Deberan haberse creado tres ficheros:
 ceph.conf  ceph-deploy-ceph.log  ceph.mon.keyring
@@ -70,7 +71,7 @@ Si tenemos solo dos nodos ceph, tendremos que meter esta linea en la seccion glo
 osd pool default size = 2
 
 Instalamos ceph en los nodos (en los que hemos hecho "new" antes):
-ceph-deploy install ceph-deploy node1 node2
+ceph-deploy install ceph-deploy ceph-1 ceph-2
   llamo ceph-deploy a la maquina desde donde lanzo esto
   tenemos que tener instalado ceph tambien en el ceph-deploy
 
@@ -91,6 +92,25 @@ Si falla con esto:
 Darle más tiempo y luego volver a ejecutarlo.
 
 
+
+Preparar directorios de nodos (OSDs) para añadirlos al cluster (osd.md info especifica):
+ceph-deploy osd prepare ceph-1:/mnt ceph-2:/mnt
+
+Activar OSDs
+ceph-deploy osd activate ceph-1:/mnt ceph-2:/mnt
+
+Copiar conf a los nodos
+ceph-deploy admin ceph-deploy ceph-1 ceph-2
+
+ceph health
+FALLA!
+Creo que me he perdido algo.
+Tiene que haber un nodo admin del cluster? Leer doc
+
+
+
+
+Prueba usando discos directamente. FALLA
 Preparar directorios de nodos (OSDs) para añadirlos al cluster (osd.md info especifica):
 ceph-deploy osd prepare ceph-1:/dev/vdb ceph-2:/dev/vdb
   Debemos, por cada nodo, leer un mensaje tipo: [ceph_deploy.osd][DEBUG ] Host ceph-1 is now ready for osd use.
