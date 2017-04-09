@@ -16,7 +16,7 @@ As of December 2014, XFS is the recommended underlying filesystem type for produ
 http://docs.ceph.com/docs/hammer/man/8/ceph-deploy/
 
 El admin node será dede donde lanzemos los comandos ceph-deploy, nuestro portatil por ejemplo.
-Montamos 1 nodo mon (ceph-mon-1) y 2 OSDs (ceph-2 y ceph-3)
+Montamos 1 nodo mon (ceph-mon-1) y 2 OSDs (ceph-1 y ceph-2)
 
 En todos los nodos:
 yum install ntp ntpdate ntp-doc
@@ -26,12 +26,7 @@ systemctl start ntpd
 
 ## ceph-deploy
 Deberemos tener la herramienta intalada (depende de SO. Arch: yaourt -S ceph-deploy)
-No se ejecuta con root
 Este nodo necesita acceso ssh paswordless a los clientes. Sudo sin password y sin requiretty tambien.
-selinux desactivado
-cephdeploy$ ssh-keygen
-cephdeploy$ cat /home/cloud-user/.ssh/id_rsa.pub
-Copiar a los .ssh/authorized_keys de los nodos
 
 Los nombres de los nodos deben ser iguales a sus hostnames!
 
@@ -46,9 +41,10 @@ Host ceph-3
    Hostname 172.16.2.37
    User cloud-user
 
-Meter los nodos tambien en el /etc/hosts y distribuir este fichero por todos los nodos.
+Meter los nodos tambien en el /etc/hosts
+En los /etc/hosts de los nodos del cluster deberan estar tambien el resto de nodos, con las IPs que usen para conectarse entre ellos.
 
-Comprobar que tenemos ping y conectamos por ssh (tambien a la propia maquina del ceph-deploy).
+Comprobar que conectamos por ssh
 
 mkdir cluster
 cd cluster
@@ -61,31 +57,39 @@ El comando intentará pasar las claves ssh privadas para que este nodo tega acce
 Comprobará que puede conectar al nodo, que la ip resuelve al hostname que dice, y creará, localmente, una keyring y el fichero ceph.conf
 ceph-deploy new ceph-mon-1
 
+Revisar el fichero de ceph.conf, la ip que aparezca debe ser la interna (con la que se vaya a comunicar)
+Desplegando desde mi portatil a unas VMs virtuales (a las que accedo por IPs virtuales) tengo que poner el comando asi:
+ceph-deploy new --public-network 172.16.2.0/24 ceph-mon-1
+  siendo esa red la de las maquinas
 
 Si tenemos solo dos nodos ceph, haremos:
 echo "osd pool default size = 2" >> ceph.conf
 
 Instalamos ceph en los nodos (monitores y OSDs).
 Mete lo repo de ceph e instala: ceph-common, ceph-base, ceph-selinux, ceph-mon, ceph-osd, ceph-mds, ceph, ceph-radosgw
-ceph-deploy install ceph-mon-1 ceph-2 ceph-3
+ceph-deploy install ceph-mon-1 ceph-1 ceph-2
 
-Desplegamos ceph-monitor en los nodos que vayan a hacer la funcion de monitores.
+Desplegamos ceph-monitor en los nodos que vayan a hacer la funcion de monitores. Copia ceph.conf al nodo
 ceph-deploy mon create-initial
+  en caso de falo mirar el log en la maquina
 
 Ahora podemos mirar los discos que tenemos disponibles en las máquinas que van a ejecutar los OSDs:
-ceph-deploy disk list ceph-2 ceph-3
+ceph-deploy disk list ceph-1 ceph-2
+  en caso de no estar vacios, borrar las particiones con parted
 
 Creamos los OSD con los discos que vayamos a usar (mejor discos enteros sin particionar) (create hace prepare y luego activate)
 Particionará el disco en dos (para 10GB lo ha partido en 5 y 5), uno para journal y otro para data (XFS) (prepare)
 Luego los unirá al cluster (activate)
 Copiara el fichero /etc/ceph/ceph.conf
-ceph-deploy osd create ceph-2:/dev/vdb ceph-3:/dev/vdb
+ceph-deploy osd create ceph-1:/dev/vdb ceph-2:/dev/vdb
 
 Comprobamos que los discos se han añadido correctamente:
-ceph-deploy osd list ceph-2:/dev/vdb ceph-3:/dev/vdb
+ceph-deploy osd list ceph-1:/dev/vdb ceph-2:/dev/vdb
 
-Aqui pasaremos el fichero de configuración y la clave (ceph.client.admin.keyring) a los nodos que queremos que puedan ejecutar el comando ceph:
-ceph-deploy admin ceph-mon-1
+Con este comando podemos copiar el fichero ceph.conf y la clave (keyring) a nodos para que puedan llamar al comando ceph
+El nodo mon ya lo tiene, no le hace falta.
+Podemos pasarlo a los nodos osd si querems poder ejecutar ceph desde ahi (opcional)
+ceph-deploy admin ceph-1 ceph-2
 
 ceph health
 Si tenemos problemas mirar monitorizar.md
