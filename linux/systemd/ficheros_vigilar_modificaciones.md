@@ -1,5 +1,6 @@
-Vigilamos un fichero y ejecutamos el service asociado si se produce algún cambio
+https://www.freedesktop.org/software/systemd/man/systemd.path.html
 
+Vigilamos un fichero y ejecutamos el service asociado si se produce algún cambio
 
 
 local-apt-repository.path

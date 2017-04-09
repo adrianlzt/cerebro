@@ -5,9 +5,9 @@ User=pepe
 Con esto podemos arrancar aplicaciones X11 desde root a un usuario.
 
 # Para gestion de systemd como user no root
-https://wiki.archlinux.org/index.php/Systemd/User_(Espa%C3%B1ol)
+https://wiki.archlinux.org/index.php/Systemd/User
 
-Podemos meter unidades de systemd especificas para un user:
+Podemos meter unidades de systemd especificas para un user (no soportado en centos7 https://bugs.centos.org/view.php?id=8767):
 ~/.config/systemd/user
 
 Estado global:
