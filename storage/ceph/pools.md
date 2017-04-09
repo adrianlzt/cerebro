@@ -7,3 +7,7 @@ Por defecto tenemos un pool "rbd".
 
 # Listar pools
 ceph osd lspools
+
+
+# Pool statistics
+rados df

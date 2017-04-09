@@ -16,7 +16,7 @@ En el servidor:
 	$ git config --bool core.bare true
 
 En el cliente (añadir remote a un repo):
-	$ git this (git init && git add . && git commit -m "initial commit")
+	$ git init && git add . && git commit -m "initial commit"
 	$ git remote add origin ssh://ncer@sun/home/repositorios/nuevo/
 
 Otra forma (clonar repo):
