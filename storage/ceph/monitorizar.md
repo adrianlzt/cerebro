@@ -2,9 +2,11 @@ http://docs.ceph.com/docs/master/rados/operations/monitoring/
 http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/
 http://docs.ceph.com/docs/hammer/rados/operations/user-management/
 
-Chequeo del estado del cluster:
+Chequeo del estado del cluster. Razones por las que puede dar no-ok http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/#monitoring-placement-group-states:
 ceph health
 ceph health detail
+ceph -s
+  mas datos
 
 Estado global del cluster:
 ceph status
@@ -28,6 +30,21 @@ ceph -w
 Uso de disco:
 ceph df
 
+Estado de los placement groups
+ceph pg stat
+ceph pg dump
+ceph pg map {pg-num}
+  nos dice que hosts estan asociados a un PG
+
+Estado del CRUSH map:
+ceph osd crush tree
+
+Pools:
+ceph osd pool ls detail
+  nos dice datos sobre el pool. Entre ellos:
+    replicated size X -> numero de replicas necesarias
+
+
 Si queremos ejecutar comandos directamente contra los OSDs, tendremos que hacerlo atacando a su socket. Ej.:
 ceph daemon /var/run/ceph/ceph-osd.2.asok status
 
@@ -35,6 +52,8 @@ ceph daemon /var/run/ceph/ceph-osd.2.asok status
 # Metadata server
 ceph mds stat
 ceph fs dump
+
+
 
 # Cosas que monitorizar
 You should also consider what percentage of the overall data the cluster stores on each host. If the percentage on a particular host is large and the host fails, it can lead to problems such as exceeding the full ratio, which causes Ceph to halt operations as a safety precaution that prevents data loss.

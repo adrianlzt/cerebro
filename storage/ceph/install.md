@@ -1,6 +1,7 @@
 http://ceph.com/install/
 http://www.virtualtothecore.com/en/adventures-ceph-storage-part-3-design-nodes/
 https://www.howtoforge.com/tutorial/how-to-build-a-ceph-cluster-on-centos-7/
+http://www.virtualtothecore.com/en/adventures-ceph-storage-part-1-introduction/
 
 Tienen codigo para desplegar con ansible, puppet, chef, etc
 

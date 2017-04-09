@@ -7,4 +7,6 @@ Dispositivos de Almacenamiento de Objetos (ceph-osds), actualmente es el que alm
 
 
 Puede almacenar objetos (RGW) o bloques (RBD)
-Tambien se puede usar como filesystem (cephfs)
+
+Tambien se puede usar como filesystem (cephfs). 9/4/2017 -> technology preview en RedHat (no listo para producción)
+Este filesystem puede ser compartido por varios cliente simultaneamente en modo lectura/escritura.
