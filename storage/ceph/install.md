@@ -1,4 +1,6 @@
 http://ceph.com/install/
+http://www.virtualtothecore.com/en/adventures-ceph-storage-part-3-design-nodes/
+https://www.howtoforge.com/tutorial/how-to-build-a-ceph-cluster-on-centos-7/
 
 Tienen codigo para desplegar con ansible, puppet, chef, etc
 
@@ -9,27 +11,18 @@ Recomiendan kernels nuevos (4.4, 4.9)
 CentOS 7 vale
 As of December 2014, XFS is the recommended underlying filesystem type for production environments, while Btrfs is recommended for non-production environments. ext4 filesystems are not recommended because of resulting limitations on the maximum RADOS objects length.[11]
 
-# Manual
-Montar 4 nodos, 1 ceph-deploy mas 3 servers
+
+# Instalacion usando ceph-deployer
+http://docs.ceph.com/docs/hammer/man/8/ceph-deploy/
+
+El admin node será dede donde lanzemos los comandos ceph-deploy, nuestro portatil por ejemplo.
+Montamos 1 nodo mon y 2 OSDs
 
 En todos los nodos:
 yum install ntp ntpdate ntp-doc yum-plugin-priorities
 
 
 ## ceph-deploy
-yum install -y epel-release
-
-Meter repo de ceph:
-[ceph-noarch]
-name=Ceph noarch packages
-baseurl=https://download.ceph.com/rpm-{ceph-release}/{distro}/noarch
-enabled=1
-gpgcheck=1
-type=rpm-md
-gpgkey=https://download.ceph.com/keys/release.asc
-
-yum update && yum install ceph-deploy
-
 No se ejecuta con root
 Este nodo necesita acceso ssh paswordless a los clientes. Sudo sin password y sin requiretty tambien.
 selinux desactivado
@@ -37,23 +30,22 @@ cephdeploy$ ssh-keygen
 cephdeploy$ cat /home/cloud-user/.ssh/id_rsa.pub
 Copiar a los .ssh/authorized_keys de los nodos
 
-Los nombres de los nodos deben ser iguales a sus hostnames! Aqui usare los nombres node{1,2,3} y ceph-deploy
+Los nombres de los nodos deben ser iguales a sus hostnames!
 
 Meter en el ~/.ssh/config los nodos con el user ya configurado
-Host node1
+Host ceph-mon-1
    Hostname 172.16.2.35
    User cloud-user
-Host node2
+Host ceph-2 
    Hostname 172.16.2.36
    User cloud-user
-Host node3
+Host ceph-3
    Hostname 172.16.2.37
    User cloud-user
 
-Meter los nodos tambien en el /etc/hosts
+Meter los nodos tambien en el /etc/hosts y distribuir este fichero por todos los nodos.
 
-Comprobar que tenemos ping y conectamos por ssh.
-Tambien a la propia maquina ceph-deploy
+Comprobar que tenemos ping y conectamos por ssh (tambien a la propia maquina del ceph-deploy).
 
 mkdir cluster
 cd cluster
@@ -61,7 +53,10 @@ cd cluster
 Comprobar que no tenemos requiretty para sudo en este nodo tampoco.
 
 ## Despliegue
-ceph-deploy new ceph-1 ceph-2 
+Empezamos creando el cluster pasando el nodo (o los nodos) que hará de monitor
+El comando intentará pasar las claves ssh privadas para que este nodo tega acceso (no he visto que pase)
+Comprobará que puede conectar al nodo, que la ip resuelve al hostname que dice, y creará, localmente, una keyring y el fichero ceph.conf
+ceph-deploy new ceph-mon-1
 
 Deberan haberse creado tres ficheros:
 ceph.conf  ceph-deploy-ceph.log  ceph.mon.keyring

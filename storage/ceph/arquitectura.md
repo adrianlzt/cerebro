@@ -2,11 +2,26 @@ http://ceph.com/geen-categorie/zero-to-hero-guide-for-ceph-cluster-planning/
 http://docs.ceph.com/docs/jewel/start/hardware-recommendations/
 https://es.slideshare.net/mirantis/ceph-talk-vancouver-20
 
+Minimum hardware recomentations: http://docs.ceph.com/docs/master/start/hardware-recommendations/#minimum-hardware-recommendations
+
+# Red
+http://docs.ceph.com/docs/master/start/hardware-recommendations/#networks
+Usar redes de 10Gbps
+We recommend that each host have at least two 1Gbps network interface controllers (NICs) (una para la red por donde se realiza la replicación y otra para la red de servicio/frontend)
+Consider starting with a 10Gbps network in your racks. Replicating 1TB of data across a 1Gbps network takes 3 hours, and 3TBs (a typical drive configuration) takes 9 hours. By contrast, with a 10Gbps network, the replication times would be 20 minutes and 1 hour respectively
+
 # OSDs (ceph-osd)
 Los servidores donde se hace el almacenamiento deben ser dedicados.
 Con un servicio OSD por cada disco duro
 Mínimo dos
-Ceph OSDs run the RADOS service, calculate data placement with CRUSH, replicate data, and maintain their own copy of the cluster map. Therefore, OSDs should have a reasonable amount of processing power (e.g., dual core processors).
+CPU: Ceph OSDs run the RADOS service, calculate data placement with CRUSH, replicate data, and maintain their own copy of the cluster map. Therefore, OSDs should have a reasonable amount of processing power (e.g., dual core processors).
+Memoria: 500MB of RAM per daemon instance (during recovery they need significantly more RAM, ~1GB per 1TB of storage per daemon)
+Disco: Ceph has to write all data to the journal before it can send an ACK (for XFS at least, parece que brtfs arregla esto, pero no esta listo para producción), having the journal and OSD performance in balance is really important!
+Parece que es razonable meter los journal en discos SSDs separados, pero si no podemos usar los propios discos para almacenar tambien el journal.
+En los discos donde esten los OSDs no poner nada más (no servidor de metadata, no server de mon)
+Ceph best practices dictate that you should run operating systems, OSD data and OSD journals on separate drives.
+Red: the sum of the total throughput of your OSD hard disks doesn’t exceed the network bandwidth required to service a client’s need to read or write data
+
 
 # Monitores (ceph-mon)
 Al menos tres (para tener quorum).
@@ -14,7 +29,9 @@ No requiere mucho hardware (A 1U server with low cost processor E5-2603,16GB RAM
 Cuidado porque pueden generar muchas trazas de log, sobre todo si el cluster esta un healthy.
 Correr los monitores sobre hardware separado para evitar un single point of failure (no montar tres VMs sobre la misma máquina física)
 Podemos meterlos en los nodos que vayan a ser los cientes del cluster ceph
-Monitors simply maintain a master copy of the cluster map, so they are not CPU intensive
+CPU: Monitors simply maintain a master copy of the cluster map, so they are not CPU intensive
+Memoria: 1GB of RAM per daemon instance.
+
 
 
 # RGW (ceph-rgw)=
@@ -27,7 +44,8 @@ Provides Block Storage to VM / bare metal as well as regular clients , supports 
 Filesystem distribuido
 
 # Metadata (ceph-mds)
-Ceph metadata servers dynamically redistribute their load, which is CPU intensive. So your metadata servers should have significant processing power (e.g., quad core or better CPUs).
+CPU: Ceph metadata servers dynamically redistribute their load, which is CPU intensive. So your metadata servers should have significant processing power (e.g., quad core or better CPUs).
+Memoria: 1GB of RAM per daemon instance
 Creo que este server solo es necesario si usamos cephfs
 
 
