@@ -156,3 +156,11 @@ $ echo "" > messages
 
 $ ./check_logfiles.pl --seekfilesdir=tmp/seek --protocolsdir=tmp/proto/ --logfile=messages --criticalpattern="logrotate: ALERT" --rotation="messages-\d{8}"
 CRITICAL - (1 errors in check_logfiles.protocol-2015-03-12-11-31-47) - Mar  8 03:41:02 ESJC-DSMM-MS12S logrotate: ALERT exited abnormally with [1] |default_lines=2 default_warnings=0 default_criticals=1 default_unknowns=0
+
+
+
+
+# Build
+git clone https://github.com/lausser/check_logfiles.git
+cd check_logfiles
+yum group install "Development Tools"
