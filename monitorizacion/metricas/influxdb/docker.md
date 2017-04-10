@@ -1,3 +1,5 @@
+Mirar sandbox.md para un entorno TICK
+
 # Oficial
 https://hub.docker.com/_/influxdb/
 
