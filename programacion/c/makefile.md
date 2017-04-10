@@ -25,6 +25,9 @@ done
 The file 'configure.ac' (or 'configure.in') is used to create 'configure' by a program called 'autoconf'.
 
 Tambien puede ser que necesitemos el:
+aclocal
+autoheader
+automake
 autoreconf
 
 

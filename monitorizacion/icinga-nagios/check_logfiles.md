@@ -161,6 +161,17 @@ CRITICAL - (1 errors in check_logfiles.protocol-2015-03-12-11-31-47) - Mar  8 03
 
 
 # Build
+docker run -v "$PWD:/mnt" --rm -it centos:7
+yum install -y git
 git clone https://github.com/lausser/check_logfiles.git
 cd check_logfiles
-yum group install "Development Tools"
+yum group install "Development Tools" -y
+aclocal
+autoheader
+automake
+autoconf
+./configure
+make
+make install
+cp /usr/local/nagios/libexec/check_logfiles /mnt
+
