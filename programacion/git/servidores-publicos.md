@@ -17,7 +17,7 @@ En el servidor:
 
 En el cliente (añadir remote a un repo):
 	$ git init && git add . && git commit -m "initial commit"
-	$ git remote add origin ssh://ncer@sun/home/repositorios/nuevo/
+	$ git remote add origin ssh://ncer@sun:/home/repositorios/nuevo/
 
 Otra forma (clonar repo):
   git clone adrian@localhost:/home/adrian/Documentos/prueba
