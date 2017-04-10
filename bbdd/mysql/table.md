@@ -49,3 +49,8 @@ FOREIGN KEY [index_name] (index_col_name,...)
 
 Ejemplo, cambiar una columna de tipo INT a UNSIGNED INT NOT NULL:
 alter table top change priority priority INT UNSIGNED NOT NULL;
+
+
+
+Para ver los tipos de tablas (InnoDB, MyISAM, etc):
+show table status;

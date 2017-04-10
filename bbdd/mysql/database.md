@@ -30,3 +30,7 @@ ALTER {DATABASE | SCHEMA} [db_name]
 	alter_specification ...
 ALTER {DATABASE | SCHEMA} db_name
 	UPGRADE DATA DIRECTORY NAME
+
+
+Para ver los tipos de tablas:
+show table status;
