@@ -8,3 +8,9 @@ CREATE DATABASE 'revive_adserver_4';
 CREATE USER 'revive'@'%' IDENTIFIED BY 'XXXXX';
 GRANT ALL ON revive_adserver_4.* TO 'revive'@'%';
 
+Arrancar un server web con soporte php y apuntarlo al directorio de la app.
+Comenzará una instalacion web.
+
+Requiere php 5.5.9 o mayor
+Usar los repos de ius e instalar
+php56u
