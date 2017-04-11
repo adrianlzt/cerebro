@@ -5,6 +5,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysq
 yum install -y php-fpm
 systemctl enable php-fpm
 
+Ejemplo de fichero en php.conf (ejemplo completo, los de abajo pueden que les falte algo)
+
 ## Conectando via TCP
 No modifico /etc/php-fpm.d/www.conf
 No modifico /etc/php.ini (no me queda claro si hace falta cambiar cgi.fix_pathinfo)
