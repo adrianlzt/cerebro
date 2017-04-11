@@ -90,9 +90,11 @@ ElRepo
 rpm -Uvh http://elrepo.org/elrepo-release-6-5.el6.elrepo.noarch.rpm
 
 IUS
-https://iuscommunity.org/pages/Repos.html
-http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/x86_64/ius-release-1.0-13.ius.centos6.noarch.rpm
-http://dl.iuscommunity.org/pub/ius/stable/CentOS/6/
+https://ius.io/GettingStarted/#subscribing-to-the-ius-repository
+https://rhel6.iuscommunity.org/ius-release.rpm
+https://rhel7.iuscommunity.org/ius-release.rpm
+https://centos6.iuscommunity.org/ius-release.rpm
+https://centos7.iuscommunity.org/ius-release.rpm
 
 Remirepo:
 Para rhel6
