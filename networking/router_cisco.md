@@ -1,3 +1,8 @@
+# Configuracion
+Mostrar:
+show running-config
+
+
 # NAT
 Como configurar un router para añadir nat
 

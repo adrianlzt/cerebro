@@ -56,3 +56,9 @@ Si NMAP nos dice "Note: Host seems down. If it is really up, but blocking our pi
 
 ## UDP
 Parece que no es fácil comprobar que un puerto UDP está abierto.
+
+
+# Maquinas lentas
+nmap --max-retries 5 --min-rtt-timeout 10 10.0.1.1
+  metemos más retries y mas tiempo de espera
+  no lo he probado
