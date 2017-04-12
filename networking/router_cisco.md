@@ -1,17 +1,27 @@
 # Doc
 Obtener la versión del iOS y buscar su command reference
 
+15.4: http://www.cisco.com/c/en/us/support/ios-nx-os-software/ios-15-4m-t/products-command-reference-list.html
+
 # Ver version especifica y version del software
 show version
+
+# Navegar
+sh -> show
+show ?
+  lista de que puedes meter (eso para todos los comandos)
+
+s?
+  comandos que pueden completar
+
+Tab completa si puede (si no probar "?")
+
+exit para salir al nivel superior
+
 
 # Configuracion
 Mostrar:
 show running-config
-
-# Saltar por los comandos
-sh -> show
-show ?
-  lista de que puedes meter (eso para todos los comandos)
 
 # grep / ex / in
 sh version | in XX
@@ -67,6 +77,8 @@ Dos routers en activo / pasivo compartiendo una IP virtual.
 El que tiene más peso es el activo.
 Si el pasivo deja de recibir "ack" le pone activo.
 Funciona decidiendo quien contesta el arping (hay una MAC virtual)
+
+
 
 # Errores
 Puerto flapeando? mirar show log
