@@ -8,6 +8,16 @@ http://crossbar.io/autobahn/
 Router para las peticiones: crossbar.io
 
 
+# Install
+[crossbar]
+name = Crossbar
+baseurl = http://package.crossbar.io/centos/7/
+enabled = 1
+gpgcheck = 1
+
+yum install -y crossbar
+
+
 # Server crossbar
 Una forma rapida de montar un server de crossbar con docker
 https://github.com/crossbario/crossbar-examples/tree/master/docker/disclose
