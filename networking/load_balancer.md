@@ -47,3 +47,12 @@ Problema, si se cae el balanceador nos quedamos sin servicio.
 ## Activo-Activo
 Los registros DNS apuntan a varios nodos simultáneamente. Cada uno de estos nodos a su vez balancea internamente (mirar haproxy.md)
 Problema, si se cae uno de los nodos se perderán esas peticiones? Al menos 1 de cada 3 que vayan contra esa ip.
+
+
+
+# DSR / Direct Server Return
+https://kemptechnologies.com/white-papers/what-is-direct-server-return/
+
+El balanceador pasa la petición al servidor y el servidor contesta directamente al cliente (sin pasar por el LB)
+
+No es trivial de configurar. Tiene bastantes implicaciones.
