@@ -45,3 +45,18 @@ $ date -Ins
 
 Poner la hora actual más una hora:
 date -d '+1 hour' "+%d.%m.%Y %H:%M:%S"
+
+
+
+Cambios de timezone:
+Que hora es ahora en Chicago?
+TZ=America/Chicago date
+
+Que hora es en chicago cuando son las 11:00 en Madrid?
+TZ=America/Chicago date -d "11:00 CEST"
+TZ=America/Chicago date --date="TZ=\"Europe/Madrid\" 11:00"
+
+Que hora es en mi zona horaria cuando son las 18:00 en Taipei
+date --date='TZ="Asia/Taipei" 18:00'
+
+
