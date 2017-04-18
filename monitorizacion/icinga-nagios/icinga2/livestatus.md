@@ -1,7 +1,7 @@
 http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#itl
 Setting up Livestatus
 
-Necesario para Icinga Web 2
+Necesario para Icinga Web 2 -> ANTIGUO, ahora usa idodb
 
 ln -s /etc/icinga2/features-available/livestatus.conf /etc/icinga2/features-enabled/
 ln -s /etc/icinga2/features-available/compatlog.conf /etc/icinga2/features-enabled/
