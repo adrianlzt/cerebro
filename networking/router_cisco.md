@@ -91,6 +91,11 @@ Cisco CLI analyzer
 Programa para windows o macos para conectar con los routers y que nos realiza tareas automaticas de análisis
 
 
+Extraer datos a traves de telnet.
+Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
+(echo "USER"; echo 'PASS'; echo "term len 0"; echo "show version"; echo "q"; sleep 3) | telnet 10.0.0.1 > out.txt
+
+
 
 # Failover / HSRP
 Dos routers en activo / pasivo compartiendo una IP virtual.
