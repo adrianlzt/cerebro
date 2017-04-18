@@ -27,15 +27,16 @@ show running-config
 sh version | in XX
   es como "grep XX"
 
-sh processess cpu | ex 0.0
+sh processes cpu | ex 0.0
   es como "grep -v 0.0"
 
 # uptime
 show version
 
 # CPU
-show processess cpu history
-show processess cpu
+show processes cpu history
+show processes cpu
+sh processes cpu | ex 0.0
 
 # Memoria
 show mem
@@ -72,6 +73,25 @@ Testear que funciona
 write
 
 
+
+# Debug
+http://www.techrepublic.com/blog/data-center/troubleshoot-cisco-routers-and-switches-using-the-debug-commands/
+
+Activar debug de un modulo, por ejemplo de las dns:
+debug domain
+
+Mostrar debugs activos
+sh debug
+
+Mostrar trazas
+sh logging
+
+https://cway.cisco.com/go/sa/
+Cisco CLI analyzer
+Programa para windows o macos para conectar con los routers y que nos realiza tareas automaticas de análisis
+
+
+
 # Failover / HSRP
 Dos routers en activo / pasivo compartiendo una IP virtual.
 El que tiene más peso es el activo.
@@ -80,7 +100,15 @@ Funciona decidiendo quien contesta el arping (hay una MAC virtual)
 
 
 
+
 # Errores
 Puerto flapeando? mirar show log
 
 Muchos NAT montados? Tal vez demasiados procesos de NAT?
+
+DNS server cargando la CPU
+https://www.reddit.com/r/Cisco/comments/3dxo3w/cisco_1941_dns_causing_high_cpu_usage/
+Acceso externo?
+
+Troubleshooting High CPU Utilization on Cisco Routers
+http://www.cisco.com/c/en/us/support/docs/routers/10000-series-routers/15095-highcpu.html
