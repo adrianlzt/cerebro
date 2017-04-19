@@ -232,6 +232,9 @@ ip host db.example.com 10.0.0.6
 Mirar hosts definidos
 show hosts
 
+Ver estadisticas:
+show ip dns statistics
+
 Ejecutar comando "host" (nslookup/dig).
 Tenemos que meter un script tcl (en este dir host.tcl)
 origen: https://supportforums.cisco.com/discussion/10406166/can-ios-do-nslookup
