@@ -47,10 +47,32 @@ copy system:running-config tftp://172.16.2.155/tokyo-confg
 copy c2900-universalk9-mz.SPA.151-4.M8.bin tftp://10.0.1.17/c2900-universalk9-mz.SPA.151-4.M8.bin
   en el servidor tftp ya debe existir un fichero vacio con ese nombre y permisos 777 (los permisos por si acaso)
 
+Escribir un fichero (usando tclsh)
+http://ccie.floorripper.com/index.php/Blog:Main_Page/write_and_edit_text_files_on_the_cisco_router_flash
+tclsh
+puts [open "flash:test.cfg" w+] {
+linea
+otra linea
+}
+tclquit
+
+
+# Interfaces
+sh ip interface brief
+sh interfaces Vlan 101 ?
+
 
 # Configuracion
 Mostrar:
 show running-config
+
+show running-config interface Vlan 101
+
+
+Para quitar una conf:
+no xxxx
+Pondremos lo mismo que hemos escrito pero con un "no" delante.
+
 
 # grep / ex / in
 sh version | in XX
@@ -111,6 +133,46 @@ http://www.cisco.com/c/en/us/support/docs/ip/access-lists/44541-tacl.html#ex
 http://web.cecs.pdx.edu/~jrb/netsec/handouts/router.acls/ciscodeny.txt
 Ejemplos típicos.
 
+## Mostrar
+show ip access-list
+
+## Comentarios
+Podemos poner el comando "remark" para poner comentarios en la ACL. Ejemplo
+ip access-list extended telnetting
+ remark Do not allow host1 subnet to telnet out
+ deny tcp host 172.16.2.88 any eq telnet
+
+
+## Crear
+http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/xe-3s/sec-data-acl-xe-3s-book/sec-create-ip-apply.html
+Ejemplo creando una ACL para bloquear puerto 53 (no seria necesario bloquear el TCP/53) y aplicandola sobre una interfaz para el trafico de entrada.
+
+conf term
+ip access-list extended Block-DNS-From-The-Internet
+  deny udp any any eq 53
+  deny tcp any any eq 53
+  permit ip any any
+end
+
+conf term
+interface NOMBREINTERFAZ NUMERO
+ip access-group Block-DNS-From-The-Internet in
+end
+
+
+Quitar ACL de una interfaz
+conf term
+interface NOMBREINTERFAZ NUMERO
+ip access-group Block-DNS-From-The-Internet in
+end
+
+## Borrar
+CUIDADO! no borrar una ACL sin antes quitarla de las interfaces, bloquearemos todo el trafico.
+
+no ip access-list extended Block-DNS-From-The-Internet
+
+
+
 
 
 # Debug
@@ -131,6 +193,11 @@ sh logging
 
 Si hemos conectado por telnet, podemos activar nuestra terminal como si fuese la consola para recibir las trazas de debug:
 terminal monitor
+
+Con "sh log" veremos que aparece una linea tipo:
+    Monitor logging: level debugging, 3 messages logged, xml disabled,
+                     filtering disabled
+        Logging to: vty131(3)
 
 Para pararlo
 terminal no monitor
@@ -164,6 +231,14 @@ ip host db.example.com 10.0.0.6
 
 Mirar hosts definidos
 show hosts
+
+Ejecutar comando "host" (nslookup/dig).
+Tenemos que meter un script tcl (en este dir host.tcl)
+origen: https://supportforums.cisco.com/discussion/10406166/can-ios-do-nslookup
+Podemos meterlo con copy&paste (mirar en la sección ficheros)
+tclsh flash:host.tcl host.company.com [SERVERDNS]
+
+
 
 
 # Failover / HSRP
@@ -202,3 +277,11 @@ Acceso externo?
 
 Troubleshooting High CPU Utilization on Cisco Routers
 http://www.cisco.com/c/en/us/support/docs/routers/10000-series-routers/15095-highcpu.html
+
+
+
+
+# Dudas
+como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
+
+Como ver el numero de peticiones que esta recibiendo el dns
