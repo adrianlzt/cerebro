@@ -65,6 +65,7 @@ show version
 show processes cpu history
 show processes cpu
 sh processes cpu | ex 0.0
+show processes cpu sorted
 
 # Memoria
 show mem
@@ -100,6 +101,14 @@ ip nat inside source static tcp 10.0.1.18 443 20.15.28.5 443 extendable
 end
 Testear que funciona
 write
+
+
+
+# ACLs / listas de control de acceso
+http://www.cisco.com/c/en/us/support/docs/ip/access-lists/26448-ACLsamples.html
+http://www.cisco.com/c/en/us/support/docs/ip/access-lists/44541-tacl.html#ex
+http://web.cecs.pdx.edu/~jrb/netsec/handouts/router.acls/ciscodeny.txt
+Ejemplos típicos.
 
 
 
