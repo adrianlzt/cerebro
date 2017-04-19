@@ -24,6 +24,8 @@ http://www.cisco.com/c/en/us/td/docs/wireless/access_point/12-3_8_JA/configurati
 
 cd
 pwd
+mkdir
+more
 dir
   mostrar contenido directorio
 
@@ -35,6 +37,14 @@ show file information FICHERO
 
 show file descriptors
   para ver ficheros abiertos
+
+Se pueden copiar ficheros con ftp, tftp, scp:
+http://www.cisco.com/c/en/us/td/docs/wireless/access_point/12-3_8_JA/configuration/guide/1238jasc/s38mfw.html#wp1035113
+copy system:running-config ftp://netadmin1:mypass@172.16.101.101/ap2-confg
+copy ftp://netadmin1:mypass@172.16.101.101/host1-confg system:running-config
+copy system:running-config tftp://172.16.2.155/tokyo-confg
+copy c2900-universalk9-mz.SPA.151-4.M8.bin tftp://10.0.1.17/c2900-universalk9-mz.SPA.151-4.M8.bin
+  en el servidor tftp ya debe existir un fichero vacio con ese nombre y permisos 777 (los permisos por si acaso)
 
 
 # Configuracion
