@@ -284,4 +284,4 @@ http://www.cisco.com/c/en/us/support/docs/routers/10000-series-routers/15095-hig
 # Dudas
 como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
 
-Como ver el numero de peticiones que esta recibiendo el dns
+Como ver el numero de peticiones que esta recibiendo el dns por segundo?
