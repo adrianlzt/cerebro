@@ -19,6 +19,24 @@ Tab completa si puede (si no probar "?")
 exit para salir al nivel superior
 
 
+# Ficheros
+http://www.cisco.com/c/en/us/td/docs/wireless/access_point/12-3_8_JA/configuration/guide/1238jasc/s38mfw.html
+
+cd
+pwd
+dir
+  mostrar contenido directorio
+
+show file systems
+  parecido a df
+
+show file information FICHERO
+  como file FICHERO
+
+show file descriptors
+  para ver ficheros abiertos
+
+
 # Configuracion
 Mostrar:
 show running-config
