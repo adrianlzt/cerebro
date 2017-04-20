@@ -9,10 +9,9 @@ apt-get install icinga2
 
 
 RedHat:
-http://packages.icinga.org/epel/
-rpm --import http://packages.icinga.org/icinga.key
-wget http://packages.icinga.org/epel/ICINGA-release.repo -O /etc/yum.repos.d/ICINGA-release.repo
-yum makecache
+yum install https://packages.icinga.com/epel/7/release/noarch/icinga-rpm-release-7-1.el7.centos.noarch.rpm
+yum install https://packages.icinga.com/epel/6/release/noarch/icinga-rpm-release-6-1.el6.noarch.rpm
+
 yum install icinga2
 # Instalar checks basicos (metiendo EPEL)
 rpm -Uvh "http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm"
@@ -36,6 +35,8 @@ icinga2-enable-feature
 
 A mano:
 ls /etc/icinga2/features-enabled
+
+mirar wizard.md
 
 
 
