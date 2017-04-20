@@ -21,3 +21,18 @@ git clone https://github.com/Icinga/icingaweb2-module-director.git director
 Activarlo desde la interfaz web: Configuration, Modules, director - and enable the module
 
 Veremos un nuevo elemento en el menu. Vamos a él y seguimos los pasos que nos indica.
+
+Antes de meter el director configure para usar agentes (con icinga2 node wizard). Esto creo que me creó algunas partes que me pide ahora.
+El "Endpoint" creo que es el CN del master.
+api user y pass lo tengo en features-enabled/api.conf
+
+
+# Configuracion
+El director no hace uso del dir /etc/icinga2
+El envia mediante la API configuraciones "packages" que se almacenan en /var/lib/icinga2/api/packages
+
+Para empezar tendremos que crear un template. Al crearlo nos preguntará si tendra un agente de icinga.
+
+Luego podremos crear un host.
+
+
