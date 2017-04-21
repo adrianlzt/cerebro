@@ -66,6 +66,9 @@ Para usar el director mirar: wizard.md
 
 
 
+
+
+## OLD!!
 ## Por código fuente ##
 https://git.icinga.org/?p=icinga2.git;a=blob;f=INSTALL;hb=HEAD
 

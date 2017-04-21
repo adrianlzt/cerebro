@@ -37,6 +37,13 @@ Luego podremos crear un host.
 
 
 
+# Demo
+https://www.icinga.com/demo/
+
+Podemos coger ideas
+
+
+
 # Errores
 Unable to authenticate, please check your API credentials (RestApiClient.php:182)
 Tenemos que meter un user/pass de icinga2 en el director. Suele estar el user root definido en conf.d/api-users.conf
