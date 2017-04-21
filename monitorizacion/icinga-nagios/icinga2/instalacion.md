@@ -31,12 +31,37 @@ notification for sending notifications
 mainlog for writing the icinga2.log file
 
 Podemos chequear las activas con (RHEL, paquete icinga2-bin)
-icinga2-enable-feature
+icinga2 feature list
 
 A mano:
 ls /etc/icinga2/features-enabled
 
-mirar wizard.md
+## Activamos ido (necesario para icingaweb)
+yum install icinga2-ido-mysql
+Creamos database, user y metemos el schema:
+mysql icinga < /usr/share/icinga2-ido-mysql/schema/mysql.sql
+
+Activamos (parece que se activa al instalar el rpm)
+icinga2 feature enable ido-mysql
+
+Configuramos los parametros:
+/etc/icinga2/features-enabled/ido-mysql.conf
+
+Reiniciamos icinga2
+
+
+## Icingaweb2
+Instalamos apache/nginx e icingaweb2
+
+Hace falta activar la feature command y reiniciar icinga2:
+icinga2 feature enable command
+
+Hace falta meter al user del webserver en el grupo icingacmd, para que pueda escribir en el socket.
+
+Por defecto nos monitorizar el host de icinga con: disk, disk /, http, icinga, load, ping4, ping6, procs, ssh y swap.
+
+Para entender la config mirar: https://docs.icinga.com/icinga2/latest/doc/module/icinga2/toc#!/icinga2/latest/doc/module/icinga2/chapter/monitoring-basics
+Para usar el director mirar: wizard.md
 
 
 

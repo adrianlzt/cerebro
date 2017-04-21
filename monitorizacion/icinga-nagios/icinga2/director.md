@@ -36,3 +36,7 @@ Para empezar tendremos que crear un template. Al crearlo nos preguntará si tend
 Luego podremos crear un host.
 
 
+
+# Errores
+Unable to authenticate, please check your API credentials (RestApiClient.php:182)
+Tenemos que meter un user/pass de icinga2 en el director. Suele estar el user root definido en conf.d/api-users.conf
