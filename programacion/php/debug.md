@@ -14,3 +14,10 @@ Si queremos sacar los errores de php a un fichero de log:
   error_log = /var/log/httpd/php.log
 
   Reiniciamos apache: service httpd restart
+
+
+
+Escribir cosas en un fichero temporal:
+ $myfile = fopen("/tmp/testfile.txt", "w");
+ fwrite($myfile, $dsn);
+
