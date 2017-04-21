@@ -72,6 +72,9 @@ The Small Talk domain is enabled by default. It answers basic "hi", and "how are
 # Contexts
 https://docs.api.ai/docs/concept-contexts
 
+EN MINUSCULAS!! Si los ponemos en mayúscula (alguna letra) solo matchean si escribimos la frase exactamente.
+Tampoco poner puntos.
+
 Un intent puede definir un contexto de salida. Esto se utiliza para que una frase determinada pueda usarse con distintos sigficados depende de lo que haya dicho el usuario antes.
 "Apaga la luz" puede significar distintas luces, con el contexto podremos saber a cual se refiere.
 
@@ -95,6 +98,7 @@ Al definir un contexto, recordar presionar enter para que se aplique. Por defect
 
 Si usamos un sdk podemos generar contextos a mano.
 Cuando se lo pasemos al servidor, el nos lo devolverá con el lifespan-1 para cada elemento.
+
 
 
 
