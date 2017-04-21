@@ -31,9 +31,36 @@ api user y pass lo tengo en features-enabled/api.conf
 El director no hace uso del dir /etc/icinga2
 El envia mediante la API configuraciones "packages" que se almacenan en /var/lib/icinga2/api/packages
 
-Para empezar tendremos que crear un template. Al crearlo nos preguntará si tendra un agente de icinga.
+Para configurar cosas primero tendremos que crear templates (parece que no pilla los que puedan venir definidos en /etc/icinga2).
+Por ejemplo, definiremos un "Linux Server", y luego otro que herede de este para los que usan el cliente de icinga "Linux Server Client".
+Haremos de forma parecida con los services.
 
-Luego podremos crear un host.
+Crearemos un host a partir de un template de host.
+
+Cuando queremos crear un service, lo haremos a partir de un template.
+Luego, en un host, aplicaremos ese service.
+Si queremos pasar parametros a un service tendremos que ir a "Icinga Director -> Define data fields".
+Hay crearemos los fields que se llamen igual que como estén definidos en los commands (los commands si los pilla de los ya definidos en /etc/icinga2).
+
+Ejemplo, para poder definir un check_procs para un proceso:
+  - miraremos el command "procs", veremos que la variable "procs_command" es la que se usa para pasar al parámetro -C
+  - crearemos un "data field" con ese nombre
+  - en el service que use procs, iremos a Fields y agregaremos el recien creado
+  - cuando usemos ese service nos aparecerá un nuevo campo para poder definir esa variable (o dejarla en blanco para no poner el parametro)
+
+
+
+# CLI
+https://github.com/Icinga/icingaweb2-module-director/blob/master/doc/60-CLI.md
+
+Podemos usar icingacli para generar hosts, services, etc
+
+
+# API
+https://github.com/Icinga/icingaweb2-module-director/blob/master/doc/70-REST-API.md
+
+Tambien nos da una API con la que podemos consultar o crear objectos.
+
 
 
 
