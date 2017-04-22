@@ -23,6 +23,7 @@ Poner un critical con excepciones:
 --criticalpattern="error" --criticalexception="\[[0-9]*\] (SERVICE|HOST) ALERT.*
 
 Solo se puede definir una vez el criticalpattern
+Solo se puede poner una vez los exception.
 
 
 Por defecto mete los seek files en /var/tmp/check_logiles/check_logfiles._var_log_fichero.log.seek
