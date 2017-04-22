@@ -18,8 +18,15 @@ Primero debemos generar un ticket en el master para permitir acceso al nodo EJEM
 icinga2 pki ticket --cn EJEMPLO
 
 En el cliente instalaremos el paquete icinga2
+yum install https://packages.icinga.com/epel/7/release/noarch/icinga-rpm-release-7-1.el7.centos.noarch.rpm
+yum install https://packages.icinga.com/epel/6/release/noarch/icinga-rpm-release-6-1.el6.noarch.rpm
+
 yum install -y icinga2
 
 Para configurar el cliente ejecutaremos en el:
 icinga2 node wizard
 Seleccionando la primera opcion 'Y'
+
+
+Los checks los manda ejecutar el master a los clientes.
+
