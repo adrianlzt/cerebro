@@ -50,3 +50,16 @@ Tenemos que crear tambien una database para icingaweb2
 CREATE DATABASE icingaweb2;
 GRANT SELECT, INSERT, UPDATE, DELETE, DROP, CREATE VIEW, INDEX, EXECUTE ON icingaweb2.* TO 'icingaweb2'@'localhost' IDENTIFIED BY 'icingaweb2';
 mysql -p icingaweb2 < /usr/share/doc/icingaweb2/schema/mysql.schema.sql
+
+
+# Usuarios
+En Configuration -> Auth.. podemos crear usuarios
+
+Si queremos crear usuarios que solo puedan ver haremos:
+Creamos un grupo, por ejemplo "Viewers"
+
+Creamos un rol, por ejemplo "Viewers".
+Al rol le damos solo el permission set "Allow access to module monitoring"
+Metemos al grupo Viewers en este rol.
+
+Creamos un usuario y lo metemos en el grupo Viewers
