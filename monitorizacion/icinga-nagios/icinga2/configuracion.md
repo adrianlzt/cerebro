@@ -1,3 +1,7 @@
+Validar:
+icinga2 daemon -C
+
+
 # constants.conf
 Es como el resource.cfg de Icinga 1. Donde se meten variables globales, como el path por defecto a los checks.
 
