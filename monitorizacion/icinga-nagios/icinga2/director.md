@@ -95,6 +95,7 @@ Esto de crear un data field por cada parametro que queremos definir en un comman
 
 
 # CLI
+cli_director.md
 https://github.com/Icinga/icingaweb2-module-director/blob/master/doc/60-CLI.md
 
 Podemos usar icingacli para generar hosts, services, etc
