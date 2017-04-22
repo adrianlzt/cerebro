@@ -158,6 +158,19 @@ $ ./check_logfiles.pl --seekfilesdir=tmp/seek --protocolsdir=tmp/proto/ --logfil
 CRITICAL - (1 errors in check_logfiles.protocol-2015-03-12-11-31-47) - Mar  8 03:41:02 ESJC-DSMM-MS12S logrotate: ALERT exited abnormally with [1] |default_lines=2 default_warnings=0 default_criticals=1 default_unknowns=0
 
 
+# Journald
+https://github.com/lausser/check_logfiles/pull/15
+
+Tiene correr como root
+
+$ ./check_logfiles.pl --type journald --logfile /dev/null --warningpattern session --tag sudo
+OK - no errors or warnings|'default_lines'=5 'default_warnings'=0 'default_criticals'=0 'default_unknowns'=0
+$ sudo id
+uid=0(root) gid=0(root) grupos=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),19(log)
+$ ./check_logfiles.pl --type journald --logfile /dev/null --warningpattern session --tag sudo
+WARNING - (2 warnings in check_logfiles.protocol-2017-04-22-15-50-47) - abr 22 15:50:45 archer sudo[1209]: pam_unix(sudo:session): session closed for user root ...|'default_lines'=4 'default_warnings'=2 'default_criticals'=0 'default_unknowns'=0
+
+Molaria mejorarlo para que pueda filtrar por unit.
 
 
 # Build
