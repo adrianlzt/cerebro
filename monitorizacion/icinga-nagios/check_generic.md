@@ -8,7 +8,7 @@ Si lo ejecutamos en la shell, y usamos variables, tenemos que escaparlas (\$VAR)
 Pero al meterla a ejecutarse en cyclops o nrpe no hace falta escaparlas.
 
 Ejemplos:
-http://www.my-plugin.de/wiki/projects/check_generic/examples
+http://my-plugin.de/wiki/projects/check_generic/examples/linux#linux
 
 check_generic -n nagios_service_latency -e "/usr/local/nagios/bin/nagiostats -m -d AVGACTSVCLAT" -c ">60000" -w ">500"
 
