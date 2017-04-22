@@ -17,3 +17,7 @@ No chequear con check_tcp porque mysql lo cuenta como conexión errónea.
 
 A partir de la 5.6
 http://githubengineering.com/using-mysql-performance-schema-for-workload-analysis/
+
+
+Para el check de monitoring plugins podemos crear un user sin permisos:
+CREATE USER 'icingacheck'@'localhost' IDENTIFIED BY 'IcingaCheck';

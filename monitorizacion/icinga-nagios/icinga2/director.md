@@ -42,6 +42,7 @@ Cuando queremos crear un service, lo haremos a partir de un template.
 Luego, en un host, aplicaremos ese service.
 Si queremos pasar parametros a un service tendremos que ir a "Icinga Director -> Define data fields" (si no, tendremos los de por defecto al definir el command).
 Hay crearemos los fields que se llamen igual que como estén definidos en los commands (los commands si los pilla de los ya definidos en /etc/icinga2).
+-> No se hace asi, hay que ir a la sección "Fields" del command y crearlos desde allí.
 
 Ejemplo, para poder definir un check_procs para un proceso:
   - miraremos el command "procs", veremos que la variable "procs_command" es la que se usa para pasar al parámetro -C
