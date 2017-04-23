@@ -3,3 +3,5 @@ Es lo que usa ansible.
 
 Mirar ~/.config/openstack/clouds.yaml
 
+
+Mirar boto.md
