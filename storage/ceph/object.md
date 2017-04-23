@@ -20,3 +20,34 @@ ceph-deploy rgw create nodo1
 Testear:
 curl http://localhost:7480
   debemos recibir un XML
+
+
+# SSL
+http://docs.ceph.com/docs/master/install/install-ceph-gateway/#using-ssl-with-civetweb
+
+
+# Bucket sharding
+http://docs.ceph.com/docs/master/install/install-ceph-gateway/#configure-bucket-sharding
+
+Si preevemos muchos objetos para un mismo bucket podemos hacer dos cosas (muchos elementos impactan en la performance).
+Limitar el número máximo de elementos.
+Hacer sharding del bucket (desactivado por defecto)
+
+
+# Usuarios
+## SWIFT
+http://docs.ceph.com/docs/master/install/install-ceph-gateway/#create-a-swift-user
+
+## S3
+http://docs.ceph.com/docs/master/install/install-ceph-gateway/#create-a-radosgw-user-for-s3-access
+
+Crear un usuario para acceder a la API de S3 (ejecutar en el gateway host):
+radosgw-admin user create --uid="testuser" --display-name="First User"
+  apuntar las claves que aparecen en el JSON devuelto (access_key, secret_key)
+  Cuidado que alguna de estas claves no tenga un simbolo "\" porque puede ser que esté escapando algún simbolo. Lo fácil, crear de nuevo el user
+
+Testear acceso creando un pequeño programa en python2 que use la libreria boto:
+http://docs.ceph.com/docs/master/install/install-ceph-gateway/#test-s3-access
+Si tarda más de unos pocos segundos seguramente algo va mal.
+
+Ejemplo en php: object_client.php
