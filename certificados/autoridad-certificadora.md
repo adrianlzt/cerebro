@@ -7,6 +7,35 @@ Los wildcard los cobran.
 Para que se ponga el icono verde de los navegadores también cobran.
 
 
+# easy-rsa
+Para crear una CA de forma sencilla
+yum install -y easy-rsa
+cd /usr/share/easy-rsa/2.0
+editamos el fichero vars (modificamos KEY_COUNTRY KEY_PROVINCE KEY_CITY KEY_ORG KEY_EMAIL KEY_OU)
+source vars
+./clean-all
+./build-ca
+
+En keys/ tendremos el certificado y clave de la ca
+
+Creamos un cert para un servidor
+./build-key-server nombremaquina
+
+Ahora un certificado para cliente:
+./build-key adrian
+
+Necesitamos tambien generar los paramestros Diffie Hellman:
+./build-dh
+
+El servidor normalmente neceistará los ficheros:
+ca.crt, ca.key (secreto), dh*.pem NOMBRESERVER.crt NOMBRESERVER.key (secreto)
+
+Los clientes necesitarán:
+ca.crt, client1.crt, client1.key (secreto)
+
+
+
+
 
 
 http://www.g-loaded.eu/2005/11/10/be-your-own-ca/
