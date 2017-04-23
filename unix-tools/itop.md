@@ -14,3 +14,8 @@ Al iniciar la conf, en database:
 localhost
 root
 sin password
+
+
+# Api
+Ejemplos
+https://github.com/jaimevalero78/itop-utilities
