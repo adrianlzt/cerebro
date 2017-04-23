@@ -272,6 +272,65 @@ http://www.cisco.com/c/en/us/td/docs/routers/access/1900/software/configuration/
 
 Site-to-Site, conectar dos redes privadas
 Remote access, usuarios puedan conectar a una red externa
+  client mode: los clientes pueden acceder a la red privada. La red privada no puede acceder al cliente
+  network extension mode: conexion client->red privada, red privada->cliente
+
+After the IPSec server has been configured, a VPN connection can be created with minimal configuration on an IPSec client
+
+
+
+Cisco 3900 series, 2900 series, and 1900 series ISRs can be also configured to act as Cisco Easy VPN servers
+http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_esyvpn/configuration/15-mt/sec-easy-vpn-15-mt-book/sec-easy-vpn-srvr.html
+
+Cisco IOS 15 Easy VPN
+http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_esyvpn/configuration/15-mt/sec-easy-vpn-15-mt-book/sec-easy-vpn-srvr.html#GUID-4A711583-2E1A-48F4-A6E6-A0B50559340A
+
+
+Estas instrucciones parece que son para un modelo antiguo de IOS.
+Mi router con IOS 15 falla al intentar ejecutar "crypto isakmp policy 10"
+http://informatica.gonzalonazareno.org/plataforma/pluginfile.php/5220/mod_resource/content/1/CISCO_IOS_Easy_VPN_Server.pdf
+
+Entrar en la configuracion
+conf term
+
+Crear un pool de IPs para los clientes VPN (en este caso permitimos 10 conex simultaneas):
+ip local pool VPNPOOL 10.0.2.240 10.0.2.250
+
+Configuramos AAA (Authentication, Authorization y Accounting)
+aaa new-model 
+aaa authentication login VPN-USERS local
+aaa authorization network VPN-GROUP local
+username vpnuser password Mgi45ASd934nsf
+
+Configurar las políticas IKE
+crypto isakmp policy 10 
+encryption aes 192 
+hash sha
+authentication pre-share
+group 5
+crypto isakmp client configuration group VPN-GROUP
+key SECRETOCOMPATIDO
+pool VPNPOOL
+max-users 10
+dns 192.168.1.1
+netmask 255.255.255.0
+
+Configurar la política IPSec
+crypto ipsec transform-set VPNSET esp-aes esp-sha-hmac
+crypto dynamic-map VPN-DYNAMIC 10
+set transform-set VPNSET
+reverse-route
+crypto map VPN-STATIC client configuration address respond
+crypto map VPN-STATIC client authentication list VPN-USERS
+crypto map VPN-STATIC isakmp authorization list VPN-GROUP
+crypto map VPN-STATIC 20 ipsec-isakmp dynamic VPN-DYNAMIC
+interface serial 1/0
+  aqui tenemos que elegir la interfaz por la que se conectaran los usuarios
+crypto map VPN-STATIC
+  Testear la vpn
+write
+  guardar la conf en la memoria permanente
+
 
 
 
