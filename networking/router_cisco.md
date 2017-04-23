@@ -267,6 +267,13 @@ interface Vlan101
 
 
 
+# VPN
+http://www.cisco.com/c/en/us/td/docs/routers/access/1900/software/configuration/guide/Software_Configuration/Secconf1.html#pgfId-1055505
+
+Site-to-Site, conectar dos redes privadas
+Remote access, usuarios puedan conectar a una red externa
+
+
 
 
 # Errores
