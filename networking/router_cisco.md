@@ -268,6 +268,18 @@ interface Vlan101
 
 
 # VPN
+The Cisco IOS WebVPN/SSL VPN comprehensive feature set is available with Advanced Security images and higher starting with Cisco IOS Software Release 12.4(6)T (the Base IP image does not include this feature set). Cisco IOS WebVPN is not yet supported on a mainline train (General Deployment or Limited Deployment). All SSL VPN and Cisco IOS WebVPN features are included in a single, cost-effective license that can be purchased separately.
+
+Parece que tenemos que tener una imagen distinta de la "ipbase" para poder tener VPN.
+
+
+Para ver si nuestro router tiene soporte VPN https://supportforums.cisco.com/document/20571/how-determine-whether-router-has-vpn-modules-installed
+Ejecutar "show version" y buscar algo tipo
+1 Virtual Private Network (VPN) Module(s)
+
+
+
+
 http://www.cisco.com/c/en/us/td/docs/routers/access/1900/software/configuration/guide/Software_Configuration/Secconf1.html#pgfId-1055505
 
 Site-to-Site, conectar dos redes privadas
@@ -284,6 +296,15 @@ http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_esyvpn/configuration/1
 
 Cisco IOS 15 Easy VPN
 http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_conn_esyvpn/configuration/15-mt/sec-easy-vpn-15-mt-book/sec-easy-vpn-srvr.html#GUID-4A711583-2E1A-48F4-A6E6-A0B50559340A
+enable
+conf term
+aaa new-model
+aaa authentication login VPN-USERS local
+aaa authorization network VPN-GROUP local
+username vpnuser password Mgi45ASd934nsf
+
+
+
 
 
 Estas instrucciones parece que son para un modelo antiguo de IOS.
@@ -297,7 +318,7 @@ Crear un pool de IPs para los clientes VPN (en este caso permitimos 10 conex sim
 ip local pool VPNPOOL 10.0.2.240 10.0.2.250
 
 Configuramos AAA (Authentication, Authorization y Accounting)
-aaa new-model 
+aaa new-model
 aaa authentication login VPN-USERS local
 aaa authorization network VPN-GROUP local
 username vpnuser password Mgi45ASd934nsf

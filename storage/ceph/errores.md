@@ -12,3 +12,12 @@ Tipico si tenemos solo dos OSDs y no hemos configurado bien el ceph.conf (por de
 Si ejecutamos:
 ceph osd pool ls detail
 veremos el número mínimo de replicas en: replicated size 2
+
+
+
+
+HEALTH_WARN too few PGs per OSD (16 < min 30)
+Necesitamos crear mas PGs (cuantos?)
+ceph osd pool set rbd pg_num 128
+ceph osd pool set rbd pgp_num 128
+
