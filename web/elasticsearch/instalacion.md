@@ -1,6 +1,31 @@
-Bajar el paquete de http://www.elasticsearch.org/download/
+https://www.elastic.co/guide/en/elasticsearch/reference/5.0/install-elasticsearch.html#install-elasticsearch
 
-## Para Debian, con .deb ##
+# CentOS / RedHat
+Repo:
+[elasticsearch-5.x]
+name=Elasticsearch repository for 5.x packages
+baseurl=https://artifacts.elastic.co/packages/5.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+
+yum install elasticsearch
+Necesita java8
+yum install -y java-1.8.0-openjdk
+systemctl enable elasticsearch.service
+systemctl start elasticsearch
+
+Tarda unos segundos en arrancar
+Podemos ver el log en
+/var/log/elasticsearch/elasticsearch.log
+
+Testear que esta arrancando
+curl 127.0.0.1:9200
+
+
+## Para Debian, con .deb
 La instalación la hago sobre Ubuntu 12.10
 Necesita java.
 
@@ -14,7 +39,7 @@ service elasticsearch start
 tail -200f /var/log/elasticsearch/elasticsearch.log
 
 
-## Desde el tar.gz ##
+## Desde el tar.gz
 apt-get install default-jre
 tar zxvf elasticsearch-xxx.tar.gz
 cd elasticsearch-xxx
