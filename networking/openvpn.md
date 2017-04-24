@@ -48,6 +48,20 @@ Necesitamos tambien generar los paramestros Diffie Hellman:
 El servidor normalmente neceistará los ficheros:
 ca.crt, ca.key (secreto), dh*.pem NOMBRESERVER.crt NOMBRESERVER.key (secreto)
 
+Tambien meteremos una linea tipo por cada red interna a la que queremos acceder
+push "route 10.0.1.0 255.255.255.0"
+Esta linea publica esa ruta a los clientes vpn. Asi estos tendran que para acceder a 10.0.1.0/24 vayan por la vpn.
+
+Para que esto funcione el servidor del tunel tiene que tener activado el ip forwarding:
+sysctl net.ipv4.ip_forward=1
+
+Las maquinas a las que conectemos tendran que tener una ruta para contestar a las maquinas de la vpn.
+Algo tipo (siendo la .28 el server vpn):
+ip r add 10.8.0.0/24 via 10.0.1.28
+
+O meter la ruta en el router que usen estas máquinas.
+
+
 Los clientes necesitarán:
 ca.crt, client1.crt, client1.key (secreto)
 
@@ -76,3 +90,19 @@ cd /etc/openvpn/keys
 openvpn --genkey --secret ta.key
 
 Este fichero tambien se lo pasaremos a los clientes.
+
+
+En el cliente configuaremos el fichero client.conf de manera similar, definiendo tambien el server (remote).
+
+Luego arrancaremos el servidor (tendremos que llegar al puerto 1194/UDP)
+Y posteriormente el cliente.
+
+En el cliente, copiaremos todos los ficheros (config, certs y keys) a /etc/openvpn/client
+Para arrancarlo haremos
+sudo systemctl start openvpn-client@NOMBREFICHEROCONFIG
+
+
+# Management
+https://openvpn.net/management.html
+
+telnet localhost 7505

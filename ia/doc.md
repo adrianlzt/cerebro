@@ -75,3 +75,6 @@ https://github.com/eriklindernoren/ML-From-Scratch
 
 
 https://aws.amazon.com/es/about-aws/whats-new/2017/03/deep-learning-ami-release-v1-2-for-ubuntu-and-updated-aws-cloudformation-template-now-available/?sc_channel=em&sc_campaign=Launch_RN20170321_A&sc_publisher=aws&sc_medium=em_&sc_content=launch_la_nontier1&sc_country=&sc_geo=&sc_category=mult&sc_outcome=launch&mkt_tok=eyJpIjoiTWpWaU9UZG1aREJtTlRrMCIsInQiOiJGNUFVZm1xSXc1ZmUwSFlMZFN0QUE0cmcwVFM5WTlQYzVYVVM2TThTNEJqQVBxVndZbkxiYlNoeHVEOTQ4c21ONWpvOTFwUEdTbUhad1dYcUk2eGRxNExLRUxHZ3pNTU40b0hlSldBQTl3YXRPMlZVbmFOTFkwUHlhNGlzOUJCKyJ9
+
+
+http://curated.us10.list-manage.com/track/click?u=6ee1802497b4ea1c66ce61da4&id=3ec803e7d0&e=9a03729793
