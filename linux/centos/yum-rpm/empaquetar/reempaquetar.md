@@ -19,6 +19,7 @@ Manualmente o con:
 
 Instalamos un fuente (.src.rpm): 
 rpm -hvi <paquete>.src.rpm
+  lo instala en ~/rpmbuild/
 
 Miramos que requisitos de build tiene el spec:
 grep BuildRequires fichero.spec

@@ -161,6 +161,7 @@ CRITICAL - (1 errors in check_logfiles.protocol-2015-03-12-11-31-47) - Mar  8 03
 
 # Journald
 https://github.com/lausser/check_logfiles/pull/15
+Metido en version 3.8.0
 
 Tiene correr como root
 
@@ -175,6 +176,9 @@ Molaria mejorarlo para que pueda filtrar por unit.
 
 
 # Build
+Ejemplo de .src.rpm http://repos.op5.com/centos/7/x86_64/monitor/7/SRPMS/monitor-plugin-check_logfiles-3.6.2.1.2-op5.1.el7.centos.src.rpm
+
+
 docker run -v "$PWD:/mnt" --rm -it centos:7
 yum install -y git
 git clone https://github.com/lausser/check_logfiles.git
@@ -184,8 +188,10 @@ aclocal
 autoheader
 automake
 autoconf
-./configure
+./configure QUE QUITAR?
 make
 make install
 cp /usr/local/nagios/libexec/check_logfiles /mnt
+
+Si no ponemos nada a ./configure nos pide dependencias que no tenemos en los centos:
 
