@@ -184,14 +184,10 @@ yum install -y git
 git clone https://github.com/lausser/check_logfiles.git
 cd check_logfiles
 yum group install "Development Tools" -y
-aclocal
-autoheader
-automake
-autoconf
-./configure QUE QUITAR?
-make
+aclocal && \
+automake && \
+autoconf && \
+./configure && \
+make && \
 make install
 cp /usr/local/nagios/libexec/check_logfiles /mnt
-
-Si no ponemos nada a ./configure nos pide dependencias que no tenemos en los centos:
-
