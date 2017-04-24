@@ -15,3 +15,11 @@ Limit: 10
 Para ver los que fallan:
 Filter: staleness > 1.5
 
+
+
+Si estan desactivados los checks pasivos no salta el:
+[1493046590] Warning: The results of service 'cpu' on host 'web-1' are stale by 0d 0h 0m 30s (threshold=0d 0h 2m 30s).  I'm forcing an immediate check of the service.
+Esto nos puede ser útil si queremos dejar unos hosts desactivados en la monitorización.
+
+Si desactivo las alarmas pasivas en el host..
+

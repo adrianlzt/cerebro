@@ -1,11 +1,5 @@
 mirar ripgrep.md (rg) más rápido
 
-Line buffer:
-Por defecto cuando grep sale a tty esta activado el modo line-buffered
-Si por el contrario el stdout se redirige a un pipe, no se activa este modo y se envian los datos al stdout cada X bytes.
-El efecto es que si contatenamos dos greps la salida no será las últimas líneas (cuando lo usamos con un continuos stream).
-Si vamos a usarlo con tail -f usar como:
-tail -f file | grep --line-buffered my_pattern
 
 grep -l cosas *
 Nos saca los ficheros que han hecho match
@@ -74,3 +68,29 @@ no trata la busqueda como una expresion regex
 Varios grep en un unico comando:
 awk '/pattern1/ && /pattern2/'
 
+
+# Internals
+Grep solo envia al stdout cuando encuentra un cambio de linea
+
+# Line buffer
+Por defecto cuando grep sale a tty esta activado el modo line-buffered, con esto deberian salir los datos por pantalla segun van llegando siempre que haya un cambio de linea.
+Si por el contrario el stdout se redirige a un pipe, no se activa este modo y se envian los datos al stdout cada 4096 bytes (y haya un cambio de linea)
+
+En centos6 cada 4096 bytes, pero en arch no escupe nada nunca.
+En centos, si concatenamos un grep con un cat (tail -f x | grep "1" | cat), cuando grep reciba 4096 bytes (en centos6) los enviará a cat.
+Tambien hay que tener en cuenta que grep no enviará nada a stdout hasta ver un cambio de linea.
+Podemos observarlo con strace.
+
+Si concatenamos dos grep, el segundo grep, aunque lleve line-buffered no saca nada hasta completar un bloque de 4096 + 1 caracter.
+
+El efecto es que si contatenamos dos greps la salida no será las últimas líneas (cuando lo usamos con un continuos stream).
+Si vamos a usarlo con tail -f usar como:
+tail -f file | grep --line-buffered my_pattern
+
+Para estudiar el efecto podemos usar:
+tail -f texto | strace grep 1 2> strace1 | strace grep 1 2> strace2
+tail -f strace1
+tail -f strace2
+python3 -c "print('1'*4096, end='')" >> texto
+O en python2:
+python2 -c "from __future__ import print_function; print('\n', end='')" >> texto
