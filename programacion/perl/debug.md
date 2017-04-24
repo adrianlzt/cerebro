@@ -15,6 +15,7 @@ b linea: breakpoint en linea
 B linea: borrar breakpoint
 B: borrar todos los breakpoints
 c: continue
+T: stack trace
 
 
 
