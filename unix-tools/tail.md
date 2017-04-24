@@ -17,3 +17,14 @@ cat fichero | tail -n +2
 
 Borrar todos los ficheros del directorio salvo los dos más nuevos:
 ls -1t | tail -n +3 | xargs rm
+
+
+
+Cuidado con concatenar varios greps con tails:
+echo -e "11\n12\n13\n14\n15\n16\n17\n18\n19\n20" > texto
+tail -n 10 -f texto | grep "1" | grep "1"
+esto no devuelve nada hasta que lleguen mas datos al fichero
+
+Si el stdout de grep va a un pipe, la salida no es line buffered, y solo enviará datos cada X bytes (mirar grep.md)
+tail -f file | grep --line-buffered my_pattern | grep otro
+

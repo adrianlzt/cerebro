@@ -1,5 +1,11 @@
 mirar ripgrep.md (rg) más rápido
 
+Line buffer:
+Por defecto cuando grep sale a tty esta activado el modo line-buffered
+Si por el contrario el stdout se redirige a un pipe, no se activa este modo y se envian los datos al stdout cada X bytes.
+El efecto es que si contatenamos dos greps la salida no será las últimas líneas (cuando lo usamos con un continuos stream).
+Si vamos a usarlo con tail -f usar como:
+tail -f file | grep --line-buffered my_pattern
 
 grep -l cosas *
 Nos saca los ficheros que han hecho match
@@ -63,3 +69,8 @@ grep -a ... fichero.c
 
 fgrep "$" pepe.txt
 no trata la busqueda como una expresion regex
+
+
+Varios grep en un unico comando:
+awk '/pattern1/ && /pattern2/'
+
