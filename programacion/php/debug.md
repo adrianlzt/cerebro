@@ -1,3 +1,7 @@
+http://psysh.org/
+parecido a bpython + pdb en python
+
+# A mano
 Para sacar valores por la consola de error:
 error_log("intReturn1: $intReturn1 FIN", 0);
 
