@@ -135,6 +135,8 @@ https://pypi.python.org/pypi/python-mk-livestatus/0.3
 livestatus-service -> expone la API como http
 livestatus-objects -> nos devuelve los elementos como objetos
 
+mirar api-rest.md
+
 ## livestatus-service
 https://github.com/ImmobilienScout24/livestatus_service
 
