@@ -9,3 +9,11 @@ var myJSONObject = {
 };
 
 myJSONObject.bindings[0].method    // "newURI"
+
+
+
+# Objecto a json
+JSON.stringify()
+
+# JSON a objecto
+JSON.parse()
