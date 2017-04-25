@@ -266,6 +266,11 @@ interface Vlan101
 
 
 
+# Rutas
+Estaticas
+ip route 10.8.0.0 255.255.255.0 10.0.1.28
+ip route 10.8.0.0 255.255.255.0 GigabitEthernet0/1 10.0.1.28
+
 
 # VPN
 The Cisco IOS WebVPN/SSL VPN comprehensive feature set is available with Advanced Security images and higher starting with Cisco IOS Software Release 12.4(6)T (the Base IP image does not include this feature set). Cisco IOS WebVPN is not yet supported on a mainline train (General Deployment or Limited Deployment). All SSL VPN and Cisco IOS WebVPN features are included in a single, cost-effective license that can be purchased separately.

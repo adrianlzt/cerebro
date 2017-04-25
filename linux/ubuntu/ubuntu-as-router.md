@@ -27,3 +27,15 @@ Con esta regla le decimos que todo el tráfico de 10.0.2.0/24 salga por la inter
 # Router wifi con OpenWRT
 20€
 http://es.aliexpress.com/item/GL-iNet-6416A-150Mbps-802-11g-b-n-SMART-Mini-WiFi-Wireless-Router-OPENWRT-ENGLISH-Firmware/32273181856.html
+
+
+
+# Rutas
+https://serverfault.com/questions/402023/why-do-icmp-redirect-host-happen
+
+Si especificamos una ruta que esta en la misma red donde este el host, el router le enviará un redirect:
+# ping 10.8.0.6
+PING 10.8.0.6 (10.8.0.6) 56(84) bytes of data.
+From 10.0.1.1: icmp_seq=1 Redirect Host(New nexthop: 10.0.1.28)
+
+En este caso el router (10.0.1.1) tiene puesta la ruta que para 10.8.0.x vaya por 10.0.1.28

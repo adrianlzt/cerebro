@@ -22,3 +22,11 @@ Optimización TCP
 
 # NetworkManager
 mirar linux/NetworkManager.md
+
+
+# Rutas estaticas
+https://linuxconfig.org/how-to-add-new-static-route-on-rhel7-linux
+
+/etc/sysconfig/network-scripts/route-enp0s3
+15.15.0.0/24 via 10.1.1.110 dev enp0s3
+
