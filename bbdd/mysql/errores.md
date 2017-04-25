@@ -20,3 +20,9 @@ Host 'host_name' is blocked because of many connection errors.  Unblock with 'my
 La bbdd te echa si se producen muchos (valor de la variable max_connect_errors) errores de conexión simultáneos sin ninguna conexión buena.
 El valor por defecto de max_connect_errors es 100. Podemos consultar el valor utilizado con:
 SHOW VARIABLES LIKE 'max_connect_errors';
+
+Podemos ver el contenido donde se almacenan estos datos con:
+select * from host_cache limit 4; (db performance_schema, pero debe estar habilitado)
+https://dev.mysql.com/doc/refman/5.6/en/host-cache-table.html
+
+select * from hosts; tambien nos dará algo de información sobre conexiones totales.

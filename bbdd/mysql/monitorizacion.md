@@ -12,8 +12,10 @@ http://www.mysqlperformanceblog.com/2010/05/05/checking-for-a-live-database-conn
 
 
 No chequear con check_tcp porque mysql lo cuenta como conexión errónea.
+Alguna vez vi que el error lo provocaba un balanceador testeando el estado de los nodos.
 Creo que al final saltaba un mensaje como:
-Unable to connect to database [Host '10.0.2.5' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts']
+Host '10.0.2.5' is blocked because of many connection errors; unblock with 'mysqladmin flush-hosts'
+mirar en errores.md
 
 
 
