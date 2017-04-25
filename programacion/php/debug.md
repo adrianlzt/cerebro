@@ -5,6 +5,8 @@ parecido a bpython + pdb en python
 Para sacar valores por la consola de error:
 error_log("intReturn1: $intReturn1 FIN", 0);
 
+echo "mensaje ".$variable";
+
 Tambien se puede poner directamente
 print_r($array) y nos sacará el valor en el navegador
 
@@ -24,4 +26,16 @@ Si queremos sacar los errores de php a un fichero de log:
 Escribir cosas en un fichero temporal:
  $myfile = fopen("/tmp/testfile.txt", "w");
  fwrite($myfile, $dsn);
+
+
+
+Tipo de objecto:
+gettype($client)
+
+
+Obtener metodos de un objeto:
+get_class_methods($client)
+
+Los podremos llamar como:
+$client->nombre()
 
