@@ -11,3 +11,12 @@ B20 800Mhz
 B3: 1800MHz
 B7: 2600MHz
 FDD
+
+
+
+# Pruebas tras comprar un movil
+antutu, comparar la puntuacion con la que dice kimovil
+
+chequear pixels muertos (la app de antutu lo hace?
+
+Comprobar cámaras. Enfocan correctamente?
