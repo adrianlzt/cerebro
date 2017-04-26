@@ -1,3 +1,7 @@
+http://blog.elhacker.net/2016/10/herramientas-de-analisis-de-malware-automatizado-apk-en-Android.html
+
+
+
 https://www.youtube.com/watch?v=vM-pinH5R7A
 
 Sampling -> simpleperf
