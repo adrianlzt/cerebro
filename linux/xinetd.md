@@ -1,5 +1,7 @@
 http://linux.die.net/man/5/xinetd.conf
 
+Si tenemos systemd usar socket y services.
+
 yum install xinetd
 chkconfig xinetd on
 service xinetd start
