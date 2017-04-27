@@ -22,6 +22,14 @@ radula profiles
 Listar buckets:
 radula lb
 
+Parece que no tiene un listar contenido de un bucket.
+
+Subir ficheros:
+radula up -t 16 "local/*" my-new-bucket/
+
+Si alguno ya existe, me obliga a poner -f para sobreescribir todos.
+
+
 
 
 https://github.com/s3tools/s3cmd
