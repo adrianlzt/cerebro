@@ -14,6 +14,7 @@ vinagre (parte de gnome)
 
 # Server
 vino
+  systemctl --user status vino-server
 x11vnc
 
 ## x11vnc
