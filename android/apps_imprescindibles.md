@@ -2,20 +2,17 @@ acalendar
 accuwheather
 Adobe fill & Sign https://play.google.com/store/apps/details?id=com.adobe.fas
 aemet
+amazon app store https://www.amazon.es/gp/mas/get/android
 andie graphs (calculadora) https://play.google.com/store/apps/details?id=net.supware.tipro ROMS: Dropbox/TI-Andie-graphs/ usar TI-86
 auto rotate widget
 Bitbeaker (para conectar a los repos git de bitbucket)
 blablacar
 camara de google
 chrome
-color flashlight (linterna) https://play.google.com/store/apps/details?id=com.socialnmobile.flashlight
-color note (widgets)
 drive
 dropbox
-echo lockscreen
 eltiempo
 es file explorer
-facebook lite (menos pesada y consume menos recursos) (http://www.apkmirror.com/apk/facebook-2/lite/facebook-lite-1-0-0-0-0-official-apk/)
 facebook
 facebook messenger
 feedly (lector rss online)
@@ -29,10 +26,8 @@ google googles
 google sky maps
 hanghouts
 inbox
-ingenieros movil (caja de ingenieros)
 juicessh
 jump (vnc client) (tienda amazon)
-keepass2android 
 mb-wheather (meteo blue)
 network signal strength -> widget para ver que tipo de red y dBs tenemos
 oruxmaps (gps para hacer y seguir tracks)
@@ -41,7 +36,6 @@ paypal
 pocket
 pushbullet (enviar notificaciones push a/desde pc/movil/amigos etc) (tambien envia al chrome las notificaciones del movil)
 qpython
-quickoffice
 settle up
 skype
 slack
@@ -52,17 +46,13 @@ teclado de google
 tienda apps amazon
 torque
 traductor
-tuenti
 twitter
 vlc
 waze (gps para el coche)
 whatsapp
 wolfram alpha (tienda amazon)
-wunderlist
 youtube downloader
 
-aCalendar+
-	org.withouthat.acalendarplus
 Adobe Fill & Sign DC
 	com.adobe.fas
 AEMET
@@ -81,12 +71,6 @@ BlaBlaCar
 	com.comuto
 CamScanner
 	com.intsig.camscanner
-car2go
-	com.car2go
-Cepsa Pay
-	com.cepsa.paymet
-ConnectBot
-	org.connectbot
 Cámara
 	com.google.android.GoogleCamera
 DIoTY
@@ -115,8 +99,6 @@ Inbox
 	com.google.android.apps.inbox
 ING Direct
 	www.ingdirect.nativeframe
-Juasapp
-	es.mrcl.app.juasapp
 Keep
 	com.google.android.keep
 List My Apps
@@ -125,12 +107,8 @@ Marcador de Hangouts
 	com.google.android.apps.hangoutsdialer
 My Maps
 	com.google.android.apps.m4b
-mytaxi
-	taxi.android.client
 OruxMaps
 	com.orux.oruxmapsDonate
-OS Monitor
-	com.eolwral.osmonitor
 Packet Capture
 	app.greyshirts.sslcapture
 PassWallet
