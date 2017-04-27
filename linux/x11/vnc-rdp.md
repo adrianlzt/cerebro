@@ -38,9 +38,11 @@ mkdir ~/.vnc
 x11vnc -storepasswd 'SILExx10' .vnc/passwd
 x11vnc -auth /run/user/120/gdm/Xauthority -rfbauth /root/.vnc/passwd -display :0
 
+### systemd
+sudo systemctl edit x11vnc
+[Service]
+ExecStart=
+Type=forking
+ExecStart=/usr/bin/x11vnc -norc -forever -shared -bg -rfbauth /etc/x11vnc.pass -autoport 5900 -o /var/log/x11vnc.log -auth /var/run/slim.auth
 
-
-
-## Vino
-/usr/lib/vino/vino-server
-
+sudo x11vnc -storepasswd 'SILExx10' /etc/x11vnc.pass

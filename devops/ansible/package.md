@@ -34,6 +34,7 @@ Instalar groups:
 
 update_cache=yes
    Force updating the cache. Has an effect only if state is present or latest.
+   Arreglado a partir de la version 2.3
 
 enablerepo=nombre
 para activar un repo desactivado solo para esta instalación
