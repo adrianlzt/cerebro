@@ -4,3 +4,7 @@ Outbound is - internal postfix -> VPS postfix
 
 https://scaron.info/blog/debian-mail-spf-dkim.html
 Como configurar Sender Policy Framework (SPF) y DomainKey Identified Mail (DKIM)
+
+
+https://news.ycombinator.com/item?id=14201562
+Discusion sobre como configurar un servicio de email
