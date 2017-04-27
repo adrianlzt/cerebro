@@ -2,6 +2,8 @@ https://docs.icinga.com/icinga2/latest/doc/module/icinga2/chapter/distributed-mo
 
 Configuracion master+stallites+clients
 
+Los checks los manda ejecutar el master a los clientes.
+
 # Configurar el master
 icinga2 node wizard
 
@@ -28,5 +30,8 @@ icinga2 node wizard
 Seleccionando la primera opcion 'Y'
 
 
-Los checks los manda ejecutar el master a los clientes.
+echo 'object Zone "director-global" { global = true }' >> /etc/icinga2/zones.conf
+
+systemctl restart icinga2
+service icinga2 restart
 
