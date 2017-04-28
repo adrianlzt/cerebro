@@ -24,6 +24,10 @@ strings.Joins(["a","b"], "")
 # Cortar
 "cadena"[2:5] -> "den"
 
+# Trim / strip
+strings.TrimPrefix("Goodbye,, world!", "Goodbye,")
+", world!"
+
 # Split / Fields
 strings.Split("a,b,c", ",")
   devuelve: ["a" "b" "c"]
