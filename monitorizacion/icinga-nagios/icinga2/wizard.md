@@ -36,3 +36,7 @@ echo 'object Zone "director-global" { global = true }' >> /etc/icinga2/zones.con
 systemctl restart icinga2
 service icinga2 restart
 
+
+
+# Desistalar
+yum erase icinga2-common
