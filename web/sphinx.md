@@ -9,3 +9,6 @@ A variety of text processing features enable fine-tuning Sphinx for your particu
 Searching via SphinxAPI is as simple as 3 lines of code, and querying via SphinxQL is even simpler, with search queries expressed in good old SQL.
 
 Sphinx clusters scale up to tens of billions of documents and hundreds of millions search queries per day, powering top websites such as Craigslist, Living Social, MetaCafe and Groupon... to view a complete list of known users please visit our Powered-by page.
+
+
+http://sphinxsearch.com/downloads/release/
