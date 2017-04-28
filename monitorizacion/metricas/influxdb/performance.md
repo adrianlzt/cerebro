@@ -10,3 +10,14 @@ until now the inverted index was an in-memory data structure that was built duri
 
 
 Cuidado con las CQ, chupan bastante CPU. Se puede usar Kapacitor para sacar ese procesado a otra máquina.
+
+
+
+# Pequeñas pruebas de performance
+
+Query: select * from ping limit N
+
+  N       tiempo
+10000     0.47
+100000    2.94
+609502    12.35
