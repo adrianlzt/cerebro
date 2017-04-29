@@ -1,14 +1,22 @@
+https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-installation.html (solo cuenta un nodo de mgmt)
+https://geert.vanderkelen.org/2009/how-to-start-mysql-cluster-7-0-with-2-management-nodes/
 Se puede instalar de tres maneras distintas:
 
+# RPM
 A partir de RPMs:
 http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-linux-rpm.html
 
-A partir de los sources:
-http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-linux-source.html
+yum install MySQL-Cluster-server-gpl-7.4.7-1.el7.x86_64.rpm MySQL-Cluster-client-gpl-7.4.7-1.el7.x86_64.rpm MySQL-Cluster-embedded-gpl-7.4.7-1.el7.x86_64.rpm MySQL-Cluster-devel-gpl-7.4.7-1.el7.x86_64.rpm MySQL-Cluster-devel-gpl-7.4.7-1.el7.x86_64.rpm
 
+# Binarios
 Paquetes binarios de Oracle:
 http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-linux-binary.html
 http://downloads.mysql.com/tutorials/cluster/mysql_wp_cluster_quickstart_linux.pdf
+
+
+# Ejemplo con sources y vagrant
+A partir de los sources:
+http://dev.mysql.com/doc/refman/5.5/en/mysql-cluster-install-linux-source.html
 
 Hacer todo como un usuario NO root.
 

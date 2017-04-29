@@ -69,6 +69,9 @@ lvreduce -r -L -1G /dev/pruebasLVM/opt1
 # Modificar (aumentar o reducir). Para ver el logical volume path usar "lvdisplay"
 lvresize -r -L 300m /dev/pruebasLVM/peque (con este puede crecer o aumentar)
 
+# Cambiar de nombre
+lvrename nombreVG oldLV newLV
+
 Modificar un vg se hace modificando los elementos enganchados a él, pero posiblemente no tengamos que hacerlo:
 http://unix.stackexchange.com/questions/67702/how-to-reduce-volume-group-size-in-lvm
 
