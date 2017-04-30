@@ -1,3 +1,13 @@
+https://docs.ansible.com/ansible/yum_repository_module.html
+- name: Add multiple repositories into the same file (1/2)
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    file: external_repos
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    gpgcheck: no
+
+
 Instalar todos los ficheros .repo de un diretorio de files/
 - name: configure repositories
   copy: src={{ item }}
