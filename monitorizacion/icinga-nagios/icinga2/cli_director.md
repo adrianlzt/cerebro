@@ -36,7 +36,7 @@ No funciona, bug.
 En la interfaz web del director, en Preview, podemos ver los parametros que podemos querer definir.
 
 # Crear un host
-icingacli director host create app --imports "Linux Server Client" --address 10.0..2 --display_name="App" --vars.role="app"
+icingacli director host create NOMBRE --imports "Linux Server Client" --address 10.0..2 --display_name="NOMBRE BONITO" --vars.role="app"
   el valor de "vars.role" sera la key, no el nombre bonito
 
 # Modificar parametros de un host

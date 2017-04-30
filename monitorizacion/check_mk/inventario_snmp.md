@@ -9,6 +9,7 @@ El fichero principal es /etc/check_mk/main.mk, luego se leera el conf.d/
 Creas un fichero por cada tipo de elemento:
 /etc/check_mk/conf.d/NOMBRE.mk
 
+# No olvidar las comas! Si no, ignorará los servidores silenciosamente
 all_hosts += [
                 'NOMBREMAQUINA|ETIQUETA1|ETIQUETA2|snmp',
                 'mon-LB01|network|snmp|ace',
@@ -46,7 +47,7 @@ Los checks son ficheros python, uno por máquina, donde están dentro los progra
 Estos comandos son los que ejecuta directamente Icinga. El chequeo activo se vuelve con el valor resumen de todo, y mediante checks pasivos se alimenta a todos los services configurados de cada máquina.
 En el caso de usar gearman hará un send_gearman, si no lo metera en el directorio check_results.
 Si queremos ver a mano como está funcionando:
-python -v nombre.py
+python nombre.py
 
 
 # Checks genéricos que dará por defecto

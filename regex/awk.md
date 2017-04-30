@@ -113,3 +113,7 @@ awk 'BEGIN{"date" |getline x; print x}'
 
 Numero random entre 0 y 1 (nunca será 1):
 awk 'BEGIN { "date +%N" | getline seed; srand(seed); print rand(); }';
+
+
+Imprimir todas las columnas menos la primera:
+awk '{$1=""; print $0}'

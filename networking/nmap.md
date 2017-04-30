@@ -62,3 +62,6 @@ Parece que no es fácil comprobar que un puerto UDP está abierto.
 nmap --max-retries 5 --min-rtt-timeout 10 10.0.1.1
   metemos más retries y mas tiempo de espera
   no lo he probado
+
+# SNMP
+nmap -P0 -v -sU -p 161 10.0.2.5
