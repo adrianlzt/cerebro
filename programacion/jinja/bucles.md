@@ -12,7 +12,7 @@ Ejemplo de bucle inline:
 CONNECTSTRING={% for host in groups['db_mgm'] %} {{ hostvars[host][interface].ipv4.address  }}:1186{% if not loop.last %},{% endif %}{% endfor %}
 
 Primer host de un grupo
-{% for host in groups['db_mgm'] %}{% if loop.first %}{{hostvars[inventory_hostname][interface].ipv4.address}}:1186{% endif %}{% endfor %}
+{% for host in groups['db_mgm'] %}{% if loop.first %}{{hostvars[host][interface].ipv4.address}}:1186{% endif %}{% endfor %}
 
 Variables especiales de los loops:
 https://blog.codecentric.de/en/2014/08/jinja2-better-ansible-playbooks-templates/
