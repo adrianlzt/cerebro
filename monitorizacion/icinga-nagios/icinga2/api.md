@@ -9,3 +9,6 @@ evaluate script expressions
 
 http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/icinga2-api#icinga2-api-permissions
 Se pueden poner filtros a lo que puede hacer cada usuario.
+
+
+curl -s -H 'Accept: application/json' -u 'username:password' 'https://icinga.example.com/icingaweb2/director/host?name=hostname.example.com' | jq '.'
