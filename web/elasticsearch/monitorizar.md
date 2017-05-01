@@ -3,3 +3,8 @@ https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_sw
 
 ES llegando a su límite de memoria?
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#heap-sizing
+
+Vigilar que no llegue al número máximo de FDs
+https://www.elastic.co/guide/en/elasticsearch/guide/current/_file_descriptors_and_mmap.html
+
+

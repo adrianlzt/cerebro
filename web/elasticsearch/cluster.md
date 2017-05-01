@@ -1,14 +1,21 @@
+https://www.elastic.co/guide/en/elasticsearch/guide/current/_revisit_this_list_before_production.html
+
+
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html
 
 Fácilmente escalable. Simplemente añadir nodos al cluster.
 
 # Estado del cluster
 curl -s localhost:9200/_cluster/health | python -m json.tool
-
 status puede ser green, yellow o red.
 green -> todo bien
 yellow -> funciona pero hay problemas (por ejemplo, no hay sharding)
 red -> no funciona (no contesta a las queries)
+
+# Settings actuales
+curl -s localhost:9200/_cluster/settings | python -m json.tool
+
+
 
 # Arrancar un cluster
 Por defecto cuando iniciamos ES arranca un cluster con nombre "elasticsearch".
@@ -30,6 +37,14 @@ path.plugins
 Definir el minimum_master_nodes al valor (numero de masters/2)+1
 discovery.zen.minimum_master_nodes:
 Este parametro puede ser modificado dinamicamente.
+
+Deberemos tambien abrir el puerto en las interfaces que queramos para que el cluster se pueda comunicar:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html
+network.host: ["_local_", "_site:ipv4_"]
+  esto abre el puerto en todas las interfaces de red para ipv4 y en localhost
+  Parece que no funciona muy bien: https://github.com/elastic/elasticsearch/issues/13592
+network.host: "0.0.0.0"
+  tambien vale
 
 
 https://www.elastic.co/guide/en/elasticsearch/guide/current/important-configuration-changes.html#_recovery_settings
