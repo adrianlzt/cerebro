@@ -61,6 +61,10 @@ Interfaz web que nos ayuda a comprobar el estado de los checks y crear nuevos de
 
 Puede estar ejecutando los checks según vamos programando, de manera que si hacemos algo que rompa un test, veremos una notificación del navegador al momento.
 
+No me funciona en arch. Parece que no se "subscribe" a los cambios en los ficheros.
+https://github.com/smartystreets/goconvey/issues/478
+Workaround, copiar el GOPATH a /var/tmp
+
 
 Ejemplo de uso:
 https://github.com/IzakMarais/reporter
@@ -72,6 +76,25 @@ Deberemos lanzar goconvey desde algún path debajo del GOPATH
 ## Composer
 https://github.com/smartystreets/goconvey/wiki/Composition
 El composer (http://localhost:8080/composer.html) nos permite escribir en texto natural tabulado los tests que queremos escribir. Nos genera un código hueco para los tests.
+
+Vamos escribiendo los distintos tests que queremos ejecutar creando un arbol:
+talfuncion
+  cosaqueprobar
+    subcosa
+  otracosa
+...
+
+Nos genera un codigo usando la funcionalidad de goconvey. Tendremos que usar los import
+import (
+  "testing"
+  . "github.com/smartystreets/goconvey/convey"
+)
+
+Mirar ejemplo en: https://github.com/smartystreets/goconvey/blob/master/examples/bowling_game_test.go
+
+El codigo que nos genera lo meteremos dentro de un:
+func TestSomething(t *testing.T) {
+
 
 ## Assertions
 https://github.com/smartystreets/goconvey/wiki/Assertions
