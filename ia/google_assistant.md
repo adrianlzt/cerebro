@@ -59,3 +59,17 @@ https://productforums.google.com/forum/#!topic/websearch/Pd9MN2XUDzY/discussion
 Parece que por ahora la única solución es activar la accesibilidad
 https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.voiceaccess
 Pero parece que pone iconos por toda la pantalla.
+
+
+
+
+# SDK
+https://developers.google.com/assistant/sdk/
+https://github.com/googlesamples/assistant-sdk-python
+
+Antes tenemos que activar la API en algun proyecto de google cloud: https://rootear.com/windows/google-assistant-windows-linux-o-macos
+pip install google-assistant-sdk[samples]
+
+python -m googlesamples.assistant.auth_helpers --client-secrets client_secret_XXXX.json
+
+
