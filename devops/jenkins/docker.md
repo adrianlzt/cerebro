@@ -19,3 +19,10 @@ Tambien la podremos encontrar en: /var/jenkins_home/secrets/initialAdminPassword
 
 Entramos en la interfaz web para terminar la configuración.
 Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve parece que es muy largo y se corta)
+
+
+
+# Docker plugin
+https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
+
+Usar containers de docker para lanzar ejecutores.
