@@ -121,6 +121,13 @@ este_es_elnom_bre
 >>> s.lstrip()
 'abc   def   '
 
+Funciona quitando los caracteres de la lista que le pasemos.
+Si queremos quitar un prefijo:
+def remove_prefix(text, prefix):
+  if text.startswith(prefix):
+    return text[len(prefix):]
+  return text  # or whatever
+
 
 # Ver si una palabara esta en una cadena
 'adri' in variable
