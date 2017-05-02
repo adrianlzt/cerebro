@@ -38,6 +38,8 @@ Ejemplo: Clustering: only rise critical if more than one CRITICAL state encounte
 state [ WARNING  ] = COUNT(WARNING) > 0 || COUNT(CRITICAL) > 0
 state [ CRITICAL ] = COUNT(CRITICAL) > 1
 
+Tenemos tambien COUNT(ALL)
+
 
 Se puede usar para enviar checks pasivos. Mirar pasivos.md
 
@@ -56,7 +58,11 @@ Ignoramos fallo UNKNOWN.
 
 
 Con Macros, OK si las 4 ips responden bien. Warning si alguna contesta mal. Critical si todas mal
-/usr/lib64/nagios/plugins/check_multi.pl -s PORT=35357 -x 'command[vip1_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.131 -p $PORT$' -x 'command[vip2_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.132 -p $PORT$' -x 'command[vip1_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.5 -p $PORT$' -x 'command[vip2_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.6 -p $PORT$' -x 'state[OK]=COUNT(OK)>0' -x 'state[CRITICAL]=COUNT(OK)<1' -x 'state[UNKNOWN]=(1==0)' -x 'state[WARNING]=COUNT(OK)<4' 
+/usr/lib64/nagios/plugins/check_multi.pl -s PORT=35357 -x 'command[vip1_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.131 -p $PORT$' -x 'command[vip2_ext_mgmt]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 10.0.238.132 -p $PORT$' -x 'command[vip1_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.5 -p $PORT$' -x 'command[vip2_om]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H 192.168.0.6 -p $PORT$' -x 'state[OK]=COUNT(OK)>0' -x 'state[CRITICAL]=COUNT(OK)<1' -x 'state[UNKNOWN]=(1==0)' -x 'state[WARNING]=COUNT(OK)<4'
+
+
+Para dos o más checks, warning si al menos uno esta ok. OK si todos ok. Critical ninguno ok:
+/usr/lib64/nagios/plugins/check_multi.pl -s PORT=4243  -x 'command[docker_tcp_node1]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H node1 -p $PORT$'  -x 'command[docker_tcp_node2]=/usr/lib64/nagios/plugins/check_tcp -t 5 -H node2 -p $PORT$' -o 'COUNT(OK)==COUNT(ALL)' -w 'COUNT(OK)<=COUNT(ALL)-1' -c 'COUNT(OK)==0'
 
 
 ## Timeouts ##
