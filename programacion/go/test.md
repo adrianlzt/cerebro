@@ -96,6 +96,10 @@ El codigo que nos genera lo meteremos dentro de un:
 func TestSomething(t *testing.T) {
 
 
+## Coverage
+Si pulsamos sobre el fichero podremos ver que lineas estan cubiertas por los test
+
+
 ## Assertions
 https://github.com/smartystreets/goconvey/wiki/Assertions
 
