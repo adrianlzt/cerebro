@@ -6,6 +6,7 @@ http://sahandsaba.com/understanding-asyncio-node-js-python-3-4.html
   entendiendo un event loop con python
 http://latentflip.com/loupe
   ejemplo de como funciona un event loop de javascript a camara lenta
+http://djangostars.com/blog/asynchronous-programming-in-python-asyncio/
 
 curio.md  coroutine concurrency library. Más rápida y pequeña que asyncio. No extensible
 
