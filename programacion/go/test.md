@@ -8,7 +8,7 @@ Correr test a mano:
 go test -v
 go test -v -run NameOfTest
 
-Mejor usar Goconvey
+Mejor usar Goconvey (mirar más abajo)
 
 
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.
@@ -70,6 +70,7 @@ go get github.com/smartystreets/goconvey
 Deberemos lanzar goconvey desde algún path debajo del GOPATH
 
 ## Composer
+https://github.com/smartystreets/goconvey/wiki/Composition
 El composer (http://localhost:8080/composer.html) nos permite escribir en texto natural tabulado los tests que queremos escribir. Nos genera un código hueco para los tests.
 
 ## Assertions
