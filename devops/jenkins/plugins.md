@@ -20,6 +20,10 @@ Meter trazas
 listener.getLogger().println(Messages.SSHAgentBuildWrapper_UsingCredentials(description(key)));
   estas las veo en la ejecucción
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+private static final Logger LOGGER = Logger.getLogger(CredentialsProvider.class.getName());
+
 LOGGER.log(Level.WARNING, "Forced save credentials stores: Aborting due to interrupt: " + var);
   estas en el log de jenkins
 
