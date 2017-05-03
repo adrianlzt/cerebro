@@ -14,8 +14,12 @@ Hacer el package sin pasar los tests (más rápido)
 mvn clean package -DskipTests
 
 
+# Recomendadas
+https://wiki.jenkins-ci.org/display/JENKINS/Green+Balls (green balls)
+https://wiki.jenkins-ci.org/display/JENKINS/Naginator+Plugin (retry)
 
 
+# Debug
 Meter trazas
 listener.getLogger().println(Messages.SSHAgentBuildWrapper_UsingCredentials(description(key)));
   estas las veo en la ejecucción
