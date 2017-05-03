@@ -1,4 +1,5 @@
 http://www.certdepot.net/rhel7-get-started-firewalld/
+https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
 firewalld.noarch : A firewall daemon with D-BUS interface providing a dynamic firewall
 
@@ -80,6 +81,17 @@ firewall-cmd --list-all-zones
 
 Info de una en particular:
 firewall-cmd --list-all --zone=internal
+
+Zona de una interfaz:
+firewall-cmd --get-zone-of-interface=<interface>
+
+Crear zona:
+firewall-cmd --new-zone=docker --permanent
+firewall-cmd --reload
+
+Añadir una interfaz a una zona:
+firewall-cmd --zone=docker --permanent --add-interface=docker0
+
 
 
 ## Servicios / Puertos

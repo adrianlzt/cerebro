@@ -24,6 +24,7 @@ Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve p
 
 # Docker plugin
 https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
+version 0.16.2 no acepta conex con unix:// (la version 0.16.1 si) https://github.com/jenkinsci/docker-plugin/issues/471
 
 Usar containers de docker para lanzar ejecutores.
 
@@ -31,3 +32,5 @@ Una vez instalado ir a la configuración y bajar hasta "Nube" y agregar una tipo
 
 Podemos bajarnos esta imagen evarga/jenkins-slave para usarla como base.
 Acceso es jenkins:jenkins
+
+Comprobar que jenkins tiene permisos de escritura sobre el socket de docker.
