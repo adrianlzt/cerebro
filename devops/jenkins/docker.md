@@ -34,3 +34,6 @@ Podemos bajarnos esta imagen evarga/jenkins-slave para usarla como base.
 Acceso es jenkins:jenkins
 
 Comprobar que jenkins tiene permisos de escritura sobre el socket de docker.
+
+Revisar los logs para ver si esta pudiendo levantar los containers y conectando a ellos.
+Para conectar a ellos atacará a una IP del docker host que estara mapeada al puerto 22 del container.
