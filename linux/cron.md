@@ -113,3 +113,17 @@ The crontab command has one of the worst UI problems:
 2. "crontab" (no arg) reads the contents of the crontab file from stdin and replaces it. When you accidentally hit Ctrl-D after it, your crontab is replaced with an empty file.
 reply
 
+
+
+# Buscando crons
+/etc/anacrontab
+/etc/crontab
+/etc/cron.d
+/etc/cron.hourly
+/etc/cron.daily
+/etc/cron.weekly
+/etc/cron.monthly
+/var/spool/cron
+
+Systemd?
+systemctl list-timers
