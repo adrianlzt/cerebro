@@ -26,3 +26,8 @@ Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve p
 https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
 
 Usar containers de docker para lanzar ejecutores.
+
+Una vez instalado ir a la configuración y bajar hasta "Nube" y agregar una tipo "Docker"
+
+Podemos bajarnos esta imagen evarga/jenkins-slave para usarla como base.
+Acceso es jenkins:jenkins

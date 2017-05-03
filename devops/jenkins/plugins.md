@@ -28,3 +28,8 @@ LOGGER.log(Level.WARNING, "Forced save credentials stores: Aborting due to inter
   estas en el log de jenkins
 
 
+
+
+# Archivo
+Podemos encontrar las versiones antiguas
+http://updates.jenkins-ci.org/download/plugins/
