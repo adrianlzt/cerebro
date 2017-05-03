@@ -17,6 +17,7 @@ mvn clean package -DskipTests
 # Recomendadas
 https://wiki.jenkins-ci.org/display/JENKINS/Green+Balls (green balls)
 https://wiki.jenkins-ci.org/display/JENKINS/Naginator+Plugin (retry)
+https://wiki.jenkins-ci.org/display/JENKINS/Show+Build+Parameters+Plugin (show build params)
 
 
 # Debug
