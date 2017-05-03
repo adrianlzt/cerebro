@@ -3,6 +3,8 @@ Escribir scripts para, por ejemplo, crear a partir de un job, una serie de jobs 
 La documentación está en: http://JENKINS_SERVER/plugin/job-dsl/api-viewer/index.html
 https://github.com/jenkinsci/job-dsl-plugin/wiki
 
+Testear: https://job-dsl.herokuapp.com/
+
 Podemos obtener un poco de pistas creando una con la interfaz web y luego viendo su definición en XML:
 http://JENKINS_SERVER/job/NOMBRE/config.xml
 
