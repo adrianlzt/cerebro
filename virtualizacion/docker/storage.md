@@ -1,4 +1,5 @@
 https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
+volumenes.md
 
 RedHat ofrece un paquete que hace toda la gestión del storage automáticamente:
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/managing_containers/managing_storage_with_docker_formatted_containers

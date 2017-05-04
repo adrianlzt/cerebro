@@ -7,6 +7,8 @@ ejemplos:
   https://github.com/CentOS/CentOS-Dockerfiles
   https://github.com/docker-library/postgres/blob/e616341507a7beec3a161b0a366ba0d3400328fd/9.4/Dockerfile
 
+mirar Makefile
+
 Fichero estilo Vagrantfile donde se dan una serie de ordenes para generar un container.
 IDEA IMPORTANTE: intentar tratar 'docker run user/container' como si fuese un comando, donde le podemos pasar parámetros, nos saca la ayuda en caso de error, etc.
 

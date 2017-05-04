@@ -12,14 +12,14 @@ build:
 	docker build -t ${NAME} .
 
 tag:
-	@echo "Tageando artifactory.com/${NAME}:${VERSION} y latest"
-	docker tag "${NAME}:latest" "artifactory.com/${NAME}:${VERSION}"
-	docker tag "${NAME}:latest" "artifactory.com/${NAME}:latest"
+	@echo "Tageando ${NAME}:${VERSION} y latest"
+	docker tag "${NAME}:latest" "${NAME}:${VERSION}"
+	docker tag "${NAME}:latest" "${NAME}:latest"
 
 upload:
-	@echo "Pusheando artifactory.com/${NAME}:${VERSION} y latest"
-	docker push "artifactory.com/${NAME}:${VERSION}"
-	docker push "artifactory.com/${NAME}:latest"
+	@echo "Pusheando ${NAME}:${VERSION} y latest"
+	docker push "${NAME}:${VERSION}"
+	docker push "${NAME}:latest"
 
 tag_and_upload: tag upload
 
