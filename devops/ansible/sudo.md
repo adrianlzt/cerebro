@@ -68,3 +68,7 @@ También podemos hacerlo con ansible_ssh_pass
         owner=root group=root mode=0440
 
 
+fichero.sudo
+Defaults:jenkinsci !requiretty
+jenkinsci ALL=(ALL) NOPASSWD: ALL
+
