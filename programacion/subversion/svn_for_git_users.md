@@ -18,3 +18,7 @@ svn commit -m "MSG"
 
 git pull
 svn update
+
+
+git log -p
+svn log --diff | less
