@@ -1,6 +1,8 @@
 http://docs.ceph.com/docs/hammer/man/8/ceph/
 http://docs.ceph.com/docs/master/rados/operations/
 
+Mirar monitorizacion.md
+
 
 
 
