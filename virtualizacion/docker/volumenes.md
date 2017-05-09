@@ -42,3 +42,16 @@ Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, 
 # Infinit
 En alpha (8/4/2017)
 Mirar storage/intinit.md
+
+
+# Flocker
+https://clusterhq.com/flocker/introduction/
+
+Almacena en un storage block-based los volumes y se encarga de moverlos a donde los necesite el container.
+
+Ceph esta disponible como storage de manera experimental.
+
+
+# RancherOS Convoy
+Otro storage driver para volumenes persistentes.
+Backends soportados: device mapper, VFS/NFS, EBS

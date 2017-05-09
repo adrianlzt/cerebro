@@ -70,7 +70,7 @@ Para hacer debug:
     pdb.set_trace=mypdb.set_trace
     pdb.set_trace()
  
-  arrancamos el programa que necesita stdin:
+  Arrancamos el programa que necesita stdin, en otra terminal:
     cat args | PYTHONPATH=. python ansible_module_*.py
  
  En la primera terminal tendremos el pdb.
