@@ -37,8 +37,10 @@ perf record -g ls
 perf report
   menu ncurses navegable con estadísticas de los procesos ejecutados, llamadas, etc
 
-perf report --stdio
+perf report -n --stdio
   salida en texto
+  -n  Show the number of samples for each symbol
+  --input=FILE por si queremos otro que perf.data
 
 perf top
   como el top pero con porcentaje de procesos y las llamadas que hace
@@ -79,3 +81,6 @@ perf record -F 99 -a -g -- sleep 60
 perf script | ./stackcollapse-perf.pl > out.perf-folded
 ./flamegraph.pl out.perf-folded > perf-kernel.svg
 geeqie flame.svg
+
+En horizontal es el tiempo consumido.
+Hacia arriba los stack trace. Cada llamada monta encima las llamadas que él hace.

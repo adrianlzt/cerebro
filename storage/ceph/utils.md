@@ -22,13 +22,16 @@ radula profiles
 Listar buckets:
 radula lb
 
-Parece que no tiene un listar contenido de un bucket.
+radula keys/ls/list para listar contenido de un bucket
+https://github.com/bibby/radula/issues/7#issuecomment-299020700
 
 Subir ficheros:
 radula up -t 16 "local/*" my-new-bucket/
 
-Si alguno ya existe, me obliga a poner -f para sobreescribir todos.
+Podemos poner -i,--ignore-existing para ignorar archivo que ya existen (https://github.com/bibby/radula/issues/9#issuecomment-299021841)
 
+Subida/bajada recursiva:
+https://github.com/bibby/radula/issues/8#issuecomment-299024816
 
 
 
