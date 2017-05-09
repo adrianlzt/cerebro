@@ -14,6 +14,13 @@ Ejemplo sacado de la web de pixelbeat.org:
 perf record -a sleep 10  # Guarda el performance data del comando 'sleep 10' y lo escribe en perf.data
 perf report --sort comm,dso
 
+Guardamos datosa durante 30s del proceso 13204, sampleando a 99Hz y capturando stack traces:
+perf record -F 99 -p 13204 -g -- sleep 30
+Sacamos la info por la pantalla en modo texto:
+perf report -n --stdio
+  Nos irá dando cuanta CPU se come cada llamada, y el stack trace que genera por debajo.
+  Por ejemplo, tendremos la llamada xxx() que consume el 20% y su stack trace puede tener aa() y bb() que consuman cada uno 50% (ese porcentaje será del 20% del "padre")
+
 
 Perf toma muestras cada cierto tiempo, así que eventos rápidos puede que se escapen. Tendremos que modificar la velocidad de muestreo para solucionar este problema.
 
@@ -68,8 +75,7 @@ perf record -e cache-misses,cpu-migrations <CMD> && perf report
 ## Flame Graph ##
 git clone https://github.com/brendangregg/FlameGraph
 cd FlameGraph/
-perf record -a -g
-perf script > flame.txt
-./stackcollapse-perf.pl flame.txt > flame.temp
-./flamegraph.pl flame.temp > flame.svg
+perf record -F 99 -a -g -- sleep 60
+perf script | ./stackcollapse-perf.pl > out.perf-folded
+./flamegraph.pl out.perf-folded > perf-kernel.svg
 geeqie flame.svg
