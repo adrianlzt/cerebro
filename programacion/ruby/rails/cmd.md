@@ -27,6 +27,6 @@ rails s
 rails s -p 3001
 
 
-Arrancar el terminal rails/ruby
+Arrancar el terminal rails/ruby (en un path de una app)
 rails c
 RAILS_ENV=production rails c

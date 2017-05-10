@@ -9,3 +9,10 @@ Infinit provides a free community version and an enterprise license with additio
 
 Comparación con otros sistemas de almacenamiento: https://infinit.sh/faq?q=&hPP=20&idx=infinit_sh_faq&p=0&is_v=1
 
+
+# Instalacion
+https://infinit.sh/get-started
+
+yum install -y fuse
+yum-config-manager --add-repo https://yum.infinit.sh/infinit.repo
+yum install -y infinit
