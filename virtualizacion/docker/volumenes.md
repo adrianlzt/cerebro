@@ -34,32 +34,9 @@ Estos containers permaneceran cuando hagamos stop al container. Por ejemplo, si 
 Podemos usar plugins de storage para docker para tener almacenamiento persistente.
 
 # REX-Ray
-https://github.com/codedellemc/rexray
-
-Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, Amazon S3, etc)
-
-Instalar:
-curl -sSL https://dl.bintray.com/emccode/rexray/install | sh
-RPMs y DEBs: https://dl.bintray.com/emccode/rexray/stable/
-
-Generar config y meter en /etc/rexray/config.yml
-http://rexrayconfig.codedellemc.com/
-
-Arrancar rexray
-rexray start
-
-Mete un unit en systemd.
-Ver logs:
-journalctl -u rexray
-
-Para ceph:
-/etc/rexray/config.yml
-libstorage:
-  service: rbd
-rbd:
-  defaultPool: rbd
-
-Mirar como instalar ceph para que este disponible: storage/ceph/install.md (Instalar un cliente)
+mirar storage/rex-ray.md
+Parece el mejor. Desarrollo continuado soportado por EMC.
+Soporta ceph, virtualbox, cabinas...
 
 
 
