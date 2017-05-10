@@ -152,6 +152,10 @@ Opciones:
 --mode global (el servicio estará en todos los nodos. Si publicamos puertos, cada uno constestara con su container local)
 Una vez arrancado el servicio no se puede cambiar el "--mode"
 
+Ejemplo de como agregar un volumen. El volumen estará compartido entre todas las instancias.
+--mount type=volume,source=my-volume,destination=/path/in/container,volume-label="color=red",volume-label="shape=round" \
+
+
 Usaremos --publish NN:BB para publicar puertos
 https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer
 Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (managers y workers, docker enrutara la peticion hasta el nodo correcto)

@@ -3,6 +3,11 @@ docker system df
 
 docker system prune
   will remove all unused data.
+    - all stopped containers
+    - all volumes not used by at least one container
+    - all networks not used by at least one container
+    - all dangling images
+
 
 docker volume prune
   removes unused volumes only.
