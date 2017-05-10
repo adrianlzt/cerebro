@@ -17,3 +17,6 @@ Exp1 ? Exp2 : Exp3;
 
 if (($var == 3) and ($foo eq 'cosa') {
 }
+
+
+Negacion: not

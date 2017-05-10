@@ -155,6 +155,10 @@ Una vez arrancado el servicio no se puede cambiar el "--mode"
 Ejemplo de como agregar un volumen. El volumen estará compartido entre todas las instancias.
 --mount type=volume,source=my-volume,destination=/path/in/container,volume-label="color=red",volume-label="shape=round" \
 
+Crear volumes distintos para cada instancia del service (https://github.com/moby/moby/issues/30008)
+  --mount type=volume,src="{{.Task.Name}}",dst=/results/ \
+
+
 
 Usaremos --publish NN:BB para publicar puertos
 https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer
