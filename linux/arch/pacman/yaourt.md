@@ -64,3 +64,12 @@ yaourt paquete.pkg.tar.xz
 /usr/bin/yaourt
 Hace uso de: /usr/lib/yaourt/util.sh
 Y de: /usr/lib/yaourt/
+
+
+
+# Errores
+/tmp lleno
+Cambiar el dir de tmp
+
+vi ~/.yaourtrc
+TMPDIR=/var/tmp/yaourt
