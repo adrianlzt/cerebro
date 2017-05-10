@@ -41,7 +41,7 @@ Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, 
 
 # Infinit
 En alpha (8/4/2017)
-Mirar storage/intinit.md
+Mirar storage/infinit.md
 
 
 # Flocker
@@ -55,3 +55,20 @@ Ceph esta disponible como storage de manera experimental.
 # RancherOS Convoy
 Otro storage driver para volumenes persistentes.
 Backends soportados: device mapper, VFS/NFS, EBS
+
+
+# fuxi
+https://github.com/openstack/fuxi
+Montado encima de Cinder (que a su vez tiene soporte para muchos backends, entre ellos ceph: https://wiki.openstack.org/wiki/CinderSupportMatrix)
+Aun muy pronto para usarlo (10/5/2017)
+
+
+# contiv
+https://github.com/contiv/volplugin
+Soporta ceph o nfs
+
+
+# horcrux
+https://github.com/muthu-r/horcrux
+Soporta minio como backend
+Version 00.02 y parece que desarrollo parado desde feb'16

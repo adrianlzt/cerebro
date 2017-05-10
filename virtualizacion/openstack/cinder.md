@@ -13,6 +13,11 @@ Volume Types: para poder elegir en que Storage Tier queremos nuestro volumen (HD
 Con volume retype podemos cambiar esto una vez creado el volumen.
 
 
+Backends disponibles:
+https://wiki.openstack.org/wiki/CinderSupportMatrix
+
+
+En el caso de usar ceph como backend:
 Mostrar imagenes almacenadas en ceph:
 rados ls --pool images | grep "rbd_id"
 
