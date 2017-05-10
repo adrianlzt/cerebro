@@ -45,6 +45,7 @@ infinit user import -a adrian -i fichero.json
 
 
 
+
 # Silos
 Crear un silo en un directorio
 infinit silo create --filesystem --name infinit-storage --path /data/ --capacity 3GB
@@ -57,10 +58,20 @@ infinit network create --as adrian --storage infinit-storage --name my-network -
 
 Obtener una network desde el hub:
 infinit network fetch --as adrian --name my-network
+infinit network fetch --as adrian --name nombre/my-network
+  si es la red de otro user
 
 Unir un dispositivo a una red que hayamos obtenidos:
 infinit network link --as adrian --name my-network
 
+Permitir a un tercero acceso a una red (debemos conocer la pubkey del tercero, "bob" en este caso):
+infinit passport create --as alice --network my-network --user bob --push
+
+Obtener un passport para una red:
+infinit passport fetch --as bob --network alice/my-network
+
+Ver storages asociados a una network (solo el owner puede verlo?):
+infinit network list-storage --name my-network -a adrian
 
 
 # Volume
@@ -74,3 +85,4 @@ infinit volume fetch --as adrian --name my-volume
 Montar un volumen
 infinit volume mount --as adrian --name my-volume --mountpoint /mnt --allow-root-creation --cache --publish
 Parece que el comando se queda en foreground. En /mnt veremos el FS montado con FUSE
+Esto levanta un servidor TCP y UDP en un puerto que es donde conectaran el resto de clientes para poder ver el contenido.

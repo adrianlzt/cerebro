@@ -114,3 +114,42 @@ ceph-deploy forgetkeys
 
 To purge the Ceph packages too, you may also execute:
 ceph-deploy purge {ceph-node} [{ceph-node}]
+
+
+
+
+# Instalar un cliente
+/etc/yum.repos.d/ceph.repo
+[Ceph]
+name=Ceph packages for $basearch
+baseurl=http://download.ceph.com/rpm-jewel/el7/$basearch
+enabled=1
+gpgcheck=1
+type=rpm-md
+gpgkey=https://download.ceph.com/keys/release.asc
+priority=1
+
+[Ceph-noarch]
+name=Ceph noarch packages
+baseurl=http://download.ceph.com/rpm-jewel/el7/noarch
+enabled=1
+gpgcheck=1
+type=rpm-md
+gpgkey=https://download.ceph.com/keys/release.asc
+priority=1
+
+[ceph-source]
+name=Ceph source packages
+baseurl=http://download.ceph.com/rpm-jewel/el7/SRPMS
+enabled=1
+gpgcheck=1
+type=rpm-md
+gpgkey=https://download.ceph.com/keys/release.asc
+priority=1
+
+
+yum install -y epel-release
+yum install -y ceph
+
+Copiar /etc/ceph/ceph.conf y /etc/ceph/ceph.client.admin.keyring
+O gestionar una clave que no sea de admin.
