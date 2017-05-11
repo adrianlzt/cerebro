@@ -10,6 +10,8 @@ obtener el hostname del container al que pertenece ese PID
 nsenter -t PID -m -p top
 correr top en el container de pid PID
 
+nsenter -t 1010 -n dig analisis @127.0.0.11
+ejecutar dig como si estuviesemos dentro del container (sin tener dig en el container)
 
 
 

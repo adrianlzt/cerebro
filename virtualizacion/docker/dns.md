@@ -12,3 +12,8 @@ En arch:
 
 Cuando creamos redes de usuario, se monta un servidor DNS gestionado por docker en 127.0.0.11
 Podemos consultar por los nombres de las máquinas conectadas a esa network para obtener sus IPs.
+
+
+nsenter -t 1010 -n dig analisis @127.0.0.11
+ejecutar dig como si estuviesemos dentro del container (sin tener dig en el container)
+Lo que hacemos es que nos metemos en el namespace de red del container.

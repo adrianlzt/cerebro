@@ -367,8 +367,16 @@ curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/nodes | python -m "json.tool
 
 
 ## Network
+https://docs.docker.com/engine/swarm/networking/
+
 Para crear redes compartidas entre los nodos del cluster especificaremos el driver overlay:
 docker network create --driver overlay prueba
+
+Estas redes por defecto asignan una VIP compartida por todas las tasks del service.
+Esa ip será la que se asocie al registro DNS con el nombre del service.
+
+tasks.NOMBRESRV resolverá con varios registros A (variando cual es el primero)
+
 
 
 
