@@ -27,14 +27,26 @@ sudo mv docker-compose /etc/bash_completion.d/
 # Uso
 https://docs.docker.com/compose/compose-file/
 Generamos ficheros YAML con una configuración donde decimos que containers levantamos y con que configuraciones.
-docker-compose.yml
+El fichero deberá llamarse: docker-compose.yml
 
 
+Para levantar un compose:
 docker-compose up
+Por defecto los containers se llamaran "compose_xxx". Si ya hay otro compose, será "compose2_xxx", etc
 
+Para ver los containers del compose (buscará el fichero doccker-compose.yml para saber que mostrar):
+docker-compose ps
+
+docker-compose stop
+
+Por defecto creará una nueva red "compose_default" donde unirá los containers.
+En esta red los container se pueden comunicar por el nombre usado al crear el service.
 
 
 # docker-compose.yml
+
+Generalmente en el fichero tendremos una sección "services" con los distintos containers que correremos.
+Un container, en vez de apuntar a una imagen, puede tener un "build: .", para construir la imagen a partir de un Dockerfile al hacer el docker-compose up
 
 ## command
 command: bundle exec thin -p 3000

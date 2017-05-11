@@ -177,9 +177,18 @@ docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
 
 Si el servicio se para, automaticamente se arrancará de nuevo.
 
-
+Proxy delante del routing mesh
 https://github.com/vfarcic/docker-flow-proxy
 http://proxy.dockerflow.com/
+
+
+Otras opciones en vez de usar el routing mesh:
+https://github.com/moby/moby/issues/23813#issuecomment-229456775
+Start the service using endpoint-mode as dnsrr(but still expose ports) so a vip won't be allocated for the service.
+You could stand up an L7 LB (like ha-proxy or nginx or F5) exposing the ports that you want the LB to service.
+
+Routing mesh con session stickiness
+https://github.com/docker/swarmkit/issues/1077
 
 
 ### Listar services
@@ -360,3 +369,9 @@ curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/nodes | python -m "json.tool
 ## Network
 Para crear redes compartidas entre los nodos del cluster especificaremos el driver overlay:
 docker network create --driver overlay prueba
+
+
+
+## API
+https://github.com/docker/swarmkit/issues/491
+PR para tener los eventos del swarm
