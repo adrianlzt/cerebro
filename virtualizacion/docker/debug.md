@@ -1,3 +1,5 @@
+mirar performance.md
+
 docker daemon -D
 
 

@@ -1,3 +1,5 @@
+mirar stats.md performance.md
+
 http://dockerana.com/
 https://blog.codeship.com/monitoring-docker-containers/
 

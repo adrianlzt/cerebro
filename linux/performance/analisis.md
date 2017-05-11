@@ -3,6 +3,9 @@ http://www.brendangregg.com/usemethod.html
 http://www.brendangregg.com/tsamethod.html
 http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
 
+Basicos:
+https://image.slidesharecdn.com/dockercon2017performanceanalysis-170419182647/95/container-performance-analysis-24-638.jpg?cb=1492660928
+
 cat /proc/cpuinfo | grep processor
   numero de procesadores en el servidor. Nos servirá para comprender mejor la carga de cpu
 
