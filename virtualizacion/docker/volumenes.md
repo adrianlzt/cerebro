@@ -26,8 +26,11 @@ En un dockerfile (se puede poner como array json, o simplemente separado por esp
 VOLUME ["/var/log/", "/opt/bla"]
 VOLUME "/var/log/" "/opt/bla"
 
-Estos containers permaneceran cuando hagamos stop al container. Por ejemplo, si en un container de mongo ponemos "VOLUME /data/db", podremos parar el container, volverlo a arrancar y mantendremos los datos.
+Si usamos un driver para el storage usaremos:
+docker volume create --driver=rexray --name=pepe --opt=size=1
+docker run -d --volume-driver=rexray -v pepe:/data redis
 
+No podemos montar el mismo volumen en dos nodos distintos de un swarm. No se si esto es limitacion de rexray o docker.
 
 
 # Persistencia
