@@ -15,6 +15,9 @@ cadena = urllib.urlencode({"Cabecera": "valor", "xx": 3})
 Si la cabecera o el valor pueden tener tildes:
 cadena.encode("utf8")
 
+Si queremos tener un orden determindo de los params:
+cadena = urllib.urlencode(("Cabecera", "valor"), ("xx", 3))
+
 req = urllib2.Request("http://httpbin.org/get?" + urllib.urlencode({"pepe":123}))
 urllib2.urlopen(req).read()
 
