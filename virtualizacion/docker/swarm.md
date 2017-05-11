@@ -160,6 +160,7 @@ Crear volumes distintos para cada instancia del service (https://github.com/moby
 
 
 
+# Load balancer / publishing ports
 Usaremos --publish NN:BB para publicar puertos
 https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer
 Podremos acceder al servicio publicado en cualquiera de los nodos del cluster (managers y workers, docker enrutara la peticion hasta el nodo correcto)
@@ -167,12 +168,18 @@ Swarm hará de balanceador.
 Para probar atacar a 127.0.0.1:puerto (localhost:puerto no funciona porque intenta acceder por IPv6 por defecto)
 
 Haciendo una prueba no funciona, no contesta en el puerto en ninguna de las máquinas.
-Parece que falta algo para enrutar correctamente. Si hago un inspect del container tiene una ip de una red overlay que ha creado el swarm, pero parece que el SO no conoce como enrutar los paquets (no veo nada que parezca server en 'ip r' ni en iptables?
+Parece que falta algo para enrutar correctamente. Si hago un inspect del container tiene una ip de una red overlay que ha creado el swarm, pero parece que el SO no conoce como enrutar los paquets (no veo nada que parezca server en 'ip r' ni en iptables? Usar ipv4? Atacar desde fuera del nodo?
+
+Si usamos el mode=host (una task del service por cada nodo del cluster) no se usa el load balancer, cada host reenvia el trafico a su task.
 
 Si queremos publicar un puerto de un servicio ya activo (parará los containers ejecutándose y levantará unos nuevos):
 docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
 
 Si el servicio se para, automaticamente se arrancará de nuevo.
+
+
+https://github.com/vfarcic/docker-flow-proxy
+http://proxy.dockerflow.com/
 
 
 ### Listar services
@@ -347,3 +354,9 @@ El parametro --advertise será el IP:Puerto donde los manager deberán enviar lo
 
 Podemos consultar los docker host (nodes) registrados con:
 curl -sL http://127.0.0.1:2379/v2/keys/docker/swarm/nodes | python -m "json.tool"
+
+
+
+## Network
+Para crear redes compartidas entre los nodos del cluster especificaremos el driver overlay:
+docker network create --driver overlay prueba

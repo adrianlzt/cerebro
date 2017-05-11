@@ -6,6 +6,11 @@ http://martinfowler.com/bliki/BlueGreenDeployment.html
 Tener desplegados dos entornos idénticos. Uno con versión v1 otra con v2.
 En un momento dado en el balanceador damos el cambiazo y dejamos de apuntar a v1 para pasar a apuntar v2.
 
+https://github.com/stevvooe/sillyproxy
+Ejemplo usando docker swarm y un proxy
+
+https://github.com/vfarcic/docker-flow-blue-green
+
 
 # Canary releases
 En la canary la idea es que vayamos pasando un porcentaje de usuarios (por ejemplo 10%) a la nueva versión, eligiendo algún parámetro para decidir que usuarios van a una u otra versión (por ejemplo, random, por cookie, etc).
