@@ -35,7 +35,7 @@ atop -w atop.data 5
   los procesos que empiezen entre el último intervalo y la parada de atop los perderemos (si no se termina un intervalo, no almacena info)
 
 leer el fichero
-atop -t atop.data
+atop -r atop.data
 
 t siguiente captura
 T anterior captura
@@ -56,6 +56,8 @@ Eso nos dirá la cantidad de procesos que han terminado en los últimos 3 segund
 
 Pulsamos dos veces 'f' para limitar la cantidad de datos agregados (el menu superior).
 Tambien podemos pulsar 'l' y poner a 0 los campos para deducir más el menú superior.
+
+Los que estan entre "<" ">" son los que han terminado.
 
 Pulsamos 'p' para ver la información agregada por proceso. No podemos ordenar por número de procesos.
 Podemos parar atop 'z', e ir mirando las distintas páginas de procesos (Control+f Control+b)
