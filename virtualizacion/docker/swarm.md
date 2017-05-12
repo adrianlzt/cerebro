@@ -375,7 +375,11 @@ docker network create --driver overlay prueba
 Estas redes por defecto asignan una VIP compartida por todas las tasks del service.
 Esa ip será la que se asocie al registro DNS con el nombre del service.
 
-tasks.NOMBRESRV resolverá con varios registros A (variando cual es el primero)
+tasks.NOMBRESRV resolverá con varios registros A (round-robin, variando cual es el primero), uno por cada task
+
+NOMBRESRV.n.identificadorContainer tambien existe, pero debemos conocer ese identificador
+
+Si arrancamos el service con "--endpoint-mode dnsrr", el dominio de NOMBRESRV actuará como tasks.NOMBRESRV, round-robin con los registros A de las tasks.
 
 
 

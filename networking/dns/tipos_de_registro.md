@@ -1,6 +1,7 @@
 A (registro de dirección)
 AAAA (registro de dirección IPv6)
 CNAME (registro de nombre canónico)
+DNAME (link a otro dominio, https://en.wikipedia.org/wiki/CNAME_record#DNAME_record)
 MX (registro de intercambio de correo)
 NS (registro de servidor de nombres)
 PTR (registro puntero)
