@@ -1,0 +1,2 @@
+Network config
+ipconfig /all

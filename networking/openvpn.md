@@ -63,7 +63,7 @@ O meter la ruta en el router que usen estas máquinas.
 
 
 Los clientes necesitarán:
-ca.crt, client1.crt, client1.key (secreto)
+ca.crt, client1.crt, client1.key (secreto) y ta.key
 
 Copiamos todo al dir de openvpn
 cp -r /usr/share/easy-rsa/2.0/keys/ /etc/openvpn/
@@ -82,6 +82,10 @@ modificaremos los parametros:
 ca, cert, key and dh
 
 Tambien descomentaremos "user nobody" y "group nobody"
+
+Podemos meter en la config DHCP servidores DNS (puede tener implicaciones https://community.openvpn.net/openvpn/wiki/279-are-there-any-issues-related-to-pushing-dhcp-options-to-windows-clients):
+push "dhcp-option DNS 10.0.1.1"
+Con nslookup me resuelve bien, pero ping ni chrome resuelven.
 
 Por defecto esta configurado para asignar ips del rango 10.8.0.0/24
 
@@ -106,3 +110,44 @@ sudo systemctl start openvpn-client@NOMBREFICHEROCONFIG
 https://openvpn.net/management.html
 
 telnet localhost 7505
+
+
+## h2. Generate cert for a new user
+source /etc/openvpn/vars
+cd /usr/share/easy-rsa/2.0
+./build-key personName
+(hit enter couple of times, modifying the email. Sign the cert "y", commit "y")
+
+Created files:
+/usr/share/easy-rsa/2.0/keys/personName.{key,csr,crt}
+/usr/share/easy-rsa/2.0/keys/nn.pem
+
+Updated:
+/usr/share/easy-rsa/2.0/keys/{serial,index.txt.attr,index.txt}
+
+We copy all to the openvpn keys dir:
+<pre>
+/bin/cp -fa /usr/share/easy-rsa/2.0/keys/* /etc/openvpn/keys/
+</pre>
+
+Files needed by users to connect to the VPN:
+<pre>
+personName.{key,csr,crt}
+config.ovpn
+/etc/openvpn/keys/ca.crt
+/etc/openvpn/keys/ta.key
+
+cd /etc/openvpn/keys
+tar zcvf personName.tgz personName* ca.crt ta.key
+</pre>
+
+The config file is attached to this wiki.
+
+
+## Using in windows
+
+Download and install: https://openvpn.net/index.php/open-source/downloads.html
+
+Copy the files given to folder c:\Users\USER\OpenVPN\config\somename
+
+Click the OpenVPN taskbar icon, right click, Connect.
