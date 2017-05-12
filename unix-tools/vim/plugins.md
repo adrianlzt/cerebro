@@ -10,6 +10,12 @@ Meter el user/repo de github en el .vimrc
 Arrancar vim y poner
 :PlugInstall
 
+Actualizar plug
+:PlugUpgrade
+
+Actualizar plugins
+:PlugUpdate
+
 
 
 # Vundle
