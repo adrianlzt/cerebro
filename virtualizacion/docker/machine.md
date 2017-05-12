@@ -27,6 +27,10 @@ docker-machine stop NOMBRE
 docker-machine start NOMBRE
 
 
+# Conectar por ssh
+docker-machine ssh
+
+
 # Configurar nuestra CLI para conectar a un docker-host
 eval $(docker-machine env NOMBRE)
 

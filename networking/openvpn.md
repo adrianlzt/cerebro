@@ -151,3 +151,11 @@ Download and install: https://openvpn.net/index.php/open-source/downloads.html
 Copy the files given to folder c:\Users\USER\OpenVPN\config\somename
 
 Click the OpenVPN taskbar icon, right click, Connect.
+
+
+## Using in OSX
+https://openvpn.net/index.php/access-server/docs/admin-guides/183-how-to-connect-to-access-server-from-a-mac.html
+Dicen de usar https://tunnelblick.net/
+
+Como configurar los DNS. Parece que hace falta poner un programa extra.
+https://unix.stackexchange.com/questions/201946/how-to-define-dns-server-in-openvpn
