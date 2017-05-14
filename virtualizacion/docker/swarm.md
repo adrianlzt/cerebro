@@ -158,6 +158,7 @@ Ejemplo de como agregar un volumen. El volumen estará compartido entre todas la
 Crear volumes distintos para cada instancia del service (https://github.com/moby/moby/issues/30008)
   --mount type=volume,src="{{.Task.Name}}",dst=/results/ \
 
+Parece que no se puede moficiar el entrypoint https://github.com/moby/moby/issues/24196
 
 
 # Load balancer / publishing ports
@@ -381,6 +382,15 @@ NOMBRESRV.n.identificadorContainer tambien existe, pero debemos conocer ese iden
 
 Si arrancamos el service con "--endpoint-mode dnsrr", el dominio de NOMBRESRV actuará como tasks.NOMBRESRV, round-robin con los registros A de las tasks.
 
+
+Si no marcamos la red como attachable (--attachable), solo se podran a una red overlay services de swarm (no containers lanzados sin ser parte de un service)
+Parece que no se puede modificar una erd a posteriori.
+
+
+Problemas conectando a puertos del mesh networking atacando desde el propio docker host a si mismo:
+https://github.com/moby/moby/issues/26235
+Parece que puede ser algo con centos. No se si es culpa de esa issue.
+No usar localhost porque puede resolver a ipv6 y falla.
 
 
 

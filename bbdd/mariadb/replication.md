@@ -1,3 +1,6 @@
+bbdd/percona tambien usa galera
+
+
 MariaDB 10:
   Group commit
   Global transacion ID GTIDs

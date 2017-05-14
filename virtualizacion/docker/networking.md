@@ -35,3 +35,6 @@ Use the net --net flag to allow advanced network configuration such as host netw
 
 
 
+
+docker run --net=host ...
+corremos un container conectado a la misma red que el host (namespace de network mismo que el host)
