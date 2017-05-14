@@ -13,3 +13,5 @@ Luego uniremos el resto de nodos.
 
 
 Al arrancar el seed he tenido que especificar la network, porque sin especificar me ha metido el container en una red bridge (no compartida entre nodos).
+Si no le pasamos una password para el user root generará una automaticamente y la pondrá en los logs del nodo "seed".
+Podemos pasar la pass como variable de entorno o secreto (mirar https://github.com/colinmollenhour/mariadb-galera-swarm/blob/master/start.sh#L123)

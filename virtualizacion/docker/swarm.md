@@ -172,7 +172,7 @@ Parece que falta algo para enrutar correctamente. Si hago un inspect del contain
 
 Si usamos el mode=host (una task del service por cada nodo del cluster) no se usa el load balancer, cada host reenvia el trafico a su task.
 
-Si queremos publicar un puerto de un servicio ya activo (parará los containers ejecutándose y levantará unos nuevos):
+Si queremos publicar un puerto de un servicio ya activo (PARARÁ los containers ejecutándose y levantará unos nuevos!!):
 docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
 
 Si el servicio se para, automaticamente se arrancará de nuevo.
