@@ -1,6 +1,7 @@
 https://www.openshift.org/
 https://github.com/openshift/origin
-
+https://github.com/openshift/origin-web-common/
+  interfaz web
 
 Plataforma como servicios.
 La idea es que los desarrolladores mantenan su SW en un repo git y automaticamente este es desplegado.
