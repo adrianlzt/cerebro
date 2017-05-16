@@ -65,6 +65,10 @@ Nos devuelve tiempos de respuesta del servidor dns
 Ejecuta un programa que debe devolver las métricas en formato inline, graphite o json
 
 
+## sysctl fs
+https://github.com/phemmer/telegraf/blob/7e77be97eb200f5e47691f4bfd62746c535eab85/plugins/inputs/system/LINUX_SYSCTL_FS_README.md
+Nos da, entre otras cosas, número de ficheros abiertos, inodos disponibles, etc
+
 ## Apache
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/apache
 
@@ -217,6 +221,11 @@ I!   info
 E!   error
 
 Buscar el patrón "E!"
+
+
+# Debug / Profiling
+https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md
+
 
 
 # Develop
