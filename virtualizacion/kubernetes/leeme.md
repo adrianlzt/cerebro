@@ -1,6 +1,8 @@
 https://kubernetes.io
 Kubernetes is an open-source platform for automating deployment, scaling, and operations of application containers across clusters of hosts, providing container-centric infrastructure.
 
+Puede usar docker como container runtime, pero no está limitado solo a él.
+
 
 k8s es el diminutivo de kubernetes.
 
