@@ -34,6 +34,8 @@ Así podemos publicar puertos de las VM, que si no, no tienen visión desde el e
 Use the net --net flag to allow advanced network configuration such as host networking so that containers can use the host's network interfaces (docker 0.11.0)
 
 
+docker network create --internal ...
+crea una red solo interna, no tendrá salida a internet
 
 
 docker run --net=host ...

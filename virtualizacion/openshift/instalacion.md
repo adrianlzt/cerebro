@@ -10,6 +10,9 @@ docker run -d --name "origin"
   -v /var/lib/origin/openshift.local.volumes:/var/lib/origin/openshift.local.volumes:rslave \ 
   openshift/origin start
 
+rslave only works if the Docker version is 1.10 or later and a Red Hat distribution.
+
+
 
 
 # Minishift
@@ -19,3 +22,21 @@ https://www.openshift.org/minishift/
 Puede usar virtualbox para provisionar
 
 Bajar la última release de https://github.com/minishift/minishift/releases
+
+Baja un binario compilado
+
+Para arrancarlo usando virtualbox
+./minishift start --vm-driver virtualbox
+
+Se baja una iso con el minishift (boot2docker) y la corre en una VM de virtualbox
+Se baja la herramienta oc (despliegue de origin, https://www.openshift.org/download.html#oc-platforms)
+Se baja el container openshift/origin
+
+Nos da una ip para acceder a la interfaz web de Origin
+Crea en ~/.kube/ la config para acceder al cluster.
+
+Con oc podemos acceder y manejar el cluster.
+
+Con oc podemos gestionar el cluster.
+Para loguearnos en el sistema (para poder empezar a usarlo):
+oc login -u system:admin
