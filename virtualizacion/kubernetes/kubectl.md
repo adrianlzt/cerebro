@@ -20,7 +20,7 @@ Nodos del cluster
 kubectl get nodes
 
 
-# Servicios (pod expuestos)
+# Servicios
 Listar
 kubectl get svc
 

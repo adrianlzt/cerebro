@@ -36,3 +36,9 @@ docker con varias imagenes:
 
 
 Cuando exponemos un pod, el puerto se levanta en el proceso localkube, que parece que redirige las peticiones hacia el container que toque.
+
+
+# Persistent volumes
+https://kubernetes.io/docs/getting-started-guides/minikube/#persistent-volumes
+
+Limitado por usar virtualbox
