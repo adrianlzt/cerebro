@@ -11,6 +11,7 @@ Multiples entradas para el mismo host. Se suele usar como solución complementar
 Problemas:
   Si un servidor cae, a quien el round robin de dns de esa ip no podrá acceder
   Conexiones consecutivas en distintos hosts. No tiene que importar la falta de contexto (sesión)
+  https://kubernetes.io/docs/concepts/services-networking/service/#why-not-use-round-robin-dns (apps que cachean las respuestas DNS)
 
 Ejemplos:
   El buscador google puede usarlo sin problemas, no necesita sesión
@@ -32,6 +33,7 @@ Metemos un equipo en medio para repartir las conexiones entre varios servidores.
   El balanceador tendrá que realizar más trabajo, manteniendo una tabla de sesión.
   Timeouts de sesión cortos pueden provocar ACK storms.
   Incrementar dichos timeouts puede saturar las tablas de sesión.
+  Ejemplo: VIP con iptables
 
 También tenemos los balanceadores por software, que actuan como reverse proxy. Estos actuan como si fuesen el servidor, y reenvian el tráfico a los backend.
 Pueden servir como medio de seguridad, al solo forwardear lo que entienden, por ello suelen tener capacidad de filtrar por URL.

@@ -35,4 +35,4 @@ Para el app2 configuramos un service (se crea una VIP para app2)
 app1 puede atacar a app2 usando la VIP creada.
 O usando el dominio: app2.myproject.svc 
 
-Mas detalles en internals.md (kubernetes)
+Mas detalles en kubernetes/internals.md
