@@ -62,12 +62,22 @@ oc delete dc NOMBRE
 
 
 # Servicios (exponer apps, abrir puertos)
+oc get services
+  listar
+
+Crear un clusterip
+oc create service clusterip NOMBRE --tcp=9999:80
+  el selector que decide donde apuntará esta ip será "app=NOMBRE"
+
+
+
+# Routes / Expose
+Configurar el router (haproxy como proxy inverso) para abrir un endpoint publico para acceder a nuestros services
+
 Si estamos usando un template para desplegar nuestra app donde ya esté configurada una route, podemos hacer:
 oc expose svc/MIAPP
-Esto creará un service y una ruta para ese service.
+  Esto creará un service y una ruta para ese service.
 
-Listar:
-oc get services
 
 
 
@@ -84,13 +94,6 @@ oc rsh -c CONTAINER POD
 Info detallada de un pod
 oc describe pod NOMBRE
   
-
-
-
-# Routes
-Configurar el router (haproxy como proxy inverso) para abrir un endpoint publico para acceder a nuestros services
-
-
 
 
 
