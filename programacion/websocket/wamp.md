@@ -44,6 +44,11 @@ Podemos usar el server demo de crossbar:
 wss://demo.crossbar.io/ws (realm: realm1)
 
 
+### Login
+http://crossbar.io/docs/Challenge-Response-Authentication/
+from autobahn.wamp import auth
+
+
 
 # Errores
 2017-04-05T12:28:00 failing WebSocket opening handshake ('WebSocket connection upgrade failed (302 - Found)')
