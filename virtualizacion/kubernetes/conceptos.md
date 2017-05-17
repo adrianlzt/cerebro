@@ -48,3 +48,17 @@ Mas detalles en kubernetes/internals.md
 # Group services
 Si tenemos una aplicación compuesta por dos partes (django+postrgresql, por ejemplo), cada uno de estos será un service distinto (y cada uno con un pod).
 Los dos estarán unidos formando un grupo de services.
+
+
+
+# Build
+https://docs.openshift.org/latest/dev_guide/builds/index.html
+
+A build in OpenShift Origin is the process of transforming input parameters into a resulting object. Most often, builds are used to transform source code into a runnable container image.
+
+Hay tres tipos de build (https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html#docker-build):
+  - Docker, cuando hay un dockerFile
+  - Source-to-image (S2I): framework that makes it easy to write images that take application source code as an input and produce a new image that runs the assembled application as outpu
+    https://docs.openshift.com/container-platform/3.3/creating_images/s2i.html#creating-images-s2i
+  - Custom build: crear una imagen de docker custom para nuestro proceso de build
+  - Pipeline build: definir una pipeline de jenkins (Jenkinsfile)
