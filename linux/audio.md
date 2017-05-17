@@ -29,3 +29,13 @@ Para hacerlo persistente:
 load-module module-switch-on-connect
 
 
+
+
+# Retransmitir audio
+https://superuser.com/a/1021823/526882
+
+pactl list | grep "Monitor Source" 
+cvlc -vvv pulse://XXXX --sout '#transcode{acodec=mp3,ab=128,channels=2}:standard{access=http,dst=0.0.0.0:8888/pc.mp3}'
+
+Desde otro navegador abrir:
+http://ip.de.mi.pc:8888/pc.mp3
