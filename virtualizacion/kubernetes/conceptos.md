@@ -5,16 +5,23 @@ Mezcla de conceptos de openshift y kubernetes
 https://kubernetes.io/docs/concepts/workloads/pods/pod/
 
 A pod is a group of one or more containers, the shared storage for those containers, and options about how to run the containers
-
 Kubernetes deploys and schedules containers in groups called pods. A pod will typically include 1 to 5 containers that collaborate to provide a service.
+
+Pueden ser varios containers corriendo como uno solo, pero en la realidad parace que suele ser pod == container
+
+
+# Groups
+
 
 
 # Replication controllers
 Replication controllers are the way to instantiate pods in Kubernetes. They control and monitor the number of running pods for a service, improving fault tolerance.
 
 
+
 # Project (openshift)
 Son los "tenants" de openstack (que en las nuevas versiones también se llaman proyectos)
+
 
 
 # Apps
@@ -36,3 +43,8 @@ app1 puede atacar a app2 usando la VIP creada.
 O usando el dominio: app2.myproject.svc 
 
 Mas detalles en kubernetes/internals.md
+
+
+# Group services
+Si tenemos una aplicación compuesta por dos partes (django+postrgresql, por ejemplo), cada uno de estos será un service distinto (y cada uno con un pod).
+Los dos estarán unidos formando un grupo de services.

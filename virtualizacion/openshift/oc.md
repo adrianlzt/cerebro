@@ -4,7 +4,6 @@
 oc new-project nodejs-echo --display-name="nodejs" --description="Sample Node.js app"
 
 
-
 # Estado global
 oc get all
 
@@ -32,6 +31,14 @@ Si estamos usando un template para desplegar nuestra app donde ya esté configur
 oc expose svc/MIAPP
 Esto creará un service y una ruta para ese service.
 
+
+
+# Pods
+oc get pods
+  listar todos
+
+oc rsh POD
+  conectar a un container (como docker exec -it)
 
 
 
