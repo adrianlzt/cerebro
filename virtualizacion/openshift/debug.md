@@ -1,0 +1,2 @@
+# Diagnosis
+oc adm diagnostics
