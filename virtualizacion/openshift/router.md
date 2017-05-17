@@ -5,6 +5,8 @@ OpenShift usa haproxy como proxy inverso para recibir las requests y pasarlas a 
 
 This is a component of OpenShift Origin and contains an HAProxy instance that automatically exposes services within the cluster through routes, and offers TLS termination, reencryption, or SNI-passthrough on ports 80 and 443
 
+Haproxy ve la cabecera "Host" y reencamina el tráfico al nodo con menos conexiones de los pods disponibles.
+
 
 # Monitoring
 Podemos acceder a las métricas de haproxy en IP_INTERNA_HAPROXY:1936
@@ -14,6 +16,8 @@ docker inspect CONTAINERHAPROXY
 Tal vez el puerto esté expuesto en el docker host.
 
 
+
+
 # Config
 Podemos ver la conf de haproxy ejecutando (desde el docker host donde este el container):
 nsenter -t $(pgrep haproxy) -m less /var/lib/haproxy/conf/haproxy.config
@@ -21,3 +25,6 @@ nsenter -t $(pgrep haproxy) -m less /var/lib/haproxy/conf/haproxy.config
 
 nsenter -t $(pgrep haproxy) -m less /var/lib/haproxy/router/routes.json
   este es el fichero desde el que se genera la conf de haproxy
+
+nsenter -t $(pgrep haproxy) -m less /var/lib/haproxy/conf/os_http_be.map
+  fichero donde se hace el mapeo de los hostnames a los backend de haproxy

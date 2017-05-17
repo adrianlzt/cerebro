@@ -25,6 +25,9 @@ listen haproxy.stats
   #This will produce an error on older versions of HAProxy.
   #stats admin if TRUE
 
+  # Add your custom health check monitoring failure condition here.
+  # monitor fail if <condition>
+
 
 
 Obtener estadísticas en formato csv:
