@@ -31,3 +31,15 @@ Con tres nodos:
 -A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
 -A KUBE-POSTROUTING -m comment --comment "kubernetes service traffic requiring SNAT" -m mark --mark 0x4000/0x4000 -j MASQUERADE
 
+
+
+
+# Dos containers en un pod
+Namespaces que comparten:
+ipc
+net
+user
+
+No podran levantarse dos containers que quieran usar el mismo puerto
+
+

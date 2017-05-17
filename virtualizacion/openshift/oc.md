@@ -1,3 +1,8 @@
+Código de oc:
+https://github.com/openshift/origin/blob/master/cmd/oc/oc.go
+https://github.com/openshift/origin/tree/master/pkg/cmd/cli
+
+
 # Proyectos
 
 ## Crear un proyecto
@@ -17,7 +22,7 @@ oc get dc
 
 
 
-# Apps
+# Apps / Deployed Configs / dc
 ## Crear
 Usando un template almacenado en github:
 oc new-app https://github.com/openshift/golang-ex -l name=myapp
@@ -43,6 +48,18 @@ Por defecto esta app no es accesible (tendremos que exportar algún puerto para 
 oc new-app adrianlzt/packagedrone
 
 
+### Dos containers como un solo pod
+oc new-app nginx+mysql --name=mydbapp -e MYSQL_ROOT_PASSWORD=root
+  mirar kubernetes/internals.md para mas detalle de como funciona esto
+
+oc new-app ruby~https://github.com/openshift/ruby-hello-world mysql --group=ruby+mysql
+  otra forma
+
+
+## Borrar
+oc delete dc NOMBRE
+
+
 
 # Servicios (exponer apps, abrir puertos)
 Si estamos usando un template para desplegar nuestra app donde ya esté configurada una route, podemos hacer:
@@ -60,7 +77,13 @@ oc get pods
   tambien podemos ver su estado (Running, completed, CrashLoopBackOff)
 
 oc rsh POD
-  conectar a un container (como docker exec -it)
+oc rsh -c CONTAINER POD 
+  conectar a un pod (como docker exec -it)
+  si no especificamos -c, conectará al primer container del pod
+
+Info detallada de un pod
+oc describe pod NOMBRE
+  
 
 
 
