@@ -9,6 +9,7 @@ Masters (https://docs.openshift.com/container-platform/3.5/architecture/infrastr
  - Management/replication
  - etcd (almacen de objetos)
  - haproxy (opcional, cuando se tiene HA con modo nativo)
+ - web interfaz (servida por el binario openshift)
 
 Nodes (https://docs.openshift.com/container-platform/3.5/architecture/infrastructure_components/kubernetes_infrastructure.html#node):
  - docker
