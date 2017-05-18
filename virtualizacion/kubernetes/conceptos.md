@@ -16,6 +16,8 @@ The Volume in this exercise provides a way for Containers to communicate during 
 
 
 # Groups
+Agrupaciones de services.
+Por ejemplo, una app django y un backend postrgresql
 
 
 
@@ -67,3 +69,13 @@ Hay tres tipos de build (https://docs.openshift.com/container-platform/3.3/archi
     https://docs.openshift.com/container-platform/3.3/creating_images/s2i.html#creating-images-s2i
   - Custom build: crear una imagen de docker custom para nuestro proceso de build
   - Pipeline build: definir una pipeline de jenkins (Jenkinsfile)
+
+
+
+# ImageStream
+https://docs.openshift.org/latest/dev_guide/managing_images.html
+https://docs.openshift.org/latest/architecture/core_concepts/builds_and_image_streams.html#image-streams
+
+Vista virtual sobre una serie de imagenes de containers, similar a un repositorio de imágenes de Docker.
+
+Los objetos se pueden suscribir a un "image stream" y recibir notificaciones de nuevas imágenes. Por ejemplo, se puede hacer un build cuando se reciba una notificación de una nueva imagen.

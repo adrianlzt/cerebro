@@ -7,7 +7,33 @@ El service decidirá a que pods ataca según un selector (una label con un valor
 
 
 
+# Tipos
 
+## ClusterIP
+Por defecto, crea una VIP alcanzable internamente dentro del cluster
+
+
+## NodePort
+https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
+Crea automaticamente un ClusterIP
+
+Útil si tenemos nuestros propios LBs.
+
+
+## LoadBalancer
+https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+Crea un LB sobre la plataforma en la que estemos, por ejemplo en AWS. Es una abstracción sobre la cloud en la que estemos.
+Crea automáticamente un NodePort y un ClusterIP
+
+
+
+## ExternalName
+Crea un alias DNS (CNAME).
+Lo utilizaremos cuando queremos que una app de kubernetes necesite usar un servicio externo, pero esté usando el servicio de discovery de kubernetes.
+Ejemplo, una app que ataca a mi-redis.prod.svc.CLUSTER
+Creamos un ExternalName que asocie mi-redis del proyecto prod a redis.externo.com
+Cuando la app ataque a mi-redis.prod.svc.CLUSTER se le devolverá un CNAME redis.externo.com
 
 
 

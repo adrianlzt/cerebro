@@ -1,3 +1,4 @@
+https://docs.openshift.com/container-platform/latest/cli_reference/basic_cli_operations.html
 Código de oc:
 https://github.com/openshift/origin/blob/master/cmd/oc/oc.go
 https://github.com/openshift/origin/tree/master/pkg/cmd/cli
@@ -68,7 +69,10 @@ oc new-app ruby~https://github.com/openshift/ruby-hello-world mysql --group=ruby
 oc describe dc NOMBRE
 
 ## Borrar
+oc delete all -l app=NOMBRE
+
 oc delete dc NOMBRE
+  solo el dc
 
 
 
