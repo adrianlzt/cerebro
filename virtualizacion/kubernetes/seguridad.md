@@ -50,3 +50,14 @@ Ejemplos:
   Configuring Global Build Defaults and Overrides
   Controlling Pod Placement
   Restricting Role Bindings
+
+
+
+# Consideraciones generales de containers y root
+OpenShift Container Platform runs containers on your hosts, and in some cases, such as build operations and the registry service, it does so using privileged containers. Furthermore, those containers access your host’s Docker daemon and perform docker build and docker push operations. As such, you should be aware of the inherent security risks associated with performing docker run operations on arbitrary images as they effectively have root access.
+
+For more information, see these articles:
+http://opensource.com/business/14/7/docker-security-selinux
+https://docs.docker.com/engine/security/security/
+
+To address these risks, OpenShift Container Platform uses security context constraints that control the actions that pods can perform and what it has the ability to access.
