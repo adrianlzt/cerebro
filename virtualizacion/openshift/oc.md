@@ -89,10 +89,8 @@ oc create service clusterip NOMBRE --tcp=9999:80
 # Routes / Expose
 Configurar el router (haproxy como proxy inverso) para abrir un endpoint publico para acceder a nuestros services
 
-Si estamos usando un template para desplegar nuestra app donde ya esté configurada una route, podemos hacer:
-oc expose svc/MIAPP
-  Esto creará un service y una ruta para ese service.
-
+oc expose svc MIAPP
+  crea una entrada tipo "http://miprueba-nginx-php-hostname.192.168.99.101.nip.io" apuntando al service "MIAPP"
 
 
 
@@ -105,9 +103,16 @@ oc rsh POD
 oc rsh -c CONTAINER POD 
   conectar a un pod (como docker exec -it)
   si no especificamos -c, conectará al primer container del pod
+  https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/remote_commands.html
+  parece que usa nsenter y conecta con el nodo donde está el pod usando HTTP2 o SPDY
 
 Info detallada de un pod
 oc describe pod NOMBRE
+
+
+oc port-forward <pod> 8888:5000
+  abrimos el puerto 8888 en la máquina que ejecuta "oc" y se reencamina el tráfico al pod en el puerto 5000
+  https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html#dev-guide-port-forwarding
   
 
 

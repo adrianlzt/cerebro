@@ -10,6 +10,8 @@ También permite la administractión del sistema.
 
 Escrito en C+JS+Python
 
+Interfaz similar a openstack/openshift.
+
 
 Usa PCP (performance co-pilot, pcp) para recolectar más métricas.
 

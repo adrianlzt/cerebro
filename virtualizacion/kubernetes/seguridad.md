@@ -38,3 +38,15 @@ oc describe scc anyuid
 Agregar al usuario que corre los containers por defecto en nuestro projecto (el que tengamos configurado actualmente) 
 oc adm policy add-scc-to-user anyuid -z default
   CUIDADO! estamos permitiendo a un container correr como root.
+
+
+
+# Admission Controllers
+https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/admission_controllers.html
+
+Mediante plugins podemos controlar de manera fina que queremos que se pueda hacer.
+Ejemplos:
+  Limiting Number of Self-Provisioned Projects Per User
+  Configuring Global Build Defaults and Overrides
+  Controlling Pod Placement
+  Restricting Role Bindings
