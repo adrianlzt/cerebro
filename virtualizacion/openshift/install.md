@@ -13,3 +13,5 @@ Lanzamos desde la máquina que hayamos configurado como "bastion"
 
 Lanzar la instalación
 atomic-openshift-installer install
+
+si paramos la instalación lo que hayamos metido hasta entonces estará en: ~/.config/openshift/installer.cfg.yml
