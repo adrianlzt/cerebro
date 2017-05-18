@@ -41,3 +41,11 @@ openshift/origin-docker-registry
 openshift/origin-pod
 openshift/origin
   ejecuta openshift-router que a su vez ejecuta haproxy
+
+Estos containers corren bajo el proyecto "default":
+oc project default
+oc status
+
+
+# Registry
+https://docs.openshift.org/latest/minishift/using/accessing-the-openshift-docker-registry.html

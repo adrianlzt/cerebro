@@ -23,6 +23,10 @@ oc get dc
 
 
 # Apps / Deployed Configs / dc
+
+## Listar templates e imagenes disponibles
+oc new-app --list
+
 ## Crear
 Usando un template almacenado en github:
 oc new-app https://github.com/openshift/golang-ex -l name=myapp
@@ -46,6 +50,10 @@ Por defecto esta app no es accesible (tendremos que exportar algún puerto para 
 
 ### A partir de imagenes de docker
 oc new-app adrianlzt/packagedrone
+  creará automáticamente un imagestream con la imagen seleccionada
+  un dc con el nombre "packagedrone"
+  y un service con el nombre "packagedrone" que será un load balancer a los puertos que declare EXPOSED
+  si declara algún volúmen por defecto será no persistente y host-local (se monta un volumen, pisará si había algún dato puesto por la imagen)
 
 
 ### Dos containers como un solo pod
@@ -55,6 +63,9 @@ oc new-app nginx+mysql --name=mydbapp -e MYSQL_ROOT_PASSWORD=root
 oc new-app ruby~https://github.com/openshift/ruby-hello-world mysql --group=ruby+mysql
   otra forma
 
+
+## Consultar estado
+oc describe dc NOMBRE
 
 ## Borrar
 oc delete dc NOMBRE
@@ -121,9 +132,26 @@ oc logs golang-ex-1-7fg92 -c xxx
 
 
 
+# Images
+Listado de ImageStreams
+oc get is
+
+Imagenes dentro de un ImageStream
+oc describe is <image_stream_name>
+
+Detalle de una imagen:
+oc export isimage golang@sha256:29116f0f6cd2ef6a882639ee222ccb6e2f6d88a1d97d461aaf4c4a2622d252a1
+
+
+
+
 
 # Tags
 Es como "docker tag" pero aplicado sobre ImageStream
+
+ImageStreamTag (tag de un image stream)  <image_stream_name>:<tag>
+ImageStreamImage (imagen de un image stream)  <image_stream_name>@<id>
+
 
 oc tag <source> <destionation>
 oc tag ruby:latest ruby:2.0
