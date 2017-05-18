@@ -118,3 +118,20 @@ oc logs golang-ex-1-7fg92
 
 O de un container determinado de un pod:
 oc logs golang-ex-1-7fg92 -c xxx
+
+
+
+
+# Tags
+Es como "docker tag" pero aplicado sobre ImageStream
+
+oc tag <source> <destionation>
+oc tag ruby:latest ruby:2.0
+  esto crea una tag permanente, apunta a una imagen específica en un momento determinado
+
+oc tag --alias=true <source> <destionation>
+  con esto creamos un tracking tag, que sigue a la tag aunque esta cambie (típicos ejemplos los tags stable o latest)
+
+Borrar tag:
+oc delete istag/ruby:latest
+oc tag -d ruby:latest
