@@ -1,3 +1,39 @@
+# Authentication
+https://docs.openshift.com/container-platform/3.5/install_config/configuring_authentication.html#install-config-configuring-authentication
+
+Como se deben logear los usuarios.
+/etc/origin/master/master-config.yaml
+seccion identityProviders
+
+Tipos de providers:
+AllowAllPasswordIdentityProvider permitir acceso a todo el mundo
+DenyAllPasswordIdentityProvider no permitir a nadie
+HTPasswdPasswordIdentityProvider usar un fichero htpasswd
+KeystonePasswordIdentityProvider
+LDAPPasswordIdentityProvider
+BasicAuthPasswordIdentityProvider envia un json a un servidor esperando en la respuesta si deja pasar al user o no
+RequestHeaderIdentityProvider mira si hay una cabecera que diga si le deja pasar (deberá haber un proxy de auth por delante. Hay un ejemplo para apache)
+GitHubIdentityProvider
+GitLabIdentityProvider
+GoogleIdentityProvider
+OpenIDIdentityProvider
+
+Ejemplo para htpasswd:
+  identityProviders:
+  - challenge: true
+    login: true
+    mappingMethod: claim
+    name: httpasswd_local
+    provider:
+      apiVersion: v1
+      kind: HTPasswdPasswordIdentityProvider
+      file: /etc/origin/htpasswd
+
+
+
+
+
+# Authorization
 Authorization is handled in the OpenShift Container Platform policy engine, which defines actions like "create pod" or "list services" and groups them into roles in a policy document. Roles are bound to users or groups by the user or group identifier. When a user or service account attempts an action, the policy engine checks for one or more of the roles assigned to the user (e.g., cluster administrator or administrator of the current project) before allowing it to continue.
 
 

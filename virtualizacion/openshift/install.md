@@ -27,3 +27,12 @@ oc get nodes
   deberán estar en estado "Ready"
 
 Probar entrar en el master. Si tenemos varios master con HA tendremos que apuntar al balanceador (haproxy)
+
+Tendremos que entrar usando el dominio publico de la máquina (si intentamos usar la ip luego habrá una redirección al dominio).
+El puerto será 8443, con https.
+
+Nos pide que ejecutemos este comando en todos los nodos:
+atomic-openshift-excluder exclude
+Lo que hace es meter la siguiente lista en la lista de repos excluidos de yum:
+atomic-openshift atomic-openshift-clients atomic-openshift-clients-redistributable atomic-openshift-dockerregistry atomic-openshift-master atomic-openshift-node atomic-openshift-pod atomic-openshift-recycle atomic-openshift-sdn-ovs atomic-openshift-tests tuned-profiles-atomic-openshift-node
+Yo ya veo esa lista excluída. Tal vez sea para las instalaciones sobre atomic? (yo he instalado sobre rhel)

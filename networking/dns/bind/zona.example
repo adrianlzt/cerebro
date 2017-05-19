@@ -1,0 +1,25 @@
+$ORIGIN maqueta.inet.
+$TTL 86400
+@               IN      SOA     dns.maqueta.inet.       hostmaster.maqueta.inet. (
+                        2017050801 ; serial
+                        21600      ; refresh after 6 hours
+                        3600       ; retry after 1 hour
+                        604800     ; expire after 1 week
+                        86400 )    ; minimum TTL of 1 day
+;
+;
+                IN      NS      dns.maqueta.inet.
+
+dns             IN      A       192.168.1.26
+osh1-bastion    IN      CNAME   osh1-bastion
+
+osh1-app-01     IN      A       192.168.1.30
+osh1-app-02     IN      A       192.168.1.22
+osh1-app-03     IN      A       192.168.1.28
+osh1-infra-01   IN      A       192.168.1.24
+osh1-infra-02   IN      A       192.168.1.25
+osh1-lb-01      IN      A       192.168.1.32
+osh1-lb-02      IN      A       192.168.1.31
+osh1-master-01  IN      A       192.168.1.29
+osh1-master-02  IN      A       192.168.1.27
+osh1-master-03  IN      A       192.168.1.23

@@ -1,0 +1,75 @@
+//
+// named.conf
+//
+
+// mirar acl.md
+acl internal {
+        192.168.1.0/24;
+        localhost;
+        localnets;
+};
+
+options {
+        listen-on port 53 { any; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        allow-query     { internal; };
+        recursion yes;
+        dnssec-enable no;
+        dnssec-validation no;
+        bindkeys-file "/etc/named.iscdlv.key";
+        managed-keys-directory "/var/named/dynamic";
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+
+        forwarders {
+                10.26.205.34;
+                10.26.205.35;
+        };
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+// zona maqueta
+zone "maqueta.inet" IN {
+        type master;
+        file "/etc/named.maqueta.zone";
+        allow-update { none; };
+};
+
+// reversa
+zone "1.168.192.in-addr.arpa" IN {
+        type master;
+        file "/etc/named.192.168.1.zone";
+        allow-update { none; };
+};
+
+// zona maqueta externa
+zone "maqueta.ext" IN {
+        type master;
+        file "/etc/named.maquetaext.zone";
+        allow-update { none; };
+};
+
+// reversa externa
+zone "241.168.192.in-addr.arpa" IN {
+        type master;
+        file "/etc/named.192.168.241.zone";
+        allow-update { none; };
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
