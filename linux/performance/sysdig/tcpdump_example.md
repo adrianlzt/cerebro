@@ -1,7 +1,7 @@
 tcpdump por proceso
-sysdig -N fd.type=ipv4 and proc.name=cur
+sysdig fd.type=ipv4 and proc.name=cur
    podemos usar tambien proc.pid
-   -N para que no traduzca puertos
+   -N para que no traduzca puertos (parece que es por defecto ahora asi)
 
 Show the network data that apache exchanged with 192.168.0.1.
 sysdig -A -c echo_fds fd.sip=192.168.0.1 and proc.name=httpd
@@ -12,3 +12,6 @@ sysdig fd.type=ipv4 and \( proc.name=curl or proc.name=nc \)
 curl localhost:8080
 Nos mostrará una especie de captura tcpdump pero asociando paquetes a los procesos.
 
+
+Para filtrar por puertos:
+fd.port=80
