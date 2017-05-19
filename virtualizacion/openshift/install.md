@@ -16,6 +16,8 @@ atomic-openshift-installer install
 
 Si montamos varios master (mínimo 3) para tener HA nos pedirá una máquina para usar como balanceador. Nos pedirá si queremos que instale HAproxy en ella.
 Nos pedirá donde meter el registry storage. En la máquina que le indiquemos montará un NFS.
+  Tocara el fichero /etc/sysconfig/nfs (tambien el de iptables para permitir el trafico)
+  Los exports los habrá definido en: /etc/exports.d/openshift-ansible.exports (user nfsnobody:nfsnobody, 65534:65534). Directorios vacios
 
 Antes de comenzar la instalación nos dirá que ha generado dos ficheros.
 Un inventario de ansible: ~/.config/openshift/hosts (ver si tenemos que modificar algo respecto a los hostnames)
@@ -27,6 +29,7 @@ oc get nodes
   deberán estar en estado "Ready"
 
 Probar entrar en el master. Si tenemos varios master con HA tendremos que apuntar al balanceador (haproxy)
+El balanceador simplemente hace un round-robin sobre las ips de los master puerto 8443
 
 Tendremos que entrar usando el dominio publico de la máquina (si intentamos usar la ip luego habrá una redirección al dominio).
 El puerto será 8443, con https.
@@ -36,3 +39,30 @@ atomic-openshift-excluder exclude
 Lo que hace es meter la siguiente lista en la lista de repos excluidos de yum:
 atomic-openshift atomic-openshift-clients atomic-openshift-clients-redistributable atomic-openshift-dockerregistry atomic-openshift-master atomic-openshift-node atomic-openshift-pod atomic-openshift-recycle atomic-openshift-sdn-ovs atomic-openshift-tests tuned-profiles-atomic-openshift-node
 Yo ya veo esa lista excluída. Tal vez sea para las instalaciones sobre atomic? (yo he instalado sobre rhel)
+
+
+
+# Authentication
+https://docs.openshift.com/container-platform/3.5/install_config/configuring_authentication.html#install-config-configuring-authentication
+
+Por defecto nadie tiene permitido acceder a la plataforma.
+
+
+
+# Registry
+https://docs.openshift.com/container-platform/3.5/install_config/registry/index.html#install-config-registry-overview
+
+El registry esta desplegado sobre kubernetes:
+oc describe dc/docker-registry
+Comprobar que esta funcionando:
+oc status -v
+Los nodes necesitan acceso a internet para bajar imágenes del router y del registry
+
+
+# Router
+https://docs.openshift.com/container-platform/3.5/install_config/router/default_haproxy_router.html
+
+La instalación ha creado el service para el router
+Comprobar que está funcionando:
+oc status -v
+Los nodes necesitan acceso a internet para bajar imágenes del router y del registry

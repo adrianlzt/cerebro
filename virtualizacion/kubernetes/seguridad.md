@@ -29,6 +29,7 @@ Ejemplo para htpasswd:
       kind: HTPasswdPasswordIdentityProvider
       file: /etc/origin/htpasswd
 
+systemctl restart atomic-openshift-master-api.service
 
 
 
