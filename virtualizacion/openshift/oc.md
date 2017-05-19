@@ -104,7 +104,7 @@ oc rsh -c CONTAINER POD
   conectar a un pod (como docker exec -it)
   si no especificamos -c, conectará al primer container del pod
   https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/remote_commands.html
-  parece que usa nsenter y conecta con el nodo donde está el pod usando HTTP2 o SPDY
+  usa nsenter y conecta con el nodo donde está el pod usando HTTP2 o SPDY
 
 Info detallada de un pod
 oc describe pod NOMBRE
@@ -113,6 +113,7 @@ oc describe pod NOMBRE
 oc port-forward <pod> 8888:5000
   abrimos el puerto 8888 en la máquina que ejecuta "oc" y se reencamina el tráfico al pod en el puerto 5000
   https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html#dev-guide-port-forwarding
+  usa nsenter y conecta con el nodo donde está el pod usando HTTP2 o SPDY
   
 
 
@@ -142,15 +143,7 @@ oc logs golang-ex-1-7fg92 -c xxx
 
 
 # Images
-Listado de ImageStreams
-oc get is
-
-Imagenes dentro de un ImageStream
-oc describe is <image_stream_name>
-
-Detalle de una imagen:
-oc export isimage golang@sha256:29116f0f6cd2ef6a882639ee222ccb6e2f6d88a1d97d461aaf4c4a2622d252a1
-
+mirar imagestream.md
 
 
 
