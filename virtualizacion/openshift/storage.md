@@ -6,12 +6,19 @@ Cuando se necesita un storage persistente se hace un persistent volume claims (P
 
 
 Parece que los PV pueden ser provisionados manualmente con tamaños específicos. Esto podría ser un problema si alguien solicita un PV de un tamaño más grande de los provisionado.
-
-Como se crean los PVs? Bajo demanda? Están precreados?
+Generalmente habrá unos provisionadores dinámicos que se encargarán de crear los PVs según los PVCs que le lleguen.
 
 
 # Listar PVs
 oc get pv
+
+
+# Modos
+Tabla con que modos soporta cada plugin: https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html#pv-access-modes
+Los únicos que soportan todos: NFS o GlusterFS
+RWO, read-write por un único nodo
+ROX: read-only por varios nodos
+RWX: read-write por varios nodos
 
 
 # Plugins soportados
