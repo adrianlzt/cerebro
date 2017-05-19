@@ -14,4 +14,16 @@ Lanzamos desde la máquina que hayamos configurado como "bastion"
 Lanzar la instalación
 atomic-openshift-installer install
 
-si paramos la instalación lo que hayamos metido hasta entonces estará en: ~/.config/openshift/installer.cfg.yml
+Si montamos varios master (mínimo 3) para tener HA nos pedirá una máquina para usar como balanceador. Nos pedirá si queremos que instale HAproxy en ella.
+Nos pedirá donde meter el registry storage. En la máquina que le indiquemos montará un NFS.
+
+Antes de comenzar la instalación nos dirá que ha generado dos ficheros.
+Un inventario de ansible: ~/.config/openshift/hosts (ver si tenemos que modificar algo respecto a los hostnames)
+Un fichero de conf: ~/.config/openshift/installer.cfg.yml (ver si tenemos que modificar algo respecto a los hostnames)
+
+
+Tras finalizar la instalación entraremos en alguno de los master y ejecutaremos:
+oc get nodes
+  deberán estar en estado "Ready"
+
+Probar entrar en el master. Si tenemos varios master con HA tendremos que apuntar al balanceador (haproxy)
