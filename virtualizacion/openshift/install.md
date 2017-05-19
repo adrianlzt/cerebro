@@ -41,6 +41,15 @@ atomic-openshift atomic-openshift-clients atomic-openshift-clients-redistributab
 Yo ya veo esa lista excluída. Tal vez sea para las instalaciones sobre atomic? (yo he instalado sobre rhel)
 
 
+Comprobar logs de los servicios:
+master:
+  journalctl -u atomic-openshift-master-api.service
+  journalctl -u atomic-openshift-master-controllers.service
+  journalctl -u atomic-openshift-node.service
+nodes:
+  journalctl -u atomic-openshift-node.service
+
+
 
 # Authentication
 https://docs.openshift.com/container-platform/3.5/install_config/configuring_authentication.html#install-config-configuring-authentication
@@ -66,3 +75,5 @@ La instalación ha creado el service para el router
 Comprobar que está funcionando:
 oc status -v
 Los nodes necesitan acceso a internet para bajar imágenes del router y del registry
+
+Parece que para los routers lo suyo es desplegar dos nodos como "nodes", ponerles algún tipo de label y desplegar sobre ellos los routers.

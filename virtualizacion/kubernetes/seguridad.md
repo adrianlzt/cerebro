@@ -98,3 +98,9 @@ http://opensource.com/business/14/7/docker-security-selinux
 https://docs.docker.com/engine/security/security/
 
 To address these risks, OpenShift Container Platform uses security context constraints that control the actions that pods can perform and what it has the ability to access.
+
+
+
+# OAuth
+Listar tokens
+oc get oauthclients
