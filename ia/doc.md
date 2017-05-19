@@ -78,3 +78,6 @@ https://aws.amazon.com/es/about-aws/whats-new/2017/03/deep-learning-ami-release-
 
 
 http://curated.us10.list-manage.com/track/click?u=6ee1802497b4ea1c66ce61da4&id=3ec803e7d0&e=9a03729793
+
+
+http://aiplaybook.a16z.com/
