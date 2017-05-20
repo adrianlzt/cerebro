@@ -76,11 +76,11 @@ class MySuperResource(object):
 
 
 # falcon.API instances are callable WSGI apps
-# Configure your WSGI server to load "things.app" (app is a WSGI callable)
-app = falcon.API(before=[check_media_type])
+# Configure your WSGI server to load "things.app" (application is a WSGI callable)
+application = falcon.API(before=[check_media_type])
 # things will handle all requests to the '/things' URL path
-app.add_route('/my_path', MyResource())
-app.add_route('/users/{user_id}', MySuperResource())
+application.add_route('/my_path', MyResource())
+application.add_route('/users/{user_id}', MySuperResource())
 
 
 def handleException(ex, req, resp, params):
@@ -90,10 +90,10 @@ def handleException(ex, req, resp, params):
     else:
         raise ex
 
-app.add_error_handler(Exception, handleException)
+application.add_error_handler(Exception, handleException)
 
 # Useful for debugging problems in your API; works with pdb.set_trace()
 if __name__ == '__main__':
-    httpd = simple_server.make_server('127.0.0.1', 8000, app)
+    httpd = simple_server.make_server('127.0.0.1', 8000, application)
     httpd.serve_forever()
     print "listening on port 8000"

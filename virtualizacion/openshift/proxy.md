@@ -27,3 +27,21 @@ source:
     httpProxy: http://proxy.example.com
     httpsProxy: https://proxy.example.com
     noProxy: somedomain.com, otherdomain.com
+
+
+# Si una imagen de build (s2i) necesita proxy, podemos pasarlo en el template como:
+apiVersion: v1,
+kind: BuildConfig,
+...
+spec: {
+  strategy: {
+    sourceStrategy: {
+        env: [
+            {
+                name: PIP_INDEX_URL,
+                value: ${PIP_INDEX_URL}
+            },
+            {
+                name: HTTPS_PROXY,
+                value: http://proxy.inet:6666
+
