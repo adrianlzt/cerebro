@@ -77,3 +77,4 @@ oc status -v
 Los nodes necesitan acceso a internet para bajar imágenes del router y del registry
 
 Parece que para los routers lo suyo es desplegar dos nodos como "nodes", ponerles algún tipo de label y desplegar sobre ellos los routers.
+

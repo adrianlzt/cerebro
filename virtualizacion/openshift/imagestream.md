@@ -21,3 +21,8 @@ oc import-image pythonadri --confirm --from=docker.io/library/python
 
 
 Si tenemos algun fallo en una imagen podemos bajarla de nuevo ejecutando el comando con los mismos parametros.
+
+
+
+Ejemplo de declaración de una template de ImageStream
+https://github.com/openshift/library/blob/master/community/python/imagestreams/python-centos7.json

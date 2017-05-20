@@ -16,3 +16,14 @@ NO_PROXY
 en los ficheros /etc/sysconfig/atomic* y /etc/sysconfig/docker
 
 NO_PROXY deberá contener los dominios de la plataforma, las ips y las del SDN (los pods)
+
+
+
+# Definir proxy en un template (para su conex con git)
+source:
+  type: Git
+  git:
+    uri: https://github.com/openshift/ruby-hello-world
+    httpProxy: http://proxy.example.com
+    httpsProxy: https://proxy.example.com
+    noProxy: somedomain.com, otherdomain.com
