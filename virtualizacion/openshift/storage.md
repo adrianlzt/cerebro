@@ -29,3 +29,10 @@ NFS, HostPath, GlusterFS, Ceph RBD, OpenStack Cinder, EBS, GCE persistent disk, 
 
 ## NFS
 https://docs.openshift.com/container-platform/3.5/install_config/persistent_storage/persistent_storage_nfs.html#install-config-persistent-storage-persistent-storage-nfs
+
+
+
+# Añadir storage
+Si una vez tenemos corriendo nuestra app, en el dc añadimos un storage, los containers se pararán y volverán a arrancar con el container attachado.
+
+Los volumenes no aparecen en "docker volume", supongo que se gestionan de otra manera.

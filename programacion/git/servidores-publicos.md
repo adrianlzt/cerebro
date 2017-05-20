@@ -27,3 +27,7 @@ Otra forma (clonar repo):
 
 mkdir dir.git/
 git --bare init dir.git/
+
+
+
+# docker

@@ -13,3 +13,9 @@ OpenShift Origin is a distribution of Kubernetes optimized for continuous applic
 
 La version gratuita se llama Origin.
 OpenShift es la versión comercial de RedHat
+
+
+Podemos verlo como un jenkins + openstack todo integraddo en un único producto.
+Apuntamos webhooks de nuestro repo de git a openshift.
+Cuando se produce algún cambio en el repo se genera una nueva imagen.
+Esa imagen se detecta por la aplicación que está corriendo, se paran los containers actuales y se despliega la nueva imagen.
