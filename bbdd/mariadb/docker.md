@@ -6,6 +6,7 @@ Mirar los repos:
 https://github.com/colinmollenhour/mariadb-galera-swarm/blob/master/Dockerfile
 https://github.com/colinmollenhour/mariadb-galera-swarm/tree/master/examples/swarm
 https://github.com/alvinr/docker-demo/blob/master/mariadb/vote/prod/galera/galera-cluster/docker-entrypoint.sh
+https://github.com/toughIQ/docker-maxscale
 
 
 Usando la imagen de mariadb como cliente:

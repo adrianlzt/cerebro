@@ -31,3 +31,15 @@ git --bare init dir.git/
 
 
 # docker
+https://hub.docker.com/r/ephillipe/gitserver-http/
+
+mkdir repositories
+docker run -d -v `pwd`/repositories:/var/lib/git -p "8080:80" cirocosta/gitserver-http
+cd repositories
+git init --bare repos/myrepo.git
+
+git clone http://localhost:8080/repos/myrepo.git
+solo permisos de lectura
+
+Pero donde este el /repositories puedo usar el remote como local:
+git remote add local /home/pepe/repositories

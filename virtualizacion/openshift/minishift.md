@@ -49,3 +49,8 @@ oc status
 
 # Registry
 https://docs.openshift.org/latest/minishift/using/accessing-the-openshift-docker-registry.html
+
+
+# Errores
+Si paramos minishift y al arrancarlos de nuevo se le cambia la ip fallará al buscar la configuración.
+Tendremos que intentar que recupere la ip, porque va metida a fuego por muchos sitios.

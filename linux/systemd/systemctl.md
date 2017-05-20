@@ -32,6 +32,8 @@ systemctl status proceso
   si está parada nos dice desde cuando, cual era su pid y con que return code salió
 systemctl status proceso -l
   mostrar todo el output del log para este servicio
+systemctl --failed
+  mostrar unidades fallidas
 systemctl is-active httpd
 systemctl is-enabled httpd
 systemctl is-failed httpd
