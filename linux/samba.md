@@ -7,7 +7,7 @@ apt-get install libcupsys2 samba samba-common
 vi /etc/samba/smb.conf
 ...
 [nombre]
-	comment = Directorio para los backups de T4U
+	comment = Directorio para los backups
 	path = /opt/nombre
 	valid users = nombre
 	writable = yes
@@ -20,12 +20,13 @@ service samba restart
 
 # Cliente
 pacman -S smbclient
+sudo touch /etc/samba/smb.conf (si no existe las utils protestan)
 apt install smbclient cifs-utils
 
 Montar unidad remota:
 
 findsmb -> buscar unidades compartidas por samba
-smbtree -N -d3 -> mirar los directorios compartidos por cada maquina
+smbtree -N -> mirar los directorios compartidos por cada maquina
 
 smbclient -L <windows-box> -U% //Mirar lo que podemos montar
 smbclient -L <windows-box> -U <username> //Mirar lo que puede montar mi usuario windows
@@ -42,6 +43,8 @@ Using '\040' replace blank space character, and '\134' replaces backslash charac
 
 
 Montarlo con systemd
+El nombre del fichero de systemd debe coincidir con el nombre que pongamos en "Where":
+Podemos obtenerlo con el comando: systemd-escape -p --suffix=mount "/punto/de/montaje"
 /etc/systemd/system/mnt-myshare.mount
 [Unit]
 Description=Mount Share at boot
@@ -53,6 +56,7 @@ Wants=network-online.target
 What=//server/share
 Where=/mnt/myshare
 Options=credentials=/etc/samba/creds/myshare,iocharset=utf8,rw,x-systemd.automount
+#Options=username=guest,password=guest,iocharset=utf8,rw,x-systemd.automount # si no tenemos user/pass
 Type=cifs
 TimeoutSec=30
 
