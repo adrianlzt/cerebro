@@ -1,6 +1,13 @@
 https://mariadb.com/resources/webinars/how-build-and-scale-application-mariadb-docker
 https://mariadb.com/resources/blog/get-started-mariadb-docker
 
+
+Mirar los repos:
+https://github.com/colinmollenhour/mariadb-galera-swarm/blob/master/Dockerfile
+https://github.com/colinmollenhour/mariadb-galera-swarm/tree/master/examples/swarm
+https://github.com/alvinr/docker-demo/blob/master/mariadb/vote/prod/galera/galera-cluster/docker-entrypoint.sh
+
+
 Usando la imagen de mariadb como cliente:
 docker run --rm -it mariadb:10.1 mysql -hHOST -uUSER -pPASS
 

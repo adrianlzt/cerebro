@@ -38,6 +38,7 @@ datetime.datetime.fromtimestamp(1284286794, pytz.utc)
 print(datetime.datetime.fromtimestamp(1486398480, pytz.utc).strftime("%d/%m/%Y %H:%M:%S %z"))
 
 
+from datetime import datetime
 >>> print(datetime.now().strftime("%H:%M:%S"))
 17:08:51
 

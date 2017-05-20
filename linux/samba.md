@@ -54,7 +54,7 @@ Wants=network-online.target
 
 [Mount]
 What=//server/share
-Where=/mnt/myshare
+Where=/mnt/myshare # Si tiene algun espacio en blanco lo escribiremos tal cual, sin comillas ni intentando escaparlo
 Options=credentials=/etc/samba/creds/myshare,iocharset=utf8,rw,x-systemd.automount
 #Options=username=guest,password=guest,iocharset=utf8,rw,x-systemd.automount # si no tenemos user/pass
 Type=cifs

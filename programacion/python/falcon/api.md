@@ -1,1 +1,1 @@
-hug.md
+../hug.md
