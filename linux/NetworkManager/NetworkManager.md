@@ -60,6 +60,36 @@ Para DHCP:
 ipv4.method: auto
 
 
+# Crear una red wifi a mano
+nmcli c add type 802-11-wireless con-name NombreConex ifname wlo1 ssid NombreSSID
+
+Editar la conex para añadir 802.1x
+nmcli c edit NombreConex
+> set ipv4.method auto
+> set 802-1x.eap peap
+> set 802-1x.identity DOMINIO\USER
+> set 802-1x.phase2-auth mschapv2
+> save
+> quit
+
+La password la almacenaremos en /etc/NetworkManager/system-connections/NombreConex
+[connection]
+id=CONNECTION_NAME
+ 
+[802-1x]
+password=YOUR_8021X_PASSWORD
+
+[wifi-security]
+key-mgmt=wpa-eap
+
+
+
+systemctl restart NetworkManager
+
+Conectamos
+nmcli c up NombreConex
+
+
 
 # Quitar un dispositivo del NM
 Para desactivar un dispositivo (para que no lo maneje networkmanager):
