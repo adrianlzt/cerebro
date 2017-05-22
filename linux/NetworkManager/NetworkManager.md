@@ -24,6 +24,9 @@ nmcli c s
 nmcli -a c up Nombre
   Conectar a la red "Nombre". -a es --ask, pregunta user y pass si tenemos 802.1X
 
+nmcli c delete Nombre
+  borrar conex
+
 
 Servers DNS cogidos por DHCP:
   nmcli dev show | grep DNS

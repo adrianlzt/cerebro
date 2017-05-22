@@ -15,3 +15,9 @@ manejar permisos de volúmenes (que pasa cuando compartes un volumen con un cont
 controlar acceso al socket de docker (si usas el unix:// está más o menos claro, pero si usas también TCP, como gestionarlo)
 
 volúmenes persistentes (rexray+ceph, infinit)
+
+Como gestionar bbdd sql? Volumenes permanentes? Clustering (alguno que funcione)?
+
+Que pasa si limitamos la memoria de un container y la app consume toda? crash de la app?
+
+Compartir un volumen entre dos containers. Con rexray parece que no me deja montar el volumen en dos nodos distintos

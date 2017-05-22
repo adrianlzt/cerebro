@@ -3,6 +3,8 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Se
 
 GUI: audit-viewer
 
+lib en go: https://github.com/elastic/go-libaudit
+
 aureport: generar informes más sencillos de leer
 aureport --avc
   The aureport utility is designed to create column-based reports that show the events recorded in the audit log files.
