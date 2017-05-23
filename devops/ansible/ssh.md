@@ -33,3 +33,8 @@ Host *
 
 Modulo known_hosts: manages the ssh known_hosts file
 
+
+# ProxyCommand
+http://docs.ansible.com/ansible/faq.html#how-do-i-configure-a-jump-host-to-access-servers-that-i-have-no-direct-access-to
+ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q user@gateway.example.com"'
+
