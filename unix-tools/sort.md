@@ -35,3 +35,7 @@ git tag -l | LANG=en_US.UTF-8 sort -n
 
 Desordenar
 sort --random-sort
+
+
+Ordenar por una columna determinada
+sort -k 4
