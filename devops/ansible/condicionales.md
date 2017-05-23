@@ -52,6 +52,7 @@ tasks:
   - command: /bin/still/otro
     when: result|changed
 
+Ante un comando que de rc=0 se ejecutarían la success y la changed
 
 
 Variable definida o no definida:

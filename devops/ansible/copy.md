@@ -18,10 +18,8 @@ Si el dest es un diretorio, se copiará con el nombre del src. Si no, usará el 
         owner=root group=root mode=0644
 
 
+content="variable con valor:\n{{variable}}"
 
-No consigo pasar a content el valor de una variable tipo content="{{variable}}"
-Me dice que:
-msg: this module requires key=value arguments (
 
 - name: icinga repo
   copy: src=ICINGA-release.repo
