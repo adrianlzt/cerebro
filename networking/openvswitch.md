@@ -8,6 +8,11 @@ Open vSwitch es una de las implementaciones más populares de OpenFLow
 Soporta: xen, kvm, virtualbox, proxmox VE.
 Se usa en OpenSatck, OpenQRM, OpenNebula, oVirt
 
+
+sFlow VS SNMP
+This type of interface trending is a staple of network management, but obtaining the information is challenging in virtual environments. While SNMP is typically used to obtain this information from network equipment, servers are much less likely to be managed using SNMP and so SNMP polling is often not an option. In addition, there may be large numbers of virtual ports associated with each physical switch port. In a virtual environment with 10,000 physical switch ports you might need to monitor as many as 200,000 virtual ports. Even if SNMP agents were installed on all the servers, SNMP polling does not scale well to large numbers of interfaces. The integrated counter polling mechanism built into sFlow provides scalable monitoring of the utilization of every switch port in the network, both physical and virtual, quickly identifying problems wherever they may occur in the network
+
+
 # Arquitectura
 
 ## ovsdb-server
