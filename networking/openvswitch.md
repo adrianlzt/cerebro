@@ -52,3 +52,19 @@ ovs-bugtool
 ovs-vswitchd
 ovsdb-server
 
+
+
+# Listar bridges
+ovs-vsctl list-br
+ovs-vsctl list br
+  más detalles
+
+
+# Monitorizar / sFlow
+
+## Arrancar agente sFlow
+ovs-vsctl -- --id=@sflow create sflow target=10.1.2.3 header=128 sampling=64 polling=3 -- set bridge br0 sflow=@sflow 
+dfb61461-3474-4acc-869f-b9932db063ba
+
+## Listar agentes
+ovs-vsctl list sflow
