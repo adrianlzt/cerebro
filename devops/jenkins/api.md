@@ -16,15 +16,6 @@ http://jenkins.inet/job/icinga/api/json/?pretty=true&depth=7&tree=jobs[name,jobs
 
 
 # Python
-http://pythonhosted.org/jenkinsapi/
-https://git.openstack.org/cgit/openstack/python-jenkins
-  pip install jenkinsapi
-  from jenkinsapi.jenkins import Jenkins
-  server = Jenkins(jenkins_url, username = 'foouser', password = 'foopassword')
-
-  Me gusta menos, parece que te pasa todas las tareas por su nombre, sin poder distinguir por directorio
-
-
 https://python-jenkins.readthedocs.io/en/latest/
   pip install python-jenkins
   import jenkins
@@ -36,6 +27,16 @@ https://python-jenkins.readthedocs.io/en/latest/
 
   Copiar una job: server.create_job("dir2/cpu", server.get_job_config("dir/cpu"))
   copy_job solo funciona dentro del mismo dir
+
+
+http://pythonhosted.org/jenkinsapi/
+https://git.openstack.org/cgit/openstack/python-jenkins
+  pip install jenkinsapi
+  from jenkinsapi.jenkins import Jenkins
+  server = Jenkins(jenkins_url, username = 'foouser', password = 'foopassword')
+
+  Me gusta menos, parece que te pasa todas las tareas por su nombre, sin poder distinguir por directorio
+
 
 
 # Ejecucciones remotas

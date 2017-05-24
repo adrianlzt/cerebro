@@ -32,6 +32,9 @@ Para compilar cosas instalar:
 build-base
 
 
+Cosas basicas:
+apk add libc-dev gcc 
+
 # Docker
 docker run -it alpine /bin/sh
 
