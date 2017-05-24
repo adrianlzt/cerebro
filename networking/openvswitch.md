@@ -64,7 +64,11 @@ ovs-vsctl list br
 
 ## Arrancar agente sFlow
 ovs-vsctl -- --id=@sflow create sflow target=10.1.2.3 header=128 sampling=64 polling=3 -- set bridge br0 sflow=@sflow 
-dfb61461-3474-4acc-869f-b9932db063ba
+  sampling: cuantas muestras coger (1 de cada 64)
+  polling: cada cuanto enviar las métricas
 
 ## Listar agentes
 ovs-vsctl list sflow
+
+## Borrar agente / deconfigurar sflow del bridge
+ovs-vsctl -- clear Bridge br0 sflow
