@@ -48,10 +48,23 @@ ovs-testcontroller, a simple OpenFlow controller that may be useful for
 
 
 
-# Listar bridges
+# Bridges
+
+## Listar
 ovs-vsctl list-br
 ovs-vsctl list br
   más detalles
+
+## Crear
+ovs-vsctl add-br br0
+
+Añadirle puertos (interfaces existentes, por ejemplo, la interfaz ethernet de nuestra máquina):
+ovs-vsctl add-port br0 eth0
+  Creará el puerto y luego lo añadirá al bridge.
+  No me queda claro exactamente que hace, pero me deja sin red si lo hago sobre mi interfaz de red.
+
+Borrar un puerto:
+ovs-vsctl del-port eth0
 
 
 # Monitorizar
@@ -84,3 +97,13 @@ ovs-vsctl -- clear Bridge br0 sflow
 ### Listar agentes
 ovs-vsctl list ipfix
 
+
+
+
+# Install
+
+Arch:
+pacman -Ss openvswitch
+
+Arrancarlo:
+systemctl start ovs-vswitchd
