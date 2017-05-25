@@ -69,15 +69,25 @@ ovs-vsctl list br
   más detalles
 
 
-# Monitorizar / sFlow
+# Monitorizar
 
-## Arrancar agente sFlow
+## sflow
+
+### Arrancar agente sFlow
 ovs-vsctl -- --id=@sflow create sflow target=10.1.2.3 header=128 sampling=64 polling=3 -- set bridge br0 sflow=@sflow 
   sampling: cuantas muestras coger (1 de cada 64)
   polling: cada cuanto enviar las métricas
 
-## Listar agentes
+### Listar agentes
 ovs-vsctl list sflow
 
-## Borrar agente / deconfigurar sflow del bridge
+### Borrar agente / deconfigurar sflow del bridge
 ovs-vsctl -- clear Bridge br0 sflow
+
+
+
+## IPFIX
+
+### Listar agentes
+ovs-vsctl list ipfix
+
