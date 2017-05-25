@@ -8,13 +8,8 @@ Open vSwitch es una de las implementaciones más populares de OpenFLow
 Soporta: xen, kvm, virtualbox, proxmox VE.
 Se usa en OpenSatck, OpenQRM, OpenNebula, oVirt
 
+Open vSwitch permite transmistir el estado de una VM entre distintos hosts. Este estado puede ser: l2 learning table, l3 forwarding rules, ACLs, QoS, policy routing state, etc
 
-sFlow VS SNMP
-This type of interface trending is a staple of network management, but obtaining the information is challenging in virtual environments. While SNMP is typically used to obtain this information from network equipment, servers are much less likely to be managed using SNMP and so SNMP polling is often not an option. In addition, there may be large numbers of virtual ports associated with each physical switch port. In a virtual environment with 10,000 physical switch ports you might need to monitor as many as 200,000 virtual ports. Even if SNMP agents were installed on all the servers, SNMP polling does not scale well to large numbers of interfaces. The integrated counter polling mechanism built into sFlow provides scalable monitoring of the utilization of every switch port in the network, both physical and virtual, quickly identifying problems wherever they may occur in the network
-
-
-sFlow vs NetFlow
-All major IXPs (Internet Exchange Points - like AMSIX were we're connected to, or DECIX) use SFlow. Why? Because SFlow incurs almost 0 overhead to CPUs/Hardware it samples on. Compare this to NetFlow which takes 30-50% of CPU of a Router just to sample 1 out of N packets, that's HUGE.
 
 
 # Arquitectura
@@ -47,19 +42,9 @@ OVS-vsctl: es una utilidad para consultar y actualizar la configuración del Ovs
 Ovs-ofctl: utility for querying and controlling OpenFlow switches and controllers.
 Ovsdbmonitor: es una herramienta de GUI para la visualización remota de las bases de datos OVS y las tablas de flujo OpenFLow.
 
-
-ovs-appctl: utility for configuring running Open vSwitch daemons.
-ovs-dpctl
-ovs-dpctl-top
-ovs-ofctl
-ovs-pki
-ovs-vsctl
-ovsdb-client
-ovsdb-tool
-vtep-ctl
-ovs-bugtool
-ovs-vswitchd
-ovsdb-server
+ovs-ofctl, a utility for querying and controlling OpenFlow switches and controllers.
+ovs-pki, a utility for creating and managing the public-key infrastructure for OpenFlow switches.
+ovs-testcontroller, a simple OpenFlow controller that may be useful for
 
 
 
@@ -70,6 +55,14 @@ ovs-vsctl list br
 
 
 # Monitorizar
+
+sFlow VS SNMP
+This type of interface trending is a staple of network management, but obtaining the information is challenging in virtual environments. While SNMP is typically used to obtain this information from network equipment, servers are much less likely to be managed using SNMP and so SNMP polling is often not an option. In addition, there may be large numbers of virtual ports associated with each physical switch port. In a virtual environment with 10,000 physical switch ports you might need to monitor as many as 200,000 virtual ports. Even if SNMP agents were installed on all the servers, SNMP polling does not scale well to large numbers of interfaces. The integrated counter polling mechanism built into sFlow provides scalable monitoring of the utilization of every switch port in the network, both physical and virtual, quickly identifying problems wherever they may occur in the network
+
+
+sFlow vs NetFlow
+All major IXPs (Internet Exchange Points - like AMSIX were we're connected to, or DECIX) use SFlow. Why? Because SFlow incurs almost 0 overhead to CPUs/Hardware it samples on. Compare this to NetFlow which takes 30-50% of CPU of a Router just to sample 1 out of N packets, that's HUGE.
+
 
 ## sflow
 
