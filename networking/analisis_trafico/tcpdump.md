@@ -39,13 +39,16 @@ Guardar la salida a un fichero
 Guardar a fichero sin buffer, para poder ir leyéndolo con el wireshark en tiempo real
 # tcpdump -w fichero -U
 
+# Mostrar la captura mientras la almacenamos en un fichero binario
+tcpdump -i eth0 -U -w - port 4739 | tee ipfix.cap | tcpdump -r - -nn
+
 Leer de un fichero previamente guardado:
 # tcpdump -r fichero host 1.2.3.4
 
 # Ejemplo con logica
 tcpdump 'gateway snup and (port ftp or ftp-data)'
 
-Ver y guardar a fichero al mismo tiempo
+Ver y guardar a fichero al mismo tiempo (pero no el formato bueno, solo el texto)
 # tcpdump -l | tee dat
 
 Paquetes que entran/salen por eth1, por el puerto 4730 y desde la red 192.168/16
@@ -83,4 +86,35 @@ S -> SYN
 
 
 # Replay un paquete .cap
+http://tcpreplay.synfin.net/
 
+pacman -Ss tcpreplay
+
+## Capturar el trafico
+Para guardar el trafico NO usar "-i any". Esto genera unos paquetes raros a nivel 2 que no son compatibles.
+tcpdump -i eth0 -w fichero.cap filtro
+
+## Preparacíón
+Generalmente lo primero que haremos será usar tcpprep para distinguir de que tipo es cada paquete (cliente -> servidor o al reves).
+Esto luego nos servira para reescribir partes de los paquetes e inteligentemente poner la mac del router siempre en los paquetes del router.
+
+tcpprep -a bridge -i ipfix.cap -o ipfix.cache
+
+
+## Rewrite
+Con tcprewrite podemos modificar los paquetes para modificar, por ejemplo, sus MACs de origen y destino.
+
+Cambiando MAC de origen (smac) y de destino (dmac)
+tcprewrite --enet-dmac=00:55:22:AF:C6:37 --enet-smac=00:44:66:FC:29:AF --infile=input.pcap --outfile=output.pcap
+  si queremos usar cache (de tcprep): --cachefile=input.cache
+
+Cambiando IPs:
+tcprewrite --endpoints=10.10.1.1:10.10.1.2 --cachefile=input.cache --infile=input.pcap --outfile=output.pcap --skipbroadcast
+  con el tcpprep (que era solo un cliente enviando paquetes UDP), me ha puesto la ip 10.10.1.2 como origen y la otra como destino
+
+
+
+
+tcpreplay -i INTERFAZ paquete.cap
+
+Parece que cuando se hace un replay tampoco se lleva bien con "tcpdump -i any"
