@@ -97,6 +97,37 @@ ovs-vsctl -- clear Bridge br0 sflow
 ### Listar agentes
 ovs-vsctl list ipfix
 
+## Crear agente
+ovs-vsctl -- set Bridge br0 ipfix=@i -- --id=@i create IPFIX targets=\"10.1.2.3:4739\" obs_domain_id=123 obs_point_id=456 sampling=1
+
+
+ovs-vsctl -- set Bridge br0 ipfix=@i --  --id=@i create IPFIX targets=\"192.168.0.34:4739\" obs_domain_id=123 obs_point_id=456 cache_active_timeout=60 cache_max_flows=13 other_config:enable-input-sampling=false other_config:enable-tunnel-sampling=true
+
+## Desconfigurar exporter IPFIX de un bridge
+ovs-vsctl clear Bridge br0 ipfix
+
+## Mostrar estadisticas ipfix
+ovs-ofctl dump-ipfix-bridge SWITCH
+ovs-ofctl dump-ipfix-flow SWITCH
+
+
+Envio de los templates (ofproto-dpif-ipfix.c):
+/* When using UDP, IPFIX Template Records must be re-sent regularly.
+ * The standard default interval is 10 minutes (600 seconds).
+ * Cf. IETF RFC 5101 Section 10.3.6. */
+#define IPFIX_TEMPLATE_INTERVAL 600
+
+Mirando el código, no parece que se pueda modificar este valor.
+Se usa aqui:
+        if (!template_msg_sent && (exporter->last_template_set_time + IPFIX_TEMPLATE_INTERVAL) <= export_time_sec) {
+export_time_sec viene de xgettimeofday(&export_time);
+
+
+Esta funcion parece que da a entender que se envia el template al inicio:
+ipfix_init_template_msg
+
+
+
 
 
 
