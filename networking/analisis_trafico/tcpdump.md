@@ -118,3 +118,7 @@ tcprewrite --endpoints=10.10.1.1:10.10.1.2 --cachefile=input.cache --infile=inpu
 tcpreplay -i INTERFAZ paquete.cap
 
 Parece que cuando se hace un replay tampoco se lleva bien con "tcpdump -i any"
+
+
+No me funciona como espero. No me está reenviando paquetes UDP.
+Los veo en tcpdump, pero no me llegan al aplicativo.

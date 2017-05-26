@@ -73,3 +73,15 @@ Ejemplo de un paquete de datos:
 # Python
 pip install ipfix
 
+
+# Golang
+https://github.com/calmh/ipfix
+https://github.com/calmh/ipfixcat
+  ejemplo de uso, escupe en json
+
+Para testearlo podemos capturar trafico con tcpdump, luego abrirlo con wireshark, extraer el contenido del paquete UDP y enviarselo al unixcat:
+cat templates.bin | socat - UDP:127.0.0.1:4739
+cat data.bin | socat - UDP:127.0.0.1:4739
+
+Tengo esto escuchando en 4739:
+socat udp-recv:4739 stdout | ipfixcat

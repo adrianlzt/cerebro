@@ -238,3 +238,12 @@ make test-short
 Hacer modificaciones
 make test-short
 O si queremos probar solo uno: go test -short github.com/influxdata/telegraf/plugins/inputs/docker
+
+make build
+$GOPATH/bin/telegraf --version
+$GOPATH/bin/telegraf config > telegraf.conf
+$GOPATH/bin/telegraf --config telegraf.conf --test
+
+Tambien, para probar, podemos poner el outputs.file a stdout y opciones para sacar las cosas cada 2 segundos:
+interval = "2s"
+flush_interval = "2s"
