@@ -38,7 +38,12 @@ Si es un tipo estandarizado podemos ver que significa el ID en esta lista: http:
 Un ejemplo de un template set puede verse en la figura L (https://tools.ietf.org/html/rfc7011#section-3.4.1)
 Cuando nos envían un template set se asociará a un Template ID.
 
+En un set de template tendremos varios templates dentro, cada uno con su id.
+Cada template definirá un sus fields.
+
 Cuando luego nos llege un data set, miraremos su Set ID, que mapearemos a un Template ID conocido y así sabremos como entender los datos.
+
+Mirar con wireshark el fichero ipfix.cap que esta en este directorio.
 
 
 
