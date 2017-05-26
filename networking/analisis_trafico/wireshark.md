@@ -58,3 +58,8 @@ Si wireshark nos dice que el checksum de un paquete de salida es incorrecto es p
 
 # HTTP/2.0
 https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=9042
+
+
+
+# Paquetes de muestra
+https://wiki.wireshark.org/SampleCaptures#Other_Sources_of_Capture_Files

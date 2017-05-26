@@ -79,3 +79,8 @@ P -> PSH
 F -> FIN
 S -> SYN
 . -> ACK
+
+
+
+# Replay un paquete .cap
+
