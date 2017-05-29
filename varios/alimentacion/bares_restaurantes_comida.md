@@ -24,8 +24,9 @@ Casa Hortensia. Recomendación Luis. Asturiano. Raciones abundantes. Fabes con a
 Ojalá, Hawaianno. Reservar y pedir la planta de abajo, para comer sobre arena de playa. ~20€
 http://www.sumorestaurante.com/. Descuento el tenedor. Buen sushi, calidad precio.
 Sala de despiece. http://www.academiadeldespiece.com/saladedespiece-carta/ Carne! ~30€
-Goikogrill, Hamburguesería, 10/12€. No pedir carne doble
+Goikogrill, Hamburguesería, 10/12€
 Tate's hamburguesería
+Hamburgueserias en Madrid: http://www.expansion.com/fueradeserie/gastro/album/2017/05/26/5925684122601da01f8b45b9.html?cid=SIN26101
 Pizza Sana
 Restaurante Lago, en la casa de campo. Bonito ambiente.
 Molino taller del agua, Manzanares el Real. Caro ~30€. Bonito ambiente. Camino Peña Sacra, 36, 28410. Solo findes
