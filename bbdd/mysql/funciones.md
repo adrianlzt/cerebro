@@ -6,3 +6,6 @@ select inet_aton("10.1.2.3");
 
 select inet_aton("10.1.2.30")-inet_aton("10.1.2.3");
 > 27
+
+Mas trucos:
+https://www.finnie.org/2007/12/05/mysql-and-cidr-selection/
