@@ -98,3 +98,16 @@ help
 
 # Crear modulos
 https://hubot.github.com/docs/scripting/
+https://github.com/github/hubot/blob/master/docs/scripting.md
+https://github.com/github/hubot/blob/master/docs/scripting.md#creating-a-script-package
+
+Crear un modulo npm con un script de hubot:
+npm install yo generator-hubot
+mkdir miscript; cd miscript
+../node_modules/yo/lib/cli.js hubot:script
+  rellenar los datos adecuados
+  en el name no poner "hubot-xxx", el ya pondrá lo de hubot delante
+
+
+## Testing
+https://github.com/github/hubot/blob/master/docs/scripting.md#testing-hubot-scripts
