@@ -3,6 +3,9 @@ https://docs.influxdata.com/influxdb/latest/guides/downsampling_and_retention/
 Un problema es luego como lanzar las queries para pillar los datos normales y los downsampled.
 Según me han dicho en un webmeeting (6/4/2017) está en el roadmap.
 También han dicho que van a implementar autoretention policy para el proximo año (2018)
+@Paul Dix (29/5/2017): This feature is high priority, but making it work at scale without killing performance is very tricky. In the meantime our recommendation is to use Kapacitor to aggregate your data into other retention policies like in this example: https://docs.influxdata.com/kapacitor/v1.3/guides/continuous_queries/
+https://github.com/influxdata/influxdb/issues/7198#issuecomment-304725257
+
 
 
 # Down sampling automatico??
