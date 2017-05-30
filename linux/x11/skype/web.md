@@ -34,6 +34,11 @@ Enviar mensajes con curl
 
 curl 'https://client-s.gateway.messenger.live.com/v1/users/ME/conversations/8:USUARIODESTINO/messages' -H 'RegistrationToken: registrationToken=MITOKEN' --data-binary '{"content":"El texto que queremos enviar","messagetype":"RichText"}'
 
+Enviar mensaje tipo /me (sin tener que poner delante nuestro nombre)
+curl 'https://client-s.gateway.messenger.live.com/v1/users/ME/conversations/19:GRUPODESTINO@thread.skype/messages' -H 'RegistrationToken: registrationToken=MITOKEN' --data-binary '{"content":"El texto que queremos enviar","messagetype":"RichText","skypeemoteoffset":0}'
+
 
 Escuchar mensajes entrantes:
 while true; do curl -s 'https://client-s.gateway.messenger.live.com/v1/users/ME/endpoints/SELF/subscriptions/0/poll' -X POST -H 'Content-Length: 0' -H 'RegistrationToken: registrationToken=MITOKEN' | jq; done
+
+
