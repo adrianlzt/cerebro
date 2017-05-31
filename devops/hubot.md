@@ -79,6 +79,8 @@ https://github.com/coderofsalvation/hubot-script-shellcmd
 # Brain
 Es donde almacenamos datos para utilizarlos en otro momento.
 Si queremos persistencia entre reinicios -> https://github.com/hubot-scripts/hubot-redis-brain
+  consultar json en el cerebro (redis):
+  redis-cli GET "hubot:storage" | sed 's#\"#"#g' | jq
 Mejor este para almacenar la info en redis: https://www.npmjs.com/package/hubot-brain-redis-hash
 
 Borrar algo del brain: https://github.com/computerminds/cm-hubot/blob/master/scripts/storage-delete.coffee

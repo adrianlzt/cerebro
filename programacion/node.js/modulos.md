@@ -21,3 +21,20 @@ npm i PAQUETE --save-dev
 
 Si estamos en un dir de un proyecto con su package.json, para instalar las dependencias:
 npm install
+
+
+# Develop
+npm init ..
+
+
+Subir versión:
+npm version [patch|minor|major]
+
+Publicar
+npm publish
+
+
+# Scopes
+https://docs.npmjs.com/getting-started/scoped-packages
+Podemos tener distintos registros de NPM asociados a distintos SCOPES para poder hacer cosas tipo
+nmp install @MYORG/mipaquete
