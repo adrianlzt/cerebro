@@ -109,5 +109,10 @@ mkdir miscript; cd miscript
   en el name no poner "hubot-xxx", el ya pondrá lo de hubot delante
 
 
+Funciones a implementar
+robot.respond: es cuando se llama al bot con "hubot XXX"
+robot.hear: es cuando se escribe algo sin pasar el nombre del bot especificamente
+
+
 ## Testing
 https://github.com/github/hubot/blob/master/docs/scripting.md#testing-hubot-scripts
