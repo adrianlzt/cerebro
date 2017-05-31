@@ -116,3 +116,17 @@ robot.hear: es cuando se escribe algo sin pasar el nombre del bot especificament
 
 ## Testing
 https://github.com/github/hubot/blob/master/docs/scripting.md#testing-hubot-scripts
+
+
+# Debug
+NODE_DEBUG=module bin/hubot --name .
+  para ver donde va a buscar los módulos
+
+
+# Errores
+Si tememos un modulo npm como link no carga correctamente el resto
+https://github.com/github/hubot/issues/804
+
+Arreglo:
+NODE_PATH=$NODE_PATH:./node_modules bin/hubot --name .
+
