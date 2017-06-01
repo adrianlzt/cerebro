@@ -3,10 +3,13 @@ mirar sh.md
 python2
 import subprocess
 returncode = subprocess.call(["ls", "-l"])
+Esto saca el stdout y stderr directamente, no podemos almacenarlo en una variable.
 
+
+Metodo para obtener la salida del comando (en este caso, stderr y stdout mezcladas)
 try:
     p = subprocess.run(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-    stdout = p.stdout
+    (stdout, stderr) = p.communicate() # Espera a que termine el comando
     return_code = p.returncode
     message = stdout.strip()
 except Exception as e:
