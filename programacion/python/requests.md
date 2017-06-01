@@ -57,6 +57,28 @@ ticket
 ...
 
 
+Si queremos que no aparezca lo de "file":
+https://stackoverflow.com/questions/12385179/how-to-send-a-multipart-form-data-with-requests-in-python
+
+import requests
+from requests_toolbelt.multipart.encoder import MultipartEncoder
+
+multipart_data = MultipartEncoder(
+    fields={
+            # a file upload field
+            'file': ('file.py', open('file.py', 'rb'), 'text/plain')
+            # plain text fields
+            'field0': 'value0', 
+            'field1': 'value1',
+           }
+    )
+
+response = requests.post('http://httpbin.org/post', data=multipart_data,
+                  headers={'Content-Type': multipart_data.content_type})
+
+
+
+
 
 ## Proxy
 Se pasan como variable de entorno. Uno para http y otro para https
