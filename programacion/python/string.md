@@ -94,6 +94,13 @@ Meter variables en string estilo C
 container_id = "%s_%s_%s_graph" % (sitename, host, service)
 
 
+# String literals / Python3
+https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
+Meter variables directamente en una string
+
+f"Mi nombre es {nombre}"
+
+
 >>> import re
 >>> host = "este.es.elnom.bre"
 >>> print re.sub('\.', '_', host)
@@ -176,7 +183,7 @@ if not cmd:
 "hala"
 
 # Reverse
-'hello world'[::-1]
+ p'hello world'[::-1]
 
 
 # Binary string <-> string
@@ -194,10 +201,4 @@ http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
 Buscar cadenas parecidas
 
 
-
-# String literals / Python3
-https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
-Meter variables directamente en una string
-
-f"Mi nombre es {nombre}"
 

@@ -1,4 +1,6 @@
 https://docs.ansible.com/playbooks_filters.html
+https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/filter/core.py
+  puede que haya filtros no documentados
 
 ternary: allows for trueval/falseval assignement dependint on conditional
 cartesian: returns the cartesian product of 2 lists

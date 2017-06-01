@@ -120,3 +120,7 @@ Salta un prompt si no podemos hacer ping a github.com
 
 Ejecutar algo cuando no perteneces a un grupo
 when: "'cluster' not in group_names"
+
+
+# Trozo de cadena en una variable
+when: variable | search("casa")

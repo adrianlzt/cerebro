@@ -233,4 +233,3 @@ https://coderwall.com/p/13lh6w/dump-all-variables
 {{ group_names | to_nice_json }}
 {{ groups | to_nice_json }}
 {{ hostvars | to_nice_json }} 
-
