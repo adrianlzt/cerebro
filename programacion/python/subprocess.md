@@ -1,5 +1,10 @@
 mirar sh.md
 
+pythno3
+>>> subprocess.run(["ls","-53y"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+CompletedProcess(args=['ls', '-53y'], returncode=2, stdout=b"ls: opci\xc3\xb3n inv\xc3\xa1lida -- '5'\nPruebe 'ls --help' para m\xc3\xa1s informaci\xc3\xb3n.\n")
+
+
 python2
 import subprocess
 returncode = subprocess.call(["ls", "-l"])
