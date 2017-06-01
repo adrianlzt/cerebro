@@ -222,3 +222,15 @@ No sobrevien, pero se pueden acceder mediante la variable hostvars
 
 # Valor por defecto / default value
 {{ some_variable | default(5) }}
+
+
+
+# Dump de las variables
+https://coderwall.com/p/13lh6w/dump-all-variables
+
+{{ vars | to_nice_json }} 
+{{ environment | to_nice_json }} 
+{{ group_names | to_nice_json }}
+{{ groups | to_nice_json }}
+{{ hostvars | to_nice_json }} 
+
