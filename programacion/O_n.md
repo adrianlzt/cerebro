@@ -75,3 +75,8 @@ Sean los reales  0 < a < b  =>  O(n^a) es subconjunto de O(n^b)
 Sea P(n) un polinomio de grado k  =>  P(n) IN O(n^k)
 Sean los reales a, b > 1  =>  O(log_a) = O(log_b)
 
+
+
+# Detección de bucles
+Dos punteros avanzando a distinta velocidad en algún momento se encontrarán en el bucle.
+https://en.wikipedia.org/wiki/Cycle_detection#Floyd.27s_Tortoise_and_Hare
