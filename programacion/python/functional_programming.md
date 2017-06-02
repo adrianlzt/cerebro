@@ -46,3 +46,7 @@ Esto hace:
 1+2=3
 3+3=6
 6+4=10
+
+
+Aplicar XOR sobre todos los elementos de una tupla
+reduce(lambda x,y: x^y, tupla)

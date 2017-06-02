@@ -1,5 +1,4 @@
 https://docs.python.org/3/library/functions.html#bytes
-https://wiki.python.org/moin/BitwiseOperators
 
 b'hola'
 
@@ -62,7 +61,10 @@ Bytearray de 16 veces 0
 bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 
 
-# And
+# BitwiseOperators
+https://wiki.python.org/moin/BitwiseOperators
+
+## And
 >>> bin(20)
 '0b10100'
 >>> 20 & 0xf
@@ -73,6 +75,12 @@ bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
    0001 0100 (20)
  & 0000 1111 (0xF)
 =  0000 0100 (4)
+
+## Or
+6|1 = 7
+
+## Xor
+7^1 = 6
 
 
 # shift right

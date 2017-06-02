@@ -25,6 +25,9 @@ lista.insert(0,'/') añade al comienzo del la lista. No sobreescribe, añade.
 todo = lista1 + lista2 # concatenar dos listas
 
 sorted(list)  devuelve una lista ordenada
+[2,3,4].sort()
+
+[1,2,3,4].reverse()
 
 >>> list(reversed([1,2,3]))
 [3, 2, 1]
