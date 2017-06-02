@@ -33,7 +33,15 @@ O(n^n)                  orden potencial exponencial
 Gráfica https://commons.wikimedia.org/wiki/File:Comparison_computational_complexity.svg#/media/File:Comparison_computational_complexity.svg
 
 
+
 # En espacio
+Constant additional space
+  Esto quiere decir que el consumo de memoria debe ser contaste independiente de N.
+  Por ejemplo, si tenemos que iterar una lista, la cantidad de memoria que usemos debe ser independiente del tamaño de la lista
+
+
+
+
 
 
 # Análisis de algoritmos
