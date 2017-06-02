@@ -6,6 +6,11 @@ curl -i -X POST  http://jenkins.example.com/job/Blank_Job/buildWithParameters --
 Con parámetros
 buildWithParameters?token=testing&SERVICE_STATE=CRITICAL&SERVER=mongo
 
+Enviar parametros con POST:
+curl -X POST JENKINS_URL/job/JOB_NAME/build \
+  --user USER:TOKEN \
+  --data-urlencode json='{"parameter": [{"name":"id", "value":"123"}, {"name":"verbosity", "value":"high"}]}'
+
 En la cabecera "Location" tenemos el id por el que preguntar luego
 curl -X POST http://jenkins.example.com/queue/item/336/api/json --user $username:$password
 

@@ -37,3 +37,8 @@ resp, body, errs := gorequest.New().
   RedirectPolicy(func(req gorequest.Request, via []gorequest.Request) error {
     return http.ErrUseLastResponse
   }).End()
+
+
+# Curl
+Sacar el curl equivalente
+gorequest.New().SetCurlCommand(true)...

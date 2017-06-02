@@ -43,3 +43,27 @@ Típicamente querremos saber cuanto tiempo y cuanta memoria (espacio) lleva la e
 
 O(n^2), O(n^3) se pueden considerar en el orden de lo "tratable".
 Si son mayores, esos algoritmos no serán útiles, solo para problemas muy pequeños.
+
+Un algoritmo de complejidad logarítima -> lo mejor
+Lineal -> esta bien
+Polinomial -> se puede usar
+Exponencial -> buscar otro
+
+También podemos tener algoritmos con función O() más grande, pero que se comporten mejor con N pequeños.
+Por ejemplo: 100*n VS n^2
+
+Normalmente tenemos un compromiso entre velocidad y memoria.
+Poco tiempo implica mucha memoria y viceversa.
+
+
+## Reglas
+IN quiere decir que pertecen al conjunto de funciones de
+
+f,g IN O(h) => f+g IN O(h)
+Sea k una constante, f(n) IN O(g)  =>  k*f(n) IN O(g)
+Si  f IN O(h1)  y  g IN O(h2)  =>  f+g IN O(h1+h2)
+Si  f IN O(h1)  y  g IN O(h2)  =>  f*g IN O(h1*h2)
+Sean los reales  0 < a < b  =>  O(n^a) es subconjunto de O(n^b)
+Sea P(n) un polinomio de grado k  =>  P(n) IN O(n^k)
+Sean los reales a, b > 1  =>  O(log_a) = O(log_b)
+
