@@ -8,6 +8,9 @@ si no ponemos el .0 usará números enteros
 
 O podemos usar float(v1)/v2
 
+Resto de una división:
+7%2 = 1
+
 Prediccion de valores en timeseries:
 forecast.md
 

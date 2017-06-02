@@ -87,6 +87,10 @@ https://docs.python.org/2/library/stdtypes.html#set
 Convertir array a set
 set(array)
 
+Set a array (lista):
+list(someset)
+CUIDADO! no lo tiene porque devolver ordenado, aunque el array inicial lo estuviese
+
 Convertir dict a set:
 set(dicc.items)
 >>> set({"clave": "valor", "otro": 2}.items())
