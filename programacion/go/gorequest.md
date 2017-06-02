@@ -25,3 +25,15 @@ gorequest.New().
   Type("form").
   Send(`{ "name": "egg benedict", "category": "brunch" }`).
   End()
+
+
+# Redirects
+Se comporta como se especifica en https://golang.org/pkg/net/http/#Client
+Mirar en "CheckRedirect specifies the policy..."
+
+Si no queremos seguir el redirect y quedarnos con la peticion:
+resp, body, errs := gorequest.New().
+  Get("http://httpbin.org/redirect-to?url=http%3A%2F%2Fexample.com%2F").
+  RedirectPolicy(func(req gorequest.Request, via []gorequest.Request) error {
+    return http.ErrUseLastResponse
+  }).End()
