@@ -14,6 +14,9 @@ Por defecto empieza en 0
 
 >>> for i in reversed(xrange(1,10,2)):
 ...     print i
+En python 2 xrange un generador, range una lista.
+En py3 range crea un generador tambien. xrange no existe
+Para pasar a lista: list(range(3))
 
 
 >>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
