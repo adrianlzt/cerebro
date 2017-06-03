@@ -82,8 +82,11 @@ https://wiki.python.org/moin/BitwiseOperators
 ## Xor
 7^1 = 6
 
+## shift left
+bin(1 << 4)
+0b10000
 
-# shift right
+## shift right
 >>> bytearray("P")[0]
 80
 >>> bytearray("P")[0] >> 4
@@ -91,12 +94,7 @@ https://wiki.python.org/moin/BitwiseOperators
 
 Esto ha dividido entre 16
 
-
-
-# Bits
->>> a = bytearray("P")[0] >> 4
->>> a
-5
+>>> a = 5
 >>> type(a)
 <type 'int'>
 >>> bin(a)
