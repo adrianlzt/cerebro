@@ -1,3 +1,4 @@
+# https://docs.python.org/3/reference/datamodel.html
 #
 # Licencia
 #
@@ -96,3 +97,8 @@ t.edad = 25
 t.empresa = "guacon"
 t.getEdad()
 
+
+
+
+__eq__(self, other)
+debe devolver un Boolean significando que los objetos son, o no, iguales
