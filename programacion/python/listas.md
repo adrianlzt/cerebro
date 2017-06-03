@@ -19,7 +19,7 @@ except ValueError as e:
 
 
 elemento in list # True or False
-if valor in list # Nos vale para saber si un elemento esta en un array
+if valor in list # Nos vale para saber si un elemento esta en un array, complejidad O(n) (mejor obtener un elemento de un dict)
 lista[1] #Obtener el elemento que esta en esa posición de la lista
 lista[1:] # Obtener los elementos del segundo hasta el final
 lista.append(elemento)  equivalent to a[len(a):] = [x]
