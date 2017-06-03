@@ -3,6 +3,8 @@ def fun(*args, **kwargs)
   **kwargs son los keyword arguments (estilo func(a=3))
 
 
+func(*[1,2]) equivalente a func(1,2)
+
 
 def nombre(self,param1,param2):
     """Resumen corto.

@@ -110,3 +110,10 @@ Esto chequeará que el diccionario "body" tiene las claves "name" y "services".
 Devolverá True en ese caso.
 Si tiene esas más otras -> True
 Si le falta alguna -> False
+
+
+
+# OrderedDicts
+https://docs.python.org/3/library/collections.html#collections.OrderedDict
+
+Diccionarios que recuerdan el orden de las keys

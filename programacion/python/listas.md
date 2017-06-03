@@ -6,6 +6,9 @@ Listas: http://docs.python.org/2/tutorial/datastructures.html
 http://effbot.org/zone/python-list.htm
 lista.pop() #Saca 11 y lo elimina de la lista
 lista.pop(0) #Saca 'asda' y lo elimina de la lista
+del a[0], borra el elemento, no retorna el valor (como hace pop)
+del a[:4] borra un trozo del array
+a.remove("b") borra el elemento "b" de la lista
 len(lista) #Longitud de la lista
 list.index(elemento) #Nos dice la posicion de la primera aparicion de 'elemento'
 Salta excepción si no existe ese elemento:
@@ -26,6 +29,8 @@ todo = lista1 + lista2 # concatenar dos listas
 
 sorted(list)  devuelve una lista ordenada
 [2,3,4].sort()
+sorted(student_tuples, key=lambda student: student[2])
+  ordenar una lista de diccionarios por el segundo elemento del dict
 
 [1,2,3,4].reverse()
 
@@ -78,6 +83,10 @@ Mirar lambda para ver como meter inline esas func.
 
 # list comprehension #
 [f for f in milista if metodo(f)]
+[(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+[str(round(pi, i)) for i in range(1, 6)]
+[[row[i] for row in matrix] for i in range(4)]
+  transpone una matriz
 
 Me devuelve los elementos de mi lista que cumplan metodo(f)
 
