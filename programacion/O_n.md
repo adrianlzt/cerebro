@@ -1,3 +1,14 @@
+Steven Skiena's The Algorithm Design Manual
+
+Mirar:
+data_structures.md
+sorting.md 
+trees.md 
+graphs.md 
+hashtables.md
+
+
+# Notacion O
 https://en.wikipedia.org/wiki/Big_O_notation
 https://es.wikipedia.org/wiki/Cota_superior_asint%C3%B3tica
 https://es.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation
@@ -34,7 +45,7 @@ Gráfica https://commons.wikimedia.org/wiki/File:Comparison_computational_comple
 
 
 
-# En espacio
+## En espacio
 Constant additional space
   Esto quiere decir que el consumo de memoria debe ser contaste independiente de N.
   Por ejemplo, si tenemos que iterar una lista, la cantidad de memoria que usemos debe ser independiente del tamaño de la lista
@@ -42,9 +53,7 @@ Constant additional space
 
 
 
-
-
-# Análisis de algoritmos
+## Análisis de algoritmos
 http://www.lab.dit.upm.es/~lprg/material/apuntes/o/index.html
 
 Típicamente querremos saber cuanto tiempo y cuanta memoria (espacio) lleva la ejecucción de un algoritmo para N (N puede ser distintas cosas, tamaño de un array, número de elmentos de una matriz, etc)
@@ -64,7 +73,7 @@ Normalmente tenemos un compromiso entre velocidad y memoria.
 Poco tiempo implica mucha memoria y viceversa.
 
 
-## Reglas
+### Reglas
 IN quiere decir que pertecen al conjunto de funciones de
 
 f,g IN O(h) => f+g IN O(h)
@@ -77,6 +86,33 @@ Sean los reales a, b > 1  =>  O(log_a) = O(log_b)
 
 
 
+
+
 # Detección de bucles
 Dos punteros avanzando a distinta velocidad en algún momento se encontrarán en el bucle.
 https://en.wikipedia.org/wiki/Cycle_detection#Floyd.27s_Tortoise_and_Hare
+
+
+
+# Estructuras de datos
+A parte de arboles, hashtables, graphs:
+
+Problemas NP-completos, entender que significa.
+Ejemplos: traveling salesman and the knapsack problem
+
+
+# Algoritmos importantes
+Breadth First Search
+Depth First Search
+Binary Search
+Merge sort
+Quick sort
+Tree insert / Find / etc
+
+
+# Conceptos
+Manipulaciones de bit
+Singleton Design Pattern
+Factory Design Pattern
+Memory (Stack vs Heap)
+Recursion
