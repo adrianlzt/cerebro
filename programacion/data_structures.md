@@ -1,3 +1,5 @@
+http://opendatastructures.org/
+
 Linked lists
 Binary Trees
 Heap (tipo de tree) https://en.wikipedia.org/wiki/Heap_(data_structure)

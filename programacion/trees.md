@@ -100,7 +100,18 @@ Search      O(log n)[1]   O(log n)[1]
 Insert      O(log n)[1]   O(log n)[1]
 Delete      O(log n)[1]   O(log n)[1]
 
+
 ## splay
+https://en.wikipedia.org/wiki/Splay_tree
+recently accessed elements are quick to access again
+
+El elemento al que accedemos se mueve al nodo raiz del árbol, por lo que su próximo acceso será inmediato.
+
+Algorithm   Average   Worst Case
+Space       O(n)      O(n)
+Search      O(log n)  amortized O(log n)
+Insert      O(log n)  amortized O(log n)
+Delete      O(log n)  amortized O(log n)
 
 
 
@@ -114,6 +125,18 @@ Inorder: primero visitamos la rama izquierda, luego el nodo donde estamos, luego
 Preorder: primero el nodo donde estamos, luego rama izquierda y rama derecha
 
 Postorder: primero rama izquierda, rama derecha y por último el nodo donde estamos
+
+## BFS (Breadth-first search), búsqueda en anchura
+https://en.wikipedia.org/wiki/Breadth-first_search
+Partiendo del nodo raiz, se analizan los hijos.
+Luego para cada hijo se analiza el primer nivel.
+Y así consecutivamente.
+
+Es un análisis por niveles. No se analiza el nivel n+1 hasta que se hayan analizado todos los nodos del nivel n.
+
+
+## DFS ()
+
 
 
 # Heap
