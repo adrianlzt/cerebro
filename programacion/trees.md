@@ -13,6 +13,11 @@ hoja: nodo sin hijos
 
 # Tipos de árboles
 
+## binary tree
+Es un arból con solo dos ramas por nodo, como máximo.
+NO tiene porque estar ordenado (el BST si está ordenado)
+
+
 ## BST (binary search tree)
 https://en.wikipedia.org/wiki/Binary_search_tree
 https://www.cs.rochester.edu/~gildea/csc282/slides/C12-bst.pdf
@@ -134,9 +139,21 @@ Y así consecutivamente.
 
 Es un análisis por niveles. No se analiza el nivel n+1 hasta que se hayan analizado todos los nodos del nivel n.
 
+En un stack (LIFO) vamos apuntando los nodos que vamos descubriendo.
+En una lista vamos apuntando los nodos ya vistos.
 
-## DFS ()
+Complejidad O(n) en tiempo y espacio
 
+
+## DFS (Depth-First Search), búsqueda en profundidad
+https://en.wikipedia.org/wiki/Depth-first_search
+http://opendatastructures.org/versions/edition-0.1e/ods-java/12_3_Graph_Traversal.html#SECTION001532000000000000000
+Primero llegamos hasta el extremo yendo por las ramas izquierdas, y luego vamos yendo hacia la derecha por los niveles más bajos posibles.
+
+En un una cola (FIFO) vamos apuntando los nodos que vamos descubriendo.
+En una lista vamos apuntando los nodos ya vistos.
+
+Complejidad O(n) en tiempo. En espacio puede ser O(max_depth) o en caso de solucion iterativa O(n)
 
 
 # Heap
