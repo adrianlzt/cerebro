@@ -85,6 +85,10 @@ Sea P(n) un polinomio de grado k  =>  P(n) IN O(n^k)
 Sean los reales a, b > 1  =>  O(log_a) = O(log_b)
 
 
+## Amortized
+https://stackoverflow.com/questions/11102585/what-is-amortized-analysis-of-algorithms
+Es un cálculo promedio del tiempo que puede desestimar casos raros muy costosos.
+
 
 
 
