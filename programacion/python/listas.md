@@ -1,11 +1,14 @@
+https://docs.python.org/3.6/tutorial/datastructures.html
+https://docs.python.org/3.6/library/stdtypes.html?highlight=list#list
+
 lista=['asda','2342','bbbb',11]
 for l in lista:
 	print l
 
 Listas: http://docs.python.org/2/tutorial/datastructures.html
 http://effbot.org/zone/python-list.htm
-lista.pop() #Saca 11 y lo elimina de la lista
-lista.pop(0) #Saca 'asda' y lo elimina de la lista
+lista.pop() # saca y retorna el ultimo elemento de la lista
+lista.pop(0) # saca y retorna el primer elemento de la lista (si vamos a trabajar con los primeros elementos mirar deque.md)
 del a[0], borra el elemento, no retorna el valor (como hace pop)
 del a[:4] borra un trozo del array
 a.remove("b") borra el elemento "b" de la lista

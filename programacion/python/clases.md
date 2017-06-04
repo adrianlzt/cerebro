@@ -17,7 +17,7 @@ import otro
 
 logger = logging.getLogger(__name__)
 
-class Model(object):
+class Model:
     """Descripcion corta."""
 
     var = 23
@@ -82,7 +82,7 @@ class ChildModel(Model):
 
 
 
-class Persona(object):
+class Persona:
   nombre = None
   edad = None
   def getEdad(self):
@@ -98,7 +98,19 @@ t.empresa = "guacon"
 t.getEdad()
 
 
+# Multiple herencia
+class DerivedClassName(Base1, Base2, Base3):
 
 
+
+# Igualdad de objetos
 __eq__(self, other)
 debe devolver un Boolean significando que los objetos son, o no, iguales
+
+
+# Iterador de nuestra clase
+https://docs.python.org/3.6/tutorial/classes.html#iterators
+def __iter__(self):
+  pass
+def __next__(self):
+  pass
