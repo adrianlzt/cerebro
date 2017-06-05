@@ -123,6 +123,19 @@ def bit_not(n, numbits=8):
 1    4
 
 
+## Convertir decimal a binario
+La idea es que un 8 es un 1 shifted 3 casillas, por lo que aqui hacemos lo contrario.
+Vamos encontrando los "unos" que habíamos "shifteado"
+>>> def toBin(n):
+...     string=""
+...     while n > 0:
+...         r = n %2
+...         n >>= 1
+...         string = str(r) + string
+...         
+...     return string
+
+
 ## Python2
 >>> "asdas".encode("hex")
 '6173646173'
