@@ -73,6 +73,19 @@ El 'self' siempre va a ser el primero parámetro de las funciones
 
 
 # Herencia
+class Empleado:
+  def __init__(self, name):
+    self.name = name
+
+class Jefe(Empleado):
+  def __init__(self, name):
+    super().__init__(name)
+    # Esta sintaxis es de py3, en py2 seria: super(Jefe, self).__init__(name)
+
+    Algo típico sería:
+    super().__init__(*args, **kwargs)
+
+
 class ChildModel(Model):
   def save(self, *args, **kwargs):
     if self.name=='abcd':
