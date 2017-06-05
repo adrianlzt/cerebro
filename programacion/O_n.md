@@ -127,3 +127,12 @@ Recursion
 Las recursiones, funciones que se llaman a si mismas, tienen un coste por tener que ir almacenando en el stack el punto donde debemos saltar a la vuelta. También puede que sea necesario una copia de la memoria para permitir aislamiento del scope de la nueva función.
 
 Cualquier recursion se puede modelar como una iteración, pero puede hacer nuestro código más complicado. Solo debería cambiarse una recursion legible por una iteración si un profiling indicase que es necesario.
+
+
+# Algoritmo de Boyer-Moore para buscar la mayoria
+https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
+Time: O(n)
+Space: O(1)
+Se va recorriendo el array sumando 1 cuando encontremos un elemento igual que el del comienzo, -1 si es diferente.
+Si esa cuenta llega a 0, cambiamos el elemento que contamos por el que haya logrado llevar la cuenta a 0.
+Funciona mientras exista un elemento que aparezca más de la mitad de las veces.
