@@ -19,7 +19,12 @@ find . -exec file {} \; | grep -o ":[^,]*" | sort | uniq -c | sort -nr
 
 Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
 -xdev si no queremos cambiar de filesystem
+du -x si no queremos que du traspase distintos filesystems
 find . -maxdepth 3 -exec du -h {} \; | sort -hr | uniq | head -20
+
+Si tenemos una versión reciente de du (-x, no cruza filesystems)
+du -hax -d 3 / | sort -hr | uniq | head -20
+
 
 Uso de inodos:
 find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n | tail -20
