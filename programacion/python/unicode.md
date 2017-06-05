@@ -38,6 +38,13 @@ Decoding from str to unicode.
 u'a'
 
 
+En python2:
+>>> len("ñ")
+2
+>>> len(u"ñ")
+1
+
+
 # Errores
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 20: ordinal not in range(128)
 
