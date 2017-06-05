@@ -13,6 +13,7 @@ curl -X POST JENKINS_URL/job/JOB_NAME/build \
 
 En la cabecera "Location" tenemos el id por el que preguntar luego
 curl -X POST http://jenkins.example.com/queue/item/336/api/json --user $username:$password
+  una vez ejecutado podriamos obtener la URL que hay que consultar.
 
 Obtener nombres de jobs bajando tres niveles
 https://www.cloudbees.com/blog/taming-jenkins-json-api-depth-and-tree
