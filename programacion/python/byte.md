@@ -100,6 +100,16 @@ Esto ha dividido entre 16
 >>> bin(a)
 '0b101'
 
+## Complemento de x
+~x
+
+>>> bin(~0b1001)
+'-0b1010'
+
+
+## not
+def bit_not(n, numbits=8):
+    return (1 << numbits) - 1 - n
 
 
 # Hex
