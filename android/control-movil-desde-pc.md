@@ -1,10 +1,13 @@
-https://code.google.com/p/androidscreencast/
+https://github.com/xSAVIKx/AndroidScreencast
 
 Tener corriendo el adb (como root)
 Hacer javaws androidscreencast.jnlp como root
 
 sudo adb devices
 sudo javaws androidscreencast.jnlp
+
+Si esto falla, mirar androidscreencast.jnlp, que jar se baja y ejecutarlo como
+java -jar fichero.jar
 
 
 

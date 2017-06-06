@@ -49,6 +49,15 @@ watch "cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print 
 INIC=$(cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print $1/1024/1024/1024;}'); sleep 1m; FIN=$(cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print $1/1024/1024/1024;}'); echo "$INIC $FIN" | awk '{print ($2-$1)/60 " GB/s";}'
   calcular velocidad
 
+
+# Copiar en paralelo
+time ls | xargs -P 10 -I {} -n1 rsync -ah /srv/pnp4nagios/var/{} rrdworker:/mnt/pnp4nagios/pnp4nagios/var/
+  se lanzan 10 procesos rsync en paralelo, cada uno copiando una carpeta
+
+time parallel -j 50 -i rsync -a {} maquina:pnp4nagios -- `ls -d -1  /srv/pnp4nagios/var/*`
+  con el comando parallel
+
+
 # Copias directorios, contenido
 rsync -av datos backup
   copia datos/ dentro de backup. Crea backup si no existe
