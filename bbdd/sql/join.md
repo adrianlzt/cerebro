@@ -1,4 +1,6 @@
 http://www.noelherrick.com/blog/inner-vs-outer-joins?utm_source=MySQL+Newsletter&utm_campaign=c925d3d306-MySQL_News_5&utm_medium=email&utm_term=0_9bd9fc13c5-c925d3d306-83407501
+https://www.w3schools.com/sql/sql_join.asp
+  mirar el diagrama de venn, queda muy claro
 
 Join: unir tablas por una columna común
 
@@ -10,6 +12,9 @@ Afecta como las unamos. Si la primera tabla no tiene relación en la segunda, ap
 En cambio, si la segunda tabla no tiene relación con la primera, no aparecerán las entradas.
 
 En outer join podemos tener left o right.
+  Left, campos de la tabla de la izquierda que no tengan asociado elemento en la tabla de la derecha saldrán, con el elemento de la derecha a NULL
+  Right, contrario a left. Siempre salen los elementos de la tabla de la derecha, y si no tiene pareja en la izquierda sale NULL
+  Full, saca los resultados de ambas tablas. Es un left+right
 En inner join no tiene sentido hablar de left o right.
 
 

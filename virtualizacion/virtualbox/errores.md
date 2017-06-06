@@ -12,3 +12,10 @@ Es porque el uuid ya está siendo utilizando. Tendremos que cambiarlo
 http://stackoverflow.com/questions/17803331/how-to-change-uuid-in-virtual-box
 
 xManage internalcommands sethduuid imagen.vdi
+
+
+
+
+Protesta por ciertos modulos:
+NO instalar los paquetes virtualbox-guest-*
+Si los teniamos instalados, revisar que hemos borrrado los modules que metia.

@@ -1,3 +1,5 @@
+https://blog.openshift.com/image-streams-faq/
+
 Parece que en el namespace/projecto openshift se almacenan imagenes ¿comunes?
 
 
