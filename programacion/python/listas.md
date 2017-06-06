@@ -34,6 +34,7 @@ sorted(list)  devuelve una lista ordenada
 [2,3,4].sort()
 sorted(student_tuples, key=lambda student: student[2])
   ordenar una lista de diccionarios por el segundo elemento del dict
+sorted(student_tuples, key=lambda student: student[2])
 
 [1,2,3,4].reverse()
 
