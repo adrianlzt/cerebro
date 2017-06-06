@@ -72,6 +72,8 @@ Por ejemplo: 100*n VS n^2
 Normalmente tenemos un compromiso entre velocidad y memoria.
 Poco tiempo implica mucha memoria y viceversa.
 
+Muchas veces serán problemas de límites. Hacer un sumatorio de la cantidad de vueltas que vamos dando y encontrar una cota superior.
+
 
 ### Reglas
 IN quiere decir que pertecen al conjunto de funciones de
