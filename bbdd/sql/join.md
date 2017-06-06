@@ -1,4 +1,5 @@
-http://www.noelherrick.com/blog/inner-vs-outer-joins?utm_source=MySQL+Newsletter&utm_campaign=c925d3d306-MySQL_News_5&utm_medium=email&utm_term=0_9bd9fc13c5-c925d3d306-83407501
+https://dev.mysql.com/doc/refman/5.7/en/join.html
+http://www.noelherrick.com/blog/inner-vs-outer-joins
 https://www.w3schools.com/sql/sql_join.asp
   mirar el diagrama de venn, queda muy claro
 
@@ -19,6 +20,15 @@ En inner join no tiene sentido hablar de left o right.
 
 
 ## SQL ## 
+
+Si no especificamos nada "select * from t1, t2" estamos usando INNER JOIN
+Si solo especificamos JOIN, estamos usando INNER JOIN
+
+En vez escribir:
+SELECT * FROM t1, t2 WHERE t1.id=t2.id
+Hacer
+SELECT * FROM t1 JOIN t2 ON t1.id=t2.id
+Es más estandar, aunque por detrás puede que terminen haciendo lo mismo.
 
 # Inner join 
 Select CO.Name As OwnerName ,CO.Occupation ,C.Name As CatName
