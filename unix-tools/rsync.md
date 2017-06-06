@@ -44,6 +44,10 @@ ls -la fd/
   Hay podemos ver el fichero temporal que se está escribiendo
 cat io
   También podemos ver en este fichero los bytes transmitidos
+watch "cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print \$1/1024/1024/1024;}'"
+  Ver cuandos GBs llevamos escritos
+INIC=$(cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print $1/1024/1024/1024;}'); sleep 1m; FIN=$(cat /proc/27307/io | grep "^write_bytes" | cut -d ' ' -f 2 | awk '{print $1/1024/1024/1024;}'); echo "$INIC $FIN" | awk '{print ($2-$1)/60 " GB/s";}'
+  calcular velocidad
 
 # Copias directorios, contenido
 rsync -av datos backup
