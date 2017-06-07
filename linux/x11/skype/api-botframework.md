@@ -1,3 +1,6 @@
+Mirar web.md para api para hablar desde skype.
+
+
 https://docs.botframework.com/en-us/skype/chat
 Info sobre como funciona
 https://blogs.msdn.microsoft.com/tsmatsuz/2016/08/19/build-skype-bot-with-microsoft-bot-framework-oauth-and-rest-api/
