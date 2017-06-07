@@ -36,6 +36,10 @@ sorted(student_tuples, key=lambda student: student[2])
   ordenar una lista de diccionarios por el segundo elemento del dict
 sorted(student_tuples, key=lambda student: student[2])
 
+Tambien podemos darle la vuelta con:
+lista.sort(reverse=True)
+lista.sort(key=lambda x: x[2], reverse=True)
+
 [1,2,3,4].reverse()
 
 >>> list(reversed([1,2,3]))
