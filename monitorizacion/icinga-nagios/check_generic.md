@@ -41,6 +41,10 @@ Si no es el nodo activo, chequea que no haya ningun proceso corriendo:
 Chequear estado de un fichero
 /usr/lib64/nagios/plugins/check_generic.pl -e 'stat -c"%a-%U-%G" /etc/passwd' -o "=~/^644-root-root$/"
 
+Chequear si un fichero ha sido modificado hace más de.
+En este ejemplo, el check salta a critical si hace más de 35' que no se modifica.
+/usr/lib64/nagios/plugins/check_generic.pl -e 'echo $(($(date +%s)-$(stat -c "%Y" /srv/nagios/check_mk/etc/dsmc-dcip-jobs.json)))' -c "> 2100"
+
 
 
 Chequear dos veces un proceso esperando 5s (no se porque, pero si el if no funciona):
