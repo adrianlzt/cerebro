@@ -5,3 +5,5 @@ Cuando se le asigna a un directorio, significa que los elementos que hay en ese 
 chmod 1xxx dir
 chmod +t dir
 
+
+En los ficheros implicaba que el binario se quedaba en ram, pero ya no existe esa funcionalidad.

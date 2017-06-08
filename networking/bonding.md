@@ -8,6 +8,14 @@ https://access.redhat.com/site/articles/172483
 http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding_Driver_Options
 http://www.codekoala.com/blog/2012/bonding-eth0-and-wlan0-arch-linux/
 
+El bonding puede ser de varios tipos
+ 0 round-robin, por defecto, se transmite cada paquete por una interfaz
+ 1 active-backup, solo se usa interfaz, la otra pasa a activa si cae la primera. La MAC de la interfaz bond solo esta visible en una de las interfaces
+ 2 balance-xor se elegie una u otra según una operación (XOR entre la smac y la dmac)
+ 3 broadcast, transmite todo en todas las interfaces
+ 4 802.3ad crea grupos de agregación que tengan la misma velocidad y configuraciones de duples
+ 5 balance tlb, adaptative transmit load balancing. No requiere un switch aware.
+
 
 Ejemplo:
 auto eth1
