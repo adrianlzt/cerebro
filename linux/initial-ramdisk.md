@@ -12,7 +12,10 @@ dracut - low-level tool for generating an initramfs image
 
 
 Para ver el contenido:
-http://linux.koolsolutions.com/2009/11/12/initramfs-ramfs-tmpfs-compressed-image/
-mv fichero fichero.gz
-gunzip fichero
-cpio -o < fichero
+http://web.archive.org/web/20130601130852/http://linux.koolsolutions.com:80/2009/11/12/initramfs-ramfs-tmpfs-compressed-image/
+cp /boot/initr* /var/tmp/initramfs.gz
+gunzip initramfs.gz
+cat initramfs | cpio -idv
+
+En el caso de arch, init es un script de /usr/bin/ash
+Este a su vez ejecutara /sbin/init, que sera un enlace a systemd si lo tenemos.
