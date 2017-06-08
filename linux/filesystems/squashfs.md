@@ -8,3 +8,6 @@ sudo unsquashfs airootfs.sfs
   sudo por si algun fichero tiene extended attributes que necesitan de root. Ejemplo:
   write_xattr: could not write xattr security.capability for file squashfs-root/usr/bin/ping because you're not superuser!
 
+
+Crear imagen:
+sudo mksquashfs squashfs-root airootfs.sfs
