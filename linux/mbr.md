@@ -1,1 +1,0 @@
-../hardware/mbr.md

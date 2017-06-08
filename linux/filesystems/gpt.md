@@ -1,3 +1,12 @@
+Esquema de particionado que se debe utilizar con UEFI (el nuevo BIOS).
+
+Mejoras sobre MBR:
+ - GPT soporta particiones de hasta ~9 ZetaBytes
+ - Puede tener 128 particiones primarias
+ - Puede almacenar distintos boot loaders
+ - Ofrece secure boot
+
+
 Si tengo problemas al montar un disco particionado con GTP enchufado con un adaptador USB puede ser porque el conversor USB nos da bloques de 4k pero GTP espera tener bloques de 512b:
 
 https://forums.opensuse.org/showthread.php/485328-Problem-mounting-GPT-partitioned-USB-Hard-Drive
