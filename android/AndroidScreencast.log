@@ -14,4 +14,9 @@
  [ScreenCaptureRunnable.java:51]2017-06-06 15:25:40,770 [AWT-EventQueue-0]    [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application
  [AndroidScreencastApplication.java:37]2017-06-06 15:25:40,948 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Stopping screen capturing
  [ScreenCaptureRunnable.java:68]2017-06-06 15:25:41,952 [Thread-2]            [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application
- [AndroidScreencastApplication.java:37]
+ [AndroidScreencastApplication.java:37]2017-06-08 09:33:57,128 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - Starting application
+ [DeviceChooserApplication.java:44]2017-06-08 09:33:57,280 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - 1 device was found by ADB
+ [DeviceChooserApplication.java:53]2017-06-08 09:33:57,371 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - wileyfox-swift_2_plus-73c0d8f4 was chosen
+ [DeviceChooserApplication.java:64]2017-06-08 09:33:57,810 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Starting application
+ [AndroidScreencastApplication.java:52]2017-06-08 09:33:57,867 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Starting screen capturing
+ [ScreenCaptureRunnable.java:51]
