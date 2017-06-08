@@ -24,6 +24,11 @@ request.post("http://httpbin.org/post", {json: {color: "red"}}, function (error,
 request.post("http://httpbin.org/post", {proxy: "http://example.com"}, function (error, response, body) { console.log(body); });
 
 
+# SSL
+Ignorar certificado
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+
 
 
 # A pelo
