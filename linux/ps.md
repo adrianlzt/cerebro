@@ -72,7 +72,7 @@ ps -e -ocomm,pid,class,cp,cputime,pri,psr,rtprio,wchan,state,stat
   %pri          # prioridad (mayor es menos prioridad)
   %psr          # nº de CPU fisica
   %rtprio       # prioridad en RT (mayor es más prioridad)
-  %wchan        # función por la que está esperando el proceso
+  %wchan        # función por la que está esperando el proceso (mirar más abajo sección para wchan)
   %state        # estado del proceso (D, R, S, T, W, X, Z)
                     D   uninterruptible sleep (generalmente I/O)
                     R   en cola de ejecución (running o runnable)
@@ -153,3 +153,17 @@ para ver cuando empezó el proceso
 
 ps -eo pid,cmd,etime --forest
   elapsed time, formato: DIAS-HH:MM:SS
+
+
+# wchan
+tambien accesible en /proc/PID/wchan
+nos dice en que funcion del kernel está haciendo cola el proceso
+
+sleep -> hrtimer_nanosleep
+flock (lock cogido, esperando a que termine el proceso) -> wait
+flock (esperando para pillar el lock) -> locks_lock_inode_wait
+curl esperando una respuesta: poll_schedule_timeout
+python-sleep: poll_schedule_timeout
+python-input: wait_woken
+python-requests esperando una respuesta: sk_wait_data
+* -> multithread y no estamos mostrando threads (puede haber distintos threads en distintas colas)

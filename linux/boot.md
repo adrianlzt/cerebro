@@ -25,9 +25,6 @@ Kernel setup execution starts from arch/x86/boot/header.S at _start.  (https://g
 
 All 2.6 Linux kernels contain a gzipped "cpio" format archive (initramfs), which is extracted into rootfs when the kernel boots up.  After extracting, the kernel checks to see if rootfs contains a file "init", and if so it executes it as PID 1.  If found, this init process is responsible for bringing the system the rest of the way up, including locating and mounting the real root device (if any).  If rootfs does not contain an init program after the embedded cpio archive is extracted into it, the kernel will fall through to the older code to locate and mount a root partition, then exec some variant of /sbin/init out of that.
 
-Se sigue el proceso de boot: the boot process will load the kernel and an initial ramdisk (initramfs); then the kernel converts initrd into a "normal" ramdisk, which is mounted read-write as root device; then /linuxrc is executed; afterwards the "real" root file system is mounted, and the initrd file system is moved over to /initrd; finally the usual boot sequence (e.g. invocation of /sbin/init) is performed. initrd is used to provide/load additional modules (device driver). For example, SCSI or RAID device driver loaded using initrd.
-initramfs needs to contain all of the device drivers and tools needed to mount the final root file system
-
 
 El contenido de initrd se puede ver, mirar linux/initramfs.md
 
