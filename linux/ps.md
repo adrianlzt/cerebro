@@ -77,6 +77,7 @@ ps -e -ocomm,pid,class,cp,cputime,pri,psr,rtprio,wchan,state,stat
                     D   uninterruptible sleep (generalmente I/O)
                     R   en cola de ejecución (running o runnable)
                     S   interruptible sleep (esperando evento)
+                        generalmente los procesos siempre estarán en este estado en una u otra cola
                     T   stopped (p.e. con SIGSTOP)
                     W   -deprecado-
                     X   dead (no debería verse)
