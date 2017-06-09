@@ -52,6 +52,8 @@ func main() {
 Flag son --cosa = valor
 Arg son [cosa]
 
+Repetir un parámetro: .Strings() .Uint8List(), etc (https://github.com/alecthomas/kingpin/blob/master/values_generated.go)
+
 Habilitar -h como ayuda:
 kingpin.CommandLine.HelpFlag.Short('h')
 
