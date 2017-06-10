@@ -50,3 +50,9 @@ current pid
 HOME
 from os.path import expanduser
 home = expanduser("~")
+
+
+# Cambiar permisos
+import os
+fd = open("file")
+os.fchmod(fd.fileno(), 0o755)
