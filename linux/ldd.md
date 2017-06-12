@@ -27,3 +27,17 @@ ldd as mentioned elsewhere will show all direct and indirect libs - everything i
 readelf -d fichero.so
 
 In the usual case, ldd invokes the standard dynamic linker (see ld.so(8)) with the LD_TRACE_LOADED_OBJECTS environment variable set to 1, which causes the linker to display the library dependencies. Be aware, however, that in some circumstances, some versions of ldd may attempt to obtain the dependency information by directly executing the program. Thus, you should never employ ldd on an untrusted executable, since this may result in the execution of arbitrary code.
+
+
+# ELF
+El formato ELF (Executable and Linkable Format) es un formato de archivo para ejecutables, código objeto, bibliotecas compartidas y volcados de memoria. Fue desarrollado por Unix System Laboratories (USL) como parte de la ABI. En principio fue desarrollado para plataformas de 32 bits, a pesar de que hoy en día se usa en gran variedad de sistemas.
+
+
+
+
+# binarios dinámicos
+Los ejecuta el "ld.so", el programa para ejecutables con librerias compartidas.
+Este programa carga las librerias compartidas necesitadas por el ejecutable.
+
+En 64 bits podemos ejecutar un binario dinámico como:
+/lib64/ld-linux-x86-64.so.2 /bin/ls

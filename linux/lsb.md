@@ -3,6 +3,9 @@ http://www.thegeekstuff.com/2012/03/lsbinit-script/
 https://gist.github.com/naholyr/4275302
 https://wiki.debian.org/LSBInitScripts
 
+LSB is a project to standardize the software system structure, including the filesystem hierarchy used in the Linux operating system. The LSB is based on the POSIX specification, the Single UNIX Specification (SUS), and several other open standards, but extends them in certain areas.
+
+
 Scripts de init.d
 
 If the status action is requested, the init script will return the following exit status codes.
