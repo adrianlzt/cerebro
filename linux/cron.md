@@ -3,10 +3,14 @@ http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
 Para systemd tenemos un susituto:
 Mirar linux/systemd/timer_example.systemd
 
+anacron: ejecutar comando de forma periódica. Asume que la máquina puede no estar arrancada las 24h, por lo que almacena la última ejecucción y así sabe si debe ejecutar la acción.
+Los parámetros son días, en vez de minutos/horas como en cron.
+
 /etc/anacrontab
 Donde se define cuando se va a ejecutar el daily, weekly, monthly
 Suele llevar un random delay para que no se ejecute siempre exactamente a la misma hora
 
+Fromato cron:
 # .---------------- minute (0 - 59)
 # |  .------------- hour (0 - 23)
 # |  |  .---------- day of month (1 - 31)

@@ -116,6 +116,12 @@ firewall-cmd --add-port=50-55/tcp
 firewall-cmd --add-port=50/tcp --add-port=60/tcp
 
 
+## Services
+Ficheros XML que asocian un nombre a una serie de puertos
+Los predefinidos se encuentran en /usr/lib/firewalld/services
+Si queremos crear uno propio cogeremos uno de los predefeinidos, lo modificaremos y pondremos en: /etc/firewalld/services
+
+
 ## Rich rules
 https://fedoraproject.org/wiki/Features/FirewalldRichLanguage#Documentation
 man firewalld.richlanguage
@@ -128,3 +134,9 @@ firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.0.0/24"
 
 Forward IPv6 port/packets receiving from 1:2:3:4:6:: on port 4011 with protocol tcp to 1::2:3:4:7 on port 4012
 firewall-cmd --add-rich-rule='rule family="ipv6" source address="1:2:3:4:6::" forward-port to-addr="1::2:3:4:7" to-port="4012" protocol="tcp" port="4011"'
+
+
+
+# Errores
+Make sure polkit agent is running or run the application as superuser.
+ -> sudo firewall-cmd ...

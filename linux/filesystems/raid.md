@@ -11,6 +11,7 @@ This app is designed to help you determine optimal parameters for creating ext3/
 https://exchange.icinga.org/exchange/check_md_raid/files/661/check_md_raid.sh
 
 Mira en /proc/mdstat
+https://raid.wiki.kernel.org/index.php/Mdstat
 
 
 # Raid 0 (círuclo, distribuye)
