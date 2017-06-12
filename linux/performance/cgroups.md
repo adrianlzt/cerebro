@@ -1,6 +1,7 @@
 http://en.wikipedia.org/wiki/Cgroups
 http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf
 yum install kernel-doc; cd /usr/share/doc/kernel-doc-3.14.2/Documentation/cgroups/
+https://wiki.archlinux.org/index.php/cgroups
 
 Para usarlo en sistemas con systemd mirar cgroups-systemd.md
 
@@ -151,7 +152,7 @@ sh -c "echo \$$" > /sys/fs/cgroup/cpuset/pruebaadri/tasks && CMD
 Si queremos sacar un PID de un cgroup, lo metemos en el grupo padre
 echo $(cat /sys/fs/cgroup/cpuset/pruebaadri/tasks) > /sys/fs/cgroup/cpuset/tasks)
 
-Si metemos un proceso corriendo en un cgroup, no va a cambiar el caliente el uso limitado de cpus, por ejemplo.
+Si metemos un proceso corriendo en un cgroup, no va a cambiar en caliente el uso limitado de cpus, por ejemplo.
 
 Con cgexec (sticky los hijos también pertenecerán al mismo grupo)
 cgexec -g cpu:grupo1 CMD --sticky
@@ -257,3 +258,8 @@ Error changing group of pid 8370: No space left on device
 bash: echo: error de escritura: Argumento inválido
 bash: echo: write error: Invalid argument
 Porque hay ya una tarea en tasks
+
+
+
+# Exceder un límite
+Si tenemos configurado un límite de memoria en un cgroup y un proceso se excede, veremos en el dmesg como sale el oom killer y mata el proceso.
