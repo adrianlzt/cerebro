@@ -11,7 +11,7 @@ También puede enviar emails, escribir en hipchat, enviar a un log, etc
 
 
 
-Ejemplo en: callback_plugins.py
+Ejemplo en: callback_plugin.py
 
 # Ejemplo para modificar la salida
 https://gist.github.com/dmsimard/cd706de198c85a8255f6
