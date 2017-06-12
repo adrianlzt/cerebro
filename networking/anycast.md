@@ -5,3 +5,7 @@ Dependiendo de nuestra localización física, llegaremos a uno u otro servidor.
 Esto no se puede generalizar, porque entonces las tablas de los routers explotarían. Habría un monton de empresas exportando pequeños prefijos.
 
 Solo se permite a DNS y los relay routers de 6to4
+
+
+CloudFlare tambien usa anycast
+https://blog.cloudflare.com/a-brief-anycast-primer/
