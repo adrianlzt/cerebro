@@ -46,6 +46,8 @@ mirar memoria/tunables.md oom
 scheduling data
 https://lwn.net/Articles/242900/
 se pueden resetear estos contadores con: echo 0 > /proc/PID/sched
+'se' stands for 'scheduling entity' - a task here
+
 se.exec_start
      The runqueue's clock_task value at the most recent update of this task's statistics
 
@@ -84,6 +86,9 @@ numa_faults_memory
 
 numa_faults_memory
 
+se.sleep_max
+     that's the maximum time the task spent sleeping voluntarily
+
 se.exec_max
      Longest execution slice the task has had
 
@@ -106,4 +111,12 @@ se.sleep_start from /proc/$pid/sched should provide the time from when the proce
 To clarify, ->sleep_start reports the start of interruptible sleep, and there is ->block_start for uninterruptible case.
 
 avg_wakeup gives the average time the thread spent blocking.
+
+se.wait_runtime
+     scheduler-internal metric that shows how much out-of-balance this task's execution history is compared to what execution time it could get on a "perfect, ideal multi-tasking CPU". So if wait_runtime gets negative that means it has spent more time on the CPU than it should have. If wait_runtime gets positive that means it has spent less time than it "should have". CFS sorts tasks in an rbtree with this value as a key and uses this value to choose the next task to run. (with lots of additional details - but this is the raw scheme.) It will pick the task with the largest wait_runtime value. (i.e. the task that is most in need of CPU time.)
+
+
+
+The "sum_exec_runtime/nr_switches" number is also interesting: it shows the average time ('scheduling atom') a task has spent executing on the CPU between two context-switches. The lower this value, the more context-switching-happy a task is.
+
 
