@@ -31,3 +31,12 @@ ls -Z ## Display the SELinux security context
 ls --group-directories-first -l ## Show directories first (group directories). Useful on server.
 ls --color ##  Colorize the ls output 
 ls --hide='*.txt' -l ## Hide or  ignore files whose names ends with .txt
+
+
+ls *
+  la shell expande el asterisco a los ficheros y directorios que tengamos en el directorio actual
+  es equivalente a hacer: ls dir1/ dir2/ file1 file2 
+  no se muestran los ficheros ni los dir que empiecen por "."
+  lo que conseguiremos es un ls de los ficheros de nuestro directorio actual, más un ls de los ficheros de primer nivel
+  si no hay ningún fichero: zsh: no matches found: *
+  si hay demasiados ficheros (con 60000 aun no lo he conseguido) saltaría: too many files

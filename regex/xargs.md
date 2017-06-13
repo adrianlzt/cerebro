@@ -21,6 +21,7 @@ linea5
 linea6 otra
 
 Usar -n1 para ejecutar el comando una vez por cada línea.
+Con -L 1 nos da un parametro por cada línea, teniendo en cuenta que puede tener espacios en blanco
 
 adrian@adrian-Presario:/tmp$ cat test.txt | xargs -n2 echo
 linea1 param1
@@ -47,4 +48,9 @@ $ echo "Oct  7 01:00:36 adrian-Presario anacron[15891]" | cut -d' ' -f 1-4 | xar
 
 
 Borrar ficheros mas antiguos de 7 días de forma eficiente (de 20 en 20 y con 4 procesos en paralelo)
-find /var/lib/puppet/reports/ -type f -ctime +7 | xargs -P 4 -n 20 rm -f
+find /var/lib/puppet/reports/ -type f -ctime +7 -print0 | xargs -0 -P 4 -n 20 rm -f
+  -print0 y -0 hace que se pasen bien ficheros con espacios en blanco y caracteres raros
+
+
+xargs -r
+  no ejecutarse si el stdin esta vacío

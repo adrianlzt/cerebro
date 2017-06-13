@@ -72,6 +72,14 @@ SERVICE=${SERVICE//\//_}
 Cambiar la primera barra "/" por "_"
 SERVICE=${SERVICE/\//_}
 
+Quitar los dos últimos caracteres que son "ol"
+var=capol; echo ${var%ol}
+cap
+
+Quitar los tres primeros caracteres:
+var=miercoles; echo ${var#mie}
+rcoles
+
 
 
 Mas acciones con las variables según si están definidas o no:
