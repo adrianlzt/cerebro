@@ -16,6 +16,7 @@ yum history undo N
   desacer ese cambio
 
 yum history rollback N
+  deshace todos los pasos hasta quedarnos en N
 
 Info histórica de un paquete:
 yum history package-list subscription-manager\*

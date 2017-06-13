@@ -52,6 +52,8 @@ Ejemplo, ejecutar un comando cuando arranque la máquina.
 FROM base
 ENTRYPOINT ["echo", "Hola mundo"]
 
+Si ponemos: ENTRYPOINT comando, el pondrá ["sh", "-c", "comando"] (lo mismo con CMD)
+
 docker run eseDockerfile   # arrancará, ejecutará ese mensaje y se cerrará
 
 Esta instrucción la queremos utilizar para configurar containers que funcionen como un ejecutable.
