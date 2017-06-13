@@ -21,6 +21,8 @@ Fromato cron:
 
 Si se mete en el "crontabe -e" de cada usuario, no hace falta poner el 'user-name'
 
+Cuidado con meter caracteres "%", cron lo entiende como end of line. Si queremos usarlo debemos escaparlo "\%"
+
 Se puede instalar el cron de cada user a partir de un fichero con:
 crontab fichero
 
