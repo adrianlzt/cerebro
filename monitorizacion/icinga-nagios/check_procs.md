@@ -27,3 +27,10 @@ Un check util para vigilar los procesos zombies es:
 Con esto decimos que nos avise con warning si hay uno o mas procesos zombies que llevan más de 15' en este estado
 Y critical si lleva/n más de 1h.
 Con -v sacamos las primeras letras de los procesos involucrados
+
+
+# CPU
+/usr/lib64/nagios/plugins/check_procs -v -w 10 -c 20 --metric=CPU
+avisa si hay procesos consumiendo más del 10%/20% de CPU.
+Lo mide para un momento determinado.
+10% del total de las CPUs o de una sola?

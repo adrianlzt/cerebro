@@ -1,4 +1,7 @@
+https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt
 CFS: scheduler de CPU oficial
+El Planificador Completamente Justo (Completely Fair Scheduler - CFS) es un algoritmo planificador desarrollado con la meta de maximizar el uso de la CPU con las diferentes tareas que se lanzan en un sistema Linux basándose en el Fair Queuing.
+
 
 # Scheduling class:
  # OTHER: scheduling por defecto

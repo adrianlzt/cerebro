@@ -45,6 +45,7 @@ mirar memoria/tunables.md oom
 # proc/$(pidof proceso)/sched
 scheduling data
 https://lwn.net/Articles/242900/
+se pueden resetear estos contadores con: echo 0 > /proc/PID/sched
 se.exec_start
      The runqueue's clock_task value at the most recent update of this task's statistics
 
@@ -53,6 +54,35 @@ se.vruntime
 
 se.sum_exec_runtime
      Total time spent executing
+
+se.nr_migrations
+
+nr_switches
+     Number of contexts switches
+
+nr_voluntary_switches
+     Voluntary switches, I.e the thread blocked and hence another thread is picked up.
+
+nr_involuntary_switches
+     involuntary – the scheduler kicked the thread out as there is another hungry thread is ready to run.
+
+se.load.weight
+     load.weight is based on the nice value plays a role in calculating the time slice (note CFS supports variable time slice, a process with nice value of –1 gets ~ 5% more time-slice than a process with nice 0)
+
+policy
+
+prio
+     prio 0-99 are real-time priorities, 100-139 are CFS scheduling priority. 105 indicates you are running with –15
+
+clock-delta
+
+mm->numa_scan_seq
+
+numa_migrations
+
+numa_faults_memory
+
+numa_faults_memory
 
 se.exec_max
      Longest execution slice the task has had
