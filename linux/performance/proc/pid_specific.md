@@ -60,7 +60,7 @@ se.sum_exec_runtime
 se.nr_migrations
 
 nr_switches
-     Number of contexts switches
+     Number of contexts switches (voluntarios + involuntarios)
 
 nr_voluntary_switches
      Voluntary switches, I.e the thread blocked and hence another thread is picked up.
