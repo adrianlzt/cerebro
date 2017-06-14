@@ -2,6 +2,11 @@ top version 3.3.10
 P - ordenar por CPU
 c - mostrar comando entero
 
+
+top -cbp 1234
+Saca una captura de top cada 3 segundos mostrando unicamente el pid 1234
+
+
 Control+s pause
 Control+q continue
 
