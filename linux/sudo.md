@@ -121,3 +121,10 @@ quita la opción de que necesitemos un tty
 
 insults
 insulta al usuario si mete mal la pass
+
+
+# Variables de entorno
+Debemos ponerlas
+sudo HTTP_PROXY=1.1.1.1 comando
+
+Si la ponemos antes no la pillará el comando

@@ -1,6 +1,7 @@
 http://man7.org/linux/man-pages/man7/namespaces.7.html
 network/namespace.md
 linux/filesystems/namespace.md
+https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine
 
 Concepto para aislar recursos.
 Se esperan tener 10 (escuchado en la charla de http://www.slideshare.net/joshuasoundcloud/linux-containers-from-scratch-velocity-barcelona-2014).
