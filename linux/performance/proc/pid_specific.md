@@ -42,6 +42,12 @@ mirar memoria/tunables.md oom
 # /proc/PID/mount*
   info de los puntos de montaje
 
+# /proc/PID/syscall
+  puede poner "running"
+  O algo tipo:
+  23 0x0 0x0 0x0 0x0 0x7fff6142fa90 0x3e8 0x7fff6142fa68 0x7f7d5ab873b3
+  En este caso querra decir que está esperando en esa syscall (mirar linux/syscall.md) con esos parametros
+
 # proc/$(pidof proceso)/sched
 scheduling data
 https://lwn.net/Articles/242900/
@@ -118,5 +124,3 @@ se.wait_runtime
 
 
 The "sum_exec_runtime/nr_switches" number is also interesting: it shows the average time ('scheduling atom') a task has spent executing on the CPU between two context-switches. The lower this value, the more context-switching-happy a task is.
-
-

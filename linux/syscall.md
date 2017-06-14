@@ -1,3 +1,5 @@
+https://github.com/0xAX/linux-insides/blob/master/SysCall/syscall-1.md
+
 http://www.digilife.be/quickreferences/qrc/linux%20system%20call%20quick%20reference.pdf
 linux system call quick reference.pdf
 
