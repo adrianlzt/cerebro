@@ -188,6 +188,21 @@ voluntary_ctxt_switches:        128641
 nonvoluntary_ctxt_switches:     36
 
 
+## IO disco - stress
+stress -d 1
+
+status, casi siempre en D
+top:
+  proc cpu ~ 15%
+  sys cpu: 15% sys, 73% wait
+
+/proc/PID/io
+  valores muy altos de write_bytes
+
+3.48235% de switches involuntarios
+
+
+
 ## IO disco - spew
 spew -i 0 10M FILE
 

@@ -1,8 +1,48 @@
 http://techblog.netflix.com/2015/11/linux-performance-analysis-in-60s.html
-http://www.brendangregg.com/usemethod.html
 http://www.brendangregg.com/tsamethod.html
 http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
 
+# USE method
+http://www.brendangregg.com/usemethod.html
+https://www.youtube.com/watch?v=K9w2cipqfvc
+https://www.slideshare.net/brendangregg/performance-use-method/13-Example_Summary_What_happened_customer
+
+Utilization Saturation and Errors (USE) 
+For every resource, check utilization, saturation, and errors.
+No encontrará todos los problemas, pero si la mayoría
+
+Con dynamic tracing y aplicaciones Open Source podemos preguntar al sistema exactamente lo que necesitamos saber.
+
+
+Para utilizar esta metodología primero debemos listar los recursos involucrados (CPUs, disks, busses, etc)
+Para cada recurso analizaremos su uso (tiempo que el recurso está ocupado realizando trabajo)
+Saturación, si el recurso está teniendo trabajo extra que no puede sacar a tiempo (colas)
+Errores, mirar si está generando algún tipo de error.
+Si encontramos algun problema en uso, saturación o errores, investigaremos y veremos si es la causa de nuestro problema.
+
+Recursos hardware: CPUs, main memory, network interfaces, storage devices, controllers, interconnects
+Lo mejor es tener el esquema funcional a nivel de hardware. Así podremos seguir el camino de los datos.
+Es mejor conocer todos los elementos y saber que algunos no los estamos analizando (tal vez porque no podemos)
+
+Recursos software: mutex locks, thread pools, process/thread capacity, file descriptor capacity
+
+Utilización, depende del tipo de recurso se analizará de forma diferente (storage serán de los dos tipos)
+ - recurso I/O (eg: network interface): mediremos el tiempo que está ocupado
+   algunas veces tambien podemos usar IOPS/max, o current throughput / max (aunque estos pueden ser un poco trickies)
+ - recursos de capacidad (eg: memoria): espacio consumido
+
+
+
+# Problem statement method (tipico que se suele hacer, no es un método)
+1.- Por qué pensamos que hay un problema?
+2.- El sistema alguna vez ha funcionado bien?
+3.- Que ha cambiado? software? hardware? carga?
+4.- La degradación de performance puede medirse en términos de latencia o tiempo de ejecucción?
+4.- Afecta a otras personas o a las aplicaciones
+6.- Cual es el entorno? Que software y hardware se usa? versiones? configuraciones?
+
+
+# VARIOS
 Basicos:
 https://image.slidesharecdn.com/dockercon2017performanceanalysis-170419182647/95/container-performance-analysis-24-638.jpg?cb=1492660928
 
@@ -82,3 +122,6 @@ iostat
 Red?
 NFS?
   nfsiostat
+
+
+
