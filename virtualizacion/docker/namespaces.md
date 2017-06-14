@@ -11,3 +11,8 @@ docker run
 
 --privileged
 Nos monta /dev
+
+
+Storage:
+-v "/:/host"
+motanmos todos los puntos de montaje del host en el container sobre /host
