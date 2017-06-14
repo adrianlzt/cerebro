@@ -30,7 +30,7 @@ Persistent=true
 It starts once immediately if it missed the last start time
 
 
-Lanzar acciones dentro de un tiempo:
+Lanzar acciones dentro de un tiempo (systemd-run crea una unit temporal):
 systemd-run --user --on-active=4 echo "jose"
 
 Ejecutar algo cada 5s, pero por lo que veo en los logs no hace mucho caso

@@ -16,4 +16,4 @@ stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 60s
 
 Podemos generar cargas de todo tipo, cpu, io, virtual memory, etc.
 
-La carga io no me muestra nada en vmstat. Tal vez lo hace de otra manera?
+La carga io no me muestra nada en vmstat ni en iotop. Tal vez lo hace de otra manera?

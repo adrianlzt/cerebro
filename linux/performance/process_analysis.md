@@ -30,6 +30,8 @@ Es un valor absoluto, habŕa que compararlo con el running time del proceso y co
 ## CPU - 1 proceso
 stress --cpu 1
 
+ps status: R
+
 /proc/PID/io
  todo a 0
 
@@ -110,10 +112,77 @@ nonvoluntary_ctxt_switches:     28787
 ## IO - 1 proceso
 stress --io 1
 
-top cpu 100%
+htop cpu 100%
+top: cpu sys 100%
 status: D
 
 /proc/PID/io
   todo a 0 ¿?
 
 /proc/PID/sched
+stress (8109, #threads: 1)
+-------------------------------------------------------------------
+se.exec_start                                :    6218932880.339973
+se.vruntime                                  :       9045237.212290
+se.sum_exec_runtime                          :         56810.055035
+se.nr_migrations                             :                    0
+nr_switches                                  :                57654
+nr_voluntary_switches                        :                57638
+nr_involuntary_switches                      :                   16
+se.load.weight                               :                 1024
+policy                                       :                    0
+prio                                         :                  120
+clock-delta                                  :                  131
+mm->numa_scan_seq                            :                    0
+numa_migrations, 0
+numa_faults_memory, 0, 0, 1, 0, -1
+numa_faults_memory, 1, 0, 0, 0, -1
+
+
+/proc/PID/status
+Name:   stress
+State:  D (disk sleep)
+Tgid:   8109
+Ngid:   0
+Pid:    8109
+PPid:   8108
+TracerPid:      0
+Uid:    0       0       0       0
+Gid:    0       0       0       0
+FDSize: 64
+Groups: 0
+VmPeak:     7256 kB
+VmSize:     7256 kB
+VmLck:         0 kB
+VmPin:         0 kB
+VmHWM:        96 kB
+VmRSS:        96 kB
+RssAnon:              96 kB
+RssFile:               0 kB
+RssShmem:              0 kB
+VmData:       52 kB
+VmStk:       136 kB
+VmExe:        20 kB
+VmLib:      2904 kB
+VmPTE:        24 kB
+VmSwap:        0 kB
+Threads:        1
+SigQ:   0/3817
+SigPnd: 0000000000000000
+ShdPnd: 0000000000000000
+SigBlk: 0000000000000000
+SigIgn: 0000000000000000
+SigCgt: 0000000000000000
+CapInh: 0000000000000000
+CapPrm: 0000001fffffffff
+CapEff: 0000001fffffffff
+CapBnd: 0000001fffffffff
+CapAmb: 0000000000000000
+Seccomp:        0
+Cpus_allowed:   1
+Cpus_allowed_list:      0
+Mems_allowed:   00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,000000
+00,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:      0
+voluntary_ctxt_switches:        128641
+nonvoluntary_ctxt_switches:     36
