@@ -50,3 +50,7 @@ HTTP_PROXY=1.1.1.1 HTTPS_PROXY=2.2.2.2 rkt ...
 
 Usando un proxy con certificado inseguro (parece que no funciona el download https://github.com/rkt/rkt/issues/2590)
 sudo HTTP_PROXY=127.0.0.1:8080 HTTPS_PROXY=127.0.0.1:8080 rkt --debug --insecure-options=all image fetch coreos.com/etcd
+
+
+
+# Run

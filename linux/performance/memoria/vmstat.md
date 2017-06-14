@@ -17,4 +17,16 @@ vmstat -a
 /proc/procinfo                # muestra la misma información
 
 
+# IO
+ bi: Blocks received from a block device (blocks/s).
+ bo: Blocks sent to a block device (blocks/s).
+
+# SWAP
+  si: Amount of memory swapped in from disk (/s).
+  so: Amount of memory swapped to disk (/s).
+
+# System
+  in: The number of interrupts per second, including the clock.
+  cs: The number of context switches per second
+
 Mirar tambien proc/vmstat.md

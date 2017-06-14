@@ -186,3 +186,23 @@ Mems_allowed:   00000000,00000000,00000000,00000000,00000000,00000000,00000000,0
 Mems_allowed_list:      0
 voluntary_ctxt_switches:        128641
 nonvoluntary_ctxt_switches:     36
+
+
+## IO disco - spew
+spew -i 0 10M FILE
+
+top:
+  proc cpu ~ 50%
+  sys cpu: 47% sys, 47% wait
+
+/proc/PID/io
+valores muy altos de wchar (11GB)
+syscw 24.456.702
+
+Estado pasando entre D (disk sleep) y R (running)
+
+69.7315% de switches involuntarios
+
+iotop: IO ~50%, Disk write: ~90MB/s
+
+iostat: nos da cada segundo cpu (user, nice, sys, iowait, steal, idle) y las operaciones por segundo, escrituras y lecturas de los discos.
