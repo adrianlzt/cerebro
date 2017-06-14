@@ -8,6 +8,9 @@ https://blog.0x972.info/index.php
 http://undo.io/resources/blog-articles/category/debugging/ posts con tips y guias sobre usos particulares de gdb
 http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html  ejemplo usando gdb para encontrar un problema con un programa en python
 
+Mejor usar GEF (https://gef.readthedocs.io/en/latest/)
+Hace la interfaz de gdb más amigable.
+
 Para cosas mas especificas de ASM:
 programacion/ensamblador/gdb.md
 

@@ -21,4 +21,3 @@ for p in /proc/[0-9]*/cmdline ; do read cmd < $p ; if [[ $cmd = 'bomb_process_na
 
 Matar todos los procesos bomb:
 for p in /proc/[0-9]*/cmdline ; do read cmd < $p ; if [[ $cmd = 'bomb_process_name' ]]; then t=${p%/cmdline} ; kill -SIGKILL ${t#/proc/} ; fi ; done
-

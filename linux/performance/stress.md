@@ -1,3 +1,13 @@
+http://people.seas.harvard.edu/~apw/stress/
+
+# Arch
+pacman -Ss stress
+
+# RHEL (epel)
+yum install -y stress
+
+
+# Uso
 Para generar carga en una maquina.
 
 Cargar la maquina a nivel de CPU, IO y memoria durante 60 segundos:

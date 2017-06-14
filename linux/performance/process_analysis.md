@@ -16,3 +16,7 @@ High IO
 cat /proc/PID/sched | grep se.statistics.iowait_sum
 Es un valor absoluto, habŕa que compararlo con el running time del proceso y con otros procesos.
 
+
+
+# Pruebas con stress
+
