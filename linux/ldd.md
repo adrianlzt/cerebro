@@ -1,5 +1,6 @@
 Un binario linkado estaticamente no requiere de ningún otro fichero para funcionar.
 Uno linkado dinámicamente si necesita otros ficheros (ldd nos dirá cuales)
+mirar esquema en elf.png
 
 
 ldd fichero.so
