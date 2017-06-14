@@ -42,3 +42,8 @@ resp, body, errs := gorequest.New().
 # Curl
 Sacar el curl equivalente
 gorequest.New().SetCurlCommand(true)...
+
+# TLS/SSL
+gorequest.New().TLSClientConfig(&tls.Config{ InsecureSkipVerify: true}).
+  Get("https://disable-security-check.com").
+  End()
