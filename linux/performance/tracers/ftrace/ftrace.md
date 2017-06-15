@@ -1,4 +1,14 @@
-Mejor usar eBPF (bcc-tools)
+http://lwn.net/Articles/370423/
+https://www.kernel.org/doc/Documentation/trace/ftrace.txt
+
+I love Ftrace, it's a kernel hacker's best friend. It's built into the kernel, and can consume tracepoints, kprobes, and uprobes, and provides a few capabilities: event tracing, with optional filters and arguments; event counting and timing, summarized in-kernel; and function-flow walking. See ftrace.txt from the kernel source for examples.
+It's controlled via /sys, and is intended for a single root user (although you could hack multi-user support using buffer instances).
+Its interface can be fiddly at times, but it's quite hackable, and there are front ends: Steven Rostedt, the main ftrace author, has created trace-cmd, and I've created the perf-tools collection.
+My biggest gripe is that it isn't programmable, so you can't, for example, save and fetch timestamps, calculate latency, and then store it as a histogram. You'll need to dump events to user-level, and post-process, at some cost. It may become programmable via eBPF.
+
+Cuidado con usar ftrace en kernels 2.6.x, puede que no sea seguro.
+https://github.com/brendangregg/perf-tools#warnings
+
 
 
 A partir del kernel 2.6.27

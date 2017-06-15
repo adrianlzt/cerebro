@@ -1,4 +1,10 @@
-(Tambien mirar perf.md)
+CUIDADO! ralentiza mucho las aplicaciones y puede matar aplicaciones que están en ejecucción
+http://www.brendangregg.com/blog/2014-05-11/strace-wow-much-syscall.html
+
+A partir del kernel 3.7 tenemos "perf trace", que hace la misma función sin el overhead de strace.
+http://www.brendangregg.com/perf.html#More
+
+Mirar otros tracers que impacten menos.
 
 http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
@@ -72,6 +78,20 @@ strace -e poll,select,connect,recvfrom,sendto nc www.news.com 80
 Punto 5) de
 http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
+# Doc varia
+http://chadfowler.com/blog/2014/01/26/the-magic-of-strace/
+http://blog.endpoint.com/2013/06/debugging-obscure-postgres-problems.html
+http://www.caktusgroup.com/blog/2013/10/30/using-strace-debug-stuck-celery-tasks/
+https://www.iweb-hosting.co.uk/blog/diagnosing-magento-speed-issues-with-strace.html
+https://blogs.oracle.com/ksplice/entry/strace_the_sysadmin_s_microscope
+http://timetobleed.com/hello-world/
+http://linuxgazette.net/148/saha.html
+http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
 # Internals
 http://blog.packagecloud.io/eng/2016/02/29/how-does-strace-work/
+
+
+# Errores
+strace puede causar que un proceso se ponga en STOP https://bugzilla.redhat.com/show_bug.cgi?id=590172 http://lethargy.org/~jesus/writes/beware-of-strace
+Si esto occure, matar strace y continuar el processo con: kill -CONT PID

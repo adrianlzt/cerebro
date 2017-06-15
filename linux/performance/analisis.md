@@ -16,6 +16,7 @@ http://www.brendangregg.com/usemethod.html
 https://www.youtube.com/watch?v=K9w2cipqfvc
 https://www.slideshare.net/brendangregg/performance-use-method/13-Example_Summary_What_happened_customer
 http://www.brendangregg.com/USEmethod/use-linux.html
+https://www.slideshare.net/brendangregg/velocity-stoptheguessing2013/32
 
 Utilization Saturation and Errors (USE) 
 For every resource, check utilization, saturation, and errors.
