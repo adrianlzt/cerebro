@@ -37,7 +37,7 @@ perf report -n --stdio
   -n  Show the number of samples for each symbol
   --input=FILE por si queremos otro que perf.data
 
-perf reporct -c sshd
+perf report -c sshd
   solo ver el report del comando sshd
 
 perf top
@@ -51,7 +51,9 @@ perf sched record
   luego podemos analizarlo con report y veremos los switches de procesos
 
 perf sched latency
-  nos muestra una tabla sobre los consumos de tiempo y cambios de contexto de los procesos
+  nos muestra una tabla sobre los consumos de tiempo y número de cambios de contexto de los procesos
+  los tiempos creo que son entre que entra la tarea en la CPU hasta que se produce otro cambio de contexto
+
 
 
 perf list
