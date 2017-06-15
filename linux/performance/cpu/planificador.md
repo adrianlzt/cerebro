@@ -24,3 +24,13 @@ http://kernel.kolivas.org/
 http://ck-hack.blogspot.com.es/
 
 Benchmark Oct-2012 http://repo-ck.com/bench/cpu_schedulers_compared.pdf
+
+
+
+La task "swapper" es la que se ejecuta cuando no hay nada que ejecutar:
+
+The idle task (a.k.a. swapper task) is chosen to run when no more runnable tasks in the run queue at the point of task scheduling. It has the lowest possible priority, so that's why it's running if no other task is runnable.
+
+Programatic reason: This simplifies process scheduling a lot, because you don't have to care about the special case: "What happens if no task is runnable?", because there always is at least one task runnable, the idle task. Also you can count the amount of cpu time used per task. Without the idle task, which task gets the cpu-time accounted no one needs?
+
+Historical reason: Before we had cpus which are able to step-down or go into power saving modes, it HAD to run on full speed at any time. It ran a series of NOP-instructions, if no tasks were runnable. Today the scheduling of the idle task usually steps down the cpu by using HLT-instructions (halt), so power is saved. So there is a functionality somehow in the idle task in our days.

@@ -31,6 +31,7 @@ perf record -g ls
 
 perf report
   menu ncurses navegable con estadísticas de los procesos ejecutados, llamadas, etc
+  la task "swapper" es la tarea que se ejecuta cuando no hay nada que ejecutar.
 
 perf report -n --stdio
   salida en texto

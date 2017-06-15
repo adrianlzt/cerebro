@@ -48,6 +48,8 @@ v mostrar datos del proceso (start and end time, comand, etc)
 
 
 ## Analizar short lived procs
+Otra opción más simple es con execsnoop de perf-tools (ftrace y perf)
+
 Arrancamos el atop con un intervalo mas pequeño, por ejemplo:
 atop 3
 
