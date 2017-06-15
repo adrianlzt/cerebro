@@ -1,6 +1,10 @@
 http://lwn.net/Articles/370423/
 https://www.kernel.org/doc/Documentation/trace/ftrace.txt
 
+instalación: yum install -y trace-cmd / yaourt -Ss trace-cmd
+cli: trace-cmd
+gui: kernelshark
+
 I love Ftrace, it's a kernel hacker's best friend. It's built into the kernel, and can consume tracepoints, kprobes, and uprobes, and provides a few capabilities: event tracing, with optional filters and arguments; event counting and timing, summarized in-kernel; and function-flow walking. See ftrace.txt from the kernel source for examples.
 It's controlled via /sys, and is intended for a single root user (although you could hack multi-user support using buffer instances).
 Its interface can be fiddly at times, but it's quite hackable, and there are front ends: Steven Rostedt, the main ftrace author, has created trace-cmd, and I've created the perf-tools collection.
@@ -76,6 +80,8 @@ kernelshark es un visor para los ficheros generados por trace-cmd
 
 trace-cmd record -p function
  Genera un fichero trace.dat con trazas de todo el sistema
+ probando en mi portatil notaba que lo ralentizaba
+ CUIDADO! genera muchos gigas de información en poco tiempo. 1GB en 10s (depende mucho la carga del sistema)
 
 trace-cmd record -p function -F echo "hola"
  Genera un traceo de la ejecucción de 'echo "hola"'

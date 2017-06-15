@@ -10,11 +10,11 @@ CUIDADO! si nos devuelven un codigo 40x, 50x, etc, no lo considera error
 Mirar ejemplo (envia un GET y obtiene un JSON en la respuesta):
 gorequest_json.go
 
-# Proxy
-request := gorequest.New().Proxy("http://proxy:999")
-
 # Basic auth
 request := gorequest.New().SetBasicAuth("username", "password")
+
+# Proxy
+request := gorequest.New().Proxy("http://proxy:999")
 
 # JSON
 Como enviar JSON: https://github.com/parnurzeal/gorequest#json
