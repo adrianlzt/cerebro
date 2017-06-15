@@ -18,6 +18,9 @@ oc status
 
 # Todos los objectos
 oc get all
+  no muetra todo, al menos, secrets y pvcs no salen.
+oc get pvc
+oc get secret
 
 # Listar Deployment Configs
 oc get dc
@@ -33,7 +36,8 @@ oc new-app --list
 
 ## Crear
 Usando un template almacenado en github:
-oc new-app https://github.com/openshift/golang-ex -l name=myapp
+oc new-app https://github.com/openshift/golang-ex --name "customname" -l customlabel=value
+  para pasar parametros: -p NOMBRE=VALOR (el nombre debe estar todo en minúsculas, puede contener números y guiones)
 
 El nombre que se usará es el nombre del repo "golang-ex".
 Asignamos también una etiqueta (-l).
@@ -77,6 +81,8 @@ oc delete all -l app=NOMBRE
 oc delete dc NOMBRE
   solo el dc
 
+Para obtener el label app podemos ejecutar:
+oc get dc/nombre -o go-template="{{.metadata.labels.app}}"
 
 
 # Servicios (exponer apps, abrir puertos)
@@ -168,3 +174,11 @@ oc tag --alias=true <source> <destionation>
 Borrar tag:
 oc delete istag/ruby:latest
 oc tag -d ruby:latest
+
+
+# Custom colums
+El comando get permite pasar un formato de output customizado
+https://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns
+
+oc get pods <pod-name> -o=custom-columns=NAME:.metadata.name,RSRC:.metadata.resourceVersion
+oc get dc/postgresql -o go-template="{{.metadata.labels.app}}"

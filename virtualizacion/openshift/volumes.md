@@ -6,3 +6,9 @@ Modos:
 ReadWriteOnce   RWO   The volume can be mounted as read-write by a single node.
 ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
 ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
+
+
+oc get pvc
+oc get pv (solo para admin?)
+
+No aparecen con: oc get all
