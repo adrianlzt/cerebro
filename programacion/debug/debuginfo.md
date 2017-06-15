@@ -9,6 +9,8 @@ http://debuginfo.centos.org/6/x86_64/
 # Arch
 https://wiki.archlinux.org/index.php/Debug_-_Getting_Traces
 
+Parece que tenemos que recompilar el kernel si queremos tener debuginfo: https://wiki.archlinux.org/index.php/SystemTap#Kernel_rebuild
+
 ## AUR
 Editar el PKGBUILD y añadir en la linea options:
 

@@ -1,10 +1,44 @@
 http://www.brendangregg.com/perf.html
 
 
+# Contar eventos
+PU counter statistics for the specified command:
+perf stat command
+
+Count system calls for the specified PID, until Ctrl-C:
+perf stat -e 'syscalls:sys_enter_*' -p PID
+
+Count system calls for the entire system, for 5 seconds:
+perf stat -e 'syscalls:sys_enter_*' -a sleep 5
+
+Show system calls by process, refreshing every 2 seconds. Como top, mostrando el porcentaje de syscalls de cada proceso:
+perf top -e raw_syscalls:sys_enter -ns comm
+
+Procesos generando trafico de red:
+stdbuf -oL perf top -e net:net_dev_xmit -ns comm | strings
+
+
+
+# Profiling
+
+
+# Static tracing
+Trace new processes, until Ctrl-C:
+perf record -e sched:sched_process_exec -a
+
+# Dynamic tracing
+Nos permite analizar funciones, viendo sus parámetros y valores de respuesta.
+Filtrar por ellos (open de un fichero, sendmsg de más de 100bytes)
+
+
+
+# VARIOS
+
 Ejemplo sacado de la web de pixelbeat.org:
 perf record -a sleep 10  # Guarda el performance data del comando 'sleep 10' y lo escribe en perf.data
 perf report --sort comm,dso
 
+Para ver donde se producen la mayoría de las llamadas (del 100% disponible, veremos cuantas usa cada comando, pero no vemos tiempos)
 Guardamos datosa durante 30s del proceso 13204, sampleando a 99Hz y capturando stack traces:
 perf record -F 99 -p 13204 -g -- sleep 30
 Sacamos la info por la pantalla en modo texto:
