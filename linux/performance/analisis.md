@@ -2,10 +2,20 @@ http://techblog.netflix.com/2015/11/linux-performance-analysis-in-60s.html
 http://www.brendangregg.com/tsamethod.html
 http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
 
-# USE method
+# Problem statement (primer paso del análisis)
+1.- Por qué pensamos que hay un problema?
+2.- El sistema alguna vez ha funcionado bien?
+3.- Que ha cambiado? software? hardware? carga?
+4.- La degradación de performance puede medirse en términos de latencia o tiempo de ejecucción?
+4.- Afecta a otras personas o a las aplicaciones
+6.- Cual es el entorno? Que software y hardware se usa? versiones? configuraciones?
+
+
+# USE method (siguiente paso en el análisis)
 http://www.brendangregg.com/usemethod.html
 https://www.youtube.com/watch?v=K9w2cipqfvc
 https://www.slideshare.net/brendangregg/performance-use-method/13-Example_Summary_What_happened_customer
+http://www.brendangregg.com/USEmethod/use-linux.html
 
 Utilization Saturation and Errors (USE) 
 For every resource, check utilization, saturation, and errors.
@@ -26,20 +36,60 @@ Es mejor conocer todos los elementos y saber que algunos no los estamos analizan
 
 Recursos software: mutex locks, thread pools, process/thread capacity, file descriptor capacity
 
-Utilización, depende del tipo de recurso se analizará de forma diferente (storage serán de los dos tipos)
+## Utilización
+Depende del tipo de recurso se analizará de forma diferente (storage serán de los dos tipos)
  - recurso I/O (eg: network interface): mediremos el tiempo que está ocupado
    algunas veces tambien podemos usar IOPS/max, o current throughput / max (aunque estos pueden ser un poco trickies)
  - recursos de capacidad (eg: memoria): espacio consumido
 
+100% de uso generalmente indica un bottleneck
+>70% suele indicar una bottleneck del recursos I/O (sobre todo cuando trabajos de alta prioridad no pueden interrumpir a trabajos de baja prioridad, como escritura en disco)
+
+Cuidado con la interpretación. Carga del 60% en 5 minutos puede significar una carga del 100% durante 3 minutos y el resto idle.
+Intentaremos analizar con resolución de 1" e incluso a veces habrá que bajar a 100ms.
+
+Mejor examinar los dispositivos por separado.
 
 
-# Problem statement method (tipico que se suele hacer, no es un método)
-1.- Por qué pensamos que hay un problema?
-2.- El sistema alguna vez ha funcionado bien?
-3.- Que ha cambiado? software? hardware? carga?
-4.- La degradación de performance puede medirse en términos de latencia o tiempo de ejecucción?
-4.- Afecta a otras personas o a las aplicaciones
-6.- Cual es el entorno? Que software y hardware se usa? versiones? configuraciones?
+## Saturación
+Cualquier valor que no sea 0 añade latencia.
+Ejemplos de saturación: cola de procesos en la cpu, o memoria swapeando.
+
+## Errores
+Si vemos un error ya deberíamos tener el camino hacia la solución al problema.
+
+
+
+# Workload characterizacion (tercer paso tras USE)
+Caracterizar la carga que tenemos según:
+ - quien la está causando? (PID, UID, IP,etc)
+ - por qué se está generando la carga? (seguir el code path)
+ - de que tipo es la carga? (IOPS, throughput, read, write, type)
+ - como está variando la carga según el tiempo? (hora, dia, semana)
+
+Las mejoras de performance mayores se producen eliminando trabajo innecesario.
+
+
+# Drill-Down analysis (analizando cada vez más profundo para encontrar el problema)
+
+Ejemplo para un análisis con problemas de latencia I/O:
+Application
+System Call interface
+File system
+Block Device Interface
+Storage devices drivers
+Storage devices
+
+Teniendo acceso al código y usando dynamic tracing vamos a hacer un análisis por pares (usaremos resoluciones de ns).
+Iremos analizando trozos de código viendo el tiempo que tarda en ejecutarse entre dos puntos (comienzo y final) y entre otra pareja de puntos de alguna parte del código dentro de la primera pareja de puntos. Ejemplo, miramos el tiempo de ejecucción de una función al completo y por otro lado el de una llamada en particular que realiza esa función.
+Los flame graphs pueden ser muy útiles en este caso.
+
+
+# Otras metodologías
+Method R: latency-based analysis approach for Oracle databases. Ver "Optimizing Oracle Performance" Cary Millsap y Jeff Holt (2003)
+          puede ser usada para otras cosas que no sean databases.
+
+Experimental approaches: pueden ser muy útiles, ejemplo: validando el network throughput usando iperf
 
 
 # VARIOS
