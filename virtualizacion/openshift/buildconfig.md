@@ -47,10 +47,13 @@ Para que el pod de build pueda bajarse los repos puede necesitar credenciales.
 Las credenciales generalemnte userán basic auth o una clave ssh.
 
 Crearemos secrets para almacenar esta información.
-La relación entre que secret usar para que dominio se hará mediante annotations.
+La relación entre que secret usar para que dominio se hará mediante annotations o directemente entre el buildconfig y el secret
+
+Directamente (o en la web, config de la bc, advanced):
+oc set build-secret --source bc/sample-build basicsecret
 
 
-Con oc:
+Mediante annotations:
 oc secrets new-basicauth <secret_name> --username=<user_name> --password=<password>
 oc annotate secret <secret_name> 'build.openshift.io/source-secret-match-uri-1=https://*.mycorp.com/*'
 
@@ -76,3 +79,7 @@ En el yml estó se pondrá (no me queda muy claro que pone, porque no es el text
 data:
   ca.crt: >-
     c4Bf54sdG56...
+
+
+O si el certificado no es válido pero queremos aceptarlo:
+oc set env bc/django-psql-persistent GIT_SSL_NO_VERIFY=true
