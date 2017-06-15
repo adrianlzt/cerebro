@@ -3,6 +3,7 @@ http://www.brendangregg.com/blog/2014-05-11/strace-wow-much-syscall.html
 
 A partir del kernel 3.7 tenemos "perf trace", que hace la misma función sin el overhead de strace.
 http://www.brendangregg.com/perf.html#More
+perf trace -p PID
 
 Mirar otros tracers que impacten menos.
 

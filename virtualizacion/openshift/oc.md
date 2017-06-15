@@ -3,10 +3,13 @@ Código de oc:
 https://github.com/openshift/origin/blob/master/cmd/oc/oc.go
 https://github.com/openshift/origin/tree/master/pkg/cmd/cli
 
+# Login
+oc login https://openshift.company.com/
+
 
 # Proyectos
 
-## Crear un proyecto
+## Crear un proyecto (admin)
 oc new-project nodejs-echo --display-name="nodejs" --description="Sample Node.js app"
 
 
