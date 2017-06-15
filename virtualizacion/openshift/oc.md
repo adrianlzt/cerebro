@@ -103,6 +103,12 @@ oc expose svc MIAPP
 
 
 
+# Builds
+Lanzar a mano un build
+oc start-build NOMBRE
+oc start-build --follow --build-loglevel=10 django-psql-persistent
+
+
 # Pods
 oc get pods
   listar todos

@@ -30,6 +30,8 @@ External artifacts
 
 
 # Repositorio git con proxy
+https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#using-a-proxy-for-git-cloning
+
 source:
   git:
     uri: "https://github.com/openshift/ruby-hello-world"
@@ -37,3 +39,40 @@ source:
     httpsProxy: https://proxy.example.com
     noProxy: somedomain.com, otherdomain.com
 
+
+# Acceso para clonar repos
+https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#source-clone-secrets
+
+Para que el pod de build pueda bajarse los repos puede necesitar credenciales.
+Las credenciales generalemnte userán basic auth o una clave ssh.
+
+Crearemos secrets para almacenar esta información.
+La relación entre que secret usar para que dominio se hará mediante annotations.
+
+
+Con oc:
+oc secrets new-basicauth <secret_name> --username=<user_name> --password=<password>
+oc annotate secret <secret_name> 'build.openshift.io/source-secret-match-uri-1=https://*.mycorp.com/*'
+
+Con la interfaz web:
+primero crearemos el secret
+luego iremos a su web y editaremos el yaml agregando una o varias annotations:
+kind: Secret
+apiVersion: v1
+metadata:
+  name: override-for-my-dev-servers-https-only
+  annotations:
+    build.openshift.io/source-secret-match-uri-1: https://mydev1.mycorp.com/*
+    build.openshift.io/source-secret-match-uri-2: https://mydev2.mycorp.com/*
+
+
+Tal vez tambien tengamos que meter una ca específica.
+Con oc sería agregar: --ca-cert=<path/to/file> al crear el secret
+
+Otra opción es crear un secret con el parametro ca.crt y meter ahi el cert:
+oc secrets new iseeucatid ca.crt=/fichero/ca.crt
+
+En el yml estó se pondrá (no me queda muy claro que pone, porque no es el texto que aparece en el .pem):
+data:
+  ca.crt: >-
+    c4Bf54sdG56...
