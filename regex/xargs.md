@@ -1,3 +1,5 @@
+Para algunas cosas puede venir bien paste
+
 Manual: http://www.semicomplete.com/blog/articles/week-of-unix-tools/day-5-xargs.html
 
 adrian@adrian-Presario:/tmp$ cat test.txt 

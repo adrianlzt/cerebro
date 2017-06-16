@@ -130,6 +130,8 @@ oc port-forward <pod> 8888:5000
   https://docs.openshift.com/container-platform/3.5/dev_guide/port_forwarding.html#dev-guide-port-forwarding
   usa nsenter y conecta con el nodo donde está el pod usando HTTP2 o SPDY
   
+Levantar un pod
+oc run ...
 
 
 

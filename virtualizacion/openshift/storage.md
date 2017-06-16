@@ -1,4 +1,6 @@
 https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html
+https://docs.openshift.com/dedicated/architecture/additional_concepts/storage.html
+https://docs.openshift.com/dedicated/dev_guide/persistent_volumes.html
 
 Se utiliza la solución de Kubernetes: persistent volume (PV) framework.
 
@@ -9,16 +11,20 @@ Parece que los PV pueden ser provisionados manualmente con tamaños específicos
 Generalmente habrá unos provisionadores dinámicos que se encargarán de crear los PVs según los PVCs que le lleguen.
 
 
-# Listar PVs
+# Listar PVs/PVCs (volumes/claims)
 oc get pv
+oc get pvc
+oc get pv (solo para admin?)
+
+No aparecen con: oc get all
 
 
 # Modos
 Tabla con que modos soporta cada plugin: https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html#pv-access-modes
 Los únicos que soportan todos: NFS o GlusterFS
-RWO, read-write por un único nodo
-ROX: read-only por varios nodos
-RWX: read-write por varios nodos
+ReadWriteOnce   RWO   The volume can be mounted as read-write by a single node.
+ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
+ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
 
 
 # Plugins soportados
@@ -36,3 +42,9 @@ https://docs.openshift.com/container-platform/3.5/install_config/persistent_stor
 Si una vez tenemos corriendo nuestra app, en el dc añadimos un storage, los containers se pararán y volverán a arrancar con el container attachado.
 
 Los volumenes no aparecen en "docker volume", supongo que se gestionan de otra manera.
+
+
+# Claims
+Al usuario se le da un volumen igual o superior a lo solicitado, tanto en espacio como en permisos.
+
+Therefore, the user may be granted more, but never less. For example, if a claim requests RWO, but the only volume available was an NFS PV (RWO+ROX+RWX), the claim would match NFS because it supports RWO.

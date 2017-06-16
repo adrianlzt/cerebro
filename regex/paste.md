@@ -14,3 +14,7 @@ paste file1 file2
   1 a
   2 b
   3 c
+
+
+ls -1 | paste -sd "," -
+  une las lineas por comas
