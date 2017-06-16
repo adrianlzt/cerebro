@@ -15,3 +15,7 @@ necesita compilarse con esa opcion
 
 # Protocolos que puede soportar
 DICT FILE FTP FTPS GOPHER HTTP HTTPS IMAP IMAPS POP3 POP3S RTMP RTSP SCP SFTP SMB SMBS SMTP SMTPS TELNET TFTP LDAP LDAPS SSH
+
+
+# Tiempo de respuesta
+curl -s -o /dev/null -w "%{time_total}" http://httpbin.org/delay/1

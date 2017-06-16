@@ -18,10 +18,14 @@ Lista de nodos
 oc get nodes
 
 No permitir que se monten mas pods
-oadm cordon NOMBRE_NODO
+oadm cordon NODE
 
 List all pods on given nodes
-oadm manage-node <mynode1> <mynode2> --list-pods
+oadm manage-node NODE1 NODE2 ... --list-pods
+  podemos poner varios nodos
+
+Evacuar nodo (sacar todos los pods)
+oadm drain NODE
 
 Migrate selected pods
-oadm manage-node <mynode> --evacuate --pod-selector="<service=myapp>"
+oadm manage-node NODE --evacuate --pod-selector="<service=myapp>"
