@@ -16,3 +16,8 @@ Nos monta /dev
 Storage:
 -v "/:/host"
 motanmos todos los puntos de montaje del host en el container sobre /host
+
+
+
+Como poner namespace de user:
+https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine

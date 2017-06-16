@@ -46,9 +46,30 @@ dos keys distintas:
 /openshift.io
 
 
-# PODs
+## PODs
 listar todos los pods:
 etcdctl2 --endpoint https://esjc-osh1-ma01p.om.dsn.inet:2379 ls --recursive /kubernetes.io/pods
 
 estado de un pod:
 get /kubernetes.io/pods/PROYECTO/NOMBRE_POD | python -m json.tool
+
+## BuildConfigs
+ls /openshift.io/buildconfigs/
+
+## ImageStreams
+ls /openshift.io/imagestreams/
+
+## Builds
+ls /openshift.io/builds/
+
+## DeploymentConfig
+ls /openshift.io/deploymentconfigs
+
+## Images
+ls /openshift.io/images
+
+## Routes
+ls /openshift.io/routes
+
+## Templates
+ls /openshift.io/templates

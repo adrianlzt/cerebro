@@ -19,6 +19,15 @@ The recommended value size is < 1MB
 # etcdctl / CLI
 https://github.com/coreos/etcd/tree/master/etcdctl
 
+Lo que este en v2 no tiene porque verse en v3
+
+etcdctl3 --endpoints https://server:2379 memberlist
+  lista de los nodos del cluster
+
+Contenido de etcd en v2
+etcdctl2 ls
+etcdctl2 ls --recursive
+
 
 ## con docker
 docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
