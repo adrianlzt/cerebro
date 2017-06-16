@@ -110,8 +110,9 @@ oc start-build --follow --build-loglevel=10 django-psql-persistent
 
 
 # Pods
-oc get pods
+oc get pods -o wide
   listar todos
+  -o wide
   tambien podemos ver su estado (Running, completed, CrashLoopBackOff)
 
 oc rsh POD
