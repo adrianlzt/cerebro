@@ -53,7 +53,7 @@ Directamente (o en la web, config de la bc, advanced):
 oc set build-secret --source bc/sample-build basicsecret
 
 
-Mediante annotations:
+Mediante annotations (el secret deberá existir antes de crearse el buildconfig para que se aplique):
 oc secrets new-basicauth <secret_name> --username=<user_name> --password=<password>
 oc annotate secret <secret_name> 'build.openshift.io/source-secret-match-uri-1=https://*.mycorp.com/*'
 
