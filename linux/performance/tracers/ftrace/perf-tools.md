@@ -15,3 +15,6 @@ arch: yaourt -Ss perf-tools-git
 # Tools
 execsnoop: trace las llamadas a exec(), vemos que procesos se están lanzando system-wide. Nos dice PID y PPID
            con -t nos da el tiempstamp de cuando se ejecutaron, útil para encontrar short lived procs
+
+killsoop: tracea llamadas kill
+opensoop: tracea llamadas open
