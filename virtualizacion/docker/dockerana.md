@@ -19,3 +19,10 @@ Permite exportar los datos para influxdb
 
 
 cockpit
+
+
+# Que checkear con checks de icinga/nagios
+proceso corriendo
+tiempo en retornar "info"
+uso de memoria rss
+
