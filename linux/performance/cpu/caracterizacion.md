@@ -16,5 +16,7 @@ Como regla rápida:
   IPC < 1.0: la memoria está siendo el cuello de botella
   IPC > 1.0: estamos intentando ejecutar demasiadas instrucciones
 
+También podemos tener la medida al contrario: CPI (Cycles Per Instruction)
+
 
 mirar pmcs.md

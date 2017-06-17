@@ -1,1 +1,1 @@
-../../virtualizacion/openstack/ceph/go.md
+../../storage/ceph/go.md

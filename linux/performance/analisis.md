@@ -18,7 +18,7 @@ https://www.slideshare.net/brendangregg/performance-use-method/13-Example_Summar
 http://www.brendangregg.com/USEmethod/use-linux.html
 https://www.slideshare.net/brendangregg/velocity-stoptheguessing2013/32
 
-Utilization Saturation and Errors (USE) 
+Utilization Saturation and Errors (USE)
 For every resource, check utilization, saturation, and errors.
 No encontrará todos los problemas, pero si la mayoría
 
@@ -111,14 +111,17 @@ Tracemos cuando los procesos se salen de la CPU para intentar entender porque es
 
 # On-CPU
 Vamos tomando muestras del estado de la/s CPUs periódicamente, tomando también el stack que ha llevado hasta lo que se está ejecutando en la CPU.
+Primera aproximácion, cada segundo mostrar el porcentaje de uso para cada estado por cada CPU:
+  mpstat -P ALL 1
 
+Podemos investigar más usando "perf", por ejemplo generando CPU flame graphs (que funciones están cónsumiendo mayor parte de la CPU)
 
 
 
 ## Off-CPU
 http://www.brendangregg.com/offcpuanalysis.html
 
-Tracemos cuando los procesos se salen de la CPU para intentar entender porque están parando.
+Tracemos cuando los procesos se salen de la CPU para intentar entender porque están parando. Almacenamos también el stack trace de la función parada.
 
 Importante tener en mente el esquema de vida de un proceso en linux:
   linux/performance/process_life.png
@@ -128,8 +131,9 @@ Importante tener en mente el esquema de vida de un proceso en linux:
   https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-7-638.jpg?cb=1486871383
   https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-8-638.jpg?cb=1486871383
 
+En Linux el estado por sí mismo no nos aporta mucho, pero el code path y el stack trace si nos da información útil.
 
-
+Flame graph: http://www.brendangregg.com/blog/2016-02-01/linux-wakeup-offwake-profiling.html
 
 
 # Otras metodologías
@@ -204,6 +208,10 @@ top
 
 iftop
   nos permite ver el consumo de red. Pone la interfaz en modo promiscuo
+
+linux/performance/guider.md
+  herramienta que intenta agregar mucha información y mostrarla de manera sencilla.
+
 
 Mirar logs
 
