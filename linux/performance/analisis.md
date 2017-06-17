@@ -86,6 +86,52 @@ Iremos analizando trozos de código viendo el tiempo que tarda en ejecutarse ent
 Los flame graphs pueden ser muy útiles en este caso.
 
 
+
+
+# TSA method
+http://www.brendangregg.com/tsamethod.html
+
+Thread State Analysis
+
+Para thread (proceso, hilo, task) mirar cuanto tiempo se tira en cada estado.
+Analizar los estados para entender que está haciendo e intentar reducir el tiempo que pasa en esos estados.
+
+Importante tener en mente el esquema de vida de un proceso en linux:
+  linux/performance/process_life.png
+  linux/performance/thread_states.jpg
+  linux/performance/thread_states_linux.jpg
+  http://www.brendangregg.com/TSAmethod/processlife_1000.png
+  https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-7-638.jpg?cb=1486871383
+  https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-8-638.jpg?cb=1486871383
+
+Tracemos cuando los procesos se salen de la CPU para intentar entender porque están parando.
+
+
+
+
+# On-CPU
+Vamos tomando muestras del estado de la/s CPUs periódicamente, tomando también el stack que ha llevado hasta lo que se está ejecutando en la CPU.
+
+
+
+
+## Off-CPU
+http://www.brendangregg.com/offcpuanalysis.html
+
+Tracemos cuando los procesos se salen de la CPU para intentar entender porque están parando.
+
+Importante tener en mente el esquema de vida de un proceso en linux:
+  linux/performance/process_life.png
+  linux/performance/thread_states.jpg
+  linux/performance/thread_states_linux.jpg
+  http://www.brendangregg.com/TSAmethod/processlife_1000.png
+  https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-7-638.jpg?cb=1486871383
+  https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-8-638.jpg?cb=1486871383
+
+
+
+
+
 # Otras metodologías
 Method R: latency-based analysis approach for Oracle databases. Ver "Optimizing Oracle Performance" Cary Millsap y Jeff Holt (2003)
           puede ser usada para otras cosas que no sean databases.
@@ -122,7 +168,7 @@ vmstat 1
   st: stolen time (by other guests)
 
 mpstat -P ALL 1
-  Nos detalla el consumo por cada CPU
+  Nos detalla el consumo por cada CPU. Parte del paquete sysstat
   Una única cpu muy tostada indicará un proceso single-threaded causando el problema
 
 pidstat 1

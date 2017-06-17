@@ -4,7 +4,7 @@ https://suchakra.wordpress.com/2015/05/18/bpf-internals-i/
 Es el strace para linux
 These are coming to Linux in the 4.x series
 
-Herramientas para usarlo: linux/performance/bcc
+Herramientas para usarlo: linux/tracers/bcc
 
 The extended Berkeley Packet Filter is an in-kernel virtual machine that can run programs on events, efficiently (JIT). It's likely to eventually provide in-kernel programming for ftrace and perf_events, and to enhance other tracers. It's currently being developed by Alexei Starovoitov, and isn't fully integrated yet, but there's enough in-kernel (as of 4.1) for some impressive tools: eg, latency heat maps of block device I/O. For reference, see the BPF slides from Alexei, and his eBPF samples.
 
