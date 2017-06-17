@@ -1,3 +1,14 @@
+Tipos de flame graphs:
+
+CPU
+CPI
+Off-CPU time
+Wakeup time
+Off-wake time
+Chain
+
+
+
 ## Flame Graph
 git clone https://github.com/brendangregg/FlameGraph
 cd FlameGraph/

@@ -122,6 +122,7 @@ Podemos investigar más usando "perf", por ejemplo generando CPU flame graphs (q
 http://www.brendangregg.com/offcpuanalysis.html
 
 Tracemos cuando los procesos se salen de la CPU para intentar entender porque están parando. Almacenamos también el stack trace de la función parada.
+No siempre es evidente enteder lo que está pasando.
 
 Importante tener en mente el esquema de vida de un proceso en linux:
   linux/performance/process_life.png
@@ -134,6 +135,13 @@ Importante tener en mente el esquema de vida de un proceso en linux:
 En Linux el estado por sí mismo no nos aporta mucho, pero el code path y el stack trace si nos da información útil.
 
 Flame graph: http://www.brendangregg.com/blog/2016-02-01/linux-wakeup-offwake-profiling.html
+
+Ejemplo: si hacemos un tar veremos en el flame graph que parte del tiempo se ha ido leyendo directorios, la mayor parte leyendo ficheros, escritura, fstat, etc
+
+Puede que algunas veces no sea necesario también hacer un "Wakeup flame graph", instrumentando cuando el SO saca un thread de la cola y lo poner a ejecutar.
+Por ejemplo:
+tar cf - * | gzip > fichero.tgz
+En el off-cpu veremos gzip bloqueado por un pipe_wait. Si miramos el wakeup, veremos que gzip estaba esperando a tar.
 
 
 # Otras metodologías
