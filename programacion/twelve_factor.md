@@ -51,18 +51,40 @@ No usar sticky sessions. Usar otras opciones para almacenar el estado de sesión
 
 VII. Port binding
 Export services via port binding
+La app debe ser autocontenida y exponerse via un puerto.
 
 VIII. Concurrency
 Scale out via the process model
+La app debe ser "first class citizen". Debe ser un proceso (no depender de que lo ejecute otro tercer servicio, eg: httpd o jvm)
+La idea es escalar arrancando más procesos y dividiendo el trabajo en procesos distintos.
+No deben correr en background, ni gestionar crashes, logs, etc, esa gestión se debe encargar el process manager (systemd por ejemplo)
 
 IX. Disposability
 Maximize robustness with fast startup and graceful shutdown
+Las apps deben poder pararse correctamente (con un SIGTERM) y crearse en cualquier momento.
+El parado correcto implicará, limitar las conexiones entrantes y terminar con las que estén en proceso.
+En caso de long pooling, el cliente desarrollado deberá poder reconectar con otro servidor en caso de que el actual se pare.
+Para los workers un parado correcto será devolver el job a la cola (sin haberlo procesado)
+Las jobs deben ser "reentrantes" (si fallan a mitad, pueden volverse a ejecutar), típicamente se conseguirá haciendo "transacciones" (o se realiza la operación entera, o no se realizada nada) o idempotentes (puede realizarse múltiples veces la misma operación obteniendo siempre el mismo resultado)
+Habrá que reducir el tiempo de arranque todo lo posible.
+También deberan ser resistentes ante muertes abruptas (por ejemplo el gestor de colas Beanstalkd retorna las jobs a la cola cuando un cliente se desconecta o da time out)
 
 X. Dev/prod parity
 Keep development, staging, and production as similar as possible
+Reducir los "gaps" entre desarrollo y producción:
+ - reducir el tiempo entre que el desarrollador mete una nueva funcionalidad hasta que esta sale a producción (horas a ser posible)
+ - hacer que la gente que desarrolla el código esté involucrada en su despliegue y pueda ver su comportamiento en producción
+ - mantener el entorno de desarrollo lo más parecido posible al de producción
+
+Para los backing services (bbdd, queues) intentar que sean los mismos que en producción. Aunque haya librerias que nos abstraigan de lo que hay por debajo, siempre puede haber pequeñas diferencias que funcionen en desarrollo, pasen los tests y luego fallen en producción. Usar las mismas versiones.
+Para los desarrolladores es facil que puedan montar réplicas de producción usando vagrant con alguna herramienta de despliegue (ansible, puppet, chef)
 
 XI. Logs
 Treat logs as event streams
+Las apps deben escribir su "event stream" (sus logs) a stdout. El "execution environment" será el encargado de gestionar esos logs.
 
 XII. Admin processes
 Run admin/management tasks as one-off processes
+A veces será necesario realizar tareas de administración sobre las apps, por ejemplo migraciones de la base de datos, arrancar el REPL para hacer algo manual o ejecutar algún script para solventar un problema.
+Estos comandos administrativos deben desplegarse junto con la release.
+Deben ser ejecutados en un entorno identico a las apps.

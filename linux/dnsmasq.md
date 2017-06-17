@@ -103,6 +103,20 @@ cname=pepe,ordenador-de-pepe
 Para crear alias de hostnames mirar linux/hostaliases.md
 
 
+Registros SRV
+srv-host =_ldap._tcp.example.com,ipa1.example.com,389
+srv-host =_ldap._tcp.example.com,ipa2.example.com,389
+
+Registros TXT
+txt-record=_kerberos.example.com,"EXAMPLE.COM"
+
+Consultar estos registros:
+dig _ldap._tcp.example.com SRV
+dig _kerberos.example.com TXT
+
+
+
+
 # Comprobar conf
 dnsmasq --test
 
