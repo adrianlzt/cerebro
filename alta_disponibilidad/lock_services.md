@@ -1,5 +1,5 @@
-http://progrium.com/blog/2014/07/29/understanding-modern-service-discovery-with-docker/
-Rise of the Lock Service
+Rise of the Lock Service http://progrium.com/blog/2014/07/29/understanding-modern-service-discovery-with-docker/
+alta_disponibilidad/distributed_systems.md
 
 
 # Paxos
@@ -46,8 +46,10 @@ lider envia datos a nodo1, nodo1 dice ack, lider contesta a usuario. nodo1 se sa
 
 
 # Implementaciones
-2006: Chubby (Google), basado en Paxos, distributed lock service consistent, partition-tolerant.
+Chubby (Google), basado en Paxos, distributed lock service consistent, partition-tolerant.
 Zookeeper implementa algo similar OpenSource
 
-2014: raft
+raft
+etcd usa raft
+consul, basado en las ideas de etcd
 

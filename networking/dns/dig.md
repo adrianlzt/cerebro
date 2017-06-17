@@ -1,6 +1,9 @@
 Obtener el AXFR (zone transfer) de un dominio
 dig @ns.domain.com dominio.com AXFR
 
+Obtener todos los registros
+dig example.com ANY
+
 
 MX de un server
 dig server.com MX

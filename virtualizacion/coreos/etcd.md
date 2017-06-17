@@ -1,6 +1,8 @@
 https://github.com/coreos/etcd
 https://coreos.com/using-coreos/etcd/
 
+competencia: consul, zookeper
+
 A highly-available key value store for shared configuration and service discovery. etcd is inspired by zookeeper and doozer, with a focus on:
 
 etcd is a highly available, distributed key/value store that is built to distribute configuration updates to all the servers in your cluster. Next to that it can be used for service discovery, or basically for any other distributed key/value based process that applies to your situation.
@@ -9,6 +11,11 @@ Simple: curl'able user facing API (HTTP+JSON)
 Secure: optional SSL client cert authentication
 Fast: benchmarked 1000s of writes/s per instance
 Reliable: Properly distributed using Raft
+
+Analisis de etcd (2014). Parece que había ciertos problemas, pero puede que ya solucionados.
+En api v2 ya tenian una opción para evitar los problemas de linealidad. En v3 no lo veo en la doc, puede que por defecto?
+https://github.com/coreos/etcd/issues/741
+https://aphyr.com/posts/316-call-me-maybe-etcd-and-consul
 
 
 Tamaño máximo de las values:
