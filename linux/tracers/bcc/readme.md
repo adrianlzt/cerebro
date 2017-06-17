@@ -13,3 +13,6 @@ http://www.brendangregg.com/blog/2016-03-05/linux-bpf-superpowers.html
 
 # Road ahead
 http://www.brendangregg.com/blog/2016-03-28/linux-bpf-bcc-road-ahead-2016.html
+
+
+Mirar esquema_funcionamiento.jpg

@@ -2,7 +2,7 @@ https://www.kernel.org/doc/Documentation/kprobes.txt
 https://lwn.net/Articles/132196/
 
 linux-2.6.9
-write probe hooks1 in kernel module
+write probe hooks in kernel module
 
 Inserta unos trozos de programa en un punto determinado de la memoria.
 Tiene acceso a los valores de los registros de la CPU
