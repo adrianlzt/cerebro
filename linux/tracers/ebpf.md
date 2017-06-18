@@ -5,6 +5,9 @@ https://github.com/torvalds/linux/tree/master/samples/bpf
 bcc/esquema_funcionamiento.jpg
 
 These are coming to Linux in the 4.x series
+redhat7 usa 3.10
+fedora26 4.11
+ubuntu 16.04.2 LTS usa 4.8
 
 
 # Comunicación
