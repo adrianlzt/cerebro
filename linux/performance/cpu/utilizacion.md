@@ -34,3 +34,14 @@ vmstat -w 1
 
 sar -q
   columna "runq-sz" 
+
+sudo perf sched record sleep 10 && sudo perf sched latency
+  miraremos las columas de average y maximum
+  pruebas en mi pc, avg ~ 0.x ms sin carga. Cuando sube la carga las tareas que necesitan realizar trabajo empiezan a subir hasta los ~10ms, y el max hasta 20
+
+
+# Errores
+perf, como?
+
+mcelog
+https://www.cyberciti.biz/tips/linux-server-predicting-hardware-failure.html

@@ -1,10 +1,14 @@
 http://www.brendangregg.com/perf.html
 https://lwn.net/Articles/346487/
 https://lwn.net/Articles/346488/
+https://lwn.net/Articles/353295/
 
 
 # Contar eventos
-PU counter statistics for the specified command:
+perf stat
+performance counters system-wide (hasta que lo paremos)
+
+Performance counter statistics for the specified command:
 perf stat command
 
 Count system calls for the specified PID, until Ctrl-C:
@@ -91,6 +95,9 @@ perf sched latency
   nos muestra una tabla sobre los consumos de tiempo y número de cambios de contexto de los procesos
   los tiempos creo que son entre que entra la tarea en la CPU hasta que se produce otro cambio de contexto
 
+perf sched map
+  nos muestra por cada CPU que tarea que encuentra ejecutando en cada momento (cada tarea tiene un nombre formado por dos caracteres).
+  Un punto significa "idle"
 
 
 perf list
