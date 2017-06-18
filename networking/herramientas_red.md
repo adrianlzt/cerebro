@@ -2,10 +2,11 @@
 - netstat
 - ss
 - sar
-- nethogs
-- iptraf
+- nethogs (consumo por proceso)
+- iptraf (consumos por conex e interfaz)
 - /proc/net/*
 - tcpdump
 - wireshark|tshark
 - tc
-
+- nicstat (resumen por interfaz, con %Util y saturación)
+- mtr (traceroute + ping)

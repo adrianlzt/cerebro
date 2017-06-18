@@ -61,6 +61,24 @@ Si vemos un error ya deberíamos tener el camino hacia la solución al problema.
 
 
 
+# Análisis USE
+http://www.brendangregg.com/USEmethod/use-linux.html
+Herramientas que usar:
+CPU: linux/performance/cpu/utilizacion.md
+Memory: linux/performance/memoria/utilizacion.md
+Network: linux/performance/network/utilizacion.md
+Storage-IO:
+Storage-capacity:
+Storage-controller:
+Network-controller:
+CPU-interconnect:
+Memory-interconnect:
+IO-interconnect:
+
+
+
+
+
 # Workload characterizacion (tercer paso tras USE)
 Caracterizar la carga que tenemos según:
  - quien la está causando? (PID, UID, IP,etc)
@@ -236,7 +254,7 @@ linux/tracers/perf/perf-tools.md
   herramientas basadas en ftrace y perf
 
 /usr/bin/time -v programa
-  al terminar, a parte del tiempo, nos da muchos más datos: page faults, memoria, ctx switches, swaps, files, etc
+   al terminar, a parte del tiempo, nos da muchos más datos: page faults, memoria, ctx switches, swaps, files, etc
 
 Mirar logs
 

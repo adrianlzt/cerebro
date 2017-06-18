@@ -1,6 +1,8 @@
 http://nginx.org/en/docs/http/load_balancing.html
 http://stackoverflow.com/questions/16283045/trouble-with-nginx-and-multiple-meteor-nodejs-apps/16289251#16289251
 
+Balanceo de tráfico TCP o UDP: https://www.nginx.com/resources/admin-guide/tcp-load-balancing/
+
 CUIDADO!
 No tiene check health en la versión grauita.
 Tiene un funcionamiento en que es capaz de pasar la peticion a otro nodo si uno del grupo upstream falla.

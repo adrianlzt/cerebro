@@ -35,5 +35,30 @@ https://github.com/brnt/openresty-rpm-spec
 https://www.nginx.com/resources/wiki/modules/lua/?highlight=lua#lua-installation 
 http://artifactory.hi.inet/artifactory/yum-ccb-ci/nginx-lua/x84_64/
 
+
+# nginScript
 Nginx + nginScript (just launched)
 https://www.nginx.com/blog/launching-nginscript-and-looking-ahead/
+https://www.nginx.com/blog/introduction-nginscript/
+
+VM de javascript corriendo dentro de nginx.
+Se permite meter configuración escrita en Javascript, evaluado en runtime por petición
+
+Ejemplos de cosas que se pueden hacer:
+ - routing dinámico, por ejemplo según un parámetro de la URL
+ - limitar tráfico abusivo, o denegar las peticiones
+ - mover parte de tu codigo de enrutado a nginx
+ - generar los logs con un formato deteminado (por ejemplo para que los ingeste ELK o Splunk)çç
+ - canary releases
+ - ir haciendo un cambio progresivo de tráfico entre un frontend viejo y el nuevo
+ - hacer de balanceador de SQL examinando las peticiones y actuando en consecuencia
+
+
+## Instalacion
+apt-get install nginx-module-njs
+yum install nginx-module-njs
+
+nginx.conf:
+load_module modules/ngx_http_js_module.so;
+
+nginx -s reload
