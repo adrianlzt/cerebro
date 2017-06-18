@@ -94,7 +94,7 @@ mirar los ejemplos en la ayuda del comando
 Analizamos llamadas al sistema
 
 Por defecto, entry probe, kernel function.
-Parece que para llamar a las syscall debemos hacerlo: sys_nombre
+Las syscall se llaman sys_X. Ejemplo, para connect -> sys_connect
 
 p -> kprobe
 r -> kretprobe
@@ -179,9 +179,12 @@ más ejemplos: https://github.com/iovisor/bcc/tree/master/examples/networking
 ## tcpconnect / tcpconnlat
 Nos muestra las conexiones que esta realizando cada programa.
 También permite filtrar por pid
-No muestra una conex si no ha llegado a establecerse
 
 También con versión con latencia (tiempo entre envio del paquete SYN hasta la respuesta)
+La versión con latencia solo muestra conexiones establecidas.
+
+Mirando los dos comandos podríamos encontrar conexiónes que no se establecen.
+Estaría bien una tool para esto (intentos de conexión no conseguidos)
 
 ## tcpaccept
 Muestra conexiones entrantes (cuando se produce la syscall accept())
@@ -200,5 +203,3 @@ Nos dice el comando, IP origen/destino y puerto origen/destino
 
 # gethostlatency
 Captura las llamadas de resolución de nombres y nos devuelve por quien se ha preguntando, que programa y la latencia de la respuesta.
-
-

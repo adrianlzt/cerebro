@@ -1,3 +1,5 @@
+http://book.mixu.net/distsys/single-page.html
+
 https://github.com/aphyr/distsys-class
 Notas para las clases que da aphyr sobre sistemas distribuídos.
 
