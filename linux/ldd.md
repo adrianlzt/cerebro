@@ -33,6 +33,10 @@ In the usual case, ldd invokes the standard dynamic linker (see ld.so(8)) with t
 # ELF
 El formato ELF (Executable and Linkable Format) es un formato de archivo para ejecutables, código objeto, bibliotecas compartidas y volcados de memoria. Fue desarrollado por Unix System Laboratories (USL) como parte de la ABI. En principio fue desarrollado para plataformas de 32 bits, a pesar de que hoy en día se usa en gran variedad de sistemas.
 
+mirar esquema en elf.png
+
+readelf fichero
+
 
 
 

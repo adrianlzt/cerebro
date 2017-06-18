@@ -11,14 +11,27 @@ La userspace se llama Uprobe (linux-3.5)
 En kernel están las kprobes, kretprobe (con valor retornado) y las jprobes
 
 
+
 # Uprobes
 echo 'p:myapp /bin/bash:0x4245c0' > /sys/kernel/tracing/uprobe_events
 
+
 # Kretprobes
-echo 'r:myretprobe do_sys_open $retval' >> /sys/kernel/tracing/kprobe_events 
+echo 'r:myretprobe do_sys_open $retval' >> /sys/kernel/tracing/kprobe_events
 echo 1 > /sys/kernel/tracing/events/kprobes/myretprobe/enable
 
 cat /sys/kernel/tracing/trace
+
+
+
+
+# USDT: user statically-defined tracing
+Ejemplo de uprobes metidas en MySQL: https://github.com/MariaDB/server/blob/10.2/include/probes_mysql.d.base
+
+USDT probes de una aplicación o librería: usando tplist (bcc-tool).
+Los binarios generalmente no están compilados con este soporte (http://www.brendangregg.com/blog/2016-10-12/linux-bcc-nodejs-usdt.html)
+
+
 
 
 # BCC

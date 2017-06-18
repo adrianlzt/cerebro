@@ -132,7 +132,7 @@ Importante tener en mente el esquema de vida de un proceso en linux:
   https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-7-638.jpg?cb=1486871383
   https://image.slidesharecdn.com/linuxbpfsuperpowers-160302200247/95/linux-bpf-superpowers-8-638.jpg?cb=1486871383
 
-En Linux el estado por sí mismo no nos aporta mucho, pero el code path y el stack trace si nos da información útil.
+En Linux el estado por sí mismo no nos aporta mucho, pero el code path y el stack trace si nos da información útil
 
 Flame graph: http://www.brendangregg.com/blog/2016-02-01/linux-wakeup-offwake-profiling.html
 
@@ -142,6 +142,14 @@ Puede que algunas veces no sea necesario también hacer un "Wakeup flame graph",
 Por ejemplo:
 tar cf - * | gzip > fichero.tgz
 En el off-cpu veremos gzip bloqueado por un pipe_wait. Si miramos el wakeup, veremos que gzip estaba esperando a tar.
+
+
+## Chain graphs
+http://www.brendangregg.com/blog/2016-02-05/ebpf-chaingraph-prototype.html
+https://gist.github.com/brendangregg/c67039252268ec5e66ba
+
+Chain graphs show why your threads have blocked, along with the entire chain of wakeup stacks that led to their resumption.
+
 
 
 # Otras metodologías
@@ -219,6 +227,11 @@ iftop
 
 linux/performance/guider.md
   herramienta que intenta agregar mucha información y mostrarla de manera sencilla.
+
+Memory leaks
+memleak -p 10 60 1
+  para el pid=10, saca una vez, pasados 60", los stacktraces de memoria requerida que no fueron liberados
+  nos puede servir para investigar porque la app esta cogiendo memoria y no liberándola
 
 
 Mirar logs

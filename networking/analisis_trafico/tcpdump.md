@@ -1,5 +1,8 @@
 http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
+CUIDADO con ejecutarlo sobre interfaces 10GbE+, causa mucho overhead.
+BPF puede hacerlo más eficientemente. Hay ejemplos para analizar casos particulares (como retransmisiones TCP)
+
 Mostrar a que interfaz pertenece cada paquete
 http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
 Mirar anydump.sh
@@ -22,7 +25,7 @@ Mostrar más información (TCP/UDP, flafs, checksum, etc)
 # tcpdump -v ...
 
 Muestra el tráfico en ASCII
-# tcpdump -A port 80 
+# tcpdump -A port 80
 
 Por defecto se usa la interfaz eth0, para cambiarla:
 # tcpdump -i wlan0 -A host 80.23.224.121

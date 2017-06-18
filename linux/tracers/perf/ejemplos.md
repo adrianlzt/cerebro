@@ -1,5 +1,6 @@
 http://www.brendangregg.com/perf.html
 https://lwn.net/Articles/346487/
+https://lwn.net/Articles/346488/
 
 
 # Contar eventos

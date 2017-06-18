@@ -5,3 +5,7 @@ A tracepoint placed in code provides a hook to call a function (probe) that you 
 
 Para obtener una lista de los tracepoints disponibles:
 perf list
+
+
+tplist
+  bcc-tool

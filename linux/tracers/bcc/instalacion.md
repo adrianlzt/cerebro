@@ -1,5 +1,5 @@
 # Arch
-yaourt -S aur/bcc
+yaourt -S aur/bcc-tools
 
 En /usr/share/bcc/tools/ tendremos todas las herramientas que vienen.
 
