@@ -228,11 +228,12 @@ iftop
 linux/performance/guider.md
   herramienta que intenta agregar mucha información y mostrarla de manera sencilla.
 
-Memory leaks
-memleak -p 10 60 1
-  para el pid=10, saca una vez, pasados 60", los stacktraces de memoria requerida que no fueron liberados
-  nos puede servir para investigar porque la app esta cogiendo memoria y no liberándola
+linux/tracers/bcc/tools.md
+  herramientas de traceo para kernel >= 4.x
+  mirar el gráfico para ver que herramienta necesitamos
 
+linux/tracers/perf/perf-tools.md
+  herramientas basadas en ftrace y perf
 
 Mirar logs
 
