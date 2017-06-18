@@ -8,6 +8,8 @@ Planificador, se intenta buscar un balance entre
 
 Los planificador se aplican por disco (no por partición)
 
+Comparativa: http://www.phoronix.com/scan.php?page=article&item=linux-412-io
+
 
 Scheduler "ascensor": http://en.wikipedia.org/wiki/Elevator_algorithm
   el disco se mueve desde fuera a dentro (o viceversa).
@@ -23,7 +25,7 @@ Scheduler deadline:
   es el por defecto en Ubuntu
   Params (/sys/block/sda/queue/iosched):
     write/read_expire: tiempo que cuando se va a cumplir cuelas en la cola a la petición. Por defecto 500ms
-    fifo_batch: 
+    fifo_batch:
     front_merges: recorrer un fichero al revés. Se puede desactivar si estamos seguros que no vamos a recorrer los ficheros de esa manera
                   sería más rápido el algoritmo, pero la ganancia será muy pequeña
     back_seek_penalty: cuanto más costoso es ir a un sector que tenemos detrás (tenemos que dar la vuelta al disco)
@@ -56,6 +58,11 @@ Scheduler BFQ: http://algo.ing.unimo.it/people/paolo/disk_sched/
   es como CFQ pero en vez de por cuotas de tiempo, por cuotas de bytes
   seguramente aparezca en el kernel 3.16 (http://www.phoronix.com/scan.php?px=MTYyNDU&page=news_item)
 
+Kyber (facebook):
+  https://lwn.net/Articles/720071/
+  I/O scheduler for multiqueue devices
+
+
 Scheduler SIO:
   mezcla entre noop y deadline
   hace algún merge. Es un noop un pelín más complicado
@@ -64,7 +71,7 @@ Máquinas virtuales:
   lo mejor es que el planificador esté en las VM, que son las que tienen las app
   dejar el host como noop
 
-Oracle: 
+Oracle:
   tiene su propio planificador, poner el SO a noop, el se encarga de gestionar los accesos a disco
 
 

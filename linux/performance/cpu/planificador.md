@@ -1,30 +1,33 @@
+CPU SCHEDULERS
+
 https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt
 CFS: scheduler de CPU oficial
 El Planificador Completamente Justo (Completely Fair Scheduler - CFS) es un algoritmo planificador desarrollado con la meta de maximizar el uso de la CPU con las diferentes tareas que se lanzan en un sistema Linux basándose en el Fair Queuing.
 
 
 # Scheduling class:
- # OTHER: scheduling por defecto
- # FIFO: realtime sin timeslice (hasta que termina o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
-   + prioridad que -20 nice
- # ROUND ROBIN: realtime con timeslice (hasta que vence timeslice o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
-   + prioridad que -20 nice
- # BATCH: similar a OTHER pero con timeslice más alto para aprovechar cache (mejora throughput a costa de latencia)
- # DEADLINE (3.14+): hard realtime (queremos garantizar ejecución en un plazo estricto)
- Clases que solo están en el kernel de Con Kolivas
-   # ISO (-ck): similar a Rountd Robin para usuarios (no root)
-   # IDLE (-ck): solo cuando CPU idle.
+OTHER: scheduling por defecto
+FIFO: realtime sin timeslice (hasta que termina o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
+  más prioridad que -20 nice
+ROUND ROBIN: realtime con timeslice (hasta que vence timeslice o la expulsa otra tarea FIFO/RR de mayor prioridad), solo root.
+  más prioridad que -20 nice
+BATCH: similar a OTHER pero con timeslice más alto para aprovechar cache (mejora throughput a costa de latencia)
+DEADLINE (3.14+): hard realtime (queremos garantizar ejecución en un plazo estricto)
+
+Clases que solo están en el kernel de Con Kolivas
+    ISO (-ck): similar a Rountd Robin para usuarios (no root)
+    IDLE (-ck): solo cuando CPU idle.
      nice +20 tiene más prioridad que idle
 
 
-BFS: brain fuck scheduler
+# BFS: brain fuck scheduler
 Parece que es un mejor planificador, pero no lo meten en el mainline porque no escala con más de 16 CPUs
 Siempre sacan parches para cada nueva versión de kernel.
-http://kernel.kolivas.org/
+http://www.users.on.net/~ckolivas/kernel/
+http://ck.kolivas.org/patches/bfs/bfs-faq.txt
 http://ck-hack.blogspot.com.es/
 
 Benchmark Oct-2012 http://repo-ck.com/bench/cpu_schedulers_compared.pdf
-
 
 
 La task "swapper" es la que se ejecuta cuando no hay nada que ejecutar:
