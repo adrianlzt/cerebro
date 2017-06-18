@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 echo "it requires at least 3GB free in /tmp"
 sync
 echo 3 > /proc/sys/vm/drop_caches

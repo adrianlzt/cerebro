@@ -1,4 +1,5 @@
 http://microservices.io/patterns/microservices.html
+https://www.nginx.com/blog/introduction-to-microservices/
 
 Definir la arquitectura como una estructura de aplicaciones ligeramente acopladas (servicios colaborativos).
 Dividir según la función que haga cada uno, ejemplo: pedidos, clientes, etc
