@@ -32,13 +32,19 @@ Completely multi-threaded, can support large files and large filesystems, extend
 Por defecto en RHEL7
 Máximo 8 symlinks
 
+
+NEXT-GEN FS:
+https://arstechnica.com/information-technology/2014/01/bitrot-and-atomic-cows-inside-next-gen-filesystems/
+snapshots, volume management, checksumming, self-healing, replication, and scalability
+
 # BTRFS
 Posiblemente el futuro de los FS en linux.
 Btrfs is intended to address the lack of pooling, snapshots, checksums, and integral multi-device spanning in Linux file systems.
 Está como tech preview en RHEL 7
-Por defecto en Sus Enterprise
+Por defecto en Suse Enterprise
 Offers advanced management, reliability, and scalability features. Btrfs provides checksum verification for files as well as metadata. It also offers snapshot and compression capabilities, and integrated device management.
 btrfs before linux-4.4 and btrfs-progs-v4.4 is simply not worth the risk (https://wiki.debian.org/Btrfs)
+Parece que no es tan estable y con tatas funcionalidades como ZFS, pero está en camino y superará a ZFS.
 
 # ZFS
 De solaris, muy completo y robusto.
