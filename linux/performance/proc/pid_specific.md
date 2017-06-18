@@ -13,6 +13,10 @@ Depende del tipo de fd nos da una info u otra. Mirar en http://man7.org/linux/ma
 
 
 # /proc/$(pidof proceso)/stat
+http://brokestream.com/procstat.html
+  programita en C para sacar el contenido en formato texto (como /status pero con todo lo que tiene /stat)
+man 5 proc
+ /proc/[pid]/stat
 
 # /proc/$(pidof proceso)/status
 https://www.kernel.org/doc/Documentation/filesystems/proc.txt

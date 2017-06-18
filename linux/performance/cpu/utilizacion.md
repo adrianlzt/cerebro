@@ -27,7 +27,11 @@ mpstat -P ALL 1
 
 # Saturación de la CPU
 Miraremos la cola "runnable" y no deberá sobrepasar el número de CPUs en nuestra máquina
-cat /proc/cpuinfo | egrep "^processor" | wc -l
+Num de cpus: cat /proc/cpuinfo | egrep "^processor" | wc -l
+
+cat /proc/stat | grep procs
+  procs_running, elementos en la cola runnable
+  procs_blocked, esperando io (otras opciones?)
 
 vmstat -w 1
   columna "r" nos dice el número de procesos ejecutables (ejecutandose o esperando para ser ejecutados)

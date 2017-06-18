@@ -235,6 +235,9 @@ linux/tracers/bcc/tools.md
 linux/tracers/perf/perf-tools.md
   herramientas basadas en ftrace y perf
 
+/usr/bin/time -v programa
+  al terminar, a parte del tiempo, nos da muchos más datos: page faults, memoria, ctx switches, swaps, files, etc
+
 Mirar logs
 
 
