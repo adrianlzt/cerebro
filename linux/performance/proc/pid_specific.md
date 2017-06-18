@@ -48,6 +48,16 @@ mirar memoria/tunables.md oom
   23 0x0 0x0 0x0 0x0 0x7fff6142fa90 0x3e8 0x7fff6142fa68 0x7f7d5ab873b3
   En este caso querra decir que está esperando en esa syscall (mirar linux/syscall.md) con esos parametros
 
+# proc/$(pidof proceso)/schedstat
+https://www.kernel.org/doc/Documentation/scheduler/sched-stats.txt
+http://eaglet.rain.com/rick/linux/schedstat/v15/format-15.html
+http://eaglet.rain.com/rick/linux/schedstat/v15/latency.c
+
+ 1) time spent on the cpu
+ 2) time spent waiting on a runqueue
+ 3) # of timeslices run on this cpu
+No tengo seguro que sigan siendo estos valores
+
 # proc/$(pidof proceso)/sched
 scheduling data
 https://lwn.net/Articles/242900/
