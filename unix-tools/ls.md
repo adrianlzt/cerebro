@@ -2,6 +2,9 @@ Otros comandos lsxxx utiles
 http://www.cyberciti.biz/open-source/command-line-hacks/linux-ls-commands-examples/
 
 
+ls -lahSr
+ordear por tamaño (-S) más grandes al final
+
 ls -l --time-style=+%Y-%m-%d:%H:%M:%S
 Formato específico para la fecha
 
