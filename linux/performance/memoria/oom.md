@@ -1,15 +1,17 @@
 http://lwn.net/Articles/317814/
 
 Tunables para OOM:
-vm.oom_dump_tasks
-vm.oom_kill_allocating_task
+vm.oom_dump_tasks, para hacer que haga un dump de todo el sistema en caso de que salga el OOM
+vm.oom_kill_allocating_task, para matar un proceso que se considere, o el causante del oom
 vm.panic_on_oom
 
+Se encarga de matar procesos si se queda sin memoria. Empieza a matar procesos que considera poco importantes.
+Cada proceso tendrá su propio /proc/PID/oom_score calculado heurísticamente (procesos más viejos más prioridad, procesos de root más prioridad, etc). Cuanto mayor número, mayor probabilidad de que sea matado. El número real que usará para matar procesos será el oom_score_adj
+Si queremos proteger un proceso podemos darle más valor en /proc/PID/oom_adj, este se sumará al oom_score.
 
 Si las reservas de memoria siempre fuesen lícitas (no se dejase reservar más memoria de la que existe, vm.overcommit_memory = 2, never overcommit) nunca se ejecutaría el
 OOM killer (out of memory killer).
-Pero lo normal es tener activado el over commit, de manera que se ofrece a las apps más memoria de la que realmente disponemos. Esto se hace porque se ha visto que las ap
-ps siempre reservan más memoria de la que realmente usan. El modo por defecto (0) va dando memoria excepto para peticiones excesivas.
+Pero lo normal es tener activado el over commit, de manera que se ofrece a las apps más memoria de la que realmente disponemos. Esto se hace porque se ha visto que las apps siempre reservan más memoria de la que realmente usan. El modo por defecto (0) va dando memoria excepto para peticiones excesivas.
 Podemos ver la memoria "allocated" por todos los procesos en: cat /proc/meminfo | grep Committed_AS
 
 Podemos dar un valor a cada proceso para que tenga mayor o menor probabilidad de ser matado:
@@ -18,6 +20,7 @@ The possible values of oom_adj range from -17 to +15. The higher the score, more
 Al saltar el oom tendremos una traza en dmesg y en la consola.
 De las primeras lineas nos dirá quien ha ejecutado el oom killer y de las últimas tendremos que aplicación se ha matado (Killed process), con su score y la memoria que ocupaba.
 Nos hará un dump del estado de la memoria antes de matar la aplicación.
+
 
 Buscando la línea "Node n Normal" tendremos dos valores importantes: free, high y active_file.
 En el caso de tener swappiness=0, solo se swapeara en caso de que free + active_file < high
