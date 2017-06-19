@@ -53,6 +53,9 @@ etcdctl2 --endpoint https://esjc-osh1-ma01p.om.dsn.inet:2379 ls --recursive /kub
 estado de un pod:
 get /kubernetes.io/pods/PROYECTO/NOMBRE_POD | python -m json.tool
 
+Buscar algo en todos los pods
+for i in $(etcdctl2 ls --recursive /kubernetes.io/pods); do etcdctl2 get $i 2> /dev/null | grep docker-registry > /dev/null && echo $i; done
+
 ## BuildConfigs
 ls /openshift.io/buildconfigs/
 
