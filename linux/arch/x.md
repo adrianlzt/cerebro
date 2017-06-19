@@ -10,7 +10,7 @@ pacman -S xf86-video-intel
 
 
 
-pacman -S i3wm guake
+pacman -S i3-wm guake
 systemctl enable slim
 systemctl start slim
 

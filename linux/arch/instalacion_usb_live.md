@@ -48,6 +48,7 @@ Crear /boot/loader/entries/arch.conf
 title          Arch Linux
 linux          /vmlinuz-linux
 initrd         /initramfs-linux.img
+options        root=PARTUUID=14420948-2cea-4de7-b042-40f67c618660 rw
 
-Algo falta, el options?
-
+El PARTUUID lo conseguimos con:
+sudo blkid /dev/sdb2
