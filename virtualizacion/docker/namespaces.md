@@ -21,3 +21,7 @@ motanmos todos los puntos de montaje del host en el container sobre /host
 
 Como poner namespace de user:
 https://success.docker.com/KBase/Introduction_to_User_Namespaces_in_Docker_Engine
+
+
+Ejecutar desde el host comandos en el container entrando en su namespace:
+nsenter
