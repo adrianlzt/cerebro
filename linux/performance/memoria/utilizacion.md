@@ -14,6 +14,16 @@ sudo slabtop -s c
 Por proceso usar top/htop.
 Mirar "RES" (resident main memory), "VIRT" (virtual memory)
 
+pmap -d PID
+pmap -x PID
+  memoria que esta usando el proceso. Mapeada, privada, shared.
+
+sudo smem -kt
+  por cada proceso:
+    memoria swap consumida
+    memoria exclusiva del proceso
+    memoria exclusiva más la compartida dividida entre el número de procesos que la comparten
+    memoria exclusiva + shared
 
 
 

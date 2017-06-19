@@ -49,8 +49,9 @@ ps -eo pid,maj_flt,min_flt,pmem,rss,vsz         # info de memoria
   maj_flt: fallos de página, ir a disco a buscar la página
   min_flt: la página está en RAM pero no está en la TLB, operación costosa pero no tanto como ir a disco
   pmem: % de memoria
-  rss: consumo de memoria ram
-  vsz: consumo de memoria virtual (total)
+  RSS: consumo de memoria ram
+  VSZ: consumo de memoria virtual (total)
+Para hacernos mejor una idea de la memoria consumida: linux/performance/memoria/smem.md
 
 ps -eo rss,vsz,pid,cputime,cmd --width 100 --sort -rss,-vsz | head
   Los 10 con más consumo de memoria
