@@ -43,4 +43,11 @@ https://wiki.archlinux.org/index.php/Systemd-boot
 
 chroot# bootctl install
 Conf metida en: /boot/loader/loader.conf
+Modificar para que el default sea: arch-*
+Crear /boot/loader/entries/arch.conf
+title          Arch Linux
+linux          /vmlinuz-linux
+initrd         /initramfs-linux.img
+
+Algo falta, el options?
 
