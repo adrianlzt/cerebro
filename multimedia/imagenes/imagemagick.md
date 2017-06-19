@@ -1,6 +1,6 @@
 http://www.imagemagick.org/Usage/
 
-Información sobre la imagen:
+Información sobre la imagen (datos exif):
 http://www.imagemagick.org/script/identify.php
 identify file.jpg
 identify -verbose file.jpg
