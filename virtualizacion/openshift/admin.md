@@ -27,6 +27,7 @@ oadm manage-node NODE1 NODE2 ... --list-pods
 
 Evacuar nodo (sacar todos los pods)
 oadm drain NODE
+  antes de empezar hace un cordon del nodo
 
 Migrate selected pods
 oadm manage-node NODE --evacuate --pod-selector="<service=myapp>"
