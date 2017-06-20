@@ -1,3 +1,4 @@
+https://www.kernel.org/doc/Documentation/cgroup-v2.txt (mergeado en kernel 4.5)
 http://en.wikipedia.org/wiki/Cgroups
 http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf
 yum install kernel-doc; cd /usr/share/doc/kernel-doc-3.14.2/Documentation/cgroups/
@@ -13,7 +14,12 @@ Otras formas de limitar:
 
 
 
+cgroup is a mechanism to organize processes hierarchically and distribute system resources along the hierarchy in a controlled and configurable manner.
+
 cGroups (control groups) is a Linux kernel feature to limit, account and isolate resource usage (CPU, memory, disk I/O, etc.) of process groups
+
+Estructura jerárquica donde cada proceso pertenece a un único cgroup.
+Los hijos por defecto irán al mismo cgroup que el padre, aunque podrán ser cambiados.
 
 Muchos de los problemas vienen por la exhaustación de recursos.
 Con cGroups limitamos, por recurso, que límites tiene de CPU, memoria, disco, etc
@@ -24,8 +30,77 @@ Tipos de controladores / Subsistemas:
   - Disk IO
   - Red
 
-Listar todos y decir donde están montados
-ls /sys/fs/cgroups ?
+cgroups v2 tiene un único punto de montaje (v1 tenia varios). v2 y v1 pueden convivir juntos al mismo tiempo. Los controllers que soporten v2 y no estén siendo utilizados en v1 se unirán automáticamente a v2
+Podemos ver si lo tenemos montado con (cgroup2 será la versión 2)
+mount | grep cgroup
+
+
+# v2 uso manual
+cd /sys/fs/cgroup/unified
+  o donde tengamos montado el cgroupsv2
+mkdir prueba
+  creamos un cgroup (podemos seguir creando dirs para hacer una jerarquia)
+rmdir prueba
+  si ya no está en unso (o solo con procesos zombies) podemos borrar un cgroup
+
+cat /proc/PID/cgroup
+  nos dice a que cgroups pertenece un proceso (una linea por cada controller)
+  para v2 sera la línea "0::xxx"
+
+cat cgroup/cgroup.events
+  "populated N", 1 si este cgroup o algún hijo tiene procesos
+
+cat cgroup/cgroup.controllers
+  controllers disponibles
+
+echo "+cpu +memory -io" > cgroup.subtree_control
+  activamos/desactivamos controllers
+  consultamos cuales están activos
+
+
+## Pesos / Límites / Proteciones / Allocations
+Pesos: distribuir pesos entre los hijos (entre 1 y 10000, por defecto 100).
+Límites: limite por hijo. La suma de hijos puede ser mayor que el límite de padre
+Protections: para asegurar una memoría mínima para un cgroup
+Allocations: límites que no se pueden sobrepasar
+
+## Controllers
+
+### Memoria
+Gestión complicada.
+Se tienen en cuenta:
+ - Userland memory - page cache and anonymous memory.
+ - Kernel data structures such as dentries and inodes.
+ - TCP socket buffers.
+Valores en bytes (redondeados automáticamente a PAGE_SIZE).
+
+memory.current: consumo total de memoria por el cgroup y sus descendientes
+memory.high: mecanismo principal para limitar la memoria. Por encima de este valor los procesos del cgroup son throttled y puestos bajo una presión de reclamación de memoria muy grande. Este límite nunca llama al OOM. Podría superarse el límite en condiciones extremas.
+memory.max: si el cgroup alcanza este límite y no puede recudirse el consumo de memoria, se ejecutará el OOM killer en el cgroup. Bajo ciertas condiciones se podría rebasar el límite temporalmente.
+memory.events: recuento de eventos de low, high, max y oom que han saltado.
+memory.stat: descripción detallada del consumo de memoria
+memory.swap: consumo de ram (se puede limitar memory.swap.max)
+
+### IO
+### CPU
+### PID
+  pids.max: número máximo de pids
+### RDMA
+### perf_event (para filtrarlos? no explica)
+
+## Namespace
+La información puesta en /proc/PID/cgroup debe estar en un namespace para que un proceso dentro de uno no pueda ver el path completo donde está configurado (información sensible)
+
+
+
+
+
+
+
+# V1?
+
+
+Listar todos y decir donde están montados (si tenemos systemd ya estarán montados)
 
 # lssubsys -am
 cpuset /sys/fs/cgroup/cpuset
@@ -50,13 +125,13 @@ CPU:
     .cpus: cpus permitidas (0-2,5,7)
     .mems nodos de memoria permitidos (0-2,5,7)
 
-Memoria: 
+Memoria:
   Se pueden controlar consumos y afinidad NUMA (usar solo ciertos nodos de memoria afines a un procesador)
   memory: memoria
     .force_empty: 0 limpia buffers y cache
     .swappiness: 0 reduce mucho el swapping, 100 libera memoria
 
-Disk IO: 
+Disk IO:
   Balanceo por pesos
   blkio
   devices: acceso a devices
@@ -64,18 +139,18 @@ Disk IO:
   freezer: agrupa tareas para congelarlas
     .state: congela tareas en el cgroup (FROZEN/THAWED)
 
-Red: 
+Red:
   Control de ancho de banda
   net_cls: marca paquetes (para tc, shaping, iptables)
-  
+
 ns: Name Space
   Para aislamiento de procesos (containers)
 
 
 Jerarquías y cGroups:
   Con esto podemos hacer un arbol de jerarquías, por ejemplo creando el cgroup "IT" y debajo de este cgroup meter cuatro departamentos.
-  
-Instalación: 
+
+Instalación:
 yum -y install libcgroup
 
 
