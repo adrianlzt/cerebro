@@ -1,3 +1,7 @@
+Registry público de RedHat
+https://access.redhat.com/containers
+
+
 https://blog.openshift.com/getting-started-docker-registry/
 https://docs.openshift.com/container-platform/3.3/dev_guide/managing_images.html#accessing-the-internal-registry
 

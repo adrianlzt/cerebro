@@ -1,6 +1,8 @@
 drone.io
 
 Herramienta de CI simple usando docker para el build.
+Tambien tiene una CLI para usarlo sin server.
+Respecto a Jenkins, este es más simple pero consume muuucha menos memoria.
 
 En un fichero .drone.yml le definimos las pipelines.
 Cada pipeline es una imagen con las instrucciones que se lanzarán (arranca un container y lanza todas las intrucciones seguidas)
@@ -25,6 +27,15 @@ Tambien tiene badges
 Tiene una sección de secrets donde almacenar clave=valor.
 Para poder meter claves en el drone.yml
 Se puede limitar que tipos de hooks tienen acceso al los secretos.
+
+
+# CLI
+Hay una cli "drone" para manejar ciertas cosas.
+Para usarlo hace falta generar un token en la web y otra venv para decirle donde esta el server.
+
+drone exec
+  para lanzar a mano el .drone.yml
+  no hace falta tener servidor
 
 
 # Estructura

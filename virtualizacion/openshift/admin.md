@@ -14,6 +14,11 @@ Al menos tendremos:
 
 # Gestion de nodos
 
+Reiniciar docker
+Si reiniciamos el servicio docker de un nodo los pods no se moverán.
+Simplemente pasarán a estado Error y luego volverán a arrancar, poniendo +1 al número de restarts.
+
+
 Lista de nodos
 oc get nodes
 

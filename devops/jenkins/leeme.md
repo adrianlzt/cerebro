@@ -1,3 +1,6 @@
+competencia: drone-ci.md go-ci.md
+
+
 Herramienta de continous integration
 La idea del 'continous integration' es la de que multiples desarrolladores están editando el mismo código. Con jenkins comprobamos que todo sigue compilando y pasa los tests.
 La idea es que los desarrolladores comiteen los cambios cada día o dos, entonces se testee todo automaticamente.

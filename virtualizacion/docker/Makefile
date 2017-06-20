@@ -2,6 +2,8 @@
 # Makefile
 # Adrián López Tejedor, 2017-02-24 12:03
 #
+# Otra opcion es usar la cli de drone.io y usar ficheros .docker.yml para lo que suelo hacer aqui
+#
 
 VERSION=$$(cat VERSION)
 NAME="tools/nombre"
