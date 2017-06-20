@@ -5,6 +5,12 @@ https://wiki.archlinux.org/index.php/cgroups
 
 Para usarlo en sistemas con systemd mirar cgroups-systemd.md
 
+Otras formas de limitar:
+ ulimit
+ setrlimits
+ limits.conf
+ nice
+
 
 
 cGroups (control groups) is a Linux kernel feature to limit, account and isolate resource usage (CPU, memory, disk I/O, etc.) of process groups
@@ -19,6 +25,8 @@ Tipos de controladores / Subsistemas:
   - Red
 
 Listar todos y decir donde están montados
+ls /sys/fs/cgroups ?
+
 # lssubsys -am
 cpuset /sys/fs/cgroup/cpuset
 cpu,cpuacct /sys/fs/cgroup/cpu,cpuacct
@@ -33,7 +41,6 @@ hugetlb /sys/fs/cgroup/hugetlb
 También podemos verlo con:
 cgsnapshot
 
-  
 CPU:
   Ejemplo: creo dos grupos, uno con 2cores y el otro con los 6 restantes.
            Luego asocio un comando a uno de los grupo y digo que porcentaje puede consumir
@@ -258,8 +265,3 @@ Error changing group of pid 8370: No space left on device
 bash: echo: error de escritura: Argumento inválido
 bash: echo: write error: Invalid argument
 Porque hay ya una tarea en tasks
-
-
-
-# Exceder un límite
-Si tenemos configurado un límite de memoria en un cgroup y un proceso se excede, veremos en el dmesg como sale el oom killer y mata el proceso.
