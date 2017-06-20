@@ -1,3 +1,12 @@
+SSSD can provide credentials caches for several system services:
+ NSS
+ PAM
+ SSH (known_hosts)
+ autofs (coger mount locations de un LDAP)
+ sudo (conecta con LDAP para obtener policies)
+ PAC (conex con Kerneros para usar Active Directory)
+
+
 Troubleshooting sssd: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/SSSD-Troubleshooting.html#idp24576816
 Performance tunning sssd: https://jhrozek.wordpress.com/2015/08/19/performance-tuning-sssd-for-large-ipa-ad-trust-deployments/
 

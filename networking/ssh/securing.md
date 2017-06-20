@@ -1,4 +1,5 @@
 https://stribika.github.io/2015/01/04/secure-secure-shell.html
+http://www.la-samhna.de/library/brutessh.html
 
 /etc/ssh/sshd_config
 KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
