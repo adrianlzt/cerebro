@@ -32,7 +32,10 @@ ps -ef --sort=start_time
 Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
-Memoria:
+Memoria (RSS) en megabytes, los 10 procesos que más consumen
+ps -eo rss,pmem,pid,user,comm --sort -rss | awk '{ $1=$1/1024" MB" ; printf($0"\n") }' | head | column -t
+
+Memoria (en bytes):
 ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | column -t | head
 
 Total memoria usada en MB
