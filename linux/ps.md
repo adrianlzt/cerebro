@@ -32,23 +32,8 @@ ps -ef --sort=start_time
 Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
-Memoria (RSS) en megabytes, los 10 procesos que más consumen
-ps -eo rss,pmem,pid,user,comm --sort -rss | awk '{ $1=$1/1024" MB" ; printf($0"\n") }' | head | column -t
-
-Memoria (en bytes):
-ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | column -t | head
-
-Total memoria usada en MB
-ps --no-headers -eo rss | awk '{ SUM += $1} END { print SUM/1024 }'
-
-
-ps aux --sort -rss | head
-
-Ver en continuo, remarcando los cambios cada 2 segundos:
-watch --differences -n 2 'ps aux --sort -rss | head'
-
-ps -eLf                                         # hebras
-ps -eo pid,maj_flt,min_flt,pmem,rss,vsz         # info de memoria
+Memoria (numfmt lo convierte a unidades K,M,G):
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 5-7 | column -t | head
   maj_flt: fallos de página, ir a disco a buscar la página
   min_flt: la página está en RAM pero no está en la TLB, operación costosa pero no tanto como ir a disco
   pmem: % de memoria
@@ -56,10 +41,16 @@ ps -eo pid,maj_flt,min_flt,pmem,rss,vsz         # info de memoria
   VSZ: consumo de memoria virtual (total)
 Para hacernos mejor una idea de la memoria consumida: linux/performance/memoria/smem.md
 
-ps -eo rss,vsz,pid,cputime,cmd --width 100 --sort -rss,-vsz | head
-  Los 10 con más consumo de memoria
+Total memoria usada en MB
+ps --no-headers -eo rss | awk '{ SUM += $1} END { print SUM/1024 }'
+
+Ver en continuo, remarcando los cambios cada 2 segundos:
+watch --differences -n 2 'ps aux --sort -rss | head'
+
+ps -eLf # hebras
 
 ps aux | sort -nk +4 | tail
+
 
 CPU:
 ps -e -ocomm,pid,class,cp,cputime,pri,psr,rtprio,wchan,state,stat

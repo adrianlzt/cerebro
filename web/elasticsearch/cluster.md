@@ -1,4 +1,5 @@
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_revisit_this_list_before_production.html
+https://thoughts.t37.net/designing-the-perfect-elasticsearch-cluster-the-almost-definitive-guide-e614eabc1a87
 
 
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html

@@ -1,0 +1,1 @@
+../programacion/bash/math.md

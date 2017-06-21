@@ -30,3 +30,20 @@ if [[ $? == 0 ]]; then
 else
     echo "100 es menor que 67"
 fi
+
+
+# Factor
+coreutil para factorizar un número
+$ factor 34532
+34532: 2 2 89 97
+
+
+# Convertir unidades
+numfmt --to=iec 5363453
+
+Puede modificar una línea convirtiendo solo uno de los valores (típica salida con multicolumna).
+También tiene una opción para ignorar la primera (o varias) líneas al comienzo.
+$ echo -e "a     b    c\n2 3456332 20" | numfmt --header --field 2 --to=iec
+a     b    c
+2    3,3M 20
+
