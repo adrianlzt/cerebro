@@ -1,5 +1,7 @@
 http://blog.liw.fi/posts/rm-is-too-slow/
 
+shred para "triturar" un fichero
+
 Trucos:
 
 find target_directory -maxdepth 3 | tac | xargs -P 5 -n 5 rm -rf

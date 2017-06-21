@@ -19,7 +19,7 @@ http://www.brendangregg.com/USEmethod/use-linux.html
 https://www.slideshare.net/brendangregg/velocity-stoptheguessing2013/32
 
 Utilization Saturation and Errors (USE)
-For every resource, check utilization, saturation, and errors.
+For every resource, check utilization, saturation, and errors (lstopo nos puede dar una visión de nuestra arquitectura, aunque a grandes rasgos)
 No encontrará todos los problemas, pero si la mayoría
 
 Con dynamic tracing y aplicaciones Open Source podemos preguntar al sistema exactamente lo que necesitamos saber.

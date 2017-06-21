@@ -33,7 +33,8 @@ Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
 Memoria (numfmt lo convierte a unidades K,M,G):
-ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 5-7 | column -t | head
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 4-7 | column -t | head
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 6 | numfmt --header --to=iec --field 7 | column -t | head # para versiones viejas de numfmt
   maj_flt: fallos de página, ir a disco a buscar la página
   min_flt: la página está en RAM pero no está en la TLB, operación costosa pero no tanto como ir a disco
   pmem: % de memoria

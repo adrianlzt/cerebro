@@ -38,7 +38,12 @@ $ factor 34532
 34532: 2 2 89 97
 
 
+
+
 # Convertir unidades
+https://www.gnu.org/software/coreutils/manual/html_node/numfmt-invocation.html
+A partir de coreutils 8.21
+
 numfmt --to=iec 5363453
 
 Puede modificar una línea convirtiendo solo uno de los valores (típica salida con multicolumna).
@@ -47,3 +52,7 @@ $ echo -e "a     b    c\n2 3456332 20" | numfmt --header --field 2 --to=iec
 a     b    c
 2    3,3M 20
 
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 5-7
+  multiple fields desde v8.25
+
+La posibilidad de usar multiples fields es a partir de cierta versión

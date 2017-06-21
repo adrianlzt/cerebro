@@ -1,3 +1,4 @@
+chrt.md para modificar la scheduling class
 Nice = amabilidad, cuanto de amable va a ser un proceso con el resto
 
 nice <CMD>      # ejecuta con prioridad modificada (para OTHER)

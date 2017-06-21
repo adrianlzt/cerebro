@@ -61,3 +61,7 @@ ncat --ssl ing.ingdirect.es 443
 
 Tunel, escucho ssl en 8446 y lo redirigo a https://127.0.0.1:8445
 ncat -kl 8446 --ssl  -c 'tee /dev/stderr | ncat -v --ssl 127.0.0.1 8445 | tee /dev/stderr'
+
+
+Proxy, lo que llegue al puerto 12345 lo envio a google.com
+nc -l 12345 0<backpipe | nc www.google.com 80 1>backpipe

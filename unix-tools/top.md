@@ -25,7 +25,7 @@ top -cbp 1234
 Saca una captura de top cada 3 segundos mostrando unicamente el pid 1234
 
 top -b -n 1 -o RES | head -17
-Una única captura ordenada por los procesos que mas memoria (RES=RSS) consumen, en KBytes
+Una única captura ordenada por los procesos que mas memoria (RES=RSS) consumen, las unidades son un poco aleatorias, si son números grandes pondrá g o t
 
 Control+s pause
 Control+q continue

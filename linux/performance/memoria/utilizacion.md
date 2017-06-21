@@ -1,6 +1,9 @@
 # Utilizacion
 free -m
 
+ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 5-7
+  consumo de rss
+
 vmstat -w 1
   mirar los campos de swpd y free
 
@@ -24,6 +27,9 @@ sudo smem -kt
     memoria exclusiva del proceso
     memoria exclusiva más la compartida dividida entre el número de procesos que la comparten
     memoria exclusiva + shared
+
+cat /proc/76954/status | grep Vm | sed "s/ kB/K/" | numfmt --from=iec --to=iec --field 2 | column -t
+  tenemos el VmPeak que nos dice el conumo máximo de memoria virtual
 
 
 
