@@ -35,6 +35,11 @@ Contenido de etcd en v2
 etcdctl2 ls
 etcdctl2 ls --recursive
 
+etcdctl2 get /path/key
+
+etcdctl2 -o extended get /path/key
+  para ver el ttl, index, created-index y modified-index
+
 
 ## con docker
 docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
