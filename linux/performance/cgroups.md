@@ -1,8 +1,15 @@
 https://www.kernel.org/doc/Documentation/cgroup-v2.txt (mergeado en kernel 4.5)
+http://mirror.onet.pl/pub/mirrors/video.fosdem.org/2017/UA2.220/cgroupv2.vp8.webm
+https://www.kernel.org/doc/Documentation/cgroup-v1/
+https://www.certdepot.net/rhel7-get-started-cgroups/
 http://en.wikipedia.org/wiki/Cgroups
 http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf
 yum install kernel-doc; cd /usr/share/doc/kernel-doc-3.14.2/Documentation/cgroups/
 https://wiki.archlinux.org/index.php/cgroups
+https://www.redhat.com/en/about/blog/world-domination-cgroups-part-1-cgroup-basics presents some basics and theory behind CGroups,
+https://www.redhat.com/en/about/blog/world-domination-cgroups-part-2-turning-knobs investigates the current state of active CGroups,
+https://www.redhat.com/en/about/blog/world-domination-cgroups-part-3-thanks-memories looks at the Memory controller.
+
 
 Para usarlo en sistemas con systemd mirar cgroups-systemd.md
 
@@ -81,12 +88,15 @@ memory.events: recuento de eventos de low, high, max y oom que han saltado.
 memory.stat: descripción detallada del consumo de memoria
 memory.swap: consumo de ram (se puede limitar memory.swap.max)
 
+Limitando memory.high y observando memory.events podemos llegar a un valor mínimo de la app para que funcione bien.
+
+
 ### IO
 ### CPU
 ### PID
   pids.max: número máximo de pids
 ### RDMA
-### perf_event (para filtrarlos? no explica)
+### perf_event enables monitoring CGroups with the perf tool
 
 ## Namespace
 La información puesta en /proc/PID/cgroup debe estar en un namespace para que un proceso dentro de uno no pueda ver el path completo donde está configurado (información sensible)
@@ -97,7 +107,18 @@ La información puesta en /proc/PID/cgroup debe estar en un namespace para que u
 
 
 
-# V1?
+# V1
+
+blkio: sets limits on input/output access to and from block devices (see BlockIOWeight);
+cpu: uses the CPU scheduler to provide CGroup tasks an access to the CPU. It is mounted together with the cpuacct controller on the same mount (see CPUShares);
+cpuacct: creates automatic reports on CPU resources used by tasks in a CGroup. It is mounted together with the cpu controller on the same mount (see CPUShares);
+cpuset: assigns individual CPUs (on a multicore system) and memory nodes to tasks in a CGroup;
+devices: allows or denies access to devices for tasks in a CGroup;
+freezer: suspends or resumes tasks in a CGroup;
+memory: sets limits on memory use by tasks in a CGroup, and generates automatic reports on memory resources used by those tasks (see MemoryLimit);
+net_cls: tags network packets with a class identifier (classid) that allows the Linux traffic controller (the tc command) to identify packets originating from a particular CGroup task;
+perf_event: enables monitoring CGroups with the perf tool;
+hugetlb: allows to use virtual memory pages of large sizes, and to enforce resource limits on these pages.
 
 
 Listar todos y decir donde están montados (si tenemos systemd ya estarán montados)

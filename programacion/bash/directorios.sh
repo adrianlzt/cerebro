@@ -9,3 +9,6 @@ echo "$(dirname `realpath $0`)"
 echo "con python"
 MY_PATH=$(python -c 'import os,sys;print(os.path.realpath(sys.argv[1]))' $0/..)
 echo ${MY_PATH}
+
+echo "Full path con fichero incluido"
+echo "$(readlink -f $0)"

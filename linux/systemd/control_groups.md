@@ -1,4 +1,14 @@
+https://www.certdepot.net/rhel7-get-started-cgroups/
 Para más info mirar cgroups.md
+
+Cada proceso en un grupo, junto con sus hijos
+
+Jerarquía:
+ - system.slice: cuelgan los services del sistema
+   - sshd.service: un cgroup por proceso, todos los hijos colgando
+ - user.slice: un slice por cada user
+   - user-1000.slice: ejemplo user UID 1000
+ - machine.slice: vms y containers
 
 
 Los procesos del system.slice y user.slice tienen el mismo tiempo en el scheduler.
