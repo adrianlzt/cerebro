@@ -1,3 +1,7 @@
+perf
+
+bcc-tools/BPF
+
 Ver que está ejecutando el comando
 strace comando
 
@@ -9,7 +13,3 @@ The ltrace program is a tracing utility for library function calls. It runs a pr
 
 
 systemtap (un archivo dedicado a el)
-
-
-Usando perl para obtener información sobre procesos de corta duración
-http://serialized.net/2010/06/capturing-short-lived-programs-on-linux/

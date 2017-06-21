@@ -3,3 +3,6 @@ split -b 1G verylargefile split
 
 split -l 4 file
   divide file en ficheros de 4 lineas
+
+csplit
+como split pero permite regex

@@ -13,3 +13,7 @@ diff -B <( sort A | tr [:lower:] [:upper:] ) <( sort B | tr [:lower:] [:upper:] 
 
 Comparar ficheros binarios
 vbindiff
+
+
+comm
+comparar ficheros linea por línea

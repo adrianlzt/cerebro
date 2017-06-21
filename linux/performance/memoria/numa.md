@@ -43,3 +43,6 @@ numad           # por defecto escanea todos los procesos
  -S 0 -p <PID>          # solo escanea <PID>
  -S 1 -x <PID>          # escanea todos menos <PID>
 
+
+numastat
+Show per-NUMA-node memory statistics for processes and the operating system

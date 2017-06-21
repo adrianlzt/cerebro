@@ -24,6 +24,9 @@ mpstat -P ALL 1
   info por procesador
   sumar las columas menos %idle y %iowait
 
+pìdstat 1
+pidstat -p PID
+
 
 # Saturación de la CPU
 Miraremos la cola "runnable" y no deberá sobrepasar el número de CPUs en nuestra máquina

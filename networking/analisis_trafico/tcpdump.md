@@ -3,6 +3,8 @@ http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 CUIDADO con ejecutarlo sobre interfaces 10GbE+, causa mucho overhead.
 BPF puede hacerlo más eficientemente. Hay ejemplos para analizar casos particulares (como retransmisiones TCP)
 
+Si queremos mapear a que PID pertenece una conexión seguramente podamos hacerlo con iptables.
+
 Mostrar a que interfaz pertenece cada paquete
 http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
 Mirar anydump.sh

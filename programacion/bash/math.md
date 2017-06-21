@@ -56,3 +56,9 @@ ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=
   multiple fields desde v8.25
 
 La posibilidad de usar multiples fields es a partir de cierta versión
+
+
+
+# Secuencias de numeros / seq
+https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation
+seq 1 3

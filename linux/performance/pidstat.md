@@ -53,6 +53,9 @@ pidstat -u      # CPU por proceso
     %nvswch/s     # cambios de contexto involuntarios (por scheduling). Le echan de la CPU porque se ha quedado sin slice
 
 
+pidstat -C "fox|bird" -r -p ALL
+  estadísticas para los programas que se llamen fox o bird
+
 
 Una variante de este programa es pydstat, escrito en python, saca los logs en formato syslog, listo para ser procesado por splunk
 https://github.com/SplunkStorm/pydstat
@@ -81,13 +84,13 @@ Esto lo suyo es subirlo a splunk y analizarlo con una gráfica tipo:
 source="pydstat.log" | timechart span=4m avg(RSS) by Command
 
 /etc/logrotate.d/pydstat:
-/var/log/pydstat.log { 
+/var/log/pydstat.log {
   daily
   minsize 5M
-  rotate 7 
-  compress 
-  missingok 
-  notifempty 
+  rotate 7
+  compress
+  missingok
+  notifempty
   create 640 root root
 }
 

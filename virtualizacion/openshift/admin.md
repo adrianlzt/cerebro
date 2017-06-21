@@ -22,6 +22,9 @@ Simplemente pasarán a estado Error y luego volverán a arrancar, poniendo +1 al
 Lista de nodos
 oc get nodes
 
+Detalle de un nodo:
+oc describe node XXX
+
 No permitir que se monten mas pods (SchedulingDisabled)
 oadm cordon NODE
 

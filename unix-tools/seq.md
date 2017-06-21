@@ -1,0 +1,1 @@
+../programacion/matematicas/seq.md

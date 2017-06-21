@@ -67,7 +67,7 @@ Herramientas que usar:
 CPU: linux/performance/cpu/utilizacion.md
 Memory: linux/performance/memoria/utilizacion.md
 Network: linux/performance/network/utilizacion.md
-Storage-IO:
+Storage-IO: apuntar pidstat
 Storage-capacity:
 Storage-controller:
 Network-controller:

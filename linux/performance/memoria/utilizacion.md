@@ -31,6 +31,8 @@ sudo smem -kt
 cat /proc/76954/status | grep Vm | sed "s/ kB/K/" | numfmt --from=iec --to=iec --field 2 | column -t
   tenemos el VmPeak que nos dice el conumo máximo de memoria virtual
 
+pidstat -r -p PID 1 | numfmt --header=3 --to=iec --field 6,7
+  minflt, mjflt, vsz, rss, %mem pra segundo para el pid
 
 
 # Saturación

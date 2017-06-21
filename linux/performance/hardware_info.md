@@ -3,6 +3,7 @@ dmidecode
 x86info
 
 lshw
-
-lstopo
-  mirar numa.md
+https://www.open-mpi.org/projects/hwloc/lstopo/
+  lstopo
+    genera un gráfico con nuestra arquitectura
+    mirar numa.md
