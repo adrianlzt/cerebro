@@ -34,11 +34,28 @@ etcdctl3 --endpoints https://server:2379 memberlist
 Contenido de etcd en v2
 etcdctl2 ls
 etcdctl2 ls --recursive
+  si ponemos --debug recursive no mostrará nada
 
 etcdctl2 get /path/key
 
 etcdctl2 -o extended get /path/key
   para ver el ttl, index, created-index y modified-index
+
+Hacer long pooling de una key o un dir
+etcdctl2 watch -f /path/key
+  se queda recibiendo metricas
+  --after-index N, para obtener solo métricas a partir de ese valor. Sin -f parece que nos devuelve la primera
+  -r para poner sobre un directorio y escuchar a todos los eventos child
+
+
+
+etcdctl2 cluster-health
+  nos devuelve una línea por cada miembro diciendo si esta healthy
+  la última linea devuelve el estado global del cluster
+  hace un curl a /v2/members
+
+--debug para ver que está lanzando (al final son peticiones HTTP, en la v2)
+
 
 
 ## con docker
@@ -53,16 +70,39 @@ v2 si soporta JSON
 
 Ejemplos:
 
+Version
+curl http://127.0.0.1:2379/version
+
 Ver keys definidas:
 curl -L http://127.0.0.1:2379/v2/keys
 
 Set a key message with value Hello world:
 curl -L http://127.0.0.1:2379/v2/keys/message -d value="Hello world"
 
+Borrar una key
+curl http://127.0.0.1:2379/v2/keys/message -XDELETE
 
 Read the value of message back:
 curl -L http://127.0.0.1:2379/v2/keys/message
 
+Para un get recursivo:
+&recursive=true
+
+Ordenado:
+&sorted=true
+
+Hace falta quorum en la respuesta? (etcdcli por defecto lo pone a false)
+quorum=true
+
+curl "https://127.0.0.1:2379/v2/keys/kubernetes.io/events/?wait=true&recursive=true"
+se queda escuchando hasta que aparece algún evento hijo del path especificado.
+sale tras el primer evento
+
+para obtener todos los eventos a partir de un punto la idea es empezar haciendo un GET sobre /v2/keys y obtener la cabecera X-Etcd-Index. Este será el último index de etcd.
+Luego ejecutaremos el curl diciendo a etcd que queremos el primer evento a partir de ese índice:
+curl -X GET https://127.0.0.1:2379/v2/keys/kubernetes.io/events/?recursive=true&wait=true&waitIndex=4669787
+cuando lo obtengamos, cogeremos el "Modified-Index" le sumaremos uno y volveremos a realizar el mismo curl.
+Con la información puede que nos venga también el "prevNode", que era el estado anterior del nodo, pero que en un watch no me queda muy claro para que lo queremos.
 
 Ejemplo teórico de un HA de postgresql usando etcd
 https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/
