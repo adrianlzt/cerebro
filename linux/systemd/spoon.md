@@ -5,7 +5,7 @@ Run in isolated containers. Share with collaborators. Migrate between devices.
 
 Correr apps en contenedores.
 
-Mirar containers.md
+Mirar containers.md para un ejemplo completo de usar el systemd-nspawn
 
 Para generar containers de un SO
 https://github.com/systemd/mkosi

@@ -54,3 +54,11 @@ sudo HTTP_PROXY=127.0.0.1:8080 HTTPS_PROXY=127.0.0.1:8080 rkt --debug --insecure
 
 
 # Run
+sudo rkt run https://github.com/coreos/etcd/releases/download/v2.0.0/etcd-v2.0.0-linux-amd64.aci
+me falla
+Failed to mount cgroup2 on /var/lib/rkt/pods/run/c952aa69-dd8a-4bf5-bbcb-990fe1e9f748/stage1/rootfs/sys/fs/cgroup/unified (MS_NOSUID|MS_NODEV|MS_NOEXEC ""): No such file or directory
+
+Un problema montando el cgroup v2.
+Pero si hago:
+sudo /usr/bin/systemd-nspawn --boot --register=true --notify-ready=yes --link-journal=try-guest --uuid=27464a5c-6f4a-4e05-8192-093a38b57b2b --machine=rkt-27464a5c-6f4a-4e05-8192-093a38b57b2b --directory=/var/lib/rkt/pods/run/c952aa69-dd8a-4bf5-bbcb-990fe1e9f748/stage1/rootfs --capability=CAP_AUDIT_WRITE,CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_FSETID,CAP_FOWNER,CAP_KILL,CAP_MKNOD,CAP_NET_RAW,CAP_NET_BIND_SERVICE,CAP_SETUID,CAP_SETGID,CAP_SETPCAP,CAP_SETFCAP,CAP_SYS_CHROOT -- --default-standard-output=tty
+poniendo en --directory el apropiado, me funciona.
