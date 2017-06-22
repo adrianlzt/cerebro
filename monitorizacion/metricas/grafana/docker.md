@@ -11,3 +11,6 @@ pass: admin
 
 
 Si vamos a conectar con un volumen influx, es posible que tengamos que pasarle la ip enterna del docker host.
+
+
+Si queremos agregar un plugin podemos entrar con docker exec, instalarlo y luego hacer un docker restart sobre el container.

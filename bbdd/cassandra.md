@@ -24,3 +24,7 @@ Cassandra vs PostgreSQL
 A properly administered Cassandra cluster has better replication (especially writes).
 A properly administered Cassandra cluster behaves better in the presence of networking issues and failures, such as partitions or intermittent glitches.
 In general, Cassandra behaves better in certain classes of failures (server dies, network links goes down etc) from an operational perspective, than a PostgreSQL cluster.
+
+
+# Monitoring
+http://cassandra.apache.org/doc/latest/operating/metrics.html
