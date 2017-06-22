@@ -12,6 +12,16 @@ oc login https://openshift.company.com/
 ## Crear un proyecto (admin)
 oc new-project nodejs-echo --display-name="nodejs" --description="Sample Node.js app"
 
+## Listar proyectos
+oc projects
+
+## Info detallada proyecto
+oc describe project xxx
+
+## Cambiar de proyecto
+oc project xxx
+
+
 
 # Estado global
 oc status
