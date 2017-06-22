@@ -102,12 +102,23 @@ para obtener todos los eventos a partir de un punto la idea es empezar haciendo 
 Luego ejecutaremos el curl diciendo a etcd que queremos el primer evento a partir de ese índice:
 curl -X GET https://127.0.0.1:2379/v2/keys/kubernetes.io/events/?recursive=true&wait=true&waitIndex=4669787
 cuando lo obtengamos, cogeremos el "Modified-Index" le sumaremos uno y volveremos a realizar el mismo curl.
-Con la información puede que nos venga también el "prevNode", que era el estado anterior del nodo, pero que en un watch no me queda muy claro para que lo queremos.
+Con la información puede que nos venga también el "prevNode", por lo que veo si tiene TTL será porque el nodo ha variado reduciendo su TTL (suopngo que por otros cambios también puede que venga)
 
 Ejemplo teórico de un HA de postgresql usando etcd
 https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/
 
 
+## Statistics
+https://coreos.com/etcd/docs/latest/v2/api.html#statistics
+
+/v2/stats/leader
+latency to each peer in the cluster, and the number of failed and successful Raft RPC requests
+
+/v2/stats/self
+un montón de métricas sobre el estado del nodo (id, bytes rx/tx, star time, estado, etc)
+
+/v2/stats/store
+estadisticas sobre número de creaciones, borrados, get, watch, etc
 
 
 # Cluster

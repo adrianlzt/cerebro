@@ -111,7 +111,7 @@ envia ping a un server y mide tiempo de respuesta
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat
 
 Monitoriza un proceso usando los valores de /proc/PID/...
-Si en el regex ponemos "." monitorizará todos los procesos
+Si en el regex ponemos "." monitorizará todos los procesos. CUIDADO con el número de series creadas!
 
 /etc/telegraf/telegraf.d/procs.conf 
 [[inputs.procstat]]
