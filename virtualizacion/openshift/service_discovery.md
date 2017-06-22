@@ -1,4 +1,4 @@
-A parte de las variables de entorno (mirar kubernetes/service_discovery.md) tenemos un servidor de DNS donde poder resolver las aplicaciones.
+A parte de las variables de entorno (mirar kubernetes/service_discovery.md) tenemos un servidor de DNS (skydns) donde poder resolver las aplicaciones.
 
 Por ejemplo:
 nodejs-ex.myproject.svc.cluster.local
@@ -9,3 +9,9 @@ OpenShift Container Platform has a built-in DNS so that the services can be reac
 
 Configuracion de DNS necesarias para la instalación
 https://docs.openshift.com/enterprise/latest/install_config/install/prerequisites.html#prereq-dns
+
+
+SkyDNS corre debajo del openshift master api.
+
+Comprobar que resuelve:
+/usr/lib64/nagios/plugins/check_dig -H 127.0.0.1 -p 8053 -l kubernetes.default.svc.cluster.local

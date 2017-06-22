@@ -29,3 +29,17 @@ aqui solo saca la info para un momento determinado, pero nos añade info de los 
 La info de los pods viene de los cgroups.
 Por ejemplo, la api nos da: containers[0].cpu.usageCoreNanoSeconds que en el cgroup es:
 /sys/fs/cgroup/cpu/system.slice/docker-80adc498ae0a130fb63486b6bc7f9d2341dfd40550d4d7473cb0d79a50ddf83a.scope/cpuacct.usage
+
+
+Health OpenShift:
+curl https://openshift.inet/healthz
+  devuelve "ok" si el cluster esta ok
+
+Metrics
+curl https://openshift.inet/metrics
+  nos devuelve un montón de métricas de tiempos de respuesta para distintas queries a la API
+  openshift.com monitoriza:
+  apiserver_request_latencies_summary{resource="pods",verb="LIST",quantile=*
+  apiserver_request_latencies_summary{resource="clusterresourcequotas",verb="WATCHLIST",quantile=*
+  scheduler_e2e_scheduling_latency_microseconds <- este no lo veo en nuestro despliegue
+
