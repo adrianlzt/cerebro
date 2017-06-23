@@ -48,3 +48,8 @@ Los volumenes no aparecen en "docker volume", supongo que se gestionan de otra m
 Al usuario se le da un volumen igual o superior a lo solicitado, tanto en espacio como en permisos.
 
 Therefore, the user may be granted more, but never less. For example, if a claim requests RWO, but the only volume available was an NFS PV (RWO+ROX+RWX), the claim would match NFS because it supports RWO.
+
+
+
+# NFS
+Cada pvc es un mount de un export de NFS y se monta para el pod cuando este arranque.
