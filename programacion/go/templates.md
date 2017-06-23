@@ -76,3 +76,8 @@ Agregar otros templates:
 {{ range $key, $value := . }}
  <li><strong>{{ $key }}</strong>: {{ $value }}</li>
 {{ end }}
+
+
+# Elemento de un slice
+index .spec.ports 0
+sería algo así como spec.ports[0]
