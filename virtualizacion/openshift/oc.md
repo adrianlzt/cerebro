@@ -124,6 +124,13 @@ oc get pods -o wide
   listar todos
   -o wide
   tambien podemos ver su estado (Running, completed, CrashLoopBackOff)
+  -l tag=value
+    filtrar pods por un tag
+  --all-namespaces
+    obtenerlos de todos los namespaces
+  -n namespace
+    obtener los de este namespace
+
 
 oc rsh POD
 oc rsh -c CONTAINER POD 
@@ -201,3 +208,10 @@ https://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns
 
 oc get pods <pod-name> -o=custom-columns=NAME:.metadata.name,RSRC:.metadata.resourceVersion
 oc get dc/postgresql -o go-template="{{.metadata.labels.app}}"
+
+oc get pod shell-microservice-e-1-xxs54 -o jsonpath="{.status.containerStatuses[0].state.waiting.reason}"
+https://kubernetes.io/docs/user-guide/jsonpath/
+
+
+oc get pod -l component=curator -n logging -o jsonpath="{.items[0].status.containerStatuses[0].ready}"
+mirar si el primer pod que matchee component=curator, su primer container esta ready
