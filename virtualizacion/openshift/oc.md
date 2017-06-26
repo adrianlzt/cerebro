@@ -6,6 +6,9 @@ https://github.com/openshift/origin/tree/master/pkg/cmd/cli
 # Login
 oc login https://openshift.company.com/
 
+También podemos pasar un server y un token:
+oc --server http://oasdas.com --token asdasda whoami
+
 
 # Proyectos
 
