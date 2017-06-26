@@ -44,7 +44,7 @@ Linux-4.7
 create custom, efficient, in-kernel histograms
 echo 'hist:key=common_pid.execname:values=ret:sort=ret if ret >= 0' > /sys/kernel/tracing/events/syscalls/sys_exit_read/trigger
 
-Podemos generar histogramas facilmente de como se están realizando llamas a ciertas syscalls por parte de los programas. Por ejemplo analizar que programa esta escribiendo más y cuanto.
+Podemos generar histogramas facilmente de como se están realizando llamadas a ciertas syscalls por parte de los programas. Por ejemplo analizar que programa esta escribiendo más y cuanto.
 
 Para ciertas cosas es más sencillo usar esto que eBPF (que tiene más potencia, pero necesita herramientas, compilador y más complejidad)
 
@@ -54,26 +54,67 @@ kprobes.md
 # Ejemplos
 ## Uso con el sistema de ficheros virtual
 
+
+### Analizando tracepoints
+ls /sys/kernel/debug/tracing/events
+  listado de eventos (tracepoints) donde podemos tracear/sys/kernel/debug/tracing/events
+
+por cada evento podremos ver el formato de salida:
+events/sched/sched_switch/format
+
+Para activar un tracepoint:
+echo 1 > events/sched/sched_switch/enable
+
+mirar trazas con:
+cat trace
+  veremos una línea por cada cambio de proceso en alguna de las CPUs
+
+echo 0 > events/sched/sched_switch/enable
+  desactivar este tracepoint
+
+### Traceando funciones (function)
+Tracear funciones del kernel. Cada cuanto son llamadas, cuanto tiempo tardan en ser ejecutadas.
 Tipos de trazas que podemos tomar
 cat /sys/kernel/debug/tracing/available_tracers 
-blk function_graph wakeup_rt wakeup function nop
 
 Activamos el traceo de funciones
 echo "function" > /sys/kernel/debug/tracing/current_tracer
 
 echo "1" > tracing_on
 
-Veemos el log de que se está traceando
+Veemos el log de que se está traceando (sin filtrar, veremos todas las llamadas a funciones del kernel)
 cat /sys/kernel/debug/tracing/trace
+
+Filtramos por algúna función:
+echo vfs_write > set_ftrace_filter
+
+Para quitar el filtro:
+echo > set_ftrace_filter
 
 Desactivar el debug
 echo "nop" > /sys/kernel/debug/tracing/current_tracer
 
 
+### Traceando funciones y su call stack (function_graph)
+echo function_graph > current_tracer
+echo vfs_write > set_graph_function
+  filtramos para solo obtener llamadas a esta func
+
+cat trace
+  ahora, por cada llamada a vfs_write, veremos el arbol de llamadas que se produce por debajo, con el tiempo que lleva a cada una ejecutarse
+
+podemos limitar este arbol:
+echo 2 > max_graph_depth
+
+
+
+### uprobes
 Usando uprobe (script bash que usa ftrace): https://github.com/brendangregg/perf-tools/blob/master/user/uprobe
 Capturar las llamadas a SSL_read y SSL_write de OpenSSL
 sudo ./uprobe 'p:/usr/lib/libssl.so.1.0.0:SSL_read +0(%si):string'
 sudo ./uprobe 'p:/usr/lib/libssl.so.1.0.0:SSL_write +0(%si):string'
+
+
 
 # Herramienta de alto nivel
 kernelshark es un visor para los ficheros generados por trace-cmd
