@@ -19,8 +19,8 @@ O con en SOs con systemd lo meteremos en (https://www.freedesktop.org/software/s
 
 Ver que procesos están consumiendo la SWAP
 https://www.cyberciti.biz/faq/linux-which-process-is-using-swap/
-sudo smem -kt
-for file in /proc/*/status ; do awk '/VmSwap|Name/{printf $2 " " $3}END{ print ""}' $file; done | sort -k 2 -n -r | less
+smem -kts swap
+(echo "COMM PID SWAP"; for file in /proc/*/status ; do awk '/^Pid|VmSwap|Name/{printf $2 " " $3}END{ print ""}' $file; done | grep kB | grep -wv "0 kB" | sort -k 3 -n -r) | column -t
 
 
 Podemos forzar vaciar la swap, pero tenemos que tener suficiente espacio libre en la ram para acoger toda la memoria swapeada:
