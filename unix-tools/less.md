@@ -37,3 +37,7 @@ b  previous page
 
 &!PALABRA|COSA
   Nos muestra la pantalla sin esas dos palabras
+
+
+Líneas largas, no cortarlas para mostrar toda la línea:
+less -S
