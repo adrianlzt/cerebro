@@ -269,3 +269,19 @@ oc explain route.spec.tls
 # Prune
 oc adm prune xxx
   The commands here allow administrators to manage the older versions of resources on the system by removing them.
+
+
+
+# process
+Process template into a list of resources specified in filename or stdin 
+
+
+# create
+crear los recursos
+
+# replace
+Replace a resource by filename or stdin 
+
+# apply
+replace si existe el recurso, create si no existe
+
