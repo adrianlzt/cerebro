@@ -12,9 +12,10 @@ certs x509: cert firmado por la CA de openshift con el CN con el nombre del user
 # Rolebindings
 Asociar roles a usuarios/grupos/serviceaccounts
 
-
-# Roles
+# Roles / clusterrole
 Conjunto de reglas que dicen que "verbo" podemos hacer sobre los recursos.
+Role: aplica a nivel de proyecto
+ClusterRole: aplica a nivel de cluster
 
 resources:
 verbs:
