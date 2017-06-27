@@ -17,6 +17,8 @@ oc --server http://oasdas.com --token asdasda whoami
 oc new-project nodejs-echo --display-name="nodejs" --description="Sample Node.js app"
 oadm new-project PROYECTO --admin=nombre
   asignar un administrador en la creación del proyecto
+  crea tres servieaccounts:
+    default, builder, deployer (por orden de menos a más prioridad)
 
 Al crear un proyecto se puede especificar sobre que nodos se van a desplegar.
 Esto lo usaremos para evitar que se desplieguen en los nodos de infra por ejemplo.
@@ -121,7 +123,12 @@ Puede tardar hasta 30s
 oc expose svc MIAPP
   crea una entrada tipo "http://miprueba-nginx-php-hostname.192.168.99.101.nip.io" apuntando al service "MIAPP"
 
-Si queremos usar https para acceder a nuestra app tendremos que configurar el tls termination a edge.
+## TLS
+https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html#route-types
+
+Edge: TLS terminado en el haproxy
+Passthrough: balanceo TCP. Se usa el protocolo TLS-SNI (debe pasarse el hostname en claro)
+Re-encryption: se desencripta en el haproxy y se vuelve a enviar encriptado hasta el svc
 
 
 
@@ -248,3 +255,17 @@ oc explain
 oc explain route
 oc explain route.spec.tls
   con los puntos vamos navegando por la definición del objeto
+
+
+
+# Labels
+-l key1=value,key2=value
+  hace un AND
+
+-l key1=value1 -l key2=value2
+  hace un OR
+
+
+# Prune
+oc adm prune xxx
+  The commands here allow administrators to manage the older versions of resources on the system by removing them.

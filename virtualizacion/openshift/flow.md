@@ -1,3 +1,5 @@
+mirar build.md
+
 Generalmente el orden que se sigue al desplegar algo es:
 
 1. dc (deployconfig): ordenes para desplegar nuestra app
