@@ -1,7 +1,7 @@
 # Pod (algo parecido a las tasks en docker swarm)
 https://kubernetes.io/docs/concepts/workloads/pods/pod/
 
-Varios containers corriendo en el mismo namespace de network, ambos tendrán la misma ip, se podrán comunicar via localhost:puerto.
+Varios containers corriendo en el mismo namespace de network, ipc, uts y cgroup. Ambos tendrán la misma ip, se podrán comunicar via localhost:puerto.
 Tendran el mismo hostname
 
 A pod is a group of one or more containers, the shared storage for those containers, and options about how to run the containers

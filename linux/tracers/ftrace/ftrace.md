@@ -26,6 +26,7 @@ Hace como el gprof de gcc, introduce unas llamadas al comienzo de nuestras funci
 Dynamic function tracer, nos permite habilitar o deshabilitar dinámicamente este traceo.
 
 Para manejar ftrace se hace mediante un sistema de ficheros virtual (tracefs):
+mount -t debugfs debugfs /sys/kernel/debug
 /sys/kernel/debug/tracing
 
 No tiene que ver con strace ni ltrace.
@@ -72,6 +73,8 @@ cat trace
 echo 0 > events/sched/sched_switch/enable
   desactivar este tracepoint
 
+
+
 ### Traceando funciones (function)
 Tracear funciones del kernel. Cada cuanto son llamadas, cuanto tiempo tardan en ser ejecutadas.
 Tipos de trazas que podemos tomar
@@ -113,6 +116,18 @@ Usando uprobe (script bash que usa ftrace): https://github.com/brendangregg/perf
 Capturar las llamadas a SSL_read y SSL_write de OpenSSL
 sudo ./uprobe 'p:/usr/lib/libssl.so.1.0.0:SSL_read +0(%si):string'
 sudo ./uprobe 'p:/usr/lib/libssl.so.1.0.0:SSL_write +0(%si):string'
+
+
+A mano:
+echo "p:uprobes/curl_version /usr/lib/libcurl.so.4:0x000000000002a090" > uprobe_events
+  tenemos que pasar la posición de memoria donde se encuentra la función que queremos analizar
+  Lo haremos con: objdump -t binario
+  Tal vez el binario no tiene el símbolo/función que buscamos. Tendremos que buscarlo en alguna de su librerias linkadas:
+  ldd binario
+  CUIDADO! si pasamos mal la posicion de memoria podemos tostar el proceso y el SO
+
+Para activar el traceo
+echo 1 > events/uprobes/enable
 
 
 
