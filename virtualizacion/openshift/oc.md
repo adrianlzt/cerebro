@@ -169,6 +169,7 @@ oc port-forward <pod> 8888:5000
   
 Levantar un pod
 oc run ...
+oc run prueba --image=busybox
 
 
 
