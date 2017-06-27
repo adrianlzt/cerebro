@@ -1,4 +1,5 @@
 https://docs.openshift.com/container-platform/latest/cli_reference/basic_cli_operations.html
+https://github.com/openshift/origin/releases
 Código de oc:
 https://github.com/openshift/origin/blob/master/cmd/oc/oc.go
 https://github.com/openshift/origin/tree/master/pkg/cmd/cli
@@ -14,6 +15,11 @@ oc --server http://oasdas.com --token asdasda whoami
 
 ## Crear un proyecto (admin)
 oc new-project nodejs-echo --display-name="nodejs" --description="Sample Node.js app"
+oadm new-project PROYECTO --admin=nombre
+  asignar un administrador en la creación del proyecto
+
+Al crear un proyecto se puede especificar sobre que nodos se van a desplegar.
+Esto lo usaremos para evitar que se desplieguen en los nodos de infra por ejemplo.
 
 ## Listar proyectos
 oc projects
@@ -110,9 +116,12 @@ oc create service clusterip NOMBRE --tcp=9999:80
 
 # Routes / Expose
 Configurar el router (haproxy como proxy inverso) para abrir un endpoint publico para acceder a nuestros services
+Puede tardar hasta 30s
 
 oc expose svc MIAPP
   crea una entrada tipo "http://miprueba-nginx-php-hostname.192.168.99.101.nip.io" apuntando al service "MIAPP"
+
+Si queremos usar https para acceder a nuestra app tendremos que configurar el tls termination a edge.
 
 
 
@@ -153,6 +162,7 @@ oc port-forward <pod> 8888:5000
   
 Levantar un pod
 oc run ...
+
 
 
 
@@ -218,3 +228,23 @@ https://kubernetes.io/docs/user-guide/jsonpath/
 
 oc get pod -l component=curator -n logging -o jsonpath="{.items[0].status.containerStatuses[0].ready}"
 mirar si el primer pod que matchee component=curator, su primer container esta ready
+
+
+oc get aa/bbbb -o yaml
+  hacer un dump del elemento en formato yaml
+
+
+# Edit
+oc edit aa/bbb
+  editar el yaml del elemento
+  si intentamos editar algo que no se puede (inmutable), cuando salgamos del vim se volverá abrir y en la sección de comentarios estará el error
+
+
+
+# Explain
+oc explain
+  consulta al server información sobre este objeto
+
+oc explain route
+oc explain route.spec.tls
+  con los puntos vamos navegando por la definición del objeto
