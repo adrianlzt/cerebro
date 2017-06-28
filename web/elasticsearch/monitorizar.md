@@ -21,3 +21,4 @@ curl -XGET 'http://localhost:9200/_cluster/stats?human&pretty'
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html
 GET _cluster/health
 https://localhost:9200/_cluster/health?pretty=true'
+mirar problemas.md

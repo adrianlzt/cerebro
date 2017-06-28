@@ -29,5 +29,29 @@ output {
 
 Scripts of type [inline], operation [aggs] and lang [groovy] are disabled
 Activar este tipo de scripting en la configuración de los ES
+
+
+
 https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html#modules-scripting
 script.engine.groovy.inline.aggs: on
+http://jpmens.net/2012/08/06/my-logstash-and-graylog2-notes/
+Comentario Sergio Bossa y otros:
+slow for real-time log monitoring
+
+
+Unassigned shards
+Si el cluster health esta en red puede ser porque tenga unassigned_shards.
+Esto quiere decir que hay shards que no están ubicados en ningún cluster.
+Tendremos que a mano reasignarlos a los nodos.
+
+
+Initializing shards
+Puede que estén arrancando
+
+Relocating shards
+No deberia estar mucho tiempo aqui.
+
+
+Search guard
+Gestiona autentificación y autorización.
+Si está fallando puede que tengamos que rearrancar el search guard.

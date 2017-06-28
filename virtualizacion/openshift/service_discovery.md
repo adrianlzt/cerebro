@@ -15,3 +15,7 @@ SkyDNS corre debajo del openshift master api.
 
 Comprobar que resuelve:
 /usr/lib64/nagios/plugins/check_dig -H 127.0.0.1 -p 8053 -l kubernetes.default.svc.cluster.local
+
+
+# Funcionamiento
+dnsmasq hace la division para enviar trafico hacia servidores DNS upstream y los .cluster.local lo reenvia a SkyDNS

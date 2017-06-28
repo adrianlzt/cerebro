@@ -58,7 +58,7 @@ ssh -f -R 8080:172.17.0.2:2003 maquina -NT
 en 'maquina' se abre el puerto 8080 que conecta con la maquina 172.17.0.2:2003
 en 'maquina' solo se abre en la interfaz loopback
 
-ssh -f -R <local-addres-to-listen><local-port-to-listen>:<remote-host>:<remote-port> external -NT
+ssh -f -R <local-addres-to-listen>:<local-port-to-listen>:<remote-host>:<remote-port> external -NT
 
 Ejemplo, ejecutado en un pc con ip privada tras un firewall, nos va a permitir conectarnos a la red interna desde nuestra casa
 ssh -f -R 10080:web-interna.com:80 home -NT
