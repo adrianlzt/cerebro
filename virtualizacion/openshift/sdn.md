@@ -116,6 +116,7 @@ Multicast hacia fuera del SDN no se puede.
 
 
 # Conexión desde fuera
+mirar services.md
 
 ## net=host
 El pod expone el puerto directamente sobre el nodo de openshift
