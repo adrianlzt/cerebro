@@ -35,3 +35,5 @@ oc create serviceaccount NOMBRE
 
 oc sa get-token NOMBRE
   obtener el token de una service account
+
+Tiene una o más SCCs (se añaden los permisos de todas)

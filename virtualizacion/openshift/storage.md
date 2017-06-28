@@ -53,3 +53,9 @@ Therefore, the user may be granted more, but never less. For example, if a claim
 
 # NFS
 Cada pvc es un mount de un export de NFS y se monta para el pod cuando este arranque.
+
+
+
+# EmptyDir
+Se crea un volumen en el thinpool de docker.
+Se usa para crear un volumen compartido entre containers de un pod.
