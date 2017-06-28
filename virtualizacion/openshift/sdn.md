@@ -52,3 +52,31 @@ flannel is a virtual networking layer designed specifically for containers. Open
 # F5 BIG-IP Router Plug-in
 https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/f5_big_ip.html
 The F5 router plug-in integrates with an existing F5 BIG-IP® system in your environment.
+
+
+
+# Estructura de redes
+
+Todos los nodos de la plataforma tienen, al menos, dos interfaces.
+La interfaz eth0 que comunican los nodos físicamente (gateway de la VxLAN).
+tun0 es la interfaz SDN gateway. Primera ip de la hostsubnet.
+lbr0, de aqui salen las IPs de los PODs (veth.x). Todas estas IPs de los veth tendrán IPs de la subred /23 del hostsubnet
+
+El lbr0 es un bridge de openvswtich.
+
+El multitenantcy se hace a nivel 2.
+A nivel 2 solo se ven las MAC de los pods del mismo proyecto.
+
+Para que un POD pueda comunicarse con otro POD de su mismo proyecto.
+POD1 envia a tun0, tun0 a eth0 ---> al otro nodo eth0, al tun0, llega al lbr0 que e quien permite (a nivel 2) si se permite la conex.
+
+ClusterNetwork, tenemos 2 redes SDN (oc get clusternetwork):
+ - Service Networks
+ - Network (donde están los pods)
+
+
+## Network
+Todos los pods tienen una pata en esta red SDN
+Openshift divide la red en varias subnets /23 (oc get hostsubnet)
+
+Cada projecto tiene un netnamespace (oc get netnamespace)
