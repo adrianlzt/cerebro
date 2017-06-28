@@ -39,3 +39,8 @@ etcd active-active
 api server active-active
 controller manager server active-pasive
 haproxy active-passive
+
+
+# Openshift-infra
+El proyecto "openshift-infra" es donde están casi todos los servicios que mantienen la plataforma.
+NO se debe tocar en este proyecto.

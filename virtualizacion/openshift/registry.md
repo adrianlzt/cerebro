@@ -1,5 +1,6 @@
 Registry público de RedHat
 https://access.redhat.com/containers
+Si nos bajamos una de estas imagenes en /root/build (o algo similar) tendremos los Dockerfile con los que se han construído.
 
 
 https://blog.openshift.com/getting-started-docker-registry/

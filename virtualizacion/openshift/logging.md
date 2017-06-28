@@ -2,7 +2,16 @@ https://github.com/openshift/origin-aggregated-logging
 
 Fluentd coge los logs de los pods, les añade cierta metadata y lo almacena en ElasticSearch.
 Kibana muestra los datos almacenados en ElasticSearch (dentro del pod de kibaba hay otro container para gestionar el login).
-Curator:permite al administrador borrar índices antiguos según proyecto.
+Curator: automáticamente borra índices antiguos según proyecto. Mirar config con el "oc dc logging-curator"
+
+Docker usa el logging backend journald (o json).
+Fluentd lee el journald (junto con otros datos para enriquecer las trazas con metadata) y lo manda a ElasticSearch
+
+# Splunk
+Montar un fluentd nuestro que escuche las peticiones de las llamadas de los agentes fluentd y reenvie los logs a splunk.
+Hace falta modificar el DaemonSet de fluentd para añadirle un redireccionador (buscar como hacer secure-forward).
+https://github.com/parolkar/fluent-plugin-splunk
+https://docs.openshift.com/container-platform/3.4/install_config/aggregate_logging.html
 
 
 # Troubleshooting
