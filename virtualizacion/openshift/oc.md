@@ -286,3 +286,8 @@ Replace a resource by filename or stdin
 # apply
 replace si existe el recurso, create si no existe
 
+
+# patch
+Sobre un objeto queremos realizar un cambio.
+Le pasamos un json con el cambio que queremos hacer.
+oc patch TIPO OBJECTO -p '{PARCHE}'

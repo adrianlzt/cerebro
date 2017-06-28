@@ -65,3 +65,8 @@ Tipos de volumenes: NFS, rbd, etc (mirar en oc explain pod.spec.volumes)
 # EmptyDir
 Se crea un volumen en el thinpool de docker.
 Se usa para crear un volumen compartido entre containers de un pod.
+
+
+# Recycler
+Cuando se libera un volumen se arranca un pod "recycler-for-pvXX" que montará él volumen y borrará el contenido.
+En NFS hará simplemente un "rm -fr /"
