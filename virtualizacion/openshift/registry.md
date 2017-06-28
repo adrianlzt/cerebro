@@ -3,6 +3,10 @@ https://access.redhat.com/containers
 Si nos bajamos una de estas imagenes en /root/build (o algo similar) tendremos los Dockerfile con los que se han construído.
 
 
+https://github.com/runcom/skopeo
+gestion de imagenes entre registries.
+
+
 https://blog.openshift.com/getting-started-docker-registry/
 https://docs.openshift.com/container-platform/3.3/dev_guide/managing_images.html#accessing-the-internal-registry
 

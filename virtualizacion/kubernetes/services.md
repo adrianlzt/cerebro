@@ -11,6 +11,7 @@ El service decidirá a que pods ataca según un selector (una label con un valor
 
 ## ClusterIP
 Por defecto, crea una VIP alcanzable internamente dentro del cluster
+La VIP llevará el tráfico a los POD con cierta label.
 
 
 ## NodePort
@@ -19,6 +20,7 @@ Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster 
 Crea automaticamente un ClusterIP
 
 Útil si tenemos nuestros propios LBs.
+Útil para tráfico no HTTP, HTTPS o TLS SNI.
 
 
 ## LoadBalancer

@@ -59,10 +59,21 @@ The F5 router plug-in integrates with an existing F5 BIG-IP® system in your env
 
 Todos los nodos de la plataforma tienen, al menos, dos interfaces.
 La interfaz eth0 que comunican los nodos físicamente (gateway de la VxLAN).
-tun0 es la interfaz SDN gateway. Primera ip de la hostsubnet.
+tun0 es la interfaz SDN gateway. Primera ip de la hostsubnet (ruta default para los PODs).
 lbr0, de aqui salen las IPs de los PODs (veth.x). Todas estas IPs de los veth tendrán IPs de la subred /23 del hostsubnet
 
 El lbr0 es un bridge de openvswtich.
+Tiene una tabla VNID/mac/IP. Cuando pasamos por el lbr0 este comprueba si el VNID origen y destion es el mismo. Si es distinto no deja pasar el tráfico a N2.
+
+El atomic-openshift-node es el que alimenta a la tabla de OpenVSwitch (base de datos interna en fichero).
+También esta en etcd.
+
+Cuando un paquete pasa por tun0 camino a otro nodo, el tun0 cambia la ip destino (tenía la IP destino del pod) por la IP eth0 del nodo de openshift.
+
+El lbr0 es quien hace la encapsulación VxLAN.
+
+Para salir fuera de la red de openshift, el eth0 haría Natting para salir fuera.
+
 
 El multitenantcy se hace a nivel 2.
 A nivel 2 solo se ven las MAC de los pods del mismo proyecto.
@@ -71,7 +82,7 @@ Para que un POD pueda comunicarse con otro POD de su mismo proyecto.
 POD1 envia a tun0, tun0 a eth0 ---> al otro nodo eth0, al tun0, llega al lbr0 que e quien permite (a nivel 2) si se permite la conex.
 
 ClusterNetwork, tenemos 2 redes SDN (oc get clusternetwork):
- - Service Networks
+ - Service Networks (los service, las VIPs configuradas en iptables)
  - Network (donde están los pods)
 
 
@@ -80,3 +91,39 @@ Todos los pods tienen una pata en esta red SDN
 Openshift divide la red en varias subnets /23 (oc get hostsubnet)
 
 Cada projecto tiene un netnamespace (oc get netnamespace)
+
+
+# Unir dos proyectos
+Para que dos proyectos se puedan comunicar entre si.
+oc adm pod-network join-projects
+
+
+# Analizar tráfico
+Con tcpdump desde dentro del namespace de network de un pod
+O un tcpdump específico de openvswitch
+http://openvswitch.org/support/dist-docs/ovs-tcpdump.8.txt
+
+
+
+# Multicast (tech preview)
+Un pod envía un paquete multicast.
+Se envia a los pods del mismo nodo.
+Luego se envía también a tun0 -> eth0 -> cambio de nodo -> tun0 -> lbr0
+lbr0 envía el paquete a todos (broadcast).
+
+Multicast hacia fuera del SDN no se puede.
+
+
+
+# Conexión desde fuera
+
+## net=host
+El pod expone el puerto directamente sobre el nodo de openshift
+
+## router
+mirar router.md
+haproxy mapea un DNS A a un service.
+
+## node-port
+Se abre un puerto (número muy alto) en todos los nodos que reenviará el tráfico a los pods configurados y se hace un bind a un service.
+Este será el caso para tráfico no HTTP, HTTPs o TLS SNI.
