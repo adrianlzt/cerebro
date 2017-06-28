@@ -4,6 +4,7 @@ https://docs.openshift.com/container-platform/3.5/architecture/index.html#archit
 Masters (https://docs.openshift.com/container-platform/3.5/architecture/infrastructure_components/kubernetes_infrastructure.html#master):
  - API/auth
  - Controller Manager Server: se subscribe a cambios en etcd y usa las APIs para aplicar esos cambios
+   Gestiona los componentes con estado de la plataforma. Ejemplo: asignar pod a un nodo, vigilar que las replicas sean las deseadas, hacer binding entre volume claims y volumes.
  - Data store
  - Scheduler
  - Management/replication

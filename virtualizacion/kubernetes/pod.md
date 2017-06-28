@@ -20,3 +20,7 @@ Ejemplo:
 Openshift para dar el servicio Kibana crea un pod con dos containers.
 Un container es el que recibe las peticiones y las autentica contra openshift (reverse-proxy https://github.com/fabric8io/openshift-auth-proxy)
 El otro es el kibana en si mismo.
+
+
+# SCC
+Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.

@@ -57,9 +57,20 @@ oc get clusterrolebindings
 oc get policy
 
 
-# SCC / Security Context Constraints
+# SCC / Security Context Constraints (kubernetes)
 https://docs.openshift.com/enterprise/3.0/admin_guide/manage_scc.html
 https://docs.openshift.com/enterprise/3.0/architecture/additional_concepts/authorization.html#security-context-constraints
+
+Se limitan lo que pueden hacer los containers, capabilities, rango de uids, etc.
+
+Cada SCC define que se puede ejecutar en los containers (por ejemplo, que tipos de volumenes puede montar).
+Cada SCC define quien la puede usar (campo groups y users).
+La SCC "restricted" la puede ejecutar todo el mundo.
+Si defines una SCC con usuario "system:authenticated" será accesible por todo el mundo.
+Las SCCs son definidas a nivel de cluster (Definidas por el admin de la plataforma).
+
+El pod pide que cosas quiere hacer y la SCC dice si se puede o no se puede.
+
 
 Por defecto no está permitido correr containers como root.
 Esto es una medida de seguridad por si la app consiguese escapar de los NameSpaces donde está retenida, no sea root en el docker host.
@@ -75,6 +86,10 @@ oc describe scc anyuid
 Agregar al usuario que corre los containers por defecto en nuestro projecto (el que tengamos configurado actualmente) 
 oc adm policy add-scc-to-user anyuid -z default
   CUIDADO! estamos permitiendo a un container correr como root.
+
+oc adm policy add-scc-to-user NOMBRESCC GRUPO
+  GRUPO por ejemplo: system:serviceaccount:aaa:bbb
+  Si ponemos -z default estamos especificando que usamos el namespace actual
 
 
 
@@ -104,3 +119,18 @@ To address these risks, OpenShift Container Platform uses security context const
 # OAuth
 Listar tokens
 oc get oauthclients
+
+
+
+
+
+# Hack
+
+## Forkbomb
+Docker/Kubernetes no permite configurar el cgroup que limita el número de PIDs por lo que una fork bomb podría generar una carga (colas de procesos) enorme llegando a cargarse el nodo al acabar con los PIDs.
+Aunque el limite por CPU va a limitar la velocidad de la fork bomb.
+Cuando hize la prueba en unas 20h generó 80000 pids.
+
+Una limitacion podría ser limitarlo en:
+/sys/fs/cgroup/pids/system.slice/pids.max
+Esto limitaría el número de pids total sobre todos los containers.

@@ -148,3 +148,21 @@ Comprobar:
 docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
 
 Para los clientes el puerto es el 2379
+
+
+
+# BackUp / Disaster recovery
+https://coreos.com/etcd/docs/latest/v2/admin_guide.html#disaster-recovery
+etcdctl backup ...
+
+Si el cluster pierde dos nodos (pierde irremediablemente). Habrá que parar el cluster y arrancar uno nuevo.
+
+
+# Conf
+ETCD_INITIAL: para el arranque del cluster
+
+Si añadimos un nuevo nodo, no hace falta modificar la conf del cluster.
+
+# Certs
+Conectar usando certs
+/usr/bin/etcdctl --cert-file /etc/etcd/peer.crt --key-file /etc/etcd/peer.key --ca-file /etc/etcd/ca.crt -C https://`hostname`:2379 ${@}

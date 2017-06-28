@@ -37,3 +37,5 @@ oc sa get-token NOMBRE
   obtener el token de una service account
 
 Tiene una o más SCCs (se añaden los permisos de todas)
+
+Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.

@@ -50,6 +50,8 @@ oadm uncordon NODE
 Contenido
 etcdctl2 ls
 
+En /etc/profile.d/etcdctl.sh estan definidos los bash alias (etcdctl2 y etcdctl3)
+
 dos keys distintas:
 /kubernetes.io
 /openshift.io
@@ -89,3 +91,5 @@ ls /openshift.io/routes
 
 ## Templates
 ls /openshift.io/templates
+
+

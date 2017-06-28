@@ -51,8 +51,14 @@ Therefore, the user may be granted more, but never less. For example, if a claim
 
 
 
-# NFS
+# NFS (como backend de volumes)
 Cada pvc es un mount de un export de NFS y se monta para el pod cuando este arranque.
+
+
+# Tipos de volumenes que se puedan montar
+Cuando creamos un pod podemos especificar volumenes que montarle.
+Generalmente esto requiere un privilegio mayor que el que provee la SCC restricted.
+Tipos de volumenes: NFS, rbd, etc (mirar en oc explain pod.spec.volumes)
 
 
 
