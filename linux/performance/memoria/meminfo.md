@@ -16,7 +16,7 @@ Slab = SReclaimable + SUnreclaim
 cat /proc/meminfo 
   %MemTotal     # RAM total usable (menos reservada por kernel)
   %MemFree      # memoria libre (incluyendo buffers y pagecache)
-  %Buffers      # buffer cache en RAM (filesystem metadata)
+  %Buffers      # Relatively temporary storage for raw disk blocks (http://elixir.free-electrons.com/linux/latest/source/mm/page_alloc.c#L4363)
   %Cached       # pagecache en RAM (contenido de ficheros cacheados)
   %SwapCached   # pagecache en swap que también está en RAM (por tanto
                 # si se necesita memoria puede descartarse sin swapear)
