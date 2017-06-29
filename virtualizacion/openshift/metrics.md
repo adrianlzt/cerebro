@@ -10,3 +10,5 @@ Este va a ser el que sustituya a Heapster en próximas versiones.
 
 
 Hawkular esta expuesto mediante un route+service.
+
+Para ver como usarlo, API, etc mirar monitorizacion/metricas/hawkular.md
