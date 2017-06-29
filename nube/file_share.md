@@ -1,3 +1,10 @@
+magic-wormhole
+https://github.com/warner/magic-wormhole
+Compartir ficheros, o pequeños texos, usando únicamente dos palabras legibles.
+Tenemos que instalar el cliente python.
+Enviamos el fichero, genera las dos palabras.
+La otra persona ejecuta el cliente, mete las dos palabras y recibe el fichero
+
 https://www.sharedrop.io
 compartir ficheros entre usuarios de la misma red de manera directa (P2P). Usa WebRTC
 
