@@ -1,3 +1,7 @@
+perf record -g -F 997 -- ./primes
+almacenamos en "perf.data" la ejecucción del programa "primes", tomando 997 muestras por segundo y almacenado call stacks (-g)
+No se exactamente porque pero suelo ver que se samplea siempre con números tipo 997, 999 (siempre un poco menos de 1000)
+
 sudo perf trace -T --duration 1000 python -c "import time; time.sleep(2)"
 ejecuta ese comando y muestra las syscall que hayan durado más de 1s
 tambien tracea hijos de la función
