@@ -14,3 +14,7 @@ Una vez dentro bajaremos con las flechas hasta la linea de lo que queremos busca
 Control+d para salir
 
 Control+c cambia case sensitive/insensitive
+
+
+Usar con vim:
+http://cscope.sourceforge.net/cscope_vim_tutorial.html
