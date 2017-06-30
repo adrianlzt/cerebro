@@ -13,6 +13,9 @@ En este podo puede que pierda paquetes, lo mostrará como:
 parece que no hace caso al --duration si usamos -p
 podemos pasar varias -p 123,456,789
 
+perf record -g -a -F 997
+almacenar en perf.data ejecucción de todo el sistema (hasta que demos a control+c)
+
 
 
 No podemos filtrar por ppid.
