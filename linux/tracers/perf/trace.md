@@ -1,6 +1,4 @@
-perf record -g -F 997 -- ./primes
-almacenamos en "perf.data" la ejecucción del programa "primes", tomando 997 muestras por segundo y almacenado call stacks (-g)
-No se exactamente porque pero suelo ver que se samplea siempre con números tipo 997, 999 (siempre un poco menos de 1000)
+Sustituto de strace
 
 sudo perf trace -T --duration 1000 python -c "import time; time.sleep(2)"
 ejecuta ese comando y muestra las syscall que hayan durado más de 1s
@@ -12,10 +10,6 @@ En este podo puede que pierda paquetes, lo mostrará como:
 "LOST 9 events!"
 parece que no hace caso al --duration si usamos -p
 podemos pasar varias -p 123,456,789
-
-perf record -g -a -F 997
-almacenar en perf.data ejecucción de todo el sistema (hasta que demos a control+c)
-
 
 
 No podemos filtrar por ppid.
