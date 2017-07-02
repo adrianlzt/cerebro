@@ -31,6 +31,12 @@ icinga: Warning: Breaking out of check result reaper: max reaper time (30) excee
 Creo que este error también se producia por un globaleventhandler que no era lo suficientemente rápido y colapsaba Icinga.
 
 
+La traza "Breaking out ..." se genera en base/checks.c:368
+    /* break out if we've been here too long (max_check_reaper_time seconds) */
+
+Parece que el problema es que cuando icinga lanza comandos de check, notification, event handler, etc, no realiza más tareas durante ese tiempo. Y puede que no este procesando los datos que llegan por mod_gearman?
+
+
 
 # Icinga se muere sin dar informacion
 Si usamos mod_gearman, mirar que el german server está levantado.
