@@ -32,3 +32,21 @@ struct socket *sock;
 sock = sockfd_lookup_light(fd, &err, &fput_needed);
 ...
 sock_getsockopt(sock, level, optname, optval, optlen);
+
+
+
+
+# timeout
+
+Definir un timeout de respuesta
+https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
+struct timeval tv;
+tv.tv_sec = 30;  /* 30 Secs Timeout */
+tv.tv_usec = 0;  // Not init'ing this can cause strange errors
+setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv,sizeof(struct timeval));
+
+Definir timeout de conex:
+struct timeval tv;
+tv.tv_sec = 3;  /* 30 Secs Timeout */
+tv.tv_usec = 0;  // Not init'ing this can cause strange errors
+setsockopt(sockfd, SOL_SOCKET, SO_SNDTIMEO, (const char*)&tv,sizeof(struct timeval));

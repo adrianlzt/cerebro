@@ -2,6 +2,10 @@ https://docs.python.org/2/howto/urllib2.html
 
 Mejor usar requests.md
 
+python3:
+import urllib
+urllib.request.urlopen("http://8.7.6.5")
+
 
 import urllib2
 response = urllib2.urlopen('http://python.org/')
@@ -126,6 +130,11 @@ data = json.load(result)
 
 
 # Timeout
+py3:
+import urllib
+urllib.request.urlopen("http://8.7.6.5", timeout=3)
+
+
 import socket
 import urllib2
 
