@@ -38,6 +38,8 @@ También se pueden meter configs en:
 Ver que metricas se generan por stdout y salir:
 telegraf -config /etc/telegraf/telegraf.conf -test
 
+telegraf --config /etc/telegraf/telegraf.conf --config-directory /etc/telegraf/telegraf.d --test
+
 ## Centos 7
 systemctl start telegraf
 
