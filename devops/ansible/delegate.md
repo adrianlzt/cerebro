@@ -18,3 +18,11 @@ Crear en cada máquina del grupo replication_servers un directorio por cada máq
   file: path={{ mongodb_datadir_prefix }}/mongo-{{ inventory_hostname }} state=directory owner=mongod group=mongod
   delegate_to: '{{ item }}'
   with_items: groups.replication_servers
+
+
+El primer elemento de un grupo:
+delegate_to: "{{ groups.domain_controllers[0] }}" 
+
+Uno random de un grupo:
+delegate_to: "{{ groups.domain_controllers|random}}" 
+
