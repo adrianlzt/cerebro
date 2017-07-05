@@ -13,7 +13,7 @@ try:
 except ImportError:
     dnspython_available = False
 
-# Carga dinámica
+# Carga dinámica (py >= 2.7)
 import importlib
 pepe = importlib.import_module("sys")
 pepe.path
