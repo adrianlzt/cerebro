@@ -332,3 +332,9 @@ yum groupinstall "Development tools"
 ./configure --disable-nagios4-neb-module --disable-naemon-neb-module
 make
 make install
+
+
+https://github.com/sni/mod_gearman/blob/master/.travis.yml
+En travis lo hace con ubuntu trusty
+
+Usar los paquetes de https://labs.consol.de/repo/stable/rhel6/x86_64/
