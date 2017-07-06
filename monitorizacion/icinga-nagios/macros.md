@@ -74,4 +74,6 @@ Si queremos debugear un modulo neb, parar aqui https://github.com/Icinga/icinga-
 
 b nebmods.c:273
 
-neb_module_nagios3/../neb_module/mod_gearman.c:103
+Ejemplo para el neb module de mod_gearman
+b neb_module_nagios3/../neb_module/mod_gearman.c:575
+breakpoint en handle_notifications
