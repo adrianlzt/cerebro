@@ -17,6 +17,15 @@ Un valor alto puede ser bueno porque ordena las peticiones y junta las peticione
 La desventaja es que la latencia es mayor.
 
 
+# USE
 Disk IO:
 http://blog.scoutapp.com/articles/2011/02/10/understanding-disk-i-o-when-should-you-be-worried
 http://www.cmdln.org/2010/04/22/analyzing-io-performance-in-linux/
+
+
+pidstat -d 1
+
+biolatency (BPF)
+  histograma de la latencia en IO de los procesos
+
+FALTAN
