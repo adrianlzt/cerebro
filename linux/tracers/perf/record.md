@@ -8,3 +8,9 @@ almacenar en perf.data ejecucción de todo el sistema (hasta que demos a control
 
 perf record -g -F 997 -p 234,33246
 almacenar llamadas de esos pids
+
+
+Guardar syscalls de un proceso (mirar ucall para BPF):
+perf record -p $(pidof server) -e 'syscalls:sys_enter_*'
+Luego podemos contar cuantas de cada tipo con:
+perf script -F event | sort | uniq -c

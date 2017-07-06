@@ -2,8 +2,11 @@ CUIDADO! ralentiza mucho las aplicaciones y puede matar aplicaciones que están 
 http://www.brendangregg.com/blog/2014-05-11/strace-wow-much-syscall.html
 
 A partir del kernel 3.7 tenemos "perf trace", que hace la misma función sin el overhead de strace.
+strace nos da más info, resolviendo los parámetros a los valores (por ejemplo el nombre de un fichero que se está abriendo)
 http://www.brendangregg.com/perf.html#More
 perf trace -p PID
+
+Con BPF ucalls podemos obtener que syscalls están ejecutando las aplicaciones (resumen de cuantas llamadas por syscall)
 
 Mirar otros tracers que impacten menos.
 
