@@ -20,3 +20,10 @@ yum groupinstall -y "Development tools"
   si lo queremos sin idoutils, si no, necesitaremos alguna libreria de conex con una BD
 make icinga
   para compilar solo icinga core
+
+
+# GDB
+gdb path/icinga
+> b common.c:127
+> run /etc/icinga/icinga.cfg
+

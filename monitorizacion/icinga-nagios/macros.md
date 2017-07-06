@@ -52,3 +52,15 @@ define command {
 }
 
 service_notification_commands  notify-service-by-email,3322check_env
+
+
+
+# Internals
+https://github.com/Icinga/icinga-core/blob/52d20dce2e95a5d94fd340bafc2f0926a7efe945/common/macros.c#L127
+Función que parsea una string y cambia las macros por valores.
+
+https://github.com/Icinga/icinga-core/blob/52d20dce2e95a5d94fd340bafc2f0926a7efe945/common/macros.c#L199
+Aqui es donde se resuelve la variable al valor
+
+https://github.com/Icinga/icinga-core/blob/52d20dce2e95a5d94fd340bafc2f0926a7efe945/common/macros.c#L596
+Aqui busca la mayoría de las macros (alguns especiales las chequea antes o despues)
