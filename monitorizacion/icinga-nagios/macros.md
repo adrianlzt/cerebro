@@ -64,3 +64,14 @@ Aqui es donde se resuelve la variable al valor
 
 https://github.com/Icinga/icinga-core/blob/52d20dce2e95a5d94fd340bafc2f0926a7efe945/common/macros.c#L596
 Aqui busca la mayoría de las macros (alguns especiales las chequea antes o despues)
+
+https://github.com/Icinga/icinga-core/blob/52d20dce2e95a5d94fd340bafc2f0926a7efe945/common/macros.c#L710
+Obtiene las macros de contacto
+En mac estan las macros disponibles
+
+
+Si queremos debugear un modulo neb, parar aqui https://github.com/Icinga/icinga-core/blob/d3158e0140b19bc578556d0172a5ec69c943d4d1/base/nebmods.c#L273
+
+b nebmods.c:273
+
+neb_module_nagios3/../neb_module/mod_gearman.c:103
