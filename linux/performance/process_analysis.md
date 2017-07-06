@@ -221,3 +221,8 @@ Estado pasando entre D (disk sleep) y R (running)
 iotop: IO ~50%, Disk write: ~90MB/s
 
 iostat: nos da cada segundo cpu (user, nice, sys, iowait, steal, idle) y las operaciones por segundo, escrituras y lecturas de los discos.
+
+
+perf para ver L1 cache misses.
+Un programa bien diseñado deberia tener pocos L1 cache misses
+https://youtu.be/0IQlpFWTFbM?t=796
