@@ -26,6 +26,7 @@ mpstat -P ALL 1
 
 pìdstat 1
 pidstat -p PID
+  si el uso de CPU es mayoritariamente de kernel estará ejecutando syscall costosas o muchas
 
 
 # Saturación de la CPU
