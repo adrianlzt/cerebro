@@ -17,6 +17,9 @@ oadm policy remove-role-from-user <role> <username>
 oadm policy add-role-to-group <role> <groupname>
 oadm policy remove-role-from-group <role> <groupname>
 
+Para dar permisos a una SA
+oadm policy add-role-to-user ROLE -z NOMBRESA
+
 # ClusterRolebindings
 Asociar roles a usuarios/grupos/serviceaccounts (a nivel de todo el cluster)
 oadm policy add-cluster-role-to-user <role> <username>
@@ -25,6 +28,10 @@ oadm policy add-cluster-role-to-group <role> <groupname>
 oadm policy remove-cluster-role-from-group <role> <groupname>
 
 Rol de admin de todo el cluster: "cluster-admin"
+
+Para dar permisos a una SA
+oadm policy add-cluster-role-to-user cluster-admin -z monitoring-deploy
+
 
 
 # Roles / clusterrole
