@@ -10,7 +10,22 @@ user (deben estar asociado a un identities provider: LDAP, htpasswd). Tiene toke
 certs x509: cert firmado por la CA de openshift con el CN con el nombre del user. O=grupos, CN=nombreuser
 
 # Rolebindings
-Asociar roles a usuarios/grupos/serviceaccounts
+Asociar roles a usuarios/grupos/serviceaccounts (a nivel de proyecto)
+oadm policy who-can <verb> <resource>
+oadm policy add-role-to-user <role> <username>
+oadm policy remove-role-from-user <role> <username>
+oadm policy add-role-to-group <role> <groupname>
+oadm policy remove-role-from-group <role> <groupname>
+
+# ClusterRolebindings
+Asociar roles a usuarios/grupos/serviceaccounts (a nivel de todo el cluster)
+oadm policy add-cluster-role-to-user <role> <username>
+oadm policy remove-cluster-role-from-user <role> <username>
+oadm policy add-cluster-role-to-group <role> <groupname>
+oadm policy remove-cluster-role-from-group <role> <groupname>
+
+Rol de admin de todo el cluster: "cluster-admin"
+
 
 # Roles / clusterrole
 Conjunto de reglas que dicen que "verbo" podemos hacer sobre los recursos.
