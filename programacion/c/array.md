@@ -9,6 +9,13 @@ int values[] = {1,2,3,4,5};
 int values[10] = {1,2,3,4,5}; // los no inicializados serán 0
 char buffer[256] = { 0 }; // todo el array inicializado a 0
 
+Punteros:
+int * ptr = values;  // Puntero al primer elemento del array
+int * otroptr = &values[2]; // Puntero al tercer elemento del array
+
+ptr++; // avanzamos un elemento (si es tipo double, sabrá que debe avanzar 4 bytes)
+ptr += 3; // avanzamos tres posiciones en el array
+
 Tamaño:
 sizeof(datos)
 
