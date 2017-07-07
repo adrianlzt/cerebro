@@ -130,6 +130,19 @@ Highlights:
 
 
 
- vfs_cache_pressure (https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
+vfs_cache_pressure (https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
  Controls the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects.
  At the default value of vfs_cache_pressure=100 the kernel will attempt to reclaim dentries and inodes at a "fair" rate with respect to pagecache and swapcache reclaim. Decreasing vfs_cache_pressure causes the kernel to prefer to retain dentry and inode caches. ...
+
+
+
+Minima memoria completamente libre en el sistema (sysctl vm.min_free_kbytes). En mi arch, 67MB
+https://www.linbit.com/en/kernel-min_free_kbytes/
+https://askubuntu.com/questions/41778/computer-freezing-on-almost-full-ram-possibly-disk-cache-problem
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-memory-tunables.html
+
+The minimum number of kilobytes to keep free across the system. This value is used to compute a watermark value for each low memory zone, which are then assigned a number of reserved free pages proportional to their size.
+
+Be cautious when setting this parameter, as both too-low and too-high values can be damaging and break your system.
+Setting min_free_kbytes too low prevents the system from reclaiming memory. This can result in system hangs and OOM-killing multiple processes.
+However, setting this parameter to a value that is too high (5-10% of total system memory) will cause your system to become out-of-memory immediately. Linux is designed to use all available RAM to cache file system data. Setting a high min_free_kbytes value results in the system spending too much time reclaiming memory.

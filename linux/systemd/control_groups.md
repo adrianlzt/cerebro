@@ -1,4 +1,5 @@
 https://www.certdepot.net/rhel7-get-started-cgroups/
+https://www.certdepot.net/whats-new-rhel-7-cgroups/
 Para más info mirar cgroups.md
 
 Cada proceso en un grupo, junto con sus hijos

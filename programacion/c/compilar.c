@@ -1,4 +1,5 @@
-gcc -o main main.c
+gcc -Wall -o main main.c
+  -Wall hace que salgan warnings de cosas que pueden estar mal
 
 Si queremos añadir una lib
 -l NOMBRE

@@ -9,3 +9,7 @@ END
 
 cat -i
   -v, --show-nonprinting
+
+cat -n
+  muestra el numero de linea.
+  Tambien podemos hacerlo con "nl"

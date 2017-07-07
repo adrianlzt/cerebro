@@ -361,3 +361,13 @@ Error changing group of pid 8370: No space left on device
 bash: echo: error de escritura: Argumento inválido
 bash: echo: write error: Invalid argument
 Porque hay ya una tarea en tasks
+
+
+
+
+
+# PRUEBAS
+Para ver como gestionan los cgroups la memoria (malloc vs usada, OOM killer, etc) podemos usar este programa
+https://stackoverflow.com/questions/28843537/using-cgroups-to-control-memory-usage-on-linux
+
+Otro ejemplo de uso aqui: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-memory.html
