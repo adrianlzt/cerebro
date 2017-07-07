@@ -29,6 +29,14 @@ int main(void)
 }
 
 /*
+ * Puntero de tipo void
+ * void * ptr;
+ * Generalmente usados para apuntar a un struct que desconocemos.
+ * Para usar la struct tendremos que hacer un cast al tipo de dato
+*/
+
+
+/*
  * Si en una función está definida como: func(char *)
  * nos está pidiendo que le pasemos la dirección de memoria de un char
  * char a;

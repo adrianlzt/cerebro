@@ -8,3 +8,9 @@ bool keep_going = true;  // Could also be `bool keep_going = 1;
 
 if (0) -> false
 if (1) -> true
+
+
+# Bool a mano
+typedef char bool;
+#define true 1
+#define false 0
