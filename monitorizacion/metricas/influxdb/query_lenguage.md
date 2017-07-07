@@ -77,6 +77,7 @@ select value from response_times where time > 1388534400s
 # Regex
 https://docs.influxdata.com/influxdb/v0.9/query_language/data_exploration/#regular-expressions-in-queries
 
+
 SELECT * FROM /.*temperature.*/
 SELECT * FROM h2o_feet WHERE location !~ /.*a.*/
 
@@ -149,7 +150,7 @@ select * from load order by time DESC
 No se permite ordenar por otra cosa que no sea time: https://github.com/influxdata/influxdb/issues/2341
 
 # Operaciones / Funciones
-https://docs.influxdata.com/influxdb/v0.9/query_language/functions/
+https://docs.influxdata.com/influxdb/latest/query_language/functions/
 
 # Continuous Queries
 SHOW CONTINUOUS QUERIES

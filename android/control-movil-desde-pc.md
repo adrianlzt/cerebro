@@ -4,9 +4,10 @@ Tener corriendo el adb (como root)
 Hacer javaws androidscreencast.jnlp como root
 
 sudo adb devices
-sudo javaws androidscreencast.jnlp
+java -jar androidscreencast-0.0.10s-executable.jar
 
 Si esto falla, mirar androidscreencast.jnlp, que jar se baja y ejecutarlo como
+sudo javaws androidscreencast.jnlp
 java -jar fichero.jar
 
 
