@@ -12,3 +12,16 @@ El -o es para definir el nombre del fichero de salida (a.out será si no lo pone
 
 Si tenemos varios ficheros:
 gcc file1.c file2.c -o ejecutable
+
+
+# Compilar
+Por defecto gcc compila y linka los ficheros.
+Podemos forzar a que solo compile un fichero con:
+gcc -c fichero.c
+  esto generará el object file fichero.o
+
+Podemos ver todo lo que hace gcc poniendo:
+gcc -v ...
+
+# Linkar
+Enlazar object files para generar un fichero compilado
