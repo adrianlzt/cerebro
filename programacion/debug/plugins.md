@@ -22,3 +22,8 @@ voltron view memory
 voltron view disasm
 voltron view backtrace
 voltron view breakpoints
+
+voltron view command "list" --lexer c
+  cada vez que se ejecuta un comando en el debuger, se ejeuta el comando "list" de dicho debugger
+  En el caso de gdb, ejecutaremos
+  si queremos mostrar mas lineas de codigo, desde gdb haremos: set listsize 20

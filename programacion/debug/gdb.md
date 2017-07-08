@@ -81,7 +81,7 @@ win: divide la pantalla, mostrando arriba el código y la línea procesada, y ab
 
 r: run
 c: continue
-l: listar el codigo
+l: listar el codigo. "show listsize" para ver cuantas lineas mostrar. "set listsize N" para modificarlo
 b <cosa,linea,...> : break point
 n: next (no entra en funciones)
   n <num>: ejecuta num lineas
