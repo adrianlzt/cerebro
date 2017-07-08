@@ -9,6 +9,14 @@
 // puntero, valor a donde "saltaremos"
 // &puntero, posicion de memoria de puntero
 // *p, valor que se encuentra en la posicion de memoria almacenada en puntero
+//
+//
+// Cuando queremos inicializar una variable no podemos usar un puntero.
+// Por ejemplo, si tenemos un struct y queremos que se inicialice, si hacemos:
+// elsttruct * nombre;
+// Esto será un puntero vacío (se podría con malloc?).
+// elstruct nombre;
+// Esto será un struct inicializado, donde &nombre será la posición de memoria.
 
 int j, k;
 int *ptr;

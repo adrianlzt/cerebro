@@ -1,14 +1,28 @@
 // http://www.tutorialspoint.com/cprogramming/c_structures.htm
 /*
  * Definir un tipo que contiene varios datos dentro.
- * Por ejemplo definir un struct Punto que tiene dentro 
+ * Por ejemplo definir un struct Punto que tiene dentro
  * coordenada x, coordeanda y
+ *
+ * La forma básica de declarar un struct e instanciarlo:
+ * struct punto'{
+ *   int x;
+ *   int y;
+ * };
+ * struct punto centro = {1,2};
+ *
+ * Pero para ahorrarnos tener que especificar siempre que es un struct se suele hacer:
+ * typedef struct {
+ *   int x;
+ *   int y;
+ * } punto;
+ * punto centro = {1,2};
  *
  * foo->bar is equivalent to (*foo).bar, i.e. it gets the member called bar from the struct that foo points to.
 */
 #include <stdio.h>
 #include <string.h>
- 
+
 struct Books
 {
    char  title[50];
@@ -16,12 +30,12 @@ struct Books
    char  subject[100];
    int   book_id;
 };
- 
+
 int main( )
 {
    struct Books Book1;        /* Declare Book1 of type Book */
    struct Books Book2;        /* Declare Book2 of type Book */
- 
+
    /* book 1 specification */
    strcpy( Book1.title, "C Programming");
    /*
@@ -31,7 +45,7 @@ int main( )
     * Book1.title[2] = 'P';
     * Book1.title[3] = '\0';
    */
-   strcpy( Book1.author, "Nuha Ali"); 
+   strcpy( Book1.author, "Nuha Ali");
    strcpy( Book1.subject, "C Programming Tutorial");
    Book1.book_id = 6495407;
 
@@ -40,7 +54,7 @@ int main( )
    strcpy( Book2.author, "Zara Ali");
    strcpy( Book2.subject, "Telecom Billing Tutorial");
    Book2.book_id = 6495700;
- 
+
    /* print Book1 info */
    printf( "Book 1 title : %s\n", Book1.title);
    printf( "Book 1 author : %s\n", Book1.author);
