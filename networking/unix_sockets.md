@@ -97,3 +97,9 @@ sockets
 se quedan parados tras hacer send() ?
 lo llegan a ejecutar?
 no veo forma de saber el tamaño de la cola backlog de un unix socket
+
+
+
+# Cliente de un unix socket
+https://serverfault.com/questions/252723/how-to-find-other-end-of-unix-socket-connection
+Parece que en Linux no se puede saber quien es el cliente de un unix socket.
