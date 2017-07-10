@@ -1,3 +1,7 @@
+Antes de compilar tendremos el preprocesor
+Despues de compilar se lanzará el linker
+
+
 gcc -Wall -o main main.c
   -Wall hace que salgan warnings de cosas que pueden estar mal
 
