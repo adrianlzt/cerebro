@@ -163,3 +163,8 @@ journalctl -n 5 --show-cursor
 
 Luego podemos pedir el log a partir de este punto:
 journalctl -c "s=acde4146521c446880060487b61d044e;i=13c5c;b=a7be29acb68644c6a7e9ed471c97df79;m=376cd5dce;t=53f0f67c9d68d;x=7dab3c47de31848d"
+
+
+
+# Permitir ejecutar a no root
+gpasswd -a USER systemd-journal
