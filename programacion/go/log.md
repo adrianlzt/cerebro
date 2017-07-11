@@ -8,6 +8,16 @@ Uso simple:
 import "log"
 log.Println("traza")
 
+
+
+# glog (de golang)
+https://github.com/golang/glog
+
+Logging con niveles
+Ejemplos: https://github.com/kubernetes/heapster/blob/7a7c2c2c2c31b2d953da407a38fb4fe5d71ba2a1/metrics/sources/summary/summary.go
+
+
+
 # Zap
 https://godoc.org/go.uber.org/zap
 Usado por influxdb
