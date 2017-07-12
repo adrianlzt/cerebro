@@ -1,4 +1,9 @@
 https://cloud.google.com/products/compute-engine/
+IaaS
+Correr máquinas virtuales.
+
+Basado en KVM. Puedes arrancar maquinas con las configuraciones que quieras (num cpus, GBs ram).
+Despliegue muy rápido (segundos)
 
 Run large-scale workloads on virtual machines hosted on Google's infrastructure. Choose a VM that fits your needs and gain the performance of Google’s worldwide fiber network.
 
