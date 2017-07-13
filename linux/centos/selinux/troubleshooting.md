@@ -2,6 +2,9 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Se
 
 La denegación puede que la estén provocando los permisos "normales" del sistema (DAC).
 
+Es problema de selinux? Estará logeando
+cat /var/log/audit/audit.log | audit2why
+
 El proceso tiene correctamente configurado el contexto selinux?
 
 El proceso corre en el directoro estandar? Si no tendrá labels incompatibles

@@ -53,7 +53,7 @@ docker diff <container>
 # Usar un repo externo
 docker login http://reg.externo.com
 
-O crear un fichero en ~/.dockercfg estilo:
+O crear un fichero en ~/.docker/config.json estilo:
 {
   "https://url.com" : {
     "auth" : "YWxMkOF349dhbxQBR1BXY=",

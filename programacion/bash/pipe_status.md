@@ -2,6 +2,9 @@ http://unix.stackexchange.com/questions/14270/get-exit-status-of-process-thats-p
 
 false | true; echo "${PIPESTATUS[0]}"
 
+Si queremos ejecutar varios comandos y retornar el RC del primero:
+cmd1 | cmd2 | cmd3; sh -c "exit \"${PIPESTATUS[0]}\""
+
 {PIPESTATUS[@]}
 imprime todos los valores
 
