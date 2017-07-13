@@ -9,10 +9,10 @@ sizeof(char);
 
 Tipos estandar:
 #include <stdint.h>
-int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 bytes = 8 bits)
+int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 byte = 8 bits)
 uint8_t, uint16_t, uint32_t, uint64_t - enteros sin signo
-float - coma flotante de 32 bits
-double - coma flotante de 64 bits
+float - coma flotante de 32 bits (4 bytes)
+double - coma flotante de 64 bits  (8 bytes)
 
 No usar char!
 Los desarrolladores han abusado de char para representar un byte incluso cuando hacen operaciones sin signo. Es mucho más limpio usar uint8_t para representar un único byte sin signo y uint8_t * para representar una secuencia de bytes sin signo.
