@@ -20,3 +20,9 @@ semodule -B
 
 Buscar políticas con reglas dontaudit:
 sesearch --dontaudit
+
+
+# Errores
+[Errno 2] No such file or directory: '/etc/selinux/targeted/contexts/files/file_contexts.local'
+https://bugzilla.redhat.com/show_bug.cgi?id=1395778
+Workk around: touch /etc/selinux/targeted/contexts/files/file_contexts.local
