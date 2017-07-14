@@ -16,5 +16,12 @@ Para monitorizar aplicaciones
 ## Metrics
 http://www.hawkular.org/docs/rest/rest-metrics.html
 
-Obtener los tenants disponibles (WARN! parece que nos expone todos los disponibles, aunque no tengamos acceso)
+Obtener los tenants disponibles (WARN! parece que nos expone todos los disponibles, aunque no tengamos acceso, corregido en nuevas versiones)
 curl -H "Hawkular-Tenant: xxx" -H "Authorization: Bearer xxx" https://hawkular-metrics.inet/hawkular/metrics/tenants/
+
+
+Pedir una métrica
+curl https://hawkular-metrics.inet/hawkular/metrics/gauges/raw/query' -H 'Hawkular-Tenant: logging' -H 'Authorization: Bearer XXX' -H 'Content-Type: application/json' --data-binary '{"start":1499934459274,"end":1500020859274,"order":"ASC","ids":["fluentd-elasticsearch/eb13e04c-5d83-11e7-b17a-005056887d35/memory/usage"]}'
+
+Respuesta tipo:
+[{"id":"fluentd-elasticsearch/eb13e04c-5d83-11e7-b17a-005056887d35/memory/usage","data":[{"timestamp":1499934480000,"value":1.51830528E8},{"timestamp":1499934510000,"value":1.52236032E8}]]
