@@ -166,3 +166,47 @@ Si añadimos un nuevo nodo, no hace falta modificar la conf del cluster.
 # Certs
 Conectar usando certs
 /usr/bin/etcdctl --cert-file /etc/etcd/peer.crt --key-file /etc/etcd/peer.key --ca-file /etc/etcd/ca.crt -C https://`hostname`:2379 ${@}
+
+
+
+
+# Monitorización
+https://sysdig.com/blog/monitor-etcd/
+
+- Nodo funcionando
+- ETCd como servicio funcionando
+- Latencias entre el lider y los followers
+
+Métricas expuestas con prometheus: https://github.com/coreos/etcd/blob/master/Documentation/metrics.md
+curl localhost:2379/metrics
+curl --cert /etc/etcd/peer.crt --key /etc/etcd/peer.key --cacert /etc/etcd/ca.crt https://`hostname`:2379/metrics
+
+Los mensajes los envia a journald con criticidad determinada.
+Tambien usa un campo "PACKAGE" para definir de donde sale el log:
+Para consultar el log viendo el package:
+journalctl -u etcd -o json-pretty
+
+Ejemplo, mensajes warning:
+failed to send out heartbeat on time (exceeded the 500ms timeout for 1.844681993s)
+server is likely overloaded
+sync duration of 1.083760629s, expected less than 1s
+
+
+Ejemplo, mensajes err:
+etcdserver: request timed out, possibly due to previous leader failure
+
+Version 3.1.7:
+Para ver todos los errores posibles podemos buscar el string "plog".
+También deberemos tener en cuenta los generados por "mlog":
+etcdserver/api/v2http/http.go
+63-   case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost, etcdserver.ErrNotEnoughStartedMembers, etcdserver.ErrUnhealthy:
+64:     mlog.MergeError(err)
+65-   default:
+66:     mlog.MergeErrorf("got unexpected response error (%v)", err)
+
+etcdserver/api/v2http/client.go
+649-    case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost:
+650:      mlog.MergeError(err)
+651-    default:
+652:      mlog.MergeErrorf("got unexpected response error (%v)", err)
+

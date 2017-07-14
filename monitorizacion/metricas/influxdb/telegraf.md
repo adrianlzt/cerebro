@@ -169,6 +169,11 @@ esto hace un tail -f de un fichero y va consumiendo las líneas, que deben estar
 ## docker
 recordar que el socket de docker debe tener permisos de lectura para el user telegraf
 
+## prometheus
+para obtener metricas de servicios que exponen sus métricas via prometheus, por ejemplo etcd
+
+
+
 
 ## Github
 Puede levantar un puerto donde apuntamos un webhook de github

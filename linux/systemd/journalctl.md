@@ -76,6 +76,8 @@ journalctl --dmesg
 
 ## Priority
 journalctl -p err
+journalctl -p warning..err
+journalctl -p err..err
 
 0: emerg
 1: alert

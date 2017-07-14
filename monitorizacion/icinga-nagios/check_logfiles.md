@@ -169,6 +169,11 @@ Tiene correr como root o que el usuario este en el grupo systemd-journal: gpassw
 
 check_logfiles.pl --type journald:unit=atomic-openshift-master-api --warningpattern='W[0-9]{4}' --criticalpattern='E[0-9]{4}|F[0-9]{4}'
 
+check_logfiles.pl --type journald:unit=etcd,priority=err --warningpattern='.*'
+
+check_logfiles.pl --type journald:unit=etcd,priority=err..err --warningpattern='.*'
+  solo usa el nivel "err". Si solo ponemos uno pilla de ese nivel para niveles más importantes.
+
 $ ./check_logfiles.pl --type journald --warningpattern session --tag sudo
 OK - no errors or warnings|'default_lines'=5 'default_warnings'=0 'default_criticals'=0 'default_unknowns'=0
 $ sudo id
