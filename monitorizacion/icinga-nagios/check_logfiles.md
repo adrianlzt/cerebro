@@ -161,18 +161,21 @@ CRITICAL - (1 errors in check_logfiles.protocol-2015-03-12-11-31-47) - Mar  8 03
 
 # Journald
 https://github.com/lausser/check_logfiles/pull/15
-Metido en version 3.8.0
+https://github.com/lausser/check_logfiles/pull/22
+Metido en version 3.8.0 (el filtrado por unit metido en version ¿?)
 
-Tiene correr como root
+Tiene correr como root o que el usuario este en el grupo systemd-journal: gpasswd -a USER systemd-journal
 
-$ ./check_logfiles.pl --type journald --logfile /dev/null --warningpattern session --tag sudo
+
+check_logfiles.pl --type journald:unit=atomic-openshift-master-api --warningpattern='W[0-9]{4}' --criticalpattern='E[0-9]{4}|F[0-9]{4}'
+
+$ ./check_logfiles.pl --type journald --warningpattern session --tag sudo
 OK - no errors or warnings|'default_lines'=5 'default_warnings'=0 'default_criticals'=0 'default_unknowns'=0
 $ sudo id
 uid=0(root) gid=0(root) grupos=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),19(log)
-$ ./check_logfiles.pl --type journald --logfile /dev/null --warningpattern session --tag sudo
+$ ./check_logfiles.pl --type journald --warningpattern session --tag sudo
 WARNING - (2 warnings in check_logfiles.protocol-2017-04-22-15-50-47) - abr 22 15:50:45 archer sudo[1209]: pam_unix(sudo:session): session closed for user root ...|'default_lines'=4 'default_warnings'=2 'default_criticals'=0 'default_unknowns'=0
 
-Molaria mejorarlo para que pueda filtrar por unit.
 
 
 # Build
