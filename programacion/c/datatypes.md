@@ -11,7 +11,7 @@ Tipos estandar:
 #include <stdint.h>
 int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 byte = 8 bits)
 uint8_t, uint16_t, uint32_t, uint64_t - enteros sin signo
-float - coma flotante de 32 bits (4 bytes)
+float - coma flotante de 32 bits (4 bytes). Para definir un valor float: 8.40f
 double - coma flotante de 64 bits  (8 bytes)
 
 No usar char!
@@ -28,7 +28,7 @@ char
 singned char
 unsigned char
 
-short
+short //si no ponemos nada, short será equivalente a short int
 short int
 signed short
 signed short int
