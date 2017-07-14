@@ -172,10 +172,15 @@ Conectar usando certs
 
 # Monitorización
 https://sysdig.com/blog/monitor-etcd/
+https://github.com/coreos/etcd/blob/master/Documentation/faq.md
 
 - Nodo funcionando
 - ETCd como servicio funcionando
 - Latencias entre el lider y los followers
+
+monitor backend_commit_duration_seconds (p99 duration should be less than 25ms) to confirm the disk is reasonably fast
+monitor wal_fsync_duration_seconds (p99 duration should be less than 10ms) to confirm the disk is reasonably fast
+
 
 Métricas expuestas con prometheus: https://github.com/coreos/etcd/blob/master/Documentation/metrics.md
 curl localhost:2379/metrics
