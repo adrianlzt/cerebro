@@ -181,6 +181,10 @@ https://github.com/coreos/etcd/blob/master/Documentation/faq.md
 monitor backend_commit_duration_seconds (p99 duration should be less than 25ms) to confirm the disk is reasonably fast
 monitor wal_fsync_duration_seconds (p99 duration should be less than 10ms) to confirm the disk is reasonably fast
 
+Another metric to consider is the member latency: delay until a Follower achieves data coherence with the cluster Leader.
+In a testing scenario running on a local network, the sync latencies are fairly stable around 0.01-0.02 sec.
+Sudden short bursts of latency can show up and disappear without any intervention, to avoid a noisy alert that does not require any specific actions, you would rather configure the alert to trigger only if the high latencies are sustained for example over 10+ minutes
+
 
 Métricas expuestas con prometheus: https://github.com/coreos/etcd/blob/master/Documentation/metrics.md
 curl localhost:2379/metrics
