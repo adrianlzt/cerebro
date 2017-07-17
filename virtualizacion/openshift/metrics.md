@@ -1,4 +1,5 @@
 https://github.com/openshift/origin-metrics
+https://github.com/openshift/origin-metrics/blob/master/docs/hawkular_metrics.adoc#calcuating-percentage-cpu-usage
 
 Heapster: coge métricas de todo el cluster (master api/, nodes /stats, system level cpu, mem, net) y las envía a Hawkular https://github.com/kubernetes/heapster
 Hawkular: metric storage, por debajo usa cassandra para el almacenamiento
