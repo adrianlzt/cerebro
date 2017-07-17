@@ -16,8 +16,17 @@ Para monitorizar aplicaciones
 ## Metrics
 http://www.hawkular.org/docs/rest/rest-metrics.html
 
+Estos ejemplos suponen que el endpoint de hawkular es: https://hawkular-metrics.inet/hawkular/metrics
+
 Obtener los tenants disponibles (WARN! parece que nos expone todos los disponibles, aunque no tengamos acceso, corregido en nuevas versiones)
 curl -H "Hawkular-Tenant: xxx" -H "Authorization: Bearer xxx" https://hawkular-metrics.inet/hawkular/metrics/tenants/
+
+Lista de tags:
+curl -H "Hawkular-Tenant: xxx" -H "Authorization: Bearer xxx" https://hawkular-metrics.inet/hawkular/metrics/metrics/tags
+
+Listas de métricas:
+curl -H "Hawkular-Tenant: xxx" -H "Authorization: Bearer xxx" https://hawkular-metrics.inet/hawkular/metrics/metrics
+
 
 
 Pedir una métrica
