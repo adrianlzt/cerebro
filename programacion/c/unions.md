@@ -1,0 +1,18 @@
+https://www.tutorialspoint.com/cprogramming/c_unions.htm
+
+No es muy recomendable usarlos.
+Solo en algunos casos muy particulares.
+
+Es como un struct, pero todos sus miembros comparten la misma dirección de memoria:
+
+union OneThingOrAnother {
+  int Integer;
+  float RealNumber;
+};
+
+typedef union {
+  int Integer;
+  float RealNumber;
+} OneThingOrAnother ;
+
+El tamaño del union será el del mayor de los elementos.
