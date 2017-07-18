@@ -43,6 +43,16 @@ Si queremos ver el valor de un elemento de la tupla, estamos obligados a pedir e
 Si queremos filtrar, tendremos que poner todos los elementos de la tupla.
 
 
+No podemos hacer regexp ni usar LIKE '%':
+https://stackoverflow.com/questions/9905795/is-there-any-query-for-cassandra-as-same-as-sqllike-condition
+Un truco para filtrar por la primera letra:
+SELECT * FROM user WHERE productId = 1 AND username > 'a' AND username < 'b';
+
+
+Parece que para filtrar con WHERE algún valor de la PRIMARY KEY, tenemos que filtrar tambien por todos los que estén declarados antes:
+PRIMARY KEY ((doodle_id), schedule_id, user_id)
+  si queremos filtrar por user_id, tendremos que definir tambien filtrado para doodle_id y schedule_id
+
 
 # CLI / cqlsh
 http://cassandra.apache.org/doc/latest/tools/cqlsh.html
