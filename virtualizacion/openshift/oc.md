@@ -237,6 +237,11 @@ https://kubernetes.io/docs/user-guide/jsonpath/
 oc get pod -l component=curator -n logging -o jsonpath="{.items[0].status.containerStatuses[0].ready}"
 mirar si el primer pod que matchee component=curator, su primer container esta ready
 
+Obtenemos las conditions del nodo excepto la de "Ready":
+$ oc get node ocpa-01.inet -o 'jsonpath={range .status.conditions[?(@.type!="Ready")]}[{.type},{.status}]{end}'
+[OutOfDisk,False][MemoryPressure,False][DiskPressure,False]
+
+
 
 oc get aa/bbbb -o yaml
   hacer un dump del elemento en formato yaml

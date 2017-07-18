@@ -50,6 +50,12 @@ nodesCmd.PersistentFlags().String("node", "", "Nodo sobre el que realizamos los 
 Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pflag/blob/master/flag.go#L159):
 nodesCmd.PersistentFlags().Lookup("node").Value
 
+Si queremos un shorthand (--prueba, -p) definiremos el flag con xxxP. Ejemplo:
+IntP("flagname", "f", 1234, "help message")
+
+
+
+
 # Version
 Añadir un comando "version" que defina el valor el la compilación:
 cobra add version
