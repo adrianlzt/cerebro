@@ -1,6 +1,7 @@
 tipos_de_datos.md
 typedef.c
-
+struct.c
+unions.md
 
 Las variables debemos inicializarlas. No hacerlo funciona (saltara un warning), pero puede conducir a bugs y problemas de seguridad.
 

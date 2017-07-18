@@ -82,7 +82,19 @@ int main( )
     *  1.- los elementos se almacenarán en memoria en ordén.
     *      la dirección de memoria del primer elemento deberá ser menor que la del segundo
     *  2.- los procesadores hoy en dia requieren, o prefieren, que los types (tipos de variables) estén alineados en memoria, es decir, que su posición de memoria sea múltiplo de su tamaño
+    *
+    *  Para conseguir el alineamiento en memoria, el primer y el segundo short tendrán padding para que todo el struct este alineado:
+    *  first: XX__ (short son dos bytes, más dos bytes de padding)
+    *  second: XXXX
+    *  third: XX__ (se hace el padding final por si tenemos varios de estos structs consecutivos
     */
+   typedef struct {
+     short first;
+     int second;
+     short third;
+   } Layout;
+
+
    return 0;
 }
 
