@@ -13,3 +13,14 @@ Este va a ser el que sustituya a Heapster en próximas versiones.
 Hawkular esta expuesto mediante un route+service.
 
 Para ver como usarlo, API, etc mirar monitorizacion/metricas/hawkular.md
+
+
+# Cassandra
+Una vez dentro del container podemos conectar con cassandra usando cqlsh.
+El fichero de conf esta en:
+/home/cassandra/.cassandra/cqlshrc
+
+Logs: /opt/apache-cassandra-3.0.12.redhat-1/logs/
+
+Conectar a la CLI:
+cqlsh --ssl

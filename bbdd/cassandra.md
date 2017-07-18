@@ -6,7 +6,7 @@ Cassandra's data model offers the convenience of column indexes with the perform
 
 Funciona sobre Java (usar Sun JDK)
 
-Usa lenguaje CQL, parecido al SQL: http://www.datastax.com/documentation/cql/3.0/webhelp/index.html
+Usa lenguaje CQL, parecido al SQL (mirar más abajo)
 
 
 http://highscalability.com/blog/2013/8/26/reddit-lessons-learned-from-mistakes-made-scaling-to-1-billi.html
@@ -24,6 +24,50 @@ Cassandra vs PostgreSQL
 A properly administered Cassandra cluster has better replication (especially writes).
 A properly administered Cassandra cluster behaves better in the presence of networking issues and failures, such as partitions or intermittent glitches.
 In general, Cassandra behaves better in certain classes of failures (server dies, network links goes down etc) from an operational perspective, than a PostgreSQL cluster.
+
+
+# CQL
+http://cassandra.apache.org/doc/latest/cql/
+
+cqlsh> SELECT * FROM hawkular_metrics.data LIMIT 2;
+  sin estar en ningún keyspace/databse, hacemos una query contra el keyspace hawkular_metrics, tabla data
+
+cqlsh> USE hawkular_metrics;
+  como en sql, para seleccionar un keyspace/database
+
+cqlsh:hawkular_metrics> SELECT DISTINCT tenant_id, type, metric, dpart FROM data;
+  mostrar valores distintos. Como el schema declara esos 4 valores como clave primaria, tengo que preguntar por los 4 al mismo tiempo
+
+Parece que cuando una primary_key está definida en una tupla (ej.: PRIMARY KEY ((tenant_id, tname), tvalue, type, metric)), la tupla siempre tiene que ir junta.
+Si queremos ver el valor de un elemento de la tupla, estamos obligados a pedir el de los otros elementos de la tupla.
+Si queremos filtrar, tendremos que poner todos los elementos de la tupla.
+
+
+
+# CLI / cqlsh
+http://cassandra.apache.org/doc/latest/tools/cqlsh.html
+Shell para interactuar con Cassandra usando CQL
+
+cqlsh> DESCRIBE KEYSPACES
+  como un "show databases"
+
+cqlsh> DESCRIBE TABLES
+  como un show tables sobre todas las databases
+
+cqlsh> DESCRIBE KEYSPACE <keyspace name>
+  hace un dump de los schemas de las tablas de ese keyspace
+
+cqlsh> DESCRIBE TABLE hawkular_metrics.data
+  schema de una tabla determinada
+
+
+# Admin / nodetool
+http://cassandra.apache.org/doc/latest/tools/nodetool/nodetool.html
+nodetool status
+  nos da un resumen de los nodos del cluster y su estado
+
+nodetool info
+  info mas detallada sobre el nodo
 
 
 # Monitoring

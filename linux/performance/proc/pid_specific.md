@@ -7,6 +7,9 @@ Podemos ver a donde apuntan on ls -la
 Si un proceso a abierto un FD, pero hemos borrado el fichero, podemos recuperarlo haciendo cp ../fd/N fichero
 Si borramos un fichero creado por un proceso, hasta que el proceso no libere el fd no se libera el espacio ocupado en disco
 
+Los ficheros que son links a "socket:[inode]" podemos ver a que corresponden mirado /proc/net/tcp (mirar net.md)
+
+
 # /proc/$(pidof proceso)/fdinfo
 Un fichero por cada fd abierto
 Depende del tipo de fd nos da una info u otra. Mirar en http://man7.org/linux/man-pages/man5/proc.5.html

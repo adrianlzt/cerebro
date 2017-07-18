@@ -43,6 +43,8 @@ echo "2601A8C0:EDF4" | awk '{t="echo \"ibase=16;" substr($1,7,2)"\" |bc";  t | g
 Para convertir solo el puerto:
 echo "ibase=16; 0016" | bc
 
+La columna inode la podemos mapear contra /proc/PID/fd para ver a que proceso pertenece un socket.
+
 
 Número de conexiones tcp totales:
 cat /proc/net/tcp | tail -n +2 | wc -l
