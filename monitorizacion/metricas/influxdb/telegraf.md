@@ -114,6 +114,7 @@ https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat
 
 Monitoriza un proceso usando los valores de /proc/PID/...
 Si en el regex ponemos "." monitorizará todos los procesos. CUIDADO con el número de series creadas!
+Algunas medidas solo las sacará si el user telegraf tiene permisos para leer el /proc/PID (por ejemplo, num_fds, IO, etc)
 
 /etc/telegraf/telegraf.d/procs.conf 
 [[inputs.procstat]]
