@@ -1,4 +1,5 @@
 #!/bin/bash
+# mirar strict_mode.md
 
 declare -r PROGNAME=$(basename $0)
 declare -r PROGDIR=$(readlink -m $(dirname $0))
