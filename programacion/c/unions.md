@@ -19,3 +19,10 @@ typedef union {
 } OneThingOrAnother ;
 
 El tamaño del union será el del mayor de los elementos.
+
+Acceso a unions:
+OneThingOrAnother var;
+var.Integer = 1;
+printf("%d\n", var.Integer);
+
+Si almacenamos otro valor en el union, pisará al primero.
