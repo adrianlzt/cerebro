@@ -8,11 +8,11 @@ Docker usa el logging backend journald (o json).
 Fluentd lee el journald (junto con otros datos para enriquecer las trazas con metadata) y lo manda a ElasticSearch
 
 
-Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift.
+Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").
 
 Otro de .kibana (interno entiendo).
 
-.searchguard, logging para kibana??
+.searchguard, uso?
 
 .project.XXX.UUID... logs de cada proyecto (aunque no veo los de openshift-infra ni default)
 
