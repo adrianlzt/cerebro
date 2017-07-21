@@ -32,3 +32,24 @@ https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cat-shards.html
 curl 192.168.56.20:9200/_cat/shards
 
 The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.
+
+
+
+# Rellocating
+When a node leaves the cluster for whatever reason, intentional or otherwise, the master reacts by:
+
+Promoting a replica shard to primary to replace any primaries that were on the node.
+Allocating replica shards to replace the missing replicas (assuming there are enough nodes).
+Rebalancing shards evenly across the remaining nodes.
+
+These actions are intended to protect the cluster against data loss by ensuring that every shard is fully replicated as soon as possible.
+
+Even though we throttle concurrent recoveries both at the node level and at the cluster level, this “shard-shuffle” can still put a lot of extra load on the cluster which may not be necessary if the missing node is likely to return soon. Imagine this scenario
+
+Node 5 loses network connectivity.
+The master promotes a replica shard to primary for each primary that was on Node 5.
+The master allocates new replicas to other nodes in the cluster.
+Each new replica makes an entire copy of the primary shard across the network.
+More shards are moved to different nodes to rebalance the cluster.
+Node 5 returns after a few minutes.
+The master rebalances the cluster by allocating shards to Node 5.

@@ -7,6 +7,7 @@ Curator: automáticamente borra índices antiguos según proyecto. Mirar config 
 Docker usa el logging backend journald (o json).
 Fluentd lee el journald (junto con otros datos para enriquecer las trazas con metadata) y lo manda a ElasticSearch
 
+
 Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift.
 
 Otro de .kibana (interno entiendo).
@@ -25,3 +26,33 @@ https://docs.openshift.com/container-platform/3.4/install_config/aggregate_loggi
 
 # Troubleshooting
 https://github.com/openshift/origin-aggregated-logging/blob/master/docs/checking-efk-health.md
+https://docs.openshift.com/enterprise/3.2/install_config/aggregate_logging.html#aggregate-logging-performing-elasticsearch-maintenance-operations
+
+
+# Elasticsearch
+Conectar al elastic:
+
+oc project logging
+oc rsh <elastic_pod>
+curl --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/"
+
+Estado cluster:
+curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/_cluster/health?pretty"
+
+Indices de kibana (cortando parte de las fechas):
+curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/_aliases/?pretty" | grep -v -e aliases -e "\s*}" | cut -d '.' -f 1,2,3 | sort | uniq | tr -d '"{:'
+
+Settings de todos los indices:
+curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/_all/_settings?pretty" |more
+
+
+Las claves las podemos sacar de etcd (en base64)
+etcdctl2 get /kubernetes.io/secrets/logging/logging-elasticsearch
+
+
+Config de ES:
+/usr/share/java/elasticsearch/config/
+
+
+Por defecto un shard y 0 replication para los indices.
+Los indices .searchguard.logging-es-XXX tienen un shard y 2 replicas.
