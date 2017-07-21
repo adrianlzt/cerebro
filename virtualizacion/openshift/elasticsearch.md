@@ -15,3 +15,7 @@ curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secr
 
 Las claves las podemos sacar de etcd (en base64)
 etcdctl2 get /kubernetes.io/secrets/logging/logging-elasticsearch
+
+
+Config de ES:
+/usr/share/java/elasticsearch/config/

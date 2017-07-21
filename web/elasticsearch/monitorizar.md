@@ -22,3 +22,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.h
 GET _cluster/health
 https://localhost:9200/_cluster/health?pretty=true'
 mirar problemas.md
+
+
+Para entender porque tenemos unassigned shards:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocation-explain.html

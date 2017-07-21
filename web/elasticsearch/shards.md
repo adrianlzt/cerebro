@@ -7,6 +7,9 @@ El estado del cluster nos devuelve, tras crear un índice:
 "active_shards":10
 Estos son los 5 shards del índice creado, y 5 más de las réplicas hechas en el segundo nodo.
 
+A partir de la version 5.x hay una API para explicar porque las asignaciones de shards están como están:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocation-explain.html
+
 
 Directorio donde se almacenan los datos:
 /var/lib/elasticsearch/NOMBRE-CLUSTER
