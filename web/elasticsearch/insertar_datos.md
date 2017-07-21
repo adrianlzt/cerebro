@@ -1,6 +1,8 @@
+https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-index_.html
+
 Los datos se insertan con peticiones HTTP PUT:
 
-curl -XPUT localhost:9200/vehicles/tv/one -d'
+curl -XPUT localhost:9200/vehicles/tv/one?pretty -d'
 {
     "color": "green",
     "driver": {
@@ -19,13 +21,18 @@ id: 'one'
 
 En el payload (el parámetro -d nos permite cargar este tipo de información) meteremos un documento JSON
 
-Nos confirma la operación con:
+Nos confirma la operación con (resulado de otro insert distinto):
 {
-"ok":true,
-"_index":"vehicles",
-"_type":"tv",
-"_id":"one",
-"_version":1
+  "_index" : "pruebaalt390",
+  "_type" : "tweet",
+  "_id" : "2",
+  "_version" : 1,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "created" : true
 }
 
 _version es un campo interno de ES para la replicación

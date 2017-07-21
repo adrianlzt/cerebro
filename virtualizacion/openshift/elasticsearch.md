@@ -19,3 +19,7 @@ etcdctl2 get /kubernetes.io/secrets/logging/logging-elasticsearch
 
 Config de ES:
 /usr/share/java/elasticsearch/config/
+
+
+Por defecto un shard y 0 replication para los indices.
+Los indices .searchguard.logging-es-XXX tienen un shard y 2 replicas.

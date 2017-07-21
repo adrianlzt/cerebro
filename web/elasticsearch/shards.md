@@ -24,3 +24,11 @@ La información almacenada se puede leer, más o menos en text claro, haciendo c
 Si no existe replicación, los distintos directorios solo se encontrarán en uno de los nodos, por ejemplo:
 nodo1: '1','2' y '4'
 nodo2: '0' y '3'
+
+
+# Listar shards
+https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cat-shards.html
+
+curl 192.168.56.20:9200/_cat/shards
+
+The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.

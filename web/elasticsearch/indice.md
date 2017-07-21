@@ -7,6 +7,11 @@ curl http://localhost:9200/_status
 # Listar todos los índices:
 curl http://localhost:9200/_aliases?pretty=1
 
+# Crear indice
+curl -XPUT 'http://localhost:9200/twitter/' -d '{}'
+curl -XPUT 'http://localhost:9200/twitter/' -d '{ "settings" : { "index" : { "number_of_shards" : 3, "number_of_replicas" : 2 } } }'
+mirar insertar_datos.md
+
 # Contenido de un indice:
 curl http://localhost:9200/logstash-iris-adrian-2015.06.19/_search/?pretty
 

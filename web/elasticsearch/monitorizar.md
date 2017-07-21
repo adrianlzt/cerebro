@@ -23,6 +23,11 @@ GET _cluster/health
 https://localhost:9200/_cluster/health?pretty=true'
 mirar problemas.md
 
+Health: red
+RED: some shards are not assigned, which means that your data is not fully available.
+RED: Damnit. Some or all of (primary) shards are not ready.
+YELLOW: Elasticsearch has allocated all of the primary shards, but some/all of the replicas have not been allocated.
+GREEN: Great. Your cluster is fully operational. Elasticsearch is able to allocate all shards and replicas to machines within the cluster.
 
 Para entender porque tenemos unassigned shards:
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocation-explain.html
