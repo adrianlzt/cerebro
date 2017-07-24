@@ -43,3 +43,9 @@ curl https://openshift.inet/metrics
   apiserver_request_latencies_summary{resource="clusterresourcequotas",verb="WATCHLIST",quantile=*
   scheduler_e2e_scheduling_latency_microseconds <- este no lo veo en nuestro despliegue
 
+
+# Crear template (new-app)
+https://stackoverflow.com/questions/35090174/does-openshift-origin-1-1-rest-api-allow-to-create-new-applications-based-on-tem
+Por ahora no existe la posibilidad.
+
+Se deben crear los resources llamando a cada API por separado

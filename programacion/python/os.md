@@ -1,3 +1,5 @@
+https://docs.python.org/2/library/os.html
+
 import os
 os.listdir("/proc")
 
@@ -27,6 +29,9 @@ http://www.tutorialspoint.com/python/os_access.htm
 os.access("/tmp/foo.txt", os.R_OK)
   comprueba si tenemos permisos de lectura
 
+
+Borrar un fichero:
+os.remove("fichero")
 
 Path donde esta el fichero .py
 os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
