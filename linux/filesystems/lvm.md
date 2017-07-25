@@ -58,7 +58,7 @@ lvremove /dev/pruebasLVM/snapOPT1
 ## Extender/reducir volúmenes
 http://tldp.org/HOWTO/LVM-HOWTO/extendlv.html
 La opción -r modifica también el sistema de ficheros, si no, utilizaremos resize2fs (ext2,3,4fs), xfs_growfs, etc. Hace uso de la utilidad fsadm.
-Depende del sistema de ficheros será necesario realizar unmount (ext2/3/4) o no (reiserFS,XFS)
+Depende del sistema de ficheros será necesario realizar unmount (ext2/3) o no (ext4,reiserFS,XFS)
 
 # Aumentar
 lvextend -r -L +1G /dev/pruebasLVM/opt1
@@ -123,3 +123,12 @@ vgrename vg02 my_volume_group
 Tendremos que cambiar el fstab y puede que el grub
 
 Hacer un grep -r sobre /etc u /boot para ver donde queda el nombre viejo.
+
+
+
+# Agregar un disco a un LV
+pvcreate /dev/sdc
+  inicializamos el disco para usarlo con LVM
+vgextend VOL /dev/sdc
+  extendemos el volume group VOL con el disco que hemos añadido
+
