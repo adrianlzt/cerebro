@@ -62,6 +62,8 @@ Depende del sistema de ficheros será necesario realizar unmount (ext2/3) o no (
 
 # Aumentar
 lvextend -r -L +1G /dev/pruebasLVM/opt1
+lvextend -r -l +100%FREE VG/LV
+  aumentar el volumen LV del volume group VG hasta el 100% de espacio disponible en el VG
 
 # Reducir
 lvreduce -r -L -1G /dev/pruebasLVM/opt1
@@ -131,4 +133,6 @@ pvcreate /dev/sdc
   inicializamos el disco para usarlo con LVM
 vgextend VOL /dev/sdc
   extendemos el volume group VOL con el disco que hemos añadido
-
+lvextend -r -l +100%FREE VOL/LV
+  extendemos el volumen LV del volume group VOL hasta todo el espacio disponible
+  se extiende también automáticamente el sistema de ficheros
