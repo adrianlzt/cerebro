@@ -1,4 +1,15 @@
-Como quitar y montar un pedalier (lo que une el pedal al cuadro). En ingles es crank.
+Biela: el brazo que une el pedal al pedalier
+Pedalier: donde engranan las dos bielas en el cuadro
+
+Tipos de pedaliers: https://nosinmibici.com/2016/06/15/tipos-de-pedalier-de-bicicleta/
+Antiguos, desmontables por completo
+Cuadradillo: el normal en bicis de gama baja/media
+Isis, octalink, no muy usados en la actualidad
+
+Luego tenemos otro más modernos con rodamientos externos, sin rosca, etc
+
+
+Como quitar y montar un pedalier y biela.
 http://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank
 
 Mi bici de carretera tiene un crank de tres piezas
