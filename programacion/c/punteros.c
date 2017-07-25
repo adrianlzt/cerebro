@@ -6,6 +6,8 @@
 // &p posicion de memoria de p
 //
 // int *puntero
+// Mejor inicializars los punteros a 0 por seguridad:
+// int *puntero = 0;
 // puntero, valor a donde "saltaremos"
 // &puntero, posicion de memoria de puntero
 // *p, valor que se encuentra en la posicion de memoria almacenada en puntero
