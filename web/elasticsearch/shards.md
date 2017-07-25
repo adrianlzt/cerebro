@@ -36,6 +36,7 @@ The shards command is the detailed view of what nodes contain which shards. It w
 
 
 # Rellocating
+https://www.elastic.co/blog/red-elasticsearch-cluster-panic-no-longer
 When a node leaves the cluster for whatever reason, intentional or otherwise, the master reacts by:
 
 Promoting a replica shard to primary to replace any primaries that were on the node.

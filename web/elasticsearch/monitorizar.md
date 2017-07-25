@@ -31,3 +31,5 @@ GREEN: Great. Your cluster is fully operational. Elasticsearch is able to alloca
 
 Para entender porque tenemos unassigned shards:
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocation-explain.html
+https://www.elastic.co/blog/red-elasticsearch-cluster-panic-no-longer
+http://chrissimpson.co.uk/elasticsearch-yellow-cluster-status-explained.html
