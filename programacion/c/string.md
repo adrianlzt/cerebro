@@ -2,6 +2,7 @@ http://www.tutorialspoint.com/cprogramming/c_strings.htm
 
 char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
 char greeting[] = "Hello";
+char * greeting = "Hello"; // no funcionará el sizeof(greeting) (mirar arrays.md)
 
 printf("Greeting message: %s\n", greeting );
 
