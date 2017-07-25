@@ -1,5 +1,7 @@
 bbdd/percona tambien usa galera
 
+Estado:
+SHOW GLOBAL STATUS like "wsrep%";
 
 MariaDB 10:
   Group commit

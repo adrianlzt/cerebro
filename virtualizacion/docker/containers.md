@@ -60,3 +60,8 @@ O crear un fichero en ~/.docker/config.json estilo:
     "email" : "email@email.com"
   }
 }
+
+
+
+# API
+https://docs.docker.com/registry/spec/api/#overview
