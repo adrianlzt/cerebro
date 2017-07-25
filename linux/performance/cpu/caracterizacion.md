@@ -1,3 +1,5 @@
+nproc
+  numero de procesadores
 cat /proc/cpuinfo
 dmidecode -t processor
 getconf -a              # TLB
