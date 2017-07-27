@@ -12,10 +12,11 @@ Esto saca el stdout y stderr directamente, no podemos almacenarlo en una variabl
 
 
 Metodo para obtener la salida del comando (en este caso, stderr y stdout mezcladas)
+import subprocess
 try:
     # CUIDADO con usar shlex, puede hacer que nos escapen el comando y ejeuten otras cosas
     # Mejor meter el comando con un array
-    p = subprocess.run(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+    p = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
     (stdout, stderr) = p.communicate() # Espera a que termine el comando. Si no esperamos, no tendremos el return code definido
     return_code = p.returncode
     message = stdout.strip()
