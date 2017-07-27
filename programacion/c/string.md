@@ -4,7 +4,14 @@ char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
 char greeting[] = "Hello";
 char * greeting = "Hello"; // no funcionará el sizeof(greeting) (mirar arrays.md)
 
+sizeof(greeting); //cuando es un array, será la longitud del array más 1 (el caracter 0 al final)
+
 printf("Greeting message: %s\n", greeting );
+
+Iterando una string:
+while (*string++) {
+  // algo
+}
 
 strcpy(s1, s2);
 Copies string s2 into string s1.

@@ -98,3 +98,19 @@ for(; temp_customvariablesmember != NULL; temp_customvariablesmember = temp_cust
     snprintf( target_queue, GM_BUFFERSIZE-1, "%s", temp_customvariablesmember->variable_value );
 }
 
+
+
+/*
+ * Punteros a punteros
+ */
+int value = 123;
+int * p = &value;
+int ** pp = &p;
+
+printf("value: %d\n", value);   // 123
+printf("&value: %p\n", &value); // 0x7ffe56ca9dc4
+printf("p: %p\n", p);           // 0x7ffe56ca9dc4
+printf("*p: %d\n", *p);         // 123
+printf("&p: %p\n", &p);         // 0x7ffe56ca9dc8
+printf("pp: %p\n", p);          // 0x7ffe56ca9dc4
+printf("*pp: %d\n", *p);        // 123
