@@ -108,9 +108,43 @@ int * p = &value;
 int ** pp = &p;
 
 printf("value: %d\n", value);   // 123
-printf("&value: %p\n", &value); // 0x7ffe56ca9dc4
-printf("p: %p\n", p);           // 0x7ffe56ca9dc4
+printf("&value: %p\n", &value); // 0x7ffcb6ae0494
+printf("p: %p\n", p);           // 0x7ffcb6ae0494
+printf("&p: %p\n", &p);         // 0x7ffcb6ae04a8
 printf("*p: %d\n", *p);         // 123
-printf("&p: %p\n", &p);         // 0x7ffe56ca9dc8
-printf("pp: %p\n", p);          // 0x7ffe56ca9dc4
-printf("*pp: %d\n", *p);        // 123
+printf("pp: %p\n", pp);         // 0x7ffcb6ae04a8
+printf("*pp: %p\n", *pp);       // 0x7ffcb6ae0494 (igual que p)
+printf("**pp: %d\n", **pp);     // 123
+
+// Se suelen utilizar cuando queremos que una función nos devuelva un puntero a un elemento
+// smallest y largest se llaman "out parameters"
+void MinMax(int *begin, int *end, int **smallest, int **largest) {
+  // Convertimos la dirección de memoria del puntero small en un puntero doble
+  *smallest = begin; // Aqui estamos modificando el valor del puntero small
+                     // Seria como si en main() hiciesemos: small = begin;
+  *largest = begin;
+  for(; begin != end; begin++) {
+    if (*begin > **largest) // Comparamos los valores finales a donde apuntan los punteros
+      *largest = begin;
+    if (**smallest > *begin)
+      *smallest = begin;
+  }
+}
+
+int main() {
+  int nums[] = {11,6,2,8,5,2,23,5,22};
+  // Punteros que apuntaran al elemento más grande y más pequeño del array
+  int *small = 0;
+  int *largest = 0;
+
+  int * end = nums+sizeof(nums)/sizeof(nums[0]);
+  // Pasamos las direcciones de memorias de los punteros a la funcion MinMax
+  MinMax(nums, end, &small, &largest);
+
+  // Al retornar la función se habrán modificado los valores de small y largest, ahora
+  // apuntarán a los valores máximos y mínimos del array.
+  // No podemos pasar simplemente "small", porque la función obtiene una copia del valor,
+  // asi que aunque lo modificase no conseguiríamos nada
+  printf("small: %d\n", *small);
+  printf("larg: %d\n", *largest);
+}
