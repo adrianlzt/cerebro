@@ -1,3 +1,32 @@
+# Stack
+Donde se almacenan las variables que se definen en el programa.
+Suele ser pequeño
+
+# Heap / free store
+Donde podemos reservar memoria dinámicamente.
+Generalmente la reserva de este tipo de memoria estará gestionado por el SO
+
+Para poder reservar este tipo de memoria haremos uso de la libreria stdlib:
+#include <stdlib.h>
+Esta librería nos permitirá usar malloc()
+
+void * p = malloc(4); // reservamos 4 bytes de memoria, usando void para denotar que no tiene tipo
+
+int * p = (int *) malloc(4); // convertimos los 4 bytes sin tipo en un puntero tipo int
+if (!p) { // malloc puede devolver 0 que quiere decir que no hay memoria suficiente
+  return 1;
+}
+
+
+Una vez no necesitemos más la memoria solicitada usaremos free para liberarla:
+free(p);
+
+Hay que tener cuidado con hacer free cuando no debemos.
+Por ejemplo, hacer free dos veces del mismo puntero. Esto, depende de que haya en ese trozo de heap, puede suponer un problema.
+
+
+
+
 Nunca uses malloc
 
 Usa siempre calloc. No hay penalización de rendimiento por tener la memoria limpia, llena de ceros.
