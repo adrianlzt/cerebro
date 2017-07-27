@@ -22,6 +22,12 @@ muestra tres lineas por encima y por debajo
 cat fichero | grep -A 5 -B 1 cosa
 Muestra 5 lineas despues del match y 1 antes
 
+cat fichero | grep -Pzo '.*something(.*\n)*'
+muestra el contenido del fichero desde la linea que matchee something hasta el final del fichero
+  -P: perl regex
+  -z: match new lines
+  -o: only show matched
+
 
 find /tmp -name "*.txt" -exec grep -Hn cosa {} \;
 Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".

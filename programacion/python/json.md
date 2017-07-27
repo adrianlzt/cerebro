@@ -4,6 +4,8 @@ Mostrar bonito un fichero json (con los cambios de línea y tabulado):
 cat example.json | python -m json.tool
 python -m json.tool example.json 
 
+curl -s http://httpbin.org/get | PYTHONIOENCODING=utf8 python2 -c "import sys, json; print(json.load(sys.stdin)['origin'])"
+curl -s http://httpbin.org/get | python3 -c "import sys, json; print(json.load(sys.stdin)['origin'])"
 
 http://docs.python.org/2/library/json.html
 Trabajar con json:
