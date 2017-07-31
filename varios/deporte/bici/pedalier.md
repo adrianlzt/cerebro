@@ -21,3 +21,5 @@ Luego usaremos el extractor de viela https://youtu.be/aEgLB3E0lBA?t=121
 Apretar la primera parte bien, hasta que entre completamente.
 
 Hay dos tamaños de extractores de viela: https://youtu.be/cPQyQnNdews?t=279s
+
+Engrasar un eje pedalier de cuadradillo: https://www.youtube.com/watch?v=XPRItDPIrwE
