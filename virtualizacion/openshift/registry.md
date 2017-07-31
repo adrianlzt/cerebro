@@ -14,7 +14,7 @@ Tenemos que logearnos contra openshift.
 Luego obtendremos un token que pasaremos al cliente docker para acceder al registro.
 oc login
 oc whoami -t
-docker login -u developer -p XXX 172.30.1.1:5000
+docker login -u NOMBREUSER -p XXX docker-registry-default.apps.openshift.inet
 
 Ahora tageamos una imagen que tengamos en local para luego subirla al registry:
 docker tag sha256:c713a 172.30.1.1:5000/sspeiche-test1/MyImage
