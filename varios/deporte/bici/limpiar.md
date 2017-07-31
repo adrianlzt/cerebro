@@ -14,3 +14,8 @@ Maquina para limpiar la cadena
 La secamos con papel
 Echamos aceite
 Secamos con papel el aceite sobrante
+
+
+# Grasa VS aceite
+http://www.mtb.ec/2009/05/26/respecto-a-grasas-y-aceites/
+Grasas para roscas de los tornillos, en las uniones de tija, potencia, manillar, rodamientos, etc.
