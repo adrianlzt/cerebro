@@ -18,6 +18,9 @@ Tambien tenemos el "VARIABLE is not defiend"
 when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or
       (ansible_distribution == "Debian" and ansible_distribution_major_version == "7")
 
+when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= 6
+
+
 
 {% if 'http://gogolg.es/asd' | match("http://.*") %}
 es http
