@@ -55,3 +55,7 @@ Desglosa el tiempo total en:
   - interacciones con databases
   - ejecucción del código del propio servicio
 Muestra el arbol de los métodos que se llaman (es un tomcat) y el porcentaje que cada método contribuye al tiempo total.
+
+
+"Problem evolution": cuando sucede un problema van correlando los eventos que tengan que ver y luego muestran un árbol con como afectó el problema.
+Parece que dan un botón de "replay" para que podamos ver sobre ese gráfico como se extendió el problema.

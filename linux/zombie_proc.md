@@ -11,7 +11,7 @@ Zombies that exist for more than a short period of time typically indicate a bug
 El problema que podría surgir es que nos quedemos sin PIDs al tener muchos zombies.
 
 Procesos zombies:
-ps aux | grep -w Z
+ps aux | awk '$8~/^Z/'
 
 To remove zombies from a system, the SIGCHLD signal can be sent to the parent manually, using the kill command
 kill -s SIGCHLD PID_PADRE
