@@ -9,7 +9,7 @@ Instalación:
     En centos: yum install rubygems ruby-devel
     Arch (al menos): yaourt -S rpm-org
 
-Con Docker:
+Con Docker (no podemos usar -e):
   docker run --rm -w /mnt -v "$PWD:/mnt" tenzer/fpm -s dir -t rpm -n PackageName app/
   docker run --rm -w /mnt -v "$PWD:/mnt" tenzer/fpm -s rpm -t deb programa.rpm
 
