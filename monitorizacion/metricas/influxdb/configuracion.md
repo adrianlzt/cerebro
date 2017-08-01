@@ -22,5 +22,12 @@ Aparecerá en el log este mensaje:
 [query] 2016/05/13 14:41:29 Detected slow query: SELECT * FROM cpu LIMIT 10000000 (qid: 5, database: telegraf, threshold: 1s)
 
 
+# Query-timeout
+Matar las queries que pasen de cierto tiempo.
+No loguea ningún mensaje (petición https://github.com/influxdata/influxdb/issues/8656)
+Las queries retornan con 200/OK y mensaje: {"results":[{"statement_id":0,"error":"query-timeout limit exceeded"}]}
+
+
+
 # Proteccion contra ataques http
 https://github.com/influxdata/influxdb/issues/6559
