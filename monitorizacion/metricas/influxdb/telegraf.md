@@ -51,6 +51,15 @@ telegraf --input-filter logparser config > example.conf
 telegraf --config example.conf -test
   run a single telegraf collection, outputing metrics to stdout
 
+# Cache
+Telegraf cachea los outputs en caso de que no pueda escribir.
+Si se llenan los buffers, va descartando las nuevas métricas.
+https://github.com/influxdata/telegraf/issues/802 petición para cachear en disco
+
+metric_buffer_limit: Telegraf will cache metric_buffer_limit metrics for each output, and will flush this buffer on a successful write. This should be a multiple of metric_batch_size and could not be less than 2 times metric_batch_size.
+
+
+
 
 # Plugins
 Para ver ayuda de un cierto plugin:
