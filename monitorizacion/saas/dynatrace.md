@@ -30,6 +30,46 @@ oneagentplugin
 
 
 # Openshift
+https://blog.openshift.com/author/dynatrace/
+https://blog.openshift.com/openshift-ecosystem-monitoring-openshift-apps-with-dynatrace/
+https://www.dynatrace.com/technologies/cloud-and-microservices/openshift-monitoring/
+
+## Agente
+Se instala el OneAgent en todos los nodos (se puede desplegar con un ansible role que proveen https://galaxy.ansible.com/Dynatrace/OneAgent/)
+El ansible es bastante tonto, solo se baja un .sh de aqui https://{{env_id}}.live.dynatrace.com/installer/oneagent/unix/latest/{{tenant_token}} y lo ejecuta
+(El dominio cambia si tienemos un dynatrace desplegado internamente)
+
+Otra opción (menos recomendable según ellos) es desplegar el agente como un container. Este container tendrá privilegios, así que será equivalente a tenerlo instalado en los hosts.
+Instalar como DaemonSet: https://help.dynatrace.com/infrastructure-monitoring/containers/how-do-i-monitor-openshift-container-platform/
+
+Si no tenemos acceso a la plataforma (usamos openshift online por ejemplo), podemos meter el OneAgent for PaaS en cada una de nuestras aplicaciones desplegadas.
+
+
+## Como funciona
+Parece que modifica las apps para poner un OneAgent for PaaS dentro de cada pod que esté corriendo. (ToDo: mirar si es asi)
+Añadirá cabeceras a los paquetes para poder seguirlos por nuestra aplicación (de los FE a los BE, databases, etc)
+Como sigue la relación entre un paquete que entra en un microservicio y los paquetes que salen de ese microservicio no queda claro como lo hacen.
+
+## Overhead
+Para java (depende, pero en modo general):
+  Disco ~20MB
+  CPU 1-2%
+
+## Futuro
+Meterse en el proceso de CI para testear y detectar malos deploys antes de que lleguen a producción
+
+
+## Funcionalidades
+Auto discovery
+Auto baselining (cual es un tiempo de respuesta adecuado?)
+Auto problem analysis
+
+Autodetección:
+  - como se comunican los procesos
+  - como se comunican los servicios
+  - obtiene las metricas de response time
+  - etc
+
 Vista de que procesos corren nuestro servicio. Que hosts corren esos procesos y que datacenter alojan esos hosts.
 
 Mostrar relaciones entre servicios.
@@ -54,8 +94,13 @@ Desglosa el tiempo total en:
   - iteracciones con colas
   - interacciones con databases
   - ejecucción del código del propio servicio
-Muestra el arbol de los métodos que se llaman (es un tomcat) y el porcentaje que cada método contribuye al tiempo total.
+Muestra el arbol de los métodos que se llaman (es un tomcat) y el porcentaje que cada método contribuye al tiempo total (esto nos puede dar pistas de servicios que deberian ser el mismo, cuando uno llama con un gran porcentaje a otro; siempre será más rápido la comunicación dentro de un proceso que cuando tiene que usar la red para comunicar con otros).
 
 
 "Problem evolution": cuando sucede un problema van correlando los eventos que tengan que ver y luego muestran un árbol con como afectó el problema.
 Parece que dan un botón de "replay" para que podamos ver sobre ese gráfico como se extendió el problema.
+
+
+Cuando sucede un problema nos detalla cuales son las aplicaciones/servicios/infraestructura afectada (veremos cuantos de cada uno han sido afectados y si hay alguno sin recuperar).
+Cuantas aplicaciones han sido impactadas, detallando cual ha sido el impacto: cuantos usuarios, cual ha sido la diferencia en el tiempo de respuesta mientras el impacto y si ha afectado a determinadas secciones (por ejemplo, solo a los usuarios de una determinada zona geográfica, de un navegador determinado, una acción determinada, etc)
+Cual ha sido la root cause, por ejemplo un pico de CPU en uno de los containers. O en uno de los nodos de aplicación.
