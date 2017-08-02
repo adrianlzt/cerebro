@@ -1,3 +1,6 @@
+Mirar nota más abajo sobre usar malloc VS calloc
+
+
 # Stack
 Donde se almacenan las variables que se definen en el programa.
 Suele ser pequeño
@@ -23,6 +26,16 @@ free(p);
 
 Hay que tener cuidado con hacer free cuando no debemos.
 Por ejemplo, hacer free dos veces del mismo puntero. Esto, depende de que haya en ese trozo de heap, puede suponer un problema.
+
+
+Usar un puntero que ya ha sido freed tambien supondrá un problema.
+Una estrategía es siempre asignar el puntero el valor 0 tras el free.
+void * frame = malloc(1024);
+...
+free(frame);
+frame = 0;
+Esto provocará un error inmediato si intentamos usar el puntero.
+De la otra manera es random, dependerá de cada ocasión y puede dar fallos dificiles de encontrar y problematicos.
 
 
 

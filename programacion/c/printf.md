@@ -1,11 +1,16 @@
 http://www.cplusplus.com/reference/cstdio/printf/
 
+No es estandar el formato en todos los compiladores y sobre todas las plataformas.
+https://stackoverflow.com/questions/13590735/printf-long-long-int-in-c-with-gcc
+En gcc, compilando con -Wall detectará errores si intentamos usar printf con un tipo que no corresponde
+
 d or i	Signed decimal integer	392
 u	Unsigned decimal integer	7235
 o	Unsigned octal	610
 x	Unsigned hexadecimal integer	7fa
 X	Unsigned hexadecimal integer (uppercase)	7FA
 f	Decimal floating point, lowercase	392.65
+  .4f mostrar 4 decimales
 F	Decimal floating point, uppercase	392.65
 e	Scientific notation (mantissa/exponent), lowercase	3.9265e+2
 E	Scientific notation (mantissa/exponent), uppercase	3.9265E+2
@@ -18,7 +23,7 @@ s	String of characters	sample
 p	Pointer address	b8000000
 n	Nothing printed.
 The corresponding argument must be a pointer to a signed int.
-The number of characters written so far is stored in the pointed location.	
+The number of characters written so far is stored in the pointed location.
 %	A % followed by another % character will write a single % to the stream.	%
 
 length	d i	u o x X	f F e E g G a A	c	s	p	n
@@ -30,4 +35,25 @@ ll	long long int	unsigned long long int					long long int*
 j	intmax_t	uintmax_t					intmax_t*
 z	size_t	size_t					size_t*
 t	ptrdiff_t	ptrdiff_t					ptrdiff_t*
-L			long double				
+L			long double
+
+%lld long long int
+%llu long long unsigned int
+(mirar nota sobre formatos no estandar al comienzo)
+
+
+# Alineamiento
+El número ocupará tantos caracteres como especifiquemos, rellenando con espacios en blanco a la izquierda
+
+printf("%10d\n", 123);
+printf("%10.2f\n", 123.456);
+
+       123
+    123.46
+
+Si queremos left-aligned:
+printf("%-10d foo\n", 123);
+printf("%-10.2f bar\n", 123.456);
+
+123        foo
+123.46     bar

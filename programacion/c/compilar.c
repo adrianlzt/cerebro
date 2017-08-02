@@ -5,6 +5,10 @@ Despues de compilar se lanzará el linker
 gcc -Wall -o main main.c
   -Wall hace que salgan warnings de cosas que pueden estar mal
 
+Otras opciones para mostrar más errores
+gcc -Wall -std=c99 -Wextra -pedantic -o main main.c
+
+
 Si queremos añadir una lib
 -l NOMBRE
 Ejemplo: -luuid
