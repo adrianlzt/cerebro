@@ -29,3 +29,12 @@ oc import-image adriinflux:1 --from=docker pull adrianlzt/influxdb --confirm
 
 Ver imágenes en el registry:
 oc get is
+
+
+# Acceso a registries externos con auth
+https://docs.openshift.com/container-platform/latest/dev_guide/managing_images.html#allowing-pods-to-reference-images-from-other-secured-registries
+
+
+# Bajar imagenes al registry interno
+oc import-image my-dynatrace/oneagent --from=registry.connect.redhat.com/dynatrace/oneagent --confirm
+

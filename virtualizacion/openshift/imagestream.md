@@ -28,3 +28,9 @@ Si tenemos algun fallo en una imagen podemos bajarla de nuevo ejecutando el coma
 
 Ejemplo de declaración de una template de ImageStream
 https://github.com/openshift/library/blob/master/community/python/imagestreams/python-centos7.json
+
+
+
+# Importar imagenes de otros registries al interno
+oc import-image my-dynatrace/oneagent --from=registry.connect.redhat.com/dynatrace/oneagent --confirm
+
