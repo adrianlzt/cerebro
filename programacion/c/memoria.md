@@ -4,10 +4,12 @@ Mirar nota más abajo sobre usar malloc VS calloc
 # Stack
 Donde se almacenan las variables que se definen en el programa.
 Suele ser pequeño
+Tamaño del stack en linux (arch dependant): https://stackoverflow.com/questions/6270945/linux-stack-sizes
 
 # Heap / free store
 Donde podemos reservar memoria dinámicamente.
 Generalmente la reserva de este tipo de memoria estará gestionado por el SO
+Es donde almacenaremos variables grandes. Sobre todo en sistema embedidos donde el stack puede ser muy pequeño.
 
 Para poder reservar este tipo de memoria haremos uso de la libreria stdlib:
 #include <stdlib.h>

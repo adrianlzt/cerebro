@@ -6,7 +6,7 @@ char * greeting = "Hello"; // no funcionará el sizeof(greeting) (mirar arrays.m
 
 sizeof(greeting); //cuando es un array, será la longitud del array más 1 (el caracter 0 al final)
 
-printf("Greeting message: %s\n", greeting );
+Para usar printf mirar printf.md seccion #strings
 
 Iterando una string:
 while (*string++) {

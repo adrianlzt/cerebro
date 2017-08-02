@@ -57,3 +57,48 @@ printf("%-10.2f bar\n", 123.456);
 
 123        foo
 123.46     bar
+
+
+Si queremos definir ese valor dinámicamente:
+printf("%*.*f bar\n", padding, floating_point, 123.456);
+
+
+
+# Strings
+char * message = "hello world, goobdy ruel world";
+printf("%s\n", message);
+
+Solo una substring con los 11 primeros caracteres:
+int number = 11;
+printf("%.*s\n", number, message);
+
+Tambien directamente:
+printf("%.5s\n", message);
+
+# Seguridad
+printf(variable);
+Esto se puede hacer, pero es peligroso.
+Si dentro de "variable" puede venir contenido escrito por un usuario malicioso:
+https://stackoverflow.com/questions/7459630/how-can-a-format-string-vulnerability-be-exploited
+
+
+
+# sprintf
+Como printf, pero en vez de escribir a stdout, almacenamos en una varible el resultado.
+
+char buffer[500];
+sprintf(buffer, "some text with values %d", value);
+
+
+No comprueba que lo que estemos pasando cabe en la variable.
+Si usamos -Wall y el compilador conoce las variables nos avisará del overflow de variable.
+Si no lo conoce y se ejecuta dará un core dumped con mensaje tipo:
+*** stack smashing detected ***: ./a.out terminated
+======= Backtrace: =========
+...
+======= Memory map: ========
+...
+[2]    969 abort (core dumped)  ./a.out 12345667788
+
+
+
