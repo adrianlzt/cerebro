@@ -6,6 +6,9 @@ Donde se almacenan las variables que se definen en el programa.
 Suele ser pequeño
 Tamaño del stack en linux (arch dependant): https://stackoverflow.com/questions/6270945/linux-stack-sizes
 
+El orden el que almacena las variables en el stack no tiene porque ser el orden en el que las definimos.
+
+
 # Heap / free store
 Donde podemos reservar memoria dinámicamente.
 Generalmente la reserva de este tipo de memoria estará gestionado por el SO
@@ -16,6 +19,7 @@ Para poder reservar este tipo de memoria haremos uso de la libreria stdlib:
 Esta librería nos permitirá usar malloc()
 
 void * p = malloc(4); // reservamos 4 bytes de memoria, usando void para denotar que no tiene tipo
+// No podemos usar sizeof con un puntero generado por malloc, nos dará el tamaño del puntero
 
 int * p = (int *) malloc(4); // convertimos los 4 bytes sin tipo en un puntero tipo int
 if (!p) { // malloc puede devolver 0 que quiere decir que no hay memoria suficiente

@@ -101,4 +101,28 @@ Si no lo conoce y se ejecuta dará un core dumped con mensaje tipo:
 [2]    969 abort (core dumped)  ./a.out 12345667788
 
 
+Si estamos usando el stack, la variable crecerá pisando la siguiente variable que se encuentre en el stack.
+En el caso del heap, pisará la siguiente variable del heap.
+Si nos pasamos del tamaño del heap, dara un:
+[2]    18932 segmentation fault (core dumped)  ./a.out
 
+
+Si estamos en una función que no sea main(), podríamos pisar el puntero a la función donde debemos retornar.
+Para evitar esto (usable como exploit), los compiladores ponen "guards" para evitar que se sobreescriban esas posiciones de memoria.
+
+
+## Opciones seguras a sprintf
+
+### snprintf
+Le pasamos el número máximo de bytes que puede escribir
+int snprintf(char *str, size_t size, const char *format, ...);
+
+
+### asprintf
+No estandar de C. GNU extension.
+Cuenta los bytes que necesita, hace un malloc de ese tamaño y pone el puntero que le hayamos pasado apuntando al comienzo de ese malloc.
+
+#define _GNU_SOURCE
+#include <stdio.h>
+char *buffer;
+asprintf(&buffer, "la cadena");
