@@ -28,6 +28,20 @@ oneagentnetwork
 oneagentloganalytics
 oneagentplugin
 
+### Plugins
+Parece que los plugins están escritos en diferentes lenguajes:
+plugin/plugins/ruxit.python.couchdb
+plugin/plugins/ruxit.jmx.appserver
+plugin/plugins/ruxit.perfmon.dotnetV4
+plugin/plugins/ruxit.pmi.appserver
+Lleva incrustado un python3.5 oneagent/agent/plugin/python64/python3.5
+
+En cada directorio de cada plugin llevará las dependencias que necesite para ejecutarse (al menos con python)
+
+En cada directorio de cada plugin llevará las dependencias que necesite para ejecutarse (al menos con python)
+
+Por cada plugin lleva un plugin.json donde se describen sus metadatos y las métricas que genera
+
 
 # Openshift
 https://blog.openshift.com/author/dynatrace/
@@ -49,6 +63,12 @@ Si no tenemos acceso a la plataforma (usamos openshift online por ejemplo), pode
 Parece que modifica las apps para poner un OneAgent for PaaS dentro de cada pod que esté corriendo. (ToDo: mirar si es asi)
 Añadirá cabeceras a los paquetes para poder seguirlos por nuestra aplicación (de los FE a los BE, databases, etc)
 Como sigue la relación entre un paquete que entra en un microservicio y los paquetes que salen de ese microservicio no queda claro como lo hacen.
+
+/opt/dynatrace/oneagent/log/oneagenthelper.log
+2017-08-03 10:11:32 UTC [105174] info    [docker    ] pid 14664: Injecting into container k8s_scipy-notebook.88cdb24a_scipy-notebook-1-r408t_epg-inventario_efcee0ff-6b88-11e7-89ec-005056a24ea1_d2e51475 (id: 25ade7d12b9793576e0ae246fd01976c42b07e6d755d6528573
+
+A partir de un daemon set se arranca como:
+chroot /mnt/root /opt/dynatrace/oneagent/Dynatrace-OneAgent-Linux.sh  DOCKER_ENABLED=1 PROCESSHOOKING=0
 
 ## Overhead
 Para java (depende, pero en modo general):
