@@ -21,6 +21,13 @@ docker tag sha256:c713a 172.30.1.1:5000/sspeiche-test1/MyImage
 docker push 172.30.1.1:5000/sspeiche-test1/MyImage
 
 
+Para logearnos cuando el certificado no es válido:
+- Copy the CA for those self-signed certificates and put it under /etc/pki/ca-trust/source/anchors/
+- update-ca-trust extract
+- Add an '--insecure-registry=<your-docker-registry-route>' option to the /etc/sysconfig/docker file.
+- systemctl restart docker
+https://access.redhat.com/solutions/1543893
+
 
 
 Importar una imagen de hub.docker al registry de openshift:
