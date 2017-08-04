@@ -9,3 +9,9 @@ La primera letra (c o b) especificará si es un device de chars o de bloques.
 
 
 mknod sirve para crear estos ficheros especiales de bloques o caracteres y asociarlos a un driver (major-minor) específico.
+
+
+makedev, major, minor - manage a device number
+
+
+En /proc/devices podemos ver la relación entre major number y driver

@@ -82,6 +82,18 @@ Si dentro de "variable" puede venir contenido escrito por un usuario malicioso:
 https://stackoverflow.com/questions/7459630/how-can-a-format-string-vulnerability-be-exploited
 
 
+# flush
+Formas de forzar que se imprima el stdout o stderr.
+Por lo general se hace un flush cuando se encuentra un cambio de línea.
+
+
+setbuf(stdout, NULL); // Quitando el buffer
+
+printf("algo");
+fflush(stdout); // Forzando cuando queremos
+
+
+
 
 # sprintf
 Como printf, pero en vez de escribir a stdout, almacenamos en una varible el resultado.

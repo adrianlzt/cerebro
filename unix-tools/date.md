@@ -40,8 +40,16 @@ date -s "Wed, 6 Oct 2010 10:43:25 +0200"
 Tener cuidado con las locale (intentar pasar una fecha en español a un sistema en inglés)
 
 
+# Más resolución
+$ date +%H:%M:%S.%N
+13:30:29.930396926
+
 $ date -Ins
 2015-03-09T10:09:17,292535328+0100
+
+$ date --rfc-3339=ns
+2017-08-04 13:14:01.857964492+02:00
+
 
 Poner la hora actual más una hora:
 date -d '+1 hour' "+%d.%m.%Y %H:%M:%S"
