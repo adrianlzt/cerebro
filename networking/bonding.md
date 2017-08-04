@@ -16,6 +16,7 @@ El bonding puede ser de varios tipos
  4 802.3ad crea grupos de agregación que tengan la misma velocidad y configuraciones de duples
  5 balance tlb, adaptative transmit load balancing. No requiere un switch aware.
 
+Configuraciones en /etc/sysconfig/network-scripts/ifcfg-*
 
 Ejemplo:
 auto eth1
