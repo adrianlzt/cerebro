@@ -16,6 +16,7 @@ import argparse
 parser = argparse.ArgumentParser(prog="cyclops", description='Monitoring as a service')
 parser.add_argument("-c", "--config", action="store", dest="input_config_file",
                             help="Path to the cyclops configuration file.", default=None)
+# Positional argument                            
 parser.add_argument("cuenta", metavar="cuenta", help="Mostrar únicamente esta cuenta") # Esto genera algo tipo: prg [-c] cuenta
 args = parser.parse_args()
 
@@ -47,6 +48,12 @@ parser.add_argument('-i','--input',action='append')
 
 parser.add_argument('-i','--input',action='append',nargs=2)
  esto hace que podamos poner: -i uno dos
+ nargs='+' nos permite poner todos los que queramos (1 o más)
+ narngs='?' ningún parámetro o uno
+ nargs='*' cero o más paramétros
+
+parser.add_argument("cuenta", metavar="cuenta", nargs='+')
+  genera algo tipo programa.py cuenta [cuenta...]
 
 
 

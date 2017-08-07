@@ -61,3 +61,11 @@ home = expanduser("~")
 import os
 fd = open("file")
 os.fchmod(fd.fileno(), 0o755)
+
+
+
+# Path
+from pathlib2 import Path
+p = Path('my/path/Que/quiera')
+p.exists()
+p.is_file()
