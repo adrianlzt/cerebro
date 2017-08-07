@@ -14,6 +14,10 @@ O si tenemos ip:
 curl 172.16.1.24:2376/containers/json
 
 
+Configurar el cliente con variables de entorno
+DOCKER_API_VERSION=1.24 DOCKER_HOST=docker:4243 DOCKER_TLS_VERIFY=true docker 
+
+
 # Python
 Lib para python
 https://github.com/dotcloud/docker-py
