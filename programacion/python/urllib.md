@@ -33,6 +33,9 @@ Para codificar tambien las / (http://stackoverflow.com/questions/1695183/how-to-
 >>> urllib2.quote("http://localhost:8080", safe="")
 'http%3A%2F%2Flocalhost%3A8080'
 
+Para no codificar los ":" ni las "/", ni "?" para poder usarlo con urllib2.urlopen():
+urllib2.urlopen(urllib2.quote("http://httpbin.org/get?query=holaquetal", safe=":/?"))
+
 
 ## Cookies ##
 req1 = urllib2.Request(url1)
