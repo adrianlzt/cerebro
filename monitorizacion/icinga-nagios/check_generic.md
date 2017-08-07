@@ -49,3 +49,12 @@ En este ejemplo, el check salta a critical si hace más de 35' que no se modific
 
 Chequear dos veces un proceso esperando 5s (no se porque, pero si el if no funciona):
 /usr/lib64/nagios/plugins/check_generic.pl -n "test_icinga_pacemaker" -e "if [[ 1 ]]; then OUTPUT=\$(/usr/lib64/nagios/plugins/check_procs -C top -c 1:1) && echo \$OUTPUT || (sleep 5 && /usr/lib64/nagios/plugins/check_procs -C top -c 1:1) ; fi" -o '=~/(.*OK.*)/' --print_match --ignore_rc -d /var/tmp/prueba
+
+
+Comprobar diferencias entre valores (delta):
+Si queremos ver como evoluciona un valor podemos usar --type delta
+Ejemplo:
+/usr/lib64/nagios/plugins/check_generic.pl --type delta -e "cat /sys/class/net/eth1/carrier_changes" -c '> 0.1'
+
+La primera vez que se ejecuta genera un fichero en /var/tmp/check_generic con el timestamp y el valor leído.
+En la siguiente ejecucción se resta el valor antiguo al nuevo y se divide entre los segundos pasados. Este valor se compara con el que hayamos pasado como threshold
