@@ -21,6 +21,9 @@ b['key'] = value
 
 Borrar elemento:
 del(b['key'])
+Si tenemos un array podemos hacer:
+for i in b['key']:
+  del(i['borrar'])
 
 
 >>> inventario={}
