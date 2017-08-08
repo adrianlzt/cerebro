@@ -1,5 +1,9 @@
 # https://docs.python.org/3/reference/datamodel.html
 #
+# python 2.x https://docs.python.org/release/2.2.3/whatsnew/sect-rellinks.html
+# usar class XX(object)
+# Si no heredamos object estamos usando las "old classes" de python2
+#
 # Licencia
 #
 # Copyright, etc
