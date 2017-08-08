@@ -17,3 +17,8 @@ Selector(text=r.text).xpath('//input[contains(@name, "RANDOM")]/@value').extract
 Buscar por un campo con expresion regular:
 >>> Selector(text=r_index.text).xpath('//form[re:test(@action, "/BEWeb/3025/I025/not9765_d_COMUN.*")]')
 
+
+
+vias = Selector(text=r.text).xpath('//tr[@class="Height20"]')
+for v in vias:
+  print(v.xpath('string(td[last()]/nobr)').extract()[0].lstrip('\xa0'))
