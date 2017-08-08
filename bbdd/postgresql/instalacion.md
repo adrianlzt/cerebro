@@ -9,3 +9,9 @@ sudo apt-get install postgresql-9.3 pgadmin3
 
 Para instalar el cliente:
 apt-get install postgresql-client-9.3
+
+
+Una vez arrancado el server, para crear user y database:
+sudo su postgres
+createuser --interactive
+createdb nombreuser
