@@ -43,3 +43,13 @@ block {
   buildStepFailureThreshold("...")
   ...
 }
+
+
+# Condicionales
+if (variable == "coso) {
+  ...
+} else if (1 != 0) {
+  ...
+} else {
+  ...
+}
