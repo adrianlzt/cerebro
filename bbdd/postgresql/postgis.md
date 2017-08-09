@@ -18,3 +18,4 @@ SELECT name, ST_AsText(coordinates) FROM crags;
 SELECT ST_Distance(coordinates, ST_GeographyFromText('POINT(-73.968504 41.779741)')) FROM crags;
 
 SELECT name FROM crags WHERE ST_Distance(coordinates, ST_GeographyFromText('POINT(-73.968504 41.779741)')) < 200000;
+En metros
