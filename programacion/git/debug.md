@@ -13,3 +13,7 @@ ssh -vvvT git@github.com git-upload-pack 'orga/repo.git'
 
 
 
+Comandos para usar directamente con ssh
+git-upload-pack monit/utils.git
+  nos da la misma info que ls-remote
+git-receive-pack monit/utils.git
