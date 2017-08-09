@@ -11,6 +11,8 @@ GIT_SSH_COMMAND="ssh -v" git ...
 
 ssh -vvvT git@github.com git-upload-pack 'orga/repo.git'
 
+Comprobar si tenemos alguna config particular en
+$HOME/.ssh/config
 
 
 Comandos para usar directamente con ssh

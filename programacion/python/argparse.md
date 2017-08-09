@@ -70,10 +70,16 @@ help='One or more RegEx that match the names of the container(s) to check. If om
 
 
 # Subcomandos
+https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_subparsers
 Mirar parser_subcommands.py
 
 Si cuando llamamos a add_subparsers pasamos metavar="action", será por que pasaremos funciones a los argumentos y estas serán llamadas automaticamente (ejemplo de encima).
 Si ponemos "dest='cmd'", el tipo de subcommand se almacenará en esa variable.
+
+Si queremos que el subparser sea obligatorio definirlo:
+subparsers = p.add_subparsers(title='subcommands', dest='action')
+subparsers.required = True
+
 
 # Grupos excluyentes
 http://stackoverflow.com/questions/11154946/argparse-require-either-of-two-arguments
