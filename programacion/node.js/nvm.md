@@ -5,7 +5,7 @@ Gestor de entornos virtuales para node.
 yaourt -S nvm
 
 # Uso
-/bni/bash
+/bin/bash
 nvm install 4.2
 
 nvm use 4.2
