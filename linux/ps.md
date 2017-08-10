@@ -22,6 +22,7 @@ ps -ef f
 
 
 Ver los threads:
+ps -faL
 ps -AlLm
 ps -efL | grep proc
 ps auxms (dificil de leer)

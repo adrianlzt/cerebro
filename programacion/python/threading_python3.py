@@ -11,6 +11,9 @@ def do_work(item):
     with lock:
         print(threading.current_thread().name,item)
 
+# Create the queue
+q = Queue()
+
 # The worker thread pulls an item from the queue and processes it
 def worker():
     while True:
@@ -18,8 +21,7 @@ def worker():
         do_work(item)
         q.task_done()
 
-# Create the queue and thread pool.
-q = Queue()
+# Create thread pool.
 for i in range(4):
      t = threading.Thread(target=worker)
      t.daemon = True  # thread dies when main thread (only non-daemon thread) exits.

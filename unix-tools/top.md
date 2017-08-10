@@ -30,6 +30,9 @@ Una única captura ordenada por los procesos que mas memoria (RES=RSS) consumen,
 Control+s pause
 Control+q continue
 
+top -H
+ver threads
+
 
 CPU
 us: user space programs, all the general processing, not otherwise identified.
