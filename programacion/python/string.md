@@ -98,7 +98,10 @@ container_id = "%s_%s_%s_graph" % (sitename, host, service)
 https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
 Meter variables directamente en una string
 
-f"Mi nombre es {nombre}"
+f"Mi nombre es {nombre} y mido {altura*100}cm"
+
+f"""nombre: {nombre}
+apellido: {apellido}"""
 
 
 >>> import re
