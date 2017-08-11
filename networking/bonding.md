@@ -10,6 +10,9 @@ http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding
 http://www.codekoala.com/blog/2012/bonding-eth0-and-wlan0-arch-linux/
 https://www.cyberciti.biz/howto/question/static/linux-ethernet-bonding-driver-howto.php
 
+https://access.redhat.com/labs/networkbondinghelper/
+webapp para crear una confiuracion de bonding para RHEL
+
 El bonding puede ser de varios tipos
  0 round-robin, por defecto, se transmite cada paquete por una interfaz
  1 active-backup, solo se usa interfaz, la otra pasa a activa si cae la primera. La MAC de la interfaz bond solo esta visible en una de las interfaces
@@ -84,3 +87,5 @@ If you are unsure what option to choose, Red Hat recommends starting with media 
 Podemos mirar en las interfaces slaves:
 /sys/class/net/eth1/carrier_changes
 Si este número esta incrementandose es que la interfaz esta detectando como si le quitaran y pusiesen el cable.
+Puede ser por un cable defectuoso.
+Un caso que vi era porque el hardware no soportaba LCAP y el bonding estaba configurado con esta configuración.
