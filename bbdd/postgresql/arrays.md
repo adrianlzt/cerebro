@@ -20,3 +20,6 @@ month = ANY(ARRAY['Agosto', 'Diciembre'])
 Generar un array a partir de varias rows:
 https://stackoverflow.com/questions/533256/concatenate-multiple-rows-in-an-array-with-sql-on-postgresql
 select array_agg(count) FROM ascensions where crag_id=4709;
+
+Para ordenar el array:
+array_agg(count ORDER BY date DESC)

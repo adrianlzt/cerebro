@@ -11,6 +11,14 @@ CREATE TABLE foraging_spots (
   nuts        INT
 );
 
+CUIDADO! Los puntos se pasan como: logitud latitud.
+Generalmente los tenemos al reves: lat,lon
+
+Si hemos cargado los datos al reves podemos darles la vuelta con una función:
+http://postgis.net/2013/08/18/tip_lon_lat/
+ALTER TABLE crags ALTER COLUMN coordinates TYPE geography(Point,4326) USING ST_FlipCoordinates(coordinates::geometry)::geography(Point,4326);ALTER TABLE
+
+
 INSERT INTO foraging_spots (nuts, coordinates) VALUES (4, ST_GeographyFromText('POINT(-73.968504 40.779741)'));
 
 SELECT name, ST_AsText(coordinates) FROM crags;
