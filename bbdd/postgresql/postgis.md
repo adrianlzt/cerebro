@@ -14,6 +14,7 @@ CREATE TABLE foraging_spots (
 INSERT INTO foraging_spots (nuts, coordinates) VALUES (4, ST_GeographyFromText('POINT(-73.968504 40.779741)'));
 
 SELECT name, ST_AsText(coordinates) FROM crags;
+SELECT name, ST_X( coordinates::geometry) AS latitud, ST_Y(coordinates::geometry) as longitud from crags;
 
 SELECT ST_Distance(coordinates, ST_GeographyFromText('POINT(-73.968504 41.779741)')) FROM crags;
 

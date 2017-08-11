@@ -14,3 +14,9 @@ Miramos si en el array tags está el elemento 'viphost'
 
 Miramos si el campo month coincide con alguno de los valores:
 month = ANY(ARRAY['Agosto', 'Diciembre'])
+
+
+
+Generar un array a partir de varias rows:
+https://stackoverflow.com/questions/533256/concatenate-multiple-rows-in-an-array-with-sql-on-postgresql
+select array_agg(count) FROM ascensions where crag_id=4709;
