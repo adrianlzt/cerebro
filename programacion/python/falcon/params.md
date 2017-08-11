@@ -3,6 +3,8 @@ http://falcon.readthedocs.org/en/latest/api/request_and_response.html#id1
 name_friends = req.get_param_as_list('name_friends', transform=str.lower, required=True)
 easy_param = req.get_param('easy_param')
 
+Hay más get_param_* para ints, dates, etc
+
 
 http://localhost:8000/?clave=valor
     def on_get(self, req, resp):

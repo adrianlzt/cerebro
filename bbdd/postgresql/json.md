@@ -1,8 +1,31 @@
 Con PostgreSQL 9.2 se incorporan unas cuantas funciones para guardar e interpretar JSON.
 En 9.3 se incrementa este número de funciones.
 
-http://www.postgresql.org/docs/9.3/static/functions-json.html
+https://www.postgresql.org/docs/current/static/functions-json.html
 http://wiki.postgresql.org/wiki/PostgreSQL_9.3_Blog_Posts#JSON_support
+http://www.postgresqltutorial.com/postgresql-json/
+
+
+CREATE TABLE orders (
+ ID serial NOT NULL PRIMARY KEY,
+ info json NOT NULL
+);
+
+INSERT INTO orders (info)
+VALUES
+(
+ '{ "customer": "John Doe", "items": {"product": "Beer","qty": 6}}'
+);
+
+Seleccionar:
+SELECT info->'customer' (en formato json, ejemplo: 'pepe', con las comillas)
+SELECT info->>'customer' (en formato postgresql string)
+
+info#>>'{tabla,nth-elemento}'
+  Coge el elemento n del array tabla
+
+tabla#>>'{1}'
+Primer elemento
 
 
 Extraer las claves de los json
