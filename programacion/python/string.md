@@ -103,6 +103,12 @@ f"Mi nombre es {nombre} y mido {altura*100}cm"
 f"""nombre: {nombre}
 apellido: {apellido}"""
 
+f"{nombre:>12}"
+alineado a la derecha
+
+f"{nombre:<12}"
+alineado a la izquierda
+
 
 >>> import re
 >>> host = "este.es.elnom.bre"

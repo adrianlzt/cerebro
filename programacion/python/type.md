@@ -90,3 +90,9 @@ var = "funcion"
 getattr(config,var)
 equivalente a
 config.funcion
+
+
+
+Objeto a diccionario:
+vars(objecto)
+Es equivalente a: objeto.__dict__
