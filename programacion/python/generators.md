@@ -60,3 +60,15 @@ for x in multiple(cadena):
 
 Si "cadena" tiene solo un punto, nos devuelve la cadena tal cual.
 Si tienes más de un punto, nos devuelve la cadena troceada: "mi.", "texto.", etc
+
+
+
+# Extrayendo los valores de un generador
+def test():
+  yield 1
+  yield 2
+  yield 3
+
+t = test()
+print("t=%s" % list(t))
+Sacara todos los valores de test()
