@@ -4,6 +4,7 @@ https://www.kernel.org/doc/Documentation/filesystems/proc.txt
 
 ## /proc/loadavg
 
+http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html
 http://www.centos.org/docs/5/html/5.2/Deployment_Guide/s2-proc-loadavg.html
 This file provides a look at the load average in regard to both the CPU and IO over time, as well as additional data used by uptime and other commands. A sample /proc/loadavg file looks similar to the following:
 
