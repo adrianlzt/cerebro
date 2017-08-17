@@ -1,3 +1,11 @@
+mirar events.md para entender cuando se ejecuta onload y cuando otros eventos.
+
+window.onload = function() {
+  init();
+  doSomethingElse();
+};
+
+
 Tipica función javascript para hacer algo en la carga de la web
 jQuery(document).ready(function($) {
 });
