@@ -70,6 +70,9 @@ Lista de donde podemos extender: https://jenkins.io/doc/developer/extensions/
 Podemos buscar por "@Extension" para ver que hace el plugin.
 
 
+TransientActionFactory -> para los jobs
+TransientBuildActionFactory -> para una ejecucción particular de un job
+
 
 # URL -> funciones
 El bound entre URL y funciones se hace con Stapler.
