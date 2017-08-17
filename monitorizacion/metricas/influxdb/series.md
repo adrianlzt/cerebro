@@ -39,3 +39,18 @@ cat telegraf_series.influx | cut -d ',' -f 1 | uniq -c | sort -n
 El problema generalmente será un tag que varía demasiado y genera nuevas series continuamente.
 En el caso que me ha tocado mirar, es procstat, que genera una serie por cada nuevo proceso, ya que "pid" es un tag.
 Si "pid" fuera un value solo tendríamos una serie por cada nombre de proceso, aquí tenemos una serie por cada vez que se lanza un proceso.
+
+
+# Ver cardinalidad
+https://github.com/influxdata/influxdb/pull/8636
+SHOW SERIES CARDINALITY
+SHOW SERIES CARDINALITY FROM "<measurement>"
+SHOW SERIES CARDINALITY WHERE "<key>" = '<value>'
+SHOW SERIES CARDINALITY FROM "<measurement>" WHERE "<key>" = '<value>'
+SHOW MEASUREMENT CARDINALITY
+SHOW TAG KEY CARDINALITY
+SHOW TAG KEY CARDINALITY FROM "<measurement>"
+SHOW FIELD KEY CARDINALITY 
+SHOW FIELD KEY CARDINALITY FROM "<measurement>"
+SHOW TAG VALUES CARDINALITY WITH KEY = '<tag key>'
+SHOW TAG VALUES CARDINALITY FROM "<measurement>" WITH KEY = '<tag key>'
