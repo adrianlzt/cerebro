@@ -6,8 +6,11 @@ Lleva compresión.
 
 pg_dump -Fc -f /backup/prueba.custom prueba
 
-Ver contenido del dump:
+Ver contenido del dump (los schemas, no los datos):
 pg_restore -l prueba.custom
+
+Ver todo el contenido:
+pg_restore fichero.custom | less
 
 Restaurar:
 createdb prueba
