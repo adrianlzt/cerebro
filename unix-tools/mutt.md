@@ -5,6 +5,12 @@ https://www.neomutt.org
   mutt parcheado
 
 
+# Basicos
+r - reply
+g - group reply, responder a todos
+a - añadir remitente al abook
+
+
 # undelete
 http://marc.info/?l=mutt-users&m=124036441704280&w=4
 Si hemos borrado un mensaje y queremos recueprarlo:
