@@ -28,3 +28,7 @@ SELECT ST_Distance(coordinates, ST_GeographyFromText('POINT(-73.968504 41.779741
 
 SELECT name FROM crags WHERE ST_Distance(coordinates, ST_GeographyFromText('POINT(-73.968504 41.779741)')) < 200000;
 En metros
+
+
+Coordenadas que caigan dentro de un cuadrado (recordar que las coordenadas son lon,lat):
+SELECT name from crags WHERE coordinates && ST_MakeEnvelope(-4,40.9,-3.3,40.4);
