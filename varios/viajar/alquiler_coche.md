@@ -9,3 +9,6 @@ En verano 2017 pagamos por un renault twingo 12 días:
   por el seguro: 233€
   total: 425€
   35€/dia
+
+Con Cicar
+360€ Opel Corsa 12 días con seguro a todo riesgo en Agosto (preguntado)
