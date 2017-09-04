@@ -219,3 +219,11 @@ etcdserver/api/v2http/client.go
 651-    default:
 652:      mlog.MergeErrorf("got unexpected response error (%v)", err)
 
+
+
+
+Un nodo no conecta al cluster. El id ha cambiado.
+Borrar el /var/lib/etcd
+Cambiar en la conf:
+ETCD_INITIAL_CLUSTER_STATE=new  ->  ETCD_INITIAL_CLUSTER_STATE=existing
+Arrancar de nuevo
