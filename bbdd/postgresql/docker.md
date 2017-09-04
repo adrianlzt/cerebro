@@ -8,6 +8,9 @@ Cliente psql:
 docker run -it --rm --link some-postgres:postgres postgres psql -h postgres -U postgres
 
 
+Restore:
+docker run -it --rm --link some-postgres:postgres -v "$PWD:/dump" postgres pg_restore -h postgres -U postgres -v -e -Fc  --no-privileges --no-owner -d postgres /dump/database.pgdump
+
 
 
 # PostGIS

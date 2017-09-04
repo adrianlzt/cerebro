@@ -5,6 +5,7 @@ Custom, más potente. Nos permite a la hora de restaurar elegir el orden o selec
 Lleva compresión.
 
 pg_dump -Fc -f /backup/prueba.custom prueba
+  -x si no queremos guardar informacion de roles (permisos de las tablas)
 
 Ver contenido del dump (los schemas, no los datos):
 pg_restore -l prueba.custom
@@ -18,7 +19,7 @@ pg_restore -v -e -Fc -d prueba /backup/prueba.custom
   -v verbose
   -e exit on error
   -Fc format custom
-  -x para evitar errores tipo "role XXX does not exist"
+  --no-privileges --no-owner "role XXX does not exist"
 
 ## Formato SQL plano ##
 Sin compresión
