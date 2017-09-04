@@ -18,6 +18,7 @@ pg_restore -v -e -Fc -d prueba /backup/prueba.custom
   -v verbose
   -e exit on error
   -Fc format custom
+  -x para evitar errores tipo "role XXX does not exist"
 
 ## Formato SQL plano ##
 Sin compresión
