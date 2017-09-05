@@ -73,3 +73,14 @@ $$
 $$
 LANGUAGE 'plpythonu' VOLATILE;
 
+
+
+
+
+# Libreria para python
+pip install py-postgresql
+
+import postgresql
+db = postgresql.open("postgres:mysecretpassword@postgres/postgres")
+db.query("SELECT 1;")
+
