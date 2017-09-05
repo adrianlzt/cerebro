@@ -52,6 +52,13 @@ Un admin de proyectos puede crear roles y asignar permisos siempre que él admin
 
 
 # Service accounts
+oc get sa
+  listar service accounts
+
+oc describe sa XXX
+oc get sa XXX -o yaml
+  detalles de una SA
+
 oc create serviceaccount NOMBRE
   se crean tres secrets, uno con el secret, los otros dos ?
 
