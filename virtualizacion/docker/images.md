@@ -5,9 +5,15 @@ Podemos crear una imagen también a partir de un .tar con import
 http://docs.docker.io/en/latest/commandline/command/import/
 
 # Exportar / importar imágenes
-cat exampleimage.tgz | sudo docker import - exampleimagelocal
-
 docker save -o /tmp/test.tar base-image-xxyy
+
+docker load -i fichero.tar
+
+
+
+Otra forma (se importar metadatos, cmd, entrypoint, ports, etc)
+docker import fichero.tar nombre/imagen
+cat exampleimage.tgz | sudo docker import - exampleimagelocal
 
 tar xvf test.tar
 
