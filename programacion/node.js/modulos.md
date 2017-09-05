@@ -38,3 +38,15 @@ npm publish
 https://docs.npmjs.com/getting-started/scoped-packages
 Podemos tener distintos registros de NPM asociados a distintos SCOPES para poder hacer cosas tipo
 nmp install @MYORG/mipaquete
+
+
+
+# Dividir el codigo en ficheros
+http://debugmycode.com/2016/03/05/how-to-split-nodejs-code-in-multiple-files/
+
+utils.js:
+exports.geolocation = (...)
+exports.rotate = function(array, times){ ... }
+
+app.js:
+import {geolocation,rotate} from './utils.js';
