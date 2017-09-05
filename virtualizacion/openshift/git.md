@@ -42,3 +42,10 @@ oc secrets new-basicauth basicsecret --username=USERNAME --password=PASSWORD
     sourceSecret:
       name: "basicsecret"
     type: "Git"
+
+
+
+Agregar un secret que se aplicará automáticamente a todas las urls de git que cumplan un patrón:
+https://docs.openshift.com/container-platform/3.5/dev_guide/builds/build_inputs.html#automatic-addition-of-a-source-secret-to-a-build-configuration
+
+Para que funcione el secret debe estar creando antes de crear la app.
