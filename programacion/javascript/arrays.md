@@ -67,3 +67,8 @@ http://www.w3schools.com/jsref/jsref_sort.asp
 Se pueden pasar funciones custom para hacer el sort:
 var points = [40, 100, 1, 5, 25, 10];
 points.sort(function(a, b){return a-b});
+
+
+
+# Copiar
+nuevo = viejo.slice()

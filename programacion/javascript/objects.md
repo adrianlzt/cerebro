@@ -30,3 +30,10 @@ for (var m in obj) {
 }
 alert(methods.join(","));
 
+
+# Copiar objecto (en vez de pasar referencia)
+let cloned = Object.assign({}, source);
+
+Con babel:
+let cloned = { ... source };
+
