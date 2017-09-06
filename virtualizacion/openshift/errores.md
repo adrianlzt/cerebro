@@ -12,3 +12,8 @@ oc get rc
 
 Arrancar de nuevo el rc:
 oc scale --replicas=1 rc/nginx-php-fpm-1
+
+
+
+fit failure summary on nodes : CheckServiceAffinity (5), MatchNodeSelector (5); retrying
+Mirar el NodeSelector que matchee. Mirar a nivel global, de prouyecto, de DC o de template.

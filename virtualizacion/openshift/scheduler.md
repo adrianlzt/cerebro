@@ -98,3 +98,5 @@ TODO:
  porque da 5? no deberian ser 6? (3 apps + 3 infra)
 
 fit failure summary on nodes : CheckServiceAffinity (5), MatchNodeSelector (5); retrying
+
+El problema en este caso era que el NodeSelector a nivel global estaba mal puesto y no matcheaba con nada.
