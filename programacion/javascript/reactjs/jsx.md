@@ -129,3 +129,13 @@ Usar .map, con forEach no entiendo porque pero no me funcionaba
     )
   })}
 </div>
+
+
+# Comentario
+{/* A JSX comment */}
+
+{/* 
+  Multi
+  line
+  comment
+*/} 
