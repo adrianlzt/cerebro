@@ -1,0 +1,3 @@
+oc delete all --all
+
+No borra secrets, ni service accounts, ni...
