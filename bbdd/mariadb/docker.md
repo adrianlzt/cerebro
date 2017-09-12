@@ -9,6 +9,10 @@ https://github.com/alvinr/docker-demo/blob/master/mariadb/vote/prod/galera/galer
 https://github.com/toughIQ/docker-maxscale
 
 
+Arrancar un servidor
+docker run --name some-mariadb -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb:10.3
+
+
 Usando la imagen de mariadb como cliente:
 docker run --rm -it mariadb:10.1 mysql -hHOST -uUSER -pPASS
 
