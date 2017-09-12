@@ -27,3 +27,6 @@ INTEGER AUTO_INCREMENT
 
 
 Si tenemos nombres raros (con puntos por ejemplo) habrá que meterlos entre comillas ``
+
+Los auto increment empiezan en 0, asi que hay que poner al comienzo:
+SET SESSION sql_mode='NO_AUTO_VALUE_ON_ZERO';
