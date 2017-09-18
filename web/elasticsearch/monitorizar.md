@@ -26,6 +26,10 @@ GET _cluster/health
 https://localhost:9200/_cluster/health?pretty=true'
 mirar problemas.md
 
+Health en estado columnas
+https://172.30.180.163:9200/_cat/health?v
+
+
 Health: red
 RED: some shards are not assigned, which means that your data is not fully available.
 RED: Damnit. Some or all of (primary) shards are not ready.
