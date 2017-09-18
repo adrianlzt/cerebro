@@ -1,3 +1,5 @@
+mirar logging.md para toda la gestión de los logs
+
 Donde se guardan los logs de los containers:
 /var/lib/docker/containers/<hash>/<hash>-json.log
 

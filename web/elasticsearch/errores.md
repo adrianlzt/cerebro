@@ -55,3 +55,10 @@ No deberia estar mucho tiempo aqui.
 Search guard
 Gestiona autentificación y autorización.
 Si está fallando puede que tengamos que rearrancar el search guard.
+
+
+
+
+
+Si no podemos reasignar un shard puede ser porque el disco este demasiado lleno.
+
