@@ -1,3 +1,4 @@
-Son los IaaS sobre los que podemos desplegar configuración.
+https://www.terraform.io/docs/providers/index.html
+Son la base donde crearemos nuestros resources.
 
-Ejemplo: aws, google cloud, openstack, etc
+Ejemplos: AWS, Icinga2, InfluxDB
