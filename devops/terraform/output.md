@@ -6,7 +6,8 @@ output "ip" {
 
 El value que queremos pintar seguramente lo podemos obtener preguntando a "terraform plan"
 Para saber que queremos pintar seguiremos el esquema.
-PROVIDER.RECURSO.CLAVE
+PROVIDER.RECURSO.ATRIBUTO
+Podemos ver tambien los atributos disponibles en la web del recurso, por ejemplo: https://www.terraform.io/docs/providers/openstack/r/compute_instance_v2.html#attributes-reference
 
 
 Tras aplicar un "terraform apply", al final de la ejecucción saldrán los outputs que tengamos confifurados.
