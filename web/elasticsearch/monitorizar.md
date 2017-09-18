@@ -16,7 +16,10 @@ GET /_nodes/stats
 GET /_nodes/nodeId1,nodeId2/stats
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-stats.html
-curl -XGET 'http://localhost:9200/_cluster/stats?human&pretty'
+curl -XGET 'http://localhost:9200/_cluster/stats?pretty'
+
+Si tenemos certs:
+curl -v --key es_key.pem --cert es_cert.pem 'https://172.30.180.163:9200/_cluster/stats?pretty=true'
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html
 GET _cluster/health
@@ -33,3 +36,7 @@ Para entender porque tenemos unassigned shards:
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocation-explain.html
 https://www.elastic.co/blog/red-elasticsearch-cluster-panic-no-longer
 http://chrissimpson.co.uk/elasticsearch-yellow-cluster-status-explained.html
+
+
+Mirar que shards estan unassigned:
+curl 'https://172.30.180.163:9200/_cat/shards' | grep UNASSIGNED
