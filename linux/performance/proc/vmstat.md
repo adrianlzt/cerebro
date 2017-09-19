@@ -17,7 +17,7 @@ cat /proc/vmstat
                    # estaba corriendo localmente.
   %numa_other      # páginas reservadas en este nodo cuando el proceso
                    # estaba corriendo en otro nodo.
-  %pgpgin               # page-ins
+  %pgpgin               # page-ins https://lists.gt.net/linux/kernel/1131720
   %pgpgout              # page-outs
   %pswpin               # swap-ins
   %pswpout              # swap-out
