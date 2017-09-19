@@ -34,3 +34,7 @@ https://www.terraform.io/intro/getting-started/variables.html#lists
 
 # Maps
 https://www.terraform.io/intro/getting-started/variables.html#maps
+
+# Ficheros
+Si queremos pasar el contenido de un fichero:
+"${file(var.nombre)}"
