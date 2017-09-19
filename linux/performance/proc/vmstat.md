@@ -21,6 +21,9 @@ cat /proc/vmstat
   %pgpgout              # page-outs
   %pswpin               # swap-ins
   %pswpout              # swap-out
+                        # Page faults and swapping are two independent processes. Page faults take place when a process requests for an address that has been allocated to it but has not yet been assigned to it. Upon receving this request the Kernel confirms that the address being requested belongs to the process and if so then allocates a new page frame from memory and assigns it to the process.
+                        # http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization
+
   %pgrefill_dma         # Page Refill (marcar pag. activas como inactivas)
   [...]
   %pgsteal_kswapd_dma   # Page Steals (liberar paginas no referenciadas)
