@@ -49,3 +49,13 @@ remote_users.json.entry|map(attribute='name')|list
 
 La estructura de datos es tipo:
 remote_users.json.entry[0].name="pepe"
+
+
+# Array
+fruits:
+    - Apple
+    - Orange
+    - Strawberry
+    - Mango
+
+fruits: ['uno', 'otro', 'coso']

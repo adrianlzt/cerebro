@@ -78,6 +78,7 @@ id=CONNECTION_NAME
  
 [802-1x]
 password=YOUR_8021X_PASSWORD
+password-flags=0 # Si esta a 1 la cogera del keyring
 
 [wifi-security]
 key-mgmt=wpa-eap
