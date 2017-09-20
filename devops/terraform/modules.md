@@ -26,5 +26,27 @@ module.assets_bucket.aws_s3_bucket.the_bucket
 https://www.terraform.io/docs/modules/sources.html
 Podemos bajar modules desde distintos providers: registry, github, bitbucket, https, s3 buckets, etc
 
+Por defecto lo buscará en el terraform registry.
+
+
 Otra opción es usar módulos locales:
 source = "./directorio"
+
+terraform get
+escanea nuestros fichero .tf y se baja los modulos necesarios (no me queda muy claro como funciona y que diferencia hay con "init")
+
+
+
+# crear module
+https://www.terraform.io/docs/modules/create.html#standard-module-structure
+estructura a seguir
+
+modulo/
+  README (o README.md)
+  main.tf
+  variables.tf (poner comentario a todas las variables)
+  outputs.tf (poner comentario a todos los outputs)
+
+
+Si queremos usar en un proyecto modulos los meteremos en el directorio:
+modules/
