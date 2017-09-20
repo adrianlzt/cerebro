@@ -21,3 +21,10 @@ Si intentamos hacer un output de un resource no definido obtendremos un error:
 
 
 Si intentamos hacer un output de una variable que no existe, simplemente no veremos nada en el output, se ignorará.
+
+
+
+# Splash / multiples variables
+output "public_ips" {
+  value = ["${aws_instance.example.*.public_ip}"]
+}

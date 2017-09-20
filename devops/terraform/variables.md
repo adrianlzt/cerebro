@@ -17,6 +17,11 @@ terraform apply -var "ost_pass=1234"
 O con un fichero:
 terraform.tfvars *.auto.tfvars (estos se cogerán automáticamente)
 
+En un fichero definiremos las variables como (tendrán que estar definidas en algun sitio: variable nombrevariable {}):
+nombrevariable = "valor"
+
+
+
 Si queremo forzar a coger un fichero:
 -var-file="fichero"
 
@@ -32,8 +37,30 @@ variable "aws_access_key" {
 # Lists
 https://www.terraform.io/intro/getting-started/variables.html#lists
 
+variable "cidrs" { default = [] }
+
+# explicitly
+variable "cidrs" { type = "list" }
+You can specify lists in a terraform.tfvars file:
+
+cidrs = [ "10.0.0.0/16", "10.1.0.0/16" ]
+
+
+
 # Maps
 https://www.terraform.io/intro/getting-started/variables.html#maps
+
+variable "amis" {
+  type = "map"
+  default = {
+    "us-east-1" = "ami-b374d5a5"
+    "us-west-2" = "ami-4b32be2b"
+  }
+}
+
+"${lookup(var.amis, var.region)}"
+
+
 
 # Ficheros
 Si queremos pasar el contenido de un fichero:
