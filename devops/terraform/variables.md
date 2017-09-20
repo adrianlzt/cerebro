@@ -45,6 +45,13 @@ You can specify lists in a terraform.tfvars file:
 
 cidrs = [ "10.0.0.0/16", "10.1.0.0/16" ]
 
+element(list, index)
+Obtener un elemento de un array segun su posisción en el array
+
+
+Si tenemos una variable con muchos elementos por que se ha generado con un count, podemos acceder a los elementos con:
+aws_instance.example.0.public_ip
+
 
 
 # Maps
@@ -59,9 +66,19 @@ variable "amis" {
 }
 
 "${lookup(var.amis, var.region)}"
+${var.amis["us-east-1"]} 
 
 
 
 # Ficheros
 Si queremos pasar el contenido de un fichero:
 "${file(var.nombre)}"
+
+
+
+# Iterpolation
+https://www.terraform.io/docs/configuration/interpolation.html
+
+Built-in functions: https://www.terraform.io/docs/configuration/interpolation.html#built-in-functions
+
+${length("a,b,c")} = 5
