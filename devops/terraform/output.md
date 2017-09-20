@@ -2,6 +2,9 @@ https://www.terraform.io/docs/configuration/outputs.html
 
 output "ip" {
   value = "${aws_eip.ip.public_ip}"
+  description = "opcional"
+  depends_on = ["TYPE.NAME", "recursos.que_deben_terminar_antes"]
+  sensitive = true # se almacenan en el state, pero no se muestran al hacer apply ni refresh (pero si con output)
 }
 
 El value que queremos pintar seguramente lo podemos obtener preguntando a "terraform plan"

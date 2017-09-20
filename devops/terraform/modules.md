@@ -34,6 +34,10 @@ source = "./directorio"
 
 terraform get
 escanea nuestros fichero .tf y se baja los modulos necesarios (no me queda muy claro como funciona y que diferencia hay con "init")
+Si estamos usando un module local tambien tendremos que lanzar el "terraform get".
+Este comando creará unos links en .terraform/modules/HASH a nuestros modulos
+
+Si modificamos el modulo en nuestro path, deberemos a hacer terraform get
 
 
 
@@ -50,3 +54,14 @@ modulo/
 
 Si queremos usar en un proyecto modulos los meteremos en el directorio:
 modules/
+
+
+# ficheros externo
+Si queremos usar un fichero externo (por ejemplo un script que queremos subir para usar "remote-exec", lo referenciaremos así:
+"${path.module}/script.sh"
+
+
+# Nested modules
+Los modulos a su vez pueden tener otros módulos.
+Los submodulos no son visibles para los que llaman al módulo.
+El módulo debera encargarse de pasar las variables que se necesiten.
