@@ -36,6 +36,8 @@ Abrimos una cuenta en AWS y lo primero que instalamos es el chaos monkey.
 Lo configuramos para correr todos los días en la cuenta de test y una vez por mes en la cuenta de producción.
 Se debe empezar a hacer la app/switching/infrastructure resistente desde el principio.
 
+Suele ser más importante ser "available" que "consistency" (hablando de CAP)
+
 
 
 Red Team: equipo que intenta atacar el sistema.
