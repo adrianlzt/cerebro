@@ -16,6 +16,14 @@ Para usarlo dentro de un playbook:
     - { role: foo, tags: ["bar", "baz"] }  <- asigno tags a un rol
 
 
+Podemos tambien usar un role dentro de "tasks":
+  - include_role:
+       name: foo_app_instance
+    vars:
+      dir: '/opt/a'
+      app_port: 5000
+
+
 Preferencias versión reducida (de mayor a menor). Mirar variables.md para la versión completa:
   parámetros al definir el rol
   directorio vars/ (aqui siempre se usará main.yml, a no ser que usemos un include_vars en algun task)
