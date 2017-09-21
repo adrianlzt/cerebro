@@ -6,6 +6,8 @@ Cassandra's data model offers the convenience of column indexes with the perform
 
 Funciona sobre Java (usar Sun JDK)
 
+Lo usa Netflix para almacenar sus datos entre todos sus datacenters.
+
 Usa lenguaje CQL, parecido al SQL (mirar más abajo)
 
 
