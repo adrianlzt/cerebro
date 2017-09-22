@@ -1,4 +1,4 @@
-redis-cli -h hostname -p puerto
+redis-cli -h hostname -p puerto CMD
 
 echo "pepe" | redis -x SET CLAVE
 
