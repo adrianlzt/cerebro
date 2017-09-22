@@ -16,6 +16,9 @@ find . -iregex ".+[0-9]+$" -type f
 Nos hace un resumen de los tipos de ficheros que tenemos en este directorio y sus subdirectorios
 find . -exec file {} \; | grep -o ":[^,]*" | sort | uniq -c | sort -nr
 
+Una única línea con todos los ficheros:
+find . -exec echo {} \+
+
 
 Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
 -xdev si no queremos cambiar de filesystem

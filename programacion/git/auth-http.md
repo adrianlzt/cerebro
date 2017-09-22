@@ -7,4 +7,5 @@ password your_password
 
 
 Para evitar que chequee el certificado ssl
+mirar ssl.md
 GIT_SSL_NO_VERIFY=true git clone https://user:pass@github.com/nombre/repo.git
