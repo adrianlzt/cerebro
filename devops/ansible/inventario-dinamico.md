@@ -5,6 +5,8 @@ http://docs.ansible.com/list_of_inventory_modules.html
 
 vbox: virtualbox
 
+Inventarios: https://github.com/ansible/ansible/tree/devel/contrib/inventory
+
 
 Crear hosts y hostgroups "al vuelo"
 

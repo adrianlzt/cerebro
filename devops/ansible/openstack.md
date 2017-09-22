@@ -1,5 +1,10 @@
 http://docs.ansible.com/ansible/list_of_cloud_modules.html
 
+Para desplegar infraestructura mejor usar terraform.
+Ansible puede traernos problemas de que duplique cosas o no ser completamente idempotente.
+Tambien es más complicado reutilizar modulos e ir pasando variables generadas hacia los siguientes elementos a crear.
+
+
 Auth: ~/.config/openstack/clouds.yaml
 
 Los nuevos modulos (os...) tiran de la lib shade
