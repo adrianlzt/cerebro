@@ -31,10 +31,10 @@ Lista de drivers disponibles:
 https://docs.docker.com/engine/admin/logging/overview/#supported-logging-drivers
 
 
+
 Fluentd: https://docs.docker.com/engine/admin/logging/fluentd/
 Enviar los logs a un container donde este escuchando fluentd.
-Cachea. Y cuando se llena la ram del container, que hace? Flush a disco y luego lo recupera?
-Llena la memoria de cada container? del host? el flush a disco en donde lo hace?
+Si no esta levantado fluentd, no nos deja levantar containers que usen este log driver.
 
 
 A partir de 17.05 tambien se puede acoplar logging plugins, que extienden el set de logging outputs diponibles:
@@ -45,3 +45,16 @@ Con --log-opts podremos pasarle parametros al plugin
 Logging plugin para enviar a redis: https://github.com/pressrelations/docker-redis-log-driver
 En caso de no poder conectar con redis hace drop del log:
 https://github.com/pressrelations/docker-redis-log-driver/blob/master/driver/driver.go#L148
+
+
+plugin journald
+https://github.com/reevoo/fluent-plugin-systemd
+Hace falta montar /var/log/journal en el container.
+
+# Enviar logs a Elastic Search
+Mejor opción, que docker escriba a journald.
+Fluentd lea de journald y envie a redis.
+Y de redis se lleve a ES con logstash.
+
+De esta manera tenemos una capa de cacheo por si ES esta down.
+Y tambien cacheo en journald si fluentd cae.
