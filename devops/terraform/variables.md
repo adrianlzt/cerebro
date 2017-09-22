@@ -48,6 +48,12 @@ cidrs = [ "10.0.0.0/16", "10.1.0.0/16" ]
 element(list, index)
 Obtener un elemento de un array segun su posisción en el array
 
+list[0]
+
+Si son variable con count:
+variable.INDICE.attr
+aws_instance.web.0.id
+
 
 Si tenemos una variable con muchos elementos por que se ha generado con un count, podemos acceder a los elementos con:
 Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)

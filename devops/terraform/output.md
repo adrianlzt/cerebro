@@ -31,8 +31,16 @@ Si intentamos hacer un output de una variable que no existe, simplemente no vere
 
 
 # Arrays
-Si queremos sacar un array deberemos meterlo entre corchetes:
+Si queremos sacar un array deberemos meterlo entre corchetes (en algunos outputs he visto que no era necesario):
 value = ["${variable.que.es.un.array}"]
+
+Parece que no podemos pasar como output una lista de arrays generada por un recurso con count.
+Yo queria pasar algo de este tipo:
+openstack_compute_instance_v2.vms.*
+Pero no veo la forma de hacerlo.
+
+Aunque si puedo sacar un array de maps con:
+${openstack_compute_instance_v2.vms.*.network}
 
 
 # Splash / multiples variables
