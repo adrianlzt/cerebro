@@ -14,8 +14,10 @@ redis 127.0.0.1:6379> GET persona:nombre
 
 SETNX -> crea si no existe
 DEL -> borra entrada
+FLUSHALL -> borrar todas las keys
 INCR -> hace += a la variable (la pone a 1 si no existe)
   Es una operación atómica, así evitamos problemas de dos usuarios haciendo: x=GET var; x=x+1; SET var X
+
 
 
 ## Keys temporales ##
