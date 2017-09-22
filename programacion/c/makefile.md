@@ -8,6 +8,11 @@ program:
 
 Tener en cuenta que es un tabulador lo que hay antes de gcc
 
+Si hacemos make sin tener Makefile ejecutará:
+make test -> gcc test.c -o test
+Tambien vale, al menos, para c++
+
+
 Si queremos meter un script en bash:
 $$(echo "hola")
 `echo "otra opcion"`
