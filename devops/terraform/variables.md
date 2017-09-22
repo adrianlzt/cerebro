@@ -50,6 +50,7 @@ Obtener un elemento de un array segun su posisción en el array
 
 
 Si tenemos una variable con muchos elementos por que se ha generado con un count, podemos acceder a los elementos con:
+Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)
 aws_instance.example.0.public_ip
 
 

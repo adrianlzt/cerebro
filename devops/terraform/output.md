@@ -19,12 +19,20 @@ Tambien podemos consultar a posteriori estos outputs con:
 terraform output NOMBREOUTPUT
 
 
+Si queremos recargar los outputs (tras modificar la config, o que se haya modificado el provider):
+terraform refresh
+
+
 Si intentamos hacer un output de un resource no definido obtendremos un error:
 * output 'mi_ip': unknown resource 'openstack_compute_floatingip_v2.masdiip' referenced in variable openstack_compute_floatingip_v2.masdiip.addressv2
 
 
 Si intentamos hacer un output de una variable que no existe, simplemente no veremos nada en el output, se ignorará.
 
+
+# Arrays
+Si queremos sacar un array deberemos meterlo entre corchetes:
+value = ["${variable.que.es.un.array}"]
 
 
 # Splash / multiples variables
