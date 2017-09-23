@@ -19,3 +19,4 @@ OpenShift usa fluentd para recoger los logs de la plataforma y los pods y enviar
 
 
 Puede leer logs de journald: https://github.com/reevoo/fluent-plugin-systemd
+Para instalar esta gema en alpine, necesitaremos el apk libffi-dev
