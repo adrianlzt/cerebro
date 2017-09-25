@@ -21,6 +21,12 @@ http://fluentbit.io/documentation/0.12/input/
 http://fluentbit.io/documentation/0.12/output/
 
 
+# Ejemplos
+fluent-bit -i tcp -o stdout
+  arrancar escuchando JSON por TCP plano y sacando los datos a stdout
+
+
+
 # Crear plugins
 https://github.com/fluent/fluent-bit/blob/master/GOLANG_OUTPUT_PLUGIN.md
 
@@ -31,6 +37,11 @@ https://github.com/fluent/fluent-bit/issues/298#issuecomment-309047967
 
 Código de ejemplo:
 https://github.com/fluent/fluent-bit-go
+cd fluent-bit-go/examples/out_gstdout
+go get github.com/fluent/fluent-bit-go/output
+make
+fluent-bit -i tcp -e out_gstdout.so -o gstdout
+
 
 Un plugin de verdad escrito en go:
 https://github.com/kubeup/fluent-bit-aliyun
