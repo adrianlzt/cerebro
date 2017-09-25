@@ -1,6 +1,14 @@
 https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build
+https://docs.openshift.com/container-platform/3.5/dev_guide/builds/index.html
 
-Openshift puede construir una imagen a partir de un repositorio mediante dos técnicas:
+
+Openshift puede construir una imagen a partir de un repositorio mediante varias técnicas: S2I, pipeline, docker y custom
+
+new-app detectará que usar bajándose y analizando el source que le hayamos pasado.
+https://github.com/openshift/origin/blob/e696f479805c2e6fe8e57c17f61d9307734dd3c3/pkg/generate/source/detector.go
+Mirará si existen unos ficheros con determinados nombres para decidir que leguaje se debe usar.
+
+
 
 # Docker build
 Pasandole un Dockerfile
@@ -56,3 +64,12 @@ Lo arrancará en el puerto 8080
 Ejemplo de app simple con http: https://github.com/adrianlzt/openshift_python_sample_app.git
 Ejecutar con:
 oc new-app https://github.com/adrianlzt/openshift_python_sample_app.git
+
+No crea la ruta, la podemos crear con:
+oc expose svc/nombreapp
+
+
+
+# start-build
+Si queremos que se reahaga el build, por ejemplo porque tenemos nuevo codigo en el repo de git:
+oc start-build nombre_del_bc
