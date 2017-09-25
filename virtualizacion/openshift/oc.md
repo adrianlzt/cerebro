@@ -120,7 +120,7 @@ oc create service clusterip NOMBRE --tcp=9999:80
 Configurar el router (haproxy como proxy inverso) para abrir un endpoint publico para acceder a nuestros services
 Puede tardar hasta 30s
 
-oc expose svc MIAPP
+oc expose svc/MIAPP
   crea una entrada tipo "http://miprueba-nginx-php-hostname.192.168.99.101.nip.io" apuntando al service "MIAPP"
 
 ## TLS

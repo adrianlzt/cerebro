@@ -1,4 +1,16 @@
+https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build
+
+Openshift puede construir una imagen a partir de un repositorio mediante dos técnicas:
+
+# Docker build
+Pasandole un Dockerfile
+
+
+# Source to image
 https://github.com/openshift/source-to-image
+
+S2I se lanzará intentando detectar que código estamos usano en el repo, usando una imagen que pueda correr el código.
+
 
 Cuando usamos BuildConfig estaremos desplegando la imagen openshift3/ose-sti-builder
 Esta imagen lanza el comando: openshift-sti-build
@@ -39,3 +51,8 @@ https://github.com/sclorg/s2i-python-container/blob/master/3.5/s2i/bin/run
 Intentará arrancar buscando ficheros, variables de entorno, etc.
 Si tenemos gunicorn instalado, podemos poner un fichero que se llame wsgi.py para que arranque
 Lo arrancará en el puerto 8080
+
+
+Ejemplo de app simple con http: https://github.com/adrianlzt/openshift_python_sample_app.git
+Ejecutar con:
+oc new-app https://github.com/adrianlzt/openshift_python_sample_app.git
