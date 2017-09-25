@@ -75,3 +75,10 @@ var n *Vertex = new(Vertex)
 n.X = 3
 fmt.Println(n) -> &{3 0} 
 
+
+
+# Globales
+Podemos definir una variable global en un fichero .go haciendolo fuera de cualquier "func".
+Cuidado! Si dentro de un "func" hacemos:
+nombre_var_global, err := llamada()
+Nos estará creando una variable local en el scope de la función con el mismo nombre que la global.
