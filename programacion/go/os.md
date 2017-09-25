@@ -12,3 +12,9 @@ if err != nil {
 import "os"
 func MkdirAll(path string, perm FileMode) error
 
+
+# Variables entorno
+coso := os.Getenv("PRUEBA")
+if coso == "" {
+  coso = "default"
+}
