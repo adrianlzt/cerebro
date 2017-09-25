@@ -34,3 +34,13 @@ Pero si tienen mas valores dentro, maps, etc, tendremos que usar
 https://golang.org/pkg/reflect/#DeepEqual
 
 func DeepEqual(x, y interface{}) bool
+
+
+# Printf
+Si ponemos un "+", sacará también los nombres de los fields del struct
+s := person{name: "Sean", age: 50}
+fmt.Printf("%v", s)
+fmt.Printf("%+v", s)
+
+{Sean 50}
+{name:Sean age:50}

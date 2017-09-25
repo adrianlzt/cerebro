@@ -65,3 +65,37 @@ Si queremos copiar el valor usar la copia de maps que pongo más arriba.
 
 # Mapa de mapa
 make(map[string]map[int]UnStruct)
+
+
+# Flatten
+Convertir un map en un array
+flatten.go
+
+
+# Obtener arrays de keys, values, o key-values
+https://www.dotnetperls.com/convert-map-slice-go
+
+// Convert map to slice of keys.
+keys := []string{}
+for key, _ := range m {
+    keys = append(keys, key)
+}
+
+// Convert map to slice of values.
+values := []string{}
+for _, value := range m {
+    values = append(values, value)
+}
+
+// Convert map to slice of key-value pairs.
+pairs := [][]string{}
+for key, value := range m {
+    pairs = append(pairs, []string{key, value})
+}
+
+// Convert map to flattened slice of keys and values.
+flat := []string{}
+for key, value := range m {
+    flat = append(flat, key)
+    flat = append(flat, value)
+}

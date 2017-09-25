@@ -12,6 +12,7 @@ https://golang.org/src/fmt/fmt_test.go
 Printf("tipo %T. Valor=%v",var,var)
 %T -> imprime el tipo de dato
 %v -> imprime el valor del dato
+%+v -> saca valores de un struct junto con los fileds (mirar struct.md)
 %s -> imprime string
  
 Println es inteligente, sabe imprimir todo lo que le pases.
