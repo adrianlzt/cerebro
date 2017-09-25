@@ -25,3 +25,6 @@ Cons:
 
 # Ejemplos de microservices
 http://eventuate.io/exampleapps.html
+
+# Monitorizacion / tracing
+programacion/tracing.md
