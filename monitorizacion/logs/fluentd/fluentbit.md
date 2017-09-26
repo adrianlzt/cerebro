@@ -17,13 +17,30 @@ input -> parser -> filter -> buffer -> routing -> [out1, out2, out3]
 # Input plugins
 http://fluentbit.io/documentation/0.12/input/
 
+## systemd
+Podemos pasarle en la conf "DB" para almacenar la última posición del cursor analizada
+Creará un fichero sqlite3
+
+En caso de que se lea una entrada del journald, pero no se pueda flushear al output (porque este fallando y reintentando), si paramos el fluentbit perderemos esas lineas ya leidas pero que no pudieron escribirse.
+Parece que hay un problema con systemd y es que siempre que arranca lee de nuevo la última linea que leyó.
+
+
 # Output plugins
 http://fluentbit.io/documentation/0.12/output/
+
+Podemos especificar el parametro Retry_Limit para decidir cuantas veces se reintentará el output (mas info en Internals.Retries)
+
 
 
 # Ejemplos
 fluent-bit -i tcp -o stdout
   arrancar escuchando JSON por TCP plano y sacando los datos a stdout
+
+bin/fluent-bit -i systemd -p Systemd_Filter="SYSLOG_IDENTIFIER=opencloud" -p DB=journald.db -e ../../fluent-bit-go/examples/out_gstdout/out_redis.so -o redis -p Retry_Limit=5 -f 1 -v
+Ejemplo usando parametros para el input de systemd y usando un plugin escrito en go para redis
+  -f 1, flush espera 1 segundo
+  -v, verbose
+  -p Retry_Limit, intentar 5 veces
 
 
 
@@ -50,4 +67,17 @@ Codigo en C de fluent-bit donde se llama a los plugins Go:
 https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/proxy/go/go.c
 
 Como fluent-bit convierte el timestamp a un unix timestamp:
-https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/flb_time.c
+https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/flb_time.c#L145
+
+
+# Internals
+
+## Retries
+Gestion de los retries:
+https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/flb_task.c#L104
+
+Por defecto el Retry_Limit será 1.
+Podemos definir el valor que queramos en cada output.
+
+Cuando sea necesario un retry se irá esperando cada vez más tiempo para reintentarlo:
+https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/flb_scheduler.c#L184
