@@ -45,3 +45,6 @@ fluent-bit -i tcp -e out_gstdout.so -o gstdout
 
 Un plugin de verdad escrito en go:
 https://github.com/kubeup/fluent-bit-aliyun
+
+Codigo en C de fluent-bit donde se llama a los plugins Go:
+https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/proxy/go/go.c

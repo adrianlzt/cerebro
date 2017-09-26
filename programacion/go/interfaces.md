@@ -117,3 +117,24 @@ panic: runtime error: invalid memory address or nil pointer dereference
 Lo vi cuando creaba un httpclient usando la dirección de memoria de un struct que creaba en una función.
 tiene pinta de que al salir de esa función se borraba ese objecto y la dirección de memoria apuntaba a un sitio no permitido
 
+
+
+# Interface como tipo de dato desconocido
+m := []interface{}{1, "2", 3.4}
+
+Usando "interface{}" lo que hacemos es no especificar el tipo de dato que nos van a pasar.
+Se usa típicamente en argumentos de funciones cuando nos pueden pasar varias cosas:
+func ValueOf(i interface{}) Value
+
+
+Un "interface{}" podemos convertirlo a un tipo de dato usando la sintaxis:
+foo.(int)
+
+Leer https://stackoverflow.com/questions/18041334/convert-interface-to-int-in-golang para entender porque no se puede hacer con:
+int(foo)
+
+Este formato, x.(T), se llama type assertion: https://golang.org/ref/spec#Type_assertions
+v, ok = x.(T)
+
+Si ok es false es que no se ha podido convertir x en el formato T
+
