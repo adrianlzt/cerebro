@@ -23,6 +23,7 @@ Creará un fichero sqlite3
 
 En caso de que se lea una entrada del journald, pero no se pueda flushear al output (porque este fallando y reintentando), si paramos el fluentbit perderemos esas lineas ya leidas pero que no pudieron escribirse.
 Parece que hay un problema con systemd y es que siempre que arranca lee de nuevo la última linea que leyó.
+https://github.com/fluent/fluent-bit/pull/383
 
 
 # Output plugins

@@ -11,6 +11,14 @@ Mirar tambien panic.md
 Un ejemplo de como gestionar los errores:
 https://github.com/upspin/upspin/blob/master/errors/errors.go
 
+Una buena práctica es definir los errores que vayamos a usar como variables globales. Esto nos permitirá en los tests comparar que el error que sale es el esperado:
+var (
+   // texto explicativo para godoc
+   ErrSomething = fmt.Errorf("Alguna cosa que falla")
+)
+Ejemplo: https://github.com/hashicorp/yamux/blob/master/const.go
+
+
 # Error handling
 Tipica estructura de manejo de error
 

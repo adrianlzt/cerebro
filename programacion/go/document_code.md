@@ -1,4 +1,5 @@
 http://blog.golang.org/godoc-documenting-go-code
+https://godoc.org/golang.org/x/tools/cmd/godoc
 
 The convention is simple: to document a type, variable, constant, function, or even a package, write a regular comment directly preceding its declaration, with no intervening blank line. Godoc will then present that comment as text alongside the item it documents. For example, this is the documentation for the fmt package's Fprint function:
 
