@@ -138,3 +138,7 @@ v, ok = x.(T)
 
 Si ok es false es que no se ha podido convertir x en el formato T
 
+
+
+Convertir una interface{} a map (data.Interface() viene de reflect):
+data.Interface().(map[interface{}]interface{})
