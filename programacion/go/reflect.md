@@ -6,36 +6,24 @@ Package reflect implements run-time reflection, allowing a program to manipulate
 Con TypeOf obtendremos los "metadatos". Por ejemplo, de un struct obtendremos el nombre de los campos y el tipo.
 Con ValueOf obtendremos los valores.
 
+Ejemplo.
+Tenemos un interface{} (m) que sabemos que es un slice, cuyo primer elemento es un struct.
 
-# Obtener el tipo de una variable:
-TypeOf nos devuelve una variable tipo Type
+slice := reflect.ValueOf(m) // Obtenemos los valores del interface{} m
+typ := reflect.TypeOf(slice.Index(0).Interface()) // Convertimos el primer elemento del slice m en una interfaz y obtenemos sus "metadatos"
+val := reflect.ValueOf(slice.Index(0).Interface()) // Lo mismo pero obtenemos los valores
 
-import "reflect"
-tst := "string"
-fmt.Println(reflect.TypeOf(tst))
+if typ.Kind() != reflect.Struct { // Comprobamos que estamos cogiendo un struct
+  fmt.Printf("%v type can't have attributes inspected\n", typ.Kind())
+}
 
-
-Si tenemos la variable foo que es un interface{} que se define como un struct y queremos sacar los datos:
-f := reflect.TypeOf(foo)
-De aqui podremos sacar los valores con f.Field(n) o 
-
-
-
-
-# ValueOf
-valueOf nos devuelve una variable tipo Value
-
-Leer una variable que no conocemos (interface{}) e ir sacando dinámicamente los tipos de datos:
-m := []interface{}{1, "2", 3.4}
-slice := reflect.ValueOf(m)
-primerElemento := slice.Index(0)
-
-El valor obtenido por ValueOf será del tipo reflect.Value. No se convertirá al tipo de dato que haya leído.
-reflect.Value tiene varios métodos para trabajar de distintas maneras con el tipo de dato: https://golang.org/pkg/reflect/#Value
-Alguno de los métodos será para convertir el tipo de dato explícitamente (por ejemplo Bool())
-Otras métodos suponen que el Value es de un tipo determinado y fallarán si no lo es, por ejemplo Index() espera un array, slice o string.
-
-
-
-Ejemplo usando reflect para acceder a elementos de un struct:
-https://gist.github.com/drewolson/4771479
+// Vamos navegando el struct sacando el nombre del campo, el tipo de dato y el valor
+for i := 0; i < typ.NumField(); i++ {
+  p := typ.Field(i)
+  v := val.Field(i)
+  if !p.Anonymous {
+    fmt.Printf("Name: %+v   Type: %+v   Val: %+v\n\n", p.Name, p.Type, v)
+  }
+}
+timestampData := val.FieldByName("Data") // Cogemos del struct el compo "Data"
+timestamp := binary.BigEndian.Uint32(timestampData.Bytes()[0:4]) // Lo convertimos a un array de bytes y cogemos los 4 primeros para convertirlos en un uint32
