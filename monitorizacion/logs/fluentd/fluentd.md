@@ -25,3 +25,11 @@ La imagen de fluentd no vale para el plugin de systemd, porque falta la lib libs
 La otra opción es usar una imagen basada en debian:
 
 Crear imagen de docker custom: https://github.com/fluent/fluentd-docker-image
+
+
+# Gestion de fallos
+https://docs.fluentd.org/v0.12/articles/failure-scenarios
+
+Se explica que hace fluentd en caso de problemas escribiendo al agente.
+Cuando cae el propio agente (podemos configurar para almacenar el buffer en disco para no perder nada)
+Cuando cae el storage de destino (se hará buffering y reintentos)

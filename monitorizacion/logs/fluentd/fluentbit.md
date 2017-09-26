@@ -31,6 +31,23 @@ http://fluentbit.io/documentation/0.12/output/
 Podemos especificar el parametro Retry_Limit para decidir cuantas veces se reintentará el output (mas info en Internals.Retries)
 
 
+# Buffer
+http://fluentbit.io/documentation/0.12/getting_started/buffer.html
+
+Usar un buffer de disco local ante problemas con el agente.
+-b path/
+En path/ escribirá las tareas que va haciendo.
+Si cuando lo paramos estaba haciendo retry en un output. Cuando volvamos a arrancar seguirá por ese punto.
+
+
+
+# Backpressure
+http://fluentbit.io/documentation/0.12/configuration/backpressure.html
+
+Limitar los datos que entran porque no estamos pudiendo sacar los que tenemos hacia los outputs.
+
+
+
 
 # Ejemplos
 fluent-bit -i tcp -o stdout
@@ -68,6 +85,15 @@ https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee7
 
 Como fluent-bit convierte el timestamp a un unix timestamp:
 https://github.com/fluent/fluent-bit/blob/669dc377d5b87b482f84897506231bc0de5ee76c/src/flb_time.c#L145
+
+
+
+# Build
+cd build/
+cmake -DFLB_DEBUG=On -DFLB_TRACE=On -DFLB_JEMALLOC=On -DFLB_BUFFERING=On ..
+make
+ls bin/
+
 
 
 # Internals
