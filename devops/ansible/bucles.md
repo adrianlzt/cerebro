@@ -127,3 +127,17 @@ Itero sobre collectors_port_uuid y voy usando el indice para iterar tambien sobr
 
 - pause: prompt="{{item.0}} --> uuid {{item.1.stdout}} {{collector_ips[item.0]}} "
   with_indexed_items: collectors_port_uuid.results
+
+
+
+# Un loop que llama a otro loop
+Si tenemos un loop que llama, por ejemplo, a un include_role, y dentro de ese rol hay otro loop la variable de iteración ("item") colisionará.
+
+Para usar variables distintas:
+- name: crear vm para cada comput, enlazada a esta red y mgmt
+  os_server:
+		name: "{{server_prefix}}-inet-{{compute_item}}"
+  with_items: "{{compute_nodes}}"
+  loop_control: 
+    loop_var: "compute_item"
+
