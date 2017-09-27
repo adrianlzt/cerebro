@@ -1,8 +1,11 @@
 https://dev.cloudwatt.com/en/blog/openstack-resources-cleanup-script.html
 https://github.com/openstack/ospurge
+pip install ospurge
 
 Limpiar un tenant
 
+ospurge --dry-run --purge-own-project
+ospurge --verbose --purge-project NOMBRE_PROYECTO --dry-run
 
 A mano:
 Instrucciones para limpiar puertos, subredes, redes, routers de un tenant

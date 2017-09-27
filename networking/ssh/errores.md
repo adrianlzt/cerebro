@@ -11,3 +11,9 @@ Too many authentication failures for
 
 Mucho tiempo en logear
 http://injustfiveminutes.com/2013/03/13/fixing-ssh-login-long-delay/
+
+
+
+No puedo conectar usando un proxy command
+Comprobar que se está pasando la clave haciendo: ssh -A servidorDeSalto
+Si el servidor esta en la lista de known_hosts y la clave no coincide no se pasará las claves con -A

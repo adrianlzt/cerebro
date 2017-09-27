@@ -14,7 +14,8 @@ eval `ssh-agent`
 2.- Meter la clave al agente
 ssh-add clave.pem
 
-3.- Arrancar ssh con el agente (-A)
+3.- Arrancar ssh con el agente (-A). Estamos pasando nuestras claves ssh a la maquina a la que estamos conectando
+    Si host key falla (.ssh/known_hosts) no forwardeara las claves ssh por seguridad (podrian robarlas)
 ssh -A maquina
 
 4.- Al saltar desde 'maquina' a 'otramaquina' se usará clave.pem
