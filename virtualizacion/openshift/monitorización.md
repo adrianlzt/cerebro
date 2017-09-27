@@ -1,1 +1,1 @@
-Soluciones de pago: dynatrace
+Soluciones de pago: dynatrace, coscale

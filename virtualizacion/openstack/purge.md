@@ -8,10 +8,11 @@ ospurge --dry-run --purge-own-project
 ospurge --verbose --purge-project NOMBRE_PROYECTO --dry-run
 
 A mano:
-Borrar VMs:
+
+# Borrar VMs
 openstack server list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack server delete
 
-Instrucciones para limpiar puertos, subredes, redes, routers de un tenant
+# Borrar puertos, redes, subnets, nets
 for i in $(openstack router list -f json | jq -r '.[].ID'); do
   openstack router remove port $i $(openstack port list --router $i -f json | jq -r '.[].ID')
 done
@@ -19,7 +20,11 @@ openstack router list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack route
 openstack port list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack port delete
 openstack subnet list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack subnet delete
 openstack network list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack network delete
+
+# Borrar floating ip
 openstack floating ip list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack floating ip delete
+
+# Borrar security group
 openstack security group list -f json | jq -r '.[].ID' | xargs -P 5 -n 1 openstack security group delete
 
 
