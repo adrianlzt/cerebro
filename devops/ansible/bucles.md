@@ -10,7 +10,6 @@ No se puede usar {{item}} en el name
      - nano
      - mlocate
 
-
 - name: add several users
   user: name={{ item.name }} state=present groups={{ item.groups }}
   with_items:
