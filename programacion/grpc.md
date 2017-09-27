@@ -15,3 +15,8 @@ https://about.sourcegraph.com/go/grpc-in-production-alan-shreve
 
 En python:
 https://developers.google.com/protocol-buffers/docs/pythontutorial
+
+
+
+Uso de gRPC con una webapp y un backend Go:
+https://improbable.io/games/blog/grpc-web-moving-past-restjson-towards-type-safe-web-apis
