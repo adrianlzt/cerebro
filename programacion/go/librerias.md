@@ -81,6 +81,24 @@ pointer to above:   &{}, &[], &map[]
 %9.f   width 9, precision 0
 
 
+# Alineamiento (como en c)
+El número ocupará tantos caracteres como especifiquemos, rellenando con espacios en blanco a la izquierda
+
+fmt.Printf("%10d\n", 123);
+fmt.Printf("%10.2f\n", 123.456);
+
+       123
+    123.46
+
+Si queremos left-aligned:
+fmt.Printf("%-10d foo\n", 123);
+fmt.Printf("%-10.2f bar\n", 123.456);
+
+123        foo
+123.46     bar
+
+
+
 ## Strings ##
 s := []string{"foo", "bar", "baz"}
 fmt.Println(strings.Join(s, ", "))

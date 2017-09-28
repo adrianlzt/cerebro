@@ -177,7 +177,11 @@ https://github.com/influxdata/telegraf/blob/master/plugins/inputs/tail/README.md
 esto hace un tail -f de un fichero y va consumiendo las líneas, que deben estar en formato aceptado por influx
 
 ## docker
-recordar que el socket de docker debe tener permisos de lectura para el user telegraf
+https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker
+recordar que el socket de docker debe tener permisos de lectura para el user telegraf (crear grupo docker, reiniciar y meter nuestro user en el grupo docker)
+Por defecto el endpoint será unix:///var/run/docker.sock
+
+
 
 ## prometheus
 para obtener metricas de servicios que exponen sus métricas via prometheus, por ejemplo etcd
