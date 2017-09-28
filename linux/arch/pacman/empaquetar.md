@@ -1,4 +1,7 @@
+https://wiki.archlinux.org/index.php/creating_packages
+
 Ejemplo openconnect de git con AUR
+En PKGBUILD.proto hay un esqueleto de este tipo de fichero.
 
 mkdir dir
 vi PKGBUILD
