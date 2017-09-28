@@ -46,3 +46,7 @@ dpkg-deb -X paquete.deb dir/
 
 Bajar .deb
 apt-get download paquete
+
+
+Forzar borrado (antes era --force-yes):
+apt-get remove --allow-downgrades --allow-remove-essential --allow-change-held-packages

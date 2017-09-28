@@ -63,6 +63,8 @@ oc new-app https://github.com/openshift/golang-ex --name "customname" -l customl
 El nombre que se usará es el nombre del repo "golang-ex".
 Asignamos también una etiqueta (-l).
 
+mirar build.md para ver que hace por debajo.
+
 "new-app" se baja el repositorio, analizará el contenido y decidirá que debe hacer según el código que haya (javascript, node, django, python, etc)
 
 Si encuentra un Dockerfile hará un docker build.

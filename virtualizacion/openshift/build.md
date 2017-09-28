@@ -1,5 +1,6 @@
 https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build
 https://docs.openshift.com/container-platform/3.5/dev_guide/builds/index.html
+https://blog.openshift.com/override-s2i-builder-scripts/
 
 
 Openshift puede construir una imagen a partir de un repositorio mediante varias técnicas: S2I, pipeline, docker y custom
@@ -8,6 +9,8 @@ new-app detectará que usar bajándose y analizando el source que le hayamos pas
 https://github.com/openshift/origin/blob/e696f479805c2e6fe8e57c17f61d9307734dd3c3/pkg/generate/source/detector.go
 Mirará si existen unos ficheros con determinados nombres para decidir que leguaje se debe usar.
 
+
+Si usamos oc new-app, mirar en oc.md "## Crear" para ver lo que hace. Básicamente analiza lo que le pasamos para ver como construir.
 
 
 # Docker build
