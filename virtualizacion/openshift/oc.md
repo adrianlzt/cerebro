@@ -56,6 +56,8 @@ oc get dc
 oc new-app --list
 
 ## Crear
+https://github.com/openshift/origin/blob/v1.5.0/pkg/cmd/cli/cmd/newapp.go
+
 Usando un template almacenado en github:
 oc new-app https://github.com/openshift/golang-ex --name "customname" -l customlabel=value
   para pasar parametros: -p NOMBRE=VALOR (el nombre debe estar todo en minúsculas, puede contener números y guiones)
@@ -65,17 +67,6 @@ Asignamos también una etiqueta (-l).
 
 mirar build.md para ver que hace por debajo.
 
-"new-app" se baja el repositorio, analizará el contenido y decidirá que debe hacer según el código que haya (javascript, node, django, python, etc)
-
-Si encuentra un Dockerfile hará un docker build.
-
-Si no, analizará el código para intentar hacer un S2I (source to image)
-Para detectar el lenguaje analiza los ficheros que ve: https://docs.openshift.com/container-platform/3.3/dev_guide/application_lifecycle/new_app.html#language-detection
-Luego buscará imágenes que tenga con la tag "support" con el lenguaje que ha detectado.
-
-A parte de los steps del Dockerfile, openshift añadirá dos extras añadiendo variables de entorno y labels (mirar internals.md para los detalles).
-La imagen creada se sube al registry interno de openshift.
-Por defecto esta app no es accesible (tendremos que exportar algún puerto para convertirla en un Service)
 
 
 
@@ -86,6 +77,14 @@ oc new-app adrianlzt/packagedrone
   y un service con el nombre "packagedrone" que será un load balancer a los puertos que declare EXPOSED
   si declara algún volúmen por defecto será no persistente y host-local (se monta un volumen, pisará si había algún dato puesto por la imagen)
 
+
+
+Ejemplo de app simple con http: https://github.com/adrianlzt/openshift_python_sample_app.git
+Ejecutar con:
+oc new-app https://github.com/adrianlzt/openshift_python_sample_app.git
+
+No crea la ruta, la podemos crear con:
+oc expose svc/nombreapp
 
 ### Dos containers como un solo pod
 oc new-app nginx+mysql --name=mydbapp -e MYSQL_ROOT_PASSWORD=root

@@ -2,10 +2,13 @@ https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/bui
 https://docs.openshift.com/container-platform/3.5/dev_guide/builds/index.html
 https://blog.openshift.com/override-s2i-builder-scripts/
 
-
 Openshift puede construir una imagen a partir de un repositorio mediante varias técnicas: S2I (SourceStrategy), JenkinsPipelineStrategy, DockerStrategy y CustomStrategy
 
+https://github.com/openshift/origin/blob/v1.5.0/pkg/cmd/cli/cmd/newapp.go
 new-app detectará que usar bajándose y analizando el source que le hayamos pasado.
+Si le decimos que use el directorio local, deberá ser un git, buscará el remote y usará eso.
+
+Si encuentra un Dockerfile usará directamente la estrategia DockerStrategy.
 
 Si le pasas un repo git se lo bajará localmente, lo analizará (https://github.com/openshift/origin/blob/e696f479805c2e6fe8e57c17f61d9307734dd3c3/pkg/generate/source/detector.go) y decidirá que imagen debe usar.
 Mirará si existen unos ficheros con determinados nombres para decidir que leguaje se debe usar.
@@ -32,48 +35,30 @@ La imagen ejecutará (es su entrypoint):
 
 
 Si queremos ejecutarlo a mano (no tengo claro si se puede), debemos meter un fichero con el build y luego ejecutar (https://github.com/openshift/origin/issues/13828):
-BUILD_LOG_LEVEL=5 KUBERNETES_SERVICE_HOST=localhost KUBERNETES_SERVICE_PORT=8000 BUILD=$(cat build.json) /usr/bin/openshift-sti-build --loglevel=5
+docker run --rm -it -v "/var/run/docker.sock:/var/run/docker.sock" -v /dev/null:/var/run/secrets/kubernetes.io/serviceaccount/token -e BUILD="$(cat build.json)" -e BUILD_LOG_LEVEL=5 -e KUBERNETES_SERVICE_HOST=localhost -e KUBERNETES_SERVICE_PORT=8000 registry.access.redhat.com/openshift3/ose-sti-builder:v3.5.5.8 --loglevel=5
 
 Para sacar las variables de entorno que se pasan al pod de build podemos hacer:
 oc describe po test-1-build
+
+Un ejemplo del json que se pasa: https://gist.githubusercontent.com/adrianlzt/bc2eae6cd48aa5006e5b1126d369e43c/raw/cb65b8ed1255ebf849f416a6ddf6bec2f9a260b1/gistfile1.txt
+En el se especifica de donde sacar el codigo (un repo git en este caso), que la imagen se debe construir con Source2Image, la imagen base para S2I y donde subir la imagen una vez construída.
+
 
 Tambien es necesario tener en /var/run/secrets/kubernetes.io/serviceaccount/token el secret para conectar contra el server. Será el builder-token-xxxx
 Podemos simular que lo tenemos creando un fichero vacio
 mkdir -p /var/run/secrets/kubernetes.io/serviceaccount/ && touch /var/run/secrets/kubernetes.io/serviceaccount/token
 
+openshift-sti-build es una wrapper del comando s2i.
+openshift-sti-build sabe que tiene que leer del venv BUILD, sacar de ahí los parámetros para llamar a s2i y una vez generada la imagen subirla al repositorio de imagenes especificado.
 
-https://gist.github.com/adrianlzt/f35568842ff54a48967bde690199e2b1
-
-Otro ejemplo: https://gist.github.com/yuvipanda/569c7d0c3967732b4d1688ad6ac89172
-
-Podemos ver el YAML del build desde la interfaz web o con:
-oc export builds/NOMBRE
-
+Una vez arranca el build (https://github.com/openshift/origin/blob/v1.5.0/pkg/build/builder/sti.go#L92):
+Se llama al build de s2i: https://github.com/openshift/origin/blob/v1.5.0/pkg/build/builder/sti.go#L263
+Para ver lo que hace mirar s2i.md
 
 
-Las imagenes generadas tendran
-Entrypoint container-entrypoint
-Cmd /usr/libexec/s2i/run
-
-El container-entrypoint es:
-#!/bin/bash
-exec "$@"
-
-run parece que depende de que haya detectado el build que queremos arrancar.
-Para python:3.5 por ejemplo será este script:
-https://github.com/sclorg/s2i-python-container/blob/master/3.5/s2i/bin/run
-
-Intentará arrancar buscando ficheros, variables de entorno, etc.
-Si tenemos gunicorn instalado, podemos poner un fichero que se llame wsgi.py para que arranque
-Lo arrancará en el puerto 8080
 
 
-Ejemplo de app simple con http: https://github.com/adrianlzt/openshift_python_sample_app.git
-Ejecutar con:
-oc new-app https://github.com/adrianlzt/openshift_python_sample_app.git
 
-No crea la ruta, la podemos crear con:
-oc expose svc/nombreapp
 
 
 
