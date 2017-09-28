@@ -18,6 +18,14 @@ input -> parser -> filter -> buffer -> routing -> [out1, out2, out3]
 http://fluentbit.io/documentation/0.12/input/
 
 ## systemd
+Para obtener los logs intentará acceder a
+  /run/log/journal
+Si no lo consigue probará con:
+  /var/log/journal
+
+Tambien necesita leer el fichero /etc/machine-id para saber que directorio debe procesar
+
+
 Podemos pasarle en la conf "DB" para almacenar la última posición del cursor analizada
 Creará un fichero sqlite3
 

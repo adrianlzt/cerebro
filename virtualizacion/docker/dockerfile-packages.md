@@ -19,12 +19,24 @@ RUN apt-get update && apt-get install -y \
 
 Si queremos borrar una serie de paquetes instalados solo para un build:
 
+
+RUN cat /var/lib/dpkg/status | grep "^Package:" | cut -d ' ' -f2 | sort > /tmp/pkgs_init \
+    && apt-get -qq update \
+    && apt-get install -y -qq \
+       make \
+       build-essential \
+    && make
+    && cat /var/lib/dpkg/status | grep "^Package:" | cut -d ' ' -f2 | sort > /tmp/pkgs_end \
+    && comm --output-delimiter=' ' -3 /tmp/pkgs_init /tmp/pkgs_end > /tmp/pkgs_installed \
+    && echo 'Yes, do as I say!' | SUDO_FORCE_REMOVE=yes apt-get remove --purge --auto-remove -y --force-yes -qq $(cat /tmp/pkgs_installed) \
+    && apt-get clean -qq \
+    && rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/* /var/log/{alternatives.log,apt,dpkg.log}
+
 cat /var/lib/dpkg/status | grep "^Package:" | cut -d ' ' -f2 | sort > /tmp/pkgs_init
 apt-get install ...
 cat /var/lib/dpkg/status | grep "^Package:" | cut -d ' ' -f2 | sort > /tmp/pkgs_end
 comm --output-delimiter=' ' -3 /tmp/pkgs_init /tmp/pkgs_end > /tmp/pkgs_installed
 echo 'Yes, do as I say!' | SUDO_FORCE_REMOVE=yes apt-get remove --purge --auto-remove -y --force-yes $(cat /tmp/pkgs_installed)
-apt-get autoremove -y
 apt-get clean
 rm -fr /var/lib/apt/lists/* /var/cache/debconf/* /var/log/{alternatives.log,apt,dpkg.log}
 
