@@ -7,3 +7,5 @@ Es como el inner u outer join de SQL
 
 
 Para unir lineas mirar regex/paste.md
+
+Para comparar ficheros comm.md

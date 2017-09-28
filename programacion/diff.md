@@ -16,4 +16,7 @@ vbindiff
 
 
 comm
-comparar ficheros linea por línea
+comparar ficheros linea por línea. Deben estar ordenados
+
+comm -3 fichero1 fichero2
+retorna las lineas distintas
