@@ -124,3 +124,19 @@ Personalmente organizo:
 
 * CMD y ENTRYPOINT siempre juntos. Si el entrypoint debe recibir parámetros, poner en el CMD la ayuda (--help), para en el caso de que no se pase nada, se muestre.
 * Podría ir solo CMD o ENTRYPOINT si no hay params que pasar.
+
+
+
+
+# Hacer una imagen base
+Si estamos creando una imagen que sirva como base para otras imagenes tal vez nos interese el parametro ONBUILD
+https://docs.docker.com/engine/reference/builder/#onbuild
+
+Este parametro configura triggers que se dispararán cuando la imagen se construya siendo la base de otra.
+
+Por ejemplo, podemos tener:
+ONBUILD ADD . /app/src
+ONBUILD RUN /usr/local/bin/python-build --dir /app/src
+
+Que cuando alguien use esta imagen como base, automaticamente se metera el workdir en /app/src y se hará un build
+
