@@ -32,3 +32,6 @@ Luego nos permite crear más alertas:
   - anomalías
 
 Las notificaciones pueden ser email, slack, HTTP, etc
+
+Sobre las gráficas detecta automáticamente anomalías. Las marca con una barra roja en todas las gráficas y al pincharle nos dice de que anomalía se trata.
+Por ejemplo, estamos mirando una gráfica de latencia y vemos la barra roja indicando que en un periodo de tiempo hubo una anomalía que implicaba un crecimiento en el consumo de ram muy alto.

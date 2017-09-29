@@ -66,6 +66,11 @@ Para ver ayuda de un cierto plugin:
 
 telegraf --usage NOMBRE
 
+## filestat
+Para obtener si existe un fichero, su tamaño y md5 (opcional).
+CUIDADO, si no tenemos permisos en los ficheros no dirá nada, solo veremos que no saca información
+
+
 ## nagios
 https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md#nagios
 
