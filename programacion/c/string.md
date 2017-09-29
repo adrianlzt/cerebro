@@ -41,6 +41,11 @@ Returns 0 if s1 and s2 are the same; less than 0 if s1<s2; greater than 0 if s1>
 Se puede usar para ordenar strings
 strncmp(s1, s2, n); para comparar solo los n primeros caracteres
 
+Variantes que no tienen en cuenta el case:
+int strcasecmp(const char *s1, const char *s2);
+int strncasecmp(const char *s1, const char *s2, size_t n);
+
+
 strchr(s1, ch);
 Returns a pointer to the first occurrence of character ch in string s1.
 
