@@ -26,6 +26,8 @@ La otra opción es usar una imagen basada en debian:
 
 Crear imagen de docker custom: https://github.com/fluent/fluentd-docker-image
 
+El usuario con el que corra fluentd debe tener permisos para leer los ficheros. Los ficheros tiene grupo systemd-journal y ACL para qe los grupos adm y wheel puedan leer.
+
 
 # Gestion de fallos
 https://docs.fluentd.org/v0.12/articles/failure-scenarios

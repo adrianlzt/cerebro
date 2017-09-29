@@ -140,3 +140,7 @@ ONBUILD RUN /usr/local/bin/python-build --dir /app/src
 
 Que cuando alguien use esta imagen como base, automaticamente se metera el workdir en /app/src y se hará un build
 
+Ejemplo: https://github.com/fluent/fluentd-docker-image/blob/master/v0.14/debian-onbuild/Dockerfile
+
+Una parte mala es que si en nuestro Dockerfile tenemos instrucciónes de RUN, siempre que se modifique alguno de los ficheros que mete el ONBUILD, tocará rehacer nuestros RUN.
+No podremos cachear el RUN porque el ONBUILD siempre estará delante.

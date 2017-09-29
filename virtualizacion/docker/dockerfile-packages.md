@@ -45,3 +45,7 @@ apt-get remove --purge --auto-remove -y --force-yes $(cat /tmp/pkgs_installed)
 
 
 apt-get -qq update&& apt-get install -y -qq ca-certificates build-essential cmake make sudo wget unzip libsystemd-dev git && apt-get install -y -qq --reinstall lsb-base lsb-release
+
+
+--force-yes esta deprectad, ahora están las opciones:
+--allow-downgrades --allow-remove-essential --allow-change-held-packages
