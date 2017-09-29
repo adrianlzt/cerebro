@@ -27,6 +27,9 @@ Si queremos cambiar el driver a nivel global:
   "log-driver": "syslog"
 }
 
+Para arrancar un container con un log-driver especifico:
+docker run --log-driver journald ...
+
 Lista de drivers disponibles:
 https://docs.docker.com/engine/admin/logging/overview/#supported-logging-drivers
 
@@ -47,7 +50,9 @@ En caso de no poder conectar con redis hace drop del log:
 https://github.com/pressrelations/docker-redis-log-driver/blob/master/driver/driver.go#L148
 
 
-plugin journald
+
+# fluentd leyendo de journald (docker escribiendo en journald)
+plugin journald (para que fluentd lea de journald)
 https://github.com/reevoo/fluent-plugin-systemd
 Hace falta montar /var/log/journal en el container.
 

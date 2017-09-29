@@ -3,6 +3,9 @@ http://fluentd.org/
 "Fluentd" is an open-source tool to collect events and logs. 150+ plugins instantly enables you to store the massive data for Log Search, Big Data Analytics, and Archiving (MongoDB, S3, Hadoop).
 Escrito en ruby.
 
+Si queremos flushear el buffer podemos mandarle una señal (https://docs.fluentd.org/v0.12/articles/signals):
+kill -s SIGUSR1 PIDFLUENT
+
 
 http://es.slideshare.net/treasure-data/fluentd-loves-mongodb-at-mongosv-july172012
 Comparación contra Scribe y Flume
@@ -27,6 +30,16 @@ La otra opción es usar una imagen basada en debian:
 Crear imagen de docker custom: https://github.com/fluent/fluentd-docker-image
 
 El usuario con el que corra fluentd debe tener permisos para leer los ficheros. Los ficheros tiene grupo systemd-journal y ACL para qe los grupos adm y wheel puedan leer.
+
+
+# Buffer
+https://docs.fluentd.org/v0.14/articles/buffer-plugin-overview
+
+<match *>
+ ...
+ flush_interval 60s
+</match>
+
 
 
 # Gestion de fallos
