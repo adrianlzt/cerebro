@@ -26,6 +26,9 @@ Si no lo consigue probará con:
 Tambien necesita leer el fichero /etc/machine-id para saber que directorio debe procesar
 
 
+Para filtrar por algun compo de systemd:
+Systemd_Filter=_SYSTEMD_UNIT=UNIT
+
 Podemos pasarle en la conf "DB" para almacenar la última posición del cursor analizada
 Creará un fichero sqlite3
 
