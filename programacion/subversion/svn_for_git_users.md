@@ -22,3 +22,11 @@ svn update
 
 git log -p
 svn log --diff | less
+
+
+git checkout -l
+svn ls svn://svn.zabbix.com/branches/
+
+
+git checkout rama/
+svn co svn://svn.zabbix.com/branches/2.4

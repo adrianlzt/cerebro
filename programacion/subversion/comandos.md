@@ -9,6 +9,11 @@ Commit                    svn commit -m "mensaje"
 Diff                      svn diff -r 90:91
 
 
+# Branches
+Listar                    svn ls svn://svn.zabbix.com/branches/
+Cambiar rama              svn co svn://svn.zabbix.com/branches/2.4
+
+
 # Bajar partes de un repo
 Primero chequear lo que queremos:
 svn ls https://web.com/repo/trunk/src/templates/project.template
