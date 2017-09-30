@@ -10,6 +10,7 @@ Frontend PHP
 
 # Desarrollo
 El desarrollo se realiza en branches que que cuelgan de dev/ donde el nombre esta asociado a un ID del jira de support.zabbix.com
+Una vez terminado el desarrollo se mergea en trunk
 
 Ejemplo:
 https://support.zabbix.com/browse/ZBXNEXT-4002
