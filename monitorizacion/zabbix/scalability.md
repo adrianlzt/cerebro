@@ -20,6 +20,9 @@ Way bigger problem is with all queries generating all WRITE IOs (inserts and upd
 If someone has bigger and bigger scalability problems with zabbix DB backend way bigger improvements is possible to gain by stop using Linux and switching to Solaris (ZFS ARC)
 
 
+https://support.zabbix.com/browse/ZBXNEXT-714
+need scalable alternative for the history and items tables
+
 
 
 # Stress test
