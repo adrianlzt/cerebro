@@ -37,6 +37,11 @@ Parece que hay un problema con systemd y es que siempre que arranca lee de nuevo
 https://github.com/fluent/fluent-bit/pull/383
 
 
+## Kubernetes
+http://fluentbit.io/documentation/0.12/kubernetes/
+
+
+
 # Output plugins
 http://fluentbit.io/documentation/0.12/output/
 
