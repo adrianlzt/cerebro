@@ -1,6 +1,12 @@
 https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#minimize-the-number-of-layers
 
-RUN yum -y install mongodb-server; yum clean all
+INSTALL_PKGS="fluentd-${FLUENTD_VERSION} \
+              bc \
+              iproute" && \
+yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+rpm -V $INSTALL_PKGS && \
+yum clean all
+
 
 RUN apt-get update && apt-get install -y \
     aufs-tools \

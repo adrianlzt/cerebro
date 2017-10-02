@@ -6,25 +6,48 @@ Los pods de fluentd se despliegan con un DaemonSet en el project logging.
 Kibana muestra los datos almacenados en ElasticSearch (dentro del pod de kibaba hay otro container para gestionar el login).
 Curator: automáticamente borra índices antiguos según proyecto. Mirar config con el "oc dc logging-curator"
 
+
+
+
+# Fluentd
+https://hub.docker.com/r/openshift/origin-logging-fluentd/
+Dockerfile: https://github.com/openshift/origin-aggregated-logging/tree/master/fluentd
+
 Al arrancar al pod se ejecutará el script run.sh que a su vez llamará a generate_throttle_configs.rb para generar la configuración dinámica necesaria.
 
 Flow de como funciona: https://github.com/openshift/origin-aggregated-logging/blob/master/docs/mux-logging-service.md#basic-flow
 
-Fluentd, input.
+INPUT
  - leer de /run/log/journal, configs.d/dynamic/input-syslog-default-syslog.conf
  - fichero de posicion en /var/log/journal.pos
-Fluentd, filtros.
+FILTROS
  - se excluyen los logs de debug (configs.d/openshift/filter-exclude-journal-debug.conf)
  - se reescribe CONTAINER_NAME para organizarlos si son de infraestructura, logging, fluentd, generales o fuera de openshift
  - se usa el plugin kubernetes_metadata para agregar más datos a los logs
  - se limpian ciertos campos de los logs de kibana? configs.d/openshift/filter-kibana-transform.conf
  - ciertas adaptaciones de los logs, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
+OUTPUT
+ - un output por si tenemos configurado un ES especial para las operaciones
+ - output general para las apps: configs.d/openshift/output-applications.conf
+   - configs.d/openshift/output-es-config.conf fichero donde se configura elasticsearch_dynamic como output
+     - flush_interval 5s
+     - max_retry_wait 300.
+     - disable_retry_limit
+     - sin buffers
+   - otros includes que podrian configurarse para definir otros outputs
+
+ - Podemos meter outputs custom en el config map logging-fluentd.
+    Los ficheros de ese config map se montaran sobre /etc/fluent/configs.d/user y se usarán en los outputs como:
+    @include ../user/output-extra-*.conf
+    @include ../user/secure-forward.conf
 
 
 Se puede activar la monitorización de los agentes (http://docs.fluentd.org/v0.12/articles/monitoring) con la variable ENABLE_MONITOR_AGENT
 Se puede activar el debug de los agentes (http://docs.fluentd.org/v0.12/articles/monitoring#debug-port) con la variable ENABLE_DEBUG_AGENT
 
 
+
+# Elasticsearch
 Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").
 
 Otro de .kibana (interno entiendo).
