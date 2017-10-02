@@ -2,7 +2,12 @@ https://docs.docker.com/engine/api/v1.26/
 https://docs.docker.com/engine/api/
 Podemos atacar la api con curl --unix-socket
 
-curl --unix-socket /var/run/docker.sock http:/v1.22/containers/json
+curl --unix-socket /var/run/docker.sock http:/v1.24/containers/json
+Equivalente a "docker ps"
+
+curl --unix-socket /var/run/docker.sock "http:/v1.24/containers/json?limit=5"
+Equivalente a "docker ps -n 5"
+
 
 Eventos:
 curl --unix-socket /var/run/docker.sock -X GET http:/v1.22/events?since=1487864355

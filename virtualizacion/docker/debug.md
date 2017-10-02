@@ -1,3 +1,17 @@
+# Cambiar a modo debug en caliente
+https://docs.docker.com/engine/admin/#enable-debugging
+https://success.docker.com/KBase/How_do_I_enable_%22debug%22_logging_of_the_Docker_daemon%3F
+/etc/docker/daemon.json:
+{
+    "debug": true
+}
+
+sudo kill -SIGHUP $(pidof dockerd)
+
+
+
+
+
 mirar performance.md
 
 docker daemon -D
@@ -47,3 +61,8 @@ consultar ips del container
        Enter  the  user namespace.  If no file is specified, enter the user namespace of the target process.  If file is specified, enter the user namespace specified by file.  See also the --setuid
        and --setgid options.
 
+
+
+# Ver info de containers sin poder usar el client
+/run/docker/libcontainerd/IDCONTAINER
+Ahi podemos encontrar config.json con información del container (la que nos daria docker inspect)
