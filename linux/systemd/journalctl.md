@@ -11,7 +11,7 @@ Indexado.
 Salida formateada:
   - errores en rojo
   - warnings en negrita
-Por defecto journal no es persistente (se escribe en /run/log/journald/MACHINEID
+Por defecto journal no es persistente (se escribe en /run/log/journald/MACHINEID)
 
 MACHINEID es el valor de /etc/machine-id
 
@@ -19,7 +19,7 @@ MACHINEID es el valor de /etc/machine-id
 # Configuracion
 /etc/systemd/journald.conf
 
-Si existe el directorio /var/log/journal/, se creará almacenamiento persistente, usando el directorio con el nombre del MACHINEID
+Si existe el directorio /var/log/journal/, se creará almacenamiento persistente, usando el directorio con el nombre del MACHINEID (en este caso no se usará /run/log/journal)
 
 
 journalctl -f
@@ -40,6 +40,8 @@ journalctl -b -1
   logs del anterior arranque
 journalctl -b ID
   poner el ID que nos dio el --list-boots
+
+
 
 # Filtros
 ## Fechas
@@ -129,7 +131,7 @@ short-precise: The default format with microsecond precision
 verbose: Shows every journal field available for the entry, including those usually hidden internally.
 
 
-# Storage
+# Storage / max sizes
 journalctl --disk-usage
   uso del disco
 
@@ -141,13 +143,31 @@ journalctl --vacuum-size=1G
   borrar logs hasta que solo ocupemos 1GB
 
 Limitar el tamaño, /etc/systemd/journald.conf
-SystemMaxUse=: Specifies the maximum disk space that can be used by the journal in persistent storage.
-SystemKeepFree=: Specifies the amount of space that the journal should leave free when adding journal entries to persistent storage.
-SystemMaxFileSize=: Controls how large individual journal files can grow to in persistent storage before being rotated.
-RuntimeMaxUse=: Specifies the maximum disk space that can be used in volatile storage (within the /run filesystem).
-RuntimeKeepFree=: Specifies the amount of space to be set aside for other uses when writing data to volatile storage (within the /run filesystem).
-RuntimeMaxFileSize=: Specifies the amount of space that an individual journal file can take up in volatile storage (within the /run filesystem) before being rotated.
+System* para cuando se usa /var/log/journal
+Runtime* para cuando se usa /run/log/journal
 
+_MaxUse= espacio máximo usado por los ficheros de journal en total
+_KeepFree= espacio libre que debe dejarse en la partición (se usará el más restrictivo entre este y el _MaxUse)
+_MaxFileSize= tamaño máximo de un fichero de journal antes de rotarlo
+
+SIGUSR1: obligar a journald a flushear hacia /var/log/journal (por ejemplo, si acabamos de montar /var)
+SIGUSR2: obligar a un rotado de ficheros
+
+SyncIntervalSec=5m, timeout antes de sincronizar los journals files al disco. Si un mensaje es CRIT, ALERT o EMERG la sincronización es inmediata
+
+
+
+# Limites
+Valores por defecto
+RateLimitInterval=30s
+RateLimitBurst=1000
+
+Esto quiere decir que si se reciben más de 1000 mensajes, de un mismo servicio, en menos de 30", se escribará un mensaje de mensajes duplicados y se descartarán el resto.
+Mensaje de ejemplo:
+Oct 02 03:17:11 app6 systemd-journal[565]: Suppressed 25193 messages from /system.slice/docker.service
+
+Podemos filtrar estos mensajes con:
+journalctl -u systemd-journald
 
 
 # Escribir al journald
@@ -171,3 +191,10 @@ journalctl -c "s=acde4146521c446880060487b61d044e;i=13c5c;b=a7be29acb68644c6a7e9
 
 # Permitir ejecutar a no root
 gpasswd -a USER systemd-journal
+
+
+# Leer del journal
+Los grupos adm y wheel tienen permisos de lectura sobre /var/log/journal/ y /run/log/journal
+En caso de no tenerlo podemos ponerlo asi:
+  setfacl -Rnm g:wheel:rx,d:g:wheel:rx,g:adm:rx,d:g:adm:rx /var/log/journal/
+

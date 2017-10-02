@@ -30,6 +30,15 @@ Si queremos cambiar el driver a nivel global:
 Para arrancar un container con un log-driver especifico:
 docker run --log-driver journald ...
 
+Cuidado con enviar muchas trazas a journald. Por defecto journald tiene un límite de 1000 mensajes cada 30"
+Se generará un mensaje tipo:
+Oct 02 03:17:11 app6 systemd-journal[565]: Suppressed 25193 messages from /system.slice/docker.service
+
+Podemos filtrar estos mensajes con:
+journalctl -u systemd-journald
+
+
+
 Lista de drivers disponibles:
 https://docs.docker.com/engine/admin/logging/overview/#supported-logging-drivers
 
