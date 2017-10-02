@@ -1,3 +1,7 @@
+https://github.com/ViaQ/watches-cli
+App en python para obtener estadisticas sobre ES
+
+
 Vigilar que la máquina no swapee:
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_swapping_is_the_death_of_performance
 

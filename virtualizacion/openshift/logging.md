@@ -8,6 +8,8 @@ Curator: automáticamente borra índices antiguos según proyecto. Mirar config 
 
 Al arrancar al pod se ejecutará el script run.sh que a su vez llamará a generate_throttle_configs.rb para generar la configuración dinámica necesaria.
 
+Flow de como funciona: https://github.com/openshift/origin-aggregated-logging/blob/master/docs/mux-logging-service.md#basic-flow
+
 Fluentd, input.
  - leer de /run/log/journal, configs.d/dynamic/input-syslog-default-syslog.conf
  - fichero de posicion en /var/log/journal.pos
@@ -16,7 +18,7 @@ Fluentd, filtros.
  - se reescribe CONTAINER_NAME para organizarlos si son de infraestructura, logging, fluentd, generales o fuera de openshift
  - se usa el plugin kubernetes_metadata para agregar más datos a los logs
  - se limpian ciertos campos de los logs de kibana? configs.d/openshift/filter-kibana-transform.conf
- - ciertas adaptaciones de los logs de los containers, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
+ - ciertas adaptaciones de los logs, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
 
 
 Se puede activar la monitorización de los agentes (http://docs.fluentd.org/v0.12/articles/monitoring) con la variable ENABLE_MONITOR_AGENT
@@ -43,6 +45,10 @@ https://docs.openshift.com/container-platform/3.4/install_config/aggregate_loggi
 https://github.com/openshift/origin-aggregated-logging/blob/master/docs/checking-efk-health.md
 https://docs.openshift.com/enterprise/3.2/install_config/aggregate_logging.html#aggregate-logging-performing-elasticsearch-maintenance-operations
 
+https://github.com/openshift/origin-aggregated-logging/blob/master/hack/logging-dump.sh
+Este script recolecta información sobre el cluster de logging: https://github.com/openshift/origin-aggregated-logging/blob/master/hack/README-dump.md#logging-dump
+
+
 
 # Elasticsearch
 Conectar al elastic:
@@ -61,8 +67,12 @@ Settings de todos los indices:
 curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/_all/_settings?pretty" |more
 
 
-Las claves las podemos sacar de etcd (en base64)
+Los certificados los podemos sacar de etcd (en base64)
 etcdctl2 get /kubernetes.io/secrets/logging/logging-elasticsearch
+Aqui estarán los tres:
+ - data.admin-ca
+ - data.admin-cert
+ - data.admin-key
 
 
 Config de ES:
@@ -71,3 +81,25 @@ Config de ES:
 
 Por defecto un shard y 0 replication para los indices.
 Los indices .searchguard.logging-es-XXX tienen un shard y 2 replicas.
+
+
+
+# Mux
+En versiones más recientes (3.6?) se introduce un nuevo elemento: mux
+https://github.com/openshift/origin-aggregated-logging/blob/master/docs/mux-logging-service.md
+
+Con este nuevo elemento el flow varía.
+Los fluentd de cada agente simplemente cogen las trazas de journald y las envían a mux.
+Mux se encarga de enriquecerlas con los metadatos de kubernetes y enviarlos a ES.
+
+Parece que la mejora es quitar trabajo a los agentes de fluentd en cada nodo y reducir la carga sobre la API de kubernetes (cachea?)
+Posible problema por ser punto único de fallo?
+
+openshift_logging_mux_file_buffer_limit
+
+
+# ViaQ
+Parece que esto es el esquema que se sigue al almacenar los logs de openshift en ES
+https://github.com/ViaQ/fluent-plugin-viaq_data_model
+
+Los agentes fluent tendran un filter viaq_data_model para adaptar el formato a este esquema.
