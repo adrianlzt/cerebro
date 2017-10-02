@@ -1,11 +1,10 @@
 https://github.com/openshift/origin-aggregated-logging
 
-Fluentd coge los logs de los pods, les añade cierta metadata y lo almacena en ElasticSearch.
+Los containers corren en docker con el log-driver journald (configurable? si usa el driver json fluentd tambien lo captura)
+Fluentd (version 0.12.32 para openshift 3.5) coge los logs de los pods de journald, les añade cierta metadata y lo almacena en ElasticSearch.
+Los pods de fluentd se despliegan con un DaemonSet en el project logging.
 Kibana muestra los datos almacenados en ElasticSearch (dentro del pod de kibaba hay otro container para gestionar el login).
 Curator: automáticamente borra índices antiguos según proyecto. Mirar config con el "oc dc logging-curator"
-
-Docker usa el logging backend journald (o json).
-Fluentd lee el journald (junto con otros datos para enriquecer las trazas con metadata) y lo manda a ElasticSearch
 
 
 Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").

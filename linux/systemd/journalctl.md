@@ -1,17 +1,25 @@
 https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 
-Captura los logs de los servicios de systemd
+Captura logs de:
+ - kernel log messages
+ - Simple system log messages, via the libc syslog(3) call
+ - Structured system log messages via the native Journal API, see sd_journal_print(4)
+ - Standard output and standard error of system services
+ - Audit records, via the audit subsystem
 Almacen binario de logs
 Indexado.
 Salida formateada:
   - errores en rojo
   - warnings en negrita
-Por defecto journal no es persistente
+Por defecto journal no es persistente (se escribe en /run/log/journald/MACHINEID
+
+MACHINEID es el valor de /etc/machine-id
+
 
 # Configuracion
 /etc/systemd/journald.conf
 
-Si tiene configurado almacenamiento se almacenará en: /var/log/journal
+Si existe el directorio /var/log/journal/, se creará almacenamiento persistente, usando el directorio con el nombre del MACHINEID
 
 
 journalctl -f
@@ -140,13 +148,6 @@ RuntimeMaxUse=: Specifies the maximum disk space that can be used in volatile st
 RuntimeKeepFree=: Specifies the amount of space to be set aside for other uses when writing data to volatile storage (within the /run filesystem).
 RuntimeMaxFileSize=: Specifies the amount of space that an individual journal file can take up in volatile storage (within the /run filesystem) before being rotated.
 
-
-
-# Editar conf
-https://wiki.archlinux.org/index.php/Systemd#Editing_provided_unit_files
-
-Poner vim como editor por defecto
-update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
 
 
 # Escribir al journald
