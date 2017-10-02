@@ -15,6 +15,11 @@ Hawkular esta expuesto mediante un route+service.
 Para ver como usarlo, API, etc mirar monitorizacion/metricas/hawkular.md
 
 
+# Heapster
+Los nombres con los que almacena los datos en hawkular los saca del "NAME" del container en docker (del que se ve con docker ps)
+Este nombre es el uid que aparece si hacemos un: oc get po xx -o yaml
+
+
 # Cassandra
 Una vez dentro del container podemos conectar con cassandra usando cqlsh.
 El fichero de conf esta en:

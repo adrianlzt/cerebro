@@ -48,3 +48,4 @@ https://docs.fluentd.org/v0.12/articles/failure-scenarios
 Se explica que hace fluentd en caso de problemas escribiendo al agente.
 Cuando cae el propio agente (podemos configurar para almacenar el buffer en disco para no perder nada)
 Cuando cae el storage de destino (se hará buffering y reintentos)
+mirar buffer.md
