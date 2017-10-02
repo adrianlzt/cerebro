@@ -1,3 +1,22 @@
+https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#Passing_Through_One_or_More_Gateways_Using_ProxyJump
+A partir de openSSH 7.3 existe una opción para especificar a traves de que servidor queremos saltar:
+ssh -J user1@jumphost1.example.org:22 fred@192.168.5.38
+
+Host server2
+        HostName 192.168.5.38
+        ProxyJump user1@jumphost1.example.org:22
+        User fred
+
+Incluso podemos poner varios servidores en el ProxyJump que serán visitados en orden:
+        ProxyJump user1@jumphost1.example.org:22,user2@jumphost2.example.org:2222
+
+
+Si queremos usar la clave privada del host intermedio para acceder al nodo deseado (A->B->C):
+Host C
+    ProxyCommand ssh -o 'ForwardAgent yes' B 'ssh-add && nc %h %p'
+
+
+
 http://undeadly.org/cgi?action=article&sid=20070925181947
 http://sshmenu.sourceforge.net/articles/transparent-mulithop.html
 

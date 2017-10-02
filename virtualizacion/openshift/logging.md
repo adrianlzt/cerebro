@@ -75,6 +75,13 @@ Aqui estarán los tres:
  - data.admin-key
 
 
+Para acceder desde fuera podemos bajarnos los certificados y crear un tunel ssh a traves de un nodo del cluster de openshift.
+Para copiar los certs lo más sencillo es usar oc rsh y copiar el contenido de los ficheros.
+El tunel (siendo 172.30.17.5:9200 el service del cluster de ES):
+ssh -f -L 9200:172.30.17.5:9200 openshift-algun-nodo-del-cluster -NT
+curl -s --key admin-key --cert admin-cert --cacert admin-ca https://localhost:9200/_cluster/health
+
+
 Config de ES:
 /usr/share/java/elasticsearch/config/
 

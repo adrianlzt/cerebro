@@ -1,5 +1,8 @@
 https://github.com/ViaQ/watches-cli
 App en python para obtener estadisticas sobre ES
+pip install watches
+watches cluster_health --url https://localhost:9200 --cacert admin-ca --cert admin-cert --key admin-key
+
 
 
 Vigilar que la máquina no swapee:
