@@ -10,6 +10,8 @@ Para conocer los nombres de los discos cuando son tipo dev...
 lsblk
 /proc/diskstats
 
+dm10 corresponderá al disco TYPE=dm MIN=10 (creo)
+/dev/dm-9
 
 Nombres uuid:
 sudo blkid

@@ -66,3 +66,6 @@ consultar ips del container
 # Ver info de containers sin poder usar el client
 /run/docker/libcontainerd/IDCONTAINER
 Ahi podemos encontrar config.json con información del container (la que nos daria docker inspect)
+
+Sacar los hostnames de los containers que estan corriendo:
+grep -o 'hostname":"[^"]*' /run/docker/libcontainerd/*/config.json
