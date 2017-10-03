@@ -63,3 +63,7 @@ Respuesta tipo:
 Podemos pedir tambien filtrando por un tag:
 {"start":1500208187560,"end":1500294587560,"order":"ASC","tags":"group_id:fluentd-elasticsearch/memory/usage"}
 Nos devolverá un array de diccionarios, cada uno para una métrica distinta.
+
+
+Otro ejemplo pidiendo métricas:
+https://hawkular-metrics.inet/hawkular/metrics/gauges/pod%2Fb328bc5d-57e7-11e7-8da7-005056a23f44%2Fnetwork%2Ftx_rate/data?bucketDuration=120000ms&start=-60mn
