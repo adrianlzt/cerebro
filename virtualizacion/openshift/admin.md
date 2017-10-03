@@ -39,6 +39,7 @@ oadm drain NODE
 
 Migrate selected pods
 oadm manage-node NODE --evacuate --pod-selector="<service=myapp>"
+oadm manage-node <node1> <node2> --evacuate [--pod-selector=<pod_selector>]
 
 
 Permitir que se ejecuten pods:
