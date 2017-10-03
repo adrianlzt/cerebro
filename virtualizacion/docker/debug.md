@@ -31,6 +31,7 @@ Veremos los comandos donde hayamos arrancado el socat
 
 nsenter -t 1010 -u hostname
 hostname del container. Nos sirve para saber a quien pertence el PID 1010
+CUIDADO! el pid debe ser de un proceso corriendo dentro de docker, no del proceso docker-containerd
 
 
 nsenter -t 1010 -n dig analisis @127.0.0.11
