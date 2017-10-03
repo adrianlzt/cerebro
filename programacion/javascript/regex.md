@@ -17,3 +17,8 @@ Eliminar las etiquetas html de un texto:
 > msg.replace(/<[a-zA-Z]+[^>]+>([^<]+)<\/[a-zA-Z]+\>/g, "$1")
 'skynet_api_ai quiero crear adrian@null.com una wo'
 
+
+
+No podemos usar la sintaxis /expr/ con variables.
+Haremos:
+new RegExp(var + "texto")

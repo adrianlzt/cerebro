@@ -28,6 +28,11 @@ txt.replace(/xx/g, "aa")
 "hola pepe adios".replace(/hola ([a-z]*) adios/gi, "-$1-");
 -pepe-
 
+> let robot = "hola"
+> "hola pepe".replace(new RegExp("^"+robot+" "), "")
+'pepe'
+
+
 # Contains
 var cadena = "hht://idealista.com/asd"
 cadena.includes("idealista")
