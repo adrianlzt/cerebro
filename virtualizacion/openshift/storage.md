@@ -1,6 +1,7 @@
 https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html
 https://docs.openshift.com/dedicated/architecture/additional_concepts/storage.html
 https://docs.openshift.com/dedicated/dev_guide/persistent_volumes.html
+mirar volumes_docker.md para ver como gestiona el montaje de directorios y configMaps
 
 Se utiliza la solución de Kubernetes: persistent volume (PV) framework.
 

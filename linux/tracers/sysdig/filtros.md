@@ -1,8 +1,17 @@
+Ver fields.md para ver como saber cuales disponemos
+
+
 fd.type=ipv4
 fd.type=file
 
 fd.typechar=u
   filtrar por unix sockets
+
+fd.name contains /var/run/docker.sock -c echo_fds
+  ver lo que está pasando por el unix socket
+
+fd.name contains /var/run/docker.sock and proc.name=docker and evt.type=write -c echo_fds
+  ver lo que está escribiendo "docker" en "/var/run/docker.sock"
 
 fd.type=ipv4 and proc.name=cur
 

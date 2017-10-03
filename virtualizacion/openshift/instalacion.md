@@ -17,3 +17,8 @@ rslave only works if the Docker version is 1.10 or later and a Red Hat distribut
 
 # Minishift
 minishift.md
+
+
+
+https://access.redhat.com/solutions/2068843
+How to verify OpenShift Container Platform has been deployed successfully
