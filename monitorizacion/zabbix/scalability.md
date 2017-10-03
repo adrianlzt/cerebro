@@ -6,7 +6,8 @@ NVPS: new values per second
 
 
 "if someone is observing own zabbix DB backend IO read/write ratio on storage layer bigger tahn 1/20 - 1/100, it probably means that this install needs more memory for server caches and/or DB cash and/or zfs ARC
-discussion_new_backends.png (creo que la imagen es de Mayo 2016)
+discussion_new_backends.png (Abril 2015)
+https://www.linkedin.com/groups/161448/161448-5996549505196048385
 
 En esta discusión se tocan más temas para como hacer zabbix más "performant"
 

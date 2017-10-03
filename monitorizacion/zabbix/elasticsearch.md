@@ -1,5 +1,6 @@
 Parece que ha habido cierta discusión sobre usar ES como backend.
 Mirar discussion_new_backends.png
+https://www.linkedin.com/groups/161448/161448-5996549505196048385
 
 https://support.zabbix.com/browse/ZBXNEXT-3661
 EPIC donde parece que se están realizando modificaciones en el server y el frontend para desacoplar como accede el frontend ahora mismo a la información histórica y poder usar ES para almacenar esa info
