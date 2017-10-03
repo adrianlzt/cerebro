@@ -4,3 +4,7 @@ file -b --mime-type fichero
 $ file -b --mime-type Topo-DIbona.jpg
 image/jpeg
 
+
+
+Si queremos obtener el path absoluto de un fichero:
+realpath.md

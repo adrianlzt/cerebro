@@ -1,6 +1,8 @@
 swarm-mode implementacion de swarmkit.
 
-Interfaz web -> portainer.md
+Doc: https://github.com/jpetazzo/orchestration-workshop
+
+Interfaz web -> portainer.md https://swarmpit.io/
 
 # Swarm Mode (v >= 1.12)
 https://docs.docker.com/engine/swarm/swarm-mode/

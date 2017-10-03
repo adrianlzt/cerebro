@@ -31,6 +31,7 @@ El valor PID que puede tener un proceso visto desde el host es distinto que el v
 
 # Mount
 https://lwn.net/Articles/689856/
+https://stackoverflow.com/a/22889401
 
 
 # Containers from scratch
@@ -46,6 +47,10 @@ crear un chroot sobre el directorio $PWD/rootfs/proc con un namespace de PID dis
 
 ## nsenter
 run program with namespaces of other processes
+
+sudo nsenter --pid=/proc/29840/ns/pid unshare -f --mount-proc=$PWD/rootfs/proc chroot rootfs /bin/bash
+creamos un chroot y usamos el namespace de PID ya existente que está usando el proceso 29840
+
 
 nsenter -t 1010 -u hostname
 hostname del container. Nos sirve para saber a quien pertence el PID 1010

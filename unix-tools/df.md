@@ -5,6 +5,9 @@ df -h
   mostrar con unidades human-readable
 
 
+df /foo/bar
+  nos devuelve el filesystem donde está almacenado el fichero
+
 
 Diferencia entre size-used y avail
 http://www.unixtutorial.org/commands/tune2fs/

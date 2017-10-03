@@ -16,3 +16,10 @@ setcap 'cap_net_bind_service=+ep' /usr/sbin/grafana-server
 
 quitar capabilities
 setcap "-r" /usr/sbin/lvm
+
+
+ver las capabilities que tiene el usuario que estemos ejecutando:
+capsh --print
+
+capsh --drop=cap_chown --
+siendo root, arrancar una nueva shell sin capability de modificar owner

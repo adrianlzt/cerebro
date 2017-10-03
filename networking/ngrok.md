@@ -121,3 +121,10 @@ docker run -d --name ngrokd \
     -httpsAddr=:4444 \
     -domain=ngrok.sequenceiq.com
 
+
+
+# Superngrok
+/home/adrian/adrianRepo/networking/ngrok.md
+
+Levantar un container nginx+ngrok para poder acceder a cualquier otro container con una URL tipo:
+http://xxxx.ngrok.io/10.0.3.5:8000
