@@ -5,7 +5,7 @@ for (var i=0;i<cars.length;i++) {
 
 var txt="";
 var person={fname:"John",lname:"Doe",age:25}; 
-for (var x in person) {
+for (var x in person) { // en x tendremos las keys
   txt=txt + person[x];
 }
 
