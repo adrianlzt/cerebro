@@ -2,7 +2,23 @@ https://github.com/ViaQ/watches-cli
 App en python para obtener estadisticas sobre ES
 pip install watches
 watches cluster_health --url https://localhost:9200 --cacert admin-ca --cert admin-cert --key admin-key
+cluster_state
+cluster_stats
+nodes_stats
+nodes_info
+indices_stats
+nodes_hotthreads
+just_nodes_stats
+just_indices_stats
 
+Espacio global del cluster (total, libre, disponible):
+watches --url https://localhost:9200 --cacert admin-ca --cert admin-cert --key admin-key cluster_stats | jq '.nodes.fs'
+  libre: espacio libre en disco (como lo que ve df)
+
+
+Ocupación por shard:
+curl "https://localhost:9200/_cat/shards?bytes=b" | sort -nk6
+curl -s --cacert admin-ca --cert admin-cert --key admin-key "https://localhost:9200/_cat/shards?h=index,docs,store&bytes=b" | sort -nrk3 | numfmt --to=iec --field 2,3 | head
 
 
 Vigilar que la máquina no swapee:

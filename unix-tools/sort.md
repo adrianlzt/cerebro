@@ -39,3 +39,7 @@ sort --random-sort
 
 Ordenar por una columna determinada
 sort -k 4
+
+
+Ordenar valores con K, G, etc (human):
+sort -h
