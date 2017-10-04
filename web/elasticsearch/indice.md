@@ -38,7 +38,7 @@ curl "https://localhost:9200/.operations.2017.10.01/_mappings" | jq '.[].mapping
 
 curl "https://localhost:9200/.operations.2017.10.01/_mappings/com.redhat.viaq.common" | jq '.[].mappings[].properties | to_entries[] | .key'
   properties de un mapping (cada propertie puede tener subproperties)
-
+  Si queremos indagar en algun campo seguiremos como: jq '.[].mappings[].properties.kubernetes.properties | to_entries[] | .key'
 
 # Contenido de un indice:
 curl http://localhost:9200/logstash-iris-adrian-2015.06.19/_search/?pretty
