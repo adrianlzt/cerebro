@@ -13,3 +13,7 @@ type: access_combined AND request.raw: /.*phone\/v2\/users\/.*\/jours/ AND verb:
 request.raw: /.*phone\/v2\/users\/.*\/jours/
 Match:
 /phone/v2/users/9580ba4724444c7778888e16333c3241325d49e1/jours
+
+
+# Pinned filters
+Si estamos en modo "Discover" y queremos pasar el filtro que tenemos a "Visualize", nos pondremos sobre el y pincharemos a la chincheta

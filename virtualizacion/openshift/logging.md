@@ -49,6 +49,7 @@ Se puede activar el debug de los agentes (http://docs.fluentd.org/v0.12/articles
 
 # Elasticsearch
 Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").
+  Lo que se guarda en estos indices son los logs de ese dia UTC
 
 Otro de .kibana (interno entiendo).
 
