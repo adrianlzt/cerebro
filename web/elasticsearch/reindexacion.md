@@ -1,3 +1,4 @@
+https://www.elastic.co/guide/en/elasticsearch/guide/current/reindex.html
 elasticdump.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 

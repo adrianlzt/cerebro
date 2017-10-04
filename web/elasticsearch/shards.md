@@ -29,9 +29,12 @@ nodo2: '0' y '3'
 # Listar shards
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cat-shards.html
 
-curl 192.168.56.20:9200/_cat/shards
-
+curl "localhost:9200/_cat/shards?v"
 The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.
+
+
+curl "https://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
+  consultar que shards no estan allocated y por que https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-shards.html#reason-unassigned
 
 
 

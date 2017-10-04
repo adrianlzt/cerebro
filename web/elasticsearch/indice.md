@@ -1,16 +1,28 @@
+mirar conceptos.md para entender el significado.
 ES usa inverted index (ver bbdd/indices.md) para almacenar los datos.
 Básicamente es una tabla donde para cada entrada nos dice donde está el fichero que contiene esa palabra
+
+Crear más index o usar _type?
 
 # Estado del cluster
 curl http://localhost:9200/_status
 
 # Listar todos los índices:
-curl http://localhost:9200/_aliases?pretty=1
+curl "https://localhost:9200/_cat/indices?v"
+curl "https://localhost:9200/_cat/indices/.oper*?v"
+  indices que empiecen por ".oper"
+
+curl 'localhost:9200/_cat/indices?v&health=yellow&pretty'
+  indices en estado yellow (alguna de sus replicas no estan asignadas)
+  en red, uno o varios de sus primary shards no estan asinagdos
+
+
 
 # Crear indice
 curl -XPUT 'http://localhost:9200/twitter/' -d '{}'
 curl -XPUT 'http://localhost:9200/twitter/' -d '{ "settings" : { "index" : { "number_of_shards" : 3, "number_of_replicas" : 2 } } }'
 mirar insertar_datos.md
+El número de shards no se podrá cambiar a posteriori.
 
 # Contenido de un indice:
 curl http://localhost:9200/logstash-iris-adrian-2015.06.19/_search/?pretty
