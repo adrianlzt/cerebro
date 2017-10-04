@@ -89,6 +89,9 @@ curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secr
 Settings de todos los indices:
 curl -s --key /etc/elasticsearch/secret/admin-key --cert /etc/elasticsearch/secret/admin-cert --cacert /etc/elasticsearch/secret/admin-ca "https://localhost:9200/_all/_settings?pretty" |more
 
+Consumo de un indice por host (cuenta número de documentos para un índice por hostname):
+curl -s --cacert admin-ca --cert admin-cert --key admin-key "https://localhost:9200/.operations.2017.10.01/_search" -d '{"fields":["aggregations"], "aggs": {"genres": {"terms": {"field":"hostname"}} }}' | jq '.aggregations.genres.buckets'
+
 
 Los certificados los podemos sacar de etcd (en base64)
 etcdctl2 get /kubernetes.io/secrets/logging/logging-elasticsearch

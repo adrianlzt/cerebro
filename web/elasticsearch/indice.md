@@ -7,6 +7,7 @@ Crear más index o usar _type?
 # Estado del cluster
 curl http://localhost:9200/_status
 
+
 # Listar todos los índices:
 curl "https://localhost:9200/_cat/indices?v"
 curl "https://localhost:9200/_cat/indices/.oper*?v"
@@ -16,6 +17,9 @@ curl 'localhost:9200/_cat/indices?v&health=yellow&pretty'
   indices en estado yellow (alguna de sus replicas no estan asignadas)
   en red, uno o varios de sus primary shards no estan asinagdos
 
+curl "https://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
+  consultar que shards no estan allocated y por que https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-shards.html#reason-unassigned
+
 
 
 # Crear indice
@@ -24,8 +28,22 @@ curl -XPUT 'http://localhost:9200/twitter/' -d '{ "settings" : { "index" : { "nu
 mirar insertar_datos.md
 El número de shards no se podrá cambiar a posteriori.
 
+
+
+# Get index
+curl "https://localhost:9200/.operations.2017.10.01"
+
+curl "https://localhost:9200/.operations.2017.10.01/_mappings" | jq '.[].mappings | to_entries[] | .key'
+  mappings de un indice
+
+curl "https://localhost:9200/.operations.2017.10.01/_mappings/com.redhat.viaq.common" | jq '.[].mappings[].properties | to_entries[] | .key'
+  properties de un mapping (cada propertie puede tener subproperties)
+
+
 # Contenido de un indice:
 curl http://localhost:9200/logstash-iris-adrian-2015.06.19/_search/?pretty
+
+
 
 # Stats de un índice:
 curl http://localhost:9200/logstash-2015.06.09/_stats/?pretty
@@ -34,6 +52,8 @@ En _all, primaries, store, size_in_bytes tenemos el tamaño total de los documen
 Nos saca las estadísticas tres veces, una para primaries, otra para total y otra para el nombre del índice.
 
 Se puede preguntar por varios índices separados por comas.
+
+
 
 
 # Borrar índices

@@ -39,3 +39,8 @@ Localizar un elemento en un array:
   jq 'indices(1)'
   Input[0,1,2,1,3,1,4]
   Output[1,3,5]
+
+
+Extraer las keys de un diccionario:
+cat fichero.json | jq '.[].mappings | to_entries[] | .key'
+Nos devolverá una linea por cada key que cuelga de "mappings" (que a su vez colgaba de un diccionario)
