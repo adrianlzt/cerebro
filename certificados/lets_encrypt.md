@@ -39,7 +39,7 @@ http://letsencrypt.readthedocs.io/en/latest/install.html?highlight=docker#runnin
 
 mkdir -p /var/tmp/letsencrypt/{etc,var}
 docker run -it --rm -p 443:443 --name certbot -v "/var/tmp/letsencrypt/etc:/etc/letsencrypt" -v "/var/tmp/letsencrypt/var:/var/lib/letsencrypt" quay.io/letsencrypt/letsencrypt:latest certonly
-Usar la opcion 2
+Usar la opcion 1 (Spin up a temporary webserver (standalone))
 
 
 # Manual
