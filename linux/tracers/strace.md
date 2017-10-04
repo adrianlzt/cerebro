@@ -14,12 +14,16 @@ http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
 Nos sirve para ver que instrucciones ejecuta un binario.
 
-strace -tt -fs 200 programa
+strace -Tttvvvffo file.out -s 8192 programa
+  -T Show the time spent in system calls
+  -tt Prefix each line of the trace with the time of day, will include the microseconds
+  -vvv informacion sin abreviar
+  -ffo file.out  escribe cada proceso nuevo en su propio fichero .pid
+  -s 8192  incrementar el tamaño de las string mostradas
 
 
 También podemos ver el estado de un binario que ya se está ejecutando:
-
-strace -p PID
+strace -Tttvvvffo file.out -s 8192 -p PID
 
 
 Si strace nos devuelve:
