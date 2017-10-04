@@ -1,3 +1,6 @@
+mirar monitoring.md para saber el estado del cluster y datos importantes.
+
+
 Si cambiamos el nombre del cluster los datos no permanecen.
 
 
