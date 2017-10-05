@@ -68,6 +68,10 @@ Este script recolecta información sobre el cluster de logging: https://github.c
 # Elasticsearch
 Las imagenes cuando arrancan lanzan el script /opt/app-root/src/run.sh que hace las operaciones
  - definir la memoria con la que correrá ES. Ejemplo: ES_JAVA_OPTS="-Dmapper.allow_dots_in_name=true -Xms4096m -Xmx4096m"
+ - arranca ES con --security.manager.enabled false
+ - espera hasta que el puerto conteste
+ - configura el SearchGuard (/usr/local/bin/es_seed_acl)
+   - ejecuta el sgadmin.sh con la conf de /opt/app-root/src/sgconfig
 
 
 ## Config
@@ -83,6 +87,8 @@ Indices: .searchguard.${HOSTNAME}
 
 En la conf se define que el user CN=system.admin,OU=OpenShift,O=Logging es el único administrador.
 Cuando se accede al cluster usando los certs, el admin-cert tiene como Subject esa clave
+
+Config de SearchGuard (aplicada en el arranque): /opt/app-root/src/sgconfig
 
 
 

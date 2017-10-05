@@ -25,7 +25,7 @@ Según entiendo, la idea es modificar los ficheros .yaml de SearchGuard y luego 
 La configuración se almacena en el propio ES.
 Por defecto se usa un index "searchguard" (http://floragunncom.github.io/search-guard-docs/sgindex.html)
 
-En el indice se almacenan 5 documentos con distintos _types:
+En el indice se almacenan 5 documentos con distintos _types (serán mapeos de los ficheros sg_action_groups.yml  sg_config.yml  sg_internal_users.yml  sg_roles.yml  sg_roles_mapping.yml):
 
 config: configuración de los distintos tipos de backends usados para autenticar a los usuarios
 internalusers: listado de usuarios y hashes que pueden acceder sin tener que usar otro backend de auth (el hash que genera su herramienta en Bcrypt)
