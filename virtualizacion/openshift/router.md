@@ -19,7 +19,18 @@ Tal vez el puerto esté expuesto en el docker host.
 
 
 # Config
-Podemos ver la conf de haproxy ejecutando (desde el docker host donde este el container):
+Podemos ver la conf de haproxy ejecutando:
+oc project default
+oc rsh router-n-xxxxx
+$ less /var/lib/haproxy/conf/haproxy.config
+$ less /var/lib/haproxy/router/routes.json
+  fichero desde el que se genera la conf de haproxy
+$ less /var/lib/haproxy/conf/os_*.map
+  hace el mapeo de los hostnames a los backend de haproxy
+  un fichero por cada tipo de ruta (edge, http, reencrypt, etc)
+
+
+O desde dentro de un nodo de infraestructura:
 nsenter -t $(pgrep haproxy) -m less /var/lib/haproxy/conf/haproxy.config
   lo que hacemos es coger el pid del proceso haproxy, meternos en su mount namespace y ver el contenido de la conf
 

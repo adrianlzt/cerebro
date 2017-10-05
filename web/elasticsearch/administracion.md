@@ -1,5 +1,6 @@
 mirar monitoring.md para saber el estado del cluster y datos importantes.
 
+admin UI: cerebro.md
 
 Si cambiamos el nombre del cluster los datos no permanecen.
 

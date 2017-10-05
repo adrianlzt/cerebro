@@ -123,6 +123,13 @@ Puede tardar hasta 30s
 
 oc expose svc/MIAPP
   crea una entrada tipo "http://miprueba-nginx-php-hostname.192.168.99.101.nip.io" apuntando al service "MIAPP"
+oc expose service nginx --name=my-route
+  nombre de la routa
+oc expose svc logging-es --hostname elastic.apps.inet
+  definir nombre del dominio
+
+oc create route reencrypt --service logging-es --hostname elastic.apps.inet --dest-ca-cert ../elastic_search/certs_es/admin-ca
+  creamos una ruta https que se deshace en el haproxy para volverse a reencriptar hasta el svc logging-es (el cert del svc debe estar firmado por la ca que le estamos pasando)
 
 ## TLS
 https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html#route-types
@@ -130,6 +137,7 @@ https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/rou
 Edge: TLS terminado en el haproxy
 Passthrough: balanceo TCP. Se usa el protocolo TLS-SNI (debe pasarse el hostname en claro)
 Re-encryption: se desencripta en el haproxy y se vuelve a enviar encriptado hasta el svc
+               Se nos pedirá el certificado CA del destino (del service)
 
 
 
