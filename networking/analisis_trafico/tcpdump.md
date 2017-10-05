@@ -11,7 +11,14 @@ Mirar anydump.sh
 
 Otra opcion es tshark
 
+Cotainer en docker que captura todo el trafico:
+docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
+
+
 Si queremos filtrar de una forma más extensa mirar ngrep.md
+
+Capturar todo el tráfico en ficheros, cada uno almacenando 15':
+tcpdump -G 900 -w '%Y-%m-%d_%H:%M:%S.pcap' -W 96
 
 
 Tipica instruccion para escuchar en todas las interfaces quitando ssh, dns, arp y ntp

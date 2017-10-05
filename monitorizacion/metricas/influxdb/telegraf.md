@@ -258,6 +258,8 @@ https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md
 https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md
 https://www.influxdata.com/telegraf-update-1-3/
   How to Write Plugins
+https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/?__s=trqwhcsp36pvqhgtigfv
+https://www.influxdata.com/blog/building-better-telegraf-plugin/?__s=trqwhcsp36pvqhgtigfv
 
 go get github.com/influxdata/telegraf
 cd $GOPATH/src/github.com/influxdata/telegraf
