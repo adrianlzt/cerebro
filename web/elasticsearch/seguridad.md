@@ -24,3 +24,12 @@ Según entiendo, la idea es modificar los ficheros .yaml de SearchGuard y luego 
 # Config
 La configuración se almacena en el propio ES.
 Por defecto se usa un index "searchguard" (http://floragunncom.github.io/search-guard-docs/sgindex.html)
+
+En el indice se almacenan 5 documentos con distintos _types:
+
+config: configuración de los distintos tipos de backends usados para autenticar a los usuarios
+internalusers: listado de usuarios y hashes que pueden acceder sin tener que usar otro backend de auth (el hash que genera su herramienta en Bcrypt)
+actiongroups: grupos de acciones que se pueden realizar, por ejemplo, MANAGE puede usar el endpoint monitor/ y el admin/
+roles: asociaciones entre actiongroups y a que indices se pueden aplicar, tambien actiongroups sobre todo el cluster (en vez de actiongroups se pueden definir endpoints directamente)
+rolesmapping: relación entre roles y usuarios
+

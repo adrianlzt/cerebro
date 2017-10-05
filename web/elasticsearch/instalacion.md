@@ -51,3 +51,8 @@ tail -f logs/loquequeramos.log
 
 Mirar plugins.md para aplicaciones útiles que querremos tener.
 
+
+
+# Configuración de memoria
+https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_give_half_your_memory_to_lucene
+

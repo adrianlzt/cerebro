@@ -66,11 +66,24 @@ Este script recolecta información sobre el cluster de logging: https://github.c
 
 
 # Elasticsearch
+Las imagenes cuando arrancan lanzan el script /opt/app-root/src/run.sh que hace las operaciones
+ - definir la memoria con la que correrá ES. Ejemplo: ES_JAVA_OPTS="-Dmapper.allow_dots_in_name=true -Xms4096m -Xmx4096m"
+
 
 ## Config
 /usr/share/java/elasticsearch/config/
-
 Configuración de shards y replicas en el ansible de despliegue. Creo que por defecto es 1 shard y 0 replicas (PELIGROSO, se pierde un nodo y se pierden datos)
+
+
+### SearchGuard
+Gestion de HTTPS y autenticación.
+Script de administración:
+/usr/share/java/elasticsearch/plugins/openshift-elasticsearch/sgadmin.sh
+Indices: .searchguard.${HOSTNAME}
+
+En la conf se define que el user CN=system.admin,OU=OpenShift,O=Logging es el único administrador.
+Cuando se accede al cluster usando los certs, el admin-cert tiene como Subject esa clave
+
 
 
 ## Organización de los indices
