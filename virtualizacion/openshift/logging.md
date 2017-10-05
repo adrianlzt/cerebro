@@ -72,6 +72,8 @@ Las imagenes cuando arrancan lanzan el script /opt/app-root/src/run.sh que hace 
  - espera hasta que el puerto conteste
  - configura el SearchGuard (/usr/local/bin/es_seed_acl)
    - ejecuta el sgadmin.sh con la conf de /opt/app-root/src/sgconfig
+ - carga los templates que están en: /usr/share/elasticsearch/index_templates/*.json
+   - son los mappings de los indices, uno para operations y otro para el resto de projects
 
 
 ## Config
@@ -137,6 +139,15 @@ ssh -f -L 9200:172.30.17.5:9200 openshift-algun-nodo-del-cluster -NT
 curl -s --key admin-key --cert admin-cert --cacert admin-ca https://localhost:9200/_cluster/health
 
 
+
+# Kibana
+Interfaz gráfica para realizar consultas a ES
+
+Se gestiona con dos containers dentro del mismo pod.
+El primero (kibana-proxy) gestiona el login para decidir si dejar pasar al segundo
+El segundo (kibana) es la aplicación en si.
+
+El proxy es una aplicación node que escucha en el puerto 3000
 
 
 

@@ -15,7 +15,7 @@ Masters (https://docs.openshift.com/container-platform/3.5/architecture/infrastr
 Nodes (https://docs.openshift.com/container-platform/3.5/architecture/infrastructure_components/kubernetes_infrastructure.html#node):
  - docker
  - kubelet (crea los containers según manifest escrito en YAML)
- - serice proxy (reflects the services defined in the API on that node). Para que sirve?
+ - service proxy (reflects the services defined in the API on that node). Para que sirve?
  - gestionar la SDN
  - gestiona openvswitch, iptables
  - reinicia los containers que fallen
