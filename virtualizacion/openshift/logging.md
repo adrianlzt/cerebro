@@ -47,15 +47,6 @@ Se puede activar el debug de los agentes (http://docs.fluentd.org/v0.12/articles
 
 
 
-# Elasticsearch
-Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").
-  Lo que se guarda en estos indices son los logs de ese dia UTC
-
-Otro de .kibana (interno entiendo).
-
-.searchguard, uso?
-
-.project.XXX.UUID... logs de cada proyecto (aunque no veo los de openshift-infra ni default)
 
 
 # Splunk
@@ -75,7 +66,25 @@ Este script recolecta información sobre el cluster de logging: https://github.c
 
 
 # Elasticsearch
-Conectar al elastic:
+
+## Config
+/usr/share/java/elasticsearch/config/
+
+Configuración de shards y replicas en el ansible de despliegue. Creo que por defecto es 1 shard y 0 replicas (PELIGROSO, se pierde un nodo y se pierden datos)
+
+
+## Organización de los indices
+Tendremos un index ".operations.YYYY.MM.DD" donde se almacenarán las trazas de los services de openshift (proyectos "default", "openshift", "openshift-infra").
+  Lo que se guarda en estos indices son los logs de ese dia UTC
+
+Otro de .kibana (interno entiendo).
+
+.searchguard, uso?
+
+.project.XXX.UUID... logs de cada proyecto (aunque no veo los de openshift-infra ni default)
+
+
+## Conectar al elastic
 
 oc project logging
 oc rsh <elastic_pod>
@@ -109,12 +118,6 @@ ssh -f -L 9200:172.30.17.5:9200 openshift-algun-nodo-del-cluster -NT
 curl -s --key admin-key --cert admin-cert --cacert admin-ca https://localhost:9200/_cluster/health
 
 
-Config de ES:
-/usr/share/java/elasticsearch/config/
-
-
-Por defecto un shard y 0 replication para los indices.
-Los indices .searchguard.logging-es-XXX tienen un shard y 2 replicas.
 
 
 
