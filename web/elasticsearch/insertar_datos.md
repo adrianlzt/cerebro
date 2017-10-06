@@ -44,6 +44,12 @@ https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-delete.html
 curl -XDELETE "https://localhost:9100/INDICE/TYPE/ID?pretty"
 
 
+# Modify
+https://www.elastic.co/guide/en/elasticsearch/reference/current/_modifying_your_data.html
+
+Si hacemos un PUT sobre un doc que ya existe lo estaremos reemplazando
+
+
 
 # Update
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-update.html
@@ -51,7 +57,7 @@ curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario"
 curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
 
 Creo un documento con id=0.
-Luego se añade otro doc al mismo id.
+Luego se añade otro doc al mismo documento. Si usasemos la misma clave en el doc ("usuario"), estaríamos modificando el valor anterior (simple recursive merge, inner merging of objects, replacing core "keys/values" and arrays)
 El resultado final:
   "usuario": {
     "hash": "xxxx"
@@ -62,11 +68,12 @@ El resultado final:
 
 
 ## Update usando un script
+mirar scripts.md para ver como definirlos
+
 POST test/type1/1/_update
 {
     "script" : {
         "source": "ctx._source.counter += params.count",
-        "lang": "painless",
         "params" : {
             "count" : 4
         }
@@ -75,3 +82,50 @@ POST test/type1/1/_update
 
 ctx._source es la base del documento test/type1/1
 counter es una clave de este documento, la que vamos a modificar sumadole 4
+
+
+ctx tiene disponibles estas variables:
+_index
+_type
+_id
+_version
+_routing
+_parent
+_now (current timestamp)
+
+
+Para añadir un elemento a un array (en este caso que se llama "tags"):
+ctx._source.tags.add(params.tag)
+
+Añadir un nuevo campo (aunque esto es más fácil con "doc"):
+"script" : "ctx._source.new_field = 'value_of_new_field'"
+
+Borrar un campo:
+"script" : "ctx._source.remove('new_field')"
+
+Condicional:
+ "script" : {
+     "source": "if (ctx._source.tags.contains(params.tag)) { ctx.op = 'delete' } else { ctx.op = 'none' }",
+     "lang": "painless",
+     "params" : {
+         "tag" : "green"
+     }
+ }
+
+
+
+## Upsert
+Actuar distinto si el documeto ya existe (insert) o si es una actualizacion (update)
+  "script" : {
+      "source": "ctx._source.counter += params.count",
+      "lang": "painless",
+      "params" : {
+          "count" : 4
+      }
+  },
+  "upsert" : {
+      "counter" : 1
+  }
+
+Si el documeno es nuevo, se almacena el contenido que cuelga de la clave "upsert".
+En caso de que ya exista, se aplica el script.

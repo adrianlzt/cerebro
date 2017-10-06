@@ -22,6 +22,11 @@ Ocupación por shard:
 curl "https://localhost:9200/_cat/shards?bytes=b" | sort -nk6
 curl -s --cacert admin-ca --cert admin-cert --key admin-key "https://localhost:9200/_cat/shards?h=index,docs,store&bytes=b" | sort -nrk3 | numfmt --to=iec --field 2,3 | head
 
+Evitar llenado de los discos
+Mirar opciones cluster.routing.allocation.disk.watermark.low, cluster.routing.allocation.disk.watermark.high
+En ES6 también cluster.routing.allocation.disk.watermark.flood_stage para evitar seguir escribiendo en un disco que está llegando a su límite.
+En ES<6, cuidado con tener el cluster lleno y seguir escribiendo. Si no hay más hueco en el cluster, podremos acabar llenando los discos con los shards que tengamos. Los parámetros de arriba nos protegerán para no meter nuevos shards o mover los que tengamos a nodos con espacio libre, pero si no hay espacio de manera global no nos protegen.
+
 
 Heap memory usada por cada fieldata:
 https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cat-fielddata.html

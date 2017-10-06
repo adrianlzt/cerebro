@@ -25,8 +25,11 @@ column/rows   documents with properties
 Cuidado con esta analogía, no es correcta y puede llevar a errores.
 
 
-# Index vs Type
+# Index vs Type. NO EN ES6
 https://www.elastic.co/blog/index-vs-type
+
+A partir de ES6 solo un type por index, y se elimina el campo _type
+https://www.elastic.co/blog/elasticsearch-6-0-0-alpha1-released#type-removal
 
 
 Un index se reparte en varios shards.
