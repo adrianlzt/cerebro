@@ -20,6 +20,12 @@ Ocupación por shard:
 curl "https://localhost:9200/_cat/shards?bytes=b" | sort -nk6
 curl -s --cacert admin-ca --cert admin-cert --key admin-key "https://localhost:9200/_cat/shards?h=index,docs,store&bytes=b" | sort -nrk3 | numfmt --to=iec --field 2,3 | head
 
+
+Heap memory usada por cada fieldata:
+https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cat-fielddata.html
+curl "https://localhost:9200/_cat/fielddata?v"
+
+
 Una métrica interesante podría ser cuanto tiempo tarda en constestar para una información a priori conocida.
 Por ejemplo, cuando tarda en hacer una agregación con una subagregación sobre un índice con 5000 documentos.
 Midiendo el tiempo de respuesta cada x podemos hacernos una idea como esta yendo el cluster
@@ -27,6 +33,9 @@ Midiendo el tiempo de respuesta cada x podemos hacernos una idea como esta yendo
 
 Vigilar que no haya trazas duplicadas.
 No se muy bien como se podría hacer, pero en openshift, agregando logs con fluentd tuvimos un problema de que ciertas trazas estaban duplicadas 10000 veces.
+https://qbox.io/blog/minimizing-document-duplication-in-elasticsearch
+La idea es hacer una agregación "term" sobre el campo que marca la duplicidad (este tendremos que elegirlo nosotros)
+Parece que no se puede aplicar sobre "Analyzed Field", que suele ser el message.
 
 
 Vigilar que la máquina no swapee:

@@ -34,7 +34,7 @@ El número de shards no se podrá cambiar a posteriori.
 curl "https://localhost:9200/.operations.2017.10.01"
 
 curl "https://localhost:9200/.operations.2017.10.01/_mappings" | jq '.[].mappings | to_entries[] | .key'
-  mappings de un indice
+  mappings de un indice (mirar mappings.md para más info sobre ellos)
 
 curl "https://localhost:9200/.operations.2017.10.01/_mappings/com.redhat.viaq.common" | jq '.[].mappings[].properties | to_entries[] | .key'
   properties de un mapping (cada propertie puede tener subproperties)
