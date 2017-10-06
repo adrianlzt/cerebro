@@ -60,3 +60,18 @@ El resultado final:
     "hash": "222"
   }
 
+
+## Update usando un script
+POST test/type1/1/_update
+{
+    "script" : {
+        "source": "ctx._source.counter += params.count",
+        "lang": "painless",
+        "params" : {
+            "count" : 4
+        }
+    }
+}
+
+ctx._source es la base del documento test/type1/1
+counter es una clave de este documento, la que vamos a modificar sumadole 4
