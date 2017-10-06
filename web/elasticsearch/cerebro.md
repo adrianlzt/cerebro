@@ -17,3 +17,17 @@ wget https://github.com/lmenezes/cerebro/releases/download/v0.6.8/cerebro-0.6.8.
 cd cerebro/
 bin/cerebro
 http://localhost:9000/
+
+Solo admite autenticatión por user/password (entiendo que auth basic)
+
+Tiene una vista general del cluster.
+Una vista para los nodos con su info de consumo de memoria, cpu, disco.
+Una interfaz para enviar peticiones REST a las APIs de ES
+Creación de índices
+Gestión de los parámetros del cluster (secciones de routing, discovery, circuit breaker, recovery, ttl)
+Aliases
+Analyzer (no se para que es)
+Templates
+Repositories (?)
+Snapshots
+interfaz web para mostrar las cat apis

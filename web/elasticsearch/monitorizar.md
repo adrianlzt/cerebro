@@ -1,3 +1,5 @@
+Mirar x-pack.md
+
 https://github.com/ViaQ/watches-cli
 App en python para obtener estadisticas sobre ES
 pip install watches
@@ -31,6 +33,11 @@ Logs de ES:
 /elasticsearch/logging-es/logs/logging-es_deprecation.log
 /elasticsearch/logging-es/logs/logging-es_index_indexing_slowlog.log
 /elasticsearch/logging-es/logs/logging-es_index_search_slowlog.log
+
+Monitorizar mensajes de:
+[WARN ]
+[ERROR]
+[FATAL]
 
 El nodo master será el que tenga los logs interesantes.
 Los que no sean mastar también tendrán información, pero menos relevante.

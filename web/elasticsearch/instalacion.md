@@ -1,4 +1,5 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/5.0/install-elasticsearch.html#install-elasticsearch
+https://www.elastic.co/guide/en/elasticsearch/reference/current/system-config.html
 
 # CentOS / RedHat
 Repo:

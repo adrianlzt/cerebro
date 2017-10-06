@@ -1,3 +1,5 @@
+mirar x-pack.md
+
 # Search Guard
 https://floragunn.com/
 https://github.com/floragunncom/search-guard-docs

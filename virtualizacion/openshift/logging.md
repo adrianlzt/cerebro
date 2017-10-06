@@ -139,6 +139,11 @@ ssh -f -L 9200:172.30.17.5:9200 openshift-algun-nodo-del-cluster -NT
 curl -s --key admin-key --cert admin-cert --cacert admin-ca https://localhost:9200/_cluster/health
 
 
+## Entradas duplicadas
+Si vemos entradas duplicadas puede ser debido a una mala configuración del output de fluentd
+https://github.com/openshift/origin-aggregated-logging/commit/bb44098634dc4c83ea8fe90b79155a17d91867c1
+https://github.com/uken/fluent-plugin-elasticsearch/pull/59/files
+
 
 # Kibana
 Interfaz gráfica para realizar consultas a ES

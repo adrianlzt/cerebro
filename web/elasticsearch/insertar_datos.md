@@ -38,5 +38,25 @@ Nos confirma la operación con (resulado de otro insert distinto):
 _version es un campo interno de ES para la replicación
 
 
+
 # Borrar
+https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-delete.html
 curl -XDELETE "https://localhost:9100/INDICE/TYPE/ID?pretty"
+
+
+
+# Update
+https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-update.html
+curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario": {"hash": "xxxx"}}'
+curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
+
+Creo un documento con id=0.
+Luego se añade otro doc al mismo id.
+El resultado final:
+  "usuario": {
+    "hash": "xxxx"
+  },
+  "usuario2": {
+    "hash": "222"
+  }
+
