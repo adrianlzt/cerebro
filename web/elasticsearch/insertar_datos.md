@@ -36,3 +36,7 @@ Nos confirma la operación con (resulado de otro insert distinto):
 }
 
 _version es un campo interno de ES para la replicación
+
+
+# Borrar
+curl -XDELETE "https://localhost:9100/INDICE/TYPE/ID?pretty"
