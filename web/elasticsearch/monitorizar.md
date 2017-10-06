@@ -26,6 +26,30 @@ https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cat-fielddata.html
 curl "https://localhost:9200/_cat/fielddata?v"
 
 
+Logs de ES:
+/elasticsearch/logging-es/logs/logging-es.log (rota con .YYYY-MM-DD)
+/elasticsearch/logging-es/logs/logging-es_deprecation.log
+/elasticsearch/logging-es/logs/logging-es_index_indexing_slowlog.log
+/elasticsearch/logging-es/logs/logging-es_index_search_slowlog.log
+
+El nodo master será el que tenga los logs interesantes.
+Los que no sean mastar también tendrán información, pero menos relevante.
+
+Errores que veo en logging-es.log (parecen errores de conexión por fallos de los usuarios):
+[2017-10-06 11:42:53,535][WARN ][com.floragunn.searchguard.configuration.PrivilegesEvaluator] logstash-* does not exist in cluster metadata
+[2017-10-06 11:45:23,934][WARN ][rest.suppressed          ] path: //.operations.2017.10.06/_search, params: {index=.operations.2017.10.06, search_type=count}
+Failed to execute phase [query], all shards failed
+[2017-10-06 11:38:02,170][WARN ][indices.breaker.fielddata] [fielddata] New used memory 3230878335 [3gb] for data of [message] would be larger than configured breaker: 2556061286 [2.3gb], breaking
+[2017-10-06 07:38:46,620][ERROR][com.floragunn.searchguard.http.SearchGuardHttpServerTransport] [American Samurai] SSL Problem Received fatal alert: decrypt_error
+javax.net.ssl.SSLException: Received fatal alert: decrypt_error
+[2017-10-06 07:47:15,078][WARN ][com.floragunn.searchguard.configuration.PrivilegesEvaluator] _all does not exist in cluster metadata
+[2017-10-05 08:34:47,298][ERROR][com.floragunn.searchguard.http.SearchGuardHttpServerTransport] [American Samurai] SSL Problem Received fatal alert: certificate_unknown
+javax.net.ssl.SSLException: Received fatal alert: certificate_unknown
+[2017-10-05 08:28:24,435][ERROR][com.floragunn.searchguard.http.SearchGuardHttpServerTransport] [American Samurai] SSL Problem illegal change cipher spec msg, conn state = 6, handshake state = 1
+javax.net.ssl.SSLException: illegal change cipher spec msg, conn state = 6, handshake state = 1
+
+
+
 Una métrica interesante podría ser cuanto tiempo tarda en constestar para una información a priori conocida.
 Por ejemplo, cuando tarda en hacer una agregación con una subagregación sobre un índice con 5000 documentos.
 Midiendo el tiempo de respuesta cada x podemos hacernos una idea como esta yendo el cluster

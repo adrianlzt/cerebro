@@ -17,6 +17,11 @@ red -> no funciona (no contesta a las queries)
 curl -s localhost:9200/_cluster/settings | python -m json.tool
 
 
+# Nodos
+curl "https://localhost:9200/_cat/nodes?v"
+El que tiene el asterisco sera el master del cluster
+
+
 
 # Arrancar un cluster
 Por defecto cuando iniciamos ES arranca un cluster con nombre "elasticsearch".
