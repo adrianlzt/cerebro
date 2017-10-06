@@ -25,6 +25,10 @@ Por ejemplo, cuando tarda en hacer una agregación con una subagregación sobre 
 Midiendo el tiempo de respuesta cada x podemos hacernos una idea como esta yendo el cluster
 
 
+Vigilar que no haya trazas duplicadas.
+No se muy bien como se podría hacer, pero en openshift, agregando logs con fluentd tuvimos un problema de que ciertas trazas estaban duplicadas 10000 veces.
+
+
 Vigilar que la máquina no swapee:
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_swapping_is_the_death_of_performance
 

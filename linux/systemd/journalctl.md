@@ -146,8 +146,8 @@ Limitar el tamaño, /etc/systemd/journald.conf
 System* para cuando se usa /var/log/journal
 Runtime* para cuando se usa /run/log/journal
 
-_MaxUse= espacio máximo usado por los ficheros de journal en total
-_KeepFree= espacio libre que debe dejarse en la partición (se usará el más restrictivo entre este y el _MaxUse)
+_MaxUse= espacio máximo usado por los ficheros de journal en total (default 10% del filesystem)
+_KeepFree= espacio libre que debe dejarse en la partición (se usará el más restrictivo entre este y el _MaxUse. Default 15%)
 _MaxFileSize= tamaño máximo de un fichero de journal antes de rotarlo
 
 SIGUSR1: obligar a journald a flushear hacia /var/log/journal (por ejemplo, si acabamos de montar /var)
