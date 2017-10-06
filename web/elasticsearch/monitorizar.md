@@ -20,6 +20,10 @@ Ocupación por shard:
 curl "https://localhost:9200/_cat/shards?bytes=b" | sort -nk6
 curl -s --cacert admin-ca --cert admin-cert --key admin-key "https://localhost:9200/_cat/shards?h=index,docs,store&bytes=b" | sort -nrk3 | numfmt --to=iec --field 2,3 | head
 
+Una métrica interesante podría ser cuanto tiempo tarda en constestar para una información a priori conocida.
+Por ejemplo, cuando tarda en hacer una agregación con una subagregación sobre un índice con 5000 documentos.
+Midiendo el tiempo de respuesta cada x podemos hacernos una idea como esta yendo el cluster
+
 
 Vigilar que la máquina no swapee:
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_swapping_is_the_death_of_performance

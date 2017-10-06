@@ -147,7 +147,8 @@ Se gestiona con dos containers dentro del mismo pod.
 El primero (kibana-proxy) gestiona el login para decidir si dejar pasar al segundo
 El segundo (kibana) es la aplicación en si.
 
-El proxy es una aplicación node que escucha en el puerto 3000
+El proxy es una aplicación node que escucha en el puerto 3000 y autentica a los usuarios contra el Oauth2 de openshift
+https://github.com/fabric8io/openshift-auth-proxy
 
 
 
