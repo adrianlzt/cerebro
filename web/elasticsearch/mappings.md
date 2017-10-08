@@ -28,7 +28,29 @@ curl localhost:9200/vehicles/_mapping
 Mapping de un type determinado
 curl http://localhost:9200/iris-telematics-2015.06.10/_mapping/access_combined/?pretty
 
+Detalle de field de un mapping concreto:
+curl "localhost:9200/tete/_mapping/user/field/msg?pretty"
+
 Si ES no genera correctamente el mapping, podemos suministrarlo al crear el índice.
+
+
+
+# Crear mapping
+curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' -d'
+{
+  "mappings": {
+    "user": { 
+      "_all":       { "enabled": false  }, 
+      "properties": { 
+        "title":    { "type": "text"  }, 
+        "name":     { "type": "text"  }, 
+        "age":      { "type": "integer" }  
+      }
+    }
+  }
+}
+'
+
 
 
 # Analyzed fields
