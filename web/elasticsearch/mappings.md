@@ -1,5 +1,4 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
-
 Field types: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
 
 UN SOLO MAPPING POR INDICE
@@ -11,11 +10,14 @@ Si queremos seguir usando varios "types" por indice podemos hacerlo a mano. Crea
   INDEX/TYPE/MITIPO2-bbb
 
 
-ES no es schemaless, pero hace que trabajar con esquemas sea mucho más sencillo, a esto se le llama mappings.
+Mapping es definir como un documento, y los fields que contiene, son almacenados e indexados.
+Por ejemplo nos sirve para marcar que strings deberán ser tratadas como "full text fields", que es un número, fecha, etc
 
 ES genera automáticamente el 'mapping' de un índice a partir de los elementos que le pasemos.
 Nos lo avisará en el log:
 [vehicles] update_mapping [tv] (dynamic)
+
+CUIDADO! con meter muchos documentos cada uno con un mapping distinto -> mapping explosion. Peligroso si ese índice puede tener muchos documentos.
 
 Otra opción es generarlo a priori.
 
@@ -36,7 +38,7 @@ Si queremos poder buscar full-text en una string esta debe ser "analyzed". La co
 
 
 Por defecto cuando se detecta el tipo de cada field se marca como "analyzed field", de modo que si el campo es "valor-otra-cosa" lo partirá en tres trozos.
-Si no queremos que haga esto tendremos que modificar ese field para que no lo analice. Esto se hace con la mapping API:
+Si no queremos que haga esto tendremos que modificar ese field para que no lo analice. Esto se hace con la mapping API.
 
 No se puede cambiar el "datatype" de un field si ya tiene datos indexados.
 
