@@ -52,6 +52,45 @@ curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' 
 '
 
 
+## Multi-fields
+https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html
+
+Un determinado field puede indexarse de varias maneras distintas para poder usarlo de varias formas.
+Por ejemplo, una string se puede indexar como "string" y a la vez como "keyword" para poder hacer full text search y también usarlo en agregaciones o sorting.
+"properties": {
+  "city": {
+    "type": "text",
+    "fields": {
+      "raw": { 
+        "type":  "keyword"
+      }
+    }
+  }
+}
+
+Podemos usar "city.raw" (raw sera un sub-field de city)
+
+
+
+# Actualizar mapping
+curl -XPUT 'localhost:9200/tele/_mapping/user?pretty' -d '
+      "properties": {
+         "msg" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+      }
+'
+Actualizamos el type "user" del index "tele" para modificar el field "msg" y añadirle un subfield tipo keyword.
+
+
+
+
 
 # Analyzed fields
 https://www.elastic.co/guide/en/elasticsearch/reference/2.4/mapping-types.html#_multi_fields
@@ -65,3 +104,8 @@ Si no queremos que haga esto tendremos que modificar ese field para que no lo an
 No se puede cambiar el "datatype" de un field si ya tiene datos indexados.
 
 Podemos usar elasticdump para reindexar la información.
+
+
+
+# Dynamic mappings
+https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-mapping.html

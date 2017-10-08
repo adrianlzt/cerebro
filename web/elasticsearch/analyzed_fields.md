@@ -1,1 +1,1 @@
-mapping.md
+mappings.md
