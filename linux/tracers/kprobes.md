@@ -8,7 +8,7 @@ Inserta unos trozos de programa en un punto determinado de la memoria.
 Tiene acceso a los valores de los registros de la CPU
 
 La userspace se llama Uprobe (linux-3.5)
-En kernel están las kprobes, kretprobe (con valor retornado) y las jprobes
+En kernel están las kprobes, kretprobe (con valor retornado) y las jprobes (estas seguramente desaparezcan)
 
 
 
