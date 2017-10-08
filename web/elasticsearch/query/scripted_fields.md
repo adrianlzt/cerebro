@@ -1,7 +1,12 @@
 https://www.elastic.co/guide/en/kibana/current/scripted-fields.html
 https://www.elastic.co/blog/using-painless-kibana-scripted-fields
+Seguramente lo que necesitemos sea reindexar los datos.
 
+SOLO EN KIBANA! Esto lo hace kibana en runtime
 Scripted fields compute data on the fly from the data in your Elasticsearch indices
+Muy limitado, puede consumir mucha memoria y puede romper kibana si el script no está bien hecho.
+
+No vale para tipos de datos string.
 
 
 https://discuss.elastic.co/t/parsing-and-applying-regex-in-kibana/60368/3

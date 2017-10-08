@@ -104,3 +104,11 @@ El docker no se sale tras terminar la indexación
 Tenemos: 3183 documentos
 id=0 offset: 2495136
 id=1 offset: 441162
+
+
+
+# Remote
+Reindexar leyendo de un ES remoto
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
+El ES remoto deberá estar en la config de elasticsearch.yml
+

@@ -2,6 +2,13 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
 
 Field types: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
 
+UN SOLO MAPPING POR INDICE
+https://www.elastic.co/guide/en/elasticsearch/reference/6.x/removal-of-types.html
+Indices created in Elasticsearch 6.0.0 or later may only contain a single mapping type. Indices created in 5.x with multiple mapping types will continue to function as before in Elasticsearch 6.x. Mapping types will be completely removed in Elasticsearch 7.0.0.
+
+Si queremos seguir usando varios "types" por indice podemos hacerlo a mano. Creando el mapping index con los campos de todos los types que vayamos a usar y luego prefijando cada elemento con el tipo:
+  INDEX/TYPE/MITIPO1-aaa
+  INDEX/TYPE/MITIPO2-bbb
 
 
 ES no es schemaless, pero hace que trabajar con esquemas sea mucho más sencillo, a esto se le llama mappings.

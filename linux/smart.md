@@ -41,3 +41,15 @@ smartctl -H <disco>
 
 Temperatura, fecha de fabricación, números de arranques del disco, etc
 smartctl --attributes /dev/sda
+
+Escanear todos los discos:
+smartctl --scan | cut -d ' ' -f 1 | xargs -n1 smartctl -H
+
+
+NO se pueden borrar errores que aparezcan en SMART.
+
+
+# Errores
+DATA CHANNEL IMPENDING FAILURE DATA ERROR RATE TOO HIGH
+https://www.redhat.com/archives/nahant-list/2008-September/msg00008.html
+Disco no fiable, posiblemente esté teniendo muchos errores no corregidos (mirar con -a)
