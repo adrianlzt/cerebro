@@ -31,3 +31,6 @@ puts var.inspect
 
 puts var.methods
   saca los métodos de la variable/objeto
+
+var.class
+  tipo de variable

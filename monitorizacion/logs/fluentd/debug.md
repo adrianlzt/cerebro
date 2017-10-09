@@ -13,6 +13,18 @@ cosas que tiene el objeto
 irb> Fluent::Engine.flush!
 fuerza el flush del buffer
 
+Acceso a los inputs:
+irb> Fluent::Engine.root_agent.inputs[0]
+ .display para ver que plugin es
+
+Acceso a los inputs:
+irb> Fluent::Engine.root_agent.outputs[0]
+ .display para ver que plugin es
+ .buffer
+ .buffer.queue_size (no me cuadra con lo que dice el output del monitoring)
+ .buffer.stage_size (esto cuadra con el monitoring buffer_total_queued_size)
+ .buffer.queued_num (monitoring buffer_queue_length, aunque aqui nos da un struct dividiendo los mensajes por tag)
+
 
 # Arrancar más verboso
 fluentd -vv
