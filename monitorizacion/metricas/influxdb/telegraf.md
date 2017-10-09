@@ -252,6 +252,9 @@ Buscar el patrón "E!"
 # Debug / Profiling
 https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md
 
+Si queremos obtener un stacktrace del proceso tenemos que matarlo con:
+kill -SIGQUIT $(pgrep telegraf)
+
 
 
 # Develop

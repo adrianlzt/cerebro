@@ -1,5 +1,6 @@
 Ver fields.md para ver como saber cuales disponemos
 
+evt.num para filtrar por el numero de evento.
 
 fd.type=ipv4
 fd.type=file
