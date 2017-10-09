@@ -22,3 +22,12 @@ rescue LoadError
  require 'rubygems'
  require 'pg'
 end
+
+
+
+# Inspect
+puts var.inspect
+  imprime el contenido de la variable, según se haya definido en "inspects()"
+
+puts var.methods
+  saca los métodos de la variable/objeto
