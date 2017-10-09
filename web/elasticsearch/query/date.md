@@ -1,6 +1,18 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/5.6/query-dsl-range-query.html
 {
     "query": {
+        "range":{  
+            "@timestamp":{  
+               "gte":1507108818015,
+               "lte":1507108877829,
+               "format":"epoch_millis"
+            }
+        }
+    }
+}
+
+{
+    "query": {
         "range" : {
             "date" : {
                 "gte" : "now-1d/d",

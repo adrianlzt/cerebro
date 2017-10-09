@@ -97,7 +97,7 @@ Solo los documentos indexados a partir de ese momento tendrán ese nuevo subfiel
 # Analyzed fields
 https://www.elastic.co/guide/en/elasticsearch/reference/2.4/mapping-types.html#_multi_fields
 
-Si queremos poder buscar full-text en una string esta debe ser "analyzed". La contrapartida es que no podremos usar este campo para hacer sorting o agregaciones.
+Si queremos poder buscar full-text en una string esta debe ser "analyzed". La contrapartida es que no podremos usar este campo para hacer sorting o agregaciones (excepto usando scripts, pero es más lento. Mirar ejemplo en query/aggregations.md).
 
 
 Por defecto cuando se detecta el tipo de cada field se marca como "analyzed field", de modo que si el campo es "valor-otra-cosa" lo partirá en tres trozos.

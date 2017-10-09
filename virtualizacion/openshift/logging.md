@@ -176,3 +176,20 @@ Parece que esto es el esquema que se sigue al almacenar los logs de openshift en
 https://github.com/ViaQ/fluent-plugin-viaq_data_model
 
 Los agentes fluent tendran un filter viaq_data_model para adaptar el formato a este esquema.
+
+
+
+# Curator
+https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
+Borra indices antiguos.
+
+registry.access.redhat.com/openshift3/logging-curator:3.5.0
+Esta imagen tiene un script en python que se encarga de ejecutar el curator con la periodicidad indicada en las variables de entorno.
+
+Se monta un dir en /etc/curator/keys con las claves para acceder a ES
+
+La variable de entorno CURATOR_DEFAULT_DAYS definirá cuantos días de logs se dejarán
+
+CURATOR_RUN_HOUR, CURATOR_RUN_MINUTE, CURATOR_RUN_TIMEZONE, define cuando debe ejecutarse.
+
+Un script en python se encarga de ejecutar el curator con los parámetros adecuados.

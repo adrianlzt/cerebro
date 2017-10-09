@@ -1,4 +1,14 @@
-# Contar cuentos elementos hay para cada valor distinto de un field:
+# Metrics
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics.html
+
+Realizar cálculos matemáticos con los valores
+
+
+
+# Bucket aggregations
+Crear "buckets" a partir de documentos
+
+## Contar cuentos elementos hay para cada valor distinto de un field:
 Agregación por "genres" y solo devolvemos el campo de aggregations
 
 curl "https://localhost:9200/.operations.2017.10.01/_search" -d '{"fields":["aggregations"], "aggs": {"1": {"terms": {"field":"hostname"}} }}'
@@ -36,3 +46,21 @@ curl "https://localhost:9200/.operations.2017.10.01/_search" -d '
         "key" : 1506852000000,
         "doc_count" : 88477
 
+
+
+
+# Agregar por un campo text analyzed
+CUIDADO! puede ser muy lento
+
+curl "localhost:9200/INDICE/_search?pretty" -d '
+{
+  "_source":"aggs",
+  "aggs": {
+    "1": {
+      "terms":{
+        "script":"params[\"_source\"][\"msg\"]"
+      }
+    }
+  }
+}
+'
