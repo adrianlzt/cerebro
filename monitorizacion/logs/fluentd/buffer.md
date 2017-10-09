@@ -4,6 +4,7 @@ Como se almacena la información en caso de no poder enviarse.
 
 El buffer va almacenando información, en un chunk, hasta que se excede el tamaño máximo (buffer_chunk_limit) o el tiempo (flush_interval,).
 Cuando esto sucede, se envia el chunk al output y se vuelve a empezar a almacenar información en otro chunk.
+Un buffer por cada output.
 
 Si el chunk que debe salir no lo consigue, fluentd vuelve a intentarlo transcurrido un tiempo (retry_wait)
 Si tampoco lo consigue, doblará el tiempo (sin sobre pasar max_retry_wait) y volverá a intentarlo.
