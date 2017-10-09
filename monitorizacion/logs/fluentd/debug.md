@@ -24,6 +24,10 @@ irb> Fluent::Engine.root_agent.outputs[0]
  .buffer.queue_size (no me cuadra con lo que dice el output del monitoring)
  .buffer.stage_size (esto cuadra con el monitoring buffer_total_queued_size)
  .buffer.queued_num (monitoring buffer_queue_length, aunque aqui nos da un struct dividiendo los mensajes por tag)
+ .buffer.queue[0].display (primer elemento de la queue)
+ .buffer.queue[0].size
+ .buffer.queue[0].bytesize
+ .buffer.queue[0].read (lo más aproximado a leer el contenido)
 
 
 # Arrancar más verboso

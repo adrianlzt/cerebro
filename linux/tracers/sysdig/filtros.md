@@ -18,6 +18,11 @@ fd.type=ipv4 and proc.name=cur
 fd.type=ipv4 and \( proc.name=curl or proc.name=nc \)
 
 fd.cip=127.0.0.1
+fd.ip           matches the ip address (client or server) of the fd.
+fd.cip          client IP address.
+fd.sip          server IP address.
+fd.lip          local IP address.
+fd.rip          remote IP address.
 
 evt.type=accept and proc.name!=httpd
 
