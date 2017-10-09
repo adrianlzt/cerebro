@@ -1,5 +1,6 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
 Field types: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
+query/fields.md para ver los tipos de los datos del indice
 
 UN SOLO MAPPING POR INDICE
 https://www.elastic.co/guide/en/elasticsearch/reference/6.x/removal-of-types.html
@@ -87,6 +88,7 @@ curl -XPUT 'localhost:9200/tele/_mapping/user?pretty' -d '
       }
 '
 Actualizamos el type "user" del index "tele" para modificar el field "msg" y añadirle un subfield tipo keyword.
+Solo los documentos indexados a partir de ese momento tendrán ese nuevo subfield.md
 
 
 
