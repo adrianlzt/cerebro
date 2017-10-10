@@ -1,6 +1,7 @@
 https://docs.openshift.com/container-platform/3.5/rest_api/index.html
 https://docs.openshift.com/container-platform/3.5/rest_api/kubernetes_v1.html#rest-api-kubernetes-v1
 https://docs.openshift.com/container-platform/3.5/rest_api/openshift_v1.html#rest-api-openshift-v1
+https://kubernetes.io/docs/api-reference/v1.5/#list-62
 
 Segun la doc, una vez logueados, podemos obtener un token (24h de duración) con:
 oc whoami -t
@@ -16,6 +17,14 @@ Consultar OpenShift
 curl -X GET -H "Authorization: Bearer XXXX" https://openshift.com/oapi/v1
 Consultar Kubernetes
 curl -X GET -H "Authorization: Bearer XXXX" https://openshift.com/api/v1
+Extensiones:
+https://openshift.com/apis/extensions/v1beta1/
+
+Para un namespace/proyecto determinado:
+curl -X GET -H "Authorization: Bearer XXXX" https://openshift.com/api/v1/namespaces/NOMBRE/
+
+Obtener solo los pods con un label:
+api/v1/namespaces/logging/pods?labelSelector=component=fluentd
 
 
 La API es HATEOAS por lo que podemos preguntar a oapi/v1 y nos devolverá los paths a los que podemos preguntar.

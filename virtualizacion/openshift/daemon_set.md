@@ -12,3 +12,13 @@ https://docs.openshift.com/container-platform/3.5/dev_guide/daemonsets.html
 
 Estado de un daemon set:
 oc describe ds/nombre
+
+
+# API
+
+Lista general de daemonsets:
+https://openshift.com/apis/extensions/v1beta1/daemonsets
+
+Lista de daemonsets para un namespace determinado:
+apis/extensions/v1beta1/namespaces/logging/daemonsets
+

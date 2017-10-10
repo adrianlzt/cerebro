@@ -9,6 +9,7 @@ cat fichero.json | jq '.key'
 
 
 jq '.parent' fichero.json
+jq '.parent,.other' fichero.json
 
 jq -r '.cosa'
   quitamos las comillas
@@ -16,6 +17,8 @@ jq -r '.cosa'
 jq '.data[]._id' /tmp/incidencias
 nos da todos los ids del array data
 
+curl ... | jq '.items[] |.metadata.name,.spec.nodeName,.status.podIP'
+de un array sacar varios valores por cada vuelta
 
 jq -r '.data[] | {id: .eid, status: .status, subject: .contact.subject}' /tmp/incidencias
 un array con un monton de valores, simplificarlo para solo tener un monton de diccionarios con unos pocos valores
