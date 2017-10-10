@@ -1,6 +1,7 @@
 https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#source-build
 https://docs.openshift.com/container-platform/3.5/dev_guide/builds/index.html
 https://blog.openshift.com/override-s2i-builder-scripts/
+https://github.com/sclorg/s2i-python-container/tree/master/3.5/test
 
 Openshift puede construir una imagen a partir de un repositorio mediante varias técnicas: S2I (SourceStrategy), JenkinsPipelineStrategy, DockerStrategy y CustomStrategy
 

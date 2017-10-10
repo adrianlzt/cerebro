@@ -1,0 +1,6 @@
+# Fichero donde se ponen los modulos a instalar
+# Otros nombres para test o desarrollo suelen ser:
+# requirements-dev.txt
+# requirements-test.txt
+certifi==2017.7.27.1
+chardet==3.0.4
