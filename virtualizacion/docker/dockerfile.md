@@ -7,6 +7,7 @@ ejemplos:
   https://github.com/CentOS/CentOS-Dockerfiles
   https://github.com/docker-library/postgres/blob/e616341507a7beec3a161b0a366ba0d3400328fd/9.4/Dockerfile
 
+mirar multistage_builds.md para ver como hacer Dockerfiles más sencillos eliminando el problema de las dependencias
 mirar Makefile
 
 Fichero estilo Vagrantfile donde se dan una serie de ordenes para generar un container.
