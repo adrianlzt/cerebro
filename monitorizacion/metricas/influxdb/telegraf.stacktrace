@@ -1,5 +1,6 @@
 SIGQUIT: quit
 PC=0x45d003 m=2 sigcode=0
+
 goroutine 0 [idle]:
 runtime.futex(0x1d15158, 0x0, 0x7f47c7c91d88, 0x0, 0x7f4700000000, 0x45cc96, 0x3c, 0x0, 0x7f47c7c91dd0, 0x410030, ...)
 /usr/local/go/src/runtime/sys_linux_amd64.s:426 +0x23
@@ -15,6 +16,8 @@ runtime.mstart1()
 /usr/local/go/src/runtime/proc.go:1179 +0x11e
 runtime.mstart()
 /usr/local/go/src/runtime/proc.go:1149 +0x64
+
+# waiting group de los input. Parece que solo debe terminar cuando cierre el programa (agent.go:426)
 goroutine 1 [semacquire, 11 minutes]:
 sync.runtime_Semacquire(0xc42020664c)
 /usr/local/go/src/runtime/sema.go:47 +0x34
@@ -26,9 +29,11 @@ main.reloadLoop(0xc4202b6060, 0x1d37f30, 0x0, 0x0, 0x1d37f30, 0x0, 0x0, 0x1d37f3
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/cmd/telegraf/telegraf.go:234 +0xa46
 main.main()
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/cmd/telegraf/telegraf.go:411 +0x65b
+
 goroutine 17 [syscall, 11 minutes, locked to thread]:
 runtime.goexit()
 /usr/local/go/src/runtime/asm_amd64.s:2197 +0x1
+
 goroutine 6 [syscall, 11 minutes]:
 os/signal.signal_recv(0x0)
 /usr/local/go/src/runtime/sigqueue.go:116 +0x104
@@ -36,6 +41,8 @@ os/signal.loop()
 /usr/local/go/src/os/signal/signal_unix.go:22 +0x22
 created by os/signal.init.1
 /usr/local/go/src/os/signal/signal_unix.go:28 +0x41
+
+# Plugin de docker conectando con el daemon?
 goroutine 7285 [select]:
 net/http.(*persistConn).roundTrip(0xc4209005a0, 0xc42094eb60, 0x0, 0x0, 0x0)
 /usr/local/go/src/net/http/transport.go:1898 +0x974
@@ -51,6 +58,7 @@ github.com/docker/docker/vendor/golang.org/x/net/context/ctxhttp.Do.func1(0xc420
 /home/ubuntu/telegraf-build/src/github.com/docker/docker/vendor/golang.org/x/net/context/ctxhttp/ctxhttp.go:48 +0x39
 created by github.com/docker/docker/vendor/golang.org/x/net/context/ctxhttp.Do
 /home/ubuntu/telegraf-build/src/github.com/docker/docker/vendor/golang.org/x/net/context/ctxhttp/ctxhttp.go:51 +0xdd
+
 goroutine 28 [select, 11 minutes, locked to thread]:
 runtime.gopark(0x14bb3a8, 0x0, 0x143ad50, 0x6, 0x18, 0x2)
 /usr/local/go/src/runtime/proc.go:271 +0x13a
@@ -62,11 +70,16 @@ runtime.ensureSigM.func1()
 /usr/local/go/src/runtime/signal_unix.go:434 +0x2dd
 runtime.goexit()
 /usr/local/go/src/runtime/asm_amd64.s:2197 +0x1
+
+# rutina que recibe las signals del sistema para parar o reiniciarse
 goroutine 29 [select, 11 minutes]:
 main.reloadLoop.func1(0xc4202b61e0, 0xc4202b6180, 0xc42011e070, 0xc4202b6060)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/cmd/telegraf/telegraf.go:195 +0x24a
 created by main.reloadLoop
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/cmd/telegraf/telegraf.go:209 +0x6ec
+
+# flusher monitors the metrics input channel and flushes on the minimum interval
+# parece que es quien espera las respuestas de los inputs
 goroutine 30 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).flusher(0xc42015a0e0, 0xc4202b6180, 0xc4202b63c0, 0xc4202b6420, 0x0, 0xa400000007)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:320 +0x444
@@ -74,6 +87,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func1(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:396 +0x7a
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:400 +0x34f
+
+# haciendo alguna llamada http para algún plugin de input?
 goroutine 37 [IO wait]:
 net.runtime_pollWait(0x7f47c83ee9b8, 0x72, 0x4)
 /usr/local/go/src/runtime/netpoll.go:164 +0x59
@@ -95,11 +110,15 @@ net/http.(*persistConn).readLoop(0xc42040c360)
 /usr/local/go/src/net/http/transport.go:1474 +0x196
 created by net/http.(*Transport).dialConn
 /usr/local/go/src/net/http/transport.go:1117 +0xa35
+
 goroutine 38 [select]:
 net/http.(*persistConn).writeLoop(0xc42040c360)
 /usr/local/go/src/net/http/transport.go:1704 +0x43a
 created by net/http.(*Transport).dialConn
 /usr/local/go/src/net/http/transport.go:1118 +0xa5a
+
+# gatherer runs the inputs that have been configured with their own reporting interval.
+# es el recubrimiento sobre gatherWithTimeout, que es quien realmente lanza los inputs y espera su finalizacion
 goroutine 31 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc420015140, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -107,6 +126,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 32 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc4200151c0, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -114,6 +135,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 33 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc420015240, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -121,6 +144,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 50 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc420015480, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -128,6 +153,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 51 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc420015540, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -135,6 +162,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 52 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc420015640, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8
@@ -142,6 +171,8 @@ github.com/influxdata/telegraf/agent.(*Agent).Run.func3(0xc420206640, 0xc42015a0
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:422 +0x7d
 created by github.com/influxdata/telegraf/agent.(*Agent).Run
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:423 +0x505
+
+# Como el anterior
 goroutine 53 [select]:
 github.com/influxdata/telegraf/agent.(*Agent).gatherer(0xc42015a0e0, 0xc4202b6180, 0xc4200156c0, 0x2540be400, 0xc4202b63c0)
 /home/ubuntu/telegraf-build/src/github.com/influxdata/telegraf/agent/agent.go:129 +0x3a8

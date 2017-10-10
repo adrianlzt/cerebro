@@ -1,5 +1,11 @@
 Mezcla de conceptos de openshift y kubernetes
 
+En kubernetes tendremos:
+  build
+    replicationController
+      pods
+        containers
+
 
 # Pod (algo parecido a las tasks en docker swarm)
 https://kubernetes.io/docs/concepts/workloads/pods/pod/
