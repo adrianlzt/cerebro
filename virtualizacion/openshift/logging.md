@@ -27,8 +27,8 @@ FILTROS
  - se limpian ciertos campos de los logs de kibana? configs.d/openshift/filter-kibana-transform.conf
  - ciertas adaptaciones de los logs, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
 OUTPUT
- - un output por si tenemos configurado un ES especial para las operaciones
- - output general para las apps: configs.d/openshift/output-applications.conf
+ - un output por si tenemos configurado un ES especial para las operaciones (index: .operations.)
+ - output general para las apps: configs.d/openshift/output-applications.conf (index: project.)
    - configs.d/openshift/output-es-config.conf fichero donde se configura elasticsearch_dynamic como output
      - flush_interval 5s
      - max_retry_wait 300.
@@ -44,6 +44,10 @@ OUTPUT
 
 Se puede activar la monitorización de los agentes (http://docs.fluentd.org/v0.12/articles/monitoring) con la variable ENABLE_MONITOR_AGENT
 Se puede activar el debug de los agentes (http://docs.fluentd.org/v0.12/articles/monitoring#debug-port) con la variable ENABLE_DEBUG_AGENT
+
+En la version 3.5.0 del contenedor (sha cbe5aa17d69e) de fluent, el plugin de output para ES no tiene configurado el parámetro request_timeout, por lo que se pone por default a 5".
+Esto implica que si ES no contesta en 5", el plugin da por malo el envío y reintenta pushear los datos, logrando entradas duplicadas.
+En este commit (https://github.com/openshift/origin-aggregated-logging/commit/bb44098634dc4c83ea8fe90b79155a17d91867c1) se aumenta ese valor hasta los 600"
 
 
 
