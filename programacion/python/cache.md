@@ -18,8 +18,16 @@ Si llamamos dos veces a get_pep(num), la segunda usará la cache automáticament
 
 No funciona si los parametros son un array.
 No usar si hacemos yield desde dentro de la función (ya que no se hará el yield al cachear)
+Si hay un raise dentro de la funión tampoco funciona.
 
 
 Since a dictionary is used to cache results, the positional and keyword arguments to the function must be hashable.
 
 
+Podemos llamar a:
+funcionCacheada.cache_info() para obtener info de como ha ido el cacheo. Ejemplo:
+>>> fib.cache_info()
+CacheInfo(hits=28, misses=16, maxsize=None, currsize=16)
+
+También podemos limpiar la cache con:
+funcionCacheada.cache_clear()

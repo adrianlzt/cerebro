@@ -31,6 +31,9 @@ if re.match(re_garaje, frase):
 
 Devuelve True si encuentra la regex en la frase
 
+"(?i)cadena" para hacer match sin importar el "case"
+(One or more letters from the set 'i', 'L', 'm', 's', 'u', 'x'.) The group matches the empty string; the letters set the corresponding flags: re.I (ignore case), re.L (locale dependent), re.M (multi-line), re.S (dot matches all), re.U (Unicode dependent), and re.X (verbose), for the entire regular expression
+
 
 # Obtener valores
 >>> import re
