@@ -21,6 +21,7 @@ curl -X GET -H "Authorization: Bearer XXXX" https://openshift.com/api/v1
 La API es HATEOAS por lo que podemos preguntar a oapi/v1 y nos devolverá los paths a los que podemos preguntar.
 
 
+Stats es parte de kubernetes: vendor/k8s.io/kubernetes/pkg/kubelet/server/stats/summary.go
 Metricas de un kubelet (openshift-node), sobre discos, red, cpu, filesystems. 8 últimas medidas (cada 15")
 curl -H "Authorization: Bearer xxx" -k https://127.0.0.1:10250/stats/
 

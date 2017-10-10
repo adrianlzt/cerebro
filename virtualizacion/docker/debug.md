@@ -19,7 +19,7 @@ docker daemon -D
 
 Con sysdig podemos escuchar que está pasando por el unix socket:
 sysdig fd.name contains /var/run/docker.sock -c echo_fds
-sysdig fd.name contains /var/run/docker.sock and proc.name=docker and evt.type=write -c echo_fds
+sysdig fd.name contains /var/run/docker.sock and \( proc.name=docker or proc.name=dockerd-current \) and evt.type=write -c echo_fds
 
 
 https://developers.redhat.com/blog/2015/02/25/inspecting-docker-activity-with-socat/
