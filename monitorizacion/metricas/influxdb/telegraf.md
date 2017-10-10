@@ -255,6 +255,11 @@ https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md
 Si queremos obtener un stacktrace del proceso tenemos que matarlo con:
 kill -SIGQUIT $(pgrep telegraf)
 
+Ejemplo de una stacktrace de telegraf 1.4.1 funcionando bien.
+Plugin de output: influxdb
+Plugins de input: inputs.disk inputs.diskio inputs.kernel inputs.mem inputs.processes inputs.swap inputs.system inputs.cpu inputs.procstat inputs.docker inputs.procstat inputs.prometheus inputs.kubernetes inputs.net inputs.netstat inputs.prometheus inputs.procstat inputs.procstat
+telegraf.stacktrace (con comentarios)
+
 
 
 # Develop
