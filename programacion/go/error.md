@@ -14,7 +14,8 @@ https://github.com/upspin/upspin/blob/master/errors/errors.go
 Una buena práctica es definir los errores que vayamos a usar como variables globales. Esto nos permitirá en los tests comparar que el error que sale es el esperado:
 var (
    // texto explicativo para godoc
-   ErrSomething = fmt.Errorf("Alguna cosa que falla")
+   ErrSomething1 = errors.New("Alguna cosa que falla")
+   ErrSomething2 = fmt.Errorf("Usamos fmt si tenemos que formatear %v", something)
 )
 Ejemplo: https://github.com/hashicorp/yamux/blob/master/const.go
 
