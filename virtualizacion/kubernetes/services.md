@@ -53,3 +53,12 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 9376
+
+
+
+# Funcionamiento
+https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+
+Dos tipos:
+ - pasando el tráfico por userspace (app kube-proxy)
+ - usando iptables (kube-proxy configura iptables)

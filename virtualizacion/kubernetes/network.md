@@ -1,7 +1,10 @@
+https://kubernetes.io/docs/concepts/cluster-administration/networking
+
 Tres tipos de redes:
 
- - pod network: red intra nodo para que los nodos de comuniquen entre si (no pueden conectar con otros pods en otros nodos)
- - cluster network: compartida entre los nodos, para los services
- - outside network
+ - intra pod: comunicación de los containers de un mismo pod entre si usando localhost
+ - pod-to-pod: red plana entre todos los pods del cluster
+ - pod-to-service: VIP balanceada entre todos los pods seleccionados por un "selector"
+ - external-to-service: 
 
 La pod network puede ser plana entre todos los nodos? En openshift es así.
