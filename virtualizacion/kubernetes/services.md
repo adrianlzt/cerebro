@@ -61,4 +61,4 @@ https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and
 
 Dos tipos:
  - pasando el tráfico por userspace (app kube-proxy)
- - usando iptables (kube-proxy configura iptables)
+ - usando iptables (kube-proxy configura iptables) (k8s.io/kubernetes/pkg/proxy/iptables/proxier.go)

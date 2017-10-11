@@ -35,10 +35,10 @@ Es el rol del host: manager (con un lider) y workers
 Solo el lider hace cambios
 5,7 manager son más que suficientes
 
-## servicios
-Tres tipos: replicated, global, host
 
-Host: asociados a un host a un puerto (está anclado a una máquina, por ejemplo por cirsustancias esciales de conectividad de red)
+## servicios
+Es el equivalente a los "containers" en docker. Es la unidad que desplegamos.
+
 
 ## tasks
 Son contenedores corriendo.
@@ -151,7 +151,7 @@ Opciones:
 --limit-memory 32MB
 --replicas 1 (por defecto 1 replica)
 --mode replicated (este es el por defecto)
---mode global (el servicio estará en todos los nodos. Si publicamos puertos, cada uno constestara con su container local)
+--mode global (un container por cada pod)
 Una vez arrancado el servicio no se puede cambiar el "--mode"
 
 Ejemplo de como agregar un volumen. El volumen estará compartido entre todas las instancias.
@@ -173,7 +173,7 @@ Para probar atacar a 127.0.0.1:puerto (localhost:puerto no funciona porque inten
 Haciendo una prueba no funciona, no contesta en el puerto en ninguna de las máquinas.
 Parece que falta algo para enrutar correctamente. Si hago un inspect del container tiene una ip de una red overlay que ha creado el swarm, pero parece que el SO no conoce como enrutar los paquets (no veo nada que parezca server en 'ip r' ni en iptables? Usar ipv4? Atacar desde fuera del nodo?
 
-Si usamos el mode=host (una task del service por cada nodo del cluster) no se usa el load balancer, cada host reenvia el trafico a su task.
+Si usamos el mode=host, cada host reenvia el trafico al task que tenga corriendo localmente. Ver nota en https://docs.docker.com/engine/swarm/services/#publish-a-services-ports-directly-on-the-swarm-node
 
 Si queremos publicar un puerto de un servicio ya activo (PARARÁ los containers ejecutándose y levantará unos nuevos!!):
 docker service update  --publish-add <PUBLISHED-PORT>:<TARGET-PORT> <SERVICE>
