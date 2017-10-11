@@ -13,7 +13,16 @@ oc get template -n openshift
 
 
 # Crear app a partir de un template
-oc new-app -f template.yml
+oc new-app -f template.yml --param=PARAM1=VAL1
+
+Consultar los parametros de un template:
+oc process --parameters -f <filename>
+
+Generar un JSON con el template poniendo cada parametro en su sitio:
+oc process -f <filename> PARAM1=VAL1 PARAM2=VAL2
+
+Podemos generar ahora los objetos asi (o usar el new-app):
+oc process -f <filename> | oc create -f -
 
 
 # Crear una template a partir de un proyecto existente
