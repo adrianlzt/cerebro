@@ -58,10 +58,8 @@ cat args | PYTHONPATH=. python ansible_module_*.py
 
 Para hacer debug:
  En una terminal:
-  mkfifo stdin
-  mkfifo stdout
-  cat stdout &
-  cat > stdin
+  mkfifo stdin stdout
+  (cat stdout &) && cat > stdin
  
  En otra terminal (en el mismo dir):
   modificamos el .py para meterle el set_trace() de la siguiente manera:
