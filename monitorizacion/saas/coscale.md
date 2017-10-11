@@ -31,7 +31,14 @@ Luego nos permite crear más alertas:
   - forecast, comparación entre el valor actual y el valor estimado
   - anomalías
 
+Solo tienen un nivel de criticidad (activa o no)
+
 Las notificaciones pueden ser email, slack, HTTP, etc
 
 Sobre las gráficas detecta automáticamente anomalías. Las marca con una barra roja en todas las gráficas y al pincharle nos dice de que anomalía se trata.
 Por ejemplo, estamos mirando una gráfica de latencia y vemos la barra roja indicando que en un periodo de tiempo hubo una anomalía que implicaba un crecimiento en el consumo de ram muy alto.
+
+
+# Checks
+http://docs.coscale.com/custom-metrics/generic-script/index/
+The generic script plugin can execute a script on your server. Your script can return some custom metrics and our agent will then push the data to the CoScale API.

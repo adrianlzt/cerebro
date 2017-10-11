@@ -1,6 +1,6 @@
 https://docs.openshift.com/container-platform/latest/dev_guide/application_lifecycle/new_app.html#specifying-a-template
 https://docs.openshift.com/container-platform/latest/dev_guide/templates.html
-Es de OpenShift, no de kubernetes.
+Es de OpenShift, no de kubernetes (kubernetes tambien tiene el suyo propio, pero con menos cosas disponibles).
 
 Tambien podemos pasar a "new-app" un fichero yaml o json con la especificación de nuestra app (describes how OpenShift should run this docker image such as where to pull the docker image from, any persistent storage volumes required, ports to expose and other deployment information).
 Aquí se puede especificar como queremos construir nuestra aplicación.
@@ -67,7 +67,41 @@ Service
 # Ejemplos
 Ejemplos de templates:
 https://github.com/openshift/library
+https://github.com/openshift/origin/tree/master/examples
 
 
 Ejemplos para crear aplicaciones en distintos lenguajes / frameworks
 https://github.com/openshift?utf8=%E2%9C%93&q=-ex&type=&language=
+
+
+
+## Service
+
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: recreate-example
+  spec:
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      deploymentconfig: recreate-example
+
+### Con node port
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: "{REDIS_NAME}"
+  spec:
+    ports:
+    - name: redis
+      nodePort: 0
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
+    selector:
+      name: "${DATABASE_SERVICE_NAME}"
+    sessionAffinity: None
+    type: ClusterIP
+
