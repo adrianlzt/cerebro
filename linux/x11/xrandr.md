@@ -16,6 +16,30 @@ xrandr --output DP1 --mode 1280x1024
 xrandr --fb 1024x768 --output VGA --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1
   Displays the VGA output in trapezoid shape so that it is keystone corrected when the projector is slightly above the screen
 
+a=1.24 (scale x)
+b=0.16 (pendiente del lateral izquierdo. Positivo, agujas del reloj)
+c=-124 (translation x. Positivo, mueve la pantalla hacia la derecha)
+d=0 (pendiente lateral inferior. Positivo, contrario agujas del reloj)
+e=1.24 (scale y)
+f=0 (translation y. Positivo, sube la pantalla)
+g=0 (deformación de la parte inferior de la pantalla. Positivo, lado derecho, negativos, lado izquierdo. Usar del orden de 0.0001)
+h=0 (deformacion del lateral derecho. Positivos, esquina inferior. Negativos superiro. Usar del orden de 0.0001)
+i=1 (variar tamaño de toda la pantalla. Positivos, más grande todo)
+
+Transform se usa:
+a b c
+d e f
+g h i
+
+Generalmente: a and e corresponds to the scaling on the X and Y axes
+              c and f corresponds to the translation on those axes
+              g=h=0, i=1
+
+Las fórmulas para calcular la posición de un pixel tras la transformación:
+ x' = (ax + by + c) / w'
+ y' = (dx + ey + f) / w'
+ w' = (gx + hy + i)
+
 
 # Autorandr
 https://github.com/phillipberndt/autorandr
