@@ -1,3 +1,5 @@
+DEPRECATED
+
 Gestor de sesiones X11 ligero
 
 
