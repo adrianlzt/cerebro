@@ -6,6 +6,9 @@ Funciona como pkgsrc, te baja el código y un script PKGBUILD define las instruc
 Instalar con yaourt
 
 
+# Paquetes AUR
+pacman -Qm
+  en realidad, paquetes no sincronizados con la current db, que suele significar que vienen de aur
 
 # Subir paquete a AUR
 https://wiki.archlinux.org/index.php/Arch_User_Repository#Submitting_packages
