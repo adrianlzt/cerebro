@@ -27,7 +27,9 @@ autorandr -l horizontal
   todas las pantallas unidas horizontalmente (puede que descolocadas)
 autorandr -l vertical
 autorandr -l common
-  espejo entre todas las pantallas
+  espejo entre todas las pantallas con la máxima resolución común
+autorandr -l common
+  espejo entre todas las pantallas, las pequeñas pantallas con escaladas para poder reproducir la grande
 
 Generalmente partiremos de una de estas tres configs. La retocaremos con comandos xrandr para colocar segun queremos y luego guardaremos la config:
 
