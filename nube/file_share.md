@@ -25,3 +25,7 @@ CLI: https://github.com/ogarcia/FileTeaSend
 filetea fichero
   nos da una URL. Mientras tengamos el programa corriendo estaremos compartiendo el fichero
 yaourt fileteasend-git (roto por ahora)
+
+
+https://send.firefox.com
+compartir ficheros de manera encriptada

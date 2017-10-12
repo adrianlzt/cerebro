@@ -1,5 +1,7 @@
 http://docs.ansible.com/docker_module.html
 
+Para ver como construir imagenes ver: ansible-container.md
+
 Depedencias necesarias en centos 7:
 - name: install pip to install latest python modules
   yum: name=python-pip state=present
