@@ -4,6 +4,9 @@ Podemos decidir su resolución, donde colocarlas (respecto a otra) y si deben es
 xrandr
   muestra las pantallas y las resoluciones disponibles
 
+xrandr --verbose
+  mostrar toda la info, transformaciónes incluídas
+
 xrandr --output IDPANTALLA --off
   apagar una pantalla
 
@@ -26,6 +29,9 @@ g=0 (deformación de la parte inferior de la pantalla. Positivo, lado derecho, n
 h=0 (deformacion del lateral derecho. Positivos, esquina inferior. Negativos superiro. Usar del orden de 0.0001)
 i=1 (variar tamaño de toda la pantalla. Positivos, más grande todo)
 
+Variando b y h conseguimos hacer la imagen tropezoidal
+  con g podemos elegir que sobresalga más el lado superior derecho (+) o el izquierdo
+
 Transform se usa:
 a b c
 d e f
@@ -40,6 +46,14 @@ Las fórmulas para calcular la posición de un pixel tras la transformación:
  y' = (dx + ey + f) / w'
  w' = (gx + hy + i)
 
+
+Pantalla tropezoidal estrecha arriba:
+xrandr --output HDMI1 --transform 1.3,0.3,-200,0,1.5,0,0,0.0004,1
+
+Pantalla tropezoidal estrecha abajo:
+xrandr --output HDMI1 --transform 1.1,-0.3,-150,0,0.7,0,0,-0.0004,1
+
+No son muy correctos, estan deformados hacia la derecha.
 
 # Autorandr
 https://github.com/phillipberndt/autorandr
