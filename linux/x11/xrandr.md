@@ -13,6 +13,9 @@ xrandr --output $PRIMARY --primary --auto --output $EXT1 --auto --right-of $PRIM
 xrandr --output DP1 --mode 1280x1024
   cambiar la resolucion de una pantalla
 
+xrandr --fb 1024x768 --output VGA --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1
+  Displays the VGA output in trapezoid shape so that it is keystone corrected when the projector is slightly above the screen
+
 
 # Autorandr
 https://github.com/phillipberndt/autorandr
@@ -25,3 +28,6 @@ autorandr -l horizontal
 autorandr -l vertical
 autorandr -l common
   espejo entre todas las pantallas
+
+Generalmente partiremos de una de estas tres configs. La retocaremos con comandos xrandr para colocar segun queremos y luego guardaremos la config:
+
