@@ -16,6 +16,9 @@ xrandr --output $PRIMARY --primary --auto --output $EXT1 --auto --right-of $PRIM
 xrandr --output DP1 --mode 1280x1024
   cambiar la resolucion de una pantalla
 
+xrandr --output eDP1 --transform 1,0,0,0,1,0,0,0,0.85
+  aumentar virtualmente la resolución de una pantalla (en este caso, hacerla un 15% más grande)
+
 xrandr --fb 1024x768 --output VGA --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1
   Displays the VGA output in trapezoid shape so that it is keystone corrected when the projector is slightly above the screen
 
