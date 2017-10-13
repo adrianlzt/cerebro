@@ -79,6 +79,7 @@ echo "KEYMAP=es" > vconsole.conf
 mkinitcpio -p linux
 passwd
 pacman -S grub
+pacman -S intel-ucode # si tenemos intel
 grub-install --target=i386-pc --recheck --debug /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
