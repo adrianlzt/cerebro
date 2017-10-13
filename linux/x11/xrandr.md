@@ -4,6 +4,12 @@ Podemos decidir su resolución, donde colocarlas (respecto a otra) y si deben es
 pdf sobre las novedades de xrandr 1.3: http://www.vis.uni-stuttgart.de/~hopf/pub/Fosdem_2009_randr13_Slides.pdf
 Explican un poco el tema de las transformaciones
 
+http://fomori.org/blog/?p=59
+programa en python para proyectar con mplayer corrigiendo el desvio
+
+https://sfxpt.wordpress.com/2011/02/02/panning-using-xrandr/
+"truco" para ver un video a pantalla completa reduciendo la resolución en vez de incrementar virtualmente la resolución del vídeo via software (coste cpu)
+
 xrandr
   muestra las pantallas y las resoluciones disponibles
 
@@ -25,6 +31,9 @@ xrandr --output eDP1 --transform 1,0,0,0,1,0,0,0,0.85
 
 xrandr --fb 1024x768 --output VGA --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1
   Displays the VGA output in trapezoid shape so that it is keystone corrected when the projector is slightly above the screen
+
+xrandr --output HDMI1 --transform 1.16129,0.12903,-116.12903,0,1.16129,0,0,0.00018,1
+  trapecio con la parte ancha abajo https://lists.freedesktop.org/archives/xorg/2013-October/056060.html
 
 a=1.24 (scale x)
 b=0.16 (pendiente del lateral izquierdo. Positivo, agujas del reloj)
@@ -54,13 +63,6 @@ Las fórmulas para calcular la posición de un pixel tras la transformación:
  w' = (gx + hy + i)
 
 
-Pantalla tropezoidal estrecha arriba:
-xrandr --output HDMI1 --transform 1.3,0.3,-200,0,1.5,0,0,0.0004,1
-
-Pantalla tropezoidal estrecha abajo:
-xrandr --output HDMI1 --transform 1.1,-0.3,-150,0,0.7,0,0,-0.0004,1
-
-No son muy correctos, estan deformados hacia la derecha.
 
 # Autorandr
 https://github.com/phillipberndt/autorandr

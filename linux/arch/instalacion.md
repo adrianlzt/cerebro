@@ -1,4 +1,5 @@
-Más facil usar: architect.md
+Más facil usar: manjaro.md
+Es una distribucion de arch
 
 
 https://wiki.archlinux.org/index.php/Installation_guide
