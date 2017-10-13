@@ -10,6 +10,31 @@ Performance
 Scalability
 
 
+Basicos:
+  Errores en Call Trace
+    I/O error
+    task abort on host
+    Call Trace
+    oom-killer
+  cpu
+  disco (espacio libre e inodos)
+  dns (resuelve?)
+  fs_writable (los discos estan en rw? probar a hacer un touch en cada fs)
+  load
+  memory
+  netinterfaces (estan up?)
+  network (errores en las interfaces?)
+  open_files (ficheros abiertos VS máximo numero de ficheros abiertos del SO /proc/sys/fs/file-nr)
+  procs_fd_limit (numero de FDs usados comparado con el limite por cada proceso)
+  procesos zombies
+  slab_memory (% del uso respecto a la memoria total, /proc/meminfo)
+  swap
+  swap rate
+  uptime (avisar en caso de reinicio de la maquina)
+  exhaustacion de puertos (puertos usados VS cat /proc/sys/net/ipv4/ip_local_port_range | awk '{printf "%d", $2-$1;}')
+
+
+
 https://vividcortex.com/blog/2013/10/14/what-should-i-monitor/
 
 http://word.bitly.com/post/74839060954/ten-things-to-monitor
