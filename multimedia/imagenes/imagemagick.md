@@ -58,3 +58,18 @@ convert -size 100x100 xc: +noise Random random.jpg
 # Unir
 montage *.png -mode concatenate -tile 3x1 output.png
 Une las imagenes en una sola fila de 3 columnas
+
+
+# Convert / distort
+Convertir una imagen a un trapecio usando la distorsion bilinear
+convert mandrill_grid.jpg -matte -virtual-pixel black -interpolate Spline -distort BilinearForward '0,0 28,0   128,0 100,0   128,128 128,128   0,128 0,128' mandrill_blin.jpg
+  En la opcion BilinearForward lo que le decimos es el mapeo entre las esquinas originales y las finales
+  Empieza a contar por la esquina superior izquierda, donde le decimos que el punto que estaba en 0,0 ahora debera estar en 28,0
+  El segundo punto modifica la esquina superior derecha, y los otros dos no los cambiamos
+  Lo que conseguimos es un trapecio tipo:
+   ___
+  /   \
+ /_____\
+
+Si queremos ver las ecuaciones que usa:
+convert mandrill_grid.jpg -matte -virtual-pixel black -interpolate Spline -verbose -distort BilinearForward '0,0 100,0   128,0 100,0   128,128 128,128   0,128 0,128' +verbose mandrill_blin.jpg

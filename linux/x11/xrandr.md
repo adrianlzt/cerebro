@@ -1,6 +1,9 @@
 Gestionar varias pantallas.
 Podemos decidir su resolución, donde colocarlas (respecto a otra) y si deben estar apagadas o encendidas:
 
+pdf sobre las novedades de xrandr 1.3: http://www.vis.uni-stuttgart.de/~hopf/pub/Fosdem_2009_randr13_Slides.pdf
+Explican un poco el tema de las transformaciones
+
 xrandr
   muestra las pantallas y las resoluciones disponibles
 
@@ -18,6 +21,7 @@ xrandr --output DP1 --mode 1280x1024
 
 xrandr --output eDP1 --transform 1,0,0,0,1,0,0,0,0.85
   aumentar virtualmente la resolución de una pantalla (en este caso, hacerla un 15% más grande)
+  pero no me deja mover el raton hasta los bordes inferiores
 
 xrandr --fb 1024x768 --output VGA --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1
   Displays the VGA output in trapezoid shape so that it is keystone corrected when the projector is slightly above the screen
