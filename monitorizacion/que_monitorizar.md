@@ -33,6 +33,8 @@ Basicos:
   uptime (avisar en caso de reinicio de la maquina)
   exhaustacion de puertos (puertos usados VS cat /proc/sys/net/ipv4/ip_local_port_range | awk '{printf "%d", $2-$1;}')
 
+  memoria dedicada a las page tables? Mucho mmap? Mirar http://www.scylladb.com/2017/10/05/io-access-methods-scylla/  Copying and MMU activity
+
 
 
 https://vividcortex.com/blog/2013/10/14/what-should-i-monitor/
