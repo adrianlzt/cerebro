@@ -4,6 +4,14 @@ Almacen de contraseñas online. App para montarlo en tu propio servidor.
 La encriptación/desencriptación se hace localmente. Se envían/reciben datos cifrados.
 
 
+# CLI
+https://github.com/telefonicaid/vaultier-cli
+
+App en python para acceder a los contenidos de un servidor Vaultier
+Tiene tambien un modulo para montar el contenido de Vaultier como un sistema de ficheros FUSE
+
+
+
 # Entorno de desarrollo
 http://docs.rclick.cz/docs/vaultier/en/latest/contribute.html
 

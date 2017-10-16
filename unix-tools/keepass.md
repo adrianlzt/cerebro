@@ -1,9 +1,14 @@
-kpcli version cli para keepass
+kpcli version cli para keepass (perl)
 
-Para escritorio usar la keepassx
+Para escritorio usar keepassx
 
 
 # Python
+## pykeepass
+https://github.com/pschmitt/pykeepass
+
+
+## libkeepass
 pip install libkeepass
 
 import libkeepass
