@@ -7,6 +7,16 @@ Para escritorio usar keepassx
 ## pykeepass
 https://github.com/pschmitt/pykeepass
 
+from pykeepass import PyKeePass
+kp = PyKeePass("file.kdbx", password="pass")
+kp.entries
+  array de todas las entradas
+  el path lo pone de forma un tanto extraña:
+  'Usuarios/NagiosqlPro/Pro/ICINGA/None'
+  kp.entries[290].path
+  'Infraestructura/Pro/Splunk/splunkphsearch02/SPLUNK5'
+  Esto por ejemplo esta en "Splunk/Pro/Infraestructura/" nombre "splunkphsearch02/SPLUNK5"
+
 
 ## libkeepass
 pip install libkeepass

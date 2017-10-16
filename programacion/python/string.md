@@ -142,7 +142,13 @@ Si queremos quitar un prefijo:
 def remove_prefix(text, prefix):
   if text.startswith(prefix):
     return text[len(prefix):]
-  return text  # or whatever
+  return text
+
+def remove_postfix(text, postfix):
+  if text.endswith(postfix):
+    return text[0:len(text)-len(postfix)]
+  return text
+
 
 
 # Ver si una palabara esta en una cadena
