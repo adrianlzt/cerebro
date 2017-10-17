@@ -14,6 +14,9 @@ Config:
 
 
 # Shortcuts
+Ver shortcuts:
+C-b ?
+
 Nueva ventana:
 C-b c
 
@@ -60,7 +63,7 @@ C-b |
 Moverse entre los splits
 C-b <arrows>
 
-Scroll
+Scroll (también vale con el ratón)
 C-b PageUp/PageDown
 
 
