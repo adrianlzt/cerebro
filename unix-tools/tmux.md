@@ -67,6 +67,7 @@ Scroll (también vale con el ratón)
 C-b PageUp/PageDown
 
 
+
 # Uso
 
 Crear sesión con nombre
@@ -81,3 +82,9 @@ tmux a -t nombre
 
 Matar session
 tmux kill-session -t nombre
+
+
+
+# Raton
+Para copiar texto seleccionar con el ratón mientras presionamos Shift.
+Para pegar, presionar Shift más el botón del medio del ratón.
