@@ -23,7 +23,7 @@ INPUT
 FILTROS
  - se excluyen los logs de debug (configs.d/openshift/filter-exclude-journal-debug.conf)
  - se reescribe CONTAINER_NAME para organizarlos si son de infraestructura, logging, fluentd, generales o fuera de openshift
- - se usa el plugin kubernetes_metadata para agregar más datos a los logs
+ - se usa el plugin kubernetes_metadata para agregar más datos a los logs (https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter, se cachean resultados para no machacar al kubelet)
  - se limpian ciertos campos de los logs de kibana? configs.d/openshift/filter-kibana-transform.conf
  - ciertas adaptaciones de los logs, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
 OUTPUT
