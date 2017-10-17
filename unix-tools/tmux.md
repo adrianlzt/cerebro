@@ -1,12 +1,16 @@
 http://www.dayid.org/comp/tm.html
 Tabla de comandos de screen VS tmux
+La tecla "mágica" por defecto es C-b, pero generalmente se pone a C-a
 
-Shortcuts
-https://gist.github.com/andreyvit/2921703
 
 Session: varias windows
 Window: varios panes con distintos splits
 Pane: cada ventana con una shell/app
+
+
+# tmuxinator
+https://github.com/tmuxinator/tmuxinator
+Generar configuraciones de sesiones para tmux
 
 
 Config:
@@ -25,6 +29,9 @@ C-b n/p/l
 
 Next/last pane
 C-b o/;
+
+Mostrar un numero y cada pane y luego movernos al seleccionado
+C-b q
 
 Reload (bind r source-file ~/.tmux.conf \; display "Reloaded!")
 C-b r
@@ -56,15 +63,23 @@ Los splits son dentro de cada "ventana". Podemos tener un split horizontal en la
 
 Split horizontal
 C-b -
+C-b "  # el estandar
 
 Split vertical
 C-b |
+C-b %  # el estandar
 
 Moverse entre los splits
 C-b <arrows>
 
 Scroll (también vale con el ratón)
 C-b PageUp/PageDown
+
+Cerrar un split (matar uno de los panes)
+C-b x
+
+Mostrar un pane a pantalla completa temporalmente (mismo comando para volver a mostrar todos)
+C-b z
 
 
 
