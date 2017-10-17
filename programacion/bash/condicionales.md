@@ -91,3 +91,8 @@ Para meterlas en condicionales:
 if fun param1 param2; then
   ...
 
+
+
+
+# Comparar versiones
+https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
