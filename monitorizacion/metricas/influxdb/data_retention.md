@@ -50,6 +50,7 @@ En la siguiente vuelta se borrará el fichero sacando una traza:
 
 ## DEFAULT
 Es un RP proporcionado por Influx a falta de otro
+Parece que el nombre que se le da es "autogen", sin limite de tiempo y con shards cada semana (168h)
 
 duración inifinita
 replicación igual al número de nodos del cluster

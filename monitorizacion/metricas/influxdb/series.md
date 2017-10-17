@@ -30,7 +30,7 @@ Implementación de un comando: SHOW CARDINALITY
 # Muchas series
 En _internal (o influxdb_database sacando la info por telegraf), tenemos numSeries tageado por database.
 
-Una vez tenemos la ddbb culpable podemos hacer un "SHOW SERIES" para analizar quien esta comiendo tantas series
+Una vez tenemos la ddbb culpable podemos hacer un "SHOW SERIES" para analizar quien esta comiendo tantas series (cuidado! va a sacar mucho output!)
 influx -username admin -password admin -database telegraf -execute "show series" > telegraf_series.influx
 
 Para aproximarnos a encontrar el culpable podemos ver cuantas series hay por measurement:
