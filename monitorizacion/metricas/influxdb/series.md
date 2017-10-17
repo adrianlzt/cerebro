@@ -22,8 +22,19 @@ No debemos pasar de 1.000.000 de series: -> en principio se soluciona con el nue
 Your series cardinality is very high (numSeries 3113798), presumably due to the arbitrary tagging. When series cardinality rises above 1 million the database needs significant amounts of RAM just for the index. As the index consumes more RAM, it reduces the scratch space available for queries.
 https://groups.google.com/forum/#!searchin/influxdb/enforce$20uniqueness$20while$20still$20being$20performant/influxdb/JjpVu_9RF8c/lHItTFHoAQAJ
 
-https://github.com/influxdata/influxdb/issues/7195
 Implementación de un comando: SHOW CARDINALITY
+https://github.com/influxdata/influxdb/pull/8636
+SHOW SERIES CARDINALITY
+SHOW SERIES CARDINALITY FROM "<measurement>"
+SHOW SERIES CARDINALITY WHERE "<key>" = '<value>'
+SHOW SERIES CARDINALITY FROM "<measurement>" WHERE "<key>" = '<value>'
+SHOW MEASUREMENT CARDINALITY
+SHOW TAG KEY CARDINALITY
+SHOW TAG KEY CARDINALITY FROM "<measurement>"
+SHOW FIELD KEY CARDINALITY 
+SHOW FIELD KEY CARDINALITY FROM "<measurement>"
+SHOW TAG VALUES CARDINALITY WITH KEY = '<tag key>'
+SHOW TAG VALUES CARDINALITY FROM "<measurement>" WITH KEY = '<tag key>'
 
 
 
