@@ -23,7 +23,7 @@ INPUT
 FILTROS
  - se excluyen los logs de debug (configs.d/openshift/filter-exclude-journal-debug.conf)
  - se reescribe CONTAINER_NAME para organizarlos si son de infraestructura, logging, fluentd, generales o fuera de openshift
- - se usa el plugin kubernetes_metadata para agregar más datos a los logs (https://github.com/fabric8io/fluent-plugin-kubernetes_metadata_filter, se cachean resultados para no machacar al kubelet)
+ - se usa el plugin kubernetes_metadata para agregar más datos a los logs
  - se limpian ciertos campos de los logs de kibana? configs.d/openshift/filter-kibana-transform.conf
  - ciertas adaptaciones de los logs, configs.d/openshift/filter-k8s-record-transform.conf configs.d/openshift/filter-syslog-record-transform.conf
 OUTPUT
@@ -141,6 +141,11 @@ Para copiar los certs lo más sencillo es usar oc rsh y copiar el contenido de l
 El tunel (siendo 172.30.17.5:9200 el service del cluster de ES):
 ssh -f -L 9200:172.30.17.5:9200 openshift-algun-nodo-del-cluster -NT
 curl -s --key admin-key --cert admin-cert --cacert admin-ca https://localhost:9200/_cluster/health
+
+### Exponer ruta hacia el exterior
+oc create route passthrough --service logging-es --hostname elastic.apps.inet
+curl -k --cacert admin-ca --cert admin-cert --key admin-key "https://elastic.apps.inet/_cat/indices"
+  tendremos que poner -k porque el hostname no corresponderá con el CN del servidor
 
 
 ## Entradas duplicadas
