@@ -129,3 +129,21 @@ Actuar distinto si el documeto ya existe (insert) o si es una actualizacion (upd
 
 Si el documeno es nuevo, se almacena el contenido que cuelga de la clave "upsert".
 En caso de que ya exista, se aplica el script.
+
+
+
+
+
+# Bulk
+https://www.elastic.co/guide/en/elasticsearch/reference/5.5/docs-bulk.html
+
+curl -s -H "Content-Type: application/x-ndjson" -XPOST localhost:9200/_bulk --data-binary "@requests"
+
+El formato del fichero será tipo:
+{"index":{"_index":"shakespeare","_type":"act","_id":0}}
+{"line_id":1,"play_name":"Henry IV","speech_number":"","line_number":"","speaker":"","text_entry":"ACT I"}
+{"index":{"_index":"shakespeare","_type":"scene","_id":1}}
+{"line_id":2,"play_name":"Henry IV","speech_number":"","line_number":"","speaker":"","text_entry":"SCENE I. London. The palace."}
+{"index":{"_index":"shakespeare","_type":"line","_id":2}}
+{"line_id":3,"play_name":"Henry IV","speech_number":"","line_number":"","speaker":"","text_entry":"Enter KING HENRY"}
+
