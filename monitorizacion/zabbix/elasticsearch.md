@@ -13,8 +13,15 @@ r71114 | andrea | 2017-08-10 15:17:14 +0200 (jue 10 de ago de 2017) | 24 líneas
 ........S. [ZBXNEXT-4002] add elasticsearch support as history storage
 src/libs/zbxdbcache/history.c la mayoria de las modificaciones
 
+Parece que el trabajo esta siendo terminado en la rama: zabbix-dev/ZBXNEXT-4002_2
 
 
 
+Mappings usados para es: database/elasticsearch/elasticsearch.map
+  replica 1? si es cae un nodo perdemos datos!
+  usan distintos types en el mismo index? -> va a estar deprecated en próximas versiones
 
+
+
+# Externo al proyecto
 reads zabbix data directly from the DB and can push it to elasticsearch - https://github.com/jojohappy/zabbix-relay
