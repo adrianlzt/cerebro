@@ -13,3 +13,7 @@ gem install fluent-plugin-elasticsearch --version 2.0.0.rc.5
 
 Usa un cliente llamado "Farady".
 Para hacer los envios hace uso de la API de /_bulk
+
+CUIDADO! si ES tarda mucho en contestar puede reenviar trazas (por defecto espera 5")
+Para hacer pruebas:
+sudo nsenter -t 4262 -n tc qdisc add dev eth0 root netem delay 4700ms 1000ms

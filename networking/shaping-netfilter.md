@@ -55,6 +55,10 @@ iptables -t mangle -A POSTROUTING -p icmp -j MARK --set-mark 30
 iptables -t mangle -F
 
 
-# Delay incoming packets
+# Delay
+tc qdisc add dev eth0 root netem delay 100ms 10ms
+  100+10ms de delay de paquetes salientes
+
+## Delay incoming packets
 Es más complicado. Hace falta usar un psudo-device.
 Como aproximácion, intentar afectar el output del otro extremo.
