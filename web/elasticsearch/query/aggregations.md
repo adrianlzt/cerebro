@@ -8,6 +8,8 @@ Realizar cálculos matemáticos con los valores
 # Bucket aggregations
 Crear "buckets" a partir de documentos
 
+Si no queremos obtener "hits" podemos poner: "size": 0
+
 ## Contar cuentos elementos hay para cada valor distinto de un field:
 Agregación por "genres" y solo devolvemos el campo de aggregations
 

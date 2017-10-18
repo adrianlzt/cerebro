@@ -9,6 +9,8 @@ programa en python para proyectar con mplayer corrigiendo el desvio
 
 https://sfxpt.wordpress.com/2011/02/02/panning-using-xrandr/
 "truco" para ver un video a pantalla completa reduciendo la resolución en vez de incrementar virtualmente la resolución del vídeo via software (coste cpu)
+xrandr --output VGA-1 --mode 640x480 --panning 1920x1080
+  ponemos la resolución de la pantalla a 640x480 aunque el "escritorio virtual" medirá 1920x1080. Nos desplazaremos por él moviendo el ratón a los bordes
 
 xrandr
   muestra las pantallas y las resoluciones disponibles
