@@ -6,7 +6,7 @@
 # Distributed under terms of the GNU GPLv3 license.
 #
 
-if [[ $1 -eq "-h" || $1 -eq "--help" ]]; then
+if [[ $1 == "-h" || $1 == "--help" ]]; then
   echo -e "Usage: xrandr-increase.sh N\n  Increase by N% your resolution virtually\n  If not defined, N=10"
   exit 1
 fi
