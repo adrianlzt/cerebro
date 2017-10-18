@@ -149,6 +149,8 @@ Re-encryption: se desencripta en el haproxy y se vuelve a enviar encriptado hast
 http://cpitman.github.io/openshift/tcp/networking/2016/12/28/tcp-protocols-and-openshift.html#.WedQ6XWAdJ8
 A parte del TLS passthrough, se puede usar NodePort o ExternalIPs para pasar tráfico TCP directamente.
 
+ExternalIPs: http://playbooks-rhtconsulting.rhcloud.com/playbooks/operationalizing/ingress.html
+
 
 # Builds
 Lanzar a mano un build

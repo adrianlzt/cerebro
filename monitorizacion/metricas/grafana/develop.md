@@ -14,6 +14,7 @@ npm run build
 sudo npm install -g grunt-cli
 grunt watch
 ./bin/grafana-server
+./bin/grafana-server -config conf/sample.ini
 
 navegador: http://localhost:3000
 admin:admin
