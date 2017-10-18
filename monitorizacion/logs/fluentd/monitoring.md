@@ -28,6 +28,7 @@ plugin_id:object:2b27955b48b0 plugin_category:output  type:elasticsearch_dynamic
 
 buffer_queue_length:1
   número de elementos en la cola
+  no entiendo muy bien como los cuenta. Probando con in_tail, el total size crece pero siempre dice que la length es 1
 
 buffer_total_queued_size:29
   tamaño total, en bytes, de los elementos de la cola
@@ -63,10 +64,10 @@ Ejemplo json:
     }
 
 
+# Envio de métricas
+Si definimos alguna tag las metricas de monitoring también se podrán en el tag "monitor.metrics"
 
 
-# Problemas
-No encuentro fiable los valores de buffer_queue_length y buffer_total_queued_size.
 
-La longitud de la cola no parece crecer con cada elemento nuevo.
-Y el size de la cola parece crecer con cada reintento.
+slow_flush_log_threshold
+Parece que si un buffer tarda en hacer flush mas de este intervalo (20" default), salta un mensaje de warn en las trazas de fluent.

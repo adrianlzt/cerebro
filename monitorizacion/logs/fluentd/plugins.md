@@ -11,3 +11,5 @@ version < 2.0.0 para fluentd >= v0.12.0
 gem install fluent-plugin-elasticsearch
 gem install fluent-plugin-elasticsearch --version 2.0.0.rc.5
 
+Usa un cliente llamado "Farady".
+Para hacer los envios hace uso de la API de /_bulk

@@ -1,8 +1,9 @@
 http://linux-ip.net/articles/Traffic-Control-HOWTO/
+https://wiki.linuxfoundation.org/networking/netem
 
 Como dar prioridades a ciertos tráficos.
 
-1.- Netfilter 
+1.- Netfilter
 Aplicar una disciplina de clase con el comando 'tc'
 
 - Se aplica justo antes de la salida por el interfaz, así que podemos marcar los paquetes en el POSTROUTING.
@@ -35,11 +36,13 @@ tc filter add dev eth0 parent 1:0 protocol ip handle 30 fw classid 1:3
 
 
 
-ip link show                            # qdisc usada por cada interfaz
-tc -s qdisc show dev eth0               # muestra conf de colas
-tc -s class show dev eth0               # muestra conf de clases
-tc filter show dev eth0                 # muestra conf de filtros
-tc qdisc del dev eth0 root              # blanquea configuracion (pfifo_fast)
+ip link show                                    # qdisc usada por cada interfaz
+tc -s qdisc                                     # muestra conf de colas
+tc -s qdisc show dev eth0                       # muestra conf de colas para una interfaz
+tc -s class show dev eth0                       # muestra conf de clases
+tc filter show dev eth0                         # muestra conf de filtros
+tc qdisc del dev eth0 root                      # blanquea configuracion (pfifo_fast)
+tc -s qdisc del dev enp8s0 handle 8001: root    # Borrar una conf especifica por su id
 
 
 - Prueba: se envía tráfico de salida a través de cada una de las clases, y se monitoriza la tasa de bytes ICMP enviados con iptraf.
@@ -51,3 +54,7 @@ iptables -t mangle -A POSTROUTING -p icmp -j MARK --set-mark 30
 
 iptables -t mangle -F
 
+
+# Delay incoming packets
+Es más complicado. Hace falta usar un psudo-device.
+Como aproximácion, intentar afectar el output del otro extremo.

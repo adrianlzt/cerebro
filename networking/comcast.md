@@ -13,11 +13,27 @@ Deberá tener permisos para lanzar comandos tipo:
 sudo tc ...
 sudo iptables ...
 
+Por lo que veo suele etiquetar tráfico con iptables y gestionarlo con tc
+Creo que tambien usa iptables para tirar paquetes.
+
 
 # Uso
 comcast --device=eth0 --latency=250 --target-bw=1000 --default-bw=1000000 --packet-loss=10% --target-addr=8.8.8.8,10.0.0.0/24 --target-proto=tcp,udp,icmp --target-port=80,22,1000:2000
 
 Si no especificamos device por defecto usara eth0
+
+latency aplica al tiempo de envio de los paquetes. Los de recepción no son retrasados.
+Con una latencia de un segundo, en una típica conex veríamos:
+  > SYN retrasado 1"
+  < SYN+ACK instantaeo
+  > ACK + PSH retrasados 1"
+  < ACK respuesta instantaneo
+  > ACK+FIN retrasado 1"
+  < FIN+ACK instantaneo
+  > ACK retrasado 1"
+
+--target-port aplica a los puertos de salida
+
 
 Para eliminar la reglas:
 comcast --device enp8s0 --stop
