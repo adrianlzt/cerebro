@@ -131,11 +131,16 @@ oc expose svc logging-es --hostname elastic.apps.inet
 oc create route reencrypt --service logging-es --hostname elastic.apps.inet --dest-ca-cert ../elastic_search/certs_es/admin-ca
   creamos una ruta https que se deshace en el haproxy para volverse a reencriptar hasta el svc logging-es (el cert del svc debe estar firmado por la ca que le estamos pasando)
 
+oc create route passthrough --service logging-es --hostname elastic.apps.inet
+  creamos una ruta que pase el trafico TLS directamente hasta el service
+
+
 ## TLS
 https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html#route-types
 
 Edge: TLS terminado en el haproxy
-Passthrough: balanceo TCP. Se usa el protocolo TLS-SNI (debe pasarse el hostname en claro)
+Passthrough: balanceo TCP. Se usa el protocolo TLS-SNI (debe pasarse el hostname en claro).
+             El haproxy puede ver a que serer queremos llegar (Host: xxx) y lo reencamina. Puede no funcionar con clientes mmuy antiguos
 Re-encryption: se desencripta en el haproxy y se vuelve a enviar encriptado hasta el svc
                Se nos pedirá el certificado CA del destino (del service)
 

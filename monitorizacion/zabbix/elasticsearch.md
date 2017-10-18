@@ -21,6 +21,22 @@ Mappings usados para es: database/elasticsearch/elasticsearch.map
   replica 1? si es cae un nodo perdemos datos!
   usan distintos types en el mismo index? -> va a estar deprecated en próximas versiones
 
+Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
+Se vuelven a intentar reindexar los datos?
+ZBXNEXT-4002_2/src/libs/zbxhistory/history_elastic.c:
+#define   ZBX_HISTORY_STORAGE_DOWN  10000 /* Timeout in milliseconds */
+...
+/************************************************************************************
+ *                                                                                  *
+ * Function: elastic_writer_flush                                                   *
+ *                                                                                  *
+ * Purpose: posts historical data to elastic storage                                *
+ *                                                                                  *
+ ************************************************************************************/
+static void elastic_writer_flush()
+...
+  code = curl_multi_wait(writer.handle, NULL, 0, ZBX_HISTORY_STORAGE_DOWN, &fds);
+
 
 
 # Externo al proyecto
