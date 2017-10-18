@@ -103,3 +103,9 @@ return &dashboardExistsError{
 			code: resp.StatusCode,
 			msg: resp.Body,
 		}
+
+
+# Context / Wrap errors
+https://github.com/pkg/errors#adding-context-to-an-error
+Capturado un error, añadirle el contexto donde estamos y pasar el error hacia arriba.
+

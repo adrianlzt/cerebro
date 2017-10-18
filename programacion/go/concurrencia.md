@@ -2,6 +2,12 @@ https://talks.golang.org/2016/applicative.slide#36
 http://blog.codeship.com/an-intro-to-concurrency-patterns-in-go/
 https://blog.golang.org/pipelines
 https://blog.mozilla.org/services/2014/03/12/sane-concurrency-with-go/
+https://tour.golang.org/concurrency/2
+http://guzalexander.com/2013/12/06/golang-channels-tutorial.html
+https://www.golang-book.com/books/intro/10
+https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html
+https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads
+race_detector.md
 
 
 # goroutines / threads

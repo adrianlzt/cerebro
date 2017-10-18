@@ -98,3 +98,9 @@ PINENTRY_USER_DATA=gnome3 pass internet/servicio
 Aplicación para ver las claves GPG (a parte del resto) en linux-gnome: seahorse
 
 Aplicación para gestionar claves estilo keepass: pass (mirar unix-utils/pass.md)
+
+
+# Errores
+pinentry muy lento
+https://ubuntuforums.org/showthread.php?t=2361781
+gnome-keyring-daemon --replace --daemonize --components=secrets,ssh,pcks11
