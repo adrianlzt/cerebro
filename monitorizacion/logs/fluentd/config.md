@@ -11,3 +11,7 @@ filter    directives determine the event processing pipelines.
 system    directives set system wide configuration.
 label     directives group the output and filter for internal routing
 @include  directives include other files.
+
+
+Chequear:
+--dry-run -c fichero.conf

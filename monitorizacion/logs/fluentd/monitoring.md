@@ -26,6 +26,15 @@ Ejemplo columna:
 plugin_id:object:2b27955b48b0 plugin_category:output  type:elasticsearch_dynamic  output_plugin:true  buffer_queue_length:1 buffer_total_queued_size:2056 retry_count:6
 
 
+buffer_queue_length:1
+  número de elementos en la cola
+
+buffer_total_queued_size:29
+  tamaño total, en bytes, de los elementos de la cola
+
+retry_count:6
+  numero de reintentos para enviar los datos
+
 Ejemplo json:
     {
       "plugin_id": "object:2b27955b48b0",

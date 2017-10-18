@@ -9,3 +9,9 @@ https://docs.fluentd.org/v0.12/articles/logging#per-plugin-log
   @type tail
   @log_level debug
 
+
+
+# Trazas internas
+Fluent tambien genera trazas de sus propios mensajes que las mete en los tag:
+fluent.*
+siendo "*" los distintos niveles de log: debug, info, warn, etc
