@@ -18,3 +18,9 @@ if "http" in self.args.livestatus_endpoint:
 else:
     return urljoin("http://"+self.args.livestatus_endpoint, "query")
 
+
+>>> from urlparse import urlparse
+>>> o = urlparse('http://www.cwi.nl:80/%7Eguido/Python.html')
+>>> o
+ParseResult(scheme='http', netloc='www.cwi.nl:80', path='/%7Eguido/Python.html',
+            params='', query='', fragment='')
