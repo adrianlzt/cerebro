@@ -147,6 +147,11 @@ oc create route passthrough --service logging-es --hostname elastic.apps.inet
 curl -k --cacert admin-ca --cert admin-cert --key admin-key "https://elastic.apps.inet/_cat/indices"
   tendremos que poner -k porque el hostname no corresponderá con el CN del servidor
 
+A partir de la 3.6 podemos usar una cuenta de openshift para atacar al ES
+curl -kv -H "X-Proxy-Remote-User: grafana" -H "Authorization: Bearer XXXX" "https://localhost:9200/project.logging.*"
+
+En la 3.5 estan fijados los certificados válidos (fluent, kibana, es y curator)
+
 
 ## Entradas duplicadas
 Si vemos entradas duplicadas puede ser debido a una mala configuración del output de fluentd
