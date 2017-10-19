@@ -22,3 +22,18 @@ https://openshift.com/apis/extensions/v1beta1/daemonsets
 Lista de daemonsets para un namespace determinado:
 apis/extensions/v1beta1/namespaces/logging/daemonsets
 
+
+
+
+# Hostname para cada pod de un daemon set
+https://github.com/kubernetes/kubernetes/issues/41977
+Issue abierta que piden que exista un hostname tipo:
+$host.$service.$namespace.cluster.local
+
+De esta manera podriamos atacar a un pod de un daemon set que este en un host específico.
+
+
+
+# Red
+Podemos hacer que los pod de un daemonSet expongan sus puertos directamente sobre la red del host con
+hostNetwork: true
