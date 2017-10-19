@@ -24,3 +24,10 @@ else:
 >>> o
 ParseResult(scheme='http', netloc='www.cwi.nl:80', path='/%7Eguido/Python.html',
             params='', query='', fragment='')
+
+Si queremos obtener una copia quitando algun parametro.
+Generamos el objeto a mano quitando lo que no queramos.
+x = urlparse.ParseResult(scheme=o.scheme, netloc=o.netloc, path=o.path, params=o.params, query=o.query, fragment=o.fragment)
+
+Para convertirlo de nuevo a url:
+urlunparse(x)
