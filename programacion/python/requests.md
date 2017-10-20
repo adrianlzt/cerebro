@@ -41,7 +41,9 @@ r = requests.post(url, json=payload)
 
 
 ### multipart/form-data
-requests.post("...",files=(("op","ticket"),("robots_value","654321")),...)
+files = {'file': open('report.xls', 'rb')}
+files = {'file': ('report.xls', open('report.xls', 'rb'), 'application/vnd.ms-excel', {'Expires': '0'})}
+requests.post("...",files=files)
 ->
 Content-Type: multipart/form-data; boundary=----W
 
