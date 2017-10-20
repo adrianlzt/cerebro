@@ -3,7 +3,7 @@ Diff branches                                       git diff <branch1> <branch2>
 Diff branches rama contra el ancestro común         git diff <branch1>...<branch2>
 Mirar cambios                                       git diff
 Cambios respecto al dir local (sin commit)          git diff --staged
-Cambios entre HEAD y dos commits antes							git diff HEAD~1..HEAD
+Cambios entre HEAD y dos commits antes              git diff HEAD~1..HEAD
 
 
 # Diff con un programa determinado
