@@ -1,4 +1,5 @@
 http://www.elasticsearch.org
+Lucene handles the on-disk storage, indexing, and searching of documents, while ElasticSearch handles document updates, the API, and distribution.
 
 API centric & RESTful search engine.
 
