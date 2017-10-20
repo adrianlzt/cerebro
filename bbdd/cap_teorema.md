@@ -1,3 +1,4 @@
+https://henryr.github.io/cap-faq/
 https://es.wikipedia.org/wiki/Teorema_CAP
 alta_disponibilidad/distributed_systems.md
 alta_disponibilidad/lock_services.md

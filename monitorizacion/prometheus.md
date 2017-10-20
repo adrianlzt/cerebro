@@ -1,14 +1,22 @@
-https://developers.soundcloud.com/blog/prometheus-monitoring-at-soundcloud?utm_content=buffer9d4b4&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+https://prometheus.io
+https://developers.soundcloud.com/blog/prometheus-monitoring-at-soundcloud
+https://hub.docker.com/r/prom/prometheus/
 
-La idea es instrumentalizar el software para que envíe las métricas a prometheus (más bien parece que al reves, prometheus hace pull de las metricas)
+
+La idea es instrumentalizar el software para que exponga las métricas en formato prometheus, luego el server prometheus las leera de ahí.
 Este ofrece un dash para crear graficas siguendo un query language parecido a graphite.
 Tambien ofrecen un alertmanager
 
 Para aplicaciones short-lived, existe un pushgateway para que luego prometheus las recoga de alli.
-Para el resto parece que es prometheus quien va a leerlas.
-
-La idea es poder levantar prometheus donde se quiera para monitorizar lo que sea, en vez de una instancia unica.
-
 
 Parece que prometheus esta estandarizando un poco como se deben exponer las métricas.
 Luego otros agentes (Telegraf por ejemplo) pueden leer ese formato.
+
+Lo estandar es publicar las métricas en: URL/metrics
+Ejemplo de métricas: http://demo.robustperception.io:9090/metrics
+
+
+Prometheus tambien tiene service discovery para automaticamente recolectar métricas de nuevos servicios que aparezcan (mediante DNS, kubernetes, Consul, custom, etc).
+
+Tiene una interfaz web y una API donde lanzar queries en su lenguaje para obtener las métricas.
+Lo típico es conectarle Grafana.

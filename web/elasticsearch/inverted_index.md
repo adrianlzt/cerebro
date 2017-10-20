@@ -1,0 +1,1 @@
+../../bbdd/inverted_index.md
