@@ -3,6 +3,7 @@ https://suchakra.wordpress.com/2015/05/18/bpf-internals-i/
 http://www.phoronix.com/scan.php?page=news_item&px=BPF-Understanding-Kernel-VM
 https://github.com/torvalds/linux/tree/master/samples/bpf
 bcc/esquema_funcionamiento.jpg
+http://docs.cilium.io/en/latest/bpf/ explicación de como funciona en detalle
 
 These are coming to Linux in the 4.x series
 redhat7 usa 3.10
