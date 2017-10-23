@@ -41,4 +41,5 @@ Depende del storage driver.
 
 En arch -> devicemapper
 
-
+Openshift -> /var/lib/docker/image/devicemapper
+  en repositories.json tenemos un json con el mapeo entre imagenes y directorios que almacenan la info (el id de la imagen que usa docker será el segundo de los que aparece)
