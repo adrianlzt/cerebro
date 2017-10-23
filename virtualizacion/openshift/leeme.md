@@ -13,7 +13,11 @@ OpenShift Origin is a distribution of Kubernetes optimized for continuous applic
 
 OpenShift 3.5
 https://docs.openshift.com/container-platform/3.5/welcome/index.html
+https://docs.openshift.com/container-platform/3.5/architecture/infrastructure_components/kubernetes_infrastructure.html
 OpenShift Container Platform 3.5 uses Kubernetes 1.5 and Docker 1.12.
+
+OpenShift 3.6
+OpenShift Container Platform 3.6 uses Kubernetes 1.6 and Docker 1.12.
 
 It's upstream Kubernetes + a PaaS framework built in top of it.
 It takes care of role-based access control, has a secured Docker registry (prevents applications from pulling each other's source code), Jenkins integration and can automatically build, push and deploy your applications.

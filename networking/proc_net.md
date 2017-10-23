@@ -10,6 +10,12 @@ resumen de conexiones por cada tipo de socket
 Lo mismo con
 ss -s
 
+## fib_trie ##
+Forwarding Information Base table
+
+De aqui podemos obtener nuestra ip local (buscar LOCAL y mirar las lineas de encima)
+
+
 ## tcp ##
 https://www.kernel.org/doc/Documentation/networking/proc_net_tcp.txt
 http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
