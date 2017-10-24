@@ -17,3 +17,19 @@ Podemos activar la pestaña de debug con
 Control+Alt+Shift+d
 
 Usa websocket, a parte de llamadas HTTP, para comunicarse con el servidor.
+
+# Extraer app
+cd /usr/share/skypeforlinux
+cp -r resources /var/tmp/sky
+cd /var/tmp/sky
+mkdir OUT
+asar e app.asar OUT
+
+La aplicación mayoritariamente reside en js/app.js
+
+prettier app.js > app.js.pretty
+CUIDADO! tiene 309167 lineas!!
+
+
+Para cambiar el tiempo de online presence he hecho:
+sed -i "s/onlinePresenceTimeoutSeconds:180/onlinePresenceTimeoutSeconds: 3600/" app.js
