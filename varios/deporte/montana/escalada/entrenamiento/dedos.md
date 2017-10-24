@@ -1,5 +1,6 @@
 # Multipresa para recuperar problemas en los dedos
 http://eu.blackdiamondequipment.com/en_ES/experience-story?cid=esther-smith-nagging-finger-injuries
+https://www.grassrootsselftreatment.com/products/acute-finger-tendon-pulley-injury-management
 
 Dolor hecho hace menos de 6 semanas.
  - parar de escalar, controlar la inflamación, hielo, esparadrapo
