@@ -29,7 +29,3 @@ La aplicación mayoritariamente reside en js/app.js
 
 prettier app.js > app.js.pretty
 CUIDADO! tiene 309167 lineas!!
-
-
-Para cambiar el tiempo de online presence he hecho:
-sed -i "s/onlinePresenceTimeoutSeconds:180/onlinePresenceTimeoutSeconds: 3600/" app.js
