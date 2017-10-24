@@ -29,3 +29,6 @@ La aplicación mayoritariamente reside en js/app.js
 
 prettier app.js > app.js.pretty
 CUIDADO! tiene 309167 lineas!!
+
+
+He intentado meter el Burp para sniffar el trafico WSS, pero no traga el cert y no parece sencillo hacerlo. https://github.com/electron/electron/issues/6222
