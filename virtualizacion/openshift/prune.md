@@ -27,3 +27,5 @@ kubeletArguments:
 Para limpiar imagenes de los docker daemon solo tenemos los parametros image-gc-high-threshold y image-gc-low-threshold, que borran imágenes cuando se supera una ocupación del disco en porcentaje.
 Limpia hasta bajar del low threshold.
 El problema es que con esta configuración podemos tener miles de imágenes, que van a ralentizar mucho openshift (por ejemplo cuando solicitamos el stats/summary consulta las imagenes disponibles).
+
+El arranque de los garbage collectors se hace en kubelet/kubelet.go StartGarbageCollection y esta puesto a fuego a 5'

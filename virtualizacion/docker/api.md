@@ -8,6 +8,8 @@ Equivalente a "docker ps"
 curl --unix-socket /var/run/docker.sock "http:/v1.24/containers/json?limit=5"
 Equivalente a "docker ps -n 5"
 
+curl --unix-socket /var/run/docker.sock "http:/v1.24/images/json"
+como docker images
 
 Eventos:
 curl --unix-socket /var/run/docker.sock -X GET http:/v1.22/events?since=1487864355
@@ -20,7 +22,7 @@ curl 172.16.1.24:2376/containers/json
 
 
 Configurar el cliente con variables de entorno
-DOCKER_API_VERSION=1.24 DOCKER_HOST=docker:4243 DOCKER_TLS_VERIFY=true docker 
+DOCKER_API_VERSION=1.24 DOCKER_HOST=docker:4243 DOCKER_TLS_VERIFY=true docker
 
 
 # Python

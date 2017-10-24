@@ -23,6 +23,13 @@ cockpit
 
 # Que checkear con checks de icinga/nagios
 proceso corriendo
-tiempo en retornar "info"
+tiempo en retornar "info": curl -s -w "%{time_total}" --unix-socket /var/run/docker.sock http:/v1.22/info -o /dev/null
+tiempo en retornar "images"
+  tiempos de respuesta altos podrian deberse a un gran número de imagenes almacenadas
+  3.7k images, response time to "docker info" about 10"
+  470 images, about 0.5s
+número de imágenes almacenadas
+número de containers corriendo
 uso de memoria rss
+disco disponible para data, metadata, thin pool (consultar en API 1.24/info)
 
