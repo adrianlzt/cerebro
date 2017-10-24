@@ -1,7 +1,9 @@
-https://www.howtoforge.com/tutorial/configure-postfix-to-use-gmail-as-a-mail-relay/
+https://www.linode.com/docs/email/postfix/configure-postfix-to-send-mail-using-gmail-and-google-apps-on-debian-or-ubuntu
 
 # Arch
 sudo pacman -Sy postfix mailutils
+
+Para poder meter una contraseña de aplicación (en vez la nuestra real), tenemos que activar el 2 factor auth.
 
 sudo vi /etc/postfix/sasl_passwd
 [smtp.gmail.com]:587    username@gmail.com:password
@@ -23,10 +25,7 @@ sudo postmap /etc/postfix/sasl_passwd
 sudo systemctl restart postfix
 
 
-Tenemos que activar las aplicaciones poco seguras:
-https://support.google.com/accounts/answer/6010255
-
 echo "prueba de mensaje" | mail -s "prueba de correo" unemail@mail.com
 
 Mirar log:
-journalctl
+journalctl -u postfix -f

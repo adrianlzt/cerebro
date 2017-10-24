@@ -44,7 +44,7 @@ nombre.timer
 Description=Run DuckDNS every minute
 
 [Timer]
-OnCalendar="minutely"
+OnCalendar=minutely
 
 [Install]
 WantedBy=timers.target
