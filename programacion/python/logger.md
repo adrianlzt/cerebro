@@ -60,7 +60,7 @@ LOG_FILENAME = 'example.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
 
 
-Tambien podemos añadirlo a posteriori:
+Tambien podemos añadirlo a posteriori (mas info en la seccion de handlers):
 import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("openstack")
@@ -68,6 +68,7 @@ logger.debug("hola") # solo por stdout
 fh = logging.FileHandler("/tmp/pepe")
 logger.addHandler(fh)
 logger.debug("adios") # por stdout y al fichero
+
 
 
 
@@ -92,6 +93,9 @@ Para enviar las trazas por socket, smtp, syslog, http, etc
 logger.addHandler(pepe)
 logger.handlers
   lista de handlers habilitados
+
+logger.removeHandler(logger.handlers[0])
+  quitar un handler
 
 logger.propagate = False
   deshabilitamos pasar los mensajes a los parents
