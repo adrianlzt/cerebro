@@ -12,6 +12,8 @@ usar nvm con node 6.9.2
 sudo npm install -g yarn
 yarn install --pure-lockfile
 npm run build
+docker run --rm -it -v "$PWD:/mnt" -w /mnt node:6 npm run build
+  con docker, por si no tenemos el node 6.9.2
 
 npm run watch
   si queremos rebuild del frontend segun hagamos cambios al codigo
