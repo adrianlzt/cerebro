@@ -20,9 +20,13 @@ Parece que el trabajo esta siendo terminado en la rama: zabbix-dev/ZBXNEXT-4002_
 Mappings usados para es: database/elasticsearch/elasticsearch.map
   replica 1? si es cae un nodo perdemos datos!
   usan distintos types en el mismo index? -> va a estar deprecated en próximas versiones
+  si es tipo texto no generan tambien un keyword? util para usar agregaciones, orden, etc
+
+  viendo como funciona veo que crea unos indices con nombres: uint,dbl,str,log,text
 
 Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
 Se vuelven a intentar reindexar los datos?
+Cada entrada tiene un index único para evitarlo?
 ZBXNEXT-4002_2/src/libs/zbxhistory/history_elastic.c:
 #define   ZBX_HISTORY_STORAGE_DOWN  10000 /* Timeout in milliseconds */
 ...
@@ -36,6 +40,26 @@ ZBXNEXT-4002_2/src/libs/zbxhistory/history_elastic.c:
 static void elastic_writer_flush()
 ...
   code = curl_multi_wait(writer.handle, NULL, 0, ZBX_HISTORY_STORAGE_DOWN, &fds);
+
+
+
+La función "elastic_add_values" es donde se genera el json que se va a insertar
+Usa /_bulk?refresh=true en caso de que tenga que insertar varias entradas
+  https://www.elastic.co/guide/en/elasticsearch/reference/5.5/docs-refresh.html
+  con ?refresh=true se fuerza a que los resultados indexados estén disponibles inmediatamente. Puede dar problemas de performance!
+
+
+## Configuracion
+zabbix_server.conf:
+HistoryStorageURL=http://elastic:changeme@127.0.0.1:9200
+HistoryStorageTypes=uint,dbl,str,log,text
+
+
+
+# Uso
+Parece que ES se usa en la parte web en:
+api/services/CTrend.php
+api/services/CHistory.php
 
 
 

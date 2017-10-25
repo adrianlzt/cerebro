@@ -37,3 +37,10 @@ make
 make css
   necesita sass version 3.4.22
 make install
+
+./bootstrap.sh && ./configure --enable-server --enable-agent --with-postgresql --with-net-snmp --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2 --prefix=/opt/zabbix && make dbschema && make && make css && sudo make install
+
+
+# Frontend
+cd frontends/php
+docker run --rm -it -v "$PWD:/var/www/html/" -p 80:80 richarvey/nginx-php-fpm:latest

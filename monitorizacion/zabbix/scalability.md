@@ -1,3 +1,7 @@
+https://www.zabbix.com/documentation/4.0/manual/installation/requirements
+Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
+
+
 http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/
 https://kloczek.wordpress.com/2016/05/05/punching-2k-selects-barrier-on-zabbix-mysql-db-backend/
 
