@@ -12,6 +12,12 @@ Hay un json al comienzo que especifica cada parte cuanto ocupa y en que offset c
 Si modificamos el fichero deberemos respetar el tamaño de la parte, o rectificar el size y los offsets.
 
 
+# Enviar mensajes al pasado
+Si ponemos la hora del pc atrasada, meteremos los mensajes en el orden segun la hora de pc. Probado atrasando 30'
+Es decir, si a las 10:00 escribimos un mensaje y a las 11:00 retrasamos el reloj a las 9:59, ese segundo mensaje aparecerá al resto de gente antes que el primero
+Andar jugando con la hora tira las llamadas.
+
+
 # Debug
 Podemos activar la pestaña de debug con
 Control+Alt+Shift+d

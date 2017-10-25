@@ -24,6 +24,12 @@ Mappings usados para es: database/elasticsearch/elasticsearch.map
 
   viendo como funciona veo que crea unos indices con nombres: uint,dbl,str,log,text
 
+  Logs cuando entran los datos por primera vez
+[2017-10-25T10:31:28,485][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [dbl] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-10-25T10:31:28,729][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [dbl/r01DfNLaRie8k0v9f-kcjw] create_mapping [values]
+[2017-10-25T10:31:28,972][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [uint] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-10-25T10:31:29,124][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [uint/NsJVJTBwSVC7PonFMiP20A] create_mapping [values]
+
 Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
 Se vuelven a intentar reindexar los datos?
 Cada entrada tiene un index único para evitarlo?
