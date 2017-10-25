@@ -36,5 +36,4 @@ Tendremos que recargar la web
 # Hacer build/package
 git clone git@github.com:grafana/grafana-packer.git
 cd grafana-packer
-docker build --tag "grafana/buildcontainer" .
-
+./local_test.sh

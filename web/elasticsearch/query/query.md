@@ -41,6 +41,9 @@ curl localhost:9200/vehicles/_search/?pretty -d'
 
 ## Querys mas complejas
 
+Busca que el campo "clock" sea > 1508927505 y < 1508927505
+curl -u elastic:changeme "localhost:9200/dbl/_search?pretty" -d '{"query":{ "bool":{"must":[{"range":{"clock":{"gte":1508927505}}},{"range":{"clock":{"lte":1508927505}}}]}}}'
+
 Busca que make=pontiac y el año > 2000
 curl localhost:9200/vehicles/_search -d'
 {

@@ -169,6 +169,10 @@ El segundo (kibana) es la aplicación en si.
 El proxy es una aplicación node que escucha en el puerto 3000 y autentica a los usuarios contra el Oauth2 de openshift
 https://github.com/fabric8io/openshift-auth-proxy
 
+Ticket solicitando dashboards para administrar el propio openshift
+https://bugzilla.redhat.com/show_bug.cgi?id=1467963
+https://trello.com/c/FRtolChB/414-provide-pre-canned-kibana-dashboards-for-common-openshift-use-casesloggingcdaepic-ois-lux
+
 
 
 # Mux

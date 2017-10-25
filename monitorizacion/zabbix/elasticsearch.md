@@ -18,17 +18,18 @@ Parece que el trabajo esta siendo terminado en la rama: zabbix-dev/ZBXNEXT-4002_
 
 
 Mappings usados para es: database/elasticsearch/elasticsearch.map
+  un indice, con un solo type, por cada tipo de dato a almacenar (integers, doubles, strings, logs, texto)
   replica 1? si es cae un nodo perdemos datos!
-  usan distintos types en el mismo index? -> va a estar deprecated en próximas versiones
+  el ttl de los datos es de 7 dias
   si es tipo texto no generan tambien un keyword? util para usar agregaciones, orden, etc
 
   viendo como funciona veo que crea unos indices con nombres: uint,dbl,str,log,text
 
   Logs cuando entran los datos por primera vez
-[2017-10-25T10:31:28,485][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [dbl] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
-[2017-10-25T10:31:28,729][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [dbl/r01DfNLaRie8k0v9f-kcjw] create_mapping [values]
-[2017-10-25T10:31:28,972][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [uint] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
-[2017-10-25T10:31:29,124][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [uint/NsJVJTBwSVC7PonFMiP20A] create_mapping [values]
+  [2017-10-25T10:31:28,485][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [dbl] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+  [2017-10-25T10:31:28,729][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [dbl/r01DfNLaRie8k0v9f-kcjw] create_mapping [values]
+  [2017-10-25T10:31:28,972][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [uint] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+  [2017-10-25T10:31:29,124][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [uint/NsJVJTBwSVC7PonFMiP20A] create_mapping [values]
 
 Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
 Se vuelven a intentar reindexar los datos?
@@ -53,6 +54,16 @@ La función "elastic_add_values" es donde se genera el json que se va a insertar
 Usa /_bulk?refresh=true en caso de que tenga que insertar varias entradas
   https://www.elastic.co/guide/en/elasticsearch/reference/5.5/docs-refresh.html
   con ?refresh=true se fuerza a que los resultados indexados estén disponibles inmediatamente. Puede dar problemas de performance!
+
+Ejemplo de inseción de datos:
+  Content-Type: application/x-ndjson
+  Content-Length: 242
+
+  {"index":{"_index":"uint","_type":"values"}}
+  {"itemid":28211,"value":"0","clock":1508943371,"ns":878678211,"ttl":604800}
+  {"index":{"_index":"uint","_type":"values"}}
+  {"itemid":23291,"value":"2","clock":1508943371,"ns":895168007,"ttl":604800}
+
 
 
 ## Configuracion
