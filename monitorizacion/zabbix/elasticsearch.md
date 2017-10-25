@@ -33,7 +33,7 @@ Mappings usados para es: database/elasticsearch/elasticsearch.map
 
 Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
 Se vuelven a intentar reindexar los datos?
-Cada entrada tiene un index único para evitarlo?
+Cada entrada tiene un index único para evitarlo? -> no, los datos no definen su id
 ZBXNEXT-4002_2/src/libs/zbxhistory/history_elastic.c:
 #define   ZBX_HISTORY_STORAGE_DOWN  10000 /* Timeout in milliseconds */
 ...
@@ -78,6 +78,9 @@ Parece que ES se usa en la parte web en:
 api/services/CTrend.php
 api/services/CHistory.php
 
+
+include/classes/api/managers/CHistoryManager.php
+  aqui por ejemplo se definen las queries para obtener distintos tipos de datos de ES
 
 
 # Externo al proyecto
