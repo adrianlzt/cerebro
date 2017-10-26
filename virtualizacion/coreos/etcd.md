@@ -31,6 +31,9 @@ Lo que este en v2 no tiene porque verse en v3
 etcdctl3 --endpoints https://server:2379 memberlist
   lista de los nodos del cluster
 
+etcdctl memberlist
+  para la v2
+
 Contenido de etcd en v2
 etcdctl2 ls
 etcdctl2 ls --recursive

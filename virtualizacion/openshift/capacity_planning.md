@@ -9,3 +9,7 @@ Ejemplo, para 10 cores/nodo:
 
 Si tenemos 100GB de RAM en cada nodo:
 100 GB/nodo / 100 PODs/nodo = 1GB/POD
+
+
+Los master necesitan algo de vcpu para poder gestionar el etcd más la carga de openshift.
+El nodo que tenga el etcd activo con 2vcpus tendrá demasiado load
