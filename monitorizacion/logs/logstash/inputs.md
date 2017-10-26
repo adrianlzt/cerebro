@@ -1,3 +1,6 @@
+https://www.elastic.co/guide/en/logstash/5.6/input-plugins.html
+
+
 Lo tipico es leer de un socket TCP/UDP o de un fichero.
 
 También syslog/rsyslog

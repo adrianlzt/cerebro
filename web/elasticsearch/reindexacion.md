@@ -2,6 +2,12 @@ https://www.elastic.co/guide/en/elasticsearch/guide/current/reindex.html
 elasticdump.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 
+# Remote
+Reindexar leyendo de un ES remoto
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
+El ES remoto deberá estar en la config de elasticsearch.yml
+
+
 # Logstash
 
 ## Copiando a un nuevo índice
@@ -105,10 +111,4 @@ Tenemos: 3183 documentos
 id=0 offset: 2495136
 id=1 offset: 441162
 
-
-
-# Remote
-Reindexar leyendo de un ES remoto
-https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
-El ES remoto deberá estar en la config de elasticsearch.yml
 

@@ -145,3 +145,14 @@ Ejemplos: https://github.com/kubernetes/heapster/blob/7a7c2c2c2c31b2d953da407a38
 
 Mensajes tipo:
 E1026 15:26:05.485914   23952 hola.go:14] error message
+
+	L                A single character, representing the log level (eg 'I' for INFO)
+	mm               The month (zero padded; ie May is '05')
+	dd               The day (zero padded)
+	hh:mm:ss.uuuuuu  Time in hours, minutes and fractional seconds
+	threadid         The space-padded thread ID as returned by GetTID()
+	file             The file name
+	line             The line number
+	msg              The user-supplied message
+
+Niveles: INFO, WARNING, ERROR, FATAL
