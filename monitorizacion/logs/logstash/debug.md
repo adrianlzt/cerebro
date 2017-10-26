@@ -1,5 +1,9 @@
 Para ejecutar logstash en modo debug.
 
+logstash --log.level=debug
+logstash --log.level=trace
+
+
 Si lo hemos instalado con el .deb
 Editar /etc/defaults/logstash
 LS_OPTS="--log ${LOG_FILE} --debug"
@@ -17,6 +21,7 @@ output {
 
 
 # Depurando el plugin input de logstash
+mirar tambien en programacion/ruby/elasticsearch.md
 https://github.com/logstash-plugins/logstash-input-elasticsearch/blob/master/lib/logstash/inputs/elasticsearch.rb
 
 yum install ruby
