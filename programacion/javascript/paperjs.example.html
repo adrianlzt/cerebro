@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Meta Balls</title>
+     <STYLE type="text/css">
+     html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+  position: absolute;
+  color: #d40808;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: -6px;
+  margin-left: -24px;
+}
+ 	</STYLE>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.js"></script>
+    <script type="text/paperscript" canvas="canvas">
+        var alto = window.innerHeight;
+        var ancho = window.innerWidth;
+
+        // El radio de las bolas se ajusta segun el alto de la pantalla
+        var largeCircleX = ancho/2;
+        var largeCircleY = alto/2;
+        var largeCircleRadius = alto/8;
+        var showLevelOne = false;
+
+        var levelOneBallsRadius = largeCircleRadius*6/10;
+        var levelTwoBallsRadius = levelOneBallsRadius/2;
+
+        var metalball_v = 0.3;
+        var handle_len_rate = 2.1;
+        var maxDistance = 2800;
+
+        var circlePaths = [];
+
+        // Ported from original Metaball script by SATO Hiroyuki
+        // http://park12.wakwak.com/~shp/lc/et/en_aics_script.html
+        project.currentStyle = {
+            fillColor: 'black'
+        };
+
+        var levelOneBalls = [
+          {center: [ancho*5/16, alto*5/16], text: "Estudio",
+            hijos: [
+              {center: [ancho*5/16, alto*2/16], text: "Equipo", link: "http://example.com"},
+              {center: [ancho*7/16, alto*3/16], text: "Design Thinking", link: "http://otro.com"},
+              {center: [ancho*3/16, alto*6/16], text: "Filosofia", link: "http://otro.com"},
+            ]
+          },
+          {center: [ancho*10/16, alto*4/16], text: "Picoj", link: "http://picoj.com",
+            hijos: [
+            ]
+          },
+          {center: [ancho*12/16, alto*7/16], text: "Innovación",
+            hijos: [
+              {center: [ancho*12/16, alto*4/16], text: "Noticias", link: "http://example.com"},
+              {center: [ancho*14/16, alto*4/16], text: "Vídeos", link: "http://otro.com"},
+              {center: [ancho*15/16, alto*7/16], text: "Novedades", link: "http://otro.com"},
+            ]
+          },
+          {center: [ancho*11/16, alto*11/16], text: "Comunidad",
+            hijos: [
+              {center: [ancho*14/16, alto*9/16], text: "Singladura", link: "http://www.singladura.net/"},
+              {center: [ancho*13/16, alto*15/16], text: "Innovaschool", link: "http://www.innovaschool.es/"},
+              {center: [ancho*13.5/16, alto*12/16], text: "Kabel", link: "http://www.kabel.es/"},
+              {center: [ancho*11/16, alto*14/16], text: "ICSW", link: "http://icsw.com/"},
+            ]
+          },
+          {center: [ancho*6/16, alto*11/16], text: "Proyectos",
+            hijos: [
+              {center: [ancho*6/16, alto*8/16], text: "Espacios educativos", link: "http://example.com"},
+              {center: [ancho*4/16, alto*10/16], text: "Espacios de trabajo", link: "http://otro.com"},
+              {center: [ancho*4/16, alto*13/16], text: "Espacios comerciales", link: "http://otro.com"},
+              {center: [ancho*6/16, alto*14/16], text: "Espacios gastronómicos", link: "http://otro.com"},
+            ]
+          }
+        ];
+
+
+
+        function toggleLevelOne(event) {
+            if (showLevelOne) {
+                showLevelOne = false;
+                // Eliminamos todas las bolas
+                for (var i = 0, l = circlePaths.length; i < l; i++) {
+                    hijos = circlePaths[i].hijos
+                    for (var j = 0, m = hijos.length; j < m; j++) {
+                        hijos[j].remove();
+                        removeLink(hijos[j].data.text);
+                    }
+                    circlePaths[i].padre.remove();
+                    removeLink(circlePaths[i].padre.data.text);
+                }
+                circlePaths = []
+                generateConnections(circlePaths);
+            } else {
+                showLevelOne = true;
+                showBalls(levelOneBalls);
+            }
+        }
+
+        var largeCircle = new Path.Circle({
+            center: [largeCircleX, largeCircleY],
+            radius: largeCircleRadius
+        });
+        largeCircle.fillColor = 'black';
+        largeCircle.onClick = toggleLevelOne;
+
+        var textItem = new PointText({
+            content: 'REDEX',
+            fontSize: 20,
+            point: new Point(largeCircleX-35, largeCircleY+5),
+            fillColor: 'white',
+        });
+        textItem.onClick = toggleLevelOne;
+
+
+        function removeLink(text) {
+            // Buscamos el elemento por su style, ya que la posicion es unica
+            var link = document.evaluate('//a[text()="'+text+'"]',document, null, XPathResult.ANY_TYPE, null ).iterateNext();
+            console.log("Elemento encontrado: " + link);
+            var linksDiv = document.getElementById("#links");
+            linksDiv.removeChild(link);
+        }
+
+        function addLink(point, text, url) {
+            var link = document.createElement("a");
+            link.text = text;
+            if (typeof url !== "undefined") {
+                link.href = url;
+                link.target = "_blank";
+            }
+            link.style["left"] = point[0] + "px";
+            link.style["top"] = point[1] + "px";
+
+            var linksDiv = document.getElementById("#links");
+            linksDiv.appendChild(link);
+        }
+
+        // Va creando bolas rojas en los puntos que le pasamos como parametros
+        function showBalls(balls) {
+            console.log("Add %s balls", balls.length);
+            for (var i = 0, l = balls.length; i < l; i++) {
+                var circlePath = new Path.Circle({
+                    center: balls[i].center,
+                    radius: levelOneBallsRadius,
+                });
+                circlePath.data.levelOneNumber = i;
+                circlePath.data.showChildren = false;
+                circlePath.data.text = balls[i].text;
+                circlePath.onClick = function(event) {
+                    if (this.data.showChildren) {
+                        this.data.showChildren = false;
+                        removeChildrenBalls(this.data.levelOneNumber);
+                    } else {
+                        this.data.showChildren = true;
+                        showChildrenBalls(levelOneBalls[this.data.levelOneNumber].hijos, this.data.levelOneNumber);
+                    }
+                }
+                circlePaths.push({"padre": circlePath, "hijos": []});
+                addLink(balls[i].center, balls[i].text, balls[i].link);
+            }
+            generateConnections(circlePaths);
+        }
+        
+        function removeChildrenBalls(levelOneNumber) {
+            hijos = circlePaths[levelOneNumber].hijos
+            for (var i = 0, l = hijos.length; i < l; i++) {
+                hijos[i].remove();
+                removeLink(hijos[i].data.text);
+            }
+            circlePaths[levelOneNumber].hijos = []
+            generateConnections(circlePaths);
+        }
+
+        function showChildrenBalls(balls, levelOneNumber) {
+            console.log("Add %s children balls", balls.length);
+            for (var i = 0, l = balls.length; i < l; i++) {
+                var circlePath = new Path.Circle({
+                    center: balls[i].center,
+                    radius: levelTwoBallsRadius,
+                });
+                circlePath.data.text = balls[i].text;
+                circlePaths[levelOneNumber].hijos.push(circlePath);
+                addLink(balls[i].center, balls[i].text, balls[i].link);
+            }
+            generateConnections(circlePaths);
+        }
+
+
+        
+        function onMouseMove(event) {
+            generateConnections(circlePaths);
+        }
+        
+
+        // Muestra el cursor y oculta el texto si estamos encima de una bola roja
+        function bigCircleOverSmallCircle(balls) {
+            document.getElementById('canvas').style.cursor = "none";
+            textItem.opacity = 1;
+            for (var i = 0, l = balls.length; i < l; i++) {
+              if (balls[i].fillColor == 'black') {
+                  continue;
+              }
+              if (largeCircle.contains(balls[i].position)) {
+                textItem.opacity = 0;
+                document.getElementById('canvas').style.cursor = "auto";
+              }
+            }
+        }
+
+        var connections = new Group();
+        function generateConnections(paths) {
+            // Remove the last connection paths:
+            connections.removeChildren();
+
+            // Conexiones de la bola grande con las de primer nivel
+            for (var i = 0, l = paths.length; i < l; i++) {
+                var path = metaball(paths[i].padre, largeCircle, metalball_v, handle_len_rate, maxDistance);
+                if (path) {
+                    connections.appendTop(path);
+                    path.removeOnMove();
+                }
+            }
+
+            // Conexiones de las padres con sus hijos
+            /*
+            for (var i = 0, l = paths.length; i < l; i++) {
+                var path = metaball(paths[i], paths[0], metalball_v, handle_len_rate, maxDistance);
+                if (path) {
+                    connections.appendTop(path);
+                    path.removeOnMove();
+                }
+            }
+            */
+            for (var i = 0, l = paths.length; i < l; i++) {
+                for (var j = 0; j < paths[i].hijos.length; j++) {
+                    var path = metaball(paths[i].padre, paths[i].hijos[j], metalball_v, handle_len_rate, maxDistance);
+                    if (path) {
+                        connections.appendTop(path);
+                        path.removeOnMove();
+                    }
+                }
+            }
+        }
+
+        generateConnections(circlePaths);
+
+        // ---------------------------------------------
+        function metaball(ball1, ball2, v, handle_len_rate, maxDistance) {
+            var center1 = ball1.position;
+            var center2 = ball2.position;
+            var radius1 = ball1.bounds.width / 2;
+            var radius2 = ball2.bounds.width / 2;
+            var pi2 = Math.PI / 2;
+            var d = center1.getDistance(center2);
+            var u1, u2;
+
+            if (radius1 == 0 || radius2 == 0)
+                return;
+
+            if (d > maxDistance || d <= Math.abs(radius1 - radius2)) {
+                return;
+            } else if (d < radius1 + radius2) { // case circles are overlapping
+                u1 = Math.acos((radius1 * radius1 + d * d - radius2 * radius2) /
+                        (2 * radius1 * d));
+                u2 = Math.acos((radius2 * radius2 + d * d - radius1 * radius1) /
+                        (2 * radius2 * d));
+            } else {
+                u1 = 0;
+                u2 = 0;
+            }
+
+            var angle1 = (center2 - center1).getAngleInRadians();
+            var angle2 = Math.acos((radius1 - radius2) / d);
+            var angle1a = angle1 + u1 + (angle2 - u1) * v;
+            var angle1b = angle1 - u1 - (angle2 - u1) * v;
+            var angle2a = angle1 + Math.PI - u2 - (Math.PI - u2 - angle2) * v;
+            var angle2b = angle1 - Math.PI + u2 + (Math.PI - u2 - angle2) * v;
+            var p1a = center1 + getVector(angle1a, radius1);
+            var p1b = center1 + getVector(angle1b, radius1);
+            var p2a = center2 + getVector(angle2a, radius2);
+            var p2b = center2 + getVector(angle2b, radius2);
+
+            // define handle length by the distance between
+            // both ends of the curve to draw
+            var totalRadius = (radius1 + radius2);
+            var d2 = Math.min(v * handle_len_rate, (p1a - p2a).length / totalRadius);
+
+            // case circles are overlapping:
+            d2 *= Math.min(1, d * 2 / (radius1 + radius2));
+
+            radius1 *= d2;
+            radius2 *= d2;
+
+            var path = new Path({
+                segments: [p1a, p2a, p2b, p1b],
+                style: ball1.style,
+                closed: true
+            });
+            var segments = path.segments;
+            segments[0].handleOut = getVector(angle1a - pi2, radius1);
+            segments[1].handleIn = getVector(angle2a + pi2, radius2);
+            segments[2].handleOut = getVector(angle2b - pi2, radius2);
+            segments[3].handleIn = getVector(angle1b + pi2, radius1);
+            return path;
+        }
+
+        // ------------------------------------------------
+        function getVector(radians, length) {
+            return new Point({
+                // Convert radians to degrees:
+                angle: radians * 180 / Math.PI,
+                length: length
+            });
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" resize></canvas>
+    <div id="#links"></div>
+</body>
+</html>
