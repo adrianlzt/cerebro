@@ -244,3 +244,10 @@ martin:
 
 # Array
 mirar arrays.md
+
+
+
+# Variables entre roles / variables privadas
+https://groups.google.com/forum/#!topic/ansible-project/CWNmVa_lpsg
+
+Teoricamente se puede hacer que las variables sean privadas para controlar exactamente que pasamos a los roles

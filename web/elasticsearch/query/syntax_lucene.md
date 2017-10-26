@@ -11,3 +11,13 @@ mod_date:[20020101 TO 20030101]
 fuzzy search (semejanza):
 roam~
 
+
+# Metiendo esta sintaxis en el DSL de ES
+{"query": {"query_string":{"query":"\"por ejemplo\""}}}
+
+{"query": {"query_string":{"query":"message: \"por ejemplo\""}}}
+
+
+Al poner el texto entre comillas ("por ejemplo") estamos buscando exactamente esa cadena.
+
+Si ponemos: "message: " es que solo lo busque en ese field

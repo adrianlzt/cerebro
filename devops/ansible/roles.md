@@ -32,6 +32,8 @@ Preferencias versión reducida (de mayor a menor). Mirar variables.md para la ve
 Si hacemos uso de una variable en un task y no está definida en ninguno de estos tres sitios fallará.
 Si un rol tiene una variable que se llama {{nombre}}, esa variable puede estar definida en cualquier sitio aceptado por variables. Por ejemplo, puede ser un valor que coja el playbook mediante un vars_files
 
+Mirar variables.md para como gestionar las variables privadas, pasando solo al rol lo que nosotros queramos.
+
 
 El fichero importante será tasks/main.yaml
 El deteminará las tareas a ejecutar.
