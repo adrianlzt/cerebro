@@ -1,35 +1,13 @@
-Parece que ha habido cierta discusión sobre usar ES como backend.
-Mirar discussion_new_backends.png
-https://www.linkedin.com/groups/161448/161448-5996549505196048385
-
-https://support.zabbix.com/browse/ZBXNEXT-3661
-EPIC donde parece que se están realizando modificaciones en el server y el frontend para desacoplar como accede el frontend ahora mismo a la información histórica y poder usar ES para almacenar esa info
-"access to history data will be provided by a separated service that will take care of managing requests for access to the history database through a REST API." https://support.zabbix.com/browse/ZBXNEXT-3877
-
-https://support.zabbix.com/browse/ZBXNEXT-4002
-Implement REST API history service calls in server (PoC for Elastic)
-
-r71114 | andrea | 2017-08-10 15:17:14 +0200 (jue 10 de ago de 2017) | 24 líneas
-........S. [ZBXNEXT-4002] add elasticsearch support as history storage
-src/libs/zbxdbcache/history.c la mayoria de las modificaciones
-
-Parece que el trabajo esta siendo terminado en la rama: zabbix-dev/ZBXNEXT-4002_2
-
+Resumen: se puede usar ES como backend para los datos históricos (tablas history* en SQL).
+Hace falta cofigurar el server y el frontend para que lo utilicen.
+Meter los mappings a priori. Cambiar replication?
 
 
 Mappings usados para es: database/elasticsearch/elasticsearch.map
-  un indice, con un solo type, por cada tipo de dato a almacenar (integers, doubles, strings, logs, texto)
-  replica 1? si es cae un nodo perdemos datos!
+  un indice, con un solo type, por cada tipo de dato a almacenar (uint,dbl,str,log,text). Hace falta crearlos a priori para que pille bien los tipos de datos (si no, por ejemplo el dbl.vale lo pilla tipo string)
+  replica 1? si es cae un nodo perdemos datos! -> entiendo que esto dejarán que cada uno lo cree como mejor le parezca
   el ttl de los datos es de 7 dias
-  si es tipo texto no generan tambien un keyword? util para usar agregaciones, orden, etc
-
-  viendo como funciona veo que crea unos indices con nombres: uint,dbl,str,log,text
-
-  Logs cuando entran los datos por primera vez
-  [2017-10-25T10:31:28,485][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [dbl] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
-  [2017-10-25T10:31:28,729][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [dbl/r01DfNLaRie8k0v9f-kcjw] create_mapping [values]
-  [2017-10-25T10:31:28,972][INFO ][o.e.c.m.MetaDataCreateIndexService] [3eE6UdW] [uint] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
-  [2017-10-25T10:31:29,124][INFO ][o.e.c.m.MetaDataMappingService] [3eE6UdW] [uint/NsJVJTBwSVC7PonFMiP20A] create_mapping [values]
+  si es tipo texto no generan tambien un keyword? util para usar agregaciones, orden, etc -> como lo usan?? Tal vez para su uso esto no lo quieren para nada
 
 Que pasa si se envian muchos datos de golpe desde zabbix a ES y ES no contesta a tiempo?
 Se vuelven a intentar reindexar los datos?
@@ -122,6 +100,32 @@ api/services/CHistory.php
 
 include/classes/api/managers/CHistoryManager.php
   aqui por ejemplo se definen las queries para obtener distintos tipos de datos de ES
+
+
+
+
+# Donde se hizo el desarrollo
+Parece que ha habido cierta discusión sobre usar ES como backend.
+Mirar discussion_new_backends.png
+https://www.linkedin.com/groups/161448/161448-5996549505196048385
+
+https://support.zabbix.com/browse/ZBXNEXT-3661
+EPIC donde parece que se están realizando modificaciones en el server y el frontend para desacoplar como accede el frontend ahora mismo a la información histórica y poder usar ES para almacenar esa info
+"access to history data will be provided by a separated service that will take care of managing requests for access to the history database through a REST API." https://support.zabbix.com/browse/ZBXNEXT-3877
+
+https://support.zabbix.com/browse/ZBXNEXT-4002
+Implement REST API history service calls in server (PoC for Elastic)
+
+r71114 | andrea | 2017-08-10 15:17:14 +0200 (jue 10 de ago de 2017) | 24 líneas
+........S. [ZBXNEXT-4002] add elasticsearch support as history storage
+src/libs/zbxdbcache/history.c la mayoria de las modificaciones
+
+Parece que el trabajo esta siendo terminado en la rama: zabbix-dev/ZBXNEXT-4002_2
+
+
+
+
+
 
 
 # Externo al proyecto
