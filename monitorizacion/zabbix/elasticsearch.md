@@ -67,16 +67,48 @@ Ejemplo de inseción de datos:
 
 
 ## Configuracion
+ES: hace falta cargar los mappings a priori, definidos en /database/elasticsearch/elasticsearch.map
+
+Ejemplo del indice uint:
+$ curl -u elastic:changeme "localhost:9200/uint/" -XPUT -d '{
+   "settings" : {
+      "index" : {
+         "number_of_replicas" : 1,
+         "number_of_shards" : 5
+      }
+   },
+   "mappings" : {
+      "values" : {
+         "properties" : {
+            "itemid" : {
+               "type" : "long"
+            },
+            "clock" : {
+               "format" : "epoch_second",
+               "type" : "date"
+            },
+            "value" : {
+               "type" : "long"
+            }
+         }
+      }
+   }
+}'
+
+
 zabbix_server.conf:
 HistoryStorageURL=http://elastic:changeme@127.0.0.1:9200
 HistoryStorageTypes=uint,dbl,str,log,text
 
 /etc/zabbix/web/zabbix.conf.php
+global $DB, $HISTORY;
 // ElasticSearch url (can be string if same url is used for all types).
 $HISTORY['url']   = [
 		'uint' => 'http://localhost:9200',
 		'text' => 'http://localhost:9200'
 ];
+$HISTORY['url']   = 'http://localhost:9200'; // si todos los indices estan en el mismo server
+
 // Value types stored in ElasticSearch.
 $HISTORY['types'] = ['uint', 'text', 'dbl', 'str', 'log'];
 
