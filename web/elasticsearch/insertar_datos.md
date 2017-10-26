@@ -38,6 +38,14 @@ Nos confirma la operación con (resulado de otro insert distinto):
 _version es un campo interno de ES para la replicación
 
 
+Si queremos meter un timestamp tendremos que ver en el mapping que format se ha puesto.
+Generalmente se usa el campo @timestamp
+Un formato tipico es epoch_millis.
+curl localhost:9200/test/test/ -XPOST -d '{"name":"pepe", "@timestamp": 1509010812000}'
+
+El formato de fecha por defecto es:
+2017-10-25T09:48:05.419953Z
+
 
 # Borrar
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-delete.html

@@ -25,6 +25,10 @@ También tiene otras funcionalidades como:
   combinar alertas en reportes periodicos
   etc
 
+Los datos indexados tienen que tener un timestamp, que se usará para saber de cuando es cada documento.
+Por defecto se buscará el field "@tiemstamp" con el formato de fecha por defecto.
+
+
 ## install
 Usar python 2
 
@@ -44,3 +48,21 @@ Generalmente tendremos un dir rules/ con los ficheros .yaml de las distintas reg
 
 Será necesario crear a priori el índice (por defecto elastalert_status) y los mappings que usará elastalert:
 elastalert-create-index
+
+
+## Rules
+
+Ejemplo de un rule basico:
+name: Example rule
+type: frequency
+index: test
+num_events: 5
+timeframe:
+    minutes: 1
+alert:
+- "debug"
+
+
+
+Testear una alerta (obtendrá del índice los datos de las últimas 24h):
+elastalert-test-rule rules/freq.yaml

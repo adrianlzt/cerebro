@@ -37,6 +37,13 @@ Si ES no genera correctamente el mapping, podemos suministrarlo al crear el índ
 
 
 # Crear mapping
+curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
+El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
+
+curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date","format":"epoch_millis"}}}}}'
+mappings con name:text y timestamp:date(epoch_millis)
+
+
 curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' -d'
 {
   "mappings": {
