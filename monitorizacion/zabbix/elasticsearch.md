@@ -71,6 +71,15 @@ zabbix_server.conf:
 HistoryStorageURL=http://elastic:changeme@127.0.0.1:9200
 HistoryStorageTypes=uint,dbl,str,log,text
 
+/etc/zabbix/web/zabbix.conf.php
+// ElasticSearch url (can be string if same url is used for all types).
+$HISTORY['url']   = [
+		'uint' => 'http://localhost:9200',
+		'text' => 'http://localhost:9200'
+];
+// Value types stored in ElasticSearch.
+$HISTORY['types'] = ['uint', 'text', 'dbl', 'str', 'log'];
+
 
 
 # Uso
