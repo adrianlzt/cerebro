@@ -135,11 +135,13 @@ func init() {
 }
 
 
-# glog (de golang) (abandonado)
+# glog (de golang)
 https://github.com/golang/glog
+Usado en kubernetes/openshift
 
 Logging con niveles
 Ejemplos: https://github.com/kubernetes/heapster/blob/7a7c2c2c2c31b2d953da407a38fb4fe5d71ba2a1/metrics/sources/summary/summary.go
 
 
-
+Mensajes tipo:
+E1026 15:26:05.485914   23952 hola.go:14] error message
