@@ -9,6 +9,9 @@ Almacen de métricas sobre Cassandra
 Hawkular APM
 Para monitorizar aplicaciones
 
+Alerts
+http://www.hawkular.org/blog/2017/04/06/hawkular-alerting-elasticsearch.html
+Puede alertar en base a búsquedas en ES
 
 
 # API
