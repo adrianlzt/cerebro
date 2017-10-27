@@ -4,6 +4,7 @@ Diff branches rama contra el ancestro común         git diff <branch1>...<branc
 Mirar cambios                                       git diff
 Cambios respecto al dir local (sin commit)          git diff --staged
 Cambios entre HEAD y dos commits antes              git diff HEAD~1..HEAD
+Cambios respecto a una rama solo los ficheros del dir  git diff <branch> .
 
 
 # Diff con un programa determinado
