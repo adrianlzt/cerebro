@@ -38,6 +38,7 @@ Poncelet cheese bar
 The hall (antiguo nodo)
 Iroco (bonito, para ir en pareja)
 Gramabar (arepas. Como entrantes, los tequeños, cerca de Callao)
+80 grados. Poca comida pero muy buena (malasaña), recomendacion guille
 Vegetarianos:
   Viva la vida. Latina
   Sopa (vegano)
@@ -63,8 +64,8 @@ Peruano
 
 Las Tablas
   La mano de pablo
-  80 grados. Poca comida pero muy buena
   Mayes bistro
+
 
 ## Tomar algo
 Terraza del Reina Sofía. Para beber algo. Pijo.

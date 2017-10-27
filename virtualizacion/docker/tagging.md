@@ -10,6 +10,11 @@ docker build -t whenry/fedora-jboss:latest -t whenry/fedora-jboss:v2.1 .
 Taggear un container:
 docker commit -m "commit message" -author "autor" <container-id> adrianlzt/imagen 4.2
 
+Se puede aplicar una regla de Dockerfile al hacer un commit:
+docker commit -c 'ENTRYPOINT [ "/usr/local/bin/docker-entrypoint" ]' aced8ee5da0e adrianlzt/logstash:5.6.3
+
+Tambien, si definimos variables de entorno (-e) se meteran en el commit
+
 También podemos tagear una imagen:
 docker tag XXXXXXX adrianlzt/imagen 1.5
 
