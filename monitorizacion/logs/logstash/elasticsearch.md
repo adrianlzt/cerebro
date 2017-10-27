@@ -31,3 +31,7 @@ El node_name será el nombre con el que se conectará Logstash al cluster NOMBRE
 https://www.elastic.co/guide/en/logstash/current/plugins-filters-elasticsearch.html
 
 Pueden hacerse consultas por ejemplo para sacar tiempos entre un evento que entró y su finalización.
+
+
+# Usando certs TLS para cliente
+https://github.com/logstash-plugins/logstash-input-elasticsearch/pull/80
