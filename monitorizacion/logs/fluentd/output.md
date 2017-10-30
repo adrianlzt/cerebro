@@ -3,6 +3,11 @@ Sacar los mensajes por consola:
   @type stdout
 </filter>
 
+Usar stdout como output:
+<match **>
+  @type stdout
+</match>
+
 
 # Varios output
 https://docs.fluentd.org/v0.12/articles/out_copy
