@@ -1,5 +1,6 @@
 Aplicados en el orden que aparecen.
 
+Dissect: extraer data (mejora sobre grok)
 Grok: extraer data a partir de patterns
 Date: convertir todo tipo de timestamps en un formato unico
 csv: parse CSV data (or any patter-separated data)
