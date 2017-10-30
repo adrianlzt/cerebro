@@ -1,4 +1,5 @@
 https://github.com/openshift/origin-aggregated-logging
+https://docs.openshift.com/container-platform/3.5/install_config/aggregate_logging_sizing.html
 
 Los containers corren en docker con el log-driver journald (configurable? si usa el driver json fluentd tambien lo captura)
 Fluentd (version 0.12.32 para openshift 3.5) coge los logs de los pods de journald, les añade cierta metadata y lo almacena en ElasticSearch.
@@ -14,6 +15,8 @@ https://hub.docker.com/r/openshift/origin-logging-fluentd/
 Dockerfile: https://github.com/openshift/origin-aggregated-logging/tree/master/fluentd
 
 Al arrancar al pod se ejecutará el script run.sh que a su vez llamará a generate_throttle_configs.rb para generar la configuración dinámica necesaria.
+
+Cuidado! Si estamos usando jounald como storage de docker, por defecto existe un limite de trazas (1000 cada 30"). Mirar journalctl.md para mas info
 
 Flow de como funciona: https://github.com/openshift/origin-aggregated-logging/blob/master/docs/mux-logging-service.md#basic-flow
 
