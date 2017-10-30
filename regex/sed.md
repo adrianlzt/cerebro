@@ -125,3 +125,7 @@ sed -n '/^pepe/p'
 
 Eliminar ultimo caracter de un fichero, en este caso, una coma
 sed "$ s/,//"
+
+
+# Cambiar muchos espacios en blanco por uno solo
+sed "s/\s\+/ /g"

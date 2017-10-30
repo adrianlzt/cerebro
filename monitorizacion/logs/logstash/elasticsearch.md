@@ -33,5 +33,11 @@ https://www.elastic.co/guide/en/logstash/current/plugins-filters-elasticsearch.h
 Pueden hacerse consultas por ejemplo para sacar tiempos entre un evento que entró y su finalización.
 
 
-# INPUT - Usando certs TLS para cliente
+
+
+
+# INPUT
+https://www.elastic.co/guide/en/logstash/current/plugins-inputs-elasticsearch.html
+
+## Usando certs TLS para cliente
 https://github.com/logstash-plugins/logstash-input-elasticsearch/pull/80
