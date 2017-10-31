@@ -19,3 +19,9 @@ Ejemplo, filtramos eventos (solo dejamos pasar los que tengan en hostname "miser
 <filter **>
   @type stdout
 </filter>
+
+
+En la version 0.14 se pueden usar keys tipo (https://github.com/fluent/fluentd/pull/1637):
+$.key1.key2
+o tambien
+$['key1']['key2']
