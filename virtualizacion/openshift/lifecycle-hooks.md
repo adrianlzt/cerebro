@@ -1,0 +1,1 @@
+../kubernetes/lifecycle-hooks.md
