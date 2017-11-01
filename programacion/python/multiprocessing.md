@@ -1,5 +1,10 @@
 https://docs.python.org/2/library/multiprocessing.html
 
+Crear procesos distintos.
+Parar crear threads (comparten memoria) mirar threads.md
+Comparación: https://stackoverflow.com/questions/3044580/multiprocessing-vs-threading-python
+
+
 from multiprocessing import Pool
 
 def f(x):
