@@ -110,4 +110,8 @@ Modulos en python que recibiran las trazas que han hecho match en alguna regla p
 https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerts
 
 Como avisaremos del problema.
-Podemos usar variables del match
+
+Podemos usar variables del match. Ejemplo:
+alert:
+  - command
+command: ["/bin/send_alert", "--username", "%(username)s"]
