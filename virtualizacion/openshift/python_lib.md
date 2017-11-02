@@ -13,8 +13,19 @@ Examples: https://www.linux.com/learn/kubernetes/enjoy-kubernetes-python
 pip install openshift
 
 
+Config con la nueva version kubernetes (4.x.x):
+from kubernetes import client
+c = client.Configuration()
+c.verify_ssl = False
+c.host = kube_endpoint
+c.api_key = {"authorization": "Bearer %s" % token}
+c.debug = True
+client.Configuration.set_default(c)
+self.kube = client.apis.core_v1_api.CoreV1Api()
+
+
 Ejemplo openshift:
-from openshift import client, config
+from openshift import client
 client.Configuration().host="https://openshift.inet"
 client.Configuration().verify_ssl=False
 client.Configuration().api_key={"authorization":"Bearer XXX"}
@@ -25,7 +36,7 @@ Obtener los projectos
 kubernetes_namespace = openshift.list_project().items[0].metadata.name
 
 Ejemplo kubernetes:
-from kubernetes import client, config
+from kubernetes import client
 client.Configuration().host="https://openshift.inet"
 client.Configuration().verify_ssl=False
 client.Configuration().api_key={"authorization":"Bearer XXX"}
@@ -34,7 +45,7 @@ v1.list_namespaced_pod("alt390")
 
 
 Watch eventos:
-from kubernetes import client, config, watch
+from kubernetes import client, watch
 client.Configuration().host="https://openshift.inet"
 client.Configuration().verify_ssl=False
 client.Configuration().api_key={"authorization":"Bearer XXX"}
@@ -82,6 +93,11 @@ Ejecutar comandos (exec), por debajo hace uso de websockets:
 client = WSClient(configuration, get_websocket_url(url), headers)
 url='https://openshift.inet:443/api/v1/namespaces/alt390/pods/dynatrace-2-1p2ch/exec&command=hostname'
 headers={'Content-Type': 'application/json', 'authorization': 'Bearer xxx', 'Accept': '*/*', 'User-Agent': 'Swagger-Codegen/1.0.0-snapshot/python'}
+
+from kubernetes.stream import stream
+cmd_exec = stream(self.kube.connect_get_namespaced_pod_exec, self.args.pod, self.args.namespace, command=self.args.cmd, stderr=True, stdin=False, stdout=True, tty=True)
+
+
 
 ## Debug
 kube.api_client.config.debug = True
