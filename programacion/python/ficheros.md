@@ -8,6 +8,10 @@ python2.7, 3.1:
 with open("input", "r") as inp, open("output", "w") as out:
     out.write(inp.read())
 
+with open("fichero", "w") as fd:
+    fd.write("contenido")
+
+
 
 Fichero existe:
 import os

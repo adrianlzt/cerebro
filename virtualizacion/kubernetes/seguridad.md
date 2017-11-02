@@ -61,6 +61,8 @@ oc get clusterpolicy
 oc get clusterrolebindings
 oc get policy
 
+Que puede hacer un rol
+oc describe clusterroles basic-user
 
 # SCC / Security Context Constraints (kubernetes)
 https://docs.openshift.com/enterprise/3.0/admin_guide/manage_scc.html
