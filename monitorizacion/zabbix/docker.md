@@ -8,7 +8,7 @@ docker run --name some-zabbix-server --link some-zabbix-agent:zabbix-agent -d za
   passive
 docker run --name some-zabbix-agent --link some-zabbix-server:zabbix-server -d zabbix/zabbix-agent:latest
   active
-docker run --name some-zabbix-agent --link some-zabbix-server:zabbix-server --privileged -d zabbix/zabbix-agent:latest
+docker run --name some-zabbix-agent --link zabbix-server-pgsql:zabbix-server --privileged -d zabbix/zabbix-agent:latest
   privileged
 
 
