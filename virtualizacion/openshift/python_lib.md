@@ -21,6 +21,9 @@ client.Configuration().api_key={"authorization":"Bearer XXX"}
 api = client.OapiApi()
 api.list_project()
 
+Obtener los projectos 
+kubernetes_namespace = openshift.list_project().items[0].metadata.name
+
 Ejemplo kubernetes:
 from kubernetes import client, config
 client.Configuration().host="https://openshift.inet"
@@ -58,6 +61,16 @@ Problemas escuchando eventos? Se termina abruptamente el watch?
 https://github.com/kubernetes-client/python-base/pull/36
 https://github.com/kubernetes-incubator/client-python/issues/124
 
+
+Obtener confimaps de un namespace filtrando por un label:
+kube.list_namespaced_config_map(label_selector="app=cycops-agent-openshift", namespace="nombre")
+
+Patch de un ConfigMap:
+kube.patch_namespaced_config_map("cyclops-agent-config-map","alt390", {"data":{"python":"cmd=/usr/lib64/nagios/plugins/check_dummy 2 CRITICAL"}})
+
+
+## Debug
+kube.api_client.config.debug = True
 
 
 # Cliente kube

@@ -11,7 +11,7 @@
 
 """Resumen de que hace la clase
 
-Descripción larga
+Descripc dión larga
 """
 
 __author__ = 'adrianlzt'
@@ -30,20 +30,20 @@ class Model:
 
     def __init__(self, name):
         """Descripción corta.
-  
+
         Descripcion larga
-  
-        :param
-        :returns:
+
+        :param name: descripcion del parametro
+        :return: que se devuelve
         """
-  
+
         self.name = name
 
     def save(self, force_update=False, force_insert=False):
         """Descripción corta.
-  
+
         Descripcion larga
-  
+
         :param
         :returns:
         """
