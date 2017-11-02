@@ -161,3 +161,11 @@ proxy = urllib2.ProxyHandler({'http': '127.0.0.1', 'https': '127.0.0.1:8080'})
 opener = urllib2.build_opener(proxy)
 urllib2.install_opener(opener)
 urllib2.urlopen('http://www.google.com')
+
+
+# Error TLS/SSL
+Para quitar el mensaje de error:
+/usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
+
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)

@@ -8,7 +8,9 @@ Creamos un esquema que los datos deben cumplir.
 
 # Validacion / comprobacion del codigo. Buen estilo
 Herramientas para comprobar que el código es correcto
-flake8
+flake8  # nos chequea tambien fallos del codigo, tipo variables no definidas, imports no usados, etc
+flake8 --ignore=E501
+  ignorar lineas largas
 pylint
 pydocstyle
 
