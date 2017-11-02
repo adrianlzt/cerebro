@@ -16,6 +16,10 @@ from datetime import datetime
 import time
 
 def timing_clk(function):
+    """
+    Esto que mide?
+    Tiempo consumido por el proceso?
+    """
     @wraps(function)
     def wrapper(*args,**kwargs):
         time1 = time.clock()

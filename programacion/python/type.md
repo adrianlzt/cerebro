@@ -6,6 +6,12 @@ atributos, metodos, etc de una variable:
 dir(nombre)
 
 
+Comprobar si una variable esta definida:
+if 'myVar' in locals():
+  # myVar exists.
+if 'myVar' in globals():
+  # myVar exists.
+
 
 >>> isinstance([1,2],list)
 True
