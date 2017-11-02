@@ -35,3 +35,13 @@ https://github.com/vulogov/zas_agent/blob/master/doc/zas-agent-0.1.1.pdf
 ZAS: zabbix agent simulator
 Software que simular ser un agente para poder realizar test sobre la infraestructura
 
+
+
+
+# https://www.zabbix.com/files/zabconf2017/fgiordano_pantonacci-zabbix_in_intesa_sanpaolo_bank.pdf
+Server+Frontend, 8vcpu, 20GB
+DB, mysql, 8vcpu, 16GB
+7000 hosts
+390000 items
+170000 triggers
+5000 NVPS

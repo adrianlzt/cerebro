@@ -25,3 +25,6 @@ ZBXNEXT-936, parece que antes solo podian ejecutarse comandos
 # 4.0 LTS
 https://support.zabbix.com/secure/ReleaseNote.jspa?projectId=10144&version=14114
 tickets puestos para solucionarse en al version 4
+
+Root cause analysis
+Relationship between problems Complex event processing (de-duplication, filtering, enrichment)
