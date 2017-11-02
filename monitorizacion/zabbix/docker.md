@@ -13,9 +13,14 @@ docker run --name some-zabbix-agent --link some-zabbix-server:zabbix-server --pr
 
 
 # Server
-docker run --name some-zabbix-server-pgsql -e DB_SERVER_HOST="some-postgres-server" -e POSTGRES_USER="some-user" -e POSTGRES_PASSWORD="some-password" -d zabbix/zabbix-server-pgsql:tag
+docker run --name zabbix-postgres -e POSTGRES_PASSWORD=postgres -d postgres
+  postgres bbdd server
+docker run --name zabbix-server-pgsql --link zabbix-postgres:postgres -e DB_SERVER_HOST="postgres" -e POSTGRES_USER="postgres" -e POSTGRES_PASSWORD="postgres" -d zabbix/zabbix-server-pgsql:ubuntu-latest
+  zabbix backend server
+  creará la database zabbix y el schema en el arranque al no detectar ninguna database "zabbix"
 
 ## Web
-docker run --name some-zabbix-web-nginx-pgsql --link some-zabbix-server:zabbix-server -e DB_SERVER_HOST="some-postgres-server" -e POSTGRES_USER="some-user" -e POSTGRES_PASSWORD="some-password" -e ZBX_SERVER_HOST="some-zabbix-server" -e PHP_TZ="some-timezone" -d zabbix/zabbix-web-nginx-pgsql:tag
-
-docker run --name some-zabbix-web-nginx-pgsql --link some-postgres-server:postgres -e DB_SERVER_HOST="some-postgres-server" -e POSTGRES_USER="some-user" -e POSTGRES_PASSWORD="some-password" -e ZBX_SERVER_HOST="some-zabbix-server" -e PHP_TZ="some-timezone" -d zabbix/zabbix-web-nginx-pgsql:tag
+docker run --name zabbix-web-nginx-pgsql --link zabbix-postgres:postgres --link zabbix-server-pgsql:zabbix-server -e DB_SERVER_HOST="postgres" -e POSTGRES_USER="postgres" -e POSTGRES_PASSWORD="postgres" -e ZBX_SERVER_HOST="zabbix-server" -e PHP_TZ="Europe/Madrid" -d -P zabbix/zabbix-web-nginx-pgsql:ubuntu-latest
+  mirar con "docker ps" el puerto asignado a la interfaz web
+  user: Admin
+  pass: zabbix
