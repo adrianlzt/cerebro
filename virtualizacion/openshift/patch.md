@@ -9,3 +9,6 @@ oc patch TIPO OBJECTO -p '{PARCHE}'
 
 Agregar un elemento a un ConfigMap
 oc patch cm cyclops-agent-config-map -p '{"data":{"otro":"cmd=/usr/lib64/nagios/plugins/check_dummy 1 WARNING"}}'
+
+Borrar un elemento:
+oc patch cm cyclops-agent-config-map -p '{"data":{"otro":None}}'

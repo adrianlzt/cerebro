@@ -51,6 +51,8 @@ Escuchar eventos de un namespace a partir de un determinado momento:
 for event in w.stream(v1.list_namespaced_event, namespace="alt390", _request_timeout=60, resource_version=37390660):
     print("Event: %s %s" % (event['type'], event['object'].metadata.name))
 
+type puede ser: ADDED, MODIFIED, DELETED, or ERROR https://github.com/kubernetes/kubernetes/blob/v1.9.0-alpha.2/pkg/watch/json/types.go#L35
+
 resource_version se puede sacar de event.get("object").metadata.resource_version
 
 watch es un objeto generico que escucha lo que le pasemos.

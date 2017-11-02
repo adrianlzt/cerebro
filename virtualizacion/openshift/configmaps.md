@@ -18,6 +18,8 @@ oc get cm
 Ver contenido:
 oc get cm nombre-config-map -o yaml
 
+Para modificar, ver patch.md
+
 
 
 # Secrets
