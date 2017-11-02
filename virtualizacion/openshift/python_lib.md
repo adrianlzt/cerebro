@@ -21,7 +21,7 @@ client.Configuration().api_key={"authorization":"Bearer XXX"}
 api = client.OapiApi()
 api.list_project()
 
-Obtener los projectos 
+Obtener los projectos
 kubernetes_namespace = openshift.list_project().items[0].metadata.name
 
 Ejemplo kubernetes:
@@ -40,6 +40,7 @@ client.Configuration().verify_ssl=False
 client.Configuration().api_key={"authorization":"Bearer XXX"}
 v1 = client.CoreV1Api()
 w = watch.Watch()
+# Si ponemos _request_timeout, tras esos segundos sin mensaje saldra con una excepcion urllib3.exceptions.ReadTimeoutError
 for event in w.stream(v1.list_namespace, _request_timeout=60):
     print("Event: %s %s" % (event['type'], event['object'].metadata.name))
 
@@ -64,12 +65,23 @@ https://github.com/kubernetes-client/python-base/pull/36
 https://github.com/kubernetes-incubator/client-python/issues/124
 
 
+## Filtros
 Obtener confimaps de un namespace filtrando por un label:
 kube.list_namespaced_config_map(label_selector="app=cycops-agent-openshift", namespace="nombre")
 
+
+## Patch
 Patch de un ConfigMap:
 kube.patch_namespaced_config_map("cyclops-agent-config-map","alt390", {"data":{"python":"cmd=/usr/lib64/nagios/plugins/check_dummy 2 CRITICAL"}})
 
+
+## Exec
+https://github.com/kubernetes-incubator/client-python/blob/7e4b80903677b791ea96af0c78fcc07e06038ac8/examples/exec.py
+Hace falta version 4.0 al menos: https://github.com/kubernetes-incubator/client-python/releases
+Ejecutar comandos (exec), por debajo hace uso de websockets:
+client = WSClient(configuration, get_websocket_url(url), headers)
+url='https://openshift.inet:443/api/v1/namespaces/alt390/pods/dynatrace-2-1p2ch/exec&command=hostname'
+headers={'Content-Type': 'application/json', 'authorization': 'Bearer xxx', 'Accept': '*/*', 'User-Agent': 'Swagger-Codegen/1.0.0-snapshot/python'}
 
 ## Debug
 kube.api_client.config.debug = True
