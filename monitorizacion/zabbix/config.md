@@ -4,7 +4,7 @@ Los grupos tienen permisos: read/rw/deny/none sobre host groups
 Cada host que creamos pertenece a uno o varios host groups.
 Los hosts tienen items (alarmas).
 Un conjunto de items forma una application.
-Un template contiene un número de application y/o items.
+Un template contiene un número de application y/o items (también puede tener triggers, maps, etc).
 A un host podemos aplicarle uno o varios templates.
 
 Notificaciones:
@@ -36,7 +36,7 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/item/key
 Los items tienen una key para identificarse:
 vfs.fs.size[/opt]
 
-Lo que hay entre corchetes es uno, o varios, parámetros.
+Lo que hay entre corchetes es uno, o varios, parámetros. Cada item define que se puede poner en cada parámetro.
 
 Dejar ciertos parámetros con su valor por defecto:
 icmpping[,,200,,500]
@@ -59,5 +59,4 @@ Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
   - forecast
   - etc
 
-Podemos usar booleanos:
-{Escalada:web.test.error[Beta 8a].last()}=1 or {Escalada:web.test.fail[8anu Tiempo].last()}=1
+Mirar expresiones en triggers_expressions.md

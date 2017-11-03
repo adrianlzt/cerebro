@@ -7,7 +7,17 @@ User macros? https://www.zabbix.com/forum/showthread.php?t=48985
 Cuando hay un problema, ver rápidamente porqué ha saltado. Valor actual vs trigger. O un acceso más directo al trigger.
 
 
+
 # Actuar sobre varias keys simultaneamente
 {Escalada:web.test.fail[].last()}=1
 
-Como se podria hacer algo tipo
+Que si cualquiera falla me avise.
+
+O por ejemplo, que si cualquier fichero se modifica (cksum) me avise.
+
+Script de autodiscover?
+
+
+
+# Notificaciones
+Que cuando sale el load, me envie el estado de cada una de las CPUs en el mensaje.

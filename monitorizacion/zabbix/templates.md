@@ -1,5 +1,11 @@
-Los templates son conjuntos de aplicaciones, items, graphs, etc.
+https://www.zabbix.com/documentation/3.4/manual/quickstart/template
+https://www.zabbix.com/documentation/3.4/manual/config/templates
+
+Los templates son conjuntos de aplicaciones, items, triggers, graphs, etc.
 Podemos obtener nuevos en share.zabbix.com
+
+Las templates se asocian en grupos, que suelen ser como directorios:
+Eg.: Templates/Applications
 
 
 

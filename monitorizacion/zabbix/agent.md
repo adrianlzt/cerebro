@@ -27,6 +27,12 @@ Server=
   parametro para decir que servidores de zabbix nos pueden solicitar métricas
 
 
+# Items
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_agent
+Documentación de que es cada item y que parámetros se pueden pasar
+
+
+
 # Forzar chequeo inmediato
 No se puede por ahora (Nov 2017)
 https://support.zabbix.com/browse/ZBXNEXT-473
