@@ -36,12 +36,24 @@ Documentación de que es cada item y que parámetros se pueden pasar
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_agent
 system.run[command,<mode>]
 Luego podemos usar un preprocesador para obtener valores del check
+Hace fork para ejecutar, cuidado con la performance
 
+# UserParameter
 Tambien podemos definir un UserParameter en cada agente.
 Este podremos configurarlo desde la interfaz web y ejecutará el script que hayamos configurado en la config del agete.
+Hace fork para ejecutar, cuidado con la performance
+
+Ejemplo:
+UserParameter=zabbix-nagios-wrapper[*],<Path-to>/zabbix-nagios-wrapper "$1" "$2" "$3" "$4"
 
 
 # Forzar chequeo inmediato
 No se puede por ahora (Nov 2017)
 https://support.zabbix.com/browse/ZBXNEXT-473
 https://support.zabbix.com/browse/ZBXNEXT-810
+
+
+# Extender el agente / loadable modules
+https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules
+Usar go para crear modulos: https://github.com/cavaliercoder/g2z
+Los modulos no pueden acceder a la config del agente. Tendrán que usar un fichero externo.

@@ -28,11 +28,58 @@ Por ejemplo, podemos recibir un json pero solo almacenar un valor de ese json
 https://www.zabbix.com/documentation/3.4/manual/config/items/item/custom_intervals
 
 
+# Value mapping
+https://www.zabbix.com/documentation/3.4/manual/config/items/mapping
+Mapear ciertos valores númericos a (generalmente) cadenas de texto
 
 
 # Types
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes
 
+agent.md
+snmp.md
+IPMI
+vmware.md
+logfiles.md
+telnet
+jmx, java
+odbc, ejecutar queries SQL
+
 ## Simple checks
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/simple_checks
 Checks de conectividad (ping, tcp, udp) lanzados desde el server, o proxies.
 Podemos tener si esta up/down, tiempos de respuesta, paquetes perdidos.
+
+## Calculated items
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/calculated
+Generar items virtuales a partir de cálculos de otros valores
+
+## Internal checks
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/internal
+Información del funcionamiento interno de zabbix
+
+## SSH checks
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/ssh_checks
+Ejecutar comandos ssh en hosts remotos
+Si queremos usar una clave ssh la deberemos configurar en el fichero de config del zabbix server
+
+## External checks
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/external
+Scripts externos ejecutados por el server o el proxy, almacenados en ExternalScripts
+Pueden impactar en la performance
+
+## Aggregate
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/aggregate
+Hacer un cálculo de avg/count/last/max/min/sum sobre un item que está en varios servers, seleccionados con un array o un hostgroup
+
+## Trapper
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/trapper
+Definidos para ser usados con un zabbix_sender desde fuera
+Podría, por ejemplo, ser usado desde una app para enviar sus métricas directamente (aunque no creo que sea muy buena idea)
+
+## Dependent items
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/dependent_items
+Enlazar items para que se ejecuten al mismo tiempo.
+Útil si ciertas métricas necesitan recolectarse en el mismo momento.
+Crearemos un item, y luego otra serie de items que marcarán ese primer item como "Master"
+También podemos crear items dependientes pulsando sobre el "Wizard" de un item.

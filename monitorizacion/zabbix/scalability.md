@@ -1,6 +1,12 @@
 https://www.zabbix.com/documentation/4.0/manual/installation/requirements
 Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
 
+# Cache
+https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
+Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
+
+
+
 
 http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/
 https://kloczek.wordpress.com/2016/05/05/punching-2k-selects-barrier-on-zabbix-mysql-db-backend/
