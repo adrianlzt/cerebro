@@ -32,6 +32,14 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_ag
 Documentación de que es cada item y que parámetros se pueden pasar
 
 
+# Comandos externos
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_agent
+system.run[command,<mode>]
+Luego podemos usar un preprocesador para obtener valores del check
+
+Tambien podemos definir un UserParameter en cada agente.
+Este podremos configurarlo desde la interfaz web y ejecutará el script que hayamos configurado en la config del agete.
+
 
 # Forzar chequeo inmediato
 No se puede por ahora (Nov 2017)

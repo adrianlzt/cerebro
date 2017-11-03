@@ -1,3 +1,8 @@
+https://www.zabbix.com/documentation/3.4/manual/config/items/history_and_trends
+History: almacén de todas las métricas recuperadas
+Trends: por cada hora se agrupan los valores del history con: min, max, avg y count
+
+
 # Exportar métricas a otras DBs
 https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules#providing_history_export_callbacks
 https://www.zabbix.com/forum/showpost.php?p=197599&postcount=7
