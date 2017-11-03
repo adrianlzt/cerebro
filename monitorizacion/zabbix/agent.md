@@ -14,6 +14,14 @@ Active checks require more complex processing. The agent must first retrieve a l
 Passive Agent <--- Server
 Active: Agent ---> Server
 
+
+# Install
+Arch: pacman -Ss zabbix-agent
+
 # Config
 https://www.zabbix.com/documentation/3.4/manual/appendix/config/zabbix_agentd
 
+/etc/zabbix/zabbix_agentd.conf
+
+Server=
+  parametro para decir que servidores de zabbix nos pueden solicitar métricas

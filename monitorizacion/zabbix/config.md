@@ -7,6 +7,13 @@ Un conjunto de items forma una application.
 Un template contiene un número de application y/o items.
 A un host podemos aplicarle uno o varios templates.
 
+
+# Users
+https://www.zabbix.com/documentation/3.4/manual/quickstart/login
+
+Creando un usuario, con notificaciones, permissions, etc
+
+
 # Items
 Cuando creamos un item le asignaremos un nombre, un tipo (un valor de un agente zabbix activo o pasivo, un script, un comando via ssh, snmp, snmp trap, etc)
 Para algunos de estos items tendremos que definir la key, los parámetros especificando que queremos obtener. Por ejemplo, que tipo de dato vamos a obtener del agente o que lanzar via ssh
@@ -18,8 +25,19 @@ Asignaremos el item a una application (no obligatorio)
 Podemos usar los resultados de este item para rellenar el inventario.
 Y por último podemos asignarle una descripción larga.
 
-# Users
-https://www.zabbix.com/documentation/3.4/manual/quickstart/login
 
-Creando un usuario, con notificaciones, permissions, etc
+# Triggers
+https://www.zabbix.com/documentation/3.4/manual/quickstart/trigger
+Generar problemas si un item hace match sobre una regla que definamos.
+Tiene 5 niveles: not classified, information, warning, average, high, disaster
+La vuelta al estado OK puede definirse con otra expresión distinta.
+
+https://www.zabbix.com/documentation/3.4/manual/config/triggers/expression
+Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
+  - ultimo valor > que un valor
+  - media de los últimos x minutos valor > que N
+  - diferencia entre último valor y el anterior
+  - buscar strings
+  - forecast
+  - etc
 
