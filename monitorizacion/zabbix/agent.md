@@ -25,3 +25,9 @@ https://www.zabbix.com/documentation/3.4/manual/appendix/config/zabbix_agentd
 
 Server=
   parametro para decir que servidores de zabbix nos pueden solicitar métricas
+
+
+# Forzar chequeo inmediato
+No se puede por ahora (Nov 2017)
+https://support.zabbix.com/browse/ZBXNEXT-473
+https://support.zabbix.com/browse/ZBXNEXT-810
