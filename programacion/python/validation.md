@@ -18,6 +18,9 @@ pip install flake8 pylint pydocstyle
 
 Ejemplo de como usarlos: https://home-assistant.io/developers/development_testing/
 
+El que usan en openstack (flake8 más instrucciones)
+https://pypi.python.org/pypi/hacking
+
 
 py3status usa
 pytest-flake8

@@ -163,6 +163,12 @@ urllib2.install_opener(opener)
 urllib2.urlopen('http://www.google.com')
 
 
+# Certificados TLS/SSL
+Parece que hace uso del package certifi para comprobar que certificados acepta.
+Para saber donde estan los certs de certifi: python -c "import certifi; print(certifi.where())"
+
+En arch comprueba los certs en /etc/ssl/cert.pem
+
 # Error TLS/SSL
 Para quitar el mensaje de error:
 /usr/lib/python2.7/site-packages/requests/packages/urllib3/connectionpool.py:791: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.org/en/latest/security.html
