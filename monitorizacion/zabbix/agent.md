@@ -4,8 +4,8 @@ Zabbix agent is deployed on a monitoring target to actively monitor local resour
 The agent gathers operational information locally and reports data to Zabbix server for further processing.
 Corre como no root
 
-sender.md para utilidad standalone para enviar resultados
-get.md para testear agentes
+sender.md para utilidad standalone para enviar resultados (esta en los agentes)
+get.md para testear agentes (esta en el server)
 
 # Active / Passive
 In a passive check the agent responds to a data request. Zabbix server (or proxy) asks for data, for example, CPU load, and Zabbix agent sends back the result.

@@ -1,8 +1,14 @@
-Chatbot en python
+# Jabber
+Chatbot en python para jabber
 https://github.com/erigones/Ludolph
+Acepta comandos
+
+# Hubot
+https://github.com/RafPe/hubot-zabbix-scripts
+Hay algunos repos más, parece que abandonados
 
 # Telegram
-bot para telegram
+bot para telegram, solo notificaciones
 https://github.com/ableev/Zabbix-in-Telegram
 
 https://web.telegram.org/#/im?p=@BotFather
@@ -27,7 +33,8 @@ Crear un nuevo Action. Dentro de este action, en Operations:
   Send to User Groups: elegir a quien aplica este action
   Send only to: Telegram
 
-Testear:
+
+# Testear
 python zbxtg.py "adrianlzt" "subject" "zbxtg;graphs
 zbxtg;itemid:28265
 zbxtg;title:MIHOST - MITRIGGER

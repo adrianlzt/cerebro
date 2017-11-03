@@ -30,6 +30,18 @@ Asignaremos el item a una application (no obligatorio)
 Podemos usar los resultados de este item para rellenar el inventario.
 Y por último podemos asignarle una descripción larga.
 
+## Keys
+https://www.zabbix.com/documentation/3.4/manual/config/items/item/key
+
+Los items tienen una key para identificarse:
+vfs.fs.size[/opt]
+
+Lo que hay entre corchetes es uno, o varios, parámetros.
+
+Dejar ciertos parámetros con su valor por defecto:
+icmpping[,,200,,500]
+
+
 
 # Triggers
 https://www.zabbix.com/documentation/3.4/manual/quickstart/trigger
@@ -38,6 +50,7 @@ Tiene 5 niveles: not classified, information, warning, average, high, disaster
 La vuelta al estado OK puede definirse con otra expresión distinta.
 
 https://www.zabbix.com/documentation/3.4/manual/config/triggers/expression
+https://www.zabbix.com/documentation/3.4/manual/appendix/triggers/functions
 Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
   - ultimo valor > que un valor
   - media de los últimos x minutos valor > que N
@@ -46,3 +59,5 @@ Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
   - forecast
   - etc
 
+Podemos usar booleanos:
+{Escalada:web.test.error[Beta 8a].last()}=1 or {Escalada:web.test.fail[8anu Tiempo].last()}=1
