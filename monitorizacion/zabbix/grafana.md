@@ -27,3 +27,8 @@ Configurar data source zabbix:
   Password: zabbix
   Direct DB Connection: enable
   Alerting: enable, add thresholds
+
+
+# Triggers
+Según leo en la doc las gráficas deberían automáticamente poner el threshold si tenemos asociado un trigger al item.
+Pero no veo que funcione.
