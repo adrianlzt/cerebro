@@ -7,6 +7,11 @@ Un conjunto de items forma una application.
 Un template contiene un número de application y/o items.
 A un host podemos aplicarle uno o varios templates.
 
+Notificaciones:
+Un item hace saltar un trigger
+Un action matchea ese trigger y envia un "Media Type" a un grupo/usuario. El action define que se envia en el mensaje, haciendo uso de macros para poner el nombre del host, fecha, etc.
+El Media Type será un email, sms, etc
+
 
 # Users
 https://www.zabbix.com/documentation/3.4/manual/quickstart/login
