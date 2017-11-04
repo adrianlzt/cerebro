@@ -16,6 +16,14 @@ Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
   - etc
 
 
+CUIDADO!
+Puede que esperemos un resultado determinado y comparemos contra eso, pero de un error y tengamos otra cosa.
+Por ejemplo, en monit web podríamos poner un trigger como:
+	{Escalada:web.test.error[NOMBRE].last()}=1
+Pero si salta el timeout:
+  Cannot evaluate expression: expected numeric token at "Timeout was reached: Operation timed out after 15001 milliseconds with 0 bytes received)=1".
+Fallará la expresión y seguirá el error.
+
 # Dependencias
 Podemos hacer que los triggers tengan como dependencia otro trigger.
 Asi podemos evitar que si cae un router que conecta con varios nodos, salten todas las alarmas.
