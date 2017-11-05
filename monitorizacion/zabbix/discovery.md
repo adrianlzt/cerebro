@@ -45,6 +45,7 @@ Podemos crear prototipos de:
  - hosts
 
 En los prototipos usaremos las macros pasadas por el script externo. {#EJEMPLO}
+Creo que es obligatorio usar en el nombre alguna de las variables, para que no se creen items duplicados.
 
 Si en la configuración el host vamos a sus items, veremos los autodescubiertos resaltados en rojo.
 
