@@ -45,3 +45,9 @@ Scripts usados por openshift.com para monitorizar su plataforma
 https://blog.openshift.com/build-monitoring-solution-look-openshift-tools/
 https://github.com/openshift/openshift-tools
 https://github.com/openshift/openshift_zabbix
+
+
+https://github.com/wkulhanek/openshift-zabbix
+Despliegue con ansible de agentes zabbix sobre los nodos para realizar una monitorización de la plataforma.
+A parte de lo típico que puede monitorizar, mete unos chequeos custom (UserParameter) para obtener el número de containers, corriendo, info sobre los volumenes LVM.
+También un pequeño script que obtiene métricas de hawkular sobre los nodos de openshift.
