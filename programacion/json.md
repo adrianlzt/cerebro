@@ -8,8 +8,14 @@ http://json-diff.com/
 
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.
 
+# JQ
 Parser: apt-get intall jq
 cat file.json | jq -r '.[0].Network.IP' <- Coge del primer elemento del array, el hash Network, y dentro el valor de IP
+
+# JSON greppable
+go get -u github.com/tomnomnom/gron
+cat fichero.json | gron
+
 
 Convertir YAML a JSON:
 ruby -r json -r yaml -e "yaml = YAML.load(File.read('./stack.yml')); print yaml.to_json" > stack.json
