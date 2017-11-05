@@ -30,5 +30,4 @@ Configurar data source zabbix:
 
 
 # Triggers
-Según leo en la doc las gráficas deberían automáticamente poner el threshold si tenemos asociado un trigger al item.
-Pero no veo que funcione.
+Las gráficas ponen automáticamente el threshold si tenemos asociado un trigger al item.

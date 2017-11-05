@@ -1,6 +1,6 @@
 https://www.zabbix.com/documentation/3.4/manual/config/items/history_and_trends
 History: almacén de todas las métricas recuperadas
-Trends: por cada hora se agrupan los valores del history con: min, max, avg y count
+Trends: por cada hora se agrupan los valores del history con: min, max, avg y count (solo para datos tipo float o int)
 
 
 # Exportar métricas a otras DBs

@@ -53,7 +53,17 @@ https://support.zabbix.com/browse/ZBXNEXT-473
 https://support.zabbix.com/browse/ZBXNEXT-810
 
 
+# Auto-registration
+https://www.zabbix.com/documentation/3.4/manual/discovery/auto_registration
+It is possible to allow active Zabbix agent auto-registration, after which the server can start monitoring them. This way new hosts can be added for monitoring without configuring them manually on the server.
+El agente puede funcionar como activo o pasivo
+
+
+
 # Extender el agente / loadable modules
 https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules
 Usar go para crear modulos: https://github.com/cavaliercoder/g2z
 Los modulos no pueden acceder a la config del agente. Tendrán que usar un fichero externo.
+
+
+
