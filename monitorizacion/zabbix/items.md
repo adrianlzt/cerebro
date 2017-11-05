@@ -68,19 +68,6 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/external
 Scripts externos ejecutados por el server o el proxy, almacenados en ExternalScripts (grep ExternalScripts /etc/zabbix/zabbix_server.conf), por defecto /usr/lib/zabbix/externalscripts
 Pueden impactar en la performance
 Creamos un script, por ejemplo: /usr/lib/zabbix/externalscripts/openshift.sh
-Este script debe devolver un JSON tipo:
-{
-    "data": [
-        {
-            "{#IP}": "10.0.0.1",
-            "{#SERVICE}": "nombre1"
-        },
-        {
-            "{#IP}": "10.0.0.2",
-            "{#SERVICE}": "nombre2"
-        }
-    ]
-}
 
 Configuramos un item que sea del tipo "External check" y la key la ponemos:
 openshift.sh[]
@@ -89,7 +76,8 @@ Si queremos pasarle parametros al script:
 openshift.sh["param1","param2"]
 
 Type of information: Text
-
+Update interval: ?
+History storage period: ?
 
 
 

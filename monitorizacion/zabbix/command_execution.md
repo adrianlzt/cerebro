@@ -4,3 +4,5 @@ Formas de ejecutar comandos externos en zabbix:
 external checks (mirar items), user parameters, system.run items, custom alert scripts, remote commands and user scripts
 
 Todos ellos siguen un mismo patrón de ejecucción que se describe en la url.
+
+Se obtiene tanto el stdout como el stderr.
