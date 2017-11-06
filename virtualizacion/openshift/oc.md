@@ -314,3 +314,13 @@ replace si existe el recurso, create si no existe
 Sobre un objeto queremos realizar un cambio.
 Le pasamos un json con el cambio que queremos hacer.
 oc patch TIPO OBJECTO -p '{PARCHE}'
+
+
+# raw
+Lanzar peticiones contra un api especificada a mano:
+oc get --raw /metrics
+
+
+# metrics
+Consultar las métricas usando oc
+oc get --raw /metrics

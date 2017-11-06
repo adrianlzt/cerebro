@@ -8,6 +8,10 @@ Una versión gratuita es elastalert de Yelp
 Comparación: https://www.elastic.co/guide/en/x-pack/current/watcher-getting-started.html
 
 
+# bosun
+Permite lanzar queries contra ES y generar alarmas (email, o http request)
+Mirar monitorizacion/bosun.md
+
 
 # elastalert
 Escrito en python2
@@ -98,7 +102,7 @@ filter:
 
 
 
-# Enhancements
+## Enhancements
 https://elastalert.readthedocs.io/en/latest/recipes/adding_enhancements.html#enhancements
 
 Modulos en python que recibiran las trazas que han hecho match en alguna regla para tratarlas antes de enviarlas a los alerters.
@@ -106,7 +110,7 @@ Modulos en python que recibiran las trazas que han hecho match en alguna regla p
 
 
 
-# Alerts
+## Alerts
 https://elastalert.readthedocs.io/en/latest/ruletypes.html#alerts
 
 Como avisaremos del problema.
