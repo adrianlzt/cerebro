@@ -1,3 +1,5 @@
+https://github.com/openshift/origin/tree/master/examples
+https://github.com/openshift/origin/tree/master/examples/quickstarts
 https://docs.openshift.com/container-platform/latest/dev_guide/application_lifecycle/new_app.html#specifying-a-template
 https://docs.openshift.com/container-platform/latest/dev_guide/templates.html
 Es de OpenShift, no de kubernetes (kubernetes tambien tiene el suyo propio, pero con menos cosas disponibles).
