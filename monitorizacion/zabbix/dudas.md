@@ -12,6 +12,11 @@ User macros? https://www.zabbix.com/forum/showthread.php?t=48985
 Cuando hay un problema, ver rápidamente porqué ha saltado. Valor actual vs trigger. O un acceso más directo al trigger.
 
 
+# Monit web, evitar alarmar flapeos
+Si pongo que el ultimo valor sea == 1 encuentro cuando falla, pero ante un fallo puntual me avisa, cosa no deseable.
+Como meter una alarma que no avise ante estos fallos puntuales, pero si me avise si por ejemplo empieza a hacer 0,1,0,1,0,1...
+
+
 
 # Actuar sobre varias keys simultaneamente
 {Escalada:web.test.fail[].last()}=1
