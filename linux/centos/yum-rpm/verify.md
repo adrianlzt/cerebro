@@ -85,3 +85,9 @@ for p in $(rpm -qa); do rpm --setugids --setperms $p; done
   El setperms luego lo arregla para dejarlo a 4111/root:root
 
 Estos comandos pueden dar fallos al intentar arreglar los permisos/usuarios de un fichero que está borrado.
+
+
+# Recuperar ficheros de conf originales
+Si queremos que un fichero de conf sea el del rpm.
+rm /etc/fichero.conf
+yum reinstall pkg

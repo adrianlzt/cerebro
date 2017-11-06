@@ -1,5 +1,7 @@
 mirar stats.md performance.md
 
+Comparación varias soluciones, algunas de pago, Nov'17: http://rancher.com/comparing-10-container-monitoring-solutions-rancher
+
 http://dockerana.com/
 https://blog.codeship.com/monitoring-docker-containers/
 
