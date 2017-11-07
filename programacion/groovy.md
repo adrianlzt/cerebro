@@ -1,4 +1,4 @@
-http://groovy.codehaus.org/
+http://groovy-lang.org/
 http://groovy-lang.org/semantics.html
 
 Groovy...
@@ -15,3 +15,11 @@ compiles straight to Java bytecode so you can use it anywhere you can use Java
 
 
 repl online: https://groovyconsole.appspot.com/
+
+
+# Operador ?
+if ( a?.b ) { .. }
+
+is same as
+
+if ( a != null && a.b ) { .. }

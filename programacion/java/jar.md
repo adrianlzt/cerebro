@@ -1,4 +1,4 @@
-Para extraer un .jar se puede hacer con unzip.
+Para extraer un .jar/.war se puede hacer con unzip.
 Otra forma es con el comando jar: jar xf archivo.jar
 
 Para volver a empaquetar el contenido descomprimido de nuevo en un .jar (estando en el directorio donde hemos descomprimido):
