@@ -33,6 +33,9 @@ Si queremos meter alarmas por log. Crear manualmente los nuevos items como zabbi
 Usar scripts externos para recuperar esa informacion? No parece buena idea, no parece que vaya a escalar bien tanto forkeo de procesos.
 Modulo interno de zabbix? Tal vez sea una opción, pero puede que el desarrollo sea costoso.
 
+https://github.com/monitoringartist/zabbix-docker-monitoring/tree/master/src/modules/zabbix_module_docker
+modulo interno para recolectar métricas de un socket docker
+
 
 
 
