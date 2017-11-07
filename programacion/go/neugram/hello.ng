@@ -1,0 +1,4 @@
+#!/usr/bin/env ng
+
+import "fmt"
+fmt.Printf("Hola\n")
