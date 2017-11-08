@@ -14,6 +14,7 @@ El problema mayoritariamente es que se pueden almacenar strings y no esta claro 
 Parece que no se puede aplicar un CQ a todas las measurements de todas las DBs.
 Se puede usar el splash operator para reducir todas las values de un measurement, pero solo sin todas númericas.
 ¿Que hacer con las de texto?
+https://github.com/influxdata/influxdb/pull/7009
 
 Otras formas:
 https://github.com/influxdata/influxdb/issues/4605
