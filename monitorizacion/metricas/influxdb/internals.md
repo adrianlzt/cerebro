@@ -1,4 +1,5 @@
 https://influxdata.com/blog/how-to-use-the-show-stats-command-and-the-_internal-database-to-monitor-influxdb/
+https://www.influxdata.com/blog/influxdb-internals-101-part-one/
 
 # Databases
 /var/lib/influxdb/data
