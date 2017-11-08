@@ -1,0 +1,9 @@
+#!/usr/bin/env ng
+
+import "os"
+import "fmt"
+
+f := os.Create("hello.txt")
+fmt.Fprintf(f, "Hello, World!\n")
+fmt.Fprintf(f, "Next line.\n")
+f.Close()
