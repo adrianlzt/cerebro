@@ -259,6 +259,9 @@ Obtenemos las conditions del nodo excepto la de "Ready":
 $ oc get node ocpa-01.inet -o 'jsonpath={range .status.conditions[?(@.type!="Ready")]}[{.type},{.status}]{end}'
 [OutOfDisk,False][MemoryPressure,False][DiskPressure,False]
 
+Obtener el nombre de un pod que, que corre en un nodo especifico y filtrando por una label:
+oc get po -l "component=fluentd" -o jsonpath='{range .items[?(@.spec.nodeName=="osh-ma02.inet")]}{.metadata.name}{end}'
+
 
 
 oc get aa/bbbb -o yaml
