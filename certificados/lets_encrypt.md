@@ -38,7 +38,7 @@ Usando el puerto 80 (http-01)
 http://letsencrypt.readthedocs.io/en/latest/install.html?highlight=docker#running-with-docker
 
 mkdir -p /var/tmp/letsencrypt/{etc,var}
-docker run -it --rm -p 443:443 --name certbot -v "/var/tmp/letsencrypt/etc:/etc/letsencrypt" -v "/var/tmp/letsencrypt/var:/var/lib/letsencrypt" quay.io/letsencrypt/letsencrypt:latest certonly
+docker run -it --rm -p 443:443 --name certbot -v "/var/tmp/letsencrypt/etc:/etc/letsencrypt" -v "/var/tmp/letsencrypt/var:/var/lib/letsencrypt" certbot/certbot certonly
 Usar la opcion 1 (Spin up a temporary webserver (standalone))
 
 
