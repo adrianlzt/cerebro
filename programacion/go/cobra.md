@@ -1,3 +1,6 @@
+https://github.com/urfave/cli
+Una más sencilla, con ella sola como única dependencia (cobra trae un montón de dependencias)
+
 https://github.com/spf13/cobra
 
 A Commander for modern Go CLI interactions
