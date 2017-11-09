@@ -6,3 +6,11 @@ Chequeo si la basededatos tiene alguna tabla. Si no, la división por 0 devolver
 psql -c "select 1/(select count(*) from information_schema.tables where table_schema='public' and table_catalog='basededatos');" basededatos
 
 
+
+Mostrar schemas:
+\dn
+select nspname from pg_catalog.pg_namespace;
+
+
+Borrar esquemas:
+DROP SCHEMA nombre;

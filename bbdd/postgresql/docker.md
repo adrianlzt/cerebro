@@ -13,6 +13,8 @@ docker exec -it guacamole-postgres createuser -U postgres -DRSP guacamole_user
 docker exec -it guacamole-postgres psql -U postgres -c "GRANT ALL ON DATABASE aaa TO guacamole_user;"
 
 
+Backup:
+docker run -it --rm --link some-postgres:postgres -v /home/rancher:/dump postgres pg_dump -h postgres -U postgres -v -Fc --no-privileges --no-owner -d postgres -f /dump/database.pgdump
 
 
 Restore:
