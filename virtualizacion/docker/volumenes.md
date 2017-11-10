@@ -63,8 +63,9 @@ En /proc/self/mountinfo podremos verlos todos
 
 
 
-# Persistencia
+# Persistencia en volumenes compartidos
 Podemos usar plugins de storage para docker para tener almacenamiento persistente.
+Si solo tenemos un nodo podemos tener volumenes persistentes locales.
 
 ## REX-Ray
 mirar storage/rex-ray.md

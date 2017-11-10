@@ -136,31 +136,7 @@ docker node inspect <NODE>
 
 
 ## Services
-Es el concepto "container" para cluster.
-Le decimos que service queremos crear un cuantas copias debe haber.
-El se encarga donde levantar los containers que sean necesarios y mantenerlos activos (levantar nuevos si alguno se detiene)
-
-### Arrancar un service
-https://docs.docker.com/engine/swarm/services/
-https://docs.docker.com/engine/reference/commandline/service_create/#usage
-docker service create --name websrv --limit-memory 32MB --publish 8080:80 --mode replicated nginx:alpine
-  este comando lo podremos lanzar desde cualquier manager (no desde los workers)
-
-Opciones:
---constraint node.labels.tipo==xxx   ejecutar un service en unos nodos concretos filtrando por label. Con inspect veremos esto
---limit-memory 32MB
---replicas 1 (por defecto 1 replica)
---mode replicated (este es el por defecto)
---mode global (un container por cada pod)
-Una vez arrancado el servicio no se puede cambiar el "--mode"
-
-Ejemplo de como agregar un volumen. El volumen estará compartido entre todas las instancias.
---mount type=volume,source=my-volume,destination=/path/in/container,volume-label="color=red",volume-label="shape=round" \
-
-Crear volumes distintos para cada instancia del service (https://github.com/moby/moby/issues/30008)
-  --mount type=volume,src="{{.Task.Name}}",dst=/results/ \
-
-Parece que no se puede moficiar el entrypoint https://github.com/moby/moby/issues/24196
+mirar services.md
 
 
 # Load balancer / publishing ports
@@ -183,6 +159,7 @@ Si el servicio se para, automaticamente se arrancará de nuevo.
 Proxy delante del routing mesh
 https://github.com/vfarcic/docker-flow-proxy
 http://proxy.dockerflow.com/
+traefik parece que es el mejor
 
 
 Otras opciones en vez de usar el routing mesh:
@@ -270,6 +247,14 @@ Para tener entornos de dev, int, prod. Montas todas las maquinas creando un unic
 Parece que google datacenter tiene gestion de usuarios y puede hacer que un usuario solo pueda lanzar en una etiqueta.
 
 
+
+
+
+
+
+
+
+ANTIGUO!!
 
 # Instrucciones para montar un docker swarm usando la imagen swarmkit (antiguo)
 

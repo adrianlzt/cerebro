@@ -83,6 +83,12 @@ Se crea un volumen en el thinpool de docker.
 Se usa para crear un volumen compartido entre containers de un pod.
 Solo se puede limitar la quota si usamos XFS
 
+Some uses for an emptyDir are:
+scratch space, such as for a disk-based merge sort
+checkpointing a long computation for recovery from crashes
+holding files that a content-manager container fetches while a webserver container serves the data
+
+
 
 # Recycler
 Cuando se libera un volumen se arranca un pod "recycler-for-pvXX" que montará él volumen y borrará el contenido.

@@ -7,6 +7,7 @@ Fichero YAML (usa la v3 del fichero compose) donde definimos nuestra arquitectur
 Tiene algunas limitaciones.
  - No puedes hacer un build de todas las imagenes de un repo
  - Tampoco un pull de esas imagenes
+ - No se pueden hacer volume mounts
 
 Stack es solo para lanzar.
 
