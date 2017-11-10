@@ -19,6 +19,21 @@ oc get pv (solo para admin?)
 
 No aparecen con: oc get all
 
+# Solicitar un PVC
+oc create -f volumen.yaml
+volumen.yaml:
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nombre-recurso
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 25Gi
+  volumeName: nombre-volumen
+
 
 # Modos
 Tabla con que modos soporta cada plugin: https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html#pv-access-modes
@@ -66,6 +81,7 @@ Tipos de volumenes: NFS, rbd, etc (mirar en oc explain pod.spec.volumes)
 # EmptyDir
 Se crea un volumen en el thinpool de docker.
 Se usa para crear un volumen compartido entre containers de un pod.
+Solo se puede limitar la quota si usamos XFS
 
 
 # Recycler
