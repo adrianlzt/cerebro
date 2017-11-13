@@ -20,6 +20,11 @@ No permitir conexiones desde el host 192.168.0.5:
 iptables -A INPUT -s 192.168.0.5 -j DROP
 
 
+Abrir ssh a una ip y cerrar para el resto (primero se pone el drop, que irá pasando a posiciónes mayores, por lo tanto que se procesen despues)
+iptables -I INPUT -p tcp -s 0.0.0.0/0 --dport 22 -j DROP
+iptables -I INPUT -p tcp -s 10.1.1.2 --dport 22 -j ACCEPT
+
+
 
 
 -j DROP

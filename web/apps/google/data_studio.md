@@ -12,3 +12,7 @@ Google Analytics
 Hojas de cálculo de google
 MySQL
 Youtube Analytics
+
+
+Puedes hacer paneles con gráficas, mapas, etc.
+Y luego puedes enviarte reportes cada x tiempo.
