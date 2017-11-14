@@ -57,6 +57,9 @@ s := string(byteArray[:n])
 string -> int
 strconv.ParseInt("987", 10, 32)
 
+string -> uint
+strconv.ParseUint("987", 10, 32)
+
 int -> string
 t := strconv.Itoa(123)
 
