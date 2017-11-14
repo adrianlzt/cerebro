@@ -20,6 +20,13 @@ https://www.cloudbees.com/blog/taming-jenkins-json-api-depth-and-tree
 http://jenkins.inet/job/icinga/api/json/?pretty=true&depth=7&tree=jobs[name,jobs[name,jobs[name]]]
 
 
+# XML
+Ejemplo usando la api de XML filtrando por un valor
+https://jenkins.inet/job/dsmctools/job/icinga/job/dsmctools/job/default/job/check_cpu/job/check_pro/api/xml?depth=1&xpath=.//build[action/parameter[name='SERVER'][value='MS04P']]&wrapper=builds&pretty=true
+
+# JSON
+https://www.cloudbees.com/blog/taming-jenkins-json-api-depth-and-tree
+
 
 # Python
 https://python-jenkins.readthedocs.io/en/latest/
