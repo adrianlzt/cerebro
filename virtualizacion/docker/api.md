@@ -2,6 +2,8 @@ https://docs.docker.com/engine/api/v1.26/
 https://docs.docker.com/engine/api/
 Podemos atacar la api con curl --unix-socket
 
+Si queremos ver que hace la cli por debajo mirar debug.md
+
 curl --unix-socket /var/run/docker.sock http:/v1.24/containers/json
 Equivalente a "docker ps"
 

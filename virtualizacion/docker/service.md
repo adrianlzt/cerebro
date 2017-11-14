@@ -23,3 +23,11 @@ Crear volumes distintos para cada instancia del service (https://github.com/moby
   --mount type=volume,src="{{.Task.Name}}",dst=/results/ \
 
 Parece que no se puede moficiar el entrypoint https://github.com/moby/moby/issues/24196
+
+
+Forzar a redesplegar un service (por ejemplo para bajarse la ultima imagen):
+docker service update --force nombre
+
+
+# API
+https://docs.docker.com/engine/api/v1.24/#39-services
