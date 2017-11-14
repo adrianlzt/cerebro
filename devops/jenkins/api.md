@@ -26,6 +26,7 @@ https://jenkins.inet/job/dsmctools/job/icinga/job/dsmctools/job/default/job/chec
 
 # JSON
 https://www.cloudbees.com/blog/taming-jenkins-json-api-depth-and-tree
+https://gist.github.com/justlaputa/5634984
 
 
 # Python

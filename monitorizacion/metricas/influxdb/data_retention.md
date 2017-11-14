@@ -80,6 +80,9 @@ ALTER RETENTION POLICY <retention_policy_name> ON <database_name> DURATION <dura
 Ejemplo (6 meses):
 ALTER RETENTION POLICY default ON midb DURATION 26w
 
+Modificar la duracion de los SHARDs (The minimum allowable SHARD GROUP DURATION is 1h):
+ALTER RETENTION POLICY default on "dev" SHARD DURATION 1h
+
 ## Borrar
 DROP RETENTION POLICY <retention_policy_name> ON <database_name>
   Delete all measurements and data in a specific retention policy
