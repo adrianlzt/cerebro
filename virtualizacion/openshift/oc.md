@@ -300,14 +300,15 @@ oc adm prune xxx
 
 
 # process
-Process template into a list of resources specified in filename or stdin 
+Process template into a list of resources specified in filename or stdin
+oc process -f <filename> | oc create -f -
 
 
 # create
 crear los recursos
 
 # replace
-Replace a resource by filename or stdin 
+Replace a resource by filename or stdin
 
 # apply
 replace si existe el recurso, create si no existe
