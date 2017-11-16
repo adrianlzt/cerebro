@@ -16,3 +16,8 @@ keyup Control_L Tab
 
 Otra opcion
 https://linux.die.net/man/1/wmctrl
+
+
+# Touchpad
+Activar click con el touchpad
+synclient TapButton1=1
