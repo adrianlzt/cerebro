@@ -8,6 +8,8 @@ Nos devuelve todas las varibables que luego podremos usar en los plays como {{ a
 
 También nos devuelve las variables del propio facter
 
+Creo que no devuelve las variables puestas en el inventario (estatico), groups vars o host vars.
+
 Si ejecutamos un playbook y limitamos por tags, si una máquina no tiene ninguna tarea que ejecutar, no se recoletarán sus facts.
 
 No obtener los facts de facter:
