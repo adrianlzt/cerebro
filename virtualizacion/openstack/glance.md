@@ -39,3 +39,9 @@ Prevents an image from being deleted.
 
 --is-public [True|False]
 Makes an image accessible for all the tenants (admin-only by default).
+
+
+
+
+Bajar imagen
+glance image-download ID --progress --file fichero.qcow2
