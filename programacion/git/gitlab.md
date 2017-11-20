@@ -18,3 +18,16 @@ To do it use docker exec:
 
 Tendremos que definir al menos el host para acceder a gitlab y el host ssh
 Si cambiamos el puerto de la web de gitlab, el container ahora escuchará en ese puerto. Tendremos que modificar el -p
+
+
+# TLS
+https://docs.gitlab.com/omnibus/settings/nginx.html#enable-https
+
+/etc/gitlab/gitlab.rb
+external_url 'https://gitlab.example.com:4567'
+
+mkdir -p /etc/gitlab/ssl
+chmod 700 /etc/gitlab/ssl
+cp gitlab.example.com.key gitlab.example.com.crt /etc/gitlab/ssl/
+
+gitlab-ctl reconfigure
