@@ -11,6 +11,9 @@ http://elinux.org/Printk_Times
 Activar la fecha (kernel 2.6)
 echo 1 >/sys/module/printk/parameters/time
 
+dmesg -n 1
+  solo sacar por dmesg los mensajes de mayor prioridad
+
 
 
 

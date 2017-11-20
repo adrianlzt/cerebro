@@ -32,3 +32,7 @@ El contenido de initrd se puede ver, mirar linux/initramfs.md
 # boot dir
 fichero vmlinux*.hmac
 parece que es un checksum del kernel
+
+
+# Kernel boot parameters
+http://redsymbol.net/linux-kernel-boot-parameters/
