@@ -37,3 +37,11 @@ docker run -expose 80 -name server <image> <cmd>
 
 # Client links
 docker run -name client -link server:linked-server <image> <cmd>
+
+
+# Creando a mano un puerto a un container que ya esta corriendo
+https://forums.docker.com/t/how-to-expose-port-on-running-container/3252/14
+
+iptables -t nat -A DOCKER -p tcp --dport 443 -j DNAT --to-destination 172.17.0.2:443
+iptables -t nat -A POSTROUTING -j MASQUERADE -p tcp --source 172.17.0.2 --destination 172.17.0.2 --dport https
+iptables -A DOCKER -j ACCEPT -p tcp --destination 172.17.0.2 --dport https
