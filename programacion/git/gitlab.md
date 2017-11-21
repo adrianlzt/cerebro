@@ -31,3 +31,10 @@ chmod 700 /etc/gitlab/ssl
 cp gitlab.example.com.key gitlab.example.com.crt /etc/gitlab/ssl/
 
 gitlab-ctl reconfigure
+
+
+
+# Email
+https://docs.gitlab.com/omnibus/settings/smtp.html
+
+Por defecto gitlab intentara enviar emails usando sendmail, pero podemos configurar un servidor SMTP de salida.
