@@ -1,1 +1,1 @@
-../hack/ssl.md
+../../priv-adrianRepo/hack/ssl.md
