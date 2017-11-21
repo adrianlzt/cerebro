@@ -1,3 +1,22 @@
+# MX
+Cuando queremos enviar un email a un usuario deberemos resolver su registro dns tipo MX:
+host -t MX server.com
+
+Conectaremos por SMTP a ese servidor y le enviaremos el email.
+En caso de no tener registro MX conectaremos directamente con el servidor que tenga ese nombre.
+
+
+
+# Curl
+https://ec.haxx.se/usingcurl-smtp.html
+
+curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt receiver@example.com --upload-file email.txt
+
+Enviar email con auth usando SSL y con verbose:
+curl smtp://mail.com --mail-from no_reply@origen.com --mail-rcpt destino@gmail.com --upload-file email.txt -v --ssl -k -u USER:PASS
+
+
+# Telnet / nc / plano
 http://www.yuki-onna.co.uk/email/smtp.html
 Enviar un correo usando protocolo de texto plano.
 
