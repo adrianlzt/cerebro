@@ -4,6 +4,8 @@ volumenes.md
 RedHat ofrece un paquete que hace toda la gestión del storage automáticamente:
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/managing_containers/managing_storage_with_docker_formatted_containers
 
+A partir de la 17.06 parece que se puede pasar un block device a docker y el hace toda la conf.
+
 
 
 Por defecto, con el driver de devicemapper, docker crea unos ficheros (generalmente en /var/lib/docker/devicemapper/devicemapper/) que monta como /dev/loop0 y /dev/loop1
