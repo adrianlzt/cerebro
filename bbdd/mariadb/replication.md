@@ -1,6 +1,31 @@
+http://galeracluster.com/documentation-webpages/index.html
+https://severalnines.com/blog/9-tips-going-production-galera-cluster-mysql
+Limitaciones: https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-limitations/
+
 bbdd/percona tambien usa galera
 
-Estado:
+
+# Bootstrap cluster
+
+Editar /etc/my.cnf.d/server.cnf
+[galera]
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address="gcomm://db4,db5,db6"
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0
+
+
+En un nodo:
+galera_new_cluster
+
+
+
+
+
+# Estado
 SHOW GLOBAL STATUS like "wsrep%";
 
 MariaDB 10:
@@ -94,3 +119,4 @@ State Transfer:
   IST: se aplica si las transacciones están en la cache de los otros nodos
 
 Las tablas de sistema son MyISAM, no son replicadas.
+Pero parece que la de usuarios si que se replica.

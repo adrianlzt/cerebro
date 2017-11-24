@@ -1,3 +1,6 @@
+https://mariadb.com/kb/en/library/getting-started-with-mariadb-galera-cluster/
+
+# Repos
 Para configurar repo:
 https://downloads.mariadb.org/mariadb/repositories/#mirror=klaus&distro=Ubuntu&distro_release=saucy&version=10.0
 
@@ -33,3 +36,9 @@ yum install MariaDB-Manager
 
 http://xxx.xxx.xxx.xxx:8080/MariaDBManager
 The first time that you access the web interface, you will be asked to provide a username and password for the primary administrator account. You should do this immediately after installation. 
+
+
+# Install
+yum install MariaDB-server MariaDB-client percona-xtrabackup-24
+
+mirar galera.md para instalar el cluster
