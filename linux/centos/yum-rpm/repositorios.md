@@ -62,14 +62,14 @@ http://wiki.centos.org/AdditionalResources/Repositories
 Oficial de CentOS 6.6:
 http://ftp.jaist.ac.jp/pub/Linux/CentOS/6.6/os/x86_64/Packages/
 
-EPEL CentOS 6: 
-yum install -y "http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm"
+EPEL CentOS 6:
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 http://dl.fedoraproject.org/pub/epel/6/x86_64/
 src.rpms: http://mirror.uv.es/mirror/fedora-epel/6/SRPMS/
 
 EPEL CentOS 7:
 yum install -y epel-release
-yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 http://dl.fedoraproject.org/pub/epel/7/x86_64/
 
 EPEL CentOS 5:
