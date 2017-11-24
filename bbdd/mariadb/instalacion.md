@@ -8,6 +8,11 @@ sudo apt-get update
 sudo apt-get install mariadb-server
 
 
+https://mariadb.com/kb/en/library/mariadb-package-repository-setup-and-usage/
+Instalar repos version opensource para rhel/centos, ubuntu/debian o suse:
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+Estos repos añaden los paquetes MariaDB-*
+
 
 Si creas una cuenta en mariadb.org nos da acceso a mariadb enterprise:
 /etc/yum.repos.d/MariaDB-Manager.repo
