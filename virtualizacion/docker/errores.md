@@ -30,3 +30,10 @@ fdisk /disco/para/Docker
 wipefs -a /disco/para/docker
 docker-storage-setup
 systemctl start docker
+
+
+
+
+uniendo un nodo a un docker swarm
+Error starting daemon: error initializing graphdriver: devmapper: Device %device% is not a thin pool
+mirar si esta abierto el puerto en el server donde estamos intentando ejecutar el comando de join del cluster
