@@ -34,4 +34,14 @@ número de imágenes almacenadas
 número de containers corriendo
 uso de memoria rss
 disco disponible para data, metadata, thin pool (consultar en API 1.24/info)
+puerto, en caso de no usar socket
+
+
+## swarm
+que llegamos a los puertos tcp de los otros nodos
+puerto de swarm: 2375
+numero de nodos en el swarm: /usr/lib64/nagios/plugins/check_generic.pl -e "/usr/bin/docker -H localhost:2375 info 2>/dev/null | grep Nodes | cut -d ' ' -f 2" -p "cluster_nodes" -c '<1' -w '<2'
+unhealthy nodes: /usr/lib64/nagios/plugins/check_generic.pl -e "/usr/bin/docker -H localhost:2375 info 2>/dev/null | grep Status | grep -v Healthy | wc -l" -w '>0' -c '>1' -p "unhealthy_nodes"
+  parece que este es para el swarm antiguo
+
 
