@@ -8,3 +8,14 @@ Si queremos que se pase como una única string ${VAR}
 Environment="ONE=one" 'TWO=two two'
 ExecStart=/bin/echo $ONE $TWO ${TWO}
 This will execute /bin/echo with four arguments: "one", "two", "two", and "two two".
+
+
+Si queremos definir variables con secretos etc haremos:
+systemctl edit nombre.service
+
+Esto creara un fichero en:
+/etc/systemd/system/nombre.service.d/override.conf
+
+Ahi pondremos:
+[Service]
+Environment="USER=coyote"
