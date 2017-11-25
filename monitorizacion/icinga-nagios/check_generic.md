@@ -58,3 +58,8 @@ Ejemplo:
 
 La primera vez que se ejecuta genera un fichero en /var/tmp/check_generic con el timestamp y el valor leído.
 En la siguiente ejecucción se resta el valor antiguo al nuevo y se divide entre los segundos pasados. Este valor se compara con el que hayamos pasado como threshold
+
+
+/usr/lib64/nagios/plugins/check_generic.pl -e "mysql -h 127.0.0.1 -u icinga -pxxx -sse 'SELECT test FROM galera_check.test;'" --match_stderr -i --empty_output_is_ok -o 'eq 1' --print_match
+Ejecutamos una query SQL y queremos que sea OK solo si la respuesta es "1".
+En caso de error del comando debe devolver CRITICAL
