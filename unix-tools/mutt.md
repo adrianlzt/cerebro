@@ -6,9 +6,13 @@ https://www.neomutt.org
 
 
 # Basicos
+m - redactar email
 r - reply
 g - group reply, responder a todos
 a - añadir remitente al abook
+L       list-reply      reply to mailing list address
+f       forward         forward message
+b       bounce          bounce (remail) message
 
 
 # undelete
@@ -19,6 +23,8 @@ u (undelete)
 
 Creo que tambien vale (undelete todos los de la vista)
 U.*
+
+Tambien podemos pulsar el numero del mensaje que queremos recuperar (para saltar hasta él) y luego U
 
 
 # Guardar email como texto
