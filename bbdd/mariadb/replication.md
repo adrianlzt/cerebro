@@ -29,6 +29,11 @@ mysql_secure_installation
 
 
 
+Si se paran los dos nodos consultaremos el fichero grastate.dat y arrancaremos (con galera_new_cluster) el que tenga el último id.
+Si no nos deja podemos forzarlo editando ese fichero y poniendo el safe_to_bootstrap a 1
+http://inside-out.xyz/technology/recovering-mariadb-galera-cluster-after-a-restart.html
+
+
 # Estado
 SHOW GLOBAL STATUS like "wsrep%";
 
