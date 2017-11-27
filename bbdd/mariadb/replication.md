@@ -21,7 +21,11 @@ bind-address=0.0.0.0
 En un nodo:
 galera_new_cluster
 
+En los otros:
+systemctl start mariadb
 
+En todos:
+mysql_secure_installation
 
 
 
