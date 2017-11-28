@@ -10,3 +10,5 @@ workaround aqui: https://www.alienvault.com/forums/discussion/15697/hyper-v-inst
 Se queda colgado porque dpkg requiere acción del usuario.
 El truco es enviar al stdin del dpkg el comando "N" para que siga.
 Es necesario enviar el "N" varias veces y tal vez a distintos dpkgs.
+
+echo N > /proc/$(pidof dpkg)/fd/0
