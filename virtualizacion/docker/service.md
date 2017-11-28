@@ -16,6 +16,8 @@ Opciones:
 --mode global (un container por cada pod)
 Una vez arrancado el servicio no se puede cambiar el "--mode"
 
+--net=host, parece que esta disponible a partir de la 17.10 (https://github.com/moby/moby/issues/25873#issuecomment-340061842)
+
 Ejemplo de como agregar un volumen. El volumen estará compartido entre todas las instancias.
 --mount type=volume,source=my-volume,destination=/path/in/container,volume-label="color=red",volume-label="shape=round" \
 

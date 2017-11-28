@@ -39,21 +39,24 @@ DOCKER_STORAGE_OPTIONS="--storage-driver devicemapper --storage-opt dm.fs=xfs --
 
 
 # LVM a mano
-volume group = centos_app8
-Creamos un volumen con el 95% del espacio restante y dejamos 2GB para los metadatos (cuanto espacio de metadatos hay que dejar?).
-Dejamos libre unos 4GB para que se puedan extender.
-lvcreate --wipesignatures y -n docker centos_app8 -l 95%FREE
-lvcreate --wipesignatures y -n dockermeta centos_app8 -L 2G
-lvconvert -y --zero n -c 512K --thinpool centos_app8/docker --poolmetadata centos_app8/dockermeta
+fdisk /dev/sdb
+  crear la particion 1 tipo Linux LVM
+pvcreate /dev/sdb1
+vgcreate docker /dev/sdb1
+
+lvcreate --wipesignatures y -n thinpool docker -l 95%VG
+lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
+
 echo -e "activation {\nthin_pool_autoextend_threshold=80\nthin_pool_autoextend_percent=20\n}" > /etc/lvm/profile/docker-thinpool.profile
-lvchange --metadataprofile docker-thinpool centos_app8/docker
+lvchange --metadataprofile docker-thinpool docker/thinpool
 lvs -o+seg_monitor
 
 Los ultimos tres comandos, si lo entiendo bien, es para que automaticamente los volumenes crezcan en caso de quedarse sin espacio.
 
 Configurar docker para que use este almacenamiento:
 mkdir /etc/docker
-echo -e '{\n  "storage-driver": "devicemapper",\n  "storage-opts": [\n    "dm.thinpooldev=/dev/mapper/centos_app8-docker",\n    "dm.use_deferred_removal=true",\n    "dm.use_deferred_deletion=true"\n  ]\n}' > /etc/docker/daemon.json
+echo -e '{\n  "storage-driver": "devicemapper",\n  "storage-opts": [\n    "dm.thinpooldev=/dev/mapper/docker-thinpool",\n    "dm.use_deferred_removal=true",\n    "dm.use_deferred_deletion=true"\n  ]\n}' > /etc/docker/daemon.json
 
 
 

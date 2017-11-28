@@ -3,6 +3,13 @@ https://openvpn.net/
 # Docker
 https://hub.docker.com/r/kylemanna/openvpn/
 
+Simplificandolo
+En el host necesitaremos:
+modprobe tun
+/etc/sysctl.d/01-openvpn.conf
+net.ipv4.ip_forward = 1
+sysctl net.ipv4.ip_forward=1
+docker run -d -v "/root/openvpn:/etc/openvpn" --net=host --privileged --name openvpn kylemanna/openvpn /usr/sbin/openvpn --writepid /tmp/server.pid --cd /etc/openvpn --config openvpn.conf --script-security 2
 
 
 

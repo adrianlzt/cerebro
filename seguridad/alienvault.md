@@ -12,3 +12,7 @@ El truco es enviar al stdin del dpkg el comando "N" para que siga.
 Es necesario enviar el "N" varias veces y tal vez a distintos dpkgs.
 
 echo N > /proc/$(pidof dpkg)/fd/0
+
+
+Una vez arranque podemos entrar en la shell con root:root
+Cuando esta cargando el login tendremos que dar rapidamente un solo "Control+c" para que no nos saque de la shell.
