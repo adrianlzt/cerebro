@@ -1,18 +1,22 @@
 https://docs.influxdata.com/influxdb/v0.9/concepts/storage_engine/
 
-App para migrar a TSI:
-https://github.com/influxdata/influxdb/pull/8669
-
-
 Ver que motor estamos usando:
 use _internal
 select time,blksWrite,hostname,version,path from engine where path =~ /.*BASEDEDATOS.*/ and time > now() - 25s order by time desc limit 20
+
+
+# TSI
+App para migrar a TSI:
+https://github.com/influxdata/influxdb/pull/8669
+
 
 # Cambiar el motor
 /etc/influxdb/influxdb.conf
 [data]
   ...
   engine ="tsm1"
+
+tsi1 para TSI
 
 service influxdb restart
 
