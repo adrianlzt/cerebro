@@ -33,3 +33,7 @@ resource "aws_instance" "example" {
     Name = "example-${count.index}"
   }
 }
+
+
+Acceder a un campo determinado de una lista de elementos:
+element(aws_subnet.foo.*.id, count.index)
