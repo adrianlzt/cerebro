@@ -2,6 +2,12 @@ https://www.elastic.co/guide/en/elasticsearch/reference/5.0/install-elasticsearc
 https://www.elastic.co/guide/en/elasticsearch/reference/current/system-config.html
 
 # CentOS / RedHat
+ES 6
+https://www.elastic.co/guide/en/elasticsearch/reference/6.0/rpm.html
+rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+
+
 Repo:
 [elasticsearch-5.x]
 name=Elasticsearch repository for 5.x packages
@@ -16,8 +22,12 @@ yum install elasticsearch
 Necesita java8
 yum install -y java-1.8.0-openjdk
 systemctl enable elasticsearch.service
-systemctl start elasticsearch
 
+vi config/elasticsearch.yml
+  cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
+  node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
+
+systemctl start elasticsearch
 Tarda unos segundos en arrancar
 Podemos ver el log en
 /var/log/elasticsearch/elasticsearch.log
@@ -32,6 +42,7 @@ Necesita java.
 
 apt-get install default-jre
 dpkg -i elasticsearch-xxx.deb
+
 vi config/elasticsearch.yml
   cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
   node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
@@ -56,4 +67,3 @@ Mirar plugins.md para aplicaciones útiles que querremos tener.
 
 # Configuración de memoria
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_give_half_your_memory_to_lucene
-
