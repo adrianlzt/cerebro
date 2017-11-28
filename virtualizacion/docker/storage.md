@@ -5,6 +5,11 @@ RedHat ofrece un paquete que hace toda la gestión del storage automáticamente:
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/managing_containers/managing_storage_with_docker_formatted_containers
 
 A partir de la 17.06 parece que se puede pasar un block device a docker y el hace toda la conf.
+He probando en centos7 y falla con el error:
+Nov 28 12:48:16 cluster-controller dockerd[22882]: time="2017-11-28T12:48:16.600777828-06:00" level=error msg="File descriptor 8 (/dev/mapper/control) leaked on pvdisplay invocation. Parent PID 22882: /usr/bin/dockerd
+Tuneando el parametro use_lvmetad = 0, vuelve a fallar más adelante con:
+Nov 28 12:48:16 cluster-controller dockerd[22882]: Error starting daemon: error initializing graphdriver: File descriptor 8 (/dev/mapper/control) leaked on pvcreate invocation. Parent PID 22882: /usr/bin/dockerd
+
 
 
 

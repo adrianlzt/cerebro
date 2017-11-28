@@ -36,6 +36,9 @@ uso de memoria rss
 disco disponible para data, metadata, thin pool (consultar en API 1.24/info)
 puerto, en caso de no usar socket
 
+lvm: https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#manage-devicemapper
+vigilar como va el LVM de lleno y si hay logs con problemas
+
 
 ## swarm
 que llegamos a los puertos tcp de los otros nodos
