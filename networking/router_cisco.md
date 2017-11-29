@@ -66,6 +66,8 @@ sh interfaces Vlan 101 ?
 Mostrar:
 show running-config
 
+Si queremos mostrar toda la config de una sola vez (sin pager): terminal length 0
+
 show running-config interface Vlan 101
 
 
