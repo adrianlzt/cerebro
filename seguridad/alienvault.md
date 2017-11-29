@@ -30,3 +30,15 @@ Interfaces de red:
  - la primera interfaz será la interfaz web
  - el resto de interfaces se podrán usar para escanear la red o recolectar logs
  - por defecto ossim pone ip fija a la primera interfaz. Modificar en /etc/network/interfaces y poner varias lineas para configurar las interfaces que aparezcan con dhcp
+
+
+Una vez arrancado accederemos a su interfaz web por https.
+
+# Wizard
+La primera vez tendremos que crear la cuenta de admin y nos llevará por un wizard para realizar la configuración.
+A veces el wizard falla con un "API error - Operation cannot be completed". Parece que es porque tardan en arrancar algunos componentes (~5' o incluso algo más)
+
+No entiendo como elige que interfaces mostrar en el wizard, pero teniendo tres interfaces la tercera no la mostraba.
+
+En el siguiente paso nos pedirá una lista de "assets" (cosas que escanear). Se la podemos pasar como un csv, manualmente o pedirle que escanee la red.
+Si le mandamos escanear la red por defecto escaneará las subredes donde tenga interfaces. Si queremos escanear más redes tendremos que pasarle un csv con las redes.
