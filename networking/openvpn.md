@@ -68,6 +68,10 @@ Esta linea publica esa ruta a los clientes vpn. Asi estos tendran que para acced
 Para que esto funcione el servidor del tunel tiene que tener activado el ip forwarding:
 sysctl net.ipv4.ip_forward=1
 
+Mirar tambien que iptables no esta haciendo nada raro.
+Por ejemplo, al instalar docker me pone la regla filter.FORWARD a DROP. Para quitarlo:
+iptables -t filter -P FORWARD ACCEPT
+
 Las maquinas a las que conectemos tendran que tener una ruta para contestar a las maquinas de la vpn.
 Algo tipo (siendo la .28 el server vpn):
 ip r add 10.8.0.0/24 via 10.0.1.28
