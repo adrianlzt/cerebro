@@ -85,6 +85,12 @@ Por último nos dice si queremos unirnos a OTX. Comunidad donde la gente sube fi
 apps que corren en apache/php:
 /var/log/alienvault
 
+# Uso
+Para hacer un scan desde la web:
+/ossim/#environment/assets/assets
+Add assets -> Scan for new assets
+
+
 
 # Internals
 La instalación principal parece que se encuentra en /usr/share/ossim
@@ -93,8 +99,18 @@ El wizard esta en /usr/share/ossim/www/wizard
 
 Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
 
+El core de la api de alienvault esta escrito en python. Codigo en /usr/share/python/alienvault-api-core/lib/python2.7/site-packages/alienvault-api-core
+
+El core usa su propio python: /usr/share/python/alienvault-api-core/bin/python
+/usr/share/python/alienvault-api-core/bin/pip para ver los packages instalados
+Wsgi de arranque de la app: /usr/share/python/alienvault-api/wwwroot/api.wsgi
+
+## Celery
+Parece que el frontend y el backend se comunican via cola de mensaje Celery.
+Hace uso de redis (para scheduling?) y de rabbit (amqp)
+
 ## Scan
-/ossim/#environment/assets/assets
+/usr/share/python/alienvault-api-core/lib/python2.7/site-packages/alienvault-api-core/ansiblemethods/sensor/nmap.py
 
 El escaneo de redes lo lleva el fichero /usr/share/ossim/www/wizard/ajax/scan_ajax.php
 La función principal parece que es:
@@ -107,6 +123,21 @@ Y esta traza tiene mucha pinta de ser la culpable de que no funcione el escaner 
 Nov 29 17:33:53 alienvault celeryd.py: ALIENVAULT-API[ERROR]: [ansible_run_nmap_scan] Error: Something wrong happened while running ansible command {'dark': {'10.0.2.67': {'msg': 'SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue', 'failed': True}}, 'contacted': {}}
 
 Usa un task de ansible para lanzar nmap
+Lanzar el scan desde python
+ansible 192.168.5.84 -s -m av_nmap -a "target=192.168.5.84 scan_type=ping rdns=off job_id=26d6ca8e-db76-490e-8896-831d6307a3f2"
+
+echo "127.0.0.1" > /tmp/inv
+cd /usr/share/python/alienvault-api-core/share/ansible
+../../bin/ansible all -i /tmp/inv -s -m av_nmap -a "target=172.16.10.0/24 scan_type=ping rdns=off job_id=local_ansioble"
+
+Usando el modulo de python
+/usr/share/python/alienvault-api-core/bin/python2
+import ansiblemethods.sensor.nmap
+ansiblemethods.sensor.nmap.ansible_run_nmap_scan("10.0.0.11", "172.16.10.0/24", "fast", False, "T3", False, False, 5678)
+Generara unos ficheros: 5678.scan 5678.scan.pid 5678.targets
+
+A ese metodo lo llama otro metodo: apimethod_run_nmap_scan
+Que a su vez lo llama la funcion run_nmap_scan de celerymethods/jobs/nmap.py
 
 
 
