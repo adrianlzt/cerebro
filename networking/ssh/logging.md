@@ -1,4 +1,13 @@
-Logear comandos ssh ejecutados a través de una cuenta con clave pública: 
+# Para usuarios con clave
+https://unix.stackexchange.com/questions/25639/how-to-automatically-record-all-your-terminal-sessions-with-script-utility
+Meter al final del .bashrc
+test "$(ps -ocommand= -p $PPID | awk '{print $1}')" == 'script' || (script -f $HOME/$(date +"%d-%b-%y_%H-%M-%S")_shell.log)
+
+
+
+
+# Para ssh key
+Logear comandos ssh ejecutados a través de una cuenta con clave pública:
 Del manual:
 - Opcional: Generar fichero de log para registrar los accesos vía SSH con relación de confianza desde los esclavos:
 
@@ -6,8 +15,8 @@ Del manual:
 mkdir /var/log/nagios
 chown nagios:nagios /var/log/nagios
 
-Añadir 
-	command="/usr/lib64/nagios/plugins/logrcmd" 
+Añadir
+	command="/usr/lib64/nagios/plugins/logrcmd"
 antes de la(s) clave(s) de los esclavos en /var/spool/nagios/.ssh/authorized_keys
 
 Ejemplo: (la línea de command tiene que ser la misma que donde esté ssh-dss o ssh-rsa)
