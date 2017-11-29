@@ -15,4 +15,10 @@ echo N > /proc/$(pidof dpkg)/fd/0
 
 
 Una vez arranque podemos entrar en la shell con root:root
-Cuando esta cargando el login tendremos que dar rapidamente un solo "Control+c" para que no nos saque de la shell.
+En el .bashrc hay un programa para arrancar un gestor grafico
+Podemos usar la opción "JailBreak" para salir a la consola.
+
+Iptables esta configurado solo permitiendo ciertas cosas.
+
+ossim-reconfig
+  reinicia todos los servicios que tiene la imagen
