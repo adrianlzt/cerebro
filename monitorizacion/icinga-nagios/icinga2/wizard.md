@@ -32,6 +32,7 @@ Seleccionando la primera opcion 'Y'
 El nombre que elijamos aqui para el nodo sera el mismo con el que lo configuraremos en Icinga.
 
 echo 'object Zone "director-global" { global = true }' >> /etc/icinga2/zones.conf
+esto creo que ya no es necesario en versiones recientes del cliente
 
 systemctl restart icinga2
 service icinga2 restart
