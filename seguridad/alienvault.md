@@ -22,3 +22,11 @@ Iptables esta configurado solo permitiendo ciertas cosas.
 
 ossim-reconfig
   reinicia todos los servicios que tiene la imagen
+
+
+Para conseguir arrancar la imagen sin muchos problemas lo que hice fue dejar en el rc2.d solo los servicios del sistema y luego correr el ossim-config para que metiese los basicos de alienvault.
+
+Interfaces de red:
+ - la primera interfaz será la interfaz web
+ - el resto de interfaces se podrán usar para escanear la red o recolectar logs
+ - por defecto ossim pone ip fija a la primera interfaz. Modificar en /etc/network/interfaces y poner varias lineas para configurar las interfaces que aparezcan con dhcp

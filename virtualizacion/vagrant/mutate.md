@@ -1,3 +1,5 @@
+mirar tambien qcow2.md
+
 https://github.com/sciurus/vagrant-mutate
 
 Plugin para hacer conversiones entre tipos de virtualizadores:
