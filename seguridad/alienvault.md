@@ -3,6 +3,8 @@ Escaner de seguridad
 Imagen opensource:
 https://dlcdn.alienvault.com/AlienVault_OSSIM_64bits.iso
 
+USM es la versión de pago de OSSIM.
+
 
 La iso no instala bien, se queda colgada en "Configuring suricata"
 workaround aqui: https://www.alienvault.com/forums/discussion/15697/hyper-v-install-hanging-configuring-suricata
@@ -44,6 +46,14 @@ Luego revisar
 /etc/resolvconf/resolv.conf.d/original
 /etc/ansible/hosts
 
+En la web, Configuration -> Administration -> Min -> Vulnerability Scanner -> Scanner host
+
+en la mysql, database alienvault:
+update config set value="10.0.0.11" where conf="frameworkd_address";
+
+mysql.user
+update user set Host="10.0.0.11" where Host="10.0.2.67";
+
 
 Una vez arrancado accederemos a su interfaz web por https.
 
@@ -81,7 +91,11 @@ La instalación principal parece que se encuentra en /usr/share/ossim
 
 El wizard esta en /usr/share/ossim/www/wizard
 
+Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
+
 ## Scan
+/ossim/#environment/assets/assets
+
 El escaneo de redes lo lleva el fichero /usr/share/ossim/www/wizard/ajax/scan_ajax.php
 La función principal parece que es:
             $obj = new Av_scan($nets, 'local', $scan_options);
@@ -89,7 +103,11 @@ La función principal parece que es:
 Tiene pinta de que eso genera estra traza en el log de api_access:
 127.0.0.1 - - [29/Nov/2017:11:38:51 +0100] "GET /av/api/1.0/nmap/e6c70e2f-e297-412a-8a7d-7c437e4d89e2/status HTTP/1.1" 404 3099 "-" "AlienvaultClient"
 
-No funciona el escaner de red, pero no veo donde puede estar el fallo.
+Y esta traza tiene mucha pinta de ser la culpable de que no funcione el escaner de red:
+Nov 29 17:33:53 alienvault celeryd.py: ALIENVAULT-API[ERROR]: [ansible_run_nmap_scan] Error: Something wrong happened while running ansible command {'dark': {'10.0.2.67': {'msg': 'SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue', 'failed': True}}, 'contacted': {}}
+
+Usa un task de ansible para lanzar nmap
+
 
 
 El agent parece que es quien gestiona el network scan
