@@ -12,6 +12,8 @@ Instalación:
 Con Docker (no podemos usar -e):
   docker run --rm -w /mnt -v "$PWD:/mnt" tenzer/fpm -s dir -t rpm -n PackageName app/
   docker run --rm -w /mnt -v "$PWD:/mnt" tenzer/fpm -s rpm -t deb programa.rpm
+  docker run --rm -w /mnt -v "$PWD:/mnt" tenzer/fpm -s dir -t rpm -n PackageName app/=/
+    esto lo haremos si queremos que app/usr este en el rpm en /usr
 
 gem install fpm
 
@@ -47,6 +49,8 @@ Ejemplo:
 Tras instalar un paquete nos genera sus ficheros en /usr/share/programa
 Para crear un rpm hacemos:
 fpm -s dir -t rpm -n nombre_programa -v 0.1 -d dependencia /usr/share/programa
+
+https://github.com/jordansissel/fpm/wiki/Source:-dir
 
 
 ## RPMS ##
