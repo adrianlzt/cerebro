@@ -7,6 +7,15 @@ https://www.elastic.co/guide/en/elasticsearch/reference/6.0/rpm.html
 rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 
+[elasticsearch-6.x]
+name=Elasticsearch repository for 6.x packages
+baseurl=https://artifacts.elastic.co/packages/6.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+
 
 Repo:
 [elasticsearch-5.x]
