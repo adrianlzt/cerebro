@@ -1,9 +1,13 @@
 #http://www.mysqlperformanceblog.com/2012/12/28/auditing-login-attempts-in-mysql/
 
+Logear todo lo que se lanza sobre la bbdd:
+
 En [mysqld]
 # Activo logs
 #log = /srv/mysql/mysqld.log
 #log-error = /srv/mysql/mysqld.error.log
+
+El log ira a /var/lib/mysql
 
 
 En mysql 5.1 en adelante, configurable en runtime
