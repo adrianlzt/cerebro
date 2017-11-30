@@ -2,7 +2,9 @@ Servicio que te instala diferentes programas por debajo para tener un servidor d
 
 La versión de pago ofrece más caractersiticas.
 
+dovecot -> imap, ...
 
+El logueo de los usuarios se hace con nombre@dominio.com
 
 # Errores
 SELECT: Internal error occurred. Refer to server log for more information.
