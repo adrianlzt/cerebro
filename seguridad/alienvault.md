@@ -54,6 +54,10 @@ update config set value="10.0.0.11" where conf="frameworkd_address";
 mysql.user
 update user set Host="10.0.0.11" where Host="10.0.2.67";
 
+tabla alienvault
+UPDATE system set admin_ip=INET6_ATON("10.0.0.11");
+UPDATE server set ip=INET6_ATON("10.0.0.11");
+
 
 Una vez arrancado accederemos a su interfaz web por https.
 
@@ -90,12 +94,17 @@ Para hacer un scan desde la web:
 /ossim/#environment/assets/assets
 Add assets -> Scan for new assets
 
+El escaneo lo hace lanzando un ansible contra el "sensor" (o el server) que tiene un modulo custom para nmap.
+El resultado del scan lo almacena en /tmp/ID.scan
+
 
 
 # Internals
 La instalación principal parece que se encuentra en /usr/share/ossim
 
 El wizard esta en /usr/share/ossim/www/wizard
+
+El código web está en /usr/share/ossim/www o en las fuentes en alienvault-ossim/www
 
 Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
 
