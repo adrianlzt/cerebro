@@ -110,6 +110,8 @@ Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansi
 
 
 ## API
+Escrita usando https://bitbucket.org/tcorbettclark/rest-api-blueprint/wiki/Home
+
 El core de la api de alienvault esta escrito en python. Codigo en /usr/share/python/alienvault-api-core/lib/python2.7/site-packages/alienvault-api-core
 
 El core usa su propio python: /usr/share/python/alienvault-api-core/bin/python
@@ -133,7 +135,8 @@ Y el código que hace cosas está en:
 /usr/share/python/alienvault-api/blueprints
 
 ### Auth
-curl -k -H "Accept: application/json" "https://localhost:40011/av/api/1.0/auth/login?username=USERadri&password=PASS"
+curl -vk -H "Accept: application/json" "https://localhost:40011/av/api/1.0/auth/login?username=USER&password=PASS"
+  para posteriores consultas tendremos que coger la cookie y ponerla en las peticiones: -H "Cookie: session=.eJxN..."
 
 Para meter a fuego mi user en la db sin encriptar:
 insert into users select "adri",ctx,name,pass,email,company,department,language,enabled,first_login,timezone,last_pass_change,last_logon_try,is_admin,template_id,uuid,expires,login_method,salt from users;
