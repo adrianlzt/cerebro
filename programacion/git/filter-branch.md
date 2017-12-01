@@ -6,10 +6,16 @@ localrepo/
 
 ## Usando el jar bfg ##
 http://rtyley.github.io/bfg-repo-cleaner/
+yaourt -S bfg
+
+no borra de HEAD a no ser que lo forcemos
 
 git clone --mirror git://example.com/some-big-repo.git
 cp -pr some-big-repo.git ~/some-big-repo.git.bak
+  backup por si acaso
 java -jar ~/Descargas/bfg-1.11.5.jar --delete-files *.rpm some-big-repo.git
+bfg -D 10 repo.git
+  borrar los 10 ficheros más grandes
 cd some-big-repo.git
 git reflog expire --expire=now --all
 git gc --prune=now --aggressive
