@@ -1,6 +1,13 @@
 mirar containers.md
 
 
+Mirar datos de una imagen
+docker image ID
+
+Historico de como se creo:
+docker histry ID
+
+
 Podemos crear una imagen también a partir de un .tar con import
 http://docs.docker.io/en/latest/commandline/command/import/
 
