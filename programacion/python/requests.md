@@ -1,5 +1,7 @@
 http://docs.python-requests.org/en/latest
 
+mirar slumber.md para un recubrimiento sobre requests para facilitar hablar con api rest
+
 convertir curl a request: http://curl.trillworks.com/
 
 HTTP for Humans

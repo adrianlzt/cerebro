@@ -108,11 +108,41 @@ El código web está en /usr/share/ossim/www o en las fuentes en alienvault-ossi
 
 Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
 
+
+## API
 El core de la api de alienvault esta escrito en python. Codigo en /usr/share/python/alienvault-api-core/lib/python2.7/site-packages/alienvault-api-core
 
 El core usa su propio python: /usr/share/python/alienvault-api-core/bin/python
 /usr/share/python/alienvault-api-core/bin/pip para ver los packages instalados
 Wsgi de arranque de la app: /usr/share/python/alienvault-api/wwwroot/api.wsgi
+
+Se accede con https://localhost:40011
+Se debe hablar con json:
+curl localhost:40011 -H "Accept: application/json"
+
+La app Flash se define en
+/usr/share/python/alienvault-api/__init__.py
+
+/usr/share/python/alienvault-api/lib/http_conn.py
+Aqui parece que se exlica como enviar mensajes al servidor, pero no queda claro como se hace.
+
+Las distintas rutas url que acepta la api
+/usr/share/python/alienvault-api/views.py
+
+Y el código que hace cosas está en:
+/usr/share/python/alienvault-api/blueprints
+
+### Auth
+curl -k -H "Accept: application/json" "https://localhost:40011/av/api/1.0/auth/login?username=USERadri&password=PASS"
+
+Para meter a fuego mi user en la db sin encriptar:
+insert into users select "adri",ctx,name,pass,email,company,department,language,enabled,first_login,timezone,last_pass_change,last_logon_try,is_admin,template_id,uuid,expires,login_method,salt from users;
+update users set pass="adri" where login="adri";
+
+El código primero chequea si la pass es igual a la db, sin ningún tipo de hasheo.
+Con los users de la web no se que pasa pero no tira. Algo debe fallar en los hasheos.
+
+
 
 ## Celery
 Parece que el frontend y el backend se comunican via cola de mensaje Celery.
