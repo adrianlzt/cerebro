@@ -9,7 +9,7 @@ Mostrar a que interfaz pertenece cada paquete
 http://serverfault.com/questions/224698/how-to-display-interface-in-tcpdump-output-flow
 Mirar anydump.sh
 
-Otra opcion es tshark
+Otra opcion tcpdump es tshark
 
 Cotainer en docker que captura todo el trafico:
 docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
