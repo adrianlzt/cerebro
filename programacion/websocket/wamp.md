@@ -22,6 +22,10 @@ yum install -y crossbar
 Una forma rapida de montar un server de crossbar con docker
 https://github.com/crossbario/crossbar-examples/tree/master/docker/disclose
 
+## TLS/SSL
+https://crossbar.io/docs/Secure-WebSocket-and-HTTPS/
+
+
 # Python
 Cliente websocket basico con Autobahn
 https://github.com/crossbario/autobahn-python/tree/master/examples/asyncio/websocket/echo
