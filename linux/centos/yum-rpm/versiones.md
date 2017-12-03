@@ -11,3 +11,11 @@ rpm -qp --queryformat "%{EPOCH}:%{NAME}-%{VERSION}-%{RELEASE}\n "
 
 
 Para obtener el valor de las macros ver repositorios.md
+
+
+# Lock version
+https://access.redhat.com/solutions/98873
+
+No actualizar un paquete
+yum install yum-plugin-versionlock
+yum versionlock gcc-*
