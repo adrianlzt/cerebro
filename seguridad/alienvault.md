@@ -97,6 +97,13 @@ Add assets -> Scan for new assets
 El escaneo lo hace lanzando un ansible contra el "sensor" (o el server) que tiene un modulo custom para nmap.
 El resultado del scan lo almacena en /tmp/ID.scan
 
+Cuando tenemos el resultado del escaneo deberemos dar a "Update assets" para almacenar la información del escaneo en la base de datos.
+
+Tambien podemos poner un scheduler para lanzar escaneos. Estos autoescaneos si se almacenan directamente sobre la bbdd.
+
+Si tarda mucho parece que falla porque se cierra la sessión web (no lo se seguro).
+Se puede aumentar el timeout de las sesiones en Configuration > Administration > Main > User Activity -> Session Timeout (minutes)
+
 
 
 # Internals
@@ -107,6 +114,9 @@ El wizard esta en /usr/share/ossim/www/wizard
 El código web está en /usr/share/ossim/www o en las fuentes en alienvault-ossim/www
 
 Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
+
+## Databases
+alienvault_siem parece que es donde almacena lo que se baja de internet (OTX)
 
 
 ## API

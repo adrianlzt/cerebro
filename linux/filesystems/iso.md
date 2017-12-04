@@ -1,3 +1,8 @@
+Ver montajes loop:
+loosetup -a
+
+
+
 Montar iso:
 sudo mount -o loop rhel-server-6.3-x86_64-dvd.iso /mnt/
 
