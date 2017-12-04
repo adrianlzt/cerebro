@@ -19,3 +19,25 @@ Para usarlo creamos un playbook diciendo donde instalar este role:
 
 Update roles:
 https://github.com/ansible/ansible/issues/6466
+
+
+Para poder usar galaxy el rol debe tener un meta/main.yml al menos con:
+---
+galaxy_info:
+  author: BBB
+  description: Manage yum repositories
+  company: AAA
+  platforms:
+    - name: RedHat
+      versions:
+        - 7
+dependencies: []
+
+
+
+# Fichero de roles
+requirements.yml:
+- src: user.role
+- src: git+https://git.com/user/name.git
+
+ansible-galaxy install -p roles -r requirements.yml
