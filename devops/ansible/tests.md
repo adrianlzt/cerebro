@@ -1,3 +1,6 @@
+mirar molecule.md
+
+
 https://servercheck.in/blog/testing-ansible-roles-travis-ci-github
 
 There are four main things I make sure I test when building and maintaining an Ansible role:

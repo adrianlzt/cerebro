@@ -97,3 +97,9 @@ Asignar un id a cada maquina de un grupo
 - name: Assign id for each zookeeper host
   set_fact:
     "id": "{% for host in groups['broker'] %}{% if host == inventory_hostname %}{{ loop.index }}{% endif %}{% endfor %}"
+
+
+
+# Reload facts
+- name: reload facts
+  setup: filter='*'
