@@ -117,6 +117,8 @@ Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansi
 
 ## Databases
 alienvault_siem parece que es donde almacena lo que se baja de internet (OTX)
+alienvault
+  task_inventory: donde se almacenan los scheduling de jobs
 
 
 ## API
