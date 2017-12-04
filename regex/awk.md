@@ -42,6 +42,9 @@ echo "6/11/2016 17:30:36 5266683 2013 4545218" | gawk '{split($1, d, "/");split(
 
 
 Sumar una columna
+cat fichero | awk '{ SUM += $1} END { print SUM }'
+
+Una columna determinada y hacer un calculo al final:
 ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 
 echo -e "1\n2\n3\n6" | awk '{var+=$1} END {print var}'
