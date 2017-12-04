@@ -29,4 +29,3 @@ cinder-manage service list
 
 Crear volumen a mano:
 sudo cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C lvcreate -n volume-b7327770-43b6-456b-9aeb-da61055e0bff stack-volumes-lvmdriver-1 -L 6g
-

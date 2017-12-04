@@ -1,4 +1,5 @@
 https://kubernetes.io/docs/concepts/cluster-administration/networking
+https://medium.com/google-cloud/understanding-kubernetes-networking-pods-7117dd28727
 
 Tres tipos de redes:
 
