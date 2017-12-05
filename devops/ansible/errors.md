@@ -50,3 +50,10 @@ Con la version 1.9.3, si el nombre del host tiene ":" lo ignora
 Status code was not [404, 200]: An unknown error occurred: coercing to Unicode: need string or buffer, NoneType found
 La máquina tenia un proxy configurado a nivel de profile de OS que no me dejaba enviar la peticion (fallaba el modulo url)
 Solucionado definiendo la variable de entorno "https_proxy" a vacio
+
+
+
+fatal: [172.16.10.16]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+selinux activado?
+Acceso a las maquinas lento?
+Parece que era un bug arreglado, pero yo sigo viendo el fallo.
