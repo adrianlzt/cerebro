@@ -17,6 +17,12 @@ lmsensorsbeat -> Extrae información de sensores de la maquina (community) (no c
 
 Auditbeat is a lightweight shipper that you can install on your servers to audit the activities of users and processes on your systems. For example, you can use Auditbeat to collect and centralize audit events from the Linux Audit Framework. You can also use Auditbeat to detect changes to critical files, like binaries and configuration files, and identify potential security policy violations.
 
+https://github.com/hartfordfive/protologbeat
+Application accepting log data via TCP or UDP to then index the data in Elasticsearch
+
+Generalmente cuando hagamos un go get ..., cuando termine ya habrá compilado el beat.
+Si queremos recompilarlo: go build
+
 
 # Develop
 http://www.elastic.co/guide/en/beats/devguide/current/new-beat.html
@@ -28,8 +34,12 @@ The publisher is already implemented in libbeat, so you typically only have to w
 
 Como crear to propio beat:
 https://www.elastic.co/guide/en/beats/devguide/current/newbeat-generate.html
+go get github.com/elastic/beats
 Script en python para generar la estructura inicial (python2)
 python2 $GOPATH/src/github.com/elastic/beats/script/generate.py
   nos preguntará como queremos llamarlo, user de github, nombre repo, etc
 cd ${GOPATH}/src/github.com/{user}/countbeat
 make setup
+
+make
+  hacer build
