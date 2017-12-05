@@ -20,3 +20,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/6.0/security-api.html
 
 ## Crear user admin
 curl -u elastic:elastic 172.16.10.18:9200/_xpack/security/user/beats -d '{"password" : "beats123", "roles" : [ "admin"]}'
+
+## Quien somos y nuestros permisos
+curl -u user:pass 'localhost:9200/_xpack/security/_authenticate?pretty'
+

@@ -63,3 +63,9 @@ https://floragunn.com/search-guard-index-replica-shards/
 
 Si no podemos reasignar un shard puede ser porque el disco este demasiado lleno.
 
+
+
+
+Can't get text on a START_OBJECT
+https://stackoverflow.com/questions/41873672/updating-a-field-with-a-nested-array-in-elastic-search
+Hemos declarado una estructura de datos pero estamos intentando enviar un objeto en un sitio declarado como una string (u otro tipo simple)
