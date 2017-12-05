@@ -32,6 +32,8 @@ route-up opensolutions_routes.sh  # script donde ejecutamos los comandos para po
 Si usamos openvpn con systemd tiene bastante restringido que puede hacer (limitadas capabilities, donde puede escribir, etc).
 Tenedremos que poner el script en el mismo directorio donde este la conf de cliente. Si queremos generar algún log tendrá que ser también en ese mismo dir.
 
+Al script se le pasan una serie de variables de entorno con los datos de la conex y las rutas que quiere meter el servidor.
+
 
 
 # Server

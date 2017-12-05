@@ -1,3 +1,9 @@
+# Monitorizar elastic desde zabbix
+https://github.com/mkhpalm/elastizabbix
+
+
+
+# Usar ES como backend para metricas y trends de zabbix
 Resumen: se puede usar ES como backend para los datos históricos (tablas history* en SQL).
 Hace falta cofigurar el server y el frontend para que lo utilicen.
 Meter los mappings a priori. Cambiar replication?
