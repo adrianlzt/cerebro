@@ -12,3 +12,11 @@ Tabla con lo que ofrece cada tipo de licencia y que tiene la gratuita
 https://www.elastic.co/subscriptions
 
 En resumen, hay un tipo de licencia "Basic" gratuita que parece que tiene Monitoring, el resto de cosas es de pago.
+
+
+# Security
+https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html
+https://www.elastic.co/guide/en/elasticsearch/reference/6.0/security-api.html
+
+## Crear user admin
+curl -u elastic:elastic 172.16.10.18:9200/_xpack/security/user/beats -d '{"password" : "beats123", "roles" : [ "admin"]}'
