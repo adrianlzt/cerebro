@@ -30,6 +30,14 @@ Algo                       AlgoVARIABLEfin
 {{- variable -}}     --->
 fin
 
+ {% if foo %}
+ var: 123            --->      var: 123   (cuatro espacios en vez de dos, MAL)
+ {% endif %}
+
+ {% if foo -%}
+ var: 123            --->    var: 123   (dos espacios, BIEN)
+ {% endif %}
+
 
 /usr/bin/cmd --some param
 {%- if mivariable is defined %}
