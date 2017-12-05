@@ -24,6 +24,14 @@ Y en el auth.txt:
 user
 password
 
+Si queremos poner nuestras propias rutas: https://askubuntu.com/questions/612840/adding-route-on-client-using-openvpn
+route-noexec  # no aceptamos las que nos da el server
+script-security 2  # permitimos la ejecuccución de scripts de usuario
+route-up opensolutions_routes.sh  # script donde ejecutamos los comandos para poner nuestras rutas
+
+Si usamos openvpn con systemd tiene bastante restringido que puede hacer (limitadas capabilities, donde puede escribir, etc).
+Tenedremos que poner el script en el mismo directorio donde este la conf de cliente. Si queremos generar algún log tendrá que ser también en ese mismo dir.
+
 
 
 # Server
