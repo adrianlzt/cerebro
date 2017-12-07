@@ -1,0 +1,20 @@
+version: '3.2'
+services:
+  db:
+    image: mariadb:10.3
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - type: bind
+        source: ./mysql
+        target: /var/lib/mysql
+  revive:
+    build: .
+    image: revive
+    ports:
+      - "8080:80"
+    links:
+      - db
+    depends_on:
+      - db
+

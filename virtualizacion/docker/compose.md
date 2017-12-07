@@ -4,6 +4,8 @@ https://docs.docker.com/compose/compose-file/
 Si usamos docker swarm -> stacks.md
 Los compose en swarm solo se despliegan en un nodo (tal vez cambia)
 
+Ejemplo en: compose-example.yml
+
 
 # Instalacion
 pacman -S docker-compose
