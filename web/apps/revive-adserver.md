@@ -14,3 +14,5 @@ Comenzará una instalacion web.
 Requiere php 5.5.9 o mayor
 Usar los repos de ius e instalar
 php56u
+
+php 5.6.x a partir de la version revive 4.1

@@ -1,4 +1,6 @@
 https://docs.docker.com/compose/
+https://docs.docker.com/compose/compose-file/
+
 Si usamos docker swarm -> stacks.md
 Los compose en swarm solo se despliegan en un nodo (tal vez cambia)
 
