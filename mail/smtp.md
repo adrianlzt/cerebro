@@ -15,6 +15,9 @@ curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt receiver
 Enviar email con auth usando SSL y con verbose:
 curl smtp://mail.com --mail-from no_reply@origen.com --mail-rcpt destino@gmail.com --upload-file email.txt -v --ssl -k -u USER:PASS
 
+Email con auth y STARTLS (puerto 587)
+curl smtp://mail.com:587 --mail-from no_reply@origen.com --mail-rcpt destino@gmail.com --upload-file email.txt -v --ssl -u USER:PASS
+
 
 # Telnet / nc / plano
 http://www.yuki-onna.co.uk/email/smtp.html
@@ -29,8 +32,8 @@ Date: Mon, 24 Oct 2016 08:38:21 +0000
 Subject: Enviando correo desde el server de tid
 To: "Name surname receiver" <receiver@mail.com>
 
-Este es un email que envio desde el servidor de correo de telefonica.
+Este es un email que envio desde el servidor de correo.
 
-Envio el correo a gonzalo, a su cuenta de amaris
+Envio el correo a gonzalo
 .
 QUIT
