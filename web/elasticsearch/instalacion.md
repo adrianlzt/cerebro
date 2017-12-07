@@ -67,6 +67,8 @@ cd elasticsearch-xxx
 vi config/elasticsearch.yml
   cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
   node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
+  network.host: 0.0.0.0
+
 bin/elasticsearch -d <- para correrlo como daemon
 tail -f logs/loquequeramos.log
 
@@ -76,3 +78,12 @@ Mirar plugins.md para aplicaciones útiles que querremos tener.
 
 # Configuración de memoria
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_give_half_your_memory_to_lucene
+Configurar el HEAP de ES al 50% de la memoria disponible (el otro 50% ira en cacheos del SO usados por Lucene)
+vi /etc/sysconfig/elasticsearch
+ES_JAVA_OPTS="-Xms15g -Xmx15g" # para una maquina un 30GB de memoria
+
+No poner más de 31GB para el heap
+
+mirar production.md
+
+mirar cluster.md si queremos formar un cluster
