@@ -32,7 +32,7 @@ Necesita java8
 yum install -y java-1.8.0-openjdk
 systemctl enable elasticsearch.service
 
-vi config/elasticsearch.yml
+vi /etc/elasticsearch/elasticsearch.yml
   cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
   node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
 
