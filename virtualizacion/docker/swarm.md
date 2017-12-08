@@ -360,6 +360,8 @@ https://docs.docker.com/engine/swarm/networking/
 Para crear redes compartidas entre los nodos del cluster especificaremos el driver overlay:
 docker network create --driver overlay prueba
 
+Si ponemos "internal: true", los nodos no podran salir a internet.
+
 Estas redes por defecto asignan una VIP compartida por todas las tasks del service.
 Esa ip será la que se asocie al registro DNS con el nombre del service.
 

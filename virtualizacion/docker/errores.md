@@ -37,3 +37,13 @@ systemctl start docker
 uniendo un nodo a un docker swarm
 Error starting daemon: error initializing graphdriver: devmapper: Device %device% is not a thin pool
 mirar si esta abierto el puerto en el server donde estamos intentando ejecutar el comando de join del cluster
+
+
+
+https://github.com/docker/distribution/issues/1874
+server gave HTTP response to HTTPS client
+    Create or modify /etc/docker/daemon.json
+    { "insecure-registries":["myregistry.example.com:5000"] }
+    Restart docker daemon
+    sudo service docker restart
+
