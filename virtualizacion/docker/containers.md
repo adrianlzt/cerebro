@@ -60,14 +60,3 @@ O crear un fichero en ~/.docker/config.json estilo:
     "email" : "email@email.com"
   }
 }
-
-
-
-# API
-https://docs.docker.com/registry/spec/api/#overview
-
-Listar repos disponibles:
-/v2/_catalog
-
-Listar tags para la imagen org/nombre
-v2/org/nombre/tags/list
