@@ -44,9 +44,10 @@ chown amavis:amavis /var/lib/dkim/midominio.com.pem
 vi /etc/amavisd/amavisd.conf
   dkim_key("midominio.com", "dkim", "/var/lib/dkim/midominio.com.pem");
 
+systemctl restart amavisd
+
 amavisd -c /etc/amavisd/amavisd.conf showkeys
 amavisd -c /etc/amavisd/amavisd.conf testkeys
-
 
 # LDAP
 Cuando se crea un usuario se hace una "addRequest" con:
@@ -81,7 +82,7 @@ En la interfaz admin no se pueden logar los usuarios normales
 for i in postfix slapd mariadb nginx php-fpm uwsgi dovecot clamd@amavisd amavisd sogod memcached fail2ban iredapd; do systemctl stop $i; done
 for i in postfix slapd mariadb nginx php-fpm uwsgi dovecot clamd@amavisd amavisd sogod memcached fail2ban iredapd; do systemctl disable $i; done
 yum erase -y postfix openldap-servers mariadb-server nginx php-fpm dovecot dovecot-pigeonhole dovecot-mysql dovecot-pgsql amavisd-new spamassassin clamav clamav-update clamav-server clamav-server-systemd  sogo sogo-activesync sogo-ealarms-notify sogo-tool uwsgi uwsgi-plugin-python awstats logwatch fail2ban fail2ban-server fail2ban-firewalld fail2ban-sendmail
-rm -fr /etc/postfix/ /etc/my.cnf* /etc/nginx/ /etc/php-fpm.d /etc/dovecot/ /etc/clamd.d/ /etc/amavisd/ /etc/sogo/ /etc/fail2ban/ /var/lib/mysql/ /var/lib/dovecot/ /var/lib/clamav/ /var/lib/sogo/ /var/lib/fail2ban/ /var/log/dovecot  /var/log/iredapd/ /var/log/uwsgi/ /var/vmail /var/www/roundcubemail* /var/www/awstats-statistics /var/www/iredadmin /var/www/iRedAdmin-0.8/ /opt/iredapd /opt/iRedAPD-2.1 /usr/local/bin/dovecot-quota-warning.sh* /etc/systemd/system/multi-user.target.wants//iredapd.service /var/lib/clamav/ /etc/mail/ /etc/sysconfig/sogo* /root/.my.cnf*
+rm -fr /etc/postfix/ /etc/my.cnf* /etc/nginx/ /etc/php-fpm.d /etc/dovecot/ /etc/clamd.d/ /etc/amavisd/ /etc/sogo/ /etc/fail2ban/ /var/lib/mysql/ /var/lib/dovecot/ /var/lib/clamav/ /var/lib/sogo/ /var/lib/fail2ban/ /var/log/dovecot  /var/log/iredapd/ /var/log/uwsgi/ /var/vmail /var/www/roundcubemail* /var/www/awstats-statistics /var/www/iredadmin /var/www/iRedAdmin-0.8/ /opt/iredapd /opt/iRedAPD-2.1 /usr/local/bin/dovecot-quota-warning.sh* /etc/systemd/system/multi-user.target.wants//iredapd.service /var/lib/clamav/ /etc/mail/ /etc/sysconfig/sogo* /root/.my.cnf* /var/lib/dkim
 for i in vmail iredadmin iredapd clamupdate clamilt virusgroup mysql dovecot postfix dovenull amavis; do userdel $i; groupdel $i; done
 
 
@@ -89,3 +90,10 @@ for i in vmail iredadmin iredapd clamupdate clamilt virusgroup mysql dovecot pos
 SELECT: Internal error occurred. Refer to server log for more information.
   problema de permisos. mirar journalctl
   Los directorios /var/vmail/vmail1/ tenian 5000:5000 pero dovecot estaba configurado para usar 2000:2000
+
+
+Contraseñas no válidas?
+Creo que si cambio los certs de /etc/pki/tls/.../iRedMail* dejan de funcionar las contraseñas.
+Tiene sentido?
+De todas maneras podemos definirlas de nuevo.
+Si perdeemos todas podemos editar el server de ldap para modificar la pass y a partir de ahi el resto.
