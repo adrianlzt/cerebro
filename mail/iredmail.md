@@ -31,6 +31,21 @@ replace: shadowLastChange: 117507
 Cuando un usuario quiere modificar su propia password se logeará contra ldap como si mismo.
 
 
+# Usuarios
+Deshabilitar cambio de contraseña
+
+En sogo:
+$ grep SOGoPasswo /etc/sogo/sogo.conf
+    SOGoPasswordChangeEnabled = NO;
+
+En roundcube (no he visto forma de modificar unicamente el config.inc.php general, el del plugin parece tener prioridad siempre):
+/var/www/roundcubemail-1.3.0/plugins/password/config.inc.php
+$config['password_disabled'] = 'Not allowed';
+
+
+En la interfaz admin no se pueden logar los usuarios normales
+
+
 # Errores
 SELECT: Internal error occurred. Refer to server log for more information.
   problema de permisos. mirar journalctl
