@@ -100,6 +100,10 @@ El resultado del scan lo almacena en /tmp/ID.scan
 Cuando tenemos el resultado del escaneo deberemos dar a "Update assets" para almacenar la información del escaneo en la base de datos.
 
 Tambien podemos poner un scheduler para lanzar escaneos. Estos autoescaneos si se almacenan directamente sobre la bbdd.
+Las trazas de a ejecución se almacenan en: /var/log/alienvault/agent/agent.log
+  2017-12-04 13:07:33,907 InventoryTask_NMAP [INFO]: Starting NMAP
+  2017-12-04 13:21:34,189 InventoryTask_NMAP [INFO]: NMAP collector ending..
+
 
 Si tarda mucho parece que falla porque se cierra la sessión web (no lo se seguro).
 Se puede aumentar el timeout de las sesiones en Configuration > Administration > Main > User Activity -> Session Timeout (minutes)
