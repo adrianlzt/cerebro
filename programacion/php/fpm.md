@@ -13,6 +13,13 @@ pm.status_path = /status
 En el link se explica que es cada métrica
 
 
+# TCP
+Si conectamos mediante TCP tenedremos que habilitar una IP en el listen.
+Comprobar que llegamos desde el cliente hasta la IP donde escucha el server (está escuchando solo en localhost?)
+
+Cuidado no tengamos registringidas las IPs que pueden realizar las llamadas:
+listen.allowed_clients
+
 
 # Conex manual
 pacman -S extra/fcgi
