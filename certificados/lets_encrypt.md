@@ -1,5 +1,6 @@
 Cliente web para generar el cert.
 https://gethttpsforfree.com/
+Nos pedirá que arranquemos un server web en el puerto 80 del dominio que queremos registrar, o servir un fichero.
 
 # Lets encrypt
 Entidad gratuita: https://letsencrypt.org/
