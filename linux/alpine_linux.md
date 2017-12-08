@@ -33,10 +33,16 @@ build-base
 
 
 Cosas basicas:
-apk add libc-dev gcc 
+apk add libc-dev gcc
 
 # Docker
 docker run -it alpine /bin/sh
 
 Para usar apk primero hacer:
 apk update
+
+Si queremos no generar cache y bajarnos el index antes de empezar:
+apt --no-cache --update add paquete
+
+Borrar dependencias de compilacion una vez teminado
+apk --update add --virtual build-dependencies python-dev build-base wget && compilar && apk del build-dependencies
