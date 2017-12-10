@@ -17,6 +17,9 @@ docker run -d -p 5000:5000 --restart always -v "${PWD}/config.yml:/etc/docker/re
 config.yml en registry_config.yml
 Doc de la config: https://github.com/docker/distribution/blob/master/docs/configuration.md
 
+Por defecto no tiene TLS y deberemos configurar todos los demonios de docker que tengan que hablar con este registry para aceptar este sin TLS (necesario reiniciar).
+Mejor meterle un cert (pero tendrá que ser válido)
+
 
 Visor web:
 docker run -d -e ENV_DOCKER_REGISTRY_HOST=registry -e ENV_DOCKER_REGISTRY_PORT=5000 -p 8080:80 --link registry --name registry_web konradkleine/docker-registry-frontend:v2

@@ -274,7 +274,7 @@ ip route 10.8.0.0 255.255.255.0 10.0.1.28
 ip route 10.8.0.0 255.255.255.0 GigabitEthernet0/1 10.0.1.28
 
 
-# ICMP
+# ACL / CBAC
 https://www.youtube.com/watch?v=VfX0lA4BLIU
 https://learningnetwork.cisco.com/thread/12997<Paste>
 
