@@ -1,5 +1,7 @@
 https://www.elastic.co/products/beats
 https://github.com/elastic/beats
+https://www.elastic.co/guide/en/beats/libbeat/master/community-beats.html
+  comunidad
 
 If you’re not ready to upgrade Elasticsearch and Kibana to 6.0, that’s alright. Beats version 6.0 works with Elasticsearch and Kibana version 5.6, so you can upgrade Beats now and the rest of the stack later.
 
@@ -26,6 +28,8 @@ Si queremos recompilarlo: go build
 
 # Develop
 http://www.elastic.co/guide/en/beats/devguide/current/new-beat.html
+https://www.elastic.co/blog/build-your-own-beat
+  cosas antiguas
 
 At the high level, a simple Beat has two main components:
   a component that collects the actual data, and
@@ -38,8 +42,10 @@ go get github.com/elastic/beats
 Script en python para generar la estructura inicial (python2)
 python2 $GOPATH/src/github.com/elastic/beats/script/generate.py
   nos preguntará como queremos llamarlo, user de github, nombre repo, etc
-cd ${GOPATH}/src/github.com/{user}/countbeat
+cd ${GOPATH}/src/github.com/{user}/examplebeat
 make setup
 
 make
   hacer build
+
+./examplebeat -e -d "*"
