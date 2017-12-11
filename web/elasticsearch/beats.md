@@ -49,3 +49,33 @@ make
   hacer build
 
 ./examplebeat -e -d "*"
+
+
+La parte principal es la implementación de la interfaz Beater.
+https://www.elastic.co/guide/en/beats/devguide/current/beater-interface.html
+
+type Countbeat struct {
+        done   chan struct{}
+        config config.Config
+        client publisher.Client
+
+        ...
+}
+
+func (bt *Countbeat) Run(b *beat.Beat) error {
+        ...
+}
+
+
+func (bt *Countbeat) Stop() {
+        ...
+}
+
+
+El esquema de datos que saquemos debemos especificarlo en _meta/fields.yml
+Tras agregarlo ahí deberemos hacer un "make update"
+
+
+
+Con libbeat 5.2.3 hace falta tener el fichero XXX.template.json con el que se generará el template de los datos que se enviarán (https://www.elastic.co/guide/en/beats/filebeat/5.4/filebeat-template.html)
+Para libbeat >= 6 se usará el fields.yml (https://www.elastic.co/guide/en/beats/filebeat/6.0/filebeat-template.html)
