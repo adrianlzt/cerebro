@@ -4,6 +4,16 @@ Package Management for Golang
 
 Con comandos para facilitar la gestión
 
+Install:
+curl https://glide.sh/get | sh
+
+
+glide init
+glide update
+  baja deps y genera el fichero .lock
+glide install
+  instala deps segun el fichero .lock (si no existe lanza un update)
+
 Usado por:
 
 
