@@ -2,6 +2,10 @@ The full setup for inbound mail is - OpenBSD spamd (greylisting) -> internal pos
 Outbound is - internal postfix -> VPS postfix
 
 
+# Comprobación estado general
+https://mxtoolbox.com/SuperTool.aspx
+
+
 # Seguridad / autenticación
 
 ## DKIM
