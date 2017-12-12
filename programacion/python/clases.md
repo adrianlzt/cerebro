@@ -131,3 +131,13 @@ def __iter__(self):
   pass
 def __next__(self):
   pass
+
+
+
+# Obtener funciones de una clase
+import inspect
+inspect.getmembers(Pepe, predicate=inspect.isfunction)
+
+
+# Obtener funciones de un objeto
+attr for attr in dir(pepe) if inspect.ismethod(getattr(pepe, attr))]

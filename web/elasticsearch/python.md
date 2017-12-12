@@ -6,6 +6,11 @@ from elasticsearch_dsl.connections import connections
 hosts = ["http://localhost:9200"]
 connections.create_connection(hosts=hosts, timeout=self.args.elastic_timeout)
 
+s = Search(index="metricbeat-*").filter("term", metricset__name="memory") \
+                                .filter("term", metricset__module="system") \
+                                .query('range', ** {'@timestamp': {'gt': f"now-1h"}})
+
+
 Search(index="metricbeat-*").filter("term", metricset__name="core").filter("term", metricset__module="system")
 Si tenemos que poner un "." usaremos "__"
 
