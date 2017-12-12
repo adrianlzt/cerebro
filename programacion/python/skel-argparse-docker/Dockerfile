@@ -6,11 +6,11 @@ COPY main.py /app/
 RUN flake8
 # ignore long lines
 #RUN flake8 --ignore=ES501
-RUN pylint
-RUN pydocstyle
+RUN pylint main.py
+RUN pydocstyle main.py
 
 FROM python:3.6-slim
-CMD python /main.py
+ENTRYPOINT ["python", "/main.py"]
 COPY requirements.txt /
 RUN pip install -r /requirements.txt
 COPY main.py /
