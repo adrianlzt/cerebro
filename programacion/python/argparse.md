@@ -42,7 +42,7 @@ parser.add_argument("-c", "--cert", type=args.FileType('r'), dest="cert", help="
 contenido_fichero = args.cert.read()
 for line in args.cert.readlines(): ...
 
-Repetir varias veces un parametro:
+Repetir varias veces un parametro (list, array):
 parser.add_argument('-i','--input',action='append')
  asi podemos poner: -i 1 -i 2
 
