@@ -49,6 +49,11 @@ curl "https://localhost:9200/.operations.2017.10.01/_search" -d '
         "doc_count" : 88477
 
 
+Por defecto, si agregamos por terms, solo nos mostrará los mayores 10.
+Podemos pedir más con "size: N" (N = 1 - 2147483647)
+No podemos poner size:0
+
+
 
 
 # Agregar por un campo text analyzed
