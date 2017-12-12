@@ -12,6 +12,7 @@ b.get('four','no existe')
 b.has_key("cosa")
 Mejor asi (en python3 no hay has_key):
 "cosa" in b
+"cosa" not in b
 
 
 Añadir otro elemento:
