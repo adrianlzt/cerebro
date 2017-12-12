@@ -12,8 +12,8 @@ Metricbeat -> extrae métricas de sistema (oficial)
 Packetbeat -> Captura trafico y lo analiza, sacando métricas.  (oficial)
 heartbeat -> Comprueba disponibilidad de servicios realizando conexiones activas (oficial)
 Auditbeat -> extrae información de auditorio (oficial) (version >= 6)
-connbeat -> extrae conexiones de red (community)
-packagebeat -> Extrae información de paquetes (community) (no compila, pero binario en github)
+connbeat -> extrae conexiones de red (community) DEPRECATED, lo hace el metricbeat
+packagebeat -> Extrae información de paquetes (community) (binario en github, pero con bug, deja procesos defunc)
 iobeat -> Extrae información de ios (community) (falla compilación)
 lmsensorsbeat -> Extrae información de sensores de la maquina (community) (no compila)
 
