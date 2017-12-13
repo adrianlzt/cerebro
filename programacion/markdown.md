@@ -13,6 +13,10 @@ grip fichero.md
 https://remarkjs.com/
   presentación de slides en markdown
 
+To HTML
+https://github.com/mixu/markdown-styles
+yaourt -S nodejs-markdown-styles
+
 
 
 # Sintaxis
