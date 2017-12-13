@@ -34,6 +34,7 @@ The shards command is the detailed view of what nodes contain which shards. It w
 
 curl "https://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
   consultar que shards no estan allocated y por que https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-shards.html#reason-unassigned
+  Si estan en UNASSIGNED pero no pone ninguna razón es que está en la cola de hacerlo, pero no tenemos problemas
 
 curl "localhost:9200/_cluster/allocation/explain?pretty"
   explicación de porque hay shards sin asignar (version >=5)

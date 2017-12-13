@@ -21,9 +21,10 @@ find . -exec echo {} \+
 
 
 Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
--xdev si no queremos cambiar de filesystem
-du -x si no queremos que du traspase distintos filesystems
 find . -maxdepth 3 -exec du -h {} \; | sort -hr | uniq | head -20
+
+find . -maxdepth 3 -xdev -exec du -xh {} \; | sort -hr | uniq | head -20
+  sin cruzar filesystems
 
 Si tenemos una versión reciente de du (-x, no cruza filesystems)
 du -hax -d 3 / | sort -hr | uniq | head -20

@@ -95,12 +95,15 @@ curl localhost:9200/vehicles/_search -d'
 Las búsquedas permiten buscar términos similares (car,auto,automobile,truck), o buscar sinónimos (en el vídeo no se explica como)
 
 
+
+# Limitar campos
 Si queremos solo mostrar ciertos campos del documento:
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-source-filtering.html
 
-curl 'http://172.16.1.43:9200/logstash-iris-telematics-2015.06.09/_search?&scroll=1m&size=1000' -d '{"_source" : "messa*" , "query": { "match": { "offset": "13638288" } } }' | python -m json.tool
+curl 'http://172.16.1.43:9200/logstash-iris-telematics-2015.06.09/_search?&scroll=1m&size=1000' -d '{"_source" : ["messa*"] , "query": { "match": { "offset": "13638288" } } }'
 
 
+FIELDS esta deprecated en 5.x
 Es distinto que usar el 'fields' o 'partial_fields'
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-fields.html#search-request-fields
 Si usamos eso los campos los devuelve en un subapartado:
