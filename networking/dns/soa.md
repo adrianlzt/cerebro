@@ -1,10 +1,11 @@
-$TTL 86400
-@ IN SOA gtm.example.com. root.gtm.example.com. (
-                                                 2010031200 ; Serial 
-                                                 28800 ; Refresh
-                                                 14400 ; Retry
-                                                 3600000 ; Expire 
-                                                 86400 ) ; Minimum
+Valores recomendados por RIPE https://www.ripe.net/publications/docs/ripe-203
+
+example.com.  3600  SOA  dns.example.com. hostmaster.example.com. (
+                         1999022301   ; serial YYYYMMDDnn
+                         86400        ; refresh (  24 hours)
+                         7200         ; retry   (   2 hours)
+                         3600000      ; expire  (1000 hours)
+                         172800 )     ; minimum (   2 days)
 
 
 http://www.ietf.org/rfc/rfc1912.txt
