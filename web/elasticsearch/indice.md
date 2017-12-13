@@ -20,7 +20,11 @@ curl 'localhost:9200/_cat/indices?v&health=yellow&pretty'
 curl "https://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
   consultar que shards no estan allocated y por que https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-shards.html#reason-unassigned
 
+curl "localhost:9200/_cluster/allocation/explain?pretty"
+  explicación de porque hay shards sin asignar (version >=5)
 
+curl -s "localhost:9200/_cat/indices?bytes=mb&h=index,store.size" | sort -nk2
+  ocupación total de cada índice en MB
 
 # Crear indice
 curl -XPUT 'http://localhost:9200/twitter/' -d '{}'

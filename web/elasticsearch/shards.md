@@ -32,9 +32,11 @@ https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cat-shards.html
 curl "localhost:9200/_cat/shards?v"
 The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.
 
-
 curl "https://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
   consultar que shards no estan allocated y por que https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-shards.html#reason-unassigned
+
+curl "localhost:9200/_cluster/allocation/explain?pretty"
+  explicación de porque hay shards sin asignar (version >=5)
 
 
 

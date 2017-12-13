@@ -1,3 +1,7 @@
+Para consultar la API lo mejor es usar las "Dev tools" de Kibana.
+Nos da una web donde lanzar las peticiones de forma sencilla, con un poco de autocompletado
+
+
 # CAT api
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html
 
