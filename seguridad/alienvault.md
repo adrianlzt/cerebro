@@ -5,6 +5,16 @@ https://dlcdn.alienvault.com/AlienVault_OSSIM_64bits.iso
 
 USM es la versión de pago de OSSIM.
 
+# Componentes
+alienvault-doctor: Detects errors and misconfigurations in your system
+alienvault-rhythm: AlienVault Rhythm is the OTX event correlator.
+nmap: escaner de red
+openvas-scanner: escaner de seguridad
+ossec: Host-based Intrusion Detection System
+prads: Passive Real-time Asset Detection System
+suricata: Next Generation Intrusion Detection and Prevention Tool
+
+
 
 La iso no instala bien, se queda colgada en "Configuring suricata"
 workaround aqui: https://www.alienvault.com/forums/discussion/15697/hyper-v-install-hanging-configuring-suricata
@@ -119,10 +129,15 @@ El código web está en /usr/share/ossim/www o en las fuentes en alienvault-ossi
 
 Modulos de ansible que utiliza: /usr/share/python/alienvault-api-core/share/ansible
 
+Manejo del escaner de vulnerabilidades: /usr/share/ossim/include/classes/omp.inc
+echo "<help />" | omp -h 10.0.0.11 -p 9390 -u ossim -w ossim -iX -
+
 ## Databases
 alienvault_siem parece que es donde almacena lo que se baja de internet (OTX)
 alienvault
   task_inventory: donde se almacenan los scheduling de jobs
+  vuln_nessus_latest_results: resultados del último escaner de seguridad. Ejemplo:
+    select * from vuln_nessus_latest_results where hostIP="172.16.10.20" and risk=1 limit 2\G
 
 
 ## API
@@ -138,7 +153,7 @@ Se accede con https://localhost:40011
 Se debe hablar con json:
 curl localhost:40011 -H "Accept: application/json"
 
-La app Flash se define en
+La app Flask se define en
 /usr/share/python/alienvault-api/__init__.py
 
 /usr/share/python/alienvault-api/lib/http_conn.py
@@ -150,9 +165,17 @@ Las distintas rutas url que acepta la api
 Y el código que hace cosas está en:
 /usr/share/python/alienvault-api/blueprints
 
+
+av/api/1.0/data/status
+  estado del server y mensajes para el usuario
+
+
+
 ### Auth
 curl -vk -H "Accept: application/json" "https://localhost:40011/av/api/1.0/auth/login?username=USER&password=PASS"
   para posteriores consultas tendremos que coger la cookie y ponerla en las peticiones: -H "Cookie: session=.eJxN..."
+
+curl -vk -H "Accept: application/json" -H "Cookie: session=.eJx; HttpOnly; Path=" "https://localhost:40011/av/api/1.0/data/status"
 
 Para meter a fuego mi user en la db sin encriptar:
 insert into users select "adri",ctx,name,pass,email,company,department,language,enabled,first_login,timezone,last_pass_change,last_logon_try,is_admin,template_id,uuid,expires,login_method,salt from users;
