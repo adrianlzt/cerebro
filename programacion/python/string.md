@@ -1,3 +1,5 @@
+mirar unidades.md para convertir 1000 a 1K
+
 cadena="hola"
 cadena[2]
 'l'
@@ -108,6 +110,14 @@ alineado a la derecha
 
 f"{nombre:<12}"
 alineado a la izquierda
+
+>>> f'{pi:.2f}'
+'3.14'
+
+
+>>> "%0.2f" % 10
+'10.00'
+
 
 
 >>> import re
