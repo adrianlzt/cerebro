@@ -58,7 +58,9 @@ docker run -it --rm -v "$PWD/letsencrypt:/etc/letsencrypt" quay.io/letsencrypt/l
 
 
 # Multidomain
-certbot-auto -d one.example.com -d two.example.com -d three.example.com -d example.org
+certbot certonly --manual -d one.example.com,two.example.com,three.example.com
+usa puerto 80
+nos pedirá que coloquemos un fichero en dominio/.wll-known/acme-challenge/XXX
 
 
 # Limits
