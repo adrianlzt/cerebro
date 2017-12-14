@@ -1,0 +1,5 @@
+[sshd-ddos]
+enabled     = true
+filter      = sshd-ddos
+action      = iptables-multiport[name=sshd-ddos, port="22", protocol=tcp]
+logpath     = /var/log/secure

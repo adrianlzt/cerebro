@@ -1,0 +1,6 @@
+[roundcube-iredmail]
+enabled     = true
+filter      = roundcube.iredmail
+action      = iptables-multiport[name=roundcube, port="http,https,smtp,submission,pop3,pop3s,imap,imaps,sieve", protocol=tcp]
+logpath     = /var/log/maillog
+findtime    = 3600

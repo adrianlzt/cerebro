@@ -1,0 +1,5 @@
+[sshd]
+enabled     = true
+filter      = sshd
+action      = iptables-multiport[name=sshd, port="22", protocol=tcp]
+logpath     = /var/log/secure

@@ -1,0 +1,5 @@
+[postfix-sasl]
+enabled     = true
+filter      = postfix-sasl
+action      = iptables-multiport[name=postfix, port="http,https,smtp,submission,pop3,pop3s,imap,imaps,sieve", protocol=tcp]
+logpath     = /var/log/maillog

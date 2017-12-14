@@ -1,0 +1,5 @@
+[nginx-http-auth]
+enabled     = true
+filter      = nginx-http-auth
+action      = iptables-multiport[name=nginx, port="http,https,smtp,submission,pop3,pop3s,imap,imaps,sieve", protocol=tcp]
+logpath     = /var/log/nginx/error.log
