@@ -17,11 +17,32 @@ Para algo más sencillo se puede usar nohup (http://serverfault.com/questions/24
 Esto ignora las señales hangup que enviaría la shell cuando hicíesemos exit a todos los procesos que cuelgan de ella.
 Por defecto envía la salida estandar a nohup.out
 
+lo detacha de nuestra terminal, puede seguir corriendo en primer plano aunque cerremos la terminal
+la salida va a nohup.out
+
 
 Para procesos que ya están corriendo
 
 ## disown ##
 Esto permite decirle a un programa que se encuentra corriendo actualmente que ignore las señales hangup, y así poder corriendo aunque se cierre la shell.
+Parece que si la app quiere escribir en stdout/err pero hemos cerrado la shell fallará y saldrá.
+
+programa_largo >& LOG
+control+z
+bg %
+disown %
+
+Si el proceso va a escribir en stdout/err necesitaremos cambiar su fd/0 y fd/1 a un fichero (el proceso creo que se detiene mientras estamos con el gdb)
+Esto lo haremos antes de hacer el control+z
+https://stackoverflow.com/questions/1323956/how-to-redirect-output-of-an-already-running-process
+sudo gdb -p PID
+p close(1)
+p creat("/tmp/foo3", 0600)
+p close(2)
+p creat("/tmp/foo3", 0600)
+control+d
+y
+
 
 
 ## detach + reptyr ##
