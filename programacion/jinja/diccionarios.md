@@ -1,3 +1,5 @@
+{{ dict.value }}
+
 # Loops
 http://blog.mattcrampton.com/post/31254835293/iterating-over-a-dict-in-a-jinja-template
 

@@ -229,3 +229,11 @@ Heapq llamará a las funciones __eq__ y __lt__ para comparar los objetos y decid
 >>> heappop(lista)
 17
 
+
+
+Mergear dos listas
+zip(listaA,listaB)
+
+Mergear dejando el tamaño de la más larga:
+from itertools import zip_longest
+zip_longest(A,B)

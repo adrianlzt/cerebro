@@ -7,6 +7,11 @@ http://jinja.pocoo.org/docs/dev/templates/#for
   que hacer si no hay elementos en hostgroups
 {% endfor %}
 
+Una linea por cada vuelta sin lineas en blanco
+{% for hostgroup in hostgroups -%}
+{{hostgroup}}
+{% endfor %}
+
 
 Ejemplo de bucle inline:
 CONNECTSTRING={% for host in groups['db_mgm'] %} {{ hostvars[host][interface].ipv4.address  }}:1186{% if not loop.last %},{% endif %}{% endfor %}
