@@ -1,6 +1,9 @@
 http://jinja.pocoo.org/docs/dev/templates/#tests
 http://jinja.pocoo.org/docs/dev/templates/#expressions
 
+{% if foo > 4 %}
+
+
 {% if service %}
 hola service
 {% endif %}
@@ -25,6 +28,12 @@ hola service
 es http
 {% else %}
 es otra cosa
+{% endif %}
+
+
+# Array
+{% if array %}
+  true si no tiene 0 elementos
 {% endif %}
 
 
