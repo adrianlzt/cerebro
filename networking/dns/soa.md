@@ -8,6 +8,20 @@ example.com.  3600  SOA  dns.example.com. hostmaster.example.com. (
                          172800 )     ; minimum (   2 days)
 
 
+Por que no poner un expire muy pequeño:
+A name server will no longer consider itself Authoritative if it hasn't been able to refresh the zone data in the time limit declared in this value.
+
+How long a secondary will still treat its copy of the zone
+data as valid if it can't contact the primary.This value
+should be greater than how long a major outage would typically
+last, and must be greater than the minimum and retry
+intervals, to avoid having a secondary expire the data before
+it gets a chance to get a new copy.After a zone is expired a
+secondary will still continue to try to contact the primary,
+but it will no longer provide nameservice for the zone.2-4
+weeks are suggested values. [RFC1912]
+
+
 http://www.ietf.org/rfc/rfc1912.txt
 In the SOA record of every zone, remember to fill in the e-mail
 address that will get to the person who maintains the DNS at your

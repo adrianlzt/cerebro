@@ -34,6 +34,8 @@ host -t TXT _dmarc.docker.com
 
 Comenzar con una configuración donde monitorizamos todos los errores, e ir pasando a un pequeño porcentaje de cuarentena, casi todo en cuarentena, porcentaje descartado, todo descartado.
 
+El envio de emails tiene que ser a un correo con el mismo dominio.
+
 
 
 ## SPF
