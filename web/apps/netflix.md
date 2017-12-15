@@ -6,3 +6,7 @@ Otras versiones que he intentado (otros apk) no funcionaban. Usar el que pone en
 
 https://hipertextual.com/2017/03/truco-netflix-categorias
 Acceder a categorias ocultas
+
+
+Catalogo de netflix por paises (no están todos los paises)
+https://www.finder.com/a-z-of-international-netflix-tv-and-movie-lists
