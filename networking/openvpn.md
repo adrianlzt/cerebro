@@ -27,12 +27,14 @@ password
 Si queremos poner nuestras propias rutas: https://askubuntu.com/questions/612840/adding-route-on-client-using-openvpn
 route-noexec  # no aceptamos las que nos da el server
 script-security 2  # permitimos la ejecuccución de scripts de usuario
-route-up opensolutions_routes.sh  # script donde ejecutamos los comandos para poner nuestras rutas
+route-up routes.sh  # script donde ejecutamos los comandos para poner nuestras rutas
 
 Si usamos openvpn con systemd tiene bastante restringido que puede hacer (limitadas capabilities, donde puede escribir, etc).
 Tenedremos que poner el script en el mismo directorio donde este la conf de cliente. Si queremos generar algún log tendrá que ser también en ese mismo dir.
 
 Al script se le pasan una serie de variables de entorno con los datos de la conex y las rutas que quiere meter el servidor.
+Mirar "Environmental Variables" en https://openvpn.net/index.php/open-source/documentation/manuals/65-openvpn-20x-manpage.html
+Una muy util para definir rutas es ${dev} que tendrá el valor "tun0", "tun1" o el que corresponda.
 
 
 
