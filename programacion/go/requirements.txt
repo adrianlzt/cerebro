@@ -1,0 +1,7 @@
+https://github.com/golang/go/wiki/MinimumRequirements
+
+Kernel version 2.6.23 or later
+
+Windows XP (w/ Service Pack 3) or higher. We also test Windows Server 2008 R2, 2012 R2, and 2016, which are roughly Windows 7, Windows 8, and Windows 10.
+
+illumos (former OpenSolaris 10) based distributions or Oracle Solaris 11+.

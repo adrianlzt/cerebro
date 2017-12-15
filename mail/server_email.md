@@ -36,6 +36,8 @@ Comenzar con una configuración donde monitorizamos todos los errores, e ir pasa
 
 El envio de emails tiene que ser a un correo con el mismo dominio.
 
+Ver human friendly los reportes que nos envien: https://dmarcian.com/dmarc-xml/
+
 
 
 ## SPF
