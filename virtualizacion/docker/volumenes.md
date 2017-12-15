@@ -107,3 +107,30 @@ Soporta ceph o nfs
 https://github.com/muthu-r/horcrux
 Soporta minio como backend
 Version 00.02 y parece que desarrollo parado desde feb'16
+
+
+
+# NFS
+Mountar un volumen NFS en docker swarm
+version: "3.4"
+networks:
+  test:
+    driver: "overlay"
+services:
+  api:
+    image: "miimage"
+    networks:
+      - test
+    volumes:
+      - type: volume
+        source: example
+        target: /nfs
+        volume:
+          nocopy: true
+volumes:
+  example:
+    driver_opts:
+      type: "nfs"
+      o: "addr=10.0.2.2,nolock,soft,rw"
+      device: ":/export/assets"
+
