@@ -245,3 +245,17 @@ echo "1" > /sys/module/nfsd/parameters/nfs4_disable_idmapping
 Para marcarlo en el arranque:
 # cat /etc/modprobe.d/nfsd.conf 
 options nfsd nfs4_disable_idmapping=1
+
+
+
+# Autofs
+daemon which automatically mounts filesystems when you use them, and unmounts them later when you are not using them.  This can include network filesystems, CD-ROMs, floppies, and so forth.
+/etc/auto.master
+/nfs   /etc/auto.nfs
+
+/etc/auto.nfs
+assets       -rw,noatime 10.0.2.2:/export/assets
+
+Cuando hagamos ls /nfs/assets se montará automáticamente el volumen
+
+El directorio /nfs se montará al cargar autofs
