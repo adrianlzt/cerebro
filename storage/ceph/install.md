@@ -30,9 +30,7 @@ El admin node será dede donde lanzemos los comandos ceph-deploy, nuestro portat
 Montamos 1 nodo mon (ceph-mon-1) y 2 OSDs (ceph-1 y ceph-2)
 
 En todos los nodos:
-yum install ntp ntpdate ntp-doc
-systemctl enable ntpd
-systemctl start ntpd
+yum install -y ntp ntpdate ntp-doc && systemctl enable ntpd && systemctl start ntpd
 
 
 ## ceph-deploy
@@ -75,6 +73,7 @@ ceph-deploy new --public-network 172.16.2.0/24 ceph-mon-1
 
 Si tenemos solo dos nodos ceph, haremos:
 echo "osd pool default size = 2" >> ceph.conf
+  poner a 1 si vamos a montar un ceph de solo un nodo
 
 Instalamos ceph en los nodos (monitores y OSDs).
 Mete lo repo de ceph e instala: ceph-common, ceph-base, ceph-selinux, ceph-mon, ceph-osd, ceph-mds, ceph, ceph-radosgw
