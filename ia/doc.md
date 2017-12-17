@@ -1,3 +1,6 @@
+https://news.ycombinator.com/item?id=15919115
+traspas donde se hace un resumen de que tipo de ML existe, como funciona, como se puede usar y hacia donde va
+
 https://news.ycombinator.com/item?id=13367879
 discusion sobre los metodos actuales de ML
 
