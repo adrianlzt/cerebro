@@ -1,10 +1,14 @@
 https://wiki.archlinux.org/index.php/SANE_(Español)
 
 simple-scan
+  funciona, es simple y funcional
+  pacman -S simple-scan
 
 
+# Otros
 CLI:
-scanimage
+scanimage -L
+  mostrar dispositivos
 
 scanimage --device plustek:libusb:002:008 --format=jpeg > /var/tmp/fichero.jpg
 
