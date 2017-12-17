@@ -37,3 +37,9 @@ Comprobar que jenkins tiene permisos de escritura sobre el socket de docker.
 
 Revisar los logs para ver si esta pudiendo levantar los containers y conectando a ellos.
 Para conectar a ellos atacará a una IP del docker host que estara mapeada al puerto 22 del container.
+
+
+
+# Docker build
+El directorio donde le digamos que está el Dockerfile será desde el que funcionen los comandos "ADD" y "COPY".
+Por lo tanto, generalmente querremos que el Dockerfile este en el root de nuestro repo.
