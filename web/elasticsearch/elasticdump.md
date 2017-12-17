@@ -2,3 +2,33 @@ https://github.com/taskrabbit/elasticsearch-dump
 https://www.npmjs.com/package/elasticdump
 
 Para reindexar datos o hacer dump a un fichero
+
+
+Con elasticdump se pueden sacar mappings, analizers y data.
+
+
+# Hacer un dump a fichero
+docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/name --output=/tmp/name.json --type=data
+
+
+Varios indices con sus mappings:
+
+for i in indexA indexB indexC; do
+for j in mapping mapa; do
+docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/$i --output=/tmp/${i}_${j}.json --type=${j}
+done
+done
+
+
+# Restore
+Crear un mapping a partir de un fichero
+docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/communities_mapping.json --output=http://10.0.2.32:30000/communities --type=mapping 
+
+
+Restaurar una serie de mappings e indices
+for i in user_index communities primary_index invite_index invites community_index; do                                                                   git:(master|✚2… 
+for j in mapping data; do
+docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://10.0.2.32:30000/$i --input=/tmp/${i}_${j}.json --type=$j
+done
+done
+

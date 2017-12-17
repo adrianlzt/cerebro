@@ -15,6 +15,7 @@ https://laravel.com/docs/5.5/migrations
 
 Modifican la database
 Los cambios ya hechos se almacenan en la tabla "migrations". Se almacena el nombre de la migración (sin el .php) y el "batch" donde se ha ejecutado.
+Si borramos entradas y ejecutamos el "migration" se ejecutarán las que falten en la bbdd.
 
 Aplicar las migrations:
 php artisan migrate
