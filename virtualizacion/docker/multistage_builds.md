@@ -1,5 +1,6 @@
 https://docs.docker.com/engine/userguide/eng-image/multistage-build/
 https://blog.alexellis.io/mutli-stage-docker-builds/
+Docker 17.05 or higher
 
 La idea es un Dockerfile con varios "FROM".
 Generalmente usamos el primer FROM para compiarl el programa y un segundo FROM con una imagen ligera (alpine, por ejemplo) donde copiaremos el binario generado en la primera imagen.
