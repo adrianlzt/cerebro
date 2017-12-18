@@ -31,4 +31,3 @@ for j in mapping data; do
 docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://10.0.2.32:30000/$i --input=/tmp/${i}_${j}.json --type=$j
 done
 done
-
