@@ -3,6 +3,8 @@ https://www.npmjs.com/package/elasticdump
 
 Para reindexar datos o hacer dump a un fichero
 
+No usar nombres de indices en mayusuclas, no permitido por ES.
+
 
 Con elasticdump se pueden sacar mappings, analizers y data.
 
