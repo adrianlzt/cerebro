@@ -7,3 +7,7 @@ Windows 7+ / Windows Server 2003+
 PowerShell v2+
 .NET Framework 4+ (the installation will attempt to install .NET 4.0 if you do not have it installed)
 
+
+
+Los paquetes .nupkg son fichero .zip, dentro tienen un fichero de spec y scripts de powershell para la instalación.
+Generalmente lo que harán será bajarse un .msi de alguna url remota.
