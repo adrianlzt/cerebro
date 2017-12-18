@@ -36,3 +36,9 @@ gs\""
         state: started
         description: Collect system metrics
 
+
+
+# Internals
+Modulos usados: ansible/lib/ansible/modules/windows/
+
+Modulo de donde saca los facts: ansible/lib/ansible/modules/windows/setup.ps1
