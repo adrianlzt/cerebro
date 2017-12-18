@@ -1,0 +1,2 @@
+Para abrirlo:
+regedit.exe

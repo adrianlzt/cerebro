@@ -24,3 +24,15 @@ Ejemplo de inventario con un windows levantado con vagrant con WinRM ya configur
 Comando de prueba:
 ansible -i inventory -m win_ping windows
 
+
+
+# Services
+    - name: Create service for metricbeat
+      win_service:
+        name: metricbeat
+        display_name: metricbeat
+        path: "\"{{metricbeat_path}}/metricbeat.exe\" -c \"{{metricbeat_path}}/metricbeat.yml\" -path.home \"{{metricbeat_path}}\" -path.data \"{{metricbeat_data_path}}\" -path.logs \"{{metricbeat_data_path}}/lo
+gs\""
+        state: started
+        description: Collect system metrics
+
