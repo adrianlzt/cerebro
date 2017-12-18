@@ -36,3 +36,11 @@ https://bugzilla.redhat.com/show_bug.cgi?id=1177479
 
 [Errno -1] Package does not match intended download
 El sha1sum no coincide
+
+
+Header V4 RSA/SHA512 signature: BAD, key ID d88e42b4
+Centos 5? no soporta cabeceras gpg v4.
+Para forzar la instalación:
+rpm --nosignature -Uvh file.rpm
+Pero despues el "rpm -qa" falla: error: rpmdbNextIterator: skipping h#     426 Header V4 RSA/SHA512 signature: BAD, key ID d88e42b4
+
