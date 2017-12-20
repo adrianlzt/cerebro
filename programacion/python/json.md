@@ -15,6 +15,9 @@ Trabajar con json:
 
 >>> json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 
+Si queremos un dumps sin espacios en blanco:
+json.dumps(objecto, separators=(',', ':'))
+
 Para parsear la información a objetos python, tenemos bastante trabajo manual, definido que es cada estructura.
 
 >>> import json
