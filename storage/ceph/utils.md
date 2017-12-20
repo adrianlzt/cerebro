@@ -1,11 +1,15 @@
 https://github.com/bibby/radula
 cli basada en boto
+pip install radula
+  usar python2
 
 Crear ~/.boto con los distintos profiles (credenciales)
 /root/.boto
 [Credentials]
 aws_access_key_id = QO2K1W
 aws_secret_access_key = Wmyl
+
+Se puede definir todo (credentials, s3, boto) en el ~/.boto
 
 Crear /etc/boto.cfg con el servidor, puerto y su usa ssl
 
