@@ -18,7 +18,7 @@ El bonding puede ser de varios tipos
  1 active-backup, solo se usa interfaz, la otra pasa a activa si cae la primera. La MAC de la interfaz bond solo esta visible en una de las interfaces
  2 balance-xor se elegie una u otra según una operación (XOR entre la smac y la dmac)
  3 broadcast, transmite todo en todas las interfaces
- 4 802.3ad crea grupos de agregación que tengan la misma velocidad y configuraciones de duples
+ 4 802.3ad crea grupos de agregación que tengan la misma velocidad y configuraciones de duples (puede que necesite config en el switch)
  5 balance tlb, adaptative transmit load balancing. No requiere un switch aware.
 
 Configuraciones en /etc/sysconfig/network-scripts/ifcfg-*
