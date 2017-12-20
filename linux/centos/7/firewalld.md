@@ -1,6 +1,12 @@
 http://www.certdepot.net/rhel7-get-started-firewalld/
 https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
+
+Abrir todos los puertos:
+firewall-cmd --zone=public --permanent --add-port=1-65535/tcp
+firewall-cmd --zone=public --permanent --add-port=1-65535/tcp
+
+
 firewalld.noarch : A firewall daemon with D-BUS interface providing a dynamic firewall
 
 Integra iptables, iptables6 y eftables
