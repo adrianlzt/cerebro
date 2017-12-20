@@ -1,12 +1,15 @@
 Definir nuestra API siguiendo un standar para que después la doc se genere sola.
 También nos da herramientas para poder crear un cliente facilmente.
 
+Ejemplo: https://simswapapi.jetsetme.com/jsmsdoc/
+
 Integraciones:
 http://swagger.io/open-source-integrations/
 
 Ejemplo:
 http://editor.swagger.io/#/
 
+La mayoria de los frameworks te puede autogenerar la doc
 
 Generalmente se define un YAML donde explicamos que hace la API:
 paths:
