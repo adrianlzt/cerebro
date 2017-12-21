@@ -20,3 +20,26 @@ https://github.com/alexanderzobnin/grafana-zabbix/blob/02d8748d33cd76209f30f0d6b
       metrics.unshift('$' + variable.name);
     });
 
+
+El ejemplo completo cuando tenemos la respuesta en una promesa:
+getOptions(query) {
+  let metrics = this.datasource.metricFindQuery(query || '');
+  let variables = this.datasource.templateSrv.variables;
+  return metrics.then(
+    function (result) {
+      console.log("dentro de la promesa. result=");
+      console.dir(result);
+      _.forEach(variables, variable => {
+        console.log("añade variable " + variable);
+        result.unshift({text: '$' + variable.name, value: '$' + variable.name});
+      });
+      console.log("tras añadir las variables");
+      console.dir(result);
+      return result;
+    },
+    function(error) {
+      console.log("error promise: " + error);
+    }
+  );
+}
+

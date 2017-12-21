@@ -37,3 +37,7 @@ let cloned = Object.assign({}, source);
 Con babel:
 let cloned = { ... source };
 
+
+
+# Ver si es un objeto
+typeof a === "object"
