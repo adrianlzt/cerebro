@@ -25,6 +25,17 @@ curl http://localhost:7480
 # SSL
 http://docs.ceph.com/docs/master/install/install-ceph-gateway/#using-ssl-with-civetweb
 
+Añadir a /etc/ceph/ceph.conf
+[client.rgw.HOSTNAME]
+rgw_frontends = civetweb port=7480+7443s ssl_certificate=/etc/ceph/private/keyandcert.pem
+
+Siendo HOSTNAME el nombre del host (hostname -s).
+El cert debe ser la concatenación de los certificados, intermedios y la clave.
+
+systemctl restart ceph-radosgw@rgw.HOSTNAME
+Si falla mirar los logs en /var/log/ceph/ceph-client.rgw*
+
+
 
 # Bucket sharding
 http://docs.ceph.com/docs/master/install/install-ceph-gateway/#configure-bucket-sharding
@@ -51,3 +62,5 @@ http://docs.ceph.com/docs/master/install/install-ceph-gateway/#test-s3-access
 Si tarda más de unos pocos segundos seguramente algo va mal.
 
 Ejemplo en php: object_client.php
+
+Testear con el programa python radula (mirar utils.md)

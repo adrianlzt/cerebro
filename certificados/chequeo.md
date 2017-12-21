@@ -49,7 +49,7 @@ https://www.sslshopper.com/certificate-key-matcher.html
 
 diff <(openssl x509 -noout -modulus -in *.crt) <(openssl rsa -noout -modulus -in *.key); echo $?
 
-Si devuelve 0 es que el crt corresponde a la key
+Si devuelve 0, sin otros errores, es que el crt corresponde a la key
 
 
 El crt (certificado), privatekey y csr (certificate signing request) deben tener el mismo modulus:
