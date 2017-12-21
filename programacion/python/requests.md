@@ -10,6 +10,9 @@ Python’s standard urllib2 module provides most of the HTTP capabilities you ne
 ## Get simple
 import requests
 r = requests.get('http://github.com/')
+if not r.ok:
+  logger.error(f"Error in query. Status code: {r.status_code}. Content: {r.content}"
+  raise Exception("Error query")
 
 r.content
   valor devuelto
