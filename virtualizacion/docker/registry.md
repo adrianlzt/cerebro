@@ -12,6 +12,8 @@ O crear un fichero en ~/.docker/config.json estilo:
 
 # Montarnos un registry (un hub.docker.com)
 https://hub.docker.com/_/registry/
+https://blog.mayflower.de/5650-Running-a-secure-docker-registry.html
+https://github.com/docker/distribution/blob/master/docs/configuration.md
 
 docker run -d -p 5000:5000 --restart always -v "${PWD}/config.yml:/etc/docker/registry/config.yml" -v "${PWD}/data:/var/lib/registry" --name registry registry:2.6.2
 config.yml en registry_config.yml
@@ -19,6 +21,9 @@ Doc de la config: https://github.com/docker/distribution/blob/master/docs/config
 
 Por defecto no tiene TLS y deberemos configurar todos los demonios de docker que tengan que hablar con este registry para aceptar este sin TLS (necesario reiniciar).
 Mejor meterle un cert (pero tendrá que ser válido)
+
+Si metemos pass con auth basic, para generar el htpasswd usar:
+htpasswd -Bb fichero USER PASS
 
 
 Visor web:
