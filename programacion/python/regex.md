@@ -1,4 +1,4 @@
-Nuevo modulo que sustituira a re: https://pypi.python.org/pypi/regex
+Otra opción distinta al módulo oficial: https://pypi.python.org/pypi/regex
 pip install regex
 import regex
 
