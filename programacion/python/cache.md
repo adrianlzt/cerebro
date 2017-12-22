@@ -31,3 +31,32 @@ CacheInfo(hits=28, misses=16, maxsize=None, currsize=16)
 
 También podemos limpiar la cache con:
 funcionCacheada.cache_clear()
+
+
+
+# Invalidar cache con el tiempo
+https://gist.githubusercontent.com/Morreski/c1d08a3afa4040815eafd3891e16b945/raw/6c9b6d958247de9b0170a398acb525e5f346cd2d/timed_cache.py
+
+Mirar si queremos definir un maxsize al lru_cache
+
+from datetime import timedelta,datetime
+import functools
+
+def timed_cache(**timedelta_kwargs):
+
+    def _wrapper(f):
+        update_delta = timedelta(**timedelta_kwargs)
+        next_update = datetime.utcnow() - update_delta
+        # Apply @lru_cache to f with no cache size limit
+        f = functools.lru_cache(None)(f)
+
+        @functools.wraps(f)
+        def _wrapped(*args, **kwargs):
+            nonlocal next_update
+            now = datetime.utcnow()
+            if now >= next_update:
+                f.cache_clear()
+                next_update = now + update_delta
+            return f(*args, **kwargs)
+        return _wrapped
+    return _wrapper

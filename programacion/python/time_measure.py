@@ -9,6 +9,18 @@
 """
 Cuando tiempo tarda en ejecutarse una func segun time.time()
 Mide el tiempo de ejecucción de la funcion work()
+
+Resultados:
+trabajando
+timing de work con datetime: <function workdt at 0x7f674ab27048>  0:00:01.001091
+
+
+trabajando
+timing de work con time.clock: <function workclk at 0x7f674ab277b8>  0.00011300000000000199
+
+
+trabajando
+timing de work con time.time: <function worktm at 0x7f674ab271e0>  1.001070499420166
 """
 
 from functools import wraps

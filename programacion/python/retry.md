@@ -31,3 +31,6 @@ def test():
 
 test()
 
+
+retry_if solo tendrá como parámetro la excepción, no podemos pasarle más parámetros ni podrá ser una función de una clase (no podemos hacer retry_if(self, ex))
+

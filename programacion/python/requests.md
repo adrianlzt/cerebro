@@ -164,6 +164,7 @@ requests.get('https://api.github.com/user', auth=HTTPBasicAuth('user', 'pass'))
 # Timeout
 http://docs.python-requests.org/en/latest/user/quickstart/#timeouts
 requests.get('http://github.com', timeout=0.001)
+Genera requests.exceptions.ConnectTimeout o requests.exceptions.ReadTimeout
 
 
 # Cabeceras por defecto
