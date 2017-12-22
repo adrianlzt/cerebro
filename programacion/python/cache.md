@@ -1,4 +1,6 @@
 https://docs.python.org/3/library/functools.html#functools.lru_cache
+LRU: Least-recently-used
+LFU: Least-frequenty-used
 
 Cachea respuestas a una funcion comun:
 
@@ -43,7 +45,6 @@ from datetime import timedelta,datetime
 import functools
 
 def timed_cache(**timedelta_kwargs):
-
     def _wrapper(f):
         update_delta = timedelta(**timedelta_kwargs)
         next_update = datetime.utcnow() - update_delta
@@ -60,3 +61,27 @@ def timed_cache(**timedelta_kwargs):
             return f(*args, **kwargs)
         return _wrapped
     return _wrapper
+
+
+Ejemplo de uso, invalidando el cache cada 10":
+@timed_cache(seconds=10)
+def slow():
+    time.sleep(5)
+    return datetime.now()
+
+while True:
+    print("run slow()")
+    print(slow())
+    print("wait for next iteracion 1s")
+    time.sleep(1)
+
+
+
+# lru_cache limitado por la memoria máxima disponible
+https://stackoverflow.com/questions/23477284/memory-aware-lru-caching-in-python
+https://gist.github.com/wmayner/0245b7d9c329e498d42b
+
+
+# cachetools
+Libreria que decide que elementos descartar segun un algoritmo
+https://pypi.python.org/pypi/cachetools
