@@ -3,6 +3,9 @@ https://unix.stackexchange.com/questions/25639/how-to-automatically-record-all-y
 Meter al final del .bashrc
 test "$(ps -ocommand= -p $PPID | awk '{print $1}')" == 'script' || (script -f $HOME/$(date +"%d-%b-%y_%H-%M-%S")_shell.log)
 
+Para lanzar comandos tipo:
+ssh host comando
+parece que no funciona bien, no pilla el comando y nos abre una shell, y al intentar salir hace cosas raras.
 
 
 

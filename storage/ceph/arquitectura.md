@@ -1,6 +1,8 @@
 http://ceph.com/geen-categorie/zero-to-hero-guide-for-ceph-cluster-planning/
 http://docs.ceph.com/docs/jewel/start/hardware-recommendations/
 https://es.slideshare.net/mirantis/ceph-talk-vancouver-20
+https://www.virtualtothecore.com/en/adventures-ceph-storage-part-2-architecture-dummies/
+  video de como funciona la arquitectura
 
 Minimum hardware recomentations: http://docs.ceph.com/docs/master/start/hardware-recommendations/#minimum-hardware-recommendations
 
