@@ -34,6 +34,9 @@ Podemos meterlos en los nodos que vayan a ser los cientes del cluster ceph
 CPU: Monitors simply maintain a master copy of the cluster map, so they are not CPU intensive
 Memoria: 1GB of RAM per daemon instance.
 
+# Managers (ceph-mgr)
+http://docs.ceph.com/docs/master/mgr/
+A partir de Luminious (12.x) se requiren nodos mananger. Generalmente se configurarán los nodos monitores también como managers
 
 
 # RGW (ceph-rgw)=

@@ -1,6 +1,7 @@
 http://docs.ceph.com/docs/master/rados/operations/monitoring/
 http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/
 http://docs.ceph.com/docs/hammer/rados/operations/user-management/
+mirar managers.md
 
 Chequeo del estado del cluster. Razones por las que puede dar no-ok http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/#monitoring-placement-group-states:
 ceph health
