@@ -2,6 +2,9 @@ https://github.com/kusnier/vagrant-persistent-storage
 
 vagrant plugin install vagrant-persistent-storage
 
+Si queremos varios discos tendremos que llamar directamente a virtualbox, ejemplo:
+https://github.com/kusnier/vagrant-persistent-storage/issues/22
+
 
 Crea un disco /dev/sdb:
 

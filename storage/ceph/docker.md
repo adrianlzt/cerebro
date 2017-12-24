@@ -1,14 +1,9 @@
+https://hub.docker.com/r/ceph/daemon/
 http://ceph.com/ceph-docker
 https://github.com/ceph/ceph-docker
 http://ceph.com/geen-categorie/ceph-cluster-on-docker-for-testing/
 https://www.youtube.com/watch?v=FUSTjTBA8f8&feature=youtu.be
 
-Para testing
-
-
-# Sobre docker swarm - ToDo
-docker network create --driver overlay ceph
-
-En cada nodo
-mkdir -p /ceph/{etc,lib}
-docker run -d -v /ceph/etc:/etc/ceph -v /ceph/lib:/var/lib/ceph -e MON_IP=192.168.0.69 -e CEPH_PUBLIC_NETWORK=192.168.0.0/24 ceph/daemon mon
+https://github.com/ceph/ceph-ansible/issues/1857
+But at the moment we are still stabilizing the container deployment, so I'll wait for the first stable release of containers. This will happen soon.
+14/9/2017

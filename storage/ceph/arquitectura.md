@@ -1,3 +1,4 @@
+http://docs.ceph.com/docs/master/architecture/
 http://ceph.com/geen-categorie/zero-to-hero-guide-for-ceph-cluster-planning/
 http://docs.ceph.com/docs/jewel/start/hardware-recommendations/
 https://es.slideshare.net/mirantis/ceph-talk-vancouver-20
