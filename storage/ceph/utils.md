@@ -26,14 +26,20 @@ radula profiles
 Listar buckets:
 radula lb
 
+Crear un bucket
+radula make-bucket nombre
+
 radula keys/ls/list para listar contenido de un bucket
-https://github.com/bibby/radula/issues/7#issuecomment-299020700
+radula ls bucket
 
 Subir ficheros:
+radula up fichero bucket/
 radula up -t 16 "local/*" my-new-bucket/
 
 Podemos poner -i,--ignore-existing para ignorar archivo que ya existen (https://github.com/bibby/radula/issues/9#issuecomment-299021841)
 
+Descargar
+radula dl BUCKET FICHERO
 Subida/bajada recursiva:
 https://github.com/bibby/radula/issues/8#issuecomment-299024816
 

@@ -39,6 +39,14 @@ Es una representación octal: 377 = 11111111 (las últimas 8 actualizaciones han
 http://www.linuxjournal.com/article/6812
 
 
+
+# Forzar update
+systemctl stop ntpd
+ntpdate 0.centos.pool.ntp.org
+systemctl start ntpd
+
+
+
 # Stratum / Uso como servidor
 ntpdc -c sysinfo
 

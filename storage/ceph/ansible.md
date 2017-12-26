@@ -29,14 +29,14 @@ cp site.yml.sample site.yml
 Variables donde definimos como vamos a montar el cluster
 cp group_vars/all.yml.sample group_vars/all.yml
 vi group_vars/all.yml (típica conf mínima)
+
 ceph_origin: repository
 ceph_repository: community
-ceph_stable_release: jewel
-public_network: "192.168.3.0/24"
-cluster_network: "192.168.4.0/24"
+ceph_stable_release: luminous
+public_network: "192.168.1.0/24"
 monitor_interface: eth1
+radosgw_interface: eth1
 devices:
-  - '/dev/sda'
   - '/dev/sdb'
 osd_scenario: collocated
 osd_objectstore: bluestore
@@ -52,6 +52,7 @@ osd_scenario: define como se van a configurar los discos
 BlueStore es el nuevo motor de búsqueda (versiones luminous/12.2 y superiores). Mejor performance
 
 Si en los devices especificamos discos ya en uso puede que falle. Mejor desmontar y limpiar (de particiones) los discos primero (visto con un disco que estaba siendo usado por LVM, con un LV creado)
+Podemos usar osd_auto_discovery para usar todos los discos que se encuentren sin particionar.
 
 Antes de lanzarlo, modificar el ansible.cfg para poner el fichero de log en algún sitio donde podamos escribir
 

@@ -38,5 +38,9 @@ ceph osd pool set .rgw.root min_size 1
 ceph osd pool set .rgw.root size 1
 ceph osd pool set default.rgw.control min_size 1
 ceph osd pool set default.rgw.control size 1
-for i in default.rgw.meta default.rgw.log; do ceph osd pool set $i size 1; ceph osd pool set $i min_size 1; done
+for i in default.rgw.buckets.index default.rgw.meta default.rgw.log; do ceph osd pool set $i size 1; ceph osd pool set $i min_size 1; done
+
+El problema es que no tenemos puesto
+echo "osd pool default size = 2" >> ceph.conf
+Por lo que cada nuevo pool sale con size 3 y tenemos que volver a cambiarlo.
 
