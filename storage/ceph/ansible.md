@@ -5,6 +5,9 @@ cd ceph-ansible
 git br -la | grep stable
 Hacer checkout a la stable que queramos, generalmente la más nueva
 
+Se hace uso intensivo de los facts. Cuidado con el fact caching!
+Tal vez algo "no funciona" y es porque estamos usando facts cacheados algo más antiguos que cambios que hayamos metidos (visto al meter discos nuevos en una máquina virtual)
+
 
 Crear nuestro fichero de inventario:
 [mons]

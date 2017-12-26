@@ -7,3 +7,5 @@ También hay algunos targets predefinidos:
   DROP: tira el paquete
   QUEUE: lo mete en la cola 0 (¿?)
   RETURN: hace un return a la función que lo llamo. Si no se especifica que hacer, se cogerá el valor del 'chain policy'
+
+Mirar la lista de targets entera en: http://www.iptables.info/en/iptables-targets-and-jumps.html
