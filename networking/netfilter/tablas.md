@@ -12,8 +12,8 @@ nat
   INPUT
   OUTPUT
   POSTROUTING
-Esta tabla es la responsable de configurar las reglas de reescritura de direcciones o de puertos de los paquetes. El primer paquete en cualquier conexión pasa a través de esta tabla; los veredictos determinan cómo van a reescribirse todos los paquetes de esa conexión. 
-Solo consultada en nuevas conexiones, luego todos los paquetes de la sesión se tratarán igual.
+Esta tabla es la responsable de configurar las reglas de reescritura de direcciones o de puertos de los paquetes. El primer paquete en cualquier conexión pasa a través de esta tabla; los veredictos determinan cómo van a reescribirse todos los paquetes de esa conexión.
+Solo consultada en nuevas conexiones, luego todos los paquetes de la sesión se tratarán igual (los ACK por ejemplo no pasan por aquí)
 
 
 mangle

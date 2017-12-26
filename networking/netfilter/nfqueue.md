@@ -2,6 +2,8 @@ https://home.regit.org/netfilter-en/using-nfqueue-and-libnetfilter_queue/
 
 Delegate the decision on packets to a userspace software
 
+Cuidado si usamos la tabla nat, porque solo se enviará el primer paquete (no el ACK por ejemplo del SYN-SYN+ACK-ACK)
+
 
 Enviar paquetes a una cola de NFQUEUE
 sudo iptables -t nat -A POSTROUTING -p tcp --destination-port 9001 -j NFQUEUE --queue-num 1
