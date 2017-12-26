@@ -8,6 +8,9 @@ sudo iptables -t nat -A POSTROUTING -p tcp --destination-port 9001 -j NFQUEUE --
 
 Al meterlo en nat/POSTROUTING estaremos modificando el paquete en la última regla antes de salir (mirar https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg)
 
+Si queremos cogerlo antes de nada al entrar:
+sudo iptables -t raw -A PREROUTING -p tcp --source-port 80 -s 52.57.153.0/32 -j NFQUEUE --queue-num 2
+
 
 Container docker que escucha en una cola NFQUEUE y pasa un programa scapy para modificar el paquete
 https://github.com/milesrichardson/docker-nfqueue-scapy
