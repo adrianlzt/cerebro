@@ -11,3 +11,7 @@ iptables -t raw -A OUTPUT -p icmp -j TRACE
 Parece que también saca más trazas de otras tablas por donde pasa el paquete.
 
 El problema es como hacer con las reglas que ya tienen un -j algo, para que tambien hagan trace.
+
+
+Mirar las trazas
+journalctl -f _TRANSPORT=kernel
