@@ -12,6 +12,7 @@ Mirar anydump.sh
 Otra opcion tcpdump es tshark
 
 Cotainer en docker que captura todo el trafico:
+docker run --rm --net=host crccheck/tcpdump -lnni any
 docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
 
 
