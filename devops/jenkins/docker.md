@@ -1,4 +1,6 @@
 https://hub.docker.com/r/jenkins/jenkins/tags/
+  esta la oficial
+  doc: https://github.com/jenkinsci/docker/blob/master/README.md
 
 docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins
 
