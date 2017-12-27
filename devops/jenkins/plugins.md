@@ -20,6 +20,9 @@ https://wiki.jenkins-ci.org/display/JENKINS/Green+Balls (green balls)
 https://wiki.jenkins-ci.org/display/JENKINS/Naginator+Plugin (retry)
 https://wiki.jenkins-ci.org/display/JENKINS/Show+Build+Parameters+Plugin (show build params)
 
+https://github.com/jenkinsci/build-time-blame-plugin
+  analizar los tiempos que tarda el build a partir de los logs que genera
+
 
 # Debug
 Meter trazas
