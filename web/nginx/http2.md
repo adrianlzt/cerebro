@@ -5,3 +5,5 @@ To enable HTTP/2 support, simply add the http2 parameter to all listen directive
 
 server {
     listen 443 ssl http2 default_server;
+    ssl_certificate /etc/letsencrypt/live/xxxx.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/keys/0000_key-certbot.pem;

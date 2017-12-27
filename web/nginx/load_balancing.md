@@ -111,3 +111,18 @@ Mirar traza de como funciona un balanceador con esto en privado: web/nginx/captu
 
 # TCP Load balancing
 https://www.nginx.com/resources/admin-guide/tcp-load-balancing/#intro
+
+/etc/nginx/nginx.conf
+stream {
+    server {
+        listen 443;
+        proxy_pass webs;
+    }
+    upstream webs {
+        server backend1.example.com:12345 fail_timeout=5s max_fails=5;
+        server backend2.example.com:12345 fail_timeout=5s max_fails=5;
+        server backend3.example.com:12346 fail_timeout=5s max_fails=5;
+    }
+}
+
+
