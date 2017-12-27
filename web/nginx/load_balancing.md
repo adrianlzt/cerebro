@@ -1,7 +1,7 @@
 http://nginx.org/en/docs/http/load_balancing.html
 http://stackoverflow.com/questions/16283045/trouble-with-nginx-and-multiple-meteor-nodejs-apps/16289251#16289251
 
-Balanceo de tráfico TCP o UDP: https://www.nginx.com/resources/admin-guide/tcp-load-balancing/
+Balanceo de tráfico TCP o UDP: mirar más abajo
 
 CUIDADO!
 No tiene check health en la versión grauita.
@@ -106,3 +106,8 @@ Mirar traza de como funciona un balanceador con esto en privado: web/nginx/captu
  - el LB devuelve al el cliente el http OK
  - el cliente envia un TCP FIN al LB
  - el LB envia FIN+ACK
+
+
+
+# TCP Load balancing
+https://www.nginx.com/resources/admin-guide/tcp-load-balancing/#intro
