@@ -9,6 +9,12 @@ Complete immutability
 A fully secure digital financial system
 
 
+Se mina la moneda verium (PoW)
+
 
 # Stats
 http://veriumstats.vericoin.info/
+  de mineria
+
+http://explorer.vrm.vericoin.info/
+  de uso de la moneda
