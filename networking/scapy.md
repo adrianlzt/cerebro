@@ -142,3 +142,15 @@ ans.summary()
 
 
 Funciona con la interfaz por defecto, pero no consigo testear otras interfaces.
+
+
+
+# Capturar paquetes, modifiarlos y enviarlos
+packet = IP(pkt.get_payload())
+packet[IP].dst = "1.2.3.4"
+packet[TCP].dport = 80
+del packet[IP].chksum
+del packet[TCP].chksum
+pkt.set_payload(str(packet))
+pkt.accept()
+

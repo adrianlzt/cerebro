@@ -1,3 +1,5 @@
+https://www.netfilter.org/documentation/HOWTO/netfilter-extensions-HOWTO-4.html
+
 -j TARGET
 
 Es como un goto en programación. El paquete que tenga -j TARGET, enviará al paquete a procesar a la regla especificada.
