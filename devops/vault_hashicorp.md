@@ -33,3 +33,10 @@ Demo: https://vault-ui.io/
 
 Otra en React: https://github.com/djenriquez/vault-ui
 Otra: https://github.com/nyxcharon/vault-ui
+
+
+
+# Ansible
+https://docs.ansible.com/ansible/devel/plugins/lookup/hashi_vault.html
+
+Otro módulo no oficial con ciertas mejoras: https://github.com/jhaals/ansible-vault
