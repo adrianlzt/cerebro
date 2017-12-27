@@ -23,6 +23,9 @@ https://wiki.jenkins-ci.org/display/JENKINS/Show+Build+Parameters+Plugin (show b
 https://github.com/jenkinsci/build-time-blame-plugin
   analizar los tiempos que tarda el build a partir de los logs que genera
 
+https://plugins.jenkins.io/naginator
+  Retry build after failure
+
 
 # Debug
 Meter trazas
