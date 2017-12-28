@@ -9,3 +9,16 @@ A partir del merge la memoria es: usage-pagecache
 
 
 Si queremos estadísticas más detalladas consultar la api: v1.24/containers/f89b0294c3f7/stats
+
+
+# ps
+docker ps
+  containers corriendo
+
+docker ps -s
+  espacio ocupado por los containers
+  tarda un rato en ejecutarse
+
+
+# disk usage
+docker system df

@@ -7,6 +7,10 @@ Annotations can now use a template variable as data source (https://github.com/g
 SELECT * FROM tabla WHERE $timeFilter
 
 
+A partir de 4.6 podemos meter anotaciones a mano usando control+click
+http://docs.grafana.org/reference/annotations/
+
+
 # PR para que funcione el multiple tag con influx
 https://github.com/grafana/grafana/pull/4550
 

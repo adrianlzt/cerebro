@@ -43,3 +43,10 @@ getOptions(query) {
   );
 }
 
+
+Substitución de variables por los valores que defina el template
+var host = this.templateSrv.replace(options.annotation.host, options.scopedVars, 'regex');
+var host = this.templateSrv.replace(options.annotation.host, {}, 'glob');
+
+La primera nos generará, para varios hosts: (hostA|hostB)
+El segundo: {hostA,hostB}
