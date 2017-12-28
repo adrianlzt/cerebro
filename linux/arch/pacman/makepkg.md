@@ -9,3 +9,6 @@ Aplicar un parche por ejemplo:
 
 2- Instalar con los fuentes que tengamos en el directorio actual
 makepkg --noextract
+
+3.- Instalar:
+yaourt paquete.tar.xz

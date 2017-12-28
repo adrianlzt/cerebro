@@ -6,6 +6,10 @@ JENKINSURL/pluginManager/
 Los plugins suelen estar en:
 https://github.com/jenkinsc/*-plugin
 
+Extraer liosta de plugins:
+curl -sSL "http://admin:admin@127.0.0.1:8080/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
+
+
 
 Si queremos modificar un plugin podemos clonar el repo y ejecutar
 mvn clean package
