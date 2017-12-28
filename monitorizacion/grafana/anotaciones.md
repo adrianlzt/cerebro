@@ -11,6 +11,13 @@ A partir de 4.6 podemos meter anotaciones a mano usando control+click
 http://docs.grafana.org/reference/annotations/
 
 
+Muchas annotations en un timestamp muy pequeño se verán como una sola:
+https://github.com/grafana/grafana/issues/8758
+
+
+La asignación de color es según una tabla de colores: https://github.com/grafana/grafana/blob/master/public/app/core/directives/tags.ts#L14
+
+
 # PR para que funcione el multiple tag con influx
 https://github.com/grafana/grafana/pull/4550
 
