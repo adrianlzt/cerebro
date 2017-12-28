@@ -2,6 +2,8 @@ http://docs.ansible.com/intro_configuration.html
 
 Un fichero ansible.cfg en el mismo directorio tiene preferencia.
 
+Lo podemos forzar con ANSIBLE_CONFIG=
+
 Por defecto la configuración se enuentra en /etc/ansible
 
 Tambien podemos crearlo en ~/.ansible.cfg con:
