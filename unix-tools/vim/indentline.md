@@ -21,3 +21,8 @@ lo he puesto para programar ansible en el vim  y q me muestre las lineas vertica
 A vim plugin to display the indention levels with thin vertical lines
 
 Aparecen unas lineas verticales para aclararnos con la identacion en ficheros yaml
+
+
+# Fix indent
+gg=G
+Desde el principio del fichero (gg), arreglar identación (=) hasta el final del fichero (G)
