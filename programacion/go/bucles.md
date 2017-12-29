@@ -36,3 +36,10 @@ El primero valor que descartamos es el indice: 0,1,2,3...
 # Control
 break, termina el bucle
 continue, sigue con la proxima vuelta
+
+
+Romper un bucle determinado cuando tenemos varios anidados
+L1:
+for {
+  for {
+    break T1 // rompe el bucle principal
