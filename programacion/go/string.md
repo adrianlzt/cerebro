@@ -18,7 +18,7 @@ https://golang.org/pkg/strings/#Replace
 fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
 
 # Join
-strings.Joins(["a","b"], "")
+strings.Join(["a","b"], "")
 "ab"
 
 # Cortar
