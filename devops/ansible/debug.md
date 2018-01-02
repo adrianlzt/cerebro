@@ -1,5 +1,19 @@
+http://docs.ansible.com/ansible/latest/playbooks_debugger.html
+- hosts: test
+  strategy: debug
+
+Si falla algo se para y nos arranca el debugger de python en ese punto
+
+
+
+
 http://docs.ansible.com/debug_module.html
 ansible-playbook -vvvv  <- para poder ver los mensajes de debug
+Se pueden poner hasta 6 -v
+
+Debug a lo bestia:
+ANSIBLE_DEBUG=true ansible -vvvvvv ...
+
 
 - debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
 
@@ -29,6 +43,7 @@ ansible MAQUINA -m shell -a 'echo "{% for k,v in groups.iteritems() %} {{v}} {% 
 
 # Debugeando modulos
 http://docs.ansible.com/ansible/developing_modules.html#debugging-ansiblemodule-based-modules
+MIRAR COMIENZO DE ESTE FICHERO PARA OTRA OPCION MAS SENCILLA!
 
 Ejecutar ansible para que mantenga en remoto los ficheros python:
 ANSIBLE_KEEP_REMOTE_FILES=1 ansible localhost -m ping -a 'data=debugging_session' -vvv
@@ -60,17 +75,17 @@ Para hacer debug:
  En una terminal:
   mkfifo stdin stdout
   (cat stdout &) && cat > stdin
- 
+
  En otra terminal (en el mismo dir):
   modificamos el .py para meterle el set_trace() de la siguiente manera:
     import pdb
     mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
     pdb.set_trace=mypdb.set_trace
     pdb.set_trace()
- 
+
   Arrancamos el programa que necesita stdin, en otra terminal:
     cat args | PYTHONPATH=. python ansible_module_*.py
- 
+
  En la primera terminal tendremos el pdb.
 
 
