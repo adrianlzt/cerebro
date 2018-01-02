@@ -14,7 +14,8 @@ https://gobyexample.com/command-line-flags
 
 import os
 ...
-os.Args[0]
+os.Args[0] // Nombre del programa
+os.Args[1:2] // slice con el primer y segundo argumento
 
 
 Mirar cobra.md para crear una CLI
