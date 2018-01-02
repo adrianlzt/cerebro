@@ -103,3 +103,10 @@ http://blog.packagecloud.io/eng/2016/02/29/how-does-strace-work/
 # Errores
 strace puede causar que un proceso se ponga en STOP https://bugzilla.redhat.com/show_bug.cgi?id=590172 http://lethargy.org/~jesus/writes/beware-of-strace
 Si esto occure, matar strace y continuar el processo con: kill -CONT PID
+
+
+
+# Llamadas
+read:
+  Nos pondrá el FD de donde ha leido, lo que se ha leido, y el número máximo de caracteres que se leerian. Retorna el número de caracteres leidos.
+  Ej.: read(3, "wwwwwwwwwwwwww@abcdefgh's password: ", 255) = 36
