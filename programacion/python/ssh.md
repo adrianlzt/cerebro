@@ -60,3 +60,17 @@ chan.recv(9999)
 
 
 Ejemplos: https://gist.github.com/rtomaszewski/3397251
+
+
+
+# Ejemplo sin usar client (más bajo nivel)
+import paramiko
+t = paramiko.Transport(("10.0.0.2",22))
+t.start_client()
+
+
+t.auth_none("username")  # comprobar los allowed methods para hacer login
+
+t.auth_interactive_dumb("username")  # usar keyboard-interactive
+
+t.auth_password(username, password)  # usando user y password
