@@ -110,3 +110,6 @@ Si esto occure, matar strace y continuar el processo con: kill -CONT PID
 read:
   Nos pondrá el FD de donde ha leido, lo que se ha leido, y el número máximo de caracteres que se leerian. Retorna el número de caracteres leidos.
   Ej.: read(3, "wwwwwwwwwwwwww@abcdefgh's password: ", 255) = 36
+
+fcntl:
+  control de file descriptors, definir flags, obtener nuevos FDs, obtener usuarios, etc

@@ -46,7 +46,22 @@ No veo el trafico http2 correctamente (4/11/2015)
 Ni el https normal.
 
 
-# Socat #
+
+# Clientes que usen openssl
+https://security.stackexchange.com/a/80174
+Usaremos una libreria ssl interpuesta que extraerá la pre-master key.
+https://git.lekensteyn.nl/peter/wireshark-notes/plain/src/sslkeylog.c
+cc sslkeylog.c -shared -o libsslkeylog.so -fPIC -ldl
+SSLKEYLOGFILE=premaster.txt LD_PRELOAD=./libsslkeylog.so curl https://example.com
+
+En el wireshark
+Edit -> Preferences -> Protocols -> SSL -> (Pre)-Master-Secret log filename: /foo/bar/premaster.txt
+
+Y veremos el trafico HTTPS desencriptado
+
+
+
+# Socat
 Server:
 sudo socat -d -d openssl-listen:443,bind=0.0.0.0,fork,reuseaddr,verify=0,cert=server.pem,cafile=server.pem openssl:be.caja-ingenieros.es:443,verify=0
 
