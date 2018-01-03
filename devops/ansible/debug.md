@@ -6,13 +6,16 @@ Si falla algo se para y nos arranca el debugger de python en ese punto
 
 
 
+Debug a lo bestia:
+ANSIBLE_DEBUG=true ansible -vvvvvv ...
+
 
 http://docs.ansible.com/debug_module.html
 ansible-playbook -vvvv  <- para poder ver los mensajes de debug
 Se pueden poner hasta 6 -v
 
-Debug a lo bestia:
-ANSIBLE_DEBUG=true ansible -vvvvvv ...
+https://github.com/ansible/ansible/blob/devel/hacking/test-module#L28
+Script para testear modulos
 
 
 - debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
@@ -107,4 +110,13 @@ El fichero command (obtener facts del host):
 
 Para mantener el directorio /tmp/ansible_XXX borraremos al final la orden que borra el directorio temporal.
 
+
+
+# PDB
+https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/ansible-project/wL7oS5ktRwQ<Paste>
+pip install epdb
+
+Meter donde queramos parar
+import epdb
+epdb.set_trace()
 

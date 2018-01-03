@@ -80,6 +80,13 @@ run / restart
 q(uit)
 
 
+# ePDB
+remote debug
+https://pypi.python.org/pypi/epdb/
+
+Tambien me ha valido en algunos casos donde por usar multiprocessing pdb no me funcionaba
+
+
 ## GDB ##
 http://fedoraproject.org/wiki/Features/EasierPythonDebugging
 
