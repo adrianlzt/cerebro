@@ -74,3 +74,15 @@ t.auth_none("username")  # comprobar los allowed methods para hacer login
 t.auth_interactive_dumb("username")  # usar keyboard-interactive
 
 t.auth_password(username, password)  # usando user y password
+
+
+
+# Más debug
+import paramiko
+import logging
+
+logging.getLogger("paramiko").setLevel(logging.DEBUG)
+logging.getLogger("paramiko.transport").setLevel(logging.DEBUG)
+paramiko.util.log_to_file("paramiko.log")
+...
+transport.set_hexdump(True)
