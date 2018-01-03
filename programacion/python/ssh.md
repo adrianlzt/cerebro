@@ -51,3 +51,12 @@ if __name__ == "main":
 Si queremos tener tty (para sudo por ejemplo:
 stdin, stdout, stderr = client.exec_command(command,  get_pty=True)
 
+
+Si queremos una shell para enviar y recibir comandos (se pide automáticamente la pty):
+chan = client.invoke_shell()
+chan.sendall("comando\n")
+chan.recv(9999)
+
+
+
+Ejemplos: https://gist.github.com/rtomaszewski/3397251
