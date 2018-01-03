@@ -1,3 +1,13 @@
+https://man.openbsd.org/ssh.1#SSH-BASED_VIRTUAL_PRIVATE_NETWORKS
+On the client:
+# ssh -f -w 0:1 192.168.1.15 true
+# ifconfig tun0 10.1.1.1 10.1.1.2 netmask 255.255.255.252
+# route add 10.0.99.0/24 10.1.1.2
+On the server:
+# ifconfig tun1 10.1.1.2 10.1.1.1 netmask 255.255.255.252
+# route add 10.0.50.0/24 10.1.1.1
+
+
 https://github.com/apenwarr/sshuttle
 http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
 
