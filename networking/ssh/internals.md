@@ -1,8 +1,14 @@
 Channels are socket-like objects used for the actual transfer of data across the session
 You may only request a channel after negotiating encryption and authenticating.
 
-https://tools.ietf.org/html/rfc4251
+SSH Assigned Numbers (RFC 4250)
+SSH Protocol Architecture (RFC 4251)
+SSH Authentication Protocol (RFC 4252)
+SSH Transport Layer Protocol (RFC 4253)
+SSH Connection Protocol (RFC 4254)
 
+# Architecture
+https://tools.ietf.org/html/rfc4251
    o  The Transport Layer Protocol [SSH-TRANS] provides server
       authentication, confidentiality, and integrity.  It may optionally
       also provide compression.  The transport layer will typically be
@@ -33,6 +39,7 @@ TCP/IP connections, and forwarded X11 connections.  All of these
 channels are multiplexed into a single encrypted tunnel.
 
 
+## Channel
 Para establecer un canal:
 Cuando establecemos una session, lo que hacemos es enviar un paquete SSH_MSG_CHANNEL_OPEN (90).
 Si el servidor acepta nos contesta con SSH_MSG_CHANNEL_OPEN_CONFIRMATION (91)
@@ -53,5 +60,24 @@ Cuando alguno de los lados quiera cerrar definitivamente el canal enviará: SSH_
 Que deberá ser contestado por el otro lado con el mismo mensaje.
 
 
+## Session
 Determinados tipos de canales tienen extensiones para realizar más acciones, por ejemplo pedir una PTY en caso del tipo "session".
 Las opciones disponibles: https://tools.ietf.org/html/rfc4250#section-4.9.3
+
+A session is a remote execution of a program.  The program may be a
+shell, an application, a system command, or some built-in subsystem.
+It may or may not have a tty, and may or may not involve X11
+forwarding.  Multiple sessions can be active simultaneously.
+
+
+pty: https://tools.ietf.org/html/rfc4254#section-6.2
+
+definir variables de entorno: https://tools.ietf.org/html/rfc4254#section-6.4
+
+shell or command: https://tools.ietf.org/html/rfc4254#section-6.5
+  Podemos pedir al servidor que queremos arrancar una shell o llamar a un comando directamente
+  Viendo el código de openssh (https://github.com/openssh/openssh-portable/blob/master/session.c#L460:3) lo que hace es ejecutar
+    bash -c COMANDO (suponiendo que nuestra shell es bash, que chequeara mirando el /etc/passwd)
+
+  En el caso de tener un forced-command definido se ejecutará este en vez del comando: https://github.com/openssh/openssh-portable/blob/master/session.c#L650
+  mirar forced_command.md
