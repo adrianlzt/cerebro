@@ -60,8 +60,20 @@ pp expression
 (like perl debug)
 
 
+
+# Avanzados
+
+Para ruby2 usar https://github.com/deivid-rodriguez/byebug
+gem install byebug
+
+Poner la linea "byebug" donde queramos parar
+
+
+
+
 Una interfaz más sencilla para debug: pry
 http://pryrepl.org/
+
 
 You need to add
 require 'pry'
@@ -83,3 +95,5 @@ whereami -> código alrededor de donde está parado
 puts var -> imprimre valor variable
 next -> pasa por encima de funciones
 step -> entra en funciones
+
+chuleta: https://gist.github.com/lfender6445/9919357
