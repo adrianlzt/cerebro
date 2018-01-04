@@ -86,3 +86,18 @@ logging.getLogger("paramiko.transport").setLevel(logging.DEBUG)
 paramiko.util.log_to_file("paramiko.log")
 ...
 transport.set_hexdump(True)
+
+
+Los paquetes del hexdump contienen el paquete "interesante" más cabeceras del transport.
+Ejemplo:
+DEB [20180103-19:06:44.234] thr=2   paramiko.transport: OUT: 00 00 00 1C 0A 05 00 00 00 0C 73 73 68 2D 75 73    ..........ssh-us
+DEB [20180103-19:06:44.234] thr=2   paramiko.transport: OUT: 65 72 61 75 74 68 00 00 00 00 00 00 00 00 00 00    erauth..........
+
+La parte interesante de ahi es: 05 00 00 00 0C 73 73 68 2D 75 73 65 72 61 75 74 68
+Siendo 05 el tipo de paquete (service-request)
+
+
+
+# Errores
+Intentando conectar con un server ssh de Cyberark/Cojure me estaba denegando el auth password.
+Resulta que necesitaba que primero le enviase una petición de auth none y luego el auth password.

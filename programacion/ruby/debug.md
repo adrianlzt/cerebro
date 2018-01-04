@@ -29,7 +29,7 @@ i b
   mostrar breaks
 del 1
   borrar breakpoint 1 (para listar, b)
-n(ext) 
+n(ext)
 s(tep)
 c(ontinue)
 p(uts) variable
@@ -67,6 +67,9 @@ Para ruby2 usar https://github.com/deivid-rodriguez/byebug
 gem install byebug
 
 Poner la linea "byebug" donde queramos parar
+
+https://github.com/deivid-rodriguez/pry-byebug
+
 
 
 
