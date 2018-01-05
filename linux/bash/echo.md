@@ -1,2 +1,1 @@
-stty -echo
-deshabilitar el echo de los comandos
+stty.md
