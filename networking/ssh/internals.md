@@ -7,6 +7,11 @@ SSH Authentication Protocol (RFC 4252)
 SSH Transport Layer Protocol (RFC 4253)
 SSH Connection Protocol (RFC 4254)
 
+De forma resumida tenemos tres partes principales:
+  transporte, que se encarga del cifrado
+  autenticación, se encarga de loguearse con key, usuario/pass, etc
+  connection, una vez con el transporte y autenticados, creamos channels por los que enviar comandos, redirigir puertos, etc
+
 # Architecture
 https://tools.ietf.org/html/rfc4251
    o  The Transport Layer Protocol [SSH-TRANS] provides server
