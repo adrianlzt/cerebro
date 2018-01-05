@@ -76,6 +76,17 @@ t.auth_interactive_dumb("username")  # usar keyboard-interactive
 t.auth_password(username, password)  # usando user y password
 
 
+# SCP
+Con un channel que tiene pty e invoke_shell:
+chan.sendall("scp -qt FICHERO\n")
+chan.recv(512)  # debemos recibir \x00
+chan.sendall("C0600 5 FICHERO\n")  # 0600 es el mode del fichero, 5 el tamaño en bytes
+chan.recv(512)  # debemos recibir \x00
+chan.sendall("12345")  # enviamos los 5 bytes prometidos
+chan.sendall("\n\x00\n")
+chan.recv(512)  # debemos recibir el siguiente prompt
+
+
 
 # Más debug
 import paramiko
