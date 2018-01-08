@@ -14,6 +14,9 @@ tar ztvf fichero.tgz
 Descomprimir tgz
 tar zxvf fichero.tgz -C dir-extraer-en/
 
+Descomprimir quitando el primer nivel (generalmente una carpeta con el nombre del sw):
+tar zxvf fichero.tgz --strip-components=1
+
 Crear tar.bz2
 tar jcvf comprimido.tar.bz2 dir1/ dir2/ fiche1 fiche2
 
