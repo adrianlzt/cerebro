@@ -35,3 +35,10 @@ cp -l
 
 Cambiar un hard link por una copia normal (borra el destino antes de la copia)
 cp --remove-destination file1 file2
+
+
+
+Copiar el contenido de un directorio en otro dir:
+cp -r /mnt/. /app/
+
+Si hacemos: cp -r /mnt/ /app/, acabaremos con /mnt/app/ficheros
