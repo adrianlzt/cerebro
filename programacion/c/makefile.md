@@ -1,4 +1,11 @@
 http://crasseux.com/books/ctutorial/Writing-a-makefile.html
+La idea es dar una serie de reglas a "make" para que sepa que debe recompilar.
+Según el timestamp de los distintos ficheros y las relaciones entre los ficheros conseguirá solo recompilar las partes necesarias.
+El típico ejemplo es un programa en c con headers, source files, objects files y el binario.
+Al modificar un fichero make, gracias a las reglas del Makefile, sabrá que cosas debe recompilar, evitando tener que recompilar todo el proyecto.
+
+
+
 
 El ejemplo más sencillo es compilar un programa en c cuando hagamos 'make'.
 
