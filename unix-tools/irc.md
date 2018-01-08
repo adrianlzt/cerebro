@@ -3,6 +3,10 @@ https://weechat.org/files/doc/devel/weechat_quickstart.es.html#start
 cliente ncurses
 parece que es lo que se usa ahora
 
+Los canales se ponen en rosa si nos han llamado al nick
+En amarillo si hay nuevos mensajes
+
+
 ## Shortcuts / keys
 avpag/repag para moverse por los mensajes del canal
 
@@ -104,6 +108,7 @@ AutoClearQueryBuffer
 ### Push por chats privados o highlights
 https://github.com/jreese/znc-push
 
+Compilar con libcurl, el otro parece que no funciona con https.
 Una vez el modulo esta en el directorio adecuado:
 
 /msg *status loadmod push
@@ -113,3 +118,11 @@ Configuracion para pushbullet:
 /msg *push set secret ...
 /msg *push set target foo
   este no es obligatorio, es para especificar a un device especifico donde enviar el mensaje
+
+Para recibir todos los mensajes y config particular que le pongo:
+/msg *push set replied no
+/msg *push set idle 0
+/msg *push set last_active 0
+/msg *push set last_notification 0
+/msg *push set highlight nocker adri adrian
+/msg *push set message_title IRC: {title}
