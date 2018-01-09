@@ -16,3 +16,7 @@ http://www.sphinx-doc.org/en/stable/
 
 
 http://www.asciibinder.org/
+
+
+https://github.com/jwasham/coding-interview-university
+https://github.com/ossu/computer-science
