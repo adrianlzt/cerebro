@@ -130,7 +130,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-## Sessions
+## Sessions / cookies presist
 http://docs.python-requests.org/en/latest/user/advanced/#session-objects
 The Session object allows you to persist certain parameters across requests. It also persists cookies across all requests made from the Session instance.
 
