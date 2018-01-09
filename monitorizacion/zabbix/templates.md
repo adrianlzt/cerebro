@@ -20,3 +20,7 @@ Creamos una macro a nivel de template, por ejemplo la llamamos {$MAX_PROC} y le 
 Ahora modificamos el trigger. Donde ponia 300 ponemos la macro.
 
 Ahora vamos a las macros del host, creamos la misma y definimos el valor 1000.
+
+
+# Exportar
+En "Configuration" seleccionamos lo que queremos (checkbox) y bajamos al final de a web, "Export"
