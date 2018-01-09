@@ -4,7 +4,7 @@ Según el timestamp de los distintos ficheros y las relaciones entre los fichero
 El típico ejemplo es un programa en c con headers, source files, objects files y el binario.
 Al modificar un fichero make, gracias a las reglas del Makefile, sabrá que cosas debe recompilar, evitando tener que recompilar todo el proyecto.
 
-Si hacemos make, se ejecutará el primer "target" disponible.
+Si hacemos make, se ejecutará el primer "goal" disponible (que no empieze por punto)
 
 Una opción típica al compilar es que los targets y los requisites sean ficheros.
 Y vamos poniendo en cada target los ficheros que hacen falta para compilar este.
