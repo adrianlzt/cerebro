@@ -16,6 +16,7 @@ molecule idempotence
 
 molecule verify
   lanzamos los tests sobre nuestra vm
+  Si lo hacemos con testinfra lanzará algo tipo: testinfra tests/test_infra.py --connection=ansible --ansible-inventory=.molecule/ansible_inventory --sudo
 
 
 
