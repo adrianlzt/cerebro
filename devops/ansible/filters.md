@@ -1,3 +1,5 @@
+mirar plugins.md para ver como añadir más
+
 https://docs.ansible.com/playbooks_filters.html
 https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/filter/core.py
   puede que haya filtros no documentados
@@ -26,5 +28,3 @@ http://docs.ansible.com/ansible/playbooks_filters.html#combining-hashes-dictiona
 
 {{ a|combine(b, c, d) }}
 In this case, keys in d would override those in c, which would override those in b, and so on.
-
-
