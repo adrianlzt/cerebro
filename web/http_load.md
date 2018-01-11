@@ -1,6 +1,8 @@
 Ideas de como lanzar load tests com AWS:
 https://www.reddit.com/r/aws/comments/640cb6/using_aws_for_load_testing/
 
+https://locust.io/
+programa en python para hacer pruebas
 
 
 http://acme.com/software/http_load/
