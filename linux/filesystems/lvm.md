@@ -22,7 +22,8 @@ Crear un grupo de volumen, unir volúmenes físicos
  # vgcreate Nombrevolumen /dev/sdb /dev/sdc1
 
 Crear un volumen lógico, que se formateará para ser una “partición”
- # lvcreate -n opt -l 12799 Nombrevolumen
+ # lvcreate -n NombreLV -L 2G NombreVG
+ # lvcreate -n NombreLV -l 12799 NombreVG
  # lvcreate -n opt -l 50%FREE Nombrevolumen (50% del espacio libre)
  # lvcreate -n opt -l 50%ORIGIN  Nombrevolumen (50% del espacio total del volumen)
 		-n|--name LogicalVolumeName

@@ -50,7 +50,14 @@ http://docs.ceph.com/ceph-ansible/master/osds/scenarios.html
 osd_scenario: define como se van a configurar los discos
   - collocated: data y metadata en el mismo disco. Debemos pasar discos enteros (ceph lo particionará)
   - non-collocated: data y metadata (journal) en distintos discos
-  - lvm: para usar logical volumes (ya creados)
+  - lvm: para usar logical volumes (ya creados). Debe especificarse un journal a parte. (mirar docs/source/osds/scenarios.rst). Ejemplo:
+         osd_scenario: lvm
+         lvm_volumes:
+           - data: nombreLVdatos
+             data_vg: nombreVGdatos
+             journal: nombreLVjournal
+             journal_vg: nombreVGjournal
+
 
 BlueStore es el nuevo motor de búsqueda (versiones luminous/12.2 y superiores). Mejor performance
 
@@ -70,3 +77,6 @@ scp_if_ssh=True
 
 Tras el despliegue comprobaremos el estado del cluster con:
 ceph status
+
+
+Mirar managers.md si queremos activar el dashboard.
