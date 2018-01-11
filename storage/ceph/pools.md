@@ -4,6 +4,12 @@ Son las entidades donde definimos: replicacion, placement groups (en cuantos cac
 
 Por defecto tenemos un pool "rbd" (.rgw.root en versiones nuevas, visto en 12.x)
 
+Por defecto CEPH creará 3 réplicas de cada objeto.
+  Definido por la configuración: osd pool default size = 3
+
+También se define el mínimo número de réplicas para casos de degrafación:
+  osd pool default min size = 2
+
 
 # Listar pools
 ceph osd lspools

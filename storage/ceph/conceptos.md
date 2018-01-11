@@ -21,5 +21,12 @@ Less than 5 OSDs set pg_num to 128
 Between 5 and 10 OSDs set pg_num to 512
 Between 10 and 50 OSDs set pg_num to 4096
 
+Otro cálculo (http://docs.ceph.com/docs/master/rados/configuration/pool-pg-config-ref/):
+  num OSDs * 100 / replica_num
+
 Varios objetos se mapean a un PG y un PG se mapea a N OSDs (N es el número de réplicas)
 Si tenemos que modificar el numero mirar errores.md
+
+
+# Pools
+mirar pools.md
