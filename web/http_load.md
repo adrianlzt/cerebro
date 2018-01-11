@@ -1,3 +1,8 @@
+Ideas de como lanzar load tests com AWS:
+https://www.reddit.com/r/aws/comments/640cb6/using_aws_for_load_testing/
+
+
+
 http://acme.com/software/http_load/
 
 http_load runs multiple http fetches in parallel, to test the throughput of a web server. However unlike most such test clients, it runs in a single process, so it doesn't bog down the client machine. It can be configured to do https fetches as well.
