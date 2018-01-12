@@ -38,3 +38,10 @@ TAGS="sqlite"
 
 La conf se genera en:
 custom/conf/app.ini
+
+Creación de releases desde la web llama a: routes/repo/release.go
+
+## API
+routes/api/v1/api.go
+  enrutador
+routes/api/v1
