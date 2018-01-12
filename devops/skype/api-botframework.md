@@ -8,6 +8,8 @@ https://docs.microsoft.com/es-es/bot-framework/bot-service-quickstart-registrati
 Nos pide tarjeta de débito para poder registrarnos en Azure.
 Solo registrar un bot no tiene coste si ponemos la tarifa F0
 
+En "Administracion de bots" -> "Configuración" podemos encontrar el app id y app password (este dando en administrar al lado del app id)
+
 
 https://docs.botframework.com/en-us/skype/chat
 Info sobre como funciona
