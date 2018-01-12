@@ -14,6 +14,7 @@ Solo registrar un bot no tiene coste si ponemos la tarifa F0
 En "Administracion de bots" -> "Configuración" podemos encontrar el app id y app password (este dando en administrar al lado del app id)
 
 Para que pueda conectar con Skype hace falta publicar el bot. Y esperar que aprueben la review?
+Parece que tarda un rato en empezar a enviar los mensajes. He visto como 1h hasta que han empezado a llegar.
 
 
 https://docs.botframework.com/en-us/skype/chat
