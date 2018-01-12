@@ -1,6 +1,14 @@
 Mirar web.md para api para hablar desde skype.
 
 
+A partir de Enero 2018 los bots se gestionan desde Azure.
+Existen varias opciones, unas para desplegar el bot en Azure y otra simplemente para registrar un bot externo en azure:
+Bot Channels Registration
+https://docs.microsoft.com/es-es/bot-framework/bot-service-quickstart-registration
+Nos pide tarjeta de débito para poder registrarnos en Azure.
+Solo registrar un bot no tiene coste si ponemos la tarifa F0
+
+
 https://docs.botframework.com/en-us/skype/chat
 Info sobre como funciona
 https://blogs.msdn.microsoft.com/tsmatsuz/2016/08/19/build-skype-bot-with-microsoft-bot-framework-oauth-and-rest-api/

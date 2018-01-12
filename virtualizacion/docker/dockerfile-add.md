@@ -1,5 +1,6 @@
 ADD: añadir ficheros al container
 ADD <src> <dest>
+ADD --chown=user:group <src> <dest>
 ADD <src1> <src2> ... <dest>
 src debe ser un fichero o directorio con path relativo al workdir actual, o una url
 
