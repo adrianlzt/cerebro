@@ -18,3 +18,8 @@ https://github.com/kubernetes-incubator/kubespray/blob/master/docs/comparisons.m
 # Minikube
 tool that makes it easy to run Kubernetes locally
 https://github.com/kubernetes/minikube
+
+
+# kubicorn
+https://github.com/kris-nova/kubicorn
+App en golang para desplegar un cluster de kubernetes

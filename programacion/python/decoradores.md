@@ -3,6 +3,14 @@ http://www.artima.com/weblogs/viewpost.jsp?thread=240808
 
 Libreria de decoradores: https://wiki.python.org/moin/PythonDecoratorLibrary
 
+https://news.ycombinator.com/item?id=16084238
+how to abuse decorators
+
+
+Decorators are applied once, at function definition time.
+Annotating a function definition x with a decorator @d is equivalent to defining x, then, immediately afterward, having x = d(x).
+Decorating a function with @d and @e, in that order, is equivalent to performing x = d(e(x)) after the function's definition.
+
 
 Con los decorades tenemos ciertas limitaciones. 
 Para estos casos mirar functools.md wrappers
