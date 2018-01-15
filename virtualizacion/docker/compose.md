@@ -82,3 +82,13 @@ networks:
     external:
       name: red_ya_existente
 
+
+
+## volumes
+Montar un volumen local en varios containers
+
+volumes:
+  my-volume:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /data/local-persist/data
