@@ -14,11 +14,13 @@ Este integra varias cosas. Son cinco interruptores en uno (depende de que en par
 
 
 # Sin pilas en el emisor
-Los llaman "kinetic self-powered switch" o 
+Los llaman "kinetic self-powered switch"
 
-https://acegoo.myshopify.com/products/acegoo-wireless-lights-switch-kit-self-powered-battery-free-transmitter-with-receiver-remote-control-house-lighting-appliances-switch-receiver-included
+https://acegoo.myshopify.com/products/acegoo-wireless-lights-switch-kit
+https://acegoo.myshopify.com/products/acegoo-remote-control-receiver
 https://www.amazon.fr/dp/B01H3RE3JQ?psc=1
 39€
+mirar sdr para ver como capturar la señal para poder reproducirla
 
 https://www.amazon.com/Breezesmile-Wireless-Battery-free-Self-powered-Appliances/dp/B01LXJA8SR/ref=sr_1_6?ie=UTF8&qid=1485848734&sr=8-6&keywords=remote+switch+without+batteries
 
@@ -26,3 +28,6 @@ https://www.ecodring.com/interrupteur-sans-fil-sans-pile/
 https://www.amazon.fr/Interrupteur-r%C3%A9cepteur-garantie-port%C3%A9e-int%C3%A9rieure/dp/B01H3RE3JQ/ref=sr_1_2?s=kitchen&ie=UTF8&qid=1485848729&sr=1-2
 
 http://www.gosund.com/pd.jsp?id=207&_pp=2_546
+
+El "original":
+https://www.enocean.com/en/about-us/press-releases/enocean-kinetic-power-conquers-the-world/
