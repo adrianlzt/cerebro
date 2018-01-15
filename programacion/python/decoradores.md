@@ -10,9 +10,10 @@ how to abuse decorators
 Decorators are applied once, at function definition time.
 Annotating a function definition x with a decorator @d is equivalent to defining x, then, immediately afterward, having x = d(x).
 Decorating a function with @d and @e, in that order, is equivalent to performing x = d(e(x)) after the function's definition.
+No tienen porque retornar una función
 
 
-Con los decorades tenemos ciertas limitaciones. 
+Con los decorades tenemos ciertas limitaciones.
 Para estos casos mirar functools.md wrappers
 
 Ejemplo simple:
