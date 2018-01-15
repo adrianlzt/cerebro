@@ -18,7 +18,8 @@ $ pip install -Iv http://sourceforge.net/projects/mysql-python/files/mysql-pytho
   -v: verbose
 $ pip install --use-wheel <paquete>
   instala el binario si esta disponible
-$ pip show --files SomePackage
+$ pip show -f SomePackage
+  mostrar ficheros del paquete
 $ pip uninstall <libreria>
 $ pip list
 
