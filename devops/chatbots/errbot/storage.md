@@ -14,3 +14,8 @@ ssp = ShelfStoragePlugin(self.bot_config)
 self.storage = ssp.open("skype")
 self.storage.set("clave", "valor")"clave", "valor")
 self.storage.get("clave")
+
+
+Listar claves:
+for k in self._bot.storage.keys():
+  print(k)
