@@ -38,6 +38,9 @@ Definir un goal/target por defecto:
 
 
 
+make -n XXX
+  es un dry-run, nos muestra lo que va a ejecutar
+
 
 El ejemplo más sencillo es compilar un programa en c cuando hagamos 'make'.
 
@@ -112,3 +115,37 @@ test:
 -comando
   esto hace que el comando tenga RC=0, asi que seguirá ejecutando el resto de cmds del target
   podemos combinarlo con @ de cualquier manera: "-@" o "@-"
+
+
+# Trabajando con strings
+https://www.gnu.org/software/make/manual/make.html#Text-Functions
+
+$(subst ee,EE,feet on the street)
+  devuelve "fEEt on the strEEt"
+
+$(sort foo bar lose)
+
+
+
+
+# Trabajando con nombres de ficheros
+https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
+
+Coger solo el directorio, solo el nombre, poner prefijos, sufijos, etc
+
+
+
+
+# Condicionales
+https://www.gnu.org/software/make/manual/make.html#Conditional-Functions
+
+$(if condition,then-part[,else-part])
+
+
+
+
+# Bucles
+https://www.gnu.org/software/make/manual/make.html#Foreach-Function
+
+$(foreach var,list,text)
+
