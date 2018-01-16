@@ -23,6 +23,7 @@ nombre = valor de la variable
 La usamos como: $(nombre)
 
 
+https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 Si queremos crear targets custom que no sean compilaciones de ficheros, usaremos .PHONY para decirle a make que no intente buscar un fichero con el nombre del target:
 .PHONY : clean
 clean :
