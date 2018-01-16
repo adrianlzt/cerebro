@@ -183,3 +183,18 @@ $(foreach var,list,text)
 # Parámetros
 make run force=true
   dentro tendremos la variable "${force}"
+
+
+
+# Variables multilinea
+https://stackoverflow.com/questions/649246/is-it-possible-to-create-a-multi-line-string-variable-in-a-makefile
+
+define VAR
+una linea
+otra linea
+endef
+
+export VAR
+
+target:
+	@echo "$$VAR"
