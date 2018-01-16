@@ -18,6 +18,25 @@ target ... : prerequisites ...
   command
 
 
+Variables
+nombre = valor de la variable
+La usamos como: $(nombre)
+
+
+Si queremos crear targets custom que no sean compilaciones de ficheros, usaremos .PHONY para decirle a make que no intente buscar un fichero con el nombre del target:
+.PHONY : clean
+clean :
+  rm edit $(objects)
+
+Tambien podemos definir todos los PHONY al final:
+.PHONY: build docker-run ...
+
+
+
+Definir un goal/target por defecto:
+.DEFAULT_GOAL := help
+
+
 
 
 El ejemplo más sencillo es compilar un programa en c cuando hagamos 'make'.
@@ -85,3 +104,11 @@ test:
   read -p "Dime tu pass de LDAP: " pass; \
   echo "Tus cred son $$user $$pass"
 
+
+# Definir comandos de un target
+@comando
+  esto hará que make no muestre el comando antes de ejecutarlo
+
+-comando
+  esto hace que el comando tenga RC=0, asi que seguirá ejecutando el resto de cmds del target
+  podemos combinarlo con @ de cualquier manera: "-@" o "@-"
