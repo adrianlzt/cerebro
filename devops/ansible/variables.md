@@ -71,6 +71,9 @@ ansible-playbook -e "@fichero.json" ...
 O un json a pelo:
 --extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'
 
+Si es una variable con espacios en blanco:
+-e foo=\""123 456"\"
+
 
 vars_files:
  - vars/common.yml
