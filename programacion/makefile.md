@@ -1,3 +1,9 @@
+http://skramm.blogspot.fr/2012/04/gnu-make-and-foreach-function.html
+http://www.cmcrossroads.com/cm-articles/columns/ask-mr-make
+https://www.cmcrossroads.com/article/basics-gnu-make
+https://www.cmcrossroads.com/article/painless-non-recursive-make
+
+
 http://crasseux.com/books/ctutorial/Writing-a-makefile.html
 La idea es dar una serie de reglas a "make" para que sepa que debe recompilar.
 Según el timestamp de los distintos ficheros y las relaciones entre los ficheros conseguirá solo recompilar las partes necesarias.
@@ -109,6 +115,16 @@ test:
   echo "Tus cred son $$user $$pass"
 
 
+Preguntar al usuario:
+https://stackoverflow.com/questions/47837071/making-make-clean-ask-for-confirmation
+clean: check_clean
+	rm -fr dist/
+
+check_clean:
+	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} == y ]
+
+
+
 # Definir comandos de un target
 @comando
   esto hará que make no muestre el comando antes de ejecutarlo
@@ -138,9 +154,16 @@ Coger solo el directorio, solo el nombre, poner prefijos, sufijos, etc
 
 
 # Condicionales
+https://www.gnu.org/software/make/manual/make.html#Conditional-Syntax
 https://www.gnu.org/software/make/manual/make.html#Conditional-Functions
 
 $(if condition,then-part[,else-part])
+
+Otra forma (solo entramos si VAR no es ""):
+target:
+ifneq ($(VAR),)
+	some command
+endif
 
 
 
@@ -150,3 +173,13 @@ https://www.gnu.org/software/make/manual/make.html#Foreach-Function
 
 $(foreach var,list,text)
 
+@$(foreach reg,$(REGISTRY), \
+  echo $(reg); \
+  echo xxx; \
+)
+
+
+
+# Parámetros
+make run force=true
+  dentro tendremos la variable "${force}"
