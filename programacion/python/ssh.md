@@ -11,7 +11,9 @@ http://www.paramiko.org/
 import paramiko
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect('127.0.0.1', username='jesse', password='lol')
+ssh.connect('127.0.0.1', username='jesse', password='lol', allow_agent=False, look_for_keys=False) # Si conectamos con pass tenemos que poner lo del allow_agent y el load_for_keys
+stdin, stdout, stderr = ssh.exec_command('id')
+print(stdout.readlines())
 
 │ Authentication is attempted in the following order of priority:                                                      │
 │                                                                                                                      │
@@ -25,7 +27,7 @@ Ejemplo
 http://stackoverflow.com/questions/9470584/python-paramiko-run-command
 
 #!/usr/bin/env python
-hostname = '192.168.3.4'    
+hostname = '192.168.3.4'
 port = 22
 username = 'username'
 password = 'mypassword'
