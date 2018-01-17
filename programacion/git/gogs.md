@@ -18,6 +18,10 @@ Tambien podemos usar gogs para hacer mirror de un repo (seleccionar "mirror" al 
   Por defecto se sincronizará cada hora (cron.update_mirrors SCHEDULE)
 
 
+# Webhooks
+Puede generar webhooks tipo gogs, slack, discord o dingtalk.
+
+
 
 # API
 https://github.com/gogits/go-gogs-client/wiki

@@ -42,7 +42,8 @@ vgscan
 vgs
 vgdisplay   (más verboso)
 lvscan
-lvs
+lvs -a
+  mostrar tambien particiones thinpool y otras "raras"
 lvdisplay   (más verboso)
 
 # Mostrar los puntos /dev de los LVM que tengamos

@@ -109,6 +109,9 @@ Ejemplo de webhook:
       "webhook": {
         "method" : "POST",
         "url" : "https://requestb.in/19o2f041",
+        "headers" : {
+          "Content-Type" : "application/json"
+        },
         "body": "{\"hola\":123}"
       }
     }

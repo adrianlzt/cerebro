@@ -7,8 +7,7 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum install -y docker-ce
 
 Mirar lvm.md si queremos usar el drive lvm-direct
-systemctl start docker
-systemctl enable docker
+systemctl start docker && systemctl enable docker
 docker run hello-world
 
 Tras instalar, ejecutar este script https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh
