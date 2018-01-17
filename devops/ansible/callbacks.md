@@ -15,6 +15,10 @@ Ejemplo en: callback_plugin.py
 
 # Ejemplo para modificar la salida
 https://gist.github.com/dmsimard/cd706de198c85a8255f6
+https://github.com/n0ts/ansible-human_log <- mas nuevo
+callback_plugin.py <- modificacion mia sobre el gist para mejorar algunos problemas con el stdout (para usarlo podemos renombrarlo como human_log.py)
+  usar el mio
+
 
 Para sacar el output de las tareas de forma más legible:
 
@@ -35,10 +39,13 @@ stdout: #TASK 114 backup 20131008162736229
 
 # Como hacer uno custom
 En el directorio callback_plugins/ (mismo path donde este el playbook) crearemos un fichero con cualquier nombre .py
+Con eso será suficiente para que pille el callback
 
-En el ansible.cfg poner:
+Si queremos usar otro directorio, en ansible.cfg poner:
 [defaults]
 callback_plugins = callback_plugins/
+
+
 
 
 En el extenderemos la clase CallbackBase:

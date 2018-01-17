@@ -23,6 +23,9 @@ secrets
 # Despliegue
 docker stack deploy --compose-file fichero.yml nombre
 
+Si usamos un registry con auth tendremos que pasar el parametro (para que se pueda bajar las imagenes):
+--with-registry-auth
+
 # Listado
 docker stack ls
   nos dice el stack y cuantos services tiene corriendo (cada service puede tener varias replicas)
