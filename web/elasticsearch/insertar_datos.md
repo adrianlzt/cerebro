@@ -1,8 +1,9 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-index_.html
 
-Los datos se insertan con peticiones HTTP PUT:
+Los datos se insertan con peticiones HTTP POST
+Se actualizan con PUT (deberemos especificar el elemento exacto: localhost:9200/vehicles/tv/one)
 
-curl -XPUT localhost:9200/vehicles/tv/one?pretty -d'
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/vehicles/tv/?pretty" -d'
 {
     "color": "green",
     "driver": {

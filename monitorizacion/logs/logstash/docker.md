@@ -1,7 +1,28 @@
+https://www.elastic.co/guide/en/logstash/current/docker.html
 https://www.docker.elastic.co/
 
+logstash a pelo viene con X-Pack
+logstash-oss es la opensource sin X-Pack
+
 docker pull docker.elastic.co/logstash/logstash:5.6.3
-docker run -it --rm -v "$PWD":/config-dir logstash logstash -f /config-dir/logstash.conf
+docker run -it --rm --name logstash --link elastic:elasticsearch -v "$PWD":/config-dir docker.elastic.co/logstash/logstash:6.1.2 logstash -f /config-dir/logstash.conf
+docker run -it --rm -v "$PWD":/config-dir docker.elastic.co/logstash/logstash:6.1.2 logstash -f /config-dir/logstash.conf
+
+Si quiero conectar con el usuario por defecto que se crea al levantar un ES:
+docker run -it --rm --name logstash --link elastic:elasticsearch -e "xpack_monitoring_elasticsearch_username=elastic" docker.elastic.co/logstash/logstash:6.1.2
+
+
+Conf por defecto (/usr/share/logstash/config/logstash.yml):
+http.host: "0.0.0.0"
+path.config: /usr/share/logstash/pipeline
+xpack.monitoring.elasticsearch.url: http://elasticsearch:9200
+xpack.monitoring.elasticsearch.username: logstash_system
+xpack.monitoring.elasticsearch.password: changeme
+
+Modificable con variables de entorno (usa env2yaml para cambiar los valores del fichero)
+Por ejemplo, para modificar la password:
+ -e xpack_monitoring_elasticsearch_password=xxx
+
 
 Plugins instalados:
 docker run --entrypoint ls --rm -it docker.elastic.co/logstash/logstash:5.6.3 /usr/share/logstash/vendor/bundle/jruby/1.9/specifications/ | grep logst
