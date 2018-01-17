@@ -58,8 +58,18 @@ fdisk /dev/sdb
 pvcreate /dev/sdb1
 vgcreate docker /dev/sdb1
 
+Elegir una opción:
 lvcreate --wipesignatures y -n thinpool docker -l 95%VG
+  95% del espacio del VG
+lvcreate --wipesignatures y -n thinpool docker -l 95%FREE
+  95% del espacio libre en el VG
+
+Elegir:
 lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+  para tamaños de volumen menores a 1TB podemos poner tranquilamente 1GB de metadata (mirar linux/filesystems/lvm.md)
+lvcreate --wipesignatures y -n thinpoolmeta docker -L 1G
+
+
 lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
 
 echo -e "activation {\nthin_pool_autoextend_threshold=80\nthin_pool_autoextend_percent=20\n}" > /etc/lvm/profile/docker-thinpool.profile

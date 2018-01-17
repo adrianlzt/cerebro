@@ -138,3 +138,20 @@ vgextend VOL /dev/sdc
 lvextend -r -l +100%FREE VOL/LV
   extendemos el volumen LV del volume group VOL hasta todo el espacio disponible
   se extiende también automáticamente el sistema de ficheros
+
+
+
+# Thinpool
+lvcreate --wipesignatures y -n thinpool docker -l 95%VG
+lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
+
+echo -e "activation {\nthin_pool_autoextend_threshold=80\nthin_pool_autoextend_percent=20\n}" > /etc/lvm/profile/docker-thinpool.profile
+lvchange --metadataprofile docker-thinpool docker/thinpool
+lvs -o+seg_monitor
+
+Para calcular el tamaño del volumen de metadatos podemos usar la utilidad:
+thin_metadata_size -b64k -s1t -m1000 --unit=G
+  para bloques de 64k (creo que el por defecto), una unidad de 1TB y 1000 snaphots (o devices?), el tamaño es de 0.55GB
+  para 2TB/1000snap -> ~1GB
+  para 1TB/100000snap -> ~1GB

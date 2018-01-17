@@ -25,3 +25,9 @@ docker run --name elastic -v "$PWD/elasticsearch.yml:/usr/share/elasticsearch/co
 
 user: elastic
 pass: changeme
+
+
+Volumenes de config, datos y logs:
+-v "$PWD/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+-v "$PWD/data:/usr/share/elasticsearch/data"
+-v "$PWD/logs:/usr/share/elasticsearch/logs"
