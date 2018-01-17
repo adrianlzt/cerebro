@@ -1,7 +1,8 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 https://www.docker.elastic.co/
 
-docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.0
+docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.2
+docker run -d -p 9200:9200 --name elastic -e ELASTIC_PASSWORD=admin e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss-platinum:6.1.2
 
 docker pull docker.elastic.co/elasticsearch/elasticsearch:6.1.0
 docker pull docker.elastic.co/elasticsearch/elasticsearch-platinum:6.1.0
