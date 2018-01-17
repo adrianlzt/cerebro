@@ -10,6 +10,7 @@ En las acciones por ejemplo solo podemos enviar email, generar una nueva trazas 
 
 Tambien podemos usar el método "raw" que nos rellena ya un JSON típico y nos deja hacer pruebas.
 Si queremos que salte el trigger en las pruebas de verdad recordar cambiar el Action a "Execute"
+En la simulación, los overrides son para modificar el resultado que ha llegado. Por ejemplo, ponemos un JSON que dice que si ha encontrado 4 resultados (tenemos un botón para copiar la última respuesta)
 
 
 Ejemplos:
