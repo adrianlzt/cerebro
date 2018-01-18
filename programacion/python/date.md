@@ -82,6 +82,14 @@ pip install python-dateutil
 from dateutil import tz
 datetime.datetime.now().replace(tzinfo=tz.gettz('Europe/Madrid')).astimezone(tz.gettz('UTC')).strftime('%Y-%m-%d %H:%M:%S.%f')
 
+Como funciona el tema de los TZ en datetime es un poco raro.
+Cuando le pedimos que haga strftime lo que va a hacer es buscar si tenemos algo referente al timezone (%z, %Z) y poner el valor.
+Para parsear el resto de la fecha se hace con "time" (que no conoce de TZ).
+Por lo tanto, si intentamos hacer un %s, perdemos la información de la TZ.
+
+time va a entender que la hora que le pasemos (datetimoe.timetuple()) esta en la TZ de corra la maquina.
+
+
 # Parsear fecha
 >>> import datetime
 >>> datetime.datetime.strptime("10/11/2015","%d/%m/%Y")
