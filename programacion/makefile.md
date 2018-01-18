@@ -1,3 +1,4 @@
+https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents
 http://skramm.blogspot.fr/2012/04/gnu-make-and-foreach-function.html
 http://www.cmcrossroads.com/cm-articles/columns/ask-mr-make
 https://www.cmcrossroads.com/article/basics-gnu-make
