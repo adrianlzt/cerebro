@@ -24,7 +24,9 @@ int(time.time())
 
 epoch -> time
 time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(1347517370))
-NO USAR! time.localtime() parece que no entiende de timezones
+time.localtime() va a devolvernos la hora teniendo en cuenta el TZ actual (variable de entorno TZ o /etc/localtime)
+En una máquina CET time.localtime(0) nos devolverá el epoch+1h
+En una máquina UTC time.localtime(0) nos devolverá el epoch 0
 
 
 ## con datetime

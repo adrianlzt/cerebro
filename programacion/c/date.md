@@ -63,3 +63,13 @@ int main(void) {
 
   return 0;
 }
+
+Encontré una diferencia de funcionamiento entre glibc y musl cuando usamos strftime para obtener el unix epoch.
+glibc usa maketime para obtener los epoch seconds (https://github.com/bminor/glibc/blob/glibc-2.19.90/time/strftime_l.c#L1139)
+mktime (en glibc y musl) es consciente de la variable TZ, la que define en que time zone estamos.
+
+En musl strftime hace el calculo simplemente multiplicando cada valor (año, mes, dia, etc) por su valor en segundos, y luego restando el offset (que por lo que entiendo se define si llamamos al mktime)
+https://git.musl-libc.org/cgit/musl/tree/src/time/strftime.c?h=v1.1.18#n132
+
+Por lo tanto, musl/strftime siempre nos devolverá el unix epoch interpretando la hora como UTC.
+Glibc en cambio interpretará la hora con nuestro TZ actual y pondrá el unix epoch en consecuencia.
