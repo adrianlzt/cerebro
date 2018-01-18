@@ -39,3 +39,25 @@ char fecha[100];
 strftime(fecha, 100, "%Y/%m/%d %H:%M:%S", timeinfo);
 printf("%s.%ld\n", fecha, ts.tv_nsec);
 
+
+
+// Parsear fecha y imprimirla como unix epoch
+#define _XOPEN_SOURCE
+#include "stdio.h"
+#include "stdlib.h"
+#include "time.h"
+#include "string.h"
+
+int main(void) {
+  printf("epoch time de 1970/1/1 00:00:00\n");
+
+  struct tm tm;
+  memset(&tm, 0, sizeof(struct tm));
+  strptime("1/1/1970 00:00:00", "%d/%m/%Y %H:%M:%S", &tm);
+
+  char fechastr[100];
+  strftime(fechastr, 100, "%s", &tm);
+  printf("%s\n", fechastr);
+
+  return 0;
+}

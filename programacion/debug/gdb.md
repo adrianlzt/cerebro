@@ -8,10 +8,16 @@ https://blog.0x972.info/index.php
 http://undo.io/resources/blog-articles/category/debugging/ posts con tips y guias sobre usos particulares de gdb
 http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html  ejemplo usando gdb para encontrar un problema con un programa en python
 
-Mejor usar GEF (https://gef.readthedocs.io/en/latest/)
+Mejor usar GEF + voltron (https://gef.readthedocs.io/en/latest/)
 Hace la interfaz de gdb más amigable.
 mirar gef.md
 mirar plugins.md
+
+$ cat ~/.gdbinit
+source /home/adrian/.gdbinit-gef.py
+source /usr/lib/python3.6/site-packages/voltron/entry.py
+
+
 
 Para cosas mas especificas de ASM:
 programacion/ensamblador/gdb.md
@@ -19,17 +25,36 @@ programacion/ensamblador/gdb.md
 rr, ejecutamos una vez y luego con gdb miramos la ejecucción
 rr.md
 
-# Mini resumen
+
+
+# Mini resumen (con GEF y voltron)
 gcc -g program.c
-gdb a.out
-win
-n
+tmux
+gdb -q a.out
+> tmux-setup
+> r
+> l
+> b N (poner en alguna linea)
+> r
+
+Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comandos y en el otro varias divisiones mostrando:
+  registrosstack
+  codigo en asm
+  codigo en c
+  threads
+  trace
+
+En otras ventanas podemos llamar a voltron para ver otros datos (mirar plugins.md)
+
+
+Si no vemos el codigo, hacer un primer run "r" y luego veremos el codigo
+Metemos un breakpoint en la primera linea de main y luego "r" de nuevo.
 
 
 
 Como hacer debug de programas con gdb.
 
-1. Es necesario compilar el programa para que hacepte debug:
+1. Es necesario compilar el programa para que acepte debug:
 	gcc -g programa.c -o programa
 
 2. Arrancar el gdb con el programa
