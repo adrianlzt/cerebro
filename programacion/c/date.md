@@ -1,4 +1,6 @@
 // https://www.gnu.org/software/libc/manual/html_node/Date-and-Time.html
+// Codigo glibc: https://github.com/bminor/glibc/tree/master/time
+// Codigo musl: https://git.musl-libc.org/cgit/musl/tree/src/time?h=v1.1.18
 
 #include <time.h>
 

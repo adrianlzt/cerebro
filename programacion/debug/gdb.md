@@ -45,10 +45,19 @@ Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comand
   trace
 
 En otras ventanas podemos llamar a voltron para ver otros datos (mirar plugins.md)
+Por ejemplo, para ver el stack (navegable): voltron view stack
+
 
 
 Si no vemos el codigo, hacer un primer run "r" y luego veremos el codigo
 Metemos un breakpoint en la primera linea de main y luego "r" de nuevo.
+
+
+Si nos faltan los symbols en debian serán paquetes xxx-gdb
+Tambien puede que nos falten los sources. En debian para glibc por ejemplo es glibc-source (en /usr/src/glibc tendremos que descomrpimir el .tar.xz)
+
+Para cargar más directorios con sources (ficheros .c):
+dir /path/
 
 
 
