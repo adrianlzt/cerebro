@@ -31,7 +31,7 @@ La usamos como: $(nombre)
 
 
 https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
-Si queremos crear targets custom que no sean compilaciones de ficheros, usaremos .PHONY para decirle a make que no intente buscar un fichero con el nombre del target:
+Si queremos crear targets custom que no sean compilaciones de ficheros, usaremos .PHONY para decirle a make que no intente buscar un fichero con el nombre del target (irá más rápido al no tener que hacer ciertos chequeos):
 .PHONY : clean
 clean :
   rm edit $(objects)
@@ -199,3 +199,10 @@ export VAR
 
 target:
 	@echo "$$VAR"
+
+
+# Convertir un fichero en otro
+env.mk: env.sh
+	cat $< | sed 's/"//g ; s/=/:=/' > $@
+
+Creo que lo que hace es coger el fichero env.sh y generar el fichero env.mk tras el sed
