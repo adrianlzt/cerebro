@@ -77,6 +77,8 @@ Agregar otros templates:
  <li><strong>{{ $key }}</strong>: {{ $value }}</li>
 {{ end }}
 
+{{range .Mounts}}{{.Source}} -> {{.Destination}}{{end}}
+
 
 # Elemento de un slice
 index .spec.ports 0
