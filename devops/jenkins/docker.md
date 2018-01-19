@@ -2,7 +2,7 @@ https://hub.docker.com/r/jenkins/jenkins/tags/
   esta la oficial
   doc: https://github.com/jenkinsci/docker/blob/master/README.md
 
-docker run -p 8080:8080 -p 50000:50000 -v /your/home:/var/jenkins_home jenkins/jenkins:lts
+docker run -p 8080:8080 -u $(id -u) -v "${PWD}/data:/var/jenkins_home" jenkins/jenkins:lts
 
 /your/home es donde jenkins almacenara todos los datos.
 Tiene que tener permisos, para que el container pueda escribir en él:
