@@ -26,11 +26,26 @@ Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve p
 
 # Docker plugin
 https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
-version 0.16.2 no acepta conex con unix:// (la version 0.16.1 si) https://github.com/jenkinsci/docker-plugin/issues/471
 
 Usar containers de docker para lanzar ejecutores.
 
 Una vez instalado ir a la configuración y bajar hasta "Nube" y agregar una tipo "Docker"
+
+Podemos usar distintos métodos de conex con los slaves:
+
+1.- attach container
+Usaremos esta imagen: https://hub.docker.com/r/jenkinsci/slave/
+La imagen parece que solo tiene que tener java instalado, nada más es necesario.
+Connect mthod: Attach Docker container (experimental 21/01/2018)
+User: Jenkins
+
+2.- agent jlnp
+Imagen: https://hub.docker.com/r/jenkins/jnlp-slave/
+Parece que no funciona, porque cuando arranca la imagen pone en el CMD /bin/sh, que evita que se arranque el agente java (21/01/2018)
+
+3.- ssh
+Imagen: https://hub.docker.com/r/jenkins/ssh-slave/
+Parece que no funciona si el docker host esta configurado con unix:///var/run/docker.sock (https://github.com/jenkinsci/docker-plugin/issues/455) (error intentando conectar a 0.0.0.0)
 
 Podemos bajarnos esta imagen evarga/jenkins-slave para usarla como base.
 Acceso es jenkins:jenkins
