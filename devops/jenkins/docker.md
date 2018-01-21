@@ -25,6 +25,7 @@ Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve p
 
 
 # Docker plugin
+https://plugins.jenkins.io/docker-plugin
 https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
 
 Usar containers de docker para lanzar ejecutores.
