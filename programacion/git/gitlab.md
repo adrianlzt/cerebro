@@ -16,8 +16,19 @@ To do it use docker exec:
   docker exec -it gitlab vim /etc/gitlab/gitlab.rb
   docker restart gitlab
 
-Tendremos que definir al menos el host para acceder a gitlab y el host ssh
+Tendremos que definir al menos el host para acceder a gitlab y el host ssh: https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
+Si modificamos el puerto de esa variable (external_url) se modificará el puerto donde escucha gitlab
 Si cambiamos el puerto de la web de gitlab, el container ahora escuchará en ese puerto. Tendremos que modificar el -p
+
+Para modificar el puerto ssh: https://stackoverflow.com/a/26935369/1407722
+/etc/gitlab/gitlab.rb
+gitlab_rails['gitlab_shell_ssh_port'] = 766
+
+docker restart gitlab
+otra opcion:
+docker exec -it gitlab gitlab-ctl reconfigure
+
+
 
 
 # TLS
