@@ -9,6 +9,15 @@ O crear un fichero en ~/.docker/config.json estilo:
   }
 }
 
+Podemos especificar donde queremos que busque el fichero con:
+docker --config /foo/bar ...
+  ira a buscar el fichero /foo/bar/config.json
+
+
+Podemos usar programas externos para almacenar estas claves, entre ellos "pass":
+https://github.com/docker/docker-credential-helpers
+
+
 
 # Montarnos un registry (un hub.docker.com)
 https://hub.docker.com/_/registry/

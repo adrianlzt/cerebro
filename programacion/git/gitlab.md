@@ -54,6 +54,7 @@ Por defecto gitlab intentara enviar emails usando sendmail, pero podemos configu
 
 # API
 https://docs.gitlab.com/ee/api/README.html
+Clientes para lenguajes: https://about.gitlab.com/applications/#api-clients
 
 Ejemplo usando como auth un private token:
 curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects | jq
