@@ -2,6 +2,10 @@ https://jenkins.io/doc/book/pipeline/getting-started/
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
 https://go.cloudbees.com/docs/cloudbees-documentation/use/reference/pipeline/
 
+Hay dos tipos:
+   Declarative Pipeline, empieza con "pipeline {"
+   Scripted Pipeline -> empieza por "node {", es groovy
+
 Syntax
 http://groovy-lang.org/semantics.html
 http://localhost:8080/pipeline-syntax/
@@ -65,3 +69,11 @@ https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-v
 
 Podemos usarlas en cualquier parte como: env.FOO
 O en script sh con ${FOO}
+
+
+
+# Primera ejecucción
+En la primera ejecucción la job le faltan algunos datos que están en el propio Jenkinsfile
+Parece que es una issue aún no resuelta (23/1/2018)
+https://issues.jenkins-ci.org/browse/JENKINS-40574
+https://issues.jenkins-ci.org/browse/JENKINS-41929
