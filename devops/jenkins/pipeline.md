@@ -1,5 +1,6 @@
 https://jenkins.io/doc/book/pipeline/getting-started/
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
+https://go.cloudbees.com/docs/cloudbees-documentation/use/reference/pipeline/
 
 Syntax
 http://groovy-lang.org/semantics.html
@@ -32,3 +33,35 @@ stage('Push') {
     }
 }
 
+
+# Condicionales
+https://jenkins.io/blog/2017/01/19/converting-conditional-to-pipeline/
+
+    stages {
+        stage ('Speak') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { params.REQUESTED_ACTION == 'greeting' }
+            }
+            steps {
+                echo "Hello, bitwiseman!"
+            }
+        }
+    }
+
+Si usamos variables de entorno ponerlas como: env.FOO
+Si ponemos en un expression solo "FOO", saltará excepcion si no está declarada. Con env.FOO dará null si no está declarada.
+
+
+
+# Variables de entorno
+https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-variables
+
+    environment {
+        FOO = "BAR"
+        BAZ = "bang"
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')<Paste>
+    }
+
+Podemos usarlas en cualquier parte como: env.FOO
+O en script sh con ${FOO}

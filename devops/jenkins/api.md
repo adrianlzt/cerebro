@@ -24,6 +24,7 @@ http://jenkins.inet/job/icinga/api/json/?pretty=true&depth=7&tree=jobs[name,jobs
 Ejemplo usando la api de XML filtrando por un valor
 https://jenkins.inet/job/dsmctools/job/icinga/job/dsmctools/job/default/job/check_cpu/job/check_pro/api/xml?depth=1&xpath=.//build[action/parameter[name='SERVER'][value='MS04P']]&wrapper=builds&pretty=true
 
+
 # JSON
 https://www.cloudbees.com/blog/taming-jenkins-json-api-depth-and-tree
 https://gist.github.com/justlaputa/5634984
@@ -55,3 +56,19 @@ https://git.openstack.org/cgit/openstack/python-jenkins
 
 # Ejecucciones remotas
 Es posible llamar jobs remotamente, es una conf del job. Esta en "Disparadores de ejecucciones", "Lanzar ejecuciones remotas"
+
+
+
+# Crear un job (solo XML)
+Bajarnos un config.xml de una tarea ya existente
+wget http://localhost:8080/job/nuevojob/config.xml
+
+Modificar lo que necesitemos
+Crear job haciendo un:
+curl "http://localhost:8080/createItem?name=pruebaCurl" -H "Content-Type: application/xml" -d @config.xml
+
+Tenemos que desactivar CSRF o primero pedir un crumb:
+curl -u admin:admin -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+
+https://stackoverflow.com/questions/38137760/jenkins-rest-api-create-job
+http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
