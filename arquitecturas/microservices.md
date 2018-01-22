@@ -28,3 +28,6 @@ http://eventuate.io/exampleapps.html
 
 # Monitorizacion / tracing
 programacion/tracing.md
+
+Problemas con los microservicios, preguntas que hacerte antes de elegir esta arquitectura:
+https://news.ycombinator.com/item?id=16200007
