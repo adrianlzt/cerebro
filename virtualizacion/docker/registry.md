@@ -15,7 +15,9 @@ https://hub.docker.com/_/registry/
 https://blog.mayflower.de/5650-Running-a-secure-docker-registry.html
 https://github.com/docker/distribution/blob/master/docs/configuration.md
 
-docker run -d -p 5000:5000 --restart always -v "${PWD}/config.yml:/etc/docker/registry/config.yml" -v "${PWD}/data:/var/lib/registry" --name registry registry:2.6.2
+cp ~/adrianRepo/virtualizacion/docker/registry_config.yml config.yml
+mkdir data
+docker run -d -p 5000:5000 --restart always -v "${PWD}/config.yml:/etc/docker/registry/config.yml" -v "${PWD}/data:/var/lib/registry" --name registry registry:latest
 config.yml en registry_config.yml
 Doc de la config: https://github.com/docker/distribution/blob/master/docs/configuration.md
 
@@ -23,7 +25,17 @@ Por defecto no tiene TLS y deberemos configurar todos los demonios de docker que
 Mejor meterle un cert (pero tendrá que ser válido)
 
 Si metemos pass con auth basic, para generar el htpasswd usar:
+htpasswd -cBb fichero USER PASS
+
+Para añadir nuevos:
 htpasswd -Bb fichero USER PASS
+
+config.yml
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /path/to/htpasswd
+
 
 
 Visor web:
@@ -52,4 +64,3 @@ v2/org/nombre/tags/list
 Primero obtenemos el digest
 
 curl -X DELETE -v http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/$(curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X HEAD -s http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/latest -D - | grep "Docker-Content-Digest:" | cut -d ' ' -f 2)
-

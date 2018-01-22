@@ -1,7 +1,7 @@
 Servidor opensource de git.
 
 # docker
-docker run -v "$PWD/data:/var/opt/gitlab" -v "$PWD/etc:/etc/gitlab" -p 2222:22 -p 8070:80 -p 8443:443 -p 9090:9090 -d gitlab/gitlab-ce
+docker run --name gitlab -v "$PWD/data:/var/opt/gitlab" -v "$PWD/etc:/etc/gitlab" -p 2222:22 -p 8070:80 -p 8443:443 -p 9090:9090 -d gitlab/gitlab-ce
   el puerto 9090 es la interfaz de prometheus
 
 Tarda algún minuto en arrancar.
