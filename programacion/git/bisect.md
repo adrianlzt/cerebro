@@ -34,3 +34,8 @@ git bisect reset
 # Automatico
 git bisect start broken stable
 git bisect run COMMAND
+
+Por ejemplo:
+git bisect run make test
+
+Va saltando entre los commits hasta encontrar el primero que rompe "make test"
