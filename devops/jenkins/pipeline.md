@@ -18,3 +18,17 @@ https://plugins.jenkins.io/workflow-aggregator
 
 Usaremos un fichero Jenkinsfile en el repositorio (Pipeline script from SCM), que se cargará automáticamente para crear el job tipo Pipeline
 Este job si lo tendremos que crear a mano en Jenkins.
+
+
+
+# Auth / credentials
+https://jenkins.io/doc/pipeline/steps/credentials-binding/
+
+stage('Push') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'docker_localhost_registry', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+            sh "make push"
+        }
+    }
+}
+

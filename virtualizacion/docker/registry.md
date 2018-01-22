@@ -16,6 +16,13 @@ docker --config /foo/bar ...
 
 Podemos usar programas externos para almacenar estas claves, entre ellos "pass":
 https://github.com/docker/docker-credential-helpers
+Lo que hace es ejecutar el programa y luego pasarle por stdin el nombre del server del que quiere obtener las credenciales.
+La respuesta debe ser tipo: {"ServerURL":"nombreServer","Username":"usuario","Secret":"clave"}  (sin encriptación de ningún tipo)
+
+Al usar pass y almacenar (store) lo guardara en:
+docker-credential-helpers/BASE64_del_server/USUARIO
+Solo almacenará ahí el secret
+
 
 
 
