@@ -64,3 +64,10 @@ v2/org/nombre/tags/list
 Primero obtenemos el digest
 
 curl -X DELETE -v http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/$(curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X HEAD -s http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/latest -D - | grep "Docker-Content-Digest:" | cut -d ' ' -f 2)
+
+curl -s -u adri:adri -H "Accept: application/vnd.docker.distribution.manifest.v2+json" http://localhost:5000/v2/borrar/adrigitlab/manifests/latest | jq -r '.config.digest'
+
+https://github.com/vidarl/remove_image_from_registry
+imagen de docker para borrar
+Parece que es un poco lio, que hay que ir borrando varias capas
+https://stackoverflow.com/questions/25436742/how-to-delete-images-from-a-private-docker-registry

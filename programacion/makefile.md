@@ -66,9 +66,15 @@ Tambien vale, al menos, para c++
 Si queremos meter un script en bash:
 $$(echo "hola")
 `echo "otra opcion"`
+VAR := $(shell curl http://httpbin.org/get)
+
+Asignar variable dentro de un target (https://stackoverflow.com/questions/1909188/define-make-variable-at-rule-execution-time/1909390):
+$(eval $@_GROUP_ID=$(shell curl -s --header "$(GIT_AUTH_HEADER)" http://localhost:8070/api/v4/groups/opensolutions | jq '.id'))
 
 Pillar version de un fichero:
 VERSION=$$(cat VERSION)
+mejor usar include
+
 
 Loops y usar la variable ($$ para que no la resuelva antes de llamar al echo):
 for num in 1 2 3 4 ; do \
