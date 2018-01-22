@@ -1,11 +1,12 @@
 #
-# v0.2.0
+# v0.3.1
 #
 # To start just exec: make
 # This will create a make_env file, where we have to define the image name and docker registries
 # It will also create a dummy Dockerfile and a Jenkinsfile
 #
 # TODO:
+#  - add README.md to the files created
 #  - create a repo automatically in opensolutions git?
 #  - make clean force=false, do the same as force=true
 #  - create automatically hooks in the git server to call jenkins?
@@ -16,8 +17,11 @@ include make_env
 
 .DEFAULT_GOAL := build
 
+# Needed to activate virtual env for tests
+SHELL := /bin/bash
+
 # Get last version from git tags
-GITCURTAG=$(shell git describe --exact-match --tags HEAD 2>/dev/null)
+GITCURTAG = $(shell git describe --exact-match --tags HEAD 2>/dev/null)
 VERSION ?= $(shell echo $(GITCURTAG) | tr -cd '[[:digit:]].')
 LATESTTAG = latest
 
@@ -96,7 +100,7 @@ changelog: ## Show commits since last tag
 	@git log `git describe --tags --abbrev=0`..HEAD --oneline |  awk 'BEGIN { print "Commits since last tag:" }; {print "- " $$0}'
 
 .PHONY: tag
-tag: build ## Tag the docker image for all registries configured with current git tag version and latest
+tag: ## Tag the docker image for all registries configured with current git tag version and latest
 	$(foreach reg,$(REGISTRY), \
 		docker tag $(IMAGE_NAME):$(LATESTTAG) $(reg)/$(IMAGE_NAME):$(LATESTTAG); \
 	)
@@ -114,26 +118,29 @@ images: ## Show a list of all current images with the name defined in make_env
 	@docker images --format "{{.Repository}}:{{.Tag}}" | egrep "^$(IMAGE_NAME):|/$(IMAGE_NAME):"
 
 .PHONY: push
-push: tag ## Push latest and current git version images
+push: ## Push latest and current git version images
 	$(foreach reg,$(REGISTRY), \
     docker push $(reg)/$(IMAGE_NAME):$(LATESTTAG); \
     docker push $(reg)/$(IMAGE_NAME):$(VERSION); \
 	)
 
 tests:
-	@echo -e "\n\nCreating virtual env to run testinfra and directory tests/ with a dummy example\n\n"
+	@echo -e "\n\nCreating directory tests/ with a dummy example\n\n"
 	@mkdir tests
 	@echo "$$TESTINFRA" > tests/test.py
-	@virtualenv .venv
-	@source .venv/bin/activate && \
-	pip -q install testinfra
 	@git stash save
 	@git add tests/
 	@git commit -m "Add tests"
-	@git stash pop
+	-@git stash pop
+
+.venv:
+	@echo -e "\n\nCreating virtual env to run testinfra\n\n"
+	@virtualenv .venv
+	@source .venv/bin/activate && \
+	pip -q install testinfra
 
 .PHONY: test
-test: build tests ## Create a dummy test with testinfra and run it
+test: tests .venv ## Run tests with testinfra. Create dummy test and virtualenv if does not exists
 	@source .venv/bin/activate && \
 	py.test -v tests/*.py
 
@@ -266,27 +273,34 @@ endef
 # Jenkinsfile best practices
 define JENKINSFILE
 pipeline {
-    agent any
+    agent {
+    		label "docker"
+    }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
-                make
+                sh "make"
             }
         }
         stage('Test') {
             steps {
-                make test
+                sh "make test"
             }
         }
         stage('Tag') {
             steps {
-                make tag
+                sh "make tag"
             }
         }
         stage('Push') {
             steps {
-                make push
+                sh "make push"
             }
         }
     }
