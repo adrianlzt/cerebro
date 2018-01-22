@@ -1,3 +1,6 @@
+mirar reptyr.md
+
+
 disown, zombie children, and the uninterruptible sleep
 https://blogs.oracle.com/ksplice/entry/disown_zombie_children_and_the
 
@@ -46,6 +49,7 @@ y
 
 
 ## detach + reptyr ##
+mirar reptyr.md
 http://serverfault.com/questions/55880/moving-an-already-running-process-to-screen
 Started a long-running process over ssh, but have to leave and don't want to interrupt it? Just start a screen, use reptyr to grab it, and then kill the ssh session and head on home.
 
