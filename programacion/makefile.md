@@ -173,6 +173,14 @@ ifneq ($(VAR),)
 endif
 
 
+ifeq ($(TARGET_CPU),x86)
+  TARGET_CPU_IS_X86 := 1
+else ifeq ($(TARGET_CPU),x86_64)
+  TARGET_CPU_IS_X86 := 1
+else
+  TARGET_CPU_IS_X86 := 0
+endif
+
 
 
 # Bucles
