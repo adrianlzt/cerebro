@@ -2,6 +2,7 @@ http://www.kimovil.com/
 
 Comprobar si las bandas de red funcionan en nuestro pais
 http://willmyphonework.net/
+https://www.frequencycheck.com
 http://blog.geekbuying.com/index.php/2016/06/02/how-to-know-if-the-phone-can-work-with-network-frequency-of-your-country/#prettyPhoto
 
 

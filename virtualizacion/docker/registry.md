@@ -23,6 +23,19 @@ Al usar pass y almacenar (store) lo guardara en:
 docker-credential-helpers/BASE64_del_server/USUARIO
 Solo almacenará ahí el secret
 
+Podemos hacernos un programa custom, en el .docker/config.json pondremos:
+{
+  "credsStore": "miprograma"
+}
+
+Esto hará que docker busque en el path un programa:
+docker-credential-miprograma
+
+Un script tonto en bash que responda lo necesario (solo para obtener claves):
+#!/bin/bash
+read server
+echo '{"Username":"usuario","Secret":"contraseña"}'
+
 
 
 
