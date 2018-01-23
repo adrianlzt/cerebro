@@ -166,11 +166,21 @@ https://www.gnu.org/software/make/manual/make.html#Conditional-Functions
 
 $(if condition,then-part[,else-part])
 
-Otra forma (solo entramos si VAR no es ""):
 target:
-ifneq ($(VAR),)
+ifneq ($(FOO),)
 	some command
+else
+  other cmd
 endif
+
+FOO no definida -> other
+FOO definida "" -> other
+FOO definida con un valor -> some
+
+Si usamos "include fichero" y en ese fichero ponemos algo tipo:
+FOO = `cat fichero`
+si fichero no existe tambien ejecutará "some"
+
 
 
 ifeq ($(TARGET_CPU),x86)
@@ -266,3 +276,9 @@ for i in [1,2,3]:
 print("terminamos")
 endef
 
+
+
+# Logging
+$(error mi mensaje que va a parar la ejecuccion)
+$(warning mi mensaje warning, sale con "Makefile:5" delante (el num de linea))
+$(info mi mensaje info, sale como un echo)
