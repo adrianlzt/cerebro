@@ -1,6 +1,7 @@
 https://jenkins.io/doc/book/pipeline/getting-started/
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
 https://go.cloudbees.com/docs/cloudbees-documentation/use/reference/pipeline/
+https://jenkins.io/doc/pipeline/steps/
 
 Hay dos tipos:
    Declarative Pipeline, empieza con "pipeline {"

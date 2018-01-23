@@ -289,3 +289,12 @@ endef
 $(error mi mensaje que va a parar la ejecuccion)
 $(warning mi mensaje warning, sale con "Makefile:5" delante (el num de linea))
 $(info mi mensaje info, sale como un echo)
+
+
+# Dependencies / parent
+Para saber a que GOAL hemos llamado tenemos la variable: MAKECMDGOALS
+Podemos usarlo para saber si hemos llamado a un target directamente o es una dependencia de otro.
+
+
+# Debug
+Usar "remake" para hacer debugging

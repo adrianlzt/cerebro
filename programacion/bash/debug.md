@@ -1,3 +1,6 @@
+http://bashdb.sourceforge.net/
+
+
 http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_03.html
 bash -x script.sh
 
