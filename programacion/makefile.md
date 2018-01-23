@@ -237,3 +237,24 @@ Tambien podemos partir la linea si se nos hace muy grande:
 GIT_REMOTE_SSH2=$$(set -o pipefail; \
                 curl -fsS http://httpbin.org/gett | \
                 jq '.url')
+
+
+## Python
+Podemos correr programas python dentro del Makefile
+
+export PY
+
+all:
+  @echo "Makefile needs your attention"
+  @python -c "$$PY"
+
+define PY
+import time
+print("init")
+time.sleep(1)
+print("dos")
+for i in [1,2,3]:
+  print("uno %s" % i)
+print("terminamos")
+endef
+

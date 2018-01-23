@@ -9,3 +9,8 @@ Placing a list of commands between curly braces causes the list to be executed i
 
 (date ; ps -ef | wc -l ) >> Activity.log
 almacenar en el fichero .log la fecha y el numero de procesos
+
+
+echo init && { false && echo "rename" || true } && echo "set"
+Siempre tendremos "init" y "set".
+"rename" solo funcionará cuando "false" devuelva true (o el comando que pongamos ahi)
