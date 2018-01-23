@@ -212,3 +212,28 @@ env.mk: env.sh
 	cat $< | sed 's/"//g ; s/=/:=/' > $@
 
 Creo que lo que hace es coger el fichero env.sh y generar el fichero env.mk tras el sed
+
+
+
+# Ejecutar programas
+https://stackoverflow.com/questions/22999306/makefile-variable-assignment-executes-early
+
+$(eval $@_GIT_REMOTE_SSH=$(shell curl -fSs --header "$(GIT_AUTH_HEADER)" $(GIT_SERVER)/api/v4/projects/$($@_GIT_PROJECT_ID) | jq -re '.ssh_url_to_repo'))
+  esto asignará el resultado del curl a la variable NOMBRE-TARGET_GIT_REMOTE
+  se hará al cargar el target, antes de ejecutar cualquier instrucción
+
+Otra forma, usando la shell. La idea es pasar todo lo de ejecutar a la shell y que makefile lo ignore
+GIT_REMOTE_SSH=$$(curl -sSf http://eth0.me) && \
+echo "$${GIT_REMOTE_SSH}"
+
+  Con las dobles $$ lo que estamos haciendo es que eso no lo resuelva make y envie a la shell: $(curl...) y ${GIT_REMOTE_SSH}
+  Deben formar parte del mismo comando (unido con &&, ; o algo similar) para que la variable siga estando disponible
+
+GIT_REMOTE_SSH2=$$(set -o pipefail; curl -fsS http://httpbin.org/gett | jq '.url')
+  Esta modificacion hace que si el curl falla se detenga la ejecucción.
+  Sin el pipefail, jq se ejecuta correctamente y se devuelve RC=0 y continua
+
+Tambien podemos partir la linea si se nos hace muy grande:
+GIT_REMOTE_SSH2=$$(set -o pipefail; \
+                curl -fsS http://httpbin.org/gett | \
+                jq '.url')
