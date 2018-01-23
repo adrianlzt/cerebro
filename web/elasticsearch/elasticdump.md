@@ -1,5 +1,6 @@
 https://github.com/taskrabbit/elasticsearch-dump
 https://www.npmjs.com/package/elasticdump
+mirar reindexar.md
 
 Para reindexar datos o hacer dump a un fichero
 
@@ -7,6 +8,8 @@ No usar nombres de indices en mayusuclas, no permitido por ES.
 
 
 Con elasticdump se pueden sacar mappings, analizers y data.
+
+Intentando hacer un movimiento de un elastic 5.6.5 a un 6.1.2, parecia que lo había hecho pero el indice estaba vacío tras la ejecucción.
 
 
 # Hacer un dump a fichero
@@ -16,7 +19,7 @@ docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --i
 Varios indices con sus mappings:
 
 for i in indexA indexB indexC; do
-for j in mapping mapa; do
+for j in mapping data; do
 docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/$i --output=/tmp/${i}_${j}.json --type=${j}
 done
 done

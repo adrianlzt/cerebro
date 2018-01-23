@@ -1,11 +1,13 @@
 https://www.elastic.co/guide/en/elasticsearch/guide/current/reindex.html
 elasticdump.md
+snapshots.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 
 # Remote
 Reindexar leyendo de un ES remoto
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
 El ES remoto deberá estar en la config de elasticsearch.yml
+You should set up the destination index prior to running a _reindex action, including setting up mappings, shard counts, replicas, etc
 
 
 # Logstash

@@ -31,3 +31,21 @@ Volumenes de config, datos y logs:
 -v "$PWD/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
 -v "$PWD/data:/usr/share/elasticsearch/data"
 -v "$PWD/logs:/usr/share/elasticsearch/logs"
+
+
+# Prod
+Para correr las imagenes en producción poner:
+sysctl -w vm.max_map_count=262144
+echo "vm.max_map_count = 262144" > /etc/sysctl.d/elastic.conf
+echo "* soft memlock unlimited" >> /etc/security/limits.conf
+echo "* hard memlock unlimited" >> /etc/security/limits.conf
+groupadd -g 1000 elasticsearch
+adduser -u 1000 -g 1000 -d /data/elasticsearch -NM elasticsearch
+mkdir -p /data/elasticsearch/{data,logs,etc}
+chown -R elasticsearch:elasticsearch /data/elasticsearch/
+
+docker run --name elasticsearch -d -v "/data/elasticsearch/data:/usr/share/elasticsearch/data" -v "/data/elasticsearch/logs:/usr/share/elasticsearch/logs" -v "/etc/security/limits.conf:/etc/security/limits.conf" --restart=unless-stopped --net=host docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.2
+
+Montar etc/ ?
+
+

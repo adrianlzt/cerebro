@@ -65,9 +65,10 @@ lvcreate --wipesignatures y -n thinpool docker -l 95%FREE
   95% del espacio libre en el VG
 
 Elegir:
-lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+  lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+
   para tamaños de volumen menores a 1TB podemos poner tranquilamente 1GB de metadata (mirar linux/filesystems/lvm.md)
-lvcreate --wipesignatures y -n thinpoolmeta docker -L 1G
+  lvcreate --wipesignatures y -n thinpoolmeta docker -L 1G
 
 
 lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
@@ -80,6 +81,7 @@ Los ultimos tres comandos, si lo entiendo bien, es para que automaticamente los 
 
 Configurar docker para que use este almacenamiento:
 mkdir /etc/docker
+RECORDAR CAMBIAR EL VG del siguiente comando:
 echo -e '{\n  "storage-driver": "devicemapper",\n  "storage-opts": [\n    "dm.thinpooldev=/dev/mapper/docker-thinpool",\n    "dm.use_deferred_removal=true",\n    "dm.use_deferred_deletion=true"\n  ]\n}' > /etc/docker/daemon.json
 
 
