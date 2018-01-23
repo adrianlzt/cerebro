@@ -80,3 +80,23 @@ ceph status
 
 
 Mirar managers.md si queremos activar el dashboard.
+Para activar el dashboard poner en el group_vars/all (probado en un despliegue y no me hizo caso)
+ceph_mgr_modules:
+  - status
+  - dashboard
+
+
+
+# Single node
+Definir los parametros:
+  osd pool default size = 2
+  osd crush chooseleaf type = 0
+
+Default pool size is how many replicas of our data we want (2).
+The chooseleaf setting is required to tell ceph we are only a single node and that it’s OK to store the same copy of data on the same physical node. Normally for safety, ceph distributes the copies and won’t leave all your eggs in the same basket (server).
+
+Para definirlas, en el group_vars/all
+ceph_conf_overrides:
+  global:
+    osd_pool_default_size: 2
+common_single_host_mode: true
