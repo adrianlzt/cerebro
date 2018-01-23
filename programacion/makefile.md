@@ -170,16 +170,23 @@ target:
 ifneq ($(FOO),)
 	some command
 else
-  other cmd
+  $(error no definida)
 endif
 
-FOO no definida -> other
-FOO definida "" -> other
+FOO no definida -> error
+FOO definida "" -> error
 FOO definida con un valor -> some
 
 Si usamos "include fichero" y en ese fichero ponemos algo tipo:
 FOO = `cat fichero`
 si fichero no existe tambien ejecutará "some"
+
+Otra forma que si funciona bien con el caso anterior:
+@if [[ "${FOO}" ]]; then \
+	echo "mas de 0 words"; \
+fi
+
+No meter $(error dentro del if, porque se evaluará antes y saltará el error.
 
 
 
