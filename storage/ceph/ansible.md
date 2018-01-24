@@ -84,6 +84,10 @@ Tras el despliegue comprobaremos el estado del cluster con:
 ceph status
 
 
+Para desplegar solo partes
+ansible-playbook site.yml -l grupo
+
+
 Mirar managers.md si queremos activar el dashboard.
 Para activar el dashboard poner en el group_vars/all (probado en un despliegue y no me hizo caso)
 ceph_mgr_modules:
@@ -94,6 +98,22 @@ ceph_mgr_modules:
 # RWG
 Configurar SSL: https://github.com/ceph/ceph-ansible/commit/6f3a98919cf33e6684a380bd3b6abdc9934b3a9f
 port=7480+7443s ssl_certificate=/etc/ceph/private/keyandcert.pem
+
+Con ansible:
+group_vars/all.yml
+radosgw_civetweb_options: "num_threads={{ radosgw_civetweb_num_threads }} ssl_certificate=/etc/ceph/keyandcert.pem"
+radosgw_civetweb_port: "8080+8443s"
+
+site.yml:
+- hosts: rgws
+  gather_facts: false
+  become: True
+  pre_tasks:
+    - name: copy cert for usync
+      copy: src=cert_with_bundle_and_key.pem dest=/etc/ceph/keyandcert.pem
+            owner=root group=root mode=0440
+
+
 
 
 # Single node

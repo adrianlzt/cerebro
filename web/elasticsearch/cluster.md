@@ -32,6 +32,14 @@ cluster.name: es_something_env
 Tambien podemos cambiar el nombre de nuestros nodos:
 node.name: nombredelhost
 
+Si queremos que sea/no sea un master/data (por defecto será data y master):
+node.master: true/false
+node.data: true/false
+
+Si queremos que solo intente unirse en cluster con ciertos nodos:
+discovery.zen.ping.unicast.hosts: nodoA,nodoB
+
+
 Y atributos:
 node.attr.ALGO: valor
 
