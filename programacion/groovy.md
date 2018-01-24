@@ -1,5 +1,7 @@
 http://groovy-lang.org/
 http://groovy-lang.org/semantics.html
+repl online: https://groovyconsole.appspot.com/
+
 
 Groovy...
 is an agile and dynamic language for the Java Virtual Machine
@@ -14,8 +16,8 @@ seamlessly integrates with all existing Java classes and libraries
 compiles straight to Java bytecode so you can use it anywhere you can use Java
 
 
-repl online: https://groovyconsole.appspot.com/
-
+def foo = 123
+println "hola $foo"
 
 # Operador ?
 if ( a?.b ) { .. }

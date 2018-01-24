@@ -2,12 +2,14 @@ https://jenkins.io/doc/book/pipeline/getting-started/
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
 https://go.cloudbees.com/docs/cloudbees-documentation/use/reference/pipeline/
 https://jenkins.io/doc/pipeline/steps/
+https://jenkins.io/doc/book/pipeline/syntax/
 
 Hay dos tipos:
    Declarative Pipeline, empieza con "pipeline {"
    Scripted Pipeline -> empieza por "node {", es groovy
 
 Syntax
+https://jenkins.io/doc/book/pipeline/syntax/
 http://groovy-lang.org/semantics.html
 http://localhost:8080/pipeline-syntax/
   aquí hay una utilidad para ayudarnos a crear el Jenkinsfile. La cantidad de opciones dependerá de los plugins instalados.
@@ -25,6 +27,9 @@ https://plugins.jenkins.io/workflow-aggregator
 Usaremos un fichero Jenkinsfile en el repositorio (Pipeline script from SCM), que se cargará automáticamente para crear el job tipo Pipeline
 Este job si lo tendremos que crear a mano en Jenkins.
 
+
+# Comentarios
+// texto
 
 
 # Auth / credentials
@@ -78,3 +83,19 @@ En la primera ejecucción la job le faltan algunos datos que están en el propio
 Parece que es una issue aún no resuelta (23/1/2018)
 https://issues.jenkins-ci.org/browse/JENKINS-40574
 https://issues.jenkins-ci.org/browse/JENKINS-41929
+
+
+# Definir funciones propias
+https://stackoverflow.com/a/45990450/1407722
+
+def notifyStatusChangeViaEmail(buildStatus) {
+    ...
+}
+pipeline {
+    post {
+        changed {
+            notifyStatusChangeViaEmail(currentBuild.currentResult)
+        }
+    }
+}
+

@@ -25,6 +25,11 @@ osd1
 osd2
 osd3
 
+[rgws]
+rwg1
+
+
+El rwgs es por si queremos tener interfaz de objetos (tipo Amazon S3)
 
 Playbook:
 cp site.yml.sample site.yml
@@ -85,6 +90,10 @@ ceph_mgr_modules:
   - status
   - dashboard
 
+
+# RWG
+Configurar SSL: https://github.com/ceph/ceph-ansible/commit/6f3a98919cf33e6684a380bd3b6abdc9934b3a9f
+port=7480+7443s ssl_certificate=/etc/ceph/private/keyandcert.pem
 
 
 # Single node
