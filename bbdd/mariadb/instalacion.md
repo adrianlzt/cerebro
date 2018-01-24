@@ -39,6 +39,6 @@ The first time that you access the web interface, you will be asked to provide a
 
 
 # Install
-yum install MariaDB-server MariaDB-client percona-xtrabackup-24
+yum install MariaDB-server MariaDB-client percona-xtrabackup-24 net-tools
 
 mirar galera.md para instalar el cluster

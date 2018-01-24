@@ -18,6 +18,9 @@ innodb_autoinc_lock_mode=2
 bind-address=0.0.0.0
 
 
+Quitar selinux
+Quitar, o configurar, firewall para permitir la transferencia de estado y la conexión.
+
 En un nodo:
 galera_new_cluster
 
@@ -36,6 +39,18 @@ http://inside-out.xyz/technology/recovering-mariadb-galera-cluster-after-a-resta
 
 # Estado
 SHOW GLOBAL STATUS like "wsrep%";
+
+
+
+# Agregar un nodo
+https://www.percona.com/doc/percona-xtradb-cluster/LATEST/add-node.html
+Copiar la conf /etc/my.cnf.d/server.cnf al nuevo nodo
+Arrancar el nuevo nodo.
+Le hará una transferencia de estado (si falla mirar los logs de todos los nodos del cluster)
+Una vez tengamos el nodo corriendo, iremos parando los nodos que ya estaban y modificando su configuración para agregar el nuevo nodo a wsrep_cluster_address
+
+
+
 
 MariaDB 10:
   Group commit
