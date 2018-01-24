@@ -44,6 +44,9 @@ echo "6/11/2016 17:30:36 5266683 2013 4545218" | gawk '{split($1, d, "/");split(
 Sumar una columna
 cat fichero | awk '{ SUM += $1} END { print SUM }'
 
+Obtener el tamaño total (en GB) de una lista de ficheros:
+{ for i in $(head files_uniq); do stat --format %s /export/user_assets/$i; done; } | awk '{ SUM += $1} END { print SUM/1024/1024/1024 }'
+
 Una columna determinada y hacer un calculo al final:
 ls -lh php*; ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 
