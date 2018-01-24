@@ -4,9 +4,9 @@ https://go.cloudbees.com/docs/cloudbees-documentation/use/reference/pipeline/
 https://jenkins.io/doc/pipeline/steps/
 https://jenkins.io/doc/book/pipeline/syntax/
 
-Hay dos tipos:
-   Declarative Pipeline, empieza con "pipeline {"
-   Scripted Pipeline -> empieza por "node {", es groovy
+Hay dos tipos (https://jenkins.io/doc/book/pipeline/syntax/#compare):
+   Declarative Pipeline, empieza con "pipeline {". Más sencilla
+   Scripted Pipeline -> empieza por "node {", es groovy. Más potente
 
 Syntax
 https://jenkins.io/doc/book/pipeline/syntax/
@@ -30,6 +30,21 @@ Este job si lo tendremos que crear a mano en Jenkins.
 
 # Comentarios
 // texto
+
+
+# Agent
+Elegir donde ejecutar
+
+## scripted
+node("docker") { ... }
+
+## declarative
+pipeline {
+    agent {
+        label "docker"
+    }
+    ...
+}
 
 
 # Auth / credentials
@@ -102,6 +117,28 @@ pipeline {
         }
     }
 }
+
+
+
+## Crear nuestra shared lib
+Podemos meter el código en src/foo/bar/*.groovy o en vars/foo.groovy
+Si metemos por ejemplo:
+  vars/foo.groovy:
+    def call(msg) {
+      echo "hola ${msg}"
+    }
+
+  vars/log.groovy:
+    def info(msg) {
+      echo "INFO: ${msg}"
+    }
+
+Desde nuestro scripted pipeline lo usaremos como:
+node {
+   log.info "esto es info"
+   foo "pepito"
+}
+
 
 
 
