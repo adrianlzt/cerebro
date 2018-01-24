@@ -85,11 +85,15 @@ https://issues.jenkins-ci.org/browse/JENKINS-40574
 https://issues.jenkins-ci.org/browse/JENKINS-41929
 
 
-# Definir funciones propias
+# Definir funciones propias / shared libraries
 https://stackoverflow.com/a/45990450/1407722
+https://jenkins.io/doc/book/pipeline/shared-libraries/
+
+Ejemplo de global var: https://github.com/jalogut/jenkins-basic-shared-library-sample
+Lib de fabric8 con ejemplos reales: https://github.com/fabric8io/fabric8-pipeline-library
 
 def notifyStatusChangeViaEmail(buildStatus) {
-    ...
+    // codigo groovy
 }
 pipeline {
     post {
@@ -98,4 +102,21 @@ pipeline {
         }
     }
 }
+
+
+
+# Build de otra job
+build job: 'downstream-freestyle', parameters: [[$class: 'StringParameterValue', name: 'ParamA', value: paramAValue], [$class: 'StringParameterValue', name: 'ParamB', value: paramBValue]]
+
+build job: 'your-job-name',
+    parameters: [
+        string(name: 'passed_build_number_param', value: String.valueOf(BUILD_NUMBER)),
+        string(name: 'complex_param', value: 'prefix-' + String.valueOf(BUILD_NUMBER))
+    ]
+
+
+
+# Peticinones http
+Hay que instalar el plugin HTTP Request
+response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: toJson(body), url: "https://${host}", validResponseCodes: '200'
 
