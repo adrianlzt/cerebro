@@ -17,8 +17,8 @@ ceph-deploy install --rgw nodo1
 ceph-deploy rgw create nodo1
   crea un nuevo Ceph Object Gateway (RGW) y lo pone a correr (puerto 7480)
 
-Testear:
-curl http://localhost:7480
+Testear (mirar ip:puerto en: grep civetweb /etc/ceph/ceph.conf)
+curl http://localhost:7480 (ansible lo pone en el :8080)
   debemos recibir un XML
 
 

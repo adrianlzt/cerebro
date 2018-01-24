@@ -1,0 +1,1 @@
+query_desde_comando.md
