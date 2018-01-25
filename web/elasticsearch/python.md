@@ -1,4 +1,5 @@
 https://elasticsearch-dsl.readthedocs.io/en/latest/index.html
+Por debajo hace uso de https://github.com/elastic/elasticsearch-py
 
 # Query
 from elasticsearch_dsl import Search
@@ -32,6 +33,8 @@ response.success()
   chequea que el número de shards totales sea igual al de successful (puede diferir si tenemos problemas en el cluster) y no haya timeout
 
 
+
+
 # Respuestas
 response = s.execute()
 
@@ -44,3 +47,13 @@ for h in response:
 ## Agregaciones
 for tag in response.aggregations.per_tag.buckets:
     print(tag.key, tag.max_lines.value)
+
+
+
+
+# Mappings
+Crear mappings: http://elasticsearch-dsl.readthedocs.io/en/latest/persistence.html
+
+
+# Index
+Crear index: http://elasticsearch-dsl.readthedocs.io/en/latest/persistence.html#index
