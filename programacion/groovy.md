@@ -1,6 +1,6 @@
 http://groovy-lang.org/
 http://groovy-lang.org/semantics.html
-repl online: https://groovyconsole.appspot.com/
+repl online: https://groovyconsole.appspot.com/ no funciona muy bien, hace cosas raras con los cambios de linea. Usar la groovyConsole
 
 
 Groovy...
@@ -16,8 +16,53 @@ seamlessly integrates with all existing Java classes and libraries
 compiles straight to Java bytecode so you can use it anywhere you can use Java
 
 
-def foo = 123
+# Install
+sudo pacman -S groovy
+groovy file.groovy
+groovyConsole
+  interfaz x11 para hacer pruebas REPL
+
+
+# Syntax
+def foo = 123  // def hace que se autodescrubra el tipo de dato
+def vacia = null
+b = "hola" // global? creo que si no la defino dentro de una clase será una global de la clase implicita autogenerada
 println "hola $foo"
+
+## Scope vars
+https://stackoverflow.com/questions/15619216/groovy-scope-how-to-access-script-variable-in-a-method
+
+
+## environment vars
+def env = System.getenv()
+println "${env.PATH}"
+
+## Diccionarios
+foo['USERNAME']
+
+
+# methods / funciones
+def call(message, endpoint='', room='0') {
+
+Podemos tener varias funciones con el mismo nombre y distintos parámetros. Se usará una u otra según cuadren los parámetros.
+
+
+# condicionales
+if ( a == 1 && b == 2 ) {
+    ...
+} else if (!x) {
+    ...
+} else {
+    ...
+}
+
+
+# Loops
+env.each {
+  println it
+}
+
+
 
 # Operador ?
 if ( a?.b ) { .. }
@@ -25,3 +70,16 @@ if ( a?.b ) { .. }
 is same as
 
 if ( a != null && a.b ) { .. }
+
+
+# URL
+def serverURL = "http://somesrv.example.com"
+def appURL = "http://myapp.example.com"
+
+def concat = new URIBuilder(serverURL)
+concat.setPath("/fizz")
+concat.addQueryParam("widget", appURL)
+
+println concat
+http://somesrv.example.com/fizz?widget=http%3A%2F%2Fmyapp.example.com
+

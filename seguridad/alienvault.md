@@ -99,6 +99,9 @@ Por último nos dice si queremos unirnos a OTX. Comunidad donde la gente sube fi
 apps que corren en apache/php:
 /var/log/alienvault
 
+Este log no rota: /var/log/ossim/frameworkd.log
+
+
 # Uso
 Para hacer un scan desde la web:
 /ossim/#environment/assets/assets
@@ -150,6 +153,9 @@ El core usa su propio python: /usr/share/python/alienvault-api-core/bin/python
 Wsgi de arranque de la app: /usr/share/python/alienvault-api/wwwroot/api.wsgi
 
 Se accede con https://localhost:40011
+Servido por apache /etc/apache2/sites-available/alienvault-api.conf
+Logs: /var/log/alienvault/api/
+
 Se debe hablar con json:
 curl localhost:40011 -H "Accept: application/json"
 
