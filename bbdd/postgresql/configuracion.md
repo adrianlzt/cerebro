@@ -1,3 +1,6 @@
+http://pgconfigurator.cybertec.at/
+generador online
+
 Directorio donde se mantienen los ficheros de configuración:
 CentOS: /var/lib/pgsql/data
 Ubuntu: /etc/postgresql/9.3/main
