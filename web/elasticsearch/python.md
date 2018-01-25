@@ -54,6 +54,17 @@ for tag in response.aggregations.per_tag.buckets:
 # Mappings
 Crear mappings: http://elasticsearch-dsl.readthedocs.io/en/latest/persistence.html
 
+Crear a mano (habremos definido la conex antes):
+from elasticsearch_dsl import Index
+i = Index("adrires2")
+i.put_mapping(doc_type="doc", body={"properties": {"@timestamp": {"type": "date"}}})
+
 
 # Index
 Crear index: http://elasticsearch-dsl.readthedocs.io/en/latest/persistence.html#index
+
+Almacenar algo en el index usando la lib elasticsearch de por debajo.
+host = "http://elastic:elastic@127.0.0.1"
+connections.create_connection(hosts=host)
+es = connections.get_connection()
+es.index(index="adrires",doc_type='doc',body={"una":1})
