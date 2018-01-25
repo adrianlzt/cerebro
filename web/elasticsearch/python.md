@@ -28,6 +28,8 @@ Para ver la query que vamos a lanzar
 
 # Ejecutar
 response = s.execute()
+response.success()
+  chequea que el número de shards totales sea igual al de successful (puede diferir si tenemos problemas en el cluster) y no haya timeout
 
 
 # Respuestas
