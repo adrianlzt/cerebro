@@ -43,8 +43,23 @@ groupadd -g 1000 elasticsearch
 adduser -u 1000 -g 1000 -d /data/elasticsearch -NM elasticsearch
 mkdir -p /data/elasticsearch/{data,logs,etc}
 chown -R elasticsearch:elasticsearch /data/elasticsearch/
+vi /data/elasticsearch/etc/elasticsearch.yml
+    cluster.name: "elasticsearch"
+    node.name: nodeA
+    node.master: true
+    node.data: true
+    network.host: 0.0.0.0
+    discovery.zen.ping.unicast.hosts: nodeA,nodeB,nodeC
+    discovery.zen.minimum_master_nodes: 2
+    http.cors.enabled: true
+    http.cors.allow-origin: "*"
 
-docker run --name elasticsearch -d -v "/data/elasticsearch/data:/usr/share/elasticsearch/data" -v "/data/elasticsearch/logs:/usr/share/elasticsearch/logs" -v "/etc/security/limits.conf:/etc/security/limits.conf" --restart=unless-stopped --net=host docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.2
+Cambien en los nodos el name, unicast.hosts (para no mostrar el propio)
+
+
+
+docker run --name elasticsearch -d -v "/data/elasticsearch/etc/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml" -v "/data/elasticsearch/data:/usr/share/elasticsearch/data" -v "/data/elasticsearch/logs:/usr/share/elasticsearch/logs" -v "/etc/security/limits.conf:/etc/security/limits.conf" --restart=unless-stopped --net=host docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.2
+
 
 Montar etc/ ?
 

@@ -36,8 +36,16 @@ Si queremos que sea/no sea un master/data (por defecto será data y master):
 node.master: true/false
 node.data: true/false
 
-Si queremos que solo intente unirse en cluster con ciertos nodos:
+Si queremos que solo intente unirse en cluster con ciertos nodos (poner los nodos excepto él mismo):
 discovery.zen.ping.unicast.hosts: nodoA,nodoB
+
+Si tenemos varias interfaces y queremos solo comunicarnos por una:
+network.publish_host: xxx
+
+Permitir CORS (permitir a un tercero lanzar desde su dominio peticiones al ES):
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
 
 
 Y atributos:
