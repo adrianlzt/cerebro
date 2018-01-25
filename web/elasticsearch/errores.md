@@ -69,3 +69,12 @@ Si no podemos reasignar un shard puede ser porque el disco este demasiado lleno.
 Can't get text on a START_OBJECT
 https://stackoverflow.com/questions/41873672/updating-a-field-with-a-nested-array-in-elastic-search
 Hemos declarado una estructura de datos pero estamos intentando enviar un objeto en un sitio declarado como una string (u otro tipo simple)
+
+
+
+
+Failed to load http://192.168.1.86:9200/_search: Request header field Authorization is not allowed by Access-Control-Allow-Headers in preflight response.
+https://github.com/elastic/elasticsearch/issues/9063
+http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length, Authorization"
+
+
