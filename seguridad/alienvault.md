@@ -99,8 +99,6 @@ Por último nos dice si queremos unirnos a OTX. Comunidad donde la gente sube fi
 apps que corren en apache/php:
 /var/log/alienvault
 
-Este log no rota: /var/log/ossim/frameworkd.log
-
 
 # Uso
 Para hacer un scan desde la web:
@@ -120,6 +118,12 @@ Las trazas de a ejecución se almacenan en: /var/log/alienvault/agent/agent.log
 
 Si tarda mucho parece que falla porque se cierra la sessión web (no lo se seguro).
 Se puede aumentar el timeout de las sesiones en Configuration > Administration > Main > User Activity -> Session Timeout (minutes)
+
+
+
+# Admin
+Este log no rota: /var/log/ossim/frameworkd.log
+Cuidado con que llene el log
 
 
 

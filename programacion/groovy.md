@@ -1,6 +1,6 @@
 http://groovy-lang.org/
 http://groovy-lang.org/semantics.html
-repl online: https://groovyconsole.appspot.com/ no funciona muy bien, hace cosas raras con los cambios de linea. Usar la groovyConsole
+repl online: https://groovyconsole.appspot.com/ no funciona muy bien, hace cosas raras con los cambios de linea. Usar groovysh o la groovyConsole
 
 
 Groovy...
@@ -19,6 +19,8 @@ compiles straight to Java bytecode so you can use it anywhere you can use Java
 # Install
 sudo pacman -S groovy
 groovy file.groovy
+groovysh
+  repl
 groovyConsole
   interfaz x11 para hacer pruebas REPL
 
