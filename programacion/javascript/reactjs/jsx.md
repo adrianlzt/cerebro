@@ -61,8 +61,8 @@ The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
 
 
 # Listas
-{numbers.map((number) =>
-  <ListItem key={number.toString()}
+{numbers.map((number,i) =>
+  <ListItem key={i}
             value={number} />
 )}
 

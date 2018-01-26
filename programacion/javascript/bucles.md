@@ -33,6 +33,19 @@ while (cars[i]) {
 Se puede usar 'break' o 'continue' en los bucles para saltar al siguiente paso o salir del bucle.
 Usar 'return' en caso de forEach
 
+Para romper loops externos
+loop1:
+    for (var i in set1) {
+loop2:
+        for (var j in set2) {
+loop3:
+            for (var k in set3) {
+                break loop2;  // breaks out of loop3 and loop2
+            }
+        }
+    }
+
+
 
 # For con indice
 var myArray = [123, 15, 187, 32];
