@@ -237,3 +237,9 @@ zip(listaA,listaB)
 Mergear dejando el tamaño de la más larga:
 from itertools import zip_longest
 zip_longest(A,B)
+
+a=[1,2,3]
+b=[1,2,3,4,5,6]
+from itertools import zip_longest
+list(zip_longest(a,b))
+[(1, 1), (2, 2), (3, 3), (None, 4), (None, 5), (None, 6)]
