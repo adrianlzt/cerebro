@@ -4,6 +4,8 @@ Ceph Object Gateway is an object storage interface built on top of librados to p
   S3-compatible: Provides object storage functionality with an interface that is compatible with a large subset of the Amazon S3 RESTful API.
   Swift-compatible: Provides object storage functionality with an interface that is compatible with a large subset of the OpenStack Swift API.
 
+RGW mantiene un índice de metadatos de lo que tiene almacenado en cada bucket (RADOS, la capa por debajo, no lo ofrece)
+
 # Instalación
 Usaremos ceph-deploy para desplegar rgw sobre los nodos que ya tengamos.
 Duda: el gateway lo desplegamos sobre los monitores o los osd?
@@ -37,12 +39,15 @@ Si falla mirar los logs en /var/log/ceph/ceph-client.rgw*
 
 
 
-# Bucket sharding
+# Bucket sharding (automático a partir de Luminous)
 http://docs.ceph.com/docs/master/install/install-ceph-gateway/#configure-bucket-sharding
 
 Si preevemos muchos objetos para un mismo bucket podemos hacer dos cosas (muchos elementos impactan en la performance).
 Limitar el número máximo de elementos.
 Hacer sharding del bucket (desactivado por defecto)
+
+https://ceph.com/community/new-luminous-rgw-dynamic-bucket-sharding/
+A partir de Luminous se gestiona automáticamente y está por defecto. No tenemos que hacer nada
 
 
 # Usuarios

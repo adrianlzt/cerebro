@@ -15,6 +15,11 @@ git bisect start
 git bisect good COMMIT/TAG
 git bisect bad # si donde estamo esta roto
 
+Si nos equivocamos al poner good/bad ->
+git bisect log > fichero.log
+modificamos el fichero.log para arreglar el fallo
+git bisect replay
+
 En una sola linea, siendo HEAD donde está roto y 0.12.0 donde está bien:
 git bisect start HEAD 0.12.0
 
