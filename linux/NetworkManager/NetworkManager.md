@@ -1,5 +1,6 @@
 https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/sec-Using_the_NetworkManager_Command_Line_Tool_nmcli.html
 man nmcli-examples
+suele se mas sencilla nmtui (ncurses)
 
 Alamcena la configuración en /etc/NetworkManager
 

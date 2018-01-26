@@ -6,6 +6,7 @@ Need redundancy or increased throughput for your network? Bonding can help. Bond
 
 https://wiki.centos.org/es/TipsAndTricks/BondingInterfaces
 https://access.redhat.com/site/articles/172483
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/networking_guide/index#ch-Configure_Network_Bonding
 http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding#Bonding_Driver_Options
 http://www.codekoala.com/blog/2012/bonding-eth0-and-wlan0-arch-linux/
 https://www.cyberciti.biz/howto/question/static/linux-ethernet-bonding-driver-howto.php
@@ -21,6 +22,18 @@ El bonding puede ser de varios tipos
  4 802.3ad crea grupos de agregación que tengan la misma velocidad y configuraciones de duples (puede que necesite config en el switch)
  5 balance tlb, adaptative transmit load balancing. No requiere un switch aware.
 
+
+# NetworkManager
+Configuración con la cli nmtui
+
+Edit Connection -> Add -> Bond ->
+  device: bond0
+  slaves -> add -> ethernet -> agregar las dos interfaces que tengamos con su nombre
+  elegir el mode
+  seleccionar la configuración para IPv4 e IPv6
+    para IPv4 especificar la IP con la subred: 10.0.0.1/24
+
+# Ficheros
 Configuraciones en /etc/sysconfig/network-scripts/ifcfg-*
 
 Estado bond:
