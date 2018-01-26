@@ -103,9 +103,12 @@ const element = {
 # Loop
 http://codepen.io/adrianlzt/pen/pNKZzb?editors=1010
 
-{this.props.fullInfo.daily.data.map(dayData =>
-  <DayWeather key={dayData.time} {...dayData} />
+{this.props.fullInfo.daily.data.map((dayData,i) =>
+  <DayWeather key={i} {...dayData} />
 )}
+
+Si queremos generar keys con texto:
+key={`ListItem_${counter++}`}
 
 
 
