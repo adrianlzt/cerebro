@@ -52,3 +52,10 @@ Rebuild rápido, solo hace falta copiar los datos de un disco a otro.
 Cons, la mitad de la capacidad está usada para hacer mirroring.
 
 Raid 2, 3 y 4 no usados.
+
+
+
+# LSI
+https://docs.oracle.com/cd/E19121-01/sf.x4240/820-2397-15/RAID-Appendix.html
+Se entra con Control+c
+Luego vamos pulsando intro sobre cada uno de los discos para ver la config.

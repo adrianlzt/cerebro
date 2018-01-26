@@ -1,1 +1,1 @@
-install.md
+install_ceph-deploy.md
