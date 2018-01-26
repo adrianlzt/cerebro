@@ -49,6 +49,7 @@ ReactDOM.render(
   <Comp2>otro {var}</Comp2>
 }
 
+
 ## Operador tenario
 The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
 
