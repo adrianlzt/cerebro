@@ -71,6 +71,13 @@ Podemos usar osd_auto_discovery para usar todos los discos que se encuentren sin
 
 Antes de lanzarlo, modificar el ansible.cfg para poner el fichero de log en algún sitio donde podamos escribir
 
+Tambien tendremos que definir el número de PGs por pool por defecto (si no lo cambiamos será 8, número solo válido si tenemos un OSD). Mirar placement_groups.md
+ceph_conf_overrides:
+  global:
+    osd pool default pg num = 1024
+    osd pool default pgp num = 1024
+
+
 Despliegue:
 ansible-playbook -i inventory site.yml
 
