@@ -41,6 +41,8 @@ println "${env.PATH}"
 
 ## Diccionarios
 foo['USERNAME']
+foo.get("PATH")
+  ambos devuelven null si no existe la key
 
 
 # methods / funciones
