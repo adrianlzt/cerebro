@@ -21,3 +21,7 @@ rados df
 # Modificar pool
 ceph osd pool set .rgw.root min_size 1
 ceph osd pool set .rgw.root size 1
+
+# Mirar pg y pgp
+ceph osd pool get NOMBREPOOL pg_num
+ceph osd pool get NOMBREPOOL pgp_num

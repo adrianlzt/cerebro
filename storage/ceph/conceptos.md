@@ -16,16 +16,26 @@ A method of data protection in which data is broken into fragments , encoded and
 
 
 # PG placement groups
-http://docs.ceph.com/docs/jewel/rados/operations/placement-groups/
+http://docs.ceph.com/docs/master/rados/operations/placement-groups/
 Less than 5 OSDs set pg_num to 128
 Between 5 and 10 OSDs set pg_num to 512
-Between 10 and 50 OSDs set pg_num to 4096
+Between 10 and 50 OSDs set pg_num to 1024
+If you have more than 50 OSDs, you need to understand the tradeoffs and how to calculate the pg_num value by yourself
+For calculating pg_num value by yourself please take help of pgcalc tool
 
 Otro cálculo (http://docs.ceph.com/docs/master/rados/configuration/pool-pg-config-ref/):
   num OSDs * 100 / replica_num
 
-Varios objetos se mapean a un PG y un PG se mapea a N OSDs (N es el número de réplicas)
+Cada objeto a almacenar se asigna a un PG (dependiendo de su hash y el número de PGs que haya para el pool que estemos usando)
+El contenido de un PG se almacena en N OSDs.
+Los OSDs tendrán varios PGs distintos.
+
+Por defecto (al menos con la instalación de ansible), cada pool tendra 8 PGs
+
 Si tenemos que modificar el numero mirar errores.md
+
+The pgp_num will be the number of placement groups that will be considered for placement by the CRUSH algorithm.
+The pgp_num should be equal to the pg_num.
 
 
 # Pools
