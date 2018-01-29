@@ -11,7 +11,7 @@ El mgr puede tener varios módulos de monitorización: influx, prometheus, zabbi
 ## Listado de móulos activos/inactivos
 ceph mgr module ls
 
-## Activar/desactivar
+## Activar/desactivar, en el cluster
 ceph mgr module enable XXX
 
 ## Services
@@ -22,6 +22,7 @@ ceph mgr services
 http://docs.ceph.com/docs/master/mgr/dashboard/
 El módulo dashboard nos expone un servidor web con una intefaz donde, gráficamente, nos muestra un resumen del cluster
 Se expondrá en http://host:7000
+ceph mgr module enable dashboard
 
 ## RESTful
 http://docs.ceph.com/docs/master/mgr/restful/
