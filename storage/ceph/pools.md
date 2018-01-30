@@ -38,3 +38,18 @@ ceph osd pool get NOMBREPOOL pgp_num
 # Crear un pool
 ceph osd pool create {pool-name} pg_num
   para saber que poner en pg_num consultar placement_groups.md
+
+
+# Borrar un pool
+Primero tenemos que activar el "mon allow pools delete".
+Para ello he añadido, en la sección [global] de /etc/ceph/ceph.conf
+mon allow pool delete = true
+
+En todos los nodos mon. Luego he reiniciando el servicio:
+systemctl restart ceph-mon@HOSTNAME.service
+
+Por último borramos el pool (especificando el nombre dos veces y con el flag es confirmación):
+ceph osd pool rm adrian adrian --yes-i-really-really-mean-it
+
+
+
