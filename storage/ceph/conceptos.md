@@ -1,22 +1,24 @@
-# CRUSH
-http://ceph.com/docs/master/rados/operations/crush-map/
-CRUSH: es el encargado de saber donde almancear los datos y donde ir a recuperarlos.
-Funciona teniendo como inputs un "cluster map" y unas "placement rules".
+# Organización de los datos
+Los pool son las particiones lógicas donde almacenaremos la información. Por ejemplo, podemos crear un pool distinto por cada aplicación que tuviesemos.
 
-En caso de que el cluster cambie, los datos serán movidos al sitio que deberán ser buscados.
+Cada pool estará formado por un conjunto de placement groups. El número de PGs está definido por el número de OSD * máximo número de PGs por OSD.
 
-
+Cada placement group se almacenará en N OSD (siendo N la réplica/size del pool, 3 por defecto). Un OSD tendrá varios PGs asociados.
 
 
-# Erasure coding (EC)
-http://docs.ceph.com/docs/jewel/rados/operations/erasure-code/
-http://ceph.com/community/new-luminous-erasure-coding-rbd-cephfs/<Paste>
-A method of data protection in which data is broken into fragments , encoded and then storage in a distributed manner. Ceph , due to its distributed nature , makes use of EC beautifully.
+
+# Pools
+mirar pools.md
 
 
 
 # PG placement groups
 http://docs.ceph.com/docs/master/rados/operations/placement-groups/
+http://docs.ceph.com/docs/master/architecture/#mapping-pgs-to-osds
+
+Es un paso intermedio al almacenar/recuperar objetos.
+Los objetos se almacenan en PGs y los PGs se almacenan en OSDs
+
 Less than 5 OSDs set pg_num to 128
 Between 5 and 10 OSDs set pg_num to 512
 Between 10 and 50 OSDs set pg_num to 1024
@@ -38,5 +40,25 @@ The pgp_num will be the number of placement groups that will be considered for p
 The pgp_num should be equal to the pg_num.
 
 
-# Pools
-mirar pools.md
+
+
+# CRUSH
+http://docs.ceph.com/docs/master/rados/operations/crush-map/
+https://ceph.com/wp-content/uploads/2016/08/weil-crush-sc06.pdf
+
+Controlled Replication Under Scalable Hashing. It is the algorithm Ceph uses to compute object storage locations.
+CRUSH: es el encargado de saber donde almancear los datos y donde ir a recuperarlos.
+Funciona teniendo como inputs un "cluster map" y unas "placement rules".
+
+En caso de que el cluster cambie, los datos serán movidos al sitio que deberán ser buscados.
+
+
+
+
+# Erasure coding (EC)
+http://docs.ceph.com/docs/jewel/rados/operations/erasure-code/
+http://ceph.com/community/new-luminous-erasure-coding-rbd-cephfs/<Paste>
+A method of data protection in which data is broken into fragments , encoded and then storage in a distributed manner. Ceph , due to its distributed nature , makes use of EC beautifully.
+
+
+
