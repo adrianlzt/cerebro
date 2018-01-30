@@ -14,6 +14,23 @@ class ...
    logger.debug("Service %s scheduled each %s minutes" % (s[SERVICE_NAME],s[SERVICE_PERIOD])) 
 
 
+# Logging en varios modulos
+http://eric.themoritzfamily.com/learning-python-logging.html
+https://docs.python.org/2/howto/logging-cookbook.html#customized-exception-formatting
+En el módulo principal, o el módulo que creemos para gestionar el logging, obtendremos y configuraremos el logger root:
+root = logging.getLogger()
+
+Las propiedades que apliquemos sobre este logger se aplicarán al resto de loggers que generemos en los módulos.
+Por ejemplo, en otro módulo ponemos:
+logger = logging.getLogger(__name__)
+
+Este logger estará heredando del root logger y luego podremos especificar si queremos particularidades.
+
+Los nombres de los loggers son jerárquicos.
+Si ponemos un nombre "myapp.models.pools", estaremos heredando del root, de myapp y de models.
+
+
+
 # Formato
 FORMAT = "[%(levelname)s %(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(level=logging.ERROR, format=FORMAT)

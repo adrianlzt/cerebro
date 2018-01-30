@@ -264,25 +264,6 @@ GIT_REMOTE_SSH2=$$(set -o pipefail; \
                 jq '.url')
 
 
-## Python
-Podemos correr programas python dentro del Makefile
-
-export PY
-
-all:
-  @echo "Makefile needs your attention"
-  @python -c "$$PY"
-
-define PY
-import time
-print("init")
-time.sleep(1)
-print("dos")
-for i in [1,2,3]:
-  print("uno %s" % i)
-print("terminamos")
-endef
-
 
 
 # Logging
@@ -298,3 +279,54 @@ Podemos usarlo para saber si hemos llamado a un target directamente o es una dep
 
 # Debug
 Usar "remake" para hacer debugging
+
+
+
+
+# User functions
+https://coderwall.com/p/cezf6g/define-your-own-function-in-a-makefile
+
+define generate_file
+    sed 's/{NAME}/$(1)/' greetings.tmpl >$(2).txt
+endef
+
+all:
+    $(call generate_file,John Doe,101)
+    $(call generate_file,Peter Pan,102)
+
+
+Si queremos pasar variables definidas en shell:
+WEBHOOK_TOKEN=$$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1) && \
+$(call create_git_repo,$${WEBHOOK_TOKEN})
+
+
+
+# Shell
+http://cvs.savannah.gnu.org/viewvc/make/make/NEWS?view=annotate#l153
+.ONESELL:
+Podemos especificar que queremos usar la misma shell para un target entero.
+De esta manera podemos evitar tener que hacer cosas como:
+WEBHOOK_TOKEN=$$(cat something) && \
+echo $${WEBHOOK_TOKEN}}
+
+
+# Python
+https://news.ycombinator.com/item?id=5275686
+http://bhundven.blogspot.fr/2014/10/what-shell.html
+
+Podemos hacer que los targets sean scripts de python
+
+.ONESHELL:
+SHELL = /usr/bin/python
+VAR := lorem
+
+all:
+  @print("Makefile needs your attention $(VAR)")
+  for i in [1,2,3]:
+    print(f"i={i}")
+  import requests
+  r = requests.get("http://httpbin.org/get")
+  print(r.ok)
+  print(r.json)
+
+Si no ponemos la primera arroba, antes de ejecutar el script nos hara un dump de lo que se va a ejeutar.
