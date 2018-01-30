@@ -72,10 +72,46 @@ Podemos usar osd_auto_discovery para usar todos los discos que se encuentren sin
 Antes de lanzarlo, modificar el ansible.cfg para poner el fichero de log en algún sitio donde podamos escribir
 
 Tambien tendremos que definir el número de PGs por pool por defecto (si no lo cambiamos será 8, número solo válido si tenemos un OSD). Mirar placement_groups.md
+No me queda muy claro si debemos poner este valor. Usando la calculadora (https://ceph.com/pgcalc/) tenemos distintos valores según que pool.
 ceph_conf_overrides:
   global:
     osd pool default pg num = 1024
     osd pool default pgp num = 1024
+
+Y si vamos a usar rgw, definimos el número de PGs por pool. La calculadora (https://ceph.com/pgcalc/) ya nos da el número de PGs que nos hará falta para cada pool
+Ejemplo:
+create_pools:
+  .rgw.root:
+    pg_num: 16
+  default.rgw.control:
+    pg_num: 16
+  default.rgw.data.root:
+    pg_num: 16
+  default.rgw.gc:
+    pg_num: 16
+  default.rgw.log:
+    pg_num: 16
+  default.rgw.intent-log:
+    pg_num: 16
+  default.rgw.meta:
+    pg_num: 16
+  default.rgw.usage:
+    pg_num: 16
+  default.rgw.users.keys:
+    pg_num: 16
+  default.rgw.users.email:
+    pg_num: 16
+  default.rgw.users.swift:
+    pg_num: 16
+  default.rgw.users.uid:
+    pg_num: 16
+  default.rgw.buckets.extra:
+    pg_num: 16
+  default.rgw.buckets.index:
+    pg_num: 64
+  default.rgw.buckets.data:
+    pg_num: 2048
+
 
 
 Despliegue:
