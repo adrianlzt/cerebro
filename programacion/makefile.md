@@ -29,6 +29,8 @@ Variables
 nombre = valor de la variable
 La usamos como: $(nombre)
 
+Solo evaluadas si las usamos.
+
 
 https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html
 Si queremos crear targets custom que no sean compilaciones de ficheros, usaremos .PHONY para decirle a make que no intente buscar un fichero con el nombre del target (irá más rápido al no tener que hacer ciertos chequeos):
@@ -141,6 +143,7 @@ check_clean:
   podemos combinarlo con @ de cualquier manera: "-@" o "@-"
 
 
+
 # Trabajando con strings
 https://www.gnu.org/software/make/manual/make.html#Text-Functions
 
@@ -148,6 +151,9 @@ $(subst ee,EE,feet on the street)
   devuelve "fEEt on the strEEt"
 
 $(sort foo bar lose)
+
+$(findstring a,a b c)
+  true si "a" esta en la cadena "a b c"
 
 
 
@@ -166,12 +172,25 @@ https://www.gnu.org/software/make/manual/make.html#Conditional-Functions
 
 $(if condition,then-part[,else-part])
 
-target:
+Podemos hacer tambien:
+FOO = $(if $x,bla,else)
+
+
+target:  # Con este esquema FOO se evalua al cargar el Makefile
 ifneq ($(FOO),)
 	some command
 else
   $(error no definida)
 endif
+
+Con este formato la variable se analiza cuando se ejecuta el target
+$(if $(VERSION),
+  echo /usr/bin/python
+  echo "mas lineas"
+,
+  echo /usr/bin/bash
+)
+
 
 FOO no definida -> error
 FOO definida "" -> error
@@ -321,7 +340,8 @@ SHELL = /usr/bin/python
 VAR := lorem
 
 all:
-  @print("Makefile needs your attention $(VAR)")
+  @
+  print("Makefile needs your attention $(VAR)")
   for i in [1,2,3]:
     print(f"i={i}")
   import requests
@@ -330,3 +350,19 @@ all:
   print(r.json)
 
 Si no ponemos la primera arroba, antes de ejecutar el script nos hara un dump de lo que se va a ejeutar.
+
+
+
+Ejecutar ciertos target en python y otros con bash (si un target python tiene dependencias, estas se ejecutaran tambien con la shell python):
+.ONESHELL:
+PYTHON_TARGETS = "targetpy1 targetpy2"
+SHELL = $(if $(findstring $(MAKECMDGOALS),$(PYTHON_TARGETS)),/usr/bin/python,/usr/bin/bash)
+
+all:
+  @echo "esto shell"
+
+targetpy1:
+  @print("uno python")
+
+targetpy2:
+  @print("dos python")
