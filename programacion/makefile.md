@@ -366,3 +366,14 @@ targetpy1:
 
 targetpy2:
   @print("dos python")
+
+
+
+Reusar modulos:
+
+define mifuncpy
+print("hola")
+endef
+
+target1:
+  $(mifuncpy)
