@@ -33,14 +33,14 @@ def gitlab = jenkins.getExtensionList(com.dabsquared.gitlabjenkins.connection.Gi
 gitlab...
 gitlab.save()
 
-Para poder hacer el .save() el objeto tiene que extender a "GlobalConfiguration"
+Para poder hacer el .save() el objeto tiene que extender a "GlobalConfiguration" (BUSCAR POR ESTO)
 
 Otro ejemplo:
 https://github.com/glenjamin/jenkins-groovy-examples/blob/master/README.md#configure-the-slack-plugin-as-if-the-form-was-submitted
 
 
 
-Hay otro tipo de plugins que implementan "BuildStepDescriptor" y que se hace:
+Hay otro tipo de plugins que implementan "BuildStepDescriptor" y que se hace: (O BUSCAR POR ESTE)
 https://github.com/edx/jenkins-configuration/blob/master/src/main/groovy/4configureHipChat.groovy#L26
 https://github.com/jenkinsci/hipchat-plugin/issues/111
 
