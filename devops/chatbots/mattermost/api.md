@@ -6,3 +6,10 @@ curl -i -d '{"login_id":"someone@nowhere.com","password":"thisisabadpassword"}' 
 Coger la cabecera "token: "
 El resto de peticiones las haremos con:
 curl -i -H 'Authorization: Bearer hyr5dmb1mbb49c44qmx4whniso' http://localhost:8065/api/v4/users/me
+
+
+# Channel types
+P: private
+O: open (public)
+D: direct
+G: direct multiples users

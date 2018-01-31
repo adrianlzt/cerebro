@@ -49,3 +49,6 @@ Creación de releases desde la web llama a: routes/repo/release.go
 routes/api/v1/api.go
   enrutador
 routes/api/v1
+
+Crear un repo en una orga:
+curl http://git.com/api/v1/org/Name/repos -H "Authorization: token xxxx" -d '{"name":"pruebaapi"}' -H "Content-Type: application/json"
