@@ -10,6 +10,10 @@ parted -lm
  salida parseable
 
 
+parted -a minimal /dev/sdb mkpart primary xfs 0 100%
+  crear una partición primaria en sdb tipo xfs que ocupe todo el disco y esté alineada de manera minimal
+
+
 Comandos dentro de parted:
 
 print
@@ -17,6 +21,9 @@ print
 
 rm 2
   borrar particion 2
+
+resizepart
+  cambiar tamaño de una partición
 
 quit
   salir

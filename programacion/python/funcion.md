@@ -55,6 +55,13 @@ Si fuese una clase:
 getattr(module,"Witai")()
 
 
+Para llamar a una función si no tenemos clases
+eval("nombreFunc")(params)
+
+Otra forma:
+locals()["pepe"](123)
+
+
 
 Llamar a una func con un array (splash operator)
 v = ["arg1","arg2"]
