@@ -33,8 +33,41 @@ def gitlab = jenkins.getExtensionList(com.dabsquared.gitlabjenkins.connection.Gi
 gitlab...
 gitlab.save()
 
+Para poder hacer el .save() el objeto tiene que extender a "GlobalConfiguration"
+
 Otro ejemplo:
 https://github.com/glenjamin/jenkins-groovy-examples/blob/master/README.md#configure-the-slack-plugin-as-if-the-form-was-submitted
+
+
+
+Hay otro tipo de plugins que implementan "BuildStepDescriptor" y que se hace:
+https://github.com/edx/jenkins-configuration/blob/master/src/main/groovy/4configureHipChat.groovy#L26
+https://github.com/jenkinsci/hipchat-plugin/issues/111
+
+Si no tiene el Descriptor métodos públicos y solo el configure para Stapler Requests:
+https://github.com/jenkinsci/slack-plugin/issues/23#issuecomment-98090609
+
+import jenkins.plugins.mattermost.MattermostNotifier
+
+def mmost = Jenkins.instance.getDescriptorByType(MattermostNotifier.DescriptorImpl.class)
+
+def params = [
+  mattermostEndpoint: "endpoint",
+  mattermostRoom: "room",
+  mattermostSendAs: "sendas"
+]
+def req = [
+  getParameter: { name -> params[name] }
+] as org.kohsuke.stapler.StaplerRequest
+
+mmost.configure(req, null)
+
+
+
+
+
+Y parece que hay otro tipo que no tiene "Descriptor":
+https://stackoverflow.com/questions/32826184/how-do-you-configure-the-jenkins-create-job-advanced-plugin-via-groovy
 
 
 

@@ -91,3 +91,19 @@ http://somesrv.example.com/fizz?widget=http%3A%2F%2Fmyapp.example.com
 
 # Ficheros
 def pass = new File("/run/secrets/jenkins-pass").text.trim()
+
+
+# Cast variables
+(String) 2
+
+
+
+# Array
+http://grails.asia/groovy-array-manipulation-examples
+http://mrhaki.blogspot.fr/2015/09/groovy-goodness-removing-elements-from.html<Paste>
+
+def testArray = new String[3]
+testArray[0] = "A"
+
+testArray.pop() -> ultimo elemento
+testArray.remoteAt(0) -> primer elemento
