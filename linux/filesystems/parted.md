@@ -6,6 +6,9 @@ Utilidad para manejar particiones
 Mostrar discos:
 parted -l
 
+parted -lm
+ salida parseable
+
 
 Comandos dentro de parted:
 
@@ -17,3 +20,7 @@ rm 2
 
 quit
   salir
+
+
+Crear una nuea table/label en un disco:
+parted> mktable gpt

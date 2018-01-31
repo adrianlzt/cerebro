@@ -1,5 +1,11 @@
 Charlas interesantes:
 
+https://github.com/weaveworks/grafanalib
+https://fosdem.org/2018/schedule/event/grafanalib_dashboards_as_code/
+
+https://fosdem.org/2018/schedule/event/performance_analysis_and_troubleshooting_methodologies_for_databases/
+
+
 Config Management devroom
 https://fosdem.org/2018/schedule/event/mgmt/
 https://fosdem.org/2018/schedule/event/deployment_provisioning_orchestration/
