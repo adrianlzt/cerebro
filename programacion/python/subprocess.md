@@ -10,8 +10,9 @@ import subprocess
 returncode = subprocess.call(["ls", "-l"])
 Esto saca el stdout y stderr directamente, no podemos almacenarlo en una variable.
 
-returncode = subprocess.call(["ls", "-l"], shell=True)
+returncode = subprocess.call("ls -l", shell=True)
   para poder usar redirecciones, pipes, etc
+  no recomendado, hace un spawn de una shell
 
 
 Metodo para obtener la salida del comando (en este caso, stderr y stdout mezcladas)

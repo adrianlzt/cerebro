@@ -58,8 +58,8 @@ getattr(module,"Witai")()
 Para llamar a una función si no tenemos clases
 eval("nombreFunc")(params)
 
-Otra forma:
-locals()["pepe"](123)
+Otra forma (en bpython tengo que usar locals()):
+globals()["pepe"](123)
 
 
 
