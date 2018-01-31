@@ -68,3 +68,6 @@ Por lo tanto, generalmente querremos que el Dockerfile este en el root de nuestr
 https://technologyconversations.com/2017/06/16/automating-jenkins-docker-setup/
 https://gist.github.com/stuart-warren/e458c8439bcddb975c96b96bec3971b6
 https://github.com/edx/jenkins-configuration
+https://groups.google.com/forum/#!topic/jenkinsci-dev/NYPGvrVolak
+
+mirar scripts.md
