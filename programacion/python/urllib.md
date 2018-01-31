@@ -52,6 +52,10 @@ response = urllib2.urlopen(req2)
 import urllib2
 response = urllib2.urlopen('https://48465678.ngrok.io/skype/adrianlzt', "DATOS")
 
+req = urllib2.urlopen("http://httpbin.org/post", data=urllib.urlencode({"pepe":3}))
+  llegarán como datos "form"
+
+
 ## PUT ##
 import urllib2
 req = urllib2.Request("http://httpbin.org/put", data="pepe=3")
@@ -65,10 +69,10 @@ http://stackoverflow.com/questions/2407126/python-urllib2-basic-auth-problem
 import urllib2, base64
 
 request = urllib2.Request("http://api.foursquare.com/v1/user")
-# You need the replace to handle encodestring adding a trailing newline 
+# You need the replace to handle encodestring adding a trailing newline
 # (https://docs.python.org/2/library/base64.html#base64.encodestring)
 base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
-request.add_header("Authorization", "Basic %s" % base64string)   
+request.add_header("Authorization", "Basic %s" % base64string)
 result = urllib2.urlopen(request)
 
 
@@ -84,7 +88,7 @@ values = {'name' : 'Michael Foord',
 headers = { 'User-Agent' : user_agent }
 
 data = urllib.urlencode(values)
-req = urllib2.Request(url, data, headers)
+req = urllib2.Request(url, data, headers=headers)
 response = urllib2.urlopen(req)
 the_page = response.read()
 

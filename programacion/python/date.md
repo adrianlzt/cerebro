@@ -31,7 +31,8 @@ En una máquina UTC time.localtime(0) nos devolverá el epoch 0
 
 ## con datetime
 datetime -> epoch
-datetime.datetime.now().strftime('%s')
+datetime.datetime.now().strftime('%s')  # cuidado con este, en alpine funciona distinto (http://www.openwall.com/lists/musl/2018/01/18/3)
+datetime.datetime.now().timestamp()  # en py3
 
 epoch -> datetime
 import datetime
