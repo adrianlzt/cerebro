@@ -61,3 +61,9 @@ Para conectar a ellos atacará a una IP del docker host que estara mapeada al pu
 # Docker build
 El directorio donde le digamos que está el Dockerfile será desde el que funcionen los comandos "ADD" y "COPY".
 Por lo tanto, generalmente querremos que el Dockerfile este en el root de nuestro repo.
+
+
+
+# Automatizar la instalación/configuración
+https://technologyconversations.com/2017/06/16/automating-jenkins-docker-setup/
+https://gist.github.com/stuart-warren/e458c8439bcddb975c96b96bec3971b6

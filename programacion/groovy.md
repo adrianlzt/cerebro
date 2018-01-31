@@ -87,3 +87,7 @@ concat.addQueryParam("widget", appURL)
 println concat
 http://somesrv.example.com/fizz?widget=http%3A%2F%2Fmyapp.example.com
 
+
+
+# Ficheros
+def pass = new File("/run/secrets/jenkins-pass").text.trim()

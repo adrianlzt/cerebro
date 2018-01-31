@@ -1,6 +1,8 @@
 https://blog.docker.com/2017/02/docker-secrets-management/
+https://docs.docker.com/compose/compose-file/#secrets
 >= v1.13
-Solo para docker swarm
+Los secrets "external" solo están para docker swarm
+Los backuped en ficheros tambien para docker-compose
 
 Pensar como un método de pasar datos a los containers que van a estar en todos los hosts.
 Las contraseñas son unas de estas cosas.
@@ -30,3 +32,19 @@ docker service create --name secreto --secret="my_secret_data" redis:alpine
 
 Los secretos los tendremos en:
 /run/secrets/my_secret_data
+
+
+
+# Compose
+services:
+  main:
+    image: opensolutions/jenkins
+    secrets:
+      - jenkins-user
+      - jenkins-pass
+secrets:
+  jenkins-user:
+    file: ./secret.txt
+  jenkins-pass:
+    external: true
+
