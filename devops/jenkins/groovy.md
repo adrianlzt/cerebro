@@ -58,3 +58,22 @@ Crear token (secret text):
 import hudson.util.Secret;
 import org.jenkinsci.plugins.plaincredentials.impl.*;
 Credentials gitlab = (Credentials) new StringCredentialsImpl(CredentialsScope.GLOBAL, "tokenPrueba", "GitLab Secret Token", Secret.fromString("password"))
+
+
+
+# Get credentials
+https://wiki.jenkins.io/display/JENKINS/Printing+a+list+of+credentials+and+their+IDs
+
+No tengo claro que este sea el método más correcto. Extraido mirando como funciona el plugin de gitlab:
+import com.cloudbees.plugins.credentials.CredentialsMatcher
+import com.cloudbees.plugins.credentials.domains.DomainRequirement
+import com.cloudbees.plugins.credentials.CredentialsMatchers
+import com.cloudbees.plugins.credentials.CredentialsProvider
+import com.cloudbees.plugins.credentials.common.StandardCredentials;
+import hudson.security.ACL;
+
+StandardCredentials c = CredentialsMatchers.firstOrNull(
+            CredentialsProvider.lookupCredentials(StandardCredentials.class, (Item) null, ACL.SYSTEM, new ArrayList<DomainRequirement>()),
+            CredentialsMatchers.withId("gitlab_secret_token"));
+
+c.getSecret()

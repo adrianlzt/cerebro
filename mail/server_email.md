@@ -1,3 +1,8 @@
+https://www.c0ffee.net/blog/mail-server-guide
+How To Run Your Own Mail Server
+https://news.ycombinator.com/item?id=16238937
+
+
 The full setup for inbound mail is - OpenBSD spamd (greylisting) -> internal postfix
 Outbound is - internal postfix -> VPS postfix
 
