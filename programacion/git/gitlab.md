@@ -67,3 +67,11 @@ curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects -XPOST 
 
 Crear un repo en un grupo determinado:
 curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects -XPOST -d 'name=pruebaapi3' -d 'description=pepe' -d 'namespace_id=34' | jq
+
+
+
+# Registry
+https://docs.gitlab.com/ce/administration/container_registry.html
+
+A partir de la version 8.8 tiene un registy de docker
+Veremos las imagenes y la conf necesaria en cada repo, en el menu de la izquierda, "Registry"

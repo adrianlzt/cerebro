@@ -44,6 +44,8 @@ https://hub.docker.com/_/registry/
 https://blog.mayflower.de/5650-Running-a-secure-docker-registry.html
 https://github.com/docker/distribution/blob/master/docs/configuration.md
 
+Gitlab a partir de la 8.8 viene con un registry.
+
 cp ~/adrianRepo/virtualizacion/docker/registry_config.yml config.yml
 mkdir data
 docker run -d -p 5000:5000 --restart always -v "${PWD}/config.yml:/etc/docker/registry/config.yml" -v "${PWD}/data:/var/lib/registry" --name registry registry:latest
