@@ -20,8 +20,11 @@ https://jenkins.io/doc/pipeline/steps
 
 Ejemplos
 https://jenkins.io/doc/pipeline/examples
+
+Ejemplo de scripted pipeline:
+scripted_pipeline.groovy
 https://github.com/jenkins-infra/jenkins.io/blob/c0828af5b8bd428815e23537c808cd0267017013/Jenkinsfile
-  ejemplo de scripted pipeline
+https://github.com/MarkEWaite/docker-lfs/blob/lts-with-plugins/Jenkinsfile
 
 
 Plugin
@@ -84,6 +87,18 @@ pipeline {
 # Auth / credentials
 https://jenkins.io/doc/pipeline/steps/credentials-binding/
 
+## Scripted
+https://jenkins.io/doc/pipeline/steps/credentials-binding/#withcredentials-bind-credentials-to-variables
+node {
+  withCredentials([usernameColonPassword(credentialsId: 'mylogin', variable: 'USERPASS')]) {
+    sh '''
+      set +x
+      curl -u $USERPASS https://private.server/ > output
+    '''
+  }
+}
+
+## Declarativg
 stage('Push') {
     steps {
         withCredentials([usernamePassword(credentialsId: 'docker_localhost_registry', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
@@ -94,6 +109,20 @@ stage('Push') {
 
 
 # Condicionales
+
+## Scripted
+node {
+    stage('Example') {
+        if (env.BRANCH_NAME == 'master') {
+            echo 'I only execute on the master branch'
+        } else {
+            echo 'I execute elsewhere'
+        }
+    }
+}
+
+
+## Declarative
 https://jenkins.io/blog/2017/01/19/converting-conditional-to-pipeline/
 
     stages {
@@ -113,6 +142,22 @@ Si ponemos en un expression solo "FOO", saltará excepcion si no está declarada
 
 
 
+# Errores try-catch (para scripted)
+node {
+    stage('Example') {
+        try {
+            sh 'exit 1'
+        }
+        catch (exc) {
+            echo 'Something failed, I should sound the klaxons!'
+            throw
+        }
+    }
+}
+
+
+
+
 # Variables de entorno
 https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-variables
 
@@ -124,6 +169,33 @@ https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-v
 
 Podemos usarlas en cualquier parte como: env.FOO
 O en script sh con ${FOO}
+
+
+
+# Post
+
+## Scripted
+try {
+  node {
+    ...
+    al final ponemos el "success"
+  }
+} catch (exc) {
+  aqui ponemos el "failure"
+}
+
+
+## Declarative
+Ejecutar algo al terminar
+  post {
+      failure {
+          ...
+      }
+      success {
+          ...
+      }
+  }
+
 
 
 
@@ -276,7 +348,10 @@ acceptGitLabMR
  withEnv
  wrap
  writeFile
- ws] or symbols [all
+ ws
+
+symbols
+ all
  allOf
  always
  ant
