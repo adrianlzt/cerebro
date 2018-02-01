@@ -253,7 +253,7 @@ miCommonBuild param1: "value1"
 En la shared lib, de nombre miCommonBuild.groovy, tendremos algo tipo:
 def call(Map config) {
     node {
-        sh 'hostname'
+        sh 'hostname ${config.param1}'
     }
 }
 
