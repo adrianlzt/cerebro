@@ -9,6 +9,12 @@ Array con los ficheros
 Crear directorio
 os.mkdir(path[,mode])
 
+Crear como mkdir -p
+os.makedirs(path)
+
+import pathlib
+pathlib.Path("/tmp/path/to/desired/directory").mkdir(parents=True, exist_ok=True)  # Python3
+
 
 Unir directorios y ficheros
 >>> os.path.join("/tmp","pepe","maria")
