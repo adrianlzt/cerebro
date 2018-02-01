@@ -6,7 +6,8 @@ https://jenkins.io/doc/book/pipeline/syntax/
 
 Hay dos tipos (https://jenkins.io/doc/book/pipeline/syntax/#compare):
    Declarative Pipeline, empieza con "pipeline {". Más sencilla
-   Scripted Pipeline -> empieza por "node {", es groovy. Más potente
+   Scripted Pipeline -> empieza por "node {", es groovy. Más potente https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
+   mirar abajo del todo para ver que steps tenemos para scripted pipeline
 
 Syntax
 https://jenkins.io/doc/book/pipeline/syntax/
@@ -19,6 +20,9 @@ https://jenkins.io/doc/pipeline/steps
 
 Ejemplos
 https://jenkins.io/doc/pipeline/examples
+https://github.com/jenkins-infra/jenkins.io/blob/c0828af5b8bd428815e23537c808cd0267017013/Jenkinsfile
+  ejemplo de scripted pipeline
+
 
 Plugin
 https://plugins.jenkins.io/workflow-aggregator
@@ -30,6 +34,36 @@ Este job si lo tendremos que crear a mano en Jenkins.
 
 # Comentarios
 // texto
+
+
+# Triggers
+## Scripted (fuera de "node")
+https://stackoverflow.com/questions/43510110/jenkins-pipelinetriggers-option-crashes
+  properties ([
+    pipelineTriggers ([
+       gitlab(
+         triggerOnPush: true,
+         triggerOnMergeRequest: true,
+         noteRegex: "Jenkins please retry a build",
+         setBuildDescription: true,
+         branchFilterType: 'All',
+         secretToken: '##DONOTCHANGE##'
+       )
+    ])
+  ])
+
+
+## Declarative (dentro de "pipeline")
+      triggers {
+         gitlab(
+           triggerOnPush: true,
+           triggerOnMergeRequest: true,
+           noteRegex: "Jenkins please retry a build",
+           setBuildDescription: true,
+           branchFilterType: 'All',
+           secretToken: '##DONOTCHANGE##'
+         )
+      }
 
 
 # Agent
@@ -141,6 +175,18 @@ node {
 
 
 
+Tambien podemos que la shared lib ya tenga definido el "node", y asi solo pondremos en el Jenkinsfile algo tipo:
+miCommonBuild param1: "value1"
+
+En la shared lib, de nombre miCommonBuild.groovy, tendremos algo tipo:
+def call(Map config) {
+    node {
+        sh 'hostname'
+    }
+}
+
+
+
 
 # Build de otra job
 build job: 'downstream-freestyle', parameters: [[$class: 'StringParameterValue', name: 'ParamA', value: paramAValue], [$class: 'StringParameterValue', name: 'ParamB', value: paramBValue]]
@@ -157,3 +203,242 @@ build job: 'your-job-name',
 Hay que instalar el plugin HTTP Request
 response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: toJson(body), url: "https://${host}", validResponseCodes: '200'
 
+
+
+
+# Scripted pipeline
+Steps que me muestra (al meter algo mal)
+acceptGitLabMR
+ addGitLabMRComment
+ archive
+ bat
+ build
+ catchError
+ checkout
+ deleteDir
+ dir
+ dockerFingerprintFrom
+ dockerFingerprintRun
+ dockerNode
+ echo
+ emailext
+ emailextrecipients
+ envVarsForTool
+ error
+ fileExists
+ getContext
+ git
+ gitlabBuilds
+ gitlabCommitStatus
+ httpRequest
+ input
+ isUnix
+ jiraComment
+ jiraIssueSelector
+ jiraSearch
+ junit
+ library
+ libraryResource
+ load
+ mail
+ mattermostSend
+ milestone
+ node
+ parallel
+ powershell
+ properties
+ publishHTML
+ pwd
+ readFile
+ readTrusted
+ resolveScm
+ retry
+ script
+ sh
+ sleep
+ stage
+ stash
+ step
+ timeout
+ timestamps
+ tm
+ tool
+ unarchive
+ unstash
+ updateGitlabCommitStatus
+ validateDeclarativePipeline
+ waitUntil
+ withContext
+ withCredentials
+ withDockerContainer
+ withDockerRegistry
+ withDockerServer
+ withEnv
+ wrap
+ writeFile
+ ws] or symbols [all
+ allOf
+ always
+ ant
+ antFromApache
+ antOutcome
+ antTarget
+ any
+ anyOf
+ apiToken
+ architecture
+ archiveArtifacts
+ artifactManager
+ attach
+ authorizationMatrix
+ batchFile
+ bitbucket
+ booleanParam
+ branch
+ buildButton
+ buildDiscarder
+ caseInsensitive
+ caseSensitive
+ certificate
+ changelog
+ changeset
+ checkoutToSubdirectory
+ choice
+ choiceParam
+ cleanWs
+ clock
+ cloud
+ command
+ credentials
+ cron
+ crumb
+ defaultView
+ demand
+ disableConcurrentBuilds
+ disableResume
+ docker
+ dockerCert
+ dockerfile
+ downloadSettings
+ downstream
+ dumb
+ durabilityHint
+ envVars
+ environment
+ expression
+ file
+ fileParam
+ filePath
+ fingerprint
+ frameOptions
+ freeStyle
+ freeStyleJob
+ fromScm
+ fromSource
+ git
+ gitLabConnection
+ github
+ githubPush
+ gitlab
+ gradle
+ headRegexFilter
+ headWildcardFilter
+ hyperlink
+ hyperlinkToModels
+ inheriting
+ inheritingGlobal
+ installSource
+ jdk
+ jdkInstaller
+ jgit
+ jgitapache
+ jnlp
+ jobName
+ label
+ lastDuration
+ lastFailure
+ lastGrantedAuthorities
+ lastStable
+ lastSuccess
+ legacy
+ legacySCM
+ list
+ local
+ location
+ logRotator
+ loggedInUsersCanDoAnything
+ masterBuild
+ maven
+ maven3Mojos
+ mavenErrors
+ mavenMojos
+ mavenWarnings
+ modernSCM
+ myView
+ node
+ nodeProperties
+ nonInheriting
+ nonStoredPasswordParam
+ none
+ not
+ overrideIndexTriggers
+ paneStatus
+ parameters
+ password
+ pattern
+ pipeline-model
+ pipelineTriggers
+ plainText
+ plugin
+ pollSCM
+ projectNamingStrategy
+ proxy
+ queueItemAuthenticator
+ quietPeriod
+ remotingCLI
+ run
+ runParam
+ schedule
+ scmRetryCount
+ search
+ security
+ shell
+ skipDefaultCheckout
+ skipStagesAfterUnstable
+ slave
+ sourceRegexFilter
+ sourceWildcardFilter
+ ssh
+ sshUserPrivateKey
+ stackTrace
+ standard
+ status
+ string
+ stringParam
+ swapSpace
+ text
+ textParam
+ tmpSpace
+ toolLocation
+ unsecured
+ upstream
+ usernameColonPassword
+ usernamePassword
+ viewsTabBar
+ weather
+ withAnt
+ zfs
+ zip
+
+
+ Globals:
+ adri
+ commonBuild
+ currentBuild
+ docker
+ env
+ log
+ notify
+ params
+ pipeline
+ scm]
