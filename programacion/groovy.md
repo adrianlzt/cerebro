@@ -51,6 +51,12 @@ def call(message, endpoint='', room='0') {
 Podemos tener varias funciones con el mismo nombre y distintos parámetros. Se usará una u otra según cuadren los parámetros.
 
 
+Sacar todos los métodos de un objeto:
+println new Person().metaClass.methods*.name.sort().unique()
+
+
+
+
 # condicionales
 if ( a == 1 && b == 2 ) {
     ...

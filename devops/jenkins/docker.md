@@ -69,5 +69,8 @@ https://technologyconversations.com/2017/06/16/automating-jenkins-docker-setup/
 https://gist.github.com/stuart-warren/e458c8439bcddb975c96b96bec3971b6
 https://github.com/edx/jenkins-configuration
 https://groups.google.com/forum/#!topic/jenkinsci-dev/NYPGvrVolak
+https://pghalliday.com/jenkins/groovy/sonar/chef/configuration/management/2014/09/21/some-useful-jenkins-groovy-scripts.html
+https://gist.github.com/peterjenkins1/8f8bdbc82669314f7a2cc392f48be6a0
+https://github.com/Accenture/adop-jenkins/pull/17/files?short_path=04c6e90
 
 mirar scripts.md

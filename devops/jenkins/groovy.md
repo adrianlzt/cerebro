@@ -72,6 +72,13 @@ https://stackoverflow.com/questions/32826184/how-do-you-configure-the-jenkins-cr
 
 
 
+# General config
+JenkinsLocationConfiguration jenkinsConfig = JenkinsLocationConfiguration.get();
+jenkinsConfig.setUrl(env.JENKINS_URL)
+jenkinsConfig.save()
+
+
+
 
 # Crear credentials
 http://javadoc.jenkins.io/credentials/com/cloudbees/plugins/credentials/impl/UsernamePasswordCredentialsImpl.html
