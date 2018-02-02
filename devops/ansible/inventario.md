@@ -11,6 +11,9 @@ Es case-sensitive.
 Para ver nuestro inventario:
 ansible all --list-hosts
 
+Para ver las variables que tiene cada host
+ansible all -i ucmdb.yml -m debug -a 'var=hostvars'
+
 Aqui definimos los grupos de máquinas.
 También podemos definir variables de esas máquinas.
 

@@ -2,7 +2,13 @@ http://docs.ansible.com/intro_dynamic_inventory.html
 http://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html
 Usar un script para generar dinámicamente el inventario
 
+
+Obtener la lista de variables que tiene un host:
+ansible all -i ucmdb.yml -m debug -a 'var=hostvars'
+
+
 A partir de ansible 2.4 debemos usar Inventory Plugins
+Parece que hay unos cuantos cambios en la 2.5 de como se implementa
 http://docs.ansible.com/ansible/devel/plugins/inventory.html
 https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/inventory
 
@@ -11,6 +17,28 @@ ansible-doc -t inventory -l
 
 Doc sobre un plugin:
 ansible-doc -t inventory <plugin name>
+
+## Dev inv plugin
+Coger como ejemplo uno de los que tiene ansible.
+
+Parece que llaman a nuestra función parser()
+Nos pasan:
+  inventory=<ansible.inventory.data.InventoryData object at 0x7faf8184f8d0>
+  loader=<ansible.parsing.dataloader.DataLoader object at 0x7faf842ec210>
+  path=u'/home/adrian/Documentos/opensolutions/carrefour/cmdb/inventario_dinamico/ucmdb.yml' (lo que pongamos en -i)
+  cache=False/True
+
+Parece que podemos sacar las cosas llamando a:
+inventory.add_host("server1", group="", port=n)
+inventory.add_group("linux")
+inventory.add_child("linux", "server1")
+inventory.set_variable("linux", "key", "value")
+
+
+
+donde deberemos terminar metiendo nuestra info en:
+self.cache[cache_key]
+
 
 
 
