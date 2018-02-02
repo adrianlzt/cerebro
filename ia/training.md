@@ -1,6 +1,6 @@
 Una vez elegido el modelo deberemos hacerle el training.
 
-Iremos usando nuestro training set para ajustar las matrices de "weights" y "biases" para reducir el error que comete el modelo.
+Iremos usando nuestro training set para ajustar las matrices de "weights" y "biases" para reducir el error que comete el modelo (mirar perceptron.md).
 Al comienzo tendremos esas matrices inicializadas con valores aleatorios.
 
 Hay otros "hyperparameters" que podemos configurar en el training. Por ejemplo, el número de veces que enseñaremos la training data al modelo y cuando modificaremos los weights y biases en cada train step.
