@@ -1,5 +1,21 @@
 http://docs.ansible.com/intro_dynamic_inventory.html
+http://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html
 Usar un script para generar dinámicamente el inventario
+
+A partir de ansible 2.4 debemos usar Inventory Plugins
+http://docs.ansible.com/ansible/devel/plugins/inventory.html
+https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/inventory
+
+Lista de plugins de inventario
+ansible-doc -t inventory -l
+
+Doc sobre un plugin:
+ansible-doc -t inventory <plugin name>
+
+
+
+
+# Lo antiguo (scripts que devuelven json)
 
 http://docs.ansible.com/list_of_inventory_modules.html
 
