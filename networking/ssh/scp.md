@@ -6,6 +6,12 @@ scp es el que vino con SSH1.
 sftp vino con SSH2 y es una mejora, pero el servidor debe implementar el subsistema.v
 https://learningnetwork.cisco.com/blogs/network-sheriff/2008/09/22/sshv1-or-sshv2-whats-the-big-deal
 
+Copiar entre dos máquinas remotas:
+scp -3 nodoOrigin:file nodoDestino:file
+  esto pasa el fichero por el ordenador que lance el ssh
+scp nodoOrigin:file nodoDestino:file
+  esto copia directamente el fichero desde nodoOrigen a nodoDestino, nodoOrigen tiene que poder acceder via ssh a nodoDestino. Tal vez tengamos que poner el -o con el forward agent
+
 
 # Funcionamiento de scp
 
