@@ -1,0 +1,21 @@
+To Be used for Alerting, Troubleshooting, Trend Analyses
+
+Viene del libro: Monitoring Distributed Systems from SRE Book
+
+
+
+Latency: Distribution not just Average; Latency for Successful Latency requests vs Errors
+
+Traffic: How much Demand is being placed on the System
+
+Errors: Error Codes are Easy; Bad Content is hard
+
+Saturation: How Full your system “capacity”. Forecast when Saturation Possible
+
+
+# Benefits
+Testeado por google y muchos otros.
+Libro para tomar como base
+
+# Drawbacks
+Sin checklist
