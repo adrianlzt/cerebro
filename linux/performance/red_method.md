@@ -1,10 +1,17 @@
-Orientado a microservicios.
-Donde los servicios son "ganado" no "mascotas" (podemos tirarlos y volver a levantar, no tienen estado, etc)
+# Charla FOSDEM 2018 "The RED method"
 
 Para cada servicio chequear:
-  - rate
-  - error rate
-  - duration distribution
+  - rate: numero de req/s
+  - error rate: número de cuantas de esas req están falladas
+  - duration distribution: cuanto tiempo están tardando esas req
+
+Vale para que una persona pueda tratar un servicio como un blackbox y entender que está pasando.
+
+Se centra en los servicios y no en el hardware de debajo.
+
+Como obtenemos los tiempos de las requests?
+ - instrumentar el código para que exponga las métricas
+ - usar lttng para obtener esos datos?
 
 
 Beneficios:
@@ -16,6 +23,3 @@ Drawbacks:
   - No tiene muchas herramientas para usarlo ni checklists
   - Focus en responder "qué" más que "por qué"
 
-
-
-# Charla FOSDEM 2018 "The RED method"
