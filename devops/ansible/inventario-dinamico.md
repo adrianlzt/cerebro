@@ -21,6 +21,14 @@ ansible-doc -t inventory <plugin name>
 ## Dev inv plugin
 Coger como ejemplo uno de los que tiene ansible.
 
+https://github.com/ansible/ansible/blob/devel/lib/ansible/inventory/manager.py
+  quien se encarga de llamar a los plugins de inventario
+https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/inventory
+  plugins de ejemplo y clase base (__init__.py)
+
+A partir de la 2.5 se puede cachear el inventario:
+https://github.com/ansible/ansible/commit/4a1cc661c417fee913c7fd8492f5b77170efa436
+
 Parece que llaman a nuestra función parser()
 Nos pasan:
   inventory=<ansible.inventory.data.InventoryData object at 0x7faf8184f8d0>
