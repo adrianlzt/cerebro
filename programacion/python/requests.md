@@ -143,6 +143,13 @@ print(r.text)
 # '{"cookies": {"sessioncookie": "123456789"}}'
 
 
+Podemos agregar un auth y headers por defecto a una session
+s = requests.Session()
+s.auth = ('user', 'pass')
+s.headers.update({'x-test': 'true'})
+
+
+
 Ejemplo login con cookies:
 http://www.mediawiki.org/wiki/User:Sebelino7/Login_with_Python
 
