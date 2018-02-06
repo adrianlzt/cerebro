@@ -8,6 +8,11 @@ str is for strings of bytes. These are very similar in nature to how strings are
 unicode is for strings of unicode code points.
 
 
+Convertir unicode a str, convirtiendo los símbolos raros (á, é, ñ, etc) en valores ascii
+import unicodedata
+unicodedata.normalize('NFKD', u"áéÍÓñ").encode('ascii','ignore')
+'aeIOn'
+
 
 
 >>> "hóla".decode("ascii")
