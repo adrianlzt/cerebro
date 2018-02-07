@@ -3,10 +3,6 @@ http://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html
 Usar un script para generar dinámicamente el inventario
 
 
-Obtener la lista de variables que tiene un host:
-ansible all -i ucmdb.yml -m debug -a 'var=hostvars'
-
-
 A partir de ansible 2.4 debemos usar Inventory Plugins
 Parece que hay unos cuantos cambios en la 2.5 de como se implementa
 http://docs.ansible.com/ansible/devel/plugins/inventory.html
@@ -17,6 +13,11 @@ ansible-doc -t inventory -l
 
 Doc sobre un plugin:
 ansible-doc -t inventory <plugin name>
+
+Contenido del inventario:
+ansible-inventory -i foo --list
+  en el caso de un plugin de inventario, foo seguramente sea un yaml de configuración
+
 
 ## Dev inv plugin
 Coger como ejemplo uno de los que tiene ansible.

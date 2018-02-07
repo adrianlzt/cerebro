@@ -15,3 +15,17 @@ Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar to
 
 # Agregar inventarios dinámicos
 https://github.com/confirm/ansible-git-inventory
+
+
+
+# Inventario
+Filtrar en el inventario.
+
+Por nombre de grupo:
+groups.name:NOMBRE
+
+Por variables del host:
+variables.icontains:FOO
+
+
+Poder buscar por una variable en concreto aun no se puede: https://github.com/ansible/awx/issues/371
