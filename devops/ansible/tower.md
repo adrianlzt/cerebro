@@ -1,11 +1,23 @@
 http://www.ansible.com/tower
-
-Dashboard para ansible. De pago.
-Gratis (trial) hasta 10 máquinas.
-
-# AWX - versión opensource
+AWX - versión opensource
 https://www.jeffgeerling.com/blog/2017/get-started-using-ansible-awx-open-source-tower-version-one-minute
 https://news.ycombinator.com/item?id=15450594
+
+
+# Ejecutar en docker
+git clone https://github.com/ansible/awx.git
+cd awx
+ansible-playbook installer/install.yml
+Levanta:
+  postgres
+  rabbitmq
+  memcached
+  awx web
+  awx task
+
+Acceso en:
+http://localhost
+admin:password
 
 
 # Seguridad
@@ -78,7 +90,7 @@ En el container de awx corren muchas cosas:
  nginx
  worker websocket
  callback receiver
- daphne
+ daphne (websockets)
  uwsgi con la app?
  celeryd (workers más ¿server?)
  jupyter
