@@ -56,7 +56,7 @@ parser.add_argument("cuenta", metavar="cuenta", nargs='+')
   genera algo tipo programa.py cuenta [cuenta...]
 
 
-
+# Booleano
 p.add_argument("-G", "--no_graph", action="store_const", dest="graph", help="Not show graphic", default=True, const=False)
   Si ponemos '-G', la variable "graph" se pone a False, si no, True.
 

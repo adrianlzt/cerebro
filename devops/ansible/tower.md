@@ -10,3 +10,8 @@ https://news.ycombinator.com/item?id=15450594
 
 # Seguridad
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
+
+
+
+# Agregar inventarios dinámicos
+https://github.com/confirm/ansible-git-inventory
