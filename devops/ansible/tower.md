@@ -110,5 +110,8 @@ curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=
       queryset = self.filter_queryset(self.get_queryset())
          este parece que ha generado la query que se va a realizar sobre la bbdd
    	  page = self.paginate_queryset(queryset)
+  	    /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/pagination.py(208)paginate_queryset()
+  	      por aqui es donde se gestiona la obtención de los datos
+
 
 
