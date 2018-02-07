@@ -96,3 +96,19 @@ En el container de awx corren muchas cosas:
  jupyter
 
 El container tiene el directorio del repo montado en /awx_devel, y es lo que usa par correr.
+
+
+
+## Recibiendo una peticion en la api
+curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=name\&host_filter\=variables__icontains\=estado
+
+  /usr/lib/python2.7/site-packages/awx/api/views.py(2124)list()
+    aqui tenemos la petición, con sus parametros, etc
+
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/mixins.py
+    aqui tenemos la petición y parece que es donde se realiza el filtrado y se extraen los datos
+      queryset = self.filter_queryset(self.get_queryset())
+         este parece que ha generado la query que se va a realizar sobre la bbdd
+   	  page = self.paginate_queryset(queryset)
+
+
