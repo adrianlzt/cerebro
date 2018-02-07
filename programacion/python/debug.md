@@ -89,6 +89,22 @@ https://pypi.python.org/pypi/epdb/
 
 Tambien me ha valido en algunos casos donde por usar multiprocessing pdb no me funcionaba
 
+import epdb; epdb.st()
+
+import epdb; epdb.serve(port=8080)
+  entrar con:
+  nc IP 8080
+
+
+
+# Remote-pdb
+pip install remote-pdb
+
+from remote_pdb import RemotePdb
+RemotePdb('127.0.0.1', 4444).set_trace()
+
+nc 127.0.0.1 4444
+
 
 ## GDB ##
 http://fedoraproject.org/wiki/Features/EasierPythonDebugging
