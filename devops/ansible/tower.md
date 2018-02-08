@@ -180,8 +180,105 @@ SELECT COUNT(*) FROM (
   FROM "main_host" WHERE "main_host"."ansible_facts" @> %s
 )
 subquery, params: (<psycopg2._json.Json object at 0x79f1510>,)
+El param será: '\'{"fo2": "bar"}\''
+
+El stack que llama a esta query sql:
+
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/handlers/wsgi.py(157)__call__()
+-> response = self.get_response(request)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/handlers/base.py(124)get_response()
+-> response = self._middleware_chain(request)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/handlers/exception.py(41)inner()
+-> response = get_response(request)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/handlers/base.py(249)_legacy_get_response()
+-> response = self._get_response(request)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/handlers/base.py(185)_get_response()
+-> response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/utils/decorators.py(185)inner()
+-> return func(*args, **kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/views/decorators/csrf.py(58)wrapped_view()
+-> return view_func(*args, **kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/views/generic/base.py(68)view()
+-> return self.dispatch(request, *args, **kwargs)
+  /usr/lib/python2.7/site-packages/awx/api/generics.py(253)dispatch()
+-> return super(APIView, self).dispatch(request, *args, **kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/views.py(486)dispatch()
+-> response = handler(request, *args, **kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/generics.py(201)get()
+-> return self.list(request, *args, **kwargs)
+  /usr/lib/python2.7/site-packages/awx/api/views.py(2124)list()
+-> return super(HostList, self).list(*args, **kwargs)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/mixins.py(42)list()
+-> page = self.paginate_queryset(queryset)
+  /usr/lib/python2.7/site-packages/awx/api/generics.py(329)paginate_queryset()
+-> page = super(ListAPIView, self).paginate_queryset(queryset)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/generics.py(173)paginate_queryset()
+-> return self.paginator.paginate_queryset(queryset, self.request, view=self)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/pagination.py(215)paginate_queryset()
+-> self.page = paginator.page(page_number)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/paginator.py(57)page()
+-> number = self.validate_number(number)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/paginator.py(46)validate_number()
+-> if number > self.num_pages:
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/utils/functional.py(35)__get__()
+-> res = instance.__dict__[self.name] = self.func(instance)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/paginator.py(91)num_pages()
+-> if self.count == 0 and not self.allow_empty_first_page:
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/utils/functional.py(35)__get__()
+-> res = instance.__dict__[self.name] = self.func(instance)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/core/paginator.py(79)count()
+-> return self.object_list.count()
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/query.py(370)count()
+-> return self.query.get_count(using=self.db)
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/query.py(499)get_count()
+-> number = obj.get_aggregation(using, ['__count'])['__count']
+  /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/query.py(480)get_aggregation()
+-> result = compiler.execute_sql(SINGLE)
+> /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/compiler.py(891)execute_sql()
+-> logger.debug("++++ execute sql: %s, params: %s", sql, params)
+
+
+No he encontrado nada util por el stack.
+La llamada sql se realizaba para obtener una de las paginas de resultados, pero la query parece que ya estaba formada?
+
+/usr/lib/python2.7/site-packages/awx/main/models/inventory.py
+aqui se definen que tipos de datos se almacenan en la bbdd, siendo variables text y ansible_facts un json
 
 
 
+/usr/lib/python2.7/site-packages/awx/main/utils/filters.py
+aqui se implementa el "smart filter"
+
+class SmartFilter(object):
+    SEARCHABLE_RELATIONSHIP = 'ansible_facts'
 
 
+> /usr/lib/python2.7/site-packages/awx/main/utils/filters.py(233)query_from_string()
+aqui se hace la magia de tener un filter_string, ejemplo:
+u'ansible_facts__fo2=bar'
+
+a conseguir un objecto (res) al que si hago x.result ejecuta una query sql formada correctamente.
+
+
+Función que extrae el "host_filter" y genera la query sql:
+2114 	    def get_queryset(self):
+2115 	        qs = super(HostList, self).get_queryset()
+2116 	        filter_string = self.request.query_params.get('host_filter', None)
+2117 	        if filter_string:
+2118 	            filter_qs = SmartFilter.query_from_string(filter_string)
+2119 	            qs &= filter_qs
+2120 ->	        return qs.distinct()
+
+
+Si intento hacer:
+variables__jo=2 me dice que no existe el lookup "jo" para TextField
+Aqui ya sabe que variables
+
+
+
+Cambiando el tipo de dato en el inventory.py de TextField a JSONBField ya funciona.
+
+TODO:
+  - crear migración para modificar el tipo de dato de string a jsonb?
+  - modificar la UI para que reconozca "variables" como hace con "ansible_facts"
+  - que los datos de inventario se almacenen como json (ahora era una string donde se metia yaml o json)

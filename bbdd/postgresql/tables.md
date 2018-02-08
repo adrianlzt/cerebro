@@ -39,6 +39,10 @@ ALTER TABLE nombre
 Eliminar NOT NULL de checks.command_line
 ALTER TABLE checks ALTER COLUMN command_line DROP NOT NULL;
 
+Modificar un field tipo texto a jsonb (el using me lo dice que lo ponga, porque si no no sabe como hacer el cast de los valores):
+alter table main_host alter column variables type jsonb USING variables::jsonb;
+
+
 
 
 # Tabla con una PRIMARY KEY formada por dos valores
