@@ -70,9 +70,20 @@ make docker-compose-build
 
 docker run --rm -it -v "$PWD:/mnt" -w /mnt node:6 npm --unsafe-perm --prefix awx/ui install awx/ui
   en la doc hace "make ui-devel", pero yo no tengo localmente el node v6 que hace falta
+  con node9 al principio no me tiraba pero luego si, no se que cambie.
+  con lo de docker no parecia que funcionase
 
 Para arrancar el entorno de dev:
 make docker-compose
+  entrypoint: tini, cmd: /start_development.sh
+    tools/docker-compose/start_development.sh
+      que tambien llama a tools/docker-compose/bootstrap_development.sh
+        espera que levante postgres, rabbit, memcached
+        crea users en postgres y la bbdd
+        make version_file
+        make migrate
+          awx-manage migrate --noinput --fake-initial
+        make init
   arranca varios servidores que necesita:
     postgres
     rabbitmq
@@ -83,9 +94,15 @@ make docker-compose
 
 En el primer arranque tardará un rato hasta que realice las migraciónes en la base de datos
 Tras esas migraciones podremos entrar a la interfaz web en
-http://localhost:8013
-https://localhost:8043
+http://localhost:8013 -> ui de tower
+https://localhost:8043 -> ui de tower
 http://localhost:8888 -> jupyter (para?)
+
+Para entrar tenemos que crear primero un user
+docker exec -it tools_awx_1 bash                                                                                                                                                git:(devel|… 
+awx-manage createsuperuser
+
+
 
 Tengo la sensación que si escribo cualquier cosa en la terminal del docker-compose, se para el container de awx
 
