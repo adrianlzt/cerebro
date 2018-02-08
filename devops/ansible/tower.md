@@ -125,7 +125,18 @@ curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=
   	          > /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/compiler.py(855)execute_sql()
               donde se ejecuta el sql
 
+Cuando hacemos un variables.icontains lo que hace es un LIKE en el field "variables" de la tabla de postgres.
 
+Cuando filtramos por un ansible fact hace otra cosa:
+http://localhost/api/v2/inventories/?page_size=20&order_by=name&search=ansible_facts.ansible_lsb__major_release:7&variables__icontains=FOO
+
+Lo pasa como un "search".
+Los ansible_facts también están almacenados en la postgres como un jsonb
+
+
+Por lo que he visto, cuando usamos search lo que hace es un like contra description y contra name.
+Mirar como se implementa search y tambien quien decide como se debe formular la query, porque hay ciertas palabras que ponemos en el buscador que si las pone tal cual. Ejemplo: variables, kind
+  como formar la query tiene que ser el javascript
 
 
 
