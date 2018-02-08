@@ -67,6 +67,7 @@ s(tep) # Se introduce en las funciones
 n(ext) # Siguiente linea de mi funcion
 c(ont(inue)) # Hasta el siguiente breakpoint
 r(eturn) # until the current function returns
+unt(il) # sigue ejecutando hasta que la ejecucción continue en una linea con un número superior a la actual (como next?)
 b(reak) # [[filename:]lineno | function[, condition]]
 	Sin parametros muestra los breakpoints y los numera
 	b 5, i>4 # Para en la linea 5 solo si i vale mayor que 4
@@ -81,6 +82,14 @@ p expression # Evaluate the expression in the current context and print its valu
 pp expression # Like the p command, except the value of the expression is pretty-printed using the pprint module
 run / restart
 q(uit)
+whatis # nos dice el tipo de una variable
+debug # recursive debugger (para que sirve?):w
+!comando python # no es necesario poner la exclamación si el comando no se parece a ninguno de los de pdb, pero es más comodo por seguridad
+
+
+Subir/bajar por el stack trace
+up
+down
 
 
 # ePDB
