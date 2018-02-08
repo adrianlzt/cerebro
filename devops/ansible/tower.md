@@ -53,6 +53,9 @@ groups.name:NOMBRE
 Por variables del host:
 variables.icontains:FOO
 
+ansible_facts.ansible_lsb__major_release:"7"
+
+
 
 Poder buscar por una variable en concreto aun no se puede: https://github.com/ansible/awx/issues/371
 
@@ -108,10 +111,21 @@ curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=
   /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/mixins.py
     aqui tenemos la petición y parece que es donde se realiza el filtrado y se extraen los datos
       queryset = self.filter_queryset(self.get_queryset())
-         este parece que ha generado la query que se va a realizar sobre la bbdd
-   	  page = self.paginate_queryset(queryset)
-  	    /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/pagination.py(208)paginate_queryset()
-  	      por aqui es donde se gestiona la obtención de los datos
+        self.get_queryset() es la clave
+          ...
+          /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/manager.py:153 (get all() porque somos admin)
+            > /usr/lib/python2.7/site-packages/awx/main/managers.py(31)get_queryset()
+              """When the parent instance of the host query set has a `kind=smart` and a `host_filter`
+  	          set. Use the `host_filter` to generate the queryset for the hosts."""
+
+  	          > /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/query.py(161)__init__()
+  	          parece que aqui es donde vamos a generar la query
+
+
+  	          > /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/compiler.py(855)execute_sql()
+              donde se ejecuta el sql
+
+
 
 
 
