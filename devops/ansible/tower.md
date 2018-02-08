@@ -139,4 +139,49 @@ Mirar como se implementa search y tambien quien decide como se debe formular la 
   como formar la query tiene que ser el javascript
 
 
+/home/adrian/Documentos/opensolutions/carrefour/cmdb/awx/awx/ui/client/src/shared/smart-search/smart-search.controller.js 200
+aqui se distingue si estamos buscando por "ansible_facts" o por otra cosa
+La diferencia es que la función qs.encodeParam( para ansible es "searchTerm: true" y para el resto "relatedSearchTerm: true"
+Pero probando la UI no parece entrar ahi.
+
+Hay otro sitio donde hacen referencia al ansible_facts
+processJson: function(data) {
+  var ignored = ["type", "event_data", "related", "summary_fields", "url", "ansible_facts"];
+  return _.chain(data).cloneDeep().forEach(function(value, key, collection) {
+    ignored.indexOf(key) > -1 && delete collection[key]
+  }).value()
+}
+
+
+Una url de ejemplo preguntando por un ansible fact:
+curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=name\&host_filter\=variables__icontains\=estado4\&host_filter\=ansible_facts__fo2\=bar
+
+La query que veo contra el postgres
+SELECT COUNT(*) FROM (
+  SELECT DISTINCT
+    "main_host"."id" AS Col1,
+		"main_host"."created" AS Col2,
+		"main_host"."modified" AS Col3,
+		"main_host"."description" AS Col4,
+		"main_host"."created_by_id" AS Col5,
+		"main_host"."modified_by_id" AS Col6,
+		"main_host"."name" AS Col7,
+		"main_host"."inventory_id" AS Col8,
+		"main_host"."enabled" AS Col9,
+		"main_host"."instance_id" AS Col10,
+		"main_host"."variables" AS Col11,
+		"main_host"."last_job_id" AS Col12,
+		"main_host"."last_job_host_summary_id" AS Col13,
+		"main_host"."has_active_failures" AS Col14,
+		"main_host"."has_inventory_sources" AS Col15,
+		"main_host"."ansible_facts" AS Col16,
+		"main_host"."ansible_facts_modified" AS Col17,
+		"main_host"."insights_system_id" AS Col18
+  FROM "main_host" WHERE "main_host"."ansible_facts" @> %s
+)
+subquery, params: (<psycopg2._json.Json object at 0x79f1510>,)
+
+
+
+
 
