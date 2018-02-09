@@ -20,6 +20,15 @@ http://localhost
 admin:password
 
 
+# awx-manage
+comandos para gestionar/administrar awx
+awx/main/management/commands/
+
+Creo que extienden los de django
+    from django.core.management import execute_from_command_line
+
+
+
 # Seguridad
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
 
@@ -296,6 +305,8 @@ Aqui ya sabe que variables
 Cambiando el tipo de dato en el inventory.py de TextField a JSONBField ya funciona.
 
 TODO:
-  - crear migración para modificar el tipo de dato de string a jsonb?
+  - crear migración para modificar el tipo de dato de string a jsonb? -> OK
   - modificar la UI para que reconozca "variables" como hace con "ansible_facts"
-  - que los datos de inventario se almacenen como json (ahora era una string donde se metia yaml o json)
+  - que los datos de inventario se almacenen como json (ahora era una string donde se metia yaml o json) -> semi ok, si los generamos a mano simplemente evitar seleccionar el yaml (convertir yaml a json?)
+  - se rompe la ui. El primer host me dejó crearlo bien, pero ahora no me deja verlo ni agregar otros hosts (me tiene bloqueando el campo de variables, y si no meto nada peta por que intento almacenar '')
+  - probar si la api hace el filtrado correctamente por las variables json
