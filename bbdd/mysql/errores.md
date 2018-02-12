@@ -21,6 +21,8 @@ La bbdd te echa si se producen muchos (valor de la variable max_connect_errors) 
 El valor por defecto de max_connect_errors es 100. Podemos consultar el valor utilizado con:
 SHOW VARIABLES LIKE 'max_connect_errors';
 
+SET GLOBAL max_connect_errors=10000;
+
 Podemos ver el contenido donde se almacenan estos datos con:
 select * from host_cache limit 4; (db performance_schema, pero debe estar habilitado)
 https://dev.mysql.com/doc/refman/5.6/en/host-cache-table.html
