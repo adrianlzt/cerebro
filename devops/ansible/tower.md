@@ -126,6 +126,10 @@ En el container de awx corren muchas cosas:
 
 El container tiene el directorio del repo montado en /awx_devel, y es lo que usa par correr.
 
+Si modificamos algo del backend (python), uwsgi se recargará automáticamente.
+
+Para el frontend tendremos que lanzar: make devel-ui
+
 
 
 ## Recibiendo una peticion en la api
@@ -154,7 +158,8 @@ curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=
 Cuando hacemos un variables.icontains lo que hace es un LIKE en el field "variables" de la tabla de postgres.
 
 Cuando filtramos por un ansible fact hace otra cosa:
-http://localhost/api/v2/inventories/?page_size=20&order_by=name&search=ansible_facts.ansible_lsb__major_release:7&variables__icontains=FOO
+http://localhost/api/v2/inventories/1/hosts/?page_size=20&order_by=name&host_filter=ansible_facts__os=linux
+http://localhost/api/v2/inventories/        ?page_size=20&order_by=name&search=ansible_facts.ansible_lsb__major_release:7
 
 Lo pasa como un "search".
 Los ansible_facts también están almacenados en la postgres como un jsonb
@@ -169,6 +174,13 @@ Mirar como se implementa search y tambien quien decide como se debe formular la 
 aqui se distingue si estamos buscando por "ansible_facts" o por otra cosa
 La diferencia es que la función qs.encodeParam( para ansible es "searchTerm: true" y para el resto "relatedSearchTerm: true"
 Pero probando la UI no parece entrar ahi.
+
+
+Parece que el funcionamiento entre buscar contra la api de hosts (aqui si puede filtrar por ansible_facts):
+  http://localhost:8013/api/v2/hosts/?page_size=20&order_by=name&host_filter=ansible_facts__os=linux
+o contra la api de un inventario determinado, en su sección host (aqui no filtra por ansible_facts):
+  http://localhost:8013/api/v2/inventories/1/hosts/?page_size=20&order_by=name&ansible_facts__os=linux
+
 
 Hay otro sitio donde hacen referencia al ansible_facts
 processJson: function(data) {
@@ -330,3 +342,6 @@ Problema: al crear un nuevo host se envia el yaml por defecto y no se lo traga e
 Razón: por defecto se envia una string
 Arreglo: inventories-hosts/inventories/related/hosts/add/host-add.controller.js que convierta a json, si es yaml, antes de enviar
 ARREGLADO
+
+Problema: la api no filtra por variables, ni consigo sacar los ansible_facts que he metido a mano en la bbdd
+Razon: 
