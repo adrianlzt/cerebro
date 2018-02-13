@@ -325,6 +325,7 @@ TODO:
   - modificar la UI para que la busqueda de variables sea correcta
   - tambien se pueden meter variables a nivel de inventario, convertir a json y almacenar como json
   - probar a crear varios hosts con variables en yaml y json y ver que funciona bien
+  - poder filtrar por variables dentro de un inventario determinado, en la sección de hosts (en los hosts globales ya funciona)
 
 
 
@@ -343,5 +344,10 @@ Razón: por defecto se envia una string
 Arreglo: inventories-hosts/inventories/related/hosts/add/host-add.controller.js que convierta a json, si es yaml, antes de enviar
 ARREGLADO
 
-Problema: la api no filtra por variables, ni consigo sacar los ansible_facts que he metido a mano en la bbdd
-Razon: 
+Problema: al intentar guardar un smartinventory con un smart filter que tiene variables, me falla
+curl 'http://localhost:8013/api/v2/inventories/' --data-binary '{"name":"mi_env_listo","organization":1,"smart_hosts":{"host_filter":"variables__empresa=c4"},"smartinventory_variables":"---","variables":"","host_filter":"variables__empresa=c4","kind":"smart"}'
+Respuesta:
+DataError at /api/v2/inventories/
+invalid input syntax for type json
+LINE 1: ...00:00'::timestamptz, '', 2, 2, 'mi_env_listo', 1, '', false,...
+
