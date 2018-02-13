@@ -310,6 +310,7 @@ TODO:
   - que los datos de inventario se almacenen como json (ahora era una string donde se metia yaml o json) -> semi ok, si los generamos a mano simplemente evitar seleccionar el yaml (convertir yaml a json?)
   - se rompe la ui. El primer host me dejó crearlo bien, pero ahora no me deja verlo ni agregar otros hosts (me tiene bloqueando el campo de variables, y si no meto nada peta por que intento almacenar '')
   - probar si la api hace el filtrado correctamente por las variables json
+  - modificar la UI para que la busqueda de variables sea correcta
 
 
 
@@ -321,3 +322,8 @@ ARREGLADO
 Problema: cuando editamos las variables de un host como yaml y le damos a guardar, intenta hacer un UPDATE en la postgres con: "variables" = 'foo: bar...
 Razón: la ui envia texto plano al backend que lo enchufa directamente sobre la bbdd. Si se envia JSON se almacena correctamente en el tipo JSONB de la postgres
 Arreglo: transformar el yaml a json antes de hacer el PUT
+ARREGLADO
+
+Problema: al crear un nuevo host se envia el yaml por defecto y no se lo traga el backend
+Razón: por defecto se envia una string
+Arreglo: inventories-hosts/inventories/related/hosts/add/host-add.controller.js que convierta a json, si es yaml, antes de enviar
