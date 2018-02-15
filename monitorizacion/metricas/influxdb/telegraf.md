@@ -66,6 +66,11 @@ Para ver ayuda de un cierto plugin:
 
 telegraf --usage NOMBRE
 
+
+## cpu
+Hace uso de la lib gopsutil, que, para la cpu, lee /proc/stat.
+Va calculando la diferencia entre dos medidas (la primera ejecucción se descarta)
+
 ## filestat
 Para obtener si existe un fichero, su tamaño y md5 (opcional).
 CUIDADO, si no tenemos permisos en los ficheros no dirá nada, solo veremos que no saca información
