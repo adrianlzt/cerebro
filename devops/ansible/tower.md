@@ -54,6 +54,10 @@ En el script que cargamos en la interfaz web pondremos la configuración del plu
 Cuando luego queremos usarlo lo que hace tower es generar un script en python que hace un print del json del inventario almacenado.
 
 
+## Smart inventory
+De todas las máquinas localizadas por inventarios no smart, con los inventarios smart podemos hacer un subconjunto filtrando por un ansible_fact o variable.
+
+
 ## Filtrar en el inventario
 
 Por nombre de grupo:
@@ -131,29 +135,6 @@ Si modificamos algo del backend (python), uwsgi se recargará automáticamente.
 Para el frontend tendremos que lanzar: make devel-ui
 
 
-
-## Recibiendo una peticion en la api
-curl -u admin:password http://localhost/api/v2/hosts/\?page_size\=20\&order_by\=name\&host_filter\=variables__icontains\=estado
-
-  /usr/lib/python2.7/site-packages/awx/api/views.py(2124)list()
-    aqui tenemos la petición, con sus parametros, etc
-
-  /var/lib/awx/venv/awx/lib/python2.7/site-packages/rest_framework/mixins.py
-    aqui tenemos la petición y parece que es donde se realiza el filtrado y se extraen los datos
-      queryset = self.filter_queryset(self.get_queryset())
-        self.get_queryset() es la clave
-          ...
-          /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/manager.py:153 (get all() porque somos admin)
-            > /usr/lib/python2.7/site-packages/awx/main/managers.py(31)get_queryset()
-              """When the parent instance of the host query set has a `kind=smart` and a `host_filter`
-  	          set. Use the `host_filter` to generate the queryset for the hosts."""
-
-  	          > /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/query.py(161)__init__()
-  	          parece que aqui es donde vamos a generar la query
-
-
-  	          > /var/lib/awx/venv/awx/lib/python2.7/site-packages/django/db/models/sql/compiler.py(855)execute_sql()
-              donde se ejecuta el sql
 
 Cuando hacemos un variables.icontains lo que hace es un LIKE en el field "variables" de la tabla de postgres.
 
@@ -324,8 +305,6 @@ TODO:
   - probar si la api hace el filtrado correctamente por las variables json
   - modificar la UI para que la busqueda de variables sea correcta
   - tambien se pueden meter variables a nivel de inventario, convertir a json y almacenar como json
-  - probar a crear varios hosts con variables en yaml y json y ver que funciona bien
-  - poder filtrar por variables dentro de un inventario determinado, en la sección de hosts (en los hosts globales ya funciona)
 
 
 
@@ -344,10 +323,7 @@ Razón: por defecto se envia una string
 Arreglo: inventories-hosts/inventories/related/hosts/add/host-add.controller.js que convierta a json, si es yaml, antes de enviar
 ARREGLADO
 
-Problema: al intentar guardar un smartinventory con un smart filter que tiene variables, me falla
-curl 'http://localhost:8013/api/v2/inventories/' --data-binary '{"name":"mi_env_listo","organization":1,"smart_hosts":{"host_filter":"variables__empresa=c4"},"smartinventory_variables":"---","variables":"","host_filter":"variables__empresa=c4","kind":"smart"}'
-Respuesta:
-DataError at /api/v2/inventories/
-invalid input syntax for type json
-LINE 1: ...00:00'::timestamptz, '', 2, 2, 'mi_env_listo', 1, '', false,...
-
+Problema: al intentar guardar un smartinventory que no tiene variables, me falla
+Razón: estaba intentando almacenar '' en el json
+Arreglo: poner '{}' en el caso de que las variables sean ''
+ARREGLADO
