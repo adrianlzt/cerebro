@@ -298,32 +298,5 @@ Aqui ya sabe que variables
 Cambiando el tipo de dato en el inventory.py de TextField a JSONBField ya funciona.
 
 TODO:
-  - crear migración para modificar el tipo de dato de string a jsonb? -> OK
-  - modificar la UI para que reconozca "variables" como hace con "ansible_facts"
-  - que los datos de inventario se almacenen como json (ahora era una string donde se metia yaml o json) -> semi ok, si los generamos a mano simplemente evitar seleccionar el yaml (convertir yaml a json?)
-  - se rompe la ui. El primer host me dejó crearlo bien, pero ahora no me deja verlo ni agregar otros hosts (me tiene bloqueando el campo de variables, y si no meto nada peta por que intento almacenar '')
-  - probar si la api hace el filtrado correctamente por las variables json
-  - modificar la UI para que la busqueda de variables sea correcta
-  - tambien se pueden meter variables a nivel de inventario, convertir a json y almacenar como json
-
-
-
-Problema: la ui no pinta bien.
-Razón: el espera que el campo "variables" que le viene de la API sea un texto, y que ese texto pueda ser JSON o YAML. Trás la modificación le está llegando un objeto, no un json codificado en texto
-Arreglo: convertimos la respuesta de la API (un JSON) en una string antes de continuar
-ARREGLADO
-
-Problema: cuando editamos las variables de un host como yaml y le damos a guardar, intenta hacer un UPDATE en la postgres con: "variables" = 'foo: bar...
-Razón: la ui envia texto plano al backend que lo enchufa directamente sobre la bbdd. Si se envia JSON se almacena correctamente en el tipo JSONB de la postgres
-Arreglo: transformar el yaml a json antes de hacer el PUT
-ARREGLADO
-
-Problema: al crear un nuevo host se envia el yaml por defecto y no se lo traga el backend
-Razón: por defecto se envia una string
-Arreglo: inventories-hosts/inventories/related/hosts/add/host-add.controller.js que convierta a json, si es yaml, antes de enviar
-ARREGLADO
-
-Problema: al intentar guardar un smartinventory que no tiene variables, me falla
-Razón: estaba intentando almacenar '' en el json
-Arreglo: poner '{}' en el caso de que las variables sean ''
-ARREGLADO
+  - que la migracion convierta los valores actuales texto yaml/json a un jsonb
+  - el filtro de hosts en la vista de un inventario determinado no funciona el filtrado por ansible_facts ni variables
