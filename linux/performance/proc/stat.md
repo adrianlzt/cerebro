@@ -4,6 +4,15 @@ https://www.kernel.org/doc/Documentation/filesystems/proc.txt
 
 ## /proc/stat
 http://man7.org/linux/man-pages/man5/proc.5.html
+Buscar por /proc/stat
+Muestra el tiempo en centésimas de segundo el tiempo dedicado por la cpu a distintas tareas: user, nice, sys, idle, iowait, irq, softirq, steal, guest, guest_nice
+Ejemplo:
+  cpu 10132153 290696 3084719 46828483 16683 0 25195 0 175628 0
+  cpu0 1393280 32966 572056 13343292 6130 0 17875 0 23933 0
+
+
+
+## /proc/[PID]/stat
 Sección /proc/[pid]/stat
 Para sacar un campo sin perderse (en el man viene entre parentesis el número de campo que es): 
 cat stat | cut -d' ' -f 18  (ejemplo para sacar el priority)

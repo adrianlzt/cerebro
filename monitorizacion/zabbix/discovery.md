@@ -38,7 +38,8 @@ Cuando un host implemente este template automáticamente aparecerán los items q
 
 También podemos usar un trap para generar el LDD.
 Cuando creamos la "Discovery rule" ponemos "Type: Zabbix trapper" y una key.
-Luego tenemos que enviar el JSON como si fuese un envío de una métrica a esa key.
+Luego tenemos que enviar el JSON como si fuese un envío de una métrica a esa key. Ejemplo:
+  NewMetric("AdriTestHostLDD", "adri.test.telegraf", "{\"data\":[{\"{#ID}\":\"AA\"}]}")
 
 Para definir que debe crearse automáticamente haremos uso de los "prototypes".
 
