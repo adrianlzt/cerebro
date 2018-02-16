@@ -38,6 +38,8 @@ node.data: true/false
 
 Si queremos que solo intente unirse en cluster con ciertos nodos (poner los nodos excepto él mismo):
 discovery.zen.ping.unicast.hosts: nodoA,nodoB
+  a partir de la version 7 podemos especificar un fichero con los nodos que puede ser actualizado por un tercero en cualquier momento
+  https://www.elastic.co/guide/en/elasticsearch/plugins/master/discovery-file.html
 
 Si tenemos varias interfaces y queremos solo comunicarnos por una:
 network.publish_host: xxx

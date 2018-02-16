@@ -36,6 +36,10 @@ Este script debe devolver un JSON tipo:
 
 Cuando un host implemente este template automáticamente aparecerán los items que descubra el script.
 
+También podemos usar un trap para generar el LDD.
+Cuando creamos la "Discovery rule" ponemos "Type: Zabbix trapper" y una key.
+Luego tenemos que enviar el JSON como si fuese un envío de una métrica a esa key.
+
 Para definir que debe crearse automáticamente haremos uso de los "prototypes".
 
 Podemos crear prototipos de:
@@ -50,3 +54,10 @@ Creo que es obligatorio usar en el nombre alguna de las variables, para que no s
 Si en la configuración el host vamos a sus items, veremos los autodescubiertos resaltados en rojo.
 
 Podemos ir a la discovery rule en el host para ver si ha habido algún problema.
+
+Ejemplo, para un host que implementa un template, tenemos un LDD que crea item prototypes.
+  Name: CPU Usage $1
+  Type: Zabbix trapper
+  Key: cpu.usage[{#ID}]
+
+Esto creará ese item asociado el host, usando la variable {#ID} en el nombre y como key al enviar el trap.
