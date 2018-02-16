@@ -49,6 +49,17 @@ if err != nil {
 }
 
 
+Tambien podemos pasar un map a json:
+a := make(map[string]string)
+a["uno"] = "111"
+a["dos"] = "222"
+
+mijson, _ := json.Marshal(a)
+fmt.Println(string(mijson))
+// {"dos":"222","uno":"111"}
+
+
+
 # JSON a struct
 type FileContent struct {
   LastScan time.Time
