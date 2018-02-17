@@ -1,3 +1,8 @@
+# Aumentar nivel de log
+zabbix_server -R log_level_decrease=trapper
+  para mostrar info sobre los trappers
+
+
 # Web interface
 https://www.zabbix.com/documentation/4.0/manual/web_interface/debug_mode
 
