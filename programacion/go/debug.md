@@ -1,25 +1,41 @@
-# Godebug
-https://blog.cloudflare.com/go-has-a-debugger-and-its-awesome/
-https://github.com/mailgun/godebug
+# Delve
+https://github.com/derekparker/delve
+go get -u github.com/derekparker/delve/cmd/dlv
 
-No parece muy potente como debugger, pero parece útil para generar un binario debuggeable para probarlo en producción.
+UI: https://github.com/aarzilli/gdlv
+  cd path/package/main
+  gdlv debug -arg1 val1
 
-go get github.com/mailgun/godebug
+neovim plugin: https://github.com/jodosha/vim-godebug
+  :GoToggleBreakpoint
+  :GoDebug
+  Pero esto solo nos funciona si estamos en el package main
 
-Para meter breakpoints poner líneas:
-_ = "breakpoint"
 
-Ejecutar con:
-godebug run main.go
+Tenemos que buscar donde está el "package main" de nuestra aplicación.
+Por ejemplo en telegraf: github.com/influxdata/telegraf/cmd/telegraf
 
-Comandos
-h help
-n next
-s step
-c continue
-l list
-p [expr]
-q quit
+Arrancamos el debugger:
+dlv debug github.com/influxdata/telegraf/cmd/telegraf
+  tambien podemos ir a ese directorio y simplemente "dlv debug"
+  Si queremos pasar parámetros agregar al final: -- -arg1 -arg2 value2
+
+> break main.main
+> c
+>
+
+Poner un breakpoint en un fichero determinado:
+b /home/adrian/.gvm/pkgsets/go1.9.2/global/src/github.com/influxdata/telegraf/plugins/aggregators/zabbix_lld/zabbix_ldd.go:54
+
+Con "help" podemos ver los comandos disponibles
+
+Típicos:
+p X  		mostrar valor de X
+funcs 	mostrar lista de funciones (nos puede valer para poner breakpoints)
+s		  	entrar en una func
+stepout	salir a la funcion de arriba
+n  			siguiente linea
+stack		mostrar stack
 
 
 # Cutre
