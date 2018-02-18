@@ -96,6 +96,9 @@ mount -t nfs servernfs:/tmp /home/cliente/temp
 	servernfs:/tmp /home/cliente/temp nfs defaults,rw 0 0
 	servernfs:/tmp /home/cliente/temp nfs4 defaults,rw 0 0
 
+Forzar un umount
+umount -lf /mnt
+
 
 ## Opciones para el exports
 http://linux.die.net/man/5/exports

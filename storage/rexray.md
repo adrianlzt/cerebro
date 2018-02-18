@@ -2,9 +2,22 @@ https://github.com/codedellemc/rexray
 
 Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, Amazon S3, etc)
 
+
+# Usandolo como plugin de docker
+docker plugin install --alias rexray rexray/rbd RBD_DEFAULTPOOL=docker RBD_CEPHARGS="-n client.docker"
+  previamente hemos instalado ceph client y creado un user "client.docker" y puesto sy keyring en /etc/ceph/ceph.client.docker.keyring
+  mirar como desplegar el agente con la instalación de ansible (usar sección [clients])
+  mirar /home/adrian/adrianRepo/storage/ceph/auth.md
+
+
+
+
+
+RESTO DE INSTRUCCIONES PARA USAR REXRAY COMO NO PLUGIN
+
 # Instalar
 curl -sSL https://dl.bintray.com/emccode/rexray/install | sh
-RPMs y DEBs: https://dl.bintray.com/emccode/rexray/stable/
+RPMs y DEBs: https://emccode.bintray.com/rexray/stable/
 Para CentOS y version 0.9.0 instala: https://dl.bintray.com/emccode/rexray/stable/0.9.0/rexray-0.9.0-1.x86_64.rpm
 
 
@@ -18,9 +31,13 @@ Para ceph:
 libstorage:
   service: rbd
 rbd:
-  defaultPool: rbd
+  defaultPool: docker
 
 Mirar como instalar ceph para que este disponible: storage/ceph/install.md (Instalar un cliente)
+Podemos tambien usar la instalación con ansible usando [clients]
+
+Crear un pool, de nombre docker, para rexray:
+ceph osd pool create docker 16
 
 
 # Run
