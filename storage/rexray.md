@@ -73,6 +73,11 @@ docker volume ls
 Crear un volumen:
 docker volume create --driver=rexray --name=psql --opt=size=2
 
+Usando volumen:
+docker run --rm -it -v "prueba:/mnt" alpine
+
+No se puede montar el mismo volumen en dos containers simultáneamente
+
 
 Ejemplo usando un volumen persistente
 http://rexray.readthedocs.io/en/stable/user-guide/applications/
