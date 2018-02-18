@@ -1,4 +1,5 @@
 http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshooting-pg/
+http://docs.ceph.com/docs/master/rados/operations/health-checks/
 problemas con los pg
 
 

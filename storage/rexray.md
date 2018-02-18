@@ -4,10 +4,21 @@ Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, 
 
 
 # Usandolo como plugin de docker
-docker plugin install --alias rexray rexray/rbd RBD_DEFAULTPOOL=docker RBD_CEPHARGS="-n client.docker"
+docker plugin install rexray/rbd RBD_DEFAULTPOOL=docker RBD_CEPHARGS="-n client.docker"
   previamente hemos instalado ceph client y creado un user "client.docker" y puesto sy keyring en /etc/ceph/ceph.client.docker.keyring
+    no tengo claro que permisos necesito, al final he terminado usando el client.admin y el pool por defecto rbd
+      docker plugin install rexray/rbd
   mirar como desplegar el agente con la instalación de ansible (usar sección [clients])
   mirar /home/adrian/adrianRepo/storage/ceph/auth.md
+
+  Tenemos que tener cargado el modulo rdb
+	modprobe rbd
+
+  Comprobar que podemos administrar rdb:
+  CEPH_ARGS="-n client.docker" rbd ls
+
+Crear volumen:
+docker volume create --driver rexray/rbd prueba
 
 
 

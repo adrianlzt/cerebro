@@ -1,14 +1,13 @@
 http://docs.ceph.com/docs/master/rados/operations/user-management/
 
 
-Listar usuarios
+# Listar usuarios
 ceph auth ls
 
-
-Crear user
+# Crear user
 ceph auth add client.docker mon 'allow r' osd 'allow rw pool=docker'
 
-Obtener key:
+# Obtener key
 ceph auth print-key client.docker
 
 Con esa key generamos el fichero tipo:
@@ -18,3 +17,7 @@ Con esa key generamos el fichero tipo:
 
 Para usar esa key la copiamos al cliente y hacemos:
 ceph -n client.docker health
+
+
+# Modificar permisos
+ceph auth caps client.docker mon 'allow r' osd 'allow rw pool=rbd'
