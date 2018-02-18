@@ -1,3 +1,20 @@
+# Activar performance schema
+Debe estar activado en la compilación. Chequear que lo tenemos con:
+mysqld --verbose --help | grep -- "--performance-schema"
+
+
+Comprobar si está activo:
+SHOW VARIABLES LIKE 'performance_schema';
+
+
+Activar, my.cnf:
+[mysqld]
+performance_schema
+
+
+
+
+
 mysql> show full processlist;
 Ver que usuarios están conectados y que están haciendo.
 
