@@ -24,7 +24,8 @@ SHOW VARIABLES LIKE 'max_connect_errors';
 SET GLOBAL max_connect_errors=10000;
 
 Podemos ver el contenido donde se almacenan estos datos con:
-select * from host_cache limit 4; (db performance_schema, pero debe estar habilitado)
+select * from performance_schema.host_cache\G
+  debe estar habilitado el performance_schema, mirar performance_schema.md
 https://dev.mysql.com/doc/refman/5.6/en/host-cache-table.html
 
 select * from hosts; tambien nos dará algo de información sobre conexiones totales.

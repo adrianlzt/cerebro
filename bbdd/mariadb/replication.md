@@ -112,6 +112,14 @@ Standar replication is asynchronous
 
 
 ## Galera / Replicación síncrona / Replicacion multi-master ##
+https://mariadb.com/kb/en/library/about-galera-replication/
+http://galeracluster.com/documentation-webpages/introduction.html
+Replicación síncrona -> el cluster bloquea la transacción hasta que los cambios se producen en todos los nodos
+Replicación asíncrona -> existe un delay entre que los cambios se producen en el nodo donde se ejecuta el commit y el resto
+
+Galera usa una técnica llamada "Certification-based" para conseguir replicación síncrona.
+http://galeracluster.com/documentation-webpages/certificationbasedreplication.html
+
 Es más lento que la replicación asíncrona (el cluster será tan lento como el nodo más lento)
 
 Los nodos que se unen al cluster son sincronizados automáticamente.
