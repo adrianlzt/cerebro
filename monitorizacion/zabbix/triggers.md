@@ -15,6 +15,9 @@ Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
   - forecast
   - etc
 
+Si tenemos una métrica que sea un contador creciente lo que haremos es almacenarla como delta (en la config del item, Store value -> Delta)
+De esta manera ya podremos aplicar los triggers sobre el ese valor derivado.
+
 
 CUIDADO!
 Puede que esperemos un resultado determinado y comparemos contra eso, pero de un error y tengamos otra cosa.

@@ -1,6 +1,12 @@
 https://www.zabbix.com/documentation/4.0/manual/installation/requirements
 Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
 
+# History y trends
+Por defecto zabbix tiene un proceso que revisa cada hora que métricas del history debe convertir a trends y borrar.
+Esto en instalaciones grandes mata a la bbdd.
+Mejor usar partitioning de postgres, creando nosotros un proceso que genere los trends y borre particiones con datos antiguos.
+
+
 # Cache
 https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
