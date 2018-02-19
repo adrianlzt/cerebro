@@ -13,3 +13,20 @@ Para configurar un proxy:
     docker run --name some-zabbix-proxy-sqlite3 -it -e ZBX_HOSTNAME=archerProxy -e ZBX_SERVER_HOST=192.168.1.95 -e ZBX_DEBUGLEVEL=3 -p 10051:10051 zabbix/zabbix-proxy-sqlite3:latest
     Escucha peticiones en el puerto 10051 y las reenvia al server
 
+
+# Internals
+Info que envia el proxy al server tras recibir un trap:
+
+ZBXDV
+{
+	"request":"history data",
+	"host":"archerProxy",
+	"data":[
+	  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","clock":1519043805,"ns":0,"value":"0.410375"},
+	  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","clock":1519043805,"ns":1,"value":"0.277847"}
+	],
+	"clock":1519043806,
+	"ns":207875347
+}
+
+

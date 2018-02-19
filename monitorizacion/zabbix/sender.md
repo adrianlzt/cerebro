@@ -12,6 +12,8 @@ Tras enviar el mensaje el servidor zabbix cierra la conex (no podemos reutilizar
 
 La hora de la métrica trap será la hora a la que llegue al servidor
 https://support.zabbix.com/browse/ZBXNEXT-2476
+Haciendo pruebas con la lib de go-zabbix, puedo definir la hora que yo quiera y será la que se almacene.
+Tambien puedo enviar métricas en el pasado (más antiguas que la última), o enviar dos métricas para la misma fecha (se muestran dos curvas en la gráfica con una tercera linea haciendo la media)
 
 
 Libreria sneder en go
@@ -31,8 +33,17 @@ https://github.com/englishm/zabbix_send
 # Formato
 Se envia un formato binario con un json dentro
 
-Envio (legible):
-{"request":"sender data","data":[{"host":"AdriTestHostLDD","key":"cpu","value":"1.22","clock":1518775242},{"host":"AdriTestHostLDD","key":"status","value":"OK","clock":1518775242}],"clock":1518775242}
+Envio (legible, copiado desde wirehsark):
+	ZBXD#
+	{
+		"request":"sender data",
+		"data":[
+		  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.410375","clock":1519043805},
+		  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.277847","clock":1519043805}
+		],
+		"clock":1519043805
+	}
 
 Respuesta (legible):
 {"response":"success","info":"processed: 2; failed: 0; total: 2; seconds spent: 0.000268"}
+
