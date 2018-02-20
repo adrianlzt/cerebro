@@ -5,6 +5,8 @@ http://serverfault.com/questions/605275/some-questions-about-kernel-random-param
 /proc/sys/kernel/random/entropy_avail
 Numero de bits de entropia
 
+En mi portatil veo un crecimiento de unos 1500 bits/min, hasta llegar a los 3000bits donde deja de crecer.
+
 /proc/sys/kernel/random/poolsize
 Linux 2.4: tamaño del pool en bytes. Se puede escribir para poner alguno de los valores: 32, 64, 128, 256, 512, 1024, or 2048
 Linux 2.6: tamaño en bits, 4096 bits
@@ -53,6 +55,16 @@ yum install rng-tools
 rngd -r /dev/urandom
 
 
-Medir cuanta entropia tenemos y como se va generando
+# Medir cuanta entropia tenemos y como se va generando
 http://1wt.eu/tools/readspeed/
 http://serverfault.com/questions/214605/gpg-not-enough-entropy
+
+Telegraf: input kernel entropy_avail
+
+
+
+# Gastar entropía
+with open("/dev/random", 'rb') as fd:
+    fd.read(100)
+
+Esto lee 100 bytes -> 800 bits
