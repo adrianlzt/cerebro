@@ -34,14 +34,14 @@ Miraremos la cola "runnable" y no deberá sobrepasar el número de CPUs en nuest
 Num de cpus: cat /proc/cpuinfo | egrep "^processor" | wc -l
 
 cat /proc/stat | grep procs
-  procs_running, elementos en la cola runnable
-  procs_blocked, esperando io (otras opciones?)
+  procs_running, threads en la cola runnable
+  procs_blocked, threads esperando io (otras opciones?)
 
 vmstat -w 1
   columna "r" nos dice el número de procesos ejecutables (ejecutandose o esperando para ser ejecutados)
 
 sar -q
-  columna "runq-sz" 
+  columna "runq-sz"
 
 sudo perf sched record sleep 10 && sudo perf sched latency
   miraremos las columas de average y maximum
