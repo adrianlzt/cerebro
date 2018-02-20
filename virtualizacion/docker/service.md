@@ -33,3 +33,6 @@ docker service update --force nombre
 
 # API
 https://docs.docker.com/engine/api/v1.24/#39-services
+
+https://forums.docker.com/t/docker-swarm-scale-service-using-update-api/19589/9
+Ejemplos para hacer un scale de un service con la API

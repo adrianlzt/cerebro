@@ -32,6 +32,14 @@ docker run -d --volume-driver=rexray -v pepe:/data redis
 
 No podemos montar el mismo volumen en dos nodos distintos de un swarm. No se si esto es limitacion de rexray o docker.
 
+Openshift tiene una tabla de compatibilidades: https://docs.openshift.com/dedicated/architecture/additional_concepts/storage.html#pv-access-modes
+Los únicos que permiten RW de varios containers sobre un mismo volumen son NFS y GlusterFS, los que nativamente lo soportan.
+
+
+# Templating con volumenes (para swarm services)
+docker >= 1.13
+docker service create --name myservice --mount type=volume,src="{{.Task.Name}}",dst=/results/ busybox top
+
 
 
 
@@ -70,8 +78,12 @@ Si solo tenemos un nodo podemos tener volumenes persistentes locales.
 ## REX-Ray
 mirar storage/rex-ray.md
 Parece el mejor. Desarrollo continuado soportado por EMC.
-Soporta ceph, virtualbox, cabinas...
+Soporta ceph rbd, virtualbox, cabinas...
 
+
+## CephFS
+Si tenemos un cluster de Ceph podemos usar cephfs para montar localmente en cada nodo un directorio compartido donde crear los volumenes.
+Si queremos que cada container tenga su propio volumen, podemos, en el arranque del container crear un uuid único y usar ese dir: https://github.com/moby/moby/issues/30008
 
 
 ## Infinit
@@ -81,9 +93,7 @@ Mirar storage/infinit.md
 
 ## Flocker
 https://clusterhq.com/flocker/introduction/
-
 Almacena en un storage block-based los volumes y se encarga de moverlos a donde los necesite el container.
-
 Ceph esta disponible como storage de manera experimental.
 
 
@@ -101,11 +111,12 @@ Aun muy pronto para usarlo (10/5/2017)
 ## contiv
 https://github.com/contiv/volplugin
 Soporta ceph o nfs
+Experimental y desarrollo parado (oct 2016)
 
 
 ## horcrux
 https://github.com/muthu-r/horcrux
-Soporta minio como backend
+Soporta s3 como backend
 Version 00.02 y parece que desarrollo parado desde feb'16
 
 

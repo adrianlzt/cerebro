@@ -1,4 +1,6 @@
 http://docs.ceph.com/docs/master/cephfs/best-practices/
+http://docs.ceph.com/docs/jewel/start/quick-cephfs/
+https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/2/html/ceph_file_system_guide_technology_preview/what_is_the_ceph_file_system_cephfs
 
 Una de las tres opciones de Ceph es usarlo directamente como un filesystem, con la ventaja de que es un FS distribuido (varios clientes pueden escribir/leer en él simultánemanete).
 
