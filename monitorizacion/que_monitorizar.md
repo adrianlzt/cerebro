@@ -35,6 +35,11 @@ Basicos:
 
   memoria dedicada a las page tables? Mucho mmap? Mirar http://www.scylladb.com/2017/10/05/io-access-methods-scylla/  Copying and MMU activity
 
+  Máquina física:
+    - fallos de memoria:
+      EDAC (Error Detection and Correction kernel module)
+      edac-utils, herramienta que nos avisa de los errores que se producen
+
 
 
 https://vividcortex.com/blog/2013/10/14/what-should-i-monitor/

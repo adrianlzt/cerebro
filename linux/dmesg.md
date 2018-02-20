@@ -24,3 +24,7 @@ https://access.redhat.com/solutions/2138571
 Una CPU se ha quedado pillada (la que esté entre corchetes).
 Se sacan call stacks y valores de registros de todas las CPUs.
 Parece que lo de sacar el call stack no siempre funciona.
+
+EDAC MC0: 1 CE none on DIMM0
+EDAC MC0: 1 CE correctable patrol data ECC on DIMM0
+errores de memoria

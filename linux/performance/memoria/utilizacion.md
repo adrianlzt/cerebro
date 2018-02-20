@@ -61,3 +61,8 @@ Tambien con perf podríamos medirlo.
 
 # Errores
 dmesg
+
+ejemplos de errores de memoria:
+[1597034.657023] EDAC MC0: 1 CE correctable patrol data ECC on DIMM0 (channel:0 slot:1 page:0x0 offset:0x0 grain:32 syndrome:0x391a5d80 - bank 2, cas 2832, ras 5977
+[1597035.659016] EDAC MC0: 1 CE none on DIMM0 (channel:0 slot:0 page:0x0 offset:0x0 grain:32 syndrome:0x554c9e08 - bank 2, cas 2840, ras 4261
+
