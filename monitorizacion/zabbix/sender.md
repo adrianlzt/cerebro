@@ -7,6 +7,9 @@ El puerto por defecto es el 10051 (donde estará escuchando el zabbix server)
 
 zabbix_sender -z zabbix -s "Linux DB3" -k db.connections -o 43
 
+echo "<hostname> <key> <timestamp> <value>" | zabbix_sender -z SERVER -i - -T
+echo "<hostname> <key> <value>" | zabbix_sender -z SERVER -i -
+
 Podemos enviar hasta 250 métricas en el mismo mensaje.
 Tras enviar el mensaje el servidor zabbix cierra la conex (no podemos reutilizar la conex para enviar varios paquetes de métricas)
 

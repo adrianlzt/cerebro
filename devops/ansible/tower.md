@@ -78,6 +78,10 @@ git clone https://github.com/ansible/awx.git
 cd awx
 mirar CONTRIBUTING.md
 
+Hacer build de las imágenes:
+ansible-playbook installer/build.yml
+  hay un bug que hace necesario usar python docker<3.0 (20/2/2018)
+
 make docker-compose-build
   construir la imagen base
 
