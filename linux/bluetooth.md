@@ -10,6 +10,10 @@ https://bbs.archlinux.org/viewtopic.php?id=226325
 Mala calidad de audio? ejecutar
 pacmd set-card-profile 2 a2dp_sink
 
+si no es el index 2 mirar con
+pacmd list-sinks | grep -A 1 index
+  buscar por el sink bluez
+
 
 
 
