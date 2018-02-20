@@ -85,6 +85,7 @@ Se activa si pasa de 20. Se desactiva si baja de 15
 
 ## Matematicas
 ({server1:system.cpu.load[all,avg1].last()}>5) + ({server2:system.cpu.load[all,avg1].last()}>5) + ({server3:system.cpu.load[all,avg1].last()}>5)>=2
+({Template Telegraf Linux:telegraf.system.load1.last()}/{Template Telegraf Linux:telegraf.system.n_cpus.last()})>1
 
 
 ## Monitorizar todos los paramaetros de un item
