@@ -43,7 +43,9 @@ Temperatura, fecha de fabricación, números de arranques del disco, etc
 smartctl --attributes /dev/sda
 
 Escanear todos los discos:
-smartctl --scan | cut -d ' ' -f 1 | xargs -n1 smartctl -H
+smartctl --scan | cut -d ' ' -f 1 | xargs -n 1 -I {} sh -c "smartctl -q errorsonly -H {} || echo {}"
+  solo devuelve output si hay algún error
+  con smartctl -a XXX pueden aparecer errores que sucedieron ¿hace tiempo?, que con -H no dice nada
 
 
 NO se pueden borrar errores que aparezcan en SMART.

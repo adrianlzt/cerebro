@@ -56,3 +56,7 @@ find /var/lib/puppet/reports/ -type f -ctime +7 -print0 | xargs -0 -P 4 -n 20 rm
 
 xargs -r
   no ejecutarse si el stdin esta vacío
+
+
+Varios comandos como parámetro
+echo -e "/dev/sda\n/dev/sdb" | xargs -n 1 -I {} sh -c "smartctl -q errorsonly -H {} || echo {}"

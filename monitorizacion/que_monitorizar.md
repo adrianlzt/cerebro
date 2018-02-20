@@ -39,6 +39,18 @@ Basicos:
     - fallos de memoria:
       EDAC (Error Detection and Correction kernel module)
       edac-utils, herramienta que nos avisa de los errores que se producen
+      en el dmesg podemos encontrar mensajes tipo:
+        [1080637.049021] EDAC MC0: 1 CE none on DIMM3 (channel:1 slot:2 page:0x0 offset:0x0 grain:32 syndrome:0xa0513410 - bank 2, cas 336, ras 3394
+
+
+    - fallos en la fuente de alimentación?
+      parece que si la fuente no funciona bien puede retornar fallos de "ata" en el dmesg. SMART no dirá nada
+      http://eliasoenal.com/2012/10/31/power-supply-failures-can-be-pretty-annoying-to-find/
+      Mensajes tipo:
+        ata1.00: BMDMA stat 0x24
+        ata1.00: failed command: READ DMA
+        ata1.00: status: { DRDY ERR }
+        ata1.00: error: { UNC }
 
 
 
@@ -46,9 +58,9 @@ https://vividcortex.com/blog/2013/10/14/what-should-i-monitor/
 
 http://word.bitly.com/post/74839060954/ten-things-to-monitor
   Fork rate (creación de procesos por segundo)
-  Swap-in/out rate 
+  Swap-in/out rate
     es más importante ver el número de páginas que se están swapeando por minuto que el tamaño total de swap; un gran swap estático puede no empeorar el performance
-  Server boot notification (avisar si el servidor se ha reiniciado). 
+  Server boot notification (avisar si el servidor se ha reiniciado).
     Hacer checkeando el uptime de la máquina, si es menor de 1h avisar (dejar margen para que se ejecute el check)
     El check debería quedarse en estado CRITICAL hasta que lo quitemos nosotros. No tiene que tener reintentos.
   ntp: ntpd running. clock skew inside datacenter. clock skew against external source
