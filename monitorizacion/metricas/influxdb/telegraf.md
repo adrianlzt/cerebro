@@ -66,6 +66,9 @@ Para ver ayuda de un cierto plugin:
 
 telegraf --usage NOMBRE
 
+## elasticsearch
+no nos da info detallada de cada índice: https://github.com/influxdata/telegraf/pull/2872
+una vez tengamos esa info detallada, hacer un aggregator para sacar la info de un pattern junta, por ejemplo, sacar toda la info de los índices logstash-* como una sola métrica
 
 ## cpu
 Hace uso de la lib gopsutil, que, para la cpu, lee /proc/stat.
