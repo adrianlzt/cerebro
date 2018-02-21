@@ -70,6 +70,10 @@ telegraf --usage NOMBRE
 no nos da info detallada de cada índice: https://github.com/influxdata/telegraf/pull/2872
 una vez tengamos esa info detallada, hacer un aggregator para sacar la info de un pattern junta, por ejemplo, sacar toda la info de los índices logstash-* como una sola métrica
 
+## mem
+La memoria used la calcula (la lib gopsutil) como:
+ret.Used = ret.Total - ret.Available
+
 ## cpu
 Hace uso de la lib gopsutil, que, para la cpu, lee /proc/stat.
 Va calculando la diferencia entre dos medidas (la primera ejecucción se descarta)
