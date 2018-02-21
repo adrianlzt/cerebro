@@ -42,6 +42,14 @@ Basicos:
       en el dmesg podemos encontrar mensajes tipo:
         [1080637.049021] EDAC MC0: 1 CE none on DIMM3 (channel:1 slot:2 page:0x0 offset:0x0 grain:32 syndrome:0xa0513410 - bank 2, cas 336, ras 3394
 
+      De la man page de memtester:
+      Note  that  problems  in other  hardware  areas  (overheating  CPU,  out-of-specification power supply, etc.) can cause intermittent memory faults
+      memtester MEMORIA[M|G] LOOPS
+        si solicitamos más memoria de la disponible memtester va a reducir la cantidad hasta poder hacer un mlock
+        si solicitamos demasiada memoria el sistema puede empezar a swapear y podría saltar tambien el OOM killer
+
+      Tambien podemos instalar memtest86+, configurar una entrada en grub (memtest-setup), y arrancar ahí para probar la memoria
+
 
     - fallos en la fuente de alimentación?
       parece que si la fuente no funciona bien puede retornar fallos de "ata" en el dmesg. SMART no dirá nada
@@ -51,6 +59,16 @@ Basicos:
         ata1.00: failed command: READ DMA
         ata1.00: status: { DRDY ERR }
         ata1.00: error: { UNC }
+
+    - sensores (temperatura, voltage, revoluciones) fuera de rango
+      usar lm_sensors:
+        yum install lm_sensors
+        sensors-detect
+          para aceptar todo: yes YES | sensors-detect
+        sensors
+
+      He visto algunas inconsistencias en ciertas ejecucciónes:
+      in6:          +3.06 V  (min =  +4.05 V, max =  +1.79 V)  ALARM
 
 
 

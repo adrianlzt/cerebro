@@ -48,12 +48,15 @@ smartctl --scan | cut -d ' ' -f 1 | xargs -n 1 -I {} sh -c "smartctl -q errorson
   con smartctl -a XXX pueden aparecer errores que sucedieron ¿hace tiempo?, que con -H no dice nada
 
   Tambien, si tenemos arrancado smartd, podemos ver errores en el journal, que no veo con el smartctl:
-  Device: /dev/sda [SAT], 18 Offline uncorrectable sectors
+    Device: /dev/sda [SAT], 18 Offline uncorrectable sectors
 
   Si queremos un test más completo:
   smartctl -t long /dev/sdc
     tardará como 1h30, para ver los resultados
   smartctl -l selftest /dev/sdc
+    he visto un caso donde este test no daba error, pero mientras corría saltaban errores en el dmesg tipo:
+      [387007.523646] sd 0:0:2:0: [sdc] FAILED Result: hostbyte=DID_SOFT_ERROR driverbyte=DRIVER_OK
+      [387007.523661] sd 0:0:2:0: [sdc] CDB: ATA command pass through(16) 85 06 2c 00 00 00 00 00 00 00 00 00 00 00 e5 00
 
 
 NO se pueden borrar errores que aparezcan en SMART.
