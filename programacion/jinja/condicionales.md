@@ -2,6 +2,7 @@ http://jinja.pocoo.org/docs/dev/templates/#tests
 http://jinja.pocoo.org/docs/dev/templates/#expressions
 
 {% if foo > 4 %}
+{% if not foo > 4 %}
 
 
 {% if service %}
