@@ -8,10 +8,11 @@ str is for strings of bytes. These are very similar in nature to how strings are
 unicode is for strings of unicode code points.
 
 
+https://stackoverflow.com/questions/15261793/python-efficient-method-to-replace-accents-%C3%A9-to-e-remove-a-za-z-d-s-and
 Convertir unicode a str, convirtiendo los símbolos raros (á, é, ñ, etc) en valores ascii
 import unicodedata
-unicodedata.normalize('NFKD', u"áéÍÓñ").encode('ascii','ignore')
-'aeIOn'
+s=u"españa él"
+''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
 
 
 
