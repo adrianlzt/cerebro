@@ -17,6 +17,23 @@ mirar github_enterprise.md
 Hay dos tipos de hooks, lado cliente y lado servidor
 
 ## client-side hooks
+Podemos modificar el path de los hooks de manera global: https://stackoverflow.com/questions/1977610/change-default-git-hooks/37293001#37293001
+
+git config --global core.hooksPath /path/to/my/centralized/hooks
+  Esto modificará el path donde se encuentran los hooks, no usando los locales
+  Configura ~/.gitconfig con:
+    [core]
+          hooksPath = ~/.git_hooks
+
+Para saber de donde está almacenado el hook que estamos usando:
+git rev-parse --git-path hooks/pre-commit
+
+pre-commit para evitar commitear si hemos puesto NOCOMMIT o COMMITFAIL: https://gist.github.com/rzymek/969fd17583811addcc579af04e412a9f
+
+
+Evitar lanzar los hooks para un commit:
+git commit --no-verify
+git commit -n
 
 
 

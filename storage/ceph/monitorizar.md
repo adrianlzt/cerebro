@@ -6,8 +6,6 @@ mirar managers.md
 Chequeo del estado del cluster. Razones por las que puede dar no-ok http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/#monitoring-placement-group-states:
 ceph health
 ceph health detail
-ceph -s
-  mas datos
 
 Estado global del cluster:
 ceph status
@@ -18,7 +16,8 @@ ceph osd tree
   vista en arbol donde vemos los OSD que hay corriendo en cada maquina
 
 Estado del quorum (maquinas monitoras):
-ceph quorum_status | python -m json.tool
+ceph quorum_status --format json-pretty
+
 
 Estado de los monitories:
 ceph mon stat

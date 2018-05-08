@@ -9,6 +9,7 @@ http://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-
 
 
 
+
 Problemas con la red. Paquetes que no entran al docker
 Diferencias en la MTU del host y la interfaz de docker? Parece que si es más grande la de docker no tira
 https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/
@@ -16,6 +17,10 @@ vi /etc/sysconfig/docker-network
 DOCKER_NETWORK_OPTIONS=--mtu=1400
 
 systemctl restart docker
+
+Si usamos docker>=1.17 en OpenStack tenedremos que aumentar la MTU (poner a 1450)
+
+El problema es que la interfaz docker0 tenga un mtu más grande que la interfaz de la máquina. Las conexiones LTS no funcionan.
 
 
 

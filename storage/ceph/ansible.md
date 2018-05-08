@@ -51,6 +51,7 @@ osd_objectstore: bluestore
 
 
 
+
 http://docs.ceph.com/ceph-ansible/master/osds/scenarios.html
 osd_scenario: define como se van a configurar los discos
   - collocated: data y metadata en el mismo disco. Debemos pasar discos enteros (ceph lo particionará)
@@ -172,3 +173,14 @@ ceph_conf_overrides:
   global:
     osd_pool_default_size: 2
 common_single_host_mode: true
+
+
+
+
+# Purge
+Limpiar la instalación
+ansible-playbook infrastructure-playbooks/purge-cluster.yml
+
+
+# Errores
+Probar a hacer un purge y a instalar de nuevo

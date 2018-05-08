@@ -7,6 +7,8 @@ Ceph Object Gateway is an object storage interface built on top of librados to p
 RGW mantiene un índice de metadatos de lo que tiene almacenado en cada bucket (RADOS, la capa por debajo, no lo ofrece)
 
 # Instalación
+Mejor desplegar con ansible
+
 Usaremos ceph-deploy para desplegar rgw sobre los nodos que ya tengamos.
 Duda: el gateway lo desplegamos sobre los monitores o los osd?
   Tip DO NOT mount kernel clients directly on the same node as your Ceph Storage Cluster, because kernel conflicts can arise. However, you can mount kernel clients within virtual machines (VMs) on a single node.
@@ -56,6 +58,9 @@ http://docs.ceph.com/docs/master/install/install-ceph-gateway/#create-a-swift-us
 
 ## S3
 http://docs.ceph.com/docs/master/install/install-ceph-gateway/#create-a-radosgw-user-for-s3-access
+
+Listar usuarios
+radosgw-admin user list
 
 Crear un usuario para acceder a la API de S3 (ejecutar en el gateway host):
 radosgw-admin user create --uid="testuser" --display-name="First User"

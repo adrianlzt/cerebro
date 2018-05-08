@@ -1,2 +1,92 @@
 # Ruby
 https://github.com/red-tux/zbxapi
+
+# Python
+https://github.com/gescheit/scripts
+
+
+## Ejemplo completo
+from zabbix_api import ZabbixAPI
+zbx = ZabbixAPI("http://%s" % zbx_ip, timeout=10)
+zbx.login("Admin", "zabbix")
+zbx_host_list = get_host_by_host_name(zbx, "telegraf")
+assert len(zbx_host_list) == 1
+zbx_host = zbx_host_list[0]['hostid']
+item = zbx.item.get(
+  {
+    "output": ["lastvalue"],
+    "hostids": zbx_host,
+    "search": {
+      "key_": "telegraf.kernel.boot_time"
+    },
+    "startSearch": "true"
+  }
+)
+
+def get_host_by_host_name(zbx, host_name):
+    host_list = zbx.host.get(
+            {
+                'output': 'extend', 'filter': {'host': [host_name]}
+            }
+        )
+    return host_list
+
+## Obtener ultimo valor de la métrica especificada en la key buscando como LIKE "NOMBRE%"
+{
+  "output": ["lastvalue"],
+  "hostids": zbx_host,
+  "search": {
+    "key_": "telegraf.kernel.boot_time"
+  },
+  "startSearch": "true"
+}
+
+## Buscar para un host determinado los items en error y devuelve la clave y el error
+Filter busca ese contenido exactamente
+{
+  "output": ["key_", "error"],
+  "hostids": "10108",
+  "filter": {"state": "1"}
+}
+
+
+## Otros tipos de objetos
+zbx.trigger.get(...)
+zbx.discoveryrule.get(...)
+zbx.problem.get(...)
+
+
+## Map
+
+### Crear mapa
+zbx.map.create({"name": "mapa api", "width": 600, "height": 800})
+
+Parece que es necesario especificar "elementid" aunque sea una imagen.
+
+
+element1 = {"elementtype": 4, "iconid_off": "151", "elementid": "1", "selementid": "1"}
+element2 = {"elementtype": 4, "iconid_off": "151", "elementid": "2", "selementid": "2"}
+element3 = {"elementtype": 4, "iconid_off": "151", "elementid": "3", "selementid": "3"}
+elements = [element1, element2, element3]
+link1 = {"selementid1": "1", "selementid2": "2"}
+link2 = {"selementid1": "1", "selementid2": "3"}
+links = [link1, link2]
+zbx.map.create({"name": "mapa api5", "width": 600, "height": 800, "selements": elements, "links": links})
+
+
+
+### Obtener mapas
+zbx.map.get({"selectSelements": "extend","selectLinks": "extend"})
+  mostrando sus elementos y links
+
+Un mapa en concreto:
+zbx.map.get({"selectSelements": "extend","selectLinks": "extend", "sysmapids": ["4"]})
+
+
+### Modificar elementos de un mapa
+selements = [{'elementid': '1', 'elementtype': 4, 'iconid_off': '151'}]
+zbx.map.update({"sysmapid": 4, "selements": selements})
+
+
+### Borrar mapas
+zbx.map.delete(["8"])

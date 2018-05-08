@@ -19,6 +19,9 @@ https://kloczek.wordpress.com/2016/05/05/punching-2k-selects-barrier-on-zabbix-m
 
 
 NVPS: new values per second
+Se puede consultar este valor en Report > Status of Zabbix
+Tambien en el item "Values processed by Zabbix server per second	 	zabbix[wcache,values]" del "Template App Zabbix Server" (tambien tiene una graph: Zabbix server performance)
+Mejor usar las gráficas para determinar los picos de NVPS y según eso determinar el número de DBSycners que hacen falta.
 
 
 "if someone is observing own zabbix DB backend IO read/write ratio on storage layer bigger tahn 1/20 - 1/100, it probably means that this install needs more memory for server caches and/or DB cash and/or zfs ARC

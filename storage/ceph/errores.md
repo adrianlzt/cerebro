@@ -2,6 +2,8 @@ http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshooting-pg/
 http://docs.ceph.com/docs/master/rados/operations/health-checks/
 problemas con los pg
 
+https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/2/html/troubleshooting_guide/troubleshooting-osds
+
 
 
 64 stale+undersized+degraded+peered
@@ -45,3 +47,13 @@ El problema es que no tenemos puesto
 echo "osd pool default size = 2" >> ceph.conf
 Por lo que cada nuevo pool sale con size 3 y tenemos que volver a cambiarlo.
 
+
+
+
+
+Ceph - Rados GW startup fails with error (34) Numerical result out of range
+https://access.redhat.com/solutions/2778161
+This error appears when the pgp num is higher than the pg num
+
+También puede deberse a un bug: http://tracker.ceph.com/issues/22351
+En mi caso por modificar los pg y pgp num (puestos a mano a 500)
