@@ -92,3 +92,41 @@ Generalmente modificaremos esta parametrización aumentando el número de tokens
 
 Podemos también incrementar el número de vacuum workers, PERO la limitación del token bucket es global, aplica a todos.
 (Se puede forzar la parametrización por tabla para evitar esto).
+
+
+
+# Autovacuum wraparound
+https://www.cybertec-postgresql.com/en/autovacuum-wraparound-protection-in-postgresql/
+https://www.postgresql.org/docs/9.6/static/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND
+https://blog.sentry.io/2015/07/23/transaction-id-wraparound-in-postgres.html
+
+Cuando vemos que salta un proceso de autovacuum tipo:
+autovacuum: VACUUM public.x (to prevent wraparound)
+
+Es un proceso especial que salta cada 200.000.000 transaciones (setting autovacuum_freeze_max_age) para marcar rows "antiguos" como frozen (esto quiere decir que ese row siempre es visible para todas las transacciones).
+Esto se hace porque el id que se usa para determinar el orden (XID) es circular y cada nueva transaccion considera los siguientes 2 mil millones de XID el futuro y los 2 mil millones anteriores el pasado.
+Si un row se quedase con un XID antiguo durante mucho tiempo, podría pasar a ser el futuro, no siendo visible para nuevas transacciones, por eso lo de marcarlos como frozen.
+
+Estos XID son por database.
+
+A partir de postgres 9.6 se ha añadido un nuevo bit para marcar las tablas que ya están frozen, evitando el autovacuum sobre estas.
+
+Si queremos ver como cuan cerca está cada tabla de lanzar el autovacuum wraparound:
+SELECT
+       oid::regclass::text AS table,
+       age(relfrozenxid) AS xid_age,
+       mxid_age(relminmxid) AS mxid_age,
+       least(
+(SELECT setting::int
+            FROM    pg_settings
+            WHERE   name = 'autovacuum_freeze_max_age') - age(relfrozenxid),
+(SELECT setting::int
+            FROM    pg_settings
+            WHERE   name = 'autovacuum_multixact_freeze_max_age') - mxid_age(relminmxid)
+) AS tx_before_wraparound_vacuum,
+pg_size_pretty(pg_total_relation_size(oid)) AS size,
+pg_stat_get_last_autovacuum_time(oid) AS last_autovacuum
+FROM    pg_class
+WHERE   relfrozenxid != 0
+AND oid > 16384
+ORDER BY tx_before_wraparound_vacuum;
