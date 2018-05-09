@@ -243,3 +243,15 @@ b=[1,2,3,4,5,6]
 from itertools import zip_longest
 list(zip_longest(a,b))
 [(1, 1), (2, 2), (3, 3), (None, 4), (None, 5), (None, 6)]
+
+
+
+# Obtener elementos de n en n
+https://docs.python.org/3/library/itertools.html#recipes
+
+from itertools import zip_longest
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
