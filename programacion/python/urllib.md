@@ -67,6 +67,7 @@ urllib2.urlopen(req).read()
 http://stackoverflow.com/questions/2407126/python-urllib2-basic-auth-problem
   urllib2 primero envia la petición sin auth y si el server contesta un 401 ya envia la petición con la cabecera de auth
   parece que así está descrito en el protocolo http
+  podemos intentar forzar poniendo las headers a mano, no he probado si funciona
 
 import urllib2, base64
 
