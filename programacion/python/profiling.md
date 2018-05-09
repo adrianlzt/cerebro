@@ -9,3 +9,14 @@ https://github.com/nvdv/vprof
 Nos hace flame graphs
 Dice como gasta la memoria.
 Analiza que parte del código se usa más
+
+pip install vprof
+vprof -c cpmh "apli_ucmdb.py -x -m"
+
+Ejecuta los cuatro análsis (lanza 4 veces la aplicación):
+ c - CPU flame graph
+ p - profiler
+ m - memory graph
+ h - code heatmap
+
+Nos abre un navegador web para mostrar los resultados
