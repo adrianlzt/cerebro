@@ -18,3 +18,16 @@ with open(mtab_location, 'r') as mtab:
 python2.7, 3.1:
 with open("input", "r") as inp, open("output", "w") as out:
     out.write(inp.read())
+
+
+https://stackoverflow.com/questions/45187286/how-do-i-write-a-null-no-op-contextmanager-in-python
+A partir de python 3.7 podemos tener un context manager que no haga nada: nullcontext
+
+Para versiones anteriores, si no usamos "as", podemos usar:
+ctx_mgr = <meaningfulContextManager> if <condition> else contextlib.suppress()
+with ctx_mgr:
+    ....
+
+import contextlib
+with contextlib.suppress():
+    ....
