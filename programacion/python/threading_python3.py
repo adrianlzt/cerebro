@@ -1,13 +1,13 @@
 import threading
 from queue import Queue
+from random import randint
 import time
 
 # lock to serialize console output
 lock = threading.Lock()
 
 def do_work(item):
-    time.sleep(.1) # pretend to do some lengthy work.
-    # Make sure the whole print completes or threads can mix up output in one line.
+    time.sleep(.5) # pretend to do some lengthy work.
     with lock:
         print(threading.current_thread().name,item)
 
@@ -19,6 +19,11 @@ def worker():
     while True:
         item = q.get()
         do_work(item)
+        print("task remaining: %s" % q.unfinished_tasks)
+        print("task working: %s" % (q.unfinished_tasks-q.qsize()))
+        if randint(0,10) > 7:
+            print("Errr, requeue job %s" % item)
+            q.put(item)
         q.task_done()
 
 # Create thread pool.

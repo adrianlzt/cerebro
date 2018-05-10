@@ -13,13 +13,13 @@ Para generar carga en una máquina.
 Ponerla al 100%
 yes >& /dev/null &
 
-Generar una carga del 50% aprox
+Pone una cpu al 100%
 dd if=/dev/urandom | bzip2 -9 >> /dev/null
 
 Tuesta por exceso de syscalls
 dd if=/dev/zero of=/dev/null
 
 
-Ver 
+Ver
 stress.md
 spew.md
