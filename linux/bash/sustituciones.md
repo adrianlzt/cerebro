@@ -14,3 +14,9 @@ Global substitution (and history shortcut):
   $ !!:gs/mad/HN/
   we're all HN here. I'm HN. You're HN.
 
+
+
+~- se refiere al último directorio (al que vamos si hacemos cd -)
+Nos sirve para traernos ficheros del directorio donde estábamos antes
+cd /tmp
+cp ~-/mifichero .
