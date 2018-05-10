@@ -27,3 +27,6 @@ Hijos del elemento
 $("elemento").children()
 
 $(".hostgroup_field").children('.check_list_hostgroup').siblings()
+
+Busca en toda la descendencia de elemento la clase "miclase"
+$("elemento").find(".miclase")

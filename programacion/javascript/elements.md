@@ -12,7 +12,7 @@ http://www.w3schools.com/jsref/met_document_queryselectorall.asp
 
 Buscar por contenido:
 http://stackoverflow.com/questions/37098405/javascript-queryselector-find-div-by-innertext
-document.evaluate('//a[text()="Picoj"]',document, null, XPathResult.ANY_TYPE, null ).iterateNext()
+document.evaluate('//a[text()="ico"]',document, null, XPathResult.ANY_TYPE, null ).iterateNext()
 
 
 Selectores por los que podemos buscar:
