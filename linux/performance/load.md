@@ -23,3 +23,7 @@ dd if=/dev/zero of=/dev/null
 Ver
 stress.md
 spew.md
+
+
+https://github.com/ptitiano/cpuloadgen.git
+nos permite especificar cuanta carga meter en cada cpu y durante cuanto tiempo
