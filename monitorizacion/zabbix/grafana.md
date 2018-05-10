@@ -31,3 +31,10 @@ Configurar data source zabbix:
 
 # Triggers
 Las gráficas ponen automáticamente el threshold si tenemos asociado un trigger al item.
+
+
+# Mapas
+https://community.grafana.com/t/zabbix-map-on-grafana/993
+Poner un mapa de zabbix en grafana.
+Usar un campo de texto en formato HTML:
+<img src="http://172.28.128.3/map.php?noedit=1&sysmapid=3568&width=&height=&curtime=1495181459&severity_min=0">
