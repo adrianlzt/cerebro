@@ -38,3 +38,31 @@ https://community.grafana.com/t/zabbix-map-on-grafana/993
 Poner un mapa de zabbix en grafana.
 Usar un campo de texto en formato HTML:
 <img src="http://172.28.128.3/map.php?noedit=1&sysmapid=3568&width=&height=&curtime=1495181459&severity_min=0">
+
+
+Si queremos que recargue la imagen de vez en cuando:
+<style type="text/css">
+p.markdown-html.panel-text-content {
+overflow: hidden;
+}
+p.markdown-html.panel-text-content iframe {
+height:225px;
+}
+</style>
+<script type="text/javascript">
+
+// initial load
+document.getElementById('mapa').src = 'http://let1esa1:8000/?inst=$inst';
+
+// para interval anteriores
+clearInterval(refreshMap);
+
+// refresh cada 30s
+var refreshMap = setInterval(function() { 
+  var n = new Date().getTime()/1000;
+  document.getElementById('mapa').src = 'http://let1esa1:8000/?inst=$inst&time=' + n; 
+  console.log("refrescaMapa $inst");
+}, 5000);
+</script>
+
+<center><img id="mapa" src="#"></center>
