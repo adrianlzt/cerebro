@@ -15,6 +15,7 @@ docker run --name some-zabbix-agent --link zabbix-server-pgsql:zabbix-server --p
 # Server
 docker run --name zabbix-postgres -e POSTGRES_PASSWORD=postgres -d postgres
   postgres bbdd server
+  crear database "zabbix"? parece que algunas versiones no la crea solo el server?
 docker run --name zabbix-server-pgsql --link zabbix-postgres:postgres -e DB_SERVER_HOST="postgres" -e POSTGRES_USER="postgres" -e POSTGRES_PASSWORD="postgres" -d zabbix/zabbix-server-pgsql:ubuntu-latest
   zabbix backend server
   creará la database zabbix y el schema en el arranque al no detectar ninguna database "zabbix"
