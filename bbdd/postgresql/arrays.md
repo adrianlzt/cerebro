@@ -23,3 +23,6 @@ select array_agg(count) FROM ascensions where crag_id=4709;
 
 Para ordenar el array:
 array_agg(count ORDER BY date DESC)
+
+
+select (string_to_array(name,'/'))[1] from groups where groupid=14730;
