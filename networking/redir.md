@@ -1,4 +1,5 @@
 Si tenemos systemd mirar linux/systemd/socket-proxyd.md
+Algo similar en python: https://gist.github.com/sivachandran/1969859
 
 
 http://sammy.net/~sammy/hacks/
