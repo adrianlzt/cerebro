@@ -1,5 +1,11 @@
 https://www.codeinwp.com/blog/best-wordpress-plugins/
 
+mirar:
+  backup.md
+  analytics.md
+  espacio.md
+  performance.md
+
 
 # Editor WYSIWYG
 Editar web desde wordpress, para crear estilos customizados
