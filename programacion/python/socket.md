@@ -13,6 +13,11 @@ sock.connect(sa)
 sock.close()
 
 
+https://idea.popcount.org/2014-04-03-bind-before-connect/
+Si queremos forzar el puerto origen primero haremos un bind:
+sock.bind(("192.168.2.36",34444))
+
+
 # SSL
 import ssl
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
