@@ -81,6 +81,13 @@ C-b x
 Mostrar un pane a pantalla completa temporalmente (mismo comando para volver a mostrar todos)
 C-b z
 
+Mover un split hacia delante o atras
+C-b {
+C-b }
+
+Rotar por distintas organizaciones de ventanas
+C-b space
+
 
 
 # Uso
