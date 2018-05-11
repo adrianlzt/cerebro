@@ -9,6 +9,8 @@ F6 new key frame
 . next frame
 , prev frame
 
+Selecionar frames + alt, los copio y muevo a otro punto de la timeline
+
 
 
 # Animacion
