@@ -16,7 +16,11 @@ Selecionar frames + alt, los copio y muevo a otro punto de la timeline
 # Animacion
 Frame by frame: como las peliculas antiguas, en cada frame mueves un poco la imagen y el paso rápido de los frames de la ilusión de movimiento
 Tweening: damos posicion de inicio, posición de fin, el número de frames y el programa te genera las posición en cada frame intermedio
-  Onion screen: nos deja ver para cada key frame como estará el objecto unos momentos antes y unos despues (icono dos cuadrados el de atras punteado)
+  para hacer tweening selecionar el objecto y pinchar sobre el tipo de tweening que queremos. El nos pondra unos cuantos frames, que podremos estirar
+  Si los frames ya están creados, daremos al tween, luego seleccionar el frame donde terminar el tween
+
+Onion screen: nos deja ver para cada key frame como estará el objecto unos momentos antes y unos despues (icono dos cuadrados el de atras punteado)
+
 
 
 # Timeline
