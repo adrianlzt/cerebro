@@ -19,6 +19,8 @@ Tweening: damos posicion de inicio, posición de fin, el número de frames y el 
   para hacer tweening selecionar el objecto y pinchar sobre el tipo de tweening que queremos. El nos pondra unos cuantos frames, que podremos estirar
   Si los frames ya están creados, daremos al tween, luego seleccionar el frame donde terminar el tween
 
+  para el shape tween, pondremos las caracteristicas en key frames y luego crearemos el tween
+
 Onion screen: nos deja ver para cada key frame como estará el objecto unos momentos antes y unos despues (icono dos cuadrados el de atras punteado)
 
 
