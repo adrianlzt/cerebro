@@ -25,5 +25,5 @@ stress.md
 spew.md
 
 
-https://github.com/ptitiano/cpuloadgen.git
+https://github.com/ptitiano/cpuloadgen
 nos permite especificar cuanta carga meter en cada cpu y durante cuanto tiempo
