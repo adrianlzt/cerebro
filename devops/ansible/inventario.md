@@ -86,3 +86,34 @@ http://docs.ansible.com/add_host_module.html
             ansible_ssh_host={{ inventory_hostname }}
             ansible_ssh_port={{ new_port }}
             groups=just_created foo=42
+
+
+
+# YAML
+https://docs.ansible.com/ansible/2.5/plugins/inventory/yaml.html
+
+Ejemplo:
+
+all: # keys must be unique, i.e. only one 'hosts' per group
+    hosts:
+        test1:
+        test2:
+            var1: value1
+    vars:
+        group_var1: value2
+    children:   # key order does not matter, indentation does
+        other_group:
+            children:
+                group_x:
+                    hosts:
+                        test5
+            vars:
+                g2_var2: value3
+            hosts:
+                test4:
+                    ansible_host: 127.0.0.1
+        last_group:
+            hosts:
+                test1 # same host as above, additional group membership
+            vars:
+                last_var: MYVALUE

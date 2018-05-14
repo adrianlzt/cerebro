@@ -29,3 +29,10 @@ vars:
 
 tasks:
   - debug: msg="motd value is {{ motd_value }}"
+
+
+
+
+Podemos usar lookup para definir la variable ansible_password que se usará para conectar.
+Podemos poner este lookup en el inventario:
+  ansible_password="{{ lookup('pipe', 'pass servers/foo') }}"
