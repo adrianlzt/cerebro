@@ -18,3 +18,8 @@ Esto lo he utilizado con libuuid para evitar que al abrir, cerrar y volver a abr
 
 Los recursos que se abran en las funciones de la shared lib serán compartidas. Si la shared lib abre un fichero, este no será cerrado al hacer dlclose.
 http://stackoverflow.com/questions/30945894/dlclose-does-not-close-library-open-file-handles
+
+
+# Donde se buscan las shared libs
+LD_LIBRARY_PATH=
+/etc/ld.so.conf
