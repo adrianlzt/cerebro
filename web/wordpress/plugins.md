@@ -17,3 +17,8 @@ Hay un montón de widgets para siteorigin para hacer casi cualquier cosa.
 
 # Gestor de ficheros
 https://es.wordpress.org/plugins/wp-file-manager/
+
+
+# ToDo list
+Cleverness To-Do List
+Para apuntar tareas que debemos hacer en la web
