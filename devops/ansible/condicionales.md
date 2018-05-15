@@ -77,10 +77,10 @@ Hace una tarea u otra dependiendo si lineinfile modifica o no un fichero:
       register: result
 
     - debug: msg="Fichero cambiado"
-      when: result.changed == True
+      when: result.changed
 
     - debug: msg="Sin cambios"
-      when: result.changed == False
+      when: not result.changed
 
 
 

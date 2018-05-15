@@ -103,3 +103,57 @@ Asignar un id a cada maquina de un grupo
 # Reload facts
 - name: reload facts
   setup: filter='*'
+
+
+
+
+# Local facts
+http://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#local-facts-facts-d
+
+/etc/ansible/facts.d/preferences.fact
+[general]
+asdf=1
+bar=2
+
+Tambien podemos hacer {{ansible_local.something}}:
+echo "true" > /etc/ansible/facts.d/something.fact
+O también {{ansible_local.something.hola}}:
+echo '{"hola": 123}' > /etc/ansible/facts.d/something.fact
+
+
+ansible <hostname> -m setup -a "filter=ansible_local"
+"ansible_local": {
+        "preferences": {
+            "general": {
+                "asdf" : "1",
+                "bar"  : "2"
+            }
+        }
+ }
+
+{{ ansible_local.preferences.general.asdf }}
+
+Cuidado si no hemos declarado los facts e intentamos usarlos!
+Si no existe el fichero preferences, ese template fallará.
+Meter dentro de un block-rescue
+
+- block:
+    - import_tasks: test2.yml
+      when: ansible_local.icinga.general.monitored == "True"
+  rescue:
+    - debug: msg="nodo ya registrado"
+
+
+También podemos usar (en caso de haber metido "true" en el fichero icinga.fact):
+when: ansible_local.icinga is defined and ansible_local.icinga
+
+
+Crear facts locales:
+- hosts: webservers
+  tasks:
+    - name: create directory for ansible custom facts
+      file: state=directory recurse=yes path=/etc/ansible/facts.d
+    - name: install custom impi fact
+      copy: src=ipmi.fact dest=/etc/ansible/facts.d
+    - name: re-read facts after adding custom fact
+      setup: filter=ansible_local
