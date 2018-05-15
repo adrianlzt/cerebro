@@ -22,3 +22,8 @@ https://es.wordpress.org/plugins/wp-file-manager/
 # ToDo list
 Cleverness To-Do List
 Para apuntar tareas que debemos hacer en la web
+
+
+# Cookie
+Avisa de que usamos cookies
+https://es.wordpress.org/plugins/cookie-notice/
