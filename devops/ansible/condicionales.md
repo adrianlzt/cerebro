@@ -46,14 +46,19 @@ tasks:
   - command: /bin/false
     register: result
     ignore_errors: True
+
   - command: /bin/something
-    when: result|failed
+    when: result is failed
+
   - command: /bin/something_else
-    when: result|success
+    when: result is succeeded
+    when: result is success (otra opción)
+
   - command: /bin/still/something_else
-    when: result|skipped
+    when: result is skipped
+
   - command: /bin/still/otro
-    when: result|changed
+    when: result if changed (este existe?)
 
 Ante un comando que de rc=0 se ejecutarían la success y la changed
 
