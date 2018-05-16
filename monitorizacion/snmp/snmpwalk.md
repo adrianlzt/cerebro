@@ -19,3 +19,16 @@ Directorios donde hay MIBS: /usr/share/mibs/netsnmp  y  /var/lib/mibs
 
 Si se pone mal la community la respuesta será (tanto para v1 como v2c):
 Timeout: No Response from xx.xx.xx.xx
+
+Podemos probar con v3 para ver si llegamos.
+
+
+# V3
+snmpwalk -v 3 -l authPriv -u USER -a SHA -A "PASSWORD1" -On 80.90.100.101 .1.3.6.1.2.1.2.2.1.2.1
+
+El servidor contesta con errores si algo está mal.
+Parece que puede servir para probar si llegamos al server
+
+
+Más debug:
+snmpwalk -Dusm -v 3 -l authPriv -u USER -a SHA -A "PASSWORD1" -On 80.90.100.101 .1.3.6.1.2.1.2.2.1.2.1
