@@ -44,3 +44,10 @@ Meter una animación y meterla en un símbolo (entiendo para que se repita todo 
 # Video
 Efectos de zoom, pan, rotate como una cámara:
 https://helpx.adobe.com/animate/how-to/virtual-camera.html?sdid=Q3FWPYX8&mv=other
+
+
+# Mascara
+Podemos pintar una capa con un unico objeto y que solo donde pintemos deje pasar la luz hacia los objetos que esté enmascarando.
+Solo se puede meter un objeto en la mascara.
+
+Si pintamos una linea, tendremos que darla a "Expand to fill" y luego a "Creat Object" (en el menu de propiedades) para poder usarlo como capa
