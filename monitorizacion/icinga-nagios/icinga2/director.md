@@ -107,7 +107,8 @@ https://github.com/Icinga/icingaweb2-module-director/blob/master/doc/70-REST-API
 Tambien nos da una API con la que podemos consultar o crear objectos.
 
 Obtener host
-curl -u ansible:xxx -H "Accept: application/json" http://icinga.us/icingaweb2/director/host\?name\=store-0
+rector.md
+url -u ansible:xxx -H "Accept: application/json" http://icinga.us/icingaweb2/director/host\?name\=store-0
 
 Crear host:
 curl -u ansible:xxx -H "Accept: application/json" http://icinga.us/icingaweb2/director/host -d '{"object_name": "store-0", "address": "1.1.1.1", "object_type": "object", "imports": ["Linux Server Icinga2 Agent"}}'
