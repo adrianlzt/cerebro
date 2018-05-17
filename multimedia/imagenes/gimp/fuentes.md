@@ -1,6 +1,8 @@
 https://www.gimp.org/unix/fonts.html
 
 Ponerlas en:
-Montar por .gimp-2.8/fonts/
+.config/GIMP/2.10/fonts
+
+El directorio es puede configurar en la interfaz de Gimp, añadir otros, etc
 
 Tienen que ser de tipo: TrueType, OpenType o Type1
