@@ -1,3 +1,7 @@
+snmpbulkwalk -v 2c -c COMMUNITY DIRECIP iftable
+  con bulk se hacen las queries de manera más eficiente
+  podemos dejar en blanco la iftable para obtener todo el arbol
+
 snmpwalk -v 2c -c COMMUNITY DIRECIP iftable
 
 snmpwalk -v 1 -c public 10.6.6.34 .1.3.6.1
@@ -5,6 +9,7 @@ snmpwalk -v 1 -c public 10.6.6.34 .1.3.6.1
 
 snmpwalk -On -v 1 -c public 10.5.2.4 .1.3.6.1.2.1.25.4.2.1.5
 -On -> mostrar los números de los MIBS
+-Of -> mostrar el oid completo: .iso.org.dod.internet.mgmt.mib-2....
 -v 1 -> seleccionar snmp versión 1
 -c public -> ponemos la “comunidad” que vamos a usar (es algo asi como la contraseña para poder hacer las peticiones)
 

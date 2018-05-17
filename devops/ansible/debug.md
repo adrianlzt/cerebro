@@ -3,6 +3,8 @@ http://docs.ansible.com/ansible/latest/playbooks_debugger.html
   strategy: debug
 
 Si falla algo se para y nos arranca el debugger de python en ese punto
+Nos da un debugger muy limitado
+
 
 
 
@@ -46,7 +48,6 @@ ansible MAQUINA -m shell -a 'echo "{% for k,v in groups.iteritems() %} {{v}} {% 
 
 # Debugeando modulos
 http://docs.ansible.com/ansible/developing_modules.html#debugging-ansiblemodule-based-modules
-MIRAR COMIENZO DE ESTE FICHERO PARA OTRA OPCION MAS SENCILLA!
 
 Ejecutar ansible para que mantenga en remoto los ficheros python:
 ANSIBLE_KEEP_REMOTE_FILES=1 ansible localhost -m ping -a 'data=debugging_session' -vvv
