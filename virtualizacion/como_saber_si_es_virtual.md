@@ -1,0 +1,1 @@
+dmidecode -s system-manufacturer
