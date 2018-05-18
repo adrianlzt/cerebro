@@ -2,6 +2,7 @@ snmpbulkwalk -v 2c -c COMMUNITY DIRECIP iftable
   con bulk se hacen las queries de manera más eficiente
   podemos dejar en blanco la iftable para obtener todo el arbol
 
+
 snmpwalk -v 2c -c COMMUNITY DIRECIP iftable
 
 snmpwalk -v 1 -c public 10.6.6.34 .1.3.6.1
@@ -34,6 +35,12 @@ snmpwalk -v 3 -l authPriv -u USER -a SHA -A "PASSWORD1" -On 80.90.100.101 .1.3.6
 El servidor contesta con errores si algo está mal.
 Parece que puede servir para probar si llegamos al server
 
+Security levels (-l):
+  noAuthnoPriv - Communication without authentication and privacy.
+  authNoPriv - Communication with authentication and without privacy. The protocols used for Authentication are MD5 and SHA (Secure Hash Algorithm).
+  authPriv - Communication with authentication and privacy. The protocols used for Authentication are MD5 and SHA.
+             For Privacy, DES (Data Encryption Standard) and AES (Advanced Encryption Standard) protocols can be used
+
 
 Más debug:
-snmpwalk -Dusm -v 3 -l authPriv -u USER -a SHA -A "PASSWORD1" -On 80.90.100.101 .1.3.6.1.2.1.2.2.1.2.1
+snmpwalk -Dusm -v 3 -l authPriv -u USER -a MD5 -A "PASSWORD" -a SHA -A "PASSWORD" -On 80.90.100.101 .1.3.6.1.2.1.2.2.1.2.1

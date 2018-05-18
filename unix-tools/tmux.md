@@ -115,3 +115,31 @@ Para pegar, presionar Shift más el botón del medio del ratón.
 # Sincronizar
 C-b :setw synchronize-panes
   escribir lo mismo en todos los panes de un window (se puede usar tab para autocompletar)
+  C-b e, activar
+  C-b E, desactivar
+
+
+
+
+# Plugins
+
+## Copycat
+https://github.com/tmux-plugins/tmux-copycat
+n: next
+N: previous (hacia abajo)
+C-w: seleccionar (emacs mode)
+Enter: seleccionar (vi mode)
+C-b ]: copiar en el portapapeles
+
+Si tenemos tmux-yank:
+y: copiar al portapapeles
+Y: copiar y pegar en la command line
+
+
+C-b C-f: buscar path
+C-b C-g: git status files
+C-b A-h: sha1 hashes (git log, docker ps, docker ps)
+C-b C-u: URLs
+C-b C-d: numbers/digits
+C-b A-i: ip address
+
