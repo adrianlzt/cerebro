@@ -12,3 +12,9 @@ crontab -l
 /etc/cron.*
 virtual? dmidecode -s system-manufacturer
 mail
+
+service --status-all
+systemctl status
+
+/etc/sudoers
+/etc/sudoers.d
