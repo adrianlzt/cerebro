@@ -1,6 +1,15 @@
 https://www.zabbix.com/documentation/4.0/manual/installation/requirements
 Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
 
+# Databases
+No usar Oracle, no da performance
+IBM DB2, parece que tampoco funciona muy bien
+SQLite no vale para zabbix-server, puede usarse para zabbix-proxy
+
+Recomendado: MySQL+InnoDB (lo más usado)
+
+
+
 # History y trends
 Por defecto zabbix tiene un proceso que revisa cada hora que métricas del history debe convertir a trends y borrar.
 Esto en instalaciones grandes mata a la bbdd.
