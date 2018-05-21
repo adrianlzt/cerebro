@@ -4,6 +4,7 @@ Zabbix agent is deployed on a monitoring target to actively monitor local resour
 The agent gathers operational information locally and reports data to Zabbix server for further processing.
 Corre como no root
 
+
 sender.md para utilidad standalone para enviar resultados (esta en los agentes)
 get.md para testear agentes (esta en el server)
 
@@ -13,6 +14,8 @@ Active checks require more complex processing. The agent must first retrieve a l
 
 Passive Agent <--- Server
 Active: Agent ---> Server
+
+En modo activo el agente cache en caso de pérdida de conexión con el server.
 
 
 # Install
@@ -39,12 +42,15 @@ Luego podemos usar un preprocesador para obtener valores del check
 Hace fork para ejecutar, cuidado con la performance
 
 # UserParameter
+https://www.zabbix.com/documentation/3.4/manual/config/items/userparameters
 Tambien podemos definir un UserParameter en cada agente.
 Este podremos configurarlo desde la interfaz web y ejecutará el script que hayamos configurado en la config del agete.
 Hace fork para ejecutar, cuidado con la performance
 
 Ejemplo:
 UserParameter=zabbix-nagios-wrapper[*],<Path-to>/zabbix-nagios-wrapper "$1" "$2" "$3" "$4"
+UserParameter=ping,echo 1
+  para preguntar por este user parameter llamaremos al item "ping"
 
 
 # Forzar chequeo inmediato
@@ -64,6 +70,3 @@ El agente puede funcionar como activo o pasivo
 https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules
 Usar go para crear modulos: https://github.com/cavaliercoder/g2z
 Los modulos no pueden acceder a la config del agente. Tendrán que usar un fichero externo.
-
-
-

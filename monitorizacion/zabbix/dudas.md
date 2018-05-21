@@ -1,9 +1,3 @@
-# Override de triggers
-Uso el template de linux para los servers, pero para uno determinado quiero que el proc.num sea 1000 en vez de 300.
-User macros? https://www.zabbix.com/forum/showthread.php?t=48985
-
-
-
 # Trigger que salta un error
 {Escalada:web.test.error[NOMBRE].last()}=1
   Cannot evaluate expression: expected numeric token at "Timeout was reached: Operation timed out after 15001 milliseconds with 0 bytes received)=1".

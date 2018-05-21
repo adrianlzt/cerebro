@@ -21,6 +21,11 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
 
 
+# Imágenes / frontend
+Si tenemos screens con muchas imágenes (50) y un tiempo de recarga pequeño (30"), esto realiza una carga muy grande sobre el frontend.
+Se puede fundir la CPU de una máquina muy potente.
+
+
 
 
 http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/
