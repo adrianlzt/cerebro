@@ -13,3 +13,9 @@ Para conocer la url donde conectar para read-only, una vez arrancado tmate, escr
 tmate show-messages
 
 Ahí veremos la url para read-only y la normal
+
+
+# Install
+Mirar web para ubuntu, fedora, etc
+
+Binario: https://github.com/tmate-io/tmate/releases/tag/2.2.1
