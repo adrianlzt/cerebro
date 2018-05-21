@@ -17,13 +17,18 @@ Para configurar un proxy:
     docker run --name some-zabbix-proxy-sqlite3 -it -e ZBX_HOSTNAME=archerProxy -e ZBX_SERVER_HOST=192.168.1.95 -e ZBX_DEBUGLEVEL=3 -p 10051:10051 zabbix/zabbix-proxy-sqlite3:latest
     Escucha peticiones en el puerto 10051 y las reenvia al server
 
-Parámetros de conf:
+Parámetros de conf para proxies activos:
   Hostname must match proxy name as configured in the frontend
   ProxyOfflineBuffer controls for how long data is kept locally if proxy can't contact server (one hour by default)
   ProxyLocalBuffer allows to preserve data in proxy database for later processing
   ConfigFrequency controls how often proxy requests configuration information from Zabbix server
   DataSenderFrequency controls how often data is sent to Zabbix server
   HeartbeatFrequency makes proxy contact Zabbix server even if there is no new data to transmit
+
+Parámetros de conf para proxiex pasivos:
+  StartProxyPollers controls how many pollers contact proxies
+  ProxyConfigFrequency – how often Zabbix server sends configuration changes to passive proxies
+  ProxyDataFrequency – how often data is requested from passive proxies
 
 
 # Internals
