@@ -7,3 +7,16 @@ Hay macros ha varios niveles: instalación, template, host, etc
 
 User macro:
 {$FOO}
+
+
+
+# Macros con context
+macros:
+{$LOW_SPACE_LIMIT} 10
+{$LOW_SPACE_LIMIT:”/opt”} 25
+
+trigger:
+{ca_001:vfs.fs.size[{#FSNAME},pfree].last()} < {$LOW_SPACE_LIMIT:{#FSNAME}}
+
+Para el sistema de fichero /opt el trigger saltará al 25%
+Para el resto, 10%

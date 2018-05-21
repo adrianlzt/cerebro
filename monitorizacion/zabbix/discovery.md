@@ -11,6 +11,25 @@ Tendrá una "Discovery rule" y luego unos prototipos que se aplicarán a cada el
 Podemos ver como ejemplo los del template de linux server para mounted file systems y netinterfaces.
 
 
+# Discovery snmp
+mirar snmp.md
+
+
+# Discovery sql
+https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery/sql_queries
+
+Una query sql para otener elementos a partir de los que generar items.
+
+Column names become macro names and selected rows
+become the values of these macros
+Use column aliases to define macro names:
+mysql> SELECT c.name, c.loc AS location FROM customers c;
+
+Be aware: the discovery rule becomes not supported if
+macro name is not valid
+
+
+
 # Discovery files
 https://support.zabbix.com/browse/ZBXNEXT-712
 Issue reclamando un autodiscover para ficheros en un directorio

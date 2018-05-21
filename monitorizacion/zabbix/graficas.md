@@ -1,4 +1,9 @@
 Las gráficas se generan al vuelo obteniendo la información de la base de datos.
+La carga de generar la gráfica recae sobre el server.
+Si usamos Grafana, este obtendrá los datos de la api o la bbdd y el peso de pintar recaerá sobre el navegador web del cliente.
+
+
+
 Ejemplo de query SQL:
 
 SELECT
