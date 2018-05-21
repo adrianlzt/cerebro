@@ -143,3 +143,13 @@ C-b C-u: URLs
 C-b C-d: numbers/digits
 C-b A-i: ip address
 
+
+## Resurrect + continuum
+https://github.com/tmux-plugins/tmux-resurrect
+https://github.com/tmux-plugins/tmux-continuum
+Esta configurado para autosave cada 15 minutos
+
+A mano
+prefix + Ctrl-s - save
+prefix + Ctrl-r - restore
+

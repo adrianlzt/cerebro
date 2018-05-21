@@ -8,3 +8,7 @@ ejemplo de configuración
 Modificaciones de la interfaz web para poder cambiar el logo, cosas del menú búsqueda global, etc
 http://www.everyz.org/en/
 https://github.com/SpawW/everyz
+
+
+# Global search
+Para hacer búsquedas de objetos sobre todo zabbix
