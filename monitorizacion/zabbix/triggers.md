@@ -5,6 +5,8 @@ Generar problemas si un item hace match sobre una regla que definamos.
 Tiene 5 niveles: not classified, information, warning, average, high, disaster
 La vuelta al estado OK puede definirse con otra expresión distinta.
 
+Un trigger no puede tener el mismo nombre y misma expresión en un mismo host.
+
 https://www.zabbix.com/documentation/3.4/manual/config/triggers/expression
 https://www.zabbix.com/documentation/3.4/manual/appendix/triggers/functions
 Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
