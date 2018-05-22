@@ -106,6 +106,12 @@ Matar session
 tmux kill-session -t nombre
 
 
+# Log
+Se puede arrancar con -v
+O hacer toggle con:
+kill -s SIGUSR2 14679
+
+
 
 # Raton
 Para copiar texto seleccionar con el ratón mientras presionamos Shift.
