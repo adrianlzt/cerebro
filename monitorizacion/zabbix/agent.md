@@ -16,6 +16,7 @@ Passive Agent <--- Server
 Active: Agent ---> Server
 
 En modo activo el agente cache en caso de pérdida de conexión con el server.
+Lo pasivos son los únicos que pueden tener scheduling (flexible interval)
 
 
 # Install
@@ -79,3 +80,7 @@ Los modulos no pueden acceder a la config del agente. Tendrán que usar un fiche
 # Scheduler
 El tiempo entre ejecucción de items se calculará con el timestamp de cuando de termino de hacerse la recoleción.
 Por ejemplo, si tenemos un UserParameter que tarda 10" y se ejecuta cada minuto, si empieza en 00:00, el siguiente empezará a las 01:10
+
+
+# Interval
+Los flexible intervals solo se pueden usar con agentes pasivos
