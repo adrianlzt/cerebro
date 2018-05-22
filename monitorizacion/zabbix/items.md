@@ -54,6 +54,23 @@ Podemos tener si esta up/down, tiempos de respuesta, paquetes perdidos.
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/calculated
 Generar items virtuales a partir de cálculos de otros valores
 
+func(<key>|<hostname:key>,<parameter1>,<parameter2>,...)
+
+Examples:
+100*last("vfs.fs.size[/,free]",0)/last("vfs.fs.size[/,total]",0)
+
+last("net.if.in[eth0,bytes]",0)+last("net.if.out[eth0,bytes]",0)
+
+100*last("net.if.in[eth0,bytes]",0)/(last("net.if.in[eth0,
+bytes]",0)+last("net.if.out[eth0,bytes]",0))
+
+Calcular porcentaje cuando el divisor sea 0:
+100*last(telegraf.net.drop_in[eth0],0)/(last(telegraf.net.packets_recv[eth0],0)+count(telegraf.net.packets_recv[eth0],#1,0))
+  el truco es sumar al divisor un 1 en el caso de que el último valor sea 0
+  count(telegraf.net.packets_recv[eth0],#1,0) -> devuelve 1 si el último valor de telegraf.net.packets_recv[eth0] es 0
+
+
+
 ## Internal checks
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/internal
 Información del funcionamiento interno de zabbix
@@ -84,6 +101,15 @@ History storage period: ?
 ## Aggregate
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/aggregate
 Hacer un cálculo de avg/count/last/max/min/sum sobre un item que está en varios servers, seleccionados con un array o un hostgroup
+
+Agregan el mismo items de todos los hosts de un hostogrup.
+Típicamente lo usaremos metiendo items en un host virtual que nos devuelvan la media de todos los hosts que pertecen a un cluster.
+
+En el key tendremos que poner una key que ya estemos usando en los servidores del grupo. Escrita de la misma manera (incluyendo los parametros)
+
+No se pueden crear varios items aggregate con la misma key (aunque tengan distinto nombre)
+
+
 
 ## Trapper
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/trapper
@@ -128,3 +154,12 @@ Cambiar un número (ej.: 0,1,2) por cadenas de texto (ej: on, off, error)
 
 # Unsupported items
 En la configuración se puede definir cada cuanto refrescar los items "unsupported" para ver si ya vuelven a estar bien
+Administration - General - Other - Refresh unsupported items (in sec)
+
+
+# ODBC
+https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/odbc_checks
+Lanzar queries contra una database.
+Un ejemplo típico es para lanzar queries contra la propia database de zabbix para recuperar ciertos valores que no podemos obtener de otra manera, por ejemplo el número de items creados con un discovery.
+
+Hace falta instalar unos paquetes y realizar una configuración con los datos de las bbdd's a las que queremos acceder
