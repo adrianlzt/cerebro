@@ -15,3 +15,7 @@ Es posible modificar que pueden ver, o dejar de ver, cada tipo de usuario.
 
 # Permisos
 Los permisos se asocian entre grupos, de grupos de usuarios a grupos de hosts.
+
+
+# Performance
+Cuidado con los permisos, generan queries muy grandes que matan la performance
