@@ -1,4 +1,4 @@
-http://www.mibsearch.com/
+http://www.oid-info.com/
 http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS
 
 

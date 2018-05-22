@@ -6,7 +6,6 @@ No usar Oracle, no da performance
 IBM DB2, parece que tampoco funciona muy bien
 SQLite no vale para zabbix-server, puede usarse para zabbix-proxy
 
-Recomendado: MySQL+InnoDB (lo más usado)
 
 
 
@@ -31,7 +30,7 @@ Se puede fundir la CPU de una máquina muy potente.
 
 
 
-
+# Varios
 http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/
 https://kloczek.wordpress.com/2016/05/05/punching-2k-selects-barrier-on-zabbix-mysql-db-backend/
 
@@ -40,6 +39,10 @@ NVPS: new values per second
 Se puede consultar este valor en Report > Status of Zabbix
 Tambien en el item "Values processed by Zabbix server per second	 	zabbix[wcache,values]" del "Template App Zabbix Server" (tambien tiene una graph: Zabbix server performance)
 Mejor usar las gráficas para determinar los picos de NVPS y según eso determinar el número de DBSycners que hacen falta.
+Lo mejor es usar el valor máximo de NVPS y usar la regla 1 DBSycners por cada 1000NVPs. Si tenemos MariaDB, usar un hilo de mariadb por cada DBSyncer que tengamos.
+
+
+Para los pollers, mientras tengamos ram, cuantos más pollers mejor.
 
 
 "if someone is observing own zabbix DB backend IO read/write ratio on storage layer bigger tahn 1/20 - 1/100, it probably means that this install needs more memory for server caches and/or DB cash and/or zfs ARC

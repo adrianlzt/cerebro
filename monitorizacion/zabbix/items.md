@@ -163,3 +163,9 @@ Lanzar queries contra una database.
 Un ejemplo típico es para lanzar queries contra la propia database de zabbix para recuperar ciertos valores que no podemos obtener de otra manera, por ejemplo el número de items creados con un discovery.
 
 Hace falta instalar unos paquetes y realizar una configuración con los datos de las bbdd's a las que queremos acceder
+
+
+
+# Logs
+mirar logfiles.md
+para journald mirar journald.md
