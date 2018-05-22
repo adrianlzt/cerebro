@@ -124,3 +124,7 @@ Si tenemos ms, pondremos unit a s y multiplicaremos por 0.001
 # Value mapping
 Administration - General - Value mapping
 Cambiar un número (ej.: 0,1,2) por cadenas de texto (ej: on, off, error)
+
+
+# Unsupported items
+En la configuración se puede definir cada cuanto refrescar los items "unsupported" para ver si ya vuelven a estar bien

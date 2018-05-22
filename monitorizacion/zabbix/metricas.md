@@ -2,6 +2,15 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/history_and_trends
 History: almacén de todas las métricas recuperadas
 Trends: por cada hora se agrupan los valores del history con: min, max, avg y count (solo para datos tipo float o int)
 
+Housekeeper, se encarga de ir limpiando history y trends viejos.
+En instalaciones granges se hacen particiones de tablas y se deshabilita el housekeeper. Lo que se hace es ir borrando las particiones antiguas.
+
+## Housekeeper
+Administration - General - Housekeeping
+Ahí tenemos la configuración de que tablas borra y con que configuración.
+
+Se puede arrancar también Housekeeper a mano con un cron.
+
 
 # Exportar métricas a otras DBs
 https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules#providing_history_export_callbacks

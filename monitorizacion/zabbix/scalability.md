@@ -16,6 +16,10 @@ Esto en instalaciones grandes mata a la bbdd.
 Mejor usar partitioning de postgres, creando nosotros un proceso que genere los trends y borre particiones con datos antiguos.
 
 
+# Overview
+No usar si tenemos muchos hosts. Es muy pesado.
+
+
 # Cache
 https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria

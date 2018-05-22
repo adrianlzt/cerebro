@@ -84,3 +84,12 @@ Por ejemplo, si tenemos un UserParameter que tarda 10" y se ejecuta cada minuto,
 
 # Interval
 Los flexible intervals solo se pueden usar con agentes pasivos
+
+
+# Chequear availability de agent
+https://www.zabbix.com/documentation/3.0/manual/config/items/itemtypes/internal
+Si queremos conocer si el agente esta disponible deberemos usar la key zabbix[host,<type>,available] (internal)
+Es mejor usar esto que agent.ping, porque si estamos usando un proxy y este se cae, evitaremos una avalancha de errores.
+Usando el zabbix-internal, solo veremos un mensaje protestando porque se ha caido el zabbix pero todos los agente que dependan no se marcarán como rojo (porque solo el proxy puede actualizar ese item).
+NO tengo muy claro esto último, es lo que contaron en el curso pero no lo he probado.
+
