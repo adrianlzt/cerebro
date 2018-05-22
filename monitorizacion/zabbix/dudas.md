@@ -12,16 +12,5 @@ Como meter una alarma que no avise ante estos fallos puntuales, pero si me avise
 
 
 
-# Actuar sobre varias keys simultaneamente
-{Escalada:web.test.fail[].last()}=1
-
-Que si cualquiera falla me avise.
-
-O por ejemplo, que si cualquier fichero se modifica (cksum) me avise.
-
-Script de autodiscover?
-
-
-
 # Notificaciones
 Que cuando sale el load, me envie el estado de cada una de las CPUs en el mensaje.

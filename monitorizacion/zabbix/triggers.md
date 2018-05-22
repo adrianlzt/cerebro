@@ -93,3 +93,7 @@ Se activa si pasa de 20. Se desactiva si baja de 15
 ## Monitorizar todos los paramaetros de un item
 https://serverfault.com/questions/701332/can-i-create-a-zabbix-item-which-tracks-the-cksum-of-a-file-with-a-slightly-vary
 Parece que hace falta crearse un custom low-level discovery.
+
+
+## Fuzzytime
+Checking how much an item timestamp value differs from the Zabbix server time.
