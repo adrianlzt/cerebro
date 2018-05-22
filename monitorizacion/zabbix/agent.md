@@ -52,6 +52,9 @@ UserParameter=zabbix-nagios-wrapper[*],<Path-to>/zabbix-nagios-wrapper "$1" "$2"
 UserParameter=ping,echo 1
   para preguntar por este user parameter llamaremos al item "ping"
 
+Por defecto el timeout para estos userparameters es de 3s
+La siguiente ejecucción será "item interval" + el timestamp de la última ejecucción.
+
 
 # Forzar chequeo inmediato
 No se puede por ahora (Nov 2017)
@@ -70,3 +73,9 @@ El agente puede funcionar como activo o pasivo
 https://www.zabbix.com/documentation/3.4/manual/config/items/loadablemodules
 Usar go para crear modulos: https://github.com/cavaliercoder/g2z
 Los modulos no pueden acceder a la config del agente. Tendrán que usar un fichero externo.
+
+
+
+# Scheduler
+El tiempo entre ejecucción de items se calculará con el timestamp de cuando de termino de hacerse la recoleción.
+Por ejemplo, si tenemos un UserParameter que tarda 10" y se ejecuta cada minuto, si empieza en 00:00, el siguiente empezará a las 01:10

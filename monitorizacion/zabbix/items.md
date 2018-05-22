@@ -96,3 +96,31 @@ Enlazar items para que se ejecuten al mismo tiempo.
 Útil si ciertas métricas necesitan recolectarse en el mismo momento.
 Crearemos un item, y luego otra serie de items que marcarán ese primer item como "Master"
 También podemos crear items dependientes pulsando sobre el "Wizard" de un item.
+
+Un caso típico es leer un json y con dependent_items sacar distintos valores con JSON-path a distintos items.
+También haciendo una única query SQL para sacar muchos datos (en vez de varias queries)
+
+
+
+# Tipo de dato
+Cuidado si cambiamos entre tipos de datos, zabbix borra todo el histórico y trends (porque estamos cambiando de tabla).
+Intentar evitar los "text", son más costosos para la bbdd.
+
+
+# Units
+Solo para datos numéricos.
+Lo cambiará en el frontend (no afecta a comi se almacena)
+
+If set, K/M/G/T/P/E/Z/Y prefix fill be added:
+  5242880 B -> 5 MB
+Special processing for:
+  B, Bps, unixtime, uptime
+  Unit blacklist for %, ms, RPM, rpm
+
+Con segundos tambien funciona.
+Si tenemos ms, pondremos unit a s y multiplicaremos por 0.001
+
+
+# Value mapping
+Administration - General - Value mapping
+Cambiar un número (ej.: 0,1,2) por cadenas de texto (ej: on, off, error)
