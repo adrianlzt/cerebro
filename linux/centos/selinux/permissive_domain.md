@@ -12,3 +12,10 @@ semodule -l | grep permissive
 
 Quitar dominio permissivo:
 semanage permissive -d httpd_t
+
+
+Ejemplo, el agente zabbix está dando problemas y queremos deshabilitar selinux solo para él.
+Buscamos alguna linea de log en el autid.log donde podamos ver el scontext.
+Ej.: type=AVC msg=audit(1526998859.669:37871): avc:  denied  { name_connect } for  pid=30019 comm="zabbix_agentd" dest=80 scontext=system_u:system_r:zabbix_agent_t:s0...
+Y luego permitimos a ese contexto todo:
+semanage permissive -a zabbix_agent_t
