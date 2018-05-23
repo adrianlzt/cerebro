@@ -36,6 +36,20 @@ También podemos decidir solo ejecutar el step en caso de que no tengamos ACK.
 Tip: retrasar las notificaciones de triggers leves (ponerlas en el step 2) para ver si en ese tiempo que le damos se recupera sola.
 
 
+# Operations
+Messages:
+  - user
+  - user group
+Command
+  - script
+    - zabbix server
+    - zabbix proxy
+    - remote agent (tiene que tenerlo habilitado)
+  - ipmi
+  - ssh/telnet
+  - global script (se define al definirlo si se debe ejecutar en el server o en el agente)
+
+
 
 # Events
 Cuatro tipos de fuentes de eventos:
