@@ -93,3 +93,16 @@ Es mejor usar esto que agent.ping, porque si estamos usando un proxy y este se c
 Usando el zabbix-internal, solo veremos un mensaje protestando porque se ha caido el zabbix pero todos los agente que dependan no se marcarán como rojo (porque solo el proxy puede actualizar ese item).
 NO tengo muy claro esto último, es lo que contaron en el curso pero no lo he probado.
 
+
+
+# Auto-Registration
+Se basa en active check.
+El agente pregunta a zabbix server y esto genera un evento.
+Podemos poner en este evento un action para crear dinámicamente el host para luego que el host pueda enviar los datos.
+Configuration - Actions - Event source: Auto Registration
+
+Para conseguir que ningún host se registre que no queramos, la idea es poner HostMetadata en la conf del agente con una clave, que deberá ser la misma.
+Esa misma clave la pondremos como filtro en el action para solo dejar pasar las que tengan la clave buena.
+También podemos usarlo para identificar el servidor. Por ejemplo el tipo de equipo para saber que templates ponerle.
+
+Para evitar el acceso externo tambien podemos usar encriptación (TLS).
