@@ -1,6 +1,25 @@
 # Aumentar nivel de log
-zabbix_server -R log_level_decrease=trapper
+zabbix_server -R log_level_increase
+
+Podemos aumentar solo uno de los procesos (syncers, discover, http poller, etc):
+zabbix_server -R log_level_increase=trapper
   para mostrar info sobre los trappers
+
+Podemos especificar un pid determinado, un tipo de proceso (como el ejemplo anterior) o un tipo y uno determinado:
+  pid - Process identifier (1 to 65535)
+  process type - All processes of specified type (e.g., poller)
+  process type,N - Process type and number (e.g., poller,3)
+
+
+Si queremos poner todos al nivel normal (bajamos 5 veces para asegurarnos que todos están en el 0 y luego los subimos 3/info):
+zabbix_server -R log_level_decrease
+zabbix_server -R log_level_decrease
+zabbix_server -R log_level_decrease
+zabbix_server -R log_level_decrease
+zabbix_server -R log_level_decrease
+zabbix_server -R log_level_increase
+zabbix_server -R log_level_increase
+zabbix_server -R log_level_increase
 
 
 # Web interface

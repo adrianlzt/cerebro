@@ -106,3 +106,8 @@ Esa misma clave la pondremos como filtro en el action para solo dejar pasar las 
 También podemos usarlo para identificar el servidor. Por ejemplo el tipo de equipo para saber que templates ponerle.
 
 Para evitar el acceso externo tambien podemos usar encriptación (TLS).
+
+
+También podemos usar un item del agente como HostMetadata
+Ejemplo:
+HostMetadataItem=system.uname
