@@ -50,6 +50,9 @@ Command
   - global script (se define al definirlo si se debe ejecutar en el server o en el agente)
 
 
+# Notifications
+Si queremos enviar más información
+
 
 # Events
 Cuatro tipos de fuentes de eventos:

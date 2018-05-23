@@ -19,3 +19,12 @@ Los permisos se asocian entre grupos, de grupos de usuarios a grupos de hosts.
 
 # Performance
 Cuidado con los permisos, generan queries muy grandes que matan la performance
+Solo los "Zabbix Super Admin" hacen skip para no cargar la bbdd
+
+
+# Habilitar/deshabilitar
+Podemos denegar el acceso "Frontend access" sin deshabilitar la cuenta si queremos que le lleguen notificaciones pero no queremos que puedan acceder al frontend
+
+
+# Autologin
+Para que no le espire la cookie de sesion
