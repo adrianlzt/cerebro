@@ -20,6 +20,8 @@ Las expresiones que nos permite zabbix nos permiten bastante flexibilidad:
 Si tenemos una métrica que sea un contador creciente lo que haremos es almacenarla como delta (en la config del item, Store value -> Delta)
 De esta manera ya podremos aplicar los triggers sobre el ese valor derivado.
 
+multiple problem event generation: si está a "mutltiple", cada vez que se recolecta un dato se genera el/los actions asociados al trigger.
+
 
 CUIDADO!
 Puede que esperemos un resultado determinado y comparemos contra eso, pero de un error y tengamos otra cosa.
