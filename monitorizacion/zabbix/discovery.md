@@ -1,3 +1,23 @@
+# Network discovery
+https://www.zabbix.com/documentation/3.4/manual/discovery
+
+Se puede crear una regla que cuando encuentre nuevos equipos los de de alta automáticamente.
+Parece que no se puede que esos nuevos equipos la interfaz se marque para no usar la DNS
+
+Para no dar de alta varios hosts por tener varias IPs, descubrimos por zabbix agent con key "system.hostname" y ponemos ese item como "Device uniqueness criteria"
+
+En "Administration - General - Other" ponemos a que grupo van los hosts descubiertos, quien los puede ver, a quien notificar, etc.
+
+En Monitoring - Discover podemos ver lo que se ha descubierto.
+
+El discovery genera events de tipo disovery.
+Deberemos reaccionar a esos eventos para agregar los hosts, o enviar un mensaje, habilitarlo/deshabilitardo, etc.
+Configuration - Action - Discovery - Event Source: Discovery
+
+El proceso "discover" puede encontrarse saturado si tenemos pocos y tiene que chequear muchas IPs (StartDiscoverers)
+
+
+# LLD
 https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery
 LLD: low level discovery
 
