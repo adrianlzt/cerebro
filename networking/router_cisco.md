@@ -181,7 +181,7 @@ no ip access-list extended Block-DNS-From-The-Internet
 http://www.techrepublic.com/blog/data-center/troubleshoot-cisco-routers-and-switches-using-the-debug-commands/
 
 Activar debug de un modulo, por ejemplo de las dns:
-debug domain
+debug ip domain
 
 Mostrar debugs activos
 sh debug
@@ -379,6 +379,13 @@ Acceso externo?
 
 Troubleshooting High CPU Utilization on Cisco Routers
 http://www.cisco.com/c/en/us/support/docs/routers/10000-series-routers/15095-highcpu.html
+
+DNS no funcionando.
+El router no contestaba a las dns aunque se veia el puerto 53/tcp abierto.
+"reiniciar" el server dns con:
+no ip dns server
+ip dns server
+
 
 
 
