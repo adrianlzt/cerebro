@@ -29,6 +29,15 @@ Si tenemos screens con muchas imágenes (50) y un tiempo de recarga pequeño (30
 Se puede fundir la CPU de una máquina muy potente.
 
 
+# Sizing
+Required space for a single value
+  Depends on database engine
+  History: 90 bytes per numeric data
+  Trends: 80 bytes per one aggregate
+
+History in MB per day = NVPS*90*24*3600/1024/1024 = NVPS*7.416
+Trends in MB per year = Items*80*24*365/1024/1024 = Items*0.668
+
 
 # Varios
 http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/

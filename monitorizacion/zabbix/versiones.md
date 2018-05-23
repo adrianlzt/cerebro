@@ -1,5 +1,12 @@
 # 3.4, hasta marzo 2018
 
+A.B.C
+A+B le llama a major
+C es el minor
+
+Los B impares son versiones no estables (alpha+beta)
+
+
 ## Dashboards / maps
 Multiples dashboards, cada dashboard con los paneles que queramos.
 Muchos nuevos widgets para agregar cualquier cosa, incluso un video.
