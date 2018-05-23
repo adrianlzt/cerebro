@@ -16,6 +16,8 @@ Usar imagenes background
 
 Hacer curvas usando puntos invisibles
 
+Podemos meter scripts que se podrán ejecutar pulsando sobre los elementos del mapa.
+
 
 
 # Permisos

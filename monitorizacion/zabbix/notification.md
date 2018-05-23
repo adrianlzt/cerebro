@@ -19,6 +19,24 @@ En las acciones hay condiciones, que cuando saltan por uno o varios eventos, eje
 La acción puede ser notificar o ejecutar alguna acción
 
 
+# Steps
+Las actions tienen pasos y duración del paso.
+Es la forma de escalar.
+Primero se ejecuta el paso 1.
+Luego se esperarán "default oepration step duration" hasta que se ejecute el step 2.
+Tienen que haber operations para todos los pasos, aunque podemos elegir no ejecutar nada en el paso.
+Si ponemos pasos "1 | 0" quiere decir que se ejecuta en todos los pasos.
+
+Para un step determinado podemos modificar el tiempo de espera hasta ejecutar el próximo paso.
+Si tenemos distintos "time step" para un mismo step, todos los steps de ese nivel se ejecutarán con el menor de los tiempos.
+Ejemplo, si tenemos dos steps 2, uno con step duration 100 y otro con 200, el step 3 se ejecutará 100s después del step 2.
+
+También podemos decidir solo ejecutar el step en caso de que no tengamos ACK.
+
+Tip: retrasar las notificaciones de triggers leves (ponerlas en el step 2) para ver si en ese tiempo que le damos se recupera sola.
+
+
+
 # Events
 Cuatro tipos de fuentes de eventos:
   triggers
