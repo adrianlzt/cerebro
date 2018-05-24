@@ -9,4 +9,6 @@ GOOS=darwin GOARCH=amd64 go build/install...
 
 GOOS=windows GOARCH=amd64 go build/install
 
+32bits -> 386
+
 Siempre poner las dos variables!
