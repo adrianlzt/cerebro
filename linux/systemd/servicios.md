@@ -1,3 +1,4 @@
+mirar man systemd.exec para ver todas las opciones disponibles
 mirar configuracion.md
 
 Servicios que podrian ser cargados:
