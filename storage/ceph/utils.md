@@ -49,7 +49,9 @@ https://github.com/s3tools/s3cmd
 Official s3cmd repo -- Command line tool for managing Amazon S3 and CloudFront services http://s3tools.org/s3cmd
 
 pip install s3cmd
-Parece que harian falta modificacinoes para poder usarlo con ceph
+
+Para que funcione con radosgw
+https://lollyrock.com/articles/s3cmd-with-radosgw/
 
 
 
