@@ -37,6 +37,12 @@ Pero tenemos que tener el kernel compilado con CONFIG_EDAC_DEBUG.
 
 
 Uso
+systemctl enable rasdaemon.service
+systemctl enable ras-mc-ctl.service
+
+Si queremos enviar los logs de rasdaemon a un fichero dependerá de que versión tengamos de systemd
+https://stackoverflow.com/questions/37585758/how-to-redirect-output-of-systemd-service-to-a-file
+
 
 
 # mcelog
