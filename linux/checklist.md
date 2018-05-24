@@ -22,3 +22,5 @@ systemctl status
 hwinfo
 
 rasdaemon, errores hardware
+
+memtest86+, chequear memoria
