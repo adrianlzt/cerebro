@@ -93,7 +93,8 @@ sh processes cpu | ex 0.0
 show processes cpu sorted
 
 # Memoria
-show mem
+sh mem statistics
+show mem ?
 
 # Log
 show log
