@@ -54,8 +54,17 @@ C-b ,
 Matar ventana actual
 C-b &
 
+Marcar/desmarcar pane (para usar con join-pane, swap-pane, swap-window):
+C-b m
+C-b M
+
+
 Mover panes:
 https://gist.github.com/andreyvit/2921703
+
+Mover un pane a otra window
+Vamos al pane que queremos mover y lo marcamos: C-b m
+Vamos a la ventana donde queremos colocarlo y: C-b :joinp
 
 
 ## Splits
