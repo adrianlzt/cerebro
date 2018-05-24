@@ -74,3 +74,13 @@ https://gist.github.com/peterjenkins1/8f8bdbc82669314f7a2cc392f48be6a0
 https://github.com/Accenture/adop-jenkins/pull/17/files?short_path=04c6e90
 
 mirar scripts.md
+
+
+
+# Tagear imagenes de docker con el tag de git
+https://stackoverflow.com/questions/30718359/how-to-tag-docker-images-with-a-git-tag-in-jenkins
+
+En ejecutar pondremos los steps:
+shell: echo "TAG=${gitlabTargetBranch#refs/tags/}" > /tmp/vars.prop
+Inject environment variables: /tmp/vars.prop
+Y en la imagen de docker usaremos: ${TAG}
