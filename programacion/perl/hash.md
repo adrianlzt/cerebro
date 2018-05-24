@@ -1,5 +1,7 @@
 http://www.tutorialspoint.com/perl/perl_hashes.htm
 
+mirar objetos
+
 $data{'John Paul'} = 45;
 $data{'Lisa'} = 30;
 $data{'Kumar'} = 40;

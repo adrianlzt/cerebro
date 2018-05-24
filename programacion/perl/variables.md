@@ -10,7 +10,7 @@ local guarda el valor de una global y lo sustituye por un valor nuevo a efectos 
 
 
 
-## Boolean ##
+# Boolean
 http://stackoverflow.com/questions/1036347/how-do-i-use-boolean-variables-in-perl
 
 No hay false o true.
@@ -18,3 +18,12 @@ No hay false o true.
 False es 0, '0', undef, '', () o ('')
 
 True el resto
+
+
+# Tipo de variable
+ref($var);
+
+Si me dice HASH puede ser un objecto
+
+
+$x is always a scalar. The hint is the sigil $: any variable (or dereferencing of some other type) starting with $ is a scalar. (See perldoc perldata for more about data types.)

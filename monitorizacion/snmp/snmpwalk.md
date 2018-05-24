@@ -1,6 +1,7 @@
-snmpbulkwalk -v 2c -c COMMUNITY DIRECIP iftable
+snmpbulkwalk -v 2c -c COMMUNITY DIRECIP .1
   con bulk se hacen las queries de manera más eficiente
   podemos dejar en blanco la iftable para obtener todo el arbol
+  si no ponemos parámetro (.1 en este ejemplo) solo escaneará .iso.org.dod.internet.mgmt.mib-2 (SNMPv2-SMI::mib-2) y lo que tenga por debajo
 
 
 snmpwalk -v 2c -c COMMUNITY DIRECIP iftable

@@ -22,6 +22,9 @@ https://github.com/cavaliercoder/mib2zabbix
 
 Script en perl que convierte mibs a un template de zabbix
 
+Dependencias:
+perl-xml-simple 
+
 
 Automáticamente nos genera los items necesarios y las discovery rules para meter elementos.
 https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery/snmp_oids
