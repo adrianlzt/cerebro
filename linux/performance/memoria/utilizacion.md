@@ -67,6 +67,11 @@ ejemplos de errores de memoria:
 [1597035.659016] EDAC MC0: 1 CE none on DIMM0 (channel:0 slot:0 page:0x0 offset:0x0 grain:32 syndrome:0x554c9e08 - bank 2, cas 2840, ras 4261
 
 ## Chequear erores de memoria
+hardware/rasdaemon.md
+
+Si encontramos un error deberemos usar memtest86+ para realizar un chequeo de la memoria (hace falta cargar cosas en grub y reiniciar para arrancar con memtest)
+
+Las edac-utils se han quedado deprecated tras un parche (leer readme rasdaemon)
 http://fibrevillage.com/sysadmin/240-how-to-identify-defective-dimm-from-edac-error-on-linux-2
 EDAC (Error Detection and Correction kernel module) suele ser quien reporta los errores en el dmesg
 

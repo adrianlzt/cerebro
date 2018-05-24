@@ -18,3 +18,7 @@ systemctl status
 
 /etc/sudoers
 /etc/sudoers.d
+
+hwinfo
+
+rasdaemon, errores hardware

@@ -1,3 +1,5 @@
+DEPRECATED! usar yay
+
 # Instalacion
 https://aur.archlinux.org/packages/yaourt
 

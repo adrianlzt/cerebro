@@ -49,7 +49,4 @@ sudo perf sched record sleep 10 && sudo perf sched latency
 
 
 # Errores
-perf, como?
-
-mcelog
-https://www.cyberciti.biz/tips/linux-server-predicting-hardware-failure.html
+hardware/rasdaemon.md
