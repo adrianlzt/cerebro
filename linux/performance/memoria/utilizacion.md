@@ -60,7 +60,16 @@ Tambien con perf podríamos medirlo.
 
 
 # Errores
-dmesg
+Para detectar errores las memorias deben ser ECC, para chequear:
+sudo dmidecode --type memory|grep "Error Correction Type"
+  Ejemplo con ECC:         Error Correction Type: Multi-bit ECC
+  Ejemplo sin ECC:         Error Correction Type: None
+
+Tambien veremos cargados drivers edac:
+lsmod | grep edac
+
+
+dmesg puede mostrar ciertos errores
 
 ejemplos de errores de memoria:
 [1597034.657023] EDAC MC0: 1 CE correctable patrol data ECC on DIMM0 (channel:0 slot:1 page:0x0 offset:0x0 grain:32 syndrome:0x391a5d80 - bank 2, cas 2832, ras 5977
