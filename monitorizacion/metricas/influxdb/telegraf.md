@@ -64,6 +64,25 @@ Para ver ayuda de un cierto plugin:
 
 telegraf --usage NOMBRE
 
+
+## agregar/quitar/modificar tags/fields
+https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering
+
+quita ese tag:
+tagexclude = ["path"]
+
+quita esos fields:
+fielddrop = ["usage_guest", "usage_steal"]
+
+solo deja pasar esos fields:
+fieldpass = ["inodes*"]
+
+agregar tags:
+[[inputs.cpu]]
+  [inputs.cpu.tags]
+    tag1 = "foo"
+
+
 ## elasticsearch
 no nos da info detallada de cada índice: https://github.com/influxdata/telegraf/pull/2872
 una vez tengamos esa info detallada, hacer un aggregator para sacar la info de un pattern junta, por ejemplo, sacar toda la info de los índices logstash-* como una sola métrica
@@ -257,6 +276,36 @@ I!   info
 E!   error
 
 Buscar el patrón "E!"
+
+
+
+# Logparser / grok
+Ejemplo de fichero de configuración para hacer pruebas:
+[agent]
+  interval = "1s"
+  flush_interval = "1s"
+
+[[outputs.file]]
+  files = ["stdout"]
+
+[[inputs.logparser]]
+  files = ["/var/log/rasdaemon.log"]
+  from_beginning = true
+  [inputs.logparser.grok]
+    patterns = ['%{ts-syslog}']
+    measurement = "ras_errors"
+    timezone = "Europe/Madrid"
+
+probar con:
+telegraf -config fichero.conf -debug
+
+Ejemplo de parsers, donde a telegraf solo sacamos el "error":
+    patterns = ['%{SYSLOGTIMESTAMP} %{WORD} %{COMM} %{ERROR:error}']
+    custom_patterns = '''
+COMM (?:rasdaemon\[[0-9]*\]:\s*)
+ERROR (?:.*[Ee][Rr]{2}[Oo][Rr].*)
+'''
+
 
 
 # Debug / Profiling
