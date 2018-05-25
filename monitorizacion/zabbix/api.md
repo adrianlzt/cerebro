@@ -3,6 +3,13 @@ https://github.com/red-tux/zbxapi
 
 # Python
 https://github.com/gescheit/scripts
+libreria
+
+https://github.com/q1x/zabbix-gnomes
+coleccion de scripts
+python2
+pip install pyzabbix
+tiene algunos problemas con espacios en blanco vs tabs
 
 
 ## Ejemplo completo
