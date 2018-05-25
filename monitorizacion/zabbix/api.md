@@ -2,17 +2,26 @@
 https://github.com/red-tux/zbxapi
 
 # Python
-https://github.com/gescheit/scripts
-libreria
-
+## zabbix-gnomes
 https://github.com/q1x/zabbix-gnomes
 coleccion de scripts
 python2
 pip install pyzabbix
 tiene algunos problemas con espacios en blanco vs tabs
+zapi.py nos deja listo para poder escribir cosas tipo:
+z host.get(filter={"host": "lec1ama"})
 
 
-## Ejemplo completo
+## zabbix-cli
+https://github.com/usit-gd/zabbix-cli/blob/master/docs/manual.rst
+un coñazo de instalar y al final petaba por syntaxis
+
+
+
+## Libreria
+https://github.com/gescheit/scripts
+
+Ejemplo:
 from zabbix_api import ZabbixAPI
 zbx = ZabbixAPI("http://%s" % zbx_ip, timeout=10)
 zbx.login("Admin", "zabbix")
