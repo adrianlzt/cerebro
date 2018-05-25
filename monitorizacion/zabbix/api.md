@@ -1,3 +1,5 @@
+https://www.zabbix.com/documentation/3.2/manual/api/reference/item
+
 # Ruby
 https://github.com/red-tux/zbxapi
 
