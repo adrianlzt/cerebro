@@ -12,4 +12,3 @@ SyslogIdentifier=<your program identifier> # without any quote
 
 /etc/rsyslog.d/<new_file>.conf
 if $programname == '<your program identifier>' then /path/to/log/file.log
-if $programname == '<your program identifier>' then ~
