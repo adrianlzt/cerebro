@@ -8,8 +8,6 @@ https://github.com/influxdata/telegraf#linux-deb-and-rpm-packages
 
 Bajando el rpm linkado en la web e instalado a mano
 
-Instalado la 0.10.0
-
 yum install telegraf
 
 

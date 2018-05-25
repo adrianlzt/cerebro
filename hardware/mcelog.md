@@ -4,8 +4,11 @@ Según cuenta el readme de rasdaemon, la información de los fallos se encuentra
 http://git.infradead.org/users/mchehab/rasdaemon.git/blob/HEAD:/README
 https://events.static.linuxfound.org/sites/events/files/slides/RAS_presentation_LinuxCon_NA_0.pdf
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-checking_for_hardware_errors
+https://access.redhat.com/solutions/1412953
 
 Su objetivo a largo plazo es mostrar todos los errores de hardware, pero ahora mismo (05-2018) creo que solo saca de memoria.
+
+En debian, para que ras-mc-ctl funcione debemos tambien instalar: libclass-dbi-perl libclass-dbi-sqlite-perl
 
 Chequear si tenemos drives de EDAC (Error Detection and Correction)
 ras-mc-ctl --status
@@ -34,6 +37,13 @@ Que provee rasdaemon:
 
 Se pueden hacer pruebas con los scripts de http://git.infradead.org/users/mchehab/rasdaemon.git/tree/HEAD:/contrib
 Pero tenemos que tener el kernel compilado con CONFIG_EDAC_DEBUG.
+  En la config del kernel en ncurses está en: Device Drivers -> EDAC -> Debugging
+
+Otra opción es usar el mce-inject, donde necesitaremos cargar un modulo en el kernel:
+git clone https://github.com/andikleen/mce-inject && cd mce-inject
+make
+modprobe mce-inject
+./mce-inject test/corrected
 
 
 Uso
