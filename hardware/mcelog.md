@@ -56,11 +56,19 @@ https://stackoverflow.com/questions/37585758/how-to-redirect-output-of-systemd-s
 
 
 # mcelog
-deprecado en favor de rasdaemon
+deprecado en favor de rasdaemon. Usarlo kernels viejos (centos6)
 https://mcelog.org/
 https://www.cyberciti.biz/tips/linux-server-predicting-hardware-failure.html
 
 mcelog logs and accounts machine checks (in particular memory, IO, and CPU hardware errors) on modern x86 Linux systems.
+
+yum install mcelog
+instala un script de init.d y tambien mete un cron.hourly.
+El cron solo corre si el service no está corriendo.
+Ambos escriben en /var/log/mcelog
+Solo se escriben fallos en el log, nada de arranque o parada de los servicios.
+
+Cuando se produce un fallo escribe un montón de lineas para cada evento, donde en ninguna hay fecha.
 
 
 
