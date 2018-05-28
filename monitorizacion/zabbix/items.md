@@ -61,8 +61,7 @@ Examples:
 
 last("net.if.in[eth0,bytes]",0)+last("net.if.out[eth0,bytes]",0)
 
-100*last("net.if.in[eth0,bytes]",0)/(last("net.if.in[eth0,
-bytes]",0)+last("net.if.out[eth0,bytes]",0))
+100*last("net.if.in[eth0,bytes]",0)/(last("net.if.in[eth0,bytes]",0)+last("net.if.out[eth0,bytes]",0))
 
 Calcular porcentaje cuando el divisor sea 0:
 100*last(telegraf.net.drop_in[eth0],0)/(last(telegraf.net.packets_recv[eth0],0)+count(telegraf.net.packets_recv[eth0],#1,0))
