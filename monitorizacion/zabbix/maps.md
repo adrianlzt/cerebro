@@ -22,3 +22,6 @@ Podemos meter scripts que se podrán ejecutar pulsando sobre los elementos del m
 
 # Permisos
 Si no tenemos permiso para ver algo del mapa, no nos aparecerá el mapa
+
+Tenemos una pestaña de Sharing para decidir que usuarios pueden o no pueden ver el mapa.
+Tiene una opción "public", pero no parece que deje ver los mapas sin loguearse.
