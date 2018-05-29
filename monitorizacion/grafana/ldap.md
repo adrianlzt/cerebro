@@ -1,5 +1,4 @@
-http://docs.grafana.org/v2.1/installation/ldap/
-
+http://docs.grafana.org/installation/ldap/#ldap-authentication
 
 grafana.ini
 [auth.ldap]
@@ -14,6 +13,11 @@ Con un usuario que haga el bind (un user read-only que se llame, por ejemplo, gr
 O intentar hacer el bind directamente con el user que se quiere loguear: usando lo de %s y quitando el bind_password
 
 Podemos definir varias veces secciones [[servers.group_mappings]] para que un usuario pertenezca a varias orgs
+
+[[servers.group_mappings]]
+group_dn = "cn=admins,dc=grafana,dc=org"
+org_role = "Admin"
+org_id = 1
 
 
 
