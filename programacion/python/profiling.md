@@ -46,7 +46,7 @@ vprof -c cpmh -o analisis.prof "apli_ucmdb.py -x -m"
 
 Ejecuta los cuatro análsis (lanza 4 veces la aplicación):
  c - CPU flame graph
- p - profiler
+ p - profiler, tabla donde nos dice por cada funcion el número de llamdas y el tiempo pasado acumulado
  m - memory graph
  h - code heatmap
 

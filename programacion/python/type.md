@@ -90,7 +90,7 @@ print config.clave
   # "valor"
 print config
   # "hola"
-  
+
 
 var = "funcion"
 getattr(config,var)
@@ -105,6 +105,4 @@ Es equivalente a: objeto.__dict__
 
 
 # Tamaño de un objeto
-import sys
-sys.getsizeof("cadena")
-sys.getsizeof({"a":1})
+https://github.com/bosswissam/pysize/blob/master/pysize.py
