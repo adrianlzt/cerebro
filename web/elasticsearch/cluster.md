@@ -7,7 +7,7 @@ https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html
 Fácilmente escalable. Simplemente añadir nodos al cluster.
 
 # Estado del cluster
-curl -s localhost:9200/_cluster/health | python -m json.tool
+curl -s localhost:9200/_cluster/health\?pretty
 status puede ser green, yellow o red.
 green -> todo bien
 yellow -> funciona pero hay problemas (por ejemplo, no hay sharding)

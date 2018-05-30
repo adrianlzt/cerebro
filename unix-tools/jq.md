@@ -47,3 +47,8 @@ Localizar un elemento en un array:
 Extraer las keys de un diccionario:
 cat fichero.json | jq '.[].mappings | to_entries[] | .key'
 Nos devolverá una linea por cada key que cuelga de "mappings" (que a su vez colgaba de un diccionario)
+
+
+# Contar elementos
+Cuenta cuantas keys de primer nivel tenemos en el doc
+cat fichero.json | jq '. | keys | length'
