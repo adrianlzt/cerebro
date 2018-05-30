@@ -1,4 +1,4 @@
-Visor básico de imágenes.
+geeqie: Visor básico de imágenes.
 Abre svg
 
 Convertir a pdf

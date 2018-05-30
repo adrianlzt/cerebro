@@ -22,3 +22,4 @@ http://www.kayak.es/explore/
 # Posición de vuelos
 https://www.flightradar24.com
 http://planefinder.net/
+https://es.flightaware.com/live/flight/IBE3735
