@@ -50,5 +50,11 @@ Nos devolverá una linea por cada key que cuelga de "mappings" (que a su vez col
 
 
 # Contar elementos
+https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions
 Cuenta cuantas keys de primer nivel tenemos en el doc
-cat fichero.json | jq '. | keys | length'
+cat fichero.json | jq '. | length'
+
+The length of a string is the number of Unicode codepoints it contains (which will be the same as its JSON-encoded length in bytes if it’s pure ASCII).
+The length of an array is the number of elements.
+The length of an object is the number of key-value pairs.
+The length of null is zero.

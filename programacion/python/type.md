@@ -102,3 +102,9 @@ config.funcion
 Objeto a diccionario:
 vars(objecto)
 Es equivalente a: objeto.__dict__
+
+
+# Tamaño de un objeto
+import sys
+sys.getsizeof("cadena")
+sys.getsizeof({"a":1})

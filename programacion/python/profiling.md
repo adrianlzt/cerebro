@@ -40,7 +40,9 @@ Dice como gasta la memoria.
 Analiza que parte del código se usa más
 
 pip install vprof
-vprof -c cpmh "apli_ucmdb.py -x -m"
+vprof -c cpmh -o analisis.prof "apli_ucmdb.py -x -m"
+
+-o, guarda el profiling en un fichero
 
 Ejecuta los cuatro análsis (lanza 4 veces la aplicación):
  c - CPU flame graph
