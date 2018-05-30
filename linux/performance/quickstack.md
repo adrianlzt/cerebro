@@ -1,0 +1,1 @@
+../../programacion/python/quickstack.md

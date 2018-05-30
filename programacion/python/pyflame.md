@@ -8,4 +8,4 @@ flamegraph.pl <profile.txt >profile.svg
 chromium profile.svg
 
 Podemos intentar recortar los paths para poder verlos con mayor facilidad
-cat flames.txt | sed -e 's#/usr/local/lib/python3../\(site\-packages/\)\?##g' | flamegraph.pl > flames.svg
+sed -i "s#/home/adrian/.virtualenvs/cma-c0B6vGIT/lib/python3.6/##g" profile.txt

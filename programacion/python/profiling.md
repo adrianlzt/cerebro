@@ -32,6 +32,13 @@ The main advantage of these profilers over cProfile or hotshot (which is also de
 Mirar gprofile.py
 
 
+pyflame de uber
+Puede hacer flame graphs de python en ejecucción
+mirar pyflame.md
+
+
+
+mirar quickstack.md para capturar stack frames de un programa en ejeucción
 
 
 https://github.com/nvdv/vprof
