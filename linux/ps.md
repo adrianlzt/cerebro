@@ -33,7 +33,7 @@ ps -ef --sort=start_time
 Ver pid, usuario, comando, priority y nice
 ps -eo pid,user,args,pri,ni
 
-Memoria (numfmt lo convierte a unidades K,M,G): MAL! las unidades de ps son kbytes y numfmt asume que son bytes
+Memoria (numfmt lo convierte a unidades K,M,G): MAL! las unidades de ps son kbytes y numfmt asume que son bytes (los 2 siguientes comandos corrigen ese error):
 ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | column -t | head
 ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=iec --from-unit=1024 --field 6 | numfmt --header --to=iec --from-unit=1024 --field 7 | column -t | head # para versiones viejas de numfmt
   maj_flt: fallos de página, ir a disco a buscar la página
