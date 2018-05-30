@@ -27,6 +27,22 @@ curl "https://localhost:9200/.operations.2017.10.01/_search" -d '{"fields":["agg
   ...
 
 
+Agregar por beat.hostname, sin devolver ningún hit y devolviendo todos los buckets:
+GET adriinv/_search
+{
+  "size": 0,
+  "aggs": {
+    "0": {
+      "terms": {
+        "field": "beat.hostname",
+        "size": 2147483647
+      }
+    }
+  }
+}
+
+
+
 # Agregación por campos y por tiempo
 curl "https://localhost:9200/.operations.2017.10.01/_search" -d '
 {
