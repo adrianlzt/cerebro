@@ -48,6 +48,6 @@ Ejecuta los cuatro análsis (lanza 4 veces la aplicación):
  c - CPU flame graph
  p - profiler, tabla donde nos dice por cada funcion el número de llamdas y el tiempo pasado acumulado
  m - memory graph
- h - code heatmap
+ h - code heatmap, nos muestra todo el codigo, marcando con colores intensos las líneas que se llevan más tiempo. Nos dice por cada linea el número de ejecucciones y el porcentaje del tiempo total
 
 Nos abre un navegador web para mostrar los resultados
