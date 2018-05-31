@@ -38,7 +38,7 @@ mirar pyflame.md
 
 
 
-mirar quickstack.md para capturar stack frames de un programa en ejeucción
+mirar quickstack.md para capturar stack frames de un programa en ejecución
 
 
 https://github.com/nvdv/vprof
