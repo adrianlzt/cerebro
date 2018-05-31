@@ -28,3 +28,39 @@ http://docs.ansible.com/ansible/playbooks_filters.html#combining-hashes-dictiona
 
 {{ a|combine(b, c, d) }}
 In this case, keys in d would override those in c, which would override those in b, and so on.
+
+
+
+dict2items (ansible 2.6.0)
+cambia un diccionario de diccionarios por un array de diccionarios
+Antiguo:
+{
+     "libini_config": [
+            {
+                "arch": "x86_64",
+                "epoch": null,
+                "name": "libini_config",
+                "release": "27.el7",
+                "source": "rpm",
+                "version": "1.3.0"
+            }
+     ]
+}
+
+Nuevo:
+[
+    {
+        "key": "libini_config",
+        "value": [
+            {
+                "arch": "x86_64",
+                "epoch": null,
+                "name": "libini_config",
+                "release": "27.el7",
+                "source": "rpm",
+                "version": "1.3.0"
+            }
+        ]
+    }
+]
+
