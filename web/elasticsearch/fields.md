@@ -1,5 +1,15 @@
 Por defecto solo se permiten tener 1000 fields en cada índice.
 
+
+Contar número de fields de un índice:
+curl -s -XGET localhost:9200/index/_mapping?pretty | grep type | wc -l
+
+
+Calculo aproximado de número de fields que se van a generar a partir de un doc json:
+cat FACTS.json| gron | grep -v -e "\[\];" -e "\{\};" | sed "s/\[[0-9]*\]//" | cut -d ' ' -f 1 | sort | uniq | wc -l
+
+
+
 Si queremos modificar ese límite podemos hacerlo en la creación:
 PUT test
 {
