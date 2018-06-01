@@ -85,3 +85,24 @@ https://gist.github.com/wmayner/0245b7d9c329e498d42b
 # cachetools
 Libreria que decide que elementos descartar segun un algoritmo
 https://pypi.python.org/pypi/cachetools
+
+Ejemplo donde almacenmos la cache en un fichero para poder restaurarla en la siguiente ejecucción:
+from cachetools import cached
+import pickle
+import os
+
+micache = {}
+if os.path.isfile("dump.bin"):
+    with open('dump.bin', 'rb') as f:
+      micache = pickle.load(f)
+
+@cached(cache=micache)
+def fib(n):
+    print("no cacheada")
+    return n if n < 2 else fib(n - 1) + fib(n - 2)
+
+for i in range(10):
+    print('fib(%d) = %d' % (i, fib(i)))
+
+with open('dump.bin', 'wb') as f:
+  pickle.dump(micache,f)
