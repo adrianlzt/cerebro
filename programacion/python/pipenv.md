@@ -16,6 +16,9 @@ se irán agregando las dependencias al fichero Pipfile.lock
 Ejemplo:
   pipenv install ansible==2.4.2
 
+Actualizar paquete:
+pipenv install --selective-upgrade paquete
+
 Para salir del venv C^d o exit
 
 Si ejecutamos
@@ -28,3 +31,4 @@ pipenv --rm
 
 # Limitaciones
 La principal que encuentro respecto a virtualenvwrapper, es que para activar un virtualenv tenemos que estar en el directorio donde creamos el venv o en un subdirectorio.
+
