@@ -22,6 +22,11 @@ También se le puede espicificar un gather_timeout (por cada grupo de facts)
 Grupos: all, hardware, network, virtual, ohai, and facter
 
 
+Tambien podemos filtrar:
+-a "filter=facter_*"
+
+
+
 Si queremos filtrar de esta manera en un playbook tendremos que desactivar la captura de facts:
 gather_facts: False
 
