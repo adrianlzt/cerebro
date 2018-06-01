@@ -4,6 +4,8 @@ Disco duro SSD
 
 Posibilidad de tener dos pantallas externas, más la integrada.
 
+Pantalla mate. Implica colores menos vivos pero menos reflejos.
+
 
 http://store.hp.com/SpainStore/Merch/Product.aspx?id=2RR84EA&opt=ABE&sel=NTB
 
