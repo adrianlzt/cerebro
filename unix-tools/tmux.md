@@ -20,6 +20,7 @@ Config:
 # Shortcuts
 Ver shortcuts:
 C-b ?
+tmux list-keys
 
 Nueva ventana:
 C-b c
@@ -125,6 +126,17 @@ kill -s SIGUSR2 14679
 # Raton
 Para copiar texto seleccionar con el ratón mientras presionamos Shift.
 Para pegar, presionar Shift más el botón del medio del ratón.
+
+# Copiar (hay dos modos, emacs o vi, con list-keys podemos ver las teclas para cada modo. Creo que se cambia con "setw -g mode-keys vi")
+En modo emacs:
+C-b [
+movernos hasta el inicio de la seleccion
+C-space
+movernos hasta el final de la selección
+C-w
+
+## Copia en columa
+Antes de C-space pulsar R
 
 
 # Sincronizar
