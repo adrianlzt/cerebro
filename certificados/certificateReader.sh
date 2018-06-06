@@ -24,6 +24,14 @@ is_key() {
   return $FALSE
 }
 
+is_crl() {
+  egrep "X509 CRL-----$" "$FILE" >& /dev/null
+  if [[ $? -eq 0 ]]; then
+    return $TRUE
+  fi
+  return $FALSE
+}
+
 several_certificates_inside() {
   COUNT=$(egrep "^-----" "$FILE" | wc -l)
   if [[ $COUNT -gt 2 ]]; then
@@ -74,7 +82,9 @@ if is_binary "$FILE"; then
     fi
   fi
 else
-  if several_certificates_inside "$FILE"; then
+  if is_crl "$FILE"; then
+    openssl crl -inform PEM -text -noout -in "$FILE" | head -11
+  elif several_certificates_inside "$FILE"; then
     # Multi PEM certs in one file
     headers "$(openssl crl2pkcs7 -nocrl -certfile "$FILE" | openssl pkcs7 -print_certs -text -noout)"
   else
