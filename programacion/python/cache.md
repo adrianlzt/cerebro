@@ -106,3 +106,6 @@ for i in range(10):
 
 with open('dump.bin', 'wb') as f:
   pickle.dump(micache,f)
+
+
+Otro ejemplo donde uso una cache recuperada de un fichero pero en una función dentro de una clase, teniendo que usar cachedmethod y un generador de claves especifico: proc_identifier.py

@@ -1,3 +1,8 @@
+Típicos causantes de problemas: VACUUM, connection overhead, shared buffers
+
+
+
+
 psql: FATAL:  la autentificación Ident falló para el usuario «puppet»
 
 Estamos intentando conectar a postrgre localmente (no via TCP), y en el pg_hba.conf tendremos puesto que se mapeen los usuarios con los del sistema.

@@ -1,3 +1,5 @@
+Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
+
 # Vacuum
 https://blog.2ndquadrant.com/autovacuum-tuning-basics/
 

@@ -1,3 +1,11 @@
+# Remark
+https://remarkjs.com/#1
+A simple, in-browser, markdown-driven slideshow tool.
+Se escribe en markdown
+Editor colaborativo online: http://platon.io/
+
+
+# Reveal
 https://github.com/hakimel/reveal.js
 
 Para crear presentaciones con html+javascript

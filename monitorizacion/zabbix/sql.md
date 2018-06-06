@@ -1,3 +1,5 @@
+Modelo de la bbdd: https://zabbix.org/wiki/Database_Schemas
+
 Accediendo directamente a la base de datos de zabbix.
 
 Tabla items

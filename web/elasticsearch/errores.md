@@ -77,6 +77,11 @@ Failed to load http://192.168.1.86:9200/_search: Request header field Authorizat
 https://github.com/elastic/elasticsearch/issues/9063
 http.cors.allow-headers: "X-Requested-With, Content-Type, Content-Length, Authorization"
 
+http.cors.enabled: true
+http.cors.allow-headers: "*"
+http.cors.allow-origin: "*"
+  estas tres opciones me funcionan, pero tal vez sean demasido permisivas?
+
 
 
 

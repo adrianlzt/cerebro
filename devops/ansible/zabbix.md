@@ -7,7 +7,7 @@ No vale un venv de python porque el .py que se genera para ejecutarse correrá c
 
 
 # Templates
-ansible localhost -m zabbix_template -a "server_url=http://zabbix login_user=K5290872 login_password=Cuatro44 template_name='Template Telegraf XXXX' state=dump" 
+ansible localhost -m zabbix_template -a "server_url=http://zabbix login_user=USER login_password=xxx template_name='Template Telegraf XXXX' state=dump"
 
 bajarnos un template en formato json
 hay que quitar algunas lineas que mete ansible
