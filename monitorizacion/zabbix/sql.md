@@ -1,4 +1,4 @@
-Modelo de la bbdd: https://zabbix.org/wiki/Database_Schemas
+Modelo de la bbdd (version 2.x): https://zabbix.org/wiki/Database_Schemas
 
 Accediendo directamente a la base de datos de zabbix.
 
@@ -9,6 +9,11 @@ itemid es el valor que usaremos para buscar el item en otras tablas.
 
 Buscar por una key:
 select itemid,name,key_,value_type from items where key_ like '%Beta%';
+
+Ver los valores recordados de la interfaz web para un usuario
+select users.alias,profiles.profileid,profiles.idx,profiles.value_id,profiles.value_int,profiles.value_str from users,profiles where users.userid=profiles.userid and users.alias='adrian';
+Si queremos quitar uno de estos valores, borraremos la fila:
+delete from profiles where profileid=96;
 
 
 value_type
@@ -27,3 +32,5 @@ char         -> history_str
 log          -> history_log
 uint         -> history_uint
 text         -> history_text
+
+Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
