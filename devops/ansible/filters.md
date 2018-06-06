@@ -64,3 +64,14 @@ Nuevo:
     }
 ]
 
+
+
+
+# ipaddr
+http://docs.ansible.com/ansible/latest/user_guide/playbooks_filters_ipaddr.html
+
+Chequear si una IP está en un rango (devuelve la string con la ip en caso afirmativo, nada en el resto de casos)
+{{"192.168.2.3" | ipaddr("192.168.2.0/24") }}
+
+Comprobar si una ip (item) esta en una red y no en otras (subredes de la primera)
+when: (item | ipaddr(no_dmz_net) == item) and not ((item | ipaddr(bluemix_net2) == item) or (item | ipaddr(bluemix_net1) == item))
