@@ -74,4 +74,4 @@ Chequear si una IP está en un rango (devuelve la string con la ip en caso afirm
 {{"192.168.2.3" | ipaddr("192.168.2.0/24") }}
 
 Comprobar si una ip (item) esta en una red y no en otras (subredes de la primera)
-when: (item | ipaddr(no_dmz_net) == item) and not ((item | ipaddr(bluemix_net2) == item) or (item | ipaddr(bluemix_net1) == item))
+when: ((item | ipaddr(no_dmz_net)) and not ((item | ipaddr(bluemix_net2)) or (item | ipaddr(bluemix_net1))))

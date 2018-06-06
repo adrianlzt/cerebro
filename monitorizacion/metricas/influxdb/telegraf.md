@@ -336,6 +336,9 @@ Hacer modificaciones
 make test-short
 O si queremos probar solo uno: go test -short github.com/influxdata/telegraf/plugins/inputs/docker
 
+Hacer RPMs especificando arch, version e iteration:
+./scripts/build.py --package --platform=linux --arch=amd64 --version=1.6.0-os --iteration 3
+
 make build
 $GOPATH/bin/telegraf --version
 $GOPATH/bin/telegraf config > telegraf.conf

@@ -36,3 +36,7 @@ tasks:
 Podemos usar lookup para definir la variable ansible_password que se usará para conectar.
 Podemos poner este lookup en el inventario:
   ansible_password="{{ lookup('pipe', 'pass servers/foo') }}"
+
+
+Obtener ip de un dominio:
+lookup('dig', 'example.com.')
