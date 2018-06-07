@@ -5,6 +5,12 @@ Comprobar como vamos de desfasados
 chronyc tracking
 
 
+Por defecto chrony va corrigiendo el tiempo modificando ligeramente la velocidad de los segundos para evitar saltos (que pueden afectar negativamente a cierto software).
+
+Podemos poner esta configuración para hacer un salto grande en los tres primeros updates si el desfase es de mas de 1s
+makestep 1.0 3
+
+
 
 # NTP
 http://www.pool.ntp.org/es/zone/es
