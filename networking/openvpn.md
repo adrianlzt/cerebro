@@ -2,7 +2,30 @@ https://openvpn.net/
 
 # Docker
 https://hub.docker.com/r/kylemanna/openvpn/
+init:
+$OVPN_DATA=openvpn_data
+docker volume create --name $OVPN_DATA
+docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+  aqui podemos pasar mas configuraciones, como:
+  -D, no enviar servers DNS
+  -d, no poner la ruta por defecto
+  -r 10.0.1.0/24 -r 10.0.2.0/24, poner esas rutas
 
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+  nos pedira meter una password para proteger la clave, al final nos la vuelve a pedir dos veces
+
+docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+
+Generar cert para cliente:
+docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopass
+  nos pedira la pass que pusimos el principio
+
+docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+  obtener config para un cliente ya creado
+
+
+
+ANTIGUO
 Simplificandolo
 En el host necesitaremos:
 modprobe tun
@@ -10,6 +33,9 @@ modprobe tun
 net.ipv4.ip_forward = 1
 sysctl net.ipv4.ip_forward=1
 docker run -d -v "/root/openvpn:/etc/openvpn" --net=host --privileged --name openvpn kylemanna/openvpn /usr/sbin/openvpn --writepid /tmp/server.pid --cd /etc/openvpn --config openvpn.conf --script-security 2
+
+Generar cert para cliente:
+docker run -v /root/openvpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full CLIENTNAME nopass
 
 
 
