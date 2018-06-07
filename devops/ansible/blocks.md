@@ -2,7 +2,8 @@ http://docs.ansible.com/ansible/playbooks_blocks.html
 
 # Juntar tareas con un mismo condicional o ciertas variables generales
    tasks:
-     - block:
+     - name: ejemplo de bloque
+       block:
          - yum: name={{ item }} state=installed
            with_items:
              - httpd
