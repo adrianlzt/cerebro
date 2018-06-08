@@ -1,0 +1,2 @@
+swlist
+listar paquetes instalados
