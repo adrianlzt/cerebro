@@ -62,7 +62,7 @@ tasks:
     when: result is skipped
 
   - command: /bin/still/otro
-    when: result if changed (este existe?)
+    when: result is changed
 
 Ante un comando que de rc=0 se ejecutarían la success y la changed
 
