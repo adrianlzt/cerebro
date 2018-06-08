@@ -30,6 +30,10 @@ es otra cosa
 
 Ternary:
 ternary: allows for trueval/falseval assignement dependint on conditional
+Si no ponemos else y la condicion es false, fallará la ejecucción.
+foo: "{{ 'soylinux' if so == 'linux' else 'soyotro' }}"
+{{ 'hpux' if so is match('^u.*') else None }}
+  con regex
 
 
 Ansible 2.0
