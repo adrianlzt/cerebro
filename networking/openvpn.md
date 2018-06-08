@@ -6,10 +6,13 @@ init:
 $OVPN_DATA=openvpn_data
 docker volume create --name $OVPN_DATA
 docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
-  aqui podemos pasar mas configuraciones, como:
-  -D, no enviar servers DNS
-  -d, no poner la ruta por defecto
-  -r 10.0.1.0/24 -r 10.0.2.0/24, poner esas rutas
+  aqui podemos pasar mas configuraciones, pero me he encontrado con fallos al hacerlo.
+  Mejor editar el fichero una vez generado: vi /var/lib/docker/volumes/openvpn_data/_data/openvpn.conf
+  Para enviar rutas:
+    push "route 10.0.1.0 255.255.255.0"
+  Para enviar config DNS:
+    #push "block-outside-dns"
+    #push "dhcp-option DNS 8.8.8.8"
 
 docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
   nos pedira meter una password para proteger la clave, al final nos la vuelve a pedir dos veces
@@ -22,6 +25,14 @@ docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-c
 
 docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
   obtener config para un cliente ya creado
+
+
+Listar clientes:
+docker run --rm -it -v $OVPN_DATA:/etc/openvpn kylemanna/openvpn ovpn_listclients
+
+Revocar cliente:
+docker run --rm -it -v $OVPN_DATA:/etc/openvpn kylemanna/openvpn ovpn_revokeclient client1 remove
+
 
 
 
