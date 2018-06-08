@@ -14,6 +14,11 @@ docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u u
     #push "block-outside-dns"
     #push "dhcp-option DNS 8.8.8.8"
 
+  Iptables:
+    veo que al menos mete esta ruta, en la tabla nat:
+    -A POSTROUTING -s 172.17.0.8/32 -d 172.17.0.8/32 -p udp -m udp --dport 1194 -j MASQUERADE
+
+
 docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
   nos pedira meter una password para proteger la clave, al final nos la vuelve a pedir dos veces
 
@@ -25,6 +30,8 @@ docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-c
 
 docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
   obtener config para un cliente ya creado
+
+Cuando el cliente conecte con systemd, en el Status deberá aparecer: "Initialization Sequence Completed"
 
 
 Listar clientes:
