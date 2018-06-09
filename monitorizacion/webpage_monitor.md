@@ -27,6 +27,8 @@ Parece que de manera gratuita. Restricciones:
 Para obtener una API KEY: http://www.webpagetest.org/getkey.php
 Tambien podemos bajarnos el software que usa por debajo: https://github.com/WPO-Foundation/webpagetest
 Documentacion de como desplegar en Google Cloud o Amazon EC2: https://github.com/WPO-Foundation/webpagetest-docs/blob/master/user/Private%20Instances/README.md
+Lib para usar con python: https://github.com/xslates/speedforce
+  por defecto nos lanza un test y un repeat, asi que gastamos dos de los 200req/dia
 
 
 https://serps.com/library/how-to-measure-your-website-speed-and-load-times/

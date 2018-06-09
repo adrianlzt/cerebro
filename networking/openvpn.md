@@ -8,7 +8,7 @@ docker volume create --name $OVPN_DATA
 docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
   aqui podemos pasar mas configuraciones, pero me he encontrado con fallos al hacerlo.
   Mejor editar el fichero una vez generado: vi /var/lib/docker/volumes/openvpn_data/_data/openvpn.conf
-  Para enviar rutas:
+  Para enviar rutas (probando una vpn creo que pushear rutas hacia que no funcionase, pero no lo se seguro):
     push "route 10.0.1.0 255.255.255.0"
   Para enviar config DNS:
     #push "block-outside-dns"
@@ -30,6 +30,13 @@ docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-c
 
 docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
   obtener config para un cliente ya creado
+  Si queremos podemos meter rutas en el fichero del cliente, añadimos al fichero ovpn:
+    route-up routes.sh
+    script-security 2
+  Y en el fichero routes.sh
+    #!/bin/sh
+    ip route add 10.0.1.0/24 dev ${dev}
+    ip route add 10.0.2.0/24 dev ${dev}
 
 Cuando el cliente conecte con systemd, en el Status deberá aparecer: "Initialization Sequence Completed"
 

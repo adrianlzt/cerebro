@@ -108,3 +108,20 @@ zbx.map.update({"sysmapid": 4, "selements": selements})
 
 ### Borrar mapas
 zbx.map.delete(["8"])
+
+
+
+# py-zabbix, con esta podemos enviar traps
+https://pypi.org/project/py-zabbix/
+
+from pyzabbix import ZabbixMetric, ZabbixSender
+
+# Send metrics to zabbix trapper
+packet = [
+  ZabbixMetric('hostname1', 'test[cpu_usage]', 2),
+  ZabbixMetric('hostname1', 'test[system_status]', "OK"),
+  ZabbixMetric('hostname1', 'test[disk_io]', '0.1'),
+  ZabbixMetric('hostname1', 'test[cpu_usage]', 20, 1411598020),
+]
+
+result = ZabbixSender(use_config=True).send(packet)
