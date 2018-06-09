@@ -17,8 +17,16 @@ measures how long until most of what you can see within your browser screen is l
 
 https://www.webpagetest.org
 Nos permite usar una API para testear la respuesta de nuestra web
-Parece que de manera gratuita
+  https://sites.google.com/a/webpagetest.org/docs/advanced-features
+  API XML
+  CLI
+  Libreria de python
+Parece que de manera gratuita. Restricciones:
+  You can't run tests from every location at the exact time you want (there is a queue for popular locations for instance, your test can take some minutes to run)
+  One API key only allows 200 tests a day
+Para obtener una API KEY: http://www.webpagetest.org/getkey.php
 Tambien podemos bajarnos el software que usa por debajo: https://github.com/WPO-Foundation/webpagetest
+Documentacion de como desplegar en Google Cloud o Amazon EC2: https://github.com/WPO-Foundation/webpagetest-docs/blob/master/user/Private%20Instances/README.md
 
 
 https://serps.com/library/how-to-measure-your-website-speed-and-load-times/
