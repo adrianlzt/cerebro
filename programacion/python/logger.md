@@ -5,13 +5,11 @@ Para loggear en JSON: https://github.com/telefonicaid/pylogops
 
 
 import logging
-logging.basicConfig()
+logging.basicConfig(format='%(asctime)s %(filename)s %(levelname)s %(message)s', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 class ...
-
-   logger.debug("Service %s scheduled each %s minutes" % (s[SERVICE_NAME],s[SERVICE_PERIOD])) 
+   logger.debug("Service %s scheduled each %s minutes" % (s[SERVICE_NAME],s[SERVICE_PERIOD]))
 
 
 # Logging en varios modulos
