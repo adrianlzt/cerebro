@@ -20,6 +20,7 @@ Tambien lo podemos usar para elminar partes que no queremos:
   "12 C" -> 12
   GET /index.html HTTP/1.0 200 -> Response code: 200
 Podemos aplicar regex, json path y xml path.
+Mirar items.md
 
 
 ## Mass processing of metrics

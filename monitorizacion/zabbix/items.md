@@ -24,6 +24,13 @@ https://www.zabbix.com/documentation/3.4/manual/appendix/items/preprocessing
 Al recibir un valor en un item podemos pasarle un procesador para decidir que queremos almacenar en la bbdd.
 Por ejemplo, podemos recibir un json pero solo almacenar un valor de ese json
 
+Uso típico, enviar un json a un trapper y luego crear items "dependent" donde usaremos el json path para extraer valores.
+
+https://www.zabbix.com/documentation/3.4/manual/config/items/item
+$.document.item.value will extract 10 from {"document":{"item":{"value": 10}}}
+$.document.items[1].value will extract 20 from {"document":{"items":[{"value": 10}, {"value": 20}]}}
+
+
 # Intervals
 https://www.zabbix.com/documentation/3.4/manual/config/items/item/custom_intervals
 
@@ -124,6 +131,8 @@ También podemos crear items dependientes pulsando sobre el "Wizard" de un item.
 
 Un caso típico es leer un json y con dependent_items sacar distintos valores con JSON-path a distintos items.
 También haciendo una única query SQL para sacar muchos datos (en vez de varias queries)
+
+mirar Preprocessing
 
 
 
