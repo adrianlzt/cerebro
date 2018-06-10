@@ -16,6 +16,7 @@ https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-
 measures how long until most of what you can see within your browser screen is loaded
 
 https://www.webpagetest.org
+http://shop.oreilly.com/product/0636920033592.do
 Nos permite usar una API para testear la respuesta de nuestra web
   https://sites.google.com/a/webpagetest.org/docs/advanced-features
   API XML
