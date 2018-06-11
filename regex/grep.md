@@ -73,6 +73,7 @@ no trata la busqueda como una expresion regex
 
 Varios grep en un unico comando:
 awk '/pattern1/ && /pattern2/'
+awk '/a/ && /b/ && !/c/ && /d/'
 
 
 # Internals

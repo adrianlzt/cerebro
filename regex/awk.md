@@ -87,6 +87,7 @@ cat fichero | awk 'NR==4'
 
 Como grep:
 echo "pattern" | awk '/pattern/'
+awk '/a/ && /b/ && !/c/ && /d/'
 
 
 Coger un valor de una columna de un fichero: grep + cut
