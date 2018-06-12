@@ -17,7 +17,7 @@ docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --i
 
 Filtrar por query:
   --searchBody '{"query":{"term":{"username": "admin"}}}'
-
+  --searchBody '{"query": {"range" : { "timestamp" : { "gt" : "now-1h" } }}}'
 
 
 Varios indices con sus mappings:
