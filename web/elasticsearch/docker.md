@@ -1,13 +1,13 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
 https://www.docker.elastic.co/
 
-docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.2
-docker run -d -p 9200:9200 --name elastic -e ELASTIC_PASSWORD=changeme -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-platinum:6.1.2
+docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
+docker run -d -p 9200:9200 --name elastic -e ELASTIC_PASSWORD=changeme -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-platinum:6.2.2
   la pass changeme es la que usa por defecto la imagen de kibana para conectar con ES
 
-docker pull docker.elastic.co/elasticsearch/elasticsearch:6.1.0
-docker pull docker.elastic.co/elasticsearch/elasticsearch-platinum:6.1.0
-docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.0
+docker pull docker.elastic.co/elasticsearch/elasticsearch:6.2.2
+docker pull docker.elastic.co/elasticsearch/elasticsearch-platinum:6.2.2
+docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
 
 The images are available in three different configurations or "flavors". The basic flavor, which is the default, ships with X-Pack Basic features pre-installed and automatically activated with a free licence. The platinum flavor features all X-Pack functionally under a 30-day trial licence. The oss flavor does not include X-Pack, and contains only open-source Elasticsearch.
 

@@ -23,7 +23,7 @@ Filtrar por query:
 Varios indices con sus mappings:
 
 for i in indexA indexB indexC; do
-for j in settings mapping data; do
+for j in mapping data; do
 docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/$i --output=/tmp/${i}_${j}.json --type=${j}
 done
 done
@@ -35,8 +35,8 @@ docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/c
 
 
 Restaurar una serie de mappings e indices
-for i in user_index communities primary_index invite_index invites community_index; do
-for j in settings mapping data; do
-docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://127.0.0.1:9200/$i --input=/tmp/${i}_${j}.json --type=$j
+for i in user_index communities primary_index invite_index invites community_index; do                                                                   git:(master|✚2… 
+for j in mapping data; do
+docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://10.0.2.32:30000/$i --input=/tmp/${i}_${j}.json --type=$j
 done
 done
