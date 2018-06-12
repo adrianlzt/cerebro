@@ -18,3 +18,7 @@ XBMC ligero
 
 # RaspBMC
 XBMC media center
+
+
+# Upgrade
+https://linuxconfig.org/raspbian-gnu-linux-upgrade-from-jessie-to-raspbian-stretch-9
