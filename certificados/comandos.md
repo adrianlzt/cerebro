@@ -50,3 +50,8 @@ openssl crl2pkcs7 -nocrl -certfile certificado.pem | openssl pkcs7 -print_certs 
 
 
 openssl pkcs12 -info -in keyStore.p12
+
+
+
+Extraer clave pública de una privada
+openssl rsa -in key.pem -pubout -out pubkey.pem
