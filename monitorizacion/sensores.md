@@ -15,3 +15,8 @@ sensors -A -u
 xsensors muestra graficamente los valores
 
 Con telegraf podemos recuperar estos valores
+
+s-tui
+  interfaz ncurses para ver fan, power, freq, etc
+
+mas info: linux/performance/cpu/tunables_power.md
