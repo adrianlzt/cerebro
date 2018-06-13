@@ -7,6 +7,9 @@ curl "http://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.
 Explicación:
 curl "localhost:9200/_cluster/allocation/explain?pretty"
 
+Si el cluster ha intentado inicializar el shard mas de n veces (5 por defecto), deja de intentarlo y el comando anterior devuelve una salida que contiene "shard has exceeded the maximum number of retries [5] on failed allocation attempts". Para solucionar este problema, una vez solucionado el problema de espacio o lo que sea, sencillamente forzar que lo intente de nuevo:
+curl -X POST "localhost:9200/_cluster/reroute?retry_failed=true"
+
 
 Discos por encima del watermark (default 90%) en los data nodes?
 Limpiar indices viejos
