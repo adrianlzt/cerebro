@@ -1,1 +1,1 @@
-que_monitorizar.md
+sensores.md

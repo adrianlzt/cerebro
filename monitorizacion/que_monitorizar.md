@@ -61,14 +61,7 @@ Basicos:
         ata1.00: error: { UNC }
 
     - sensores (temperatura, voltage, revoluciones) fuera de rango
-      usar lm_sensors:
-        yum install lm_sensors
-        sensors-detect
-          para aceptar todo: yes YES | sensors-detect
-        sensors
-
-      He visto algunas inconsistencias en ciertas ejecucciónes:
-      in6:          +3.06 V  (min =  +4.05 V, max =  +1.79 V)  ALARM
+      usar lm_sensors (mirar lm_sensors.md)
 
 
 
