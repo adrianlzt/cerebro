@@ -104,6 +104,14 @@ Checking how much an item timestamp value differs from the Zabbix server time.
 Podemos poner expresiones que saltan si hace mucho que no se recibe un dato.
 Las expresiones nodata se evaluan por Zabbix cada 30" (podemos verlo en los logs en debug)
 
+## Recuperar estado OK automáticamente
+Si queremos que un trigger vuelva a OK tras un tiempo le pondremos un AND con otra expresión con nodata.
+De esta manera, si la expresión está activa, pero hace mucho que no tenemos datos, no se activará (o volverá a OK).
+Ejemplo:
+{item.strlen(#1)}<>0 and {item.nodata(30)}=0
+  si el último elemento que ha llegado a "item" tenía una longitud distinta de 0 se activa
+  si pasan 30" y no hemos recibido datos volverá a estado OK
+
 
 # Recovery expression
 Podemos definir una expresión distinta para definir cuando se debe recuperar el trigger.

@@ -40,3 +40,7 @@ Podemos poner este lookup en el inventario:
 
 Obtener ip de un dominio:
 lookup('dig', 'example.com.')
+
+
+Leer un fichero yaml (por ejemplo para usarlo con un with_items):
+{{ lookup('file','containers.yaml') | from_yaml }}
