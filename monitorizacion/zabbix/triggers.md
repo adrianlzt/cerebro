@@ -100,6 +100,10 @@ Parece que hace falta crearse un custom low-level discovery.
 ## Fuzzytime
 Checking how much an item timestamp value differs from the Zabbix server time.
 
+## Nodata
+Podemos poner expresiones que saltan si hace mucho que no se recibe un dato.
+Las expresiones nodata se evaluan por Zabbix cada 30" (podemos verlo en los logs en debug)
+
 
 # Recovery expression
 Podemos definir una expresión distinta para definir cuando se debe recuperar el trigger.
