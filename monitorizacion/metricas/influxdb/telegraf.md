@@ -270,13 +270,14 @@ Los agregadores nos permiten hacer medias, percentiles, min/mas, contar
 # Monitorizar el propio telegraf
 Los logs meten dos caracteres para distinguir el tipo de error:
 https://github.com/influxdata/telegraf/pull/1838
+https://github.com/influxdata/telegraf/blob/master/logger/logger.go#L13
 
 D!   debug
 I!   info
+W!   warning (añadida a posteriori)
 E!   error
 
-Buscar el patrón "E!"
-
+Mirar en el siguiente apartado (logparser) para ver como parsear los logs de Telegraf con logparser
 
 
 # Logparser / grok
@@ -305,6 +306,19 @@ Ejemplo de parsers, donde a telegraf solo sacamos el "error":
 COMM (?:rasdaemon\[[0-9]*\]:\s*)
 ERROR (?:.*[Ee][Rr]{2}[Oo][Rr].*)
 '''
+
+
+Parseando los propios logs de Telegraf:
+[[inputs.logparser]]
+  files = ["/var/log/telegraf.log"]
+
+  [inputs.logparser.grok]
+    measurement = "telegraf_log"
+    patterns = ['\A%{TIMESTAMP_ISO8601:timestamp:ts-rfc3339} %{TELEGRAF_LOG_LEVEL:level:tag}! %{GREEDYDATA:msg}']
+    custom_patterns = '''
+TELEGRAF_LOG_LEVEL (?:[DIWE]+)
+'''
+
 
 
 
