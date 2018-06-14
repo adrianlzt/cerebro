@@ -68,6 +68,12 @@ telegraf --usage NOMBRE
 ## agregar/quitar/modificar tags/fields
 https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering
 
+solo dejar pasar ciertos measurements:
+namepass = ["aaa"]
+
+Quitar ciertos measurements:
+namedrop = ["aaa"]
+
 quita ese tag:
 tagexclude = ["path"]
 
