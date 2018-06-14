@@ -99,3 +99,8 @@ Parece que hace falta crearse un custom low-level discovery.
 
 ## Fuzzytime
 Checking how much an item timestamp value differs from the Zabbix server time.
+
+
+# Recovery expression
+Podemos definir una expresión distinta para definir cuando se debe recuperar el trigger.
+IMPORTANTE, la condición de alerta del trigger no puede seguir activa para que esto funcione.
