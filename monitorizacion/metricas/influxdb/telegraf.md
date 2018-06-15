@@ -58,6 +58,15 @@ metric_buffer_limit: Telegraf will cache metric_buffer_limit metrics for each ou
 
 
 
+# Jitter
+Podemos configurar telegraf para que recolecte los inputs con ligeras variaciones de tiempo y asi evitar un "pico" en el momento de recolección general.
+collection_jitter
+Cada vez que va a ejecutar la recolección se pone un random sleep entre 0 y collection_jitter.
+Por lo tanto, para un interval de 10" y un jitter de 3" se ejecutará:
+00, 11, 20, 31, 40, 53, 62, etc
+
+
+
 
 # Plugins
 Para ver ayuda de un cierto plugin:
@@ -271,6 +280,40 @@ Plugins que se encuentran entre los inputs y los outputs y nos permiten modifica
 
 Los procesadores permiten hacer transformaciones, decoraciones o filtrar.
 Los agregadores nos permiten hacer medias, percentiles, min/mas, contar
+
+## basicstats
+[[aggregators.basicstats]]
+  namepass = [ "procstat_nginx_worker" ]
+  drop_original = false
+  period = "4s"
+  stats = ["count"]
+
+En este ejemplo solo estamos haciendo count de los fields que llegan en la measurement procstat_nginx_worker y eliminado las métricas originales.
+Si por ejemplo estamos usando procstat para recolectar varios procesos con el mismo nombre y distintos PID y queremos generar la media/max/min/sum/count de los valores, tendremos que poner un "period" del aggregator que sea menor que el interval-jitter.
+La idea es que el aggregator nunca coja más de un grupo de métricas (procstat generará en el mismo instante todas las métricas para el mismo proceso con distintos PIDs).
+Si el aggregator no recoge nada, no generará nada.
+Si por el contrario ponemos un period mayor, podría suceder que cogiese dos grupos de métricas de prostat, generando un "sum" y un "count" variable dependiendo de las condiciones de carrera
+
+
+## regex processor
+https://github.com/influxdata/telegraf/tree/master/plugins/processors/regex
+Nos permite modificar los values de una tag o un field (tambien puede almacenar el valor en un nuevo tag)
+Parece que solo funciona cuando el value es una string.
+Típico caso, extraer campos de un field con regex para generar uno nuevo.
+
+No funciona con --test
+
+
+## converter processor
+https://github.com/influxdata/telegraf/tree/master/plugins/processors/converter
+Cambiar tipos de datos de tag o fields.
+Cambiar fields por tags y viceversa
+
+
+## override processor
+https://github.com/influxdata/telegraf/tree/master/plugins/processors/override
+nos sirve para cambiar nombres de tags, agregar tags.
+
 
 
 # Monitorizar el propio telegraf
