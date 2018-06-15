@@ -27,3 +27,36 @@ for i := 0; i < typ.NumField(); i++ {
 }
 timestampData := val.FieldByName("Data") // Cogemos del struct el compo "Data"
 timestamp := binary.BigEndian.Uint32(timestampData.Bytes()[0:4]) // Lo convertimos a un array de bytes y cogemos los 4 primeros para convertirlos en un uint32
+
+
+
+# Assertions / convertir de tipo
+https://tour.golang.org/methods/15
+Si intentamos convertir algo que no es posible dará un panic
+
+t, ok := i.(T)
+
+Si omitimos el valor de retorno "ok" (f = i.(float64)), y no se puede convertir, dará un panic.
+
+No podemos convertir una interface{} con un integer en float64 con un type assertion.
+Tendremos que hacerlo asi: float64(i.(float64))
+
+Pero si "i" es una interface{} y tiene una string, dará un panic.
+
+
+Convertir usanto "reflect":
+https://stackoverflow.com/questions/20767724/converting-unknown-interface-to-float64-in-golang
+
+import "reflect"
+
+var floatType = reflect.TypeOf(float64(0))
+
+func getFloat(unk interface{}) (float64, error) {
+    v := reflect.ValueOf(unk)
+    v = reflect.Indirect(v)
+    if !v.Type().ConvertibleTo(floatType) {
+        return 0, fmt.Errorf("cannot convert %v to float64", v.Type())
+    }
+    fv := v.Convert(floatType)
+    return fv.Float(), nil
+}
