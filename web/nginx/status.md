@@ -7,7 +7,7 @@ http://rm-rf.es/habilitar-en-nginx-la-pagina-de-status/
 módulo gratuito
 
 configurar si está disponible:
-nginx -V | grep -o with-http_stub_status_module
+nginx -V 2>&1 | grep -o with-http_stub_status_module
 
 
 /etc/nginx/conf.d/status.conf
