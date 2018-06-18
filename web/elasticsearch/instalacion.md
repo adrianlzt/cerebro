@@ -108,6 +108,8 @@ https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_gi
 Configurar el HEAP de ES al 50% de la memoria disponible (el otro 50% ira en cacheos del SO usados por Lucene)
 vi /etc/sysconfig/elasticsearch
 ES_JAVA_OPTS="-Xms15g -Xmx15g" # para una maquina un 30GB de memoria
+  Xms represents the initial size of total heap space
+  Xmx represents the maximum size of total heap space
 
 No poner más de 31GB para el heap
 

@@ -1,6 +1,6 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-index_.html
 
-Los datos se insertan con peticiones HTTP POST
+Los datos se insertan con peticiones HTTP POST (sin especificar el id). Con PUT podemos insertar docs especificando un id.
 Se actualizan con PUT (deberemos especificar el elemento exacto: localhost:9200/vehicles/tv/one)
 Si intentamos crear un documento en un index que no existe, se autogenera. Posiblemente queremos deshabilitar esto en producción.
 
@@ -75,6 +75,7 @@ Si hacemos un PUT sobre un doc que ya existe lo estaremos reemplazando
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-update.html
 
 Solo actualiza, o añade, lo que le pasemos.
+Internamente, lee el doc, crea uno nuevo con los campos leído más los añadidos y marca para borar el anterior.
 
 curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario": {"hash": "xxxx"}}'
 curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
@@ -174,3 +175,5 @@ El formato del fichero será tipo:
 
 # Delete
 DELETE my_blog/_doc/1
+
+Un delete también sube el _version

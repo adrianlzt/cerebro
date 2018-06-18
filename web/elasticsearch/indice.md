@@ -2,7 +2,6 @@ mirar conceptos.md para entender el significado.
 ES usa inverted index (ver bbdd/indices.md) para almacenar los datos.
 Básicamente es una tabla donde para cada entrada nos dice donde está el fichero que contiene esa palabra
 
-Crear más index o usar _type?
 
 # Estado del cluster
 curl http://localhost:9200/_status
