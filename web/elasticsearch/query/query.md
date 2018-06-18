@@ -1,6 +1,10 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html
 
+Dos tipos de búsquedas (no se pueden combinar):
+  Query string: fácil de usar, usando la URL
+  Query DSL: haciendo un POST de un JSON donde especificamos la query que queremos
+
 Para que se pueda buscar por un campo, este tiene que estar indexado en Lucene (el motor de búsqueda por debajo de ES).
 Para acelerar las cosas, ES cachea las peticiones a lucene (escrituras a disco). Por defecto se hace flush cada segundo.
 
