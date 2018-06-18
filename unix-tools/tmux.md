@@ -8,6 +8,9 @@ Window: varios panes con distintos splits
 Pane: cada ventana con una shell/app
 
 
+Compartir una session:
+tmux attach-session -t NAME
+
 # tmuxinator
 https://github.com/tmuxinator/tmuxinator
 Generar configuraciones de sesiones para tmux
