@@ -6,6 +6,7 @@ https://blog.serverdensity.com/monitor-nginx/?utm_source=Server+Density+Updates&
 
 https://scoutapp.com/plugin_urls/72-nginx-monitoring
 
+https://www.scalyr.com/community/guides/how-to-monitor-nginx-the-essential-guide
 
 
 https://www.nginx.com/products/nginx-amplify/
