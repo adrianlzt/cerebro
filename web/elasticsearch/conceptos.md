@@ -3,13 +3,15 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/glossary.html
 
 Index: colleción de documentos que comparten características similares.
 
-Type: categoría/partición lógica dentro de un índice. Distintos types de un index deberían tener estructuras similares
+Mapping: define los fields de un índice (puede ser autogenerado)
 
 Document: la unidad básica de información que puede ser indexada en formato JSON
 
 Shards: divisiones físicas de un index. Cada shard puede estar en un nodo distinto. Permite escalado horizontal. Permite paralelizar operaciones
 
 Replicas: copias exactas de los shards distribuídas en distintos nodos. Provee HA en caso de fallo de un nodo. Mayor throughput porque las búsquedas se pueden ejecutar en paralelo en las réplicas
+
+Type (DEPRECATED): categoría/partición lógica dentro de un índice. Distintos types de un index deberían tener estructuras similares
 
 
 El número de shards y réplicas de un índice se definen en su creación. El número de réplicas se puede modificar tras la creación, pero NO el número de shards.

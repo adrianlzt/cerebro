@@ -2,6 +2,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-index_.html
 
 Los datos se insertan con peticiones HTTP POST
 Se actualizan con PUT (deberemos especificar el elemento exacto: localhost:9200/vehicles/tv/one)
+Si intentamos crear un documento en un index que no existe, se autogenera. Posiblemente queremos deshabilitar esto en producción.
 
 curl -H "Content-Type: application/json" -XPOST "localhost:9200/vehicles/tv/?pretty" -d'
 {
@@ -24,19 +25,29 @@ En el payload (el parámetro -d nos permite cargar este tipo de información) me
 
 Nos confirma la operación con (resulado de otro insert distinto):
 {
-  "_index" : "pruebaalt390",
-  "_type" : "tweet",
-  "_id" : "2",
-  "_version" : 1,
-  "_shards" : {
-    "total" : 1,
-    "successful" : 1,
-    "failed" : 0
+  "_index": "test",
+  "_type": "test",
+  "_id": "1",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
   },
-  "created" : true
+  "_seq_no": 0,
+  "_primary_term": 1
 }
 
+
 _version es un campo interno de ES para la replicación
+Las versiones antiguas no se almacenan (se marcan para borrado). Si queremos almacenar versiones antiguas tendremos que encargarnos nosotros de cambiarlo de índice o almacenarnlo en otro sitio de alguna manera.
+
+El campo "result" nos dirá si hemos creado un nuevo doc ("created") o actualizado uno ya existente ("update")
+
+Podemos usar el endpoint _create que solo permitirá crear nuevos elementos (no override).
+Nos devolverá un error 409 si el doc ya existe.
+POST indice/type/id/_create
 
 
 Si queremos meter un timestamp tendremos que ver en el mapping que format se ha puesto.
@@ -62,6 +73,9 @@ Si hacemos un PUT sobre un doc que ya existe lo estaremos reemplazando
 
 # Update
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-update.html
+
+Solo actualiza, o añade, lo que le pasemos.
+
 curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario": {"hash": "xxxx"}}'
 curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
 
@@ -156,3 +170,7 @@ El formato del fichero será tipo:
 {"index":{"_index":"shakespeare","_type":"line","_id":2}}
 {"line_id":3,"play_name":"Henry IV","speech_number":"","line_number":"","speaker":"","text_entry":"Enter KING HENRY"}
 
+
+
+# Delete
+DELETE my_blog/_doc/1

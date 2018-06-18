@@ -32,6 +32,8 @@ Necesita java8
 yum install -y java-1.8.0-openjdk
 systemctl enable elasticsearch.service
 
+Es suficiente tener JRE, pero es mejor tener JDK para tener herramientas como jstack y jps, y también un mejor control de update.
+
 vi /etc/elasticsearch/elasticsearch.yml
   cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
   node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
@@ -75,8 +77,33 @@ tail -f logs/loquequeramos.log
 Mirar plugins.md para aplicaciones útiles que querremos tener.
 
 
+# Config
+Fichero en el dir config/
 
-# Configuración de memoria
+elasticsearch.yml
+  por defecto buenas defaults
+  configuración de ES
+
+  https://www.elastic.co/guide/en/elasticsearch/reference/6.3/path-settings.html
+  Típicamente cambiaremos el path.data (donde se almacena los datos). Podemos configurar varios paths
+
+  Tambien el node.name podemos definirlo en cada node. Podemos el hostname
+  node.name ${HOSTNAME}
+
+  network.host, especial values:
+    _[networkInterface]_ Addresses of a network interface, for example _en0_.
+    _local_ Any loopback addresses on the system, for example 127.0.0.1.
+    _site_ Any site-local addresses on the system, for example 192.168.0.1.
+    _global_ Any globally-scoped addresses on the system, for example 8.8.8.8.
+
+jvm.options
+  opciones de java, por defecto solo 1 GB de memoria
+
+log4j2.properties
+  configuración de logging
+
+
+## Configuración de memoria
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#_give_half_your_memory_to_lucene
 Configurar el HEAP de ES al 50% de la memoria disponible (el otro 50% ira en cacheos del SO usados por Lucene)
 vi /etc/sysconfig/elasticsearch

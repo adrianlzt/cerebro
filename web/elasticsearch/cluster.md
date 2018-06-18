@@ -4,7 +4,10 @@ https://thoughts.t37.net/designing-the-perfect-elasticsearch-cluster-the-almost-
 
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html
 
-Fácilmente escalable. Simplemente añadir nodos al cluster.
+Fácilmente escalable. Simplemente añadir nodos al cluster. Se unen por el nombre del cluster.
+
+Mirar internals.md Communication para ver como se comunican los nodos
+
 
 # Estado del cluster
 curl -s localhost:9200/_cluster/health\?pretty
@@ -18,6 +21,9 @@ curl -s localhost:9200/_cluster/settings | python -m json.tool
 
 
 # Nodos
+curl "https://localhost:9200/_nodes?pretty"
+  toda la info de los nodos, muy verboso
+
 curl "https://localhost:9200/_cat/nodes?v"
 El que tiene el asterisco sera el master del cluster
 
@@ -36,7 +42,11 @@ Si queremos que sea/no sea un master/data (por defecto será data y master):
 node.master: true/false
 node.data: true/false
 
-Si queremos que solo intente unirse en cluster con ciertos nodos (poner los nodos excepto él mismo):
+Por defecto zen discovery.
+Prueba las IPs una por una, si no encuentra ninguna operativa, o las que encuentra no tiene el nombre del cluster que busca, crea un cluster nuevo.
+
+Si queremos que solo intente unirse en cluster con ciertos nodos (poner los nodos excepto él mismo).
+La buena confguración es poner los tres masters.
 discovery.zen.ping.unicast.hosts: nodoA,nodoB
   a partir de la version 7 podemos especificar un fichero con los nodos que puede ser actualizado por un tercero en cualquier momento
   https://www.elastic.co/guide/en/elasticsearch/plugins/master/discovery-file.html
@@ -92,3 +102,12 @@ Swapping mata la performance. Recomiendan quitarla o subir mucho el swappiness.
 
 Debe vigilarse igualmente que no se esté quedando sin filedescriptors.
 En centos7 la unit de systemd ya configura para poner el limite a 65536
+
+
+# Auto generación de índices
+Por defecto si intentamos indexar un dato en un índice que no existe, este índice se autogenerará.
+Esta funcionalidad seguramente la queramos deshabilitar en producción.
+
+
+# Networking
+Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
