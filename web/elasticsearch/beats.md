@@ -5,7 +5,7 @@ https://www.elastic.co/guide/en/beats/libbeat/master/community-beats.html
 
 If you’re not ready to upgrade Elasticsearch and Kibana to 6.0, that’s alright. Beats version 6.0 works with Elasticsearch and Kibana version 5.6, so you can upgrade Beats now and the rest of the stack later.
 
-filebeats probablemente reemplace a logstash-forwarder
+filebeat probablemente reemplace a logstash-forwarder
 
 
 Metricbeat -> extrae métricas de sistema (oficial)
@@ -24,6 +24,42 @@ Application accepting log data via TCP or UDP to then index the data in Elastics
 
 Generalmente cuando hagamos un go get ..., cuando termine ya habrá compilado el beat.
 Si queremos recompilarlo: go build
+
+
+
+
+
+# Filebeat
+Generalmente lo que haremos es configurar algunos prospectors (donde configuramos que ficheros se deben leer), unos processors (como tratar la información) y unos outputs (donde enviar la info).
+
+Ejemplo leyedo ficheros de log en formato md-json, extrayendo los campos del json como fields, borrando fields que no queremos y almacenando la info en elastic:
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - /home/elastic/datasets/elastic_blog_curated_access_logs_server*/*.log
+
+processors:
+ - decode_json_fields:
+     fields: ['message']
+     target: ''
+     overwrite_keys: true
+
+ - drop_fields:
+     fields: ["message", "prospector", "beat", "source", "offset"]
+
+setup.template.enabled: false
+
+output.elasticsearch:
+  hosts: ["localhost:9200"]
+  index: "logs_%{[host]}"
+  document_type: "_doc"
+  bulk_max_size: 1000
+
+
+
+
+
 
 
 # Develop
