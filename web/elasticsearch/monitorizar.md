@@ -13,6 +13,10 @@ nodes_hotthreads
 just_nodes_stats
 just_indices_stats
 
+
+Importante, de los nodos data vigilar su USE (utilization/saturation/errors) de CPU, memoria y disk I/O.
+
+
 Espacio global del cluster (total, libre, disponible):
 watches --url https://localhost:9200 --cacert admin-ca --cert admin-cert --key admin-key cluster_stats | jq '.nodes.fs'
   libre: espacio libre en disco (como lo que ve df)

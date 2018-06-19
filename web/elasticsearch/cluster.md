@@ -43,6 +43,7 @@ Machine learning (X-Pack)
 Tiene el poder de hacer modificaciones en el cluster state.
 Cada nodo master eligible tiene una copia del estado del cluster.
 No hace falta tener más de 3 masters, da igual el tamaño del cluster.
+Es importante tener nodos master dedicados para solo dedicarse a manejar el estado del cluster. Si estos nodos se ralentizan, se ralentiza todo.
 
 GET _cluster/state
 
@@ -54,6 +55,24 @@ Modificaciones del cluster:
 Hay un parámetro para definir el mínimo número de master nodes para poder montar el cluster, y evitar el split brain:
 discovery.zen.minimum_master_nodes (recomendado poner floor(N/2)+1)
 
+
+### Data
+Almacenan los shards
+Ejecutan las operaciones CRUD (create/read/update/delete), search and aggregations.
+I/O, CPU and memory-intensive
+
+
+### Coordinating (frontend)
+Todos los nodos del cluster son coordinating
+Tiene una copia del estado del cluster.
+Puede ser un nodo exclusivamente coordinating. Este nodo recibiria peticiones y las enviaría a los nodos que haga falta.
+Luego uniría las respuestas y las devovlería al cliente.
+CPU and memory intensive.
+
+
+# Configuraciones de cluster
+Pequeños despliegues: 3-5 nodos, todos master eligible.
+Más grandes: 3 master exclusivos, data nodes según los necesitemos. También podemos agregar coordinating-only nodes
 
 
 

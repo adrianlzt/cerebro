@@ -1,6 +1,13 @@
-Cada índice se rompe en cinco piezas, llamadas shards.
+Cada índice se rompe en cinco (por defecto) piezas, llamadas shards y dos (por defecto) replicas.
+No se puede modificar el número de shards de un índice ya creado, si se puede modificar el número de replicas.
 
 Cada Documento solo puede vivir en un único shard, y por lo tanto en un único nodo. Pero los shards son replicados entre nodos (por defecto se hace una réplica).
+
+Primary: el shard original
+Replicas: copias de primary shard
+
+Los shards se garantiza que estén en nodos diferentes -> Si no puede pondrá el cluster en YELLOW
+
 
 El estado del cluster nos devuelve, tras crear un índice:
 "active_primary_shards":5,
@@ -43,11 +50,10 @@ curl "localhost:9200/_cluster/allocation/explain?pretty"
 
 # Rellocating
 https://www.elastic.co/blog/red-elasticsearch-cluster-panic-no-longer
-When a node leaves the cluster for whatever reason, intentional or otherwise, the master reacts by:
-
-Promoting a replica shard to primary to replace any primaries that were on the node.
-Allocating replica shards to replace the missing replicas (assuming there are enough nodes).
-Rebalancing shards evenly across the remaining nodes.
+When a node leaves (o se añade otro nodo) the cluster for whatever reason, intentional or otherwise, the master reacts by:
+  Promoting a replica shard to primary to replace any primaries that were on the node.
+  Allocating replica shards to replace the missing replicas (assuming there are enough nodes).
+  Rebalancing shards evenly across the remaining nodes.
 
 These actions are intended to protect the cluster against data loss by ensuring that every shard is fully replicated as soon as possible.
 
