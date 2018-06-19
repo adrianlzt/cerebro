@@ -50,6 +50,8 @@ sudo x11vnc -storepasswd 'SILExx10' /etc/x11vnc.pass
 
 
 # Extendiendo escritorio a una tercera pantalla
+https://wiki.archlinux.org/index.php/Extreme_Multihead#VNC
+https://ogbe.net/blog/moar_monitors.html
 
 1.- Decirle al driver de intel que cree dos conexiones virtuales (con una seria suficiente):
 https://unix.stackexchange.com/a/391519
@@ -77,10 +79,35 @@ xrandr --addmode "$DEVICE" "${NAME}"
 xrandr --output $DEVICE --mode $NAME --right-of NUESTRA_PANTALLA_PRINCIPAL
 
 
-3.- Arrancar VNC solo en la porcion de la pantalla virtual
+3.- Arrancar vncviewer en la máquina que tiene conectada la tercera pantalla
+# disable screen sleep
+xset s off
+xset -dpms
+DISPLAY=:0 vncviewer -fullscreen -listen
+
+
+$ systemctl --user cat vnc
+[Unit]
+Description=VNC viewer listener
+[Service]
+ExecStart=/usr/bin/vncviewer -fullscreen -listen
+Environment=DISPLAY=:0
+[Install]
+WantedBy=multi-user.target
+
+
+
+Quitar el mouse del pc con la tercera pantalla:
+https://askubuntu.com/questions/157134/how-to-hide-the-mouse-cursor
+/etc/lightdm/lightdm.conf
+xserver-command=X -bs -core -nocursor
+
+
+4.- Arrancar VNC solo en la porcion de la pantalla virtual
 CLIP=$(xrandr | grep "^$DEVICE.*$" | grep -o '[0-9]*x[0-9]*+[0-9]*+[0-9]*')
-x11vnc -listen 0.0.0.0 -clip $CLIP -noxinerama -noxrandr -repeat -nevershared -forever -nowf -noncache -wait 1 -defer 1 -multiptr -repeat
+src/x11vnc -clip $CLIP -noxinerama -noxrandr -nowf -noncache -wait 1 -defer 1 -multiptr -connect 192.168.2.37:5500
   para mostrar el ratón en el escritorio remoto necesitamos la ultima version del x11vnc, compilada desde fuente:
+  (me muestra tambien el mouse del cliente en mi pantalla y no consigo quitar el mouse original de la suya)
   git clone git@github.com:LibVNC/x11vnc.git
   cd x11vnc
   ./autogen.sh
@@ -89,10 +116,3 @@ x11vnc -listen 0.0.0.0 -clip $CLIP -noxinerama -noxrandr -repeat -nevershared -f
   src/x11vnc ...
 
 
-4.- Arrancar vncviewer en la máquina que tiene conectada la tercera pantalla
-# disable screen sleep
-xset s off
-xset -dpms
-# unclutter removes the local mouse pointer
-unclutter &
-DISPLAY=:0 vncviewer 192.168.2.36:3 -viewonly -fullscreen
