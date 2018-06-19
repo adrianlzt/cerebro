@@ -43,6 +43,108 @@ curl localhost:9200/vehicles/_search/?pretty -d'
     }
 }'
 
+
+# Bool query
+{
+  "query": {
+    "bool": {
+      "must": [  # lo que pongamos aqui debe aparecer obligatoriamente. Cuenta para el _score
+        {}
+      ],
+      "must_not": [  # estas queries NO deben aparecer en las respuestas
+        {}
+      ],
+      "should": [  # si estas queries matchean, aportan al _score. Si solo definimos "should", él solo pondra un minimum_should_match de 1 entre las queries
+        {}
+      ],
+      "should": {  # esto es si queremos hacer un "not should"
+        "bool": {
+          "must_not": {
+            "match": {
+              "title": "stack"
+            }
+          }
+        }
+      }
+      "filter": [  # estas queries deben estar obligatoriamente en los documentos, pero no aporta al _score
+        {}
+      ]
+    }
+  }
+}
+
+
+Ejemplo:
+{
+ "query": {
+   "bool": {
+     "must": [
+       {
+         "match": {
+           "content": "logstash"
+         }
+       },
+       {
+         "match": {
+           "category": "engineering"
+         }
+       }
+     ]
+   }
+ }
+}
+
+
+
+{
+ "query": {
+   "bool": {
+     "must": {
+       "match_phrase": {
+         "content": "elastic stack"
+       }
+     },
+     "should": {
+       "match_phrase": {
+         "author": "shay banon"  # no es obligatorio que aparezca, pero si aparece tendran el maximo score
+       }
+     }
+   }
+ }
+}
+
+
+Truco para potenciar el resultado de una phrase pero sin ser excluyente:
+{
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "content": "open data"
+        }
+      },
+      "should": {
+        "match_phrase": {
+          "content": "open data"
+        }
+      }
+    }
+  }
+}
+
+
+
+## Filters
+Se usa por ejemplo para los rangos de fechas. Donde no tiene sentido tener más o menos score. Solo queremos los documentos que estén dentro.
+
+Los filtros pueden ser cacheados.
+Como los filtros no se calcula el score esto ahorra memoria "heap"
+
+Por ejemplo, si queremos filtrar por tags de unos posts de blogs, el filtro de tag seria un filter, y las palabras que buscasemos serían "must".
+
+
+
+
 ## Querys mas complejas
 
 Busca que el campo "clock" sea > 1508927505 y < 1508927505

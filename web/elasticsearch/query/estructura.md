@@ -1,6 +1,6 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-body.html
 
-Query
+Query (mirar query.md)
   "query": { "match": { "title": "something" } }
 
 From/Size
@@ -13,6 +13,8 @@ Source filtering (determinar los fields que queremos que retorne)
   "_source": ["title", "author"]
   Si queremos filtrar para quedarnos solo con ciertos campos (quitando metadata):
   my_blogs/_search?filter_path=hits.hits._source.title,hits.hits._source.author
+
+Aggregations
 
 Fields
 

@@ -51,3 +51,7 @@ Más costoso
     }
   }
 }
+
+"slop" nos permite definir cuantos "saltos" se pueden realizar para que nuestra query matchee.
+Ejemplo, si buscamos "open data" con slop=1, "open xxx data" también será un match.
+Otro ejemplo con slop 1: "open data" encontraría "data open"
