@@ -28,6 +28,34 @@ curl "https://localhost:9200/_cat/nodes?v"
 El que tiene el asterisco sera el master del cluster
 
 
+## Tipos de nodos
+Un nodo puede tener varios roles (por defecto todos los roles).
+Se definen en elasticsearch.yml
+
+Master eligible (node.master: true)
+Data (node.data: true)
+Ingest (node.ingest: true)
+Coordinating only
+Machine learning (X-Pack)
+
+
+### Master
+Tiene el poder de hacer modificaciones en el cluster state.
+Cada nodo master eligible tiene una copia del estado del cluster.
+No hace falta tener más de 3 masters, da igual el tamaño del cluster.
+
+GET _cluster/state
+
+Modificaciones del cluster:
+  - crear indice
+  - añadiendo/quitando nodos
+  - allocating shards to nodes
+
+Hay un parámetro para definir el mínimo número de master nodes para poder montar el cluster, y evitar el split brain:
+discovery.zen.minimum_master_nodes (recomendado poner floor(N/2)+1)
+
+
+
 
 # Arrancar un cluster
 Por defecto cuando iniciamos ES arranca un cluster con nombre "elasticsearch".

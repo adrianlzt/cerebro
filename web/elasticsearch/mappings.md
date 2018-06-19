@@ -27,22 +27,27 @@ En general es mejor práctica definir los mappings porque el guessing de ES pued
 Por ejemplo, "true" lo va a reconocer como una string en vez de como un boolean (las comillas hace que se confunda)
 
 
-Podemos obtener el mapping con:
+# Leer mapping
 curl localhost:9200/vehicles/_mapping
-
-Mapping de un type determinado
-curl http://localhost:9200/iris-telematics-2015.06.10/_mapping/access_combined/?pretty
 
 Detalle de field de un mapping concreto:
 curl "localhost:9200/tete/_mapping/user/field/msg?pretty"
 
-Si ES no genera correctamente el mapping, podemos suministrarlo al crear el índice.
 
 
 
 # Crear mapping
-Típicamente podemos coger el autogenerado y retocarlo. Un cambio que haremos será definir para los text fields si los dejamos como text o como keyword.
+Típicamente podemos coger el autogenerado y retocarlo.
+Subiremos un documento con todos los campos que queremos a un indice con nombre XXX_tmp. Obtendremos el mapping y lo pegaremos en el Dev Console.
+Tendremos que borrar la primera key, con el nombre del index.
+Ahí iremos modificando. Y lo guardaremos ya sobre el indice bueno.
+Un cambio que haremos será definir para los text fields si los dejamos como text o como keyword.
 También podemos poner un field de texto y pasarlo por distintos analyzers, por ejemplo en distintos idiomas.
+Dates, tendremos que especificar el formato. Podemos especificar que el formato puede estar en diferentes formatos: basic_data||epoch_millis (los probará en orden)
+Tambien chequear si tenemos locations (GeoLocations).
+También tener cuidado con el tipo de datos que seleccionamos con los números. Por ejemplo si ponemos un precio a un short int (ejemplo), si intentamos hacer la suma de muchos elementos, la suma se verá truncada al máximo de ese valor. Tenemos que elegir los tipos de datos pensando en que vamos a querer calcular en ese valor.
+
+Arrays? Tal vez nos vienen una string con valores separados por coma y lo queremos meter como un array.
 
 curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
 El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
