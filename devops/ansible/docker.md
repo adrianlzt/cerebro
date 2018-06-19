@@ -34,6 +34,7 @@ Depedencias necesarias en centos 7:
     state: present
     volumes:
     - /data
+    - /host:/container[:mode]
 
 - name: redis container
   docker:

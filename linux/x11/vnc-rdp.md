@@ -105,7 +105,7 @@ xserver-command=X -bs -core -nocursor
 
 4.- Arrancar VNC solo en la porcion de la pantalla virtual
 CLIP=$(xrandr | grep "^$DEVICE.*$" | grep -o '[0-9]*x[0-9]*+[0-9]*+[0-9]*')
-src/x11vnc -clip $CLIP -noxinerama -noxrandr -nowf -noncache -wait 1 -defer 1 -multiptr -connect 192.168.2.37:5500
+src/x11vnc -clip $CLIP -noxinerama -noxrandr -nowf -noncache -wait 1 -defer 1 -repeat -multiptr -connect 192.168.2.37:5500
   para mostrar el ratón en el escritorio remoto necesitamos la ultima version del x11vnc, compilada desde fuente:
   (me muestra tambien el mouse del cliente en mi pantalla y no consigo quitar el mouse original de la suya)
   git clone git@github.com:LibVNC/x11vnc.git
