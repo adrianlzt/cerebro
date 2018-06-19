@@ -5,6 +5,8 @@ query/fields.md para ver los tipos de los datos del indice
 UN SOLO MAPPING POR INDICE
 https://www.elastic.co/guide/en/elasticsearch/reference/6.x/removal-of-types.html
 Indices created in Elasticsearch 6.0.0 or later may only contain a single mapping type. Indices created in 5.x with multiple mapping types will continue to function as before in Elasticsearch 6.x. Mapping types will be completely removed in Elasticsearch 7.0.0.
+El problema con multiples types por indice es que cada campo es compartido entre todos los types. Si el campo "status", por ejemplo, en un sitio es str y en otro int, esto no funciona.
+Otro problema era que todos los campos de un type estaba ocupando hueco en otros types que no usasen esos campos.
 
 Si queremos seguir usando varios "types" por indice podemos hacerlo a mano. Creando el mapping index con los campos de todos los types que vayamos a usar y luego prefijando cada elemento con el tipo:
   INDEX/TYPE/MITIPO1-aaa
@@ -21,6 +23,8 @@ Nos lo avisará en el log:
 CUIDADO! con meter muchos documentos cada uno con un mapping distinto -> mapping explosion. Peligroso si ese índice puede tener muchos documentos.
 
 Otra opción es generarlo a priori.
+En general es mejor práctica definir los mappings porque el guessing de ES puede fallar.
+Por ejemplo, "true" lo va a reconocer como una string en vez de como un boolean (las comillas hace que se confunda)
 
 
 Podemos obtener el mapping con:
@@ -37,6 +41,9 @@ Si ES no genera correctamente el mapping, podemos suministrarlo al crear el índ
 
 
 # Crear mapping
+Típicamente podemos coger el autogenerado y retocarlo. Un cambio que haremos será definir para los text fields si los dejamos como text o como keyword.
+También podemos poner un field de texto y pasarlo por distintos analyzers, por ejemplo en distintos idiomas.
+
 curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
 El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
 
@@ -47,12 +54,12 @@ mappings con name:text y timestamp:date(epoch_millis)
 curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' -d'
 {
   "mappings": {
-    "user": { 
-      "_all":       { "enabled": false  }, 
-      "properties": { 
-        "title":    { "type": "text"  }, 
-        "name":     { "type": "text"  }, 
-        "age":      { "type": "integer" }  
+    "user": {
+      "_all":       { "enabled": false  },
+      "properties": {
+        "title":    { "type": "text"  },
+        "name":     { "type": "text"  },
+        "age":      { "type": "integer" }
       }
     }
   }
@@ -60,16 +67,31 @@ curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' 
 '
 
 
+
+## Tipos de datos
+Simples:
+  text: for full text (analyzed) strings
+  keyword: for exact value strings
+  date: string formatted as dates, or numeric dates
+  integer types: like byte, short, integer, long
+  floating-point numbers: float, double, half_float, scaled_float
+  boolean
+  ip: for IPv4 or IPv6 addresses
+Hierarchical Types: like object and nested
+Specialized Types: geo_point, geo_shape and percolator
+Plus range types and more
+
+
 ## Multi-fields
 https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html
 
 Un determinado field puede indexarse de varias maneras distintas para poder usarlo de varias formas.
-Por ejemplo, una string se puede indexar como "string" y a la vez como "keyword" para poder hacer full text search y también usarlo en agregaciones o sorting.
+Por ejemplo, una string se puede indexar como "string" y a la vez como "keyword" para poder hacer full text search y también usarlo en agregaciones o sorting (por defecto es lo que hace ES, ignorando por encima de 256 chars)
 "properties": {
   "city": {
     "type": "text",
     "fields": {
-      "raw": { 
+      "raw": {
         "type":  "keyword"
       }
     }
