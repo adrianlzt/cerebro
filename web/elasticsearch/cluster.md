@@ -26,11 +26,16 @@ curl "https://localhost:9200/_nodes?pretty"
 
 curl "https://localhost:9200/_cat/nodes?v"
 El que tiene el asterisco sera el master del cluster
+node.role:
+  m: master
+  d: data
+  i: ingest
 
 
 ## Tipos de nodos
 Un nodo puede tener varios roles (por defecto todos los roles).
 Se definen en elasticsearch.yml
+Si modificamos el rol de algún nodo, poner todos los valores para que quede claro (si es solo un master, poner tambien node.master: true)
 
 Master eligible (node.master: true)
 Data (node.data: true)
@@ -54,6 +59,10 @@ Modificaciones del cluster:
 
 Hay un parámetro para definir el mínimo número de master nodes para poder montar el cluster, y evitar el split brain:
 discovery.zen.minimum_master_nodes (recomendado poner floor(N/2)+1)
+
+Si no cumplimos esto en el arranque, no se iniciará el cluster, ni si quiera levantará el puerto 9200.
+
+Si no tenemos master, el resto de nodos no contestará aunque tengan el puerto 9200.
 
 
 ### Data

@@ -38,6 +38,8 @@ vi /etc/elasticsearch/elasticsearch.yml
   cluster.name: loquequeramos <- por si tenemos varios elasticsearch, decidir cuales deben unirse entre ellos
   node.name: "blabla" <- si no le damos, le asignará uno aleatorio de comic. Aconsejable asignar un nombre que sea representativo
 
+  si la cagamos nos dará un error, pero no nos dirá donde está el error. Podemos pasar un yaml parser, por si es un error de sintaxis.
+
 systemctl start elasticsearch
 Tarda unos segundos en arrancar
 Podemos ver el log en
@@ -101,6 +103,18 @@ jvm.options
 
 log4j2.properties
   configuración de logging
+
+
+## Preferencias de las configuraciones
+1- Transient settings
+2- Persistent settings
+3- Command line settings
+4- Config file settings
+
+
+## Update config
+Ciertas configuraciones (dynamic settings) pueden ser modificadas con la cluster update API
+
 
 
 ## Configuración de memoria

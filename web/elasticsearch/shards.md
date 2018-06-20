@@ -15,6 +15,8 @@ El estado del cluster nos devuelve, tras crear un índice:
 "active_shards":10
 Estos son los 5 shards del índice creado, y 5 más de las réplicas hechas en el segundo nodo.
 
+Numero total de shards: num_primary_shards * (num_replicas + 1)
+
 
 
 # Estados
@@ -38,6 +40,13 @@ Small dataset?
   Nothing wrong with a one-shard index!
 
 
+# Número de replicas
+1 es ok
+2 tambien
+3 si lo vemos necesario
+>3 es mala idea
+
+
 
 
 A partir de la version 5.x hay una API para explicar porque las asignaciones de shards están como están:
@@ -48,7 +57,10 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-allocati
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/cat-shards.html
 
 curl "localhost:9200/_cat/shards?v"
-The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.
+  The shards command is the detailed view of what nodes contain which shards. It will tell you if it’s a primary or replica, the number of docs, the bytes it takes on disk, and the node where it’s located.
+
+curl "localhost:9200/_cat/miindice/shards?v"
+  shards de un indice
 
 curl "localhost:9200/_cat/shards?v&h=index,shard,prirep,state,node&s=index,shard,node"
   mostrar solo ciertas columnas y ordenar por index (luego por shard, luego por node)

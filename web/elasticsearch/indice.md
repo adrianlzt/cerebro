@@ -23,9 +23,12 @@ curl "localhost:9200/_cluster/allocation/explain?pretty"
   explicación de porque hay shards sin asignar (version >=5)
 
 curl -s "localhost:9200/_cat/indices?bytes=mb&h=index,store.size" | sort -nk2
-  ocupación total de cada índice en MB
+  ocupación total de cada índice en MB (primary + replicas). Para obtener solo el peso de los primary consultar por "pri.store.size"
+
+
 
 # Crear indice
+mirar mappings.md
 curl -XPUT 'http://localhost:9200/twitter/' -d '{}'
 curl -XPUT 'http://localhost:9200/twitter/' -d '{ "settings" : { "index" : { "number_of_shards" : 3, "number_of_replicas" : 2 } } }'
 mirar insertar_datos.md
@@ -59,10 +62,6 @@ Se puede preguntar por varios índices separados por comas.
 
 
 
-# Borrar índices
-curl -XDELETE 'http://localhost:9200/logstash-2014.03.02/'
-
-curl -XDELETE 'http://localhost:9200/logstash-*'
 
 # Parámetros
 Podemos modificar los parámetros de un índice:
@@ -76,3 +75,10 @@ curl -XPUT localhost:9200/vehicles/_settings -d'
 
 Si el cluster tenía varios nodos, los shards están repartidos entre los nodos, y al quitar las réplicas, si un nodo de cae, dejará de encontrar la información que se encuentra en esos shards ahora desconectados.
 
+
+
+
+# Borrar índices
+curl -XDELETE 'http://localhost:9200/logstash-2014.03.02/'
+
+curl -XDELETE 'http://localhost:9200/logstash-*'
