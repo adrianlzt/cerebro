@@ -2,7 +2,7 @@ Estado del cluster:
 curl localhost:9200/_cluster/health
 
 RED: algún primary shard no allocated
-YELLOW: todos los primary shards allocated
+YELLOW: todos los primary shards allocated, pero al menos un replica no lo está
 GREEN: todos los shards allocated
 
 curl http://localhost:9200/_status

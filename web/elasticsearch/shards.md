@@ -40,7 +40,7 @@ Small dataset?
   Nothing wrong with a one-shard index!
 
 
-# Número de replicas
+# Número de replicas (dicho en el curso)
 1 es ok
 2 tambien
 3 si lo vemos necesario

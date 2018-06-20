@@ -51,6 +51,11 @@ Monitorizar mensajes de:
 El nodo master será el que tenga los logs interesantes.
 Los que no sean mastar también tendrán información, pero menos relevante.
 
+Monitorizar mensajes de ¿warn/error? donde nos esté avisando que en las queries no se está devolviendo toda la info (sección _shards con failures)
+
+Monitorizar búsquedas/inserciones lentas: https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-slowlog.html
+
+
 Errores que veo en logging-es.log (parecen errores de conexión por fallos de los usuarios):
 [2017-10-06 11:42:53,535][WARN ][com.floragunn.searchguard.configuration.PrivilegesEvaluator] logstash-* does not exist in cluster metadata
 [2017-10-06 11:45:23,934][WARN ][rest.suppressed          ] path: //.operations.2017.10.06/_search, params: {index=.operations.2017.10.06, search_type=count}

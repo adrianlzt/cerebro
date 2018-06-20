@@ -22,6 +22,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/_the_search_api.
 took – time in milliseconds for Elasticsearch to execute the search (no cuenta el tiempo entre que llega la petición al server y vuelve al cliente)
 timed_out – tells us if the search timed out or not
 _shards – tells us how many shards were searched, as well as a count of the successful/failed searched shards
+  IMPORTANTE!!! siempre vigilar _shards.failed que sea 0, si no podemos estar teniendo problemas y no recuperando toda la info
 hits.total - numero total de documentos matched. Por defecto solo nos devolverá 10
 hits.max_score: el valor del documento con el mayor _score
 hits - ordenados por su _score

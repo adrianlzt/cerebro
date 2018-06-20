@@ -12,9 +12,9 @@ Mirar internals.md Communication para ver como se comunican los nodos
 # Estado del cluster
 curl -s localhost:9200/_cluster/health\?pretty
 status puede ser green, yellow o red.
-green -> todo bien
-yellow -> funciona pero hay problemas (por ejemplo, no hay sharding)
-red -> no funciona (no contesta a las queries)
+RED: algún primary shard no allocated
+YELLOW: todos los primary shards allocated, pero al menos un replica no lo está
+GREEN: todos los shards allocated
 
 # Settings actuales
 curl -s localhost:9200/_cluster/settings | python -m json.tool
@@ -77,6 +77,8 @@ Tiene una copia del estado del cluster.
 Puede ser un nodo exclusivamente coordinating. Este nodo recibiria peticiones y las enviaría a los nodos que haga falta.
 Luego uniría las respuestas y las devovlería al cliente.
 CPU and memory intensive.
+Si tenemos suficientes recursos, poner 3 nodos como coordinating/frontend y solo enviar las búsquedas hacia ellos. Poner menos podría hacernos bottleneck en caso de que alguno cayese.
+Configurar round robin sobre estos, o un load balancer delante.
 
 
 # Configuraciones de cluster

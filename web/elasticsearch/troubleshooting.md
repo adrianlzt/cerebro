@@ -1,19 +1,52 @@
 Estado del cluster
 curl localhost:9200/_cluster/health\?pretty
+  RED: algún primary shard no allocated
+  YELLOW: todos los primary shards allocated, pero al menos un replica no lo está
+  GREEN: todos los shards allocated
+
+El estado es a 3 niveles: shard, index, cluster.
+Cluster toma el estado del peor índice.
+Index health tiene el estado del worst shard de ese indice
+
+
+Query que espera hasta que el cluster se ponga en un estado:
+GET _cluster/health?wait_for_status=yellow
+
+
+Bajar al nivel de health de indices:
+GET _cluster/health?level=indices
+
+Health de un indice determinado:
+GET _cluster/health/my_index
+
+Bajar al nivel de health de shards (generalmente demasiados detalles):
+GET _cluster/health?level=shards
+
+Explicación
+curl "localhost:9200/_cluster/allocation/explain?pretty"
+
+Explicación para un shard determinado:
+GET _cluster/allocation/explain
+{
+  "index" : "my_index",
+  "shard" : 0,
+  "primary" : true
+}
 
 Shards sin asignar?
 curl "http://localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason" | grep -v STARTED
 
-Explicación:
-curl "localhost:9200/_cluster/allocation/explain?pretty"
 
 Si el cluster ha intentado inicializar el shard mas de n veces (5 por defecto), deja de intentarlo y el comando anterior devuelve una salida que contiene "shard has exceeded the maximum number of retries [5] on failed allocation attempts". Para solucionar este problema, una vez solucionado el problema de espacio o lo que sea, sencillamente forzar que lo intente de nuevo:
 curl -X POST "localhost:9200/_cluster/reroute?retry_failed=true"
 
 
-Discos por encima del watermark (default 90%) en los data nodes?
+Discos por encima del watermark (default 90%) en los data nodes? No permite crear nuevos indices diarios (por ejemplo de logstash o beats).
 Limpiar indices viejos
 
+
+Ver que búsquedas/inserciones lentas:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-slowlog.html
 
 
 # OutOfMemory
@@ -27,3 +60,33 @@ Si estamos en docker nos puede llenar la partición /
 
 Parece que se puede desactivar quitando de la JVM:
 -XX:+HeapDumpOnOutOfMemory
+
+
+
+# Errores con queries
+query_shard_exception: estamos intentando lanzar una query sobre varios indices donde los fields se llaman igual pero son de distinto tipo?
+
+
+
+# Responses
+
+## Common HTTP Errors
+Issue: Unable to connect
+Reason: networking issue or cluster down
+Action: check network status and cluster health
+
+Issue: connection unexpectedly closed
+Reason: node died or network issue
+Action: retry (with risk of creating a duplicate document)
+
+Issue: 4xx error
+Reason: client error
+Action: fix bad request before retrying
+
+Issue: 429 error
+Reason: Elasticsearch is too busy
+Action: retry (ideally with linear or exponential backoff)
+
+Issue: 5xx error
+Reason: internal server error in Elasticsearch
+Action look into Elasticsearch logs to see what is the issue
