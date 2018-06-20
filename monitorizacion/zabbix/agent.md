@@ -111,3 +111,8 @@ Para evitar el acceso externo tambien podemos usar encriptación (TLS).
 También podemos usar un item del agente como HostMetadata
 Ejemplo:
 HostMetadataItem=system.uname
+
+
+# AIX
+RPMs: http://steki.net/code/download/zabbix/
+Versión 1.6, pero tal vez se podría reutilizar el .spec
