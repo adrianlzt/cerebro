@@ -37,6 +37,8 @@ https://www.elastic.co/blog/practical-bm25-part-1-how-shards-affect-relevance-sc
 _score: como de relevante es el doc respecto a la query
 Se usa el algoritmo BM25, viene de Lucene
 
+No es importante el número, es importante solo dentro de esa query.
+
 TF (term freq): cuanto más aparece un term en el field, más importante es. Aporta de forma logarítmica. Ej.: aparecer 100 veces aporta poco más que aparecer 10 veces
 IDF (inverse doc freq): cuantos más documentos tengan un term, menos importante es ese term. Quita score de forma logaritmica. Si aparece unos cuantos docs, no quita mucho más que esté en muuchos mas docs.
 Field lenght: fields más cortos son más importantes
@@ -46,3 +48,5 @@ Si un documento solo tiene esa palabra dos veces en su título y ningún otro do
 
 Si queremos una explicación del _score podemos poner (en el top level):
 "explain": true
+
+O también: GET blogs/_search?explain=true

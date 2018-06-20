@@ -23,7 +23,7 @@ Bajar al nivel de health de shards (generalmente demasiados detalles):
 GET _cluster/health?level=shards
 
 Explicación
-curl "localhost:9200/_cluster/allocation/explain?pretty"
+curl -XPOST "localhost:9200/_cluster/allocation/explain?pretty"
 
 Explicación para un shard determinado:
 GET _cluster/allocation/explain
@@ -65,6 +65,7 @@ Parece que se puede desactivar quitando de la JVM:
 
 # Errores con queries
 query_shard_exception: estamos intentando lanzar una query sobre varios indices donde los fields se llaman igual pero son de distinto tipo?
+En este caso la query devuelve un 200, pero _shards.failed=5
 
 
 

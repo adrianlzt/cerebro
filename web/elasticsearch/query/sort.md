@@ -1,16 +1,52 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-request-sort.html
 
+Por defecto el orden es decreciente por scoring.
+Si forzamos un sort, sin pasar _score, _score volverá como null
+
+En la respuesta nos vendrá un campo sort con los campos que ha usado para el sorting.
+
+GET blogs/_search
 {
-  "sort": [{"@timestamp": "desc"}]
+  "query": {
+    "match": {
+      "content": "security"
+    }
+  },
+  "sort": {
+    "publish_date": {
+      "order": "desc"
+    }
+  }
 }
 
+
+Sort por dos valores, primero hace uno, y si son iguales, usa el otro:
+GET blogs/_search
 {
-    "sort" : [
-        { "post_date" : {"order" : "asc"}},
-        "user",
-        { "name" : "desc" },
-        { "age" : "desc" },
-        "_score"
-    ],
-    ...
+  "query": {
+    "bool": {
+      "must": {
+        "match": {
+          "content": "security"
+        }
+      },
+      "must_not": {
+        "match": {
+          "author.keyword": ""
+        }
+      }
+    }
+  },
+  "sort": [
+    {
+      "author.keyword": {
+        "order": "asc"
+      }
+    },
+    {
+      "publish_date": {
+        "order": "desc"
+      }
+    }
+  ]
 }
