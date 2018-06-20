@@ -53,6 +53,8 @@ Por ejemplo:
 fuzziness=1, permite un cambio, por ejemplo de shark -> shard
 fuzziness=2, por ejemplo alocasion -> allocation (una 'l' más 's'->'t')
 
+Para hacer match de "abc def" con "azc dzf" es suficiente con fuzziness=1, por qué es por term.
+
 No se puede subir de 2.
 
 Cuidado con fuzziness 2 y palabras cortas: hi -> "jim", "tim", "uri", "phil", "cj", "ali", etc

@@ -50,3 +50,7 @@ GET blogs/_search
     }
   ]
 }
+
+
+Si ordenamos solo por sorting podemos tener el caso de documentos que tengan el mismo score y la misma búsqueda devuelva los resultados de maneras distintas.
+Esto lo podemos solventar poniendo el segundo sort por _id
