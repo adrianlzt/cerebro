@@ -17,7 +17,7 @@ Para meter entradas en el arranque
 mkitab [ -i Identifier ] { [ Identifier ] : [ RunLevel ] : [ Action ] : [ Command ] }
 
 Ejemplo:
-mkitab "zabbix:2:once:/opt/freeware/sbin/zabbix_agentd >/dev/null 2>&1"
+mkitab "zabbix:2:once:/opt/freeware/sbin/zabbix_agentd --config /etc/zabbix/zabbix_agentd.conf"
 
 Esto mete en el inittab una entrada con identificador=zabbix, para el runlevel 2 (Contains all of the terminal processes and daemons that are run in the multiuser environment)
 Action once: When the init command enters the run level specified for this record, start the process, do not wait for it to stop and when it does stop do not restart the process. If the system enters a new run level while the process is running, the process is not restarted.

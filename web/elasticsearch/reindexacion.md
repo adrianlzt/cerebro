@@ -59,6 +59,8 @@ Hace falta que el nodo remoto esté configurado para aceptar esta conexión:
 reindex.remote.whitelist: "otherhost:9200, another:9200, 127.0.10.*:9200, localhost:*"
 Idea: conectar un nodo coordinate-only al cluster remoto solo para este caso y quitarlo luego. Así evitamos tener que reiniciar nodos del cluster para cambiar la configuración.
 
+Si tenemos muchos datos que mover entre distintos ES, tal vez sea mejor hacer un snapshot y restore en el otro server.
+
 
 
 
