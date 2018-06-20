@@ -3,6 +3,65 @@ elasticdump.md
 snapshots.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 
+
+# Reindex
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html
+Reindexar un índice en otro índice.
+Generalmente esto nos será útil porque hayamos modificado el mapping del índice destino para adaptarse mejor a las necesidades.
+
+POST _reindex
+{
+  "source": {"index": "blogs"},
+  "dest":   {"index": "blogs_analyzed"}
+}
+
+Se pueden especificar queries para solo reindexar ciertos datos.
+O pasar un scripts para modificar los datos antes del reindexado.
+
+Podemos configurar el tamaño de los batch de reindex, por si hubiese fields muy grandes que llenasen el heap.
+También es configurable los timeouts.
+
+
+Podemos obtener el estado de una tarea de reindex:
+GET _tasks?detailed=true&actions=*reindex
+
+Slicing para paralelizar el reindex
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html#docs-reindex-sliceo
+
+Truco para reindexar indices con fecha, ejemplo: metricbeat-2016.05.06
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html#_reindex_daily_indices
+
+
+
+También podemos leer de un índice remoto
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html#reindex-from-remote
+POST _reindex
+{
+  "source": {
+    "remote": {
+      "host": "http://otherhost:9200",
+      "username": "user",
+      "password": "pass"
+    },
+    "index": "source",
+    "query": {
+      "match": {
+        "test": "data"
+      }
+    }
+  },
+  "dest": {
+    "index": "dest"
+  }
+}
+
+Hace falta que el nodo remoto esté configurado para aceptar esta conexión:
+reindex.remote.whitelist: "otherhost:9200, another:9200, 127.0.10.*:9200, localhost:*"
+Idea: conectar un nodo coordinate-only al cluster remoto solo para este caso y quitarlo luego. Así evitamos tener que reiniciar nodos del cluster para cambiar la configuración.
+
+
+
+
 # Remote
 Reindexar leyendo de un ES remoto
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html

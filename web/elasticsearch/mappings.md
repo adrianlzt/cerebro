@@ -105,6 +105,21 @@ Por ejemplo, una string se puede indexar como "string" y a la vez como "keyword"
 
 Podemos usar "city.raw" (raw sera un sub-field de city)
 
+Multi field son dos subfields, uno usando otro analyzer
+"title": {
+  "type": "text",
+  "fields": {
+    "keyword": {
+      "type": "keyword",
+      "ignore_above": 256
+    },
+    "my_analyzer": {
+      "type": "text",
+      "analyzer": "mio"
+    }
+  }
+}
+
 
 
 # Actualizar mapping

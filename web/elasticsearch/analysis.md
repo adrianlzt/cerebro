@@ -23,6 +23,14 @@ Character filters -> tokenizer -> token filters
 https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-charfilters.html
 Nos sirve para transformar el stream de texto que le llegue al analyzer, quitando caracteres, convirtiendo strings a otras, etc
 
+Ejemplo:
+"char_filter": {
+  "xpack_filter": {
+    "type": "mapping",
+    "mappings": ["X-Pack => XPack"]
+  }
+}
+
 ### mapping
 Convertir cosas (tiene que ser exacto), por ejemplo: X-Pack => XPack
 
@@ -36,7 +44,7 @@ Quitar codigos HTML y hacer urldecode
 ## Tokenizer
 https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenizers.html
 Como trocear las palabras. Existen muchos tokenizers. Algunos interesantes:
-standard: se usa por defecto, trocea por palabras y quita signos de puntuación.
+standard: se usa por defecto, trocea por palabras y quita signos de puntuación ("_" no lo elimina).
 uax_url_email: como el standard pero reconoce url y emails (los deja enteros)
 parciales: trocean las palabas en trozos para poder hacer búsquedas parciales: quick -> [qu, ui, ic, ck] o [q, qu, qui, quic, quick]
 pattern: usando regexp para trocear
@@ -47,12 +55,36 @@ path: /foo/bar/baz → [/foo, /foo/bar, /foo/bar/baz]
 https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-tokenfilters.html
 Coge los tokens dados por el tokenizer y realiza operaciones sobre ellos, por ejemplo:
 lowercase: convierte a minúsculas
-stop: elimina ciertas palabas (stopwords)
+stop: elimina ciertas palabas (stopwords). Por defecto está configurado a "_english_"
 length: elimina palabras cuya longitud no entre en un rango
 stemmer: obtiene las raices de las palabras (debe configurarse para un idioma determinado)
 snowball: otro stemmer para distintos lenguages
 synonym: almacenar todos los sinónimos como una misma palabra
 asciifolding: convertir todo lo que llegue a ASCII
+pattern_replace: reemplazar según un regex
+
+Ejemplo:
+"filter" : {
+  "synonym" : {
+    "type" : "synonym",
+    "synonyms_path" : "analysis/synonym.txt"
+  }
+}
+
+"filter": {
+    "my_stop": {
+        "type":       "stop",
+        "stopwords": ["and", "is", "the"]
+    }
+}
+
+"filter": {
+  "it": {
+    "type": "pattern_replace",
+    "pattern": "IT",
+    "replacement": "_IT_"
+  }
+}
 
 
 # Analyzers
@@ -70,6 +102,7 @@ The built-in analyzers can work great for many use cases, but often you may need
 Generalmente probaremos con nuesto dataset los distintos analyzers para determinar cual nos viene mejor.
 Tal vez tendremos que usar multifields para usar distintos analyzers en determinados campos.
 
+
 ## Custom analyzer
 Podemos definir analyzers propios dentro de índices.
 Para ello tendremos que elegir:
@@ -77,6 +110,7 @@ Para ello tendremos que elegir:
   tokenizer
   token filters (el orden es importante)
 
+Podemos ver ejemplos en: https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html
 
 
 Ejemplo creando un analyzer y forzandolo para un field en el mapping:
@@ -114,26 +148,40 @@ PUT blogs_test
 
 
 
-
-### Synonyms
-"filter" : {
-  "synonym" : {
-    "type" : "synonym",
-    "synonyms" : [
-        "i-pod, i pod => ipod",
-        "universe, cosmos"
-      ]
+PUT analysis_test
+{
+  "settings": {
+    "analysis": {
+      "char_filter": {
+        "cpp": {
+          "type": "mapping",
+          "mappings": ["C++ => cpp", "c++ => cpp"]
+        }
+      },
+      "filter": {
+        "my_stop": {
+          "type": "stop",
+          "stopwords": ["can", "we", "our", "you", "your", "all", "_english_"]
+        },
+        "it": {  # Este se podria haber puesto en el char_filter mapping, porque los "_" no los quita el tokenizer
+          "type": "pattern_replace",
+          "pattern": "IT",
+          "replacement": "_IT_"
+        }
+      },
+      "analyzer": {
+        "mio": {
+          "type": "custom",
+          "char_filter": ["cpp"],
+          "tokenizer": "standard",
+          "filter": ["it","lowercase","my_stop"]
+        }
+      }
     }
   }
 }
 
 
-"filter" : {
-  "synonym" : {
-    "type" : "synonym",
-    "synonyms_path" : "analysis/synonym.txt"
-  }
-}
 
 
 
@@ -144,6 +192,12 @@ Podemos probar que hace un analyzer determinado para una frase que pasemos
 GET _analyze
 {
  "analyzer": "simple",
+ "text": "My favorite movie is Star Wars!"
+}
+
+GET miindice/_analyze
+{
+ "analyzer": "mianalyzer",
  "text": "My favorite movie is Star Wars!"
 }
 
