@@ -46,3 +46,14 @@ ansible -s tidcampus -m command -a "id"
     creates={{ drupal_core_path }}/sites/default/settings.php
 
 Creates: no ejecuta el command si el fichero existe
+
+
+# Idempotencia
+- name: Put docker package on hold
+  shell: >
+         apt-mark showholds | grep -q docker-ce
+         && echo -n HOLDED
+         || apt-mark hold docker-ce
+  register: docker_hold
+  changed_when: docker_hold.stdout != 'HOLDED'
+
