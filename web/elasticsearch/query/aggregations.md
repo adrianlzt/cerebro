@@ -1,3 +1,6 @@
+Tenemos dos tipos de aggregations: metrics y buckets
+Otras avanzadas: pipeline y matrix
+
 GET logs_server*/_search
 {
   "size": 0,  # no obtener resultados "hits"
@@ -10,6 +13,14 @@ GET logs_server*/_search
   }
 }
 
+
+Si los aggregations son muy costosos, una técnica que se suele utilizar es ejecutar el aggregation por la noche, almacenarnlo en un índice y consultar ese índice durante el día.
+No es muy exacto, por que no tendremos lo datos en tiempo real, pero nos puede servir depende del caso.
+O también podemos cachear resultados: https://www.elastic.co/guide/en/elasticsearch/reference/current/caching-heavy-aggregations.html
+
+
+
+Para crear aggregations típicamente usaremos el "Visualize" de Kibana y luego miraremos la "Request" que genera.
 
 
 # Metrics
@@ -30,6 +41,8 @@ Típicamente usaremos "stats" (min, max, sum, count y avg)
 
 # Cardinality
 https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-metrics-cardinality-aggregation.html
+Contar cuantas apariciones de algo. Por ejemplo, cuantas IPs distintas visitan nuestra web.
+
 GET logs_server*/_search
 {
   "size": 0,
@@ -80,6 +93,8 @@ GET logs_server*/_search
   }
 }
 
+Por defecto el sort es _key ascending
+
 
 
 # Nesting aggregations
@@ -128,6 +143,30 @@ ET logs_server*/_search
   }
 }
 
+date_histogram + avg + sort
+GET logs_server*/_search
+{
+  "size": 0,
+  "aggs": {
+    "logs_by_month": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "month",
+        "order": {
+          "average_runtime": "asc"  # fijarnos que estamos ordenado por un campo que estamos creando en la nested aggregation
+        }
+      },
+      "aggs": {
+        "average_runtime": {
+          "avg": {
+            "field": "runtime_ms"
+          }
+        }
+      }
+    }
+  }
+}
+
 
 
 
@@ -143,16 +182,27 @@ GET logs_server*/_search
       "terms": {
         "field": "geoip.country_name.keyword",
         "size": 5  # maximo 64000. Nos dará los resultados con más documentos
+        "show_term_doc_count_error": true,  # esto nos devuelve un error por bucket (campo "doc_count_error_upper_bound" en cada bucket)
+        "shard_size": 500  # esto acrecenta el size que se pide a cada shard. Mayor accuracy pero a costa de coste de CPU/mem
       }
     }
   }
 }
 
+Respuesta:
+  "doc_count_error_upper_bound": 16223,
+  "sum_other_doc_count": 620884,
+
+Los valores son aproximados, en un rango +- doc_count_error_upper_bound (es el máximo error de todos los buckets)
+Esto es debido a que los calculos se hacen localmente en cada shard. Cada shard devuelve el resultado para lo que tiene localmente almacenado.
+Cuando solicitamos size=5, en realidad a cada shard va a pedir 5*1.5+10 (esto es el shard_size, que se puede forzar en la query)
 
 
 
-# Bucket aggregations
-Crear "buckets" a partir de documentos
+# significant_crime_types
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-significantterms-aggregation.html
+
+
 
 
 ## Contar cuentos elementos hay para cada valor distinto de un field:

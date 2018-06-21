@@ -1,5 +1,7 @@
 Por defecto solo se permiten tener 1000 fields en cada índice.
 
+Cuidado con tener muchos fields. Cada nuevo field tiene que almacenarse en el estado del cluster y esto es costoso.
+
 
 Contar número de fields de un índice:
 curl -s -XGET localhost:9200/index/_mapping?pretty | grep type | wc -l

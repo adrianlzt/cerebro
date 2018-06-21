@@ -1,3 +1,5 @@
+https://www.elastic.co/guide/en/elasticsearch/plugins/6.3/index.html
+
 Se pueden instalar con elasticsearch corriendo.
 
 En el directorio de elasticsearch:
@@ -16,3 +18,6 @@ bin/plugin -install royrusso/elasticsearch-HQ
 bin/plugin -install mobz/elasticsearch-head
   http://localhost:9200/_plugin/head/
   Nos da información sobre el estado de salud del cluster. También nos da un pequeño interfaz para realizar queries. Podemos consultar el estado de los nodos, realizar acciones sobre ellos, etc.
+
+
+# X-pack
