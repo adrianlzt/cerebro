@@ -14,6 +14,8 @@ También se eliminan las "stop words". Palabras no útiles, por ejemplo "the"
 
 Se pueden crear sinónimos para nuestra casuística particular.
 
+Mirar plugins que nos dan más analyzers. El de ICU para otros idiomas que no sean english puede funcionar bien
+
 
 
 # Anatomia de un analyzer
