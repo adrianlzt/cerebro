@@ -16,6 +16,7 @@ Source filtering (determinar los fields que queremos que retorne)
   my_blogs/_search?filter_path=hits.hits._source.title,hits.hits._source.author
 
 Aggregations
+ "aggs": { "un_nomber": { "avg": { "field": "size" } } }
 
 Fields
 
