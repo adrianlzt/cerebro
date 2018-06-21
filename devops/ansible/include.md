@@ -2,6 +2,8 @@ Ansible 2.4:
 Using import_* (import_playbook, import_tasks, import_role) directives are static.
 Using include_* (include_tasks, include_role, include_vars) directives are dynamic. This is done to avoid collisions and possible security issues as facts come from the remote targets and they might be compromised.
 
+include_vars no sobreescribe las variables si ya están definidas.
+
 
 Se puede usar includes al igual que en puppet:
 
