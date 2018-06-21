@@ -41,6 +41,11 @@ Si hacemos un snapshot (S1), borramos datos y hacemos otro snapshot (S2).
 S1 tendrá los datos borrados, pero no S2.
 
 
+Donde ejecutar el backup?
+Tal vez un nodo que no tenga mucha carga.
+Bajarle el throughput e ir haciendo unos pocos indices cada vez.
+
+
 
 Info de los snapshots:
 GET _snapshot/my_repo/_all

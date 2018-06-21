@@ -85,6 +85,8 @@ curl -XDELETE 'http://localhost:9200/logstash-*'
 
 
 # Aliases
+Una buena práctica es siempre usar alias para los nombres de los indices que usarán las aplicaciones.
+Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
 POST _aliases
 {
   "actions": [
@@ -103,7 +105,6 @@ POST _aliases
   ]
 }
 
-Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
 
 
 
@@ -138,3 +139,31 @@ Podemos testearlo creando un indice que cumpla el index_pattern y consultando su
 Se puede definir "order" en los templates.
 Un order 5 hará override de los order menores.
 Típicamente tendremos: 1, 10 y 100
+
+
+
+
+# Internals
+Como se indexan
+
+Inverted index (para búsquedas) + doc values (para aggregations)
+
+Si marcamos un field como index:false (en el mapping), no podremos buscar por el valor, pero podremos hacer aggregations.
+
+Si queremos que un doc se pueda buscar pero no aggregations, podemos poner en el mapping: doc_values:false
+
+Podemos ahorrar espacio y CPU/mem.
+
+
+Field data desactivado por defecto. Esto es que no podemos usar analyzed text para hacer aggregations, sorting, etc.
+Para esto usaremos los subfields .keyword
+Se puede activar al vuelo modificando el mapping.
+Es arriesgado, nos podemos comer toda la memoria del nodo.
+Normalmente nos soltará un warning, pero no siempre. y nos puede tirar el nodo.
+
+Lo activaremos como
+properties: {
+ fieldB: {
+   fielddata: true,
+   type: text,
+   analyzer: snowball
