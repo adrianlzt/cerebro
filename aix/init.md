@@ -1,6 +1,8 @@
 AIX usa /etc/inittab para la configuración de los programas en el arranque.
 Desde ahí también se llama a los scripts en /etc/rc.d/rcN.d/ por compatibilidad son SysV
 
+Parece que no hay manera de controlar estos procesos. AIX solo se encarga de arrancarlos/rearrancarlos/pararlos, pero no podemos mandar un reset o parar uno concreto.
+
 
 # lsitab
 https://www.ibm.com/support/knowledgecenter/en/ssw_aix_71/com.ibm.aix.cmds3/lsitab.htm
