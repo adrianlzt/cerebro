@@ -49,4 +49,44 @@ GET blogs/_search
 
 
 # Scrolling
-Duda: podemos lanzar una query y obtener todos los resultados de forma consistente (suponiendo que el indice se está moviendo mucho y lanzar siguientes queries responderían cosas distintas)
+Lanzamos una petición, nos devuelve un id.
+Luego usamos ese id para recuperar los resultados de ese momento preciso.
+
+GET logs-2018-03/_search?scroll=30s
+{
+  "size": 1000,
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "_doc": {
+        "order": "asc"
+      }
+    }
+  ]
+}
+
+scroll=30s, esto dice que tenemos que lanzar un scroll y que se autoborrará si no se usa durante 30"
+
+Respuesta:
+{
+ "_scroll_id": "DnF1ZXJ5VGhlbkZldGNoBQAAAAAAAAWOFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAAAAFjAAAAWPFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAAAAFkRZ5V
+kFUdzd6cVI3SzJyS3FGaUg1ZFln",
+ "took": 0,
+ ...
+
+
+Para recuperar los resultados:
+GET _search/scroll
+{
+ "scroll": "30s",
+ "scroll_id":
+"DnF1ZXJ5VGhlbkZldGNoBQAAAAAAAAWOFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAAAAFjAAAAWPFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAA
+AAFkRZ5VkFUdzd6cVI3SzJyS3FGaUg1ZFln"
+}
+
+Esto nos devolverá otro _scroll_id que usaremos para recuperar los siguientes resultados.
+
+Cuando hayamos terminado podemos borrar el scrolls sin esperar a su timeout:
+DELETE _search/scroll/DnF1ZX...

@@ -3,6 +3,8 @@ elasticdump.md
 snapshots.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 
+Tras reindexar podemos usar "aliases" para apuntar al nuevo indice el antiguo nombre.
+
 
 # Reindex
 https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html

@@ -82,3 +82,59 @@ Si el cluster tenía varios nodos, los shards están repartidos entre los nodos,
 curl -XDELETE 'http://localhost:9200/logstash-2014.03.02/'
 
 curl -XDELETE 'http://localhost:9200/logstash-*'
+
+
+# Aliases
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "INDEX_NAME",
+        "alias": "ALIAS_NAME"
+      }
+    },
+    {
+      "remove": {
+        "index": "INDEX_NAME",
+        "alias": "ALIAS_NAME"
+      }
+    }
+  ]
+}
+
+Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
+
+
+
+
+# Templates
+https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html
+Para definir mappings a priori apuntando a un nombre de índice que aparecerá en un futuro, por ejemplo: logs-*
+
+PUT _template/logs_template
+{
+  "index_patterns": "logs-*",
+  "order": 1,
+  "settings": {
+    "number_of_shards": 4,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
+
+Podemos testearlo creando un indice que cumpla el index_pattern y consultando su _mapping despues.
+
+
+## Cascading
+Se puede definir "order" en los templates.
+Un order 5 hará override de los order menores.
+Típicamente tendremos: 1, 10 y 100

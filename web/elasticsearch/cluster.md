@@ -169,3 +169,7 @@ Esta funcionalidad seguramente la queramos deshabilitar en producción.
 
 # Networking
 Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
+
+
+
+Mirar best_practices.md

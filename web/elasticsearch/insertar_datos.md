@@ -1,5 +1,12 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/docs-index_.html
 
+Mejora la performance.
+Enviar entre 50 y 150 en cada bulk.
+No pasar de 500.
+
+Si en la petición se nos meten errores, perderemos los beneficios de la performance.
+
+
 Los datos se insertan con peticiones HTTP POST (sin especificar el id). Con PUT podemos insertar docs especificando un id.
 Se actualizan con PUT (deberemos especificar el elemento exacto: localhost:9200/vehicles/tv/one)
 Si intentamos crear un documento en un index que no existe, se autogenera. Posiblemente queremos deshabilitar esto en producción.
