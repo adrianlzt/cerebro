@@ -110,6 +110,21 @@ PUT _all/_settings
 
 
 
+## Shard Allocation Filtering
+https://www.elastic.co/guide/en/elasticsearch/reference/current/allocation-filtering.html
+CUIDADO! Tocar esta API puede romper cosas.
+Con esta API podemos controlar donde se van a distribuir los shards.
+
+Por ejemplo, podemos marcar un nodo para que se le ignore en la distribución de shard (y se los quiten en caso de que ya tenga).
+El típico ejemplo es cuando queremos sacar un nodo del cluster.
+PUT _cluster/settings
+{
+  "transient" : {
+    "cluster.routing.allocation.exclude._ip" : "10.0.0.1"
+  }
+}
+
+
 # Internals
 Directorio donde se almacenan los datos:
 /var/lib/elasticsearch/NOMBRE-CLUSTER
@@ -124,5 +139,3 @@ La información almacenada se puede leer, más o menos en text claro, haciendo c
 Si no existe replicación, los distintos directorios solo se encontrarán en uno de los nodos, por ejemplo:
 nodo1: '1','2' y '4'
 nodo2: '0' y '3'
-
-
