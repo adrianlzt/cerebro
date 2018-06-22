@@ -101,3 +101,25 @@ Ejemplo, para un host que implementa un template, tenemos un LDD que crea item p
   Key: cpu.usage[{#ID}]
 
 Esto creará ese item asociado el host, usando la variable {#ID} en el nombre y como key al enviar el trap.
+
+
+
+## Custom discovery para procesos
+https://github.com/q1x/zabbix-templates/tree/master/process-discovery
+
+UserParameter=ps.discovery,echo "{\n \"data\":[" ; /bin/ps --no-headers caux | /usr/bin/awk '{ print " { \"{#PSUSER}\":\"" $1 "\", \"{#PSNAME}\":\"" $11 "\" },"}' | /usr/bin/sort | /usr/bin/uniq | /bin/sed -e 's/\//\\\//g' -e '$s/.$//' ; echo " ]\n}"
+
+Este user paameter nos devuelve un JSON tipo:
+{\n "data":[
+ { "{#PSUSER}":"102", "{#PSNAME}":"zabbix_agentd" },
+ { "{#PSUSER}":"104", "{#PSNAME}":"bcron-sched" },
+ { "{#PSUSER}":"104", "{#PSNAME}":"unixserver" },
+ { "{#PSUSER}":"dbus", "{#PSNAME}":"dbus-daemon" },
+ ]}
+
+
+Podemos usar esta discovery luego con filters para crear solo los procesos que necesitemos.
+
+
+Discovery de procesos ora_pmon* (oracle) para AIX:
+echo '{ "data":['; ps -eo args | grep "^ora_pmon" | /usr/bin/awk '{ print " { \"{#PSNAME}\":\"" $1 "\" },"}' | /usr/bin/sort | /usr/bin/uniq | /bin/sed '$s/.$//' ; echo "]}"
