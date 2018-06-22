@@ -8,3 +8,13 @@ docker run -d -e "CUSTOM_CERTS=1" -e "TARGET_PORT=6010" -e "TARGET_HOST=172.17.0
 
 Para algo más elaborado, gestionando automáticamente nuevos containers mirar:
 web/caddy/docker.md
+
+
+
+# Server docker via proxy
+sudo systemctl edit docker
+
+[Service]
+Environment="HTTP_PROXY=http://localhost:8086/"
+
+sudo systemctl restart docker

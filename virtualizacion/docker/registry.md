@@ -8,6 +8,7 @@ O crear un fichero en ~/.docker/config.json estilo:
     "email" : "email@email.com"
   }
 }
+"auth" será http basic auth (user:password en base64)
 
 Podemos especificar donde queremos que busque el fichero con:
 docker --config /foo/bar ...
@@ -85,10 +86,47 @@ $ docker push localhost:5000/ubuntu
 https://docs.docker.com/registry/spec/api/#overview
 
 Listar repos disponibles:
-/v2/_catalog
+/v2/_catalog?n=100
 
 Listar tags para la imagen org/nombre
 v2/org/nombre/tags/list
+
+Podemos usar esta herramienta escrita en go para navegar por un repo:
+https://github.com/mayflower/docker-ls
+
+Info de una tag para un repo con auth:
+./docker-ls tag --registry https://docker.some.registry/ some/image:tag -u MIUSER -p MIPASS
+
+Listar tags de una imagen:
+./docker-ls tags --registry https://docker.some.registry/ some/image -u MIUSER -p MIPASS
+
+Listar repositorios (generalmente no disponible, /v2/_catalog?n=100):
+./docker-ls repositories --registry https://docker.some.registry/ -u MIUSER -p MIPASS
+
+
+## Auth
+Enviamos la peticion
+Si hace falta loguearnos nos devuelve una cabecera tipo:
+Www-Authenticate: Bearer realm="https://docker-auth.elastic.co/auth",service="token-service"
+
+Lanzamos la peticioń de obtención de token pasando el auth basic
+GET https://docker-auth.elastic.co/auth?account=andremm&scope=repository%3Aeducation%2Fengineer1-6.2.2%3Apull&service=token-service
+Authorization: Basic XXXXXX
+
+Nos reponse en un json con un token.
+Usamos ese token para obtener la info, pasandolo como "Authorization: Bearer ELTOKEN"
+
+
+Ejemplos:
+curl -i -s -k  -X $'GET' -H $'Host: docker.some.registry' -H $'User-Agent: docker/18.05.0-ce go/go1.10.2 git-commit/f150324782 kernel/4.17.0-1-ARCH os/linux arch/amd64 UpstreamClient(Docker-Client/18.05.0-ce \\(linux\\))' -H $'Accept-Encoding: gzip, deflate' -H $'Connection: close' 'https://docker.some.registry/v2/'
+  Devuelve 401 con header: Www-Authenticate: Bearer realm="https://docker-auth.some.registry/auth",service="token-service"
+
+curl -i -s -k  -X $'GET' -H $'Host: docker-auth.some.registry' -H $'User-Agent: docker/18.05.0-ce go/go1.10.2 git-commit/f150324782 kernel/4.17.0-1-ARCH os/linux arch/amd64 UpstreamClient(Docker-Client/18.05.0-ce \\(linux\\))' -H $'Authorization: Basic XXXXXXX' -H $'Accept-Encoding: gzip, deflate' -H $'Connection: close' 'https://docker-auth.some.registry/auth?account=andremm&scope=repository%3Aeducation%2Fengineer1-6.2.2%3Apull&service=token-service'
+  Devuelve un 200 con un json: {"token":MITOKEN"}
+
+curl -i -s -k  -X $'GET' -H $'Host: docker.some.registry' -H $'User-Agent: docker/18.05.0-ce go/go1.10.2 git-commit/f150324782 kernel/4.17.0-1-ARCH os/linux arch/amd64 UpstreamClient(Docker-Client/18.05.0-ce \\(linux\\))' -H $'Accept: application/vnd.docker.distribution.manifest.list.v2+json' -H $'Accept: application/vnd.docker.distribution.manifest.v1+prettyjws' -H $'Accept: application/json' -H $'Accept: application/vnd.docker.distribution.manifest.v2+json' -H $'Authorization: Bearer MITOKEN' -H $'Accept-Encoding: gzip, deflate' -H $'Connection: close' 'https://docker.some.registry/v2/education/engineer1-6.2.2/manifests/latest'
+
+
 
 
 ## Borrar una imagen
