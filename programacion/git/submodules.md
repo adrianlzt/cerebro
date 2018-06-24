@@ -18,3 +18,7 @@ Borrar las entradas de .gitmodules
 Borrar los directorios relaccionados de .git/modules/...
 
 Meter a la fuerza el nuevo submodulo: git submodule add -f https://github.com/pdxcat/puppet-module-collectd.git puppet/modules/collectd
+
+
+Actualizar los submodulos:
+git submodule foreach git pull origin master
