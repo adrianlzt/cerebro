@@ -65,3 +65,7 @@ nmap --max-retries 5 --min-rtt-timeout 10 10.0.1.1
 
 # SNMP
 nmap -P0 -v -sU -p 161 10.0.2.5
+
+# XML
+Salida en XML
+nmap -oX fichero.xml ...
