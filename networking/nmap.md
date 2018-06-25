@@ -69,3 +69,22 @@ nmap -P0 -v -sU -p 161 10.0.2.5
 # XML
 Salida en XML
 nmap -oX fichero.xml ...
+
+
+# Python
+python-nmap
+
+import nmap
+nm = nmap.PortScanner()
+nm.scan('10.0.0.0/16', ports="80,443", arguments="-sV")
+for host_addr in nm.all_hosts():
+  try:
+    host = nm[host_addr]
+    if host.tcp(80).get("state") == "open" and host.tcp(80).get("product") == "nginx":
+      print("nginx")
+
+    for port in host.all_tcp():
+      if host.tcp(port).get("name") == "ssh":
+        print("ssh")
+  except Exception as ex:
+    print(f"Exception host {host_addr}: {ex}")
