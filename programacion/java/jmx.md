@@ -9,3 +9,13 @@ https://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html
 Tambien hay una cli:
 http://wiki.cyclopsgroup.org/jmxterm/
 java -jar jmxterm...
+
+
+# Protocolo
+RMI
+"JSR-160 connectors are highly Java centric where its default protocol RMI is not available outside the Java universe"
+
+
+
+# JSON
+Parece que la gente usa Jolokia para exponer las métricas de JMX en formato JSON para ser más fáciles de tratar.
