@@ -406,6 +406,10 @@ Build para windows amd64:
 ./scripts/build.py --arch amd64 --platform windows
   genera build/telegraf.exe
 
+Compilar telegraf:
+make telegraf
+
+
 make build
 $GOPATH/bin/telegraf --version
 $GOPATH/bin/telegraf config > telegraf.conf
