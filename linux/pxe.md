@@ -45,11 +45,15 @@ DEFAULT centos7
 LABEL centos7
         MENU LABEL CentOS 7.0 x86_64
         KERNEL centos/7/x86_64/vmlinuz
-        APPEND initrd=centos/7/x86_64/initrd.img ramdisk_size=100000 ip=dhcp repo=http://sunsite.rediris.es/mirror/CentOS/7/os/x86_64/
+        APPEND initrd=centos/7/x86_64/initrd.img ramdisk_size=100000 ip=dhcp repo=http://ftp.rediris.es/mirror/CentOS/7/os/x86_64/
 
 LABEL trusty
         KERNEL ubuntu/trusty/amd64/linux
         APPEND vga=normal initrd=ubuntu/trusty/amd64/initrd.gz
+
+LABEL bionic
+        KERNEL ubuntu/bionic/amd64/linux
+        APPEND vga=normal initrd=ubuntu/bionic/amd64/initrd.gz
 
 PROMPT 1
 TIMEOUT 100
@@ -68,23 +72,29 @@ vi /var/lib/tftpboot/pxelinux.cfg/boot.txt
 
 centos7
 trusty
+bionic
 
 
 # Ficheros ubuntu
-cd /var/lib/tftpboot/pxelinux.cfg
+cd /var/lib/tftpboot/
 wget http://archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/current/images/netboot/pxelinux.0
+cd /var/lib/tftpboot/pxelinux.cfg
 mkdir -p ubuntu/trusty/amd64
 cd ubuntu/trusty/amd64
 wget http://archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
 wget http://archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
+cd /var/lib/tftpboot/pxelinux.cfg
+mkdir -p ubuntu/bionic/amd64
+cd ubuntu/bionic/amd64
+wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
+wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz
 
 # Ficheros CentOS
 cd /var/lib/tftpboot/pxelinux.cfg
 mkdir -p centos/7/x86_64/
 cd centos/7/x86_64/
-wget http://ftp.cixug.es/CentOS/7.0.1406/os/x86_64/images/pxeboot/initrd.img
-wget http://ftp.cixug.es/CentOS/7.0.1406/os/x86_64/images/pxeboot/upgrade.img
-wget http://ftp.cixug.es/CentOS/7.0.1406/os/x86_64/images/pxeboot/vmlinuz
+wget http://ftp.cixug.es/CentOS/7/os/x86_64/images/pxeboot/initrd.img
+wget http://ftp.cixug.es/CentOS/7/os/x86_64/images/pxeboot/vmlinuz
 
 
 
