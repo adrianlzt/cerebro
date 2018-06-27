@@ -25,6 +25,28 @@ El tipo de dato que almacena el item:
  4 -> text
 
 
+type
+0 - Zabbix agent
+1 - SNMPv1 agent
+2 - Zabbix trapper
+3 - simple check
+4 - SNMPv2 agent
+5 - Zabbix internal
+6 - SNMPv3 agent
+7 - Zabbix agent (active)
+8 - Zabbix aggregate
+9 - web item
+10 - external check
+11 - database monitor
+12 - IPMI agent
+13 - SSH agent
+14 - TELNET agent
+15 - calculated
+16 - JMX agent
+17 - SNMP trap
+18 - Dependent item
+
+
 # History
 El histórico de los datos se almacena en tablas según su tipo:
 double/float -> history
@@ -34,3 +56,7 @@ uint         -> history_uint
 text         -> history_text
 
 Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
+
+
+Número de items en la tabla history agrupados por buckets de 10':
+select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
