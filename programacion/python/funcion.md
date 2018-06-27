@@ -79,3 +79,13 @@ import sys
 def what_is_my_name():
     print(sys._getframe().f_code.co_name)
 
+
+
+# Datos de una función
+func.__name__
+
+func.__module__
+  donde esta definida
+
+func.__defaults__
+  valores por defecto de la funcion
