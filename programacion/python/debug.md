@@ -13,6 +13,7 @@ http://www.doughellmann.com/PyMOTW/pdb/
 # Interactivo tras fallo
 python -i script.py
   tras fallar nos deja una traceback de donde ha parado y la consola abierta
+  en realidad -i lo que hace es ejecutar el codigo y luego abrirnos el terminal
 
 Mirar pudb.md
 
