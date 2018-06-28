@@ -13,3 +13,7 @@ https://technet.microsoft.com/en-us/library/jj574079%28v=ws.11%29.aspx?f=255&MSP
 
 Sacar todos los perf:
 Get-Counter -ListSet * | Sort-Object CounterSetName | Select-Object CounterSetName | Out-GridView
+
+App para ver los perf counters:
+perfmon.exe
+  En el "Performance monitor" darle al "+" en las gráfica para que nos deje seleccionar que otras métricas tenemos disponibles.
