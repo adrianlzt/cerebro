@@ -70,3 +70,6 @@ select items.name,items.itemid from hosts_groups,groups,items where items.hostid
 
 Todos los items de un host por su hostname:
 select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' and hosts.hostid = items.hostid;
+
+Cuantos items de cada tipo tenemos:
+select type,count(*) from items group by type order by type;
