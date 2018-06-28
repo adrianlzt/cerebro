@@ -11,3 +11,6 @@ PowerShell v2+
 
 Los paquetes .nupkg son fichero .zip, dentro tienen un fichero de spec y scripts de powershell para la instalación.
 Generalmente lo que harán será bajarse un .msi de alguna url remota.
+
+
+Mirar devops/ansible/chocolatey.md
