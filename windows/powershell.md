@@ -15,3 +15,10 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get
 Nos devuelve una lista de comandos disponibles.
 O podemos usarlo para saber si tenemos disponbile un comando:
   Get-Command facter
+
+
+# Logs de ejecucción
+https://docs.microsoft.com/es-es/powershell/wmf/5.0/audit_script
+
+Control Panel -> View event logs
+ETW, Microsoft-Windows-PowerShell/Operational

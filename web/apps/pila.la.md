@@ -1,5 +1,4 @@
 deja personalizar
-http://bit.do/
 https://bitly.com
   permite customizar si hacemos login
   lo que sea bit.ly/XXX tambien vale como j.mp/XXX
