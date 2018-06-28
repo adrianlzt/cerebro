@@ -58,5 +58,15 @@ text         -> history_text
 Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 
+# Queries varias
 Número de items en la tabla history agrupados por buckets de 10':
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
+
+Como la anterior pero solo para items zabbix trapper (type=2):
+select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
+
+Todos los items de un hostgroup:
+select items.name,items.itemid from hosts_groups,groups,items where items.hostid=hosts_groups.hostid and hosts_groups.groupid=groups.groupid and groups.name='SOMEHOSTGROUP' limit 10;
+
+Todos los items de un host por su hostname:
+select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' and hosts.hostid = items.hostid;
