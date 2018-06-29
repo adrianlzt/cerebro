@@ -42,3 +42,8 @@ gs\""
 Modulos usados: ansible/lib/ansible/modules/windows/
 
 Modulo de donde saca los facts: ansible/lib/ansible/modules/windows/setup.ps1
+
+
+# Psexec
+Si la máquina tiene psexec instalado y corriendo, podemos usar el modulo de ansible https://docs.ansible.com/ansible/2.5/modules/win_psexec_module.html para ejecutar comandos de forma remota.
+Windows Server 2008 and higher
