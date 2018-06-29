@@ -5,6 +5,10 @@ Dar con el botón derecho y dar a "Editar"
 En el script es como en bash, pondremos lo comandos directamente
 
 
+# Mostrar ventana grafica con el output de un comando
+... | Out-Grid
+
+
 # Obtener la versión
 $PSVersionTable.PSVersion
 $PSVersionTable.PSVersion.Major
