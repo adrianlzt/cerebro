@@ -92,6 +92,14 @@ fielddrop = ["usage_guest", "usage_steal"]
 solo deja pasar esos fields:
 fieldpass = ["inodes*"]
 
+solo dejar pasar ciertos tags:
+taginclude = ["cpu"]
+
+dejar pasar solo tags que cumplan cierto key=value
+[inputs.disk.tagpass]
+  fstype = [ "ext4", "xfs" ]
+
+
 agregar tags:
 [[inputs.cpu]]
   [inputs.cpu.tags]
