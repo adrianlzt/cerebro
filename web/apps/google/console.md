@@ -4,3 +4,13 @@ Shell con un linux.
 El /home se preserva (5GB)
 Comandos: docker, git, cosas de google cloud
 Python, ruby, node
+
+
+Acceso ssh:
+gcloud alpha cloud-shell ssh
+
+Copiar ficheros:
+gcloud alpha cloud-shell scp cloudshell:~/data.txt localhost:~
+
+Montar sistema de ficheros remoto:
+$(gcloud alpha cloud-shell get-mount-command ~/my-cloud-shell)
