@@ -75,6 +75,8 @@ Calcular porcentaje cuando el divisor sea 0:
   el truco es sumar al divisor un 1 en el caso de que el último valor sea 0
   count(telegraf.net.packets_recv[eth0],#1,0) -> devuelve 1 si el último valor de telegraf.net.packets_recv[eth0] es 0
 
+  también podemos multiplicar por count(xxx,#1,0,ne) para dejar a cero el item en caso de que el divisor sea 0
+
 
 
 ## Internal checks
