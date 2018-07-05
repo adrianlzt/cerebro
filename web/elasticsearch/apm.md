@@ -26,15 +26,21 @@ frontend.enabled: true
 ## Python
 pip install elastic-apm[flask]
 
+Ejemplos:
+  apm_flash.py
+
 Los hooks para las diferentes librerias está en: elasticapm/instrumentation/packages
 La idea es hacer wrappers de ciertas llamadas con "capture_span" para enviar los datos a APM.
 
+Si por ejemplo llamamos a la lib "requests", las llamadas automáticamente serán spans dentro de la transacción.
 
+
+### custom span
 Si queremos generar span custom dentro de una transacción, se calculará el tiempo de ejecucción de lo que pongamos dentro del "with":
 from elasticapm.traces import capture_span
 ...
-with capture_span("mifirma", "some.type", {"url": "miurl"}):
+with capture_span(name="mifirma", span_type="some.type", extra={"url": "miurl"}, skip_frames=0, leaf=False):
   edad = mifunc(1)
 
 
-El diccionario se almacenará como "context.url" en el documento indexado.
+El diccionario se almacenará "extra" como context (estará disponible en el doc indexado como context.url en este caso)
