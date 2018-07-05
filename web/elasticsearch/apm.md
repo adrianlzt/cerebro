@@ -22,6 +22,8 @@ Tenemos dos conceptos distintos en una transacción, uno es el nombre que pasamo
 Cada tipo de transa
 Cada nombre distinto de transacción aparecerá como una pestaña distinta en Kibana-APM (típicamente tendremos "Requests" y "Errors")
 
+Parece que aunque tengamos una transaction type distinta, luego la UI los agrupa por name. Por lo que podemos ver transactions en una tab (type) que no es la suya (bug?)
+
 
 # Server
 docker run --rm -d -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
@@ -60,21 +62,56 @@ client = elasticapm.Client(
 
 El codigo importante a nivel cliente está en elasticapm/traces.py
 
-Los hooks para las diferentes librerias está en: elasticapm/instrumentation/packages
-La idea es hacer wrappers de ciertas llamadas con "capture_span" para enviar los datos a APM.
-
+El codigo para instrumentar diferentes librerias está en: elasticapm/instrumentation/packages (https://github.com/elastic/apm-agent-python/tree/master/elasticapm/instrumentation/packages)
 Si por ejemplo llamamos a la lib "requests", las llamadas automáticamente serán spans dentro de la transacción.
 
 
-### custom span
+### Public API
+https://www.elastic.co/guide/en/apm/agent/python/2.x/api.html#api-tag
+
+Mirar ejemplo de uso libre de la lib de APM en: apm_custom.py
+
+#### custom transaction
+client.begin_transaction("spans1")
+elasticapm.set_custom_context({"cosas": "datos_custom"})
+elasticapm.set_user_context(username="pepe", email="pepe@example.com", user_id="abc")
+elasticapm.tag(tag1="value1", tag2="value2")
+...spans...
+client.end_transaction("trans_name", "result")
+
+
+#### custom span
 Si queremos generar span custom dentro de una transacción, se calculará el tiempo de ejecucción de lo que pongamos dentro del "with":
 from elasticapm.traces import capture_span
 ...
 with capture_span(name="mifirma", span_type="some.type", extra={"url": "miurl"}, skip_frames=0, leaf=False):
   edad = mifunc(1)
 
-
 El diccionario se almacenará "extra" como context (estará disponible en el doc indexado como context.url en este caso)
+
+
+#### exceptions (van a la pestaña "Errors")
+try:
+    x = int("five")
+except ValueError:
+    client.capture_exception()
+
+
+
+#### messages (van a la pestaña "Errors")
+client.capture_message(param_message={
+    'message': 'Billing process for %s succeeded. Amount: %s',
+    'params': ("customer.id", "order.total_amount"),
+  },
+  custom={
+    "foo": "bar"
+  }
+)
+
+
+
+# Tests
+https://www.elastic.co/guide/en/apm/agent/python/current/run-tests-locally.html
 
 
 # Errores
