@@ -12,7 +12,10 @@ https://technet.microsoft.com/en-us/library/jj574079%28v=ws.11%29.aspx?f=255&MSP
 
 
 Sacar todos los perf, nos permite filtrar rápidamente para encontrar perfcounters:
-Get-Counter -ListSet * | Sort-Object CounterSetName | Select-Object CounterSetName | Out-GridView
+Get-Counter -List "*" | Select-Object CounterSetName,Description,Paths,PathsWithInstances | Out-GridView
+
+En JSON:
+Get-Counter -List "*" | Select-Object CounterSetName,Description,Paths,PathsWithInstances | ConvertTo-Json
 
 App para ver los perf counters:
 perfmon.exe

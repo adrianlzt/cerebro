@@ -250,6 +250,11 @@ para obtener metricas de servicios que exponen sus métricas via prometheus, por
 Puede levantar un puerto donde apuntamos un webhook de github
 
 
+## windows
+Ejemplo de inputs y dashboard de grafana
+https://grafana.com/dashboards/1902
+
+
 # Consumo
 Con la instalación básica haciendo pooling cada 10"
   15MB 0.25%
