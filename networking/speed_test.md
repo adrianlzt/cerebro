@@ -4,3 +4,8 @@ http://www.cyberciti.biz/faq/linux-unix-test-internet-connection-download-upload
 
 
 curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+
+
+http://www.dslreports.com/speedtest
+Te mide tambien el bufferbloat
+Cuando lo ejecutemos no cambiar de pestaña ni aplicación hasta que termine
