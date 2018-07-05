@@ -29,6 +29,13 @@ pip install elastic-apm[flask]
 Ejemplos:
   apm_flash.py
 
+Las opciones se pueden pasar por variables de entorno. Mirar conf/__init__.py "class Config" (hay que prefijar con "ELASTIC_APM_")
+Ejemplo con variables de entorno:
+ELASTIC_APM__WAIT_TO_FIRST_SEND=0 ELASTIC_APM_SERVICE_NAME=Desdeenv ELASTIC_APM_FLUSH_INTERVAL=1 python apm_custom.py
+  configurando para no esperar el envio de la primera transacion y flushear cada segundo
+
+El codigo importante a nivel cliente está en elasticapm/traces.py
+
 Los hooks para las diferentes librerias está en: elasticapm/instrumentation/packages
 La idea es hacer wrappers de ciertas llamadas con "capture_span" para enviar los datos a APM.
 
