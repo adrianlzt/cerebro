@@ -26,7 +26,7 @@ Parece que aunque tengamos una transaction type distinta, luego la UI los agrupa
 
 
 # Server
-docker run --rm -d -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
+docker run -d --name apm-server -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
 
 Ejemplo de config corriendo como container (referencia https://github.com/elastic/apm-server/blob/6.3/apm-server.reference.yml):
 apm-server.host: "0.0.0.0:8200"
@@ -42,6 +42,15 @@ pip install elastic-apm[flask]
 
 Ejemplos:
   apm_flash.py
+
+
+En caso de perdida de conex con el server APM se perderán esas trazas. Parece que la libreria no cachea, al menos con la config por defecto.
+Saldrán unos errores indicando que no ha podido enviar los datos:
+Connection to APM Server timed out (url: http://localhost:8200/v1/transactions, timeout: None seconds)
+Failed to submit message: '<no message value>'
+<no message value>
+
+
 
 Las opciones se pueden pasar por variables de entorno. Mirar conf/__init__.py "class Config" (hay que prefijar con "ELASTIC_APM_")
 Ejemplo con variables de entorno:

@@ -25,7 +25,7 @@ https://github.com/gescheit/scripts
 
 Ejemplo:
 from zabbix_api import ZabbixAPI
-zbx = ZabbixAPI("http://%s" % zbx_ip, timeout=10)
+zbx = ZabbixAPI("http://zabbix")
 zbx.login("Admin", "zabbix")
 zbx_host_list = get_host_by_host_name(zbx, "telegraf")
 assert len(zbx_host_list) == 1
