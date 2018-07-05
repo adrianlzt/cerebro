@@ -6,6 +6,11 @@ Cargar una libreria en nuestro código que enviará métricas a ES (pasando prim
 Soporta Node.js y python (ruby, javascript, java y go en un futuro)
 
 
+La organización del APM se hace al rededor de transactions y errors.
+Las transactions pueden tener uno o varios spans.
+Ejemplo, nos hacen una petición a nuestro servidor web (esta sería la transacción) y para contestar a esta tenemos que realizar dos llamadas a la bbdd y una llamada externa; estas tres serían un span dentro de la transacción.
+
+
 # Server
 docker run --rm -d -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
 
@@ -21,3 +26,15 @@ frontend.enabled: true
 ## Python
 pip install elastic-apm[flask]
 
+Los hooks para las diferentes librerias está en: elasticapm/instrumentation/packages
+La idea es hacer wrappers de ciertas llamadas con "capture_span" para enviar los datos a APM.
+
+
+Si queremos generar span custom dentro de una transacción, se calculará el tiempo de ejecucción de lo que pongamos dentro del "with":
+from elasticapm.traces import capture_span
+...
+with capture_span("mifirma", "some.type", {"url": "miurl"}):
+  edad = mifunc(1)
+
+
+El diccionario se almacenará como "context.url" en el documento indexado.
