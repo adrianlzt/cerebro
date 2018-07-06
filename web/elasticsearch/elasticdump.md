@@ -34,7 +34,7 @@ Crear un mapping a partir de un fichero
 docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/communities_mapping.json --output=http://10.0.2.32:30000/communities --type=mapping 
 
 
-Restaurar una serie de mappings e indices
+Restaurar una serie de mappings, settings e indices
 for i in user_index communities primary_index invite_index invites community_index; do
 for j in settings mapping data; do
 docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://127.0.0.1:9200/$i --input=/tmp/${i}_${j}.json --type=$j
