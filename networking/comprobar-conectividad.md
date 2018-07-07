@@ -29,3 +29,13 @@ ping 8.8.8.8
 # IP publica para http
 curl 1.1.1.1
 curl 190.9.9.190
+
+
+# Comprobar que puertos TCP tenemos abiertos
+nmap portquiz.net
+  este sitio escucha en todos los puertos TCP
+  Ej.:
+  $ curl portquiz.net:5812
+  Port 5812 test successful!
+  Your IP: 121.121.60.85
+
