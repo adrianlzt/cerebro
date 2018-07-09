@@ -23,7 +23,7 @@ Filtrar por query:
 Varios indices con sus mappings:
 
 for i in indexA indexB indexC; do
-for j in settings mapping data; do
+for j in settings mapping analyzer alias data; do
 docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/$i --output=/tmp/${i}_${j}.json --type=${j}
 done
 done
@@ -36,7 +36,10 @@ docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/c
 
 Restaurar una serie de mappings, settings e indices
 for i in user_index communities primary_index invite_index invites community_index; do
-for j in settings mapping data; do
+for j in settings mapping analyzer alias data; do
 docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --output=http://127.0.0.1:9200/$i --input=/tmp/${i}_${j}.json --type=$j
 done
 done
+
+Parece que no funciona bien el restore de los settings, porque antes de enviar el PUT con las settings, envia un PUT para crear el indice.
+El segundo PUT, el que tiene las settings, da error porque el indice ya existe
