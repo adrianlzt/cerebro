@@ -58,3 +58,7 @@ Eje x: latencia
 Eje y: frecuencia con la que pasa
 
 Veríamos barras más altas en los valores más típicos de latencia
+
+
+# Pie charts - NO USAR
+https://www.perceptualedge.com/articles/visual_business_intelligence/save_the_pies_for_dessert.pdf
