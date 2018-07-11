@@ -67,6 +67,7 @@ client = elasticapm.Client(
     service_name='PruebasConfig',
 )
 
+elasticapm.instrument()  # instrumentar librerias conocidas
 
 
 El codigo importante a nivel cliente está en elasticapm/traces.py
