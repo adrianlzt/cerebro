@@ -52,6 +52,8 @@ GET blogs/_search
 Lanzamos una petición, nos devuelve un id.
 Luego usamos ese id para recuperar los resultados de ese momento preciso.
 
+Para usarlo con python mirar: https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html?highlight=scroll#pagination
+
 GET logs-2018-03/_search?scroll=30s
 {
   "size": 1000,
@@ -69,7 +71,7 @@ GET logs-2018-03/_search?scroll=30s
 
 scroll=30s, esto dice que tenemos que lanzar un scroll y que se autoborrará si no se usa durante 30"
 
-Respuesta:
+Respuesta (con el número de resultados que hayamos pasado con "size"):
 {
  "_scroll_id": "DnF1ZXJ5VGhlbkZldGNoBQAAAAAAAAWOFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAAAAFjAAAAWPFnlWQVR3N3pxUjdLMnJLcUZpSDVkWWcAAAAAAAAFkRZ5V
 kFUdzd6cVI3SzJyS3FGaUg1ZFln",
@@ -77,7 +79,7 @@ kFUdzd6cVI3SzJyS3FGaUg1ZFln",
  ...
 
 
-Para recuperar los resultados:
+Para recuperar los resultados (en cada GET obtendremos el número de resultados de "size" hasta quedarnos sin):
 GET _search/scroll
 {
  "scroll": "30s",
