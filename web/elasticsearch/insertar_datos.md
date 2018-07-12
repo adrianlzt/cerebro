@@ -85,7 +85,10 @@ Solo actualiza, o añade, lo que le pasemos.
 Internamente, lee el doc, crea uno nuevo con los campos leído más los añadidos y marca para borar el anterior.
 
 curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario": {"hash": "xxxx"}}'
+  creamos el doc
+
 curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
+  lo actualizamos
 
 Creo un documento con id=0.
 Luego se añade otro doc al mismo documento. Si usasemos la misma clave en el doc ("usuario"), estaríamos modificando el valor anterior (simple recursive merge, inner merging of objects, replacing core "keys/values" and arrays)

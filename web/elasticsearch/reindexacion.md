@@ -1,4 +1,4 @@
-https://www.elastic.co/guide/en/elasticsearch/guide/current/reindex.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
 elasticdump.md
 snapshots.md
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
@@ -19,6 +19,30 @@ POST _reindex
 
 Se pueden especificar queries para solo reindexar ciertos datos.
 O pasar un scripts para modificar los datos antes del reindexado.
+
+No podemos reindexar al mismo indice.
+
+
+POST _reindex
+{
+  "source": {
+    "index": "twitter",
+    "type": "_doc",
+    "query": {
+      "term": {
+        "user": "kimchy"
+      }
+    }
+  },
+  "dest": {
+    "index": "new_twitter"
+  },
+  "script": {
+    "source": "if (ctx._source.foo == 'bar') {ctx._version++; ctx._source.remove('foo')}",
+    "lang": "painless"
+  }
+}
+
 
 Podemos configurar el tamaño de los batch de reindex, por si hubiese fields muy grandes que llenasen el heap.
 También es configurable los timeouts.
