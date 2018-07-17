@@ -70,6 +70,8 @@ Almacenan los shards
 Ejecutan las operaciones CRUD (create/read/update/delete), search and aggregations.
 I/O, CPU and memory-intensive
 
+Recomendación de elastic, 1000 shards por nodo como límite máximo que no se debe superar
+
 
 ### Coordinating (frontend)
 Todos los nodos del cluster son coordinating

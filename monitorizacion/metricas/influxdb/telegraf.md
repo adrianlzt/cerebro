@@ -99,6 +99,9 @@ dejar pasar solo tags que cumplan cierto key=value
 [inputs.disk.tagpass]
   fstype = [ "ext4", "xfs" ]
 
+no dejar pasar metricas con esta tags
+[inputs.disk.tagdrop]
+  fstype = [ "vfat" ]
 
 agregar tags:
 [[inputs.cpu]]
