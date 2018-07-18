@@ -73,6 +73,9 @@ Este script debe devolver un JSON tipo:
     ]
 }
 
+Ejemplo con zabbix_sender
+zabbix_sender -z 172.17.0.3 -s aaahost -k grafana_bug -o '{"data":[{"{#UNO}":"uno","{#DOS}":"dos","{#TRES}":"tres"}]}'
+
 Cuando un host implemente este template automáticamente aparecerán los items que descubra el script.
 
 También podemos usar un trap para generar el LDD.
