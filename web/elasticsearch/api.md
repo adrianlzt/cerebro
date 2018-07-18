@@ -32,3 +32,18 @@ Cambiar formato de salida:
 
 Ordenar:
 /_cat/xxx?s=campo:desc,otrocampo
+
+Filtrar que mostrar (https://www.elastic.co/guide/en/elasticsearch/reference/6.3/common-options.html#common-options-response-filtering):
+?filter_path=hits.hits._source.title,hits.hits._source.author
+?filter_path=routing_table.indices.**.state
+  para coger todos los dicts de ese nivel y seguir filtrando por debajo
+?filter_path=-_shards
+  eliminar un campo
+?filter_path=metadata.indices.*.state,-metadata.indices.logstash-*
+
+
+Flat settings:
+GET twitter/_settings?flat_settings=true
+  devuelve las settings como index.version.created, en vez de en diccionarios
+
+

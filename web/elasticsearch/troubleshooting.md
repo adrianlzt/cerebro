@@ -41,8 +41,44 @@ Si el cluster ha intentado inicializar el shard mas de n veces (5 por defecto), 
 curl -X POST "localhost:9200/_cluster/reroute?retry_failed=true"
 
 
+# Disco
 Discos por encima del watermark (default 90%) en los data nodes? No permite crear nuevos indices diarios (por ejemplo de logstash o beats).
 Limpiar indices viejos
+
+## read only
+cluster.routing.allocation.disk.watermark.flood_stage
+si sobrepasa este valor, ES pone en read only los índices que tengan al menos un shard en el nodo que cumpla está condición
+
+Chequear indices en read only:
+GET _all/_settings/index.blocks.read_only?flat_settings=true
+GET _cluster/state/metadata?filter_path=metadata.indices.**.settings.index.blocks
+
+Si se nos han puesto indices en readonly podemos ponerlos de nuevo en rw con:
+PUT /nombreindice/_settings
+{
+  "index.blocks.read_only_allow_delete": null
+}
+
+O para todos los indices:
+PUT _all/_settings
+{
+  "index.blocks.read_only_allow_delete": null
+}
+
+
+
+Si queremos forzar que no estén en read-only:
+PUT _all/_settings
+{
+  "index": {
+    "blocks.read_only": false,
+    "blocks.read_only_allow_delete": false
+  }
+}
+
+Y más tarde, tras comprobar que todo está correcto, podemos ponerlo a null para volver a dejar a ES la potestad de ponerlos en RO en caso de ser necesario.
+
+
 
 
 Ver que búsquedas/inserciones lentas:

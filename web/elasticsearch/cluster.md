@@ -19,6 +19,10 @@ GREEN: todos los shards allocated
 # Settings actuales
 curl -s localhost:9200/_cluster/settings | python -m json.tool
 
+Filtrando por un setting determinado y poniendolo en formato flat (key1.key2.key3)
+GET _all/_settings/index.blocks.read_only?flat_settings=true
+
+
 
 # Nodos
 curl "https://localhost:9200/_nodes?pretty"
@@ -51,6 +55,9 @@ No hace falta tener más de 3 masters, da igual el tamaño del cluster.
 Es importante tener nodos master dedicados para solo dedicarse a manejar el estado del cluster. Si estos nodos se ralentizan, se ralentiza todo.
 
 GET _cluster/state
+GET /_cluster/state/{metrics}/{indices}
+GET /_cluster/state/metadata,routing_table/foo,bar
+
 
 Modificaciones del cluster:
   - crear indice

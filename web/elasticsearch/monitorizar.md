@@ -16,6 +16,8 @@ just_indices_stats
 
 Importante, de los nodos data vigilar su USE (utilization/saturation/errors) de CPU, memoria y disk I/O.
 
+Que los índices no estén en read only (se hayan puesto por superar en algún momento cluster.routing.allocation.disk.watermark.flood_stage)
+
 
 Espacio global del cluster (total, libre, disponible):
 watches --url https://localhost:9200 --cacert admin-ca --cert admin-cert --key admin-key cluster_stats | jq '.nodes.fs'
