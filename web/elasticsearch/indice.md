@@ -25,6 +25,9 @@ curl "localhost:9200/_cluster/allocation/explain?pretty"
 curl -s "localhost:9200/_cat/indices?bytes=mb&h=index,store.size" | sort -nk2
   ocupación total de cada índice en MB (primary + replicas). Para obtener solo el peso de los primary consultar por "pri.store.size"
 
+GET _cat/indices?bytes=gb&h=index,store.size&s=store.size:desc
+  ya ordenado por tamaño en GB
+
 
 
 # Crear indice

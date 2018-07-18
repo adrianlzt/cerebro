@@ -30,5 +30,5 @@ Cambiar formato de los datos de salida (https://www.elastic.co/guide/en/elastics
 Cambiar formato de salida:
 /_cat/xxx?format=json  (json, yaml, smile, cbor)
 
-Ordenar (parece que no tira, al menos con la version 2.4.4, lucene 5.5.2):
-/_cat/xxx?s=order:desc,template
+Ordenar:
+/_cat/xxx?s=campo:desc,otrocampo
