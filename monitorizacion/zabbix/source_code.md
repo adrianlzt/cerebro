@@ -2,6 +2,8 @@ SVN
 https://zabbix.org/wiki/Get_Zabbix
 
 svn co svn://svn.zabbix.com/trunk
+svn co svn://svn.zabbix.com/branches/2.4
+svn co svn://svn.zabbix.com/tags/3.0.1
 
 
 Server escrito en C
