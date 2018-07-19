@@ -19,3 +19,17 @@ https://github.com/milesrichardson/docker-nfqueue-scapy
 
 Si queremos arrancarlo usando un .py local
 docker run -it --rm --cap-add=NET_ADMIN --net=host -v "$PWD/nfqueue_listener.py:/nfqueue_listener.py" milesrichardson/nfqueue-scapy
+
+
+# Golang
+github.com/AkihiroSuda/go-netfilter-queue
+
+## Arch
+sudo pacman -S libnetfilter_queue
+go get github.com/chifflier/nfqueue-go/nfqueue                                                                                                                    git:(master|✚1…
+
+
+go get github.com/AkihiroSuda/go-netfilter-queue
+  este no funciona, problemas en el .h. Puede que sea facil de arreglar
+  Parece más sencillo y limpio de usar.
+
