@@ -6,6 +6,9 @@ import "time"
 time.Sleep(100 * time.Millisecond)
 time.Sleep(time.Duration(tiempo) * time.Millisecond) // siendo tiempo un int
 
+# Parsear duration
+hours, _ := time.ParseDuration("10h")
+
 # Parsear fecha
 const longForm = "Jan 2, 2006 at 3:04pm (MST)"
 t, _ := time.Parse(longForm, "Feb 3, 2013 at 7:54pm (PST)")
