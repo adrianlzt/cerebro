@@ -55,6 +55,9 @@ Byte array -> string
 s := string(byteArray[:n])
 
 string -> int
+strconv.Atoi("987")
+
+string -> int32
 strconv.ParseInt("987", 10, 32)
 
 string -> uint
