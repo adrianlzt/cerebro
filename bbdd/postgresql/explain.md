@@ -6,6 +6,7 @@ Sirve para buscar problemas de performance.
 EXPLAIN SELECT * FROM tenk1;
 
 
+# Coste
 cost=0.00..483.00 rows=7001 width=244
   0.00: coste de arranque
   483: coste de procesado
@@ -19,5 +20,13 @@ Por ejemplo, si ejecutamos la query:
 SELECT * FROM tenk1 WHERE unique1 < 7000;
 Tendremos un coste 483 que es:
   358 disk pages * 1 coste/pag
-  10000 rows * 0.01 coste/row (coste por procesar cada row, cpu_tuple_cost)
+  10000 row * 0.01 coste/row (coste por procesar cada row, cpu_tuple_cost)
   10000 row * 0.0025 coste/row (coste por procesar la clausula where por cada row, cpu_operator_cost)
+
+
+# Modos de escaneo
+Seq Scan: pasamos por todos los rows uno por uno
+Bitmap Index Scan: se escanea el indice buscando valores
+Bitmap Heap Scan: se obtienen rows a partir de un child que nos ha devuelto la posición de los índices
+Index Scan: escaneamos en el orden del índice (más caro porque no está ordenado según los bloques de disco)
+Nested Loop: parece que esto se usa para hacer joins de tablas, tendrá al menos dos childs con las tablas a escanear

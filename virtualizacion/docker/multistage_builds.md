@@ -1,5 +1,6 @@
 https://docs.docker.com/engine/userguide/eng-image/multistage-build/
 https://blog.alexellis.io/mutli-stage-docker-builds/
+https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae
 Docker 17.05 or higher
 
 La idea es un Dockerfile con varios "FROM".
