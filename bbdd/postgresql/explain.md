@@ -30,3 +30,21 @@ Bitmap Index Scan: se escanea el indice buscando valores
 Bitmap Heap Scan: se obtienen rows a partir de un child que nos ha devuelto la posición de los índices
 Index Scan: escaneamos en el orden del índice (más caro porque no está ordenado según los bloques de disco)
 Nested Loop: parece que esto se usa para hacer joins de tablas, tendrá al menos dos childs con las tablas a escanear
+
+
+
+# Tiempo
+https://stackoverflow.com/questions/17653884/postgres-query-execution-time
+
+
+Para que nos diga al terminar la ejecucción cuando tiempo ha tardado:
+\timing
+SELECT 1;
+
+Para ver el detalle de donde va el tiempo (tiene cierto overhead):
+EXPLAIN ANALYZE select ...
+
+Menos detallado pero sin overhead:
+EXPLAIN (ANALYZE TRUE, TIMING FALSE) select...
+
+
