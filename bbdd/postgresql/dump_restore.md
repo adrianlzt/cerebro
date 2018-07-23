@@ -11,16 +11,30 @@ Dos tipos de backups:
    Cons:
      - no permite arrancar un standy server
      - ocupa mucho espacio
+     - mala performance
+     - puede joder el filesystem cache
+     - escribir el dump genera I/O
+     - restore muy lento para ddbb grandes!
    Pros:
+     - flexibilidad
      - solo hace falta un user read only
      - se pueden restaurar solo ciertos objetos (usando el formato custom)
      - se puede modificar el SQL a mano antes de restaurarlo (usando el formato SQL)
 
- - físicos (base backup?): copia de los ficheros de pg_data
+ - físicos (base backup): copia de los ficheros de pg_data
+   Cons:
+     - ocupa más??
+     - se hace un backup de todo (no podemos elegir ciertas databases)
+     - tiene que restaurarse en un postgres igual (arquitectura, version, compile flags and paths)
+     - genera mucho I/O (lectura de todos los ficheros)
+   Pros:
+     - más rápidos
 
 Parece que lo mejor es tener un hot standby server donde realizar los backups (pero tenemos el coste de tener otro server).
 Y realizar full backups periodicamente mientras almacenamos continuamente los ficheros WAL, esto nos permite restaurar en un punto determinado del tiempo (PITR, point-in-time recovery)
   mirar como se restaura un PITR en https://www.opsdash.com/blog/postgresql-backup-restore.html#point-in-time-recovery-pitr
+
+Un full backup cada n días y un incremental backup (WAL files) cada hora.
 
 Monitorizar que estamos realizando los backups, el tiempo que tardan, probar a restaurar los últimos backups y el tiempo de restauración:
   you should also have another cron job that picks up a recent backup and tries to restore it into an empty database, and then deletes the database. This ensures that your backups are accessible and usable
@@ -30,7 +44,9 @@ Monitorizar que estamos realizando los backups, el tiempo que tardan, probar a r
 
 ## Formato custom
 Custom, más potente. Nos permite a la hora de restaurar elegir el orden o seleccionar que restaurar:
-Lleva compresión.
+Lleva compresión (mirar parámetro -Z).
+  Más compresión, limitado por la CPU
+  Menos compresión, limitado por I/O
 
 pg_dump -Fc -d prueba -n public -f prueba.custom
   -x si no queremos guardar informacion de roles (permisos de las tablas)
@@ -41,14 +57,17 @@ pg_restore -l prueba.custom
 Ver todo el contenido:
 pg_restore fichero.custom | less
 
-Restaurar:
+Restaurar (CUIDADO, muy lento para ddbb grandes):
 createdb prueba
 pg_restore -v -e -Fc -d prueba -1 /backup/prueba.custom
-  -1 todo en una única transaccion
+  -1 todo en una única transaccion, si falla deja vacía la bbdd
   -v verbose
   -e exit on error
   -Fc format custom
   --no-privileges --no-owner "role XXX does not exist"
+
+Podemos quitar -1 y usar -jN para paralelizar (no compatible con -1)
+Mejorar performance con fsync=off en el file system? (https://www.hagander.net/talks/Backup%20strategies.pdf)
 
 
 ## Formato SQL plano
@@ -62,7 +81,7 @@ Restaurar simple
   createdb dbname
   psql dbname < infile
    o
-  psql -f infile postgres
+  psql -f infile -d dbname
 
 La forma correcta (-1 indica que se haga todo en una única transacción, "o todo o nada"):
 PGOPTIONS='--client-min-messages=warning' psql -X -q -1 -v ON_ERROR_STOP=1 --pset pager=off -d mydb_new -f mydb.sql -L restore.log
