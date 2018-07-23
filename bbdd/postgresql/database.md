@@ -1,1 +1,3 @@
 CREATE DATABASE "nombre";
+
+DROP DATABASE [ IF EXISTS ] name;
