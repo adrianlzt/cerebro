@@ -229,3 +229,108 @@ curl 'http://172.16.1.43:9200/logstash-iris-telematics-2015.06.09/_search?&scrol
                     "partial1": [
                         {
                             "message": "2015-06-10T01:50:07.490+0200 | INFO | pd-core | load | [875676716988873216_p0] loaded ios (/mnt/phonedrive/ZQQwwKOsD1R9GXGSqw8Ir3WI.zip) of user '336948cddd8cd5a2fe24fa736c3492a18cbb6dc9' in 6.098s"
+
+
+
+# Wildcard
+No recomendado. Ineficiente.
+Costoso, especialmente si ponemos un "*" o "?" al comienzo (le estamos obligando a entrar en todos los docs)
+Al menos intentar darle un prefijo estatico
+
+* = anything
+? = any single character
+
+GET blogs/_search{
+  "query": {
+    "wildcard": {
+      "title.keyword": {
+        "value": "* 5.*"
+      }
+    }
+  }
+}
+
+
+# Regexp
+https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html#regexp-syntax
+No usar.
+Ineficiente, costoso!
+Al menos intentar darle un prefijo estatico
+
+GET blogs/_search{
+  "query": {
+    "regexp": {
+      "title.keyword": ".*5\\.[0-2]\\.[0-9].*"
+    }
+  }
+}
+
+
+# Exists
+Para chequear que el campo existe y no es null
+GET blogs/_search {
+  "query": {
+    "exists": {
+      "field": "locales"
+    }
+  }
+}
+
+Para chequear que no existe:
+GET logs_server*/_search {
+  "query": {
+    "bool": {
+      "must_not": {
+        "exists": {
+          "field": "geoip.region_name"
+        }
+      }
+    }
+  }
+}
+
+Tambien podríamos hacer "field": "geoip", que nos dirá si el object existe (sin tener que especificar un field)
+
+
+
+# Script
+Cuidado con el coste en performance!
+Se ejecutará el script por cada hit.
+Intentar hacerlo más eficientemente, por ejemplo usando un ingest pipeline o modelar los datos para que no nos haga falta.
+
+Usando un script painless para chequear que el size de un array es mayor de 1:
+
+GET blogs_fixed/_search{
+  "query": {
+    "bool": {
+      "filter": {
+        "script": {
+          "script": {
+            "source": "doc['locales'].size() > 1"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+Agregar fields al vuelo (se usa típicamente en Kibana para extraer campos de strings, etc):
+GET blogs_fixed/_search{
+  "script_fields": {
+    "day_of_week": {
+      "script": {
+        "source": """
+def d = new Date(doc['publish_date'].value.millis);
+return d.toString().substring(0,3);
+"""
+      }
+    }
+  }
+}
+
+Por defecto no devolverá el "_source".
+Si queremos obtenerlo pondremos:
+GET blogs_fixed/_search {
+  "_source": [],
+  ...
