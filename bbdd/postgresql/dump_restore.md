@@ -18,7 +18,12 @@ Dos tipos de backups:
 
  - físicos (base backup?): copia de los ficheros de pg_data
 
-Parece que lo mejor es tener un hot standby server donde realizar los backups (pero tenemos el coste de tener otro server)
+Parece que lo mejor es tener un hot standby server donde realizar los backups (pero tenemos el coste de tener otro server).
+Y realizar full backups periodicamente mientras almacenamos continuamente los ficheros WAL, esto nos permite restaurar en un punto determinado del tiempo (PITR, point-in-time recovery)
+  mirar como se restaura un PITR en https://www.opsdash.com/blog/postgresql-backup-restore.html#point-in-time-recovery-pitr
+
+Monitorizar que estamos realizando los backups, el tiempo que tardan, probar a restaurar los últimos backups y el tiempo de restauración:
+  you should also have another cron job that picks up a recent backup and tries to restore it into an empty database, and then deletes the database. This ensures that your backups are accessible and usable
 
 
 # Backup lógico

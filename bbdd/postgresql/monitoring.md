@@ -12,3 +12,8 @@ Parámetros a monitorizar respecto a las dead tuples:
 * `(pg_class.relpages / pg_class.reltuples)` – space “per row”
   select relname,relpages,reltuples,relpages*1.0/reltuples AS "space_used_per_row" from pg_class WHERE reltuples > 10 order by space_used_per_row desc limit 20;
     tal vez nos interese poner un "reltuples >" un valor más alto, porque si no podremos estar viendo un montón de tablas pequeñas poco interesantes
+
+
+# OpsDash
+https://www.opsdash.com/blog/postgresql-backup-restore.html#monitoring-backups-wal-archiving-and-replication
+Ver dashboard de ejemplo.
