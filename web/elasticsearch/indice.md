@@ -1,4 +1,5 @@
 mirar conceptos.md para entender el significado.
+mirar mappings.md para más info, campos, detalles, etc
 ES usa inverted index (ver bbdd/indices.md) para almacenar los datos.
 Básicamente es una tabla donde para cada entrada nos dice donde está el fichero que contiene esa palabra
 
@@ -107,42 +108,6 @@ POST _aliases
     }
   ]
 }
-
-
-
-
-
-# Templates
-https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html
-Para definir mappings a priori apuntando a un nombre de índice que aparecerá en un futuro, por ejemplo: logs-*
-
-PUT _template/logs_template
-{
-  "index_patterns": "logs-*",
-  "order": 1,
-  "settings": {
-    "number_of_shards": 4,
-    "number_of_replicas": 1
-  },
-  "mappings": {
-    "_doc": {
-      "properties": {
-        "@timestamp": {
-          "type": "date"
-        }
-      }
-    }
-  }
-}
-
-Podemos testearlo creando un indice que cumpla el index_pattern y consultando su _mapping despues.
-
-
-## Cascading
-Se puede definir "order" en los templates.
-Un order 5 hará override de los order menores.
-Típicamente tendremos: 1, 10 y 100
-
 
 
 

@@ -176,6 +176,16 @@ Por defecto si intentamos indexar un dato en un índice que no existe, este índ
 Esta funcionalidad seguramente la queramos deshabilitar en producción.
 
 
+# Strict mapping
+No permitir campos fuera del mapping definido.
+mirar mapping.md
+
+
+# Desactivar coarce
+Evitar que ES intente adivinar que tipo de datos estamos indexando
+mirar mapping.md
+
+
 # Networking
 Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
 

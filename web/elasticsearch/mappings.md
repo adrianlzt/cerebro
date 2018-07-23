@@ -49,6 +49,8 @@ También tener cuidado con el tipo de datos que seleccionamos con los números. 
 
 Arrays? Tal vez nos vienen una string con valores separados por coma y lo queremos meter como un array.
 
+Granular, tal vez no es más util romper el campo en varios campos más pequeños? Por ejemplo, una version (6.2.1) en major:6, minor:2, bugfix:1
+
 curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
 El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
 
@@ -85,6 +87,22 @@ Simples:
 Hierarchical Types: like object and nested
 Specialized Types: geo_point, geo_shape and percolator
 Plus range types and more
+
+### Ranges
+Campo que almacena un rango de datos.
+Tipos de datos soportados:
+  integer_range
+  float_range
+  long_range
+  double_range
+  date_range
+  ip_range
+
+Cuando indexemos un field de este tipo tendremos que indexarlo de la siguiente manera (pensar si queremos gt, gte, lt, lte):
+  "miles_travelled": {
+    "gt": 0,
+    "lte": 25
+  }
 
 
 ## Multi-fields
@@ -158,5 +176,178 @@ Podemos usar elasticdump para reindexar la información.
 
 
 
-# Dynamic mappings
+# Dynamic mappings / templates
 https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-mapping.html
+https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html
+
+Decidir que hacer basado en:
+  - field datatype (autodetectado por ES)
+  - el nombre del field (o un regex)
+  - el path de un field (no suele usarse porque es facil que cambie)
+
+Ejemplo, si detectamos una string, convertirla en keyword:
+PUT test2{
+  "mappings": {
+    "_doc": {
+      "dynamic_templates": [
+        {
+          "my_string_fields": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword"
+            }
+
+Seleccionando por nombre (suponiendo que todos nuestros float empiezan por "f_"):
+"my_float_fields": {
+  "match": "f_*",
+  "mapping": {
+    "type": "float"
+  }
+
+
+
+# Templates
+https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html
+Para definir mappings a priori apuntando a un nombre de índice que aparecerá en un futuro, por ejemplo: logs-*
+
+PUT _template/logs_template
+{
+  "index_patterns": "logs-*",
+  "order": 1,
+  "settings": {
+    "number_of_shards": 4,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}
+
+Podemos testearlo creando un indice que cumpla el index_pattern y consultando su _mapping despues.
+
+
+## Cascading
+Se puede definir "order" en los templates.
+Un order 5 hará override de los order menores.
+Típicamente tendremos: 1, 10 y 100
+
+
+# Strict / dynamic feature
+dynamic=strict
+  solo dejamos indexar datos que están en el mapping, fallará el indexado (error 400)
+
+dynamic=false
+  si tenemos campos que no están en el mapping, dejamos pasar el documento, pero no indexando esos campos (pero estarán en _source)
+
+dynamic=true (default)
+  se actualiza el mapping si encontramos nuevos fields
+
+
+PUT blogs/_doc/_mapping
+{
+  "dynamic": "strict"
+}
+
+
+# _meta
+Meter metadata en un índice.
+PUT blogs/_mapping/_doc{
+  "_meta": {
+    "blog_mapping_version": "2.1"
+  }
+}
+
+
+# Type Properties
+
+## index
+Evitar que un documento sea indexado. Esto quiere decir que no se puede buscar, pero si podemos usarlo para sort o aggregate
+Cargamos menos el heap, usamos el cache de disco del OS.
+"mappings":{
+   "doc":{
+      "properties":{
+         "http_version":{
+            "type":"keyword",
+            "index":false
+         }
+
+## disabled/enabled
+Ni se indexa, ni se puede usar para sort o aggregate.
+Lo usaremos solo cuando no queremos usar alguna parte del JSON enviado.
+
+## _all
+Deprecated a partir de la 6
+Era un campo donde se concatenaban todos los campos.
+Incrementa al doble el storage. Ralentiza búsquedas.
+Si queremos desactivarlo para una ES 5.x:
+PUT blogs{
+   "mappings":{
+      "_doc":{
+         "_all":{
+            "enabled":false
+         },
+
+
+## copy_to
+Copiar valores to otro field. El valor estará en el field original y en el definido en copy_to.
+Esto usará más espacio.
+Puede ser útil en caso de que estemos haciendo búsquedas con varios OR, lo simplificamos a hacer una única búsqueda contra el campo generado con copy_to.
+
+Ejemplo, componer un solo campo con todos los valores de una definición de sitio:
+"region_name": "Victoria",
+"country_name": "Australia",
+"city_name": "Surrey Hills"
+->
+"locations_combined"
+
+
+"mappings": {
+  "_doc": {
+    "properties": {
+      "region_name": {
+        "type": "keyword",
+        "copy_to": "locations_combined"
+      },
+      "country_name": {
+        "type": "keyword",
+        "copy_to": "locations_combined"
+      },
+      "city_name": {
+        "type": "keyword",
+        "copy_to": "locations_combined"
+      },
+      "locations_combined": {
+        "type": "text"
+      }
+
+
+
+# Indexing data, detalles
+
+## null values
+Cuidado con indexar documentos a los que les faltan campos.
+Si no definimos un field, tomará el valor por defecto (para un double, se pondrá a 1.0).
+Si queremos evitar esto deberemos definir estos valores y ponerlos a "null".
+
+## coercing
+Por defecto ES intenta convertir las values al tipo de dato del campo.
+Ejemplo, tipo long
+ 4 -> 4, ok
+ "3" -> 3, ok
+ 4.5 -> 4, ok
+
+"mappings": {
+  "_doc": {
+    "properties": {
+      "rating": {
+        "type": "long",
+        "coerce": false
+      }
+
+Con este nuevo mapping "3" y 4.5 devolverán un error al intentar indexar
