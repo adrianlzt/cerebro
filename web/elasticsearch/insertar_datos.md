@@ -165,10 +165,29 @@ Si el documeno es nuevo, se almacena el contenido que cuelga de la clave "upsert
 En caso de que ya exista, se aplica el script.
 
 
+
 ## update_by_query
+https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html
 Si modificamos el mapping de nuestro indice para agregar nuevos subfields, para que se generan los índices ejecutaremos:
 POST blogs_fixed/_update_by_query
 
+También podemos usarlo para pasar un indice por una pipeline (mirar ingest_node.md)
+
+
+Ejemplo filtrando que actualizar con una query y usando un script:
+POST twitter/_update_by_query
+POST twitter/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.likes++",
+    "lang": "painless"
+  },
+  "query": {
+    "term": {
+      "user": "kimchy"
+    }
+  }
+}
 
 
 

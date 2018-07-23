@@ -19,10 +19,10 @@ Accessing document fields for various reasons:
   - customize the score of a document
   - working with aggregations
 
-Ingest Node
+Ingest Node (mirar ingest_node.md)
   - execute a script within an ingest pipeline
 
-Reindex API
+Reindex API (mirar reindexacion.md o update.md)
   - manipulate data as it is getting reindexed
 
 # Uso
@@ -74,6 +74,31 @@ ctx._source.field_name
 
 Si estamos en una búsqueda o agregación:
 doc['field_name']
+
+
+## Parámetros
+Acceso con:
+params.xxx
+
+
+## Multiline
+"script": {
+  "source": """
+ctx._source.number_of_views = 0;
+ctx._source.reindexBatch = 1;
+"""
+}
+
+
+## Condicionales
+if (ctx.seo_title == "") {
+  ctx.seo_title = ctx.title;
+}
+
+
+## strings
+"".equals(ctx.seo_title)
+
 
 
 # Caching
