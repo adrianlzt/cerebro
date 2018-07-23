@@ -1,6 +1,7 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
 elasticdump.md
 snapshots.md
+update.md (para actualizar docs que cumplan una query)
 http://david.pilato.fr/blog/2015/05/20/reindex-elasticsearch-with-logstash/
 
 Tras reindexar podemos usar "aliases" para apuntar al nuevo indice el antiguo nombre.
@@ -10,6 +11,9 @@ Tras reindexar podemos usar "aliases" para apuntar al nuevo indice el antiguo no
 https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html
 Reindexar un índice en otro índice.
 Generalmente esto nos será útil porque hayamos modificado el mapping del índice destino para adaptarse mejor a las necesidades.
+Seguramente luego tendremos que apuntar el alias que tengamos apuntando al nuevo índice.
+Por defecto, reindex sobreescribirá los documentos en el índice destino.
+Se hará en batches de 1000 docs.
 
 POST _reindex
 {
@@ -23,6 +27,23 @@ O pasar un scripts para modificar los datos antes del reindexado.
 No podemos reindexar al mismo indice.
 
 
+Definir como se van a gestionar las sobreescrituras.
+El campo "version_type" (puesto sobre "dest") podrá tomar distintos valores:
+version_type=external
+  create any documents that are missing,
+  preserve the version from the destination if the same version already exists in the destination (so basically do nothing), or
+  update any documents that have an older version in the destination index than they do in the source index
+
+Conflictos:
+conflicts=proceed (se define a la altura de primer nivel)
+Ignoramos conflictos y nos da un count al final de los errores.
+
+
+op_type
+Para fallar si existe ya un doc igual?
+
+
+Reindexando filtrando con una query y aplicando un script:
 POST _reindex
 {
   "source": {

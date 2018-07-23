@@ -104,6 +104,23 @@ Cuando indexemos un field de este tipo tendremos que indexarlo de la siguiente m
     "lte": 25
   }
 
+Buscar:
+GET test_ranges/_search{
+  "query": {
+    "range": {
+      "publish_range": {
+        "gte": "2018-04-01"
+      }
+    }
+  }
+}
+
+Cuando usamos una query "range" podemos definir el campo "relation" a uno de estos valores:
+ - intersects (default): si algun documento se encuentra en el rango definido por la búsqueda hará match
+ - contains: solo se hace match si un documento contiene el rango completo
+ - within: solo se hace match si un doc está completamente dentro del rango definido
+
+
 
 ## Multi-fields
 https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html
@@ -156,6 +173,7 @@ curl -XPUT 'localhost:9200/tele/_mapping/user?pretty' -d '
 '
 Actualizamos el type "user" del index "tele" para modificar el field "msg" y añadirle un subfield tipo keyword.
 Solo los documentos indexados a partir de ese momento tendrán ese nuevo subfield.md
+Si queremos que se reindexen los nuevos usar update_by_query (mirar update.md)
 
 
 
@@ -184,6 +202,8 @@ Decidir que hacer basado en:
   - field datatype (autodetectado por ES)
   - el nombre del field (o un regex)
   - el path de un field (no suele usarse porque es facil que cambie)
+
+Cuando se haga el match, se añadirá el campo en el mapping.
 
 Ejemplo, si detectamos una string, convertirla en keyword:
 PUT test2{
@@ -296,6 +316,7 @@ PUT blogs{
 
 ## copy_to
 Copiar valores to otro field. El valor estará en el field original y en el definido en copy_to.
+Al hacer un GET del documento no veremos el campo donde estamos haciendo el copy_to
 Esto usará más espacio.
 Puede ser útil en caso de que estemos haciendo búsquedas con varios OR, lo simplificamos a hacer una única búsqueda contra el campo generado con copy_to.
 
@@ -334,6 +355,13 @@ Ejemplo, componer un solo campo con todos los valores de una definición de siti
 Cuidado con indexar documentos a los que les faltan campos.
 Si no definimos un field, tomará el valor por defecto (para un double, se pondrá a 1.0).
 Si queremos evitar esto deberemos definir estos valores y ponerlos a "null".
+
+  "course_rating": {
+    "type": "integer",
+    "coarce": false,
+    "null_value": 1.0
+  }
+
 
 ## coercing
 Por defecto ES intenta convertir las values al tipo de dato del campo.

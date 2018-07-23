@@ -165,6 +165,10 @@ Si el documeno es nuevo, se almacena el contenido que cuelga de la clave "upsert
 En caso de que ya exista, se aplica el script.
 
 
+## update_by_query
+Si modificamos el mapping de nuestro indice para agregar nuevos subfields, para que se generan los índices ejecutaremos:
+POST blogs_fixed/_update_by_query
+
 
 
 
