@@ -7,6 +7,8 @@ Mirar pytest.md
 
 Mirar nosetests.md para buscar y ejecutar los tests
 
+Mirar behave.md para definir tests en "lenguaje natural"?
+
 
 Test Driven Develop. La idea es primero desarollar las pruebas con los resultados que queremos y luego programar hasta pasar todos los tests.
 
