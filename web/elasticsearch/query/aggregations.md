@@ -545,3 +545,23 @@ GET logs_server*/_search{
   }
 }
 
+
+Obtener el máximo de los resultados de otra agregación (el truco es el parámetro _count de la primera agregación):
+GET logs_server*/_search
+{
+  "size": 0,
+  "aggs": {
+    "number_of_visitors_by_month": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "month"
+      }
+    },
+    "max_monthly_visitors": {
+      "max_bucket": {
+        "buckets_path": "number_of_visitors_by_month._count"
+      }
+    }
+  }
+}
+

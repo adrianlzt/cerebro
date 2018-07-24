@@ -1,5 +1,6 @@
 Index alias, por si reindexamos poder seguir usando el mismo nombre del índice.
   lo mejor es poner un alias a los índices que vayamos a usar e ir apuntando con aliases a los indices que vayamos usando.
+    un alias para leer (que puede apuntar a varios índices) y otro para escribir (que irá rotando y solo puede apuntar a uno)
   De esta manera es facil andar cambiando el indice, remapping, etc sin tocar la app.
   Cuidado con definir demasiados campos para un documento
 

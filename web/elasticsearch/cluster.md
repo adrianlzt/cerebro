@@ -227,6 +227,7 @@ Mirar best_practices.md
 
 # Capacity planning
 Herramienta para hacer benchmark: benchmark.md
+https://www.elastic.co/blog/managing-time-based-indices-efficiently
 
 Before trying to determine your capacity, you need to
   Determine your SLA(s):
@@ -272,7 +273,7 @@ Para poder planificar correctamente tenemos que tener claro:
     fixed-size: buscar sobre large datasets que crecen lentamente
       escala añadiendo más nodos y réplicas
       para incrementar capacidad, reindexar para tener más shards o crear nuevos índices (pero intentar no hacerlo muy frecuentemente)
-    time-based: data que crece rápidamente, como ficheros de log.
+    time-based: data que crece rápidamente, como ficheros de log. https://www.elastic.co/blog/managing-time-based-indices-efficiently
       docs con un timestamp y que no cambian
       podemos usar una arquitectura hot/warm para gestionar datos antiguos
         reducir el número de índices viejos para tener el número óptimo de shards
