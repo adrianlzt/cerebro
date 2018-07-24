@@ -226,6 +226,8 @@ Mirar best_practices.md
 
 
 # Capacity planning
+Herramienta para hacer benchmark: benchmark.md
+
 Before trying to determine your capacity, you need to
   Determine your SLA(s):
     How many docs/second do you need to index?
@@ -268,6 +270,25 @@ Scaling with indices
 Para poder planificar correctamente tenemos que tener claro:
   que tipo de datos vamos a indexar
     fixed-size: buscar sobre large datasets que crecen lentamente
+      escala añadiendo más nodos y réplicas
+      para incrementar capacidad, reindexar para tener más shards o crear nuevos índices (pero intentar no hacerlo muy frecuentemente)
     time-based: data que crece rápidamente, como ficheros de log.
+      docs con un timestamp y que no cambian
+      podemos usar una arquitectura hot/warm para gestionar datos antiguos
+        reducir el número de índices viejos para tener el número óptimo de shards
+        cerrar índices que no van a ser buscados
+      data ingestion puede ser otro problema
+        esparcir los shards del índice activo sobre el número máximo de nodos posible (para aumentar el index throughput)
+      usar índices con la fecha en el nombre (rotado diariamente, semanalmente, etc, depende del tamaño de los shards): name-YYYY-MM-DD
+        para usar el cambio de nombre podemos usar:
+          algo en el cliente que lo calcule
+          date math en el index name. Ejemplo:
+            <logstash-{now/d}>  per day
+            <logstash-{now{YYYY.MM}}>  per month
+            <logstash-{now/w}>  per week
+          aliases
+            tweets-write, y una app que modifique el alias cuando sea necesario (eg.: cada cambio de día/semana/mes)
+          ingestion nodes pipelines
   como vamos a buscar sobre esos datos
+    si vamos a hacer búsquedas muy costosas en CPU tal vez queremos ingest nodes
 

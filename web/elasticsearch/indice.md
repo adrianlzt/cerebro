@@ -36,7 +36,17 @@ mirar mappings.md
 curl -XPUT 'http://localhost:9200/twitter/' -d '{}'
 curl -XPUT 'http://localhost:9200/twitter/' -d '{ "settings" : { "index" : { "number_of_shards" : 3, "number_of_replicas" : 2 } } }'
 mirar insertar_datos.md
-El número de shards no se podrá cambiar a posteriori.
+El número de shards no se podrá cambiar a posteriori (aunque podríamos reindexar o usar alias para apuntar a otros indices).
+
+PUT logs-2017-07-04
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
+  }
+}
 
 
 
@@ -90,7 +100,12 @@ curl -XDELETE 'http://localhost:9200/logstash-*'
 
 # Aliases
 Una buena práctica es siempre usar alias para los nombres de los indices que usarán las aplicaciones.
+Si usamos los aliases para escribir, solo pueden apuntar a un indice.
 Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
+
+GET _alias/
+  ver los alias existentes
+
 POST _aliases
 {
   "actions": [
@@ -109,6 +124,14 @@ POST _aliases
   ]
 }
 
+Otra forma más simple:
+PUT /{index}/_alias/{name}
+
+
+# Open/Close
+https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html
+Podemos cerrar un índice para reducir el consumo. No prodemos buscar sobre él.
+Reduciremos el consumo de los shards al mínimo.
 
 
 # Internals

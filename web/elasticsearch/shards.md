@@ -13,9 +13,12 @@ Tener replicas nos ayuda a tener más throughput. ES eligirá los nodos menos ca
 Tener muchos shards tambien impacta en la velocidad de ES. Cada shard tiene un coste (Lucene indices, file descriptors, memory, CPU).
 40GB/shard es un buen número
 
+Poner el mismo número de shards que el número de nodos puede ser una opción, pero luego nos costará escalar si metemos más nodos (tendremos que reindexar, usar alias, etc)
+
 <1GB/shard está subutilizado y deberiamos mergearlo con otros.
 
 Mirar production.md Capacity planning
+
 
 El estado del cluster nos devuelve, tras crear un índice:
 "active_primary_shards":5,
