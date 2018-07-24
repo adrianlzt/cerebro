@@ -27,7 +27,7 @@ POST _scripts/<templatename>
 
 
 Usar template:
-GET _search/template
+GET indice*/_search/template
 {
     "id": "<templateName>", ￼
     "params": {
@@ -67,6 +67,22 @@ Por ejemplo, solo filtrar por fecha si la definimos:
   }
 {{/search_date}}
 
+
+Si tenemos que usar estos condicionales tendremos que meter el "source" entre """ """
+{
+  "script": {
+    "lang": "mustache",
+    "source": """
+{
+      "query": {
+        "bool": {
+          ...
+        }
+      }
+}
+"""
+  }
+}
 
 
 Ejemplo búsqueda compleja sobre varios campos (buscar el contenido sobre varios campos, dando más peso cuando las palabras vengan seguidas):

@@ -1,3 +1,5 @@
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline.html
+
 Tenemos dos tipos de aggregations: metrics y buckets
 Otras avanzadas: pipeline y matrix
 
@@ -13,6 +15,8 @@ GET logs_server*/_search
   }
 }
 
+
+Cuidado con los nested aggregations, más niveles, más gasto de memoria.
 
 Si los aggregations son muy costosos, una técnica que se suele utilizar es ejecutar el aggregation por la noche, almacenarnlo en un índice y consultar ese índice durante el día.
 No es muy exacto, por que no tendremos lo datos en tiempo real, pero nos puede servir depende del caso.
@@ -196,12 +200,6 @@ Respuesta:
 Los valores son aproximados, en un rango +- doc_count_error_upper_bound (es el máximo error de todos los buckets)
 Esto es debido a que los calculos se hacen localmente en cada shard. Cada shard devuelve el resultado para lo que tiene localmente almacenado.
 Cuando solicitamos size=5, en realidad a cada shard va a pedir 5*1.5+10 (esto es el shard_size, que se puede forzar en la query)
-
-
-
-# significant_crime_types
-https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-significantterms-aggregation.html
-
 
 
 
@@ -390,7 +388,7 @@ Se pueden preguntar por objectos (geoip.location sería un objeto, geoip.locatio
 
 
 # scripted aggregations
-Aplicar un script para agregar sobre ese valor calculado
+Aplicar un script para agregar sobre ese valor calculado.
 
 GET blogs/_search {
   "size": 0,
@@ -404,3 +402,146 @@ GET blogs/_search {
     }
   }
 }
+
+
+
+# significant types
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-bucket-significantterms-aggregation.html
+
+Buscar terms que son significativos para un contexto determinado, pero no en otros contextos.
+Por ejemplo, Google es común para programadores y para todo el mundo (poco score)
+StackOverflow es común para programadores y no para el resto del mundo (mucho score)
+
+Ejemplo, queremos buscar palabras significativas en los blogs bucketed por autor.
+Si solo hacemos un term agg, los resultados serían comunes tipo "and", "the", "or", etc.
+
+Pero si usamos significant types, todas esas palabras no tendrán puntuación porque están en todos los sitios.
+Nos devolverá palabras que son representativas para cada bucket y que no están (o están menos) en otros.
+
+GET blogs/_search{
+  "size": 0,
+  "aggs": {
+    "author_buckets": {
+      "terms": {
+        "field": "author.keyword",
+        "size": 10
+      },
+      "aggs": {
+        "content_terms": {
+          "terms": {
+            "field": "content",
+            "size": 10
+          }
+        }
+      }
+    }
+  }
+}
+
+"key": "Monica Sarbu",
+"doc_count": 89,
+"content_significant_terms": {
+  "buckets": [
+    {
+      "key": "metricbeat",
+      "doc_count": 66,
+      "score": 8.295430260419582,
+      "bg_count": 97
+    },
+    {
+      "key": "filebeat",
+      "doc_count": 66,
+      "score": 5.849324105618168,
+      "bg_count": 133
+    },
+    {
+      "key": "beat",
+      "doc_count": 56,
+      "score": 5.3810714135420605,
+      "bg_count": 105
+    },
+
+
+
+
+# pipeline aggregations
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-pipeline.html
+
+Tomar valores de otras agregaciones.
+Ejemplo, queremos la suma cumulativa de los resultados de una agregación.
+
+GET logs_server*/_search{
+  "size": 0,
+  "aggs": {
+    "logs_by_month": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "month"
+      },
+      "aggs": {
+        "monthly_sum_response": {
+          "sum": {
+            "field": "response_size"
+          }
+        },
+        "cumulative_sum_response": {
+          "cumulative_sum": {
+            "buckets_path": "monthly_sum_response"
+          }
+        }
+      }
+    }
+  }
+}
+
+"buckets": [
+  {
+    "key_as_string": "2017-03-01T00:00:00.000Z",
+    "key": 1488326400000,
+    "doc_count": 255,
+    "monthly_sum_response": {
+      "value": 15860968
+    },
+    "cumulative_sum_response": {
+      "value": 15860968
+    }
+  },
+  {
+    "key_as_string": "2017-04-01T00:00:00.000Z",
+    "key": 1491004800000,
+    "doc_count": 467961,
+    "monthly_sum_response": {
+      "value": 25446117219
+    },
+    "cumulative_sum_response": {
+      "value": 25461978187
+    }
+  },
+
+
+
+Si queremos coger aggregations de un parent level (pondremos PARENT>AGG):
+GET logs_server*/_search{
+  "size": 0,
+  "aggs": {
+    "logs_by_month": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "interval": "month"
+      },
+      "aggs": {
+        "monthly_sum_response": {
+          "sum": {
+            "field": "response_size"
+          }
+        }
+      }
+    },
+    "max_monthly_sum": {
+      "max_bucket": {
+        "buckets_path": "logs_by_month>monthly_sum_response"
+      }
+    }
+  }
+}
+
