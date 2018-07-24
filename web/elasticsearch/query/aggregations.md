@@ -282,3 +282,125 @@ curl "localhost:9200/INDICE/_search?pretty" -d '
   }
 }
 '
+
+
+
+
+# Percentiles
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-metrics-percentile-aggregation.html
+
+GET logs_server*/_search {
+  "size": 0,
+  "aggs": {
+    "runtime_percentiles": {
+      "percentiles": {
+        "field": "runtime_ms"
+      }
+    }
+  }
+}
+
+"runtime_percentiles": {
+  "values": {
+    "1.0": 0,
+    "5.0": 88.00109639047503,
+    "25.0": 95.00000000000001,
+    "50.0": 103.37306961911929,
+    "75.0": 159.88916204500126,
+    "95.0": 685.1015874756147,
+    "99.0": 4198.930939937213
+  }
+}
+
+
+Se puede especificar que queremos en los resultados:
+"percents" : [95, 99, 99.9]
+
+
+# percentiles_ranks
+También podemos hacer la pregunta al revés, pasar un valor y que nos diga el porcentaje:
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-percentile-rank-aggregation.html
+GET latency/_search
+{
+    "size": 0,
+    "aggs" : {
+        "load_time_ranks" : {
+            "percentile_ranks" : {
+                "field" : "load_time", ￼
+                "values" : [500, 600]
+            }
+        }
+    }
+}
+
+
+
+# top hits
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-metrics-top-hits-aggregation.html
+
+Retornamos los 5 documentos más representativos para cada agregación (size:0 porque esto nos devuelve los docs que matchean la query, sin organización por buckets):
+GET blogs/_search {
+  "size": 0,
+  "query": {
+    "match": {
+      "content": "logstash filters"
+    }
+  },
+  "aggs": {
+    "blogs_by_author": {
+      "terms": {
+        "field": "author.keyword"
+      },
+      "aggs": {
+        "logstash_top_hits": {
+          "top_hits": {
+            "size": 5
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+# missing
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-bucket-missing-aggregation.html
+
+Buscar documentos que no tienen definidos estos campos:
+GET logs_server*/_search{
+  "size": 0,
+  "aggs": {
+    "missing_location": {
+      "missing": {
+        "field": "geoip.location"
+      }
+    },
+    "missing_support": {
+      "missing": {
+        "field": "support"
+      }
+    }
+  }
+}
+
+Nos devuelve dos aggregations distintas, cada una haciendo referencia a cada campo (geoip.location y support)
+Se pueden preguntar por objectos (geoip.location sería un objeto, geoip.location.latitude seria un field)
+
+
+
+# scripted aggregations
+Aplicar un script para agregar sobre ese valor calculado
+
+GET blogs/_search {
+  "size": 0,
+  "aggs": {
+    "blogs_by_day_of_week": {
+      "terms": {
+        "script": {
+          "source": "doc['publish_date'].value.dayOfWeek"
+        }
+      }
+    }
+  }
+}

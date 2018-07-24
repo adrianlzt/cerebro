@@ -138,8 +138,7 @@ Se hace conectando un cliente con el protocolo de replicación y obteniendo una 
 
 Necesitamos explicitar un usuario que pueda conectarse de este modo (pg_hba.conf):
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-local   replication     myuser                                  peer
-host    replication     myuser          10.0.0.1/32             md5
+local   replication     postgres                                trust
 
 kill -HUP PID_POSTGRES
 
@@ -154,7 +153,10 @@ Para evitar perder datos entre el comienzo del backup y el fin, es necesario que
 Si queremos hacer un base backup parece que hay que usar
 pg_basebackup --xlog-method=stream --D /path/to/dir -P
   con "stream" no podemos usar tar
-pg_basebackup --xlog-method=stream --format=tar -z -D /path/to/dir -P
+  el espacio consumido será lo que ocupe PGDATA
+  tiene bastante impacto en el I/O
+pg_basebackup --xlog-method=fetch --format=tar -z -D /path/to/dir -P
+  --xlog-method=fetch it is necessary for the wal_keep_segments parameter to be set high enough that the log is not removed before the end of the backup. If the log has been rotated when it's time to transfer it, the backup will fail and be unusable.
   -P show progress (hace el backup algo más lento)
   --format=tar -Z: generamos ficheros .tar.gz por cada tablespace
   -Z [0-9] nos permite especificar mayor/menor tasa de compresión

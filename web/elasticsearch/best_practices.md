@@ -12,3 +12,5 @@ Mget: para realizar varios GET al mismo tiempo
 Scroll: para cuando tenemos que sacar large results sets
 
 Backup: mirar curator
+
+Búsquedas, usar search templates para las búsquedas que se repitan por nuestro código.
