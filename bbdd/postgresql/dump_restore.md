@@ -141,10 +141,20 @@ Necesitamos explicitar un usuario que pueda conectarse de este modo (pg_hba.conf
 local   replication     myuser                                  peer
 host    replication     myuser          10.0.0.1/32             md5
 
+kill -HUP PID_POSTGRES
+
+
+Necesitamos configurar el max_wal_senders a, al menos, 4 (dos conex para el pg_basebackup y otras dos extra por si se desconectase pudiese inmediatamente reconectar)
+max_wal_senders = 4
+wal_level = replica  # puede tener cierto impacto en performance para algunos comandos (crear tablas, indices, etc) https://www.postgresql.org/docs/9.6/static/populate.html#POPULATE-PITR
+systemctl restart postgres (requiere reinicio)
+
 Para evitar perder datos entre el comienzo del backup y el fin, es necesario que se obtengan tambien los ficheros transaction log (WAL)
 
 Si queremos hacer un base backup parece que hay que usar
-pg_basebackup –xlog-method=stream --format=tar -z -D /path/to/dir -P
+pg_basebackup --xlog-method=stream --D /path/to/dir -P
+  con "stream" no podemos usar tar
+pg_basebackup --xlog-method=stream --format=tar -z -D /path/to/dir -P
   -P show progress (hace el backup algo más lento)
   --format=tar -Z: generamos ficheros .tar.gz por cada tablespace
   -Z [0-9] nos permite especificar mayor/menor tasa de compresión
