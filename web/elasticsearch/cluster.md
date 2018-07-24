@@ -1,6 +1,8 @@
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_revisit_this_list_before_production.html
 https://thoughts.t37.net/designing-the-perfect-elasticsearch-cluster-the-almost-definitive-guide-e614eabc1a87
 
+mirar hot_warm_architecture.md
+
 
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html
 
@@ -39,12 +41,13 @@ node.role:
 ## Tipos de nodos
 Un nodo puede tener varios roles (por defecto todos los roles).
 Se definen en elasticsearch.yml
+Por defecto es master eligible, data e ingest.
 Si modificamos el rol de algún nodo, poner todos los valores para que quede claro (si es solo un master, poner tambien node.master: true)
 
 Master eligible (node.master: true)
 Data (node.data: true)
 Ingest (node.ingest: true)
-Coordinating only
+Coordinating only (master:false, data:false, ingest:false)
 Machine learning (X-Pack)
 
 
@@ -53,6 +56,7 @@ Tiene el poder de hacer modificaciones en el cluster state.
 Cada nodo master eligible tiene una copia del estado del cluster.
 No hace falta tener más de 3 masters, da igual el tamaño del cluster.
 Es importante tener nodos master dedicados para solo dedicarse a manejar el estado del cluster. Si estos nodos se ralentizan, se ralentiza todo.
+Bajo consumo de CPU, memoria y disco.
 
 GET _cluster/state
 GET /_cluster/state/{metrics}/{indices}
@@ -74,10 +78,18 @@ Si no tenemos master, el resto de nodos no contestará aunque tengan el puerto 9
 
 ### Data
 Almacenan los shards
-Ejecutan las operaciones CRUD (create/read/update/delete), search and aggregations.
+Ejecutan las operaciones CRUD (create/read/update/delete), search and aggregations. Procesan las peticiones de los clientes.
 I/O, CPU and memory-intensive
 
 Recomendación de elastic, 1000 shards por nodo como límite máximo que no se debe superar
+
+
+### Ingest
+Data processing
+Poco disco, medio uso de memoria, mucho uso de CPU
+Podemos usarlos como write frontends.
+No cuentan para pagar la licencia.
+
 
 
 ### Coordinating (frontend)
@@ -85,14 +97,22 @@ Todos los nodos del cluster son coordinating
 Tiene una copia del estado del cluster.
 Puede ser un nodo exclusivamente coordinating. Este nodo recibiria peticiones y las enviaría a los nodos que haga falta.
 Luego uniría las respuestas y las devovlería al cliente.
-CPU and memory intensive.
-Si tenemos suficientes recursos, poner 3 nodos como coordinating/frontend y solo enviar las búsquedas hacia ellos. Poner menos podría hacernos bottleneck en caso de que alguno cayese.
+CPU and memory medium/high, low disk.
+Si tenemos suficientes recursos, poner 3 nodos como coordinating/frontend y solo enviar las búsquedas hacia ellos. Poner menos podría hacernos bottleneck en caso de que alguno cayese. El número dependerá mucho de la carga que vayamos a tener. Tal vez 2 sean suficientes.
 Configurar round robin sobre estos, o un load balancer delante.
+Funcionarián como "smart load balancers" que envian las peticiones a quien necesiten.
+Realizaráin el gather/reduce de las búsquedas.
+Reducen la carga en los data nodes.
+Se puede apuntar Kibana a uno de estos nodos.
+No cuenta para pagar la licencia.
+
 
 
 # Configuraciones de cluster
 Pequeños despliegues: 3-5 nodos, todos master eligible.
-Más grandes: 3 master exclusivos, data nodes según los necesitemos. También podemos agregar coordinating-only nodes
+Más grandes: 3 master exclusivos, data nodes según los necesitemos. También podemos agregar coordinating-only nodes. Tal vez también algunos ingest nodes si tenemos que hacer preprocesado.
+
+Una arquitectura ideal: cluster.png
 
 
 
@@ -188,6 +208,11 @@ mirar mapping.md
 
 # Networking
 Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
+
+
+# Shard awareness
+Mirar shards.md
+Balancear shards de forma inteligente en caso de que tengamos nodos con recursos compartidos
 
 
 

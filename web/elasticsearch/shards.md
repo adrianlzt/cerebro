@@ -139,3 +139,34 @@ La información almacenada se puede leer, más o menos en text claro, haciendo c
 Si no existe replicación, los distintos directorios solo se encontrarán en uno de los nodos, por ejemplo:
 nodo1: '1','2' y '4'
 nodo2: '0' y '3'
+
+
+
+
+# Shard allocation awareness
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/allocation-awareness.html
+Dar más inteligencia sobre como ES organiza los shards.
+Ejemplo, tenemos dos racks distintos y queremos que no se asignen las réplicas en el mismo rack que los primaries.
+Útil cuando tenemos más de un servidor que comparten recursos (disk, host machine, network switch, rack, etc)
+
+Ejemplo de config:
+  nodo1, node.attr.rack: rack1
+  nodo2: node.attr.rack: rack2
+  cluster.routing.allocation.awareness.attributes: rack (se pueden especificar varios separados por coma)
+
+De esta manera ES intentará no poner primeries y replicas en el mismo rack.
+
+Cuando ejecutamos búsquedas con awareness activado, ES intentará usar local shards (shards en el mismo awareness group).
+
+
+# Forced awareness
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/allocation-awareness.html#forced-awareness
+Tenemos que tener cuidado ante una caída grande, por ejemplo un rack que contiene la mitad de nuestros nodos.
+Esto puede provocar que ES intente rebalancear todo y se saturen los nodos que nos queden.
+La idea de forced awareness es evitar que se intenten reasignar los shards en este caso.
+Solo se asignarán réplicas en caso de que tengamos nodos en distintas zonas.
+Esto provocará un cluster en YELLOW si no tenemos las zonas necesarias (peligroso si perdemos el nodo con los primaries, perderíamos todos los datos)
+Si el cluster se mantiene en YELLOW/RED revisar /_cluster/allocation/explain para entender porque no está funcionando.
+
+cluster.routing.allocation.awareness.force.zone.values: zone1,zone2 ￼
+cluster.routing.allocation.awareness.attributes: zone
