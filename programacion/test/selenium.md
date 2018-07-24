@@ -1,3 +1,5 @@
+mirar katalon.md para una interfaz para crear los tests
+
 http://www.seleniumhq.org/
 
 Opción más sencilla con scripts python: /home/adrian/adrianRepo/programacion/python/behave.md
