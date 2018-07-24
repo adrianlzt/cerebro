@@ -10,6 +10,13 @@ Los shards se garantiza que estén en nodos diferentes -> Si no puede pondrá el
 
 Tener replicas nos ayuda a tener más throughput. ES eligirá los nodos menos cargados para realizar los cálculos, usando los primary shards o replicas indistintamente.
 
+Tener muchos shards tambien impacta en la velocidad de ES. Cada shard tiene un coste (Lucene indices, file descriptors, memory, CPU).
+40GB/shard es un buen número
+
+<1GB/shard está subutilizado y deberiamos mergearlo con otros.
+
+Mirar production.md Capacity planning
+
 El estado del cluster nos devuelve, tras crear un índice:
 "active_primary_shards":5,
 "active_shards":10
@@ -141,6 +148,8 @@ nodo1: '1','2' y '4'
 nodo2: '0' y '3'
 
 
+# Shard filtering
+mirar en hot_warm_architecture.md
 
 
 # Shard allocation awareness
@@ -149,7 +158,7 @@ Dar más inteligencia sobre como ES organiza los shards.
 Ejemplo, tenemos dos racks distintos y queremos que no se asignen las réplicas en el mismo rack que los primaries.
 Útil cuando tenemos más de un servidor que comparten recursos (disk, host machine, network switch, rack, etc)
 
-Ejemplo de config:
+Ejemplo de config (chequear attrs: GET _cat/nodeattrs?v):
   nodo1, node.attr.rack: rack1
   nodo2: node.attr.rack: rack2
   cluster.routing.allocation.awareness.attributes: rack (se pueden especificar varios separados por coma)

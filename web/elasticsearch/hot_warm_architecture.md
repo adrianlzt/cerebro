@@ -19,7 +19,7 @@ Subir los valores es sencillo, pero no tanto bajarlos, por lo que lo mejor es ir
 
 
 # Shard filtering
-Lo primero será etiquetar que nodo es de cada tipo: node.attr
+Lo primero será etiquetar que nodo es de cada tipo: node.attr (chequear attrs: GET _cat/nodeattrs?v):
   Ej.: node.attr.cualquier_etiqueta: hot
        node.attr.node_type: hot
 index.routing.allocation.include/exclude/require.{attr} para definir a donde se moverán los shards.
@@ -47,3 +47,7 @@ PUT logs-2017-02/_settings
 {
  "index.routing.allocation.require.my_node_type" : "warm"
 }
+
+
+Chequear asignación de shards por nodo:
+GET _cat/shards/logs_server*?v&h=index,shard,prirep,node&s=index,shard,prirep,node

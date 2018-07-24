@@ -5,10 +5,14 @@ mirar hot_warm_architecture.md
 
 
 https://www.elastic.co/guide/en/elasticsearch/guide/current/_add_failover.html
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/system-config.html#dev-vs-prod
+https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html
 
 Fácilmente escalable. Simplemente añadir nodos al cluster. Se unen por el nombre del cluster.
 
 Mirar internals.md Communication para ver como se comunican los nodos
+
+No intentar distribuir un cluster mediante un link WAN. La latencia y la transferencia de datos matarán el cluster
 
 
 # Estado del cluster
@@ -57,6 +61,7 @@ Cada nodo master eligible tiene una copia del estado del cluster.
 No hace falta tener más de 3 masters, da igual el tamaño del cluster.
 Es importante tener nodos master dedicados para solo dedicarse a manejar el estado del cluster. Si estos nodos se ralentizan, se ralentiza todo.
 Bajo consumo de CPU, memoria y disco.
+No deben recibir peticiones de los clientes.
 
 GET _cluster/state
 GET /_cluster/state/{metrics}/{indices}
@@ -217,3 +222,52 @@ Balancear shards de forma inteligente en caso de que tengamos nodos con recursos
 
 
 Mirar best_practices.md
+
+
+
+# Capacity planning
+Before trying to determine your capacity, you need to
+  Determine your SLA(s):
+    How many docs/second do you need to index?
+    How many queries/second do you need to process?
+    What is the maximum response time for queries?
+  Get some production data
+    actual documents you are going to index
+    actual queries you are going to run in production
+    actual mappings you are going to use
+
+Primero tendremos que calcular la capacidad de un shard para nuestras condiciones (tipos de documentos, búsquedas, etc).
+Empezaremos con un único shard e iremos usándolo cada vez más hasta que dejemos de cumplir nuestros SLAs (por ejemplo, latencia, o storage)
+
+Num of primary shards:
+  estimate the total amount of data for your index
+  leave room for growth (if applicable)
+  divide by the maximum capacity of a single shard
+
+
+Medir la capacidad de un nodo:
+  indexar documentos de nuestro tipo en paralelo hasta empezar a obtener respuestas 429
+  con eso podremos calcular la velocidad que soporta (docs/sec)
+
+
+Replicas (podemos modificarlo dinamicamente):
+  nos dan HA
+  tambien nos ayudan a escalar las búsquedas
+
+  vienen con un coste:
+    reduccion de la velocidad de indexado
+    mas ocupación de disco
+    mas uso de heap memory por tener más shards
+
+
+Scaling with indices
+  Podemos crear nuevos índices para lograr escalar mejor.
+  Buscar sobre 50 índices con 1 shard es equivalente a buscar sobre un índice con 50 shards.
+
+
+Para poder planificar correctamente tenemos que tener claro:
+  que tipo de datos vamos a indexar
+    fixed-size: buscar sobre large datasets que crecen lentamente
+    time-based: data que crece rápidamente, como ficheros de log.
+  como vamos a buscar sobre esos datos
+

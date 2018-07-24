@@ -1,3 +1,4 @@
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/modules-transport.html#_transport_tracer
 PUT /_cluster/settings
 {
  "transient" : {
