@@ -223,6 +223,7 @@ Balancear shards de forma inteligente en caso de que tengamos nodos con recursos
 
 Mirar best_practices.md
 
+Mirar model_data.md
 
 
 # Capacity planning

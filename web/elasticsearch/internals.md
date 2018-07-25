@@ -111,6 +111,7 @@ Si lo necesitamos podemos hacer:
         "type": "text",
         "fielddata": true
       }
+    Desactivarlo tras el uso que hayamos necesitado
   doc values
     almacena los valores en una forma column-oriented, lo que permite hacer sorting y aggregations
     los doc values no existen para los analyzed strings, por que los hemos tokenizado antes y no tendría sentido.

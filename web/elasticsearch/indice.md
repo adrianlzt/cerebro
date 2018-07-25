@@ -177,11 +177,11 @@ index/write.lock
 index/_0.fdt              (fdt, fdx: estos son temporales mientras no esta creando el segmento)
 index/_0.fdx
 
-index/_0.cfs              (cfs, si, cfe: estos tres ficheros son un segmento almacenado en disco)
+index/_0.cfs              (cfs, si, cfe: estos tres ficheros son un segmento almacenado en disco, seguro? O son los siguientes?)
 index/_0.si
 index/_0.cfe
 
-index/_2.nvm              (ficheros tras un forcemerge. Estos son los ficheros de Lucene de verda?)
+index/_2.nvm              (ficheros tras un forcemerge. Estos son los ficheros de Lucene de verdad?)
 index/_2_Lucene50_0.tip
 index/_2.fdt
 index/_2.fdx
