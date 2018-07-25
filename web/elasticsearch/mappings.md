@@ -75,6 +75,32 @@ curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' 
 
 
 
+# Actualizar mapping
+PUT my_index/_mapping/_doc
+{
+  "properties": {
+    "name": {
+
+
+curl -XPUT 'localhost:9200/tele/_mapping/user?pretty' -d '
+      "properties": {
+         "msg" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          }
+      }
+'
+Actualizamos el type "user" del index "tele" para modificar el field "msg" y añadirle un subfield tipo keyword.
+Solo los documentos indexados a partir de ese momento tendrán ese nuevo subfield.md
+Si queremos que se reindexen los nuevos usar update_by_query (mirar update.md)
+
+
+
 ## Tipos de datos
 Simples:
   text: for full text (analyzed) strings
@@ -154,26 +180,6 @@ Multi field son dos subfields, uno usando otro analyzer
     }
   }
 }
-
-
-
-# Actualizar mapping
-curl -XPUT 'localhost:9200/tele/_mapping/user?pretty' -d '
-      "properties": {
-         "msg" : {
-            "type" : "text",
-            "fields" : {
-              "keyword" : {
-                "type" : "keyword",
-                "ignore_above" : 256
-              }
-            }
-          }
-      }
-'
-Actualizamos el type "user" del index "tele" para modificar el field "msg" y añadirle un subfield tipo keyword.
-Solo los documentos indexados a partir de ese momento tendrán ese nuevo subfield.md
-Si queremos que se reindexen los nuevos usar update_by_query (mirar update.md)
 
 
 
