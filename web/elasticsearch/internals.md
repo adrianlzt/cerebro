@@ -36,10 +36,13 @@ Lo que si tal vez queramos en synced flush.
 Esto simplifica el arranque, porque los shards al comenzar tienen que chequear los cambios que se han producido. Si todos tienen el mismo sync_id no hace falta hacer nada.
 Para backups o si sabemos que vamos a tener que reiniciar nodos.
 
+Mirar en indice.md Almacenamiento como se van generando los ficheros en cada etapa.
+
 
 ## Shards
 Un shard es una instancia de Lucene, es un search engine en si mismo.
 El número máximo de docs es Integer.MAX_VALUE-128
+luke.md para leer directamente los shards
 
 Indexar un doc en Lucene tiene 4 pasos, ES simplifica esto.
 
@@ -63,8 +66,9 @@ Mirar query/refresh.md para que las queries de indexación sean aware de como va
 
 
 
-# Segment
-Es una colección de segmentos.
+## Segment
+https://www.elastic.co/guide/en/elasticsearch/reference/6.3/cat-segments.html
+Un shard es una colección de segmentos.
 Podemos pensar en un segmento como un inmutable mini-índice.
 Cada segmento es un paquete con diferentes estructuras de datos representando un índice invertido.
 Son read-only.
@@ -86,7 +90,10 @@ Cuando se hace un borrado, es "soft", solamente se marca ese documento como borr
 
 Un update que hae un overwrite, simplemente se marcará para borrar el viejo y se reutilizará el ID para el nuevo doc.
 
-## Segment merge
+Listar segments:
+GET /_cat/segments?v
+
+### Segment merge
 Cada cierto tiempo, se crean un nuevo segmento copiando únicamente los documentos válidos (los que no han sido borrados).
 Tras ese proceso ya podemos borrar, de verdad, los segmentos antiguos.
 

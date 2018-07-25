@@ -26,6 +26,9 @@ O pasar un scripts para modificar los datos antes del reindexado.
 
 No podemos reindexar al mismo indice.
 
+Cuidado! cada reindexación "internal" suma version+1 a los docs que ya se encuentren en destino.
+Si luego hacemos una reindexación external podemos encontrarnos con que hay docs que no se mueven porque la versión destino es mayor o igual (si el doc origen ha sido modificado una vez)
+
 
 Definir como se van a gestionar las sobreescrituras.
 El campo "version_type" (puesto sobre "dest") podrá tomar distintos valores:
@@ -43,6 +46,9 @@ version_type=external (seria como un "continuar" en el caso de una indexacion fa
   }
 
 Si ejecutamos dos veces una reindexacion internal, las versiones de los documentos destinos se incrementarán en +1 respecto al origen.
+Usar un reindexing field que controlemos nosotros para saber que documentos han sido ya reindexados (podemos usar un fiel type short)
+Mirar más abajo en la sección ## Reindex Batch Field
+
 
 
 Conflictos:

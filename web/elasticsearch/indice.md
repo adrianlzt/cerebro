@@ -168,7 +168,7 @@ Dentro de ese directorio tendremos otro dir que tiene por nombre un número, que
 Si tenemos replicas tendremos un dir con el número del shard (viendo el nombre del dir no podemos saber si es primary o replica)
 Aqui vemos que no es posible meter primary y shard en el mismo nodo.
 
-Dentro del dir de cada shard tendremos:
+Dentro del dir de cada shard tendremos (explicación de cada fichero https://lucene.apache.org/core/3_0_3/fileformats.html):
 _state
 _state/state-0.st
 index                     (aqui se almacenan los segmentos)
