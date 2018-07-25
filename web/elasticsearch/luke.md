@@ -8,19 +8,31 @@ Luke is the GUI tool for introspecting your Lucene / Solr / Elasticsearch index.
   Testing your custom Lucene analyzers
 
 # Install
+Dependencias: java-openjfx
+  Arch linux: pacman -S java-openjfx
+
 Bajarse la release que matchee el Lucene que esté usando la version de ES que queramos
 https://github.com/DmitryKey/luke/releases
 unzip *.zip
 cd luke*
 
-Deps arch:
-pacman -S java-openjfx
-
 ./luke.sh
 
 
 
-Codigo (me fallan las deps)
+Codigo (me fallan las deps, creo que porque no tenia openjfx instalado)
 git clone https://github.com/DmitryKey/luke.git
 cd luke
 mvn install
+
+
+
+# Elasticsearch
+Tendremos que apuntar Luke al directorio del indice que queremos (podemos consultar el ID del índice con GET _cat/indices/nombre)
+Ej.: /usr/share/elasticsearch/data/nodes/0/indices/Us5BO1SoRbCaSHIamKrstw
+
+Para que Luke pueda funcionar los segmentos tienen que haber sido commiteados.
+Podemos ver el estado (commiteado a disco o no) con:
+GET _cat/segments/nombreindice?v
+Forzar flush/commit (no hacer en prod!):
+POST my_refresh_test/_flush

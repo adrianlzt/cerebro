@@ -1,8 +1,8 @@
 Tener varias replicas no quiere decir que tengamos backup.
 Si alguien borra datos no podremos recuperarlos.
 
-Tal vez usar un "force merge" antes del backup para reducir el tamaño? Mirar internals.md
-Tal vez tambien un flush y un sync flush?
+Tal vez usar un "force merge" antes del backup para reducir el tamaño de los segments? Mirar internals.md
+Tal vez tambien un sync flush? (flush, commitear cambios a disco)
 
 Necesitamos un "repository": azure, s3, mount point, etc
 No usar "read only url".

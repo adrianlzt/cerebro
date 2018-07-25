@@ -1,0 +1,35 @@
+DELETE my_refresh_test
+
+PUT my_refresh_test
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "refresh_interval": "1h"
+  }
+}
+
+GET _cat/indices/my_refresh_test?v
+
+GET _cat/segments/my_refresh_test?v
+
+PUT my_refresh_test/doc/1
+{
+ "author": "Uri",
+ "category": "Releases",
+ "title": "Elastic Cloud Enterprise Beta"
+}
+
+GET _cat/segments/my_refresh_test?v
+
+POST my_refresh_test/_refresh
+
+GET _cat/segments/my_refresh_test?v
+
+POST my_refresh_test/_flush
+
+GET _cat/segments/my_refresh_test?v
+
+POST my_refresh_test/_forcemerge?max_num_segments=1
+
+GET _cat/segments/my_refresh_test?v

@@ -168,34 +168,64 @@ Dentro de ese directorio tendremos otro dir que tiene por nombre un número, que
 Si tenemos replicas tendremos un dir con el número del shard (viendo el nombre del dir no podemos saber si es primary o replica)
 Aqui vemos que no es posible meter primary y shard en el mismo nodo.
 
-Dentro del dir de cada shard tendremos (explicación de cada fichero https://lucene.apache.org/core/3_0_3/fileformats.html):
-_state
-_state/state-0.st
-index                     (aqui se almacenan los segmentos)
-index/segments_2
+Serie de comandos que se van a ejecutar: test_creating_index.txt
+
+Creamos un índice con refresh 1h (para controlar nosotros cuando hacerlo), no tiene segments (según la API de segments), ficheros de un shard:
 index/write.lock
-index/_0.fdt              (fdt, fdx: estos son temporales mientras no esta creando el segmento)
-index/_0.fdx
-
-index/_0.cfs              (cfs, si, cfe: estos tres ficheros son un segmento almacenado en disco, seguro? O son los siguientes?)
-index/_0.si
-index/_0.cfe
-
-index/_2.nvm              (ficheros tras un forcemerge. Estos son los ficheros de Lucene de verdad?)
-index/_2_Lucene50_0.tip
-index/_2.fdt
-index/_2.fdx
-index/_2.dii
-index/_2_Lucene50_0.pos
-index/_2.si
-index/_2.dim
-index/_2_Lucene50_0.doc
-index/_2_Lucene50_0.tim
-index/_2_Lucene70_0.dvm
-index/_2.fnm
-index/_2_Lucene70_0.dvd
-index/_2.nvd
-
-translog                  (transaction log)
-translog/translog.ckp
+index/segments_2
+_state/state-0.st
+translog/translog-2.tlog
+translog/translog-1.ckp
 translog/translog-1.tlog
+translog/translog.ckp
+
+Indexamos un documento, sigue sin segments. Aparecen dos nuevos ficheros respecto a el listado anterior (tamaño 0):
+index/_0.fdt  The stored fields for documents
+index/_0.fdx  Contains pointers to field data
+Hasta ahora ES tiene almacenados los datos en el buffer de memoria (tal vez representado en "GET _nodes/stats" -> buffer_pools?
+Parece que algo ha crecido translog-2.tlog
+
+Forzamos refresh, aparece un segment. No commiteado. Aparecen nuevos ficheros:
+index/_0.cfe  An optional "virtual" file consisting of all the other index files for systems that frequently run out of file handles
+index/_0.cfs  An optional "virtual" file consisting of all the other index files for systems that frequently run out of file handles
+index/_0.si   Stores metadata about a segment
+
+Segmentos:
+index           shard prirep ip         segment generation docs.count docs.deleted  size size.memory committed searchable version compound
+my_refresh_test 0     p      172.17.0.2 _0               0          1            0 4.4kb        2212 false     true       7.3.1   true
+
+
+
+Forzamos flush. Ahora lo marca como commited. El fichero segments ahora es segments_3. Aqui ya se puede analizar con Luke (tenemos los datos en los ficheros)
+Aparecen nuevos ficheros del translog:
+translog/translog-2.ckp
+translog/translog-3.tlog
+
+Segmentos (a cambiado a commited=true):
+index           shard prirep ip         segment generation docs.count docs.deleted  size size.memory committed searchable version compound
+my_refresh_test 0     p      172.17.0.2 _0               0          1            0 4.4kb        2212 true      true       7.3.1   true
+
+
+Forzamos un merge. Desaparecen los fichero _0 y aparecen muchos _1. Segments pasa a segments_5:
+index/_1.fdx
+index/_1_Lucene70_0.dvd
+index/_1.si
+index/_1.fdt
+index/_1.dii
+index/_1_Lucene50_0.doc
+index/_1_Lucene50_0.pos
+index/_1.nvd
+index/_1.fnm
+index/_1_Lucene50_0.tip
+index/_1_Lucene70_0.dvm
+index/_1.dim
+index/_1_Lucene50_0.tim
+index/_1.nvm
+
+Segmentos, sube el número de segment y de generation. Compound pasa a false:
+index           shard prirep ip         segment generation docs.count docs.deleted  size size.memory committed searchable version compound
+my_refresh_test 0     p      172.17.0.2 _1               1          1            0 4.5kb        2212 true      true       7.3.1   false
+
+
+
+Explicación de cada fichero https://lucene.apache.org/core/7_3_0/core/org/apache/lucene/codecs/lucene70/package-summary.html#package.description
