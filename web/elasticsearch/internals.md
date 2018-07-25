@@ -9,6 +9,7 @@ transport para comunicación intra-nodos
 Intentar poner fibra para el canal de transport entre nodos.
 
 
+
 # Write operation
 Las escrituras se pueden lanzar contra cualquier nodo.
 En ese nodo se hará un id del hash (tras generarlo si es necesario) y hará el módulo sobre el número de primary shards.
@@ -21,12 +22,88 @@ El nodo que tenga ese primary shard se encargará de la request. Aunque el nodo 
 Primero se escribe al primary y luego al resto de replicas en paralelo.
 Cuando termina esta escritura, se contesta al cliente.
 
+Cada doc se escribe al buffer para luego ser escrito a un segmento (mirar abajo Shards).
+También se escribe a un transaction log (tras ser procesado por el Lucene index).
+Cuando se produce un lucene commit (se ha escrito al disco), se pueden elminiar los docs del transactio log.
+El transaction log se usa para evitar pérdidas en caso de un apagado brusco.
+
+Podemos forzar el flush de los segmentos, pero no es una buena idea:
+POST my_index/_flush
+
+Lo que si tal vez queramos en synced flush.
+	A synced flush performs a normal flush, then adds a generated unique marker (sync_id) to all shards
+	sync_id provides a quick way to check if two shards are identical
+Esto simplifica el arranque, porque los shards al comenzar tienen que chequear los cambios que se han producido. Si todos tienen el mismo sync_id no hace falta hacer nada.
+Para backups?
+
+
+## Shards
+Un shard es una instancia de Lucene, es un search engine en si mismo.
+El número máximo de docs es Integer.MAX_VALUE-128
+
+Indexar un doc en Lucene tiene 4 pasos, ES simplifica esto.
+
+
+ES tiene un buffer que, por defecto, suele tener un valor de ~10% (compartido por todos los shards de ese nodo).
+  indices.memory.index_buffer_size: 5%
+Cuando intentamos indexar un documento se mete en el buffer y se espera a almacenarlo en un segmento de Lucene hasta que:
+  se llena el buffer
+  se alcanza el "refresh_interval" (default 1s)
+  se hace un es flush
+Esto reduce el consumo de IO (a cambio de memoria).
+Mientras los docs están en el buffer aún no se pueden buscar (no se ha generado el inverted index), pero si podemos hacer un GET sobre el ID.
+
+En caso de index con mucha indexación, podemos aumentar el refresh_interval para reducir la creación de segmentos (a cambio de tardar más en poder buscar los documentos):
+PUT test/_settings
+{
+ "refresh_interval": "30s"
+}
+
+Mirar query/refresh.md para que las queries de indexación sean aware de como va su refresh.
+
+
+
+# Segment
+Es una colección de segmentos.
+Podemos pensar en un segmento como un inmutable mini-índice.
+Cada segmento es un paquete con diferentes estructuras de datos representando un índice invertido.
+Son read-only.
+
+Cuando indexamos documentos del mismo índice en el mismo segmento (al hacerse el refresh), se generá un inverted index por cada field de los documentos (con la frecuencia de aparición y un puntero al doc).
+También se genera una estructura con los fields procesados.
+Y una estructura "term proximity", donde se apunta cada palabra indexada la distancia a otras palabras.
+  Ej.: Elastic Cloud Enterprise Beta
+  elastic    (14:   0) (27: 0)
+	Depende del text analysis no almacenaremos ciertas cosas (por ejemplo stop words)
+También se almacenan los documentos eliminados (opcional)
+El contenido de los documentos se almacenan en en otra estructura.
+BKD trees en otra esctructura
+Normalizaction factors, para hacer boosting al indexar (cada field de cada doc almacena un numero por el que será multiplicado para el score). Se suele usar boosting en runtime
+doc_values: usado para sorting y otras operaciones que no requieren un inverted index
+
+Cuando se hace un borrado, es "soft", solamente se marca ese documento como borrado y se ignora cuando se hacen las búsquedas.
+
+Un update que hae un overwrite, simplemente se marcará para borrar el viejo y se reutilizará el ID para el nuevo doc.
+
+## Segment merge
+Cada cierto tiempo, se crean un nuevo segmento copiando únicamente los documentos válidos (los que no han sido borrados).
+Tras ese proceso ya podemos borrar, de verdad, los segmentos antiguos.
+
+
+Force merge
+POST my_index/_forcemerge
+Debemos evitar llamarlo. Estamos jodiendo el scheduler que se encarga de esto.
+En el caso de usarlo, asegurarnos que solo lo usamos en índices que no tendrán write operations en el futuro.
+Puede ser útil ejecutarlo antes de un backup, para reducir el tamaño final que vamos a almacenar.
+
+
 
 
 # Search operation
 Un cliente se conecta a uno cualquier de los nodos del cluster y pregunta por el top 10 de una query.
 Ese nodo será el coordinating node para esa query.
 Query phase, se pregunta a todos los shards (eligiendo el primary o replica)
+  Dentro de cada shard, se tiene que consultar cada segment.
 Cada nodo hace localmente la query y contesta al nodo coordinating.
 Todos los nodos contestan al nodo coordinating con los IDs encontrados y las sort values de los top hits.
 El nodo coordinating mergea estos valores y crea una lista global de todos los resultados.

@@ -293,3 +293,7 @@ Para poder planificar correctamente tenemos que tener claro:
   como vamos a buscar sobre esos datos
     si vamos a hacer búsquedas muy costosas en CPU tal vez queremos ingest nodes
 
+
+
+# Performance
+Si estamos limitados por el disk IO podemos reducir el refresh_interval de los índices para escribir menos ficheros más grandes.

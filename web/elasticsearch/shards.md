@@ -135,21 +135,6 @@ PUT _cluster/settings
 }
 
 
-# Internals
-Directorio donde se almacenan los datos:
-/var/lib/elasticsearch/NOMBRE-CLUSTER
-
-Los shards de un índice llamado 'vehicles' estarán en:
-/var/lib/elasticsearch/icaro/nodes/0/indices/vehicles/
-  Y los 5 shards serán los 5 directorios llamados '0','1','2','3','4' y '5'
-
-La información almacenada se puede leer, más o menos en text claro, haciendo cat de NUMERO_DE_SHARD/index/_0.cfs
-
-
-Si no existe replicación, los distintos directorios solo se encontrarán en uno de los nodos, por ejemplo:
-nodo1: '1','2' y '4'
-nodo2: '0' y '3'
-
 
 # Shard filtering
 mirar en hot_warm_architecture.md
@@ -182,3 +167,20 @@ Si el cluster se mantiene en YELLOW/RED revisar /_cluster/allocation/explain par
 
 cluster.routing.allocation.awareness.force.zone.values: zone1,zone2 ￼
 cluster.routing.allocation.awareness.attributes: zone
+
+
+
+# Almacenamiento
+Directorio donde se almacenan los datos:
+/var/lib/elasticsearch/NOMBRE-CLUSTER
+
+Los shards de un índice llamado 'vehicles' estarán en:
+/var/lib/elasticsearch/icaro/nodes/0/indices/vehicles/
+  Y los 5 shards serán los 5 directorios llamados '0','1','2','3','4' y '5'
+
+La información almacenada se puede leer, más o menos en text claro, haciendo cat de NUMERO_DE_SHARD/index/_0.cfs
+
+
+Si no existe replicación, los distintos directorios solo se encontrarán en uno de los nodos, por ejemplo:
+nodo1: '1','2' y '4'
+nodo2: '0' y '3'
