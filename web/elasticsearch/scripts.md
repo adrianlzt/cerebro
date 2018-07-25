@@ -99,6 +99,12 @@ if (ctx.seo_title == "") {
 ## strings
 "".equals(ctx.seo_title)
 
+Acceder a un valor de un keyword (que por defecto lo marca como array):
+doc['geoip.region_name.keyword'].value
+  este funcionará aunque tengamos null
+doc['originalUrl.keyword'][0]
+  este no funcionará si hacemos + null
+
 
 
 # Caching
