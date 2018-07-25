@@ -66,7 +66,7 @@ curl localhost:9200/vehicles/_search/?pretty -d'
           }
         }
       }
-      "filter": [  # estas queries deben estar obligatoriamente en los documentos, pero no aporta al _score
+      "filter": [  # estas queries deben estar obligatoriamente en los documentos, pero no aporta al _score. Pueden aprovecharse del cache
         {}
       ]
     }

@@ -34,7 +34,7 @@ Lo que si tal vez queramos en synced flush.
 	A synced flush performs a normal flush, then adds a generated unique marker (sync_id) to all shards
 	sync_id provides a quick way to check if two shards are identical
 Esto simplifica el arranque, porque los shards al comenzar tienen que chequear los cambios que se han producido. Si todos tienen el mismo sync_id no hace falta hacer nada.
-Para backups?
+Para backups o si sabemos que vamos a tener que reiniciar nodos.
 
 
 ## Shards
@@ -80,6 +80,7 @@ El contenido de los documentos se almacenan en en otra estructura.
 BKD trees en otra esctructura
 Normalizaction factors, para hacer boosting al indexar (cada field de cada doc almacena un numero por el que será multiplicado para el score). Se suele usar boosting en runtime
 doc_values: usado para sorting y otras operaciones que no requieren un inverted index
+  mirar más abajo ## doc_values
 
 Cuando se hace un borrado, es "soft", solamente se marca ese documento como borrado y se ignora cuando se hacen las búsquedas.
 
@@ -92,9 +93,33 @@ Tras ese proceso ya podemos borrar, de verdad, los segmentos antiguos.
 
 Force merge
 POST my_index/_forcemerge
+POST my_refresh_test/_forcemerge?max_num_segments=1
+  especificar que queremos como máximo un segmento
+  Sin especificar esto, si hacemos un force merge Lucene decidirá que segmentos mergear (según tamaño, etc)
 Debemos evitar llamarlo. Estamos jodiendo el scheduler que se encarga de esto.
 En el caso de usarlo, asegurarnos que solo lo usamos en índices que no tendrán write operations en el futuro.
 Puede ser útil ejecutarlo antes de un backup, para reducir el tamaño final que vamos a almacenar.
+
+
+## doc_values
+Si queremos hacer un sort por un text field no podremos, porque el text se ha troceado en tokens y ya no tenemos el texto original.
+Si lo necesitamos podemos hacer:
+  fielddata:
+    puede ser muy costoso para la heap
+    lo podemos activar al definir el mapping (o modificando el mapping una vez existe). No hace falta reindexar:
+      "message": {
+        "type": "text",
+        "fielddata": true
+      }
+  doc values
+    almacena los valores en una forma column-oriented, lo que permite hacer sorting y aggregations
+    los doc values no existen para los analyzed strings, por que los hemos tokenizado antes y no tendría sentido.
+
+Podemos desactivar el doc_value para un field para ahorrar disk space y tener faster indexing. A cambio no podremos hacer sorting o aggregations. (No es una buena idea, tal vez luego queramos hacer sort o agg)
+"http_version": {
+  "type": "keyword",
+  "doc_values": false
+}
 
 
 

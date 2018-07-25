@@ -158,3 +158,44 @@ properties: {
    fielddata: true,
    type: text,
    analyzer: snowball
+
+
+## Almacenamiento
+elasticsearch/data/nodes/0/indices/XXX
+XXX será el id del índice (que podemos ver haciendole un GET)
+
+Dentro de ese directorio tendremos otro dir que tiene por nombre un número, que índica el número de shard que está almacenado en ese nodo.
+Si tenemos replicas tendremos un dir con el número del shard (viendo el nombre del dir no podemos saber si es primary o replica)
+Aqui vemos que no es posible meter primary y shard en el mismo nodo.
+
+Dentro del dir de cada shard tendremos:
+_state
+_state/state-0.st
+index                     (aqui se almacenan los segmentos)
+index/segments_2
+index/write.lock
+index/_0.fdt              (fdt, fdx: estos son temporales mientras no esta creando el segmento)
+index/_0.fdx
+
+index/_0.cfs              (cfs, si, cfe: estos tres ficheros son un segmento almacenado en disco)
+index/_0.si
+index/_0.cfe
+
+index/_2.nvm              (ficheros tras un forcemerge. Estos son los ficheros de Lucene de verda?)
+index/_2_Lucene50_0.tip
+index/_2.fdt
+index/_2.fdx
+index/_2.dii
+index/_2_Lucene50_0.pos
+index/_2.si
+index/_2.dim
+index/_2_Lucene50_0.doc
+index/_2_Lucene50_0.tim
+index/_2_Lucene70_0.dvm
+index/_2.fnm
+index/_2_Lucene70_0.dvd
+index/_2.nvd
+
+translog                  (transaction log)
+translog/translog.ckp
+translog/translog-1.tlog
