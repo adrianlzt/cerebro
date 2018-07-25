@@ -130,23 +130,7 @@ Cuando indexemos un field de este tipo tendremos que indexarlo de la siguiente m
     "lte": 25
   }
 
-Buscar:
-GET test_ranges/_search{
-  "query": {
-    "range": {
-      "publish_range": {
-        "gte": "2018-04-01"
-      }
-    }
-  }
-}
-
-Cuando usamos una query "range" podemos definir el campo "relation" a uno de estos valores:
- - intersects (default): si algun documento se encuentra en el rango definido por la búsqueda hará match
- - contains: solo se hace match si un documento contiene el rango completo
- - within: solo se hace match si un doc está completamente dentro del rango definido
-
-
+Para buscar mirar query/ranges.md
 
 ## Multi-fields
 https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html
@@ -269,7 +253,7 @@ dynamic=strict
   solo dejamos indexar datos que están en el mapping, fallará el indexado (error 400)
 
 dynamic=false
-  si tenemos campos que no están en el mapping, dejamos pasar el documento, pero no indexando esos campos (pero estarán en _source)
+  si tenemos campos que no están en el mapping, dejamos pasar el documento, pero no indexando esos campos (estarán en _source, pero no tendran indices ni aparecerán en el mapping)
 
 dynamic=true (default)
   se actualiza el mapping si encontramos nuevos fields
@@ -358,9 +342,8 @@ Ejemplo, componer un solo campo con todos los valores de una definición de siti
 # Indexing data, detalles
 
 ## null values
-Cuidado con indexar documentos a los que les faltan campos.
-Si no definimos un field, tomará el valor por defecto (para un double, se pondrá a 1.0).
-Si queremos evitar esto deberemos definir estos valores y ponerlos a "null".
+Cuidado con indexar documentos a los que les faltan campos. Siempre mejor definirlos a null.
+Podemos dar un valor por defecto a valores null (que no se verá al hacer un get, pero afectará al hacer agregaciones)
 
   "course_rating": {
     "type": "integer",

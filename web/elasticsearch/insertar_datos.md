@@ -191,6 +191,49 @@ POST twitter/_update_by_query
 
 
 
+## Reindex Batch Field
+Si vamos a reindexar cosas, para tener control de que docs se han reindexado, no empezar de nuevo en caso de fallo y controlar problemas con las versiones lo mejor es usar un campo custom.
+No me queda muy claro si este ejemplo funcionaría, pero la idea es actualizar los docs y como último paso marcar en un bit que se han reindexado correctamente.
+Y en las siguientes ejecucciónes filtrar para solo actuar sobre los que no han sido procesados aún.
+
+PUT blogs_fixed/doc/_mapping
+{
+ "properties": {
+   "reindexBatch": {
+     "type": "short"
+   }
+ }
+}
+
+POST blogs_fixed/_update_by_query{
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "range": {
+            "reindexBatch": {
+              "gte": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  "script": {
+    "source": """
+if(ctx._source.containsKey("content")) {
+  ctx._source.content_length = ctx._source.content.length();
+} else {
+  ctx._source.content_length = 0;
+}
+ctx._source.reindexBatch=1;
+"""
+  }
+}
+
+
+
+
 # Bulk
 https://www.elastic.co/guide/en/elasticsearch/reference/5.5/docs-bulk.html
 

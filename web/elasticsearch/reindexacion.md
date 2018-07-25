@@ -29,10 +29,21 @@ No podemos reindexar al mismo indice.
 
 Definir como se van a gestionar las sobreescrituras.
 El campo "version_type" (puesto sobre "dest") podrá tomar distintos valores:
-version_type=external
+Por defecto version_type=internal
+  sobreescribe todo del destino sin mirar
+version_type=external (seria como un "continuar" en el caso de una indexacion fallida)
   create any documents that are missing,
   preserve the version from the destination if the same version already exists in the destination (so basically do nothing), or
   update any documents that have an older version in the destination index than they do in the source index
+  Falla si en el destino ya existe un doc con la misma versión (o superior, mirar abajo) que el origen. Podemos omitirlo con el conflicts=proceed
+  Ejemplo de uso:
+  "dest": {
+    "index": "xxx",
+    "version_type": "external"
+  }
+
+Si ejecutamos dos veces una reindexacion internal, las versiones de los documentos destinos se incrementarán en +1 respecto al origen.
+
 
 Conflictos:
 conflicts=proceed (se define a la altura de primer nivel)
@@ -40,7 +51,11 @@ Ignoramos conflictos y nos da un count al final de los errores.
 
 
 op_type
-Para fallar si existe ya un doc igual?
+Esto solo creará documentos que no existen en el destino. Usarlo con conflicts=proceed, porque falla por cada documento que ya encuentra en destino
+"dest": {
+  "index": "foo",
+  "op_type": "create"
+}
 
 
 Reindexando filtrando con una query y aplicando un script:
