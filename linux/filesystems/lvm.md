@@ -170,3 +170,14 @@ sfdisk /dev/loop0 << EOF
 EOF
 
 pvcreate /dev/loop0
+
+Crear un vg con ese loop
+vgcreate tempdocker /dev/loop0
+
+O agregar el loop a un VG:
+vgextend vg_docker /dev/loop0
+
+Y tal vez queramos extender un LV del VG
+lvextend -l +80%FREE vg_docker/docker-pool
+
+
