@@ -117,6 +117,11 @@ En este caso la query devuelve un 200, pero _shards.failed=5
 
 
 
+# Heap / garbage collector
+Problemas con picos en el garbage collector? Tal vez tenemos demasiado heap reservado. Probar a bajarlo.
+
+
+
 # Responses
 
 ## Common HTTP Errors
@@ -139,3 +144,27 @@ Action: retry (ideally with linear or exponential backoff)
 Issue: 5xx error
 Reason: internal server error in Elasticsearch
 Action look into Elasticsearch logs to see what is the issue
+
+
+
+
+# Típicos problemas de performance
+Intentar usar filter cuando sea posible para aprovechar el cache.
+
+Agregaciones de demasiados documentos.
+  filtrar que documentos vamos a usar para la agregación
+  usar filtros detro de las agregaciones
+  usar samplling
+  cachear queries repetidas
+
+Intentar usar ES como si fuese una bbdd SQL (model_data.md)
+
+Demasiados shards, seguramente muchos shards pequeños. Intentar tener shards de tamaño hasta 40GB
+Cuanto más shards, peor la performance de las queries.
+El default de 5 shards por índice generalmente es un valor demasiado grande (parece que cambiarán este default en futuras versiones)
+
+Scripting innecesario, sobre todo cuando se podrían hacer en index time en vez de en query time
+
+Regular expressiones, sobre todo las que no dan un prefijo, que obliga a ES a analizar todos los valores.
+Truco, si no podemos poner un prefijo, tal vez podemos indexar el valor "reversed" y asi tener prefijo:
+  .*work -> krow.*

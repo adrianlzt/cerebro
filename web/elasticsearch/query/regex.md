@@ -12,3 +12,6 @@ GET /_search
 
 CUIDADO!
 Executing regex searches can be quite expensive, since Elasticsearch possibly has to compare every inverted index entry to the regex, which can take some while. If you can go without regex and use one of the other query types, you should do so.
+
+Truco, si no podemos poner un prefijo, tal vez podemos indexar el valor "reversed" y asi tener prefijo:
+  .*work -> krow.*

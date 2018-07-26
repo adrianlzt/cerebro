@@ -30,6 +30,24 @@ GET _all/_settings/index.blocks.read_only?flat_settings=true
 
 
 
+## Recovery cluster
+Configuraciones para acelerar la recuperación de un cluster.
+
+Recovery
+for faster recovery, temporarily increase the number of concurrent recoveries
+PUT _cluster/settings {
+  "transient": {
+    "cluster.routing.allocation.node_concurrent_recoveries": 2
+  }
+}
+
+Relocation
+for faster rebalancing of shards, increase
+"cluster.routing.allocation.cluster_concurrent_rebalance" : 2
+
+
+
+
 # Nodos
 curl "https://localhost:9200/_nodes?pretty"
   toda la info de los nodos, muy verboso
@@ -227,7 +245,86 @@ mirar mapping.md
 # Networking
 Forzar un puerto para los protocolos http/transport y poner una ip que no sea localhost/127.0.0.1
 Si la ip no es local, se considerará que la máquina es production-ready y se pasarán ciertos bootstrap checks para comprobar que la máquina es válida para esto.
+
 Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
+Distintas reglas de firewall para cada tipo de tráfico.
+
+No intentar crear un cluster a través de WAN links, excepto si tenemos una latencia muy baja (por ejemplo misma AZ de AWS, no una distinta region).
+Intentar tener 0 saltos ente los nodos (o los menos posibles).
+
+Usar long-lived http connections:
+  - las librerias clientes soportan esto
+  - o usar un proxy/load-balancer
+
+
+# Storage
+Intentar usar SSD
+  usar el noop o deadline en el scheduler (https://www.elastic.co/guide/en/elasticsearch/guide/current/hardware.html#_disks)
+  echo noop > /sys/block/{DEVICE}/queue/scheduler
+
+  trimm your SSDs: https://www.elastic.co/blog/is-your-elasticsearch-trimmed
+
+Si usamos spinning disks, dejar el scheduler que venga, pero deshabilitar los concurrent merges:
+  index.merge.scheduler.max_thread_count: 1
+
+Discos locales (NFS, SMV, AWS EFS, Azure filesystem, funcionarán mal)
+Mejor discos locales que SAN.
+No hace falta RAID, ES se encarga de la replicación.
+
+Podemos especificar varios distintos data paths (mismos shards irán en el mismo path):
+dath.data: /path1,/path2
+
+
+
+# Bootstrap checks
+https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+Descripción de que hace cada check
+
+Forzarlos/eliminarlos:
+es.enforce.bootstrap.checks: true/false
+
+JVM Checks
+  heap size
+  disable swapping
+  not use serial collector
+  OnError and OnOutOfMemoryError
+  G1GC
+  server JVM
+
+Linux Checks
+  maximum map count
+  maximum size virtual memory
+  maximum number of threads
+  file descriptor
+  system call filter
+
+Note that X-Pack has a few additional bootstrap checks
+
+
+# JRE
+Usar las versiones para servidores. Las versiones clientes tienen cosas para debugear que pueden ralentizar
+
+
+
+# Hardware
+Mejor máqinas "medium" que "large".
+Mejor 4 máquinas más pequeñas que 2 más grandes (para mismas cpus/mem)
+Esto nos permite más resistencia ante caídas.
+
+Las máquinas más grandes recomendables, a nivel de memoria, serían 64GB (32GB límite heap de ES * 2, para cache OS)
+
+Unas máquinas grandes pueden ser útiles como warm nodes (usando shard allocation filtering)
+
+
+
+# Cloud strategies
+Usar el discovery plugin que se adapte para que el "discovery" se configure automáticamente según los cabmios de IPs que se puedan producir.
+Ponernos en distintas AZs (misma región).
+Mejor ephemeral storage que network storage.
+Evitar máquinas con low network performance
+Usar shard awareness para diferenciar las AZs (y usar forced awareness para evitar problemas ante caídas puntuales)
+
+
 
 
 # Shard awareness
@@ -313,3 +410,40 @@ Para poder planificar correctamente tenemos que tener claro:
 
 # Performance
 Si estamos limitados por el disk IO podemos reducir el refresh_interval de los índices para escribir menos ficheros más grandes.
+
+
+
+
+# Heap
+Usos mayoritarios de la heap.
+
+indexing buffer (stores newly-indexed docs)
+completion suggester
+cluster state
+caches:
+  node query cache (10%, remembers if a doc matches a filter)
+  shard query cache (1%, cache results of a query)
+  fielddata (unbounded)
+
+
+
+# Java configs
+By default, the JVM heap size is 1 GB
+  likely not high enough for production
+  you can change it using Xms (min heap) and Xmx (max heap)
+
+Some guidelines for configuring the heap size:
+  set Xms and Xmx to the same size (bootstrap check)
+  set Xmx to no more than 50% of your physical RAM
+
+Rule of thumb for setting the JVM heap is:
+  do not exceed more than 30GB of memory (to not exceed the compressed ordinary object pointers limit)
+  https://www.elastic.co/blog/a-heap-of-trouble
+
+Production JVM Settings
+1. We do not support G1GC garbage collection
+  and strongly discourage its use
+2. JDKs have two modes of a JVM: client and server
+  server JVM is required in production mode
+3. Configure the JVM to disable swapping
+  by requesting the JVM to lock the heap in memory through mlockall (Unix) or virtual lock (Windows)

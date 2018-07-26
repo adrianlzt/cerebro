@@ -23,9 +23,28 @@ No es muy exacto, por que no tendremos lo datos en tiempo real, pero nos puede s
 O también podemos cachear resultados: https://www.elastic.co/guide/en/elasticsearch/reference/current/caching-heavy-aggregations.html
 
 
-
 Para crear aggregations típicamente usaremos el "Visualize" de Kibana y luego miraremos la "Request" que genera.
 
+# Sampling
+Para evitar aggs muy grandes podemos usar sampling, solo coger los N primeros resultados:
+"aggs": {
+  "my_sample": {
+    "sampler": {
+      "shard_size": 100
+    },
+    "aggs": {
+
+
+# Filter
+Podemos meter filter dentro de la agregación (tal vez porque queremos de una misma query sacar distintos aggs pero filtrados de distinta manera):
+"aggs": {
+  "not_found_requests": {
+    "filter": {
+      "match": {
+        "status_code": 404
+      }
+    },
+    "aggs":
 
 # Metrics
 https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics.html

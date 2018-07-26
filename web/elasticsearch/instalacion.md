@@ -124,6 +124,8 @@ vi /etc/sysconfig/elasticsearch
 ES_JAVA_OPTS="-Xms15g -Xmx15g" # para una maquina un 30GB de memoria
   Xms represents the initial size of total heap space
   Xmx represents the maximum size of total heap space
+  Poner los valores iguales es para evitar el consumo extra de recursos en el caso de que sobrepasasemos Xms y necesitasemos más memoria.
+  Esto requeriría solicitar al OS más espacio, lo que puede provocar tener que mover toda la memoria reservada hasta ahora a una nueva zona de memoria.
 
 No poner más de 31GB para el heap
 
