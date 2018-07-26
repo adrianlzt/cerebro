@@ -18,6 +18,11 @@ source /home/adrian/.gdbinit-gef.py
 source /usr/lib/python3.6/site-packages/voltron/entry.py
 
 
+# CentOS/RedHat
+Para instalar los simbolos de un binario
+yum install -y yum-utils
+debuginfo-install -y PKG
+
 
 Para cosas mas especificas de ASM:
 programacion/ensamblador/gdb.md
@@ -84,7 +89,7 @@ Debug stripped binaries:
 http://reverseengineering.stackexchange.com/questions/1935/how-to-handle-stripped-binaries-with-gdb-no-source-no-symbols-and-gdb-only-sho
 Tras cargar el binario:
 gdb> info file
-Copiamos el Entry Point
+Copiamos el Entry Point (primera linea)
 gdb> break *0xXXXX (el entrypoint)
 gdb> set disassembly-flavor intel  (sintaxis INTEL, primer argumento lo que recibe, y el segundo lo que pasa)
 gdb> layout asm

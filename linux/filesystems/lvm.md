@@ -169,6 +169,7 @@ dd if=/dev/zero of=lvm.img bs=1M count=5120
   5GB
 losetup /dev/loop0 lvm.img
 
+Esto no parece que sea necesario
 Particionar el loop (cuando he probado se ha quedado pillado y no muere ni con kill -9):
 sfdisk /dev/loop0 << EOF
 ,,8e,,
@@ -209,14 +210,24 @@ Existen dos carpetas donde se realizan backups:
 
 Cuando realizamos alguna modificación en algún VG o LV, automáticamente se genera un fichero en archive/ con la configuración de LVM **ANTES** del cambio.
 En backup/ el estado final del LVM **DESPUES** del cambio.
+Aunque el comando falle se genera el backup (visto con lvextend cuando intentamos darle más espacio del que tiene)
 
 LVM controla el número de ficheros máximo que deben existir en /etc/lvm/archive con los parámetros retain_min y retain_days. Estos parámetros son por cada VG.
 Función que borra archivos antiguos:
 https://github.com/lvmteam/lvm2/blob/master/lib/format_text/archive.c#L187
   cuando hay al menos "retain_min" ficheros, itera empezando por los ficheros más nuevos.
-  cuando encuentra uno más viejo de retain_days lo borra
+  cuando encuentra uno más viejo (mirando mtime) de retain_days lo borra
   termina de iterar si el número de ficheros es <= a retain_min
+  si tenemos muchos ficheros, pero ninguno más viejo de retain_days, no borra nada
 Parece que varias herramientas pueden llamar a esta función: vgextend, vgconvert, etc
+
+Cuando se genera un archive tenemos una traza verbose (notice, level=5):
+Archiving volume group "temp0" metadata (seqno 2).
+
+Cuando limpia viejos una traza very verbose (info, level=6) tipo:
+Expiring archive %s", bf->path
+
+
 
 ## Crear backup
 vgcfgbackup
@@ -260,6 +271,12 @@ dmsetup info -c
 
 /dev/dm-2 se corresponde al que aparezca en el listado con Minor=2
 
+
+
+# Debug
+Config:
+log -> level = 7
+Por defecto lo saca al journal (el siguiente comando que se ejecute ya sacará ese nivel de debug)
 
 
 # Troubleshooting
