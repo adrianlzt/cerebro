@@ -7,6 +7,9 @@ Básicamente es una tabla donde para cada entrada nos dice donde está el ficher
 # Estado del cluster
 curl http://localhost:9200/_status
 
+# Stats del index
+GET my_index/_stats
+
 
 # Listar todos los índices:
 curl "https://localhost:9200/_cat/indices?v"

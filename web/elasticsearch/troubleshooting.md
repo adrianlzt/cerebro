@@ -84,6 +84,10 @@ Y más tarde, tras comprobar que todo está correcto, podemos ponerlo a null par
 Ver que búsquedas/inserciones lentas:
 https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-slowlog.html
 
+Tambien podemos mirar en
+GET _tasks/ por tareas lentas (running_time_in_nanos)
+Mirar monitorizar.md
+
 
 # OutOfMemory
 https://discuss.elastic.co/t/large-size-of-hprof-files-on-data-nodes/18004/2

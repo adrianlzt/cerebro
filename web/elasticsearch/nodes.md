@@ -1,5 +1,7 @@
 Lista de nodos:
-https://172.30.180.163:9200/_cat/nodes?v
+GET _cat/nodes?v
+GET _cat/nodes?help
+  para ver todo lo que podemos sacar
 
-Más info:
-https://172.30.180.163:9200/_nodes?pretty
+Más info, JSON:
+_nodes

@@ -1,4 +1,4 @@
-Mirar x-pack.md
+Mirar x-pack.md, tiene un módulo de Monitoring que almacena datos y los grafica.
 
 https://github.com/ViaQ/watches-cli
 App en python para obtener estadisticas sobre ES
@@ -12,6 +12,28 @@ indices_stats
 nodes_hotthreads
 just_nodes_stats
 just_indices_stats
+
+
+# APIs para monitorizar el estado
+
+Node Stats: _nodes/stats
+            _nodes/nombreNodo/stats
+            _nodes/stats/jvm
+            _nodes/nombreNodo/stats/jvm
+            _nodes/nombreNodo/stats/indices/docs
+Cluster Stats: _cluster/stats
+
+Index Stats: my_index/_stats
+
+Pending Cluster Tasks API: _cluster/pending_tasks
+  tareas cluster-level que no se han ejecutado aún. Suele estar vacío. Tenemos que mirar que no haya tareas que su time_in_queue_millis sea superior a 100ms
+  seguramente tendremos otros problemas primero, por ejemplo una alta latencia en el cluster
+
+GET _tasks
+  tasks ejecutándose actualmente
+  un número interesante es running_time_in_nanos para tareas de indexación/búsqueda mostrando que esa tarea tiene problemas
+
+
 
 
 Importante, de los nodos data vigilar su USE (utilization/saturation/errors) de CPU, memoria y disk I/O.
