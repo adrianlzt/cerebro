@@ -81,12 +81,20 @@ Y más tarde, tras comprobar que todo está correcto, podemos ponerlo a null par
 
 
 
-Ver que búsquedas/inserciones lentas:
-https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-slowlog.html
+Ver que búsquedas/inserciones lentas, slow log, mirar monitorizar.md
 
 Tambien podemos mirar en
 GET _tasks/ por tareas lentas (running_time_in_nanos)
 Mirar monitorizar.md
+
+
+# Thread pools
+Mirar monitorizar.md
+
+
+# Return code
+429, ES saturado. Esta solicitando al cliente que le de un poco de tiempo para procesar datos.
+Seguramente sea una queue de un thread pool lleno.
 
 
 # OutOfMemory

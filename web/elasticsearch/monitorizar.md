@@ -1,4 +1,6 @@
 Mirar x-pack.md, tiene un módulo de Monitoring que almacena datos y los grafica.
+Recomendado montar un segundo cluster para monitorizar.
+Podemos configurar alarmas con Alert
 
 https://github.com/ViaQ/watches-cli
 App en python para obtener estadisticas sobre ES
@@ -32,6 +34,12 @@ Pending Cluster Tasks API: _cluster/pending_tasks
 GET _tasks
   tasks ejecutándose actualmente
   un número interesante es running_time_in_nanos para tareas de indexación/búsqueda mostrando que esa tarea tiene problemas
+
+
+También podemos usar las APIs _cat para ver la información mas human-friendly.
+_cat/nodes
+_cat/pending_tasks
+_cat/health
 
 
 
@@ -153,3 +161,60 @@ http://chrissimpson.co.uk/elasticsearch-yellow-cluster-status-explained.html
 
 Mirar que shards estan unassigned:
 curl 'https://172.30.180.163:9200/_cat/shards' | grep UNASSIGNED
+
+
+
+# Thread pool queues
+Many cluster tasks (bulk, index, get, search, etc.) use thread pools to improve performance
+Delante de estos threads hay colas.
+Cuando las colas están llenas, se contesta un 429 al cliente
+
+Tenemos distintos thread pools para cada tipo de tarea.
+Se pueden modificar los parámetros, pero es muy raro tener que modificarlos.
+
+GET _nodes/thread_pool
+  vemos que tipos de thread pools hay y el número de ellos y de la cola
+GET _nodes/stats/thread_pool
+  en el momento de la query, como están los thread pools
+  queue y active: point in time (valor en el momento de la query)
+  rejected, completed, largest: valor total (se va incrementando)
+
+GET _cat/thread_pool?v
+
+
+# hot_threads
+Most active thread por nodo (nos devuelve java classes)
+Útil si somos desarrolladores de java, si no dificil de entender.
+
+GET _nodes/hot_threads
+GET _nodes/nombreNodo/hot_threads
+
+
+# slow log
+https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-slowlog.html
+
+Captura info sobre operaciones sobre índices que toman mucho tiempo.
+Cada nodo registra las operaciones lentas sobre los shards que tiene en su nodo (_tasks nos dará una visión más global).
+Los distintos niveles los configuramos según el tiempo que tardan en ejecutarse las operaciones.
+Se crea un nuevo fichero "slowlog.log" o similar en el log/ dir
+Se puede configurar los thresholds por indexing, searching, etc.
+CUIDADO! se puede exponer información sensible en este log
+
+Para queries lentas podemos relanzarlas con profiling para intentar ver por qué va lenta (query/profiling.md)
+
+Configurado en log4j2.properties, se puede configurar para enviar a stdout (por ejemplo si estamos usando ES en docker)
+
+Modificar en caliente (podemos quitar "my_index" para que se aplique para todo)
+
+PUT my_index/_settings{
+  "index.indexing.slowlog": {
+    "threshold.index": {
+      "warn": "10s",
+      "info": "5s",
+      "debug": "2s",
+      "trace": "0s"  (esto activa para todas las trazas)
+    },
+    "level": “trace",
+    "source" : 1000
+  }
+}

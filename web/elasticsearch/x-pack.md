@@ -29,7 +29,7 @@ vi logstash.yml
 xpack.monitoring.elasticsearch.password: logstashpassword
 
 
-El pack completo es de pago!
+El pack completo es de pago! A partir de 6.3.x hay partes gratuitas
 Dan 30 días de prueba
 https://www.elastic.co/guide/en/x-pack/5.6/license-expiration.html
 
@@ -70,3 +70,116 @@ Luego crearemos usuarios y les pondremos ese rol y el de kibana_user.
 
 
 Si intentamos ejecutar algún curl no permitido nos dará error especificando que permisos nos faltan.
+
+
+
+# Monitoring
+Cada 10" (por defecto) ES recoge métricas sobre su funcionamiento y las almacena en el propio ES.
+
+Lo recomendado es usar un cluster dedicado para monitorizar:
+  reduce the load and storage on your other clusters
+  access to Monitoring even when other clusters are unhealthy
+  separate security levels from Monitoring and production clusters
+
+Tendremos que configurar el cluster a monitorizar donde tiene que enviar las métricas.
+xpack.monitoring.exporters:
+  id1:
+    type: http
+    host: ["http://monitoring_cluster:9200"]
+    auth.username: username
+    auth.password: changeme
+
+Debería ser suficiente un cluster de un único nodo. 3 nodos si necesitamos HA para la monitorización
+Generalmente con 7 días de datos tendremos suficiente.
+
+
+Parámetros que tal vez queramos modificar (https://www.elastic.co/guide/en/x-pack/current/monitoring-settings.html):
+
+xpack.monitoring.collection.indices
+The indices to collect data from. Defaults to all indices, but can be a comma-separated list.<Paste>
+
+xpack.monitoring.collection.interval
+How often data samples are collected. Defaults to 10s
+
+xpack.monitoring.history.duration
+How long before indices created by Monitoring are automatically deleted. Defaults to 7d
+Si se está monitorizando en otro cluster, tendremos que gestionar allí el borrado de los índices viejos. Este param solo se hace automáticamente si estamos en el mismo cluster.
+
+
+
+
+# Alert
+watch for changes or anomalies in your data and
+perform the necessary actions in response
+
+Lo más sencillo es manejarlos con la UI de kibana.
+Make sure to create users with Watcher specific roles
+  watcher_admin can perform all watcher-related actions
+  watcher_user can view all existing watches
+
+Ejemplos:
+ Monitor when the number of tweets and posts in an area exceeds a threshold of significance, notify a service technician
+  Open a helpdesk ticket when any servers are likely to run out of free space in the next few days
+  Track network activity to detect malicious activity, and proactively change firewall configuration to reject the malicious user
+  Send immediate notification if nodes leave the cluster or query throughput exceeds an expected range
+
+
+Partes los "Watches":
+  Trigger: cuando debe saltar
+  Input: carga datos en el watch payload
+  Condition: controla cuando el watch debe ejecutar las actions
+  Transform: procesar los datos
+  Actions: enviar un email, etc
+
+Ejemplo, cada 5m mira si hay alguna cadena en "body" que contenga "error", si es cierto, mete una traza en los logs:
+PUT _xpack/watcher/watch/log_error_watch{
+  "trigger": {
+    "schedule": {
+      "interval": "5m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": [
+          "logs*"
+        ],
+        "body": {
+          "query": {
+            "match": {
+              "message": "error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gt": 0
+      }
+    }
+  },
+  "actions": {
+    "log_error": {
+      "logging": {
+        "text": "Found {{ctx.payload.hits.total}} errors."
+      }
+    }
+  }
+}
+
+
+Loswatches se almacenan en ES:
+GET .watches/doc/log_error_watch
+GET .watches/_search
+
+Registro de todos los watches ejecutados:
+GET .watcher-history*/_search{
+  "sort": [
+    {
+      "result.execution_time": "desc"
+    }
+  ]
+}
