@@ -7,6 +7,9 @@ Creamos un 'volume group' con varios 'physical volumes'.
 Encima de este 'volume group' podemos crear 'logical volumes' (que sería como una partición de un disco).
 Estos 'logical volumes' deben ser formateados para poder usarse (con ext4, xfs o lo que sea)
 
+Abajo tengo una sección sobre device-mapper/dmeventd/dmsetup
+
+
 # Creando un LVM
 Instalar el software
  Debian: # apt-get install lvm2
@@ -181,3 +184,53 @@ Y tal vez queramos extender un LV del VG
 lvextend -l +80%FREE vg_docker/docker-pool
 
 
+
+
+
+# Backup
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/logical_volume_manager_administration/backup
+
+Por cada cambio cambio en un VG o LV parece que se genera automáticamente un backup en /etc/lvm/backup y /etc/lvm/archives (uno para el "metadata backup" y otro para el "metadata archives")
+Cuando hablamos de backup estamos hablando de como está montado el LVM con sus PV, VG, LV, etc, NO DEL CONTENIDO!
+Estos backups permiten hacer backup y restaurar esa metadata
+
+## Crear backup
+vgcfgbackup
+Crear un backup del estado actual de los LVM en /etc/lvm/backup
+
+## Restaurar
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/mdatarecover
+https://www.thegeekdiary.com/corruption-or-accidental-deletion-in-lvm-how-to-rebuild-lvm-from-archive-metadata-backups-in-rhel-centos/
+
+Listar los estados anteriores a los que podemos volver (nos explica que comando se produjo después de hacer el backup y la fecha)
+vgcfgrestore --list VG
+
+Podemos leer los ficheros de /etc/lvm/backup /etc/lvm/archives, son ficheros de texto donde está especificado el estado del LVM para poder restaurarlo.
+
+La idea de esta restauración es recuperar la metadata de LVM de un disco.
+Para ello tendremos que conocer el uuid que tenía y usar el último backup que tengamos (en /etc/lvm/archive seguramente).
+Para conocer el uuid podemos usar los comandos:
+lvs -a -o +devices
+vgchange -an --partial.
+
+Para agregar de nuevo el disco como un PV (pero con la metadata antigua):
+pvcreate --uuid "FmGRh3-zhok-iVI8-7qTD-S5BI-MAEN-NYM5Sk" --restorefile /etc/lvm/archive/VG_00050.vg /dev/sdh1
+
+Restaurar el VG:
+vgcfgrestore VG
+
+Activar el volumen y mostrar el estado:
+lvchange -ay /dev/VG/stripe
+lvs -a -o +devices
+
+
+
+# Device mapper
+Device-mapper is a component of the linux kernel (since version 2.6) that supports logical volume management. It is required by LVM2
+dmsetup — low level logical volume management
+
+Listar dispositivos vistos por device-mapper
+dmsetup info -c
+
+
+/dev/dm-2 se corresponde al que aparezca en el listado con Minor=2
