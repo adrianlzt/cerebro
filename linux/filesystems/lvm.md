@@ -155,3 +155,18 @@ thin_metadata_size -b64k -s1t -m1000 --unit=G
   para bloques de 64k (creo que el por defecto), una unidad de 1TB y 1000 snaphots (o devices?), el tamaño es de 0.55GB
   para 2TB/1000snap -> ~1GB
   para 1TB/100000snap -> ~1GB
+
+
+
+# Usar loopback devices
+http://www.anthonyldechiaro.com/blog/2010/12/19/lvm-loopback-how-to/
+dd if=/dev/zero of=lvm.img bs=1M count=5120
+  5GB
+losetup /dev/loop0 lvm.img
+
+Particionar el loop (cuando he probado se ha quedado pillado y no muere ni con kill -9):
+sfdisk /dev/loop0 << EOF
+,,8e,,
+EOF
+
+pvcreate /dev/loop0
