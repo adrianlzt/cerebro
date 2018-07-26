@@ -93,6 +93,22 @@ También es configurable los timeouts.
 Podemos obtener el estado de una tarea de reindex:
 GET _tasks?detailed=true&actions=*reindex
 
+
+Lanzar un redindex en background limitado. Luego, con el id devuelto, subirle las request per second permitidas:
+POST _reindex?requests_per_second=1&wait_for_completion=false
+{
+  "source": {
+    "index": "logs_server*"
+  },
+  "dest": {
+    "index": "logs_test"
+  }
+}
+
+POST _reindex/S_uyxOnCSD6-y-ASbTqk5w:8148/_rethrottle?requests_per_second=1000
+
+
+
 Slicing para paralelizar el reindex
 https://www.elastic.co/guide/en/elasticsearch/reference/6.3/docs-reindex.html#docs-reindex-sliceo
 

@@ -75,6 +75,7 @@ Si intentamos ejecutar algún curl no permitido nos dará error especificando qu
 
 # Monitoring
 Cada 10" (por defecto) ES recoge métricas sobre su funcionamiento y las almacena en el propio ES.
+Gratuito para un solo cluster. Para varios clusters es de pago.
 
 Lo recomendado es usar un cluster dedicado para monitorizar:
   reduce the load and storage on your other clusters

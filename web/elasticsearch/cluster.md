@@ -200,6 +200,19 @@ En centos7 la unit de systemd ya configura para poner el limite a 65536
 Por defecto si intentamos indexar un dato en un índice que no existe, este índice se autogenerará.
 Esta funcionalidad seguramente la queramos deshabilitar en producción.
 
+PUT _cluster/settings{
+  "persistent": {
+    "action.auto_create_index": false
+  }
+}
+
+Permitir algunos patterns de creación de índices:
+PUT _cluster/settings{
+  "persistent": {
+    "action.auto_create_index": ".monitoring-es*,logstash-*"
+  }
+}
+
 
 # Strict mapping
 No permitir campos fuera del mapping definido.
@@ -212,6 +225,8 @@ mirar mapping.md
 
 
 # Networking
+Forzar un puerto para los protocolos http/transport y poner una ip que no sea localhost/127.0.0.1
+Si la ip no es local, se considerará que la máquina es production-ready y se pasarán ciertos bootstrap checks para comprobar que la máquina es válida para esto.
 Reservar diferentes interfaces para la comunicación de clientes (REST) y una conex exclusiva fiber-channel para el transport entre nodos del cluster.
 
 
