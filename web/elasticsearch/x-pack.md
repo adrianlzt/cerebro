@@ -3,6 +3,10 @@ X-Pack is an Elastic Stack extension that bundles security, alerting, monitoring
 
 Prior to Elasticsearch 5.0.0, you had to install separate Shield, Watcher, and Marvel plugins to get the features that are bundled together in X-Pack
 
+Gratuito a partir de 6.3:
+monitoring, tile maps, Grok Debugger, and Search Profiler
+
+
 Lo que provee:
  - security
  - alerting
