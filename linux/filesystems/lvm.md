@@ -1,5 +1,7 @@
 http://tldp.org/HOWTO/LVM-HOWTO/
 https://wiki.archlinux.org/index.php/LVM
+https://github.com/lvmteam/lvm2
+  codigo
 
 # Conceptos
 Los discos, o particiones, deben agregarse para ser controlados por LVM (con pvcreate), se llamarán 'physical volumes'.
@@ -186,13 +188,35 @@ lvextend -l +80%FREE vg_docker/docker-pool
 
 
 
+# Config
+Mostrar config actual
+lvmconfig --type current
 
-# Backup
+Mostrar config por defecto con comentarios de cada seccion
+lvmconfig --type default --withcomments | less
+
+
+
+# Backup metadata
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/logical_volume_manager_administration/backup
 
-Por cada cambio cambio en un VG o LV parece que se genera automáticamente un backup en /etc/lvm/backup y /etc/lvm/archives (uno para el "metadata backup" y otro para el "metadata archives")
 Cuando hablamos de backup estamos hablando de como está montado el LVM con sus PV, VG, LV, etc, NO DEL CONTENIDO!
 Estos backups permiten hacer backup y restaurar esa metadata
+
+Existen dos carpetas donde se realizan backups:
+  /etc/lvm/backup esta carpeta guarda un backup del último estado conocido del LVM (estado actual del LVM)
+  /etc/lvm/archive guarda los estados anteriores del LVM
+
+Cuando realizamos alguna modificación en algún VG o LV, automáticamente se genera un fichero en archive/ con la configuración de LVM **ANTES** del cambio.
+En backup/ el estado final del LVM **DESPUES** del cambio.
+
+LVM controla el número de ficheros máximo que deben existir en /etc/lvm/archive con los parámetros retain_min y retain_days. Estos parámetros son por cada VG.
+Función que borra archivos antiguos:
+https://github.com/lvmteam/lvm2/blob/master/lib/format_text/archive.c#L187
+  cuando hay al menos "retain_min" ficheros, itera empezando por los ficheros más nuevos.
+  cuando encuentra uno más viejo de retain_days lo borra
+  termina de iterar si el número de ficheros es <= a retain_min
+Parece que varias herramientas pueden llamar a esta función: vgextend, vgconvert, etc
 
 ## Crear backup
 vgcfgbackup
@@ -200,12 +224,13 @@ Crear un backup del estado actual de los LVM en /etc/lvm/backup
 
 ## Restaurar
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/logical_volume_manager_administration/mdatarecover
+http://unixadminschool.com/blog/2015/08/rhel-lvm-how-to-remove-a-logical-volume-in-rhel-56/
 https://www.thegeekdiary.com/corruption-or-accidental-deletion-in-lvm-how-to-rebuild-lvm-from-archive-metadata-backups-in-rhel-centos/
 
 Listar los estados anteriores a los que podemos volver (nos explica que comando se produjo después de hacer el backup y la fecha)
 vgcfgrestore --list VG
 
-Podemos leer los ficheros de /etc/lvm/backup /etc/lvm/archives, son ficheros de texto donde está especificado el estado del LVM para poder restaurarlo.
+Podemos leer los ficheros de /etc/lvm/backup /etc/lvm/archive, son ficheros de texto donde está especificado el estado del LVM para poder restaurarlo.
 
 La idea de esta restauración es recuperar la metadata de LVM de un disco.
 Para ello tendremos que conocer el uuid que tenía y usar el último backup que tengamos (en /etc/lvm/archive seguramente).
@@ -234,3 +259,23 @@ dmsetup info -c
 
 
 /dev/dm-2 se corresponde al que aparezca en el listado con Minor=2
+
+
+
+# Troubleshooting
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Cluster_Logical_Volume_Manager/troubleshooting.html
+
+Usar -v, ..., -vvvv en los comandos para ver más info
+
+Usar lvmdump para hacer un dump con información de diagnóstico.
+
+lvs -v
+pvs -a
+dmsetup info -c
+
+Mirar los backups /etc/lvm/backup /etc/lvm/archive
+
+lvm dumpconfig
+volcado de la config
+
+/etc/lvm/.cache para ver que dispositivos tienen volumenes lógicos sobre ellos
