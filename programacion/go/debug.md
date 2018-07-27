@@ -3,6 +3,7 @@ https://github.com/derekparker/delve
 go get -u github.com/derekparker/delve/cmd/dlv
 
 UI: https://github.com/aarzilli/gdlv
+  go get -u github.com/aarzilli/gdlv
   cd path/package/main
   gdlv debug -arg1 val1
 
@@ -59,5 +60,3 @@ Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 # Debug
 https://golang.org/pkg/runtime/debug/
 Package debug contains facilities for programs to debug themselves while they are running.
-
-
