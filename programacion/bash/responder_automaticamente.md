@@ -33,3 +33,11 @@ expect {
     "password for user:"  {send -- "password\n"}
     "user"
 }
+
+
+# Regex
+expect -re "awk\[^\n]+\n(.+)\r\n$PROMPT"
+
+
+# Asignar variables
+set b [exec cat /home/a | grep "work" | awk -F {=} {{print $2}}]
