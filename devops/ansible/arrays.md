@@ -10,6 +10,10 @@ Esto devuelve solo la primera linea
 .index('pepe') nos devuelve la posicion donde esté ese elemento
 
 
+Buscar en un array
+when: '"cosa" in array'
+
+
 
 
 ok: [127.0.0.1] => {
