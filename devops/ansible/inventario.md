@@ -67,7 +67,7 @@ Que afectará a todos esos grupos de máquinas
 
 No podemos definir variables complejas (por ejemplo una lista) en el inventario. Usaremos un .yaml en groups_vars o host_vars
 
-# Contraseñas / Passwords #
+# Contraseñas / Passwords
 Creamos un grupo (o grupo de grupos), luego creamos su ficheros en vars:
 ansible-vault create groups_vars/NOMBRE
 
@@ -81,6 +81,7 @@ ansible_ssh_private_key_file=~/fichero
 
 # Añadir máquinas al inventario desde un playbook, solo para esa ejecucción (in-memory)
 http://docs.ansible.com/add_host_module.html
+This module bypasses the play host loop and only runs once for all the hosts in the play, if you need it to iterate use a with_ directive.
 
 - add_host: hostname={{ new_ip }}
             ansible_ssh_host={{ inventory_hostname }}
