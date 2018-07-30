@@ -34,6 +34,8 @@ Parece que lo mejor es tener un hot standby server donde realizar los backups (p
 Y realizar full backups periodicamente mientras almacenamos continuamente los ficheros WAL, esto nos permite restaurar en un punto determinado del tiempo (PITR, point-in-time recovery)
   mirar como se restaura un PITR en https://www.opsdash.com/blog/postgresql-backup-restore.html#point-in-time-recovery-pitr
 
+También podemos hacer un backup lógico en un hot standby. Tener en cuenta: https://dba.stackexchange.com/questions/30626/running-pg-dump-on-a-hot-standby-server
+
 Un full backup cada n días y un incremental backup (WAL files) cada hora.
 
 Monitorizar que estamos realizando los backups, el tiempo que tardan, probar a restaurar los últimos backups y el tiempo de restauración:
