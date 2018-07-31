@@ -1,3 +1,5 @@
+https://www.zabbix.com/documentation/3.4/manual/api/reference/host/object#host
+  En los "Object reference" podemos ver los mapeos de valores a significado
 Modelo de la bbdd (version 2.x): https://zabbix.org/wiki/Database_Schemas
 
 Accediendo directamente a la base de datos de zabbix.

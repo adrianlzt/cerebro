@@ -15,7 +15,14 @@ Tabla donde se muestra, por cada tipo de item, si hay items esperando ser ejecut
 Si esta todo correcto la pantalla debería ser toda verde y con 0's.
 Algunos elementos no verdes no deberían ser fuente de preocupación, pero deberíamos mirar porque puede que estén en este estado.
 
+Recordar también mirar la pestaña "Details" y "Overview by proxy"
+
 Administration - Queue
 http://zabbix/queue.php
 
 
+
+El frontal usa la API interna de zabbix para obtener los datos de las colas.
+La función que llama es "queue.get"
+
+Las colas están almacenadas en la memoria, no podemos hacer una consulta SQL para obtenerlas.
