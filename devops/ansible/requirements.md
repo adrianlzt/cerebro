@@ -1,8 +1,8 @@
 http://docs.ansible.com/ansible/latest/intro_installation.html
 
-Para los nodos "managed" necesitamos python 2.6/2.7, >=3.5
-
 Para el nodo master hace falta python 2.6/2.7, >=3.5
+Para los nodos "managed" necesitamos python 2.6/2.7, >=3.5
+  Support for Python-2.4 and Python-2.5 was dropped in Ansible-2.4
 
 
 
