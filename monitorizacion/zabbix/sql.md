@@ -75,3 +75,9 @@ select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' 
 
 Cuantos items de cada tipo tenemos:
 select type,count(*) from items group by type order by type;
+
+Número de items por hostgroup:
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' group by g.name limit 10;
+
+Top 10 de hostgroups por número de items pasivos:
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 group by g.name order by count desc limit 10;
