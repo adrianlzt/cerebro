@@ -64,7 +64,7 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 Número de items en la tabla history agrupados por buckets de 10':
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
 
-Como la anterior pero solo para items zabbix trapper (type=2):
+Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10':
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
 
 Todos los items de un hostgroup:
@@ -76,8 +76,8 @@ select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' 
 Cuantos items de cada tipo tenemos:
 select type,count(*) from items group by type order by type;
 
-Número de items por hostgroup:
-select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' group by g.name limit 10;
+Número de items enabled por hostgroup:
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.status=0 group by g.name limit 10;
 
-Top 10 de hostgroups por número de items pasivos:
-select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 group by g.name order by count desc limit 10;
+Top 10 de hostgroups por número de items pasivos (enabled):
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
