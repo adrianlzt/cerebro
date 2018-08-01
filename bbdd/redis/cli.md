@@ -29,7 +29,7 @@ Haciendo SET a la variable la fijamos para siempre
 ## Arrays / Listas ##
 RPUSH clave "valor" <- pone al final (Right) de la lista
 LPUSH clave "valor" <- pone al principio (Left) de la lista
-LRANGE clave inicio fin <- devuelve los valores entre inicio y fin (-1 para el último valor)
+LRANGE clave inicio fin <- devuelve los valores entre inicio y fin (-1 para el último valor) (no los borra de la lista)
 LLEN clave <- tamaño de la lista
 RPOP clave <- saca del final (Right)
 LPOP clave <- saca del comienzo (Left)
