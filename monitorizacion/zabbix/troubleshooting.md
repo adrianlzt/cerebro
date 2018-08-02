@@ -16,3 +16,9 @@ queue.md
 # Audit
 Reports > Audit
 Para ver quien se ha logeado, si se han metido cambios, etc
+
+
+
+# Slow queries
+Mostrar cuantas están saliendo por minuto
+cat zabbix_server.log | grep "slow query" | grep -e "^\s*[0-9]*:" | awk '{print $1;}' | cut -d ':' -f 2,3 | cut -c 1-11 | uniq -c
