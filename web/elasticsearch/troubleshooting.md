@@ -23,7 +23,7 @@ Bajar al nivel de health de shards (generalmente demasiados detalles):
 GET _cluster/health?level=shards
 
 Explicación
-curl -XPOST "localhost:9200/_cluster/allocation/explain?pretty"
+POST _cluster/allocation/explain
 
 Explicación para un shard determinado:
 GET _cluster/allocation/explain
@@ -44,6 +44,8 @@ curl -X POST "localhost:9200/_cluster/reroute?retry_failed=true"
 # Disco
 Discos por encima del watermark (default 90%) en los data nodes? No permite crear nuevos indices diarios (por ejemplo de logstash o beats).
 Limpiar indices viejos
+GET _cat/nodes?v&h=name,node.role,heap.percent,cpu,load_1m,disk.used_percent,disk.avail,file_desc.percent&s=node.role
+
 
 ## read only
 cluster.routing.allocation.disk.watermark.flood_stage
