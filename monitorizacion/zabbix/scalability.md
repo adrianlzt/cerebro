@@ -6,6 +6,8 @@ No usar Oracle, no da performance
 IBM DB2, parece que tampoco funciona muy bien
 SQLite no vale para zabbix-server, puede usarse para zabbix-proxy
 
+En grandes instalaciones algunas queries pueden tardar entre 10 y 20s. Es esperable y aceptable.
+Posiblemente quien cause estas queries tan grades sea el Configuration Syncer, que hace ciertas queries que atacan a prácticamente toda la tabla items.
 
 
 
