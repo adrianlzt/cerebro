@@ -75,7 +75,7 @@ curl -XPUT 'localhost:9200/my_index?pretty' -H 'Content-Type: application/json' 
 
 
 
-# Actualizar mapping
+# Actualizar mapping / update
 PUT my_index/_mapping/_doc
 {
   "properties": {
@@ -263,6 +263,26 @@ PUT blogs/_doc/_mapping
 {
   "dynamic": "strict"
 }
+
+
+# ignore malformed
+https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html
+Una vez tenemos un field ya definido, si llega un tipo de dato que no cuadra, ES rechaza el documento.
+Podemos poner "ignore_malformed" a nivel de índice, o de un field en particular, para ignorar esos fields con tipo de dato incorrecto pero seguir indexado el resto del documento.
+
+Al crear un índice podemos especificar que aplique esa opción para todo (no podremos modificarlo en un índice existente):
+PUT my_index
+{
+  "settings": {
+    "index.mapping.ignore_malformed": true
+  },
+  ...
+}
+
+También podemos actualizar el mapping.
+Parece que no funciona para types text o types object.
+Para ese caso (object vs otro tipo) tendremos que hacer un enabled:false al campo, no permitiendo buscar ni agregar por él, aunque si apareerá en el _source
+https://discuss.elastic.co/t/force-an-object-type-into-a-text-field/118609/4
 
 
 # _meta

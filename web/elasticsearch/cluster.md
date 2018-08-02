@@ -218,14 +218,16 @@ En centos7 la unit de systemd ya configura para poner el limite a 65536
 Por defecto si intentamos indexar un dato en un índice que no existe, este índice se autogenerará.
 Esta funcionalidad seguramente la queramos deshabilitar en producción.
 
-PUT _cluster/settings{
+PUT _cluster/settings
+{
   "persistent": {
     "action.auto_create_index": false
   }
 }
 
 Permitir algunos patterns de creación de índices:
-PUT _cluster/settings{
+PUT _cluster/settings
+{
   "persistent": {
     "action.auto_create_index": ".monitoring-es*,logstash-*"
   }

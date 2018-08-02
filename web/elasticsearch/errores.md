@@ -85,8 +85,12 @@ http.cors.allow-origin: "*"
 
 
 
+mirar en mapping.md ignore malformed
 mapper [ansible_facts.ansible_python.version_info] of different type, current_type [text], merged_type [long]
 Estamos intentando indear un array que contiene números y strings (1,2,"last",0). Primero se detecta un número y luego cuando va a entrar el string protesta.
 Debemos especificar primero el mapping.
 
 Otra opción es una configuración que ignora todo lo que no entre correctamente en el mapping. Esto un poco peligroso porque podemos no estar indexando cosas y no darnos cuenta.
+https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html
+Para object vs otro tipo
+https://discuss.elastic.co/t/force-an-object-type-into-a-text-field/118609/4
