@@ -22,3 +22,5 @@ sólo afectan el tiempo de ejecución del script mismo. Todo el tiempo dedicado 
 A nivel php-fpm podemos poner:
 request_terminate_timeout
 The timeout for serving a single request after which the worker process will be killed. This option should be used when the 'max_execution_time' ini option does not stop script execution for some reason. A value of '0' means 'Off'. Available units: s(econds)(default), m(inutes), h(ours), or d(ays). Default value: 0.
+
+Este límite hace un SIGTERM del hijo, por lo que no sale ordenadamente. Si estaba haciendo una query a una bbdd, se quedará en ejecucción.
