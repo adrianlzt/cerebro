@@ -10,3 +10,15 @@ listen.owner = www-data
 listen.group = www-data
 listen.mode = 0660
 
+
+
+# Limitar en tiempo
+php_value[max_execution_time] = 300
+Limita a 300s el tiempo máximo de ejecucción de un script php.
+CUIDADO!
+sólo afectan el tiempo de ejecución del script mismo. Todo el tiempo dedicado a la actividad que ocurre fuera de la ejecución del script, como las llamadas al sistema usando system(), operaciones de secuencia, consultas a la bases de datos, etc. No se incluyen cuando se determina el tiempo máximo del script en funcionamiento. Esto no es cierto en Windows, donde el tiempo medido es real.
+
+
+A nivel php-fpm podemos poner:
+request_terminate_timeout
+The timeout for serving a single request after which the worker process will be killed. This option should be used when the 'max_execution_time' ini option does not stop script execution for some reason. A value of '0' means 'Off'. Available units: s(econds)(default), m(inutes), h(ours), or d(ays). Default value: 0.

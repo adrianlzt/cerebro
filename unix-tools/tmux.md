@@ -66,6 +66,10 @@ C-b M
 Mover panes:
 https://gist.github.com/andreyvit/2921703
 
+Mover panes dentro de una window
+C-b {
+C-b }
+
 Mover un pane a una nueva window
 C-b !
 

@@ -48,6 +48,13 @@ type
 17 - SNMP trap
 18 - Dependent item
 
+Flags:
+0 - a plain item
+1 - items lld discovery
+2 - item prototype de un host
+3 - sin uso?
+4 - a discovered item
+
 
 # History
 El histórico de los datos se almacena en tablas según su tipo:
