@@ -56,8 +56,12 @@ Si queremos enviar más información
 
 
 # Events
+https://www.zabbix.com/documentation/3.2/manual/config/events/sources
 Cuatro tipos de fuentes de eventos:
-  triggers
-  discovery
-  auto registration
-  internal
+
+trigger - whenever a trigger changes its status (OK→PROBLEM→OK)
+  Change of trigger status is the most frequent and most important source of events.
+  Each time the trigger changes its state, an event is generated. The event contains details of the trigger state's change - when did it happen and what the new state is.
+discovery - when hosts or services are detected
+auto registration - when active agents are auto-registered by server
+internal - when an item/low-level discovery rule becomes unsupported or a trigger goes into an unknown state
