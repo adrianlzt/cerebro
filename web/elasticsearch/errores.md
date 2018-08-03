@@ -94,3 +94,10 @@ Otra opción es una configuración que ignora todo lo que no entre correctamente
 https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html
 Para object vs otro tipo
 https://discuss.elastic.co/t/force-an-object-type-into-a-text-field/118609/4
+
+
+
+java.lang.OutOfMemoryError: Java heap space
+Se ha quedado sin heap.
+Aumentar memoria?
+Por qué se ha quedado sin heap? Agregación muy grande? muchos shards? Otra razón?
