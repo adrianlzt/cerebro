@@ -14,8 +14,9 @@ Veremos todas las notificaciones que se le han enviado
 # Notificar un usuario
 Un host tiene items.
 Un trigger se dispara por algunas condiciones en unos items.
-Al dispararse un trigger genera un evento.
+Al dispararse un trigger genera un evento (tipo trigger, source=0).
 Cada eventos se intenta matchear contra cada una de las Actions definidas.
+  process_actions: process all actions of each event in a list
 En caso de que matchee, se ejecutan las Operations definidas (enviar un mensaje, a uno o varios contactos, o ejecutar un comando)
 En las operations podemos definir varios "steps" que se irán ejecutando con el paso del tiempo (escalado)
 

@@ -449,3 +449,8 @@ Production JVM Settings
   server JVM is required in production mode
 3. Configure the JVM to disable swapping
   by requesting the JVM to lock the heap in memory through mlockall (Unix) or virtual lock (Windows)
+
+
+
+# Muerte por consumo excesivo de memoria
+Como gestionar que no nos pase?
