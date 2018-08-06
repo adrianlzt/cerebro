@@ -62,3 +62,11 @@ Veríamos barras más altas en los valores más típicos de latencia
 
 # Pie charts - NO USAR
 https://www.perceptualedge.com/articles/visual_business_intelligence/save_the_pies_for_dessert.pdf
+
+
+
+# Sankey
+https://en.wikipedia.org/wiki/Sankey_diagram
+https://bost.ocks.org/mike/sankey/
+
+Diagrama de flujo donde la anchura de las flechas es proporcional a la cantidad de flujo
