@@ -121,3 +121,4 @@ Meter donde queramos parar
 import epdb
 epdb.set_trace()
 
+No funciona a partir de python 3.7??

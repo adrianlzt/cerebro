@@ -1,6 +1,23 @@
 Otro debbuger: https://github.com/rocky/python3-trepan/
 
 
+# breakpoint
+https://www.python.org/dev/peps/pep-0553/
+A partir de python 3.7 podemos poner en el código:
+breakpoint()
+
+Será equivalente a poner:
+import pdb; pdb.set_trace()
+
+Si queremos ejecutar otro debugger haremos:
+breakpoint()
+
+Y lo ejecutaremos como:
+PYTHONBREAKPOINT=epdb.st python test.py
+
+
+
+
 First of all, pudb is fantastic, just use it over pdb all the time.
 q is for when you want to log data, pudb is for when you want to step through and evaluate lines in-context. It's very possible that you'll want to use both together.
 
