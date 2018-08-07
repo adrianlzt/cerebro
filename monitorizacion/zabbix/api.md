@@ -110,6 +110,11 @@ zbx.map.update({"sysmapid": 4, "selements": selements})
 zbx.map.delete(["8"])
 
 
+### Obtener macros
+>>> zbx.usermacro.get({"output":"extend", "hostids": "10255"})
+[{'hostmacroid': '686', 'hostid': '10255', 'macro': '{$PRUEBA}', 'value': 'adri'}]
+
+
 
 # py-zabbix, con esta podemos enviar traps
 https://pypi.org/project/py-zabbix/
