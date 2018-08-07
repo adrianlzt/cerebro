@@ -2,8 +2,11 @@ psql -h hostname -U username -d database
   Si no pasamos database, se intentará conectar a una con el mismo nombre que el usuario
   Si no pasamos hostname puede que no funcione porque intenta autenticarse de otra manera
 
-Con password:
+Con password (-W ahorra el primer intento de conex sin auth, y lo intenta directamente con auth):
 psql -h hostname -U username -d database -W
+
+Pasando la pass como venv:
+PGPASSWORD=yourpass psql ...
 
 Ejecutar comandos desde la línea de comandos:
 $ psql -c "drop database prueba;"

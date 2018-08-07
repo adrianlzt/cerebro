@@ -13,7 +13,7 @@ User macro:
 # Macros con context
 macros:
 {$LOW_SPACE_LIMIT} 10
-{$LOW_SPACE_LIMIT:”/opt”} 25
+{$LOW_SPACE_LIMIT:"/opt"} 25
 
 trigger:
 {ca_001:vfs.fs.size[{#FSNAME},pfree].last()} < {$LOW_SPACE_LIMIT:{#FSNAME}}
