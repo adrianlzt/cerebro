@@ -8,6 +8,9 @@ re — Regular expression operations
 re.match('^[0-9]*$',"2342")
 Devuelve un objeto _sre.SRE_Match si hace match, nada (None) si no.
 
+re.findall(expr, string)
+busca todas las coincidencias
+
 Esto es como el grep, busca una linea:
 re.search(".*coso.*", texto).group()
 
