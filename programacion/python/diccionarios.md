@@ -83,6 +83,16 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 [123, 0]
 
 
+# Dict comprehensions (python3)
+new_dict = {item['name']:item for item in data}
+
+
+# Convertir array de dicts a dict
+dict((key,d[key]) for d in data for key in d)
+
+
+
+
 # Default value / Añadir un elemento si no existe
 >>> data = {}
 >>> data.setdefault("p3",[]).append({"t":1111})
