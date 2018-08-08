@@ -71,6 +71,7 @@ Filter busca ese contenido exactamente
 ## Otros tipos de objetos
 zbx.trigger.get(...)
   triggers con las tags: zbx.trigger.get({ "selectTags": "extend", "hostids": hostid })
+  "filter": {"status": "0"}  # solo elementos enabled
 zbx.discoveryrule.get(...)
 zbx.problem.get(...)
 
