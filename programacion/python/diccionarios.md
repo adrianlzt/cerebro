@@ -91,6 +91,18 @@ new_dict = {item['name']:item for item in data}
 dict((key,d[key]) for d in data for key in d)
 
 
+# Copia
+nueva = vieja
+nueva copia la referencia de vieja. Lo que hagamos en nueva afectará a vieja.
+
+Para hacer una copia de los datos:
+
+nueva = dict(vieja)
+
+Otra forma:
+from copy import copy
+nueva = copy(vieja)
+
 
 
 # Default value / Añadir un elemento si no existe
