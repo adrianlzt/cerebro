@@ -31,6 +31,10 @@ Parámetros de conf para proxiex pasivos:
   ProxyDataFrequency – how often data is requested from passive proxies
 
 
+# Problemas overflow
+when you have some Zabbix server downtime, proxies are accumulating data, and when Zabbix server comes back online, they will send all accumulated data immediately, which will go to history cache and overload history syncers, which must write the missing data to the DB. This will cause much higher NVPS rate than normal.
+
+
 # Internals
 Info que envia el proxy al server tras recibir un trap:
 

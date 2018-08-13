@@ -90,6 +90,10 @@ select type,count(*) from items group by type order by type;
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id:
 select case when type=0 then 'Zabbix Agent' when type=1 then 'SNMPv1 agent' when type=2 then 'Zabbix trapper' when type=3 then 'simple check' when type=4 then 'SNMPv2 agent' when type=5 then 'Zabbix internal' when type=6 then 'SNMPv3 agent' when type=7 then 'Zabbix agent (active)' when type=8 then 'Zabbix aggregate' when type=9 then 'web item' when type=10 then 'external check' when type=11 then 'database monitor' when type=12 then 'IPMI agent' when type=13 then 'SSH agent' when type=14 then 'TELNET agent' when type=15 then 'calculated' when type=16 then 'JMX agent' when type=17 then 'SNMP trap' when type=18 then 'Dependent item' end as type,case when status=0 then 'ON' else 'OFF' end as status,count(*) from items group by type,status order by type, status desc;
 
+20 items pasivos (Zabbix Agent) enabled de hosts que no sean templates:
+select hosts.name as host,items.name as item from items,hosts where items.type=0 and items.status=0 and hosts.status<>3 and items.hostid=hosts.hostid;
+select count(*) from items,hosts where items.type=0 and items.status=0 and hosts.status<>3 and items.hostid=hosts.hostid;
+
 
 Número de items enabled por hostgroup:
 select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.status=0 group by g.name limit 10;

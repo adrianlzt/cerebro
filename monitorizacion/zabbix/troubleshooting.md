@@ -16,6 +16,10 @@ queue.md
 Mirar graph "Zabbix cache usage".
 La cache "history write" es la que almacena los datos procesados antes de indexarlos en la bbdd.
 
+# Proxies
+Tenemos?
+Mirar "Problema overflow" en proxy.md
+
 
 # Audit
 Reports > Audit
