@@ -3,7 +3,7 @@ http://www.postgresql.org/docs/8.0/static/functions-datetime.html
 Hora en unix epoch en segundos:
 SELECT ROUND(EXTRACT(EPOCH FROM now()));
 
-Timestamp a unix epoch:
+Unix epoch a timestamp:
 select to_timestamp(1250028000);
 
 Filtrar por tiempo:
@@ -18,7 +18,7 @@ ALTER TABLE weather ALTER COLUMN date SET DEFAULT now(); // Para que por defecto
 INSERT INTO weather(crag_id, data) VALUES(1,'{"test": "ok"}');
 
 > SELECT * FROM weather;
- crag_id |            date            |      data      
+ crag_id |            date            |      data
  ---------+----------------------------+----------------
         1 | 2017-08-11 15:25:24.879665 | {"test": "ok"}
 

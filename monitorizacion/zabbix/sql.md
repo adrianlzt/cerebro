@@ -48,6 +48,10 @@ type
 17 - SNMP trap
 18 - Dependent item
 
+Status
+0 - enabled
+1 - disabled
+
 Flags:
 0 - a plain item
 1 - items lld discovery
@@ -68,7 +72,7 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 
 # Queries varias
-Número de items en la tabla history agrupados por buckets de 10':
+Número de items en la tabla history agrupados por buckets de 10', filtrando entre unos timestamps:
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10':
