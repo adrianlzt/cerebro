@@ -52,6 +52,10 @@ Status
 0 - enabled
 1 - disabled
 
+State
+0 - normal
+1 - not supported
+
 Flags:
 0 - a plain item
 1 - items lld discovery
