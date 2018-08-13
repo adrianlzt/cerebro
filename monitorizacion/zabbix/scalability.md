@@ -51,6 +51,7 @@ Se puede consultar este valor en Report > Status of Zabbix
 Tambien en el item "Values processed by Zabbix server per second	 	zabbix[wcache,values]" del "Template App Zabbix Server" (tambien tiene una graph: Zabbix server performance)
 Mejor usar las gráficas para determinar los picos de NVPS y según eso determinar el número de DBSycners que hacen falta.
 Lo mejor es usar el valor máximo de NVPS y usar la regla 1 DBSycners por cada 1000NVPs. Si tenemos MariaDB, usar un hilo de mariadb por cada DBSyncer que tengamos.
+Monitorizar que no nos pasmos del límite 1DBSyncer/1kNVPS
 
 
 Para los pollers, mientras tengamos ram, cuantos más pollers mejor.
