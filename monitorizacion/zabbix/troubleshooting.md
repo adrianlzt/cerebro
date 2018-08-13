@@ -16,6 +16,10 @@ queue.md
 Mirar graph "Zabbix cache usage".
 La cache "history write" es la que almacena los datos procesados antes de indexarlos en la bbdd.
 
+Items/sec procesados por los history syncers:
+ps -ef | grep history | egrep -o "synced [0-9]* .* sec" | cut -d ' ' -f 2,5 | tr ' ' '/' | xargs echo | tr ' ' '+' | bc
+
+
 # Proxies
 Tenemos?
 Mirar "Problema overflow" en proxy.md
