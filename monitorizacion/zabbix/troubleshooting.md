@@ -1,6 +1,6 @@
 # Logs
 Si queremos buscar algo en los logs típicamente haremos:
-tail -f zabbix_server.log | grep -v -e "became supported" -e "became not supported" -e "is not suitable for value" -e "sending configuration data to proxy"
+tail -f zabbix_server.log | grep -v -e "became supported" -e "became not supported" -e "is not suitable for value" -e "sending configuration data to proxy" -e "Cannot evaluate expression"
 
 De esta manera nos quitamos las típicas trazas recurrentes que posiblemtente no estamos buscando.
 
@@ -26,3 +26,5 @@ cat zabbix_server.log | grep "slow query" | grep -e "^\s*[0-9]*:" | awk '{print 
 
 # Procesos internos
 ps -eo args | grep zabbix_serve[r] | less
+
+watch -n 1 'ps -eo args | grep zabbix | grep -v -e idle -e "waiting for"'
