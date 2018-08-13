@@ -12,6 +12,10 @@ cat zabbix_server.log | grep -e "^\s*[0-9]*:" | awk '{print $1;}' | cut -d ':' -
 # Queues
 queue.md
 
+# Caches
+Mirar graph "Zabbix cache usage".
+La cache "history write" es la que almacena los datos procesados antes de indexarlos en la bbdd.
+
 
 # Audit
 Reports > Audit
