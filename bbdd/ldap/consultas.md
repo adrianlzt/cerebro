@@ -20,6 +20,8 @@ ldapsearch -h SERVERLDAP -D uid=USUARIO,ou=users,dc=grafana,dc=org -w PASSWORD -
 Primero hacemos un bind al servidor con nuestro usuario (definiendo el DN entero) y la password.
 Una vez unidos podremos hacer la consulta.
 
+Generalmente, cuando usamos un software con integración con LDAP, lo que probará es a hacer un bind con el user/pass que le pasemos.
+
 
 Por defecto ldapsearch nos da todas las entradas por debajo de la base.
 Si queremos restringir para no "bajar" de un nivel usaremos:

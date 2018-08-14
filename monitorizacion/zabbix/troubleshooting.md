@@ -12,8 +12,8 @@ cat zabbix_server.log | grep -e "^\s*[0-9]*:" | awk '{print $1;}' | cut -d ':' -
 # Queues
 queue.md
 
-Agente zabbix configurado como pasivo en su config pero como activo en la confi del server?
-
+Agente zabbix configurado como pasivo (sin valor en ServerActive) en su config pero como activo en la config del server?
+El Hostname configurado en la config del agente zabbix no es el mismo que en la config del server? Mayusculas/minúsculas?
 
 # Caches
 Mirar graph "Zabbix cache usage".
