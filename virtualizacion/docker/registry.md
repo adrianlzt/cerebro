@@ -131,6 +131,21 @@ curl -i -s -k  -X $'GET' -H $'Host: docker.some.registry' -H $'User-Agent: docke
 
 
 ## Borrar una imagen
+https://quaintous.com/2017/05/19/docker-registry-housekeeping/
+go get github.com/fraunhoferfokus/deckschrubber
+Siempre probar antes con -dry para ver que va a hacer
+CUIDADO con -repo y -tag, es un regex, pillara repos que se llamen igual pero su nombre sea más largo (ej, test pillara testxxx)
+Por defecto solo recupera 5 repos del registry. Si no esta cogiendo el que queremos, aumentar con -repos 10
+
+deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/borrar" -tag "1.0" -latest 0
+  borra la unica imagen de ese repo. Tenemos que poner lo de latest por que si no evita borrar esa unica imagen
+
+deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/api" -latest 5 -dry
+  borrar todas las tags menos las 5 últimas. -dry, no hacer nada, ver que va a borrar
+
+
+
+
 Primero obtenemos el digest
 
 curl -X DELETE -v http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/$(curl -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -X HEAD -s http://localhost:5000/v2/NOMBRE/IMAGEN/manifests/latest -D - | grep "Docker-Content-Digest:" | cut -d ' ' -f 2)
@@ -141,18 +156,6 @@ https://github.com/vidarl/remove_image_from_registry
 imagen de docker para borrar
 Parece que es un poco lio, que hay que ir borrando varias capas
 https://stackoverflow.com/questions/25436742/how-to-delete-images-from-a-private-docker-registry
-
-
-https://quaintous.com/2017/05/19/docker-registry-housekeeping/
-go get github.com/fraunhoferfokus/deckschrubber
-Siempre probar antes con -dry para ver que va a hacer
-deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/borrar" -tag "1.0" -latest 0
-  borra la unica imagen de ese repo. Tenemos que poner lo de latest por que si no evita borrar esa unica imagen
-
-deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/api" -latest 5 -dry
-  borrar todas las tags menos las 5 últimas. -dry, no hacer nada, ver que va a borrar
-
-
 
 
 https://raw.githubusercontent.com/byrnedo/docker-reg-tool/master/docker_reg_tool
