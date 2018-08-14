@@ -19,6 +19,9 @@ select relname,n_dead_tup,n_live_tup,n_dead_tup*100/NULLIF(n_live_tup,0) AS "pct
 
 n_live_tup y n_dead_tup son estimaciones.
 
+Tablas ordenadas por ultimo autoanalyze (no vacio):
+select relname,n_dead_tup,n_live_tup,n_dead_tup*100/NULLIF(n_live_tup,0) AS "pct_dead_live_tuples",last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables WHERE last_autoanalyze is not null order by last_autoanalyze desc;
+
 
 Note: VACUUM FULL would reclaim the space and return it to the OS, but is has a number of disadvantages. Firstly it acquires exclusive lock on the table, blocking all operations (including SELECTs). Secondly, it essentially creates a copy of the table, doubling the disk space needed, so it’s not very practical when already running out of disk space.
 No ejecutarlo si se va a volver a llenar.
