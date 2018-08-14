@@ -46,6 +46,7 @@ https://blog.mayflower.de/5650-Running-a-secure-docker-registry.html
 https://github.com/docker/distribution/blob/master/docs/configuration.md
 
 Gitlab a partir de la 8.8 viene con un registry.
+Otra opción opensource es Nexus
 
 cp ~/adrianRepo/virtualizacion/docker/registry_config.yml config.yml
 mkdir data
@@ -140,3 +141,26 @@ https://github.com/vidarl/remove_image_from_registry
 imagen de docker para borrar
 Parece que es un poco lio, que hay que ir borrando varias capas
 https://stackoverflow.com/questions/25436742/how-to-delete-images-from-a-private-docker-registry
+
+
+https://quaintous.com/2017/05/19/docker-registry-housekeeping/
+go get github.com/fraunhoferfokus/deckschrubber
+Siempre probar antes con -dry para ver que va a hacer
+deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/borrar" -tag "1.0" -latest 0
+  borra la unica imagen de ese repo. Tenemos que poner lo de latest por que si no evita borrar esa unica imagen
+
+deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/api" -latest 5 -dry
+  borrar todas las tags menos las 5 últimas. -dry, no hacer nada, ver que va a borrar
+
+
+
+
+https://raw.githubusercontent.com/byrnedo/docker-reg-tool/master/docker_reg_tool
+Si no me funciona cambiar la linea donde chequea la existencia de ~/.docker/config.json por $HOME/.docker/config.json
+docker_reg_tool https://docker.com list
+  listar repos
+
+docker_reg_tool https://docker.com list name/repo
+  listar tags
+
+El delete no me funciona

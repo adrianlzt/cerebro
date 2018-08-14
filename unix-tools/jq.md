@@ -11,6 +11,9 @@ cat fichero.json | jq '.key'
 jq '.parent' fichero.json
 jq '.parent,.other' fichero.json
 
+Keys con carecteres raros:
+.foo.["some:strange"]
+
 jq -r '.cosa'
   quitamos las comillas
 
