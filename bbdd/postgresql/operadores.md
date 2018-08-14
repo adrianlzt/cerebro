@@ -29,3 +29,10 @@ select array_to_string(array(select name from projects),',') AS cosa, id FROM ta
 CREATE OR REPLACE FUNCTION test() RETURNS text AS
 ...
 LANGUAGE 'xxx';
+
+
+# Cast
+'xxx'::text
+'xxx'::char
+  nos devuelve solo el primer caracter
+
