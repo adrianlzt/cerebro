@@ -59,6 +59,14 @@ Ejemplos de uso:
   - usar un campo del item value como tag
   - ayuda a entender de donde viene el problema en las notificaciones
 
+No podemos modificar las tags de un trigger generado por un prototype.
+Podemos modificarlas, o crear nuevas (respetando la incrementalidad del triggertagid, mirar sql.md), pero cada vez que se ejecute el LLD, se pondrán los valores del template (borrará y actualizará según sea necesario).
+La función que actualiza los triggers tags para cada LLD:
+libs/zbxdbhigh/host.c
+  Function: DBcopy_template_trigger_tags
+  Purpose: copies tags from template triggers to created/linked triggers
+  Parece que lo que hace es borrar todos los tags y luego recrearlos
+
 
 # Forecast
 https://www.zabbix.com/documentation/3.4/manual/config/triggers/prediction

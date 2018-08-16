@@ -5,7 +5,12 @@ Para sacar al fichero de logs todas las queries
   log_duration = on
   log_hostname = on
 
+sed -i "s/#log_statement = 'none'/log_statement = 'all'/" postgresql.conf
+
 Por defecto escribirá en el directorio: /var/lib/pgsql/data/pg_log
 
 Recargar la configuración para que tenga efecto (como user postgres):
 pg_ctl reload -D /var/lib/pgsql/data
+
+pg_ctl reload -D /var/lib/postgresql/data/
+  esto creo que es para ubutus y el container oficial

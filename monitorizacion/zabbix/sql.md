@@ -108,3 +108,10 @@ select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g wh
 
 Top 10 de hostgroups por número de items pasivos (enabled):
 select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
+
+
+
+# Tocando la bbdd
+Es el frontend el que se encarga de generar elementos en la bbdd.
+
+La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "ids" el útimo ID generado por tabla y field.
