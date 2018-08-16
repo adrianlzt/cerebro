@@ -17,7 +17,9 @@ nmcli device wifi connect '(your wifi network name/SSID)' password '(your wifi p
   Conectar a una wifi
 
 nmcli d s
+nmcli d s wlo1
   mostrar devices
+  nos muestra el server DNS asignado por DHCP
 
 nmcli c s
   mostrar conexiones. Cada una dira si es ethernet o wifi

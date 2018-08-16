@@ -1,0 +1,1 @@
+../dns/servidor_asignado.md
