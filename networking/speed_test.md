@@ -4,6 +4,7 @@ http://www.cyberciti.biz/faq/linux-unix-test-internet-connection-download-upload
 
 
 curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+Bajado el speedtest.py en este dir (16/8/2018)
 
 
 http://www.dslreports.com/speedtest
