@@ -1,3 +1,4 @@
+mirar pgpool.md
 http://wiki.postgresql.org/wiki/PgBouncer
 
 PgBouncer is a lightweight connection pooler for PostgreSQL.
