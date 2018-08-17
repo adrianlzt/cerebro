@@ -62,10 +62,12 @@ Ejemplos de uso:
 No podemos modificar las tags de un trigger generado por un prototype.
 Podemos modificarlas, o crear nuevas (respetando la incrementalidad del triggertagid, mirar sql.md), pero cada vez que se ejecute el LLD, se pondrán los valores del template (borrará y actualizará según sea necesario).
 La función que actualiza los triggers tags para cada LLD:
-libs/zbxdbhigh/host.c
-  Function: DBcopy_template_trigger_tags
-  Purpose: copies tags from template triggers to created/linked triggers
-  Parece que lo que hace es borrar todos los tags y luego recrearlos
+libs/zbxdbhigh/lld_trigger.c
+  Function: lld_triggers_save
+  Purpose: add or update triggers in database based on discovery rule
+  Como parte de su ejecucción, cambia los tags de los triggers discovered al valor que tenga en el template
+
+Petición para que se puedan modificar: https://support.zabbix.com/browse/ZBXNEXT-4557
 
 
 # Forecast

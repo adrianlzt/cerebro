@@ -8,6 +8,7 @@ Para sacar al fichero de logs todas las queries
 sed -i "s/#log_statement = 'none'/log_statement = 'all'/" postgresql.conf
 
 Por defecto escribirá en el directorio: /var/lib/pgsql/data/pg_log
+En el container lo sacara por docker logs
 
 Recargar la configuración para que tenga efecto (como user postgres):
 pg_ctl reload -D /var/lib/pgsql/data
