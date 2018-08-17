@@ -122,6 +122,13 @@ En este caso la query devuelve un 200, pero _shards.failed=5
 # Heap / garbage collector
 Problemas con picos en el garbage collector? Tal vez tenemos demasiado heap reservado. Probar a bajarlo.
 
+Realizando GC todo el rato? Mirar los logs.
+Cuando está fallando vemos trazas cada 10" tipo:
+[2018-08-17T07:10:33,532][WARN ][o.e.m.j.JvmGcMonitorService] [NODO] [gc][3587755] overhead, spent [12.5s] collecting in the last [13s]
+[2018-08-17T07:10:51,471][WARN ][o.e.m.j.JvmGcMonitorService] [NODO] [gc][old][3587756][138006] duration [17.3s], collections [1]/[17.9s], total [17.3s]/[16.9h], memory [7.3gb]->[7.3gb]/[7.9gb], all_pools {[young] [4.1mb]->[28.2mb]/[532.5mb]}{[survivor] [0b]->[0b]/[66.5mb]}{[old] [7.3gb]->[7.3gb]/[7.3gb]}
+
+Parece que esto sucede cuando se llena el heap (o próximo a llenado ~96%)?
+
 
 
 # Responses
