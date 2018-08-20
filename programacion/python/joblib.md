@@ -1,4 +1,6 @@
 https://pythonhosted.org/joblib/
+https://chryswoods.com/parallel_python/
+
 
 # caching
 https://pythonhosted.org/joblib/memory.html
@@ -13,7 +15,7 @@ Pensado principalmente para calculos muy grandes, por ejemplo tareas con numpy
 >>> import numpy as np
 >>> a = np.vander(np.arange(3)).astype(np.float)
 >>> square = mem.cache(np.square)
->>> b = square(a)                                   
+>>> b = square(a)
 >>> c = square(a)
 Esta última llamada tirará de la cache en vez de realizar la computacion
 
