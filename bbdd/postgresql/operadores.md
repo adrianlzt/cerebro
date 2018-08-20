@@ -11,10 +11,14 @@ Pepe-Martinez
 
 
 # select string_to_array('ftp,dns',',');
- string_to_array 
+ string_to_array
  -----------------
   {ftp,dns}
 
+Coger un elemento (1 es el primer elemento)
+array[1]
+array[1:3]
+(string_to_array('ftp,dns',','))[1]
 
 Elegir elementos según los valores de un array
 # select id,name from services WHERE name = ANY(string_to_array('ftp,dns',','));
