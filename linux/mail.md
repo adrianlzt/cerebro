@@ -4,6 +4,13 @@ Para leer los emails:
 mutt -f /var/mail/root
 
 
+# mail
+listar emails
+h
+h 100
+f 100-200
+
+
 # Imap
 https://debian-administration.org/article/726/Performing_IMAP_queries_via_curl
 
