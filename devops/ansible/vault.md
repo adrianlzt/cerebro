@@ -31,6 +31,9 @@ Para usarlo en un playbook:
 ansible-playbook site.yml --ask-vault-pass
 ansible-playbook site.yml --vault-password-file ~/.vault_pass.txt
 
+Tambien se puede pasar como una variable de entorno
+ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+
 Usar alias para no tener que escribir (VIEJO):
 alias ansible='ansible --vault-password-file ~/.ansible.vault'
 alias ansible-playbook='ansible-playbook --vault-password-file ~/.ansible.vault'
