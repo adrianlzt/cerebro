@@ -71,6 +71,12 @@ Salida en XML
 nmap -oX fichero.xml ...
 
 
+# Vulnerabilidades
+nmap -Pn -sV --script vuln 127.0.0.1
+  -Pn: escanear el host aunque no conteste a ping
+  -sV: mostrar versiones del software de los puertos abiertos
+
+
 # Python
 python-nmap
 
