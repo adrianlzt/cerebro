@@ -56,3 +56,8 @@ Devuelve True si encuentra la regex en la frase
 >>> for r in rrr.finditer(a):
 ...   r.groups()
 
+
+El punto (.) no matchea las newlines. Si queremos que lo haga tendremos que poner
+re.MULTILINE|re.DOTALL
+
+Si no, tendremos que pasar especificamente los newlines (cuidado con que nos pasen \n, \r o \r\n
