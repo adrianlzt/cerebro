@@ -58,7 +58,3 @@ ssh -v -o IdentitiesOnly=yes -i .ssh/id_rsa.github.pub git@github.com
 
 # No usar el agente
 SSH_AUTH_SOCK="" ssh -i clave.pem user@host
-
-
-Creo que tambien vale:
-ssh -o IdentitiesOnly=no ...
