@@ -41,3 +41,18 @@ expect -re "awk\[^\n]+\n(.+)\r\n$PROMPT"
 
 # Asignar variables
 set b [exec cat /home/a | grep "work" | awk -F {=} {{print $2}}]
+
+
+# Timeout
+Espera 5" a ver si encuentra %PROMPT%, si no, escribe Running y vuelve a esperar en el mismo expect
+
+set timeout 5
+expect {
+    timeout {
+        puts "Running..."
+        exp_continue
+    }
+    "%PROMPT%" {
+        puts "Finished."
+    }
+}
