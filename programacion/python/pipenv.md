@@ -10,6 +10,9 @@ pipenv shell
 pipenv --python 2.7
   para generarlo con python2.7
 
+PIPENV_IGNORE_VIRTUALENVS=1 pipenv ...
+  ignorar si ya tenemos cargado algún virtualenv y empezar uno de cero
+
 Según vayamos instalando con:
 pipenv install
 se irán agregando las dependencias al fichero Pipfile.lock
@@ -31,4 +34,5 @@ pipenv --rm
 
 # Limitaciones
 La principal que encuentro respecto a virtualenvwrapper, es que para activar un virtualenv tenemos que estar en el directorio donde creamos el venv o en un subdirectorio.
+
 
