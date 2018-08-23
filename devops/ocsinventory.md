@@ -13,6 +13,9 @@ git clone https://github.com/OCSInventory-NG/OCSInventory-Docker-Stack.git
 cd OCSInventory-Docker-Stack
 docker-compose up -d
 
+url: http://xxx/ocsreports/
+admin:admin
+
 
 
 # Agente
