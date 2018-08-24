@@ -1,5 +1,8 @@
 https://www.zabbix.com/documentation/3.2/manual/api/reference/item
 
+Codigo en frontends/php/include/classes/api/services
+
+
 # Ruby
 https://github.com/red-tux/zbxapi
 
