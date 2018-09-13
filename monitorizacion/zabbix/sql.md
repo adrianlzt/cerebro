@@ -83,6 +83,9 @@ select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10':
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
 
+Número de eventos trigger contados cada hora para un intervalo determinado:
+select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where source=0 and object=0 and clock>1536745132 and clock<1536788332 group by hour order by hour;
+
 Todos los items de un hostgroup:
 select items.name,items.itemid from hosts_groups,groups,items where items.hostid=hosts_groups.hostid and hosts_groups.groupid=groups.groupid and groups.name='SOMEHOSTGROUP' limit 10;
 
