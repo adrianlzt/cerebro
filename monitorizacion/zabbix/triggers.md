@@ -38,6 +38,9 @@ Podemos hacer que los triggers tengan como dependencia otro trigger.
 Asi podemos evitar que si cae un router que conecta con varios nodos, salten todas las alarmas.
 Configurado correctamente solo la alarma del router saltará.
 
+Si un trigger depende de otro, si el "padre" está activo, los hijos no se procesarán, no podremos ver si podrían estar activos (pequeño inconveniente).
+En la vista de Dashboard - Triggers, veremos un símbolo (flecha hacia arriba o abajo) para los triggers dependientes o con dependencias.
+
 
 # Severidad
 Distintas severidades actuan teniendo diferentes colores en los dashboards, lanzando diferentes "user medias" y actuando en los triggers.
