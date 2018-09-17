@@ -31,10 +31,13 @@ Pero si salta el timeout:
   Cannot evaluate expression: expected numeric token at "Timeout was reached: Operation timed out after 15001 milliseconds with 0 bytes received)=1".
 Fallará la expresión y seguirá el error.
 
+
 # Dependencias
+https://www.zabbix.com/documentation/3.4/manual/config/triggers/dependencies
 Podemos hacer que los triggers tengan como dependencia otro trigger.
 Asi podemos evitar que si cae un router que conecta con varios nodos, salten todas las alarmas.
 Configurado correctamente solo la alarma del router saltará.
+
 
 # Severidad
 Distintas severidades actuan teniendo diferentes colores en los dashboards, lanzando diferentes "user medias" y actuando en los triggers.
