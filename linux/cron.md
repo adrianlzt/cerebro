@@ -77,10 +77,12 @@ Las tareas se ejecutan en background por defecto, por lo que no hace falta poner
 https://help.ubuntu.com/community/CronHowto
   "These commands (and their run times) are then controlled by the cron daemon, which executes them in the system background"
 
+
 # Gestion del stdout/stderr
 unix-tools/chronic.md
 
 Con esta utilidad solo tendremos stdout/stderr si el comando tiene un RC!=0
+
 
 # Timeout
 http://mywiki.wooledge.org/BashFAQ/068
@@ -107,6 +109,11 @@ flock -x hace un lock exclusivo usando el fichero /srv/nagios/dcip_jobs.lck. Evi
 pgrep, solo ejecuta el curl si esta corriendo icinga con parent pid = 1 (para evitar que matchee otros procesos icinga que no sean la monitorizacion, comprobación de configuración por ejemplo)
 curl -f hace que curl retorne un código de error (rc=22) en caso de que el server nos devuelva un error (5xx, 4xx). Aunque la doc dice que no es completamente fiable
 
+
+# Segundos
+La mínima resolución de cron es un minuto, pero podemos hacer un pequeño workaround. Ejemplo ejecutando cada 30s:
+* * * * * /path/to/executable param1 param2
+* * * * * ( sleep 30 ; /path/to/executable param1 param2 )
 
 
 # Problemas
