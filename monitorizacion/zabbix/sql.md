@@ -64,6 +64,8 @@ Flags:
 3 - sin uso?
 4 - a discovered item
 
+Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template.
+
 
 # History
 El histórico de los datos se almacena en tablas según su tipo:
@@ -121,6 +123,9 @@ select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g wh
 Top 10 de hostgroups por número de items pasivos (enabled):
 select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
 
+
+Query para obtener los templates que tienen triggers con nodata asociados a items trapper (solo triggers originales, no heredados de linked templates):
+select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
 
 
 # Tocando la bbdd
