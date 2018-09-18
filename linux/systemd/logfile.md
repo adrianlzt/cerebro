@@ -1,5 +1,4 @@
-Enviar el stdout de systemd a un fichero.
-
+# Enviar el stdout de systemd a un fichero
 Para versiones nuevas de systemd (>=236):
 StandardOutput=file:YOUR_ABSPATH_FILENAME
 StandardError=file:YOUR_ABSPATH_FILENAME
@@ -12,3 +11,11 @@ SyslogIdentifier=<your program identifier> # without any quote
 
 /etc/rsyslog.d/<new_file>.conf
 if $programname == '<your program identifier>' then /path/to/log/file.log
+
+
+
+# Desactivar el logging de una unit
+Por ejemplo si es un "docker start" y docker ya está almacenando los logs.
+
+StandardOutput=null
+StandardError=null
