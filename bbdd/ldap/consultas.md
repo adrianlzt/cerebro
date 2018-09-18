@@ -13,6 +13,7 @@ Se hace un bind pero sin login.
 FILTER:
 "(uid=alt390)" cn sn
   Buscar entradas con uid=alt390 y mostrar solo su cn y sn
+  Podemos usar asteriscos "nane=Adrián*" (parece que meter un asterisco al comienzo ralentiza bastante la búsqueda)
 
 ### Con bind (logueadas)
 ldapsearch -h SERVERLDAP -D uid=USUARIO,ou=users,dc=grafana,dc=org -w PASSWORD -b BASE
