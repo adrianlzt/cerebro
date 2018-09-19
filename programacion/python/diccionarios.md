@@ -150,3 +150,8 @@ Ordernar dos arrays de diccionarios usando una key determinada:
 from operator import itemgetter
 list_1, list_2 = [sorted(l, key=itemgetter('unique_id'))
                   for l in (list_1, list_2)]
+
+
+Imprimir un dict con sus keys en orden
+for key in sorted(mydict.iterkeys()):
+    print("%s: %s" % (key, mydict[key]))
