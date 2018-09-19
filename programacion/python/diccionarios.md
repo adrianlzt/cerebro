@@ -143,3 +143,10 @@ Si le falta alguna -> False
 https://docs.python.org/3/library/collections.html#collections.OrderedDict
 
 Diccionarios que recuerdan el orden de las keys
+
+
+# Sort
+Ordernar dos arrays de diccionarios usando una key determinada:
+from operator import itemgetter
+list_1, list_2 = [sorted(l, key=itemgetter('unique_id'))
+                  for l in (list_1, list_2)]
