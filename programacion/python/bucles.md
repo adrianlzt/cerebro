@@ -70,3 +70,15 @@ Obtener de un dict solo la clave filtrando por los valores
 >>> next(counter)
 1
 
+
+
+# Iteradores
+Solo se pueden recorrer una vez https://stackoverflow.com/questions/19759247/listing-a-filter-object-twice-will-return-a-blank-list
+>>> a = [1, 2, 3]
+>>> b = iter(a)
+>>> list(b)
+[1, 2, 3]
+>>> list(b)
+[]
+
+Los filter() con iteradores
