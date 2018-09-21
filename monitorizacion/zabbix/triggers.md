@@ -132,3 +132,9 @@ Ejemplo:
 # Recovery expression
 Podemos definir una expresión distinta para definir cuando se debe recuperar el trigger.
 IMPORTANTE, la condición de alerta del trigger no puede seguir activa para que esto funcione.
+
+
+# Math
+https://www.zabbix.com/documentation/3.4/manual/config/triggers/expression
+A<B ⇔ (A<B-0.000001) since Zabbix 3.4.9
+A<B ⇔ (A≤B-0.000001) before Zabbix 3.4.9
