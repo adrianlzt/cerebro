@@ -23,8 +23,15 @@ except ValueError as e:
 
 elemento in list # True or False
 if valor in list # Nos vale para saber si un elemento esta en un array, complejidad O(n) (mejor obtener un elemento de un dict)
+
 lista[1] #Obtener el elemento que esta en esa posición de la lista
 lista[1:] # Obtener los elementos del segundo hasta el final
+lista[2:9] + lista[12:15]  # dos secciones
+a[start:end:step] # start through not past end, by step
+a[::-1]    # all items in the array, reversed
+a[-3::-1]  # everything except the last two items, reversed
+  https://stackoverflow.com/questions/509211/understanding-pythons-slice-notation
+
 lista.append(elemento)  equivalent to a[len(a):] = [x]
 lista.extend(otra_lista) añade los elementos de otra_lista a lista
 lista.insert(0,'/') añade al comienzo del la lista. No sobreescribe, añade.
