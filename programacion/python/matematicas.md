@@ -1,3 +1,6 @@
+mirar collections.md para ciertos trabajos con arrays
+
+
 NumPy
 SciPy
 
