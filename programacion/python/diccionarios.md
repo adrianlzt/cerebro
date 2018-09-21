@@ -60,10 +60,10 @@ for k, v in knights.items():
 >>> {k: v for k, v in var.iteritems() if k[0] != '-' and v}
 {'alarm-send': True}
 
->>> [k for k, v in var.iteritems() if k[0] != '-' and v]
+>>> [k for k, v in var.items() if k[0] != '-' and v]
 ['alarm-send']
 
->>> cmd = [k for k, v in var.iteritems() if k[0] != '-' and v][0]
+>>> cmd = [k for k, v in var.items() if k[0] != '-' and v][0]
 >>> cmd
 'alarm-send'
 
