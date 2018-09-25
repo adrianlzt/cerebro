@@ -84,6 +84,9 @@ fh = logging.FileHandler("/tmp/pepe")
 logger.addHandler(fh)
 logger.debug("adios") # por stdout y al fichero
 
+Para añadir un handler que pinte por stdout/stderr
+ch = logging.StreamHandler()
+logger.addHandler(ch)
 
 
 
