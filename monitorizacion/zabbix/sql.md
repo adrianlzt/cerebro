@@ -130,25 +130,19 @@ select hosts.name,triggers.description from functions,triggers,items,hosts where
 
 
 Obtener problemas de un host:
-SELECT e.eventid
-FROM   triggers t
-       INNER JOIN functions f ON ( f.triggerid = t.triggerid )
-       INNER JOIN events e ON ( e.objectid = t.triggerid )
-       INNER JOIN items i ON ( i.itemid = f.itemid )
-WHERE  e.object = 0
-       AND t.value = 1
-       AND i.status = 0
-       AND t.status = 0
-       AND t.priority > 2
-       AND e.acknowledged = 0
-       AND e.eventid = (SELECT max(eventid)
-                        FROM   events e
-                        WHERE  e.object = 0
-                               AND t.value = 1
-                               AND i.status = 0
-                               AND t.status = 0
-                               AND e.objectid = t.triggerid
-                               AND i.hostid=10115);
+SELECT t.description ,h.host
+    FROM triggers t,
+         functions f,
+         items i, 
+         problem p, 
+         hosts h 
+    WHERE p.objectid=t.triggerid 
+          AND p.objectid=f.triggerid 
+          AND f.itemid=i.itemid 
+          AND p.r_eventid IS NULL 
+          AND p.source='0' 
+          AND p.object='0' 
+          AND i.hostid = h.hostid
 
 
 # Tocando la bbdd
