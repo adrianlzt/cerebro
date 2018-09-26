@@ -12,6 +12,14 @@ Instalamos Dynatrace en nuestros propios servers
 https://www.dynatrace.com/trial/managed/
 
 
+# Criticas
+Es muy bueno para monitorizar aplicaciones webs y poder ver donde está el problema hasta llegar a una función.
+Limitaciones, no es adaptable a necesidades. No SNMP. Todo orientado a web, no vale para procesos batch.
+Nada de elementos de red, solo nos enteraremos cuando esté afectando a la app (variación de tiempos de respuesta).
+Dificil por ejemplo enterarse de que un disco se está llenando.
+Se integra con ciertas apps, pero parece que no es customizable.
+
+
 # Agentes
 
 ## OneAgent
