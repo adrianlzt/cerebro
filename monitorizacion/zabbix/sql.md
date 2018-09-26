@@ -128,6 +128,29 @@ Query para obtener los templates que tienen triggers con nodata asociados a item
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
 
 
+
+Obtener problemas de un host:
+SELECT e.eventid
+FROM   triggers t
+       INNER JOIN functions f ON ( f.triggerid = t.triggerid )
+       INNER JOIN events e ON ( e.objectid = t.triggerid )
+       INNER JOIN items i ON ( i.itemid = f.itemid )
+WHERE  e.object = 0
+       AND t.value = 1
+       AND i.status = 0
+       AND t.status = 0
+       AND t.priority > 2
+       AND e.acknowledged = 0
+       AND e.eventid = (SELECT max(eventid)
+                        FROM   events e
+                        WHERE  e.object = 0
+                               AND t.value = 1
+                               AND i.status = 0
+                               AND t.status = 0
+                               AND e.objectid = t.triggerid
+                               AND i.hostid=10115);
+
+
 # Tocando la bbdd
 Es el frontend el que se encarga de generar elementos en la bbdd.
 
