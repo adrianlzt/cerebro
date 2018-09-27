@@ -1,2 +1,1 @@
-Utilidad para obtener info:
-hwinfo
+performance/hardware_info.md

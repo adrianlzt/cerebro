@@ -8,7 +8,7 @@ yum search virtualbox
 yum install VirtualBox-A-B
 
 Nos dará un error: WARNING: The vboxdrv kernel module is not loaded.
-yum install kernel-devel
+yum install kernel-devel make gcc perl
 vboxconfig
 
 

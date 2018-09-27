@@ -2,6 +2,10 @@ Host-only conecta las máquinas entre si y con mi máquina.
 
 Internal network conecta las máquinas entre si, pero no con mi máquina.
 
+Bridged, como si estuviese conectada directamente a la red del host
+https://devminz.github.io/posts/devops/virtualbox-cli-vm-bridged-networking/
+  para crear el bridge a mano para poder conectar una vm con la cli
+
 
 # DHCP
 virtualbox levanta un proceso por cada red para servir el dhcp.
