@@ -2,10 +2,14 @@ https://www.virtualbox.org/wiki/Linux_Downloads
 
 
 # Centos
-yum install kernel-headers
-wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
-Meterlo en /etc/yum.repos.d
-http://superuser.com/questions/499059/unable-to-install-virtualbox-specify-kern-dir-directory-installing-vir
+curl https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -o /etc/yum.repos.d/virtualbox.repo
+yum search virtualbox
+  para ver que versiones hay
+yum install VirtualBox-A-B
+
+Nos dará un error: WARNING: The vboxdrv kernel module is not loaded.
+yum install kernel-devel
+vboxconfig
 
 
 # Arch
