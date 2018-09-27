@@ -16,11 +16,8 @@ VBoxManage modifyvm $VM --boot1 dvd --boot2 disk --boot3 none --boot4 none
 VBoxManage modifyvm $VM --memory 2048 --vram 128
 
 Elegir como queremos conectar la red:
-Crear la interfaz (ip de la misma red que alguna de las interfaces de host):
-  brctl addbr vmtestbr1
-  ifconfig vmtestbr1 192.168.222.1  netmask 255.255.255.0 up
-  desaparece si se reinicia la maquina
-VBoxManage modifyvm $VM --nic1 bridged --bridgeadapter1 vmtestbr1
+VBoxManage modifyvm $VM --nic1 bridged --bridgeadapter1 eth0
+  poner la interfaz a la que se unira el server
 VBoxManage modifyvm $VM --nic1 nat
 
 VBoxHeadless -s $VM

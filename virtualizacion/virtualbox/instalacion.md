@@ -11,6 +11,9 @@ Nos dará un error: WARNING: The vboxdrv kernel module is not loaded.
 yum install kernel-devel make gcc perl
 vboxconfig
 
+Instalar el extension pack para tener mas funcionalidad, RDP por ejemplo.
+VBoxManage extpack install fichero.vbox-extpack
+
 
 # Arch
 No instalar los paquetes virtualbox-guest-*
