@@ -61,8 +61,8 @@ if ! is_file "$FILE"; then
 fi
 
 if is_key "$FILE"; then
-  echo -e "$FILE is a private key"
-  exit 1
+  openssl rsa -in $FILE -check -noout
+  exit 0
 fi
 
 

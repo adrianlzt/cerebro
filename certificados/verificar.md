@@ -19,3 +19,14 @@ Hay que tener cuidado con el comando openssl, porque puede coger los certificado
 
 No podemos crear un dir para pasarlo a CAfile, necesita un formato especial.
 Si no pasamos un dir valido, usa el del SO.
+
+
+
+
+# Comprobar que un certificado o CSR pertenece a una clave
+https://kb.wisc.edu/middleware/page.php?id=4064
+https://www.sslshopper.com/certificate-key-matcher.html
+
+diff <(openssl x509 -noout -modulus -in *.crt) <(openssl rsa -noout -modulus -in *.key); echo $?
+
+Si devuelve 0, sin otros errores, es que el crt corresponde a la key
