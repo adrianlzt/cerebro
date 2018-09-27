@@ -7,6 +7,7 @@ Stacki
   python
   adrianRepo/devops/stacki
 foreman+katello
+  adrianRepo/devops/foreman
 Cobbler
   https://cobbler.github.io
   slow dev?
