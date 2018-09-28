@@ -5,3 +5,6 @@ Dar a nuevo e ir eligiendo las opciones en el menú.
 
 
 Los templates son los "scripts" que se usan para arrancar por PXE, provisionar, post-instal, etc
+
+
+Tendremos que crear una subnet (en "Infrastructure") para poder provisionar maquinas.

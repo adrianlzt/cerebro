@@ -7,6 +7,7 @@ Hardware mínimo
 
 sudo yum -y install https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm https://yum.theforeman.org/releases/1.19/el7/x86_64/foreman-release.rpm
 sudo yum -y install foreman-installer
-sudo foreman-installer
+sudo foreman-installer -i
+  iterativo para poder selecionar lo que queremos instalar (por ejemplo, tener dhcp para poder arrancar maquinas con pxe)
 
 /opt/puppetlabs/bin/puppet module install puppetlabs/ntp

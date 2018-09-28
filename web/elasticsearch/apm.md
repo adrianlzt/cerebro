@@ -36,6 +36,7 @@ setup.dashboards.enabled: true
 frontend.enabled: true
 
 
+
 # Client
 ## Python
 pip install elastic-apm[flask]
@@ -119,6 +120,44 @@ client.capture_message(param_message={
     "foo": "bar"
   }
 )
+
+
+
+## RUM - JS
+https://www.elastic.co/guide/en/apm/agent/js-base/current/index.html
+https://github.com/elastic/apm-server/blob/master/docs/configuration-rum.asciidoc
+
+npm install elastic-apm-js-base --save
+Meter este codigo en nuestro JS:
+import { init as initApm } from 'elastic-apm-js-base'
+var apm = initApm({
+
+  // Set required service name
+  // (allowed characters: a-z, A-Z, 0-9, -, _,
+  // and space)
+  serviceName: '',
+
+  // Set custom APM Server URL (
+  // default: http://localhost:8200)
+  serverUrl: '',
+
+  // Set service version (required for sourcemap
+  // feature)
+  serviceVersion: ''
+})
+
+
+Tenemos que agregar config al apm server:
+apm-server.rum.enabled: true
+apm-server.rum.allow_origins: ['*']
+#apm-server.rum.rate_limit: 10
+#apm-server.rum.library_pattern: "node_modules|bower_components|~"
+#apm-server.rum.exclude_from_grouping: "^/webpack"
+#apm-server.rum.source_mapping.cache.expiration: 5m
+#apm-server.rum.source_mapping.index_pattern: "apm-*-sourcemap*"
+
+
+
 
 
 
