@@ -43,6 +43,8 @@ pip install elastic-apm[flask]
 Ejemplos:
   apm_flash.py
 
+Cuidado! Si tenemos el modo debug (variable de entorno FLASK_DEBUG=1) no enviará métricas
+
 
 En caso de perdida de conex con el server APM se perderán esas trazas. Parece que la libreria no cachea, al menos con la config por defecto.
 Saldrán unos errores indicando que no ha podido enviar los datos:

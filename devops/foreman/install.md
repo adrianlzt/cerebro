@@ -9,4 +9,4 @@ sudo yum -y install https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noar
 sudo yum -y install foreman-installer
 sudo foreman-installer
 
-
+/opt/puppetlabs/bin/puppet module install puppetlabs/ntp
