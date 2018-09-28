@@ -1,6 +1,6 @@
 http://docs.vagrantup.com/v2/networking/index.html
 
-Bridged network:
+# Bridged network
 Descomentar la siguiente linea en el Vagrantfile:
 config.vm.network :public_network
 
@@ -11,12 +11,16 @@ Podemos definir la interfaz por defecto con:
 Para tener una lista de preferidas mirar en http://stackoverflow.com/questions/17729757/preferred-fallback-network-interfaces-with-vagrant
 
 
-Private network:
+# Private network
 config.vm.network :private_network, ip: "192.168.50.4"
 
 Redireccionar puertos:
 config.vm.network :forwarded_port, guest: 80, host: 8080
   Con el parámetro :host_ip se puede apuntar a una ip determinada
+
+
+
+
 
 
 Vagrant 1.4.0
@@ -26,7 +30,7 @@ VirtualBox internal networks are now supported
 Para LXC:
 config.vm.provider :lxc do |lxc|
   lxc.customize 'network.ipv4', '10.0.3.100/32'
-end 
+end
 
 No podemos usar esta forma de configurar la red en LXC si definimos el hostname.
 En este caso podemos hacero provisionando con shell:
