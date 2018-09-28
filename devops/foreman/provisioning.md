@@ -35,3 +35,33 @@ Tras dar a guardar se bajará la info de ubuntu y creará los ficheros para PXE 
 
 Nos falta tener el server dhcp. Lo podemos instalar con:
 puppet module install theforeman-dhcp
+
+La configuración que le he aplicado:
+classes:
+  concat::setup: 
+  dhcp:
+    hosts:
+      unattended.usync.us:
+        mac: 01:08:00:27:b4:6a:4d
+        ip: 10.0.2.161
+    interface:
+    - eth1
+    nameservers:
+    - 10.0.2.51
+    - 8.8.8.8
+    - 8.8.4.4
+    pools:
+      10_2_net:
+        network: 10.0.2.0
+        mask: 255.255.255.0
+        range: 10.0.2.170 10.0.2.190
+        gateway: 10.0.2.51
+    pxefilename: "${dhcp::params::pxefilename}"
+    pxeserver: 10.0.2.117
+
+
+
+
+El servidor obtendrá una ip por DHCP.
+Se bajará unos ficheros con tftp, el importante será: /var/lib/tftpboot/pxelinux.cfg/01-08-00-27-b4-6a-4d (con la mac que hayamos registrado al crear el host en foreman)
+Ahi pone de donde se bajará el siguiente fichero de configuracion a aplicar.
