@@ -59,7 +59,14 @@ tclquit
 
 # Interfaces
 sh ip interface brief
+sh int summary
+  tabla con paquetes enviados, recibidos, tasas de transmision, etc
+  limpiar los contadores: clear counters gigabitEthernet 0/2
 sh interfaces Vlan 101 ?
+
+Mostrar solo el rate de los ultimos 5 minutos:
+sh int GigabitEthernet 0/0 | i rate
+
 
 
 # Configuracion
