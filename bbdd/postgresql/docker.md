@@ -2,7 +2,8 @@ https://hub.docker.com/_/postgres/
 https://store.docker.com/images/postgres
 
 Arrancar instancia de postgres:
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+Cliente local: psql -h localhost -U postgres
 
 Cliente psql:
 docker run -it --rm --link some-postgres:postgres postgres psql -h postgres -U postgres

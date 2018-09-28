@@ -3,7 +3,7 @@ https://www.elastic.co/blog/elastic-apm-beta-released
 
 Cargar una libreria en nuestro código que enviará métricas a ES (pasando primero por el apm server) por donde vaya yendo el código, tiempos, etc
 
-Soporta Node.js y python (ruby, javascript, java y go en un futuro)
+Soporta Node.js, python, ruby, javascrip (RUM=Real User Monitoring, cliente) (java y go en un futuro)
 
 
 La organización del APM se hace al rededor de transactions y errors.

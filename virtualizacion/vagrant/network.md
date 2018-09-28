@@ -20,6 +20,11 @@ config.vm.network :forwarded_port, guest: 80, host: 8080
 
 
 
+# Public
+https://www.vagrantup.com/docs/networking/public_network.html
+
+Con ip estatica:
+config.vm.network "public_network", ip: "192.168.0.17", :bridge => 'enp5s0f0'
 
 
 
