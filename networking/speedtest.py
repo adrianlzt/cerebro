@@ -1892,4 +1892,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print("CUIDADO! Me ha dado resultados muy pequeños algunas veces")
     main()
