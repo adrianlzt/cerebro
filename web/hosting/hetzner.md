@@ -6,3 +6,5 @@ VMs en un datacenter en alemania a precios muy baratos
 
 están más lejos de los nodos neutros
 la latencia sube un poco
+
+Discos malos, petan a menudo
