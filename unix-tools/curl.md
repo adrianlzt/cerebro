@@ -114,6 +114,8 @@ Podemos poner:
 curl -s -w "Time total: %{time_total}\n" http://localhost:8086/ -o /dev/null
 
 Mirar en la sección de -w para ver que más valores podemos obtener
+  speed_download
+  speed_upload
 
 # timeout
 --connect-timeout

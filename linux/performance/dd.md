@@ -8,6 +8,10 @@ mirar time.md (info sobre iowait)
 dd if=/dev/zero of=file bs=1M count=1
   crear fichero de 1MB
 
+dd if=/dev/urandom of=file bs=1M count=1
+  crear fichero random de 1MB
+  util para que una compresion no lo reduzca de tamaño
+
 Si usamos un bs alto, necesitaremos tanta memoria disponible como tamaño del bs.
 Asi que mejor coger un bs pequeño y subir el count.
 
