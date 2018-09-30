@@ -277,6 +277,9 @@ interface Vlan101
 
 
 # Rutas
+Mostrar
+show ip route
+
 Estaticas
 ip route 10.8.0.0 255.255.255.0 10.0.1.28
 ip route 10.8.0.0 255.255.255.0 GigabitEthernet0/1 10.0.1.28
