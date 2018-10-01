@@ -55,6 +55,8 @@ Failed to submit message: '<no message value>'
 
 
 
+https://www.elastic.co/guide/en/apm/agent/python/current/configuration.html
+  aqui vienen las variables que se pueden usar
 Las opciones se pueden pasar por variables de entorno. Mirar conf/__init__.py "class Config" (hay que prefijar con "ELASTIC_APM_")
 Ejemplo con variables de entorno:
 ELASTIC_APM__WAIT_TO_FIRST_SEND=0 ELASTIC_APM_SERVICE_NAME=Desdeenv ELASTIC_APM_FLUSH_INTERVAL=1 python apm_custom.py
