@@ -90,6 +90,11 @@ sh version | in XX
 sh processes cpu | ex 0.0
   es como "grep -v 0.0"
 
+# beg / begin
+sh conf | beg pubkey
+Empezar a mostrar el output por la expr reg que le pasemos
+
+
 # uptime
 show version
 
@@ -383,6 +388,57 @@ Son las configuraciones para acceder al router. Pueden ser interfaces físicas (
 Para las VTY se aplicará una access list, las reglas de firewall que la gestionan.
 Podemos ver la configuración de estas reglas de acceso con:
 sh access-lists
+
+Con el comando "sh line" podemos ver las listas de acceso que se aplica a cada linea (AccO = access list output, AccI, access list input)
+
+
+
+# SSH
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_ssh/configuration/15-s/sec-usr-ssh-15-s-book/sec-ssh-term-line.html
+A parte de activar ssh en alguna de las líneas, para poder usarlo tenemos que tener activado el servidor.
+Chequeamos su estado con:
+ip show ssh
+
+Si nos da el error:
+Please create RSA keys to enable SSH
+
+Generar las keys con:
+crypto key generate rsa usage-keys label router-key
+  How many bits in the modulus [512]: 1024
+
+
+## Meter pub keys para acceder
+https://nsrc.org/workshops/2016/apricot2016/raw-attachment/wiki/Track5Wireless/cisco-ssh-auth.htm
+fold -b -w 72 ~/.ssh/id_rsa.pub
+  esto sera lo que copiaremos (cisco no admite lineas largas)
+
+conf t
+ip ssh pubkey-chain
+username sshadmin
+  este debera ser el usuario con el que hacemos login en el router via ssh
+key-string
+<< paste your multi-line public key here >>
+exit
+
+Comprobar con
+show run | beg pubkey
+
+
+Error al conectar que dice: "Invalid key length"
+Tenemos que crear una clave rsa mas larga y usarla en el server ssh:
+conf t
+crypto key generate rsa modulus 2048
+ip ssh rsa keypair-name nombre
+  "nombre" sera el nombre que nos haya dicho al generar la clave rsa
+
+Error: "Unable to negotiate with 10.0.2.51 port 22: no matching cipher found. Their offer: aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc"
+ssh -c 3des-cbc IP
+
+
+
+## SSH client
+Podemos hacer ssh desde dentro del router:
+ssh HOST
 
 
 
