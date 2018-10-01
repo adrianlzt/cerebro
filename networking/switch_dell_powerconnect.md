@@ -13,6 +13,9 @@ Para guardar la config:
 copy running-config startup-config
 https://www.dell.com/support/article/fr/fr/frbsdt1/how10280/how-to-save-and-back-up-your-configuration-on-dell-powerconnect-force10-and-n-series-switches-via-cli?lang=en
 
+Info del sistema (modelo, version, MAC, etc):
+sh system
+
 
 # Logging
 show logging
