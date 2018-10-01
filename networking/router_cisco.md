@@ -287,7 +287,7 @@ ip route 10.8.0.0 255.255.255.0 GigabitEthernet0/1 10.0.1.28
 
 # ACL / CBAC
 https://www.youtube.com/watch?v=VfX0lA4BLIU
-https://learningnetwork.cisco.com/thread/12997<Paste>
+https://learningnetwork.cisco.com/thread/12997
 
 
 # VPN
@@ -375,6 +375,14 @@ crypto map VPN-STATIC
 write
   guardar la conf en la memoria permanente
 
+
+
+# Lines / TTY / VTY
+https://www.oreilly.com/library/view/cisco-ios-in/0596008694/ch04.html
+Son las configuraciones para acceder al router. Pueden ser interfaces físicas (RS232) o virtuales (VTY, usando telnet, ssh, rlogin, etc).
+Para las VTY se aplicará una access list, las reglas de firewall que la gestionan.
+Podemos ver la configuración de estas reglas de acceso con:
+sh access-lists
 
 
 
