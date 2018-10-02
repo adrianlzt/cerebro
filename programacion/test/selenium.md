@@ -41,6 +41,31 @@ pip install selenium
 Desde el codigo tendremos que poner el endpoint donde conectarnos
 
 
+
+## Crear webdriver de chrome
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME)
+
+Cuanto esperar a elementos del DOM en cada paso
+driver.implicitly_wait(30)
+
+
+
+
+## Proxy
+https://stackoverflow.com/a/40628176
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+p = Proxy()
+p.proxy_type = ProxyType.MANUAL
+p.httpProxy = "213.19.58.17:48107"
+#p.socks_proxy = "ip_addr:port"
+#p.ssl_proxy = "ip_addr:port"
+webdriver.Remote('http://127.0.0.1:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME, proxy=p)
+
+
+
+
 ## Consejos
 No intentar chequear HTTP return codes. Ser como un usuario y mirar las webs que resultan
 
