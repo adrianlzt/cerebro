@@ -1,5 +1,7 @@
 http://www.freeformatter.com/xpath-tester.html
 
+Para probarlo, abrir las Developer Tools de chrome, pestaña elements y Control+F. Ahí podemos poner expresiones xpath que buscaran sobre el codigo.
+
 1. Select the document node
 /
 
@@ -32,6 +34,12 @@ http://www.freeformatter.com/xpath-tester.html
 
 11. Select all 'actor' nodes with the 'id' attribute value lower or equal to '3'.
 //actor[@id<=3]
+
+11bis: ul con clase "tag-list"
+//ul[@class="tag-list"]
+
+11bis2: ul que tiene al menos la clase nav
+//ul[contains(@class, 'nav')]
 
 12. Select all the children of the 'singers' node.
 /root/foo:singers/*
