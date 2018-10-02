@@ -19,10 +19,17 @@ Lo que hace es ir grabando apertura de webs, clicks en sitios (determinados por 
 Cuando lo genera no espera tiempos entre las acciones (solo si aún no ha aparecido el elemento HTML que tenga que usar)
 Podemos seleccionar la velocidad de play en un ajuste a la derecha.
 
+Si falla el play, nos generará una screenshot.
+
 
 ## Exportar
 Una vez tengamos generados nuestro testcase, podemos exportarlo en diferentes lenguajes.
 En python por ejemplo nos generará un script que se comunicará con un servidor selenium donde ejecutará el test.
+CUIDADO! Mirar en el coigo si aparecen lineas tipo:
+  # ERROR: Caught exception [ERROR: Unsupported command [selectWindow | win_ser_1 | ]]
+Puede que algunas cosas no estén soportadas en python.
+
+Si queremos exportar toda una test suite, nos tocará ir exportando cada test_case y copiando las funciones test_XXX.
 
 Mirar en adrianRepo/monitorizacion/selenium.md como montar el server y el worker.
 
@@ -37,3 +44,8 @@ self.driver = webdriver.Remote(
    desired_capabilities=DesiredCapabilities.CHROME)
 
 Por defecto parece que conecta con el chrome que tengamos arracado en local.
+
+
+
+Para quitar los errores tipo "ResourceWarning: unclosed <socket.socket...", al ejecutar el unitest (última línea) poner:
+	unittest.main(warnings='ignore')
