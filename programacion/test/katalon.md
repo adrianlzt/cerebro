@@ -38,6 +38,8 @@ Mirar en adrianRepo/monitorizacion/selenium.md como montar el server y el worker
 Por defecto el codigo que genera para python usar el navegador firefox e intenta conectar a localhost:4444
 
 Tenemos que tener instalado el modulo de selenium para python para poder ejecutarlo.
+  pip install selenium
+  pipenv install selenium
 
 Para usar un server remoto de selenium:
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -49,5 +51,5 @@ Por defecto parece que conecta con el chrome que tengamos arracado en local.
 
 
 
-Para quitar los errores tipo "ResourceWarning: unclosed <socket.socket...", al ejecutar el unitest (última línea) poner:
+En python3, para quitar los errores tipo "ResourceWarning: unclosed <socket.socket...", al ejecutar el unitest (última línea) poner:
 	unittest.main(warnings='ignore')

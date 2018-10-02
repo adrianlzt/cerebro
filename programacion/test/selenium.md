@@ -28,6 +28,10 @@ docker run --link selenium-hub:hub selenium/node-chrome
 El código python deberá apuntar a localhost:4444/wd/hub
 
 
+Si un programa python falla por excepcion, parece que a veces el worker se queda pillado.
+Reiniciando el server se suele solventar.
+
+
 
 # Webdriver
 APIs para controlar un navegador y hacer los tests
@@ -47,9 +51,12 @@ No recomendado para hacer pruebas de performance. Hay muchas variables externas 
 
 ## Locating elements
 https://seleniumhq.github.io/docs/start.html#locating_elements
+https://selenium-python.readthedocs.io/locating-elements.html
 
-WebElement cheese = driver.findElement(By.id("cheese"));
-WebElement cheddar = cheese.findElement(By.id("cheddar"));
+from selenium.webdriver.common.by import By
+driver.find_element(By.XPATH, '//button[text()="Some text"]')
+driver.find_elements(By.XPATH, '//button')
+
 
 
 ## Acciones

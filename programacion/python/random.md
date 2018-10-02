@@ -4,7 +4,7 @@ Warning The pseudo-random generators of this module should not be used for secur
 
 from random import random
 random()
-  numero entre 0 y 1
+  numero entre 0 y 1 (incluídos)
 
 from random import randint
 randint(0,10)
