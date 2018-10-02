@@ -21,6 +21,8 @@ Podemos seleccionar la velocidad de play en un ajuste a la derecha.
 
 Si falla el play, nos generará una screenshot.
 
+En chrome, si seleccionamos un elemento con el Inspector, podemos copiar el XPath. Esto nos será útil si el xpath generado por Katalon falla (por ejemplo, toma el nombre de usuario como parte del path)
+
 
 ## Exportar
 Una vez tengamos generados nuestro testcase, podemos exportarlo en diferentes lenguajes.
