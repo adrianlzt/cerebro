@@ -1,4 +1,5 @@
-mirar katalon.md para una interfaz para crear los tests
+mirar katalon.md para una interfaz para crear los tests.
+Nos da un plugin de chrome para generar los tests grabando las interaciones que hacemos en el navegador.
 
 http://www.seleniumhq.org/
 
@@ -19,11 +20,13 @@ https://github.com/SeleniumHQ/docker-selenium/wiki/Getting-Started-with-Hub-and-
 
 Arrancamos un "hub" (como el nodo master):
 docker run -p 4444:4444 --name selenium-hub selenium/hub
+  interfaz web donde podemos ver los clientes conectados y la config del hub: http://localhost:4444/grid/console
 
 Arrancamos un nodo chrome y lo unimos al grid (al cluster, al nodo master):
 docker run --link selenium-hub:hub selenium/node-chrome
 
 El código python deberá apuntar a localhost:4444/wd/hub
+
 
 
 # Webdriver
