@@ -129,6 +129,8 @@ client.capture_message(param_message={
 https://www.elastic.co/guide/en/apm/agent/js-base/current/index.html
 https://github.com/elastic/apm-server/blob/master/docs/configuration-rum.asciidoc
 
+Ejemplo de como configurarlo para React: https://github.com/elastic/apm-agent-js-base/blob/7fff075665ea779bbc807060a12d300e11010cd8/test/e2e/react/app.jsx
+
 npm install elastic-apm-js-base --save
 Meter este codigo en nuestro JS:
 import { init as initApm } from 'elastic-apm-js-base'
