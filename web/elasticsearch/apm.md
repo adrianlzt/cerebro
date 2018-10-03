@@ -113,10 +113,29 @@ with capture_span(name="mifirma", span_type="some.type", extra={"url": "miurl"},
 
 El diccionario se almacenará "extra" como context (estará disponible en el doc indexado como context.url en este caso)
 
+Si en "extra" metemos como si se tratase de una llamada de una DB nos lo mostrará en la interfaz de Kibana: https://github.com/elastic/kibana/blob/ecefab55e647104d95b954b48129d90b1f36b3ac/x-pack/plugins/apm/public/components/app/TransactionDetails/Transaction/Spans/SpanDetails/index.js#L168
+Ejemplo:
+with elasticapm.capture_span("get_articles", extra={"db":{"type":"python", "statement": "tag:%s,author:%s,favorited:%s,limit:%s,offset:%s" % (tag,author,favorited,limit,offset)}}):
+
+
 O con un decorador (no me dará el stack trace correcto de donde estamos, solo las librerias por encima):
 import elasticapm
 @elasticapm.capture_span("nombre")
 def func():
+
+
+Un decorador custom más interesante. Que nos pone el nombre de la función automáticamente y los parámetros.
+Si tenemos varios decoradores, ponerlo lo más cerca a la función.
+from functools import wraps
+
+def apmdecorator(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        with elasticapm.capture_span(f.__name__, extra={"db":{"statement": "args: %s, kwargs: %s" % (args, kwargs)}}):
+            ret = f(*args, **kwargs)
+        return ret
+    return wrapper
+
 
 
 #### exceptions (van a la pestaña "Errors")
