@@ -91,6 +91,10 @@ https://www.elastic.co/guide/en/apm/agent/python/2.x/api.html#api-tag
 
 Mirar ejemplo de uso libre de la lib de APM en: apm_custom.py
 
+
+#### decorador
+
+
 #### custom transaction
 client.begin_transaction("spans1")
 elasticapm.set_custom_context({"cosas": "datos_custom"})
@@ -108,6 +112,11 @@ with capture_span(name="mifirma", span_type="some.type", extra={"url": "miurl"},
   edad = mifunc(1)
 
 El diccionario se almacenará "extra" como context (estará disponible en el doc indexado como context.url en este caso)
+
+O con un decorador (no me dará el stack trace correcto de donde estamos, solo las librerias por encima):
+import elasticapm
+@elasticapm.capture_span("nombre")
+def func():
 
 
 #### exceptions (van a la pestaña "Errors")
@@ -133,6 +142,7 @@ client.capture_message(param_message={
 ## RUM - JS
 https://www.elastic.co/guide/en/apm/agent/js-base/current/index.html
 https://github.com/elastic/apm-server/blob/master/docs/configuration-rum.asciidoc
+https://github.com/elastic/apm-agent-js-core
 
 Ejemplo de como configurarlo para React: https://github.com/elastic/apm-agent-js-base/blob/7fff075665ea779bbc807060a12d300e11010cd8/test/e2e/react/app.jsx
 
@@ -175,6 +185,14 @@ sp = st.startSpan("mifirma","mitipo");
 ...
 sp.end();
 st.end()
+
+Las peticiones XHR que se produzcan durante nuestra transacción serán añadidas automáticamente como spans
+
+Podemos añadir marcas a la transacción, pero no veo que se usen luego en Kibana.
+Se meterán como:
+st.mark("prueba")
+Se indexarán como:
+transaction.marks.custom.prueba: segundos desde el inicio de la transacción
 
 
 
