@@ -51,6 +51,20 @@ Cuanto esperar a elementos del DOM en cada paso
 driver.implicitly_wait(30)
 
 
+### Throttle connetion / meter delay y limites de ancho de banda
+https://stackoverflow.com/a/46672769
+https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.chrome.webdriver
+
+from selenium import webdriver
+d = webdriver.Chrome()
+d.set_network_conditions(latency=1000, offline=False,download_throughput=500 * 1024,upload_throughput=500 * 1024)
+d.get("http://192.168.1.200:8001/")
+
+Genera retraso en "Requesting the document, waiting for the first byte"
+
+Parece que no es posible si tenemos el chrome en remoto.
+https://stackoverflow.com/questions/52617943/selenium-set-network-conditions-on-remote-chrome
+
 
 
 ## Proxy
