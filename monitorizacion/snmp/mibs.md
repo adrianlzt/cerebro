@@ -20,10 +20,12 @@ $ snmptranslate -On SNMPv2-MIB::sysDescr.0
 $ snmptranslate -Td .1.3.6.1.2.1.1.1.0
 Descripción del OID
 
-Ver directorio donde están las mibs:
+Ver directorio donde están las mibs (mirar más abajo para como mostrar otras mibs):
 snmptranslate -Dinit_mib .1.3 2>&1 |grep MIBDIR
 o
 net-snmp-config --default-mibdirs
+
+Tenemos que poner los ficheros .mib directamente en ese directorio.
 
 
 Lista de nombre y numero (-m all hace que se carguen todas las MIBS):

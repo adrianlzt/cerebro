@@ -77,3 +77,8 @@ key-string AAAA...
 No es muy util, porque siempre tendremos que seguir metiendo user y pass:
 http://www.admlife.de/2013/02/06/dell-about-ssh-key-authentication-on-powerconnect-m6220/
 https://mtu.net/~engstrom/ssh-key-auth-powerconnect/
+
+
+
+# MIBs
+Disponible al bajar el firmware de la web de soporte de dell
