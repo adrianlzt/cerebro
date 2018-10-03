@@ -29,6 +29,9 @@ evt.type=accept and proc.name!=httpd
 
 evt.type=open and fd.name contains /etc
 
+evt.args contains GET
+  mostrar solo las llamadas GET
+
 Ficheros abiertos por un proceso
 proc.name="check_logfiles." and fd.type=file and evt.type=open
 
