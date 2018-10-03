@@ -25,6 +25,11 @@ Cada nombre distinto de transacción aparecerá como una pestaña distinta en Ki
 Parece que aunque tengamos una transaction type distinta, luego la UI los agrupa por name. Por lo que podemos ver transactions en una tab (type) que no es la suya (bug?)
 
 
+# Distributed tracing
+https://github.com/elastic/apm-agent-js-base/issues/32
+Parece que la idea aqui es poder correlar peticiones del RUM con el backend.
+
+
 # Server
 docker run -d --name apm-server -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
 
@@ -159,6 +164,17 @@ apm-server.rum.allow_origins: ['*']
 #apm-server.rum.exclude_from_grouping: "^/webpack"
 #apm-server.rum.source_mapping.cache.expiration: 5m
 #apm-server.rum.source_mapping.index_pattern: "apm-*-sourcemap*"
+
+
+
+### Custom transactions/spans
+https://github.com/elastic/apm-agent-js-base/blob/master/docs/api.asciidoc
+
+st = elasticApm.startTransaction("pruebaManual","click");
+sp = st.startSpan("mifirma","mitipo");
+...
+sp.end();
+st.end()
 
 
 
