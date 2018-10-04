@@ -7,10 +7,13 @@ apt-get install tftp-hpa
 Arch, server y cliente
 pacman -S tftp-hpa
 
+Server:
+https://linux.die.net/man/8/in.tftpd
+
 
 Otro cliente:
 pacman -S atftp
-$ atftp 127.0.0.1        
+$ atftp 127.0.0.1
 tftp> get pepe
 
 
@@ -21,3 +24,7 @@ Servidor docker:
 docker run -p 69:69/udp -v "$PWD/:/var/tftpboot" --rm -it pghalliday/tftp
   no se porque pero no expone el puerto en 127.0.0.1
   usar otra de las IPs del docker host
+
+
+# Errores
+Si sale sin dar error posiblemente estamos usando un puerto que no podemos (somos root? puertos privilegiados?)

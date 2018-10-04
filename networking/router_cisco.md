@@ -442,6 +442,46 @@ ssh HOST
 
 
 
+# Monitor / tcpdump / capture
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/epc/command/epc-cr-book/epc-cr-m1.html
+https://community.cisco.com/t5/routing/ios-packet-capture-help-needed/td-p/1337577
+https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-embedded-packet-capture/116045-productconfig-epc-00.html
+
+Creamos el buffer donde almacenar la info:
+monitor capture buffer NOMBREBUFFER
+  por defecto guarda 1M con elementos de 9.5kB. Linnear buffer
+  podemos exportarlo en PCAP, poner al final: export DONDE
+    donde puede ser la memoria flash, ftp, http, scp, etc
+
+Creamos el punto de captura (en que interfaz):
+capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
+
+Unimos el punto de captura con el buffer:
+monitor capture point associate NOMBREPUNTO NOMBREBUFFER
+
+Aplicar filtro (opcional) (va aqui?):
+monitor capture match ...
+
+Empezamos la captura:
+monitor capture point start NOMBREPUNTO
+
+Parar la captura:
+monitor capture point start NOMBREPUNTO
+
+Ver los datos:
+show monitor capture buffer NOMBREBUFFER dump
+
+Exportar los datos en pcap:
+monitor capture buffer BUF export ...
+  server tftp con docker: docker run -p 69:69/udp -v "$PWD/:/var/tftpboot" --rm -it pghalliday/tftp
+
+Borrar punto de captura y buffer:
+no capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
+no monitor capture buffer NOMBREBUFFER
+
+
+
+
 
 # Errores
 Puerto flapeando? mirar show log
