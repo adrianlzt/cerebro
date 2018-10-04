@@ -441,11 +441,31 @@ Podemos hacer ssh desde dentro del router:
 ssh HOST
 
 
+# Netstat
+sh control-plane host open-ports
+sh tcp brief all | in LISTEN
+  puertos abiertos
+
+sh tcp
+  conex establecidas
+
+sh tcp brief numeric
+  salida tipo netstat
+
+sh udp
+  tabla con las conex udp
+
+Detalle de conexiones por PID
+sh socket
+sh socket PID detail
+
+
 
 # Monitor / tcpdump / capture
 https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/epc/command/epc-cr-book/epc-cr-m1.html
 https://community.cisco.com/t5/routing/ios-packet-capture-help-needed/td-p/1337577
 https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-embedded-packet-capture/116045-productconfig-epc-00.html
+http://www.firewall.cx/cisco-technical-knowledgebase/cisco-routers/1089-cisco-router-embedded-packet-capture-configuration-usage-troubleshooting-exporting.html
 
 Creamos el buffer donde almacenar la info:
 monitor capture buffer NOMBREBUFFER
@@ -454,7 +474,7 @@ monitor capture buffer NOMBREBUFFER
     donde puede ser la memoria flash, ftp, http, scp, etc
 
 Creamos el punto de captura (en que interfaz):
-capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
+monitor capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
 
 Unimos el punto de captura con el buffer:
 monitor capture point associate NOMBREPUNTO NOMBREBUFFER
@@ -470,10 +490,23 @@ monitor capture point start NOMBREPUNTO
 
 Ver los datos:
 show monitor capture buffer NOMBREBUFFER dump
+  podemos intentar copiar lo que vemos a un fichero de texto y pasarle un par de scripts para convertirlo a pcap (si no podemos/queremos hacer el export)
+  https://github.com/mad-ady/ciscoText2pcap
 
 Exportar los datos en pcap:
 monitor capture buffer BUF export ...
-  server tftp con docker: docker run -p 69:69/udp -v "$PWD/:/var/tftpboot" --rm -it pghalliday/tftp
+monitor capture buffer BUF export tftp://10.0.1.7/picorouter1.pcap
+  no se puede cambiar el puerto (fallara si intentamos hacer tftp://a.b.c.d:nn/)
+  server tftp con docker: docker run -v "/tmp/tftp:/var/tftpboot" --rm -it --net host pghalliday/tftp --secure /var/tftpboot -L -c
+  no funciona? tal vez configurar la interfaz de salida de tftp? ip tftp source-interface gigabitEthernet 0/1
+
+
+Ver puntos configurados:
+sh monitor capture point all
+
+Ver buffers configurados:
+sh monitor capture buffer all parameters
+
 
 Borrar punto de captura y buffer:
 no capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
