@@ -6,6 +6,39 @@ docker run -p 8080:8080 -p 9990:9990 --rm -it jboss/wildfly /opt/jboss/wildfly/b
 Wildfly es el nombre de JBoss desde 2014, aunque parece que la gente le sigue llamando JBoss.
 No me queda muy claro porque en las imagenes de docker hay algunos jboss que no son wildfly?
 
+Configuración, puede encontrarse en: /opt/jboss/jboss-eap-6.4/domain/configuration
+No tengo claro que siempre tenga que ser ahí o que esa sea la única fuente de datos.
+
+
+# Puertos
+https://access.redhat.com/documentation/en-us/jboss_enterprise_application_platform/6/html/installation_guide/network_ports_used_by_jboss_enterprise_application_platform_62<Paste>
+Cuando tenemos varios servidores corriendo dentro de jboss, cada uno tendrá un puerto distinto.
+El puerto será el socket binding group + port offset
+
+Ejemplo de config de puertos base para diferente protocolos:
+ <socket-binding name="ajp" port="8000"/>
+ <socket-binding name="http" port="8200"/>
+ <socket-binding name="https" port="8400"/>
+ <socket-binding name="remoting" port="8600"/>
+
+Ejemplo de config de un server:
+<server-group name="GRP_jolokia" profile="jolokia">
+  <socket-binding-group ref="standard-sockets-c4" port-offset="89"/>
+
+Este server tendrá asignados los puertos (en este caso https no está activado parece):
+8089 -> ajp
+8289 -> http
+8689 -> remoting
+
+
+
+El puerto por defecto de JMX es el 9999
+/opt/jboss/jboss-eap-6.4/domain/configuration/host.xml-        <management-interfaces>
+/opt/jboss/jboss-eap-6.4/domain/configuration/host.xml-            <native-interface security-realm="ManagementRealm">
+/opt/jboss/jboss-eap-6.4/domain/configuration/host.xml:                <socket interface="management" port="${jboss.management.native.port:9999}"/>
+
+
+
 
 # Monitorización
 Se usa a API de management
