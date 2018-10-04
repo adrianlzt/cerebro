@@ -28,6 +28,7 @@ Vigila el fichero /etc/passwd ante lecturas(r), escrituras(w), ejecuciones(x) y 
 Le asigna la palaba "password-file", para poder luego buscar estas interacciones
 # auditctl -w /etc/passwd -p rwxa -k password-file
   IMPORTANTE! Poner -w primero y luego -p
+  Parece que no funciona si el fichero al que apuntamos es un link
 
 El path debe ser absoluto.
 
@@ -109,6 +110,7 @@ Intentar filtrar por directorio/fichero para conseguir mayor performance (solo s
 
 Analizar llamadas a un binario:
 auditctl -a exit,always -F arch=b64 -F path=/usr/bin/icinga -S execve -k icinga
+  Parece que no funciona si el fichero al que apuntamos es un link
 ausearch -i -k icinga
 
 Auditar kills -9
