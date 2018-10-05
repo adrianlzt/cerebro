@@ -143,19 +143,32 @@ write
 
 
 # ACLs / listas de control de acceso
+https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
+https://www.cisco.com/c/es_mx/support/docs/ip/access-lists/26448-ACLsamples.pdf
 http://www.cisco.com/c/en/us/support/docs/ip/access-lists/26448-ACLsamples.html
 http://www.cisco.com/c/en/us/support/docs/ip/access-lists/44541-tacl.html#ex
 http://web.cecs.pdx.edu/~jrb/netsec/handouts/router.acls/ciscodeny.txt
 Ejemplos típicos.
 
+Cada interfaz puede tener dos access-list, una de entrada y otra de salida.
+La primera regla que haga match será la usada (el resto se ignorarán).
+Si no se hace match, se bloquea por defecto.
+
 ## Mostrar
 show ip access-list
+
+ACL de una interfaz:
+ip access-lists interface gigabitEthernet 0/0
+
 
 ## Comentarios
 Podemos poner el comando "remark" para poner comentarios en la ACL. Ejemplo
 ip access-list extended telnetting
  remark Do not allow host1 subnet to telnet out
  deny tcp host 172.16.2.88 any eq telnet
+
+Los remarks no se muestran con "sh access-list", pero si en "sh running-config".
+Usar por ejemplo como "sh running-config | be NombreACL"
 
 
 ## Crear
@@ -169,6 +182,10 @@ ip access-list extended Block-DNS-From-The-Internet
   permit ip any any
 end
 
+Cada regla que metemos se le va dando un número incremental por 10. La primera regla tendrá el 10, segunda el 20, etc. Esto lo hacemos para a posteriori poder colocar reglas entre medias.
+Podemos también especificar ese número a mano: "100 permit ip any any".
+Si editamos esa access-list, lo que vayamos añadiendo se pondrá al final. Si al final tenemos el "permit ip any any" no tendrá sentido que lo metamos luego, por lo que tendremos que forzar una posición.
+
 conf term
 interface NOMBREINTERFAZ NUMERO
 ip access-group Block-DNS-From-The-Internet in
@@ -180,6 +197,11 @@ conf term
 interface NOMBREINTERFAZ NUMERO
 ip access-group Block-DNS-From-The-Internet in
 end
+
+
+Si queremos bloquear una IP, meter, antes de la regla "permit ip any any" una del tipo:
+40 deny ip host 35.195.100.51 any
+
 
 ## Borrar
 CUIDADO! no borrar una ACL sin antes quitarla de las interfaces, bloquearemos todo el trafico.
@@ -486,7 +508,7 @@ Empezamos la captura:
 monitor capture point start NOMBREPUNTO
 
 Parar la captura:
-monitor capture point start NOMBREPUNTO
+monitor capture point stop NOMBREPUNTO
 
 Ver los datos:
 show monitor capture buffer NOMBREBUFFER dump
@@ -494,8 +516,8 @@ show monitor capture buffer NOMBREBUFFER dump
   https://github.com/mad-ady/ciscoText2pcap
 
 Exportar los datos en pcap:
-monitor capture buffer BUF export ...
-monitor capture buffer BUF export tftp://10.0.1.7/picorouter1.pcap
+monitor capture buffer NOMBREBUFFER export ...
+monitor capture buffer NOMBREBUFFER export tftp://10.0.1.7/picorouter1.pcap
   no se puede cambiar el puerto (fallara si intentamos hacer tftp://a.b.c.d:nn/)
   server tftp con docker: docker run -v "/tmp/tftp:/var/tftpboot" --rm -it --net host pghalliday/tftp --secure /var/tftpboot -L -c
   no funciona? tal vez configurar la interfaz de salida de tftp? ip tftp source-interface gigabitEthernet 0/1
@@ -512,6 +534,14 @@ Borrar punto de captura y buffer:
 no capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
 no monitor capture buffer NOMBREBUFFER
 
+
+
+# SNMP
+Chequear si lo estamos exponiendo a internet (bloquear con la ACL de entrada de internet)
+Cambiar la community para que no use la de por defecto (public)
+conf term
+  snmp-server community otronombre ro
+  no snmp-server community public
 
 
 
