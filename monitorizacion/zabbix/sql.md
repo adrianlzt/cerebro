@@ -133,16 +133,20 @@ Obtener problemas de un host:
 SELECT t.description ,h.host
     FROM triggers t,
          functions f,
-         items i, 
-         problem p, 
-         hosts h 
-    WHERE p.objectid=t.triggerid 
-          AND p.objectid=f.triggerid 
-          AND f.itemid=i.itemid 
-          AND p.r_eventid IS NULL 
-          AND p.source='0' 
-          AND p.object='0' 
+         items i,
+         problem p,
+         hosts h
+    WHERE p.objectid=t.triggerid
+          AND p.objectid=f.triggerid
+          AND f.itemid=i.itemid
+          AND p.r_eventid IS NULL
+          AND p.source='0'
+          AND p.object='0'
           AND i.hostid = h.hostid
+
+
+Tamaño de las partitions por día:
+SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%_' and c.reltuples <> 0 group by date order by date;
 
 
 # Tocando la bbdd

@@ -11,6 +11,32 @@ Ejemplo:
   cpu0 1393280 32966 572056 13343292 6130 0 17875 0 23933 0
 
 
+Nos da más datos, por ejemplo, el número de procesos que se han creado. Útil para saber cuantos procesos por segundo está creando el servidor (para monitorizar posibles fork bombs)
+
+/proc/stat
+kernel/system statistics. Varies with architecture. Common entries include:
+
+page 5741 1808
+The number of pages the system paged in and the number that were paged out (from disk).
+
+swap 1 0
+The number of swap pages that have been brought in and out.
+
+intr 1462898
+This line shows counts of interrupts serviced since boot time, for each of
+the possible system interrupts. The first column is the total of all
+interrupts serviced; each subsequent column is the total for a particular interrupt.
+
+ctxt 115315
+The number of context switches that the system underwent.
+
+btime 769041601
+boot time, in seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
+
+processes 86031
+Number of forks since boot.
+
+
 
 ## /proc/[PID]/stat
 Sección /proc/[pid]/stat
