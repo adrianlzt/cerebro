@@ -3,6 +3,9 @@ http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
 Para systemd tenemos un susituto:
 Mirar linux/systemd/timer_example.systemd
 
+Mirar todos los cron del sistema (CUIDADO, nos puede pillar ficheros de backup dejados en /var/spool/cron que no se esten usando):
+find /var/spool/cron/ cron* -type f -exec cat {} \;
+
 anacron: ejecutar comando de forma periódica. Asume que la máquina puede no estar arrancada las 24h, por lo que almacena la última ejecucción y así sabe si debe ejecutar la acción.
 Los parámetros son días, en vez de minutos/horas como en cron.
 
