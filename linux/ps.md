@@ -153,6 +153,11 @@ ps -eo pid,cmd,etime --forest
   elapsed time, formato: DIAS-HH:MM:SS
 
 
+# Output
+Sin cabeceras y con el pid pegado a la izquierda (sin espacios en blanco)
+ps --no-headers -eo pid:1,user,command
+
+
 # wchan
 tambien accesible en /proc/PID/wchan
 nos dice en que funcion del kernel está haciendo cola el proceso

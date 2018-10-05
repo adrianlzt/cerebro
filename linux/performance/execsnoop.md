@@ -12,3 +12,13 @@ Tras arrancarlo, nos va mostrando trazas con los procesos que se están ejecutan
 Funciona en RHEL7
 
 Nos muestra el PID, parent pid y args
+
+
+Si redirigimos la salida a un fichero, luego podemos analizar que parent pid está generando más eventos:
+cat LOG | awk '{print $2;}' | grep [0-9]  | sort | uniq -c | sort -n
+
+Procesos que generan el top 5 de nuevos procesos:
+ps aux | egrep "$(cat LOG | awk '{print $2;}' | grep [0-9]  | sort | uniq -c | sort -n |tail -n 5 | awk '{print $2;}' | xargs echo | tr ' ' '|')"
+
+Sacar los parent pid causantes de la mayoria de los nuevos procesos (si se lanzó un subprocesso y ese fué el que ejecutó la mayoría de los otros procs, no lo veremos con esto):
+join -o "1.1 2.2 2.3" -1 2 -2 1 <(cat LOG | awk '{print $2;}' | grep [0-9]  | sort | uniq -c | sort -k 2) <(ps --no-headers -eo pid:1,user,command | sort -k 1b,1) | sort -n | tail -5
