@@ -18,10 +18,10 @@ Si no tiene releases, cogera la rama master.
 
 
 Meter una dep:
-dep ensure github.com/some/repo@v0.2.1
+dep ensure -add github.com/some/repo@v0.2.1
 
 Si queremos master:
-dep ensure github.com/some/repo@master
+dep ensure -add github.com/some/repo@master
 
 Nos mete las dependencias en el directorio vendor/ del proyecto
 
