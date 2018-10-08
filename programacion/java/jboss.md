@@ -1,5 +1,18 @@
 Servidor de aplicaciones
 
+JBoss EAP: version de jboss de RedHat de pago.
+JBoss AS: version community
+Downloads gratuitos (developers): https://developers.redhat.com/products/eap/download/
+
+
+Standalone: un servidor de jboss único
+Domain: cluster de jboss
+
+
+Montar un docker con JBoss EAP 6.4:
+https://servicesblog.redhat.com/2016/03/28/starting-with-devops-deploying-applications-on-your-docker-jboss-eap-image/
+Bajar el .zip de los downloas gratuitos
+
 Montar una imagen con docker:
 docker run -p 8080:8080 -p 9990:9990 --rm -it jboss/wildfly /opt/jboss/wildfly/bin/standalone.sh -bmanagement 0.0.0.0
 
@@ -8,6 +21,34 @@ No me queda muy claro porque en las imagenes de docker hay algunos jboss que no 
 
 Configuración, puede encontrarse en: /opt/jboss/jboss-eap-6.4/domain/configuration
 No tengo claro que siempre tenga que ser ahí o que esa sea la única fuente de datos.
+
+
+# Usuarios
+Crear:
+bin/add-user.sh NOMBRE PASSWORD
+Se crean en:
+  /mnt/jboss-eap-6.4/domain/configuration/mgmt-users.properties
+  /mnt/jboss-eap-6.4/standalone/configuration/mgmt-users.properties
+
+
+# Ejecutar
+## Standalone
+Config en bin/standalone.conf
+Si queremos que escuche en todas las interfaces añadiremos al final:
+JAVA_OPTS="$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0"
+
+Para arrancarlo:
+bin/standalone.sh -c standalone-full-ha.xml
+
+
+# Desplegar
+En la pestaña "Deployments" de la interfaz web de mgmt, elegir la aplicación .war que desplegar y ponerla a enable.
+
+En la parte de abajo de la web, Tools -> Management Model
+Ir a deployment -> nombredelwar -> subsystem -> web -> Pestaña Data
+En "Context root" podremos ver la uri que se le ha asignado.
+Entraremos en http://localhost:8080/NOMBRECONTEXTROOT
+
 
 
 # Puertos
