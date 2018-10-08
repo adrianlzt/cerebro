@@ -39,6 +39,30 @@ El puerto por defecto de JMX es el 9999
 
 
 
+# CLI
+cd /opt/jboss/jboss-eap-6/bin/
+./jboss-cli.sh
+
+Usar "help" y TAB para ir navegando
+
+Listar hosts:
+:read-children-names(child-type=host)
+
+Listar servers en un host:
+/host=local:read-children-names(child-type=server-config)
+
+Info de un server:
+/host=local/server-config=server-one:read-resource(include-runtime=true)
+
+Arrancar/parar servers: https://docs.jboss.org/author/pages/viewpage.action?pageId=8094240
+/host=local/server-config=server-one:stop
+
+
+Configurar access-log para un server en modo domain:
+/profile=XXX/subsystem=web/virtual-server=default-host/configuration=access-log:add
+/profile=XXX/subsystem=web/virtual-server=default-host/configuration=access-log:write-attribute(name="pattern",value="%h %l %u %t \"%r\" %s %b %S %T")
+
+
 
 # Monitorización
 Se usa a API de management
