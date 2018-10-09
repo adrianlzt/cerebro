@@ -149,3 +149,14 @@ Server groups:
 
 Hosts:
 {"operation":"read-children-names","child-type":"host","jso.pretty":1}
+
+
+
+# JMX
+https://access.redhat.com/solutions/149973
+
+Usar el jconsole que viene con jboss (en bin/). El jconsole que viene con arch/java-environment-common no me funciona
+
+Modo standalone y domain
+service:jmx:remoting-jmx://172.17.0.2:9999
+Poner user y pass

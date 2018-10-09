@@ -6,6 +6,10 @@ Java Management Extensions (JMX) is a Java technology that supplies tools for ma
 Para inspeccionar lo que podemos obtener usar: jconsole (instalado con java)
 https://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html
 
+
+El jconsole que viene con arch no me funciona. Parece que no establece conexiones hacia IPs remotas.
+
+
 Tambien hay una cli:
 http://wiki.cyclopsgroup.org/jmxterm/
 java -jar jmxterm...
