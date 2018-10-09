@@ -49,3 +49,7 @@ Tags en triggers pueden ser populados de las variables de inventario.
 Problems: ahora se pueden dejar mensajes sin hacer ACK. Cambiar severidad. Cerrar errores
 
 Mejora de las gráficas y selector de tiempo.
+
+La actualizacion depende cuantos eventos tenemos en la tabla events
+
+Deprecated macros $1-$9 en prototype items names

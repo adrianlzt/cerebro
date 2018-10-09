@@ -18,8 +18,12 @@ El proceso "discover" puede encontrarse saturado si tenemos pocos y tiene que ch
 
 
 # LLD
-https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery
+https://www.zabbix.com/documentation/current/manual/discovery/low_level_discovery
 LLD: low level discovery
+
+Item prototypes, los nombre deben usar las macros que se usan en la key. A partir de la 4.0 ya no se puede usar $1,$2,etc.
+Antes: item name eg.: Free disk space on $1
+Ahora: item name eg.: Free disk space on {#FSNAME}
 
 
 # Discovery en templates
@@ -99,7 +103,7 @@ Si en la configuración el host vamos a sus items, veremos los autodescubiertos 
 Podemos ir a la discovery rule en el host para ver si ha habido algún problema.
 
 Ejemplo, para un host que implementa un template, tenemos un LDD que crea item prototypes.
-  Name: CPU Usage $1
+  Name: CPU Usage {#ID}
   Type: Zabbix trapper
   Key: cpu.usage[{#ID}]
 
