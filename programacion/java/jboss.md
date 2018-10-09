@@ -6,7 +6,7 @@ Downloads gratuitos (developers): https://developers.redhat.com/products/eap/dow
 
 
 Standalone: un servidor de jboss único
-Domain: cluster de jboss
+Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas del dominio (cluster)
 
 
 Montar un docker con JBoss EAP 6.4:
@@ -40,14 +40,40 @@ JAVA_OPTS="$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.manageme
 Para arrancarlo:
 bin/standalone.sh -c standalone-full-ha.xml
 
+Consola en
+http://127.0.0.1:8080/console
+
+## Domain
+Para arrancarlo:
+bin/domain.sh -c domain.xml
+
+Para que escuche en 0.0.0.0 (posiblemente sobra alguna conf):
+bin/domain.sh -c domain.xml --pc-address=0.0.0.0 --master-address=0.0.0.0 -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0
+
+Consola en
+http://127.0.0.1:9990/
+
 
 # Desplegar
 En la pestaña "Deployments" de la interfaz web de mgmt, elegir la aplicación .war que desplegar y ponerla a enable.
+Si elegimos el deployment y luego web, podemos ver abajo el "Context root", la uri donde tendremos la app.
+Entraremos en http://localhost:8080/NOMBRECONTEXTROOT
 
+Si estamos en modo domain, pestaña Deployments > Server Groups > Seleccionar el grupo > Seleccionar la app > Web > Context Root
+
+Propiedades:
 En la parte de abajo de la web, Tools -> Management Model
 Ir a deployment -> nombredelwar -> subsystem -> web -> Pestaña Data
 En "Context root" podremos ver la uri que se le ha asignado.
-Entraremos en http://localhost:8080/NOMBRECONTEXTROOT
+
+
+## Ejemplo
+App de ejemplo: http://www.jboss.org/ticket-monster
+Descargar y hacer el build con:
+mvn clean package
+
+Subir el .war a Jboss para desplegarla.
+
 
 
 
