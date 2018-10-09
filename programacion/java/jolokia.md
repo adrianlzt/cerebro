@@ -32,6 +32,7 @@ Failed to retrieve RMIServer
 
 
 Parece que jolokia no puede hablar "remoting-jmx", que es el protocolo que sustituye RMI a partir de JBoss EAP 6
+Si queremos que lo soporte tendremos que meter la libreria jboss-cli-client.jar (en el codigo de JBoss) dentro del WAR (WEB-INF/lib/jboss-cli-client.jar)
 
 
 # Install

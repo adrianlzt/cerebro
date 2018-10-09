@@ -12,10 +12,7 @@ Para inspeccionar lo que podemos obtener usar: jconsole (instalado con java)
 https://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html
 
 
-Si queremos usar jconsole contra wildfly/jboss tendremos que pasar las librerias para que sepa conectar con remoting-jmx:
-https://dzone.com/articles/remote-jmx-access-wildfly-or
-jconsole -J-Djava.class.path=/usr/lib/jvm/java-8-openjdk-amd64/lib/jconsole.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar:/home/rojo/jboss-cli-client.jar
-
+Si queremos usar jconsole contra wildfly/jboss tendremos que pasar las librerias para que sepa conectar con remoting-jmx: mirar jboss.md
 
 
 Tambien hay una cli:

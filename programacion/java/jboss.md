@@ -172,4 +172,10 @@ https://access.redhat.com/solutions/308643
 https://developer.jboss.org/wiki/UsingJconsoleToConnectToJMXOnAS7
 For the management of JBoss AS7 we expose access to the management operative over a native interface build on top of JBoss Remoting, as of the 13th January 2011 we also provide a JSR-160 connector with JBoss AS7 to make JMX remotely accessible over the same Remoting connection.  The first release to contain this will be JBoss AS 7.1.0.Final.
 
+Para conectar con jconsole usar el script que viene en la distribución (bin/jconsole.sh)
+https://dzone.com/articles/remote-jmx-access-wildfly-or
+Básicamente hará esto:
+export JBOSS_HOME=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4
+/usr/lib/jvm/default/bin/jconsole -J-Djava.class.path=/usr/lib/jvm/default/lib/jconsole.jar:/usr/lib/jvm/default/lib/tools.jar:/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/bin/client/jboss-cli-client.jar -J-Dmodule.path=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/modules
+
 
