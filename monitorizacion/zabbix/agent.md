@@ -18,6 +18,9 @@ Active: Agent ---> Server
 En modo activo el agente cache en caso de pérdida de conexión con el server.
 Lo pasivos son los únicos que pueden tener scheduling (flexible interval)
 
+En 4.0, los pasivos, puedes ejecutar "Check now" para obtener el valor en ese momento.
+También para los LDD
+
 
 # Install
 Arch: pacman -Ss zabbix-agent

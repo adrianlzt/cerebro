@@ -57,6 +57,10 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/simple_ch
 Checks de conectividad (ping, tcp, udp) lanzados desde el server, o proxies.
 Podemos tener si esta up/down, tiempos de respuesta, paquetes perdidos.
 
+4.0: HTTP checks. Puede chequear API JSON, XML, Prometheus.
+Interesante para hacer una llamada a una API y con dependent items y JSON-path podemos sacar muchas métricas
+
+
 ## Calculated items
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/calculated
 Generar items virtuales a partir de cálculos de otros valores
@@ -155,6 +159,8 @@ Special processing for:
 
 Con segundos tambien funciona.
 Si tenemos ms, pondremos unit a s y multiplicaremos por 0.001
+
+Si ponemos !s (y para el resto de unidades tambien), no hará la conversión a minutos, horas, etc. O no pasará npvs a Knvps, etc
 
 
 # Value mapping

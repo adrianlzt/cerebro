@@ -36,3 +36,16 @@ tickets puestos para solucionarse en al version 4
 
 Root cause analysis
 Relationship between problems Complex event processing (de-duplication, filtering, enrichment)
+
+
+Más rápido, menos consumo de red, más seguro.
+ES experimental. Se puede elegir solo enviar ciertos datos (querremos enviar las strings)
+
+Relatime export. Podemos sacar history, trends y events a ficheros JSON.
+Luego podemos usar algo para inyectar eso en ES, Hadoop, etc
+
+Tags en triggers pueden ser populados de las variables de inventario.
+
+Problems: ahora se pueden dejar mensajes sin hacer ACK. Cambiar severidad. Cerrar errores
+
+Mejora de las gráficas y selector de tiempo.
