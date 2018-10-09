@@ -6,6 +6,7 @@ Creo que se tiene que desplegar junto con el .war que estemos ejecutando, como u
 
 # Proxy mode
 https://jolokia.org/features/proxy.html
+https://github.com/rhuss/jolokia/blob/master/agent/jsr160/src/main/java/org/jolokia/jsr160/Jsr160RequestDispatcher.java
 Despliegue de jolokia en una JVM diferente (o en la misma, pero no configurado "sobre" nuestra app).
 Nos expone la api HTTP/JSON, le realizamos peticiones diciendole donde debe conectarse y que información obtener.
 El se encarga de conectarse a donde le hayamos dicho, traduciendo el JSON en JMX.
@@ -30,6 +31,7 @@ Si no podemos conectar con el RMI remoto tendremos el error:
 Failed to retrieve RMIServer
 
 
+Parece que jolokia no puede hablar "remoting-jmx", que es el protocolo que sustituye RMI a partir de JBoss EAP 6
 
 
 # Install

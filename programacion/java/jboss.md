@@ -160,3 +160,16 @@ Usar el jconsole que viene con jboss (en bin/). El jconsole que viene con arch/j
 Modo standalone y domain
 service:jmx:remoting-jmx://172.17.0.2:9999
 Poner user y pass
+
+
+https://stackoverflow.com/questions/25934901/how-to-configure-jboss-6-3-0ga-to-use-rmi-jmx
+
+JBoss EAP 5 supports JMX monitoring using RMI, where JBoss EAP 6 does not. EAP 6 uses “remoting-jmx” instead of “rmi”
+
+JBoss EAP 6 does not use RMI
+https://access.redhat.com/solutions/308643
+
+https://developer.jboss.org/wiki/UsingJconsoleToConnectToJMXOnAS7
+For the management of JBoss AS7 we expose access to the management operative over a native interface build on top of JBoss Remoting, as of the 13th January 2011 we also provide a JSR-160 connector with JBoss AS7 to make JMX remotely accessible over the same Remoting connection.  The first release to contain this will be JBoss AS 7.1.0.Final.
+
+
