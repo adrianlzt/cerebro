@@ -8,7 +8,12 @@ JBoss EAP 6.4.0.GA equivale a AS 7.5.0
 
 
 Standalone: un servidor de jboss único
-Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas del dominio (cluster)
+Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas (hosts) del dominio (cluster)
+  Cada domain puede tener varios hostgroups. Cada hostgroups puede tener varios servers
+  Los despliegues los hacemos sobre hostgroups. No me queda muy claro luego asigna una app a uno de los servers del grupo.
+  En Domain -> Topology podemos ver que hostgroups tenemos y que servers (cada server tendrá un offset de los puertos donde pondremos conectar)
+
+Cuando desplegamos varias apps sobre el mismo server tendremos distintas URIs para cada una (eg.: http://server/miapp1 /miapp2, etc)
 
 
 Montar un docker con JBoss EAP 6.4:
@@ -136,10 +141,19 @@ Configurar access-log para un server en modo domain:
 /profile=XXX/subsystem=web/virtual-server=default-host/configuration=access-log:add
 /profile=XXX/subsystem=web/virtual-server=default-host/configuration=access-log:write-attribute(name="pattern",value="%h %l %u %t \"%r\" %s %b %S %T")
 
+Obtener información del estado de los hosts/servidores/subsistemas/connectores:
+/host=master/server=server-one/deployment=ticket-monster.war/subsystem=web/servlet=org.jboss.examples.ticketmonster.rest.JaxRsActivator/:read-attribute(name=requestCount)
+  número de peticiones a una app en concreto corriendo en un server
+/host=master/server=server-three/subsystem=web/connector=http:read-resource
+  todos los datos del conector http/web del server-three
+
+/host=master/server-config=server-three:read-attribute(name=socket-binding-port-offset)
+  offset de los puertos de un servidor
 
 
 # Monitorización
-Se usa a API de management
+
+## Usando API management
 https://docs.jboss.org/author/display/AS71/The+HTTP+management+API
 
 Como hemos arrancado el server (domain o standalone):
@@ -159,7 +173,7 @@ Hosts:
 
 
 
-# JMX
+## Usando JMX
 https://access.redhat.com/solutions/149973
 
 Usar el jconsole que viene con jboss (en bin/). Lo que hace ese script es cargar unas librerias de jboss necesarias.
@@ -170,16 +184,9 @@ Modo standalone y domain
 service:jmx:remoting-jmx://172.17.0.2:9999
 Poner user y pass
 
-
-https://stackoverflow.com/questions/25934901/how-to-configure-jboss-6-3-0ga-to-use-rmi-jmx
-
-JBoss EAP 5 supports JMX monitoring using RMI, where JBoss EAP 6 does not. EAP 6 uses “remoting-jmx” instead of “rmi”
-
+JBoss EAP 5 supports JMX monitoring using RMI, where JBoss EAP 6 does not. EAP 6 uses "remoting-jmx" instead of "rmi"
 JBoss EAP 6 does not use RMI
 https://access.redhat.com/solutions/308643
-
-https://developer.jboss.org/wiki/UsingJconsoleToConnectToJMXOnAS7
-For the management of JBoss AS7 we expose access to the management operative over a native interface build on top of JBoss Remoting, as of the 13th January 2011 we also provide a JSR-160 connector with JBoss AS7 to make JMX remotely accessible over the same Remoting connection.  The first release to contain this will be JBoss AS 7.1.0.Final.
 
 Para conectar con jconsole usar el script que viene en la distribución (bin/jconsole.sh)
 https://dzone.com/articles/remote-jmx-access-wildfly-or
@@ -188,3 +195,11 @@ export JBOSS_HOME=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-
 /usr/lib/jvm/default/bin/jconsole -J-Djava.class.path=/usr/lib/jvm/default/lib/jconsole.jar:/usr/lib/jvm/default/lib/tools.jar:/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/bin/client/jboss-cli-client.jar -J-Dmodule.path=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/modules
 
 
+Conectando por JConsole podemos ver ciertas MBeans que están expuestas, relativas al servidor, memoria, cpu, etc.
+
+Si queremos acceder a los datos de JBoss tendremos que usar comandos de su CLI
+Podemos conectar a la CLI con: bin/jboss-cli.sh
+Tambien podemos lanzar los comandos desde la pestaña "JBoss CLI" del JConsole
+
+
+Por lo que observo, si preguntamos al JMX controller, solo obtenemos MBeans generales, cpu, memoria, threads, classes, etc
