@@ -9,9 +9,9 @@ JBoss EAP 6.4.0.GA equivale a AS 7.5.0
 
 Standalone: un servidor de jboss único
 Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas (hosts) del dominio (cluster)
-  Cada domain puede tener varios hostgroups. Cada hostgroups puede tener varios servers
-  Los despliegues los hacemos sobre hostgroups. No me queda muy claro luego asigna una app a uno de los servers del grupo.
-  En Domain -> Topology podemos ver que hostgroups tenemos y que servers (cada server tendrá un offset de los puertos donde pondremos conectar)
+  Cada domain puede tener varios servergroups. Cada servergroup puede tener varios servers
+  Los despliegues los hacemos sobre servergroups. No me queda muy claro luego asigna una app a uno de los servers del grupo.
+  En Domain -> Topology podemos ver que servergroups tenemos y que servers (cada server tendrá un offset de los puertos donde pondremos conectar)
 
 Cuando desplegamos varias apps sobre el mismo server tendremos distintas URIs para cada una (eg.: http://server/miapp1 /miapp2, etc)
 
@@ -62,11 +62,15 @@ http://127.0.0.1:8080/console
 Para arrancarlo:
 bin/domain.sh -c domain.xml
 
-Para que escuche en 0.0.0.0 (posiblemente sobra alguna conf):
-bin/domain.sh -c domain.xml --pc-address=0.0.0.0 --master-address=0.0.0.0 -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0
+Para que escuche en 0.0.0.0:
+bin/domain.sh -c domain.xml -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0
+  la de management es para que el puerto 9990 (admin console) y 9999 (JMX domain) escuchen en 0.0.0.0
 
 Consola en
 http://127.0.0.1:9990/
+
+Ese puerto podría haber sido modificado. Podemos ver que puertos tiene abierto el java "-D[Host Controller]" o mirar el domain.xml, buscando:
+<socket interface="management" port="${jboss.management.http.port:9090}"/>
 
 
 # Desplegar
@@ -111,11 +115,11 @@ Ejemplo de config de un server:
 Este server tendrá asignados los puertos (en este caso https no está activado parece):
 8089 -> ajp
 8289 -> http
-8689 -> remoting
+8689 -> remoting (para conectar con JMX, habrá que conectar con usuarios de aplicación, NO de management)
 
 
 
-El puerto por defecto de JMX es el 9999
+El puerto por defecto de JMX es el 9999 (para el controller, conectar con user de management)
 /opt/jboss/jboss-eap-6.4/domain/configuration/host.xml-        <management-interfaces>
 /opt/jboss/jboss-eap-6.4/domain/configuration/host.xml-            <native-interface security-realm="ManagementRealm">
 /opt/jboss/jboss-eap-6.4/domain/configuration/host.xml:                <socket interface="management" port="${jboss.management.native.port:9999}"/>
@@ -179,6 +183,8 @@ Hosts:
 
 ## Usando JMX
 https://access.redhat.com/solutions/149973
+https://developer.jboss.org/wiki/UsingJconsoleToConnectToJMXOnAS7
+https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html/performance_tuning_guide/monitoring_performance  para JBoss Eap 7?
 
 Usar el jconsole que viene con jboss (en bin/). Lo que hace ese script es cargar unas librerias de jboss necesarias.
 Mirar más abajo para ver como lanzarlo
@@ -199,11 +205,36 @@ export JBOSS_HOME=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-
 /usr/lib/jvm/default/bin/jconsole -J-Djava.class.path=/usr/lib/jvm/default/lib/jconsole.jar:/usr/lib/jvm/default/lib/tools.jar:/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/bin/client/jboss-cli-client.jar -J-Dmodule.path=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/modules
 
 
-Conectando por JConsole podemos ver ciertas MBeans que están expuestas, relativas al servidor, memoria, cpu, etc.
+Para conectar con el JMX del controlador del dominio lo haremos con un usuario de management por el puerto 9999.
+Obtendremos MBeans generales: cpu, memoria, threads, classes, etc
+JConsole en este modo también nos permitirá interactuar con la jboss cli.
 
-Si queremos acceder a los datos de JBoss tendremos que usar comandos de su CLI
-Podemos conectar a la CLI con: bin/jboss-cli.sh
-Tambien podemos lanzar los comandos desde la pestaña "JBoss CLI" del JConsole
+Si queremos conectar a cada uno de los servidores corriendo bajo el dominio, tendremos que usar su puerto de remoting, conectando con un usario de aplicación
+Aqui veremos todos los MBeans de jboss (jboss.as, jboss.jta, etc)
 
 
-Por lo que observo, si preguntamos al JMX controller, solo obtenemos MBeans generales, cpu, memoria, threads, classes, etc
+
+### Problemas con JMX
+Abrir wireshark en el puerto que intentamos conectar.
+Tras la apertura del puerto TCP tendremos que ver que el servidor nos envia su hostname.
+Luego se intercambian mensajes para la autorización.
+Veremos algo tipo "...JBOSS-LOCAL-USER DIGEST-MD5..."
+realm="ApplicationRealm",nonce=...  <- esto si estamos conectando a un remote de un servidor, no al controller. Para el controller pondrá "ManagementRealm"
+
+
+Si intentamos conectar contra un remoting sin haber configurado:
+<subsystem xmlns="urn:jboss:domain:jmx:1.3">
+  <expose-resolved-model/>
+  <expose-expression-model/>
+  <remoting-connector use-management-endpoint="false"/>
+</subsystem>
+Nos nos permitirá conectar. Al inicio de la conex veremos en los paquetes que se identificará, tipo "master:nombreserver JBOSS-LOCAL-USER"
+Y unos paquetes más adelante nos dirá: Unkown service name
+
+Si queremos ver si un server tiene la config adecuada:
+  1. Primero obtenemos el profile que está usando: /host=master/server=server-one/:read-attribute(name=profile-name)
+  2. Luego obtenemos la config del profile a este respecto: /profile=full/subsystem=jmx/:read-resource(recursive-depth=0)
+  3. Miramos la key "remoting-connector". Si está undefined es que no tenemos la config hecha. Si pone '"remoting-connector" => {"jmx" => undefined}' estará correctamente configurado.
+
+Podemos cambiar esa config con la cli usando el comando (no hace falta reinciar nada):
+/profile=full/subsystem=jmx/remoting-connector=jmx:add(use-management-endpoint=false)
