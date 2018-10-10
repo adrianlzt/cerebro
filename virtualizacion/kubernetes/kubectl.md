@@ -13,6 +13,15 @@ yaourt -Ss aur/kubectl-bin
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 
 
+# Config / contexts
+Ver la config que tenemos ahora (los contextos)
+kubectl config view
+
+Contexto actual:
+kubectl config current-context
+
+
+
 
 # Uso
 
