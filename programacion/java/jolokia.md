@@ -44,3 +44,18 @@ http://localhost:8080/jolokia-war-unsecured-1.6.0/read/java.lang:type=Memory/Hea
 
 Toda la info
 curl -s 172.17.0.2:8080/jolokia-war-unsecured-1.6.0/list | jq '.' | less
+
+
+
+# Operaciones
+https://jolokia.org/reference/html/protocol.html#jolokia-operations
+Omitimos la key "target" para simplificar.
+
+Obtener un valor
+{"type":"READ", "mbean":"java.lang:type=Threading", "attribute":"ThreadCount"}
+
+Buscar MBeans:
+{"type":"SEARCH", "mbean":"java.lang:*"}
+
+Listar todas las MBeans:
+{"type":"LIST", "mbean":"*"}

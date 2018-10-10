@@ -17,6 +17,7 @@ Montar una imagen con docker:
 docker run -p 8080:8080 -p 9990:9990 --rm -it jboss/wildfly /opt/jboss/wildfly/bin/standalone.sh -bmanagement 0.0.0.0
 
 Wildfly es el nombre de JBoss desde 2014, aunque parece que la gente le sigue llamando JBoss.
+Creo que Wildfly es la versión community. JBoss EAP es la de redhat comercial.
 No me queda muy claro porque en las imagenes de docker hay algunos jboss que no son wildfly?
 
 Configuración, puede encontrarse en: /opt/jboss/jboss-eap-6.4/domain/configuration
@@ -30,6 +31,10 @@ Se crean en:
   /mnt/jboss-eap-6.4/domain/configuration/mgmt-users.properties
   /mnt/jboss-eap-6.4/standalone/configuration/mgmt-users.properties
 
+
+# Install
+yum install -y java-1.6.0-openjdk.x86_64
+Copiar el .zip y descomprimirlo
 
 # Ejecutar
 ## Standalone
