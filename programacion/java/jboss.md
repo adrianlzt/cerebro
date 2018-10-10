@@ -4,6 +4,8 @@ JBoss EAP: version de jboss de RedHat de pago.
 JBoss AS: version community
 Downloads gratuitos (developers): https://developers.redhat.com/products/eap/download/
 
+JBoss EAP 6.4.0.GA equivale a AS 7.5.0
+
 
 Standalone: un servidor de jboss único
 Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas del dominio (cluster)
