@@ -31,17 +31,20 @@ Configuración, puede encontrarse en: /opt/jboss/jboss-eap-6.4/domain/configurat
 No tengo claro que siempre tenga que ser ahí o que esa sea la única fuente de datos.
 
 
+# Install
+yum install -y java-1.6.0-openjdk.x86_64
+Copiar el .zip y descomprimirlo
+
+
 # Usuarios
-Crear:
+Crear un user admin antes de arrancar.
 bin/add-user.sh NOMBRE PASSWORD
 Se crean en:
   /mnt/jboss-eap-6.4/domain/configuration/mgmt-users.properties
   /mnt/jboss-eap-6.4/standalone/configuration/mgmt-users.properties
 
+Existen usuarios de management y usuarios de aplicación. Si ejecutamos el script sin parametros nos preguntará cual queremos crear
 
-# Install
-yum install -y java-1.6.0-openjdk.x86_64
-Copiar el .zip y descomprimirlo
 
 # Ejecutar
 ## Standalone
@@ -95,6 +98,7 @@ Cuando tenemos varios servidores corriendo dentro de jboss, cada uno tendrá un 
 El puerto será el socket binding group + port offset
 
 Ejemplo de config de puertos base para diferente protocolos:
+<socket-binding-groups>
  <socket-binding name="ajp" port="8000"/>
  <socket-binding name="http" port="8200"/>
  <socket-binding name="https" port="8400"/>
