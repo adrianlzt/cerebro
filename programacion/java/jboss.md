@@ -184,7 +184,9 @@ Hosts:
 ## Usando JMX
 https://access.redhat.com/solutions/149973
 https://developer.jboss.org/wiki/UsingJconsoleToConnectToJMXOnAS7
-https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html/performance_tuning_guide/monitoring_performance  para JBoss Eap 7?
+https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.1/html/performance_tuning_guide/monitoring_performance
+  para configurar un jboss domain para poder acceder por jmx a todos los servers
+  mirar más abajo para más info
 
 Usar el jconsole que viene con jboss (en bin/). Lo que hace ese script es cargar unas librerias de jboss necesarias.
 Mirar más abajo para ver como lanzarlo
@@ -231,6 +233,7 @@ Si intentamos conectar contra un remoting sin haber configurado:
 Nos nos permitirá conectar. Al inicio de la conex veremos en los paquetes que se identificará, tipo "master:nombreserver JBOSS-LOCAL-USER"
 Y unos paquetes más adelante nos dirá: Unkown service name
 
+
 Si queremos ver si un server tiene la config adecuada:
   1. Primero obtenemos el profile que está usando: /host=master/server=server-one/:read-attribute(name=profile-name)
   2. Luego obtenemos la config del profile a este respecto: /profile=full/subsystem=jmx/:read-resource(recursive-depth=0)
@@ -238,3 +241,9 @@ Si queremos ver si un server tiene la config adecuada:
 
 Podemos cambiar esa config con la cli usando el comando (no hace falta reinciar nada):
 /profile=full/subsystem=jmx/remoting-connector=jmx:add(use-management-endpoint=false)
+
+Explicación de este parámetro:
+Set the remoting-connector in the jmx subsystem to not use the management endpoint. In domain mode only the host controller has a management port, the individual servers do not. So that's why we set use-management-endpoint=false implying using the remote endpoint instead if you want to connect to the individual servers.
+When running in Domain mode the main difference is that individual servers do not have a management port. Only the Host Controller exposes a management port. Therefore we need to set the remoting-connector in the jmx subsystem to not use the management endpoint.
+
+También podría ser que faltase el puerto en el socket-binding-group o no tener activado el acceso para ApplicationRealm en el subsystem remoting.
