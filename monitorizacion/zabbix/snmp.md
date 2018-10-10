@@ -34,3 +34,8 @@ IF-MIB::ifOutErrors.{#SNMPINDEX}
 
 Si queremos usar MIBS no estandar:
 MIBS=ALL perl mib2zabbix.pl -o ...
+
+
+# MIBS
+El servidor tendrá que tener las MIBS accesibles.
+Copiarlas en /usr/share/snmp/mibs
