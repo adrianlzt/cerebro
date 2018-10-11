@@ -69,31 +69,31 @@ fi
 if is_binary "$FILE"; then
   OUTPUT=$(openssl x509 -noout -text -inform der -in "$FILE" 2>&1)
   if [[ $? -eq 0 ]]; then
-    # Certificate with DER encoding
+    echo "Certificate with DER encoding"
     headers "$(echo "$OUTPUT")"
   else
     OUTPUT=$(openssl pkcs7 -inform der -print_certs -text -noout -in "$FILE" 2>&1)
     if [[ $? -eq 0 ]]; then
-      # Cert pcks7, DER encoding
+      echo "Cert pcks7, DER encoding"
       headers "$(echo "$OUTPUT")"
     else
-      # Cert pkcs12
-      headers "$(openssl pkcs12 -info -in "$FILE")"
+      echo "Cert pkcs12"
+      openssl pkcs12 -info -in "$FILE" | head
     fi
   fi
 else
   if is_crl "$FILE"; then
     openssl crl -inform PEM -text -noout -in "$FILE" | head -11
   elif several_certificates_inside "$FILE"; then
-    # Multi PEM certs in one file
+    echo "Multi PEM certs in one file"
     headers "$(openssl crl2pkcs7 -nocrl -certfile "$FILE" | openssl pkcs7 -print_certs -text -noout)"
   else
     OUTPUT=$(openssl x509 -noout -text -in "$FILE" 2>&1)
     if [[ $? -eq 0 ]]; then
-      # Cert PEM encoding
+      echo "Cert PEM encoding"
       headers "$OUTPUT"
     else
-      # Cert pkcs7, PEM encoding
+      echo "Cert pkcs7, PEM encoding"
       headers "$(openssl pkcs7 -print_certs -text -noout -in "$FILE")"
     fi
   fi
