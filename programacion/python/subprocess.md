@@ -80,6 +80,23 @@ Don't redirect stderr to a PIPE when you're not reading it.
 Don't redirect stdin when you're not writing to it.
 
 
+# Stdin
+Enviando cosas por el stdin
+from subprocess import Popen, PIPE, STDOUT
+
+p = Popen(['grep', 'f'], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+grep_stdout = p.communicate(input=b'one\ntwo\nthree\nfour\nfive\nsix\n')[0]
+print(grep_stdout.decode())
+
+
+# Variables de entorno
+import subprocess, os
+my_env = os.environ.copy()
+my_env["PATH"] = "/usr/sbin:/sbin:" + my_env["PATH"]
+subprocess.Popen(my_command, env=my_env)
+
+
+
 # VIEJO #
 https://docs.python.org/2/library/subprocess.html#replacing-older-functions-with-the-subprocess-module
 

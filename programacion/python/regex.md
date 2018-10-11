@@ -5,6 +5,10 @@ import regex
 http://docs.python.org/2/library/re.html
 re — Regular expression operations
 
+match tiene que matchear la linea entera, esto no encuentra nada: re.match("pepe (.*)","hola pepe mario")
+search tiene que encontrar la regexp en alguna parte, esto si encuentra: re.search("pepe (.*)","hola pepe mario")
+re.iterall nos devuelve un array con lo que ha encontrado, funcionando como search.
+
 re.match('^[0-9]*$',"2342")
 Devuelve un objeto _sre.SRE_Match si hace match, nada (None) si no.
 
