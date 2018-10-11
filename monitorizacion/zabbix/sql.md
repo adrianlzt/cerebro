@@ -82,7 +82,7 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 Número de items en la tabla history agrupados por buckets de 10', filtrando entre unos timestamps:
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
 
-Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10':
+Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
 
 Número de eventos trigger contados cada hora para un intervalo determinado:
