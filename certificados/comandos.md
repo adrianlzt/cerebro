@@ -36,6 +36,10 @@ openssl rsa -pubout -in id_rsa
 Datos de una clave privada (.key normalmente)
 openssl rsa -text -in id_rsa
 
+Desencriptar una clave rsa para tenerla en texto claro:
+openssl rsa -in <Encrypted key filename>  -out < desired output file name>
+
+
 Datos de un certificado (crt, pem, etc)
 openssl x509 -noout -text -in server.crt
   estos ficheros (encoding pem) son ficheros ascii
