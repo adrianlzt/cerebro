@@ -52,6 +52,9 @@ curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: app
 Multipart
 curl -F "clave=valor" ...
 
+Con fichero:
+curl -F filename="@path/image.jpg;type=image/jpeg" http://localhost:3000/test
+
 
 curl -L http://web.com/mensaje300.html
   -L: si la web nos redirecciona, sigue dicha redirección.
