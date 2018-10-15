@@ -7,6 +7,11 @@ Creamos un esquema que los datos deben cumplir.
 
 
 # Validacion / comprobacion del codigo. Buen estilo
+autopep8 automatically formats Python code to conform to the PEP 8 style guide
+  autopep8 file.py | sponge reformated.py
+  autopep8 --ignore E226,E24,W503,W690,E501 ...
+    si no queremos que corrija lineas largas (y dejamos los default)
+
 Herramientas para comprobar que el código es correcto
 flake8  # nos chequea tambien fallos del codigo, tipo variables no definidas, imports no usados, etc
 flake8 --ignore=E501
