@@ -75,3 +75,33 @@ Chequear si una IP está en un rango (devuelve la string con la ip en caso afirm
 
 Comprobar si una ip (item) esta en una red y no en otras (subredes de la primera)
 when: ((item | ipaddr(no_dmz_net)) and not ((item | ipaddr(bluemix_net2)) or (item | ipaddr(bluemix_net1))))
+
+
+# Json query
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#json-query-filter
+Ejemplos: http://jmespath.org/examples.html
+
+Extraer datos de una estructura de datos con json path
+Hace falta tener instalado jmespath
+
+- name: "Display all cluster names"
+  debug:
+    var: item
+  loop: "{{ domain_definition | json_query('domain.cluster[*].name') }}"
+
+- name: "Display all ports from cluster1"
+  debug:
+    var: item
+  loop: "{{ domain_definition | json_query(server_name_cluster1_query) }}"
+  vars:
+    server_name_cluster1_query: "domain.server[?cluster=='cluster1'].port"
+
+Ejemplo cuando nos pasan directamente un array, sacamos la key conf de todos los elementos del array:
+- debug: msg="{{sw | json_query('[].[conf]') }}"
+
+Para poder usar comillas sin problemas:
+- debug: msg="{{sw | json_query(query) }}"
+  vars:
+    query: "[?type=='JBoss Application Server']"
+
+

@@ -1,4 +1,5 @@
 Mirar variables.md
+Mirar filters.md para ver como filtrar usando json-path
 
 
 - hosts: 127.0.0.1

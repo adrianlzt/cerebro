@@ -1,4 +1,5 @@
 http://stedolan.github.io/jq/ 
+Otra opción: jp (https://github.com/jmespath/jp)
 
 Test online:
 https://jqplay.org/
