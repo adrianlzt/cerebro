@@ -45,6 +45,8 @@ Se crean en:
 
 Existen usuarios de management y usuarios de aplicación. Si ejecutamos el script sin parametros nos preguntará cual queremos crear
 
+Luego tenemos unos ficheros de roles que asocian usuarios a servidores: application-roles.properties
+
 
 # Ejecutar
 ## Standalone
