@@ -77,6 +77,8 @@ El 'self' siempre va a ser el primero parámetro de las funciones
 
 
 # Herencia
+Si no vamos a poner nada en el __init__ del child, no tenemos ni que declararlo.
+
 class Empleado:
   def __init__(self, name):
     self.name = name
