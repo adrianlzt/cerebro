@@ -1,5 +1,8 @@
 Servidor de aplicaciones
 
+Ejemplo de app ear: https://publib.boulder.ibm.com/bpcsamp/gettingStarted/helloWorld/download.html
+
+
 JBoss EAP: version de jboss de RedHat de pago.
 JBoss AS: version community
 Downloads gratuitos (developers): https://developers.redhat.com/products/eap/download/
