@@ -66,3 +66,17 @@ Es gratuito, excepto si el dato lleva menos de 90 días, que en ese caso nos cob
 
 # CLI
 Para configurarlo mirar nube/amazon/awscli.md
+
+Listar vaults:
+aws glacier list-vaults --account-id
+
+Crear vault:
+aws glacier create-vault --account-id - --vault-name prueba
+
+Subir un fichero
+aws glacier upload-archive --account-id - --vault-name prueba --archive-description "una descripcion del fichero" --body imagenes.tar
+Devuelve el identificador y el path, estilo /560750/vaults/prueba/archives/1gWPn...
+
+Podemos pasar un checksum (sha256) del fichero para asegurar que ha subido correctamente:
+--checksum xxx
+
