@@ -1,6 +1,7 @@
 https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-scripting.html
 
 Solo se puede programar en "painless". (en la version 6.x se eliminó la posibilidad de otros lenguajes)
+Mirar painless.md
 
 También existen otros lenguajes para tareas más específicas:
 expression, fast custom ranking and sorting.

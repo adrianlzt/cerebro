@@ -423,6 +423,39 @@ GET blogs/_search {
 }
 
 
+# Bucket script / math
+https://www.elastic.co/guide/en/elasticsearch/reference/master/search-aggregations-pipeline-bucket-script-aggregation.html
+
+Ejemplo: agrupamos por un termino, sumamos todos los valores y luego dividimos para conseguir gigabytes
+GET analisis/_search
+{
+  "size": 0,
+  "aggs": {
+    "indices": {
+      "terms": {
+        "field": "idx.keyword",
+        "size": 3000
+      },
+      "aggs": {
+        "suma": {
+          "sum": {
+            "field": "store.size"
+          }
+        },
+        "pepe": {
+          "bucket_script": {
+            "buckets_path": {
+              "pepe": "suma.value"
+            },
+            "script": "params.pepe / 1024 / 1024 / 1024"
+          }
+        }
+      }
+    }
+  }
+}
+
+
 
 # significant types
 https://www.elastic.co/guide/en/elasticsearch/reference/6.3/search-aggregations-bucket-significantterms-aggregation.html
@@ -584,3 +617,6 @@ GET logs_server*/_search
   }
 }
 
+
+Tenemos que mirar las funciones de agregación que soportan este tipo de pipeline aggregation, se llaman *_bucket.
+Lista en https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline.html
