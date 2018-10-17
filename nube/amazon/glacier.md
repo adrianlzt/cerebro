@@ -11,15 +11,21 @@ https://aws.amazon.com/es/glacier/pricing/
 https://aws.amazon.com/es/glacier/faqs/?nc=hl&pg=ft#Data_retrievals
 https://www.cloudberrylab.com/amazon-glacier-retrieval-pricing-explained.aspx
 
+TL;DR
+almacenar 0.004$/GB
+recuperar 0.1$/GB
+
 Free tier, data retrieval: 10GB/month
 
-Subir datos tiene un coste de 0.053€ por cada 1000 solicitudes
+Subir datos tiene un coste de 0.053$ por cada 1000 solicitudes, sin coste de transferencia.
 
-Obtener los datos. Unas 3-5h, 0.01€/GB más 0.05€ por cada 1000 requests
-Obtener los datos en corto plazo (1-5min): 0.03€/GB + 0.01€/request (u otro tipo más caro si queremos asegurarnos 100% que tendremos los datos en esos tiempos).
-Obtener los datos en largo plazo (5-12h), 0.0025€/GB más 0.025€ por 1000 requests
+Obtener los datos. Unas 3-5h, 0.01$/GB más 0.05$ por cada 1000 requests
+Obtener los datos en corto plazo (1-5min): 0.03$/GB + 0.01$/request (u otro tipo más caro si queremos asegurarnos 100% que tendremos los datos en esos tiempos).
+Obtener los datos en largo plazo (5-12h), 0.0025$/GB más 0.025$ por 1000 requests
 
-Parece que a todo esto hay que sumar los costes de la transferencia de ficheros.
+Tambien hay que sumar los costes de transferencia de ficheros:
+1GB/Mes gratis
+0.09$/GB (baja si sobrepasamos los 10TB)
 
 
 
@@ -55,3 +61,8 @@ Como sabemos que trozo queremos? Nos dejan ver la metadata?
 https://docs.aws.amazon.com/es_es/amazonglacier/latest/dev/deleting-an-archive.html
 
 Es gratuito, excepto si el dato lleva menos de 90 días, que en ese caso nos cobrarán lo que reste de almacenar ese dato hasta esos 90 días.
+
+
+
+# CLI
+Para configurarlo mirar nube/amazon/awscli.md
