@@ -27,7 +27,11 @@ curl "localhost:9200/_cluster/allocation/explain?pretty"
   explicación de porque hay shards sin asignar (version >=5)
 
 GET _cat/indices?bytes=gb&h=index,store.size&s=store.size:desc
-  ya ordenado por tamaño en GB
+  ya ordenado por tamaño en GB (storage, ocupación, gigas)
+
+Si solo queremos de ciertos indices:
+GET _cat/indices/nombre*?bytes=gb&h=index,store.size&s=store.size:desc
+
 
 
 
@@ -103,6 +107,9 @@ Una buena práctica es siempre usar alias para los nombres de los indices que us
 Si usamos los aliases para escribir, solo pueden apuntar a un indice.
 Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
 Si creamos un alias a indice-* y luego creamos más índices indice-*, esos nuevos no estarán apuntados por el alias.
+
+Parece (https://www.elastic.co/guide/en/elasticsearch/reference/6.4/search.html#search-concurrency-and-parallelism) que elasticsearch optimiza la búsqueda para que no tenga mucho impacto el lanzar una query con un filtro de tiempo sobre un índice que no tiene ese rango temporal.
+Unas pruebas que he hecho me salían unos 0.08ms el coste por abrir esos índices no necesarios (sobre unos 100ms en los índices donde se realizaban búsquedas con datos).
 
 GET _alias/
   ver los alias existentes
