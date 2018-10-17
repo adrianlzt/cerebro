@@ -82,3 +82,16 @@ https://mtu.net/~engstrom/ssh-key-auth-powerconnect/
 
 # MIBs
 Disponible al bajar el firmware de la web de soporte de dell
+
+
+
+# Port mirroring / monitoring / duplicacion trafico / tcpdump
+
+Mostrar configuraciones actuales:
+show ports monitor
+
+Configurar que el puerto gA duplique su tráfico (rx y tx) en el puerto gB:
+config> interface ethernet gB
+config-if> port monitor gA
+
+Mientras dure el port monitoring, no llegará el tráfico realmente destinado a gB
