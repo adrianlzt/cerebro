@@ -136,6 +136,37 @@ Otra forma más simple:
 PUT /{index}/_alias/{name}
 
 
+# Rollover
+https://www.elastic.co/blog/managing-time-based-indices-efficiently
+https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html
+
+API para hacer cambios a un alias que usemos para escribir. Al llamar a la API, se analizará el índice actualmente apuntdo por el alias, si cumple las condiciones (edad o número de documentos) se creará un índice nuevo y se moverá el alias.
+
+Curator puede lanzar los rollover: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/rollover.html
+Cuidado con limitar por tamaño, podría darse el caso de un incremento temporal
+
+Curator puede borrar los índices por fecha realizando una consulta a cada uno de los índices para ver que fechas tiene almacenadas: https://www.elastic.co/guide/en/elasticsearch/client/curator/current/filtertype_age.html#_literal_field_stats_literal_based_ages
+
+Si queremos borrar índices sin fecha, podemos consultar que fecha máxima y mínima tienen almacenados con esta query:
+GET NOMBREINDICE/_search
+{
+  "size": 0,
+  "aggs": {
+    "max_time": {
+      "max": {
+        "field": "@timestamp"
+      }
+    },
+    "min_time": {
+      "min": {
+        "field": "@timestamp"
+      }
+    }
+  }
+}
+
+
+
 # Open/Close
 https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html
 Podemos cerrar un índice para reducir el consumo. No prodemos buscar sobre él.
