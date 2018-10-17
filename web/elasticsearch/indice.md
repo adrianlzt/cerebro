@@ -102,6 +102,7 @@ curl -XDELETE 'http://localhost:9200/logstash-*'
 Una buena práctica es siempre usar alias para los nombres de los indices que usarán las aplicaciones.
 Si usamos los aliases para escribir, solo pueden apuntar a un indice.
 Se pueden poner filtros, que un alias solo pueda llegar a ciertos documentos, pero puede ser confuso para los usuarios.
+Si creamos un alias a indice-* y luego creamos más índices indice-*, esos nuevos no estarán apuntados por el alias.
 
 GET _alias/
   ver los alias existentes

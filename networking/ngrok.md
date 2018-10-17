@@ -12,7 +12,7 @@ Usar version 2.x
 Otra opcion es localtunnel.md
 
 Usar docker para levantar varios ngrok:
-docker run --rm -it --net=host m2i3/ngrok ngrok http 8080
+docker run --rm -d --net=host m2i3/ngrok ngrok http 8080
     docker run --rm -e "HTTP_PORT=8080" m2i3/ngrok -> antiguo?
 
 Obtener public addr:

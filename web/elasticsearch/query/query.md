@@ -25,6 +25,9 @@ curl 'localhost:9200/vehicles/_search?q=pontiac'
 Todos los elementos de un índice:
 curl localhost:9200/vehicles/_search
 
+En varios incdices
+GET index1,index2/_search
+
 Unos pocos elementos de un indice:
 curl "https://localhost:9200/.operations.2017.10.01/_search?size=10"
   si ponemos "&from=1000", me dará los 10 siguientes a partir del 1000
