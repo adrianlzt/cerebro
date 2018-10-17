@@ -29,6 +29,12 @@ logging console errors
 # Tabla de MACs - Puerto
 show bridge address-table
 
+Si queremos forzar a que un servidor envie tráfico por una interfaz sin ip podemos usar arping:
+arping -I enp4s0f1 10.0.1.1
+
+Asi podremos verlo en la tabla de direcciones
+
+
 
 # Descripciones de los puertos (definidas a mano)
 show interfaces description
@@ -86,6 +92,7 @@ Disponible al bajar el firmware de la web de soporte de dell
 
 
 # Port mirroring / monitoring / duplicacion trafico / tcpdump
+Enviar una copia del tráfico de uno o varios puertos a un puerto destino donde podremos ver el tráfico con tcpdump.
 
 Mostrar configuraciones actuales:
 show ports monitor
@@ -95,3 +102,7 @@ config> interface ethernet gB
 config-if> port monitor gA
 
 Mientras dure el port monitoring, no llegará el tráfico realmente destinado a gB
+Puede que tarde unos segundos (~30) en volver a llegar el trafico tras quitar el port monitor
+
+Para pararlo:
+config-if> no port monitor gA
