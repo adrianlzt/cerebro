@@ -63,3 +63,9 @@ fruits:
     - Mango
 
 fruits: ['uno', 'otro', 'coso']
+
+
+## Concatecar
+ - uno: ["uno", "dos"]
+ - dos: ["tres", "cuatro"]
+ - tres: "{{ uno }} + {{ dos }} + {{ [ 'cinco', 'seis' ] }}"
