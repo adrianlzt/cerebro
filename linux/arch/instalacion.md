@@ -1,13 +1,16 @@
 Más facil usar: manjaro.md
 Es una distribucion de arch
 
+Idea de instalación automatizada:
+https://github.com/bashrc666/arch-gotoole
+
 
 https://wiki.archlinux.org/index.php/Installation_guide
 
 Cargar desde usb, nos abre un terminal como root:
 
 loadkeys en
-fdisk -l 
+fdisk -l
   mirar como se llama el HD
 gdisk /dev/sdX
   para 250GB, 4GB RAM, 35GB /, resto /home

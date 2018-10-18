@@ -19,3 +19,21 @@ Por defecto usa mysql.
 Hay un parámetro para poner "postgresql"
 
 http://10.0.2.2/bareos-webui/
+
+
+
+# Config
+
+## Server
+Ficheros que enlazan con los clientes:
+/etc/bareos/bareos-dir.conf
+/etc/bareos/clientdefs/HOSTNAME_CLIENTE.conf
+
+
+## Cliente
+/etc/bareos/bareos-fd.conf
+Aqui pondremos la password que tendra que usar el server para contactarnos
+
+Para desplegar los clientes necesitamos la password del dir y del mon. Las podemos encontrar aqui:
+bareos-sd.d/director/bareos-mon.conf
+bareos-sd.d/director/bareos-dir.conf
