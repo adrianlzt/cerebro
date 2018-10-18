@@ -136,8 +136,7 @@ Si tenemos un loop que llama, por ejemplo, a un include_role, y dentro de ese ro
 Para usar variables distintas:
 - name: crear vm para cada comput, enlazada a esta red y mgmt
   os_server:
-		name: "{{server_prefix}}-inet-{{compute_item}}"
+    name: "{{server_prefix}}-inet-{{compute_item}}"
   with_items: "{{compute_nodes}}"
-  loop_control: 
+  loop_control:
     loop_var: "compute_item"
-
