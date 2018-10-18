@@ -18,6 +18,10 @@ http://docs.ansible.com/ansible/playbooks_blocks.html
        become_user: root
 
 
+# Loops
+No se puede: https://github.com/ansible/ansible/issues/13262
+
+
 # Error handling
 
 - name: a play that runs entirely on the ansible host
