@@ -212,6 +212,10 @@ export JBOSS_HOME=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-
 /usr/lib/jvm/default/bin/jconsole -J-Djava.class.path=/usr/lib/jvm/default/lib/jconsole.jar:/usr/lib/jvm/default/lib/tools.jar:/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/bin/client/jboss-cli-client.jar -J-Dmodule.path=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-role-jboss-monitor/pruebas/jboss-eap-6.4/modules
 
 
+VisualVM
+Una vez instalado, copiar este script (en este dir: visualvm.sh o en https://gist.github.com/b4b19c2336806c6e1d91fb3f07a81864) en el bin/ del dir de jboss para poder arrancarlo.
+
+
 Para conectar con el JMX del controlador del dominio lo haremos con un usuario de management por el puerto 9999.
 Obtendremos MBeans generales: cpu, memoria, threads, classes, etc
 JConsole en este modo también nos permitirá interactuar con la jboss cli.

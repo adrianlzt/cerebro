@@ -31,3 +31,7 @@ Hacer snapshots:
 VBoxManage snapshot $VM take <name of snapshot>
 VBoxManage snapshot $VM restore <name of snapshot>
 
+
+
+Borrar maquina:
+VBoxManage unregistervm <uuid|vmname> [--delete]

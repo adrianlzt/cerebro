@@ -19,6 +19,8 @@ Tambien hay una cli:
 http://wiki.cyclopsgroup.org/jmxterm/
 java -jar jmxterm...
 
+Y otra herramientra gráfica: visualvm
+Para usarla con jboxx mirar jboss.md
 
 # Protocolo
 RMI

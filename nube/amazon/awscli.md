@@ -1,6 +1,7 @@
 https://pypi.python.org/pypi/awscli
 http://docs.aws.amazon.com/cli/latest/reference/
 pip install awscli
+pacman -Ss aws-cli
 
 Para tener el autocompeltado:
 echo -e "# aws cli (pip python)\ncomplete -C aws_completer aws" >> ~/.bash_completion
@@ -12,6 +13,7 @@ aws SERVICIO COMANDO help
 Configuración:
 aws configure
   Genera el fichero .aws/config y nos pedirá las claves, la región por defecto y el tipo de formateo (table, json o text)
+  Obtener las claves en https://console.aws.amazon.com/iam/home?region=eu-west-1#/security_credential
 
 Output:
 aws --output table|json|text servicio comando

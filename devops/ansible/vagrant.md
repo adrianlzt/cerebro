@@ -1,4 +1,5 @@
 http://docs.vagrantup.com/v2/provisioning/ansible.html
+https://www.vagrantup.com/docs/provisioning/ansible_intro.html
 
 Vagrant.configure("2") do |config|
   config.vm.box = "chef/centos-6.5"
@@ -23,14 +24,26 @@ playbook.yml:
       service: name=ntpd state=restarted
 
 
-Si intento hacer un playbook muy sencillo con una task que genere un fichero no lo genera :?
+Estructura de directorios mejor:
+|-- Vagrantfile
+|-- provisioning
+|   |-- group_vars
+|           |-- all
+|   |-- roles
+|           |-- bar
+|           |-- foo
+|   |-- playbook.yml
+
+mkdir -p provisioning/{group_vars,roles}
+
+Usar con:
+ansible.playbook = "provisioning/playbook.yml"
 
 
-Playbook con roles, los leerá de .ansible/roles
----
-- hosts: all
-  roles:
-    - nombre.del.rol
+Al hacer vagrant up, nos ejecutará el provision después.
+Si queremos ejecutarlo a mano:
+vagrant provision
+
 
 
 
