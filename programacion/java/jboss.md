@@ -196,6 +196,8 @@ https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_applicati
 Usar el jconsole que viene con jboss (en bin/). Lo que hace ese script es cargar unas librerias de jboss necesarias.
 Mirar más abajo para ver como lanzarlo
 
+Mejor usar VisualVM (también abajo como configurarlo)
+
 
 Modo standalone y domain
 service:jmx:remoting-jmx://172.17.0.2:9999

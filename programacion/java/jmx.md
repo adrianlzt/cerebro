@@ -8,7 +8,7 @@ RMI parece que es el protocolo por defecto usado por JSR160.
 Parece que no hay conectores para RMI fuera del mundo Java, excepto tal vez: https://metacpan.org/source/JMX::Jmx4Perl
 
 
-Para inspeccionar lo que podemos obtener usar: jconsole (instalado con java)
+Para inspeccionar lo que podemos obtener usar: jconsole (instalado con java) (MUCHO mejor visualvm)
 https://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html
 
 
@@ -20,6 +20,12 @@ http://wiki.cyclopsgroup.org/jmxterm/
 java -jar jmxterm...
 
 Y otra herramientra gráfica: visualvm
+Nos da una interfaz donde es sencillo almacenar un monton de conexiones a distintos servers y/o hosts.
+Una vista de los threads mejor.
+Para poder añadir más funcionalidad instalar plugins:
+  VisualGC
+  VisualVM-JConsole
+  VisualVM-MBeans
 Para usarla con jboxx mirar jboss.md
 
 # Protocolo
@@ -34,7 +40,15 @@ Esto es lo que veo también cuando hago un netcat (el server enviando su hostnam
 
 
 
+# GC cpu
+Visualvm nos muestra el consumo de CPU del GC.
+Esto lo hace a partir del tiempo del GC con los calculos que podemos ver aqui:
+https://github.com/oracle/visualvm/blob/1d58f7ea1e3c65a996df75395a459da3a87a7b7b/plugins/tracermonitor/src/org/graalvm/visualvm/modules/tracer/monitor/CpuMonitorProbe.java#L79
 
+Coge el tiempo de procesado del GC (hay dos GC, PS MarkSweep y PS Scavenge): java.lang:type=GarbageCollector,name=PS MarkSweep, atributo CollectionTime
+Lo multiplica por 1M y divide entre el número de procesadores (java.lang:type=OperatingSystem attributo AvailableProcessors)
+Luego hace el delta con el anterior valor calculado.
+Posteriormente multiplica ese valor por 1000 (para convertirlo en ms) y lo divide entre el tiempo que ha pasado desde el startTime (java.lang-Runtime-StartTime). El calculo del tiempo que ha pasado lo hace cogiendo él (visualvm) la hora actual y restando el startTime)
 
 
 # JSON
