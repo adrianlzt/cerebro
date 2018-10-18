@@ -166,7 +166,9 @@ Obtener información del estado de los hosts/servidores/subsistemas/connectores:
 
 # Monitorización
 
-Explicación métricas: https://access.redhat.com/documentation/en-us/red_hat_jboss_operations_network/3.2/html/complete_resource_reference/jbossas7-jbossas7_host_controller-host
+Explicación métricas:
+https://access.redhat.com/documentation/en-us/red_hat_jboss_operations_network/3.2/html/complete_resource_reference/jbossas7-jbossas7_host_controller-host
+https://docs.bmc.com/docs/PATROL4JBossAS/32/collection-count-collectioncount-662397002.html
 
 ## Usando API management
 https://docs.jboss.org/author/display/AS71/The+HTTP+management+API

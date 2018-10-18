@@ -19,6 +19,14 @@ config.vm.network :forwarded_port, guest: 80, host: 8080
   Con el parámetro :host_ip se puede apuntar a una ip determinada
 
 
+Modificar el rango de private_network
+  config.vm.provider "virtualbox" do |vb|
+    [...]
+    vb.customize ['modifyvm', :id, '--natnet1', '192.168.222.0/24']
+    [...]
+  end
+
+
 
 # Public
 https://www.vagrantup.com/docs/networking/public_network.html
