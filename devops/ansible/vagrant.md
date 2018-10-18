@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "chef/centos-6.5"
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
-    ansible.sudo = true
+    ansible.become = true
   end
 end
 

@@ -9,6 +9,19 @@ Backup de muchos ficheros pequeños. Mirar performance/memoria/tunables.md vm.vf
 
 
 
+# Enterprise
+bareos
+bacula
+BackupPC
+
+
+
+
+rsnapshot
+https://rsnapshot.org/
+basado en rsync, escrito en perl. Conecta remotamente con las máquinas para obtener los backups
+
+
 ## Dirvish ##
 Mirar dirvish.md
 
