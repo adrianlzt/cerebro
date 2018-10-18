@@ -80,3 +80,22 @@ Devuelve el identificador y el path, estilo /560750/vaults/prueba/archives/1gWPn
 Podemos pasar un checksum (sha256) del fichero para asegurar que ha subido correctamente:
 --checksum xxx
 
+Como saber cuanto va a tardar?
+
+
+Se pueden subir ficheros por partes con initiate-multipart-upload, pero parece un poco jaleo, teniendo que especificar exactamente el tamaño.
+Tal vez un programa que corta un tar en pedazos listos para subir?
+U otra cli que gestiona esto?
+
+
+Obtener contenido de un almacén:
+aws glacier initiate-job --account-id - --vault-name prueba --job-parameters '{"Type": "inventory-retrieval"}'
+  nos devuelve un id del job
+
+
+Consultar el estado de las jobs:
+aws glacier list-jobs --account-id - --vault-name prueba
+  InProgress
+
+aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX out.json
+
