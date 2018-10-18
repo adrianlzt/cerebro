@@ -80,7 +80,7 @@ Devuelve el identificador y el path, estilo /560750/vaults/prueba/archives/1gWPn
 Podemos pasar un checksum (sha256) del fichero para asegurar que ha subido correctamente:
 --checksum xxx
 
-Como saber cuanto va a tardar?
+Como saber cuanto va a tardar? nethogs
 
 
 Se pueden subir ficheros por partes con initiate-multipart-upload, pero parece un poco jaleo, teniendo que especificar exactamente el tamaño.
@@ -96,6 +96,8 @@ aws glacier initiate-job --account-id - --vault-name prueba --job-parameters '{"
 Consultar el estado de las jobs:
 aws glacier list-jobs --account-id - --vault-name prueba
   InProgress
+  Una prueba que he hecho, ha tardado 2h en devolverme una job de inventory retrieval
 
+Obtener el resultado de la job
 aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX out.json
 
