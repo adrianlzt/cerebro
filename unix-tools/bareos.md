@@ -29,6 +29,14 @@ El director crea una configuración "Storage" donde apunta a un sd, con un nombr
 El sd tiene creado un "Device" con ese nombre y en la config se decide que tipo de almacenamiento usar (por ejemlo, File y un directorio)
 
 
+## Almacenamiento
+Podemos tener varios "Devices" de almacenamiento.
+Luego tenemos los "Pools", que definen la retención, máximo espacio usado y máximo número de volumenes que se van crear
+Estos pools se concretan en volúmenes y estos volumenes son ficheros que podemos ver en el sistema de ficheros (formato especial de bacula).
+
+Parece que los JobDefs son quien seleccionan que Pool y que Device usar.
+
+
 # Config
 
 ## Server
