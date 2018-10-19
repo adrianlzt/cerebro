@@ -139,6 +139,7 @@ Usar "help" y TAB para ir navegando
 
 Listar hosts:
 :read-children-names(child-type=host)
+./jboss-cli.sh --connect ":read-children-names(child-type=host)"
 
 Listar servers en un host:
 /host=local:read-children-names(child-type=server-config)
