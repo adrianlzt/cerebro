@@ -1,5 +1,7 @@
 http://wamp-proto.org/
 
+Mejor nchan? Crossbar creo que no escala gratuitamente (es de pago el cluster)
+
 Implementa RPC y Pub-Sub sobre Websockets.
 
 Las librerias que se pueden usar: Autobanh-X
