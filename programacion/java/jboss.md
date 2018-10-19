@@ -141,6 +141,11 @@ Listar hosts:
 :read-children-names(child-type=host)
 ./jboss-cli.sh --connect ":read-children-names(child-type=host)"
 
+./jboss-cli.sh --connect --user=USER --password='PASS' --controller=10.1.7.4 ":read-children-names(child-type=host)"
+
+Si da un error de duplicate argument, revisar que estamos poniendo bien los parametros
+
+
 Listar servers en un host:
 /host=local:read-children-names(child-type=server-config)
 
