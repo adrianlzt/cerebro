@@ -25,6 +25,13 @@ kubectl config current-context
 
 # Uso
 
+Info cluster (útil para configurar kubectl en un cliente)
+kubectl cluster-info
+
+Dump de todo el contenido del cluster:
+kubectl cluster-info dump
+
+
 Nodos del cluster
 kubectl get nodes
 
