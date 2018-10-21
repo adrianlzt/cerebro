@@ -18,15 +18,30 @@ El cluster estará operando en 127.0.0.1:8080 (al otro lado esta el apiserver) y
 Localhost es insecure, se permite acceso a la API sin auth.
 HTTPS necesita auth
 
+Mirar auth.md
+
 
 ## Vagrant
 Tienen un Vagrantfile de ejemplo que desplega 3 nodos usando los roles.
 Por defecto, ubuntu1804 y flunnel para red. Podemos meter customizaciones creando el fichero de override: vagrant/config.rb
 
-Cada máquina vagrant con una interfaz interna, una externa
+Cada máquina vagrant con una interfaz interna, una externa y la de internal networking
 
-Si entramos en alguna maquina, con el user vagrant podemos ejecutar:
+Para que los nodos expongan la api de kubernetes:
+mkdir vagrant
+echo '$forwarded_ports = {6443 => 6443}' >> vagrant/config.rb
+
+
+CUIDADO con hacer vagrant reload!
+Parece que mete de nuevo el /swapfile, y kubernetes no corre si lo detecta.
+Mirar roles/kubernetes/preinstall/tasks/0010-swapoff.yml
+
+
+
+Chequear estado, desde algunas de las maquinas, como user vagrant:
 kubectl get nodes
+
+
 
 
 # Kops
