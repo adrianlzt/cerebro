@@ -8,6 +8,9 @@ kubespray-cli
 https://github.com/kubernetes-incubator/kubespray
 Grupo de playbooks/roles de ansible para hacer el despliegue de kubernetes
 
+Tienen un Vagrantfile de ejemplo que desplega 3 nodos usando los roles.
+Por defecto, ubuntu1804 y flunnel para red. Podemos meter customizaciones creando el fichero de override: vagrant/config.rb
+
 
 # Kops
 # Kubeadm
