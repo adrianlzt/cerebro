@@ -74,3 +74,35 @@ Si tarda más de unos pocos segundos seguramente algo va mal.
 Ejemplo en php: object_client.php
 
 Testear con el programa python radula (mirar utils.md)
+
+
+
+
+## Elasticsearch
+https://ceph.com/rgw/new-luminous-rgw-metadata-search/
+radosgw-es
+
+Parece que podemos usar ES para almacenar los metadatos de los objetos almacenados en Ceph RGW y de esta manera poder encontrarlos más fácilmente.
+
+
+
+# NFS
+https://www.sebastien-han.fr/blog/2016/12/23/Ceph-Rados-Gateway-and-NFS/
+http://docs.ceph.com/docs/mimic/radosgw/nfs/
+Se puede exportar los pools como NFS
+
+Instalar con ceph-ansible
+cp group_vars/nfss.yml.sample  group_vars/nfss.yml
+Y editar ahi la config
+
+Al configurar ganseha en "EXPORT - FSAL" le pasaremos las credenciales que tiene que usar.
+Si no las pusimos en el ansible, creará un user nuevo cephnfs
+
+Si cambiamos la config:
+systemctl restart nfs-ganesha.service
+
+Necesario reiniciar rgw?
+
+
+## Cliente
+mount -t nfs -o nfsvers=4.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
