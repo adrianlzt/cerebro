@@ -40,6 +40,8 @@ pip install selenium
 
 Desde el codigo tendremos que poner el endpoint donde conectarnos
 
+Mirar ejemplo en programacion/python/selenium_ejemplo.py
+
 
 
 ## Crear webdriver de chrome
