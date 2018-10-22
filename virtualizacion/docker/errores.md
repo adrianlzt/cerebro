@@ -52,3 +52,14 @@ server gave HTTP response to HTTPS client
     Restart docker daemon
     sudo service docker restart
 
+
+
+
+lvm[1214]: Insufficient free space: 1488 extents needed, but only 60 available
+LVM breaks up each physical volume into extents. A logical volume consists of a set of extents. Each extent is either wholly unused, or wholly in used by a particular logical volume: extents cannot be subdivided. Extents are the elementary blocks of LVM allocation.
+Tal vez tenemos espacio pero no extents suficientes?
+Mirar que configuración tenemos puesto de autocrecimiento del lvm en /etc/lvm/profile/
+Ahi tendremos que cuando el LV pase de tanto %, se incremente en otro %
+Mirar lvm.md
+
+

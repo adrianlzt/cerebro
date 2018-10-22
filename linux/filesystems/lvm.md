@@ -9,7 +9,17 @@ Creamos un 'volume group' con varios 'physical volumes'.
 Encima de este 'volume group' podemos crear 'logical volumes' (que sería como una partición de un disco).
 Estos 'logical volumes' deben ser formateados para poder usarse (con ext4, xfs o lo que sea)
 
+Extent: LVM breaks up each physical volume into extents. A logical volume consists of a set of extents. Each extent is either wholly unused, or wholly in used by a particular logical volume: extents cannot be subdivided. Extents are the elementary blocks of LVM allocation.
+Por lo que he visto: 4MB/extent
+Consultar cuando tenemos libres:
+vgs -o +vg_free_count,vg_extent_count
+lvs -o +vg_free_count,vg_extent_count
+
 Abajo tengo una sección sobre device-mapper/dmeventd/dmsetup
+
+
+Opciones para mostrar datos:
+lvs -o help
 
 
 # Creando un LVM
