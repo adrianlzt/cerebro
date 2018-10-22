@@ -135,6 +135,10 @@ El puerto por defecto de JMX es el 9999 (para el controller, conectar con user d
 cd /opt/jboss/jboss-eap-6/bin/
 ./jboss-cli.sh
 
+Se puede sacar en JSON en la versión 7.2 EAP
+https://access.redhat.com/solutions/3486201
+jboss-cli.sh --output-json
+
 Usar "help" y TAB para ir navegando
 
 Listar hosts:

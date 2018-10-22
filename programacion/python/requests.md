@@ -167,6 +167,11 @@ Todos los códigos en: https://github.com/kennethreitz/requests/blob/master/requ
 from requests.auth import HTTPBasicAuth
 requests.get('https://api.github.com/user', auth=HTTPBasicAuth('user', 'pass'))
 
+## Digest
+from requests.auth import HTTPDigestAuth
+url = 'https://httpbin.org/digest-auth/auth/user/pass'
+requests.get(url, auth=HTTPDigestAuth('user', 'pass'))
+
 
 # Timeout
 http://docs.python-requests.org/en/latest/user/quickstart/#timeouts
