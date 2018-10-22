@@ -20,6 +20,9 @@ Para probarlo, abrir las Developer Tools de chrome, pestaña elements y Control+
 6. Select the textual value of first 'actor' element.
 //actor[1]/text()
 
+6bis. Un texto que contenga una cadena
+//*[contains(text(),'ABC')]
+
 7. Select the last 'actor' element.
 //actor[last()]
 
@@ -70,3 +73,9 @@ count(//foo:singer)
 
 21. Select the sum of the 'id' attributes of the 'singer' elements.
 sum(//foo:singer/@id)
+
+22. Parent
+//*[title="50"]/parent::store
+
+23. Hijo
+//p[contains(text(),"Americano")]/child::input
