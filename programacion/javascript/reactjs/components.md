@@ -1,6 +1,10 @@
 https://facebook.github.io/react/docs/react-component.html
 https://facebook.github.io/react/docs/components-and-props.html
 
+
+Prebuild components: https://news.ycombinator.com/item?id=18234867
+
+
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
 Cuando creamos JSX, podemos crearlos tipos DOM (los típicos de HTML, h1, p, a, img, etc) o components que hayamos creado.
 Siempre llamarlos con la primera letra en mayúscula.
