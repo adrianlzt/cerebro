@@ -1,6 +1,11 @@
 Como stackoverflow for teams.
 
 
+# Build
+Instalar "sbt" (build para Scala)
+Bajar el repo.
+sbt
+  abre una shell
 
 # Mail
 Cuando se envía un email fake:
