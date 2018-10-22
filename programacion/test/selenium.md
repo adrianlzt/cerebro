@@ -120,3 +120,10 @@ Por defecto solo se empieza a "navega" cuando document.readyState está a comple
 Esperar a que aparezca un elemento:
 el = WebDriverWait(driver).until(lambda d: return d.find_element_by_tag_name("p"))
 
+
+
+
+# Errores
+is not clickable at point
+Coger el elemento, esperar un poco y luego hacer click.
+Puede ser por otras razones que esto no lo arregle
