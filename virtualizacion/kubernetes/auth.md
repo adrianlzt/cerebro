@@ -48,13 +48,21 @@ admin/edit/view -> pensados para proveer esos permisos en uno o varios namepsace
 Darle permisos máximos al usuario adrian:
 kubectl create clusterrolebinding admin-adrian --clusterrole=cluster-admin --user=adrian
 
-Si queremos asignar roles normales (en vez de clusterroles), usaremos:
-kubectl create rolebinding ...
+Si queremos asignar un rol, o clusterrol, para un determinado namespace usaremos:
+kubectl create rolebinding NOMBRE --role|--clusterrole NOMBRE --user NOMBRE
+
+Si nos equivocamos al poner el nombre del rol no habrá ningún error.
 
 
 
 
 # Roles
+Los namespaces no tienen roles por defecto.
+
+Los roles los tenemos de dos tipos, clusterrole o role a secas.
+Los clusterroles están definidos para todo el cluster y se pueden usar para dar permisos globales, o para dar esos permisos en un determinado namespace.
+Los roles se tienen que definir dentro de un namespace siempre, y solo podrán asignarse en ese namespace
+
 Si queremos crear un rol custom:
 
 kind: Role

@@ -3,6 +3,10 @@ cli basada en boto
 pip install radula
   usar python2
 
+Otra simple: https://github.com/ceph/obo
+Python2. Me falla al instalar gevent
+
+
 Crear ~/.boto con los distintos profiles (credenciales)
 /root/.boto
 [Credentials]

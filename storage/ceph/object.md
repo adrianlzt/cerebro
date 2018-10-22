@@ -95,8 +95,8 @@ Instalar con ceph-ansible
 cp group_vars/nfss.yml.sample  group_vars/nfss.yml
 Y editar ahi la config
 
-Al configurar ganseha en "EXPORT - FSAL" le pasaremos las credenciales que tiene que usar.
-Si no las pusimos en el ansible, creará un user nuevo cephnfs
+Ansible siempre va a intentar crear un nuevo usuario para el NFS.
+Bug?
 
 Si cambiamos la config:
 systemctl restart nfs-ganesha.service
