@@ -14,12 +14,23 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s htt
 
 
 # Config / contexts
-Ver la config que tenemos ahora (los contextos)
 kubectl config view
 
 Contexto actual:
 kubectl config current-context
 
+
+## Contextos
+Un contexto relaciona un cluster, un usuario y un namespace.
+
+Por defecto tendremos configurado el namespace "default".
+
+Si queremos cambiar el namespace de un context:
+kubectl config set-context demo-adrian --namespace kube-system
+
+Lo suyo es tener un contexto por cada namespace que usemos.
+Podemos seguir una nomenclatura de contextos tipo:
+nombrecluster-(nombreuser?-)nombrenamespace
 
 
 
