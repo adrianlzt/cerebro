@@ -15,7 +15,7 @@ curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt receiver
 Enviar email con auth usando SSL y con verbose:
 curl smtp://mail.com --mail-from no_reply@origen.com --mail-rcpt destino@gmail.com --upload-file email.txt -v --ssl -k -u USER:PASS
 
-Email con auth y STARTLS (puerto 587)
+Email con auth y STARTTLS (puerto 587)
 curl smtp://mail.com:587 --mail-from no_reply@origen.com --mail-rcpt destino@gmail.com --upload-file email.txt -v --ssl -u USER:PASS
 
 
