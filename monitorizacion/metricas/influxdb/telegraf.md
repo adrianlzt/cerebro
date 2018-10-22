@@ -77,6 +77,9 @@ telegraf --usage NOMBRE
 ## agregar/quitar/modificar tags/fields
 https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering
 
+name_prefix
+name_suffix
+
 solo dejar pasar ciertos measurements:
 namepass = ["aaa"]
 
