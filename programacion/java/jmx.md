@@ -51,5 +51,10 @@ Luego hace el delta con el anterior valor calculado.
 Posteriormente multiplica ese valor por 1000 (para convertirlo en ms) y lo divide entre el tiempo que ha pasado desde el startTime (java.lang-Runtime-StartTime). El calculo del tiempo que ha pasado lo hace cogiendo él (visualvm) la hora actual y restando el startTime)
 
 
+El CollectionTime son ms
+El CollectionCount son número de veces que ha sucedido
+https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html
+
+
 # JSON
 Parece que la gente usa Jolokia para exponer las métricas de JMX en formato JSON para ser más fáciles de tratar.
