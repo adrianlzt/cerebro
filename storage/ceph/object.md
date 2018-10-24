@@ -67,9 +67,9 @@ radosgw-admin user create --uid="testuser" --display-name="First User"
   apuntar las claves que aparecen en el JSON devuelto (access_key, secret_key)
   Cuidado que alguna de estas claves no tenga un simbolo "\" porque puede ser que esté escapando algún simbolo. Lo fácil, crear de nuevo el user
 
-Testear acceso creando un pequeño programa en python2 que use la libreria boto:
-http://docs.ceph.com/docs/master/install/install-ceph-gateway/#test-s3-access
-Si tarda más de unos pocos segundos seguramente algo va mal.
+Info de un user:
+radosgw-admin user info --uid=joe
+  con este comando podemos ver su access and secret key
 
 Ejemplo en php: object_client.php
 
@@ -77,20 +77,50 @@ Testear con el programa python radula (mirar utils.md)
 
 
 
-# Administracion
-https://lollyrock.com/articles/s3cmd-with-radosgw/
-Parece que la gente usa s3cmd para gestionar
-
-Generar config de modo iterativo: s3cmd --configure
-  poner access y secret key
-  en el endpoint poner nuestro server: xxx.com:1234
-  el resto "intro"
-Config en ~/.s3cfg
+# Administracion y consulta
+Ejemplos de comandos con s3cmd y radula
 
 s3cmd ls
+radula lb
   listar buckets
 
+s3cmd mb s3://nombre
+  crear bucket
 
+s3cmd du -H s3://nombre
+  espacio utilizado y número de objetos
+
+radula info nombre
+  radula aqui nos da espacio ocupado, número de objetos, el más nuevo y el más grande
+
+
+## ACL
+Parece que si tenemos un bucket con objetos ya creados, aunque modifiquemos el ACL del bucket, esto no cambia los objetos que ya estaban almacenados. Tendremos que hacer una modificación recursiva.
+Pero a partir de la modificación, los nuevos ficheros subidos si tendrán los permisos del ACL del bucket.
+
+Hay 5 permisos posibles, que pueden ser aplicados sobre un bucket o un objeto:
+  READ:
+    bucket: listar en el bucket
+    objeto: leer los datos y metadatos del objeto
+  WRITE:
+    bucket: crear, sobrescribir y eliminar objetos del bucket
+  READ_ACP: permite leer la ACL (del bucket u objeto)
+  WRITE_ACP: permite modificar la ACL (del bucket u objeto)
+  FULL_CONTROL: los 4 anteriores juntos
+
+radula get-acl usync
+  info sobre acls de un bucket
+
+s3cmd info s3://nombre
+  info varia, sobre todo nos interesa las ACL
+
+radula -p usyncnoprod -rw allow cephnfs prueba
+  "allow" y "allow-user" es lo mismo
+  dar permisos al usuario "cephnfs" sobre todos los elementos del bucket "prueba"
+  esto irá elemento a elemento poniendo la ACL
+
+s3cmd setacl s3://joe-bucket --acl-grant=all:tom --recursive
+  da todos los permisos al usuario "tom" sobre el bucket "joe-bucket"
 
 
 
@@ -121,5 +151,9 @@ Necesario reiniciar rgw?
 
 
 ## Cliente
-mount -t nfs -o nfsvers=5.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
+mount -t nfs -o nfsvers=4.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
 Tenemos que tener instalado el cliente nfs (mirar adrianRepo/linux/filesystems/nfs/nfs.md)
+
+Para /etc/fstab
+<ganesha-host-name>:/ <mount-point> nfs noauto,soft,nfsvers=4.1,sync,proto=tcp 0 0
+

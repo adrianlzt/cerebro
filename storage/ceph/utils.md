@@ -1,3 +1,6 @@
+Parece que radula es mejor que s3cmd y encima soporta profiles.
+
+
 https://github.com/bibby/radula
 cli basada en boto
 pip install radula
@@ -47,15 +50,27 @@ radula dl BUCKET FICHERO
 Subida/bajada recursiva:
 https://github.com/bibby/radula/issues/8#issuecomment-299024816
 
+Más comandos, rollo administrativo, en rgw.md
+
+
 
 
 https://github.com/s3tools/s3cmd
 Official s3cmd repo -- Command line tool for managing Amazon S3 and CloudFront services http://s3tools.org/s3cmd
+https://lollyrock.com/articles/s3cmd-with-radosgw/
+https://s3tools.org/usage
+Parece que la gente usa s3cmd para gestionar
+
+Generar config de modo iterativo: s3cmd --configure
+  poner access y secret key
+  en el endpoint poner nuestro server: xxx.com:1234
+  DNS-style bucket+... poner xxx.com:1234
+  el resto "intro"
+Config en ~/.s3cfg
 
 pip install s3cmd
 
-Para que funcione con radosgw
-https://lollyrock.com/articles/s3cmd-with-radosgw/
+Ejemplos de uso en rgw.md
 
 
 
