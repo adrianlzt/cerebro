@@ -142,13 +142,17 @@ cp group_vars/nfss.yml.sample  group_vars/nfss.yml
 Y editar ahi la config
 
 Ansible siempre va a intentar crear un nuevo usuario para el NFS.
-Bug?
+Bug? Posible apañarlo tocando el rol de ceph-nfs
 
 Si cambiamos la config:
 systemctl restart nfs-ganesha.service
 
 Solo nos mostrará los buckets de los que el usuario es owner.
 Si le damos permisos a ese usuario sobre otro bucket no aparecerá (como tampoco veremos ese bucket con list-buckets)
+
+
+Esto a priori no nos da HA. Tendremos que montarla a parte.
+
 
 ## Cliente
 mount -t nfs -o nfsvers=4.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
@@ -157,3 +161,11 @@ Tenemos que tener instalado el cliente nfs (mirar adrianRepo/linux/filesystems/n
 Para /etc/fstab
 <ganesha-host-name>:/ <mount-point> nfs noauto,soft,nfsvers=4.1,sync,proto=tcp 0 0
 
+
+
+Probando a mover ficheros con el nfs veo alguna inconsistencia. Algún tipo de cache de metadatos?
+  - cliente1 crea fichero X
+  - cliente2 accede al fichero
+  - cliente2 borra el fichero
+  - cliente1 vuelve a crear el fichero X
+  - cliente2 intenta acceder pero da que no existe

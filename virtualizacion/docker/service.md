@@ -31,6 +31,10 @@ Forzar a redesplegar un service (por ejemplo para bajarse la ultima imagen):
 docker service update --force nombre
 
 
+Si queremos escalar un servicio
+docker service scale SERVICE=REPLICAS
+
+
 # API
 https://docs.docker.com/engine/api/v1.24/#39-services
 

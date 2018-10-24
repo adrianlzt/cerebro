@@ -46,7 +46,7 @@ radula up -t 16 "local/*" my-new-bucket/
 Podemos poner -i,--ignore-existing para ignorar archivo que ya existen (https://github.com/bibby/radula/issues/9#issuecomment-299021841)
 
 Descargar
-radula dl BUCKET FICHERO
+radula dl BUCKET/FICHERO
 Subida/bajada recursiva:
 https://github.com/bibby/radula/issues/8#issuecomment-299024816
 
