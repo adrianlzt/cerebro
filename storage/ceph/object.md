@@ -147,8 +147,8 @@ Bug?
 Si cambiamos la config:
 systemctl restart nfs-ganesha.service
 
-Necesario reiniciar rgw?
-
+Solo nos mostrará los buckets de los que el usuario es owner.
+Si le damos permisos a ese usuario sobre otro bucket no aparecerá (como tampoco veremos ese bucket con list-buckets)
 
 ## Cliente
 mount -t nfs -o nfsvers=4.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
