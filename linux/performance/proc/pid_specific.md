@@ -10,6 +10,10 @@ Si borramos un fichero creado por un proceso, hasta que el proceso no libere el 
 Los ficheros que son links a "socket:[inode]" podemos ver a que corresponden mirado /proc/net/tcp (mirar net.md)
 
 
+# /proc/$(pidof proceso)/limits
+Distintos límites que tiene el proceso, ficheros, tamaños, procesos, etc
+
+
 # /proc/$(pidof proceso)/fdinfo
 Un fichero por cada fd abierto
 Depende del tipo de fd nos da una info u otra. Mirar en http://man7.org/linux/man-pages/man5/proc.5.html

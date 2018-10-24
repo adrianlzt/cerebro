@@ -25,5 +25,5 @@ The maximum number of concurrently open files. We recommend a limit of at least 
 
 ## /proc/sys/fs/file-nr
 the total allocated file handles.
-the number of currently used file handles (with the 2.4 kernel); or the number of currently unused file handles (with the 2.6 kernel). (a 0 en RH6.4)
+the number of currently used file handles (with the 2.4 kernel); or the number of currently unused file handles (with the 2.6 kernel). Parece que en kernels nuevo esta a 0
 the maximum file handles that can be allocated (also found in /proc/sys/fs/file-max).

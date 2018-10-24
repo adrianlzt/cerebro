@@ -26,6 +26,9 @@ Basicos:
   network (errores en las interfaces?)
   open_files (ficheros abiertos VS máximo numero de ficheros abiertos del SO /proc/sys/fs/file-nr)
   procs_fd_limit (numero de FDs usados comparado con el limite por cada proceso)
+     cat /proc/self/limits| grep "Max open files"
+     VS
+     ls /proc/self/fd | wc -l
   procesos zombies
   slab_memory (% del uso respecto a la memoria total, /proc/meminfo)
   swap
