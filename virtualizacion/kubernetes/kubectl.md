@@ -47,6 +47,10 @@ Nodos del cluster
 kubectl get nodes
 
 
+kubectl get all
+nos devuelve muchos de los recursos, pero no todos, que tengamos configurados en nuestro NS
+
+
 # Servicios
 Listar
 kubectl get svc
@@ -65,3 +69,8 @@ kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --por
 
 Exponer
 kubectl expose deployment hello-minikube --type=NodePort
+
+
+
+# Debug
+kubectl -v 6 ...

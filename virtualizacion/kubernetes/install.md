@@ -42,6 +42,12 @@ Chequear estado, desde algunas de las maquinas, como user vagrant:
 kubectl get nodes
 
 
+Problemas vistos:
+ - los pods no tienen DNS
+ - no configura ningún storage
+ - no podemos acceder al dashboard de kubernetes
+
+
 
 
 # Kops

@@ -48,6 +48,9 @@ https://docs.openshift.com/container-platform/3.5/architecture/additional_concep
 
 NFS, HostPath, GlusterFS, Ceph RBD, OpenStack Cinder, EBS, GCE persistent disk, iSCSI, Fibre Channel
 
+https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume
+Se puede usar un volumen local. El scheduler, cuando vaya a colocar los pods sabrá donde está el volumen y pondrá el pod en el nodo adecuado.
+
 
 ## NFS
 https://docs.openshift.com/container-platform/3.5/install_config/persistent_storage/persistent_storage_nfs.html#install-config-persistent-storage-persistent-storage-nfs
