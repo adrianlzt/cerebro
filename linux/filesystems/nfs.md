@@ -73,7 +73,7 @@ nodo?.tr.es
 
 
 ## Cliente ##
-RedHat:
+RedHat6:
 yum install nfs-utils
 /etc/init.d/rpcbind start
 /etc/init.d/nfslock start
@@ -81,6 +81,10 @@ yum install nfs-utils
 chkconfig rpcbind on
 chkconfig nfslock on
 chkconfig nfs on
+
+RHEL7:
+yum isntall -y nfs-util
+mount ..
 
 Ubuntu:
 apt-get install nfs-common

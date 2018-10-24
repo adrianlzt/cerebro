@@ -77,6 +77,22 @@ Testear con el programa python radula (mirar utils.md)
 
 
 
+# Administracion
+https://lollyrock.com/articles/s3cmd-with-radosgw/
+Parece que la gente usa s3cmd para gestionar
+
+Generar config de modo iterativo: s3cmd --configure
+  poner access y secret key
+  en el endpoint poner nuestro server: xxx.com:1234
+  el resto "intro"
+Config en ~/.s3cfg
+
+s3cmd ls
+  listar buckets
+
+
+
+
 
 ## Elasticsearch
 https://ceph.com/rgw/new-luminous-rgw-metadata-search/
@@ -105,4 +121,5 @@ Necesario reiniciar rgw?
 
 
 ## Cliente
-mount -t nfs -o nfsvers=4.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
+mount -t nfs -o nfsvers=5.1,noauto,soft,sync,proto=tcp 127.0.0.1:/ /mnt
+Tenemos que tener instalado el cliente nfs (mirar adrianRepo/linux/filesystems/nfs/nfs.md)
