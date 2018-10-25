@@ -12,3 +12,10 @@ sudo mv jx /usr/local/bin
 
 # install Jenkins X sobre un cluster de kubernetes ya montado
 https://jenkins-x.io/getting-started/install-on-cluster/
+
+## Requisitos
+https://jenkins-x.io/getting-started/install-on-cluster/
+
+Storage para PVC (persistent volume claims)
+RBAC (auth)
+A cluster with at least 4 vCpus in addition to the master node (e.g. 2 m4.large nodes + m4.large master)

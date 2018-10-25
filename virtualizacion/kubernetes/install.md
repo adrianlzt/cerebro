@@ -18,6 +18,13 @@ kubectl cluster-info
 
 Para acceder remotamente podemos usar el fichero /root/.kube/config de cualquiera de las maquinas
 
+Chequear que todos los pods están running:
+kubectl get pod --all-namespaces | grep -v Running
+
+Revisar si da algún fallo en:
+kubectl describe nodes
+
+
 Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
 https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
   ejecutar los dos "create" en ficheros distintos

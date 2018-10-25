@@ -58,7 +58,8 @@ kubectl get svc
 
 # Pods
 Listar
-kubectl get pod
+kubectl get pod -o wide
+  con -o wide veremos la IP del pod y en que nodo está desplegado
 
 Crear
 kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
@@ -74,3 +75,12 @@ kubectl expose deployment hello-minikube --type=NodePort
 
 # Debug
 kubectl -v 6 ...
+
+
+
+# JSON
+https://kubernetes.io/docs/reference/kubectl/jsonpath/
+kubectl get XX -o json
+kubectl get pods -o=jsonpath='{.items[0]}'
+
+Me parece más sencillo usar "-o json" y luego jq
