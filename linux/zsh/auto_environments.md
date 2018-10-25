@@ -1,3 +1,17 @@
+https://github.com/direnv/direnv
+Mejor que el zsh-autoenv. Me permite ejecutar scripts enteros sin problemas (el otro me fallaba con un script que tenia que hacerle un source).
+
+Meter en los directorios un:
+.envrc
+
+
+direnv allow
+  para permitir el .envrc que nunca hemos visto antes (o se ha modificado)
+
+direnv edit
+
+
+
 https://github.com/Tarrasch/zsh-autoenv
 
 Podemos tener un entorno definido para cada directorio.
