@@ -69,3 +69,29 @@ fruits: ['uno', 'otro', 'coso']
  - uno: ["uno", "dos"]
  - dos: ["tres", "cuatro"]
  - tres: "{{ uno }} + {{ dos }} + {{ [ 'cinco', 'seis' ] }}"
+
+
+# Generar una lista de objetos a partir de una "lista template" y una lista para rellenar ese template
+- hosts: localhost
+  gather_facts: false
+  vars:
+    - projects:
+      - pepe
+      - maria
+    - template_hostgroups_functional:
+      - "__uno__{{project_item}}"
+      - "__dos__{{project_item}}"
+  tasks:
+    - debug: var=env
+
+    - set_fact:
+        hgs2: "{{hgs2| default([]) }} + {{ template_hostgroups_functional }}"
+      loop: "{{projects}}"
+      loop_control:
+        loop_var: project_item
+
+En hgs2 tendremos:
+ - __uno__pepe
+ - __dos__pepe
+ - __uno__maria
+ - __dos__maria

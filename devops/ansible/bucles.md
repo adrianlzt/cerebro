@@ -4,7 +4,7 @@ No se puede usar {{item}} en el name
 
 - name: install packages loop
    yum: name={{ item }} state=present
-   with_items:
+   loop:
      - vim-enhanced
      - screen
      - nano
@@ -12,7 +12,7 @@ No se puede usar {{item}} en el name
 
 - name: add several users
   user: name={{ item.name }} state=present groups={{ item.groups }}
-  with_items:
+  loop:
     - { name: 'testuser1', groups: 'wheel' }
     - { name: 'testuser2', groups: 'root' }
 
@@ -54,7 +54,7 @@ Podemos poner
 # Todos los resultados se guardan en la variable icinga_ports_uuids, en forma de array en icinga_ports_uuids.results
 - name: obtain port uuid for icinga hosts
   shell: nova --insecure interface-list {{ item }} | grep {{ vip_net_uuid.stdout }} | cut -d ' ' -f 8
-  with_items: groups['icinga']
+  loop: groups['icinga']
   register: icinga_ports_uuids
   until: icinga_ports_uuids.stdout.strip('') != ""
   retries: 5
@@ -71,7 +71,7 @@ groups['all']
 
 - name: Do something with each result
   shell: /usr/bin/something_else --param {{ item }}
-  with_items: command_result.stdout_lines
+  loop: command_result.stdout_lines
 
 
 
@@ -106,18 +106,18 @@ Hay que hacer el with_item sobre VARIABLE.results
   fail:
     msg: "The command ({{ item.cmd }}) did not have a 0 return code"
   when: item.rc != 0
-  with_items: echo.results
+  loop: echo.results
 
 
 # Guardo todos los valores que obtengo por cada una de las maquinas del grupo 'icinga' en la variable icinga_ports_uuids
 # Luego guardo cada uno de esos valores en un fichero distinto
 - name: testing
   shell: nova --insecure interface-list {{ item }} | grep {{ vip_net_uuid.stdout }} | cut -d ' ' -f 8
-  with_items: groups['icinga']
+  loop: groups['icinga']
   register: icinga_ports_uuids
 
 - copy: content={{item.stdout}} dest="/tmp/ansible.prueba.{{item.item}}"
-  with_items: icinga_ports_uuids.results
+  loop: icinga_ports_uuids.results
 
 
 
@@ -137,6 +137,6 @@ Para usar variables distintas:
 - name: crear vm para cada comput, enlazada a esta red y mgmt
   os_server:
     name: "{{server_prefix}}-inet-{{compute_item}}"
-  with_items: "{{compute_nodes}}"
+  loop: "{{compute_nodes}}"
   loop_control:
     loop_var: "compute_item"
