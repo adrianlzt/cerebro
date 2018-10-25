@@ -87,6 +87,14 @@ $ docker push localhost:5000/ubuntu
 
 # Administracion registry
 
+Limpiar blobs no usados
+docker exec -it registry bin/registry garbage-collect /etc/docker/registry/config.yml
+
+Parece que no se pueden borrar "registries" aunque estén vacíos.
+Lo borramos eliminado el directorio: rm -fr registry/v2/repositories/usync/test
+Comprobar primero que no tiene ningún _manifest enlazado (parece que si no tiene ficheros, no tiene nada. Solo veremos directorios vacios)
+
+
 # API
 https://docs.docker.com/registry/spec/api/#overview
 
@@ -147,6 +155,13 @@ deckschrubber -registry https://docker.com -user adrian -password XXX -repo "nam
 
 deckschrubber -registry https://docker.com -user adrian -password XXX -repo "name/api" -latest 5 -dry
   borrar todas las tags menos las 5 últimas. -dry, no hacer nada, ver que va a borrar
+
+
+
+Puede ser que en el registry tengamos un monton de imágenes no refereciadas por ningún tag (porque hayamos subido nuevas imagenes con el mismo tag).
+Para borrar ese tipo de imágenes usar: https://github.com/mortensteenrasmussen/docker-registry-manifest-cleanup
+docker run -it -v <path-to-registry>:/registry -e REGISTRY_URL=<registry-url> -e DRY_RUN=true mortensrasmussen/docker-registry-manifest-cleanup
+  primero dry run para ver que va a borrar
 
 
 

@@ -34,6 +34,7 @@ mkdir vagrant
 echo '$forwarded_ports = {6443 => 6443}' >> vagrant/config.rb
 
 Si usamos flannel (por defecto), tenemos que configurar bien que interfaz debe usar (https://github.com/kubernetes-incubator/kubespray/issues/1981):
+Si no, no tendremos conectividad entre pods de distintos nodos.
 mkdir group_vars
 echo "flannel_interface: eth1" > group_vars/all
 
@@ -52,16 +53,31 @@ Parece que mete de nuevo el /swapfile, y kubernetes no corre si lo detecta.
 Mirar roles/kubernetes/preinstall/tasks/0010-swapoff.yml
 
 
-
 Chequear estado, desde algunas de las maquinas, como user vagrant:
 kubectl get nodes
 
+Para acceder remotamente podemos usar el fichero /root/.kube/config de cualquiera de las maquinas
+
+kubectl cluster-info
+  esto nos dirá los endpoints del cluster y donde está el dashboard
+
+Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
+https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+  ejecutar los dos "create" en ficheros distintos
+
+
+Testear el cluster con sonobuy
+go get -u -v github.com/heptio/sonobuoy
+sonobuoy run
+sonobuoy status
+  para ver como va
+sonobuoy retrieve .
+  cuando haya terminado, para bajarnos un .tar.gz con los resultados
+
+
 
 Problemas vistos:
- - red interna no funcionando? desde un pod  no llego a los services. Solo hago pings entre pods del mismo host. Solo llego a los services que están en el mismo nodo.
- - los pods no tienen DNS
  - no configura ningún storage
- - no podemos acceder al dashboard de kubernetes
 
 
 
