@@ -28,6 +28,7 @@ Lo más facil es entrar en https://scanner.heptio.com/ y ejecutar el comando que
 En la web deberemos ver un "Your tests are running"
 Logs del container del pod:
 kubectl apply -f https://scanner.heptio.com/cd601f48985c507c5ea6dccd3b9669ff/yaml/
+  falla enviando los resultados, parece que es un bug conocido pero no parece que le den solución
 
 O sin usar el endpoint, localmente, bajándonos los resultados.
 go get -u -v github.com/heptio/sonobuoy
@@ -36,6 +37,7 @@ sonobuoy status
   para ver como va
 sonobuoy retrieve
   para entender este dump: https://github.com/heptio/sonobuoy/blob/master/docs/snapshot.md
+no veo nada tampoco muy interesante navegando por los ficheros
 
 
 
