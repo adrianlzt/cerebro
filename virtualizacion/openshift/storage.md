@@ -2,6 +2,8 @@ https://docs.openshift.com/container-platform/3.5/architecture/additional_concep
 https://docs.openshift.com/dedicated/architecture/additional_concepts/storage.html
 https://docs.openshift.com/dedicated/dev_guide/persistent_volumes.html
 mirar volumes_docker.md para ver como gestiona el montaje de directorios y configMaps
+https://portworx.com/basic-guide-kubernetes-storage/
+  explicación de los pvc, pv, storageclass y que hace el controller y los kubeletes en todo esto
 
 Se utiliza la solución de Kubernetes: persistent volume (PV) framework.
 
@@ -11,6 +13,22 @@ Cuando se necesita un storage persistente se hace un persistent volume claims (P
 Parece que los PV pueden ser provisionados manualmente con tamaños específicos. Esto podría ser un problema si alguien solicita un PV de un tamaño más grande de los provisionado.
 Generalmente habrá unos provisionadores dinámicos que se encargarán de crear los PVs según los PVCs que le lleguen.
 
+# PV
+Un PV es un volumen de kubernetes asociado a un disco, path, volumen ESB de amazon, bucket de ceph o lo que sea.
+Estos PVs tendrán un tamaño y unas características (como se puede acceder a ellos).
+Tipos de volumenes: https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes
+
+# PVC
+Un PVC es una aplicación que quiere un volumen con unas características.
+Por ejemplo, mi aplicación que va a almacenar algo temporal mientras trabaja, necesita un volumen de 1GB tipo RWO.
+Kubernetes se encargará de mapear ese PVC a un PV de los que haya disponibles.
+
+# StorageClass
+https://kubernetes.io/docs/concepts/storage/storage-classes/
+Automatización de la creación de PVs.
+Podemos tener varios StorageClass con distintas "calidades" por ejemplo. El usuario podrá seleccionar uno y el StorageClass creará un PV del tipo que tenga definido para el usuario
+En la tabla de la web podemos ver que "volume plugins" tienen un provisionador ya en kubernetes, de manera que podrá crear los PVs dinámicamente.
+
 
 # Listar PVs/PVCs (volumes/claims)
 oc get pv
@@ -19,7 +37,36 @@ oc get pv (solo para admin?)
 
 No aparecen con: oc get all
 
-# Solicitar un PVC
+
+
+# Crear un storageclass
+La opción "WaitForFirstConsumer" hará que el PVC no se resuelva en un PV hasta que se cree el pod que lo necesite.
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+
+
+# Crear un volumen
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: task-pv
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    volumeID: vol-867g5kii
+    fsType: ext4
+
+
+
+# Solicitar un volumen (PVC)
 oc create -f volumen.yaml
 volumen.yaml:
 apiVersion: v1
@@ -32,7 +79,29 @@ spec:
   resources:
     requests:
       storage: 25Gi
-  volumeName: nombre-volumen
+  volumeName: nombre-volumen  # campo opcional
+
+
+# Crear un pod que usa un volumen
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-pod
+spec:
+  volumes:
+    - name: task-volume
+      persistentVolumeClaim:
+       claimName: task-pvc
+  containers:
+    - name: task-container
+      image: mysql:5.6
+      ports:
+        - containerPort: 3306
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: task-volume
+
 
 
 # Modos
@@ -41,6 +110,19 @@ Los únicos que soportan todos: NFS o GlusterFS
 ReadWriteOnce   RWO   The volume can be mounted as read-write by a single node.
 ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
 ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
+
+
+# Añadir storage
+Si una vez tenemos corriendo nuestra app, en el dc añadimos un storage, los containers se pararán y volverán a arrancar con el container attachado.
+
+Los volumenes no aparecen en "docker volume", supongo que se gestionan de otra manera.
+
+
+# Claims
+Al usuario se le da un volumen igual o superior a lo solicitado, tanto en espacio como en permisos.
+
+Therefore, the user may be granted more, but never less. For example, if a claim requests RWO, but the only volume available was an NFS PV (RWO+ROX+RWX), the claim would match NFS because it supports RWO.
+
 
 
 # Plugins soportados
@@ -55,18 +137,6 @@ Se puede usar un volumen local. El scheduler, cuando vaya a colocar los pods sab
 ## NFS
 https://docs.openshift.com/container-platform/3.5/install_config/persistent_storage/persistent_storage_nfs.html#install-config-persistent-storage-persistent-storage-nfs
 
-
-
-# Añadir storage
-Si una vez tenemos corriendo nuestra app, en el dc añadimos un storage, los containers se pararán y volverán a arrancar con el container attachado.
-
-Los volumenes no aparecen en "docker volume", supongo que se gestionan de otra manera.
-
-
-# Claims
-Al usuario se le da un volumen igual o superior a lo solicitado, tanto en espacio como en permisos.
-
-Therefore, the user may be granted more, but never less. For example, if a claim requests RWO, but the only volume available was an NFS PV (RWO+ROX+RWX), the claim would match NFS because it supports RWO.
 
 
 

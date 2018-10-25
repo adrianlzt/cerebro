@@ -26,6 +26,7 @@ kubectl describe nodes
 
 
 Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
+mirar dashboard.md
 https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
   ejecutar los dos "create" en ficheros distintos
 
@@ -55,15 +56,17 @@ HTTPS necesita auth
 Mirar auth.md
 
 
+Configurar almacenamiento (por defecto no tienen ningún storageclass) -> storage.md
 
-## Problemas vistos
- - no configura ningún storage
 
 
 
 ## Vagrant
 Tienen un Vagrantfile de ejemplo que desplega 3 nodos usando los roles.
 Por defecto, ubuntu1804 y flunnel para red. Podemos meter customizaciones creando el fichero de override: vagrant/config.rb
+
+Con solo 1vCPU por defecto no arranca ni todos los servicios básicos (no cabe un pod de dns).
+echo '$vm_cpus = 3' >> vagrant/config.rb
 
 Cada máquina vagrant con una interfaz interna, una externa y la de internal networking
 
