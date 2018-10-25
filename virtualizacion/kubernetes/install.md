@@ -1,26 +1,55 @@
 # Kubespray
 https://kubespray.io/
 https://kubernetes.io/docs/setup/custom-cloud/kubespray/
-KubeSpray is an incubated Kubernetes community project for deploying K8s clusters on premises or in the cloud.
-
-Interfaz web para desplegar sobre AWS o DigitalOcean.
-
-kubespray-cli
 https://github.com/kubernetes-incubator/kubespray
 Grupo de playbooks/roles de ansible para hacer el despliegue de kubernetes
 
+Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
+
+# Despliegue
 30' en desplegar sobre vagrant (con imágenes base ya bajadas)
 
 Comprobar que la conectividad entre las distintas partes es correcta: https://github.com/kubernetes-incubator/kubespray/blob/master/docs/netcheck.md
+https://github.com/Mirantis/k8s-netchecker-server
+  activar poniendo la variable 'deploy_netchecker' a true
 
 Desde una de las máquinas donde se ha desplegado el cluster:
 kubectl cluster-info
+
+Para acceder remotamente podemos usar el fichero /root/.kube/config de cualquiera de las maquinas
+
+Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
+https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
+  ejecutar los dos "create" en ficheros distintos
+
+
+Testear el cluster con sonobuy:
+Lo más facil es entrar en https://scanner.heptio.com/ y ejecutar el comando que nos pasan
+En la web deberemos ver un "Your tests are running"
+Logs del container del pod:
+kubectl apply -f https://scanner.heptio.com/cd601f48985c507c5ea6dccd3b9669ff/yaml/
+
+O sin usar el endpoint, localmente, bajándonos los resultados.
+go get -u -v github.com/heptio/sonobuoy
+sonobuoy run
+sonobuoy status
+  para ver como va
+sonobuoy retrieve
+  para entender este dump: https://github.com/heptio/sonobuoy/blob/master/docs/snapshot.md
+
+
 
 El cluster estará operando en 127.0.0.1:8080 (al otro lado esta el apiserver) y en https://IP:6443
 Localhost es insecure, se permite acceso a la API sin auth.
 HTTPS necesita auth
 
 Mirar auth.md
+
+
+
+## Problemas vistos
+ - no configura ningún storage
+
 
 
 ## Vagrant
@@ -52,32 +81,13 @@ CUIDADO con hacer vagrant reload!
 Parece que mete de nuevo el /swapfile, y kubernetes no corre si lo detecta.
 Mirar roles/kubernetes/preinstall/tasks/0010-swapoff.yml
 
-
+Acceso con:
+vargant ssh k8s-01
 Chequear estado, desde algunas de las maquinas, como user vagrant:
 kubectl get nodes
 
-Para acceder remotamente podemos usar el fichero /root/.kube/config de cualquiera de las maquinas
+Seguir mirando en la parte general de despliegue como seguir para usar el cluster
 
-kubectl cluster-info
-  esto nos dirá los endpoints del cluster y donde está el dashboard
-
-Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
-https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
-  ejecutar los dos "create" en ficheros distintos
-
-
-Testear el cluster con sonobuy
-go get -u -v github.com/heptio/sonobuoy
-sonobuoy run
-sonobuoy status
-  para ver como va
-sonobuoy retrieve .
-  cuando haya terminado, para bajarnos un .tar.gz con los resultados
-
-
-
-Problemas vistos:
- - no configura ningún storage
 
 
 

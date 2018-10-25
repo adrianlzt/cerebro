@@ -162,6 +162,7 @@ Puede ser que en el registry tengamos un monton de imágenes no refereciadas por
 Para borrar ese tipo de imágenes usar: https://github.com/mortensteenrasmussen/docker-registry-manifest-cleanup
 docker run -it -v <path-to-registry>:/registry -e REGISTRY_URL=<registry-url> -e DRY_RUN=true mortensrasmussen/docker-registry-manifest-cleanup
   primero dry run para ver que va a borrar
+  puede tardar varias horas
 
 
 
