@@ -19,3 +19,8 @@ https://jenkins-x.io/getting-started/install-on-cluster/
 Storage para PVC (persistent volume claims)
 RBAC (auth)
 A cluster with at least 4 vCpus in addition to the master node (e.g. 2 m4.large nodes + m4.large master)
+
+
+## Install
+Sobre un cluster de kubernetes ya existente
+jx install
