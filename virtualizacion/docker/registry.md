@@ -73,6 +73,10 @@ auth:
 
 Visor web:
 docker run -d -e ENV_DOCKER_REGISTRY_HOST=registry -e ENV_DOCKER_REGISTRY_PORT=5000 -p 8080:80 --link registry --name registry_web konradkleine/docker-registry-frontend:v2
+  no permite borrar imagenes, no implementado
+
+https://github.com/SUSE/Portus
+  este parece que si permite borrar imágenes y es más avanzado. Permite controlar quien baja que imágenes, monitorización, etc
 
 
 Ejemplo de uso:
@@ -88,6 +92,7 @@ https://docs.docker.com/registry/spec/api/#overview
 
 Listar repos disponibles:
 /v2/_catalog?n=100
+curl -u user:pass -k https://127.0.0.1:5000/v2/_catalog?n=100 | jq
 
 Listar tags para la imagen org/nombre
 v2/org/nombre/tags/list

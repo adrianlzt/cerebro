@@ -9,6 +9,8 @@ kubespray-cli
 https://github.com/kubernetes-incubator/kubespray
 Grupo de playbooks/roles de ansible para hacer el despliegue de kubernetes
 
+30' en desplegar sobre vagrant (con imágenes base ya bajadas)
+
 Comprobar que la conectividad entre las distintas partes es correcta: https://github.com/kubernetes-incubator/kubespray/blob/master/docs/netcheck.md
 
 Desde una de las máquinas donde se ha desplegado el cluster:
@@ -31,6 +33,19 @@ Para que los nodos expongan la api de kubernetes:
 mkdir vagrant
 echo '$forwarded_ports = {6443 => 6443}' >> vagrant/config.rb
 
+Si usamos flannel (por defecto), tenemos que configurar bien que interfaz debe usar (https://github.com/kubernetes-incubator/kubespray/issues/1981):
+mkdir group_vars
+echo "flannel_interface: eth1" > group_vars/all
+
+
+Si queremos que tengan una tercera interfaz publica:
+Despues de:
+      config.vm.network :private_network, ip: ip
+Añadimos
+      ip_ext = "10.0.2.#{i+70}"
+      config.vm.network "public_network", ip: ip_ext, :bridge => 'enp5s0f0'
+
+
 
 CUIDADO con hacer vagrant reload!
 Parece que mete de nuevo el /swapfile, y kubernetes no corre si lo detecta.
@@ -43,6 +58,7 @@ kubectl get nodes
 
 
 Problemas vistos:
+ - red interna no funcionando? desde un pod  no llego a los services. Solo hago pings entre pods del mismo host. Solo llego a los services que están en el mismo nodo.
  - los pods no tienen DNS
  - no configura ningún storage
  - no podemos acceder al dashboard de kubernetes
