@@ -9,6 +9,9 @@ transport para comunicación intra-nodos
 Intentar poner fibra para el canal de transport entre nodos.
 
 
+# Threads
+Hay distintos threads diferentes para indexado y búsquedas.
+
 
 # Write operation
 Las escrituras se pueden lanzar contra cualquier nodo.
