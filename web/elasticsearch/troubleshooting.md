@@ -177,3 +177,95 @@ Scripting innecesario, sobre todo cuando se podrían hacer en index time en vez 
 Regular expressiones, sobre todo las que no dan un prefijo, que obliga a ES a analizar todos los valores.
 Truco, si no podemos poner un prefijo, tal vez podemos indexar el valor "reversed" y asi tener prefijo:
   .*work -> krow.*
+
+
+
+
+# Diagnosis
+https://github.com/elastic/support-diagnostics
+
+Herramienta en java para generar un fichero de diagnosis del estado del cluster
+Bajarnos el .zip de la última release.
+Ejecutarlo mejor en uno de los nodos del cluster (porque también va a recoger info genérica del estado del SO)
+La versión de la heramienta de diagnosis no tiene que ver con la versión de ES
+
+Lo que ejecuta:
+08:20:22 INFO  Currently running query: _alias?pretty
+08:20:22 INFO  Currently running query: _cat/allocation?v
+08:20:25 INFO  Currently running query: _cat/master?format=json
+08:20:25 INFO  Currently running query: _cat/nodes?v&h=ip,heap.percent,ram.percent,cpu,load_1m,load_5m,load_15m,node.role,master,name,nodeId,diskAvail
+08:20:30 INFO  Currently running query: _cat/indices?v
+08:20:35 INFO  Currently running query: _cat/segments?v
+08:20:39 INFO  Currently running query: _cat/health?v
+08:20:39 INFO  Currently running query: _cat/pending_tasks?v
+08:20:39 INFO  Currently running query: _cat/aliases?v
+08:20:39 INFO  Currently running query: _cat/thread_pool?v
+08:20:39 INFO  Currently running query: _cat/fielddata?v
+08:20:43 INFO  Currently running query: _cat/shards
+08:20:48 INFO  Currently running query: _cluster/health?pretty
+08:20:48 INFO  Currently running query: _cluster/pending_tasks?pretty&human
+08:20:48 INFO  Currently running query: _cluster/settings?pretty&flat_settings
+08:20:49 INFO  Currently running query: _cluster/settings?include_defaults&pretty&flat_settings
+08:20:50 INFO  Currently running query: _cluster/state?pretty&human
+08:20:54 INFO  Currently running query: _cluster/stats?pretty&human
+08:20:58 INFO  Currently running query: _count?pretty
+08:21:28 INFO  count did not complete normally.
+08:21:28 INFO  Currently running query: _stats?pretty&human
+08:21:36 INFO  Currently running query: _mapping?pretty
+08:21:37 INFO  Currently running query: _cat/master?format=json
+08:21:38 INFO  Currently running query: _nodes/hot_threads?threads=10000
+08:21:42 INFO  Currently running query: _nodes/stats?pretty&human
+08:21:50 INFO  Currently running query: /_nodes/stats/indices/fielddata?pretty=true&fields=*
+08:21:50 INFO  Currently running query: _cat/fielddata?format=json&bytes&pretty
+08:21:54 INFO  Currently running query: _cat/plugins?format=json
+08:21:54 INFO  Currently running query: _cat/recovery?v
+08:21:58 INFO  Currently running query: _recovery?pretty
+08:22:02 INFO  Currently running query: _cat/shards?format=json&bytes=b&pretty
+08:22:10 INFO  Currently running query: _segments?pretty&human
+08:22:12 INFO  Currently running query: _settings?pretty&human
+08:22:13 INFO  Currently running query:
+08:22:13 INFO  Currently running query: _nodes?pretty&human
+08:22:13 INFO  Currently running query: _template?pretty
+08:22:13 INFO  Currently running query: _cat/nodeattrs
+08:22:13 INFO  Currently running query: _tasks?pretty&human&detailed
+08:22:14 INFO  Currently running query: _ingest/pipeline/*?pretty&human
+08:22:14 INFO  Currently running query: _cluster/allocation/explain?pretty
+08:22:14 INFO  No data retrieved.
+08:22:14 INFO  Currently running query: _cluster/allocation/explain?include_disk_info=true&pretty
+08:22:14 INFO  No data retrieved.
+08:22:14 INFO  Currently running query: _shard_stores?pretty
+08:22:14 INFO  Currently running query: _license?pretty
+08:22:14 INFO  Currently running query: _xpack/usage?pretty&human
+08:22:44 INFO  xpack did not complete normally.
+08:22:44 INFO  Currently running query: _xpack/ml/datafeeds?pretty
+08:22:44 INFO  Currently running query: _xpack/ml/anomaly_detectors?pretty
+08:22:45 INFO  Currently running query: _xpack/ml/anomaly_detectors/_stats?pretty
+08:23:15 INFO  ml_stats did not complete normally.
+08:23:15 INFO  Currently running query: _watcher/stats/_all
+08:23:15 INFO  Currently running query: _xpack/security/user?pretty
+08:23:15 INFO  Endpoint does not exist.
+08:23:15 INFO  Currently running query: _xpack/security/role?pretty
+08:23:15 INFO  Endpoint does not exist.
+08:23:15 INFO  Currently running query: /_xpack/security/role_mapping?pretty
+08:23:15 INFO  Endpoint does not exist.
+08:23:18 INFO  Finished querying SysInfo.
+08:23:18 INFO  Checking the supplied hostname against the node information retrieved to verify location. This may take some time...
+08:23:18 INFO  Processing log files.
+08:23:18 INFO  Finished processing logs.
+08:23:18 INFO  Running: top -b -n1
+08:23:18 INFO  Running: netstat -an
+08:23:18 INFO  Running: ss
+08:23:18 INFO  Running: ps -ef
+08:23:18 INFO  Running: top -b -n1 -H
+08:23:19 INFO  Running: uname -a -r
+08:23:19 INFO  Running: cat /proc/cpuinfo
+08:23:19 INFO  Running: iostat -c -d -x -t -m 1 5
+08:23:19 INFO  Running: sar -A
+08:23:19 INFO  Running: sysctl -a
+08:23:19 INFO  Running: dmesg
+08:23:19 INFO  Running: cat /sys/kernel/mm/transparent_hugepage/enabled
+08:23:19 INFO  Running: cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+08:23:19 INFO  Running: cat /etc/security/limits.conf
+08:23:19 INFO  Running: /opt/jdk-10.0.2/bin/jstack 1
+08:23:30 INFO  Running: cat /proc/1/limits
+08:23:30 INFO  Running: /opt/jdk-10.0.2/bin/jps -l -m -v
