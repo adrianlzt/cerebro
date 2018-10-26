@@ -66,3 +66,18 @@ https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=9042
 
 # Paquetes de muestra
 https://wiki.wireshark.org/SampleCaptures#Other_Sources_of_Capture_Files
+
+
+
+# filters
+https://www.wireshark.org/docs/man-pages/wireshark-filter.html
+
+    eq, ==    Equal
+    ne, !=    Not Equal
+    gt, >     Greater Than
+    lt, <     Less Than
+    ge, >=    Greater than or Equal to
+    le, <=    Less than or Equal to<Paste>
+
+    contains     Does the protocol, field or slice contain a value
+    matches, ~   Does the protocol or text string match the given case-insensitive Perl-compatible regular expression
