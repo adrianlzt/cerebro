@@ -241,3 +241,16 @@ PUT my_index/_settings{
     "source" : 1000
   }
 }
+
+
+Slow log para las búsquedas, esto es por shard. Solo tiene en cuenta el tiempo de búsqueda (no el tiempo de espera)
+PUT /_settings
+{
+ "index.search.slowlog.threshold.query.warn": "60s",
+ "index.search.slowlog.threshold.query.info": "10s",
+}
+
+curl -s -XPUT "hostname:9200/_settings" -d '{"index.search.slowlog.threshold.query.warn": "60s","index.search.slowlog.threshold.query.info": "10s"}' -H "Content-Type: application/json"
+
+En los logs buscar por "i.s.s.query"
+O si estamos sin container, en el directorio de logs en un nuevo fichero.
