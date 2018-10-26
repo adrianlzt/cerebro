@@ -33,7 +33,7 @@ Pending Cluster Tasks API: _cluster/pending_tasks
 
 
 https://www.elastic.co/guide/en/elasticsearch/reference/6.4/tasks.html#_current_tasks_information
-GET _tasks?detailed
+GET _tasks/?detailed&pretty&human
   tasks ejecutándose actualmente
   por defecto agrupa por nodos, podemos cambiar la agrupación por tasks parents o por nada: GET _tasks?group_by=parents  (o =none)
   un número interesante es running_time_in_nanos para tareas de indexación/búsqueda mostrando que esa tarea tiene problemas
@@ -45,8 +45,8 @@ GET _cat/tasks?v&s=running_time_ns:desc
   en formato tabla, ordenadas por las mas costosas
 
 Cancelar actions
-POST _tasks/oTUltX4IQMOUUVeiohTt8A:12345/_cancel
-POST _tasks/_cancel?nodes=nodeId1,nodeId2&actions=*reindex
+POST _tasks/oTUltX4IQMOUUVeiohTt8A:12345/_cancel?pretty&human
+POST _tasks/_cancel?pretty&human&nodes=nodeId1,nodeId2&actions=*reindex
 
 
 Limitar globalmente el timeout de las búsquedas a 1m (no retroactivo)
