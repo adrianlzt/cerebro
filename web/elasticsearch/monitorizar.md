@@ -34,7 +34,9 @@ Pending Cluster Tasks API: _cluster/pending_tasks
 GET _tasks
   tasks ejecutándose actualmente
   un número interesante es running_time_in_nanos para tareas de indexación/búsqueda mostrando que esa tarea tiene problemas
-
+  podemos parar las tasks, pero no se paran al instante. Las búsquedas tiene distintos checkpoints donde miran si las han matado.
+GET _cat/tasks?v&s=running_time_ns:desc
+  en formato tabla, ordenadas por las mas costosas
 
 También podemos usar las APIs _cat para ver la información mas human-friendly.
 _cat/nodes

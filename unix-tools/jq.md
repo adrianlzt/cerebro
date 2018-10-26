@@ -20,9 +20,13 @@ jq -r '.cosa'
 
 jq '.data[]._id' /tmp/incidencias
 nos da todos los ids del array data
+tambien nos vale para iterar por keys de un diccionario
 
 curl ... | jq '.items[] |.metadata.name,.spec.nodeName,.status.podIP'
 de un array sacar varios valores por cada vuelta
+
+'.node[] | .name,(.tasks|length)
+de un dict, iterar por sus claves y obtener el campo name y la lontigud de la key "tasks"
 
 jq -r '.data[] | {id: .eid, status: .status, subject: .contact.subject}' /tmp/incidencias
 un array con un monton de valores, simplificarlo para solo tener un monton de diccionarios con unos pocos valores
@@ -51,6 +55,10 @@ Localizar un elemento en un array:
 Extraer las keys de un diccionario:
 cat fichero.json | jq '.[].mappings | to_entries[] | .key'
 Nos devolverá una linea por cada key que cuelga de "mappings" (que a su vez colgaba de un diccionario)
+
+
+Keys de un dict:
+.nodes | keys
 
 
 # Contar elementos

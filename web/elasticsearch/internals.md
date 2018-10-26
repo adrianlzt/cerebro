@@ -11,6 +11,7 @@ Intentar poner fibra para el canal de transport entre nodos.
 
 # Threads
 Hay distintos threads diferentes para indexado y búsquedas.
+Por defecto 1000 huecos para las cola de búsqueda, si no, las rechaza.
 
 
 # Write operation

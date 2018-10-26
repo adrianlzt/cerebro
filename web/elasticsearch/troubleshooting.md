@@ -90,6 +90,16 @@ GET _tasks/ por tareas lentas (running_time_in_nanos)
 Mirar monitorizar.md
 
 
+Si tenemos disparado el número de tasks running enormes, matar las tasks una a una puede no ser eficiente.
+Puede ser mejor hacer un full cluster restart: https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html
+
+
+
+# Errores Garbage Collector (GC)
+Si empezamos a ver errores del GC en los logs, es que el consumo del heap ha pasado del 75% y ES está dedicando CPU a analizar la memoria para eliminar objetos no referenciados..
+
+
+
 # Thread pools
 Mirar monitorizar.md
 
@@ -189,7 +199,24 @@ Bajarnos el .zip de la última release.
 Ejecutarlo mejor en uno de los nodos del cluster (porque también va a recoger info genérica del estado del SO)
 La versión de la heramienta de diagnosis no tiene que ver con la versión de ES
 
-Lo que ejecuta:
+./diagnostics.sh -h 127.0.0.1 --bypassDiagVerify
+  ejecutar contra localhost sin chequear si existen nuevas versiones
+
+
+## Analisis
+
+### tasks.json
+cat tasks.json | jq '.nodes[] | .name,(.tasks|length)'
+Sacar cuantas tasks por cada nodo
+
+cat tasks.json | jq -c '.nodes[] | {name:.name,action:.tasks[].action}' | sort | uniq -c | sort -n | tail -10
+
+Analisis usando el propio ES
+curl -XPOST -H "Content-Type: application/json" http://nodo:9200/analisis_tasks/_doc/ -d @tasks.json
+
+
+
+# Lo que ejecuta
 08:20:22 INFO  Currently running query: _alias?pretty
 08:20:22 INFO  Currently running query: _cat/allocation?v
 08:20:25 INFO  Currently running query: _cat/master?format=json
