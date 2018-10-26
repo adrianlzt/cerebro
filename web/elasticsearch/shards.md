@@ -82,6 +82,10 @@ curl "localhost:9200/_cat/shards?v&h=index,shard,prirep,state,unassigned.reason"
 curl "localhost:9200/_cluster/allocation/explain?pretty"
   explicación de porque hay shards sin asignar (version >=5)
 
+GET _cat/recovery/INDICE?v
+  si es están moviendo los shards lo podemos ver aqui
+  primero mueve ficheros, luego bytes, luego translog (se ve de manera sencilla en Monitoring de kibana)
+
 
 
 # Rellocating

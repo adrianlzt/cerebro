@@ -172,6 +172,9 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-clo
 Podemos cerrar un índice para reducir el consumo. No prodemos buscar sobre él.
 Reduciremos el consumo de los shards al mínimo.
 
+Al abrir de nuevo un índice se pondrá en red hasta que se coloquen sus shards.
+
+
 
 # Internals
 Como se indexan

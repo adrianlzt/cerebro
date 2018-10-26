@@ -57,6 +57,9 @@ PUT /_cluster/settings?flat_settings=true
     }
 }
 
+Tal vez queremos activar el slowlog para ver que queries están costando tiempo realmente en la búsqueda dentro de los shards.
+
+
 
 
 También podemos usar las APIs _cat para ver la información mas human-friendly.
@@ -244,10 +247,11 @@ PUT my_index/_settings{
 
 
 Slow log para las búsquedas, esto es por shard. Solo tiene en cuenta el tiempo de búsqueda (no el tiempo de espera)
+Aplica sobre todos los indices, puede tardar unas decenas de segundos en aplicarse si tenemos muchos índices.
 PUT /_settings
 {
  "index.search.slowlog.threshold.query.warn": "60s",
- "index.search.slowlog.threshold.query.info": "10s",
+ "index.search.slowlog.threshold.query.info": "10s"
 }
 
 curl -s -XPUT "hostname:9200/_settings" -d '{"index.search.slowlog.threshold.query.warn": "60s","index.search.slowlog.threshold.query.info": "10s"}' -H "Content-Type: application/json"
