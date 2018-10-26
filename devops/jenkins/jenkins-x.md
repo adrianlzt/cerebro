@@ -24,3 +24,8 @@ A cluster with at least 4 vCpus in addition to the master node (e.g. 2 m4.large 
 ## Install
 Sobre un cluster de kubernetes ya existente
 jx install
+
+
+
+jx install --helm3
+   helm3 está aun en desarrollo

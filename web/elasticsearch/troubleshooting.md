@@ -215,6 +215,8 @@ Analisis usando el propio ES
 cat tasks.json | jq -c '.nodes[].tasks[]' | sed 's/^{/{"index":{"_index":"analisis","_type":"_doc"}}\n{/' > tasks_bulk.json
 curl -XPOST -H "Content-Type: application/json" http://len1esa1:9200/_bulk/ --data-binary @tasks_bulk.json
 
+Podemos ayudarnos del script diagnosis_analisys.py para hacer análisis
+
 
 
 # Lo que ejecuta

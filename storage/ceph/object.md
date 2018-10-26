@@ -141,8 +141,8 @@ Instalar con ceph-ansible
 cp group_vars/nfss.yml.sample  group_vars/nfss.yml
 Y editar ahi la config
 
-Ansible siempre va a intentar crear un nuevo usuario para el NFS.
-Bug? Posible apañarlo tocando el rol de ceph-nfs
+Si definimos un user se chequea si el usuario configurado ya existe para evitar su creación
+https://github.com/ceph/ceph-ansible/pull/3265/files
 
 Si cambiamos la config:
 systemctl restart nfs-ganesha.service
