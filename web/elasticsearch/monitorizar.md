@@ -31,12 +31,33 @@ Pending Cluster Tasks API: _cluster/pending_tasks
   tareas cluster-level que no se han ejecutado aún. Suele estar vacío. Tenemos que mirar que no haya tareas que su time_in_queue_millis sea superior a 100ms
   seguramente tendremos otros problemas primero, por ejemplo una alta latencia en el cluster
 
-GET _tasks
+
+https://www.elastic.co/guide/en/elasticsearch/reference/6.4/tasks.html#_current_tasks_information
+GET _tasks?detailed
   tasks ejecutándose actualmente
+  por defecto agrupa por nodos, podemos cambiar la agrupación por tasks parents o por nada: GET _tasks?group_by=parents  (o =none)
   un número interesante es running_time_in_nanos para tareas de indexación/búsqueda mostrando que esa tarea tiene problemas
   podemos parar las tasks, pero no se paran al instante. Las búsquedas tiene distintos checkpoints donde miran si las han matado.
+  podemos preguntar por una task determinada: _tasks/oTUltX4IQMOUUVeiohTt8A:124
+  por las tasks child de un parent: _tasks?parent_task_id=oTUltX4IQMOUUVeiohTt8A:123
+  filtrar por action: _tasks?actions=*search&detailed
 GET _cat/tasks?v&s=running_time_ns:desc
   en formato tabla, ordenadas por las mas costosas
+
+Cancelar actions
+POST _tasks/oTUltX4IQMOUUVeiohTt8A:12345/_cancel
+POST _tasks/_cancel?nodes=nodeId1,nodeId2&actions=*reindex
+
+
+Limitar globalmente el timeout de las búsquedas a 1m (no retroactivo)
+PUT /_cluster/settings?flat_settings=true
+{
+    "transient" : {
+        "search.default_search_timeout" : "1m"
+    }
+}
+
+
 
 También podemos usar las APIs _cat para ver la información mas human-friendly.
 _cat/nodes

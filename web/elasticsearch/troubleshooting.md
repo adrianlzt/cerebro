@@ -212,7 +212,8 @@ Sacar cuantas tasks por cada nodo
 cat tasks.json | jq -c '.nodes[] | {name:.name,action:.tasks[].action}' | sort | uniq -c | sort -n | tail -10
 
 Analisis usando el propio ES
-curl -XPOST -H "Content-Type: application/json" http://nodo:9200/analisis_tasks/_doc/ -d @tasks.json
+cat tasks.json | jq -c '.nodes[].tasks[]' | sed 's/^{/{"index":{"_index":"analisis","_type":"_doc"}}\n{/' > tasks_bulk.json
+curl -XPOST -H "Content-Type: application/json" http://len1esa1:9200/_bulk/ --data-binary @tasks_bulk.json
 
 
 
