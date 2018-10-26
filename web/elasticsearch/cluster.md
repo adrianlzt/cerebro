@@ -208,7 +208,7 @@ Memoria para ES:
 https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#heap-sizing
 En CentOS viene con 2GB por defecto.
 
-Swapping mata la performance. Recomiendan quitarla o subir mucho el swappiness.
+Swapping mata la performance. Recomiendan quitarla o bajar mucho el swappiness (a 1, 0 puede provocar OOM en algunas distros)
 
 Debe vigilarse igualmente que no se esté quedando sin filedescriptors.
 En centos7 la unit de systemd ya configura para poner el limite a 65536
