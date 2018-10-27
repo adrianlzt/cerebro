@@ -20,6 +20,15 @@ helm package mychart
   generar el .tgz
 
 
+
+helm list
+  muestra los charts desplegados
+
+helm status FOO
+  estado de un deploy, fecha, namespace, status y el NOTES.txt
+
+
+
 # Dependencias
 helm dep up
 helm dependency update

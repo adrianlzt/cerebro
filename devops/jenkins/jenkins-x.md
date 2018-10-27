@@ -32,4 +32,18 @@ jx install --provider kubernetes
   especificando directamente que estamos desplegando sobre kubernetes (podría ser awx, azure, openshift, etc)
 
 
+## Que hace por debajo
+https://jenkins-x.io/getting-started/install-on-cluster-what-happens/
+
+Instala kubectl y helm si no lo tenemos (otras cosas si estamos instalando en una nube, minishift, etc https://github.com/jenkins-x/jx/blob/43fe6e93f665515f2698b5a352ee168a1fd5799d/pkg/jx/cmd/common_install.go#L82
+Instala y arranca tiller localmente? (~/.jx/bin) https://github.com/jenkins-x/jx/blob/43fe6e93f665515f2698b5a352ee168a1fd5799d/pkg/jx/cmd/common_install.go#L686
+
+Arranca jx (https://github.com/jenkins-x/jx/blob/a6b594cebec67b538617b19c3bef316c8af891c6/pkg/jx/cmd/init.go#L147)
+Esto parece que verifica que tenemos desplegado tiller, bajados los BuildPacks (para empezar proyectos con un lenguaje) y tenemos el Ingress configurado
+  Despliega tiller (en el NS kube-system): https://github.com/jenkins-x/jx/blob/a6b594cebec67b538617b19c3bef316c8af891c6/pkg/jx/cmd/init.go#L371
+  Despliega el ingress controller (NS kube-system) https://github.com/jenkins-x/jx/blob/a6b594cebec67b538617b19c3bef316c8af891c6/pkg/jx/cmd/init.go#L553
+    Primero comprueba si está, mirando cuantos PODs del deploy "jxing-nginx-ingress-controller" existen: kc get pod -l 'app=nginx-ingress,component=controller,release=jxing'
+    Lo instala con helm: stable/nginx-ingress
+
+
 

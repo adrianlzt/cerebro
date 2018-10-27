@@ -20,7 +20,25 @@ Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster 
 Crea automaticamente un ClusterIP
 
 Útil si tenemos nuestros propios LBs.
-Útil para tráfico no HTTP, HTTPS o TLS SNI.
+Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
+
+Ejemplo:
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodeport-service
+spec:
+  selector:
+    app: my-app
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30036
+    protocol: TCP
+
+
 
 
 ## LoadBalancer
