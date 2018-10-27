@@ -164,6 +164,11 @@ docker run -it -v <path-to-registry>:/registry -e REGISTRY_URL=<registry-url> -e
   primero dry run para ver que va a borrar
   puede tardar varias horas
 
+No parece que me haya funcionado bien. Sigo teniendo muchas imágenes duplicadas en latest
+Esto podemos verlo con:
+docker/registry/v2/repositories/USER/REPO/_manifests/tags/latest/index/sha256/ | wc -l
+Si tenemos más de una, es que tenemos varias imágenes referenciadas a "latest".
+
 
 
 
