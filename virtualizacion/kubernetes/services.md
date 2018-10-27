@@ -19,8 +19,13 @@ https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
 Crea automaticamente un ClusterIP
 
-Útil si tenemos nuestros propios LBs.
+Útil si tenemos nuestros propios LBs (una IP externa nuestra la balancearíamos sobre ese puerto de todos los nodos)
 Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
+
+Cons:
+ - solo un puerto por service
+ - solo puertos del rango alto
+ - si cambia la IP del nodo, tendríamos que modificar el LB por encima (o si estamos apuntando directamente, dejaríamos de acceder)
 
 Ejemplo:
 apiVersion: v1
@@ -35,7 +40,7 @@ spec:
   - name: http
     port: 80
     targetPort: 80
-    nodePort: 30036
+    nodePort: 30036  # Opcional, entonces la asignará kubernetes de forma random
     protocol: TCP
 
 
@@ -45,6 +50,8 @@ spec:
 https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
 Crea un LB sobre la plataforma en la que estemos, por ejemplo en AWS. Es una abstracción sobre la cloud en la que estemos.
 Crea automáticamente un NodePort y un ClusterIP
+Luego el Service se actualizará con la ip externa que nos haya dado el cloud provider.
+Cada nuevo LoadBalancer tendrá su propia IP, que tendremos que pagar por ella.
 
 
 

@@ -57,6 +57,9 @@ kubectl get nodes
 kubectl get all
 nos devuelve muchos de los recursos, pero no todos, que tengamos configurados en nuestro NS
 
+Devolver ciertos recursos
+kubectl get po,deploy
+
 
 # Servicios
 Listar
@@ -70,10 +73,11 @@ kubectl get pod -o wide
 
 Crear
 kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+  crea un deployment, que crea un replication controller que arranca el pod.
+  Como hemos puesto "--port" también levanta un Service/ClusterIP apuntando al selector con el que se crean los pods
   en docker esto arranca:
-    - con container POD
-    - un container con dnsmasq
-    - el container que ejecuta el servicio
+    - con container denombre k8s_POD_hello-minikube-xxx
+    - el container que ejecuta el servicio, nombre k8s_hello-minikube_hello-minikube-xxx
 
 Exponer
 kubectl expose deployment hello-minikube --type=NodePort
