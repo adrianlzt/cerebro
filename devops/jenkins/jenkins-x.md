@@ -20,12 +20,16 @@ Storage para PVC (persistent volume claims)
 RBAC (auth)
 A cluster with at least 4 vCpus in addition to the master node (e.g. 2 m4.large nodes + m4.large master)
 
+Podemos comprobar si cumple ejecutando (ejecuta https://scanner.heptio.com/):
+jx compliance
+
 
 ## Install
 Sobre un cluster de kubernetes ya existente
 jx install
 
+jx install --provider kubernetes
+  especificando directamente que estamos desplegando sobre kubernetes (podría ser awx, azure, openshift, etc)
 
 
-jx install --helm3
-   helm3 está aun en desarrollo
+

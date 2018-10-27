@@ -1,3 +1,4 @@
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 Herramienta administrativa de Kubernetes
 
@@ -18,6 +19,12 @@ kubectl config view
 
 Contexto actual:
 kubectl config current-context
+
+Cambiar de contexto:
+kubectl config use-context FOO
+
+Namespace actual:
+kubectl config view -o jsonpath="{.contexts[?(@.name == '$(kubectl config current-context)')].context.namespace}"
 
 
 ## Contextos

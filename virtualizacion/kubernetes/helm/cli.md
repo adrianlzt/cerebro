@@ -6,7 +6,18 @@ helm fetch xxx
 
 helm install somedir
   instalar un chart
+  --name foo
+    darle un nombre, si no, cogerá uno random
+  --values=other.yaml
+    usar otro fichero en vez del values.yml
+  --description "asdad"
+    crear la release con una descripción
 
+helm lint mychart
+  buscar problemas de linting
+
+helm package mychart
+  generar el .tgz
 
 
 # Dependencias
@@ -28,3 +39,9 @@ Tambien se les pueden poner tags y conditions
 
 https://github.com/helm/helm/blob/master/docs/charts.md#operational-aspects-of-using-dependencies
 Al definir dependencias, cuando instalemos nuestro chart, también se instalarán las dependencias.
+
+
+Podemos pasar variables desde el chart padre a los hijos en el fichero values.yml
+mysql:
+  max_connections: 100 # Sent to MySQL
+  password: "secret"
