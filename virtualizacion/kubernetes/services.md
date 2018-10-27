@@ -53,6 +53,13 @@ Crea automáticamente un NodePort y un ClusterIP
 Luego el Service se actualizará con la ip externa que nos haya dado el cloud provider.
 Cada nuevo LoadBalancer tendrá su propia IP, que tendremos que pagar por ella.
 
+Se puede crear un SVC/LB para un deployment con:
+kubectl expose deployment FOO --type=LoadBalancer --port=1234 --target-port=1234
+
+Ahora mismo la integración de Kubernetes con los Cloud Providers está integrada en el código.
+Parece que a partir de la versión ¿1.12? va a existir una clara separación gracias a Cloud Controller Manager
+https://kubernetes.io/docs/tasks/administer-cluster/developing-cloud-controller-manager/
+
 
 
 ## ExternalName
