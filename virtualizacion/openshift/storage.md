@@ -67,7 +67,7 @@ spec:
 
 
 # Solicitar un volumen (PVC)
-oc create -f volumen.yaml
+kubectl create -f volumen.yaml
 volumen.yaml:
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -75,7 +75,7 @@ metadata:
   name: nombre-recurso
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce|ReadWriteMany|ReadOnlyMany  # Elegir uno
   resources:
     requests:
       storage: 25Gi

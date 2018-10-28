@@ -86,6 +86,7 @@ Despues de:
 Añadimos
       ip_ext = "10.0.2.#{i+70}"
       config.vm.network "public_network", ip: ip_ext, :bridge => 'enp5s0f0'
+        NO me funciona, me pone la misma ip que en eth2 (la private)
 
 
 

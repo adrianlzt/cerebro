@@ -9,6 +9,9 @@ Dos conceptos, connection and interface.
 Las interfaces es solo la tarjeta de red.
 Connection contiene nombre, firewall zone, ipv4 addr, ipv6 addr and interface
 
+nmcli dev sh eth2
+  estado de una interfaz
+
 nmcli device wifi list
   mostrar WiFis disponibles
 
@@ -59,8 +62,16 @@ nmcli> save
 Conexión 'conex-prueba' (0fae8ee8-01fe-469b-b40f-a9b594e48e39) guardada con éxito.
 
 
-Para DHCP:
-ipv4.method: auto
+# Editar una red existente, cambiando ipv4 fixed por dhcp
+nmcli c edit "nombre"
+> print all
+> set ipv4.method auto
+> save
+> activate
+
+Inline para definir una ip fija:
+nmcli c mod "System eth2" ipv4.addresses "10.0.2.72/24" ipv4.gateway "10.0.2.51"
+nmcli c up "System eth2"
 
 
 # Crear una red wifi a mano
