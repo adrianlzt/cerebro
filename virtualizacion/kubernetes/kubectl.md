@@ -14,6 +14,14 @@ yaourt -Ss aur/kubectl-bin
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 
 
+# Alias kubectl, context y namespace
+kc = kubectl
+ckc = cambiar de contexto (disable, quitamos el prompt de spaceship zsh)
+nkc = cambiar de namespace
+
+
+
+
 # Config / contexts
 kubectl config view
 
@@ -33,6 +41,7 @@ Un contexto relaciona un cluster, un usuario y un namespace.
 Por defecto tendremos configurado el namespace "default".
 
 Si queremos cambiar el namespace de un context:
+kubectl config set-context --current --namespace default
 kubectl config set-context demo-adrian --namespace kube-system
 
 Lo suyo es tener un contexto por cada namespace que usemos.
@@ -53,9 +62,15 @@ kubectl cluster-info dump
 Nodos del cluster
 kubectl get nodes
 
+Todos los "resources" que nos ofrece el cluster (tambien CRDs)
+kubectl api-resources
 
-kubectl get all
+
 nos devuelve muchos de los recursos, pero no todos, que tengamos configurados en nuestro NS
+kubectl get all
+kubectl api-resources --verbs=list -o name | tr '\n' ',' | sed "s/,$//" | xargs kubectl get -o name --all-namespaces
+  este primero saca la lista de todo lo que ofrece el cluster y luego pide todas las instancias de cada resource
+
 
 Devolver ciertos recursos
 kubectl get po,deploy
