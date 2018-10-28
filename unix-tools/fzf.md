@@ -6,6 +6,9 @@ Busqueda "fuzzy" por listas
 yay fzf
 
 
+# Config
+
+
 # Uso
 vi $(fzf)
   antes de abrir vim nos muestra una lista de ficheros del pwd para seleccionar

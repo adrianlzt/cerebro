@@ -1,3 +1,14 @@
+https://github.com/wofr06/lesspipe
+Lesspipe
+Install arch:
+yay lesspipe
+
+Nos colorea ficheros.
+Nos permite abrir un montón de ficheros distintos (llama por debajo a distintos programas)
+
+
+
+
 # less file1 file2 file3
 :n  siguiente fichero
 :p  anterior fichero

@@ -54,3 +54,15 @@ Podemos pasar variables desde el chart padre a los hijos en el fichero values.ym
 mysql:
   max_connections: 100 # Sent to MySQL
   password: "secret"
+
+
+
+# Plugins
+https://github.com/appscode/chartify
+Generate Helm charts from existing Kubernetes resources
+
+Helmfile - Helmfile is a declarative spec for deploying helm charts
+
+Monocular - Web UI for Helm Chart repositories
+
+VIM-Kubernetes - VIM plugin for Kubernetes and Helm
