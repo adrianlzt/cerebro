@@ -98,6 +98,13 @@ Exponer
 kubectl expose deployment hello-minikube --type=NodePort
 
 
+# Crear objectos con un YAML
+kubectl create -f fichero.yml
+
+kubectl apply -f fichero.yml
+  crea o actualiza
+
+
 
 # Debug
 kubectl -v 6 ...

@@ -44,3 +44,8 @@ Cuando exponemos un pod, el puerto se levanta en el proceso localkube, que parec
 https://kubernetes.io/docs/getting-started-guides/minikube/#persistent-volumes
 
 Limitado por usar virtualbox
+
+
+
+# SSH
+minikube ssh
