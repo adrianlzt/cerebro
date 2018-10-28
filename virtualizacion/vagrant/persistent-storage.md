@@ -21,6 +21,10 @@ Un disco (ver issue para dos discos)
       '--medium', "/root/sdb.vdi"]
   end
 
+Si falla probar con --storagectl IDE, o "SATA Controller" o SCSI
+Podemos ver que controlador soporta nuestra box:
+cat ~/.vagrant.d/boxes/centos-VAGRANTSLASH-7/1809.01/virtualbox/box.ovf | egrep -oi "StorageController.{100}"
+
 
 
 Crea un disco /dev/sdb:
