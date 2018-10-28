@@ -21,4 +21,7 @@ https://github.com/Shougo/neocomplete.vim
 Listado de snippets:
 https://github.com/honza/vim-snippets
 
+Snippets cargados actualmente (hay un comando para forzar la carga de snippets de otras extensiones):
+call UltiSnips#ListSnippets()
+
 Si instalamos un nuevo plugin, este puede meter snippets si tiene un directorio "UltiSnips" con ficheros tipo "EXT.snippets"

@@ -22,6 +22,11 @@ Un container es el que recibe las peticiones y las autentica contra openshift (r
 El otro es el kibana en si mismo.
 
 
+# init containers
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+Podemos poner en un pod unos "init containers" que se ejecutarán antes que los containers "normales" de pod.
+
+
 # SCC
 Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.
 

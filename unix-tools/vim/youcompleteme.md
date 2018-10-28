@@ -1,3 +1,7 @@
+deoplete
+
+Posible alternativa a deoplete? https://github.com/ncm2/ncm2
+
 https://github.com/Valloric/YouCompleteMe
 https://wiki.archlinux.org/index.php/YouCompleteMe
 
