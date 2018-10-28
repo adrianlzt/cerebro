@@ -13,6 +13,9 @@ helm install somedir
   --description "asdad"
     crear la release con una descripción
 
+helm upgrade releaseName chartPath
+  --install: si no existe una releas con este nombre, crearla
+
 helm lint mychart
   buscar problemas de linting
 
@@ -21,8 +24,9 @@ helm package mychart
 
 
 
-helm list
+helm list --all
   muestra los charts desplegados
+  sin --all solo muestra las "DEPLOYED"
 
 helm status FOO
   estado de un deploy, fecha, namespace, status y el NOTES.txt

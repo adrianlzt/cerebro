@@ -17,6 +17,12 @@ https://jenkins-x.io/getting-started/install-on-cluster/
 https://jenkins-x.io/getting-started/install-on-cluster/
 
 Storage para PVC (persistent volume claims)
+  Necesitamos 5 volumenes para poder desplegar jx (en las secciones persistent en https://github.com/jenkins-x/jenkins-x-platform/blob/master/values.yaml)
+    - jenkins, 30GB, RWO
+    - chartmuseum, 8GB, RWO
+    - docker-registry, 100GB, RWO
+    - mongodb, 8GB, RWO
+    - nexus, 8GB, RWO
 RBAC (auth)
 A cluster with at least 4 vCpus in addition to the master node (e.g. 2 m4.large nodes + m4.large master)
 
@@ -56,6 +62,32 @@ Esto parece que verifica que tenemos desplegado tiller, bajados los BuildPacks (
     Si tenemos dnsmasq localmente podemos agregar una entrada tipo:
       address=/.domain.tld/10.0.0.100
 
+  Instala un jenkins estatico o serverless (mirar más abajo para ver que es lo de serverless)
+
+  Nos pide credenciales de Github
+
+  En ~/.jx almacena las credenciales de git y credenciales de los servicios que despliega
+
+  Despliega el helm de jenkins-x sobre el namesapce jx:
+    cd ~/.jx/cloud-environments/env-kubernetes
+    Hace uso tambien de los .yml de ~/.jx/
+
+  Servicios desplegados en el namespace jx:
+    - expose
+    - jenkins
+    - chartmuseum (repo para helm)
+    - controllers:
+      - commit
+      - team
+      - workflow
+    - docker registry
+    - gcactivities
+    - gcpreviews
+    - heapster
+    - mongodb
+    - monocular
+    - nexus
+
 
 Crea un CRD en kubernetes (Environments) donde meterá la información de cada entorno, info de git, si se hace promotion automáticamente, etc
 https://github.com/jenkins-x/jx/blob/54b13a4fa01092e799ea65e11bee55632754ec34/pkg/kube/crds.go#L26:6
@@ -66,3 +98,29 @@ kc get env --all-namespaces
 # Git
 Por defecto se configura JX para usar Gitlab.
 Si queremos usar otro provider (github enterprise, bitbucket, gitlab) mirar en https://jenkins-x.io/developing/git/
+
+
+
+
+
+# Jenkins serverless
+https://medium.com/@jdrawlings/serverless-jenkins-with-jenkins-x-9134cbfe6870
+
+(Idea de como funciona, no revisado)
+En vez de tener un Jenkins corriendo esperando nuevos builds, hacemos uso de prow y Knative para solo lanzar Jenkins en el momento que haga falta.
+La idea es que prow recibe hooks del server de Git y crea CRDs del tipo ProwJob.
+Estas ProwJob genera un CRD Knative, que coge una imagen (elegida en el BuildTemplate) y hace un build del código que venga en la ProwJob
+Creo que como parte de esta KBuild se procesa el fichero Jenkinsfile
+
+Parece que por ahora solo soporta Github
+
+No tenemos UI.
+Prow tiene una que se llama Deck
+Cloudbees tal vez saque una version freemium
+
+Los logs de los builds se almacenan en el pod que ha hecho la ejecucción. Como gestione Kubernetes esos logs será la forma que tengamos de acceder a ellos
+La cli da acceso con:
+jx logs -k
+  mientras corre el build
+jx get build log
+  disponible unas horas

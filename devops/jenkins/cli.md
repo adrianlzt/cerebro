@@ -1,3 +1,10 @@
+# Ejecutar jenkins como un comando
+https://github.com/jenkinsci/jenkinsfile-runner
+mirar junto con custom_war.md
+
+jenkinsfile-runner -w jenkins.war -p plugins/ -f ~/foo/
+
+
 # CLI
 http://JENKINSSERVER/cli/
 

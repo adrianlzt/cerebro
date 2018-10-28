@@ -11,6 +11,8 @@ Manual: Bajar ultimo binario de https://github.com/kubernetes/minikube/releases
 
 # Start minikube instance
 minikube start --vm-driver=virtualbox
+minikube start --kubernetes-version v1.7.0
+  especificar version de kubernetes
 
 Se meterá la conf en ~/.kube/config
 
