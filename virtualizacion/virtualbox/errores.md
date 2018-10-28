@@ -23,3 +23,5 @@ Si los teniamos instalados, revisar que hemos borrrado los modules que metia.
 
 VT-x is disabled in the BIOS for all CPU modes (VERR_VMX_MSR_ALL_VMX_DISABLED)
 Activar este modo en la bios
+grep vmx /proc/cpuinfo
+  debe aparecer si esta activado

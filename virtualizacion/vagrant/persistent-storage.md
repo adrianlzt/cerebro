@@ -4,6 +4,23 @@ vagrant plugin install vagrant-persistent-storage
 
 Si queremos varios discos tendremos que llamar directamente a virtualbox, ejemplo:
 https://github.com/kusnier/vagrant-persistent-storage/issues/22
+Un disco (ver issue para dos discos)
+/root/kubernetes/demo
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize [
+      'createmedium', 'disk',
+      '--filename', "/root/sdb.vdi",
+      '--format', 'VDI',
+      '--size', 50 * 1024]
+    vb.customize [
+      'storageattach', :id,
+      '--storagectl', 'SATAController',
+      '--port', 1,
+      '--device', 0,
+      '--type', 'hdd',
+      '--medium', "/root/sdb.vdi"]
+  end
+
 
 
 Crea un disco /dev/sdb:

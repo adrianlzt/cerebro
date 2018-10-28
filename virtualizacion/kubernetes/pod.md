@@ -34,3 +34,11 @@ Todo pod se levanta con un system account determinada, por defecto la sa/default
 # Levantar un pod
 oc run ...
 oc run prueba --image=busybox
+
+
+
+# Pods para pruebas
+gcr.io/google_containers/echoserver:1.4
+  escucha en un puerto y hace eco en el puerto 8080
+busybox
+  para tener una pequeña shell

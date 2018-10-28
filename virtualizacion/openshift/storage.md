@@ -29,6 +29,13 @@ Automatización de la creación de PVs.
 Podemos tener varios StorageClass con distintas "calidades" por ejemplo. El usuario podrá seleccionar uno y el StorageClass creará un PV del tipo que tenga definido para el usuario
 En la tabla de la web podemos ver que "volume plugins" tienen un provisionador ya en kubernetes, de manera que podrá crear los PVs dinámicamente.
 
+Debemos marcar un storage class como "default" para que los PVC que no lo especifiquen usen ese.
+Esto se hace con un annotation:
+  storageclass.kubernetes.io/is-default-class=true
+Para modificar un storageClass ya creado:
+  kubectl patch storageclass <your-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+
 
 # Listar PVs/PVCs (volumes/claims)
 oc get pv
@@ -136,11 +143,6 @@ Se puede usar un volumen local. El scheduler, cuando vaya a colocar los pods sab
 
 ## NFS
 https://docs.openshift.com/container-platform/3.5/install_config/persistent_storage/persistent_storage_nfs.html#install-config-persistent-storage-persistent-storage-nfs
-
-
-
-
-# NFS (como backend de volumes)
 Cada pvc es un mount de un export de NFS y se monta para el pod cuando este arranque.
 
 
@@ -166,3 +168,14 @@ holding files that a content-manager container fetches while a webserver contain
 # Recycler
 Cuando se libera un volumen se arranca un pod "recycler-for-pvXX" que montará él volumen y borrará el contenido.
 En NFS hará simplemente un "rm -fr /"
+
+
+
+
+# Local Persistent volumes
+https://kubernetes.io/blog/2018/04/13/local-persistent-volumes-beta/
+Usar discos, o directorios, locales para crear los voluemens. Estos volumenes estarán fijados a un nodo (nodeAffinity).
+La asignación de PVC a PV solo se hará cuando se levante el POD.
+Si queremos automatizar la creación de los PVs hay un script en: https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume
+
+Asegurarnos de marcar el storageclass como default si solo tenemos ese.
