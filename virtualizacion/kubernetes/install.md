@@ -87,6 +87,9 @@ Añadimos
       ip_ext = "10.0.2.#{i+70}"
       config.vm.network "public_network", ip: ip_ext, :bridge => 'enp5s0f0'
         NO me funciona, me pone la misma ip que en eth2 (la private)
+        entrar en las máquinas y ejecutar (poniendo la IP que toque):
+          nmcli c mod "System eth2" ipv4.addresses "10.0.2.72/24" ipv4.gateway "10.0.2.51"
+          nmcli c up "System eth2"
 
 
 
