@@ -60,6 +60,13 @@ Ahora mismo la integración de Kubernetes con los Cloud Providers está integrad
 Parece que a partir de la versión ¿1.12? va a existir una clara separación gracias a Cloud Controller Manager
 https://kubernetes.io/docs/tasks/administer-cluster/developing-cloud-controller-manager/
 
+Existen opciones para poder usar Type:LoadBalancer en bare metal
+https://metallb.universe.tf/
+  asigna IPs de un rango que le hayamos pasado y hace que uno de los nodos del cluster responda a las peticiones ARP para esa IP
+  Otra opción es que usen BGP
+
+Cloud providers no integrados directamente en el código: https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller.md#examples
+
 
 
 ## ExternalName
