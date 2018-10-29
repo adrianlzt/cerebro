@@ -1,6 +1,5 @@
 # Token para acceso
-kubectl create -f a este fichero yaml:
-
+cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -19,6 +18,8 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kube-system
+EOF
+
 
 Obener el token:
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')

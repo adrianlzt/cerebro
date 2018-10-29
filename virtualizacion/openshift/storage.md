@@ -53,6 +53,8 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
   name: local-storage
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"  # si queremos hacerla default
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 

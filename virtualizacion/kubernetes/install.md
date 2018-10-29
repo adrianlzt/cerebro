@@ -34,6 +34,8 @@ kubectl get pod --all-namespaces | grep -v Running
 Revisar si da algún fallo en:
 kubectl describe nodes
 
+Chequear que podemos salir desde los pods a internet y hablar entre pods corriendo en distintos hosts
+
 
 Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
 mirar dashboard.md

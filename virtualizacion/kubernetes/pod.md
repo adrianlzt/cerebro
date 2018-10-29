@@ -31,9 +31,7 @@ Podemos poner en un pod unos "init containers" que se ejecutarán antes que los 
 Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.
 
 
-# Levantar un pod
-oc run ...
-oc run prueba --image=busybox
+Levantar un pod -> mirar kubectl.md
 
 
 

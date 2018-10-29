@@ -40,6 +40,14 @@ jx install --provider kubernetes
 jx install --provider kubernetes -on-premise
   si estamos instalando fuera de una cloud
 
+jx install --provider kubernetes --on-premise --git-api-token='TOKEN' --git-username='usuario'
+  metiendo las credenciales de acceso a github
+  aún así nos preguntará:
+    No existing ingress controller found in the kube-system namespace, shall we install one?
+    Domain
+    A local Jenkins X cloud environments repository already exists, recreate with latest?  (supongo que sale porque ya tengo .jx con cosas)
+    Select Jenkins installation type
+
 ## Que hace por debajo
 https://jenkins-x.io/getting-started/install-on-cluster-what-happens/
 

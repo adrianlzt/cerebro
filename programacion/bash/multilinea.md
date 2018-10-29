@@ -16,3 +16,8 @@ cat << EOF > /tmp/yourfilehere
 blabla
 blabla
 EOF
+
+
+cat << EOF | comando --input -
+blabla
+EOF
