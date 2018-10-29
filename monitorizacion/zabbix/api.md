@@ -26,6 +26,8 @@ un coñazo de instalar y al final petaba por syntaxis
 ## Libreria
 https://github.com/gescheit/scripts
 
+pip install zabbix_api
+
 Ejemplo:
 from zabbix_api import ZabbixAPI
 zbx = ZabbixAPI("http://zabbix")
@@ -51,6 +53,24 @@ def get_host_by_host_name(zbx, host_name):
             }
         )
     return host_list
+
+
+## Obtener más elementos con "selectXXX"
+Tenemos que ponerlo con:
+"selectTriggers": "1"
+"selectTriggers": "ids"
+"selectTriggers": False
+"selectTriggers": "cualquiercosa"
+  devuelve un array con diccionarios {"triggerid": 1234}
+
+"selectTriggers": True
+"selectTriggers": "count"
+  esto me devuelve la cuenta
+  "triggers": 21
+
+"selectTriggers": "extend"
+  array con los diccionarios con la descripción entera del array
+
 
 ## Obtener ultimo valor de la métrica especificada en la key buscando como LIKE "NOMBRE%"
 {
