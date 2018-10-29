@@ -13,6 +13,7 @@ pipenv install -r requirements.txt
 pipenv shell
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
 CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+  automáticamente asignará nombre "nodeN"
 ansible-playbook -i inventory/mycluster/hosts.ini --become cluster.yml
 
 

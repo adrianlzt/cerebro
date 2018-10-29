@@ -4,6 +4,10 @@ helm search foo
 helm fetch xxx
   bajarnos el .tgz de un chart
 
+helm template chart > file.yml
+  renderizar como va a quedar un chart
+  podemos especificar solo un fichero con "-x fichero.yaml"
+
 helm install somedir
   instalar un chart
   --name foo

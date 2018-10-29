@@ -1,4 +1,11 @@
-Los templates los definiremos en YAML usando mustache para tomar valores del values.yml o definidos en templates/_helpers.yml
+# Render
+helm template chart > file.yml
+  renderizar como va a quedar un chart
+  podemos especificar solo un fichero con "-x fichero.yaml"
+
+
+# Definición
+Los templates los definiremos en YAML usando templating de Golang para tomar valores del values.yml o definidos en templates/_helpers.yml
 
 También tendremos disponible el dict Release:
 	Release.Name: The name of the release (not the chart)

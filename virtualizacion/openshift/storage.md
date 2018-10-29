@@ -50,6 +50,8 @@ No aparecen con: oc get all
 La opción "WaitForFirstConsumer" hará que el PVC no se resuelva en un PV hasta que se cree el pod que lo necesite.
 Ejemplo GCE: https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/storage-class/gce/default.yaml
 
+Si vamos a usar un "local-storage" mirar en la sección "# Local Persistent volumes"
+
 Ejemplo local-storage (sin provision automática), default y esperando al pod para provisionar el PVC
 cat <<EOF | kubectl create -f
 kind: StorageClass
@@ -221,3 +223,21 @@ for i in $(seq 1 10); do
   mkdir -p /mnt/{sdb,kubernetes}/pv${i}
   mount -t none -o bind /mnt/sdb/pv${i} /mnt/kubernetes/pv${i}
 done
+
+Editar helm/provisioner/values.yaml
+  classes[0].name = local-storage
+  classes[0].hostDir = /mnt/kubernetes
+  classes[0].storageClass    Descomentar
+
+helm install --name local-provisioner helm/provisioner
+
+Marcar uno de los storage class como default:
+kubectl patch storageclass local-storage -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+Todos los PV creados, si hemos usado mount-bind, tendrán el tamaño de la partición /dev/sdb1
+
+Podemos ver los PVs que se habrán creado automáticamente:
+kubectl describe pv local-pv-d62bb91f
+
+
+https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume#best-practices
