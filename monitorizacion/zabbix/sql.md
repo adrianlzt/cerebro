@@ -53,11 +53,16 @@ Status
 1 - disabled
 3 - template (para la tabla hosts)
 
+hosts - Flags
+0 - normal host
+2 - algo raro interno para discover de VMs? como un template de host descubierto?
+4 - nodo discovered
+
 State
 0 - normal
 1 - not supported
 
-Flags:
+items - Flags:
 0 - a plain item
 1 - items lld discovery
 2 - item prototype de un host
@@ -147,6 +152,14 @@ SELECT t.description ,h.host
 
 Tamaño de las partitions por día:
 SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%_' and c.reltuples <> 0 group by date order by date;
+
+
+Templates que se están usando por algún host al menos:
+select hostid,host from hosts where status = 3 and hostid IN (select ht.templateid from hosts_templates ht, hosts h where ht.hostid = h.hostid and h.status != 3 and flags=0);
+
+Templates que pertenecen a un grupo:
+select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
+
 
 
 # Tocando la bbdd
