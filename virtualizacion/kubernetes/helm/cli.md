@@ -36,6 +36,11 @@ helm status FOO
   estado de un deploy, fecha, namespace, status y el NOTES.txt
 
 
+helm delete nombre
+  borra los objectos, pero deja el chart como "DELETED"
+  --purge para borrar todo
+
+
 
 # Dependencias
 helm dep up

@@ -20,6 +20,74 @@ Config:
 ~/.tmux.conf
 
 
+# Opciones
+https://www.packtpub.com/mapt/book/hardware_and_creative/9781783985166/2/ch02lvl1sec23/show-options
+Globales:
+tmux show-options -g
+C-b : show-options g
+
+tmux window-show-options -g
+estas opciones son diferentes que las de "show-options -g"
+
+De ventana
+tmux show-options -w
+
+Server:
+tmux show-options -s
+
+
+
+# Mode
+Tiene dos modos: emacs o vim
+
+Listas de shortcuts para emacs o vim
+https://superuser.com/a/197272/526882
+
+C-b : list-keys -T copy-mode
+C-b : list-keys -T copy-mode-vi
+
+Function                vi             emacs
+Back to indentation     ^              M-m
+Clear selection         Escape         C-g
+Copy selection          Enter          M-w
+Cursor down             j              Down
+Cursor left             h              Left
+Cursor right            l              Right
+Cursor to bottom line   L
+Cursor to middle line   M              M-r
+Cursor to top line      H              M-R
+Cursor up               k              Up
+Delete entire line      d              C-u
+Delete to end of line   D              C-k
+End of line             $              C-e
+Goto line               :              g
+Half page down          C-d            M-Down
+Half page up            C-u            M-Up
+Next page               C-f            Page down
+Next word               w              M-f
+Paste buffer            p              C-y
+Previous page           C-b            Page up
+Previous word           b              M-b
+Quit mode               q              Escape
+Scroll down             C-Down or J    C-Down
+Scroll up               C-Up or K      C-Up
+Search again            n              n
+Search backward         ?              C-r
+Search forward          /              C-s
+Start of line           0              C-a
+Start selection         Space          C-Space
+Transpose chars                        C-t
+
+
+Ver en que modo estamos:
+tmux show-options -g | grep status-key
+
+Cambiar modo:
+set-option -g status-keys emacs
+set-option -g mode-keys emacs
+
+
+
 # Shortcuts
 Ver shortcuts:
 C-b ?
@@ -137,13 +205,30 @@ kill -s SIGUSR2 14679
 Para copiar texto seleccionar con el ratón mientras presionamos Shift.
 Para pegar, presionar Shift más el botón del medio del ratón.
 
+
+# Buscar
+Ponernos en modo copy y pulsar "/"
+
+
 # Copiar (hay dos modos, emacs o vi, con list-keys podemos ver las teclas para cada modo. Creo que se cambia con "setw -g mode-keys vi")
-En modo emacs:
+Para saltar al "copy mode":
 C-b [
-movernos hasta el inicio de la seleccion
+
+emacs:
+movernos hasta el inicio de la seleccion y para comenzar a seleccionar pulsar:
 C-space
-movernos hasta el final de la selección
+Para terminar la selección:
 C-w
+
+En modo vim:
+para empezar
+space
+Para terminar
+enter
+
+Para movernos por las palabras, como vim (w, e, hjkl, etc)
+
+Pegar con C-b ]
 
 ## Copia en columa
 Antes de C-space pulsar R
