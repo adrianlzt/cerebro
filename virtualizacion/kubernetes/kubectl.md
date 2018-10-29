@@ -101,6 +101,12 @@ kubectl expose deployment hello-minikube --type=NodePort
 # Crear objectos con un YAML
 kubectl create -f fichero.yml
 
+Inline:
+cat <<EOF | kubectl create -f -
+apiVersion: v1
+...
+EOF
+
 kubectl apply -f fichero.yml
   crea o actualiza
 

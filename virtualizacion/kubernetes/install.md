@@ -7,7 +7,17 @@ Grupo de playbooks/roles de ansible para hacer el despliegue de kubernetes
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
 # Despliegue
+git clone https://github.com/kubernetes-incubator/kubespray.git
+cd kubespray
+pipenv install -r requirements.txt
+pipenv shell
+declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
+CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+ansible-playbook -i inventory/mycluster/hosts.ini --become cluster.yml
+
+
 30' en desplegar sobre vagrant (con imágenes base ya bajadas)
+51' al desplegar sobtre tres VMs en distintos hosts
 
 Comprobar que la conectividad entre las distintas partes es correcta: https://github.com/kubernetes-incubator/kubespray/blob/master/docs/netcheck.md
 https://github.com/Mirantis/k8s-netchecker-server
