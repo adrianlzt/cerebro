@@ -48,7 +48,10 @@ No aparecen con: oc get all
 
 # Crear un storageclass
 La opción "WaitForFirstConsumer" hará que el PVC no se resuelva en un PV hasta que se cree el pod que lo necesite.
+Ejemplo GCE: https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/storage-class/gce/default.yaml
 
+Ejemplo local-storage (sin provision automática), default y esperando al pod para provisionar el PVC
+cat <<EOF | kubectl create -f
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -57,6 +60,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"  # si queremos hacerla default
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
+EOF
 
 
 # Crear un volumen
@@ -89,6 +93,33 @@ spec:
     requests:
       storage: 25Gi
   volumeName: nombre-volumen  # campo opcional
+
+
+
+Crear un PVC asociado a un nodo (para local-storage):
+cat <<EOF | kubectl create -f
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-local-pv
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /some/local/path
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - NOMBRENODO
+EOF
 
 
 # Crear un pod que usa un volumen
@@ -181,3 +212,12 @@ La asignación de PVC a PV solo se hará cuando se levante el POD.
 Si queremos automatizar la creación de los PVs hay un script en: https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume
 
 Asegurarnos de marcar el storageclass como default si solo tenemos ese.
+
+Podemos usar discos como PV, raw blocks o mount binds.
+La idea es tener un directorio (por ejemplo /mnt/kubernetes) donde estén los mountpoints de los discos o enlaces simbólicos a los block devices.
+
+Suponiendo que tenemos un disco extra en /mnt/sdb, que usamos /mnt/kubernetes como el discover directory y queremos crear 10 vols:
+for i in $(seq 1 10); do
+  mkdir -p /mnt/{sdb,kubernetes}/pv${i}
+  mount -t none -o bind /mnt/sdb/pv${i} /mnt/kubernetes/pv${i}
+done

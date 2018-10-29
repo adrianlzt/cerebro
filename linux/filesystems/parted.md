@@ -9,8 +9,13 @@ parted -l
 parted -lm
  salida parseable
 
+Primero definir el tipo de partition table a usar, luego crear una particion linux que ocupe todo el disco
+parted -a optimal /dev/sdb mklabel gpt
+parted -a optimal /dev/sdb mkpart primary ext4 0% 100%
+mkfs.ext4 /dev/sdb1
+  si no tenemos ese comando: yum install e2fsprogs
 
-parted -a minimal /dev/sdb mkpart primary xfs 0 100%
+parted -a minimal /dev/sdb mkpart primary xfs 0% 100%
   crear una partición primaria en sdb tipo xfs que ocupe todo el disco y esté alineada de manera minimal
 
 Parece que a parted no podemos decirle que cree una partición en el siguiente espacio libre y siempre tenemos que darle un start y un end.
