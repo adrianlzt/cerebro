@@ -26,7 +26,7 @@ un coñazo de instalar y al final petaba por syntaxis
 ## Libreria
 https://github.com/gescheit/scripts
 
-pip install zabbix_api
+pip install zabbix-api
 
 Ejemplo:
 from zabbix_api import ZabbixAPI

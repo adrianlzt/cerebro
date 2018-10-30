@@ -82,6 +82,9 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 >>> [x['name'] for x in variable]
 [123, 0]
 
+{m["macro"]: m["value"] for m in macros}
+Convertir un array de dict a un dict
+
 
 # Dict comprehensions (python3)
 new_dict = {item['name']:item for item in data}
