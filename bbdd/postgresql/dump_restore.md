@@ -20,6 +20,8 @@ Dos tipos de backups:
      - solo hace falta un user read only
      - se pueden restaurar solo ciertos objetos (usando el formato custom)
      - se puede modificar el SQL a mano antes de restaurarlo (usando el formato SQL)
+     - comprime
+     - ocupa poco espacio
 
  - físicos (base backup): copia de los ficheros de pg_data
    Cons:
