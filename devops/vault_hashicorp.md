@@ -24,12 +24,21 @@ vault write secret/hello value=world
 vault read secret/hello
 
 
+# Docker
+docker run -e "SKIP_SETCAP=1" --name vault -p 8200:8200 -v "${PWD}/config:/vault/config" -v "${PWD}/data:/vault/file" -d vault
+  modo desarrollo, vulnerable porque mete pass en swap (hace falta CAP IPC_LOCK, pero me falla)
+
+docker exec -it vault sh
+
+
 
 # UI
 La oficial es de pago: https://www.vaultproject.io/docs/enterprise/ui/index.html
+Con el container viene la UI. Ya no es de pago? (30/10/2018)
 
 La mejor (Vue.js + Go): https://github.com/caiyeon/goldfish
 Demo: https://vault-ui.io/
+Prod: https://github.com/Caiyeon/goldfish/wiki/Production-Deployment
 
 Otra en React: https://github.com/djenriquez/vault-ui
 Otra: https://github.com/nyxcharon/vault-ui
