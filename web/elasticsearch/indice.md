@@ -174,6 +174,8 @@ Reduciremos el consumo de los shards al mínimo.
 
 Al abrir de nuevo un índice se pondrá en red hasta que se coloquen sus shards.
 
+Si intentamos buscar por nombre* y eso implica un indice cerrado, da un error.
+"ignore: unavailable" para ignorar los cerrados.
 
 
 # Internals

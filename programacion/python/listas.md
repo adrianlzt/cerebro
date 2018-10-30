@@ -262,3 +262,8 @@ def grouper(iterable, n, fillvalue=None):
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * n
     return zip_longest(*args, fillvalue=fillvalue)
+
+
+# Aplanar / flat
+itertools.chain.from_iterable([[1,2,3],[4,5,6]])
+  devuelve un iterador
