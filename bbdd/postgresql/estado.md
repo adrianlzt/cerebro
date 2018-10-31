@@ -25,6 +25,10 @@ SELECT pid, now() - query_start as "runtime", usename, datname, waiting, state, 
 
 
 
+https://wiki.postgresql.org/wiki/Lock_Monitoring
+https://wiki.postgresql.org/wiki/Lock_dependency_information
+  query para ver de donde viene los bloqueos originarios
+
 -- locks
 SELECT * FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid;
 

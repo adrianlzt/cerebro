@@ -82,3 +82,7 @@ Solo se pueden recorrer una vez https://stackoverflow.com/questions/19759247/lis
 []
 
 Los filter() con iteradores
+
+
+# tqdm
+Para mostrar un ncurses de cuanto lleva en porcentaje y cuando tarda por item y va a tardar en total
