@@ -9,6 +9,9 @@ Lo llamaremos de alguna manera que no coincida con los oficiales (NO llamarle co
 
 Ejemplo tonto:
 def adri(values=[]):
+    """
+    El primer parametro será el que venga por el pipe, los siguientes, los que pongamos como argumentos en el filter. Ej.: foo | adri(bar,bar2)
+    """
     return values
 
 
@@ -21,4 +24,3 @@ class FilterModule(object):
 
 Usándolo:
     - debug: msg="{{foo|adri}}"
-
