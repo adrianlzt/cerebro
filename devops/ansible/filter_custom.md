@@ -18,3 +18,7 @@ class FilterModule(object):
                 'adri': adri,
         }
 
+
+Usándolo:
+    - debug: msg="{{foo|adri}}"
+

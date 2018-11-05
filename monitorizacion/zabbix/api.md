@@ -28,6 +28,13 @@ https://github.com/gescheit/scripts
 
 pip install zabbix-api
 
+from zabbix_api import ZabbixAPI
+zbx = ZabbixAPI("http://zabbix")
+zbx.login("Admin", "zabbix")
+
+Poner eso en un fichero y ejecutar con python -i para tener una shell donde hacer pruebas.
+
+
 Ejemplo:
 from zabbix_api import ZabbixAPI
 zbx = ZabbixAPI("http://zabbix")
