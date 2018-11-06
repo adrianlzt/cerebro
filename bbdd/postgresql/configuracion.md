@@ -13,3 +13,8 @@ postgresql.conf <- parámetros de la base de datos
 
 
 pg_hba.conf <- fichero donde se habilita el paso a usuarios, rangos de ip, etc
+
+
+
+> show all
+mostrar los parámetros de configuración que están actualmente funcionando
