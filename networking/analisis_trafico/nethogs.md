@@ -6,3 +6,7 @@ Nos muestra que procesos están consumiendo ancho de banda.
 Pulando la tecla 'm' cambiamos a total de bytes enviados.
 
 No ve tráfico ICMP
+
+
+yum install -y epel-release
+yum install -y nethogs
