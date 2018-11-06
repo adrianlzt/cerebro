@@ -10,3 +10,7 @@ Host gh
 git clone ssh://gh/username/repo.git
 
 Mirar debug.md si tenemos problemas.
+
+
+Forzar una key determinada:
+GIT_SSH_COMMAND='ssh -i key' git clone ssh://g...
