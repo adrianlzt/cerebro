@@ -155,15 +155,18 @@ systemctl restart postgres (requiere reinicio)
 Para evitar perder datos entre el comienzo del backup y el fin, es necesario que se obtengan tambien los ficheros transaction log (WAL)
 
 Si queremos hacer un base backup parece que hay que usar
-pg_basebackup --xlog-method=stream --D /path/to/dir -P
+pg_basebackup --xlog-method=stream -D /path/to/dir -P
   con "stream" no podemos usar tar
   el espacio consumido será lo que ocupe PGDATA
   tiene bastante impacto en el I/O
+  --xlog-method=stream se lleva los WAL mientras dure el backup (valor por defecto)
 pg_basebackup --xlog-method=fetch --format=tar -z -D /path/to/dir -P
   --xlog-method=fetch it is necessary for the wal_keep_segments parameter to be set high enough that the log is not removed before the end of the backup. If the log has been rotated when it's time to transfer it, the backup will fail and be unusable.
+
   -P show progress (hace el backup algo más lento)
   --format=tar -Z: generamos ficheros .tar.gz por cada tablespace
   -Z [0-9] nos permite especificar mayor/menor tasa de compresión
+
 
 Restaurar, parar postgres, mover los ficheros al PGDATA y arrancar.
 

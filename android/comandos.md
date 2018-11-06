@@ -1,3 +1,6 @@
+mirar pm.md
+
+
 Poner en modo avion
   el icono de activa, pero no veo que afecte a nada
 

@@ -1,6 +1,7 @@
 http://docs.python-requests.org/en/latest
 
 mirar slumber.md para un recubrimiento sobre requests para facilitar hablar con api rest
+mirar mechanize.md para hacer peticiones que mantengas cookies, etc
 
 convertir curl a request: http://curl.trillworks.com/
 

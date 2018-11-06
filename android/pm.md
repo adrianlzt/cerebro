@@ -1,5 +1,9 @@
 Comandos para manejar el movil desde la shell:
 
+pm list packages
+pm path nombrePackage
+  nos dice donde está la apk
+
 usage: pm list packages [-f] [-d] [-e] [-s] [-3] [-i] [-u] [--user USER_ID] [FILTER]
        pm list permission-groups
        pm list permissions [-g] [-f] [-d] [-u] [GROUP]
