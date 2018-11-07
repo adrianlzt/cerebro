@@ -270,6 +270,8 @@ C-b A-i: ip address
 https://github.com/tmux-plugins/tmux-resurrect
 https://github.com/tmux-plugins/tmux-continuum
 Esta configurado para autosave cada 15 minutos
+https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_pane_contents.md
+  restaurar el contenido de cada pane
 
 A mano
 prefix + Ctrl-s - save
