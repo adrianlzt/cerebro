@@ -1,4 +1,6 @@
 deoplete
+zxqfl/tabnine-vim
+  autocompletado basado en ML
 
 Posible alternativa a deoplete? https://github.com/ncm2/ncm2
 
