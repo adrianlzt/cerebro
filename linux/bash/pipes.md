@@ -14,3 +14,7 @@ hola
 $ cat $(echo "hola")
 cat: hola: No existe el fichero o el directorio
 
+
+
+Reenviar stdout + stderr a otro comando
+lshw |& grep xxx
