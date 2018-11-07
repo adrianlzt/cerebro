@@ -39,3 +39,19 @@ Syntastic
 https://github.com/scrooloose/syntastic
 Se ejecuta tras guardar :w
 :SyntasticCheck para forzar el análisis
+
+
+
+
+FZF
+https://github.com/junegunn/fzf/blob/master/README-VIM.md
+:FZF
+:FZF /some/path
+  abrir ficheros eligiendolos usando fzf.
+  enter -> abrir en el current buffer
+  C-t nuevo tab
+  C-x split horizontal
+  C-v split vertical
+
+https://github.com/junegunn/fzf.vim
+Usar fzf para buscar: ficheros, lineas, buffers, snippets, etc

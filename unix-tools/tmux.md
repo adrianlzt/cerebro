@@ -277,3 +277,7 @@ A mano
 prefix + Ctrl-s - save
 prefix + Ctrl-r - restore
 
+
+## Rofi
+https://rofi-tmux.readthedocs.io/en/latest/usage.html
+Moverse por sesiones o windows con rofi

@@ -3,6 +3,10 @@ https://github.com/SirVer/ultisnips
 Con el tab, debe aparecer en la lista al final "[US]" si tenemos un snippet.
 Si tenemos varios en la lista, nos movemos con el cursor, seleccionamos con intro y damos a Control+s para expandir.
 Si solo tenemos uno C-s es suficiente para expandir
+
+Para ver los snippets:
+:Snippets
+  necesitamos tener https://github.com/junegunn/fzf.vim
 C-x nos muetra los snippets que tenemos disponibles (ejecutado en insert mode)
 :call UltiSnips#ListSnippets()
   lo mismo en no insert mode
