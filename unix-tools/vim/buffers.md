@@ -15,3 +15,8 @@ Copiar al buffer "a" la salida de let. Y luego pegar el buffer
 :let
 :redir END
 "ap
+
+
+Copiar la linea al buffer "a"
+"ayy
+
