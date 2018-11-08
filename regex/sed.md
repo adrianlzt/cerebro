@@ -24,6 +24,13 @@ sed -i s/cambiaesto/poresto/ fichero.txt
 # Borrar las lineas que empiezen por #
 sed -i '/^#/d' fichero
 
+# Borrar n lineas despues de un match
+sed -e '/pattern/,+5d' file.txt
+
+Si no queremos incluir la linea del pattern:
+sed -e '/pattern/{n;N;N;N;N;d}' file.txt
+
+
 # Modificar solo parte de una línea
  echo "session inforce pam_loginuid.so pepeito" | sed  '/^session.*pam_loginuid.so/s/^session/# session/'
  # session inforce pam_loginuid.so pepeito
