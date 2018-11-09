@@ -195,6 +195,10 @@ Da igual la lontigud de la cadena var1, con :20 lo que hacemos es que al menos o
 titulo               texto
 
 
+Si info es un "dict", usar directamente sus valores
+print('{name} works at {status} {company}'.format_map(info))
+
+
 
 ## Comparación ##
 http://stackoverflow.com/questions/9573244/most-elegant-way-to-check-if-the-string-is-empty-in-python

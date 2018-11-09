@@ -44,3 +44,9 @@ Matematicas
 En insert mode
 Control+r =
 Ponemos una fórmula y vim pone el resultado donde estabamos
+
+
+" FZF
+,fl " Buscar una linea en todos los buffers abiertos
+,fb " Solo en el buffer current
+,fg " Buscar con rg y con fzf sobre los resultados

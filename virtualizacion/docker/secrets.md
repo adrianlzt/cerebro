@@ -48,3 +48,7 @@ secrets:
   jenkins-pass:
     external: true
 
+
+
+# Secrets in dockerfiles
+https://medium.com/@tonistiigi/build-secrets-and-ssh-forwarding-in-docker-18-09-ae8161d066
