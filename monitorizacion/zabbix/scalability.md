@@ -27,6 +27,9 @@ No usar si tenemos muchos hosts. Es muy pesado.
 https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
 
+La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
+
+
 
 # Imágenes / frontend
 Si tenemos screens con muchas imágenes (50) y un tiempo de recarga pequeño (30"), esto realiza una carga muy grande sobre el frontend.
