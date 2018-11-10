@@ -12,7 +12,7 @@ INSTALL_PKGS="fluentd-${FLUENTD_VERSION} \
               iproute" && \
 yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
 rpm -V $INSTALL_PKGS && \
-yum clean all
+yum clean all && rm -rf /var/cache/yum
 
 
 RUN apt-get update && apt-get install -y \
