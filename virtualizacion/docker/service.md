@@ -28,7 +28,7 @@ Crear volumes distintos para cada instancia del service (https://github.com/moby
   montar path del host
 
 Se pueden crear "configs" (como con los configMaps de kubernetes) y montarlos luego en un service.
-
+mirar config.md
 
 Parece que no se puede moficiar el entrypoint https://github.com/moby/moby/issues/24196
 
