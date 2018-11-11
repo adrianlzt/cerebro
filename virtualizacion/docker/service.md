@@ -24,6 +24,12 @@ Ejemplo de como agregar un volumen. El volumen estará compartido entre todas la
 Crear volumes distintos para cada instancia del service (https://github.com/moby/moby/issues/30008)
   --mount type=volume,src="{{.Task.Name}}",dst=/results/ \
 
+--mount type=bind,source=/path/on/host,destination=/path/in/container
+  montar path del host
+
+Se pueden crear "configs" (como con los configMaps de kubernetes) y montarlos luego en un service.
+
+
 Parece que no se puede moficiar el entrypoint https://github.com/moby/moby/issues/24196
 
 
