@@ -45,3 +45,11 @@ Luego conecta al primero, lanza un "PING" para chequear que contesta. Luego un "
 Luego lanza PING e INFO contra el resto de servidores de la lista.
 
 Para próximos envios solo hará el RPUSH
+
+
+
+
+# Autodiscover (docker/kubernetes)
+https://www.elastic.co/guide/en/beats/filebeat/current/configuration-autodiscover.html
+
+Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.

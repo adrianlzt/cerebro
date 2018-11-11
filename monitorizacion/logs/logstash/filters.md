@@ -31,3 +31,14 @@ filter_kv.md
 # metrics
 https://www.elastic.co/guide/en/logstash/current/plugins-filters-metrics.html
 metrics.md
+
+
+
+# drop
+https://www.elastic.co/guide/en/logstash/6.4/plugins-filters-drop.html
+
+Descartar una métrica si cumple una condición:
+if [nginx][access][agent] == "Zabbix" {
+  drop {}
+}
+
