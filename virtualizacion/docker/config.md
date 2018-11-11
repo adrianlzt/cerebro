@@ -6,3 +6,7 @@ cat <<EOF | docker config create filebeat -
 some config
 multiline
 EOF
+
+
+Ver una conf almacenada:
+docker config inspect --pretty NOMBRE
