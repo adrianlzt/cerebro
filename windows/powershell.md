@@ -21,6 +21,10 @@ O podemos usarlo para saber si tenemos disponbile un comando:
   Get-Command facter
 
 
+# Grep / Select-String
+"Hello","HELLO" | Select-String -Pattern "HELLO" -CaseSensitive
+  inverse: -NotMatch
+
 # Logs de ejecucción
 https://docs.microsoft.com/es-es/powershell/wmf/5.0/audit_script
 
