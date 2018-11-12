@@ -1,6 +1,8 @@
 https://elasticsearch-dsl.readthedocs.io/en/latest/index.html
 Por debajo hace uso de https://github.com/elastic/elasticsearch-py
 
+pip install elasticsearch-dsl
+
 # Query
 from elasticsearch_dsl import Search
 from elasticsearch_dsl.connections import connections
