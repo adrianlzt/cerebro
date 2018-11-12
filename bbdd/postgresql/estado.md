@@ -3,7 +3,7 @@ https://medium.com/little-programming-joys/finding-and-killing-long-running-quer
 -- para 9.6+
 SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity ORDER BY runtime DESC;
 SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE state = 'active' ORDER BY runtime DESC;
-SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 seconds'::interval and state = 'active' ORDER BY runtime DESC;
+SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 seconds'::interval and (state = 'active' or state = 'idle in transaction') ORDER BY runtime DESC;
 SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 minutes'::interval and state = 'active' ORDER BY runtime DESC;
 
 
