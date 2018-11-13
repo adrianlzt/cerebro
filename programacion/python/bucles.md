@@ -72,6 +72,13 @@ Obtener de un dict solo la clave filtrando por los valores
 
 
 
+# Group by
+Podemos agrupar arrays por una clave.
+Obtendremos una iterador tipo diccionario con:
+  clave1: [elem1, elem2]
+  clave2: [elem1, elem2]
+
+
 # Iteradores
 Solo se pueden recorrer una vez https://stackoverflow.com/questions/19759247/listing-a-filter-object-twice-will-return-a-blank-list
 >>> a = [1, 2, 3]
