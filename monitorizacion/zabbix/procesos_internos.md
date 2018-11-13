@@ -51,3 +51,8 @@ Tambien puede que duerma menos, pero no queda claro como lo calcula, func "calcu
 ### Metricas a partir de los logs
 Keys que procesa el poller:
 cat pollers | grep "In get_value()" | cut -d "'" -f 2 | sort | uniq -c
+
+
+
+# trap
+Sección del código donde decide como procesar cada elemento

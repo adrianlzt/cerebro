@@ -31,6 +31,8 @@ La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 
 
 ## Value cache
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
+https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L1145
+  organización de los datos en la memoria
 
 Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
 

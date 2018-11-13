@@ -32,3 +32,22 @@ Las colas están almacenadas en la memoria, no podemos hacer una consulta SQL pa
 https://github.com/zabbix/zabbix/blob/ed41431677d3bb4ad05406776e6dfadbc65a2683/src/zabbix_server/trapper/trapper.c#L424
 ZBX_GET_QUEUE_OVERVIEW
 ZBX_GET_QUEUE_PROXY
+
+
+
+echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"overview"}' | nc serverzabbix 10051
+  si no tenemos nada encolado para un tipo de datos, no nos devuelve nada.
+  Ejemplo de retorno (solo encolados actives y snmp):
+  {"response":"success","data":[
+    {"itemtype":4,"delay5":0,"delay10":91,"delay30":0,"delay60":0,"delay300":0,"delay600":0},
+    {"itemtype":7,"delay5":358,"delay10":1242,"delay30":1244,"delay60":6050,"delay300":3134,"delay600":4129}
+  ]}
+
+echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"overview by proxy"}' | nc serverzabbix 10051
+
+
+Todos los items en la queue
+echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"details"}' | nc serverzabbix 10051 > out.json
+
+Sin límite
+echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"details", "limit": "100000"}' | nc serverzabbix 10051 > out.json
