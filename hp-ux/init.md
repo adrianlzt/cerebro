@@ -9,3 +9,7 @@ ZABBIXD=1
 A parte se ponen los links
 /sbin/rc3.d/S991zabbix_agentd
 /sbin/rc2.d/K15zabbix_agentd
+
+
+Arrancar un servicio:
+/sbin/init.d/zabbix_agentd start
