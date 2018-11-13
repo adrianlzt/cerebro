@@ -9,6 +9,9 @@ plugin reload XXX
   recargar un plugin
 
 
+Instalar un plugin
+!repos install https://github.com/kdknowlton/err-reminders
+
 # Interensantes
 
 Almacena los chats y nos permite buscar
