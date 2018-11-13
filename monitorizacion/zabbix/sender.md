@@ -36,6 +36,11 @@ https://github.com/englishm/zabbix_send
 
 
 # Formato
+https://www.zabbix.com/documentation/1.8/protocols
+
+echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"overview"}' | nc zabbixserver 10051
+
+
 Se envia un formato binario con un json dentro
 
 Envio (legible, copiado desde wirehsark):

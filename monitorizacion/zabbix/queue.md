@@ -26,3 +26,9 @@ El frontal usa la API interna de zabbix para obtener los datos de las colas.
 La función que llama es "queue.get"
 
 Las colas están almacenadas en la memoria, no podemos hacer una consulta SQL para obtenerlas.
+
+
+"queue.get" lo recibe trapper.c
+https://github.com/zabbix/zabbix/blob/ed41431677d3bb4ad05406776e6dfadbc65a2683/src/zabbix_server/trapper/trapper.c#L424
+ZBX_GET_QUEUE_OVERVIEW
+ZBX_GET_QUEUE_PROXY

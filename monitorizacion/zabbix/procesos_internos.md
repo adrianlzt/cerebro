@@ -41,6 +41,12 @@ get_value
 
 Aqui llama a la función particular que tiene que procesar este tipo de item: get_value_agent, get_value_simple, etc
 
+Cuando termina de procesar mira a ver si tiene más elementos en la cola.
+Si tiene, sigue procesando.
+Si no para de procesar, cada 5" (como mínimo), actualiza su título.
+Si no tiene otra task, duerme el máximo (1").
+Tambien puede que duerma menos, pero no queda claro como lo calcula, func "calculate_sleeptime"
+
 
 ### Metricas a partir de los logs
 Keys que procesa el poller:

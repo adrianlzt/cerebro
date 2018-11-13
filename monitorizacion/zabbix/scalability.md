@@ -29,6 +29,13 @@ Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a ca
 
 La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
 
+## Value cache
+https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
+
+Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
+
+Almacena, al menos, 24h de datos. Los nuevos datos se meten en la cache antes de ir a la bbdd
+
 
 
 # Imágenes / frontend
