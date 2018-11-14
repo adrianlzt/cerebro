@@ -91,6 +91,9 @@ tagexclude = ["path"]
 
 Si queremos quitar un tag en un processor, podemos usar el "converter" e intentar convertir la tag a un field que vaya a fallar. La descartará
 
+Si queremos tirar ciertas métricas podemos usar el processor parser.
+Al no encontrar el "parse_fields" y si le ponemos "drop_original", tirará la métrica
+
 quita esos fields:
 fielddrop = ["usage_guest", "usage_steal"]
 
