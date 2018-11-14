@@ -142,10 +142,14 @@ Si le falta alguna -> False
 
 
 
-# OrderedDicts
+# OrderedDicts / sort / order
 https://docs.python.org/3/library/collections.html#collections.OrderedDict
 
 Diccionarios que recuerdan el orden de las keys
+
+Ordenar un OrderedDict
+foo = OrderedDict(sorted(foo.iteritems(), key=lambda x: x[1]['depth']))
+
 
 
 # Sort

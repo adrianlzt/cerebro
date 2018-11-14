@@ -78,6 +78,10 @@ Obtendremos una iterador tipo diccionario con:
   clave1: [elem1, elem2]
   clave2: [elem1, elem2]
 
+Para que funcione bien tenemos que ordenar primero por la key por la que vamos a agrupar
+
+Ejemplo con un dict:
+        for k,g in groupby(sorted(items.values(), key=sort_by_host_name), key=sort_by_host_name):
 
 # Iteradores
 Solo se pueden recorrer una vez https://stackoverflow.com/questions/19759247/listing-a-filter-object-twice-will-return-a-blank-list
