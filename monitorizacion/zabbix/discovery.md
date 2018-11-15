@@ -130,3 +130,22 @@ Podemos usar esta discovery luego con filters para crear solo los procesos que n
 
 Discovery de procesos ora_pmon* (oracle) para AIX:
 echo '{ "data":['; ps -eo args | grep "^ora_pmon" | /usr/bin/awk '{ print " { \"{#PSNAME}\":\"" $1 "\" },"}' | /usr/bin/sort | /usr/bin/uniq | /bin/sed '$s/.$//' ; echo "]}"
+
+
+
+
+# Internal
+dc_add_history (add new value to the cache)
+src/libs/zbxdbcache/dbcache.c:2700
+Si en los items flags esta marcado que es un lld llama a lld_process_discovery_rule.
+Si es un proxy lo almacena (supongo que para luego enviarlo al server)
+
+lld_process_discovery_rule (add or update items, triggers and graphs for discovery item)
+src/libs/zbxdbhigh/lld.c:526
+
+src/libs/zbxdbhigh/lld.c:598
+lld_update_items(hostid, lld_ruleid, &lld_rows, &error, lifetime, now)
+
+
+src/libs/zbxdbhigh/lld_item.c:3255
+lld_update_items (add or update discovered items)
