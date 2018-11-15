@@ -135,6 +135,13 @@ echo '{ "data":['; ps -eo args | grep "^ora_pmon" | /usr/bin/awk '{ print " { \"
 
 
 # Internal
+Parece que los servicios que pueden llamar a dc_add_history son:
+ pinger
+ poller
+ snmptrapper
+ proxy (por aqui entran los active agents y pollers. Es como un proxy interno de zabbix server)
+
+
 dc_add_history (add new value to the cache)
 src/libs/zbxdbcache/dbcache.c:2700
 Si en los items flags esta marcado que es un lld llama a lld_process_discovery_rule.
