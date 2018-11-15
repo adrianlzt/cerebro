@@ -18,3 +18,8 @@ Mirar en la columna de la derecha de http://regexr.com/ para ver todas las opcio
 
 [^aeiou]
 Coger cualquier cosa que no sea a,e,i,o,u
+
+
+ungreedy
+Hacer lazy matching.
+En vez de que ".*" intente coger el máximo, hacer que coja poco
