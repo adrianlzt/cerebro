@@ -8,6 +8,9 @@ https://godoc.org/github.com/spacemonkeygo/errors
 
 Mirar tambien panic.md
 
+https://github.com/palantir/stacktrace
+Generar stacktraces de los errores
+
 Un ejemplo de como gestionar los errores:
 https://github.com/upspin/upspin/blob/master/errors/errors.go
 
