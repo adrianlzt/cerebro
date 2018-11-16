@@ -57,3 +57,14 @@ Envio (legible, copiado desde wirehsark):
 Respuesta (legible):
 {"response":"success","info":"processed: 2; failed: 0; total: 2; seconds spent: 0.000268"}
 
+
+
+# Internal
+Los datos de los agentes activos y los traps se tratan de igual manera.
+Entran por la función:
+recv_agenthistory (processes the received values from active agents and senders)
+En el log modo debug podemos encontrar "In recv_agenthistory"
+
+El dato se procesa con:
+process_hist_data
+
