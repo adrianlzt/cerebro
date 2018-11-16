@@ -1,3 +1,9 @@
+Obtener api key en: https://www.flickr.com/services/apps/by/NOMBREUSUARIO
+
+## flickr-cli
+https://hub.docker.com/r/thefox21/flickr-cli/
+
+
 ## flickrbackup ##
 Hacer backup de las fotos de flickr a local
 
