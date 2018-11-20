@@ -6,6 +6,8 @@ SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, stat
 SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 seconds'::interval and (state = 'active' or state = 'idle in transaction') ORDER BY runtime DESC;
 SELECT pid, now() - query_start as "runtime", usename, datname, wait_event, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 minutes'::interval and state = 'active' ORDER BY runtime DESC;
 
+  Tambien podemos sacar el client_addr (IP) y client_port
+
 
 -- kill running query (cancel es más "soft" que terminate)
 SELECT pg_cancel_backend(procpid);

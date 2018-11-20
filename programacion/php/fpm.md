@@ -65,3 +65,27 @@ HTTP_ACCEPT=*/*
 https://developers.redhat.com/blog/2014/12/29/running-php-fpm-in-docker/
 
 Como correr php-fpm como un container standalone
+
+
+# Access log
+Valores configurables:
+https://github.com/php/php-src/blob/PHP-5.4.16/sapi/fpm/php-fpm.conf.in#L369
+
+
+Ejemplo de config:
+
+access.log = "/var/log/php-fpm/access.log"
+; %e: HTTP headers like: %{HTTP_HOST}e or %{HTTP_USER_AGENT}e
+; dos guiones para identity y user (el primero no existe en php y el segundo no lo usamos, y php, si no tiene, pone un espacio en blanco)
+; %t: tiempo
+; %m: request method
+; %r: the request URI (without the query string, see %q and %Q)
+; %q: the query string
+; %Q: the '?' character if query string exists
+; %s: status (response code)
+; %l: content-length of the request (for POST request only)
+; %d: time taken to serve the request
+; %p: PID of the child that serviced the request
+; %M: peak of memory allocated by PHP
+; %C: %CPU used by the request
+access.format = "%{REMOTE_ADDR}e - - [%t] \"%m %r%Q%q\" %s %l \"%{HTTP_REFERER}e\" \"%{HTTP_USER_AGENT}e\" %{mili}dT PID=%p MEM=%{kilo}M CPU=%C%%"
