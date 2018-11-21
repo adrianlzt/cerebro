@@ -40,3 +40,7 @@ LANGUAGE 'xxx';
 'xxx'::char
   nos devuelve solo el primer caracter
 
+
+
+# Truncate
+left("qwerty", 2) -> qw
