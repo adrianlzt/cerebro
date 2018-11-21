@@ -161,6 +161,7 @@ lld_update_items (add or update discovered items)
 
 
 ## LLD enabled
+LLD recibido con un trapper
 https://gist.github.com/adrianlzt/95fba65b9e17ce8a931579b0742e9468
 
 
