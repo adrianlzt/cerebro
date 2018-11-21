@@ -47,6 +47,8 @@ Si vemos en estas queries granted=f quiere decir peticionse que están esperando
 Los problems son los Exclusive locks, que limitan a otras transacciones trabajar
 
 Cuidado, en query veremos la última llamada lanzada por la transacción, pero puede que no estemos viendo la llamada que originó el lock
+https://dba.stackexchange.com/questions/223083/postgresql-get-statements-of-a-running-transaction
+  preguntando eso
 
 
 

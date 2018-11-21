@@ -20,3 +20,5 @@ stdout {
 debug: mirar debug.md
 
 mirar stdout.md
+
+mirar test.md para ver como ejecutarlo para probar

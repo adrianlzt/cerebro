@@ -7,8 +7,10 @@ Mejor separar un flow input-filter-output en cada fichero
 
 If you specify multiple filters, they are applied in the order of their appearance in the configuration file.
 
+mirar test.md para ver como ejecutarlo para probar
+
 Chequeo conf:
-logstash --configtest -f /etc/logstash/conf.d/
+logstash -t -f /etc/logstash/conf.d/
 
 -f fichero.conf
 -f /directorio/
