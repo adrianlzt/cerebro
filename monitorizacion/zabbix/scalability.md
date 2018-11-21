@@ -29,6 +29,14 @@ Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a ca
 
 La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
 
+CacheUpdateFrequency=90
+Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.
+El problema de subir el tiempo es que tardemos más tiempo en que se produzcan cambios, recibir métricas, lld, etc
+
+Podemos forzar ese update con:
+zabbix_server -R config_cache_reload
+
+
 ## Value cache
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L1145

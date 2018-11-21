@@ -60,6 +60,8 @@ Respuesta (legible):
 
 
 # Internal
+En procesos_internos.md hay detalle de como se procesan los datos
+
 Los datos de los agentes activos y los traps se tratan de igual manera.
 Entran por la función:
 recv_agenthistory (processes the received values from active agents and senders)
@@ -68,3 +70,6 @@ En el log modo debug podemos encontrar "In recv_agenthistory"
 El dato se procesa con:
 process_hist_data
 
+
+Cuando un trapper recibe datos veremos una linea como:
+  2250:20181121:081646.349 trapper got '{"request":"sender data","dat...

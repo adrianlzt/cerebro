@@ -135,6 +135,8 @@ echo '{ "data":['; ps -eo args | grep "^ora_pmon" | /usr/bin/awk '{ print " { \"
 
 
 # Internal
+En procesos_internos.md hay detalle de como se procesan los datos
+
 Parece que los servicios que pueden llamar a dc_add_history son:
  pinger
  poller
@@ -156,3 +158,24 @@ lld_update_items(hostid, lld_ruleid, &lld_rows, &error, lifetime, now)
 
 src/libs/zbxdbhigh/lld_item.c:3255
 lld_update_items (add or update discovered items)
+
+
+## LLD enabled
+https://gist.github.com/adrianlzt/95fba65b9e17ce8a931579b0742e9468
+
+
+## LLD disabled
+En caso de que un LLD esté desactivado, si enviamos un trap con zabbix_sender veremos como nos contesta con "failed: 1".
+El los debug que veremos:
+  2251:20181121:082444.476 __zbx_zbx_setproctitle() title:'trapper #5 [processing data]'
+  2251:20181121:082444.476 trapper got '{"request":"sender data","data":[{"host":"test_lld","key":"somelld","value":"{\"data\":[{\"{#FOO}\":\"11_dis\"}]}"}]}'
+  2251:20181121:082444.477 In recv_agenthistory()
+  2251:20181121:082444.477 In process_hist_data()
+  2251:20181121:082444.477 In process_mass_data()
+  2251:20181121:082444.477 End of process_mass_data()
+  2251:20181121:082444.477 End of process_hist_data():SUCCEED
+  2251:20181121:082444.477 In zbx_send_response()
+  2251:20181121:082444.477 zbx_send_response() '{"response":"success","info":"processed: 0; failed: 1; total: 1; seconds spent: 0.000173"}'
+  2251:20181121:082444.477 End of zbx_send_response():SUCCEED
+  2251:20181121:082444.477 End of recv_agenthistory()
+  2251:20181121:082444.478 __zbx_zbx_setproctitle() title:'trapper #5 [processed data in 0.001342 sec, waiting for connection]'
