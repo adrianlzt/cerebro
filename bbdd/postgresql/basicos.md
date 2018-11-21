@@ -40,3 +40,14 @@ Ayuda:
 
 Salir:
 \q
+
+Info de la conexión (user, database, metodo de conex):
+\conninfo
+
+
+# System info
+https://www.postgresql.org/docs/current/functions-info.html
+Funciones utiles para obtener datos del sistema
+
+Pid que estamos usando en el backend:
+SELECT pg_backend_pid();
