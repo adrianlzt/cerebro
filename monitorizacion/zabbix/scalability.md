@@ -36,6 +36,8 @@ El problema de subir el tiempo es que tardemos más tiempo en que se produzcan c
 Podemos forzar ese update con:
 zabbix_server -R config_cache_reload
 
+Cuando se realiza el update, se nota una pequeña congelación en los procesos. Al menos visto en los trappers, que mientras se hace el update dejan de contestar.
+
 
 ## Value cache
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32

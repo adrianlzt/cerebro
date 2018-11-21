@@ -61,6 +61,7 @@ Respuesta (legible):
 
 # Internal
 En procesos_internos.md hay detalle de como se procesan los datos
+En lld.md trazas de que hace un trap al procesar un lld enabled o disabled.
 
 Los datos de los agentes activos y los traps se tratan de igual manera.
 Entran por la función:
@@ -70,6 +71,10 @@ En el log modo debug podemos encontrar "In recv_agenthistory"
 El dato se procesa con:
 process_hist_data
 
+Termina cuando contesta al cliente (zbx_send_response) y pone:
+End of recv_agenthistory()
+
+Luego, si se queda sin nada que hacer, pondrá el título (__zbx_zbx_setproctitle) o si no, seguirá con el siguiente item (y pondrá el título una vez cada 5")
 
 Cuando un trapper recibe datos veremos una linea como:
   2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
