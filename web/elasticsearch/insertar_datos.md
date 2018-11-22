@@ -176,11 +176,9 @@ También podemos usarlo para pasar un indice por una pipeline (mirar ingest_node
 
 Ejemplo filtrando que actualizar con una query y usando un script:
 POST twitter/_update_by_query
-POST twitter/_update_by_query
 {
   "script": {
     "source": "ctx._source.likes++",
-    "lang": "painless"
   },
   "query": {
     "term": {
@@ -188,6 +186,12 @@ POST twitter/_update_by_query
     }
   }
 }
+
+Otro ejemplo modificando el valor de un campo
+  "source": "ctx._source['tag']['pid'] = '0'"
+
+Borrando un campo:
+  "source": "ctx._source.tag.remove('pid')"
 
 
 
