@@ -10,6 +10,9 @@ muestra el default sink y source.
 list-sinks
 nos muestra el listado de devices que se puede configurar como salida
 
+Modificar volumen de un sink
+pactl set-sink-volume 0 +10%
+
 
 Poner el microfono y altavoces al jabra:
 pacmd set-default-sink alsa_output.usb-GN_Netcom_A_S_Jabra_EVOLVE_20_MS_000135D0656C09-00.analog-stereo
