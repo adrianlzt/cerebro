@@ -22,3 +22,17 @@ INSERT INTO weather(crag_id, data) VALUES(1,'{"test": "ok"}');
  ---------+----------------------------+----------------
         1 | 2017-08-11 15:25:24.879665 | {"test": "ok"}
 
+
+
+zabbix-server=# select extract(day from now());
+ date_part
+-----------
+        22
+
+
+Fecha actual en un formato
+select to_char(current_timestamp, 'YYYY_MM_DD');
+
+
+Parsear fecha:
+to_timestamp('05 Dec 2000', 'DD Mon YYYY')

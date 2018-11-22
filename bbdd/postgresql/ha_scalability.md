@@ -5,3 +5,16 @@ Each has slaves. The vote database has one master one slave. The comment databas
 Avoid reading from the master if possible and direct reads to the slaves to keep the master dedicated to writes.
 
 Client libraries would load balance across slaves and try a new slave if one was busy.
+
+
+# Recovery
+Query para saber si somos una recovery (por lo tanto, no la master)
+select pg_is_in_recovery();
+
+
+# Estado de la replicación
+Solo devuelve info si lo lanzamos en la primaria
+select * from pg_stat_replication;
+
+Ultima transaccion sincronizada
+select pg_last_xact_replay_timestamp();

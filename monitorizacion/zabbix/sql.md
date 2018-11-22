@@ -52,6 +52,7 @@ Status
 0 - enabled
 1 - disabled
 3 - template (para la tabla hosts)
+5 - proxy
 
 hosts - Flags
 0 - normal host
@@ -84,7 +85,7 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 
 # Queries varias
-Número de items en la tabla history agrupados por buckets de 10', filtrando entre unos timestamps:
+Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
