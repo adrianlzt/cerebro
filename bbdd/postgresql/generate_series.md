@@ -7,6 +7,10 @@ Nos da valores del 0 al 5 incluidos
 
 
 SELECT * FROM generate_series('2008-03-01 00:00'::timestamp, '2008-03-04 12:00', '10 hours');
+ 2008-03-01 00:00:00
+ 2008-03-01 10:00:00
+ 2008-03-01 20:00:00
+ ...
 
 
 

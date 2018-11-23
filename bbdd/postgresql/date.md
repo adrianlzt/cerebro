@@ -1,4 +1,4 @@
-http://www.postgresql.org/docs/8.0/static/functions-datetime.html
+https://www.postgresql.org/docs/current/functions-datetime.html
 
 Hora en unix epoch en segundos:
 SELECT ROUND(EXTRACT(EPOCH FROM now()));
@@ -34,5 +34,6 @@ Fecha actual en un formato
 select to_char(current_timestamp, 'YYYY_MM_DD');
 
 
-Parsear fecha:
-to_timestamp('05 Dec 2000', 'DD Mon YYYY')
+Crear timestamp:
+make_timestamp(year int, month int, day int, hour int, min int, sec double precision)o
+'2012-04-01 23:55:00'::timestamp
