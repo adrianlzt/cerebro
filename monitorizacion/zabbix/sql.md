@@ -86,6 +86,12 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
+select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history where clock > 1527285600 and clock < 1527307200 group by hour,min10 order by hour,min10;
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
@@ -102,7 +108,7 @@ select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' 
 
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id:
-select case when type=0 then 'Zabbix Agent' when type=1 then 'SNMPv1 agent' when type=2 then 'Zabbix trapper' when type=3 then 'simple check' when type=4 then 'SNMPv2 agent' when type=5 then 'Zabbix internal' when type=6 then 'SNMPv3 agent' when type=7 then 'Zabbix agent (active)' when type=8 then 'Zabbix aggregate' when type=9 then 'web item' when type=10 then 'external check' when type=11 then 'database monitor' when type=12 then 'IPMI agent' when type=13 then 'SSH agent' when type=14 then 'TELNET agent' when type=15 then 'calculated' when type=16 then 'JMX agent' when type=17 then 'SNMP trap' when type=18 then 'Dependent item' end as type,case when status=0 then 'ON' else 'OFF' end as status,count(*) from items group by type,status order by type, status desc;
+select elt(type, 'Zabbix Agent', 'SNMPv1 agent', 'Zabbix trapper', 'simple check', 'SNMPv2 agent', 'Zabbix internal', 'SNMPv3 agent', 'Zabbix agent (active)', 'Zabbix aggregate', 'web item', 'external check', 'database monitor', 'IPMI agent', 'SSH agent', 'TELNET agent', 'calculated', 'JMX agent', 'SNMP trap', 'Dependent item') as type, elt(status, 'ON', 'OFF') as status,count(*) from items group by type,status order by type, status desc;
 
 Como la anterior pero sin tener en cuenta los items de las templates:
 select case when items.type=0 then 'Zabbix Agent' when items.type=1 then 'SNMPv1 agent' when items.type=2 then 'Zabbix trapper' when items.type=3 then 'simple check' when items.type=4 then 'SNMPv2 agent' when items.type=5 then 'Zabbix internal' when items.type=6 then 'SNMPv3 agent' when items.type=7 then 'Zabbix agent (active)' when items.type=8 then 'Zabbix aggregate' when items.type=9 then 'web item' when items.type=10 then 'external check' when items.type=11 then 'database monitor' when items.type=12 then 'IPMI agent' when items.type=13 then 'SSH agent' when items.type=14 then 'TELNET agent' when items.type=15 then 'calculated' when items.type=16 then 'JMX agent' when items.type=17 then 'SNMP trap' when items.type=18 then 'Dependent item' end as type,count(*) from items,hosts where items.hostid=hosts.hostid and hosts.status <> 3 group by items.type,items.status order by items.type,items.status desc;
