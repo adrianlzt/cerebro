@@ -49,6 +49,11 @@ vault seal
 vault write secret/hello value=world
 vault read secret/hello
 
+### kv storage
+Listar contenidos de un storage tipo KV
+vault kv list nombrePath
+
+
 
 # Docker
 docker run -e "SKIP_SETCAP=1" --name vault -p 8200:8200 -v "${PWD}/config:/vault/config" -v "${PWD}/data:/vault/file" -d vault
