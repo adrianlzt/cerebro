@@ -25,6 +25,9 @@ write auth/userpass/users/nombre policies=admins,all
 
 # CLI
 
+## Loguearnos server remoto
+vault login -address=http://vault.com:8200 -method=userpass username=adrian
+
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
   los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
