@@ -1,5 +1,28 @@
 https://www.vaultproject.io/
 
+# Auth
+Auth con user/pass
+https://www.vaultproject.io/docs/auth/userpass.html
+
+Tenemos que activar el Auth Method user/pass.
+Una vez activo usaremos la consola para crear usuarios:
+vault write auth/userpass/users/mitchellh password=foo policies=admins
+
+
+# Conceptos
+Las ACL deciden que se puede hacer para cada path.
+Ejemplo:
+path "secret/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+
+Esta ACL permite todos las capabilities bajo el path secret/
+
+Luego tendremos que poner las policies a los usuarios:
+write auth/userpass/users/nombre policies=admins,all
+
+
+
 # CLI
 
 ## Crear new vault server
