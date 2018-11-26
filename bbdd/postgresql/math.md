@@ -17,3 +17,10 @@ select item,avg(clock) from items;
 Si los dos tipos de datos son int, el resultado será int.
 Podemos forzar algún valor a float para que el resutlado sea float:
 select count(*)::float/3 from items;
+
+## Division by zero
+Evitar con:
+CASE count(column_name)
+   WHEN 0 THEN 1
+   ELSE count(column_name)
+END
