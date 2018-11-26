@@ -20,3 +20,8 @@ FROM pg_inherits
     JOIN pg_namespace nmsp_parent   ON nmsp_parent.oid  = parent.relnamespace
     JOIN pg_namespace nmsp_child    ON nmsp_child.oid   = child.relnamespace
 WHERE parent.relname='NOMBRETABLA';
+
+
+
+# Errores
+Bloqueado borrado una partición, mirar a ver si está el vacuum ejecutándose.

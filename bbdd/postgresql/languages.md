@@ -9,7 +9,10 @@ CREATE LANGUAGE plpythonu;
 La activación es por cada database
 
 
-# Python
+
+
+
+# Python dentro de postgres
 https://www.postgresql.org/docs/9.1/static/plpython.html
 https://www.postgresql.org/docs/8.1/static/plpython-database.html
 mirar copiar_entorno.sql
@@ -51,6 +54,7 @@ plpy.notice("cosa");
 
 plpy.debug(msg), plpy.log(msg), plpy.info(msg), plpy.notice(msg), plpy.warning(msg), plpy.error(msg), and plpy.fatal(msg)
 
+
 ## Query
 import plpy
 q = plpy.execute("SELECT * FROM tabla;")
@@ -78,9 +82,4 @@ LANGUAGE 'plpythonu' VOLATILE;
 
 
 # Libreria para python
-pip install py-postgresql
-
-import postgresql
-db = postgresql.open("postgres:mysecretpassword@postgres/postgres")
-db.query("SELECT 1;")
-
+mirar programacion/python/dao.md

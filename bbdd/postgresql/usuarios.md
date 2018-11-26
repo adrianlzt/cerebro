@@ -57,6 +57,13 @@ Each record specifies a connection type, a client IP address range (if relevant 
 
 Fichero de ejemplo en este directorio.
 
+Tras modificar el fichero deberemos recargar la config (no hace falta reiniciar la bbdd):
+# SELECT pg_reload_conf();
+
+O desde la consola:
+pg_ctl reload
+
+
 
 ## pg_ident.conf ##
 Mapeos entre usuarios del SO y de la base de datos

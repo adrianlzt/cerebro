@@ -2,6 +2,25 @@
 https://github.com/brunofarina/Simple-DAO-Postgres-Example/blob/master/userDAO.py
 
 
+# psycopg2
+pip install psycopg2
+
+import psycopg2
+conn = psycopg2.connect("dbname=test user=postgres")
+cur = conn.cursor()
+cur.execute("SELECT 1")
+cur.fetchall()
+
+cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)",(100, "abc'def"))
+conn.commit()
+
+cur.close()
+conn.close()
+
+
+
+
+# py-postgresql
 http://pythonhosted.org/py-postgresql/
 pip install py-postgresql
 
