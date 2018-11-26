@@ -14,6 +14,8 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 ## ACL
 https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html
 En esta web tenemos unas plantillas para crear ACLS para usuarios tipo: admin, provisioner
+  https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html#example-policy-for-admin
+
 
 Las ACL deciden que se puede hacer para cada path.
 Ejemplo:
@@ -25,6 +27,13 @@ Esta ACL permite todos las capabilities bajo el path secret/
 
 Luego tendremos que poner las policies a los usuarios:
 write auth/userpass/users/nombre policies=admins,all
+
+
+Permitir ver los engines que hay:
+path "sys/mounts"
+{
+  capabilities = ["read"]
+}
 
 
 ## Grupos
@@ -41,8 +50,15 @@ Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 
 # CLI
 
+## Autocompletado
+https://www.vaultproject.io/docs/commands/index.html#autocompletion
+
 ## Loguearnos server remoto
 vault login -address=http://vault.com:8200 -method=userpass username=adrian
+Otra forma:
+VAULT_ADDR=http://vault.com:8200 vault ...
+
+Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
@@ -66,7 +82,7 @@ vault write secret/hello value=world
 vault read secret/hello
 
 ### kv storage
-Listar contenidos de un storage tipo KV
+Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/list/put" en vez de directamente "get/list/put")
 vault kv list nombrePath
 
 
