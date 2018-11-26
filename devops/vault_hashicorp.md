@@ -72,8 +72,13 @@ vault kv list nombrePath
 
 
 # Docker
-docker run -e "SKIP_SETCAP=1" --name vault -p 8200:8200 -v "${PWD}/config:/vault/config" -v "${PWD}/data:/vault/file" -d vault
-  modo desarrollo, vulnerable porque mete pass en swap (hace falta CAP IPC_LOCK, pero me falla)
+VERSION=0.11.5
+docker run --restart=unless-stopped \
+  -v "$PWD/vault/config:/vault/config" \
+  -v "$PWD/vault/file:/vault/file" \
+  --cap-add=IPC_LOCK \
+  -d -p 8200:8200 \
+  --name=vault-${VERSION} vault:${VERSION} server
 
 docker exec -it vault sh
 

@@ -72,3 +72,11 @@ The length of a string is the number of Unicode codepoints it contains (which wi
 The length of an array is the number of elements.
 The length of an object is the number of key-value pairs.
 The length of null is zero.
+
+
+# Filtrar / regex
+less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp")) | [.key, .value.count]'
+
+https://stackoverflow.com/questions/18592173/select-objects-based-on-value-of-variable-in-object-using-jq
+jq '.[] | select(.location=="Stockholm") | .name' json
+
