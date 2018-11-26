@@ -53,6 +53,18 @@ Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 ## Autocompletado
 https://www.vaultproject.io/docs/commands/index.html#autocompletion
 
+Para que funcione el autocompletado tendremos que tener el ACL:
+path "sys/mounts" {
+    capabilities = ["read"]
+}
+Asi podemos hacer cosas tipo:
+vault read s*<TAB>
+E ir navegando por el arbol de secrets
+
+Parece que "vault kv get/put/... <TAB>" no funciona
+Tampoco para "vault write"
+
+
 ## Loguearnos server remoto
 vault login -address=http://vault.com:8200 -method=userpass username=adrian
 Otra forma:
@@ -84,7 +96,7 @@ vault read secret/hello
 ### kv storage
 Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/list/put" en vez de directamente "get/list/put")
 vault kv list nombrePath
-
+vault kv put some/path foo=bar foo2=bar2
 
 
 # Docker

@@ -5,6 +5,12 @@ https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.o
 Recargar configuraciones:
 rehash
 
+Los comandos compatibles con autocomplete funcionan tipo:
+COMP_LINE='vault kv get -' /usr/local/bin/vault
+Nos devuelve que podemos completar para ese "vault kv get -"
+
+
+
 En .zshrc
 # COMPLETION SETTINGS
 # # add custom completion scripts
