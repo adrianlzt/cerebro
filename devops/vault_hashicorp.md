@@ -10,6 +10,11 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 
 
 # Conceptos
+
+## ACL
+https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html
+En esta web tenemos unas plantillas para crear ACLS para usuarios tipo: admin, provisioner
+
 Las ACL deciden que se puede hacer para cada path.
 Ejemplo:
 path "secret/*" {
@@ -20,6 +25,17 @@ Esta ACL permite todos las capabilities bajo el path secret/
 
 Luego tendremos que poner las policies a los usuarios:
 write auth/userpass/users/nombre policies=admins,all
+
+
+## Grupos
+Podemos crear un grupo y asignarle unas ACLs.
+Luego podemos agregarle unos usuarios.
+Los usuarios heredaran las ACLs del grupo.
+
+
+## Entities / alias
+Varios usuarios de distintos auth engines pueden unirse en un entitie.
+Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 
 
 
