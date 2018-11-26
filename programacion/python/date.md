@@ -29,6 +29,7 @@ En una máquina CET time.localtime(0) nos devolverá el epoch+1h
 En una máquina UTC time.localtime(0) nos devolverá el epoch 0
 
 
+
 ## con datetime
 datetime -> epoch
 datetime.datetime.now().strftime('%s')  # cuidado con este, en alpine funciona distinto (http://www.openwall.com/lists/musl/2018/01/18/3)
@@ -99,3 +100,7 @@ time va a entender que la hora que le pasemos (datetimoe.timetuple()) esta en la
 datetime.datetime(2015, 11, 10, 0, 0)
 
 datetime.datetime.strptime("2008-09-03T20:56:35.450686Z", "%Y-%m-%dT%H:%M:%S.%fZ")
+
+
+date --rfc-3339=seconds
+datetime.datetime.strptime("2018-11-26 16:47:43+01:00", "%Y-%m-%d %H:%M:%S%z")

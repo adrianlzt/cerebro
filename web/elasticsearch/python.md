@@ -70,3 +70,23 @@ host = "http://elastic:elastic@127.0.0.1"
 connections.create_connection(hosts=host)
 es = connections.get_connection()
 es.index(index="adrires",doc_type='doc',body={"una":1})
+
+
+
+# Date
+Usar el formato de fecha de python
+"@timestamp": date
+
+
+# Bulk
+https://elasticsearch-py.readthedocs.io/en/master/helpers.html#bulk-helpers
+def gendata():
+    mywords = ['foo', 'bar', 'baz']
+    for word in mywords:
+        yield {
+            "_index": "mywords",
+            "_type": "document",
+            "doc": {"word": word},
+        }
+
+bulk(es, gendata())

@@ -18,6 +18,17 @@ cur.close()
 conn.close()
 
 
+Se puede iterar directamente sobre un cursor tras un .execute()
+
+for i in cur:
+  print(i)
+
+
+http://initd.org/psycopg/docs/usage.html#with-statement
+Podemos usar "with" con la "conn" y los "cur".
+"conn" no terminará tras el with
+
+
 
 
 # py-postgresql
