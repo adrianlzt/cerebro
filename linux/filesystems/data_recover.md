@@ -12,6 +12,7 @@ Scalpel
 foremost
   usan la técnica carving. Va analizando el contenido de los inodos e identificando el tipo de fichero (analiza los magic files)
   no suelen recuperar el nombre (ext*), porque se almacena en la tabla de inodos
+  tampoco la estructura de directorios
 
 
 Si tenemos problemas para montar una partición, podemos escanear las particiones con mmls (de sleuthkit.md) y luego montarlas definiendo el offset:
@@ -36,6 +37,9 @@ sudo mmls -t gpt /dev/sdb
 1845248*512=944766976
 
 sudo mount --ro -o loop,offset=944766976 -t ntfs /dev/sdb /mnt
+
+
+Recuva (de la gente de CCleaner) si recupera NTFS con la estructura de directorios.
 
 
 
