@@ -1,4 +1,6 @@
 http://en.wikipedia.org/wiki/Btrfs
+man btrfs
+man 5 btrfs
 
 Atomic Copy On Write Snapshots: solo ocupan la diferencia entre el snapshot y los cambios
 bitrot protection (protección ante un bit que cambia de valor por error del hardware, gracias a per-block checksumming y siempre que tengamos un raid configurado)
@@ -25,6 +27,18 @@ Nodatacow, podemos desactivar el CoW en ciertas particiones si consideramos que 
 # crear fs
 mkfs.btrfs -L nombre /dev/sda1
 
+## raid
+mkfs.btrfs -m raid0 -d raid1 /dev/loop0 /dev/loop1 /dev/loop2
+
+By default the behavior is:
+metadata is replicated on all of the devices. If a single device is used the metadata is duplicated inside this single device (useful in case of corruption or bad sector, there is a higher chance that one of the two copies is clean). To tell btrfs to maintain a single copy of the metadata, just use single. Remember: dead metadata = dead volume with no chance of recovery.
+data is spread amongst all of the devices (this means no redundancy; any data block left on a defective device will be inaccessible)
+
+        -m, --metadata profile
+        -d, --data type
+        Valid values are raid0, raid1, raid10 or single.
+
+
 
 # estado
 btrfs filesystem show
@@ -32,12 +46,28 @@ btrfs filesystem show
 
 # subvolumenes
 En /etc/fstab veremos que el UUID para los distintos puntos de montaje es el mismo, pero cambia el "subvol".
+Desde el punto del usuario, los subvolumenes son directorios dentro del punto de montaje de btrfs, que luego se montan de nuevo (con mount-bind) en otra ubicación.
 
 ## listar
-btrfs sub list /
+btrfs sub list /mnt/discoBTRFS
 
 ## crear
-btrfs sub create /home/.snapshots
+btrfs sub create /mnt/discoBTRFS/app
+
+"app" es el nombre que le hemos dado al subvolumen
+Veremos que se ha creado un nuevo directorio en /mnt/discoBTRFS/app
+
+
+## mount
+Una vez hemos creado un subvolumen, podemos usar mount para montarlo en el path que queramos.
+Usaremos el mismo dev pero especificaremos un option "subvol".
+sudo mount -o subvol=app /dev/sdc1 /mnt/usb64gb_app
+
+Los ficheros/directorios que creemos en /mnt/usb64gb_app tambien los veremos en /mnt/discoBTRFS/app
+
+Una opción recomendable es montar los subvolumenes con compresión. Mirar "man 5 btrfs"
+Esto comprimirá automáticamente los ficheros.
+-o compress=lzo
 
 
 # snapshots
