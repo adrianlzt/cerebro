@@ -51,3 +51,6 @@ Funciones utiles para obtener datos del sistema
 
 Pid que estamos usando en el backend:
 SELECT pg_backend_pid();
+
+select inet_server_addr();
+  ip del server
