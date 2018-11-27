@@ -24,6 +24,14 @@ https://btrfs.wiki.kernel.org/index.php/Status
 Nodatacow, podemos desactivar el CoW en ciertas particiones si consideramos que esta afectando a la performance.
 
 
+
+# Particularidades
+Si queremos copiar un fichero con CoW tendremos que especificarlo al cp:
+cp --reflink=auto file1 file2
+  auto intenta hacer CoW, si no, lo hace normal
+
+
+
 # crear fs
 mkfs.btrfs -L nombre /dev/sda1
 
@@ -47,6 +55,7 @@ btrfs filesystem show
 # subvolumenes
 En /etc/fstab veremos que el UUID para los distintos puntos de montaje es el mismo, pero cambia el "subvol".
 Desde el punto del usuario, los subvolumenes son directorios dentro del punto de montaje de btrfs, que luego se montan de nuevo (con mount-bind) en otra ubicación.
+Aunque los subvol nos lo muestre como directorios en un path, en realidad son entidades separadas con sus propiedades.
 
 ## listar
 btrfs sub list /mnt/discoBTRFS
@@ -63,12 +72,26 @@ Una vez hemos creado un subvolumen, podemos usar mount para montarlo en el path 
 Usaremos el mismo dev pero especificaremos un option "subvol".
 sudo mount -o subvol=app /dev/sdc1 /mnt/usb64gb_app
 
+Podemos montar subvol sin tener que montar el vol principal.
+
 Los ficheros/directorios que creemos en /mnt/usb64gb_app tambien los veremos en /mnt/discoBTRFS/app
 
 Una opción recomendable es montar los subvolumenes con compresión. Mirar "man 5 btrfs"
 Esto comprimirá automáticamente los ficheros.
 -o compress=lzo
 
+Las opciones de montaje aplican sobre todo el volumen y subvolumen por igual.
+Parece que esto cambiará en el futuro (Note en sección "MOUNT OPTIONS" en "man 5 btrfs")
+
+
+## analizar espacio usado
+sudo btrfs filesystem du PATH
+  podemos poner el path de donde está montado el vol principal (nos hará un du de todos los subvol)
+  también podeos especificar un subvol para solo obtener info suya
+  los ficheros que estan con CoW (copiados con --reflink), veremos que parte de espacio es compartida y cual exclusiva de su copia
+
+sudo btrfs filesystem df PATH
+  path apuntará al vol o cualquier subvol, la info devuelta siempre será la misma
 
 # snapshots
 ## crear (tenemos que tener creado el subvolumen /home/.snapshots)
@@ -93,3 +116,16 @@ Limitar espacio que puede usar cada subvolumen
 
 # RAID
 RAID 5 o 6 no está aún disponible para usarse. Mirar https://btrfs.wiki.kernel.org/index.php/RAID56
+
+
+
+# Dudas / preguntas
+Que sistema de compresión usar?
+
+Meter a cp un alias para siempre usar "--reflink=always"?
+
+Como se lanza la deduplicación de ficheros?
+
+btrfs filesystem du muestra el espacio ahorrado por comprimir?
+python -c "print('a'*1024*1024*50)" > unos50MB.compress
+esto no veo que me ahorre datos

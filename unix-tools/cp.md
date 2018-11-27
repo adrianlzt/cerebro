@@ -42,3 +42,14 @@ Copiar el contenido de un directorio en otro dir:
 cp -r /mnt/. /app/
 
 Si hacemos: cp -r /mnt/ /app/, acabaremos con /mnt/app/ficheros
+
+
+cp -b fichero destino
+  -b --backup
+  si "dest" ya existe, lo mueve a ~dest
+
+  con --backup=numbered generaremos un segundo fichero de backup si el primero ya existe
+  --backup=existing backup con numeros si ya existe un backup, simple (solo poner el suffix) si no existe backup
+
+  Podemos cambiar el suffix por defecto (~) con lo que queramos, por ejemplo:
+  cp -b --suffix=$(date +%Y%m%d) orig dest
