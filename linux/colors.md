@@ -1,3 +1,6 @@
+https://github.com/trapd00r/LS_COLORS
+Usar este repo para los colores
+
 Los colores que se muestra en ls podemos ver como están definidos con:
 echo $LS_COLORS
 
