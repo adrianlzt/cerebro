@@ -138,6 +138,8 @@ select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g wh
 Query para obtener los templates que tienen triggers con nodata asociados a items trapper (solo triggers originales, no heredados de linked templates):
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
 
+Frecuencia de inserción de items en la tabla history (una partition seleccionada). NO LANZAR EN PROD. Lanzar en una replica. Tarda varios minutos para bbdd de varios gigas (4' 60GB)
+select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m'))) and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m'))) group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 
 Obtener problemas de un host:
