@@ -129,4 +129,48 @@ select now()-to_timestamp(clock) AS lag from history where itemid IN (select ite
 
 
 Número de items enabled por hostgroup:
-select g.name,c
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.status=0 group by g.name limit 10;
+
+Top 10 de hostgroups por número de items pasivos (enabled):
+select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
+
+
+Query para obtener los templates que tienen triggers con nodata asociados a items trapper (solo triggers originales, no heredados de linked templates):
+select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
+
+Frecuencia de inserción de items en la tabla history (una partition seleccionada). NO LANZAR EN PROD. Lanzar en una replica. Tarda varios minutos para bbdd de varios gigas (4' 60GB)
+select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m'))) and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m'))) group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
+
+
+Obtener problemas de un host:
+SELECT t.description ,h.host
+    FROM triggers t,
+         functions f,
+         items i,
+         problem p,
+         hosts h
+    WHERE p.objectid=t.triggerid
+          AND p.objectid=f.triggerid
+          AND f.itemid=i.itemid
+          AND p.r_eventid IS NULL
+          AND p.source='0'
+          AND p.object='0'
+          AND i.hostid = h.hostid
+
+
+Tamaño de las partitions por día:
+SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%_' and c.reltuples <> 0 group by date order by date;
+
+
+Templates que se están usando por algún host al menos:
+select hostid,host from hosts where status = 3 and hostid IN (select ht.templateid from hosts_templates ht, hosts h where ht.hostid = h.hostid and h.status != 3 and flags=0);
+
+Templates que pertenecen a un grupo:
+select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
+
+
+
+# Tocando la bbdd
+Es el frontend el que se encarga de generar elementos en la bbdd.
+
+La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "ids" el útimo ID generado por tabla y field.
