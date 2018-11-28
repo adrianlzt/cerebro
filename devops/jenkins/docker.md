@@ -77,6 +77,8 @@ https://github.com/Accenture/adop-jenkins/pull/17/files?short_path=04c6e90
 
 mirar scripts.md
 
+Se meten los scripts en /usr/share/jenkins/ref/init.groovy.d/
+
 
 
 # Tagear imagenes de docker con el tag de git
