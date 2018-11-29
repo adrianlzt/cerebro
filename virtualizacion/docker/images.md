@@ -1,5 +1,8 @@
 mirar containers.md
 
+Analizar una imagen (nos muestra por cada capa que se ha ejecutado y que ficheros se han modificado):
+dive nombre
+
 
 Mirar datos de una imagen
 docker image ID
