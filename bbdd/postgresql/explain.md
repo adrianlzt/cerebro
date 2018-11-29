@@ -31,8 +31,14 @@ Tendremos un coste 483 que es:
 Seq Scan: pasamos por todos los rows uno por uno
 Bitmap Index Scan: se escanea el indice buscando valores
 Bitmap Heap Scan: se obtienen rows a partir de un child que nos ha devuelto la posición de los índices
-Index Scan: escaneamos en el orden del índice (más caro porque no está ordenado según los bloques de disco)
+Index Scan: escaneamos en el orden del índice (más caro porque no está ordenado según los bloques de disco).
+Index Only Scan: solo queremos obtener datos que están almacenando en el índice
 Nested Loop: parece que esto se usa para hacer joins de tablas, tendrá al menos dos childs con las tablas a escanear
+
+Según una web:
+  pocos datos -> index scan
+  muchos datos -> seq scan
+  medios datos -> bitmap index scan + bitmap heap scan
 
 
 
