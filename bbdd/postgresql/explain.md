@@ -1,5 +1,6 @@
+http://postgresguide.com/performance/explain.html
 https://www.postgresql.org/docs/9.4/static/using-explain.html
-https://explain.depesz.com/s/XvDy
+https://explain.depesz.com/
   Herramienta web para visualizar los resultados de forma un poco más sencilla
 
 Mostrar el plan para obtener los resultados de la query.
