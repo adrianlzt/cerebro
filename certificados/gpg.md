@@ -35,6 +35,8 @@ echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
 Podemos poner -o file, para enviar la encriptación a un fichero
 
 -d es descriptar, en este caso stdout (podría ser un fichero)
+
+gpg -r adrianlzt@gmail.com -o fichero.tar.gpg -e fichero.tar
 gpg -o fichero.tar -d fichero.tar.pgp
 
 ## Importar una clave

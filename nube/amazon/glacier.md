@@ -12,8 +12,8 @@ https://aws.amazon.com/es/glacier/faqs/?nc=hl&pg=ft#Data_retrievals
 https://www.cloudberrylab.com/amazon-glacier-retrieval-pricing-explained.aspx
 
 TL;DR
-almacenar 0.004$/GB
-recuperar 0.1$/GB
+almacenar 0.004$/GB*month
+recuperar 0.1$/GB*month
 
 Free tier, data retrieval: 10GB/month
 
@@ -68,7 +68,7 @@ Es gratuito, excepto si el dato lleva menos de 90 días, que en ese caso nos cob
 Para configurarlo mirar nube/amazon/awscli.md
 
 Listar vaults:
-aws glacier list-vaults --account-id
+aws glacier list-vaults --account-id -
 
 Crear vault:
 aws glacier create-vault --account-id - --vault-name prueba
