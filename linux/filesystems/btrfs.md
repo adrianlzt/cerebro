@@ -103,6 +103,12 @@ btrfs send /home/.snapshots/myfirstsnapshot | ssh second-machine sudo btrfs rece
 btrfs send -p /home/.snapshots/myfirstsnapshot /home/.snapshots/mysecondsnapshot | ssh second-machine btrfs receive /backup/home/.snapshots
   en este caso le estamos diciendo que envie la secondsnapshot, pero solo la parte incremental respecto a la primera que ya enviamos.
 
+Meter snapshot en un fichero:
+sudo btrfs send -f $(date +%Y%m%d).snap some/subvol
+
+Crear subvol a partir de un fichero:
+sudo btrfs receive -f fichero.snap subvol/
+
 
 # deduplicacion
 https://btrfs.wiki.kernel.org/index.php/Deduplication
