@@ -82,10 +82,9 @@ Podemos pasar un checksum (sha256) del fichero para asegurar que ha subido corre
 
 Como saber cuanto va a tardar? nethogs
 
-
-Se pueden subir ficheros por partes con initiate-multipart-upload, pero parece un poco jaleo, teniendo que especificar exactamente el tamaño.
-Tal vez un programa que corta un tar en pedazos listos para subir?
-U otra cli que gestiona esto?
+Para subir ficheros de más de 100MB usar multipart.
+Script en python para subir con este método:
+https://github.com/tbumi/glacier-upload/blob/develop/src/glacier_upload/upload.py
 
 
 Obtener contenido de un almacén:
@@ -101,3 +100,7 @@ aws glacier list-jobs --account-id - --vault-name prueba
 Obtener el resultado de la job
 aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX out.json
 
+
+
+Borrar vault
+aws glacier delete-vault --account-id - --vault-name prueba
