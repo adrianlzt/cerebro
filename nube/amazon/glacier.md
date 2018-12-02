@@ -92,7 +92,7 @@ aws glacier initiate-job --account-id - --vault-name prueba --job-parameters '{"
   nos devuelve un id del job
 
 
-Consultar el estado de las jobs:
+Consultar el estado de las jobs (para enterarnos lo mejor es configurar un topic de SNS que nos envie un email y asociarlo al vault):
 aws glacier list-jobs --account-id - --vault-name prueba
   InProgress
   Una prueba que he hecho, ha tardado 2h en devolverme una job de inventory retrieval
@@ -101,6 +101,15 @@ Obtener el resultado de la job
 aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX out.json
 
 
+Solicitar bajar un fichero (no estoy seguro si para ficheros enormes este es el sistema adecuado)
+aws glacier initiate-job --account-id - --vault-name my-vault --job-parameters '{"Type": "archive-retrieval", "ArchiveId": "XXX", "Description": "Solicitud de fichero AAA el YYYYMMDD-HHMM"}'
 
-Borrar vault
+Una vez está listo el job, nos bajamos el fichero con:
+aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX fichero.download
+
+Borrar archive:
+aws glacier delete-archive --account-id - --vault-name prueba --archive-id XXX
+
+
+Borrar vault (hace falta que no tenga ningun archive):
 aws glacier delete-vault --account-id - --vault-name prueba
