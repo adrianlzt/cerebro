@@ -1,6 +1,10 @@
 CUIDADO, el directorio origen, NO poner "directorio/", porque entonces copiará lo que hay dentro, pero no el directorio.
+Peor poner dir/*, porque copiará lo que hay dentro de cada dir
 
 Mejora sobre rcp y scp. Hace transmisiones incrementales, evitando enviar los datos de los que ya dispone la otra parte.
+
+rsync --info=progress2 -a Origen Destion
+
 # rsync -ahH --stats --numeric-ids directorio pepe@10.5.2.1:/rsinc/
 -a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
 	-r, --recursive             recurse into directories

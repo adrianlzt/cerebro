@@ -1,10 +1,6 @@
-DEPRECATED
-https://github.com/elastic/filebeat/issues/132
-
-
 The server keeps logs in a redis queue until the logs can be drained into elasticsearch. Neither redis nor elasticsearch are required to be on the server, but they are nevertheless required and installed here.
 
-Permite configurar varios servers:
+Permite configurar varios servers (hace failback, creo):
 ["127.0.0.1", "127.0.0.2"]
 
 Output hacia redis:
@@ -16,6 +12,9 @@ output {
     data_type => "list"
   }
 }
+
+
+Configurar modo batch (solo para modo list). Si no, envia un documento cada vez y la performance es muy mala.
 
 En el server redis:
 # redis-cli

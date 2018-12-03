@@ -35,6 +35,10 @@ cp --reflink=auto file1 file2
 # crear fs
 mkfs.btrfs -L nombre /dev/sda1
 
+## convertir ext2/3/4 a btrfs
+El FS tiene que estar desmontado
+btrfs-convert /dev/sdaXN
+
 ## raid
 mkfs.btrfs -m raid0 -d raid1 /dev/loop0 /dev/loop1 /dev/loop2
 
@@ -135,3 +139,9 @@ Como se lanza la deduplicación de ficheros?
 btrfs filesystem du muestra el espacio ahorrado por comprimir?
 python -c "print('a'*1024*1024*50)" > unos50MB.compress
 esto no veo que me ahorre datos
+
+
+
+# Backup
+https://github.com/digint/btrbk
+Utilidad para gestionar un sistema de backup
