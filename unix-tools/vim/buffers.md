@@ -1,3 +1,20 @@
+http://vim.wikia.com/wiki/Buffers
+
+:e fichero
+ abre un nuevo buffer
+
+H,L movernos al buffer izquierda o derecha
+
+:ls
+  listar buffers
+
+:bd
+  cerrar buffer (falla si no esta guardado, :bd! para forzar salida)
+
+:new
+  nuevo buffer
+
+
 :bd
 close current buffer
 
