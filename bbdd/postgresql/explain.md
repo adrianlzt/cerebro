@@ -14,14 +14,18 @@ EXPLAIN SELECT * FROM tenk1;
 
 Para planificar una query se tienen en cuenta las estadísticas de las tablas (periódicamente se ejecuta ANALYZE sobre las tablas y se almacenan los datos, mirar sección "Estadísticas") y varios parámetros de costes de acceso a disco (secuencial o random) y coste de procesado de la cpu (algo más?).
 
+
+# Modos de escaneo
 Con esos datos, el planner decide como obtener los datos.
   - sequential scan: cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
-  - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice y luego obtiene los datos de cada valor resuelto por el índice
-  - index scan: cuando tenemos que obtener muy pocos datos
+  - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
+  - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales)
+  - index only scan: si solo necesitamos datos que están en el índice
 
-Para los dos últimos tenemos que tener un índice creado.
+Para los tres últimos tenemos que tener un índice creado.
 
 
+# Modos de unión
 Si tenemos joins, se usarán distintos tipos de algoritmos:
   - Nested Loop
     - With Inner Sequential Scan (es como hacer dos bucles for anidados)
@@ -47,19 +51,6 @@ Tendremos un coste 483 que es:
   10000 row * 0.01 coste/row (coste por procesar cada row, cpu_tuple_cost)
   10000 row * 0.0025 coste/row (coste por procesar la clausula where por cada row, cpu_operator_cost)
 
-
-# Modos de escaneo
-Seq Scan: pasamos por todos los rows uno por uno
-Bitmap Index Scan: se escanea el indice buscando valores
-Bitmap Heap Scan: se obtienen rows a partir de un child que nos ha devuelto la posición de los índices
-Index Scan: escaneamos en el orden del índice (más caro porque no está ordenado según los bloques de disco).
-Index Only Scan: solo queremos obtener datos que están almacenando en el índice
-Nested Loop: parece que esto se usa para hacer joins de tablas, tendrá al menos dos childs con las tablas a escanear
-
-Según una web:
-  pocos datos -> index scan
-  muchos datos -> seq scan
-  medios datos -> bitmap index scan + bitmap heap scan
 
 
 
@@ -92,7 +83,17 @@ SELECT relname, relkind, reltuples, relpages FROM pg_class WHERE relname LIKE 'N
 Esta tabla también tiene un puntero (relfilenode) al fichero físico que almacena la información (PGDATA/base/XXX/relfilenode*)
 
 
-Luego tenemos la tabla pg_stats que almacena información sobre los datos almacenados:
+Luego tenemos la tabla pg_stats que almacena información sobre los datos almacenados.
+  Una entrada por cada columna por cada tabla
+  null_frac: Fraction of column entries that are null
+  avg_width: Average width in bytes of column's entries
+  n_distinct: número de valores distintos (negativo si postgres cree que según crezca la tabla van a aparecer más valores distintos)
+  most_common_vals: valores más repetidos
+  most_common_freqs: valores para la columna most_common_vals
+  histogram_bounds: grupos de valores donde tenemos más o menos la misma cantidad de elementos. Ej: [0-5], (5,9], (10,100] (en estos tres grupos habriá el mismo count de elementos)
+  correlation: correlación entre el orden físicos de los datos y el orden lógico. Si el valor es cercano a 1 o -1, un index scan será más barato, por la reducción de random access
+  most_common_elems: lo mismo para chars?
+
 select * from pg_stas;
 
 Mostrar los elementos más comunes almacenados en la tabla "road":
