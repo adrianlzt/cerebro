@@ -90,3 +90,10 @@ Saber número de rows y páginas ocupadas por cada table (datos e índices)
 SELECT relname, relkind, reltuples, relpages FROM pg_class WHERE relname LIKE 'NOMBRETABLA%';
 
 Esta tabla también tiene un puntero (relfilenode) al fichero físico que almacena la información (PGDATA/base/XXX/relfilenode*)
+
+
+Luego tenemos la tabla pg_stats que almacena información sobre los datos almacenados:
+select * from pg_stas;
+
+Mostrar los elementos más comunes almacenados en la tabla "road":
+SELECT attname, inherited, n_distinct, array_to_string(most_common_vals, E'\n') as most_common_vals FROM pg_stats WHERE tablename = 'road';
