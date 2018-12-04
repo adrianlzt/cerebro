@@ -1,4 +1,7 @@
 -- https://wiki.postgresql.org/wiki/Disk_Usage
+--
+-- \dti+ nombre*
+-- chequeo de tamaños de tablas (t) y de índices (i), + para más info
 
 -- Tamaño de las tablas:
 SELECT *, pg_size_pretty(total_bytes) AS total
