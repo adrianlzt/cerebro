@@ -1,6 +1,6 @@
-https://wiki.postgresql.org/wiki/Disk_Usage
+-- https://wiki.postgresql.org/wiki/Disk_Usage
 
-Tamaño de las tablas:
+-- Tamaño de las tablas:
 SELECT *, pg_size_pretty(total_bytes) AS total
     , pg_size_pretty(index_bytes) AS INDEX
     , pg_size_pretty(toast_bytes) AS toast

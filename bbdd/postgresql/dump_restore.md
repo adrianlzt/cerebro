@@ -66,7 +66,7 @@ pg_restore fichero.custom | less
 Restaurar (CUIDADO, muy lento para ddbb grandes):
 createdb prueba
 pg_restore -v -e -Fc -d prueba -1 /backup/prueba.custom
-  -1 todo en una única transaccion, si falla deja vacía la bbdd
+  -1 todo en una única transaccion, si falla deja vacía la bbdd. Si no ponemos el parametro y falla por una constraint, tendremos igualmente los datos importados
   -v verbose
   -e exit on error
   -Fc format custom
