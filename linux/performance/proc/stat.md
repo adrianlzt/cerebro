@@ -36,6 +36,9 @@ boot time, in seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
 processes 86031
 Number of forks since boot.
 
+The   "procs_blocked" line gives  the  number of  processes currently blocked,
+waiting for I/O to complete.
+
 
 
 ## /proc/[PID]/stat
