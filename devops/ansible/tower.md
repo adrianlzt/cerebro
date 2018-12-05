@@ -46,6 +46,26 @@ tower-cli config password XXX
 tower-cli version
   para chequear que conecta
 
+Exportar todo el contenido de config de AWX:
+tower-cli receive --all > awx_$(date +%Y%m%d).json
+
+Restaurar:
+tower-cli send awx_$(date +%Y%m%d).json
+
+
+# Migrar
+https://github.com/autops/awx-migrate
+
+Lo que hace el script:
+	Mete las settings de la bbdd en la nueva
+  Exporta todo con tower-cli y lo mete en la nueva
+
+A mano:
+Sacarnos la config de la bbdd:
+pg_dump -d awx -t conf_setting  > conf_setting.sql
+
+Exportar y restaurar como pone en la sección de tower-cli
+
 
 
 # Seguridad
