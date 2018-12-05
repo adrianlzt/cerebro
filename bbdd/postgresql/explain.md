@@ -21,6 +21,10 @@ Para planificar una query se tienen en cuenta las estadísticas de las tablas (p
 Con esos datos, el planner decide como obtener los datos.
   - sequential scan: cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
       https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c#L202
+        total_cost = startup_cost + cpu_run_cost + disk_run_cost;
+        Parece que el grueso del coste es: seq_page_cost * pages
+        el cálculo de las pages parece que se cachea (https://github.com/postgres/postgres/blob/master/src/backend/optimizer/util/relnode.c#L1230)
+
 
   - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
   - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales)
