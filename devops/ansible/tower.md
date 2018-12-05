@@ -28,6 +28,25 @@ Creo que extienden los de django
     from django.core.management import execute_from_command_line
 
 
+# tower-cli
+https://github.com/ansible/tower-cli
+https://tower-cli.readthedocs.io/en/latest/
+Para hablar con tower/awx mediante una cli
+
+pip install ansible-tower-cli
+yay tower-cli
+  arch linux
+
+Config
+tower-cli config host http://host.com:8071
+tower-cli config username XXX
+tower-cli config password XXX
+  nuevas versiones usan "tower-cli login"
+
+tower-cli version
+  para chequear que conecta
+
+
 
 # Seguridad
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
