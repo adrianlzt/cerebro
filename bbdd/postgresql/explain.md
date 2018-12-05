@@ -5,6 +5,8 @@ https://momjian.us/main/writings/pgsql/optimizer.pdf
   https://www.youtube.com/watch?v=P5iZri9s0WQ
 https://explain.depesz.com/
   Herramienta web para visualizar los resultados de forma un poco más sencilla
+https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
+  viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
 
 Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
@@ -18,6 +20,8 @@ Para planificar una query se tienen en cuenta las estadísticas de las tablas (p
 # Modos de escaneo
 Con esos datos, el planner decide como obtener los datos.
   - sequential scan: cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
+      https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c#L202
+
   - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
   - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales)
   - index only scan: si solo necesitamos datos que están en el índice
@@ -32,6 +36,18 @@ Si tenemos joins, se usarán distintos tipos de algoritmos:
     - With Inner Index Scan
   - Hash Join (si no tenemos demasiados datos, generamos un hash map en memoria y luego comparamos la otra contra ese mapa)
   - Merge Join (ordenamos los datos de las dos fuentes, y vamos buscando. El puntero que va leyendo en la segunda tabla solo avanza porque sabemos que los datos están ordenados)
+
+
+# Desactivar nodos de escaneo / unión
+https://www.postgresql.org/docs/9.6/runtime-config-query.html
+
+En realidad no se desactivan, pero se penalizan sumando 1^10 (https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c#L118)
+
+Ejemplo:
+SET seq_page_cost to off;
+SHOW seq_page_cost;
+
+
 
 
 # Coste
@@ -74,6 +90,8 @@ EXPLAIN (ANALYZE TRUE, TIMING FALSE) select...
 # Estadísticas
 https://www.postgresql.org/docs/11/planner-stats.html
 https://www.postgresql.org/docs/11/catalog-pg-class.html
+https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
+  viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
 
 pg_class almacena el número de entradas en cada tabla e índice.
 
