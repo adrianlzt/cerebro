@@ -13,7 +13,7 @@ https://www.cloudberrylab.com/amazon-glacier-retrieval-pricing-explained.aspx
 
 TL;DR
 almacenar 0.004$/GB*month
-recuperar 0.1$/GB*month
+recuperar 0.1$/GB*month (coste transferencia)
 
 Free tier, data retrieval: 10GB/month
 
