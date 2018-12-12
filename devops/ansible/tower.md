@@ -71,6 +71,14 @@ Exportar y restaurar como pone en la sección de tower-cli
 # Seguridad
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
 
+## Clonar repo, paso de claves ssh
+/tmp/awx_105_1YvAML/credential_2 será un fifo
+
+\_ sh -c ssh-add /tmp/awx_105_1YvAML/credential_2 && rm -f /tmp/awx_105_1YvAML/credential_2 && ansible-playbook -i localhost, -v -e @/tmp/awx_105_1YvAML/tmpEdKhoR project_update.yml
+    \_ /usr/bin/ssh-agent -a /tmp/awx_105_1YvAML/ssh_auth.sock sh -c ssh-add /tmp/awx_105_1YvAML/credential_2 && rm -f /tmp/awx_105_1YvAML/credential_2 && ansible-playbook -i localhost, -v -e @/tmp/awx_105_1
+    \_ /usr/bin/python2 /usr/bin/ansible-playbook -i localhost, -v -e @/tmp/awx_105_1YvAML/tmpEdKhoR project_update.yml
+
+
 
 
 # Agregar inventarios dinámicos
@@ -110,6 +118,15 @@ ansible_facts.ansible_lsb__major_release:"7"
 
 
 Poder buscar por una variable en concreto aun no se puede: https://github.com/ansible/awx/issues/371
+
+
+
+# Debug
+Si queremos capturar lo que está ejecutando awx, entraremos en el container task y:
+cd /tmp
+while true; do  cp -fr awx* AWX/; sleep 0.5; done
+Al terminar deberemos tener uno o varios directorios en /tmp/AWX
+
 
 
 # Desarrollo
