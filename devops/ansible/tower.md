@@ -71,12 +71,26 @@ Exportar y restaurar como pone en la sección de tower-cli
 # Seguridad
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
 
-## Clonar repo, paso de claves ssh
+
+# Clonar repo
+## paso de claves ssh
 /tmp/awx_105_1YvAML/credential_2 será un fifo
 
 \_ sh -c ssh-add /tmp/awx_105_1YvAML/credential_2 && rm -f /tmp/awx_105_1YvAML/credential_2 && ansible-playbook -i localhost, -v -e @/tmp/awx_105_1YvAML/tmpEdKhoR project_update.yml
     \_ /usr/bin/ssh-agent -a /tmp/awx_105_1YvAML/ssh_auth.sock sh -c ssh-add /tmp/awx_105_1YvAML/credential_2 && rm -f /tmp/awx_105_1YvAML/credential_2 && ansible-playbook -i localhost, -v -e @/tmp/awx_105_1
     \_ /usr/bin/python2 /usr/bin/ansible-playbook -i localhost, -v -e @/tmp/awx_105_1YvAML/tmpEdKhoR project_update.yml
+
+## Playbook
+/usr/lib/python2.7/site-packages/awx/playbooks/project_update.yml
+
+https://github.com/ansible/awx/issues/1559#issuecomment-373084755
+Se llama a ese role dos veces.
+Una como parte de la actualización del repo (sin bajarse roles). De esta veremos una tarea en la pestaña "Trabajos".
+Una segunda vez que si se bajará roles (por tener la variable scm_full_checkout a true), que no veremos en "Trabajos". Pero podemos verla yendo a "Trabajos" y pulsando sobre el icono verde.
+El ID de este job "escondido" deberá ser más alto que el id del job de ejecuccuión del playbook.
+
+Si miramos en la api el job de ejecución del playbook: http://lep1maa1:8071/api/v2/jobs/
+La actualización "escondida" lo veremos en: "project_update": "/api/v2/project_updates/127/"
 
 
 
