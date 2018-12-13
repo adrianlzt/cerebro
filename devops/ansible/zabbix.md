@@ -3,6 +3,9 @@ http://docs.ansible.com/ansible/latest/zabbix_host_module.html
 Hace falta tener instalado en la maquina donde se lance la task:
 pip install zabbix-api
 
+Se usa con:
+import zabbix_api
+
 Seguramente queramos:
 sudo pip install zabbix-api
 
