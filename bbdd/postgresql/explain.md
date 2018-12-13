@@ -85,7 +85,7 @@ Estadísticas:
 select * from pg_stats;
 
 Cuando se generaron las últimas estadísticas:
-select relname,last_analyze,last_autoanalyze from pg_stat_user_tables;
+select relname,last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables;
 
 Obtener un EXPLAIN y un EXPLAIN ANALYZE de la query
 
