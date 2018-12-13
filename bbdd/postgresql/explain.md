@@ -55,6 +55,8 @@ SHOW seq_page_cost;
 
 
 # Coste
+backend/optimizer/path/costsize.c
+
 cost=0.00..483.00 rows=7001 width=244
   0.00: coste de arranque
   483: coste de procesado
@@ -71,6 +73,21 @@ Tendremos un coste 483 que es:
   10000 row * 0.01 coste/row (coste por procesar cada row, cpu_tuple_cost)
   10000 row * 0.0025 coste/row (coste por procesar la clausula where por cada row, cpu_operator_cost)
 
+
+Si queremos obtener una imagen de como está calculando los costes necesitaremos obtener los valores.
+Costes:
+SHOW seq_page_cost; SHOW random_page_cost; SHOW cpu_tuple_cost; SHOW cpu_index_tuple_cost; SHOW cpu_operator_cost; SHOW parallel_tuple_cost; SHOW parallel_setup_cost
+
+Tuplas y páginas por tablas e índices:
+SELECT relname, relkind, reltuples, relpages FROM pg_class;
+
+Estadísticas:
+select * from pg_stats;
+
+Cuando se generaron las últimas estadísticas:
+select relname,last_analyze,last_autoanalyze from pg_stat_user_tables;
+
+Obtener un EXPLAIN y un EXPLAIN ANALYZE de la query
 
 
 
@@ -116,7 +133,7 @@ Luego tenemos la tabla pg_stats que almacena información sobre los datos almace
   correlation: correlación entre el orden físicos de los datos y el orden lógico. Si el valor es cercano a 1 o -1, un index scan será más barato, por la reducción de random access
   most_common_elems: lo mismo para chars?
 
-select * from pg_stas;
+select * from pg_stats;
 
 Mostrar los elementos más comunes almacenados en la tabla "road":
 SELECT attname, inherited, n_distinct, array_to_string(most_common_vals, E'\n') as most_common_vals FROM pg_stats WHERE tablename = 'road';
