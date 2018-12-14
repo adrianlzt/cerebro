@@ -73,6 +73,18 @@ En el log modo debug podemos encontrar "In recv_agenthistory"
 El dato se procesa con:
 process_hist_data
 
+Debajo veo siempre "process_mass_data".
+
+Luego parece que hay una función que resuelve las macros de cada item que venga en el array de traps: substitute_simple_macros
+
+En caso de que el trap procesado sea un lld veremos:
+In lld_process_discovery_rule() itemid:404200
+...
+End of lld_process_discovery_rule()
+
+Para el resto de valores el debug no mostrará nada (veremos una línea de "substitute_simple_macros" por cada trap analizado)
+
+
 Termina cuando contesta al cliente (zbx_send_response) y pone:
 End of recv_agenthistory()
 

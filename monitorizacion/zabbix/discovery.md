@@ -147,6 +147,7 @@ Parece que los servicios que pueden llamar a dc_add_history son:
 dc_add_history (add new value to the cache)
 src/libs/zbxdbcache/dbcache.c:2700
 Si en los items flags esta marcado que es un lld llama a lld_process_discovery_rule.
+  Si en un mismo trap enviamos varios LLD, veremos (dentro del mismo recv_agenthistory) varios "In lld_process_discovery_rule" y "End of lld_process_discovery_rule"
 Si es un proxy lo almacena (supongo que para luego enviarlo al server)
 
 lld_process_discovery_rule (add or update items, triggers and graphs for discovery item)
