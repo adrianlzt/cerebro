@@ -126,6 +126,7 @@ driver.implicitly_wait(30)
 
 Explicit wait, tiempo de espera determinado para un elemento (https://selenium-python.readthedocs.io/waits.html)
 Deberá ser mayor o igual que el implicitly_wait (si lo ponemos menor, esperara el tiempo de implicitly_wait y luego devolverá una expcecion TimeoutException)
+from selenium.webdriver.support.ui import WebDriverWait
 el = WebDriverWait(driver, 10).until(lambda d: d.find_element_by_tag_name("p"))
   genera excepciones selenium.common.exceptions.TimeoutException
 
