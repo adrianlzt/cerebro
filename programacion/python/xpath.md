@@ -22,6 +22,7 @@ Para probarlo, abrir las Developer Tools de chrome, pestaña elements y Control+
 
 6bis. Un texto que contenga una cadena
 //*[contains(text(),'ABC')]
+//button[contains(@class, "btn")]
 
 7. Select the last 'actor' element.
 //actor[last()]
@@ -79,3 +80,6 @@ sum(//foo:singer/@id)
 
 23. Hijo
 //p[contains(text(),"Americano")]/child::input
+
+24. Hermanos
+//div[@class="cover"]/following::span
