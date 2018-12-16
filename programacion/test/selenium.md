@@ -117,8 +117,18 @@ https://seleniumhq.github.io/docs/wd.html#waits
 Podemos tener problemas por que elementos de la web no se hayan cargado aún.
 Por defecto solo se empieza a "navega" cuando document.readyState está a complete
 
-Esperar a que aparezca un elemento:
-el = WebDriverWait(driver).until(lambda d: return d.find_element_by_tag_name("p"))
+Esperar 30s para la carga de la web:
+driver.set_page_load_timeout(30)
+
+Esperar 30s por cada llamada (por defecto está a 0, infinito):
+driver.implicitly_wait(30)
+  genera excepciones selenium.common.exceptions.NoSuchElementException
+
+Explicit wait, tiempo de espera determinado para un elemento (https://selenium-python.readthedocs.io/waits.html)
+Deberá ser mayor o igual que el implicitly_wait (si lo ponemos menor, esperara el tiempo de implicitly_wait y luego devolverá una expcecion TimeoutException)
+el = WebDriverWait(driver, 10).until(lambda d: d.find_element_by_tag_name("p"))
+  genera excepciones selenium.common.exceptions.TimeoutException
+
 
 
 
