@@ -28,3 +28,10 @@ esto no devuelve nada hasta que lleguen mas datos al fichero
 Si el stdout de grep va a un pipe, la salida no es line buffered, y solo enviará datos cada X bytes (mirar grep.md)
 tail -f file | grep --line-buffered my_pattern | grep otro
 
+
+
+# Tail a fichero comprimido
+tail -f fichero | gzip -vc > fichero.gz
+gzip irá agrupando para enviar a comprimir, por lo que puede que no veamos datos en fichero.gz hasta pasadas muchas líneas.
+Si queremos terminar y que escriba los datos, enviar un kill a tail.
+Con control+c saldrá sin escribir al fichero.

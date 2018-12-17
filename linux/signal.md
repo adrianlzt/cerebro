@@ -1,3 +1,5 @@
+Mirar linux/kill.md
+
 The most common signal is SIGINT , the signal sent when CTRL+c is pressed.
 When running subprocesses, the SIGCHLD signal is sent when a child process exits.
 Resizing the terminal sends the SIGWINCH signal to the applications running in the terminal.
