@@ -3,6 +3,8 @@ Otra opción: jp (https://github.com/jmespath/jp)
 
 Otra opción que vale para bson,json, toml, xml, yaml: https://github.com/jzelinskie/faq/blob/master/README.md
 
+"gron" nos vale para hacer grep sobre json (nos saca la estructura en plano del json, una linea por elemento)
+
 Test online:
 https://jqplay.org/
 
