@@ -22,6 +22,18 @@ zabbix_server -R log_level_increase
 zabbix_server -R log_level_increase
 
 
+Activar el nivel de debug puede tener impacto sobre los procesos si usamos logeo a fichero o consola. Parece que no si logeamos a system (syslog en linux).
+Función que realiza el logeo __zbx_zabbix_log (src/libs/zbxlog/log.c). Para fichero y consola tiene un lock para escribir
+
+Niveles:
+0 - basic information about starting and stopping of Zabbix processes (LOG_LEVEL_INFORMATION)
+1 - critical information (LOG_LEVEL_CRIT)
+2 - error information (LOG_LEVEL_ERR)
+3 - warnings (LOG_LEVEL_WARNING)
+4 - for debugging (produces lots of information) (LOG_LEVEL_DEBUG)
+5 - extended debugging (produces even more information) (LOG_LEVEL_TRACE) -> tiene muy pocos usos, al menos en la versión 3.2.6
+
+
 # Web interface
 https://www.zabbix.com/documentation/4.0/manual/web_interface/debug_mode
 
