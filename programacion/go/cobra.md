@@ -3,6 +3,8 @@ Una más sencilla, con ella sola como única dependencia (cobra trae un montón 
 
 https://github.com/spf13/cobra
 
+https://ovh.github.io/tat/sdk/golang-full-example/
+
 A Commander for modern Go CLI interactions
 Herramientas para crear una CLI en go de manera sencilla.
 Usado por la mayoria de las CLIs en go (mirar lista en github)
@@ -48,13 +50,14 @@ Los flags podran ser de dos tipos:
  - locales, solo para el comando/subcomando
 
 Definir un flag:
-nodesCmd.PersistentFlags().String("node", "", "Nodo sobre el que realizamos los checks")
+PersistentFlags
+	rootCmd.PersistentFlags().StringVar(&endpoint, "endpoint", "", "Endpoint of the SAP Control WSDL, Eg.: http://example.com/?wsdl")
+     el valor vacio será el default
+	viper.BindPFlag("endpoint", rootCmd.PersistentFlags().Lookup("endpoint"))
 
 Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pflag/blob/master/flag.go#L159):
-nodesCmd.PersistentFlags().Lookup("node").Value
+  endpoint := viper.GetString("endpoint")
 
-Si queremos un shorthand (--prueba, -p) definiremos el flag con xxxP. Ejemplo:
-IntP("flagname", "f", 1234, "help message")
 
 
 
