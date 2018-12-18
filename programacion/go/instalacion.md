@@ -7,6 +7,9 @@ https://golang.org/dl/
 https://golang.org/doc/install
 
 Definir GOPATH
+export GOPATH=$HOME/go
+En ~/.zshrc
+https://github.com/golang/go/wiki/SettingGOPATH
 
 
 Script para instalar go:
