@@ -33,3 +33,14 @@ myproject/
 
 binary1.go:
 import "./package1"
+
+
+
+Generalmente lo que haremos es apuntar a nuestro propio repo:
+main.go
+import "github.com/adrianlzt/miproject/otroDir"
+...
+otroDir.miFunc()
+
+otroDir/somefile.go
+func miFunc()....
