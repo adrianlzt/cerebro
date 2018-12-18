@@ -81,3 +81,7 @@ https://www.wireshark.org/docs/man-pages/wireshark-filter.html
 
     contains     Does the protocol, field or slice contain a value
     matches, ~   Does the protocol or text string match the given case-insensitive Perl-compatible regular expression
+
+
+tcp.time_relative > 3
+tiempo entre el paquete y el primero de su frame mayor a 3"
