@@ -58,6 +58,9 @@ PersistentFlags
 Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pflag/blob/master/flag.go#L159):
   endpoint := viper.GetString("endpoint")
 
+Marcar un flag como required:
+rootCmd.MarkFlagRequired("region")
+
 
 
 
