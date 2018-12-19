@@ -35,9 +35,9 @@ cmd.Usage()
 
 # Subcomandos
 cobra add config
-cobra add create -p 'configCmd'
-Esto añade un subcomando create a config:
-miapp config create
+cobra add XXX -p 'configCmd'
+Esto añade un subcomando 'XXX' a config:
+miapp config XXX
 Creara otro fichero para este subcomando: cmd/create.go
 
 
