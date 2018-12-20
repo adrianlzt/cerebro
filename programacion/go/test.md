@@ -3,6 +3,9 @@ https://golang.org/doc/faq#testing_framework esta lib de testing es bastante bá
 https://www.youtube.com/watch?v=ndmB0bj7eyw
 https://talks.golang.org/2014/testing.slide#4
 https://github.com/golang/example
+https://github.com/stretchr/testify
+  A toolkit with common assertions and mocks that plays nicely with the standard library
+
 
 Correr test a mano:
 go test -v
