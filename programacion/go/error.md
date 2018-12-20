@@ -112,3 +112,16 @@ return &dashboardExistsError{
 https://github.com/pkg/errors#adding-context-to-an-error
 Capturado un error, añadirle el contexto donde estamos y pasar el error hacia arriba.
 
+
+
+
+# invalid flag in #cgo CFLAGS
+https://github.com/golang/go/wiki/InvalidFlag
+https://golang.org/cmd/cgo/
+Solo ciertas flags de build están white listed.
+Con la variable de entorno CGO_CFLAGS_ALLOW podemos pasar una regex para adminitar más.
+
+Workaround cutre para pasar todas:
+export CGO_CXXFLAGS_ALLOW=".*"
+export CGO_LDFLAGS_ALLOW=".*"
+export CGO_CFLAGS_ALLOW=".*"
