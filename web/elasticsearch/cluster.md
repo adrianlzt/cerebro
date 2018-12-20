@@ -208,13 +208,15 @@ Si tenemos nodos master y nodos data, pondremos en la lista solo los master.
 
 
 Memoria para ES:
-https://www.elastic.co/guide/en/elasticsearch/guide/current/heap-sizing.html#heap-sizing
+https://www.elastic.co/guide/en/elasticsearch/guide/master/heap-sizing.html#heap-sizing
 En CentOS viene con 2GB por defecto.
 
 Swapping mata la performance. Recomiendan quitarla o bajar mucho el swappiness (a 1, 0 puede provocar OOM en algunas distros)
 
 Debe vigilarse igualmente que no se esté quedando sin filedescriptors.
 En centos7 la unit de systemd ya configura para poner el limite a 65536
+
+Elasticsearch reparte la carga por igual entre nodos, igualando el número de shards asignados por nodo y manteniendo un equilibrio en cuanto a almacenamiento se refiere, sin tener en cuenta los recursos de uno u otro nodo. Esto uno al uso actual que se está haciendo de esta plataforma, el nodo con menos cantidad de memoria (lep1efb1) está en situación de saturación continua. Esto se puede evidenciar al comprobar desde el módulo de Monitoring que las métricas de este nodo no se están obteniendo bien.
 
 
 # Auto generación de índices
