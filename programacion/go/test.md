@@ -5,6 +5,10 @@ https://talks.golang.org/2014/testing.slide#4
 https://github.com/golang/example
 https://github.com/stretchr/testify
   A toolkit with common assertions and mocks that plays nicely with the standard library
+http://onsi.github.io/ginkgo/
+  BDD, test behavior
+https://github.com/maxbrunsfeld/counterfeiter
+  A tool for generating self-contained, type-safe test doubles in go
 
 
 Correr test a mano:
