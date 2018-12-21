@@ -40,7 +40,7 @@ El formato ELF (Executable and Linkable Format) es un formato de archivo para ej
 
 mirar esquema en elf.png
 
-readelf fichero
+readelf -a fichero
 
 
 
