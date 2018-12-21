@@ -140,3 +140,13 @@ Para usar variables distintas:
   loop: "{{compute_nodes}}"
   loop_control:
     loop_var: "compute_item"
+
+
+
+# Iterar un número de veces
+https://docs.ansible.com/ansible/latest/plugins/lookup/sequence.html
+- name: a simpler way to use the sequence plugin create 4 groups
+  group:
+    name: "group{{ item }}"
+    state: present
+  with_sequence: count=4
