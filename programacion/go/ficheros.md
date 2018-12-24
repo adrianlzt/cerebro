@@ -26,6 +26,11 @@ if err != nil {
   panic(err)
 }
 
+## Crear y escribir
+file, err := os.Create("nombre")
+nbytes, err := io.Copy(file, algoReader)
+
+
 ## Append
 Crea el fichero si no existe
 
