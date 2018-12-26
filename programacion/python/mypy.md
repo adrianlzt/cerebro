@@ -1,7 +1,7 @@
 http://mypy-lang.org/
 
 Tipado estatico en python
-
+No se fuerza nada por parte de python, solo se define como marcar el tipado por si luego usamos herramientas externa que comprueben el que el tipado es correcto.
 
 Ejecutaremos mypy sobre un .py para chequear que está correctamente tipado.
 
