@@ -36,6 +36,12 @@ funcionCacheada.cache_clear()
 
 
 
+Si es un método de una clase (con self):
+https://stackoverflow.com/questions/14946264/python-lru-cache-decorator-per-instance
+
+
+
+
 # Invalidar cache con el tiempo
 https://gist.githubusercontent.com/Morreski/c1d08a3afa4040815eafd3891e16b945/raw/6c9b6d958247de9b0170a398acb525e5f346cd2d/timed_cache.py
 
