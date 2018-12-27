@@ -52,6 +52,8 @@ item = zbx.item.get(
     "startSearch": "true"
   }
 )
+# El search nos encontrará cualquier key_ que haga match, por lo que podría devolver un item con key_ telegraf.kernel.boot_time_us por ejemplo
+# Con filter buscamos el match exacto
 
 def get_host_by_host_name(zbx, host_name):
     host_list = zbx.host.get(
