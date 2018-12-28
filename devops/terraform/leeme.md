@@ -7,3 +7,5 @@ Esto se puede realizar fácilmente también usando modulos, definiendo parámetr
 En ansible todas las variables se comparten de modo global, por lo que es muy dificil reusar un módulo varia veces (por ejemplo para crear unas redes) y luego usar alguna de las variables generadas por ese módulo para otra parte (no sabremos si esa variable es de la primera ejecucción del rol, de la segunda o cual)
 
 Otra desventaja de Ansible es que si modificamos el playbook de nuestra infraestructura añadirá cosas, en vez de borrar lo antiguo y crear lo nuevo.
+
+Una desventaja de terraform es que parece que cuando lo usamos para crear muchas máquinas (cientos), falla bastante (Dic'18)
