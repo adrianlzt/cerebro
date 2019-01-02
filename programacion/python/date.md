@@ -126,5 +126,57 @@ Viernes : 0:00–23:59
 Sábado : 0:00–23:59
 Domingo : 0:00–23:59
 
+Pone que es hasta 23:59, pero en este caso es inclusivo (23:59:05 está dentro)
+Si ponemos: "Mo 00:00-23:59", 23:59:01 no estará incluído
+
+Si queremos poner las 24h lo haremos: 00:00-24:00
+
 >>> oh.is_open(datetime.datetime.strptime("2019-01-02 23:59:43+01:00", "%Y-%m-%d %H:%M:%S%z"))
 True
+
+>>> oh = hoh.OHParser("Mo-Fr 08:00-18:00", locale="es")
+>>> print(oh.plaintext_week_description())
+Lunes: 8:00–18:00
+Martes: 8:00–18:00
+Miércoles: 8:00–18:00
+Jueves: 8:00–18:00
+Viernes: 8:00–18:00
+Sábado: closed
+Domingo: closed
+
+
+Horario laboral:
+"Mo-Fr 08:00-18:00; PH closed"
+
+Horario no laboral:
+"Mo-Fr 00:00-08:00,18:00-24:00; PH,Sa,Su 00:00-24:00"
+
+
+Jugando con dias festivos:
+>>> oh = hoh.OHParser("Mo-Fr 08:00-18:00; PH closed", locale="es")
+>>> oh.PH_dates.append(datetime.date(2019,1,1))
+>>> dt=datetime.datetime.strptime("2019-01-01 10:00:00", "%Y-%m-%d %H:%M:%S")
+>>> oh.is_open(dt=dt)
+False
+
+
+
+# Festivos
+https://github.com/dr-prodigy/python-holidays
+
+Libreria para obtener los festivos de un pais, region, provincia
+
+import holidays
+madrid_festivos = holidays.CountryHoliday("ES", prov="MAD")
+for h in madrid_festivos:
+    print(h)
+
+(datetime.date(2019, 1, 1), 'Año nuevo')
+(datetime.date(2019, 1, 6), 'Epifanía del Señor')
+...
+
+Comparando con el calendario de http://www.calendarioslaborales.com/calendario-laboral-madrid-2019.htm veo algunas diferencias.
+Por ejemplo, holidays pone el 19 de Marzo (San Jose), pero no es festivo (parece que es una excepción de 2019).
+holidays tampoco tiene en cuenta movimiento de festivos 6-Enero -> 7-Enero y 8-Diciembre -> 9-Diciembre
+
+Tampoco están los festivos locales de la ciudad de Madrid: 15 Mayo y 9 de Noviembre
