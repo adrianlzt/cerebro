@@ -104,3 +104,13 @@ datetime.datetime.strptime("2008-09-03T20:56:35.450686Z", "%Y-%m-%dT%H:%M:%S.%fZ
 
 date --rfc-3339=seconds
 datetime.datetime.strptime("2018-11-26 16:47:43+01:00", "%Y-%m-%d %H:%M:%S%z")
+
+
+
+# Parsear rangos horarios
+pip install osm-humanized-opening-hours
+
+import humanized_opening_hours as hoh
+field = "Mo-Fr 06:00-21:00; Sa,Su 07:00-21:00"
+oh = hoh.OHParser(field)
+
