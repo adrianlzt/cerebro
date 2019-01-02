@@ -114,3 +114,17 @@ import humanized_opening_hours as hoh
 field = "Mo-Fr 06:00-21:00; Sa,Su 07:00-21:00"
 oh = hoh.OHParser(field)
 
+
+https://raw.githubusercontent.com/rezemika/humanized_opening_hours/master/humanized_opening_hours/locales/fr_FR/LC_MESSAGES/hoh.pot<Paste>
+>>> oh = hoh.OHParser("24/7", locale="es")
+>>> print(oh.plaintext_week_description())
+Lunes : 0:00–23:59
+Martes : 0:00–23:59
+Miércoles : 0:00–23:59
+Jueves : 0:00–23:59
+Viernes : 0:00–23:59
+Sábado : 0:00–23:59
+Domingo : 0:00–23:59
+
+>>> oh.is_open(datetime.datetime.strptime("2019-01-02 23:59:43+01:00", "%Y-%m-%d %H:%M:%S%z"))
+True
