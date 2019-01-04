@@ -70,7 +70,13 @@ items - Flags:
 3 - sin uso?
 4 - a discovered item
 
-Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template.
+Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template. Los triggers prototype tendrán templateid. Pero los triggers generados por un LLD no tendrán templateid
+
+triggers - Flags
+0 - triggers normales
+2 - trigger prototypes
+4 - triggers generados por LLD
+
 
 
 # History
@@ -106,11 +112,46 @@ Todos los items de un host por su hostname:
 select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' and hosts.hostid = items.hostid;
 
 
-Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id:
-select elt(type, 'Zabbix Agent', 'SNMPv1 agent', 'Zabbix trapper', 'simple check', 'SNMPv2 agent', 'Zabbix internal', 'SNMPv3 agent', 'Zabbix agent (active)', 'Zabbix aggregate', 'web item', 'external check', 'database monitor', 'IPMI agent', 'SSH agent', 'TELNET agent', 'calculated', 'JMX agent', 'SNMP trap', 'Dependent item') as type, elt(status, 'ON', 'OFF') as status,count(*) from items group by type,status order by type, status desc;
+Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
+			SELECT
+                elt(type,
+                  'Zabbix Agent',
+                  'SNMPv1 agent',
+                  'Zabbix trapper',
+                  'simple check',
+                  'SNMPv2 agent',
+                  'Zabbix internal',
+                  'SNMPv3 agent',
+                  'Zabbix agent (active)',
+                  'Zabbix aggregate',
+                  'web item',
+                  'external check',
+                  'database monitor',
+                  'IPMI agent',
+                  'SSH agent',
+                  'TELNET agent',
+                  'calculated',
+                  'JMX agent',
+                  'SNMP trap',
+                  'Dependent item'
+                ) AS type,
+                elt(status,
+                  'ON',
+                  'OFF'
+                ) AS status,
+                elt(state,
+                  'OK',
+                  'NOT SUPPORTED'
+                ) AS state,
+                count(*)
+            FROM items,hosts
+            WHERE
+                items.hostid=hosts.hostid
+				AND
+				hosts.status <> 3
+            GROUP BY type, status, state
+            ORDER BY type, status DESC;
 
-Como la anterior pero sin tener en cuenta los items de las templates:
-select case when items.type=0 then 'Zabbix Agent' when items.type=1 then 'SNMPv1 agent' when items.type=2 then 'Zabbix trapper' when items.type=3 then 'simple check' when items.type=4 then 'SNMPv2 agent' when items.type=5 then 'Zabbix internal' when items.type=6 then 'SNMPv3 agent' when items.type=7 then 'Zabbix agent (active)' when items.type=8 then 'Zabbix aggregate' when items.type=9 then 'web item' when items.type=10 then 'external check' when items.type=11 then 'database monitor' when items.type=12 then 'IPMI agent' when items.type=13 then 'SSH agent' when items.type=14 then 'TELNET agent' when items.type=15 then 'calculated' when items.type=16 then 'JMX agent' when items.type=17 then 'SNMP trap' when items.type=18 then 'Dependent item' end as type,count(*) from items,hosts where items.hostid=hosts.hostid and hosts.status <> 3 group by items.type,items.status order by items.type,items.status desc;
 
 
 IMPACTO de las metricas segun su delay (excepto trappers)
