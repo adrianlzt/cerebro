@@ -66,3 +66,14 @@ trigger - whenever a trigger changes its status (OK→PROBLEM→OK)
 discovery - when hosts or services are detected
 auto registration - when active agents are auto-registered by server
 internal - when an item/low-level discovery rule becomes unsupported or a trigger goes into an unknown state
+  podemos enviar notificaciones para este tipo, http://zabbix/actionconf.php?eventsource=3 (Configuration -> Actions -> Event Source: Internal)
+
+https://www.zabbix.com/documentation/current/manual/api/reference/problem/object
+Algunos eventos se convertiran en problems:
+ - los events de fuente triggers que tienen un problema (value=1)
+ - los internal, cuando un trigger, item o lld pasa a unknown/not supported
+
+El objectid de la tabla events o problem apuntá al triggerid.
+
+En la tabla problems tendremos un campo, en principio vacío, que se rellenará con el evento de recovery, si es que tenemos:
+r_eventid, r_clock, r_ns

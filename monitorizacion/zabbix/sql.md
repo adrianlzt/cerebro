@@ -84,6 +84,30 @@ text         -> history_text
 Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 
+
+# Events / problems
+https://www.zabbix.com/documentation/current/manual/api/reference/problem/object
+Obtenidos de include/common.h
+
+source
+0 - trigger
+1 - discovery
+2 - auto registration
+3 - internal
+
+object
+0 - trigger (si source=0, object=0 siempre)
+1 - discovery host
+2 - discovery service
+3 - zabbix active
+4 - item
+5 - lld rule
+
+acknowledged
+0 - not acknowledged
+1 - acknowledged
+
+
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
 select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
@@ -177,7 +201,8 @@ Frecuencia de inserción de items en la tabla history (una partition seleccionad
 select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m'))) and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m'))) group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 
-Obtener problemas de un host:
+Obtener problemas de un host.
+Si un trigger es dependeiente de otro, en la web no veremos el hijo, pero si en esta query:
 SELECT t.description ,h.host
     FROM triggers t,
          functions f,
@@ -189,7 +214,6 @@ SELECT t.description ,h.host
           AND f.itemid=i.itemid
           AND p.r_eventid IS NULL
           AND p.source='0'
-          AND p.object='0'
           AND i.hostid = h.hostid
 
 
