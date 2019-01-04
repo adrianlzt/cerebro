@@ -44,3 +44,4 @@ LANGUAGE 'xxx';
 
 # Truncate
 left("qwerty", 2) -> qw
+right("qwerty", 2) -> ty
