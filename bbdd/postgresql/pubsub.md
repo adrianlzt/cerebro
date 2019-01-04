@@ -1,6 +1,14 @@
 https://www.postgresql.org/docs/9.6/static/sql-notify.html
 https://www.postgresql.org/docs/9.6/static/sql-listen.html
 https://news.ycombinator.com/item?id=12649712
+https://tapoueh.org/blog/2018/07/postgresql-listen/notify/
+
+The NOTIFY command sends a notification event together with an optional "payload" string to each client application that has previously executed LISTEN channel for the specified channel name in the current database.
+
+NOTIFY provides a simple interprocess communication mechanism for a collection of processes accessing the same PostgreSQL database. A payload string can be sent along with the notification, and higher-level mechanisms for passing structured data can be built by using tables in the database to pass additional data from notifier to listener(s).
+
+Solo se enviarán notificaciones al los clientes conectados. Si no hay nadie conectando en ese momento, se perderá la notificación.
+Si necesitamos no perder eventos, mirar queue_jobs.md
 
 
 Ejemplo de código SQL para registrar una notificación en postgres para enviar notificaciones ante un cambio

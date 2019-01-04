@@ -70,13 +70,7 @@ items - Flags:
 3 - sin uso?
 4 - a discovered item
 
-Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template. Los triggers prototype tendrán templateid. Pero los triggers generados por un LLD no tendrán templateid
-
-triggers - Flags
-0 - triggers normales
-2 - trigger prototypes
-4 - triggers generados por LLD
-
+Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template.
 
 
 # History
