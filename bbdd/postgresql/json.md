@@ -6,6 +6,10 @@ http://wiki.postgresql.org/wiki/PostgreSQL_9.3_Blog_Posts#JSON_support
 http://www.postgresqltutorial.com/postgresql-json/
 
 
+json vs jsonb
+The data types json and jsonb, as defined by the PostgreSQL documentation,are almost identical; the key difference is that  json data is stored as an exact copy of the JSON input text, whereas jsonb stores data in a decomposed binary form; that is, not as an ASCII/UTF-8 string, but as binary code.
+Por lo que veo, ciertos operadores solo se pueden aplicar sobre jsonb, por ejemplo para where, para ver si contiene una key, etc.
+
 CREATE TABLE orders (
  ID serial NOT NULL PRIMARY KEY,
  info json NOT NULL
@@ -21,6 +25,9 @@ Seleccionar:
 SELECT info->'customer' (en formato json, ejemplo: 'pepe', con las comillas)
 SELECT info->>'customer' (en formato postgresql string)
 
+Si el campo no es tipo json, podemos hacer un cast:
+info::json->'customer'
+
 info#>>'{tabla,nth-elemento}'
   Coge el elemento n del array tabla
 
@@ -35,3 +42,5 @@ insert into checks VALUES('check-tcp-puppet-master','monitorizacion::checks::tcp
 select DISTINCT json_object_keys(juanson) from checks; <- las keys sin duplicar
 
 
+# WHERE
+notes::jsonb->>'class' = 'db';
