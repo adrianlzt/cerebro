@@ -1,5 +1,5 @@
 # Chrony
-Sustitudo moderno de ntp
+Sustituto moderno de ntp
 
 Comprobar como vamos de desfasados
 chronyc tracking

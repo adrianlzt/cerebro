@@ -111,6 +111,10 @@ show mem ?
 # Log
 show log
 
+Limpiarlo:
+clear log
+
+
 # Configure
 conf t
   confiurar el router
@@ -561,6 +565,7 @@ http://www.cisco.com/c/en/us/support/docs/routers/10000-series-routers/15095-hig
 DNS no funcionando.
 El router no contestaba a las dns aunque se veia el puerto 53/tcp abierto.
 "reiniciar" el server dns con:
+conf term
 no ip dns server
 ip dns server
 
