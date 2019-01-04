@@ -9,6 +9,9 @@ Mostrar tablas con los privilegios asociados:
 \dp <- list table, view, and sequence access privileges
 \dp tabla
 
+Si queremos obtener el código SQL que se ha usado para crear la tabla:
+pg_dump NOMBREBBDD -t NOMBRETABLA --schema-only
+
 
 ## Crear y borrar tablas ##
 http://www.postgresql.org/docs/devel/static/sql-createtable.html
@@ -55,3 +58,14 @@ CREATE TABLE films (
     len         interval hour to minute,
     CONSTRAINT code_title PRIMARY KEY(code,title)
 );
+
+
+
+# Constraints
+https://www.postgresql.org/docs/9.5/ddl-constraints.html
+
+Podemos meter constraints para:
+  - chequear que un valor cumple una regla
+  - valores únicos
+  - referencia a claves de otras tablas
+  - borrar los elementos de la tabla si la key referenciada se borra (ON DELETE CASCADE)
