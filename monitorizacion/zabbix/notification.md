@@ -91,8 +91,10 @@ Para el caso de un evento de un trigger, almacenaremos, el actionid, triggerid, 
 
 Luego tenemos el proceo "escalator" (process_escalations src/zabbix_server/escalator/escalator.c), que comprueba periódicamente la tabla "escalations" y genera entradas en la tabla "alerts".
 
-escalation_execute_operations: Para saber que generar, escalator comprobará las tablas operations y opmessage.
-Si tenemos que enviar un mensaje llamará a "add_object_msg", si tiene que ejecutar un comando "execute_commands"
+escalation_execute_operations: para saber que generar, escalator comprobará las tablas operations y opmessage. Esta función ejecutará comandos (execute_commands) o generará entradas en la tabla alerts (add_message_alert)
+
+
+En zabbix 3.2 tenemos un único procesor alerter. A partir de 3.4 hay un alerter manager que lee entradas en alerts y envia mensajes via IPC a los alerter workers.
 
 
 Otra rama para procesar eventos cerrados.
