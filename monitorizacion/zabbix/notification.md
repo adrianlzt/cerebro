@@ -79,7 +79,7 @@ En la tabla problems tendremos un campo, en principio vacío, que se rellenará 
 r_eventid, r_clock, r_ns
 
 
-Parece que los eventos luego se pasan por "process_actions" (src/zabbix_server/actions.c).
+Los eventos luego se pasan por "process_actions" (src/zabbix_server/actions.c).
 En esta función, por cada action que tengamos definido, se comprobará si el evento hace match.
 La función "check_action_conditions" será la encargada de decidir si un evento matchea las condiciones de una action. Esta a su vez llama a "check_action_condition", que puede llamar a "check_trigger_condition", "check_discovery_condition", "check_auto_registration_condition" o "check_internal_condition".
 
@@ -97,6 +97,12 @@ escalation_execute_operations: para saber que generar, escalator comprobará las
 En zabbix 3.2 tenemos un único procesor alerter. A partir de 3.4 hay un alerter manager que lee entradas en alerts y envia mensajes via IPC a los alerter workers.
 
 
-Otra rama para procesar eventos cerrados.
 
+trigger +--> event +--> escalation +--> alert +--> email,sms,script,etc
+                   |
+                   +--> problem
+
+
+
+Aquí falta explicar como se procesa el cerrado de eventos/problems.
 

@@ -145,6 +145,13 @@ Mover un pane a otra window
 Vamos al pane que queremos mover y lo marcamos: C-b m
 Vamos a la ventana donde queremos colocarlo y: C-b :joinp
 
+Mover una window a otra sesión. Estando en la window a mover:
+move-window -t other_session:
+
+O para traernos una ventana de otra sesión:
+movew -d sesion:ventana
+
+
 
 ## Splits
 Los splits son dentro de cada "ventana". Podemos tener un split horizontal en la ventana 1 y un split vertical en la ventana 2.
