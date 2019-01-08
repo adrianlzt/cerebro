@@ -84,6 +84,17 @@ En esta función, por cada action que tengamos definido, se comprobará si el ev
 La función "check_action_conditions" será la encargada de decidir si un evento matchea las condiciones de una action. Esta a su vez llama a "check_action_condition", que puede llamar a "check_trigger_condition", "check_discovery_condition", "check_auto_registration_condition" o "check_internal_condition".
 
 Por cada match event<->action se crea un escalation, esto es, una entrada en la tabla escalations.
+Para el caso de un evento de un trigger, almacenaremos, el actionid, triggerid, eventid y el status a ESCALATION_STATUS_ACTIVE (0)
+ escalationid | actionid | triggerid | eventid | r_eventid | nextcheck  | esc_step | status | itemid
+--------------+----------+-----------+---------+-----------+------------+----------+--------+--------
+            6 |        7 |     13997 |     133 |           | 1545928942 |        1 |      0 |
+
+Luego tenemos el proceo "escalator" (process_escalations src/zabbix_server/escalator/escalator.c), que comprueba periódicamente la tabla "escalations" y genera entradas en la tabla "alerts".
+
+escalation_execute_operations: Para saber que generar, escalator comprobará las tablas operations y opmessage.
+Si tenemos que enviar un mensaje llamará a "add_object_msg", si tiene que ejecutar un comando "execute_commands"
 
 
 Otra rama para procesar eventos cerrados.
+
+
