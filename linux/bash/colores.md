@@ -1,1 +1,1 @@
-http://rcr.io/words/dynamic-xterm-colors.html
+https://misc.flogisoft.com/bash/tip_colors_and_formatting

@@ -77,3 +77,13 @@ El objectid de la tabla events o problem apuntá al triggerid.
 
 En la tabla problems tendremos un campo, en principio vacío, que se rellenará con el evento de recovery, si es que tenemos:
 r_eventid, r_clock, r_ns
+
+
+Parece que los eventos luego se pasan por "process_actions" (src/zabbix_server/actions.c).
+En esta función, por cada action que tengamos definido, se comprobará si el evento hace match.
+La función "check_action_conditions" será la encargada de decidir si un evento matchea las condiciones de una action. Esta a su vez llama a "check_action_condition", que puede llamar a "check_trigger_condition", "check_discovery_condition", "check_auto_registration_condition" o "check_internal_condition".
+
+Por cada match event<->action se crea un escalation, esto es, una entrada en la tabla escalations.
+
+
+Otra rama para procesar eventos cerrados.
