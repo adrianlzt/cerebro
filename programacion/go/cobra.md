@@ -49,10 +49,9 @@ Los flags podran ser de dos tipos:
  - persistentes (disponibles para los subcomandos)
  - locales, solo para el comando/subcomando
 
-Definir un flag:
+Definir un flag y asociarlo a viper:
 PersistentFlags
-	rootCmd.PersistentFlags().StringVar(&endpoint, "endpoint", "", "Endpoint of the SAP Control WSDL, Eg.: http://example.com/?wsdl")
-     el valor vacio será el default
+	rootCmd.PersistentFlags().String("endpoint", "default", "Endpoint of the SAP Control WSDL, Eg.: http://example.com/?wsdl")
 	viper.BindPFlag("endpoint", rootCmd.PersistentFlags().Lookup("endpoint"))
 
 Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pflag/blob/master/flag.go#L159):
@@ -60,6 +59,8 @@ Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pf
 
 Marcar un flag como required:
 rootCmd.MarkFlagRequired("region")
+rootCmd.fooCmd.MarkPersistentFlagRequired("region")
+  esta variante lo hace obligatorio tambien para los subcomandos
 
 
 
