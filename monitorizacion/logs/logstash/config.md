@@ -10,7 +10,7 @@ If you specify multiple filters, they are applied in the order of their appearan
 mirar test.md para ver como ejecutarlo para probar
 
 Chequeo conf:
-logstash -t -f /etc/logstash/conf.d/
+logstash -t -f /etc/logstash/conf.d/ --path.data .
 
 -f fichero.conf
 -f /directorio/
