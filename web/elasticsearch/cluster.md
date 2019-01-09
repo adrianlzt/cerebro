@@ -290,6 +290,8 @@ Descripción de que hace cada check
 Forzarlos/eliminarlos:
 es.enforce.bootstrap.checks: true/false
 
+NO se pueden desactivar: https://github.com/elastic/elasticsearch/issues/31933
+
 JVM Checks
   heap size
   disable swapping
