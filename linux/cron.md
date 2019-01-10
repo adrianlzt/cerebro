@@ -119,6 +119,10 @@ La mínima resolución de cron es un minuto, pero podemos hacer un pequeño work
 * * * * * ( sleep 30 ; /path/to/executable param1 param2 )
 
 
+# Redirigir output
+comando >> log 2>&1
+
+
 # Problemas
 Si el fichero de cron de un usuario tiene permisos de escritura no se ejecutará.
 Si lo reeditamos con "crontab -e" cogerá los permisos adecuados.
