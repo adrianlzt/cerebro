@@ -1,3 +1,15 @@
+https://github.com/sharkdp/insect
+https://insect.sh/
+  online
+
+Convierte unidades
+Se pueden asignar constantes, crear funciones
+Tiene autocompletado.
+Ejemplo calculando el tiempo de envio de un fichero, en minutos, dada una velocidad:
+  500 MB / 5 Mbps -> min
+
+
+
 BC:
 Para que use decimales en algunos SOs hay que arrancar con bc -l
 

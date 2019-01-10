@@ -1,3 +1,6 @@
+Mejora: bat.md
+
+
 Escribir contenido a un fichero hasta que escribamos END:
 
 $ cat <<END > fichero_salida
