@@ -195,7 +195,7 @@ prepped = req.prepare()
 del prepped.headers['content-length']
 response = s.send(prepped)
 
-# Raw
+# Raw / ficheros / download / binary
 Podemos acceder a la respuesta exacta del servidor si al hacer la peticion especificamos stream=True y luego usamos el objecto r.raw.
 
 Ejemplo:
