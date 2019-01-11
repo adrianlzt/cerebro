@@ -13,6 +13,16 @@ https://mxtoolbox.com/SuperTool.aspx
 
 # Seguridad / autenticación
 
+Ejemplo, tenemos una empresa con nuestro propio servidor de correo donde nuetros emails son @corp.com
+Si Google recibe un correo de @corp.com (en el "From:" del mensaje), comprobará si el mensaje cumple DKIM (el mensaje está firmado por el servidor) y SPF (el servidor tiene permiso para enviar correos de @corp.com).
+En el caso de que no se cumpla DKIM o SPF se aplicará la política definida por DMARC.
+Esta política puede ser:
+  - dejar pasar el mensaje (p=none)
+  - bloquear un porcenataje de los mensajes (p=quarentine)
+  - bloquear todos los mensajes (p=reject)
+También definiremos un email (del administrador de @corp.com) para que diaríamente Google le envie los emails con los que ha tenido problemas.
+
+
 ## DKIM
 https://support.google.com/a/answer/174124?hl=en
 https://scaron.info/blog/debian-mail-spf-dkim.html
@@ -28,20 +38,6 @@ host -t TXT CLAVE._domainkey.SUDOMINIO.COM
 amavisd -c /etc/amavisd/amavisd.conf testkeys
   si usamos amavis para firmar los emails podemos comprobar con él que la firma pública y privada son válidas
 
-
-
-## DMARC
-https://support.google.com/a/answer/2466580
-Que hacer un correo si falla la comprobación DKIM o SPF.
-
-Comprobar configuración:
-host -t TXT _dmarc.docker.com
-
-Comenzar con una configuración donde monitorizamos todos los errores, e ir pasando a un pequeño porcentaje de cuarentena, casi todo en cuarentena, porcentaje descartado, todo descartado.
-
-El envio de emails tiene que ser a un correo con el mismo dominio.
-
-Ver human friendly los reportes que nos envien: https://dmarcian.com/dmarc-xml/
 
 
 
@@ -76,6 +72,72 @@ dominio.com.  IN TXT "v=spf1 mx -all"
 NOTA IPv6:
 Si tenemos ipv6, meter también las IPs de nuestro rango ipv6 a SPF
 mirar el "Mensaje original" en un email enviado a Google. Nos dirá si pasa SPF, DKIM y DMARC.
+
+
+
+
+## DMARC
+https://dmarc.org/
+
+Es el método que tenemos para saber si las reglas DKIM/SPF están funcionando correctamente.
+Ciertos servidores (google, yahoo, etc) envian un reporte cada 24h con correos enviados usando nuestro dominio pero que no cumplieron SPF o DKIM (suponiendo que somos un servidor que envia correos).
+
+
+A DMARC policy allows a sender to indicate that their messages are protected by SPF and/or DKIM, and tells a receiver what to do if neither of those authentication methods passes – such as junk or reject the message. DMARC removes guesswork from the receiver’s handling of these failed messages, limiting or eliminating the user’s exposure to potentially fraudulent & harmful messages. DMARC also provides a way for the email receiver to report back to the sender about messages that pass and/or fail DMARC evaluation.
+
+There is one service, DMARC[1], that is free and can give you some visibility into how email from your domain is being processed. I put the txt record in my DNS, and Google, Facebook, Comcast, Yahoo, Fastmail, and a few others send me reports about email they have processed from my domain. It's not that interesting at the moment because things are working, but it might help to debug issues if your email was being rejected. At least I see a few spammers are trying to use my domain from their servers.
+
+
+https://support.google.com/a/answer/2466580
+Que hacer un correo si falla la comprobación DKIM o SPF.
+
+https://support.google.com/a/answer/2466563?hl=en
+formato de la entrada dmarc
+
+Comprobar configuración:
+host -t TXT _dmarc.docker.com
+
+
+Crear el registro DMARC: https://blog.returnpath.com/demystifying-the-dmarc-record/
+Ejemplo de registro TXT:
+"v=DMARC1; p=quarantine; pct=5; rua=mailto:postmaster@your_domain.com"
+
+p= puede tener los valores:
+  none
+  quarantine
+  reject
+
+aspf/adkim, pueden ser strict o relaxed (default). relaxed permite pasar también los subdominios.
+
+Comenzar con una configuración donde dejamos pasar todos los errores, e ir pasando a un pequeño porcentaje de cuarentena, casi todo en cuarentena, porcentaje descartado, todo descartado.
+
+El envio de emails tiene que ser a un correo con el mismo dominio.
+
+Ver human friendly los reportes que nos envien: https://dmarcian.com/dmarc-xml/
+
+## Reportes DMARC
+Hay dos tipos de reportes: agregados y forensic
+
+### Aggregate
+https://blog.returnpath.com/how-to-read-your-first-dmarc-reports-part-1/
+
+En los reportes vendrá:
+  - quien lo envia (report_metadata)
+  - la política DMARC que tenemos configurada (policy_published)
+  - varias entradas con los emails servidores que han enviado emails con nuestro dominio
+    - row:
+      - source_ip: ip del enviador
+      - count: número de emails recibidos
+      - policy_evaluated: políticas evaluadas (DKMI y/o SPF) y que política DMARC se aplicó (disposition)
+    - identifiers: parece que es como se seleccionó que este correo era de nuestro dominio
+    - auth_results: resultados de DKIM / SPF para el servidor que envió el correo
+
+
+## Forensic
+https://blog.returnpath.com/how-to-read-your-first-dmarc-reports-part-2/
+
+Los activamos poniendo en el registro TXT:
+ruf=mailto:domain@example.com
 
 
 
