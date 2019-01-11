@@ -120,6 +120,8 @@ Hay dos tipos de reportes: agregados y forensic
 
 ### Aggregate
 https://blog.returnpath.com/how-to-read-your-first-dmarc-reports-part-1/
+https://stackoverflow.com/questions/41919848/understand-dmarc-email-record
+https://stackoverflow.com/questions/30962169/dmarc-spf-and-dkim-record-queries?rq=1
 
 En los reportes vendrá:
   - quien lo envia (report_metadata)
@@ -128,9 +130,13 @@ En los reportes vendrá:
     - row:
       - source_ip: ip del enviador
       - count: número de emails recibidos
-      - policy_evaluated: políticas evaluadas (DKMI y/o SPF) y que política DMARC se aplicó (disposition)
+      - policy_evaluated: políticas evaluadas (DKMI y/o SPF) y que política DMARC se aplicó (disposition).
+        Se chequea alineamiento, que el "From:" y "MAIL FROM" sean el mismo dominio.
+        Y para DKIM parece que chequea que el "From:" matchea la entrada d= del registro DKIM
     - identifiers: parece que es como se seleccionó que este correo era de nuestro dominio
-    - auth_results: resultados de DKIM / SPF para el servidor que envió el correo
+    - auth_results: resultados de DKIM / SPF para el servidor que envió el correo. Aquí parece que se chequea el "MAIL FROM"
+      - en spf parece que nos pone el/los dominios para los que la IP que ha enviado el correo tiene permiso de envio
+      - en dkim no me queda claro que chequea
 
 
 ## Forensic
