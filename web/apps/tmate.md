@@ -1,5 +1,7 @@
 http://tmate.io/
 
+Otra idea parecida, compartiendo via web: gotty
+
 Share terminal
 
 Emitimos nuestro terminal, via tmux, a tmate.io.
