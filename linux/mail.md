@@ -1,5 +1,7 @@
 Para enviar emails: mailx
 
+echo "mensaje" | mail -s "subject" pepe@dest.com
+
 Para leer los emails:
 mutt -f /var/mail/root
 
