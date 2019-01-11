@@ -15,6 +15,8 @@ f 100-200
 Últimos mensajes:
 h $
 
+Borrar todos:
+d *
 
 # Imap
 https://debian-administration.org/article/726/Performing_IMAP_queries_via_curl
