@@ -217,6 +217,19 @@ PERO, si hacemos r.content, lee el contenido y cierra el fichero.
 r.raw.data tambien cierra el fichero
 
 
+Guardar en un fichero, varias maneras:
+https://stackoverflow.com/questions/13137817/how-to-download-image-using-requests
+
+import requests
+import shutil
+
+r = requests.get(settings.STATICMAP_URL.format(**data), stream=True)
+if r.status_code == 200:
+    with open(path, 'wb') as f:
+        r.raw.decode_content = True
+        shutil.copyfileobj(r.raw, f)
+
+
 # Redirects
 No seguir redirects:
 allow_redirects=False

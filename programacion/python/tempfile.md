@@ -2,7 +2,7 @@ https://docs.python.org/2/library/tempfile.html
 
 import tempfile
 
-# fichero temporal
+# fichero temporal, no existe en /tmp, es solo un fd
 a = tempfile.TemporaryFile()
 a.write("Hello World!\n")
 
