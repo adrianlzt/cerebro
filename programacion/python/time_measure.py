@@ -15,11 +15,11 @@ trabajando
 timing de work con datetime: <function workdt at 0x7f674ab27048>  0:00:01.001091
 
 
-trabajando
+trabajando (solo mide el tiempo de CPU dedicado, no tiempo de reloj)
 timing de work con time.clock: <function workclk at 0x7f674ab277b8>  0.00011300000000000199
 
 
-trabajando
+trabajando (tiempo de reloj que ha pasado, en segundos)
 timing de work con time.time: <function worktm at 0x7f674ab271e0>  1.001070499420166
 """
 
