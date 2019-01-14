@@ -26,7 +26,7 @@ Para poder añadir más funcionalidad instalar plugins:
   VisualGC
   VisualVM-JConsole
   VisualVM-MBeans
-Para usarla con jboxx mirar jboss.md
+Para usarla con jboss mirar jboss.md
 
 # Protocolo
 RMI
