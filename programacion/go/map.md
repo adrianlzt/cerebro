@@ -99,3 +99,15 @@ for key, value := range m {
     flat = append(flat, key)
     flat = append(flat, value)
 }
+
+
+
+// Declarar un diccionario con distintos tipos de datos, subdict, etc
+params := map[string]interface{}{
+	"EXTERNAL_USER_NAME": "mon",
+	"MONITOR_NAME": map[string]string{
+		"MS_NAME":   "SAP CCMS Monitor Templates",
+		"MONI_NAME": "Operating System",
+	},
+}
+
