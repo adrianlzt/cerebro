@@ -111,3 +111,13 @@ params := map[string]interface{}{
 	},
 }
 
+
+// Acceder a un valor subdict usando interfaces
+Tenemos que convetir el tipo "interface{}" al tipo que sepamos que es para poder extraer el dato.
+data := map[string]interface{} {
+  "foo": map[string]interface{} {
+     "bar": "xxx",
+  },
+}
+
+fmt.Println(data["foo"].(map[string]interface{})["bar"])
