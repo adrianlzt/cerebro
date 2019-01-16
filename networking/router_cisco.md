@@ -221,8 +221,9 @@ http://www.techrepublic.com/blog/data-center/troubleshoot-cisco-routers-and-swit
 
 Activar debug de un modulo, por ejemplo de las dns:
 debug ip domain
+en otras versiones parece que es: debug domain
 
-Mostrar debugs activos
+Mostrar debugs activos (tendre que activar el "terminal monitor" para que me aparezcan por pantalla)
 sh debug
 
 Quitar todos los debug
