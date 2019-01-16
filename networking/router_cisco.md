@@ -160,6 +160,10 @@ Si no se hace match, se bloquea por defecto.
 
 ## Mostrar
 show ip access-list
+show access-list
+
+Si queremos resetear los contadores:
+clear access-list counters [NombreACL]
 
 ACL de una interfaz:
 ip access-lists interface gigabitEthernet 0/0
@@ -177,7 +181,7 @@ Usar por ejemplo como "sh running-config | be NombreACL"
 
 ## Crear
 http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/xe-3s/sec-data-acl-xe-3s-book/sec-create-ip-apply.html
-Ejemplo creando una ACL para bloquear puerto 53 (no seria necesario bloquear el TCP/53) y aplicandola sobre una interfaz para el trafico de entrada.
+Ejemplo creando una ACL para bloquear puerto 53 y aplicandola sobre una interfaz para el trafico de entrada.
 
 conf term
 ip access-list extended Block-DNS-From-The-Internet
@@ -185,6 +189,8 @@ ip access-list extended Block-DNS-From-The-Internet
   deny tcp any any eq 53
   permit ip any any
 end
+
+Podemos añadir al final de las reglas "log" o "log-input" para que loguee cuando se bloquea un paquete (log-input nos dice el punto del paquete)
 
 Cada regla que metemos se le va dando un número incremental por 10. La primera regla tendrá el 10, segunda el 20, etc. Esto lo hacemos para a posteriori poder colocar reglas entre medias.
 Podemos también especificar ese número a mano: "100 permit ip any any".

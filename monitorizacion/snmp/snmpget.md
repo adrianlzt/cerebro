@@ -1,4 +1,4 @@
-snmpget -v 2c -c COMMUNITY DIRECIP iftable
+snmpget -v 2c -c COMMUNITY DIRECIP SNMPv2-MIB::sysDescr.0
 
 Si se pone mal la community la respuesta será:
 Timeout: No Response from xx.xx.xx.xx
