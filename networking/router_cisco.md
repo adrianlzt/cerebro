@@ -192,6 +192,9 @@ end
 
 Podemos añadir al final de las reglas "log" o "log-input" para que loguee cuando se bloquea un paquete (log-input nos dice el punto del paquete)
 
+deny|permit tcp|udp source destination port
+
+
 Cada regla que metemos se le va dando un número incremental por 10. La primera regla tendrá el 10, segunda el 20, etc. Esto lo hacemos para a posteriori poder colocar reglas entre medias.
 Podemos también especificar ese número a mano: "100 permit ip any any".
 Si editamos esa access-list, lo que vayamos añadiendo se pondrá al final. Si al final tenemos el "permit ip any any" no tendrá sentido que lo metamos luego, por lo que tendremos que forzar una posición.
@@ -249,6 +252,20 @@ Con "sh log" veremos que aparece una linea tipo:
 
 Para pararlo
 terminal no monitor
+
+
+## Debug paquetes de una ip en particular
+https://www.cisco.com/c/en/us/support/docs/ip/access-lists/26448-ACLsamples.html#anc10
+Entre dos IPs:
+R1(config)#access-list 199 permit tcp host 10.1.1.1 host 172.16.1.1
+R1(config)#access-list 199 permit tcp host 172.16.1.1 host 10.1.1.1
+R1(config)#end
+R1#debug ip packet 199 detail
+
+IP packet debugging is on (detailed) for access list 199
+
+
+
 
 
 https://cway.cisco.com/go/sa/
@@ -546,7 +563,7 @@ sh monitor capture buffer all parameters
 
 
 Borrar punto de captura y buffer:
-no capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
+no monitor capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
 no monitor capture buffer NOMBREBUFFER
 
 
