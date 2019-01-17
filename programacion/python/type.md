@@ -106,3 +106,7 @@ Es equivalente a: objeto.__dict__
 
 # Tamaño de un objeto
 https://github.com/bosswissam/pysize/blob/master/pysize.py
+
+
+# Bool objeto
+Called to implement truth value testing and the built-in operation bool(); should return False or True. When this method is not defined, __len__() is called, if it is defined, and the object is considered true if its result is nonzero. If a class defines neither __len__() nor __bool__(), all its instances are considered true.
