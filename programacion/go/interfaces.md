@@ -5,6 +5,9 @@ El concepto es:
   luego creamos varios "objetos" con esas funciones implementadas
   pasamos uno de esos objetos como si fuese el tipo de la interfaz, en vez del tipo específico.
 
+Mirar embedding.md o alias.md si queremos definir nuevos métodos para un tipo no local, error:
+"Cannot define new methods on non-local type ..."
+
 
 Una interfaz es una colección de métodos que debe cumplir quien quiera implementar esa interfaz.
 Un tipo interfaz está definido por un conjunto de métodos:
