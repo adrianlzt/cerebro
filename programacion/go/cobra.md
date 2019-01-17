@@ -70,6 +70,8 @@ rootCmd.fooCmd.MarkPersistentFlagRequired("region")
   esta variante lo hace obligatorio tambien para los subcomandos
 
 
+en el init() de las funciones los flags aún no tiene valor definido.
+
 
 
 

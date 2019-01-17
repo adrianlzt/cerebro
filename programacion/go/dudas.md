@@ -12,3 +12,7 @@ O usar una interfaz:
   print(x)
 }
 ?
+
+
+En cobra, si dos subcomandos tienen los mismos parámetros, y estamos definiendo las variables en el fichero como "var xxx mmm", fallará si intentamos definir dos veces la misma.
+Que hacer? Nombres distintos es lo más evidente, pero, se podría definir las variables localmente para ese fichero? O en el init() para que solo valgan para ese fichero?

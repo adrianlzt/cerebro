@@ -84,3 +84,9 @@ a,err := strconv.ParseFloat("3.1415", 64)
 if err != nil {
   //gestionar el error
 }
+
+
+# Repetir
+https://stackoverflow.com/questions/33139020/can-golang-multiply-strings-like-python-can
+
+strings.Repeat("-", 20)
