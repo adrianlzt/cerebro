@@ -21,3 +21,9 @@ Ls logs del último arranque se guardan en
 
 El anterior en:
 /etc/rc.log.old
+
+Mensaje de inicio de arranque:
+HP-UX Start-up in progress
+
+Mensaje de inicio de parado:
+System shutdown in progress
