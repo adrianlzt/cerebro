@@ -3,6 +3,9 @@ mirar neugram/ para hacer scripts en go
 https://www.tutorialspoint.com/execute_golang_online.php
 http://play.golang.org/
 
+# go-pry
+Otro repl que nos permite meter una traza tipo "breakpoint()" en python y parar ahí con una repl
+
 # gore
 go get -u github.com/motemen/gore
 go get -u github.com/nsf/gocode
