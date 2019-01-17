@@ -54,6 +54,13 @@ PersistentFlags
 	rootCmd.PersistentFlags().String("endpoint", "default", "Endpoint of the SAP Control WSDL, Eg.: http://example.com/?wsdl")
 	viper.BindPFlag("endpoint", rootCmd.PersistentFlags().Lookup("endpoint"))
 
+Las flags con "P" al final es para poder poner un shorthand:
+IntP("flagname", "f", 1234, "help message")
+
+Si las flags tiene "Var" es porque tenemos que pasarle un puntero a la variable donde debe alamcenar el resultado:
+StringVarP(&Source, "source", "s", "", "Source directory to read from")
+
+
 Obtener valor (Lookup nos devolverá un Flag Struct: https://github.com/spf13/pflag/blob/master/flag.go#L159):
   endpoint := viper.GetString("endpoint")
 
