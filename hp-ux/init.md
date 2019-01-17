@@ -13,3 +13,11 @@ A parte se ponen los links
 
 Arrancar un servicio:
 /sbin/init.d/zabbix_agentd start
+
+
+# Logs
+Ls logs del último arranque se guardan en
+/etc/rc.log
+
+El anterior en:
+/etc/rc.log.old
