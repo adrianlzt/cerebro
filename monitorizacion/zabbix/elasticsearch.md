@@ -12,6 +12,7 @@ Meter los mappings a priori. Cambiar replication?
 Añadido en la 4.0 como experimental.
 Si ES no responde, está caído o va lento, impacta en Zabbix.
 Mejor usar el realtime export a un fichero y de ahí a ES.
+https://www.zabbix.com/documentation/4.0/manual/appendix/install/real_time_export
 
 
 Mappings usados para es: database/elasticsearch/elasticsearch.map
