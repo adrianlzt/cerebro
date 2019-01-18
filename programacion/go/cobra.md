@@ -33,6 +33,9 @@ Esto creara cmd/list.go
 Si no queremos que el comando haga nada, porque tiene subcomandos, en el run podemos poner:
 cmd.Usage()
 
+Tambien podemos tener PersistentPreRun, PreRun, PersistentPostRun, PostRun
+Pero si están definidos en un hijo, no se ejecutarán más https://github.com/spf13/cobra/pull/714
+
 
 # Subcomandos
 cobra add config
@@ -72,7 +75,7 @@ rootCmd.fooCmd.MarkPersistentFlagRequired("region")
 
 
 en el init() de las funciones los flags aún no tiene valor definido.
-Si necesitamos ejecutar algo con las variables ya rellenas podemos usar OnInitialize:
+Si necesitamos ejecutar algo con las variables ya rellenas podemos usar OnInitialize (parece que me lo ejecuta siempre, aunque este en un subcomando no llamado):
 func init() {
 	cobra.OnInitialize(initConfig)
   ...
@@ -82,6 +85,17 @@ func initConfig() {...}
 
 # Viper, configuraciones
 https://godoc.org/github.com/spf13/viper
+
+Podemos pasarle que lea un fichero de conf (JSON, YAML, HCL, etc):
+	if err := viper.ReadInConfig(); err != nil {
+		fmt.Println("Can't read config:", err)
+		os.Exit(1)
+	}
+
+Y luego podremos acceder a sus variables con:
+viper.Get("nombre")
+
+Toda la config de viper es case insensitive (cuidado, si ponemos algo en mayúsculas en la config nos lo devolverá en minúsculas)
 
 
 
