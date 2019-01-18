@@ -1,4 +1,9 @@
-Core:
+# klog
+https://github.com/kubernetes/klog/
+Variante de Kubernetes del glog oficial.
+
+
+# Core
 https://golang.org/pkg/log/
 Bastante limitado. No tiene niveles
 
