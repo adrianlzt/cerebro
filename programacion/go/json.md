@@ -42,6 +42,9 @@ res2D := &FileContent{
 res2B, _ := json.Marshal(res2D)
 fmt.Println(string(res2B))
 
+Si queremos que este identado:
+json.MarshalIndent(data, ", "    ")
+
 Y a un fichero:
 err = ioutil.WriteFile("/tmp/dat1", res2B, 0644)
 if err != nil {
