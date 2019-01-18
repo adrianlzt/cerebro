@@ -1,5 +1,7 @@
 https://gobyexample.com/structs
 
+mirar embedding.md
+
 Libreria para trabajar con structs: https://github.com/fatih/structs
 Simplifica algunas tareas, como crear un mapping a partir de un struct, comprobar valores, etc
 
