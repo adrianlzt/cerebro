@@ -66,9 +66,9 @@ type FileContent struct {
   Msg string
 }
 
-file_read, err := ioutil.ReadFile("/tmp/jobs_list.json") // file_read es un []byte
-var prev_exec FileContent
-err = json.Unmarshal(file_read, &prev_exec)
+fileRead, err := ioutil.ReadFile("/tmp/jobs_list.json") // file_read es un []byte
+var prevExec FileContent
+err = json.Unmarshal(fileRead, &prevExec)
 if err != nil {
   panic(err)
 }
