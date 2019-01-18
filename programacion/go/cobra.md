@@ -2,6 +2,7 @@ https://github.com/urfave/cli
 Una más sencilla, con ella sola como única dependencia (cobra trae un montón de dependencias)
 
 https://github.com/spf13/cobra
+https://godoc.org/github.com/spf13/cobra
 
 https://ovh.github.io/tat/sdk/golang-full-example/
 
@@ -71,6 +72,12 @@ rootCmd.fooCmd.MarkPersistentFlagRequired("region")
 
 
 en el init() de las funciones los flags aún no tiene valor definido.
+Si necesitamos ejecutar algo con las variables ya rellenas podemos usar OnInitialize:
+func init() {
+	cobra.OnInitialize(initConfig)
+  ...
+}
+func initConfig() {...}
 
 
 
