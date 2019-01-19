@@ -2,6 +2,10 @@
 https://github.com/kubernetes/klog/
 Variante de Kubernetes del glog oficial.
 
+Convención que usa kubernetes para decidir que tiene cada nivel: https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md
+
+Ver como lo usan en kubernetes: https://github.com/kubernetes/kubernetes/blob/5e86fa43f59f8ed4fd353ab17dc1e65708a9ae71/staging/src/k8s.io/component-base/logs/logs.go
+
 
 # Core
 https://golang.org/pkg/log/
