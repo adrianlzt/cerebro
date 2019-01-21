@@ -21,6 +21,7 @@ Ejemplo:
 
 pipenv install --system
   instalar los paquetes en el python del sistema
+  nos vale si queremos usar pipenv en docker
 
 pipenv sync
 instalamos lo que diga el .lock (en vez de lo que diga el Pipenv)
