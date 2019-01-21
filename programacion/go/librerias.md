@@ -78,6 +78,7 @@ pointer to above:   &{}, &[], &map[]
 %9f    width 9, default precision
 %.2f   default width, precision 2
 %9.2f  width 9, precision 2
+       equivalente a: "%*.*f", 9, 2, (si ponemos '*' tendremos que poner el valor como argumento
 %9.f   width 9, precision 0
 
 
@@ -97,6 +98,11 @@ fmt.Printf("%-10.2f bar\n", 123.456);
 123        foo
 123.46     bar
 
+
+
+Meter un tabulado (mete el número que digamos de espacios en blanco):
+fmt.Printf("%*s", 10, "hola")
+          hola
 
 
 ## Strings ##
