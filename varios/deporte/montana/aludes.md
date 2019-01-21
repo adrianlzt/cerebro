@@ -6,6 +6,12 @@ http://www.mammut.ch/en/barryvoxtraining.html
 https://regio.outdooractive.com/oar-ortovox/en/tourplanner/
 mapa donde nos pintan en colores las pendientes más peligrosas
 
+Cuadrícula de riesgos respecto a pendiente vs riesgo de avalancha:
+https://www.ortovox.com/safety-academy-lab/request.php?area=1&cnt=2&lang=en
+
+Boletín avalanchas Francia
+http://www.meteofrance.com/previsions-meteo-montagne/bulletin-avalanches
+
 
 Del curso.
 
