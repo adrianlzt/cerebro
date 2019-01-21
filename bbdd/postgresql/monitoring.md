@@ -17,3 +17,6 @@ Parámetros a monitorizar respecto a las dead tuples:
 # OpsDash
 https://www.opsdash.com/blog/postgresql-backup-restore.html#monitoring-backups-wal-archiving-and-replication
 Ver dashboard de ejemplo.
+
+# Espacio usado en disco
+Mirar disk_usage.md
