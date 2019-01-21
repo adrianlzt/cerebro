@@ -7,3 +7,5 @@ python2
 pip install scapy glob
 
 https://raw.githubusercontent.com/jullrich/pcap2curl/master/pcap2curl.py
+
+No funciona muy bien, pero nos puede medio servir para generar el curl
