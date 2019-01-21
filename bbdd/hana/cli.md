@@ -14,3 +14,7 @@ sudo -u h4dadm /usr/sap/H4D/HDB00/exe/hdbsql -U HANACLEARKEY
 
 Conectar usando user/pass:
 /usr/sap/H4D/HDB00/exe/hdbsql -u USER -p PASS
+
+
+\al
+ para tener un output tipo tabla, como mysql/postgresql
