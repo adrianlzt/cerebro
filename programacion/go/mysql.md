@@ -7,6 +7,7 @@ mysql_example.go
 
 http://go-database-sql.org/varcols.html
 Si no sabemos el número de columnas que nos devuelve SELECT
+https://stackoverflow.com/questions/29102725/go-sql-driver-get-interface-column-values
 
 
 https://github.com/jmoiron/sqlx
