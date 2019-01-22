@@ -121,3 +121,18 @@ data := map[string]interface{} {
 }
 
 fmt.Println(data["foo"].(map[string]interface{})["bar"])
+
+
+
+# Funciones
+Si queremos pasar un map en una función, se pasará automáticamente por referencia (se pasará el puntero al map).
+No tenemos que hacer nada para usarlo.
+Ejemplo:
+x := map[string]string
+f(x)
+
+func f(x map[string]string) {
+  x["esto se vera"] = "en la x del main"
+}
+
+https://play.golang.com/p/AC-vyWPnX8p

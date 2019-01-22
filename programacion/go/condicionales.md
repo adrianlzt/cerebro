@@ -39,7 +39,7 @@ switch c:=func(); c {
     blibli
 }
 
-Los break van implícitos. 
+Los break van implícitos.
 Si queremos que contínue ponemos: fallthrough
 
 También podemos usarlos como largos if-elseif- usando switch sin variable (que equivale a poner true):
@@ -51,3 +51,18 @@ switch {
   default:
     fmt.Println("evening")
 }
+
+
+# Switch para chequear type de un interface{}
+switch v := (*val).(type) {
+case string:
+	tags[col] = v
+case []byte:
+	tags[col] = string(v)
+case int64, int32, int:
+	tags[col] = fmt.Sprintf("%d", v)
+default:
+	log.Println("failed to add additional tag", col)
+}
+
+El "truco" es que va probando cada uno de las posibilidades del switch en el "(type)". Lo primero probaría: (*val).(string). Si esa conversión es válida, hace el tags[col] = v (la v ya convertida en string)
