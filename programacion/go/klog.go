@@ -7,10 +7,23 @@ import (
 	"k8s.io/klog"
 )
 
+// Fatal - error Fatal, stacktrace y sale con rc=255
+// Exit - error Fatal y sale con rc=1
+// Error - Always an error
+// Warning - Something unexpected, but probably not an error
+// Info V(0) - Generally useful for this to ALWAYS be visible to an operator (Programmer errors, Logging extra info about a panic, CLI argument handling)
+// Info V(1) - A reasonable default log level if you don't want verbosity (Information about config (listening on X, watching Y), Errors that repeat frequently that relate to conditions that can be corrected (pod detected as unhealthy))
+// Info V(2) - Useful steady state information about the service and important log messages that may correlate to significant changes in the system. This is the recommended default log level for most systems. (Logging HTTP requests and their exit code, System state changing (killing pod), Controller state change events (starting pods), Scheduler log messages)
+// Info V(3) - Extended information about changes (More info about system state changes)
+// Info V(4) - Debug level verbosity (Logging in particularly thorny parts of code where you may want to come back later and check it)
+// Info V(5) - Trace level verbosity (Context to understand the steps leading up to errors and warnings, More information for troubleshooting reported issues)
+
+// Los mensajes la idea es que se vayan componiendo, tipo: componente: fallo tal: error conex: invalid port
+
 // Por defecto solo sale por stderr los mensajes error, el resto se escriben en /tmp/NombreApp.HOSTNAME.USER.log.NIVEL.YYYYMMDD-HHMMSS.PID
 // También deja unos fichero /tmp/NombreApp.NIVEL que son enlaces al último fichero generado.
 // Cada fichero tiene las trazas de su nivel y las superiores (WARNING tiene trazas warning y error)
-//
+
 // Cuando escribimos en un fichero, al comienzo pondrá una cabecera tipo:
 // Log file created at: 2019/01/18 19:24:44
 // Running on machine: archer

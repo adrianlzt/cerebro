@@ -107,3 +107,34 @@ vi cmd/version.go
 var versionApp = "NA"
 
 go build -ldflags "-X pdihub.hi.inet/dsmctools/dsmctools-openshift/sources/cmd.versionApp=9" -o scripts/check_openshift  sources/*.go
+
+
+
+# Logging
+Mirar klog.md
+
+Las flags de klog parece que se pegan con las opciones de cobra.
+Si ponemos -h saltarán las opciones definidas para "flag".
+
+En cmd/root.go
+import (
+	...
+	goflag "flag"
+	flag "github.com/spf13/pflag"
+)
+...
+var rootCmd = &cobra.Command{
+	...
+	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		goflag.Parse()
+	},
+}
+...
+func init() {
+	klog.InitFlags(goflag.CommandLine) // Registramos las flags de klog en "goflag"
+	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)  // Pasamos las "goflags" a pflag
+}
+
+
+
+

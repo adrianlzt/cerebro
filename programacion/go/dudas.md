@@ -16,3 +16,12 @@ O usar una interfaz:
 
 En cobra, si dos subcomandos tienen los mismos parámetros, y estamos definiendo las variables en el fichero como "var xxx mmm", fallará si intentamos definir dos veces la misma.
 Que hacer? Nombres distintos es lo más evidente, pero, se podría definir las variables localmente para ese fichero? O en el init() para que solo valgan para ese fichero?
+
+
+
+En cobra, cuando tenemos un initConfig() que usan varios subcomandos.
+Hacer una variable "config" compartida a nivel pkg que inicializa initConfig(*someCfg).
+O mejor hacer:
+  config := initConfig(*someCfg)
+
+initConfig() debe devolver una var o un puntero?

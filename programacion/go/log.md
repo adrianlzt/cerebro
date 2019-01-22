@@ -1,6 +1,7 @@
 # klog
 https://github.com/kubernetes/klog/
 Variante de Kubernetes del glog oficial.
+mirar klog.md
 
 Convención que usa kubernetes para decidir que tiene cada nivel: https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md
 
