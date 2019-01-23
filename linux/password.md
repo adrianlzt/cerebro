@@ -5,6 +5,11 @@ Por que no forzar a la gente a cambiar el password periódicamente:
 https://www.schneier.com/blog/archives/2016/08/frequent_passwo.html
 
 
+Lib para chequear que la password es buena:
+https://blogs.dropbox.com/tech/2012/04/zxcvbn-realistic-password-strength-estimation/
+
+Passwords ya hackeadas públicas:
+https://haveibeenpwned.com/Passwords
 
 
 Borrar password de usuario:

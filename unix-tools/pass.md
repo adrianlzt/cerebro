@@ -10,6 +10,24 @@ yaourt -S qtpass
 Mi version modificada (ultimos commits del repo oficial mas mi cambio para tener -e. Lo ultimo del repo oficial está más adelantado de la 1.6.3):
 https://github.com/adrianlzt/password-store/releases/tag/1.6.3-1
 
+Extensiones
+https://github.com/tijn/awesome-password-store/blob/master/README.md
+
+
+# Chequear passwords
+https://gitlab.com/roddhjav/pass-audit
+yay pass-audit
+
+Chequea las passwords contra la base de datos de HaveIBeenPowned y una lib de Dropbox
+pass audit NOMBRE
+
+
+# Aging de la passwords
+https://github.com/tijn/pass-age
+
+pass age NOMBRE
+
+
 # Para grupos
 https://github.com/keymon/password-store-for-teams
 http://git.ucc.asn.au/?p=zanchey/uccpass.git;a=summary
