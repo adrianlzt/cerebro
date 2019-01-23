@@ -1,4 +1,7 @@
 https://www.passwordstore.org
+Usar version go: https://github.com/gopasspw/gopass
+  lo único malo es que no soporta extensiones
+  se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
 
 App para gestionar un almacen de clave estilo keepass pero mediante consola.
 
@@ -6,6 +9,14 @@ App para android: https://play.google.com/store/apps/details?id=com.zeapo.pwdsto
 
 App X11: qtpass
 yaourt -S qtpass
+
+Extension web: github.com/gopasspw/gopassbridge
+Modificada para quitar el dominio (.com)
+https://github.com/adrianlzt/gopassbridge
+cargar desde chrome chrome://extensions/ con "Carga descromprimida", despues de hacer un "make development" apuntando al dir gopassbridge/chrome-release
+Hara falta ejecutar de nuevo "gopass jsonapi configure"
+Habrá que modificar el fichero /home/adrian/.config/chromium/NativeMessagingHosts/com.justwatch.gopass.json para poner el id que nos haya asignado chrome
+
 
 Mi version modificada (ultimos commits del repo oficial mas mi cambio para tener -e. Lo ultimo del repo oficial está más adelantado de la 1.6.3):
 https://github.com/adrianlzt/password-store/releases/tag/1.6.3-1
@@ -35,17 +46,6 @@ http://git.ucc.asn.au/?p=zanchey/uccpass.git;a=summary
 # Para ssh
 https://github.com/jlesquembre/pass-sshaskpass
 
-# gopass
-App en go estilo spotlight de mac
-https://github.com/cortex/gopass
-Instalar: go get github.com/cortex/gopass
-Llamar como: PINENTRY_USER_DATA=gnome3 /home/adrian/.gvm/pkgsets/go1.6.2/global/bin/gopass
-  Mirar en gnupg.md el tema de tener un pinentry que se pueda modificar con una variable de entorno
-
-Crear /usr/local/bin/gopass:
-PINENTRY_USER_DATA=gnome3 /home/adrian/.gvm/pkgsets/go1.6.2/global/bin/gopass
-
-Y asociar el key-binding Ctrl+Mays+s
 
 # pext
 https://github.com/TheLastProject/Pext
