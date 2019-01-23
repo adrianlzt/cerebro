@@ -1,7 +1,9 @@
 https://www.passwordstore.org
 Usar version go: https://github.com/gopasspw/gopass
+  https://github.com/gopasspw/gopass/blob/master/docs/features.md
   lo único malo es que no soporta extensiones
   se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
+  hace automáticamente push al hacer modificaciones (solo al origin)
 
 App para gestionar un almacen de clave estilo keepass pero mediante consola.
 
@@ -13,7 +15,10 @@ yaourt -S qtpass
 Extension web: github.com/gopasspw/gopassbridge
 Modificada para quitar el dominio (.com)
 https://github.com/adrianlzt/gopassbridge
-cargar desde chrome chrome://extensions/ con "Carga descromprimida", despues de hacer un "make development" apuntando al dir gopassbridge/chrome-release
+cargar desde chrome chrome://extensions/ con "Carga descromprimida", despues de hacer un:
+make clean
+make package
+E instalar en chrome apuntando al dir gopassbridge/chrome-release
 Hara falta ejecutar de nuevo "gopass jsonapi configure"
 Habrá que modificar el fichero /home/adrian/.config/chromium/NativeMessagingHosts/com.justwatch.gopass.json para poner el id que nos haya asignado chrome
 
