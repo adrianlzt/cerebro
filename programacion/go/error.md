@@ -108,6 +108,17 @@ return &dashboardExistsError{
 		}
 
 
+
+# Métodos para detectar errores custom
+Patrón donde creamos funciones que nos servirán para identificar el tipo de error:
+filename := "a-nonexistent-file"
+if _, err := os.Stat(filename); os.IsNotExist(err) {
+	fmt.Printf("file does not exist")
+}
+
+
+
+
 # Context / Wrap errors
 https://github.com/pkg/errors#adding-context-to-an-error
 Capturado un error, añadirle el contexto donde estamos y pasar el error hacia arriba.

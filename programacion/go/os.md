@@ -29,3 +29,14 @@ if err != nil {
 for _, f := range files {
         fmt.Println(f.Name())
 }
+
+# File not exists
+filename := "a-nonexistent-file"
+if _, err := os.Stat(filename); os.IsNotExist(err) {
+	fmt.Printf("file does not exist")
+}
+
+Para file exist podemos hacer:
+if _, err := os.Stat(filename); err == nil {
+
+
