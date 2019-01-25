@@ -1,4 +1,4 @@
-No entiendo del todo el concepto, así que pego el manual: http://tour.golang.org/#43
+https://tour.golang.org/moretypes/25
 
 Function closures
 

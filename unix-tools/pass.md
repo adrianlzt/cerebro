@@ -3,7 +3,10 @@ Usar version go: https://github.com/gopasspw/gopass
   https://github.com/gopasspw/gopass/blob/master/docs/features.md
   lo único malo es que no soporta extensiones
   se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
-  hace automáticamente push al hacer modificaciones (solo al origin)
+  hace automáticamente push al hacer modificaciones (origin y al otro remote via hook)
+  almacenar binarios:
+    gopass binary cp fichero algun/sitio
+    gopass binary cp algun/sitio fichero
 
 App para gestionar un almacen de clave estilo keepass pero mediante consola.
 

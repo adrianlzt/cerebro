@@ -11,11 +11,110 @@ Simplifica el acceso a sql.
 Por ejemplo, nos permite pasarle un struct, o array de struct, a una query SELECT y nos rellena el struct/array
 
 
+Postgresql ejemplo: https://www.calhoun.io/connecting-to-a-postgresql-database-with-gos-database-sql-package/
+El driver github.com/lib/pq no devuelve los ColumnTypes
+
+sqlite: https://raw.githubusercontent.com/mattn/go-sqlite3/master/_example/simple/simple.go
+
 
 http://go-database-sql.org/varcols.html
 Si no sabemos el número de columnas que nos devuelve SELECT
 https://stackoverflow.com/questions/29102725/go-sql-driver-get-interface-column-values
 
+Los drivers generalmente soportarán el devolvernos el tipo de dato que estamos escaneando:
+https://golang.org/pkg/database/sql/#ColumnType
+Obtenemos el array de tipos de datos con: rows.ColumnTypes()
+
+Podemos usar esta información para crear una slice de punteros que pasar a Scan().
+
+La implementación para generar el array de punteros.
+Posiblemente haya una forma mejor de generar el puntero a almacenar sin tener que hacer esos if-elseif
+Seguramente también falten algunos tipos de datos
+	ct, err := rows.ColumnTypes()
+	if err != nil {
+		log.Fatalf("obtaining column types")
+	}
+
+	colPtrs := make([]interface{}, len(colNames))
+	for i, c := range ct {
+		b := c.ScanType()
+
+		var num int64
+		var driverDec driver.Decimal
+		var str string
+		var time time.Time
+		var iface interface{}
+
+		// bool lo lee como uint8, por lo que usaremos int64
+
+		typeOfNum := reflect.TypeOf(num)
+		typeOfDriverDec := reflect.TypeOf(driverDec)
+		typeString := reflect.TypeOf(str)
+		typeTime := reflect.TypeOf(time)
+
+		if b.ConvertibleTo(typeOfNum) {
+			colPtrs[i] = &num
+		} else if b.ConvertibleTo(typeOfDriverDec) {
+			colPtrs[i] = &driverDec
+		} else if b.ConvertibleTo(typeString) {
+			colPtrs[i] = &str
+		} else if b.ConvertibleTo(typeTime) {
+			colPtrs[i] = &time
+		} else {
+			colPtrs[i] = &iface
+		}
+	}
+
+
+Una vez retornemos la información, tendremos que usar un switch-type para ver que dato se nos ha devuelto.
+Igualmente, aqui seguramente falten tipos de datos. "col" es el puntero almacenado en colPtrs que hemos pasado a Scan()
+driver.Decimal, en el caso de SAP HANA, es un big.Rat
+	switch v := col.(type) {
+	case *string:
+		pp := *v
+		fields[colName] = pp
+	case *driver.Decimal:
+		f64, _ := (*big.Rat)(v).Float64()
+		fields[colName] = f64
+	case *int64:
+		pp := *v
+		fields[colName] = pp
+	case *time.Time:
+		pp := *v
+		fields[colName] = pp
+	default:
+		log.Printf("hana: unknown data type to convert field: %T\n", v)
+	}
+
+
+
+Otra forma es generar una lista de punteros apuntando a interface{}
+https://stackoverflow.com/a/33363314
+Ejemplo de función que acepta un "select *" y pinta el resultado.
+Luego se hace un cast para comprobar que tipo de dato es.
+
+Para SAP HANA he encontrado que los float los devuelve como []uint8 al pasarle un interface{} como destino del almacenamiento.
+Podemos hacer uso del método Scan() de driver.Decimal para comprobar si ese []uint8 es un Decimal:
+// Los float, si pasamos a Scan() un interface{} se implementan como []uint8
+// Usamos el método Scan de driver.Decimal para comprobar si este []uint8 es un driver.Decimal
+func convertToFloat(v []uint8) (float64, error) {
+	x := &driver.Decimal{}
+	err := x.Scan(v)
+	if err != nil {
+		return 0, fmt.Errorf("[]uint8 is not type driver.Decimal")
+	}
+
+	bigRat := (big.Rat)(*x)  // Por debajo los Decimal son big.Rat. Cast para poder usar los metodos de Rat
+	f, _ := bigRat.Float64()  // Convertimos a float, ignoramos saber si el resultado es exacto
+	return f, nil
+}
+
+
+
+
+
+
+El ejemplo siguiente creo que no está muy bien al final, mejor hacer como el ejemplo de stackoverflow
 
 // Retorna los datos obteniedos al realizar la query.
 // Retorna un array, donde cada row corresponde a un elemento del array.

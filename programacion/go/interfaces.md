@@ -9,6 +9,11 @@ Mirar embedding.md o alias.md si queremos definir nuevos métodos para un tipo n
 "Cannot define new methods on non-local type ..."
 
 
+Ejemplo, queremos pasar una variable a una función. Si ponemos el tipo directamente tendremos que pasar esa variable exactamente.
+Pero si ponemos una interfaz, podremos pasar cualquier variable que cumpla esa interfaz.
+Ejemplo: https://play.golang.com/p/fDi-YcLNZuL
+
+
 Una interfaz es una colección de métodos que debe cumplir quien quiera implementar esa interfaz.
 Un tipo interfaz está definido por un conjunto de métodos:
 
@@ -112,6 +117,34 @@ func otrafun(c Client) {
   fmt.Println(c.GetUrl())
   fmt.Println(c.GetData())
 }
+
+
+
+
+# interface como valor abstracto
+Podemos usar "interface{}" cuando no sabemos que tipo de dato nos van a pasar.
+Luego lo convertiremos con: var.(tipo).
+Mira reflect.md
+
+Si queremos crear un nuevo interface, dos formas:
+var x interface{}  // será Type nil
+x := new(interface{})  // será type *interface{}
+
+
+## punteros interface{}
+interface{}
+
+Puntero de interface:
+*interface{}
+
+Si nos da el error:
+invalid indirect of XXX (type interface {})
+Es que estamos intentando usar *nombre con un interface{}, cuando el tipo tiene que ser *interface{}
+Tal vez lo hemos puesto mal en el parámetro de la función?
+func f(x interface{})  vs  func f(x *interface{})
+
+
+
 
 
 # Problemas

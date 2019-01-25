@@ -1,6 +1,8 @@
 https://golang.org/pkg/reflect/
 https://golang.org/doc/articles/laws_of_reflection.html
 
+Para convertir de string a numeros mirar strconv.md
+
 Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types. 
 
 Con TypeOf obtendremos los "metadatos". Por ejemplo, de un struct obtendremos el nombre de los campos y el tipo.
@@ -35,6 +37,10 @@ https://tour.golang.org/methods/15
 Si intentamos convertir algo que no es posible dará un panic
 
 t, ok := i.(T)
+  esto es para convertir interface{} a un tipo. Debera matchear con lo que se encuentre en interface, si no fallará. Mirar el "switch" de abajo para este tipo de conversiones.
+
+Si i es *interface{} pondremos:
+(*i).(T)
 
 Si omitimos el valor de retorno "ok" (f = i.(float64)), y no se puede convertir, dará un panic.
 
@@ -54,9 +60,24 @@ var floatType = reflect.TypeOf(float64(0))
 func getFloat(unk interface{}) (float64, error) {
     v := reflect.ValueOf(unk)
     v = reflect.Indirect(v)
-    if !v.Type().ConvertibleTo(floatType) {
+	  if !v.Type().ConvertibleTo(floatType) {
         return 0, fmt.Errorf("cannot convert %v to float64", v.Type())
     }
     fv := v.Convert(floatType)
     return fv.Float(), nil
 }
+
+
+# Truco convertir con switch
+https://tour.golang.org/methods/16
+
+	switch v := col.(type) {
+	case string:
+		fields[colName] = v
+	case []byte:
+		fields[colName] = string(v)
+	case int64, int32, int:
+		fields[colName] = fmt.Sprintf("%d", v)
+	default:
+		log.Println("hana: unknown data type to covert field", colName)
+	}

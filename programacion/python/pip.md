@@ -23,6 +23,9 @@ $ pip show -f SomePackage
 $ pip uninstall <libreria>
 $ pip list
 
+$ pip install --editable .
+instala el paquete en "." sin moverlo al site-packages. Útil para desarrollar
+
 
 ## Proxy ## es https_proxy, NO http_proxy
 https_proxy=http://web-proxy.mydomain.com pip install paquete

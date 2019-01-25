@@ -48,7 +48,7 @@ t.Skip("no ejecutar")
 
 # Mock
 Si queremos mockear una función tendrá que ser parte de una interfaz, y lo que haremos es redifinir esa interfaz con las funciones mockeadas.
-Ej.:
+Ej.: https://play.golang.com/p/fDi-YcLNZuL
 
 Queremos mockear la función Get:
 func update(c client) string {
@@ -107,13 +107,18 @@ func TestSomething(t *testing.T) {
 Si pulsamos sobre el fichero podremos ver que lineas estan cubiertas por los test
 
 
+
 ## Assertions
+github.com/stretchr/testify/assert
+assert.Equal(t, 1, 1)
+
+
+Otra opción:
 https://github.com/smartystreets/goconvey/wiki/Assertions
 
 
 Comparar que dos objetos son iguales
 So(cosa1, ShouldEqual, cosa2)
-
 
 Para arrays, slices, maps y structs
 So(cosa1, ShouldResemble, cosa2)

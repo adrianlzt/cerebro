@@ -42,3 +42,8 @@ add_fin(&data)
 func add_fin(data *Datos) {
   data.fin = "fin"
 }
+
+
+
+# Interface
+mirar interfaces.md #Punteros

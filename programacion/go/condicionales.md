@@ -53,7 +53,10 @@ switch {
 }
 
 
+
 # Switch para chequear type de un interface{}
+https://tour.golang.org/methods/16
+
 switch v := (*val).(type) {
 case string:
 	tags[col] = v

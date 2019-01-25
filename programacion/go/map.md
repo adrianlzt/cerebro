@@ -64,7 +64,17 @@ http://play.golang.org/p/S3wj1EJGjH
 Si queremos copiar el valor usar la copia de maps que pongo más arriba.
 
 # Mapa de mapa
-make(map[string]map[int]UnStruct)
+mapa := make(map[string]map[int]UnStruct)
+
+El "submapa" no estará inicializado, por lo que no podremos hacer:
+mapa["asda"][23] = ...
+
+Tendremos que inicializarlo, podemos hacerlo chequeando si ya lo está:
+if _,ok := mapa["adas"]; !ok {
+  mapa["adas"] = make(map[int]UnStruct)
+}
+mapa["adas"][23] = ...
+
 
 
 # Flatten

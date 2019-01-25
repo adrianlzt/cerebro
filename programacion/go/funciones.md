@@ -34,6 +34,9 @@ func split(sum int) (x, y int) {
 }
 
 
+
+# Closures / functions as variables
+mirar closures.md
 Una variable puede ser una función.
 Nos sirve para poder meter funciones dentro de funciones (que de otra manera no está permitido)
 
@@ -42,6 +45,14 @@ funcion := func(x,y int) int {
 }
 
 
+Si tenemos que pasar una función como parámetro, pondremos el tipo de dato de la forma:
+"func(int, int) string"
+
+Tambien podemos tener que hacer cast:
+fn.(func() string)()
+
+
+# Interfaces
 Si vemos algo tipo:
 func (f MyFloat) Abs() float64 {}
 Es una interfaz

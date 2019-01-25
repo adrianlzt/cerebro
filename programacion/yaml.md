@@ -1,5 +1,8 @@
 http://yaml.org/
 
+https://github.com/cblp/yaml-sucks/
+Cuidado con las respuestas de diferentes librerías.
+
 YAML: YAML Ain't Markup Language
 
 What It Is: YAML is a human friendly data serialization

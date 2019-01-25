@@ -12,3 +12,8 @@ pp.Print(m)
 
 # Otra alternativa
 https://github.com/davecgh/go-spew
+
+
+# Otra
+import . "github.com/tylerwince/godbg"
+Dbg(a)

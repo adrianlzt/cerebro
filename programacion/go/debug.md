@@ -6,6 +6,8 @@ UI: https://github.com/aarzilli/gdlv
   go get -u github.com/aarzilli/gdlv
   cd path/package/main
   gdlv debug -arg1 val1
+  > b main.main
+  > c
 
 neovim plugin: https://github.com/jodosha/vim-godebug
   :GoToggleBreakpoint
@@ -41,6 +43,7 @@ stack		mostrar stack
 
 # Cutre
 println("traza %s", valor)
+mirar pretty_print.md
 
 
 # Mostrar una linea diciendo donde estamos, fichero, linea y funcion

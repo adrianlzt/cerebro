@@ -20,8 +20,8 @@ for {
 Bucle sobre un array (i va valiendo 0,1,2. v valiendo 1,5,10):
 pow = []int {1,5,10}
 for i, v := range pow { }
-range hace un retorno de dos valores, en el primero te pasa el índice por donde va iterando (empezando en 0) y en el segundo el valor
-v es el valor devuelto. No se puede usar como un puntero para poner el valor en el array.
+range hace un retorno de dos valores, en el primero te pasa el índice por donde va iterando (empezando en 0) y en el segundo el valor (una copia).
+v es el valor devuelto. No se puede usar como un puntero para poner el valor en el array. Si queremos hacer eso, usar pow[i] = ...
 
 # Channels
 The loop for i := range c receives values from the channel repeatedly until it is closed.

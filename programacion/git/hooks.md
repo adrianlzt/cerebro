@@ -25,6 +25,12 @@ git config --global core.hooksPath /path/to/my/centralized/hooks
     [core]
           hooksPath = ~/.git_hooks
 
+Esto hará que no podamos usar los hooks locales.
+Aunque podemos meter un "snippet" en el hook global para llamar al local si existe:
+if [ -e ./.git/hooks/post-commit ]; then
+    ./.git/hooks/post-commit "$@"
+fi
+
 Para saber de donde está almacenado el hook que estamos usando:
 git rev-parse --git-path hooks/pre-commit
 
