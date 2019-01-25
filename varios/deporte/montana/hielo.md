@@ -9,3 +9,19 @@ Análisis tornillos de hielo, resistencia, etc: http://www.jjgeng.com/html/body_
 
 Hielo francia
 http://ice-fall.com/
+
+
+# Savoie (http://www.compagnie-guides-vanoise.com/fr/activites/hiver/cascades-de-glace)
+Tarentaise
+- Cascade de Bellecôte (Peisey Nancroix)
+- Cascade de la Daille (Val d'Isère)
+- Vallée des Chapieux (Bourg St Maurice)
+- Cascade de la Gurraz (Ste Foy Tarentaise)
+
+Maurienne
+- Cascade du Nant / Cascade de la Norma (Avrieux-La Norma)
+- Cascade de la Frête (Bessans)
+-  Vallée des Arves (Foncouverte)
+- Vallée de Polset (Modane)
+- Vallée du Doron (Termignon)
+- Cascade d'Orelle (Orelle)
