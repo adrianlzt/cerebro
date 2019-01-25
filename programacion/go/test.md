@@ -112,6 +112,10 @@ Si pulsamos sobre el fichero podremos ver que lineas estan cubiertas por los tes
 github.com/stretchr/testify/assert
 assert.Equal(t, 1, 1)
 
+Compara slices sin importar el orden
+assert.ElementsMatch(t, [1, 3, 2, 3], [1, 3, 3, 2])
+
+
 
 Otra opción:
 https://github.com/smartystreets/goconvey/wiki/Assertions
