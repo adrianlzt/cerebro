@@ -24,6 +24,10 @@ strings.Join(["a","b"], "")
 # Cortar
 "cadena"[2:5] -> "den"
 
+# Prefix / Suffix
+HasPrefix(str, prefijo)
+HasSuffix(string, sufijo)
+
 # Trim / strip
 strings.TrimPrefix("Goodbye,, world!", "Goodbye,")
 ", world!"
