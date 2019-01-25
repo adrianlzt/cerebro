@@ -152,6 +152,7 @@ zbx.map.delete(["8"])
 
 # py-zabbix, con esta podemos enviar traps
 https://pypi.org/project/py-zabbix/
+https://py-zabbix.readthedocs.io/en/latest/
 
 from pyzabbix import ZabbixMetric, ZabbixSender
 
@@ -164,3 +165,13 @@ packet = [
 ]
 
 result = ZabbixSender(use_config=True).send(packet)
+
+
+from pyzabbix import ZabbixMetric, ZabbixSender
+metrics = []
+m = ZabbixMetric('localhost', 'cpu[usage]', 20)
+metrics.append(m)
+zbx = ZabbixSender('127.0.0.1')
+zbx.send(metrics)
+
+pyzabbix.sender.ZabbixSender(zabbix_server='127.0.0.1', zabbix_port=10051, use_config=None, chunk_size=250)

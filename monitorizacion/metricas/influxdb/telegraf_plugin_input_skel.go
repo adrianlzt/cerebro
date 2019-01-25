@@ -1,6 +1,8 @@
 package sap
 
 import (
+	"log"
+
 	"github.com/influxdata/telegraf"
 	"github.com/influxdata/telegraf/plugins/inputs"
 )
@@ -59,6 +61,11 @@ func (c *Ccms) Gather(acc telegraf.Accumulator) error {
 	tags["foo"] = "bar"
 
 	acc.AddFields("example", fields, tags)
+
+	log.Println("D! Mensaje debug")
+	log.Println("I! Mensaje info")
+	log.Println("W! Mensaje warning")
+	log.Println("E! Mensaje error")
 	return nil
 }
 
