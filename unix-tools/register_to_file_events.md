@@ -1,1 +1,1 @@
-inotify.md
+entr.md

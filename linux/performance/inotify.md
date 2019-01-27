@@ -1,3 +1,5 @@
+Para usarlo como tool mejor usar entr, más sencillo.
+
 Vigila ficheros o directorios.
 Más simple que auditd, pero nos da menos información (solo fichero, tiempo y acción)
 

@@ -16,6 +16,8 @@ go test -v
 go test -v -run NameOfTest
 
 Mejor usar Goconvey (mirar más abajo) Roto? No me funciona 27/1/2019. Y parece que el desarrollo/mantenimiento se ha abandonado
+Substituo para ver como van las ejecuciones de los test en tiempo real:
+gotty sh -c "fd \.go | entr -c go test -v"
 
 
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.
