@@ -18,7 +18,8 @@ Si tenemos que pasar tipos de datos entre el plugin y el programa, esa definici�
 Por ejemplo, si definimos en el main y en el plugin el mismo struct, fallará, porque interpretará que es distinto.
 Si intentamos convertir un interface{} en un struct definido de la misma manera, también fallará: panic: interface conversion: interface {} is main.Persona, not main.Persona (types from different packages)
 
-Podemos usar gob para codificar/decodificar el struct que necesitamos usar. Declarándolo las dos veces de la misma manera en el programa y el plugin. Ejemplo: 
+Podemos usar gob para codificar/decodificar el struct que necesitamos usar. Declarándolo las dos veces de la misma manera en el programa y el plugin. Ejemplo: https://gist.github.com/b86d45551fc55669a4a763d0705b3cad
+
 
 
 El problema de las issues de github es que si usamos la misma libreria pero en paths distintos, tabmién fallará.
