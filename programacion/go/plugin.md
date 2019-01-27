@@ -26,6 +26,8 @@ https://github.com/golang/go/issues/26759
 https://github.com/golang/go/issues/18827
 
 
+Relacionado, el plugin y el programa deben haberse compilado con la misma versión de las librerias.
+
 
 # Hashicorp
 https://github.com/hashicorp/go-plugin
