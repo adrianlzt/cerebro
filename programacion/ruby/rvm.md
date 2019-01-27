@@ -19,7 +19,12 @@ rvm install --proxy http://blabla.com:4322 ruby-1.9.3
 Para usar el ruby del sistema:
 rvm use system
 
-Para otras versiones, podemos verlas con: rvm list
+Para otras versiones, podemos verlas con:
+rvm list
+  instalados
+rvm list known
+  disponibles
+
 rvm use blabla
 
 Las versiones de ruby que instalemos con rvm se hacen sobre:
