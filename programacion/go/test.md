@@ -15,7 +15,7 @@ Correr test a mano:
 go test -v
 go test -v -run NameOfTest
 
-Mejor usar Goconvey (mirar más abajo)
+Mejor usar Goconvey (mirar más abajo) Roto? No me funciona 27/1/2019. Y parece que el desarrollo/mantenimiento se ha abandonado
 
 
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.

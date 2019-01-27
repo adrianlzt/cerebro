@@ -90,3 +90,4 @@ done
 
 Ejemplos de uso:
   Generar ficheros compilados cuando se modifica uno de los ficheros fuente.
+  Lanzar tests cuando se modifican los ficheros fuente
