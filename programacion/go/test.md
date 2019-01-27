@@ -42,9 +42,13 @@ go test -v
 t.Logf("mensaje")
 t.Errorf("coso %d", numero)
 t.Fatalf("asd")
+  esto sale en ese punto del test
 
 # Skip
 t.Skip("no ejecutar")
+
+# Salir del test
+t.FailNow()
 
 
 
