@@ -21,3 +21,6 @@ zypper repos
 
 Activar repo:
 zypper modifyrepo --enable reponame
+
+Actualizar un repo:
+zypper ref -r nombre

@@ -20,6 +20,9 @@ Substituo para ver como van las ejecuciones de los test en tiempo real:
 gotty sh -c "fd \.go | entr -c go test -v"
 
 
+Usar "assert" como libreria helper para generar los tests (mirar más abajo)
+
+
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.
 Por ejemplo: main.go -> main_test.go
 
@@ -116,6 +119,7 @@ Si pulsamos sobre el fichero podremos ver que lineas estan cubiertas por los tes
 
 ## Assertions
 github.com/stretchr/testify/assert
+https://godoc.org/github.com/stretchr/testify/assert
 assert.Equal(t, 1, 1)
 
 Compara slices sin importar el orden
