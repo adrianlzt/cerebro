@@ -15,6 +15,9 @@ Correr test a mano:
 go test -v
 go test -v -run NameOfTest
 
+go test fichero_test.go MAL!
+  esto no pilla el package, parece que corre el fichero _test de forma aislada
+
 Mejor usar Goconvey (mirar más abajo) Roto? No me funciona 27/1/2019. Y parece que el desarrollo/mantenimiento se ha abandonado
 Substituo para ver como van las ejecuciones de los test en tiempo real:
 gotty sh -c "fd \.go | entr -c go test -v"
