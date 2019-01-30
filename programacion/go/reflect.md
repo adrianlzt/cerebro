@@ -3,6 +3,11 @@ https://golang.org/doc/articles/laws_of_reflection.html
 
 Para convertir de string a numeros mirar strconv.md
 
+Para convertir un named type a su tipo original:
+  type pepe string
+  var p pepe
+  unaString := string(p)
+
 Package reflect implements run-time reflection, allowing a program to manipulate objects with arbitrary types. 
 
 Con TypeOf obtendremos los "metadatos". Por ejemplo, de un struct obtendremos el nombre de los campos y el tipo.
