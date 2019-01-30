@@ -59,6 +59,9 @@ t.FailNow()
 
 
 # Mock
+Libreria que nos facilita los mock: https://github.com/stretchr/testify
+Generador de interfaces para mock: https://github.com/vektra/mockery
+
 Si queremos mockear una función tendrá que ser parte de una interfaz, y lo que haremos es redifinir esa interfaz con las funciones mockeadas.
 Ej.: https://play.golang.com/p/fDi-YcLNZuL
 
@@ -72,6 +75,8 @@ type FakeClient struct {}
 func (c FakeClient) Get() string {
   return "fake result"
 }
+
+
 
 # Goconvey
 http://goconvey.co/
@@ -157,3 +162,11 @@ $ go run -race mysrc.go  // to run the source file
 $ go build -race mycmd   // to build the command
 $ go install -race mypkg // to install the package
 
+
+
+# SQL
+Mirar en sql.md para mockear go/sql
+
+
+# BDD
+https://github.com/DATA-DOG/godog

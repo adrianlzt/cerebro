@@ -4,6 +4,8 @@ http://go-database-sql.org
 
 mysql_example.go
 
+Tests, libreria para mockear un driver sql: https://github.com/DATA-DOG/go-sqlmock
+
 
 
 https://github.com/jmoiron/sqlx

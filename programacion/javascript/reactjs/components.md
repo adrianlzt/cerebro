@@ -4,6 +4,7 @@ https://blog.bitsrc.io/11-react-ui-component-playgrounds-for-2018-eef5a87a1bf8
 
 
 Prebuild components: https://news.ycombinator.com/item?id=18234867
+https://jetbrains.github.io/ring-ui/master/index.html?ref=stackshare
 
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
