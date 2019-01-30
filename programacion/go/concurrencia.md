@@ -17,6 +17,9 @@ La evaluación de x,y,z se hace en el thread actual, y la ejecución de f en el 
 
 Ambos threads comparten el mismo 'address space', por lo que el acceso a memoria debe estar sincronizado.
 
+Ejemplo de como usar gorutinas y canales para crear una serie de "workers" que procesan unos trabajos: https://play.golang.com/p/Xej_bnYnlSr
+
+
 ## Channels
 Es la forma de comunicarse entre la hebras creadas y la principal
 ch <- v   envia v al canal ch (espera hasta que el recibidor este listo)
