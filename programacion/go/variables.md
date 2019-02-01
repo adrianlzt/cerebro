@@ -78,11 +78,18 @@ fmt.Println(n) -> &{3 0}
 
 
 
-# Globales
-Podemos definir una variable global en un fichero .go haciendolo fuera de cualquier "func".
-Cuidado! Si dentro de un "func" hacemos:
-nombre_var_global, err := llamada()
-Nos estará creando una variable local en el scope de la función con el mismo nombre que la global.
+# Scope
+Si una variable se declara dentro de una función, su scope es solo esa función.
+
+Una variable declarada fuera de una función es visisble para todo el package.
+
+Cuidado con declarar dentro de una función una variable con el mismo nombre que una global. Se creará una nueva variable.
+Ejemplos: variables_scope.go
+
+
+
+# Visibilidad
+Que el nombre comience por una letras mayúscula es lo que marca la visibilidad de las variables/funciones entre distintos paquetes.
 
 
 
