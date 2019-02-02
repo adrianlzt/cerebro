@@ -13,6 +13,9 @@ Los plugins funcionan como una especie de closure.
 Las variables que definamos en el plugin serán visibles por todas las funciones del plugin.
 Se podrán modificar y el resto de funciones verán esas modificaciones.
 
+También podemos usar la típica estructura de un: type xxx struct { ... } para almacenar el estado.
+Recordar usar en los métodos el puntero a la variable del struct para poder hacer modificaciones.
+
 
 Si tenemos que pasar tipos de datos entre el plugin y el programa, esa definición tiene que estar en un sitio compartido, que tiene que ser el mismo.
 Por ejemplo, si definimos en el main y en el plugin el mismo struct, fallará, porque interpretará que es distinto.

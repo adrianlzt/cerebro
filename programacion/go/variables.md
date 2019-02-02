@@ -81,7 +81,7 @@ fmt.Println(n) -> &{3 0}
 # Scope
 Si una variable se declara dentro de una función, su scope es solo esa función.
 
-Una variable declarada fuera de una función es visisble para todo el package.
+Una variable declarada fuera de una función es visisble para todo el package (global).
 
 Cuidado con declarar dentro de una función una variable con el mismo nombre que una global. Se creará una nueva variable.
 Ejemplos: variables_scope.go

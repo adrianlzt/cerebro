@@ -10,6 +10,11 @@ func (v *Vertex) Abs() float64 {
     return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
+Importante! Si tenemos que modificar alguno de los valores de "v" tendremos que pasarlo como un puntero.
+Ej:
+func (v Vertex) Cambia() { v.X = 10 }  // Esto cambiará la copia local, no modificará v visto desde fuera
+func (v *Vertex) Cambia() { v.X = 10 }  // Esto si cambiará v globalmente
+
 func main() {
     v := &Vertex{3, 4}
     fmt.Println(v.Abs())
