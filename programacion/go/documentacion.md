@@ -14,6 +14,8 @@ Embedded documentation: godoc -http=:6060 & chrome http://localhost:6060
 
 http://www.amazon.com/gp/product/0134190440/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0134190440&linkCode=as2&tag=cyberciti-20&linkId=O24JHZPKBPTWRVU4
 
+Videos: https://www.dotconferences.com/conference/dotgo
+
 
 LearningGo.pdf
 a2pi1.GoinAction.epub
