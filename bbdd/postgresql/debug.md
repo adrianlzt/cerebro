@@ -15,3 +15,9 @@ pg_ctl reload -D /var/lib/pgsql/data
 
 pg_ctl reload -D /var/lib/postgresql/data/
   esto creo que es para ubutus y el container oficial
+
+
+Debug a bajo nivel (gdb, etc)
+https://wiki.postgresql.org/wiki/Developer_FAQ#How_do_I_look_at_a_query_plan_or_parsed_query.3F
+https://github.com/tvondra/gdbpg
+https://blog.2ndquadrant.com/postgresql-install-debuginfo/
