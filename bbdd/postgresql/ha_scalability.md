@@ -1,3 +1,8 @@
+mirar:
+pgpool.md
+pgbouncer.md
+
+
 http://highscalability.com/blog/2013/8/26/reddit-lessons-learned-from-mistakes-made-scaling-to-1-billi.html
 
 Each has slaves. The vote database has one master one slave. The comment database has one master and 12 slaves.
