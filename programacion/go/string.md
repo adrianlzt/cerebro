@@ -32,6 +32,12 @@ HasSuffix(string, sufijo)
 strings.TrimPrefix("Goodbye,, world!", "Goodbye,")
 ", world!"
 
+strings.TrimSpace(a)
+borra caracteres en blanco y tabs
+TrimSpace returns a slice of the string s, with all leading and trailing white space removed, as defined by Unicode.
+
+
+
 # Split / Fields
 strings.Split("a,b,c", ",")
   devuelve: ["a" "b" "c"]
