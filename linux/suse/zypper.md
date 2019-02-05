@@ -3,6 +3,7 @@ zypper search paquete
 
 Instalar:
 zypper install paquete
+  si el rpm que intentamos actualizar ha cambiado de Vendor, tendremos que especificar el nombre completo (con versión) para poder actualizarlo.
 
 Info:
 zypper info paquete
