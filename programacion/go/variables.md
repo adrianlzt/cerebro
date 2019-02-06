@@ -42,6 +42,8 @@ float32 float64
 complex64 complex128  http://golang.org/pkg/math/cmplx/
 
 # Constantes
+números, strings o booleanos (https://groups.google.com/forum/#!topic/golang-nuts/xUaDMciyB5Q)
+
 Pueden definirse en el package o dentro de funciones
 const Pi = 3.14
 

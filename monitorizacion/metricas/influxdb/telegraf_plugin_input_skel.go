@@ -1,4 +1,4 @@
-package sap
+package somepackage
 
 import (
 	"log"
@@ -24,6 +24,7 @@ type mte []struct {
 }
 
 var sampleConfig = `
+  [[inputs.ccms]]
 	host = "somehost"
 	user = "user"
 	password = "password"
