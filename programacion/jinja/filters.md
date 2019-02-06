@@ -4,8 +4,9 @@
 
 {{group_names|map('replace','m','X')|list}}
 {{group_names|map('replace','m','X')|join(',')}}
-{{group_names|map('regex_replace','^','monitoring_net_')|join(',')}}
 
+
+variable.split(".")[0]
 
 
 Solo de ansible:
