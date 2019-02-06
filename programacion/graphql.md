@@ -13,6 +13,24 @@ Si usamos queries anóminas ("{ nombreFunc { param1 } }") se quejará si tenemos
 Editor online para ayudar a crear schemas de forma gráfica
 https://graphqleditor.com/
 Luego nos monta un backend fake donde podemos lanzar consultas con GraphiQL
+Parece que no nos permite meter funciones dentro de types. Todas las cuelga de "type Query"
+
+Esquema de ejemplo generado por Postgraphile para la bbdd de zabbix 3.2: graphql_zabbix.schema
+
+
+## Type
+Elemento básico. Como un struct de go
+
+## Interfaces
+Mismo concepto que en programación. Declaran variables comunes que tendrán las implementaciones
+
+## Union
+Parecido a las interfaces, pero uniendo varios tipos con distintas variables.
+Luego el cliente tendrá que pasar un pequeño código para saber que tipo es y actuar en consecuencia
+
+## Input
+Lo usamos para crear cosas o pasar varios parámetros a una función
+Es como pasar un diccionario en vez de una simple variable.
 
 
 # Queries
@@ -49,3 +67,21 @@ query Triggers {
     }
   }
 }
+
+
+
+# PostgreSQL
+Postgraphile nos genera una API GraphQL encima de una bbdd postgres, analizando automáticamente las relaciones y creando todo el schema necesario para consultar y crear.
+
+npx postgraphile -c postgres://graphql@localhost/zabbix-server
+
+Obtener el schema generado:
+npx postgraphile -c postgres://graphql@localhost/zabbix-server -X --export-schema-graphql schema.graphql
+
+
+
+# Golang
+
+## gqlgen
+https://gqlgen.com/getting-started/
+Nos genera el código a partir de un schema
