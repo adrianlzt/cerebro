@@ -96,3 +96,4 @@ models:
 Si queremos regenerar el código para otro nuevo schema:
 mv resolver.go resolver.go.back; go run scripts/gqlgen.go -v
 
+Si tenemos que inicializar un server lo haremos en server/server.go y pasaremos el objecto al Resolver{} que se crea para el Handle de /query
