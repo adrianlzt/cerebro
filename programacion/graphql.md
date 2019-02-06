@@ -85,3 +85,14 @@ npx postgraphile -c postgres://graphql@localhost/zabbix-server -X --export-schem
 ## gqlgen
 https://gqlgen.com/getting-started/
 Nos genera el código a partir de un schema
+
+Tal vez tengamos que modificar algunos modelos para adecuarse a lo que necesitamos. Por ejemplo, definir que un parámetro es una función en vez de un struct:
+https://gqlgen.com/getting-started/#create-the-database-models
+Ejemplo definiendo otro modelo:
+models:
+  Item:
+    model: gitlab.opensolutions.cloud/opensolutions/odiegraphql.Item
+
+Si queremos regenerar el código para otro nuevo schema:
+mv resolver.go resolver.go.back; go run scripts/gqlgen.go -v
+
