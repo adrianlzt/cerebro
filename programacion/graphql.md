@@ -12,6 +12,7 @@ Si usamos queries anóminas ("{ nombreFunc { param1 } }") se quejará si tenemos
 # Schema
 Editor online para ayudar a crear schemas de forma gráfica
 https://graphqleditor.com/
+Luego nos monta un backend fake donde podemos lanzar consultas con GraphiQL
 
 
 # Queries
