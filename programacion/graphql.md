@@ -9,12 +9,17 @@ GraphiQL interfaz gráfico que nos monta el server de GraphQL (cualquiera de las
 Si usamos queries anóminas ("{ nombreFunc { param1 } }") se quejará si tenemos escrita más de una.
 
 
+# Schema
+Editor online para ayudar a crear schemas de forma gráfica
+https://graphqleditor.com/
+
+
 # Queries
 query NombreQuery {
-  funcionQuePodemosLanzar (param1: 2, param2: 3) {
-    param1
+  funcionQuePodemosLanzar (param1:2, param2:{some:more, complex:param}) {
+    alias1:param1
     param2
-    objetoHijo {
+    objetoHijo (paramHijo:23) {
       paramHijo1
     }
   }
