@@ -1,4 +1,6 @@
 http://graphql.org/
+https://wehavefaces.net/graphql-shorthand-notation-cheatsheet-17cd715861b6
+  cheatsheet
 
 Es un lenguaje para accede a los datos de tu api.
 Le pasamos los datos que queremos obtener con una especie de json.
@@ -37,6 +39,12 @@ Mismo concepto que en programación. Declaran variables comunes que tendrán las
 ## Union
 Parecido a las interfaces, pero uniendo varios tipos con distintas variables.
 Luego el cliente tendrá que pasar un pequeño código para saber que tipo es y actuar en consecuencia
+
+Ejemplo donde unimos en una variable todos los posibles enums de varios types
+union Subclasses = SubclassDatabase | SubclassOS
+
+No podemos hacer unions de enums (parece). Tendremos que hacerlo de types que dentro usen el enum
+
 
 ## Input
 Lo usamos para crear cosas o pasar varios parámetros a una función
@@ -96,6 +104,8 @@ npx postgraphile -c postgres://graphql@localhost/zabbix-server -X --export-schem
 https://gqlgen.com/getting-started/
 Nos genera el código a partir de un schema
 
+Guardar una copia del resolver.go, para en siguientes modificaciones del schema ver que está modificando.
+
 Tal vez tengamos que modificar algunos modelos para adecuarse a lo que necesitamos. Por ejemplo, definir que un parámetro es una función en vez de un struct:
 https://gqlgen.com/getting-started/#create-the-database-models
 Ejemplo definiendo otro modelo:
@@ -111,3 +121,6 @@ Si tenemos que inicializar un server lo haremos en server/server.go y pasaremos 
 Si documentamos el schema, podemos regenerar el código con:
 go run scripts/gqlgen.go -v
 Lo meterá en generated.go, que es desde donde lo leerá la api. El fichero resolver.go no se verá modificado.
+
+
+Si el visor gráfico se queda pillado, revisar la consola de errores. Tal vez haya algún fallo en el schema.
