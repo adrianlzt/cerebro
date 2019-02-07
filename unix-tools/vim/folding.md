@@ -1,4 +1,5 @@
 http://vim.wikia.com/wiki/Folding
+http://vimdoc.sourceforge.net/htmldoc/fold.html
 
 Activar:
 :set foldenable
@@ -14,12 +15,15 @@ Parámetros
 
 # Comandos básicos #
 za  toggle fold
+zA  toggle fold recursivo
 zc  cerrar fold
 zo  abrir fold
 zr  abrir todos los fold de un orden más (modifica foldlevel)
 zm  cerrar todos los fold de un orden mas (modifica foldlevel)
 zR  abrir todos los folds
 zM  cerrar todos los fold
+zj  moverse al siguiente fold
+zk  moverse al anterior fold
 
 # Manual #
 v{motion}zf  crear fold con 'visual'

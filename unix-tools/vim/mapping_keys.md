@@ -7,3 +7,13 @@ https://vi.stackexchange.com/questions/4290/can-i-map-a-ctrl-upper-case-letter-s
 C-s
 C-S
   es lo mismo, la consola no distingue
+
+
+Ver mapping actual:
+:map
+:nmap for normal mode mappings
+:vmap for visual mode mappings
+:imap for insert mode mappings
+
+Mapear:
+nmap j comando
