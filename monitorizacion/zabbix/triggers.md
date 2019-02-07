@@ -39,7 +39,11 @@ Asi podemos evitar que si cae un router que conecta con varios nodos, salten tod
 Configurado correctamente solo la alarma del router saltará.
 
 Si un trigger depende de otro, si el "padre" está activo, los hijos no se procesarán, no podremos ver si podrían estar activos (pequeño inconveniente).
+Si el padre está activo y salta el hijo, perderemos el evento hijo (aunque el padre se recupere, nunca se generará el problem del hijo). Esto no es problema si usamos nodata(), porque se evaluan cada 30".
 En la vista de Dashboard - Triggers, veremos un símbolo (flecha hacia arriba o abajo) para los triggers dependientes o con dependencias.
+
+Si itemA depende de itemB que a su vez depende de itemC.
+Si itemC está activo, itemB no y salta itemA, no generará evento (se respeta que por encima tienes una dependencia activa)
 
 
 # Severidad
