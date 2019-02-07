@@ -56,7 +56,7 @@ Status
 
 hosts - Flags
 0 - normal host
-2 - algo raro interno para discover de VMs? como un template de host descubierto?
+2 - algo raro interno para discover de VMs? como un template de host descubierto? host prototype?
 4 - nodo discovered
 
 State
