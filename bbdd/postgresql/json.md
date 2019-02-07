@@ -25,6 +25,10 @@ Seleccionar:
 SELECT info->'customer' (en formato json, ejemplo: 'pepe', con las comillas)
 SELECT info->>'customer' (en formato postgresql string)
 
+to_json(valor)
+to_jsonb(valor)
+  convertir algo a json/jsonb
+
 Si el campo no es tipo json, podemos hacer un cast:
 info::json->'customer'
 
@@ -44,3 +48,20 @@ select DISTINCT json_object_keys(juanson) from checks; <- las keys sin duplicar
 
 # WHERE
 notes::jsonb->>'class' = 'db';
+
+# Modificar
+Ejemplo donde actualizamos el campo "variables" (tipo text, pero que contiene un json).
+Lo que hacemos es modificar "ansible_host", haciéndole un append de ".com"
+update main_host set variables=jsonb_set(variables::jsonb,'{ansible_host}',to_jsonb(variables::json->>'ansible_host'||'.com'),false) WHERE inventory_id=2;
+
+La función para modificar es jsonb_set:
+jsonb_set(target jsonb, path text[], new_value jsonb[, create_missing boolean])
+
+Ejemplo de la doc:
+jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false)   ->   [{"f1":[2,3,4],"f2":null},2,null,3]
+
+
+
+# Pretty print
+jsonb_pretty(xxX)
+

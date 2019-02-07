@@ -20,6 +20,9 @@ http://www.postgresql.org/docs/devel/static/sql-droptable.html
 CREATE TABLE nombre (col1 CHAR(20, ...);
 DROP TABLE nombre;
 
+Tabla temporal (desaparece cuando cerramos la sesión):
+CREATE TEMP TABLE nombre (col1 text);
+
 CREATE TABLE distributors (
      id    serial PRIMARY KEY,
      name   varchar(40) NOT NULL CHECK (name <> '')
