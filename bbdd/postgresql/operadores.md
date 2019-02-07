@@ -10,6 +10,10 @@ Juan-Ramirez
 Pepe-Martinez
 
 
+# New line
+El caracter newline es E'\n'
+
+
 # select string_to_array('ftp,dns',',');
  string_to_array
  -----------------
@@ -19,6 +23,10 @@ Coger un elemento (1 es el primer elemento)
 array[1]
 array[1:3]
 (string_to_array('ftp,dns',','))[1]
+
+length del array
+array_length(array[1,2,3], 1)
+  longitud de la primera dimensión
 
 Elegir elementos según los valores de un array
 # select id,name from services WHERE name = ANY(string_to_array('ftp,dns',','));

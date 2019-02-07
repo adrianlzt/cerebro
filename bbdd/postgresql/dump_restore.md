@@ -83,6 +83,9 @@ Sin compresión
   Backup de todas las bases de datos:
   pg_dumpall > outfile
 
+  Ejemplo con postgres en docker:
+  docker exec -it -u postgres postgres pg_dump -d basedatos -t tabla > tabla.sql
+
 Restaurar simple
   createdb dbname
   psql dbname < infile
