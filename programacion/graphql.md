@@ -18,6 +18,16 @@ Parece que no nos permite meter funciones dentro de types. Todas las cuelga de "
 Esquema de ejemplo generado por Postgraphile para la bbdd de zabbix 3.2: graphql_zabbix.schema
 
 
+## Doc
+Podemos meter comentarios sobre todos los elementos tipo
+"""
+Multilinea
+"""
+type pepe {
+  "Linea doc"
+  param ...
+}
+
 ## Type
 Elemento básico. Como un struct de go
 
@@ -97,3 +107,7 @@ Si queremos regenerar el código para otro nuevo schema:
 mv resolver.go resolver.go.back; go run scripts/gqlgen.go -v
 
 Si tenemos que inicializar un server lo haremos en server/server.go y pasaremos el objecto al Resolver{} que se crea para el Handle de /query
+
+Si documentamos el schema, podemos regenerar el código con:
+go run scripts/gqlgen.go -v
+Lo meterá en generated.go, que es desde donde lo leerá la api. El fichero resolver.go no se verá modificado.

@@ -7,6 +7,21 @@ mysql_example.go
 Tests, libreria para mockear un driver sql: https://github.com/DATA-DOG/go-sqlmock
 
 
+Gestionando NULLs
+https://github.com/golang/go/wiki/SQLInterface#dealing-with-null
+var name NullString
+err := db.QueryRowContext(ctx, "SELECT name FROM names WHERE id = $1", id).Scan(&name)
+...
+if name.Valid {
+	// use name.String
+} else {
+	// value is NULL
+}
+
+Only NullBool, NullFloat64, NullInt64 and NullString are implemented in database/sql. Implementations of database-specific null types are left to the database driver.
+
+
+
 
 https://github.com/jmoiron/sqlx
 Simplifica el acceso a sql.
