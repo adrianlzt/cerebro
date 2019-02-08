@@ -9,6 +9,9 @@ https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html
 https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads
 race_detector.md
 
+Desde el punto de vista del procesador, un programa de go es un único thread.
+Internamente se tiene un Go Runtime Scheduler que gestiona cual goroutine se va a ejecutar 1847
+
 
 # goroutines / threads
 go f(x,y,z)
