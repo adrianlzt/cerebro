@@ -6,7 +6,7 @@ find /home -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n
 
 Número total de ficheros agrupados por directorio:
 for i in *; do echo -e "$(find $i | wc -l)\t$i"; done | sort -n
-find /home -mindepth 1 -maxdepth 1 -printf "echo -n '%p: '; find %p | wc -l\n" | sh | sort -n -k 2 | awk '{print $0; SUM += $2;} END {print "Total:", SUM}'
+find / -mindepth 1 -maxdepth 1 -printf "echo -n '%p: '; find %p | wc -l\n" | sh | sort -n -k 2 | awk '{print $0; SUM += $2;} END {print "Total:", SUM}'
 
 
 
