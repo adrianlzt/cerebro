@@ -39,6 +39,9 @@ radula make-bucket nombre
 radula keys/ls/list para listar contenido de un bucket
 radula ls bucket
 
+radula info bucket/fichero
+  info sobre el fichero
+
 Subir ficheros:
 radula up fichero bucket/
 radula up -t 16 "local/*" my-new-bucket/
