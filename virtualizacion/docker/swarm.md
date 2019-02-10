@@ -105,7 +105,8 @@ docker node update --availability pause <NODE>
 docker node update --availability drain <NODE>
   saca los containers y los arranca en otro lado antes de pararlo
   tambien quita los containers globales, si tiene
-  Podriamos forzar la vuelta de containers con un rolling update --force
+  Podriamos forzar la vuelta de containers con un rolling update --force. Ejemplo:
+    docker service update --update-parallelism 1 --force NombreServicio
 
 ## active
 docker node update --availability active <NODE>
