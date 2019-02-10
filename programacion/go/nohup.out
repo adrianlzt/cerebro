@@ -1,3 +1,4 @@
 Warning: 'allow_markup' is deprecated, please use 'markup' instead.
 Warning: The frame section is deprecated, width has been renamed to frame_width and moved to the global section.
 Warning: The frame section is deprecated, color has been renamed to frame_color and moved to the global section.
+Cannot connect to DBus.
