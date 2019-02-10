@@ -10,6 +10,11 @@ En el servidor se mapea cada cosa a los objetos reales y nos devuelve lo que que
 GraphiQL interfaz gráfico que nos monta el server de GraphQL (cualquiera de las lib que usemos), que nos ayuda a construir las queries, muestra resultados y enseña la doc.
 Si usamos queries anóminas ("{ nombreFunc { param1 } }") se quejará si tenemos escrita más de una.
 
+Mejor que GraphiQL, graphql-playground: https://www.npmjs.com/package/graphql-playground-react
+Tambien como app de escritorio:
+  yay -S graphql-playground-electron
+Generalmente configuraremos un fichero .graphqlconfig especificando como acceder a la API. Ejemplos y cli para crearlo: https://github.com/prisma/graphql-config
+
 
 # Schema
 Editor online para ayudar a crear schemas de forma gráfica
