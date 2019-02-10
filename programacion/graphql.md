@@ -1,5 +1,5 @@
 http://graphql.org/
-https://wehavefaces.net/graphql-shorthand-notation-cheatsheet-17cd715861b6
+https://raw.githubusercontent.com/sogko/graphql-shorthand-notation-cheat-sheet/master/graphql-shorthand-notation-cheat-sheet.png
   cheatsheet
 
 Es un lenguaje para accede a los datos de tu api.
