@@ -24,6 +24,12 @@ Parece que no nos permite meter funciones dentro de types. Todas las cuelga de "
 
 Esquema de ejemplo generado por Postgraphile para la bbdd de zabbix 3.2: graphql_zabbix.schema
 
+Utilidad para trabajar con el schema:
+sudo npm install -g graphql-cli
+
+graphql lint
+  chequear el schema en busca de errores
+
 
 ## Doc
 Podemos meter comentarios sobre todos los elementos tipo
