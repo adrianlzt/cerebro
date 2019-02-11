@@ -1,3 +1,5 @@
+Mirar stores-alternativas.md
+
 Buscar en google: nombre-aplicacion apk download.
 
 http://apks.org/
