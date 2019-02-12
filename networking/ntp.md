@@ -38,7 +38,8 @@ ntpstat
 
 http://support.ntp.org/bin/view/Support/TroubleshootingNTP
 Comprobar que el servidor ya está en proceso de sincronización ejecutando la siguiente sentencia:
-ntpq -n -c pe
+ntpq -n -p
+  -n, numeric host addresses
 
 equivalente:
 ntpq

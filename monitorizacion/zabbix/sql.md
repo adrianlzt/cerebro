@@ -59,7 +59,7 @@ hosts - Flags
 2 - algo raro interno para discover de VMs? como un template de host descubierto? host prototype?
 4 - nodo discovered
 
-State
+State (items y triggers)
 0 - normal
 1 - not supported
 
@@ -128,6 +128,12 @@ select items.name,items.itemid from hosts_groups,groups,items where items.hostid
 
 Todos los items de un host por su hostname:
 select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' and hosts.hostid = items.hostid;
+
+Items not supported (si metemos "and items.flags=1" solo veremos los items LLD fallando):
+select hosts.host,items.name from hosts,items where items.hostid=hosts.hostid and state=1;
+
+Triggers not supported:
+select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and triggers.state=1
 
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
