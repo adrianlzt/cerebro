@@ -32,6 +32,10 @@ The number of context switches that the system underwent.
 
 btime 769041601
 boot time, in seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
+NO fiarse. En ciertos casos puede variar por culpa del NTP. Cuando el NTP añade segundos, el btime se ve modificado esa cantidad de segundos.
+  https://bugzilla.redhat.com/show_bug.cgi?id=132062
+  https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=119971
+  https://bugzilla.kernel.org/show_bug.cgi?id=764
 
 processes 86031
 Number of forks since boot.
