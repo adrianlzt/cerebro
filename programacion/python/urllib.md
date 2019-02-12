@@ -182,3 +182,14 @@ Para quitar el mensaje de error:
 
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+# Ignorar cert
+https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error
+
+import urllib2
+url="https://someweb.com"
+req = urllib2.Request(url)
+gcontext = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+response = urllib2.urlopen(req, context=gcontext)
+
