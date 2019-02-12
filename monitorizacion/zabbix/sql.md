@@ -135,6 +135,9 @@ select hosts.host,items.name from hosts,items where items.hostid=hosts.hostid an
 Triggers not supported:
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and triggers.state=1
 
+Items que van a ser borrados por que no se descubren más con el LLD:
+select * from (select key_,count(*) from item_discovery where ts_delete <> 0 group by key_) a order by a.count;
+
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
 			SELECT
