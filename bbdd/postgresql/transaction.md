@@ -7,3 +7,16 @@ Esto viene definido por el estandar SQL.
 Dependiendo que estemos haciendo, podría tener sentido cambiar el aislamiento de nuestra transacción.
 
 Read Committed is the default isolation level in PostgreSQL
+
+
+
+# Dry-run
+Podemos ejecutar una transacción, mostrar los resultados y hacer rollback como método de chequear una expresión.
+
+BEGIN;
+
+UPDATE ...;
+
+SELECT ...;
+
+ROLLBACK;

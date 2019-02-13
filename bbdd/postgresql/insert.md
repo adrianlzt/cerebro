@@ -10,3 +10,6 @@ NOTA: Debe ir entre comillas simples!
 https://stackoverflow.com/questions/6083132/postgresql-insert-into-select
 INSERT INTO tblA
     SELECT id, time ...
+
+
+Podemos usar la clause "RETURNING" para mostrar los rows creados (o ciertos valores de ese row)
