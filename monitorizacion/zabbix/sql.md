@@ -107,6 +107,12 @@ acknowledged
 0 - not acknowledged
 1 - acknowledged
 
+interface.type:
+1 - agent
+2 - snmp
+3 - ipmi
+4 - jmx
+
 
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:

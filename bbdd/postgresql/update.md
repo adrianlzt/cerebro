@@ -1,5 +1,7 @@
 https://www.postgresql.org/docs/current/sql-update.html
 
+Ejemplo complejo comparando resultados y haciendo dry run: update_dry_run_diff.sql
+
 UPDATE
   tabla
 SET
