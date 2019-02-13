@@ -4,6 +4,8 @@ una lib un poco más sencilla para hacer http como cliente
 ejemplo de cliente con net/http parseando json
 http_client_json.go
 
+Para montar un server: https://gin-gonic.github.io/gin/
+
 
 https://golang.org/pkg/net/http/
 
