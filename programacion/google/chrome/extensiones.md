@@ -21,3 +21,9 @@ En la variable chrome hay cosas interesantes.
 chrome://extensions/
 Activar modo desarrollador
 "Cargar extension descomprimida..."
+
+
+# Logger
+https://stackoverflow.com/questions/3829150/google-chrome-extension-console-log-from-background-page
+Parece que tengo que meterlas así. Tal vez no siempre
+chrome.extension.getBackgroundPage().console.log('onEntryData:');

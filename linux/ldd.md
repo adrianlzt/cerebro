@@ -1,3 +1,5 @@
+https://osandamalith.com/2019/02/11/linux-reverse-engineering-ctfs-for-beginners/
+
 Un binario linkado estaticamente no requiere de ningún otro fichero para funcionar.
 Uno linkado dinámicamente si necesita otros ficheros (ldd nos dirá cuales)
 mirar esquema en elf.png
