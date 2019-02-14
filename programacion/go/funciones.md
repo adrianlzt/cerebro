@@ -85,3 +85,9 @@ func my_func( args ...int) int {
 
 arr := []int{2,4}
 sum := my_func(arr...
+
+
+# Default values
+http://joneisen.me/development/code/2013/06/23/golang-and-default-values.html
+No existe el concepto de valor por defecto.
+Existen distintas alternatvas.
