@@ -150,27 +150,4 @@ Parece que no existe una solución para debuggear un python en caliente: https:/
 
 
 # Sacar cada linea por la que pasa el programa
-http://www.dalkescientific.com/writings/diary/archive/2005/04/20/tracing_python_code.html
-
-Redirigir output a un fichero, puede generar ficheros muy grandes (con la CLI de ceph me generó un fichero de 27MB)
-Con una prueba con yum me petaba
-
-Meter este código:
-
-import sys
-import linecache
-
-def traceit(frame, event, arg):
-    if event == "line":
-        lineno = frame.f_lineno
-        filename = frame.f_globals["__file__"]
-        if (filename.endswith(".pyc") or
-            filename.endswith(".pyo")):
-            filename = filename[:-1]
-        name = frame.f_globals["__name__"]
-        line = linecache.getline(filename, lineno)
-        print "%s:%s: %s" % (filename, lineno, line.rstrip())
-    return traceit
-
-sys.settrace(traceit)
-main()
+mirar tracing.md
