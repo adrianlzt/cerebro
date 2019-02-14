@@ -19,6 +19,8 @@ if coso == "" {
   coso = "default"
 }
 
+os.Setenv("FOO", "1")
+
 
 # ListDir (aunque es de ioutil)
 files, err := ioutil.ReadDir("./")
