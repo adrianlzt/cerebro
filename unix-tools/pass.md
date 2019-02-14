@@ -8,6 +8,13 @@ Usar version go: https://github.com/gopasspw/gopass
     gopass binary cp fichero algun/sitio
     gopass binary cp algun/sitio fichero
 
+  API JSON: https://github.com/gopasspw/gopass/blob/master/docs/jsonapi.md
+    echo '+\0\0\0{"type":"query", "query": "test123456789"}'| gopass jsonapi listen
+    Hace falta pasarle como cabecera la longitud de los datos: Each JSON-UTF8 encoded message is prefixed with a 32-bit integer specifying the length of the message.
+    Complicado con la consola. Usar este helper: https://github.com/gopasspw/gopassbridge/tree/master/test-client
+    echo '{"type":"getData", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
+    echo '{"type":"getLogin", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
+
 App para gestionar un almacen de clave estilo keepass pero mediante consola.
 
 App para android: https://play.google.com/store/apps/details?id=com.zeapo.pwdstore
