@@ -13,6 +13,16 @@ SELECT * FROM generate_series('2008-03-01 00:00'::timestamp, '2008-03-04 12:00',
  ...
 
 
+Serie con columna "from" y columna "to" en formato unix epoch, quitando la que tiene from vacio:
+select * from (select lag(a.date) over() as date_from, a.date as date_to from (select ROUND(EXTRACT(EPOCH FROM generate_series('2019-02-19 07:30:00+01'::timestamp, '2019-02-19 07:32:00+01', '1 min'))) as date) a) b where b.date_from > 0;
+ date_from  |  date_to
+------------+------------
+ 1550561400 | 1550561460
+ 1550561460 | 1550561520
+
+
+
+
 
 Ejemplo usando valores generados por dos series en una subquery:
 SELECT time, priority,

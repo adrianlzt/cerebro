@@ -116,11 +116,11 @@ interface.type:
 
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
-select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
-select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
-select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
-select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
-select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:30:03+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
