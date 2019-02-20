@@ -122,6 +122,42 @@ select count(*),date from history_log,(select generate_series('2018-11-22 07:30:
 select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
+Otra forma de lanzar la query. Haciendo uso del indice? (por no convertir el "clock" en el where?). Nos saca "count, date_from y date_to"
+SELECT
+  count(*),to_timestamp(date_from) as date_from,to_timestamp(date_to) as date_to
+FROM
+  partitions.history_uint_2019_02_19,
+  history_str,
+  (
+    -- quitamos la fila donde no tenemos "from" y "to"
+    SELECT * FROM
+      (
+        -- generamos el campo "from" y "to" para el rango elegido
+        SELECT
+          LAG(a.date) OVER() AS date_from, a.date AS date_to
+        FROM
+          (
+            -- generamos los epoch del rango de tiempo que queremos
+            SELECT
+              ROUND(EXTRACT(EPOCH FROM
+                GENERATE_SERIES(
+                  '2019-02-19 06:00:00+01'::timestamp,
+                  '2019-02-19 16:00:00+01'::timestamp,
+                  '1 hour')
+              )) AS date
+        ) a
+      ) b
+    WHERE
+      b.date_from > 0
+  ) AS d
+WHERE
+  clock BETWEEN date_from AND date_to
+GROUP BY
+  date_from,date_to
+ORDER BY
+  date_from;
+
+
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
