@@ -9,7 +9,8 @@ Nos da tambien el pid/pids que puedan estar bloqueando a la transacción.
   https://paquier.xyz/postgresql-2/postgres-9-6-feature-highlight-pg-blocking-pids/
   https://stackoverflow.com/questions/26489244/how-to-detect-query-which-holds-the-lock-in-postgres
 
-Podemos sacar el client_addr (IP) y client_port
+Podemos sacar el client_addr (IP) y client_port:
+  select pid,client_addr,client_port, ...
 
 Si es una transacción, en query veremos la última ejecutada. No sabremos que otras cosas ha ejecutado la transacción antes.
 
