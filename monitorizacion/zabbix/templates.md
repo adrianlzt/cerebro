@@ -8,6 +8,10 @@ Las templates se asocian en grupos, que suelen ser como directorios:
 Eg.: Templates/Applications
 
 
+Y un host tiene las templates A y B, e intentamos poner un template heredado a esas dos (C por ejemplo), fallará, porque estaremos intentando poner los mismos items por dos caminos.
+El error: "Template cannot be linked to another template more than once even through other templates"
+
+
 
 # Override
 http://voice1.me/zabbix-allowing-per-host-overrides/
