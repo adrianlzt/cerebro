@@ -9,8 +9,8 @@ SQLite no vale para zabbix-server, puede usarse para zabbix-proxy
 En grandes instalaciones algunas queries pueden tardar entre 10 y 20s. Es esperable y aceptable.
 Posiblemente quien cause estas queries tan grades sea el Configuration Syncer, que hace ciertas queries que atacan a prácticamente toda la tabla items.
 
-Medir el lag entre el real time y los datos almacenados. Tenemos que elegir unos cuantos items que se actualicen cada minuto, la query tendrá que tener valores entre 0 y 60":
-select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN (select itemid from items,hosts where items.hostid=hosts.hostid and value_type=0 and hosts.name='lep1zba2' limit 20) order by clock desc limit 1;
+Medir el lag entre el real time y los datos almacenados. Tenemos que elegir unos cuantos items que se actualicen cada minuto, la query tendrá que tener valores entre 0 y 60" (comprobar con explain que no es muy cara la query):
+select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN (select itemid from items,hosts where items.hostid=hosts.hostid and value_type=0 and hosts.name='NOMBRESERVERZABBIX' limit 10) order by clock desc limit 1;
 
 
 # History y trends
