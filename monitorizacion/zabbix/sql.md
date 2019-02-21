@@ -278,6 +278,8 @@ select hostid,host from hosts where status = 3 and hostid IN (select ht.template
 Templates que pertenecen a un grupo:
 select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
 
+Tipos de file systems encontrados por telegraf:
+select fs,count(*) from (select (string_to_array(key_,','))[2] as fs from items where flags <> 2 and key_ LIKE 'telegraf.disk.inodes_used[%') a group by fs;
 
 
 # Tocando la bbdd
