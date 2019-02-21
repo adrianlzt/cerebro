@@ -12,5 +12,8 @@ Remontar en read write:
 mount -o remount,rw /
 
 
+findmnt para ver /etc/fstab /etc/mtab
+
+
 # Bind
 mirar filesystems/mount-bind.md

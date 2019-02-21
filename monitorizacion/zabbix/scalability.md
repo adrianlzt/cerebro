@@ -10,7 +10,8 @@ En grandes instalaciones algunas queries pueden tardar entre 10 y 20s. Es espera
 Posiblemente quien cause estas queries tan grades sea el Configuration Syncer, que hace ciertas queries que atacan a prácticamente toda la tabla items.
 
 Medir el lag entre el real time y los datos almacenados. Tenemos que elegir unos cuantos items que se actualicen cada minuto, la query tendrá que tener valores entre 0 y 60" (comprobar con explain que no es muy cara la query):
-select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN (select itemid from items,hosts where items.hostid=hosts.hostid and value_type=0 and hosts.name='NOMBRESERVERZABBIX' limit 10) order by clock desc limit 1;
+Aqui estamos cogiendo solo los items activos calculated (que los tenemos a 1m)
+select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
 
 
 # History y trends

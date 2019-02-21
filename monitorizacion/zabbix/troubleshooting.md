@@ -22,9 +22,8 @@ La cache "history write" es la que almacena los datos procesados antes de indexa
 Items/sec procesados por los history syncers:
 ps -ef | grep history | egrep -o "synced [0-9]* .* sec" | cut -d ' ' -f 2,5 | tr ' ' '/' | xargs echo | tr ' ' '+' | bc
 
-Lag de los datos de la bbdd respecto al tiempo real (comprobar con explain que no es muy cara la query):
-select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN (select itemid from items,hosts where items.hostid=hosts.hostid and value_type=0 and hosts.name='NOMBRESERVERZABBIX' limit 10) order by clock desc limit 1;
-
+Lag de los datos de la bbdd respecto al tiempo real (Solo cojemos los items activos calculated, que los tenemos a 1m, comprobar con explain que no es muy cara la query):
+select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
 
 
 # Proxies
