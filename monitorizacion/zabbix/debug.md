@@ -1,6 +1,10 @@
 # Aumentar nivel de log
 zabbix_server -R log_level_increase
 
+Para evitar truncar el fichero por el rotado de zabbix (llevarlo a una partición con espacio):
+tail -f /var/log/zabbix/zabbix_server.log > /var/zabbix_server.log.debug
+
+
 Podemos aumentar solo uno de los procesos (syncers, discover, http poller, etc):
 zabbix_server -R log_level_increase=trapper
   para mostrar info sobre los trappers

@@ -30,7 +30,7 @@ El tipo de dato que almacena el item:
 type (trigger)
 0 - (default) do not generate multiple events;
 1 - generate multiple events.
-7 - ¿?
+7 - ¿? No lo veo en el código
 
 
 type (item)
