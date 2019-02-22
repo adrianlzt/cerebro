@@ -14,6 +14,21 @@ fmt.Println lo muestra [1 2 3 4]
 p[1:3] = [2 3]
 p[2:2] = null
 
+También podemos usar: p[1:3:3]
+En este caso elegimos los elementos segundo y tercero, y el array devuelto solo tendrá una capacidad de 3 elementos.
+Un caso de uso lo podemos ver al partir un array (sección más abajo)
+
+n := []int{0,1,2,3,4,5,6,7,8,9}
+n1 := n[0:4]
+n2 := n[0:4:5]
+fmt.Printf("n:  len=%v cap=%v\n", len(n), cap(n))
+fmt.Printf("n1: len=%v cap=%v\n", len(n1), cap(n1))
+fmt.Printf("n2: len=%v cap=%v\n", len(n2), cap(n2))
+// n:  len=10 cap=10
+// n1: len=4 cap=10
+// n2: len=4 cap=5
+
+
 Se pueden crear arrays con un tamaño máximo
 b := make([]int, 2, 5)  Array con capacidad para 5 elementos, inicializado con dos ceros (len=2)
 cap(b): capacidad de b
@@ -26,11 +41,13 @@ https://play.golang.org/p/x_2tFngxFI
 En ese ejemplo vemos como funciona append. Append agrega elementos al mismo array si hay capacidad, si no, genera uno nuevo doblando la capacidad
 
 append([]int{1,2},[]int{3,4}...)
+Si hacemos append(a,b...) estaremos uniendo al slice a el contenido del slice b
 
 Si queremos usar esto es una func:
 func foo(is []int) {
    nil
 }
+
 
 # Comparar
 https://golang.org/pkg/reflect/#DeepEqual
@@ -59,9 +76,13 @@ A lo mejor nos vale hacer algo tipo?
     }
 
 # Ordenar
-a1 := []string{"hola", "ananas", "aaa"} 
-sort.Strings(a1) 
+https://golang.org/pkg/sort/#Ints
+a1 := []string{"hola", "ananas", "aaa"}
+sort.Strings(a1)
 // Tras la funcion a1 estará ordenada
+
+Para ordenar ints
+sort.Ints(s)
 
 # Diferencia
 http://stackoverflow.com/questions/19374219/how-to-find-the-difference-between-two-slices-of-strings-in-golang
@@ -95,6 +116,11 @@ var batches [][]int
 
 for batchSize < len(actions) {
     actions, batches = actions[batchSize:], append(batches, actions[0:batchSize:batchSize])
+    // Al hacer el append está añadiendo a batches un array con solo los números que necesitamos
+    // Usando el formato [i:j:k] consigue meter slices con la capacidad justa, sin gastar capacidad
+    // mirar https://play.golang.org/p/tTgwVuLZE7M
 }
 batches = append(batches, actions)
 // resultado: [[0 1 2] [3 4 5] [6 7 8] [9]]
+batches seguirá apuntando a la misma estructura de "actions", por lo que si modificamos "actions" veremos el cambio en los valores de "batches"
+batches seguirá apuntando a la misma estructura de "actions", por lo que si modificamos "actions" veremos el cambio en los valores de "batches"
