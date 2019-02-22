@@ -27,7 +27,13 @@ El tipo de dato que almacena el item:
  4 -> text
 
 
-type
+type (trigger)
+0 - (default) do not generate multiple events;
+1 - generate multiple events.
+7 - ¿?
+
+
+type (item)
 0 - Zabbix agent
 1 - SNMPv1 agent
 2 - Zabbix trapper
