@@ -281,6 +281,9 @@ select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid
 Tipos de file systems encontrados por telegraf:
 select fs,count(*) from (select (string_to_array(key_,','))[2] as fs from items where flags <> 2 and key_ LIKE 'telegraf.disk.inodes_used[%') a group by fs;
 
+Funciones que ejecutan los timers:
+SELECT function, parameter, count(*) FROM functions where function IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY function, parameter ORDER BY count;
+
 
 # Tocando la bbdd
 Es el frontend el que se encarga de generar elementos en la bbdd.
