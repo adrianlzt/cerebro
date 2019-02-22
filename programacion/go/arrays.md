@@ -85,3 +85,16 @@ p[:len(p)-1]
 
 Quedarnos con todo menos el primer elemento:
 p[1:len(p)]
+
+
+
+# Partir un array en grupos de un tamaño
+actions := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+batchSize := 3
+var batches [][]int
+
+for batchSize < len(actions) {
+    actions, batches = actions[batchSize:], append(batches, actions[0:batchSize:batchSize])
+}
+batches = append(batches, actions)
+// resultado: [[0 1 2] [3 4 5] [6 7 8] [9]]

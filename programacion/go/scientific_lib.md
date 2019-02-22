@@ -13,3 +13,7 @@ math.Sqrt2  valor de la raiz de 2
 
 Se pueden usar números complejos:
 n = 2+3i
+
+
+División entera y resto (numerator y denominator tienen que ser int)
+quotient, remainder := numerator/denominator, numerator%denominator

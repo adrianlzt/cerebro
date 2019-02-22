@@ -33,7 +33,7 @@ strings.TrimPrefix("Goodbye,, world!", "Goodbye,")
 ", world!"
 
 strings.TrimSpace(a)
-borra caracteres en blanco y tabs
+borra caracteres en blanco, tabs y new lines.
 TrimSpace returns a slice of the string s, with all leading and trailing white space removed, as defined by Unicode.
 
 
