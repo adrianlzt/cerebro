@@ -25,3 +25,25 @@ O mejor hacer:
   config := initConfig(*someCfg)
 
 initConfig() debe devolver una var o un puntero?
+
+
+
+Si estoy inicializando un array de structs, ejemplo:
+for i := 0; i < NumberOfPhilos; i++ {
+  philos[i] = Philo{i, NumberOfMeals, &chopsticks[i], &chopsticks[(i+1)%NumberOfPhilos]}
+}
+La variable i no me está dejando el valor que tiene en cada vuelta, si no que al final todos los Philo acaban con el valor de la i al terminar el bucle.
+Usar un constructor?
+Si uso un constructor, no me queda otra que cambiar el tipo de philos a []*Philos, no?
+func NewPhilo(Id int, leftCS *Chopstick, rightCS *Chopstick) *Philo {
+  return &Philo{i, NumberOfMeals, leftCS, rightCS}
+}
+
+
+Si estoy usando una func init() donde quiero inicializar un array que he definido en una var global, no me queda otra que redifinir el tipo?
+Si tengo que cambiar el tipo de dato me toca hacerlo dos veces. O usar append?
+var philos []Philo
+...
+func init() {
+  philos = make([]Philo, NumberOfPhilos)
+}
