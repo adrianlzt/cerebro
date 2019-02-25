@@ -13,8 +13,21 @@ go get -u github.com/k0kubun/pp
 go get -u golang.org/x/tools/cmd/godoc
 
 $ gore
+:import strings
 
-No permite funciones
+Tiene autocompletado
+Permite funciones
+
+Lo que vamos escribiendo se va metiendo en un main que va creando
+
+:print
+  para sacar lo que hemos hecho hasta ahora en un programa .go
+
+:clear
+  borrar lo desarrollado hasta ahora
+
+:doc expr/pkg
+  godoc de la func
 
 
 # gosh
