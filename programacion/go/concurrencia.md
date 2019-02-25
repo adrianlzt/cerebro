@@ -147,3 +147,15 @@ mu.Lock()
 mu.Unlock()
 
 Si una goroutina hace "Lock" en un mutex ya locked, se quedará esperando hasta que se haga el unlock.
+
+
+
+
+Funcion que nos puede ser util para debuguear gorutinas. Pintando cada mensaje de caa una en una columna distinta
+func Print(numWorker int, str string, vars ...interface{}) {
+  var tab string
+  for i := 0; i < numWorker*5+1; i++ {
+    tab += "\t"
+  }
+  log.Printf("%v%v: %s\n", tab, numWorker, fmt.Sprintf(str, vars...))
+}
