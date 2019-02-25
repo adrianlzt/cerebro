@@ -134,3 +134,16 @@ input :=  make(chan int, 100)
 ...
 output := make(chan []int, 100)
 output <- []int{<-input} // Generamos un array de int y lo inicializamos con el valor obtenido de input
+
+
+
+# Mutex
+mutual exclusion lock.
+Para crear zonas de exclusión, donde solo una goroutina puede estar en todo momento.
+Se usa cuando tenemos que compartir recursos entre goroutinas.
+var mu sync.Mutex
+
+mu.Lock()
+mu.Unlock()
+
+Si una goroutina hace "Lock" en un mutex ya locked, se quedará esperando hasta que se haga el unlock.
