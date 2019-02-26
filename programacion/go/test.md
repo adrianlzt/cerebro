@@ -170,3 +170,29 @@ Mirar en sql.md para mockear go/sql
 
 # BDD
 https://github.com/DATA-DOG/godog
+
+
+# Benchmark
+https://golang.org/pkg/testing/
+https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
+
+Meter un test como:
+func BenchmarkHelloWorld(b *testing.B) {
+        for i := 0; i < b.N; i++ {
+                HelloWorld()
+        }
+}
+
+
+Ejecutar con:
+go test -v --bench . --benchmem
+
+BenchmarkHelloWorld-8                500           3908505 ns/op         4375424 B/op      74594 allocs/op
+
+Nos devuelve el número de veces que ha ejecutado la función (500).
+Tiempo medio por cada operación (3908505)
+Bytes allocated (4375424)
+Número de memory allocations (74594)
+
+
+
