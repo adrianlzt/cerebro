@@ -20,3 +20,36 @@ JOIN page_visits ON page_visits.site_id = s.id
 JOIN max_visits ON max_visits.site_id = s.id
 GROUP BY s.id, s.name, max_visits.title
 ORDER BY total_visits DESC;
+
+
+
+Ejemplo con talbas de zabbix, donde queremos hacer un outer left join de una lista de hosts obtenidos de una manera, con otra lista de hosts obtenidos por otro método:
+WITH hosts_notification
+     AS (SELECT hosts.hostid,
+                hosts.NAME
+         FROM   hosts
+                JOIN hosts_groups
+                  ON hosts_groups.hostid = hosts.hostid
+         WHERE  hosts_groups.groupid = (SELECT groupid
+                                        FROM   groups
+                                        WHERE  NAME = 'NOTIFICATION')),
+     notif_hosts
+     AS (SELECT hosts.NAME,
+                hosts.hostid,
+                Count(*)
+         FROM   functions,
+                triggers,
+                hosts
+                JOIN items
+                  ON hosts.hostid = items.hostid
+         WHERE  functions.triggerid = triggers.triggerid
+                AND functions.itemid = items.itemid
+                AND triggers.description LIKE '%(NOTIF)'
+         GROUP  BY hosts.NAME,
+                   hosts.hostid)
+SELECT hosts_notification.NAME,
+       notif_hosts.count
+FROM   hosts_notification
+       LEFT OUTER JOIN notif_hosts
+                    ON hosts_notification.hostid = notif_hosts.hostid
+ORDER  BY count;
