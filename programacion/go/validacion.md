@@ -1,5 +1,9 @@
-https://github.com/alecthomas/gometalinter
-Ejecutar un montor de linters sobre el código
+https://github.com/golangci/golangci-lint
+Ejecutar linters sobre el código. Más rápido que otras opciones
+Config general en ~/.golangci.yml
+Se puede poner una especial por cada directorio (se va buscando subiendo directorios)
+Discusión si es seguro usarlo: https://github.com/fatih/vim-go/issues/1841
+
 
 
 https://goreportcard.com/

@@ -44,6 +44,10 @@ Para pasar los tests a mano:
 go test -v
 
 
+Coverage
+go test -c
+
+
 # Log / Errores
 t.Logf("mensaje")
 t.Errorf("coso %d", numero)
