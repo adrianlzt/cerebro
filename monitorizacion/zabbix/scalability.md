@@ -78,6 +78,7 @@ Mejor usar las gráficas para determinar los picos de NVPS y según eso determin
 Lo mejor es usar el valor máximo de NVPS y usar la regla 1 DBSycners por cada 1000NVPs. Si tenemos MariaDB, usar un hilo de mariadb por cada DBSyncer que tengamos.
 Monitorizar que no nos pasmos del límite 1DBSyncer/1kNVPS
 history syncers
+Del soporte: "it's better to keep the number of history syncer processes as small as possible"
 
 
 Para los pollers, mientras tengamos ram, cuantos más pollers mejor.
