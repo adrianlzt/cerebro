@@ -1,3 +1,7 @@
+https://github.com/alecthomas/gometalinter
+Ejecutar un montor de linters sobre el código
+
+
 https://goreportcard.com/
 
 Pasa una serie de herramientas para dar un nota sobre la ¿calidad? del repo
