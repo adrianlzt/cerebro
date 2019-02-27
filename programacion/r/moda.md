@@ -1,1 +1,1 @@
-Valor más rapetido de un conjunto de números
+Valor más repetido de un conjunto de números
