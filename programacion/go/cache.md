@@ -21,3 +21,6 @@ https://github.com/eaigner/last
 System memory aware LRU cache in Go
 Cantidad de cache limitada por la memoria disponible
 
+
+
+https://godoc.org/golang.org/x/sync/singleflight

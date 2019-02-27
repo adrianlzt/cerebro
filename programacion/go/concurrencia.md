@@ -159,3 +159,14 @@ func Print(numWorker int, str string, vars ...interface{}) {
   }
   log.Printf("%v%v: %s\n", tab, numWorker, fmt.Sprintf(str, vars...))
 }
+
+
+
+# Singleflight
+https://godoc.org/golang.org/x/sync/singleflight
+
+Asegurarnos que una función solo se está ejecutando una única vez en cada momento.
+Nos puede valer para cuando tenemos varias goroutinas y una función solo puede ser ejecutada en cada momento una sola vez.
+El resultado de llamadas concurrentes siempre será el mismo (el resto de llamadas concurrentes solo recibirán la respuesta al terminar la primera llamada, sin reejecutar)
+
+Ejemplo básico: https://play.golang.com/p/cLZErbGmdI9
