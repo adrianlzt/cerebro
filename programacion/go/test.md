@@ -200,3 +200,34 @@ Número de memory allocations (74594)
 
 
 
+## Benchmark desde código / Big-O
+func testMy(b *testing.B, n int32) {
+  arr := []int32{}
+  for i := int32(0); i < n; i++ {
+    arr = append(arr, i)
+  }
+  // Para empezar a contar el tiempo a partir de aquí
+  b.ResetTimer()
+  for i := 0; i < b.N; i++ {
+    maxSubsetSum(arr)
+  }
+}
+
+func benchmarkMy(i int) testing.BenchmarkResult {
+  fn := func(b *testing.B) {
+    testMy(b, int32(i))
+  }
+
+  return testing.Benchmark(fn)
+}
+
+func main() {
+  data := map[int]testing.BenchmarkResult{}
+
+  for i := 1; i < 2000; i += 250 {
+    data[i] = benchmarkMy(i)
+  }
+}
+
+
+Podemos usarlo para pintar una gráfica (mirar plot.md) para ver la función Big-O que seguimos.

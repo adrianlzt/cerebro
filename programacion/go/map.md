@@ -111,6 +111,25 @@ for key, value := range m {
 }
 
 
+// Acceder a un map en orden de su key
+https://stackoverflow.com/questions/23330781/sort-go-map-values-by-keys
+
+A partir de go 1.12 si hacemos un print si estará ordenado, pero si iteramos estará desordenado apropósito.
+
+func sortedMapIntString(m map[int]string, f func(k int, v string)) {
+    var keys []int
+    for k, _ := range m {
+        keys = append(keys, k)
+    }
+    sort.Ints(keys)
+    for _, k := range keys {
+        f(k, m[k])
+    }
+}
+
+sortedMapIntString(m,
+        func(k int, v string) { fmt.Println("Key:", k, "Value:", v) })
+
 
 // Declarar un diccionario con distintos tipos de datos, subdict, etc
 params := map[string]interface{}{
