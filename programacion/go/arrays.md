@@ -6,6 +6,9 @@ Si queremos modificar la cabecera pasaremos el slice como puntero y modificaremo
 Este ejemplo muestra bien lo que ocurre: https://play.golang.org/p/SvvN1HkUtq
 El array siempre es el mismo (la letra 'B' se modifica), pero el len que tiene cada slice varia, por eso muestran cosas distintas.
 
+mirar lista.md
+
+
 http://golang.org/doc/articles/slices_usage_and_internals.html
 p := []int{1,2,3,4}
 p[0] = 1

@@ -17,3 +17,10 @@ n = 2+3i
 
 División entera y resto (numerator y denominator tienen que ser int)
 quotient, remainder := numerator/denominator, numerator%denominator
+
+
+# Sumar 1
+variable++
+
+Lo que no se puede hacer es usarla para devolver el valor anterior, ejemplo que no vale:
+fmt.Println(i++)
