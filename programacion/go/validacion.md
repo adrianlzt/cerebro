@@ -4,6 +4,9 @@ Config general en ~/.golangci.yml
 Se puede poner una especial por cada directorio (se va buscando subiendo directorios)
 Discusión si es seguro usarlo: https://github.com/fatih/vim-go/issues/1841
 
+Podemos poner un comentario para deshabilitar el linter de una linea
+// nolint
+
 
 
 https://goreportcard.com/
