@@ -131,6 +131,8 @@ Recursion
 # Recursion VS iteration
 Las recursiones, funciones que se llaman a si mismas, tienen un coste por tener que ir almacenando en el stack el punto donde debemos saltar a la vuelta. También puede que sea necesario una copia de la memoria para permitir aislamiento del scope de la nueva función.
 
+En los juegos parece que lo normal es que tengamos que buscar un método iterativo. Los recursivos serán demasiado costosos.
+
 Cualquier recursion se puede modelar como una iteración, pero puede hacer nuestro código más complicado. Solo debería cambiarse una recursion legible por una iteración si un profiling indicase que es necesario.
 
 
