@@ -1,5 +1,7 @@
-Saca cada 5 segundos estadísticas de la memoria
-vmstat 5
+https://www.thomas-krenn.com/en/wiki/Linux_Performance_Measurements_using_vmstat
+
+Saca cada 10 segundos estadísticas de la memoria
+vmstat -w 10
 
 Podemos ver si la máquina está swapeando mirando las columnas si/so
 
@@ -14,7 +16,7 @@ vmstat -a
   %pages swapped out    # swap-out a swap
 
 
-/proc/procinfo                # muestra la misma información
+/proc/meminfo                # muestra la misma información
 
 
 # IO
@@ -24,6 +26,8 @@ vmstat -a
 # SWAP
   si: Amount of memory swapped in from disk (/s).
   so: Amount of memory swapped to disk (/s).
+  Lo saca de /proc/vmstat
+  cat /proc/vmstat  | grep -e swp
 
 # System
   in: The number of interrupts per second, including the clock.

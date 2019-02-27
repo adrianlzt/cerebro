@@ -27,3 +27,7 @@ Podemos forzar vaciar la swap, pero tenemos que tener suficiente espacio libre e
 https://askubuntu.com/questions/1357/how-to-empty-swap-if-there-is-free-ram
 Puede tardar un rato.
 Podremos ver con "free -m" como se va vaciando
+
+
+Mirar si estamos swapeando
+vmstat.md
