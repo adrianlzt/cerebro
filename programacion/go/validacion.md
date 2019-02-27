@@ -8,6 +8,12 @@ Podemos poner un comentario para deshabilitar el linter de una linea
 // nolint
 
 
+Excluir lint de los tests:
+  exclude-rules:
+    - path: _test\.go
+      text: ".*"
+
+
 
 https://goreportcard.com/
 
