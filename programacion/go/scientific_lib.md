@@ -24,3 +24,11 @@ variable++
 
 Lo que no se puede hacer es usarla para devolver el valor anterior, ejemplo que no vale:
 fmt.Println(i++)
+
+
+# NaN / Inf
+Los números float pueden ser NaN o Inf.
+
+Para chequear si tienen alguno de estos valores
+math.IsNaN(x)
+math.IsInf(x,1) / math.IsInf(x,-1)

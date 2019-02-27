@@ -9,3 +9,11 @@ const ( // iota is reset to 0
   c2 = iota  // c2 == 2
 )
 
+
+// Equivalente y más compacto
+const (
+  c0 = iota
+  c1
+  c2
+  c3
+)
