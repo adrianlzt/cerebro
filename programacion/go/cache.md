@@ -1,3 +1,7 @@
+https://github.com/hashicorp/golang-lru
+https://godoc.org/golang.org/x/build/internal/lru
+
+
 https://github.com/patrickmn/go-cache
 
 c.Set("foo", "bar", cache.DefaultExpiration)
@@ -16,3 +20,4 @@ Más complejo, sirve para sincronizar variables entre grupos de nodos.
 https://github.com/eaigner/last
 System memory aware LRU cache in Go
 Cantidad de cache limitada por la memoria disponible
+
