@@ -13,6 +13,8 @@ dynamic_programming.md (almacenar calculos ya realizados para usarlos en futuras
 https://en.wikipedia.org/wiki/Big_O_notation
 https://es.wikipedia.org/wiki/Cota_superior_asint%C3%B3tica
 https://es.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/big-o-notation
+https://appliedgo.net/big-o/
+
 
 Es una cota superior a nuestra función a partir de un punto.
 A partir de x0, la función de la notación O siempre debe ser mayor.
