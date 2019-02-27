@@ -2,10 +2,11 @@ Steven Skiena's The Algorithm Design Manual
 
 Mirar:
 data_structures.md
-sorting.md 
-trees.md 
-graphs.md 
+sorting.md
+trees.md
+graphs.md
 hashtables.md
+dynamic_programming.md (almacenar calculos ya realizados para usarlos en futuras iteraciones)
 
 
 # Notacion O
@@ -129,6 +130,7 @@ Recursion
 Las recursiones, funciones que se llaman a si mismas, tienen un coste por tener que ir almacenando en el stack el punto donde debemos saltar a la vuelta. También puede que sea necesario una copia de la memoria para permitir aislamiento del scope de la nueva función.
 
 Cualquier recursion se puede modelar como una iteración, pero puede hacer nuestro código más complicado. Solo debería cambiarse una recursion legible por una iteración si un profiling indicase que es necesario.
+
 
 
 # Algoritmo de Boyer-Moore para buscar la mayoria
