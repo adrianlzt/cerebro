@@ -204,6 +204,17 @@ Algunas medidas solo las sacará si el user telegraf tiene permisos para leer el
 [[inputs.procstat]]
   pattern = "graphios"
 
+Monitorizar que un proceso esta levantado:
+[[inputs.procstat]]
+  exe = "nombre"
+  #pattern = "[Ss]ome pattern"  # tenemos que usar un único método de selección
+  name_suffix = "_Nombre_para_que_no_sean_todas_las_keys_iguales"
+  namepass = ["procstat_lookup"]
+  taginclude = ["host"]
+  #fieldpass = ["cpu_usage", "read_bytes", "write_bytes", "num_threads", "memory_rss", "memory_swap", "pid_count", "num_fds"]
+  fieldpass = ["pid_count"]
+
+
 
 ## sensors
 https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sensors

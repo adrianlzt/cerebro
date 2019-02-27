@@ -33,7 +33,12 @@ http://soryy.com/blog/2014/common-mistakes-with-go-lang/
 Para documentar el código, escribir comentarios sobre la función.
 https://blog.golang.org/godoc-documenting-go-code
 Ejemplo:
+// Package leap should have a package comment that summarizes what it's about.
+// https://golang.org/doc/effective_go.html#commentary
+package leap
+
 // Fprint formats using the default formats for its operands and writes to w.
 // Spaces are added between operands when neither is a string.
 // It returns the number of bytes written and any write error encountered.
 func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
+
