@@ -57,6 +57,12 @@ https://www.citusdata.com/blog/2018/02/22/seven-tips-for-dealing-with-postgres-l
 
 Para ver que rows están bloqueadas: https://www.postgresql.org/docs/9.6/pgrowlocks.html
 
+Explicación locks:
+https://www.postgresql.org/docs/9.6/explicit-locking.html
+ExclusiveLock: permite lectura a otros
+AccessExclusiveLock: solo permite leer/escribir a la tx
+
+
 -- locks
 SELECT * FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid;
 
@@ -99,7 +105,10 @@ Ejemplo:
 31249 está en una transacción bloqueando la tabla B y esperando para poder actualizar la A
 1007 está intentando actualizar la tabla B
 
-1007 está bloqueando por 31249, que a su vez está bloqueado por 25862. Por eso vemos una linea donde nos dice que 1007 está bloqueada por 25862 con profundidad 2
+1007 está siendo bloqueada por 31249, que a su vez está bloqueada por 25862. Por eso vemos una linea donde nos dice que 1007 está bloqueada por 25862 con profundidad 2
+
+blocker_pid es el pid más bajo que produce todo el arbol de bloqueo.
+
 
 WITH RECURSIVE
      c(requested, CURRENT) AS
