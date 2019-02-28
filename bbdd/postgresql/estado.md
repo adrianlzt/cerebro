@@ -1,7 +1,7 @@
 https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d
 
 -- para 9.6+
-SELECT pid, now() - query_start as "runtime", now() - xact_start as "xact_runtime", usename, datname, wait_event, pg_blocking_pids(pid) as blocked_by, state, query FROM  pg_stat_activity WHERE now() - xact_start > '2 seconds'::interval and (state = 'active' or state = 'idle in transaction') ORDER BY xact_runtime DESC;
+SELECT pid, client_addr, client_port, now() - query_start as "runtime", now() - xact_start as "xact_runtime", usename, datname, wait_event, pg_blocking_pids(pid) as blocked_by, state, query FROM  pg_stat_activity WHERE now() - xact_start > '2 seconds'::interval and (state = 'active' or state = 'idle in transaction') ORDER BY xact_runtime DESC;
 
 Sacamos el tiempo que lleva ejecutandose la query (runtime) y el de la transaccion (xact_runtime). Serán iguales en el caso de que sea una query simple, sin transacción.
 
@@ -9,8 +9,6 @@ Nos da tambien el pid/pids que puedan estar bloqueando a la transacción.
   https://paquier.xyz/postgresql-2/postgres-9-6-feature-highlight-pg-blocking-pids/
   https://stackoverflow.com/questions/26489244/how-to-detect-query-which-holds-the-lock-in-postgres
 
-Podemos sacar el client_addr (IP) y client_port:
-  select pid,client_addr,client_port, ...
 
 Si es una transacción, en query veremos la última ejecutada. No sabremos que otras cosas ha ejecutado la transacción antes.
 
