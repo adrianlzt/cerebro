@@ -46,15 +46,15 @@ echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"ov
 Se envia un formato binario con un json dentro
 
 Envio (legible, copiado desde wirehsark):
-	ZBXD#
-	{
-		"request":"sender data",
-		"data":[
-		  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.410375","clock":1519043805},
-		  {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.277847","clock":1519043805}
-		],
-		"clock":1519043805
-	}
+  ZBXD#
+  {
+    "request":"sender data",
+    "data":[
+      {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.410375","clock":1519043805},
+      {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.277847","clock":1519043805}
+    ],
+    "clock":1519043805
+  }
 
 Respuesta (legible):
 {"response":"success","info":"processed: 2; failed: 0; total: 2; seconds spent: 0.000268"}

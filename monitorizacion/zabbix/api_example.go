@@ -13,7 +13,7 @@ import (
 	zabbix "github.com/cavaliercoder/go-zabbix"
 )
 
-type jItem struct {
+type Item struct {
 	ItemID    string `json:"itemid"`
 	LastValue string `json:"lastvalue"`
 }
@@ -33,7 +33,7 @@ func main() {
 		panic(err)
 	}
 
-	items := make([]jItem, 0)
+	items := make([]Item, 0)
 
 	searchRequest := SearchRequest{
 		Key: "zabbix[process,trapper,avg,busy]",
@@ -48,7 +48,7 @@ func main() {
 
 	for _, item := range items {
 		if item.LastValue != "0" {
-			fmt.Printf("load: %v\n", item.LastValue)
+			fmt.Printf("%v: %v\n", item.ItemID, item.LastValue)
 		}
 	}
 }
