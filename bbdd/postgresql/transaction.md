@@ -1,3 +1,5 @@
+All statements in postgres runs inside of a transaction either explicit/implicit
+
 # Isolation levels
 https://www.postgresql.org/docs/current/transaction-iso.html
 

@@ -61,9 +61,19 @@ Explicación locks:
 https://www.postgresql.org/docs/9.6/explicit-locking.html
 ExclusiveLock: permite lectura a otros
 AccessExclusiveLock: solo permite leer/escribir a la tx
+RowExclusiveLock: cuando hacemos un update de una tabla dentro de una TX generaremos este lock.
+                  Podemos leer desde otra TX, veremos el valor antes de la TX
+AccessShareLock are acquired for objects involved in a query to block them from being modified or dropped by another session during their use
+
+select ... for update, bloquea los campos obtenidos por la select como si hubiésemos modificado con update ese row
+
 
 
 -- locks
+-- Muestra solo los locks de "relations", bloqueos a rows o tablas
+SELECT psa.pid,relation::regclass::text,mode,granted,client_addr,client_port,xact_start,query_start,state,query as locked_item FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid where locktype = 'relation';
+
+-- todo
 SELECT * FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid;
 
 -- Solo locks exclusivos
@@ -105,10 +115,7 @@ Ejemplo:
 31249 está en una transacción bloqueando la tabla B y esperando para poder actualizar la A
 1007 está intentando actualizar la tabla B
 
-1007 está siendo bloqueada por 31249, que a su vez está bloqueada por 25862. Por eso vemos una linea donde nos dice que 1007 está bloqueada por 25862 con profundidad 2
-
-blocker_pid es el pid más bajo que produce todo el arbol de bloqueo.
-
+1007 está bloqueando por 31249, que a su vez está bloqueado por 25862. Por eso vemos una linea donde nos dice que 1007 está bloqueada por 25862 con profundidad 2
 
 WITH RECURSIVE
      c(requested, CURRENT) AS
