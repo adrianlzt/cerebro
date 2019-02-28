@@ -55,8 +55,8 @@ cat pollers | grep "In get_value()" | cut -d "'" -f 2 | sort | uniq -c
 
 
 # trap
-Sección del código donde decide como procesar cada elemento
-
+Si el mensaje de todos está como "processing data" es que están saturados y no pueden procesar más.
+processed data in 0.074849 sec, waiting for connection, es cuando están relajados.
 
 # history syncer
 Envia datos de zabbix a la bbdd.
