@@ -431,6 +431,9 @@ https://www.influxdata.com/telegraf-update-1-3/
 https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/?__s=trqwhcsp36pvqhgtigfv
 https://www.influxdata.com/blog/building-better-telegraf-plugin/?__s=trqwhcsp36pvqhgtigfv
 
+Interfaz a cumplir para los writters: https://github.com/influxdata/telegraf/blob/master/plugins/outputs/discard/discard.go
+Para los input mirar un ejemplo en este dir
+
 go get github.com/influxdata/telegraf
 cd $GOPATH/src/github.com/influxdata/telegraf
 make default
