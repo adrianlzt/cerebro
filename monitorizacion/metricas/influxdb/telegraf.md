@@ -431,6 +431,8 @@ https://www.influxdata.com/telegraf-update-1-3/
 https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/?__s=trqwhcsp36pvqhgtigfv
 https://www.influxdata.com/blog/building-better-telegraf-plugin/?__s=trqwhcsp36pvqhgtigfv
 
+En este fichero se inicializa todo (inputs, processors, aggregators, outputs): https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go
+
 Interfaz a cumplir para los writters: https://github.com/influxdata/telegraf/blob/master/plugins/outputs/discard/discard.go
 Para los input mirar un ejemplo en este dir
 
@@ -438,7 +440,10 @@ Interfaces a cumplir por los inputs https://github.com/influxdata/telegraf/blob/
 Hay una básica, que recolecta cuando le llaman a gaher, y la ServiceInput pensada para un input que recolecta todo el rato y puede gestionar errores, etc.
 
 Los ServiceInputs se arrancan aquí: https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go#L599
-Un input es ServiceInput si implementa la interfaz.
+Un input es ServiceInput si implementa la interfaz (tambien tiene que implementar la interfaz Input)
+Los ServiceInput solo tienen un Start() y un Stop() funcionales.
+En Start() debemos arrancar una gorotuina y retornar nil (o retornar un error si no podemos arrancar y se parará todo telegraf)
+
 
 go get github.com/influxdata/telegraf
 cd $GOPATH/src/github.com/influxdata/telegraf

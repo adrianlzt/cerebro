@@ -19,6 +19,7 @@ Tiene autocompletado
 Permite funciones
 
 Lo que vamos escribiendo se va metiendo en un main que va creando
+Cuando escribimos cualquier funcion nueva, se ejecuta todo lo anterior que esté en el main
 
 :print
   para sacar lo que hemos hecho hasta ahora en un programa .go
