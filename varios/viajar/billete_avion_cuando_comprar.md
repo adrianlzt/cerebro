@@ -14,6 +14,8 @@ http://www.kayak.es/flights
   te estima si los vuelos van a subir o bajar durante los siguientes días
   permite poner alertas en vuelos (desplegar "Más filtros")
 vuelosbaratos.es
+skiplagged.com
+  sabe hacer trucos de comprar un tercer destino para volar al intermedio
 
 http://www.kayak.es/explore/
   pones salida, precio y tiempo, y te dice a donde puedes ir.

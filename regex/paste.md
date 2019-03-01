@@ -18,3 +18,15 @@ paste file1 file2
 
 ls -1 | paste -sd "," -
   une las lineas por comas
+
+
+Paste en grupos de 3
+echo -e "1\n2\n3\n4\n5" | paste -d ';' - - -
+1;2;3
+4;5;
+
+Similar
+echo -e "1\n2\n3\n4\n5" | paste -sd ';;\n'
+1;2;3
+4;5
+
