@@ -22,6 +22,9 @@ var (
 )
 Ejemplo: https://github.com/hashicorp/yamux/blob/master/const.go
 
+Otra opción es definir nuestros propios errores (un struct que cumple la intefaz "Error() error")
+Mirar más abajo
+
 
 # Error handling
 Tipica estructura de manejo de error
@@ -92,20 +95,20 @@ https://gobyexample.com/errors
 https://blog.golang.org/error-handling-and-go
 
 type dashboardExistsError struct {
-	code int
-	msg string
+  code int
+  msg string
 }
 
 func (e *dashboardExistsError) Error() string {
-	return fmt.Sprint("Ya existe un dashboard con ese nombre")
+  return fmt.Sprint("Ya existe un dashboard con ese nombre")
 }
 
 
 ...
 return &dashboardExistsError{
-			code: resp.StatusCode,
-			msg: resp.Body,
-		}
+      code: resp.StatusCode,
+      msg: resp.Body,
+    }
 
 
 
@@ -113,8 +116,16 @@ return &dashboardExistsError{
 Patrón donde creamos funciones que nos servirán para identificar el tipo de error:
 filename := "a-nonexistent-file"
 if _, err := os.Stat(filename); os.IsNotExist(err) {
-	fmt.Printf("file does not exist")
+  fmt.Printf("file does not exist")
 }
+
+
+Ejemplo de como crear esas funciones:
+func IsRedisError(err error) bool {
+  _, ok := err.(proto.RedisError)
+  return ok
+}
+
 
 
 

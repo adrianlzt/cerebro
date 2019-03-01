@@ -452,6 +452,12 @@ Build para windows amd64:
 Compilar telegraf:
 make telegraf
 
+Compilar estático:
+CGO_ENABLED=0 make telegraf
+
+build.py compila estático si en el arch le ponemos static_XXX
+Ejemplo: static_amd64
+
 
 make build
 $GOPATH/bin/telegraf --version

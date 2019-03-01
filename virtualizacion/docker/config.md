@@ -10,3 +10,8 @@ EOF
 
 Ver una conf almacenada:
 docker config inspect --pretty NOMBRE
+
+
+
+# Confd
+Podemos usar confd al comienzo del container para generar un fichero de config a partir de variables de entorno
