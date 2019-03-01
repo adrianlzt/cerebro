@@ -47,3 +47,20 @@ var philos []Philo
 func init() {
   philos = make([]Philo, NumberOfPhilos)
 }
+
+
+
+concurrencia, que es mejor hacer:
+go funcion(foo, bar, canal, wg)
+
+O
+go func(foo x, bar y, canal chan x) {
+  defer wg.Done()
+  funcion(foo, bar, canal)
+}
+
+
+
+Que tamaño darle a un channel si no sabemos cuantos datos tendremos?
+Problema por dejar el generador parado hasta que se consuman los datos?
+Visto en la función de telegraf-redis donde me pasan métricas y yo las paso en chunks por un canal. De que tamaño hacer ese canal?
