@@ -16,6 +16,9 @@ go build .
 go install .
 
 Funciona bastante parecido al repl de python.
+Tab para autocompletado
+:help para auyuda
+:env vemos lo que tenemos cargado
 
 Tienen un concepto de generics. Son templates de código.
 https://github.com/cosmos72/gomacro#generics
@@ -34,7 +37,7 @@ En este modo podemos ejecutar el debugger https://github.com/cosmos72/gomacro#de
 
 # Gophernotes / Jupyter
 https://github.com/gopherdata/gophernotes
-REPL grafrico
+REPL grafico
 
 
 
