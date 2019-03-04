@@ -23,6 +23,7 @@ type T struct {
 }
 
 omitempty hace que el Marshaling saque campos con valor vacío.
+El Unmarshal pillá por defecto también el nombre del field en minúsculas
 
 IMPORTANTE: los fields del struct deben empezar por mayúscula
 

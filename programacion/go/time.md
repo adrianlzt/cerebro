@@ -10,6 +10,10 @@ time.Sleep(time.Duration(tiempo) * time.Millisecond) // siendo tiempo un int
 hours, _ := time.ParseDuration("10h")
 
 # Parsear fecha
+Unix epoch
+tm := time.Unix(epochSecs, epochNanoSecs)
+
+
 const longForm = "Jan 2, 2006 at 3:04pm (MST)"
 t, _ := time.Parse(longForm, "Feb 3, 2013 at 7:54pm (PST)")
 
