@@ -26,6 +26,7 @@ Otra opción es definir nuestros propios errores (un struct que cumple la intefa
 Mirar más abajo
 
 
+
 # Error handling
 Tipica estructura de manejo de error
 
@@ -90,6 +91,8 @@ func MySqrt2(f float64) (ret float64, err error) {
     return
 }
 
+
+
 # Custom error
 https://gobyexample.com/errors
 https://blog.golang.org/error-handling-and-go
@@ -126,6 +129,12 @@ func IsRedisError(err error) bool {
   return ok
 }
 
+
+
+# Ejemplo de como saber el tipo de un error que no implementa un interfaz específico
+if !strings.HasSuffix(err.Error(), ": use of closed network connection") {
+  psl.AddError(err)
+}
 
 
 
