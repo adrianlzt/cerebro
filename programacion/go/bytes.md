@@ -32,6 +32,7 @@ fmt.Printf("a: %v\n", a)
 
 # Array de bytes a uint32
 https://stackoverflow.com/questions/11184336/how-to-convert-from-byte-to-int-in-go-programming
+https://medium.com/go-walkthrough/go-walkthrough-encoding-binary-96dc5d4abb5d
 
 var mySlice = []byte{89, 202, 7, 230}
 data := binary.BigEndian.Uint32(mySlice)
