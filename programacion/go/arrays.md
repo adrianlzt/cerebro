@@ -53,6 +53,11 @@ func foo(is []int) {
 
 
 # Comparar
+https://yourbasic.org/golang/compare-slices/
+
+1. Crear una función con un bucle.
+2. bytes.Equal (para []byte)
+3. reflect
 https://golang.org/pkg/reflect/#DeepEqual
 
 reflect.DeepEqual(a,b)
