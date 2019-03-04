@@ -5,6 +5,8 @@ This site however, is about dealing with issues and questions people are facing 
 REST: REpresentational State Transfer
 is a set of constraints that ensure a scalable, fault-tolerant and easily extendible system
 
+Reglas para hacer una api rest: https://blog.restcase.com/7-rules-for-rest-api-uri-design/
+
 
 Richardson Maturity Model, para ver como de REST es nuestra API:
   - Level 0: las peticiones son enrutadas por un protocolo de transporte que será agnóstico a la aplicación.
