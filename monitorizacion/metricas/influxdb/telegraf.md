@@ -443,6 +443,11 @@ Los ServiceInputs se arrancan aquí: https://github.com/influxdata/telegraf/blob
 Un input es ServiceInput si implementa la interfaz (tambien tiene que implementar la interfaz Input)
 Los ServiceInput solo tienen un Start() y un Stop() funcionales.
 En Start() debemos arrancar una gorotuina y retornar nil (o retornar un error si no podemos arrancar y se parará todo telegraf)
+Cuidado que no se nos llene el canal de Delivered, telegraf terminará con un panic si se llena.
+
+Las métricas con tracking tiene los métodos Drop() y Reject()
+Drop() generará un informe válido, como si se hubiese enviado.
+Reject() devolverá el informe con delivered a false
 
 
 go get github.com/influxdata/telegraf

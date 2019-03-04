@@ -1,6 +1,15 @@
 https://github.com/Jeffail/gabs
 libreria para facilitar el acceso a los json
 
+# Caso simple
+type Test struct {
+  Host string
+  Item string
+}
+json.Unmarshal([]byte("{\"Host\":\"hola\", \"Item\":\"pepe\"}"), &t)
+json.Marshal(&t)
+
+
 
 # Original
 http://blog.golang.org/json-and-go
@@ -12,6 +21,8 @@ type T struct {
     FieldA int    `json:"field_a"`
     FieldB string `json:"field_b,omitempty"`
 }
+
+omitempty hace que el Marshaling saque campos con valor vacío.
 
 IMPORTANTE: los fields del struct deben empezar por mayúscula
 
@@ -76,6 +87,8 @@ if err != nil {
   panic(err)
 }
 
+
+Si alguno de los campos no hace match, se quedará con el valor por defecto.
 
 
 
