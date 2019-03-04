@@ -4,9 +4,38 @@ Usar version go: https://github.com/gopasspw/gopass
   lo único malo es que no soporta extensiones
   se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
   hace automáticamente push al hacer modificaciones (origin y al otro remote via hook)
+
+  Inicio, si ejecutamos "gopass" y no tenemos nada, nos creará las claves y nos preguntará para poder inicializar nuestro entorno.
+  Me falla al generar las claves si no existen, mejor crearlas antes:
+  gpg --gen-key
+  Al terminar, para ver mis claves:
+  gpg -K
+
+  Config en ~/.config/gopass
+
+  Activar debug: GOPASS_DEBUG=true gopass ...
+
+  Activar autocompletado bash: source <(gopass completion bash)
+  echo "gopass datadope/carrefour/test " >> .bashrc
+
+  Insertar "foo: bar" en el fichero
+  pass insert some/path foo
+  > bar
+
   almacenar binarios:
     gopass binary cp fichero algun/sitio
     gopass binary cp algun/sitio fichero
+
+  Multiples stores https://github.com/gopasspw/gopass/blob/master/docs/features.md#multiple-stores
+    Crear una nueva store:
+    gopass init --store mount-point --path /path/to/store
+
+    Montarla:
+    gopass mounts add mount-point /path/to/store
+
+    Desmontarla
+    pass mounts remove mount-point
+
 
   API JSON: https://github.com/gopasspw/gopass/blob/master/docs/jsonapi.md
     echo '+\0\0\0{"type":"query", "query": "test123456789"}'| gopass jsonapi listen
