@@ -69,6 +69,8 @@ gpg --search-keys user-id
 Bajarnos una key de los servers publicos:
 gpg --recv-keys key-id
 
+Creo que por defecto se usa el server: http://hkps.pool.sks-keyservers.net
+
 
 Revocar una key:
 gpg --edit-key USERID
