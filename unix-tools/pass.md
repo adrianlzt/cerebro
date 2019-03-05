@@ -18,9 +18,15 @@ Usar version go: https://github.com/gopasspw/gopass
   Activar autocompletado bash: source <(gopass completion bash)
   echo "gopass datadope/carrefour/test " >> .bashrc
 
+  pass insert -m foo/bar
+    editar un nuevo fichero con varias lineas
+
+  echo "clave" | pass insert some/new/file
+
   Insertar "foo: bar" en el fichero
   pass insert some/path foo
   > bar
+  echo -n "bar" | pass insert some/path foo
 
   almacenar binarios:
     gopass binary cp fichero algun/sitio
@@ -35,6 +41,16 @@ Usar version go: https://github.com/gopasspw/gopass
 
     Desmontarla
     pass mounts remove mount-point
+
+    Si aparece un nuevo usuario, hay que reencritpar los ficheros con su clave pública.
+    gopass recipients add email@nuevo.user
+    gopass sync
+
+    Para chequear: gpg -d algunfichero.gpg
+    Nos deberá decir las claves con las que está encriptado.
+
+    Quitar user (tenemos que considerar comprometidas todas las passwords hasta la fecha):
+    pass recipients remove ad@ad.com
 
 
   API JSON: https://github.com/gopasspw/gopass/blob/master/docs/jsonapi.md
