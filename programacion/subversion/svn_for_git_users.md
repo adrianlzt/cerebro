@@ -30,3 +30,8 @@ svn ls svn://svn.zabbix.com/branches/
 
 git checkout rama/
 svn co svn://svn.zabbix.com/branches/2.4
+
+
+git blame
+svn blame
+  nos pone última revision y autor que modificaron la línea
