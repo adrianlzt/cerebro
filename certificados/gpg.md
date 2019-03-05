@@ -2,10 +2,6 @@ https://wiki.archlinux.org/index.php/GnuPG
 https://wiki.archlinux.org/index.php/GnuPG_(Espa%C3%B1ol)
 https://www.gnupg.org/gph/en/manual/x457.html
 
-servers de claves públicos:
-http://keys.gnupg.net/
-https://pgp.mit.edu/
-
 
 La idea es tener un juego de llaves.
 En la clave pública se mete el nombre, email.
@@ -59,6 +55,26 @@ gpg -a --export nombre@email.com > public.key
 
 La podemos subir por ejemplo al servidor de claves del MIT: https://pgp.mit.edu/
 Todos los servers de claves GPG están sincronizados
+http://keys.gnupg.net/
+https://pgp.mit.edu/
+
+La key-id es el nombre que aparece cuando hacemos gpg -k o gpg -K al lado de la longitud de la clave. Ejemplo: "pub   2048R/403E82AF 2019-03-05" -> 403E82AF
+
+Enviar nuestra clave a los servers públicos:
+gpg --send-keys key-id
+
+Buscar en los servers públicos:
+gpg --search-keys user-id
+
+Bajarnos una key de los servers publicos:
+gpg --recv-keys key-id
+
+
+Revocar una key:
+gpg --edit-key USERID
+> revkey
+
+
 
 También se puede publicar en el DNS si es nuestro:
 https://grepular.com/Publishing_PGP_Keys_in_the_DNS
