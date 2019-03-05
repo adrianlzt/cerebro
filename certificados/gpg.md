@@ -2,6 +2,11 @@ https://wiki.archlinux.org/index.php/GnuPG
 https://wiki.archlinux.org/index.php/GnuPG_(Espa%C3%B1ol)
 https://www.gnupg.org/gph/en/manual/x457.html
 
+servers de claves públicos:
+http://keys.gnupg.net/
+https://pgp.mit.edu/
+
+
 La idea es tener un juego de llaves.
 En la clave pública se mete el nombre, email.
 Esta clave pública se puede subir a servidores de llaves públicos.
@@ -21,9 +26,14 @@ Cada cierto tiempo puede que se cierre el agente y nos solicite la clave de nuev
 # GPG
 Mostrar mis claves
 gpg -K
+gpg --list-public-keys
 
 Lista todas las claves aceptadas
 gpg -k
+gpg --list-secret-keys
+
+Borrar key publica
+gpg --delete-keys nombre
 
 ## Encriptar/desencriptar
 echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
