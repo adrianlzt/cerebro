@@ -130,6 +130,10 @@ Marcar/desmarcar pane (para usar con join-pane, swap-pane, swap-window):
 C-b m
 C-b M
 
+Lock:
+C-b :lock-session
+  lo mismo para desbloquear
+
 
 Mover panes:
 https://gist.github.com/andreyvit/2921703
