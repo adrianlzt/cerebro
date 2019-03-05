@@ -22,6 +22,10 @@ svn update
 
 git log -p
 svn log --diff | less
+svn log --diff fichero | less
+
+svn log --diff -r 64233
+  ver los cambios de una revision determinada
 
 
 git checkout -l
