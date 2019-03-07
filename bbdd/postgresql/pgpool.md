@@ -1,5 +1,6 @@
 http://www.pgpool.net/mediawiki/index.php/Main_Page
 https://gist.github.com/afair/3803895
+mirar pgbouncer.md
 
 Pgpool-II is a middleware that works between PostgreSQL servers and a PostgreSQL database client.
 
