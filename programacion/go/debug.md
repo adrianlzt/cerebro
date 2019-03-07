@@ -63,3 +63,6 @@ Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 # Debug
 https://golang.org/pkg/runtime/debug/
 Package debug contains facilities for programs to debug themselves while they are running.
+
+
+# Stack trace
