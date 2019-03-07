@@ -31,6 +31,7 @@ v <- ch   espera un valor del canal ch (se queda esperando hasta que consigue el
 Los canales se crean: ch := make(chan <tipo dato>)
 Y se les pasa a la función que va a ser un nuevo thread como parámetro
 Se puede pasar el mismo canal a varias hebras distintas.
+Recordar crear el canal si hemos definido el canal en un struct
 
 func sum(x int ,ch chan int) {
   ...
@@ -89,6 +90,12 @@ func SearchParallel(query string) ([]Result, error) {
     go func() { c <- Video(query) }()
 
     return []Result{<-c, <-c, <-c}, nil
+}
+
+
+Funciones que retornan un canal:
+func (c *RedisClient) Messages() <-chan []byte {
+  return c.messages  // esto es un chan []byte
 }
 
 

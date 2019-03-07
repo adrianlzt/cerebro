@@ -2,6 +2,7 @@ https://golang.org/ref/spec#MapType
 https://blog.golang.org/go-maps-in-action
 
 Une keys a valores
+Hace falta inicializarlo (si solo hacemos "var x map..." nos dirá "assignment to entry in nil map")
 
 map([TIPO_DATO_CLAVE]TIPO_DATO_VALOR)
 
