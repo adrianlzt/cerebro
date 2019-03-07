@@ -1,4 +1,5 @@
 http://golang.org/pkg/strings/
+https://blog.golang.org/strings
 
 string (por defecto "")
 
@@ -35,6 +36,13 @@ strings.TrimPrefix("Goodbye,, world!", "Goodbye,")
 strings.TrimSpace(a)
 borra caracteres en blanco, tabs y new lines.
 TrimSpace returns a slice of the string s, with all leading and trailing white space removed, as defined by Unicode.
+
+
+# Recorrer
+s := "cadena"
+for i:=0; i<len(s); i++ {
+   fmt.Printf("%s", s[i])  // imprime el valor del uint8
+}
 
 
 
@@ -94,6 +102,10 @@ a,err := strconv.ParseFloat("3.1415", 64)
 if err != nil {
   //gestionar el error
 }
+
+
+string -> runes
+[]rune("cadena")
 
 
 # Repetir
