@@ -33,31 +33,41 @@ b /home/adrian/.gvm/pkgsets/go1.9.2/global/src/github.com/influxdata/telegraf/pl
 Con "help" podemos ver los comandos disponibles
 
 Típicos:
-p X  		mostrar valor de X
-funcs 	mostrar lista de funciones (nos puede valer para poner breakpoints)
-s		  	entrar en una func
-stepout	salir a la funcion de arriba
-n  			siguiente linea
-stack		mostrar stack
+p X     mostrar valor de X
+funcs   mostrar lista de funciones (nos puede valer para poner breakpoints)
+s       entrar en una func
+stepout salir a la funcion de arriba
+n       siguiente linea
+stack   mostrar stack
 
 
-# Cutre
+# Trace
+## runtime/trace
+
+## cutre
 println("traza %s", valor)
 mirar pretty_print.md
 
 
-# Mostrar una linea diciendo donde estamos, fichero, linea y funcion
+## mostrar una linea diciendo donde estamos, fichero, linea y funcion
 func trace() {
-	pc := make([]uintptr, 10)  // at least 1 entry needed
-	runtime.Callers(2, pc)
-	f := runtime.FuncForPC(pc[0])
-	file, line := f.FileLine(pc[0])
-	//log.Debugf("%s:%d %s\n", file, line, f.Name())
-	fmt.Printf("%s:%d %s\n", file, line, f.Name())
+  pc := make([]uintptr, 10)  // at least 1 entry needed
+  runtime.Callers(2, pc)
+  f := runtime.FuncForPC(pc[0])
+  file, line := f.FileLine(pc[0])
+  //log.Debugf("%s:%d %s\n", file, line, f.Name())
+  fmt.Printf("%s:%d %s\n", file, line, f.Name())
 }
 
 Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 
+
+
+
+
+# Gorutinas
+Saber cuantas tenemos activas
+runtime.NumGoroutine()
 
 
 # Debug
