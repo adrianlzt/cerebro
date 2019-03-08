@@ -33,5 +33,5 @@ Podemos denegar el acceso "Frontend access" sin deshabilitar la cuenta si querem
 Para que no le espire la cookie de sesion
 
 
-# Resetear session
+# Resetear session (reset)
 http://yourserver.fq.dn/zabbix/latest.php?filter_rst=1

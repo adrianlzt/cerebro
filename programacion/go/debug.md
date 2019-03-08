@@ -88,5 +88,5 @@ Package debug contains facilities for programs to debug themselves while they ar
 
 # Stack trace
 kill -ABRT xxx
-hace dump de las corutinas (a stderr) y mata el proceso.
+hace dump de las corutinas y mata el proceso.
 Útil para cuando se nos está quedando pillado el proceso
