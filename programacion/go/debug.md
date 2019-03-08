@@ -43,6 +43,17 @@ stack   mostrar stack
 
 # Trace
 ## runtime/trace
+f, _ := os.Create("trace.out")
+defer f.Close()
+trace.Start(f)
+defer trace.Stop()
+trace.Logf(context.Background(), "agent", "interval: %v", a.Config.Agent.Interval)
+
+Un problema que veo es que si el programa está fallando y lo tenemos que matar con kill -9, no se generará el trace.out
+
+go tool trace trace.out
+Nos abrirá una ventana del navegador con mucha info
+
 
 ## cutre
 println("traza %s", valor)
