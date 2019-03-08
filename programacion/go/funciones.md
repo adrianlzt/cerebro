@@ -61,6 +61,9 @@ Es una interfaz
 
 # Named return values
 http://golangtutorials.blogspot.com.es/2011/06/return-values-from-go-functions.html
+https://blog.minio.io/golang-internals-part-2-nice-benefits-of-named-return-values-1e95305c8687
+  según este post es mejor usar named return values. Genera menos código ensamblador
+  No es necesario usar los naked return.
 
 Damos un nombre a las variables de retorno, las poblamos y al final llamamos simplemente a return sin parametros.
 
