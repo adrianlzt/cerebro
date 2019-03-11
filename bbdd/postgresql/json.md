@@ -39,11 +39,12 @@ tabla#>>'{1}'
 Primer elemento
 
 
-Extraer las claves de los json
+Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);
 insert into checks VALUES('check-http-google-8000','monitorizacion::checks::http','{"host" : "www.google.es","port" : "8000"}');
 insert into checks VALUES('check-tcp-puppet-master','monitorizacion::checks::tcp','{ "host" : "192.168.51.2", "port" : "8081", "args" : "-w 3" }');
 select DISTINCT json_object_keys(juanson) from checks; <- las keys sin duplicar
+jsonb_object_keys para jsonb
 
 
 # WHERE

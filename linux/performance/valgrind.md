@@ -35,3 +35,11 @@ valgrind --tool=callgrind
 
 
 Mirar memoria/tunables.md vm.max_map_count
+
+
+
+# Dump memoria
+En /proc/PID/maps tenemos las areas de memoria que está usando un proceso.
+En /proc/PID/mem podemos leer estas áreas para obtener los datos almacenados por el proceso.
+https://stackoverflow.com/a/23001686/1407722
+Script en python para hacer un dump de la memoria de un proceso.
