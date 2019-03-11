@@ -57,3 +57,15 @@ Y luego las consultas SQL lanzadas, especificando que fichero php las ha realiza
 
 SQL (0.000259): SET search_path = 'public'
 zabbix.php:21 → require_once() → ZBase->run() → ZBase->initDB() → DBconnect() → DBexecute() in include/db.inc.php:84
+
+
+
+# eBPF
+No probado
+Podemos tracear funciones internas de zabbix usando "trace" de las bcc tools.
+El binario debe ser "not stripped" (chequear con file).
+Para sacar los símbolos por los que podemos filtrar:
+nm -an zabbix_server
+
+Luego:
+sudo /usr/share/bcc/tools/trace 'r:/var/tmp/zabbix_server:process_sender_history_data "retval"'
