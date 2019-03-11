@@ -18,6 +18,7 @@ idle in transaction -> es una transacción que está esperando el "commit" para 
 
 -- kill running query (cancel es más "soft" que terminate)
 SELECT pg_cancel_backend(procpid);
+select pg_terminate_backend(pid) from pg_stat_activity where query like '%sleep%' and pid<>pg_backend_pid();
 
 -- kill idle query (esto es como un kill -9, puede provocar un reinicio de toda la base de datos para recuperar la consistencia)
 SELECT pg_terminate_backend(procpid);
