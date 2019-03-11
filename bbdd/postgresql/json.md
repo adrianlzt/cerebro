@@ -39,6 +39,10 @@ tabla#>>'{1}'
 Primer elemento
 
 
+Tipo de dato:
+jsonb_typeof(data->'software')
+
+
 Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);
 insert into checks VALUES('check-http-google-8000','monitorizacion::checks::http','{"host" : "www.google.es","port" : "8000"}');
