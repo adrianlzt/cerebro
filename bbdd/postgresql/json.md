@@ -42,6 +42,9 @@ Primer elemento
 Tipo de dato:
 jsonb_typeof(data->'software')
 
+Length de un array
+jsonb_array_length()
+
 
 Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);
