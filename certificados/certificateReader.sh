@@ -47,6 +47,8 @@ is_file() {
 
 headers () {
     echo "$1" | egrep -A 10 "^Certificate:"
+    echo "----"
+    echo "$1" | grep -A 1 "Subject Alternative Name:"
 }
 
 ##########

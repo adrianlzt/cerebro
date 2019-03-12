@@ -1,7 +1,9 @@
 http://www.toastresearch.com/2011/04/09/packet-logging-with-iptables/
 
-Enviar logging a syslog.
-Con systemctl: journalctl -t kernel -f
+La cadena LOG envia las trazas al logging del sistema.
+Si tenemos systemctl veremos estos logs en:
+journalctl -t kernel -f
+
 
 iptables -t nat -I PREROUTING 1 -p tcp --dport 443 -j LOG
 
