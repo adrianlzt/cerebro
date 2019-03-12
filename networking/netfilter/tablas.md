@@ -15,6 +15,11 @@ nat
 Esta tabla es la responsable de configurar las reglas de reescritura de direcciones o de puertos de los paquetes. El primer paquete en cualquier conexión pasa a través de esta tabla; los veredictos determinan cómo van a reescribirse todos los paquetes de esa conexión.
 Solo consultada en nuevas conexiones, luego todos los paquetes de la sesión se tratarán igual (los ACK por ejemplo no pasan por aquí)
 
+Se puede evitar el tracking de la conex con:
+iptables -t raw -I PREROUTING -j NOTRACK
+iptables -t raw -I OUTPUT -j NOTRACK
+
+
 
 mangle
   PREROUTING (aqui solo veo paquetes desde fuera hacia dentro)
