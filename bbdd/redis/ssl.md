@@ -19,8 +19,9 @@ Podemos usar "mkcert" para generar ese cert privado necesario
 
 
 # Cliente
-Si queremos usar redis-cli
+https://medium.com/ibm-watson-data-lab/how-to-stunnel-to-redis-on-demand-with-stunredis-960d804b3d68
 https://github.com/ibm-watson-data-lab/stunredis/blob/master/stunredis.sh
+Si queremos usar redis-cli
 
 Si no queremos verificar el cert borrar las líneas:
 verifyChain
