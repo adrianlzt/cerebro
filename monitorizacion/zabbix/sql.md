@@ -186,6 +186,55 @@ select hosts.name,triggers.description from functions,triggers,items,hosts where
 Items que van a ser borrados por que no se descubren más con el LLD:
 select * from (select key_,count(*) from item_discovery where ts_delete <> 0 group by key_) a order by a.count;
 
+La tabla item_discovery almacena la relación entre items descubiertos y sus prototypes (key_ null y lastcheck = 0)
+y entre los items prototypes y los parent discovery, los items LLD (key_ not null y lastcheck <> 0)
+La key_ de item_discovery será la key_ del parent_item
+Items descubiertos de un LLD de un host:
+select id2.lastcheck,items.key_ from item_discovery as id1, item_discovery as id2, items  where id1.parent_itemid=(select items.itemid from hosts,items where hosts.hostid=items.hostid and hosts.host= 'lep2ms02' and items.name = 'telegraf.lld.internal_gather.input') and id1.itemid=id2.parent_itemid and id2.itemid=items.itemid;
+
+Número de items LLD (ejemplo telegraf.lld.xxx). En esta cuenta se cuelan los de los templates:
+select count(*) from (select parent_itemid from item_discovery where key_ = '' group by parent_itemid) a;
+
+
+LLDs enviados por los clientes por segundo:
+WITH llds as
+(
+   select
+      parent_itemid as itemid
+   from
+      item_discovery
+   where
+      key_ = ''
+   group by
+      parent_itemid
+)
+,
+latest_discover as
+(
+   select
+      llds.itemid,
+      id2.lastcheck
+   from
+      llds,
+      item_discovery id1,
+      item_discovery id2
+   where
+      id1.itemid = id2.parent_itemid
+      and id1.parent_itemid = llds.itemid
+      and id2.ts_delete = 0
+   GROUP BY
+      llds.itemid,
+      id2.lastcheck
+)
+select
+   count(*)/(10*60.0) as llds_per_sec
+from
+   latest_discover
+where
+   lastcheck < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))
+;
+
+
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
 			SELECT
