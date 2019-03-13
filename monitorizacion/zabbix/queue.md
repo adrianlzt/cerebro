@@ -22,6 +22,7 @@ http://zabbix/queue.php
 
 
 
+
 El frontal usa la API interna de zabbix para obtener los datos de las colas.
 La función que llama es "queue.get"
 
