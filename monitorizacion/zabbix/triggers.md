@@ -45,6 +45,8 @@ En la vista de Dashboard - Triggers, veremos un símbolo (flecha hacia arriba o 
 Si itemA depende de itemB que a su vez depende de itemC.
 Si itemC está activo, itemB no y salta itemA, no generará evento (se respeta que por encima tienes una dependencia activa)
 
+Si un trigger A depende de un trigger B que está deshabilitado, esta dependencia se ignora.
+
 
 # Severidad
 Distintas severidades actuan teniendo diferentes colores en los dashboards, lanzando diferentes "user medias" y actuando en los triggers.

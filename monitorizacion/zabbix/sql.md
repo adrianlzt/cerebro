@@ -183,6 +183,11 @@ select hosts.host,items.name from hosts,items where items.hostid=hosts.hostid an
 Triggers not supported:
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and triggers.state=1
 
+Cuando enganchamos desde functions hacia triggers (para luego poder tirar de items hasta los hosts), si tenemos recovery expressions podemos encontrarnos con resultados duplicados.
+Esto es porque la función que se usa para el recover también engancha con el trigger, por lo que tendremos dos conexiones desde host->item->functions hacia el trigger.
+Incluso, si el recovery fuera con un item de otro host, podríamos tener dos hosts distintos apuntando al mismo trigger.
+
+
 Items que van a ser borrados por que no se descubren más con el LLD:
 select * from (select key_,count(*) from item_discovery where ts_delete <> 0 group by key_) a order by a.count;
 
