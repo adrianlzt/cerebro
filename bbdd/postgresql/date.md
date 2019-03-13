@@ -37,7 +37,7 @@ select to_char(current_timestamp, 'YYYY_MM_DD');
 Crear timestamp:
 make_timestamp(year int, month int, day int, hour int, min int, sec double precision)o
 '2012-04-01 23:55:00'::timestamp
-
+'2019-03-13 16:39:12+01'::timestamptz
 
 Agrupar en buckets de tiempo:
 select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:40:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
