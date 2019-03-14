@@ -18,6 +18,9 @@ En outer join podemos tener left o right.
   Full, saca los resultados de ambas tablas. Es un left+right
 En inner join no tiene sentido hablar de left o right.
 
+Si queremos excluir, haremos un outer join y meteremos un where para que tal campo sea NIL
+https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
+
 
 ## SQL ## 
 
