@@ -86,6 +86,8 @@ Entraremos en http://localhost:8080/NOMBRECONTEXTROOT
 
 Si estamos en modo domain, pestaña Deployments > Server Groups > Seleccionar el grupo > Seleccionar la app > Web > Context Root
 
+Si la app no se despliega bien puede que al seleccionarla en "Server Groups", no nos muestre la sección "Web"
+
 Propiedades:
 En la parte de abajo de la web, Tools -> Management Model
 Ir a deployment -> nombredelwar -> subsystem -> web -> Pestaña Data
