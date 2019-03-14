@@ -119,6 +119,84 @@ interface.type:
 3 - ipmi
 4 - jmx
 
+La tabla problem mantiene los problems sin resolver.
+Una vez resueltos podemos usar la tabla event_recovery para matchear los que están resueltos.
+
+-- problemas que estaban abiertos en un momento determinado (y ahora ya están cerrados), para un host determinado
+WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz)) AS DATE)
+SELECT
+   hosts.host,
+   triggers.description,
+   to_timestamp(events.clock) AS START,
+   to_timestamp(r_events.clock) AS END
+FROM
+   events
+   JOIN event_recovery ON events.eventid = event_recovery.eventid
+   JOIN events as r_events ON event_recovery.r_eventid = r_events.eventid,
+   triggers,
+   functions,
+   items,
+   hosts
+WHERE
+   events.source = 0 -- solo eventos generados por triggers
+   AND events.object = 0
+   AND events.objectid = triggers.triggerid
+   AND functions.triggerid = triggers.triggerid
+   AND functions.itemid = items.itemid
+   AND items.hostid = hosts.hostid
+   AND events.clock < (SELECT DATE FROM DATE)
+   AND (r_events.clock > (SELECT DATE FROM DATE) OR r_events.clock IS NULL)
+   AND hosts.host = 'somehost'
+ORDER BY events.clock ASC;
+
+
+-- problemas abiertos en un momento determinado para un host determinado
+WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz)) AS DATE)
+SELECT
+   hosts.host,
+   triggers.description,
+   to_timestamp(problem.clock) AS START
+FROM
+   problem,
+   triggers,
+   functions,
+   items,
+   hosts
+WHERE
+   problem.source = 0 -- solo eventos generados por triggers
+   AND r_eventid IS NULL
+   AND problem.objectid = triggers.triggerid
+   AND functions.triggerid = triggers.triggerid
+   AND functions.itemid = items.itemid
+   AND items.hostid = hosts.hostid
+   AND problem.clock < (SELECT DATE FROM DATE)
+   AND hosts.host = 'somehost'
+ORDER BY problem.clock ASC;
+
+
+-- número de problems abiertos por host
+SELECT
+   hosts.host, count(*)
+FROM
+   problem,
+   triggers,
+   functions,
+   items,
+   hosts
+WHERE
+   problem.source = 0 -- solo eventos generados por triggers
+   AND r_eventid IS NULL
+   AND problem.objectid = triggers.triggerid
+   AND functions.triggerid = triggers.triggerid
+   AND functions.itemid = items.itemid
+   AND items.hostid = hosts.hostid group by hosts.host order by count(*) desc;
+
+
+-- número de problems abiertos
+select count(*) from problem where problem.source = 0 AND r_eventid is null;
+
+
+
 
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
@@ -195,7 +273,7 @@ La tabla item_discovery almacena la relación entre items descubiertos y sus pro
 y entre los items prototypes y los parent discovery, los items LLD (key_ not null y lastcheck <> 0)
 La key_ de item_discovery será la key_ del parent_item
 Items descubiertos de un LLD de un host:
-select id2.lastcheck,items.key_ from item_discovery as id1, item_discovery as id2, items  where id1.parent_itemid=(select items.itemid from hosts,items where hosts.hostid=items.hostid and hosts.host= 'lep2ms02' and items.name = 'telegraf.lld.internal_gather.input') and id1.itemid=id2.parent_itemid and id2.itemid=items.itemid;
+select id2.lastcheck,items.key_ from item_discovery as id1, item_discovery as id2, items  where id1.parent_itemid=(select items.itemid from hosts,items where hosts.hostid=items.hostid and hosts.host= 'somehost' and items.name = 'telegraf.lld.internal_gather.input') and id1.itemid=id2.parent_itemid and id2.itemid=items.itemid;
 
 Número de items LLD (ejemplo telegraf.lld.xxx). En esta cuenta se cuelan los de los templates:
 select count(*) from (select parent_itemid from item_discovery where key_ = '' group by parent_itemid) a;
