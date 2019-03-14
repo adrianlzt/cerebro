@@ -56,3 +56,37 @@ setxkbmap es
 Listado de teclas
 http://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
 https://linux.m2osw.com/compose-key-under-linux-keyboard
+
+
+https://github.com/alols/xcape
+Pulsar un modificador y soltarlo actua como pulsar una tecla.
+Por ejemplo, pulsar Ctrl y soltarlo, genera una pulsación de otra tecla.
+
+
+
+# Cambiar layout y ejecutar modmap al conectar teclado usb
+Para saber el vendor y product, mirar lsusb
+Es posible que sobren cosas del usb-keyboard-in
+
+➜ cat /etc/udev/rules.d/00-usb-keyboard.rules
+ATTRS{idVendor}=="045e", ATTRS{idProduct}=="07b9", OWNER="adrian"
+ACTION=="add", RUN+="/usr/local/bin/usb-keyboard-in_udev"
+#ACTION=="remove", RUN+="/usr/local/bin/usb-keyboard-out"
+
+➜ cat /usr/local/bin/usb-keyboard-in_udev
+#!/bin/bash
+su - adrian -c "/usr/local/bin/usb-keyboard-in" &
+
+➜ cat /usr/local/bin/usb-keyboard-in
+#!/bin/bash
+sleep 1
+DISPLAY=":0"
+HOME=/home/adrian/
+XAUTHORITY=$HOME/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+export DISPLAY XAUTHORITY HOME
+setxkbmap -option caps:escape
+# Si lo pongo sin el systemd-cat no me funciona. Ni idea de porque
+systemd-cat xmodmap ~/.Xmodmap
+
+

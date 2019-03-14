@@ -33,6 +33,12 @@ Ejemplo ejecutando un comando de pulseaudio con udev:
 https://www.reddit.com/r/archlinux/comments/1afh8s/frustration_with_pulseaudio_and_udev_rules/
 
 
+Si nos da un error con exit code 1 es porque tal vez estamos intentando escribir en el filesystem cuando el unit (systemd-udevd) de systemd no lo permite (PrivateMounts=yes)
+
+Los ficheros de udev intalados por defecto están en: /usr/lib/udev/rules.d
+Los custom los meteremos en /etc/udev/rules.d/
+
+
 # BUG 2009, privilege scalation
 https://jon.oberheide.org/blog/2009/04/20/udev-local-privilege-escalation/
 http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-1185
