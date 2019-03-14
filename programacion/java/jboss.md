@@ -59,6 +59,7 @@ JAVA_OPTS="$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.manageme
 
 Para arrancarlo:
 bin/standalone.sh -c standalone-full-ha.xml
+  el fichero será relativo al path de configuración (vamos, que el comando es asi, sin el path completo)
 
 Consola en
 http://127.0.0.1:8080/console

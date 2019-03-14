@@ -59,6 +59,15 @@ SQL (0.000259): SET search_path = 'public'
 zabbix.php:21 → require_once() → ZBase->run() → ZBase->initDB() → DBconnect() → DBexecute() in include/db.inc.php:84
 
 
+## Dump mem php fpm
+Si tenemos un proceso php fpm atacando a la bbdd y queremos saber que está haciendo (aún no ha escrito nada en en log):
+Usamos este script en python para hacer un dump de la memoria: https://stackoverflow.com/a/23001686/1407722
+
+Luego hacemos:
+python dump.py PID_PHP_FPM > dump.txt
+strings dump.txt | grep -e zbx_sessionid -e REQUEST_URI -e REMOTE_ADDR -e SELECT -e UPDATE
+
+
 
 # eBPF
 No probado

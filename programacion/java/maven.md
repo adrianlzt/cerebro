@@ -11,3 +11,10 @@ Providing a uniform build system
 Providing quality project information
 Providing guidelines for best practices development
 Allowing transparent migration to new features
+
+
+# Build
+mvn install
+
+# Solo bajar deps
+mvn dependency:resolve
