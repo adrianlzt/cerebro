@@ -21,7 +21,7 @@ Cuando desplegamos varias apps sobre el mismo server tendremos distintas URIs pa
 
 Montar un docker con JBoss EAP 6.4:
 https://servicesblog.redhat.com/2016/03/28/starting-with-devops-deploying-applications-on-your-docker-jboss-eap-image/
-Bajar el .zip de los downloas gratuitos
+Bajar el .zip de los downloads gratuitos
 
 Montar una imagen con docker:
 docker run -p 8080:8080 -p 9990:9990 --rm -it jboss/wildfly /opt/jboss/wildfly/bin/standalone.sh -bmanagement 0.0.0.0
