@@ -282,6 +282,19 @@ dmsetup info -c
 /dev/dm-2 se corresponde al que aparezca en el listado con Minor=2
 
 
+## Bug consumo cpu 100%
+Hay un bug con dmeventd que cuando intenta extender un thin pool y no puede empieza a consumir el 100% de una cpu.
+Tenemos que desactivar el monitor para que no intente crecer automaticamente
+
+Para poder desactivar el monitor, tendremos que liberar espacio en el thin pool. Tendremos que borrar imágenes de docker o containers.
+
+$ lvs -o+seg_monitor | grep docker
+  docker-pool vg_docker twi-aot---  9.29g             85.43  10.61                            monitored
+$ lvchange --monitor n vg_docker/docker-pool
+$ lvs -o+seg_monitor | grep docker
+  docker-pool vg_docker twi-aot---  9.29g             85.43  10.61                            not monitored
+
+
 
 # Debug
 Config:
