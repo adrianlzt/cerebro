@@ -390,21 +390,6 @@ Frecuencia de inserción de items en la tabla history (una partition seleccionad
 select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m'))) and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m'))) group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 
-Obtener problemas de un host.
-Si un trigger es dependeiente de otro, en la web no veremos el hijo, pero si en esta query:
-SELECT t.description ,h.host
-    FROM triggers t,
-         functions f,
-         items i,
-         problem p,
-         hosts h
-    WHERE p.objectid=t.triggerid
-          AND p.objectid=f.triggerid
-          AND f.itemid=i.itemid
-          AND p.r_eventid IS NULL
-          AND p.source='0'
-          AND i.hostid = h.hostid
-
 
 Tamaño de las partitions por día:
 SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%_' and c.reltuples <> 0 group by date order by date;
