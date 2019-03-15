@@ -9,6 +9,19 @@ Downloads gratuitos (developers): https://developers.redhat.com/products/eap/dow
 
 JBoss EAP 6.4.0.GA equivale a AS 7.5.0
 
+Mapeo entre versiones: https://access.redhat.com/solutions/21906
+EAP  Wildly
+7.2  14
+7.1  11
+7.0  10
+
+EAP JBoss AS
+6.4  7.5
+6.3  7.4
+6.2  7.3
+6.1  7.2
+6.0  7.1.2
+
 
 Standalone: un servidor de jboss único
 Domain: gestion de configuración centralizada. Desplegamos en un sitio y se distribuye a todas las máquinas (hosts) del dominio (cluster)

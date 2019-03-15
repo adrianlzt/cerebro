@@ -18,3 +18,10 @@ O abrir el fichero desde eclipse (nos sugerirá instalar el plugin MAT para pode
 
 Eclipse no puede hacer un análisis para detectar un posible memory leak.
 También puede hacer otro análisis para detectar posibles objetos duplicados, etc.
+
+
+Obtener dump con jmap:
+jmap -dump:file=/tmp/dump.hprof.jolokia 46623
+
+Si el pid no contesta podemos forzarlo con:
+jmap -F -dump:file=/tmp/dump.hprof.jolokia 46623
