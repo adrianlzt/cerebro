@@ -1,3 +1,8 @@
+https://github.com/google/gops
+Nos permite recolectar información de procesos que están ejecutándose
+Sacar su stack, forzar GC, tracear, etc
+
+
 # Delve
 https://github.com/derekparker/delve
 go get -u github.com/derekparker/delve/cmd/dlv

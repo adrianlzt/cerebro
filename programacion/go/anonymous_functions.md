@@ -1,5 +1,9 @@
 https://blog.denevell.org/golang-closures-anonymous-functions.html
 
+También se llaman:
+ func literal
+ lambda
+
 fn := func() {
     fmt.Println("hello")
 }

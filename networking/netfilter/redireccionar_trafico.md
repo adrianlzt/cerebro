@@ -9,6 +9,8 @@ echo '1' > /proc/sys/net/ipv4/ip_forward
 Este método no vale para conectar desde localhost a localhost. La interfaz de loopback no pasa por PREROUTING
 https://serverfault.com/questions/211536/iptables-port-redirect-not-working-for-localhost
 
+Si usamos la tabla nat y tenemos muchas conex, tendremos que subir net.netfilter.nf_conntrack_max (sysctl)
+
 
 Los paquetes que vengan de 10.42.0.78:443 envialo s a 127.0.0.1:443
 iptables -t nat -A PREROUTING -s 10.42.0.78 -p tcp --dport 443 -j DNAT --to-destination 127.0.0.1:443
