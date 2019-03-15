@@ -178,3 +178,16 @@ Nos puede valer para cuando tenemos varias goroutinas y una función solo puede 
 El resultado de llamadas concurrentes siempre será el mismo (el resto de llamadas concurrentes solo recibirán la respuesta al terminar la primera llamada, sin reejecutar)
 
 Ejemplo básico: https://play.golang.com/p/cLZErbGmdI9
+
+
+
+
+
+# Patrones de concurrencia
+
+## Proxy
+https://github.com/google/tcpproxy/blob/master/tcpproxy.go#L386
+Un proxy que copia datos entre un origen y un destino.
+La idea principal es dos gorutinas que trabajan en paralelo.
+Le pasamos un canal para avisar de que han terminado (el mismo para ambas).
+En cuanto una termina (estamos escuchando en el canal), cerramos todo (defers) y salimos.

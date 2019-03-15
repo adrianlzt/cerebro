@@ -9,6 +9,8 @@ Luego copia el resto del tráfico hacia, y desde, ese puerto.
 
 Es muy sencillo implementar el descubrimiento de otros protocolos.
 
+Mirar PRs para tener TLS y servidores pasivos.
+
 Por ejemplo, para descubrir TLS:
 // TLS packet starts with a record "Hello" (0x16), followed by version (0x03 0x00-0x03) (RFC6101 A.1)
 // Reject SSLv2 and lower versions (RFC6176):
