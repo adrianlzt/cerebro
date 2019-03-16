@@ -180,3 +180,12 @@ Por ejemplo, holidays pone el 19 de Marzo (San Jose), pero no es festivo (parece
 holidays tampoco tiene en cuenta movimiento de festivos 6-Enero -> 7-Enero y 8-Diciembre -> 9-Diciembre
 
 Tampoco están los festivos locales de la ciudad de Madrid: 15 Mayo y 9 de Noviembre
+
+
+
+# Fuzzy parse
+Parsear fecha tipo "tomorrow 10:00", "in 2 h", "20m"
+from parsedatetime.parsedatetime import Calendar
+fuzzy_date_parse = Calendar().parse
+fuzzy_date_parse("in 20m")
+
