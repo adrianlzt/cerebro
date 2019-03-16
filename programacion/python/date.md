@@ -3,6 +3,11 @@ Librería para gestionar de forma sencilla las fechas
 
 
 
+Convertir entre datetime y time
+from time import mktime
+from datetime import datetime
+dt = datetime.fromtimestamp(mktime(struct))
+
 
 
 http://docs.python.org/2/library/datetime.html
