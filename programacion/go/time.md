@@ -61,3 +61,10 @@ now := time.Now()
 l,_ := time.LoadLocation("CET")
 fmt.Println(now)
 fmt.Println(now.In(l))
+
+
+
+# Human parse
+https://github.com/olebedev/when
+https://github.com/bcampbell/fuzzytime
+https://github.com/araddon/dateparse

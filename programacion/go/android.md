@@ -12,3 +12,4 @@ gomobile install golang.org/x/mobile/example/basic
 # Android-go
 https://github.com/xlab/android-go
 Otra opción que parece más sencilla.
+Roto?
