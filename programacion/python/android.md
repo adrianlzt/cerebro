@@ -9,3 +9,5 @@ python setup.py android -s
   bug con python 3.7 https://github.com/pybee/Python-Android-template/issues/21
   Ir a ~/.cookiecutter/Python-Android-template
   y crear una branch 3.7 con upstream a 3.6
+
+Parece que por ahora está rota la compilación a Android: https://github.com/pybee/briefcase/issues/190
