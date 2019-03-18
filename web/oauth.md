@@ -4,6 +4,8 @@ An open protocol to allow secure authorization in a simple and standard method f
 
 Es una forma de autenticarse por tokens en vez de htpasswd
 
+https://developers.google.com/identity/protocols/OAuth2
+
 
 Dependiendo que tipo de credential registremos, al menos en google, el redirect tendrá que ser distinto.
 Si registramos una Web, tendremos que poner una web de redirección válida con un dominio permitido en la Pantalla de autorización de oauth
