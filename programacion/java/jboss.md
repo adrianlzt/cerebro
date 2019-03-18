@@ -174,6 +174,18 @@ Info de un server:
 
 Arrancar/parar servers: https://docs.jboss.org/author/pages/viewpage.action?pageId=8094240
 /host=local/server-config=server-one:stop
+/host=local/server-config=server-one:start
+/host=local/server-config=server-one:kill
+/host=local/server-config=server-one:destroy
+
+Sacar un deploy de un grupo:
+/server-group=GRP_jolokia/deployment=jolokia.war:remove
+
+Quitar un deployment:
+/deployment=jolokia.war:remove
+
+
+
 
 
 Configurar access-log para un server en modo domain:
