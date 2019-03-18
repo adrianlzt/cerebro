@@ -1,3 +1,6 @@
+mirar functional_programming.md para la programación funcional
+
+
 Filtrar resultados con jquery en el lado del cliente
 https://github.com/jiren/filter.js
 http://jiren.github.io/filter.js/stream.html

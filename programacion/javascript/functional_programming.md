@@ -13,3 +13,9 @@ https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales
 [0,1,2,3,4].reduce(function(valorAnteriorRetornado, valorActual, indice, vector){
   return valorAnterior + valorActual;
 });
+
+
+# filter
+https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/filter
+var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
