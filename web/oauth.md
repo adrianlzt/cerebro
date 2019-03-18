@@ -9,6 +9,11 @@ Dependiendo que tipo de credential registremos, al menos en google, el redirect 
 Si registramos una Web, tendremos que poner una web de redirección válida con un dominio permitido en la Pantalla de autorización de oauth
 
 
+# Para cli
+User -> web google
+Retorna un codigo.
+Usamos la key y el codigo para obtener el token
+
 Solicitamos para la app con client id CLIENTID permisos para acceder a los reminders.
 Esta web la tendremos que abrir con el navegador y nos devolverá un código.
 curl "https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Freminders&response_type=code&client_id=CLIENTID&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"
@@ -23,3 +28,8 @@ curl -vd "client_id=CLIENTID&client_secret=CLIENTSECRET&redirect_uri=urn:ietf:wg
   "scope": "https://www.googleapis.com/auth/reminders",
   "token_type": "Bearer"
 }
+
+
+# Para web
+Ponemos el response_type=token
+Tras acceder el cliente, google nos pasa el token a la redirect_uri

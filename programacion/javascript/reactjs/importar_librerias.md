@@ -15,3 +15,8 @@ export default App;
 import React, {Component} from 'react';
 export class Color extends Component {...
 export class Animal extends Component {...
+
+
+const Validator = require("validator");
+Equivalente a
+import Validator from "validator";

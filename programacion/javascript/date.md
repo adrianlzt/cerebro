@@ -16,6 +16,9 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 new Date().getTime()/1000
 1475861659.487
 
+parseInt(new Date().getTime()/1000)
+1552874404
+
 epoch to javascript date
 d = new Date(1475871691.823*1000)
 d.toUTCString()
