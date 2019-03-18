@@ -17,6 +17,6 @@ export class Color extends Component {...
 export class Animal extends Component {...
 
 
-const Validator = require("validator");
-Equivalente a
-import Validator from "validator";
+No tengo claro como se pone esto con el formato de import.
+var chrono = require('chrono-node');
+
