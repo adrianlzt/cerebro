@@ -17,3 +17,15 @@ const (
   c2
   c3
 )
+
+Si queremos usarla varias veces
+const (
+  xx = iota
+  bb
+  cc
+)
+
+const (
+  aa = iota
+  mm
+)
