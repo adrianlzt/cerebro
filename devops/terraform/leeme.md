@@ -9,3 +9,14 @@ En ansible todas las variables se comparten de modo global, por lo que es muy di
 Otra desventaja de Ansible es que si modificamos el playbook de nuestra infraestructura añadirá cosas, en vez de borrar lo antiguo y crear lo nuevo.
 
 Una desventaja de terraform es que parece que cuando lo usamos para crear muchas máquinas (cientos), falla bastante (Dic'18)
+
+Desventajas:
+"al final tenemos que hacer guarradas rollo hacer plantillas y procesar cosas con un local-exec y kubectl porque le provider hay cosas que no tiene ni quieren meter mientras sigan beta"
+Ejemplo:
+provisioner "local-exec" {
+    command = <<EOT
+        kubectl create configmap ${var.cm_name} --from-env-file=${var.cm_name}.env --namespace ${var.cm_namespace} --dry-run -o yaml | kubectl apply -f -
+        kubectl label configmap ${var.cm_name} app.kubernetes.io/managed-by=terraform
+    EOT
+  }
+

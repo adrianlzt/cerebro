@@ -250,6 +250,7 @@ C-b :setw synchronize-panes
   escribir lo mismo en todos los panes de un window (se puede usar tab para autocompletar)
   C-b e, activar
   C-b E, desactivar
+Si queremos sincronizar un pane, podemos desactivarlo: selectp -d (para activarlo de nuevo selectp -e)
 
 
 
