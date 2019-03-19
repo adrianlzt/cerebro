@@ -23,6 +23,9 @@ Ambos threads comparten el mismo 'address space', por lo que el acceso a memoria
 
 Ejemplo de como usar gorutinas y canales para crear una serie de "workers" que procesan unos trabajos: https://play.golang.com/p/Xej_bnYnlSr
 
+No debemos de intentar obtener el id de una gorutine: https://blog.sgmansfield.com/2015/12/goroutine-ids/
+
+
 
 ## Channels
 Es la forma de comunicarse entre la hebras creadas y la principal
