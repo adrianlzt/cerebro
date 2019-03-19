@@ -51,6 +51,7 @@ http://docs.ansible.com/ansible/developing_modules.html#debugging-ansiblemodule-
 
 Ejecutar ansible para que mantenga en remoto los ficheros python:
 ANSIBLE_KEEP_REMOTE_FILES=1 ansible localhost -m ping -a 'data=debugging_session' -vvv
+Tambien se puede poner esta variable en el ansible.cfg (mirar ansible-config list)
 
            Otra forma de conseguirlos:
            while true; do sleep 0.2; find ~/.ansible/tmp/ -type f -exec cp {} /tmp/ \;; done
@@ -74,6 +75,9 @@ excommunicate
 Para ejecutar directamente el modulo de ansible
 cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py
+
+Con los AnsiballZ parece que solo hace falta:
+cat args | python __main__.py
 
 Para hacer debug:
  En una terminal:
