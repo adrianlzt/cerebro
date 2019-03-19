@@ -29,10 +29,23 @@ Es la forma de comunicarse entre la hebras creadas y la principal
 ch <- v   envia v al canal ch (espera hasta que el recibidor este listo)
 v <- ch   espera un valor del canal ch (se queda esperando hasta que consigue el valor)
 
+len(ch): número de elementos en el canal (podemos llamarla con el canal cerrado)
+cap(ch): capacidad del canal (podemos llamarla con el canal cerrado)
+
+Canal vacío (usado para señalizar)
+signal := make(chan struct{})
+
+
 Los canales se crean: ch := make(chan <tipo dato>)
 Y se les pasa a la función que va a ser un nuevo thread como parámetro
 Se puede pasar el mismo canal a varias hebras distintas.
 Recordar crear el canal si hemos definido el canal en un struct
+
+Podemos especificar si un canal solo se va a usar como entrada o salida:
+chan T denotes a bidirectional channel type. Compilers allow both receiving values from and sending values to bidirectional channels.
+chan<- T denotes a send-only channel type. Compilers don't allow receiving values from send-only channels.
+<-chan T denotes a receive-only channel type. Compilers don't allow sending values to receive-only channels.
+
 
 func sum(x int ,ch chan int) {
   ...
@@ -128,11 +141,14 @@ https://play.golang.org/p/j3aHaeMyjt
 import "sync"
 var wg sync.WaitGroup
 wg.Add(1)
-go rutina(&wg)
+go func() {
+  // Este esquema lo veo mucho para no tener que pasar el wg a la rutina
+  defer wg.Done()
+  rutina()
+}()
 wg.Wait()
 
-func rutina(wg *sync.WaitGroup) {
-  defer wg.Done()
+func rutina() {
   ...
 }
 
@@ -177,7 +193,7 @@ Asegurarnos que una función solo se está ejecutando una única vez en cada mom
 Nos puede valer para cuando tenemos varias goroutinas y una función solo puede ser ejecutada en cada momento una sola vez.
 El resultado de llamadas concurrentes siempre será el mismo (el resto de llamadas concurrentes solo recibirán la respuesta al terminar la primera llamada, sin reejecutar)
 
-Ejemplo básico: https://play.golang.com/p/cLZErbGmdI9
+Ejemplo básico: singleflight.go
 
 
 
@@ -185,9 +201,28 @@ Ejemplo básico: https://play.golang.com/p/cLZErbGmdI9
 
 # Patrones de concurrencia
 
+## Una única ejecucción
+Podemos usar Singleflight. Pero tal vez no queremos obtener nada y sería encolar muchas tasks. Ejemplo, un endpoint web para arrancar un proceso batch
+
+O tal vez un select que intente coger un elemento de un canal de tamaño 1 y un default por si no hay nada que coger.
+
+
 ## Proxy
 https://github.com/google/tcpproxy/blob/master/tcpproxy.go#L386
 Un proxy que copia datos entre un origen y un destino.
 La idea principal es dos gorutinas que trabajan en paralelo.
 Le pasamos un canal para avisar de que han terminado (el mismo para ambas).
 En cuanto una termina (estamos escuchando en el canal), cerramos todo (defers) y salimos.
+
+
+## Semáforos
+https://medium.com/@matryer/golang-advent-calendar-day-two-starting-and-stopping-things-with-a-signal-channel-f5048161018
+Usar un canal vacío (struct{}) para señalizar, esperar, etc
+
+done := make(chan struct{}, 2)
+<-done
+done <- struct{}{}
+
+
+## Pipelines
+https://blog.golang.org/pipelines
