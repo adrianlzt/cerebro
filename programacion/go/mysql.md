@@ -28,8 +28,12 @@ Simplifica el acceso a sql.
 Por ejemplo, nos permite pasarle un struct, o array de struct, a una query SELECT y nos rellena el struct/array
 
 
+# Postgresql
 Postgresql ejemplo: https://www.calhoun.io/connecting-to-a-postgresql-database-with-gos-database-sql-package/
 El driver github.com/lib/pq no devuelve los ColumnTypes
+_ "github.com/lib/pq"
+
+
 
 sqlite: https://raw.githubusercontent.com/mattn/go-sqlite3/master/_example/simple/simple.go
 
