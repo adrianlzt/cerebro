@@ -251,6 +251,7 @@ C-b :setw synchronize-panes
   C-b e, activar
   C-b E, desactivar
 Si queremos sincronizar un pane, podemos desactivarlo: selectp -d (para activarlo de nuevo selectp -e)
+No hay opción de hacer esto más user-friendly: https://github.com/tmux/tmux/issues/1638
 
 
 
