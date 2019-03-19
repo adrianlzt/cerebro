@@ -22,7 +22,7 @@ curl -s 172.17.0.2:8080/jolokia-war-unsecured-1.6.0 | jq '.value.config.dispatch
 org.jolokia.http.Jsr160ProxyNotEnabledByDefaultAnymoreDispatcher -> no tenemos el proxy configurado
 
 Si no está habilitado el proxy y enviamos un POST JSON, ej.:
-curl -H "Content-Type: application/json" http://172.17.0.2:8080/jolokia-war-unsecured-1.6.0 -d '{"type":"READ", "mbean":"java.lang:type=Threading", "attribute":"ThreadCount", "target": { "url":"service:jmx:rmi:///jndi/rmi://jboss-as:8686/jmxrmi", "password":"admin", "user":"scrt" } }'
+curl -H "Content-Type: application/json" http://172.17.0.2:8080/jolokia-war-unsecured-1.6.0 -d '{"type":"READ", "mbean":"java.lang:type=Threading", "attribute":"ThreadCount", "target": { "url":"service:jmx:rmi:///jndi/rmi://jboss-as:8686/jmxrmi", "password":"admin", "user":"scrt" } }' | python -m json.tool |& sed "s#\\\n#\n#g"
 
 Nos devolverá un error, muy largo, que contiene al principio: No JSR-160 proxy is enabled by default since Jolokia 1.5.0
 
