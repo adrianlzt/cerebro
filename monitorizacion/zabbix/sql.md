@@ -408,6 +408,12 @@ Funciones que ejecutan los timers:
 SELECT function, parameter, count(*) FROM functions where function IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY function, parameter ORDER BY count;
 
 
+Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
+SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
+La fecha que pone es now() - 1 día
+OFFSET 0 es como no ponerlo
+
+
 # Tocando la bbdd
 Es el frontend el que se encarga de generar elementos en la bbdd.
 
