@@ -166,3 +166,8 @@ func f(x map[string]string) {
 }
 
 https://play.golang.com/p/AC-vyWPnX8p
+
+
+
+# Compare / comparar maps
+reflect.DeepEqual(map1, map2)
