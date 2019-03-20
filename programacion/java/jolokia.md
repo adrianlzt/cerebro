@@ -12,6 +12,16 @@ Nos expone la api HTTP/JSON, le realizamos peticiones diciendole donde debe cone
 El se encarga de conectarse a donde le hayamos dicho, traduciendo el JSON en JMX.
 
 
+Version secured VS unsecured.
+La diferencia está en el fichero WEB-INF/web.xml.
+La versión unsecured tiene comentadas las secciónes:
+<login-config>
+<security-constraint>
+<security-role>
+
+Ese fichero podemos consultarlo en JBoss corriendo mirando en un directorio temporal que tiene que estar abierto por el proceso (el proceso no tendrá abierto el web.xml, pero veremos un directorio donde si estará ese fichero)
+
+
 Please note that the proxy mode is not switched on by default since version 1.5.0. You have to explicitly switch it on for the WAR or OSGI agent:
   - Repackaging the jolokia.war and adapt web.xml to include the init option dispatcherClasses with a value org.jolokia.jsr160.Jsr160RequestDispatcher.
   - Set the system property org.jolokia.jsr160ProxyEnabled (tuve que reiniciar el server tras añadir esta opción (en Domain -> Server Groups -> System Properties)
