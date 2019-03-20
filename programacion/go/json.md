@@ -154,3 +154,27 @@ fmt.Println(string(res1B))
 
 # Escapar caracteres
 https://play.golang.org/p/SJM3KLkYW-
+
+
+
+# JSON desconocido
+Idea que he tenido usando el switch para probar conversiones:
+
+jsonReq := map[string]interface{}{}
+json.Unmarshal(data, &jsonReq)
+
+for k, v := range jsonReq {
+  switch v.(type) {
+  case string:
+    fmt.Printf("%v: %v (string)\n", k, v.(string))
+  case float64:
+    fmt.Printf("%v: %v (float64)\n", k, v.(float64))
+  case int:
+    fmt.Printf("%v: %v (int)\n", k, v.(int))
+  case map[string]interface{}:
+    fmt.Printf("%v: %v (map[string]interface{})\n", k, v.(map[string]interface{}))
+  default:
+    fmt.Println("unknown")
+  }
+}
+
