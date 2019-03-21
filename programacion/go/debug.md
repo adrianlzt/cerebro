@@ -46,6 +46,11 @@ n       siguiente linea
 stack   mostrar stack
 
 
+## Debug tests
+dlv test -- -test.run TestZabbixLLDForceSamePointSeveralPushes$
+(dlv) b TestZabbixLLDForceSamePointSeveralPushes
+
+
 # Trace
 ## runtime/trace
 f, _ := os.Create("trace.out")
