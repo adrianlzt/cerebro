@@ -13,6 +13,9 @@ hours, _ := time.ParseDuration("10h")
 Unix epoch
 tm := time.Unix(epochSecs, epochNanoSecs)
 
+time.Now().Unix()
+En formato epoch
+
 
 const longForm = "Jan 2, 2006 at 3:04pm (MST)"
 t, _ := time.Parse(longForm, "Feb 3, 2013 at 7:54pm (PST)")
@@ -40,6 +43,7 @@ https://play.golang.org/p/gVXMfuzztC
 
 fmt.Println("Unix format:", time.Now().Format(time.UnixDate))
 fmt.Println("Unix format:", time.Now().Add(-time.Duration(3)*time.Hour).Format(time.UnixDate))
+  hora actual menos 3h
 
 # Diferencia de tiempos
 t0 := time.Now()
