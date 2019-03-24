@@ -1,6 +1,6 @@
 https://golang.org/pkg/regexp/
 
-import "regex"
+import "regexp"
 
 
 re := regexp.MustCompile("http://funkyimg.com/p/.*jpg")
