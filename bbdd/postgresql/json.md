@@ -33,7 +33,10 @@ Si el campo no es tipo json, podemos hacer un cast:
 info::json->'customer'
 
 info#>>'{tabla,nth-elemento}'
-  Coge el elemento n del array tabla
+  Coge el elemento n del array tabla (en formato texto)
+
+jsonb_pretty(data#>'{software,0}')
+  Muestra tabulado el primer elemento del array "software" del dicciónario "data"
 
 tabla#>>'{1}'
 Primer elemento

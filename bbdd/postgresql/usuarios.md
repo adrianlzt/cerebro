@@ -28,13 +28,21 @@ ALTER USER 'pepe' ...
 
 
 ## Privilegios / Permisos ##
-http://www.postgresql.org/docs/8.4/interactive/privileges.html
-http://www.postgresql.org/docs/8.4/interactive/sql-grant.html
+https://www.postgresql.org/docs/current/sql-grant.html
 
-Permiso para una tabla.
+Chequear permisos de una bbdd:
+\dp
+
+Permiso para acceder a una database:
+GRANT CONNECT ON DATABASE NombreDatabase to "user";
+
+Permiso para leer una tabla:
+GRANT SELECT ON nombreTabla to user;
+
+Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
 
-Permiso para una db.
+Todos los permisos para una db.
 GRANT ALL ON DATABASE basededatos TO joe;
 
 Para conectarse a una base de datos distinta al nombre del usuario deberemos especificarlo con el parámetro -d
