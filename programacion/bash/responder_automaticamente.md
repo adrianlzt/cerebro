@@ -34,6 +34,18 @@ expect {
     "user"
 }
 
+if {[regexp -nocase "Linux" $results]} {
+        puts "It is a Linux Machine"
+} elseif {[regexp -nocase "Aix" $results]} {
+        puts "It is a AIX machine"
+} else {
+        puts "Unknown machine"
+}
+
+
+# String
+[string match "*$value*" $buff]
+  comprobar si la variable $value está en $buff
 
 # Regex
 expect -re "awk\[^\n]+\n(.+)\r\n$PROMPT"
@@ -41,6 +53,8 @@ expect -re "awk\[^\n]+\n(.+)\r\n$PROMPT"
 
 # Asignar variables
 set b [exec cat /home/a | grep "work" | awk -F {=} {{print $2}}]
+
+set count 0
 
 
 # Timeout
