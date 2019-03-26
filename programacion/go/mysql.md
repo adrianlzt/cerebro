@@ -7,6 +7,13 @@ mysql_example.go
 Tests, libreria para mockear un driver sql: https://github.com/DATA-DOG/go-sqlmock
 
 
+Los distintos drivers solo tenemos que importarlos y ellos solo se registrán contra sql.
+import _ "blabla/driver/sql"
+El driver tendrá una función init() donde se registrará llamando a sql.Register("nombre", &Objecto)
+Ejemplo de un driver muy simple: https://github.com/mattn/go-yql/blob/master/yql.go
+
+
+
 Escanear un unico row
 row := sql.QueryRow(query)
 err := row.Scan(&hostID, &host, &itemCount)
