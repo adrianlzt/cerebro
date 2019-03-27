@@ -59,6 +59,9 @@ Se crean en:
   /mnt/jboss-eap-6.4/domain/configuration/mgmt-users.properties
   /mnt/jboss-eap-6.4/standalone/configuration/mgmt-users.properties
 
+bin/add-user.sh -a user pass
+  para ApplicationRealm
+
 Existen usuarios de management y usuarios de aplicación. Si ejecutamos el script sin parametros nos preguntará cual queremos crear
 
 Luego tenemos unos ficheros de roles que asocian usuarios a servidores: application-roles.properties
@@ -108,6 +111,8 @@ En "Context root" podremos ver la uri que se le ha asignado.
 
 
 ## Ejemplo
+HelloWorld: https://github.com/imago-storm/hello-world-ear/blob/master/EnterpriseHelloWorld.ear
+
 App de ejemplo: http://www.jboss.org/ticket-monster
 Descargar y hacer el build con:
 mvn clean package
