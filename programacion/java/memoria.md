@@ -19,6 +19,10 @@ O abrir el fichero desde eclipse (nos sugerirá instalar el plugin MAT para pode
 Eclipse no puede hacer un análisis para detectar un posible memory leak.
 También puede hacer otro análisis para detectar posibles objetos duplicados, etc.
 
+mirar priv-adrianRepo/programacion/java/jxray_decompiler.md
+Analizador de pago de heap dumps
+Parece peor que Eclipse. En un problema con jolokia+jboss, eclipse lo detectó claramente. jxray no deja claro cual es el problema.
+
 
 Obtener dump con jmap:
 jmap -dump:file=/tmp/dump.hprof.jolokia 46623
