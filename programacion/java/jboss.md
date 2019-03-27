@@ -62,7 +62,7 @@ Se crean en:
 bin/add-user.sh -a user pass
   para ApplicationRealm
 
-Existen usuarios de management y usuarios de aplicación. Si ejecutamos el script sin parametros nos preguntará cual queremos crear
+Existen usuarios de management y usuarios de aplicación. Si ejecutamos el script sin parametros nos preguntará cual queremos crear y tambien si lo queremos meter en algún grupo.
 
 Luego tenemos unos ficheros de roles que asocian usuarios a servidores: application-roles.properties
 
