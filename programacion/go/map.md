@@ -132,13 +132,40 @@ sortedMapIntString(m,
         func(k int, v string) { fmt.Println("Key:", k, "Value:", v) })
 
 
+
+# Ordenar time.Time como key de un mapa
+sort.Slice(timeSlice, func(i, j int) bool { return timeSlice[i].Before(timeSlice[j])})
+
+mapa := map[time.Time]int{}
+mapa[time.Now()] = 1
+mapa[time.Now().Add(2*time.Second)] = 2
+mapa[time.Now().Add(4*time.Second)] = 4
+mapa[time.Now().Add(6*time.Second)] = 6
+
+keys := []time.Time{}
+for k, _ := range mapa {
+  keys = append(keys, k)
+}
+
+sort.Slice(keys, func(i, j int) bool {
+  return keys[i].Before(keys[j])
+})
+
+for _, v := range keys {
+  fmt.Printf("%v -> %v\n", v, mapa[v])
+}
+
+
+
+
+
 // Declarar un diccionario con distintos tipos de datos, subdict, etc
 params := map[string]interface{}{
-	"EXTERNAL_USER_NAME": "mon",
-	"MONITOR_NAME": map[string]string{
-		"MS_NAME":   "SAP CCMS Monitor Templates",
-		"MONI_NAME": "Operating System",
-	},
+  "EXTERNAL_USER_NAME": "mon",
+  "MONITOR_NAME": map[string]string{
+    "MS_NAME":   "SAP CCMS Monitor Templates",
+    "MONI_NAME": "Operating System",
+  },
 }
 
 
