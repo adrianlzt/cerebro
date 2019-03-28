@@ -15,7 +15,7 @@ Delegation: Users who need to control process state often need only to do that
 Process Groups: Processes often need to be started and stopped in groups, sometimes even in a “priority order"
 Puede sacar el stdout/stderr de un proceso.
 
-supervisorctl
+supervisorctl -c /etc/supervisor/supervisord.conf
 Comandos para controlar los recursos
   status <- muestra el estado de todos los programas manejados
   start PROG
