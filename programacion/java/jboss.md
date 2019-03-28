@@ -262,6 +262,7 @@ export JBOSS_HOME=/home/adrian/Documentos/opensolutions/carrefour/repos/ansible-
 
 
 VisualVM
+https://blog.akquinet.de/2012/11/01/connecting-visualvm-with-a-remote-jboss-as-7-eap6-jvm-process/
 Una vez instalado, copiar este script (en este dir: visualvm.sh o en https://gist.github.com/b4b19c2336806c6e1d91fb3f07a81864) en el bin/ del dir de jboss para poder arrancarlo.
 
 

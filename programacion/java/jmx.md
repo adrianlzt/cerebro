@@ -27,6 +27,7 @@ Para poder añadir más funcionalidad instalar plugins:
   VisualVM-JConsole
   VisualVM-MBeans
 Para usarla con jboss mirar jboss.md
+https://blog.akquinet.de/2012/11/01/connecting-visualvm-with-a-remote-jboss-as-7-eap6-jvm-process/
 
 # Protocolo
 RMI
