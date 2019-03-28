@@ -59,6 +59,8 @@ curl -s 172.17.0.2:8080/jolokia-war-unsecured-1.6.0/list | jq '.' | less
 ### Auth
 Si tenemos jolokia secured deberemos crear un user del ApplicationRealm que pertenzca al grupo "jolokia".
 
+Si usamos auth con jolokia y el server de jolokia corre en el mismo domain que el JMX por el que preguntamos (modo proxy), se reutilizan las credenciales (no tenemos porque ponerlas en el json)
+
 
 # Operaciones
 https://jolokia.org/reference/html/protocol.html#jolokia-operations

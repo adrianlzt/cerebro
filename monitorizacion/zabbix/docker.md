@@ -13,6 +13,10 @@ docker run --name some-zabbix-agent --link zabbix-server-pgsql:zabbix-server --p
 
 
 # Server
+All-in-one (appliance)
+docker run --name some-zabbix-appliance -p 80:80 -p 10051:10051 -d zabbix/zabbix-appliance:tag
+
+
 docker run --name zabbix-postgres -e POSTGRES_PASSWORD=postgres -d postgres
   postgres bbdd server
   crear database "zabbix"? parece que algunas versiones no la crea solo el server?

@@ -253,6 +253,13 @@ Poner user y pass
 JBoss EAP 5 supports JMX monitoring using RMI, where JBoss EAP 6 does not. EAP 6 uses "remoting-jmx" instead of "rmi"
 JBoss EAP 6 does not use RMI
 https://access.redhat.com/solutions/308643
+Aquí también lo explican: https://blog.akquinet.de/2012/11/01/connecting-visualvm-with-a-remote-jboss-as-7-eap6-jvm-process/
+
+
+JBoss EAP 7 usa service:jmx:remote+http://10.10.10.10:9990
+https://access.redhat.com/solutions/2435131
+https://access.redhat.com/solutions/2796861
+
 
 Para conectar con jconsole usar el script que viene en la distribución (bin/jconsole.sh)
 https://dzone.com/articles/remote-jmx-access-wildfly-or
