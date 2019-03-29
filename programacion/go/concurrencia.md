@@ -189,6 +189,11 @@ func Print(numWorker int, str string, vars ...interface{}) {
 
 
 
+# Single run
+https://golang.org/pkg/sync/#Once.Do
+Ejecutar una función una única vez, aunque se llame varias veces.
+
+
 # Singleflight
 https://godoc.org/golang.org/x/sync/singleflight
 
