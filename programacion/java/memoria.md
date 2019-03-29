@@ -25,7 +25,11 @@ Parece peor que Eclipse. En un problema con jolokia+jboss, eclipse lo detectó c
 
 
 Obtener dump con jmap:
-jmap -dump:file=/tmp/dump.hprof.jolokia 46623
+jmap -dump:format=b,file=/tmp/dump.hprof.jolokia 46623
+
+Si nos da el error: Unable to open socket file: target process not responding or HotSpot VM not loaded
+Ejecutar el jmap con el user que tiene corriendo el java
+sudo -u USER jmap -dump...
 
 Si el pid no contesta podemos forzarlo con:
-jmap -F -dump:file=/tmp/dump.hprof.jolokia 46623
+jmap -F -dump:format=b,file=/tmp/dump.hprof.jolokia 46623
