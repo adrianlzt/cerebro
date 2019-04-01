@@ -29,3 +29,18 @@ Añadir los LS como:
     }
   }
 }
+
+
+# Errores
+Cuando en la status line vemos "Code: 0" es que estamos teniendo problemas con el LS. Mirar debug
+
+Un fallo que he visto con el de Go es cuando usamos CGO y hay ciertas flags inválidas.
+Se arregla permitiendo esas flags:
+export CGO_CXXFLAGS_ALLOW=".*"
+export CGO_LDFLAGS_ALLOW=".*"
+export CGO_CFLAGS_ALLOW=".*"
+
+
+
+# Debug
+Cuando falla un LS puedo usar sysdig para ver que se le está enviando y que está contestando.
