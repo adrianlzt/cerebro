@@ -15,6 +15,8 @@ PS MarkSweep (old gen): borra de old gen
 Con ayuda de VisualVM podemos tomar un heap dump.
 Luego podemos cargarlo apara analizarlo en el propio VisualVM.
 O abrir el fichero desde eclipse (nos sugerirá instalar el plugin MAT para poder analizar el dump).
+Podemos arrancar directamente eclipse-mat.
+En el dir donde esté el .hprof se generarán unos .zip que son las páginas webs que vemos (por si queremos compartir el reporte)
 
 Eclipse no puede hacer un análisis para detectar un posible memory leak.
 También puede hacer otro análisis para detectar posibles objetos duplicados, etc.
