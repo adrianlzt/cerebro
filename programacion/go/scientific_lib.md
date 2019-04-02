@@ -32,3 +32,17 @@ Los números float pueden ser NaN o Inf.
 Para chequear si tienen alguno de estos valores
 math.IsNaN(x)
 math.IsInf(x,1) / math.IsInf(x,-1)
+
+
+# Min / max
+https://stackoverflow.com/questions/34259800/is-there-a-built-in-min-function-for-a-slice-of-int-arguments-or-a-variable-numb
+  hay otras opciones
+
+Como solucionar el problema de calcular el mínimo, cuando el valor de inicialización es 0.
+for i, e := range v {
+    if i==0 || e < m {
+        m = e
+    }
+}
+
+También podemos inicializar el max y el min con el primer valor del array antes del for
