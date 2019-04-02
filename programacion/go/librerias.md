@@ -32,30 +32,30 @@ fmt.Println(
 %#v a Go-syntax representation of the value
 %T  a Go-syntax representation of the type of the value
 %%  a literal percent sign; consumes no value
-%t	the word true or false
-%b	base 2
-%c	the character represented by the corresponding Unicode code point
-%d	base 10
-%o	base 8
-%q	a single-quoted character literal safely escaped with Go syntax.
-%x	base 16, with lower-case letters for a-f
+%t  the word true or false
+%b  base 2
+%c  the character represented by the corresponding Unicode code point
+%d  base 10
+%o  base 8
+%q  a single-quoted character literal safely escaped with Go syntax.
+%x  base 16, with lower-case letters for a-f
 %#x lo pone como 0xAAAA
-%X	base 16, with upper-case letters for A-F
-%U	Unicode format: U+1234; same as "U+%04X"
-%b	decimalless scientific notation with exponent a power of two,
-	in the manner of strconv.FormatFloat with the 'b' format,
-	e.g. -123456p-78
-%e	scientific notation, e.g. -1.234456e+78
-%E	scientific notation, e.g. -1.234456E+78
-%f	decimal point but no exponent, e.g. 123.456
-%F	synonym for %f
-%g	%e for large exponents, %f otherwise
-%G	%E for large exponents, %F otherwise
-%s	the uninterpreted bytes of the string or slice
-%q	a double-quoted string safely escaped with Go syntax
-%x	base 16, lower-case, two characters per byte
-%X	base 16, upper-case, two characters per byte
-%p	base 16 notation, with leading 0x
+%X  base 16, with upper-case letters for A-F
+%U  Unicode format: U+1234; same as "U+%04X"
+%b  decimalless scientific notation with exponent a power of two,
+  in the manner of strconv.FormatFloat with the 'b' format,
+  e.g. -123456p-78
+%e  scientific notation, e.g. -1.234456e+78
+%E  scientific notation, e.g. -1.234456E+78
+%f  decimal point but no exponent, e.g. 123.456
+%F  synonym for %f
+%g  %e for large exponents, %f otherwise
+%G  %E for large exponents, %F otherwise
+%s  the uninterpreted bytes of the string or slice
+%q  a double-quoted string safely escaped with Go syntax
+%x  base 16, lower-case, two characters per byte
+%X  base 16, upper-case, two characters per byte
+%p  base 16 notation, with leading 0x
 
 The default format for %v is:
 
@@ -170,3 +170,17 @@ func (r rot13Reader) Read(p []byte) (n int, err error) {
         n, err = r.r.Read(p)
         return
 }
+
+
+
+# Tabwriter
+https://golang.org/pkg/text/tabwriter/
+Imprimir información tabulada, teniendo en cuenta la columna más ancha para organizar el resto
+
+w := tabwriter.NewWriter(os.Stdout, 0, 0, 5, ' ', 0)  // añadimos 5 espacios extra para separar un poco el contenido
+fmt.Fprintf(w, "%v\t%v\t%v\t%v\t%v\t%v\n", "JOBNAME", "SDLUNAME", "STATUS", "STRTDATE", "STRTTIME", "AUTHCKMAN")  // Header
+for _, job := range jobHead {
+  fmt.Fprintf(w, "%v\t%v\t%v\t%v\t%v\t%v\n", job["JOBNAME"], job["SDLUNAME"], job["STATUS"], job["STRTDATE"], job["STRTTIME"], job["AUTHCKMAN"])
+}
+w.Flush()
+

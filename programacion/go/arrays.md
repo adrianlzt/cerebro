@@ -92,6 +92,12 @@ sort.Strings(a1)
 Para ordenar ints
 sort.Ints(s)
 
+Ordernar slice con fechas:
+sort.Slice(keys, func(i, j int) bool {
+  return keys[i].Before(keys[j])
+})
+
+
 # Diferencia
 http://stackoverflow.com/questions/19374219/how-to-find-the-difference-between-two-slices-of-strings-in-golang
 
