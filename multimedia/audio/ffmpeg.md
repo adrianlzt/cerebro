@@ -10,6 +10,8 @@ http://superuser.com/questions/516806/how-to-encode-audio-with-opus-codec
 -> opus
 ffmpeg -i input.wav -acodec libopus output.opus
 
+mp3 -> flac
+ffmpeg -i input.mp3 output.flac
 
 
 # Grabar en FLAC
