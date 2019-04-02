@@ -38,6 +38,15 @@ t.Format("2006-01-02 15:04:05.000000000")
 # Now
 time.Now()
 
+
+# Generar fecha
+func Date(year int, month Month, day, hour, min, sec, nsec int, loc *Location) Time
+
+Hoy a las 00:00
+t := time.Now()
+time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
+
+
 # Agregar/quitar una duracion
 https://play.golang.org/p/gVXMfuzztC
 
