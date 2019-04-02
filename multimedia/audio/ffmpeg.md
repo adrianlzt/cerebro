@@ -10,8 +10,14 @@ http://superuser.com/questions/516806/how-to-encode-audio-with-opus-codec
 -> opus
 ffmpeg -i input.wav -acodec libopus output.opus
 
+FLAC es lossless (no pierde calidad)
 mp3 -> flac
 ffmpeg -i input.mp3 output.flac
+
+Si queremos convertir de stereo a mono
+ffmpeg -i xxx.mp3 -ac 1 out.format
+
+
 
 
 # Grabar en FLAC
