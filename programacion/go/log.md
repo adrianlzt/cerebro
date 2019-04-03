@@ -1,3 +1,9 @@
+https://dave.cheney.net/2015/11/05/lets-talk-about-logging
+Artículo sobre como logear
+Se defiende que solo debería haber un nivel info y otro debug.
+https://github.com/go-logr/logr
+Esta implementación se basa en esas ideas, pero si pone log error y varios niveles (sin nombre) para debug.
+
 # klog
 https://github.com/kubernetes/klog/
 Variante de Kubernetes del glog oficial.
