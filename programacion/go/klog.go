@@ -35,12 +35,14 @@ func main() {
 	// Al usar la lib flag quiere decir que podemos pasar todos estos parámetros como parte de la ejecucción. Ej.: go run main.go -stderrthreshold INFO ...
 	flag.Set("log_file", "myfile.log") // Escribir los logs en este fichero. Si no pasamos un path comleto será respecto al working dir. Tiene prioridad sobre "log_dir" (se ignorará log_dir si este está definido)
 	// Los ficheros de logs de abren en append: https://github.com/kubernetes/klog/commit/ad78c012873af5914b0dfa8d34eab92d7daf914c
+	// No está aun en la versión 0.2.0
+	// Cada vez que abre/rota el fichero le mete la cabecera de cuando se ha creado, que máquina, binary, etc
 
 	//flag.Set("log_dir", "/tmp/go/")    // Escribir los ficheros de log a este dir. Default "/tmp". Si no existe el dir, se usará /tmp
 	// Parece que los ficheros tienen un tamaño máximo, 1800MB (https://github.com/kubernetes/klog/blob/f0c3f94178c11fe3a3503886466b306562049e72/klog_file.go#L33)
 
 	//flag.Set("alsologtostderr", "true") // Sacar los logs por stderr y por fichero (default false)
-	flag.Set("logtostderr", "true") // No logear en ficheros, solo por stderr
+	//flag.Set("logtostderr", "true") // No logear en ficheros, solo por stderr (default true)
 
 	flag.Set("stderrthreshold", "INFO") // Definir el nivel de log por stderr (default ERROR). Posibilidades: FATAL ERROR WARNING INFO
 	flag.Set("v", "2")                  // Modificar el nivel de verbosidad de INFO. Por defecto 0. Valores posibles 0-5

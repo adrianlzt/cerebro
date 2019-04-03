@@ -184,3 +184,9 @@ for _, job := range jobHead {
 }
 w.Flush()
 
+
+
+# Performance
+https://github.com/kubernetes/klog/blob/master/klog.go#L583
+Avoid Fprintf, for speed.
+Parece que para cosas simples es más sencillo añadir cosas a mano que usar Fprintf (3x de ventaja)

@@ -2,6 +2,7 @@
 https://github.com/kubernetes/klog/
 Variante de Kubernetes del glog oficial.
 mirar klog.md
+Si usamos un fichero, y es un proceso que se arranca un momento, genera una cabecera en el log cada vez que es bastante overhead.
 
 Convención que usa kubernetes para decidir que tiene cada nivel: https://github.com/kubernetes/community/blob/master/contributors/devel/logging.md
 
