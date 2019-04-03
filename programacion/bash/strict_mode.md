@@ -4,6 +4,6 @@ set -e
 set -u
 set -o pipefail
 
--e: fallar si alguna ejecucción falla
+-e: fallar si alguna ejecuccion falla
 -u: fallar si intentamos usar alguna variable no definida
 pipefail: fallar si algun elemento en una cadena de pipes falla
