@@ -40,23 +40,32 @@ Mucha mejor performance que el resto
 Parece las más activa en desarrollo
 
 Niveles (por defecto info):
-Debug -> [D]
-Info -> [I]
-Warn -> [W]
-Error -> [E]
-DPanic -> ??
-Panic -> [P]
-Fatal -> [F]
-
-https://github.com/uber-go/zap/blob/master/text_encoder_test.go#L154
+DEBUG, INFO, WARN, ERROR, DPANIC, PANIC, FATAL
+DPANIC -> developer panic, para los típicos sitios que el código no debería entrar, para poder detectarlos pronto
 
 Sugar() es para poder pasar contexto sin explicitar que tipo de dato es.
 Es menos performante que el normal porque tiene que "adivinar" que tipo de dato es para pintarlo.
 
-logger, _ := zap.NewDevelopment()
-sugar := logger.Sugar()
-defer sugar.Sync()
-sugar.Infow("failed to fetch URL",
+Info()
+Infof() -> como Printf
+Infow() -> para poder poner (mensaje, key1, value1, key2, value2)
+
+Named() -> para generar sublogs con una sección
+With(k1,v1) -> sublogers con contexto
+
+
+cfg := zap.NewDevelopmentConfig()
+cfg.OutputPaths = []string{"stderr", logFile}
+cfg.DisableStacktrace = true // Generadas para >=warn en Development y >=error en Production
+cfg.Level.SetLevel(zap.InfoLevel)
+l, err := cfg.Build()
+if err != nil {
+  panic(err)
+}
+defer l.Sync()
+log := l.Sugar()
+
+log.Infow("failed to fetch URL",
   "url", "asda",
   "attempt", 3,
   "backoff", time.Second,
