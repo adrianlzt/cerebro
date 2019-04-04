@@ -6,6 +6,8 @@ Esta implementación se basa en esas ideas, pero si pone log error y varios nive
 También nos permite ir creando childs para saber por donde vamos y añadir fácilmente contexto a los logs.
 mirar klogr.go
 
+klog y klogr tienen una confusión bastante grande de opciones: https://github.com/kubernetes/klog/issues/54
+
 # klog
 https://github.com/kubernetes/klog/
 Variante de Kubernetes del glog oficial.
@@ -31,9 +33,13 @@ log.Println("traza")
 
 # Zap
 https://godoc.org/go.uber.org/zap
-Usado por influxdb
+mirar zap.go
+Usado por influxdb: https://github.com/influxdata/influxdb/blob/master/logger/logger.go
 
-Niveles:
+Mucha mejor performance que el resto
+Parece las más activa en desarrollo
+
+Niveles (por defecto info):
 Debug -> [D]
 Info -> [I]
 Warn -> [W]
@@ -43,6 +49,38 @@ Panic -> [P]
 Fatal -> [F]
 
 https://github.com/uber-go/zap/blob/master/text_encoder_test.go#L154
+
+Sugar() es para poder pasar contexto sin explicitar que tipo de dato es.
+Es menos performante que el normal porque tiene que "adivinar" que tipo de dato es para pintarlo.
+
+logger, _ := zap.NewDevelopment()
+sugar := logger.Sugar()
+defer sugar.Sync()
+sugar.Infow("failed to fetch URL",
+  "url", "asda",
+  "attempt", 3,
+  "backoff", time.Second,
+)
+sugar.Infof("Failed to fetch URL: %s", "asdas")
+
+Output:
+2019-04-04T12:07:09.846+0200    INFO    tmp.7VaWfCopB0/main.go:13       failed to fetch URL   {"url": "asda", "attempt": 3, "backoff": "1s"}
+2019-04-04T12:07:09.846+0200    INFO    tmp.7VaWfCopB0/main.go:19       Failed to fetch URL: asdas
+
+Con NewProduction()
+{"level":"info","ts":1554372583.0205376,"caller":"tmp.7VaWfCopB0/main.go:13","msg":"failed to fetch URL","url":"asda","attempt":3,"backoff":1}
+{"level":"info","ts":1554372583.0205793,"caller":"tmp.7VaWfCopB0/main.go:18","msg":"Failed to fetch URL: asdas"}
+
+Opciones:
+cfg := zap.NewDevelopmentConfig()
+cfg.OutputPaths = []string{
+  "stderr",
+  "test.log",
+}
+// Cambiar el nivel de logging
+cfg.Level.SetLevel(zap.InfoLevel)
+loggerFile, err := cfg.Build()
+
 
 
 
@@ -82,8 +120,8 @@ log.WithField("variable", var).Info("cuantas veces pedimos verbose")
 
 Con variables:
 log.WithFields(log.Fields{
-	"omg":    true,
-	"number": 122,
+  "omg":    true,
+  "number": 122,
 }).Warn("The group's number increased tremendously!")
 
 ## Nivel
@@ -146,11 +184,11 @@ https://github.com/Sirupsen/logrus#testing
 
 ## A un fichero
 func init() {
-	logFile,err := os.OpenFile("/tmp/dcip_eventhandler.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	if err != nil {
-		panic(err)
-	}
-	log.SetOutput(logFile)
+  logFile,err := os.OpenFile("/tmp/dcip_eventhandler.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+  if err != nil {
+    panic(err)
+  }
+  log.SetOutput(logFile)
 }
 
 
@@ -165,13 +203,13 @@ Ejemplos: https://github.com/kubernetes/heapster/blob/7a7c2c2c2c31b2d953da407a38
 Mensajes tipo:
 E1026 15:26:05.485914   23952 hola.go:14] error message
 
-	L                A single character, representing the log level (eg 'I' for INFO)
-	mm               The month (zero padded; ie May is '05')
-	dd               The day (zero padded)
-	hh:mm:ss.uuuuuu  Time in hours, minutes and fractional seconds
-	threadid         The space-padded thread ID as returned by GetTID()
-	file             The file name
-	line             The line number
-	msg              The user-supplied message
+  L                A single character, representing the log level (eg 'I' for INFO)
+  mm               The month (zero padded; ie May is '05')
+  dd               The day (zero padded)
+  hh:mm:ss.uuuuuu  Time in hours, minutes and fractional seconds
+  threadid         The space-padded thread ID as returned by GetTID()
+  file             The file name
+  line             The line number
+  msg              The user-supplied message
 
 Niveles: INFO, WARNING, ERROR, FATAL

@@ -45,6 +45,7 @@ func main() {
 	// Cada vez que abre/rota el fichero le mete la cabecera de cuando se ha creado, que máquina, binary, etc
 	// Flag para quitar esas headers: https://github.com/kubernetes/klog/pull/52
 	// Si ponemos un fichero, cada nivel de log lo abrirá independientemente, bug: https://github.com/kubernetes/klog/issues/53
+	// Workaround con SetOutput?
 
 	//flag.Set("log_dir", "/tmp/go/")    // Escribir los ficheros de log a este dir. Default "/tmp". Si no existe el dir, se usará /tmp
 	// Parece que los ficheros tienen un tamaño máximo, 1800MB (https://github.com/kubernetes/klog/blob/f0c3f94178c11fe3a3503886466b306562049e72/klog_file.go#L33)
