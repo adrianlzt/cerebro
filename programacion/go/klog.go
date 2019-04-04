@@ -37,6 +37,8 @@ func main() {
 	// Los ficheros de logs de abren en append: https://github.com/kubernetes/klog/commit/ad78c012873af5914b0dfa8d34eab92d7daf914c
 	// No está aun en la versión 0.2.0
 	// Cada vez que abre/rota el fichero le mete la cabecera de cuando se ha creado, que máquina, binary, etc
+	// Flag para quitar esas headers: https://github.com/kubernetes/klog/pull/52
+	// Si ponemos un fichero, cada nivel de log lo abrirá independientemente, bug: https://github.com/kubernetes/klog/issues/53
 
 	//flag.Set("log_dir", "/tmp/go/")    // Escribir los ficheros de log a este dir. Default "/tmp". Si no existe el dir, se usará /tmp
 	// Parece que los ficheros tienen un tamaño máximo, 1800MB (https://github.com/kubernetes/klog/blob/f0c3f94178c11fe3a3503886466b306562049e72/klog_file.go#L33)
@@ -45,7 +47,9 @@ func main() {
 	//flag.Set("logtostderr", "true") // No logear en ficheros, solo por stderr (default true)
 
 	flag.Set("stderrthreshold", "INFO") // Definir el nivel de log por stderr (default ERROR). Posibilidades: FATAL ERROR WARNING INFO
-	flag.Set("v", "2")                  // Modificar el nivel de verbosidad de INFO. Por defecto 0. Valores posibles 0-5
+	// Esto tiene más prioridad, aunque pongamos el logtostderr a false, los que superen este nivel se enviarán a stderr
+
+	flag.Set("v", "2") // Modificar el nivel de verbosidad de INFO. Por defecto 0. Valores posibles 0-5
 	//flag.Set("vmodule", "simp*=5,other*=3") // Modificar el nivel de verbosidad de INFO para los ficheros cuyo nombre haga match. Lista separada por comas
 
 	//flag.Set("skip_headers", "true") // Si lo activamos (true), quitará los prefijos de las trazas. Ejemplo de prefijo: E0118 19:42:18.793308   17862 simple.go:39]

@@ -3,6 +3,8 @@ Artículo sobre como logear
 Se defiende que solo debería haber un nivel info y otro debug.
 https://github.com/go-logr/logr
 Esta implementación se basa en esas ideas, pero si pone log error y varios niveles (sin nombre) para debug.
+También nos permite ir creando childs para saber por donde vamos y añadir fácilmente contexto a los logs.
+mirar klogr.go
 
 # klog
 https://github.com/kubernetes/klog/
