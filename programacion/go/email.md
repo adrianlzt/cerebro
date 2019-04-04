@@ -33,3 +33,14 @@ go get gopkg.in/gomail.v2
 Otra opción:
 https://github.com/jordan-wright/email
 https://godoc.org/github.com/jordan-wright/email
+
+
+# Gophermail
+Sencillo para enviar emails
+https://godoc.org/github.com/jpoehls/gophermail
+
+
+# Parsear emails
+https://godoc.org/net/mail#ParseAddressList
+func ParseAddressList(list string) ([]*Address, error)
+

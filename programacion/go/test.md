@@ -26,6 +26,36 @@ gotty sh -c "fd \.go | entr -c go test -v"
 Usar "assert" como libreria helper para generar los tests (mirar más abajo)
 
 
+Para tests repetitivos y parecidos, declarar una estructura con los tests que luego lo recorra un for.
+Ejemplo: https://github.com/kubernetes/klog/blob/master/klogr/klogr_test.go#L13
+
+  tests := map[string]struct {
+    klogr          logr.InfoLogger
+    text           string
+    keysAndValues  []interface{}
+    expectedOutput string
+  }{
+    "should log with values passed to keysAndValues": {
+      klogr:         New().V(0),
+      text:          "test",
+      keysAndValues: []interface{}{"akey", "avalue"},
+      expectedOutput: ` "level"=0 "msg"="test"  "akey"="avalue"
+`,
+    },
+    ...
+  // Luego usamos t.Run para generar tests individuales
+  for desc, test := range tests {
+    t.Run(desc, func(t *testing.T) {
+      rcpts, err := parseEmails(test.tags)
+      if err != nil {
+        t.Fatalf("Should not return an error: %v", err)
+      }
+    })
+  }
+
+
+
+# Como crear tests
 Crearemos fichero *_test.go para probar cada uno de los ficheros go.
 Por ejemplo: main.go -> main_test.go
 

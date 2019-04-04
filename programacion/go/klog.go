@@ -30,7 +30,13 @@ import (
 // Binary: Built with gc go1.11.4 for linux/amd64
 // Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
 func main() {
-	klog.InitFlags(nil) // Si ponemos nil, pilla flag.CommanLine, pero podemos pasar aqui los valores (aunque parece más cómodo con flag.Set: https://github.com/kubernetes/klog/blob/f0c3f94178c11fe3a3503886466b306562049e72/klog.go#L407
+	klog.InitFlags(nil) // Si ponemos nil, pilla flag.CommanLine
+	/*
+	* Ejemplo pasando unas flags sin usar los parámetros del programa:
+	* fs := flag.FlagSet{}
+	* fs.Set("stderrthreshold", "INFO")
+	* klog.InitFlags(&fs)
+	 */
 
 	// Al usar la lib flag quiere decir que podemos pasar todos estos parámetros como parte de la ejecucción. Ej.: go run main.go -stderrthreshold INFO ...
 	flag.Set("log_file", "myfile.log") // Escribir los logs en este fichero. Si no pasamos un path comleto será respecto al working dir. Tiene prioridad sobre "log_dir" (se ignorará log_dir si este está definido)
