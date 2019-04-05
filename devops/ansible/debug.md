@@ -77,9 +77,10 @@ cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py
 
 Con los AnsiballZ parece que solo hace falta:
-cat args | python __main__.py
+python __main__.py args
+python -m pdb __main__.py args
 
-Para hacer debug:
+Para hacer debug (antiguos no soportan el args como param?):
  En una terminal:
   mkfifo stdin stdout
   (cat stdout &) && cat > stdin
