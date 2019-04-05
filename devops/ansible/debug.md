@@ -51,7 +51,7 @@ http://docs.ansible.com/ansible/developing_modules.html#debugging-ansiblemodule-
 
 Ejecutar ansible para que mantenga en remoto los ficheros python:
 ANSIBLE_KEEP_REMOTE_FILES=1 ansible localhost -m ping -a 'data=debugging_session' -vvv
-Tambien se puede poner esta variable en el ansible.cfg (mirar ansible-config list)
+Tambien se puede poner esta variable en el ansible.cfg (mirar ansible-config list -> [defaults] keep_remote_files = true)
 
            Otra forma de conseguirlos:
            while true; do sleep 0.2; find ~/.ansible/tmp/ -type f -exec cp {} /tmp/ \;; done
