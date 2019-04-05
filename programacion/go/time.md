@@ -17,8 +17,7 @@ time.Now().Unix()
 En formato epoch
 
 
-const longForm = "Jan 2, 2006 at 3:04pm (MST)"
-t, _ := time.Parse(longForm, "Feb 3, 2013 at 7:54pm (PST)")
+t, _ := time.Parse("Jan 2, 2006 at 3:04pm (MST)", "Feb 3, 2013 at 7:54pm (PST)")
 
 En la variable escribimos un formato de ejemplo de fecha para que luego sepa como parsear
 La fecha que tenemos que poner debe ser esta:
