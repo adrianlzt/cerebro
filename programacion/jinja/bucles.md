@@ -12,6 +12,11 @@ Una linea por cada vuelta sin lineas en blanco
 {{hostgroup}}
 {% endfor %}
 
+{% for h in hosts %}
+  {{h.endpoint}}
+{% endfor %}
+
+
 
 Ejemplo de bucle inline:
 CONNECTSTRING={% for host in groups['db_mgm'] %} {{ hostvars[host][interface].ipv4.address  }}:1186{% if not loop.last %},{% endif %}{% endfor %}

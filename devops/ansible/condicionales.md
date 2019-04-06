@@ -136,3 +136,10 @@ when: "'cluster' not in group_names"
 
 # Trozo de cadena en una variable
 when: variable | search("casa")
+
+
+
+Longitud de un array
+- fail:
+    msg: "muy largo"
+  when: foo|length > 4
