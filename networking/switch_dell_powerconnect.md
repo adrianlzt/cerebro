@@ -1,5 +1,7 @@
 Terminal similar a los entornos cisco.
 
+RECORDAR GUARDAR LA CONFIG!!
+
 ?
 muestras los comandos disponibles
 
@@ -106,3 +108,12 @@ Puede que tarde unos segundos (~30) en volver a llegar el trafico tras quitar el
 
 Para pararlo:
 config-if> no port monitor gA
+
+
+# Desactivar un puerto
+config
+interface ethernet g17
+shutdown
+
+Para activarlo:
+no shutdown
