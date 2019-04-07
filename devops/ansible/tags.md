@@ -1,3 +1,5 @@
+https://docs.ansible.com/ansible/2.6/user_guide/playbooks_tags.html
+
 A las tasks podemos ponerles tags, de manera que podemos ejecutar solo ciertas tasks de un playbook:
 
 tasks:
@@ -20,6 +22,16 @@ tasks:
 
 roles:
   - { role: webserver, port: 5000, tags: [ 'web', 'foo' ] }
+
+
+tags: always
+  siempre se ejecuta
+
+tags: never
+  nunca se ejecuta
+
+--tags tagged/untagged/all
+  solo se ejecutan las tareas tagged, sin tags o todo
 
 
 # Ansible 2.0

@@ -81,3 +81,6 @@ Variables por las que podemos preguntar: rpm --querytags
 Obtener los valores: rpm -qp --qf "%{EPOCH}" file.rpm
 
 Otro ejemplo: rpm -qp --qf "%-30{NAME}%{DISTRIBUTION}\n" file.rpm
+
+Obtener version y release:
+rpm -q --qf "%{VERSION}-%{RELEASE}" nombrePaqueteInstalado
