@@ -68,3 +68,9 @@ Visto en la función de telegraf-redis donde me pasan métricas y yo las paso en
 
 
 Manejo de errores, que es mejor, crear unas const con los errores o unos struct que cumplan la interfaz Error() (mirar errores.md)
+
+
+
+
+https://github.com/adrianlzt/go-zabbix/blob/master/zabbix.go#L166
+Como gestionar el retorno de parámetros si estamos haciendo dos cosas al mismo tiempo?
