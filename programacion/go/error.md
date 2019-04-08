@@ -145,6 +145,24 @@ Capturado un error, añadirle el contexto donde estamos y pasar el error hacia a
 
 
 
+# Closure errors
+Si tenemos muchas llamadas iguales donde solo chequeamos que el error sea != nil
+
+var err error
+write := func(buf []byte) {
+  if err != nil {
+    return
+  }
+  _, err = w.Write(buf)
+}
+write(p0[a:b])
+write(p1[c:d])
+write(p2[e:f])
+if err != nil {
+  return err
+}
+
+
 
 # invalid flag in #cgo CFLAGS
 https://github.com/golang/go/wiki/InvalidFlag
