@@ -41,7 +41,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer loggerFile.Sync()
+	defer loggerFile.Sync() // Si pongo stderr como fichero y no escribo nada, me salla el sync al salir (sync /dev/stderr: invalid argument)
 	loggerFile.Info("test mensaje a fichero")
 }
 
