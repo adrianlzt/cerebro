@@ -5,6 +5,7 @@ ejemplo de cliente con net/http parseando json
 http_client_json.go
 
 Para montar un server: https://gin-gonic.github.io/gin/
+Parece que la gente suele recomentar usar directamente las librerias estandar. Si acaso algun mux
 
 
 https://golang.org/pkg/net/http/
