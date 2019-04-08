@@ -168,6 +168,11 @@ curl -g http://[::1]:80
   si tenemos una versión más vieja de curl
 
 
+# Curl pipe tgz
+curl https://nexus.cloud/repository/public/file.tgz | tar zx -C test/
+  descomprimir en el dir test/
+
+
 
 # Errores
 curl: (3) [globbing] bad range in column 90
