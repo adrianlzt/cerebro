@@ -107,6 +107,10 @@ https://support.zabbix.com/browse/ZBXNEXT-714
 need scalable alternative for the history and items tables
 
 
+Parece que zabbix 3.2 tiene problemas con permisos y queries.
+
+
+
 
 # Stress test
 https://github.com/vulogov/zas_agent/blob/master/doc/zas-agent-0.1.1.pdf
