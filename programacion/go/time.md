@@ -76,6 +76,21 @@ fmt.Println(now.In(l))
 
 
 
+# Comparar si es no inicializado
+someTime.IsZero()
+
+# Comparar si es igual a otra fecha
+someTime.Equal(time.Time{})
+
+# Comparar si es antes o despues
+func (t Time) Before(u Time) bool
+func (t Time) After(u Time) bool
+
+true si t0 + 20' está en el futuro
+t0.Add(20*time.Minute).Before(time.Now())
+
+
+
 # Human parse
 https://github.com/olebedev/when
 https://github.com/bcampbell/fuzzytime

@@ -189,7 +189,9 @@ WHERE
    AND problem.objectid = triggers.triggerid
    AND functions.triggerid = triggers.triggerid
    AND functions.itemid = items.itemid
-   AND items.hostid = hosts.hostid group by hosts.host order by count(*) desc;
+   AND items.hostid = hosts.hostid
+GROUP BY hosts.host
+ORDER BY COUNT(*) DESC;
 
 
 -- número de problems abiertos
@@ -410,8 +412,6 @@ SELECT function, parameter, count(*) FROM functions where function IN ('nodata',
 
 Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
 SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
-La fecha que pone es now() - 1 día
-OFFSET 0 es como no ponerlo
 
 
 # Tocando la bbdd
