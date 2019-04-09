@@ -38,7 +38,7 @@ func main() {
 	flag.Set("v", "2")
 	flag.Parse()
 
-	log := klogr.New()
+	log := klogr.New() // interface logr.Logger
 	log.V(2).Info("level 2")
 	log.Info("info msg")
 	log.Error(fmt.Errorf("some error"), "explicacion", "contexto", 123.123)
