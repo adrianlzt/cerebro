@@ -5,6 +5,7 @@ https://momjian.us/main/writings/pgsql/optimizer.pdf
   https://www.youtube.com/watch?v=P5iZri9s0WQ
 https://explain.depesz.com/
   Herramienta web para visualizar los resultados de forma un poco más sencilla
+  Hay que pasarle el explain analyze para que sea más útil
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
   viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
 
