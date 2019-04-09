@@ -43,6 +43,8 @@ func main() {
 	log.Info("info msg")
 	log.Error(fmt.Errorf("some error"), "explicacion", "contexto", 123.123)
 
+	// Si le pasamos un struct como objeto, solo pintará los public
+
 	foo(log)
 
 	klog.Flush()
@@ -60,4 +62,11 @@ func foo(log logr.Logger) {
 func bar(log logr.Logger) {
 	log = log.WithName("bar")
 	log.Info("deep")
+
+	// Diferentes mensajes segun el nivel de verbose que tengamos activo
+	if log.V(5).Enabled() {
+		log.V(5).Info("Send message", "msg", "msgdata", "chat", "chatdata")
+	} else {
+		log.V(1).Info("Send message")
+	}
 }
