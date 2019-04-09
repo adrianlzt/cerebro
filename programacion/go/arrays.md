@@ -52,6 +52,17 @@ func foo(is []int) {
 }
 
 
+# Borrar
+https://github.com/golang/go/wiki/SliceTricks#cut
+
+CUIDADO! si los elementos de la lista son punteros, o struct que contienen punteros, debemos usar una implementación especial para que el garbage collector funcione bien
+
+Borrar el emento "i" sin preservar el orden del slice y pudiendo usar punteros (safe para el garbage collector)
+a[i] = a[len(a)-1]  // copiamos el último elemento del array a la posición de i
+a[len(a)-1] = nil   // marcamos el último elemento como borrado (para el GC)
+a = a[:len(a)-1]    // reducimos el tamaño del slice en 1
+
+
 # Comparar
 https://yourbasic.org/golang/compare-slices/
 

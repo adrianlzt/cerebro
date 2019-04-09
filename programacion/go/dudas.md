@@ -74,3 +74,11 @@ Manejo de errores, que es mejor, crear unas const con los errores o unos struct 
 
 https://github.com/adrianlzt/go-zabbix/blob/master/zabbix.go#L166
 Como gestionar el retorno de parámetros si estamos haciendo dos cosas al mismo tiempo?
+
+
+
+Borrado de un slice
+Cada cierto tiempo recorro un slice de structs para ver que elementos debo borrar (están marcados un un parámetro del slice).
+Como borrarlos de forma eficiente y sin poder dejar cosas sin recoger por el garbage collector?
+https://play.golang.com/p/7UrizCZu-AP
+Como puedo saber que no me estoy dejando cosas que no pueden ser recogidas por el GC?

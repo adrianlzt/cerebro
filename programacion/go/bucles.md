@@ -2,7 +2,12 @@
 for i:=0; i<10; i++ {
   fmt.Println("vuelta",i)
 }
- 
+
+Inverso:
+for i := len(toBeDeleted)-1; i >= 0; i-- {
+}
+
+
 sum := 1
 for ; sum < 1000; {
   sum += sum
