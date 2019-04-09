@@ -9,6 +9,8 @@ Si queremos reducir el tamaño mirar binary_size.md
 
 
 # Multistage
+https://gist.githubusercontent.com/pierreprinetti/eef186f743f31055afb47cd2b50fe3fd/raw/9d52ab93ae5c51a56fe4323712969cba03d14b7f/Dockerfile
+  con modules
 
 ## alpine
 FROM golang:1.10-alpine
