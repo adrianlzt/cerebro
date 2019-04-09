@@ -82,3 +82,8 @@ Cada cierto tiempo recorro un slice de structs para ver que elementos debo borra
 Como borrarlos de forma eficiente y sin poder dejar cosas sin recoger por el garbage collector?
 https://play.golang.com/p/7UrizCZu-AP
 Como puedo saber que no me estoy dejando cosas que no pueden ser recogidas por el GC?
+
+
+
+Que hacer con los errors que se pueden generar en un defer()?
+Solo mostrarlos?

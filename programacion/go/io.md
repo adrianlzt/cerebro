@@ -13,3 +13,8 @@ Otra opción:
 var buf bytes.Buffer
 msg.WriteTo(&buf)
 buf.String()
+
+
+
+# Copiar datos entre Writer y reader
+io.Copy(rdr, wrt)
