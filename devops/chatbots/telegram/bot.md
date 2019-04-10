@@ -16,3 +16,17 @@ curl -s -XPOST https://api.telegram.org/bot<TOKEN_BOT>/setWebhook -H 'Content-ty
 
 Un ejemplo de lo que nos puede enviar telegram está en:
 webhook.example
+
+
+Para enviar mensajes a un canal
+https://api.telegram.org/bot[BOT_API_KEY]/sendMessage?chat_id=[MY_CHANNEL_NAME]&text=[MY_MESSAGE_TEXT]
+
+Parece el channel name es https://web.telegram.org/#/im?p=g382900926
+el parámetro p cambiando la g por un -
+
+Si no, enviar el mensaje al bot: "/my_id @nombrebot" (tras haberlo metido en el canal)
+Y mirar los mensajes que recibe el bot:
+curl https://api.telegram.org/botXXX:YYYY/getUpdates
+
+Visto en:
+https://stackoverflow.com/a/38388851
