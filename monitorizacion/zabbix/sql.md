@@ -418,3 +418,8 @@ SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 OR
 Es el frontend el que se encarga de generar elementos en la bbdd.
 
 La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "ids" el útimo ID generado por tabla y field.
+
+
+# Config
+select * from config;
+Parámetros de config general.

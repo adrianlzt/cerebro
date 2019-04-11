@@ -26,3 +26,8 @@ mirar items.md
 
 # Triggers
 mirar triggers.md
+
+
+# Config general
+Almacenada en
+select * from config;
