@@ -11,3 +11,5 @@ ps -ef
 
 ps de UNIX (hay que poner la variable de entorno para activarlo)
 UNIX95=t ps -eo pid,pcpu,comm
+UNIX95=t ps -C nombreproc -o pid,pcpu,comm
+-H hierarchy/forest
