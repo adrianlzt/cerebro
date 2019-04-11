@@ -13,3 +13,6 @@ ps de UNIX (hay que poner la variable de entorno para activarlo)
 UNIX95=t ps -eo pid,pcpu,comm
 UNIX95=t ps -C nombreproc -o pid,pcpu,comm
 -H hierarchy/forest
+
+
+Mirar pstat_whitepaper.pdf para ver como usar las llamadas al sistema para obtener más info de los procesos.
