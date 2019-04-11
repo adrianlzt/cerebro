@@ -165,6 +165,8 @@ func ValueOf(i interface{}) Value
 
 Un "interface{}" podemos convertirlo a un tipo de dato usando la sintaxis:
 foo.(int)
+CUIDADO! Si la conversión no es buena dará un panic! Mejor usar el formato que devuelve "valor, ok" para evitar panics.
+
 
 Leer https://stackoverflow.com/questions/18041334/convert-interface-to-int-in-golang para entender porque no se puede hacer con:
 int(foo)
