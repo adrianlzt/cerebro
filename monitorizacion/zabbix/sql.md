@@ -2,6 +2,10 @@ https://www.zabbix.com/documentation/3.4/manual/api/reference/host/object#host
   En los "Object reference" podemos ver los mapeos de valores a significado
 Modelo de la bbdd (version 2.x): https://zabbix.org/wiki/Database_Schemas
 
+Esquema tablas:
+https://zabbix.org/wiki/Docs/DB_schema/3.4/dbversion
+
+
 Accediendo directamente a la base de datos de zabbix.
 
 Tabla items
@@ -423,3 +427,27 @@ La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "i
 # Config
 select * from config;
 Parámetros de config general.
+
+
+
+# Version del schema
+select * from dbversion;
+
+3.2 -> mandatory=3020000 optional=3020000
+4.0 -> mandatory=4000000 optional=4000003
+
+https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbupgrade/dbupgrade.c#L780
+src/libs/zbxdbupgrade/dbupgrade.c
+{DBPATCH_VERSION(2010), "2.2 development"},
+{DBPATCH_VERSION(2020), "2.2 maintenance"},
+{DBPATCH_VERSION(2030), "2.4 development"},
+{DBPATCH_VERSION(2040), "2.4 maintenance"},
+{DBPATCH_VERSION(2050), "3.0 development"},
+{DBPATCH_VERSION(3000), "3.0 maintenance"},
+{DBPATCH_VERSION(3010), "3.2 development"},
+{DBPATCH_VERSION(3020), "3.2 maintenance"},
+{DBPATCH_VERSION(3030), "3.4 development"},
+{DBPATCH_VERSION(3040), "3.4 maintenance"},
+{DBPATCH_VERSION(3050), "4.0 development"},
+{DBPATCH_VERSION(4000), "4.0 maintenance"},
+

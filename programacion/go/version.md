@@ -8,3 +8,14 @@ Para definir una variable en cada compilacion.
 Para hacer algo tipo:
 ./programa --version
 Programa build 20160705
+
+
+
+# Comparar versiones
+https://github.com/mcuadros/go-version
+version.Compare("1.0-dev", "1.0", "<")
+
+Cuidado no nos colisione con una variable "version" global.
+Importar como
+
+semver "github.com/mcuadros/go-version"
