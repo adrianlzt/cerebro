@@ -87,3 +87,7 @@ Como puedo saber que no me estoy dejando cosas que no pueden ser recogidas por e
 
 Que hacer con los errors que se pueden generar en un defer()?
 Solo mostrarlos?
+
+
+
+Casos de uso de closures
