@@ -2,6 +2,8 @@ http://golang.org/pkg/strings/
 https://blog.golang.org/strings
 
 string (por defecto "")
+inmutables
+Si queremos trabajar con las letras que la forman, mirar runes más abajo
 
 var data string
 a := "hola"
@@ -17,6 +19,16 @@ concatenated := fmt.Sprint(chinese +" "+ english +" "+ malay)
 # sustituir
 https://golang.org/pkg/strings/#Replace
 fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1))
+
+https://golang.org/pkg/strings/#NewReplacer
+Nos permite definir un diccionario de substituciones y aplicarlas en un solo comando.
+strings.NewReplacer(
+    "G", "C",
+    "C", "G",
+    "T", "A",
+    "A", "U",
+  ).Replace(input)
+
 
 # Join
 strings.Join(["a","b"], "")
@@ -104,8 +116,13 @@ if err != nil {
 }
 
 
+# Runes
 string -> runes
-[]rune("cadena")
+m := []rune("cadena")
+m[1] = 'p'
+
+rune('a')  // int32
+
 
 
 # Repetir

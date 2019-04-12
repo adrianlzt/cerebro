@@ -187,6 +187,6 @@ w.Flush()
 
 
 # Performance
-https://github.com/kubernetes/klog/blob/master/klog.go#L583
+https://github.com/kubernetes/klog/blob/e531227889390a39d9533dde61f590fe9f4b0035/klog.go#L595
 Avoid Fprintf, for speed.
 Parece que para cosas simples es más sencillo añadir cosas a mano que usar Fprintf (3x de ventaja)
