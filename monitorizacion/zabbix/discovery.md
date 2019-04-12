@@ -132,6 +132,9 @@ Discovery de procesos ora_pmon* (oracle) para AIX:
 echo '{ "data":['; ps -eo args | grep "^ora_pmon" | /usr/bin/awk '{ print " { \"{#PSNAME}\":\"" $1 "\" },"}' | /usr/bin/sort | /usr/bin/uniq | /bin/sed '$s/.$//' ; echo "]}"
 
 
+Si luego nos llama para obtener valores de item prototypes (en $1 tendremos el valor entre corchetes):
+UserParameter=custom.vfs.dev.read.ops[*],awk '{print $$1}' /sys/class/block/$1/stat
+
 
 
 # Internal
