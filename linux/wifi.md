@@ -2,6 +2,10 @@ http://substack.net/wireless_from_the_command_line_in_linux
 
 mirar NetworkManager/nmcli.md
 
+wavemon
+ncurses para ver el estado de la wifi y la lista de redes
+
+
 Comprobar si esta habilitado:
 rfkill list
 
