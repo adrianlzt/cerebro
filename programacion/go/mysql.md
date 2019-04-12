@@ -14,6 +14,7 @@ Ejemplo de un driver muy simple: https://github.com/mattn/go-yql/blob/master/yql
 
 
 
+
 Escanear un unico row
 row := sql.QueryRow(query)
 err := row.Scan(&hostID, &host, &itemCount)
@@ -54,6 +55,8 @@ Por ejemplo, nos permite pasarle un struct, o array de struct, a una query SELEC
 Postgresql ejemplo: https://www.calhoun.io/connecting-to-a-postgresql-database-with-gos-database-sql-package/
 El driver github.com/lib/pq no devuelve los ColumnTypes
 _ "github.com/lib/pq"
+
+El driver se encarga de la reconexión en caso de ser necesario (no hay que hacer nada)
 
 
 

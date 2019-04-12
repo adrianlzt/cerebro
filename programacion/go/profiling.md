@@ -1,3 +1,5 @@
+https://www.integralist.co.uk/posts/profiling-go/
+
 https://github.com/pkg/profile
 
 Meter al comienzo del main()
