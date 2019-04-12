@@ -143,6 +143,8 @@ Es que estamos intentando usar *nombre con un interface{}, cuando el tipo tiene 
 Tal vez lo hemos puesto mal en el parámetro de la función?
 func f(x interface{})  vs  func f(x *interface{})
 
+Creo que también puede ser porque llamámos a un método de de un (x *T) cuando x no está inicializado.
+
 
 
 
