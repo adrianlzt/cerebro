@@ -23,7 +23,7 @@ Open(name string) (Conn, error)
 
 Esto nos obligará a implementar driver.Conn
 A su vez esto nos obliga a implementar driver.Stmt
-driver.Tx podemos obiarlo (return nil, fmt.Errorf("not implemented"))
+driver.Tx podemos obiarlo (return nil, fmt.Errorf("not implemented")) si no tenemos transacciones
 
 
 

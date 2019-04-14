@@ -87,6 +87,7 @@ flatten.go
 https://www.dotnetperls.com/convert-map-slice-go
 
 // Convert map to slice of keys.
+// CUIDADO el orden de las keys que metemos en el array es random
 keys := []string{}
 for key := range m {
     keys = append(keys, key)
