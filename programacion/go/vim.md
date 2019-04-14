@@ -17,3 +17,10 @@ Instalar dependencias de go:
 :GoDef
 gd
 Ir a la definición de la interfaz, funcion, struct, etc
+
+
+:GoImpl
+crear los stubs para implementar una interfaz
+
+:GoImplements
+nos dice que interfaces implementa ese elemento

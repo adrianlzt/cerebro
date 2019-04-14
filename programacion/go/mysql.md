@@ -14,8 +14,16 @@ Ejemplo de un driver muy simple: https://github.com/mattn/go-yql/blob/master/yql
 
 Los drivers deben cumplir las interfaces declaradas aqui:
 https://golang.org/pkg/database/sql/driver/
-No necesariamente todas?
 
+
+Lo mínimo a cumplir para poder registrarse como driver es
+https://golang.org/pkg/database/sql/driver/#Driver
+que solo tiene la func
+Open(name string) (Conn, error)
+
+Esto nos obligará a implementar driver.Conn
+A su vez esto nos obliga a implementar driver.Stmt
+driver.Tx podemos obiarlo (return nil, fmt.Errorf("not implemented"))
 
 
 

@@ -88,7 +88,7 @@ https://www.dotnetperls.com/convert-map-slice-go
 
 // Convert map to slice of keys.
 keys := []string{}
-for key, _ := range m {
+for key := range m {
     keys = append(keys, key)
 }
 
