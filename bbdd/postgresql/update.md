@@ -78,8 +78,6 @@ ROLLBACK;
 
 
 ## Ejemplo del dry-run
-https://www.db-fiddle.com/f/e8qsdmqT87DoLpMjyLDUL6/0
-
 CREATE TABLE data(id int, text text);
 INSERT INTO DATA VALUES(1,'aaa'),(2,'bbb'),(3,'ccc'),(4,'ddd');
 
