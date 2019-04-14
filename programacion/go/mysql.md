@@ -12,6 +12,10 @@ import _ "blabla/driver/sql"
 El driver tendrá una función init() donde se registrará llamando a sql.Register("nombre", &Objecto)
 Ejemplo de un driver muy simple: https://github.com/mattn/go-yql/blob/master/yql.go
 
+Los drivers deben cumplir las interfaces declaradas aqui:
+https://golang.org/pkg/database/sql/driver/
+No necesariamente todas?
+
 
 
 

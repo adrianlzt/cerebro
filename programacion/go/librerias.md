@@ -12,13 +12,14 @@ https://golang.org/src/fmt/fmt_test.go
 Printf("tipo %T. Valor=%v",var,var)
 %T -> imprime el tipo de dato
 %v -> imprime el valor del dato
+%#v -> imprime tambien los tipos de datos
 %+v -> saca valores de un struct junto con los fileds (mirar struct.md)
 %s -> imprime string
- 
+
 Println es inteligente, sabe imprimir todo lo que le pases.
 Si le pasamos una string y luego unos parámetros, los imprimirá dejando un espacio de separación. Sabrá como imprimirlo sin especificarlo.
 fmt.Println("hola",var1,var2)
- 
+
 Primero ejecuta las funciones pow, y por último imprime todos los valores retornados
 fmt.Println(
         pow(3, 2, 10),

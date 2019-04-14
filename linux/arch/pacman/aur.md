@@ -21,6 +21,7 @@ ssh://aur@aur.archlinux.org/PAQUETE.git
 Metemos el:
 PKGBUILD (https://wiki.archlinux.org/index.php/PKGBUILD ejemplo en PKGBUILD.proto https://git.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/nginx-mainline)
   No meter los md5sum, lo hace un comando luego
+  Ejemplo de un PKGBUILD muy sencillo: https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=osquery-bin
 .SRCINFO (lo genera el makepkg)
 .gitingore (no olbigatorio)
 
