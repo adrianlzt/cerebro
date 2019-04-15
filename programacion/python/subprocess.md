@@ -1,7 +1,7 @@
 mirar sh.md
 
-pythno3
->>> subprocess.run(["ls","-53y"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+python3 (stderr a su propia pipe, si queremos que valla a stdout poner stderr=subprocess.STDOUT)
+>>> subprocess.run(["ls","-53y"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 CompletedProcess(args=['ls', '-53y'], returncode=2, stdout=b"ls: opci\xc3\xb3n inv\xc3\xa1lida -- '5'\nPruebe 'ls --help' para m\xc3\xa1s informaci\xc3\xb3n.\n")
 
 
@@ -15,12 +15,15 @@ returncode = subprocess.call("ls -l", shell=True)
   no recomendado, hace un spawn de una shell
 
 
-Metodo para obtener la salida del comando (en este caso, stderr y stdout mezcladas)
+Metodo para obtener la salida del comando (en este caso, stderr y stdout mezcladas), hacer stderr=subprocess.STDOUT
+
+Sacar stdout y stderr en distintas variables
+
 import subprocess
 try:
     # CUIDADO con usar shlex, puede hacer que nos escapen el comando y ejeuten otras cosas
     # Mejor meter el comando con un array
-    p = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+    p = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.stderr, universal_newlines=True)
     (stdout, stderr) = p.communicate() # Espera a que termine el comando. Si no esperamos, no tendremos el return code definido
     return_code = p.returncode
     message = stdout.strip()
