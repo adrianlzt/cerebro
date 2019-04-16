@@ -184,3 +184,26 @@ https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
 var netClient = &http.Client{
   Timeout: time.Second * 10,
 }
+
+
+
+# Context
+Podemos pasar un context a una request para poder cancelarla.
+
+req, err := http.NewRequest("GET", "http://httpbin.org/delay/10", nil)
+if err != nil {
+  panic(err)
+}
+req = req.WithContext(ctx)
+
+
+_, err := c.Do(req)
+if err != nil {
+  fmt.Println(err)  // Get http://httpbin.org/delay/10: context canceled
+}
+
+
+
+Ejemplo haciendo llamadas a un endpoint hasta que pasa un tiempo establecido.
+Típico caso de cuando queremos hacer pooling a un endpoint hasta que nos devuelva un estado terminado.
+http_client_context_deadline.go
