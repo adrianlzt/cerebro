@@ -91,3 +91,14 @@ Solo mostrarlos?
 
 
 Casos de uso de closures
+
+
+Copiar una url: https://medium.com/@nrxr/quick-dirty-way-to-deep-copy-a-url-url-on-go-464312241de4
+Estoy en un método de un struct type que tiene *url.URL y quiero crear un path determinado
+func (ph *ProblemHandler) awxJobTemplateLaunch(ctx context.Context, log logr.Logger, alarm *ZabbixAlarm) (int, error) {
+  u := &url.URL{}
+  *u = *ph.awxURL
+  u.Path = path.Join(u.Path, "api/v2/job_templates")
+  u.Path = path.Join(u.Path, strconv.Itoa(alarm.jobID))
+  u.Path = path.Join(u.Path, "launch/")
+

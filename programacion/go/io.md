@@ -4,6 +4,10 @@ buf := bytes.NewBufferString("cadena")
 Cumple la interfaz io.ReadWriter (https://godoc.org/io#ReadWriter)
 
 
+# Convertir un Reader en una string
+ReadAll(r io.Reader) ([]byte, error)
+
+
 # Cuando tenemos algo que quiere escribir a un io.Writer y nosotros queremos una string o []bytes
 buf := new(bytes.Buffer)
 msg.WriteTo(buf)
