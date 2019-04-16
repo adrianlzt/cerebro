@@ -56,7 +56,7 @@ htmlData,_ := ioutil.ReadAll(response.Body)
 fmt.Println(string(htmlData))
 
 ## Con http client
-client := &http.Client{}
+client := &http.Client{Timeout: 10*time.Second}
 req,_ := http.NewRequest("GET", "http://eth0.me", nil)
 response,_ := client.Do(req)
 defer response.Body.Close()
@@ -64,7 +64,7 @@ htmlData,_ := ioutil.ReadAll(response.Body)
 fmt.Println(string(htmlData))
 
 ## Auth basic
-client := &http.Client{}
+client := &http.Client{Timeout: 10*time.Second}
 req, err := http.NewRequest("GET", dashURL, nil)
 if err != nil {
   panic(err)
@@ -177,3 +177,10 @@ q := u.Query()
 q.Set("q", "golang")
 u.RawQuery = q.Encode()
 fmt.Println(u)
+
+
+# Timeout
+https://medium.com/@nate510/don-t-use-go-s-default-http-client-4804cb19f779
+var netClient = &http.Client{
+  Timeout: time.Second * 10,
+}
