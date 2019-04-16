@@ -143,6 +143,8 @@ s := u.String()
 
 fmt.Println(path.Join([]string{"hola","aduios"}...))
 
+CUIDADO! si hacemos un path.Join y debe terminar en "/" esto no lo hará!
+
 
 Escape:
 fmt.Println(url.QueryEscape("hola que tal"))
