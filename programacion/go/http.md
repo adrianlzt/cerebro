@@ -161,10 +161,8 @@ fmt.Println(u)
 
 # Copiar objeto
 original := url.Parse("http://example.com")
-copia := *original
-puntero_copia := &copia
-
-fmt.Printl(puntero_copia)
+copia := &url.URL{}
+*copia = *original
 
 
 
