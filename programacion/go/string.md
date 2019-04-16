@@ -14,7 +14,7 @@ if len(s) > 0 { ... }
 if s != "" { ... }
 
 # Concatenar
-concatenated := fmt.Sprint(chinese +" "+ english +" "+ malay)
+concatenated := chinese +" "+ english +" "+ malay
 
 # sustituir
 https://golang.org/pkg/strings/#Replace
@@ -129,3 +129,9 @@ rune('a')  // int32
 https://stackoverflow.com/questions/33139020/can-golang-multiply-strings-like-python-can
 
 strings.Repeat("-", 20)
+
+
+# Escape
+https://yourbasic.org/golang/multiline-string/
+
+No se pueden escapar las ` si estamos en un backtick escape

@@ -1,3 +1,5 @@
+http://refspecs.linuxbase.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html
+
 Como escribir ficheros de init.d. Algunas reglas:
 
 http://stackoverflow.com/questions/696839/how-do-i-write-a-bash-script-to-restart-a-process-if-it-dies
