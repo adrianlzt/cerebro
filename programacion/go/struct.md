@@ -46,3 +46,12 @@ fmt.Printf("%+v", s)
 
 {Sean 50}
 {name:Sean age:50}
+
+
+# Declarar de forma reducida
+No hace falta siempre especificar el tipo de dato
+
+type test struct {
+  valores []int
+}
+t := test { valores: {1,2,3} }
