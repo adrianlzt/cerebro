@@ -58,12 +58,12 @@ https://www.citusdata.com/blog/2018/02/22/seven-tips-for-dealing-with-postgres-l
 Para ver que rows están bloqueadas: https://www.postgresql.org/docs/9.6/pgrowlocks.html
 
 Explicación locks:
-https://www.postgresql.org/docs/9.6/explicit-locking.html
-ExclusiveLock: permite lectura a otros
-AccessExclusiveLock: solo permite leer/escribir a la tx
-RowExclusiveLock: cuando hacemos un update de una tabla dentro de una TX generaremos este lock.
+https://www.postgresql.org/docs/current/explicit-locking.html
+Exclusive Lock: permite lectura a otros
+Access Exclusive Lock: solo permite leer/escribir a la tx (bloquea todas las SELECT de otras TX)
+Row Exclusive Lock: cuando hacemos un update de una tabla dentro de una TX generaremos este lock.
                   Podemos leer desde otra TX, veremos el valor antes de la TX
-AccessShareLock are acquired for objects involved in a query to block them from being modified or dropped by another session during their use
+Access ShareLock are acquired for objects involved in a query to block them from being modified or dropped by another session during their use
 
 select ... for update, bloquea los campos obtenidos por la select como si hubiésemos modificado con update ese row
 

@@ -24,3 +24,8 @@ CASE count(column_name)
    WHEN 0 THEN 1
    ELSE count(column_name)
 END
+
+
+
+# Tipos de datos
+https://www.postgresql.org/docs/current/datatype-numeric.html

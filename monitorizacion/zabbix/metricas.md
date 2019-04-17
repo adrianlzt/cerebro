@@ -4,6 +4,9 @@ Trends: por cada hora se agrupan los valores del history con: min, max, avg y co
 
 Housekeeper, se encarga de ir limpiando history y trends viejos.
 En instalaciones granges se hacen particiones de tablas y se deshabilita el housekeeper. Lo que se hace es ir borrando las particiones antiguas.
+https://github.com/Doctorbal/zabbix-postgres-partitioning
+  no veo muy útil el pg_partman si usamos postgres 11
+
 
 ## Housekeeper
 Administration - General - Housekeeping
@@ -21,3 +24,11 @@ https://www.zabbix.com/forum/showpost.php?p=197599&postcount=7
 https://github.com/zensqlmonitor/influxdb-zabbix
 Usando un tercer programa que hace pull de Zabbix y las envia a InfluxDB
 that's not good idea - you can't scale it - single point of failure - module option is better solution.
+
+
+# Internals
+Zabbix4
+libs/zbxdbcache/dbcache.c
+dc_trends_update_float / dc_trends_update_uint
+Funciones que actualizan los trends:
+  update trends set num=%d,value_min=" ZBX_FS_DBL ",value_avg="ZBX_FS_DBL ",value_max=" ZBX_FS_DBL " where itemid=" ZBX_FS_UI64" and clock=%d
