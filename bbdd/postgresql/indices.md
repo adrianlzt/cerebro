@@ -1,3 +1,8 @@
+# HypoPG
+https://hypopg.readthedocs.io/en/latest/
+Extensión que simula tener un índice para ver si el query planner lo usaría. Sin tener que gastar los recursos de crearlo
+
+
 # Crear indice
 https://www.postgresql.org/docs/10/static/sql-createindex.html
 

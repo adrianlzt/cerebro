@@ -11,3 +11,18 @@ Si es muy larga aparece cortada, como pillarla entera?
 
 
 Query muy costosa. Como saber cual está siendo el cuello de botella.
+
+
+BRIN versus Btree INDEXES
+Mejor para zabbix history tables?
+  work best when the data on disk is sorted: y esto como se controla?
+
+
+
+https://hypopg.readthedocs.io/en/latest/
+recomendable? opiniones?
+
+pg_jbomon, para que sirve?
+
+
+test.md Util? caso de uso? Con python o golang?

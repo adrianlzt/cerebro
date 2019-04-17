@@ -1,3 +1,6 @@
+https://pgtune.leopard.in.ua/#/
+https://github.com/jfcoz/postgresqltuner
+
 # Fillfactor
 https://www.postgresql.org/docs/9.6/sql-createtable.html#SQL-CREATETABLE-STORAGE-PARAMETERS
 

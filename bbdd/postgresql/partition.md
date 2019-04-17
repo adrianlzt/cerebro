@@ -1,3 +1,8 @@
+# HypoPG
+https://hypopg.readthedocs.io/en/latest/
+Extensión que simula tener una partición para ver si el query planner la usaría. Sin tener que gastar los recursos de crearla
+
+# Partitioning
 https://wiki.postgresql.org/wiki/Table_partitioning
 A partir de la versión 10 meten "Declarative Partitionning"
 
