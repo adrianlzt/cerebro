@@ -9,3 +9,11 @@ select * from pg_settings where name like 'autovacuum%';
 
 Parámetros que se han modificado respecto a los de por defecto:
 select name,category,setting,boot_val from pg_settings where setting <> boot_val;
+
+
+Definir parámetros:
+set constraint_exclusion = on;
+
+
+Leer parámetros:
+show constraint_exclusion;

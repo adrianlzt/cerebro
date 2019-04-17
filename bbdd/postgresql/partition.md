@@ -48,6 +48,10 @@ Podemos ver con \d+ tabla_partition la regla exacta que se le ha puesto (>= o >,
 Podemos usar los valores especiales (MINVALUE) y (MAXVALUE) para definir el -infinito y +infinito
 
 
+enable_partition_pruning=on  // por defecto
+Este parámetro hace que el query planner descarte las tablas que por su range no van a tener el dato.
+Para inheritance el parámetro que hace esta funcion es constraint_exclusion
+
 
 ### Ejemplo
 CREATE TABLE history (
@@ -72,6 +76,10 @@ Si intentamos crear dos particiones que se sobrepongan en el tramo de valores qu
 
 Si intentamos crear una tabla para un rango donde un valor ya existe (en la tabla default se entiende) dará un error:
   ERROR:  updated partition constraint for default partition "history_default" would be violated by some row
+
+
+When an UPDATE causes a row to move from one partition to another, there is a chance that another concurrent UPDATE or DELETE will get a serialization failure error
+  code 40001
 
 
 
@@ -105,6 +113,9 @@ FROM pg_inherits
     JOIN pg_namespace nmsp_child    ON nmsp_child.oid   = child.relnamespace
 WHERE parent.relname='NOMBRETABLA';
 
+
+Comprobar que constraint_exclusion no está desactivado.
+Si está desactivado el query planner comprobará todas las tablas child al hacer una query (aunque sus contraints diga que ahí no va a estar el dato).
 
 
 # Errores

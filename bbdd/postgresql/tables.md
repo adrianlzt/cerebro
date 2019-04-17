@@ -28,6 +28,9 @@ CREATE TABLE distributors (
      name   varchar(40) NOT NULL CHECK (name <> '')
 );
 
+Crear si no existe
+CREATE TABLE IF NOT EXISTS ...
+
 
 ## Modificar tabla ##
 http://www.postgresql.org/docs/devel/static/sql-altertable.html
