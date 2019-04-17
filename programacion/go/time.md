@@ -53,6 +53,14 @@ fmt.Println("Unix format:", time.Now().Format(time.UnixDate))
 fmt.Println("Unix format:", time.Now().Add(-time.Duration(3)*time.Hour).Format(time.UnixDate))
   hora actual menos 3h
 
+Cuidado al restar/sumar horas con los cruces de CET/CEST
+Para calcular el primer día de la semana lo mejor es iterar (https://stackoverflow.com/a/18632496/1407722):
+for date.Weekday() != time.Monday { // iterate back to Monday
+  date = date.AddDate(0, 0, -1)
+  isoYear, isoWeek = date.ISOWeek()
+}
+
+
 # Diferencia de tiempos
 t0 := time.Now()
 time.Sleep(1*time.Second)
@@ -88,6 +96,9 @@ func (t Time) After(u Time) bool
 
 true si t0 + 20' está en el futuro
 t0.Add(20*time.Minute).Before(time.Now())
+
+
+
 
 
 
