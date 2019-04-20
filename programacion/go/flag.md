@@ -24,6 +24,10 @@ https://github.com/codegangsta/cli
 Permite crear una cli mas completa con subcomandos, etc
 
 
+# docopt
+https://github.com/docopt/docopt.go
+Definir el usage y de ahí se sacan automáticamente los parámetros
+
 
 # go-flags
 https://godoc.org/github.com/jessevdk/go-flags
