@@ -33,3 +33,25 @@ RESTful plugin offers the REST API access to the status of the cluster over an S
 http://docs.ceph.com/docs/master/mgr/plugins/
 Podemos crear nuestro propio plugin con python
 
+
+
+# Zabbix
+http://docs.ceph.com/docs/master/mgr/zabbix/
+
+Hace uso del zabbix_sender para enviar métricas a un servidor de Zabbix.
+Tenemos que meter la template que está en la web y configurarla para los hosts.
+
+Tendremos un host de zabbix por cluster de ceph.
+La config de zabbix se comparte entre todos los nodos del cluster.
+
+Activar el módulo
+ceph mgr module enable zabbix
+
+Configuramos el server de zabbix
+ceph zabbix config-set zabbix_host SERVERZABBIX
+
+Configuramos el host de Zabbix a donde enviar las métrica:
+ceph zabbix config-set identifier NOMBREHOST
+
+Chequeamos conf:
+ceph zabbix config-show

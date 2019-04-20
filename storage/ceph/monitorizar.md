@@ -6,6 +6,9 @@ mirar managers.md
 Chequeo del estado del cluster. Razones por las que puede dar no-ok http://docs.ceph.com/docs/master/rados/operations/monitoring-osd-pg/#monitoring-placement-group-states:
 ceph health
 ceph health detail
+  nos dice que OSD se están llenando (mirar como están con "ceph osd status")
+  que POOLs se están llenando (ceph df)
+  si algún mon no está conectado al cluster (chequear procesos ceph-mon que estén arrancados)
 
 Estado global del cluster:
 ceph status

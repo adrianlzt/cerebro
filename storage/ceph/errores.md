@@ -57,3 +57,11 @@ This error appears when the pgp num is higher than the pg num
 
 También puede deberse a un bug: http://tracker.ceph.com/issues/22351
 En mi caso por modificar los pg y pgp num (puestos a mano a 500)
+
+
+
+reached critical levels of available space on local monitor storage
+El proceso ceph-mon se para con ese mensaje.
+Parece que se debe a que algún file system que usa ceph está muy lleno. /var tal vez?
+Se para si tenemos menos de un 5%
+http://lists.ceph.com/pipermail/ceph-users-ceph.com/2014-August/042372.html
