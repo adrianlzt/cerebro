@@ -15,6 +15,7 @@ Ejemplo: https://play.golang.com/p/fDi-YcLNZuL
 
 
 Una interfaz es una colección de métodos que debe cumplir quien quiera implementar esa interfaz.
+Las interfaces deben ser pequeñas, para no obligar a implementar más cosas que las necesarias.
 Un tipo interfaz está definido por un conjunto de métodos:
 
 type ValorAbsoluto interface {
