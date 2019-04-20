@@ -97,3 +97,9 @@ ceph osd crush rule dump
 http://docs.ceph.com/docs/jewel/rados/operations/erasure-code/
 http://ceph.com/community/new-luminous-erasure-coding-rbd-cephfs/<Paste>
 A method of data protection in which data is broken into fragments , encoded and then storage in a distributed manner. Ceph , due to its distributed nature , makes use of EC beautifully.
+
+
+# FSID
+Identificador del cluster
+Está escrito en los discos OSD.
+Podemos verlo montando el disco y mirando el fichero ceph_fsid
