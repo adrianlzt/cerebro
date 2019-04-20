@@ -8,6 +8,10 @@ me parece un buen ejemplo de como realizar tests
 
 Mirar pytest.md
 
+https://pypi.org/project/parameterized/
+para definir una serie de valores y respuesta esperada. Luego ejecutar el mismo test sobre esos valores
+Table driven testing
+
 Mirar nosetests.md para buscar y ejecutar los tests
 
 Mirar behave.md para definir tests en "lenguaje natural"?

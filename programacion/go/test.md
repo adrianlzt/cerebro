@@ -26,6 +26,7 @@ gotty sh -c "fd \.go | entr -c go test -v"
 Usar "assert" como libreria helper para generar los tests (mirar más abajo)
 
 
+Table driven testing
 Para tests repetitivos y parecidos, declarar una estructura con los tests que luego lo recorra un for.
 Ejemplo: https://github.com/kubernetes/klog/blob/master/klogr/klogr_test.go#L13
 
