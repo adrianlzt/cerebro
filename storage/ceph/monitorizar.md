@@ -11,6 +11,7 @@ Estado global del cluster:
 ceph status
 
 Estado de los OSD (up/down, in/out. in+down es un problema):
+ceph osd status
 ceph osd stat
 ceph osd tree
   vista en arbol donde vemos los OSD que hay corriendo en cada maquina

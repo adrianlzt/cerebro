@@ -1,5 +1,11 @@
 http://docs.ceph.com/docs/master/rados/deployment/ceph-deploy-osd/
 
+Los OSDs son los discos que usamos para almacenar la info.
+
+ceph osd status
+Estado de los distintos OSD
+
+
 Los distintos OSDs almacenan su info en
 /var/lib/ceph/osd/ceph-N
 
