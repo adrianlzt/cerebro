@@ -55,6 +55,16 @@ Este parámetro hace que el query planner descarte las tablas que por su range n
 Para inheritance el parámetro que hace esta funcion es constraint_exclusion
 
 
+### Attach / detach
+Podemos unir tablas como particiones de un parent, o sacar childs de una tabla parent.
+Podemos por ejemplo, sacar la tabla default y volverla a unir solo con un rango determinado.
+
+No podemos hacer attach de la misma tabla a dos parents distintas.
+
+Podemos usar detach para sacar una tabla de una parent a modo de "cold bucket", manteniendo los datos pero evitando que se hagan queries sobre esa tabla vieja.
+Aunque esto no tiene pinta de tener mucho beneficio, ya que cuando se hace un scan lo primero que mira postgres es si debe analizar cada tabla segun sun range
+
+
 ### Ejemplo
 CREATE TABLE history (
   itemid                   bigint                                    NOT NULL,

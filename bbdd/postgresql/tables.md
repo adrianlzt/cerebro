@@ -75,3 +75,12 @@ Podemos meter constraints para:
   - valores únicos
   - referencia a claves de otras tablas
   - borrar los elementos de la tabla si la key referenciada se borra (ON DELETE CASCADE)
+
+
+# Crear una tabla copiando a otra
+create table new (
+    like old
+    including all
+);
+
+Si "old" está particionada, "new" no heredará esa propiedad (no será particionada)

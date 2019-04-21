@@ -1,5 +1,7 @@
 # Vacuum
 https://www.postgresql.org/docs/9.5/static/sql-vacuum.html
+https://severalnines.com/blog/performance-cheat-sheet-postgresql<Paste>
+  explicación sencilla de que hace vacuum
 
 VACUUM reclaims storage occupied by dead tuples. In normal PostgreSQL operation, tuples that are deleted or obsoleted by an update are not physically removed from their table; they remain present until a VACUUM is done. Therefore it's necessary to do VACUUM periodically, especially on frequently-updated tables.
 Cuando se borra un "row", este solo se marca para borrar, pero no se borra de los ficheros.

@@ -1,4 +1,7 @@
-https://news.ycombinator.com/item?id=14384370
+https://news.ycombinator.com/item?id=14384370 Postgres performance analysis resulted in a 10x improvement in CPU use
+https://news.ycombinator.com/item?id=12606480 Debugging PostgreSQL performance, the hard way
+https://use-the-index-luke.com/
+  SQL Indexing and Tuning e-Book
 
 Mirar explain.md
 
@@ -12,3 +15,4 @@ This includes support for various stat extensions:
   pg_stat_kcache, providing data about operating-system level cache
 
 Nos da una interfaz gráfica para recolectar esta info.
+Podemos ver por cada database que queries se están ejecutando, cuanto tardan, posibles mejoras a aplicar, etc.

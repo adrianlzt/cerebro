@@ -1,6 +1,8 @@
 http://postgresguide.com/performance/explain.html
 https://www.postgresql.org/docs/9.4/static/using-explain.html
 https://www.postgresql.org/docs/9.6/runtime-config-query.html
+https://severalnines.com/blog/performance-cheat-sheet-postgresql
+  explicación de los campos del explain
 https://momjian.us/main/writings/pgsql/optimizer.pdf
   https://www.youtube.com/watch?v=P5iZri9s0WQ
 https://explain.depesz.com/
@@ -8,6 +10,9 @@ https://explain.depesz.com/
   Hay que pasarle el explain analyze para que sea más útil
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
   viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
+
+http://tatiyants.com/pev/#/plans/new
+  web para pasar un explain y ver de forma más gráfica donde están los costes, etc
 
 Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
