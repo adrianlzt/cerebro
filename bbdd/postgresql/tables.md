@@ -84,3 +84,8 @@ create table new (
 );
 
 Si "old" está particionada, "new" no heredará esa propiedad (no será particionada)
+Tendremos que especificarlo
+create table new (
+    like old
+    including all
+) PARTITION BY RANGE (clock);

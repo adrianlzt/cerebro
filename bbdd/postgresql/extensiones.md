@@ -5,3 +5,10 @@ pg_partman lo usa para loguear y generar alarmas cuando su worker falla.
 
 https://hypopg.readthedocs.io/en/latest/
 crear índices y partitions hipotéticas para comprobar si el query planner las usaría
+
+
+https://github.com/rjuju/pg_track_settings
+pg_track_settings is a small extension that helps you keep track of postgresql settings configuration.
+
+
+mirar las que usa powa.md
