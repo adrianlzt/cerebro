@@ -29,10 +29,12 @@ A partir de la versión 10 meten "Declarative Partitionning"
 ## Declarative partitioning
 A partir de PG10 existe la posibilidad de crear particiones en las tablas de forma nativa.
 Se puede particionar por rango, hash o lista.
+CREATE TABLE test(id int) PARTITION BY RANGE (id);
 
-Podemos crear una tabla "default" donde caerán todos los valores que no hagan match en ninguna otra tabla:
+Podemos crear una tabla "default" donde caerán todos los valores que no hagan match en ninguna otra tabla (podremos seguir creando tablas partition una vez creada la default):
 CREATE TABLE history_default PARTITION OF history DEFAULT;
 Si miramos (\d+ history_default) la tabla veremos que las condiciones se van poniendo dinámicamente para matchear el resto de casos que no estén definidos en otras tablas.
+CUIDADO! si tenemos un valor del partition key en la tabla default, por ejemplo, el 5, no podremos crear una partición que contenga el valor 5. Tendremos que moverlo a mano.
 
 Si creamos un índice en la tabla parent, se crearán automáticamente en las tablas child.
 
@@ -62,6 +64,18 @@ CREATE TABLE history (
 ) PARTITION BY RANGE (clock);
 
 CREATE TABLE history_1000_2000 PARTITION OF history FOR VALUES FROM ('1000') to ('2000');
+
+Y como se ve con \d+
+                                     Table "public.history"
+ Column |     Type      | Collation | Nullable | Default | Storage | Stats target | Description
+--------+---------------+-----------+----------+---------+---------+--------------+-------------
+ itemid | bigint        |           | not null |         | plain   |              |
+ clock  | integer       |           | not null | 0       | plain   |              |
+ value  | numeric(16,4) |           | not null | 0.0000  | main    |              |
+ ns     | integer       |           | not null | 0       | plain   |              |
+Partition key: RANGE (clock)
+Partitions: history_1000_2000 FOR VALUES FROM (1000) TO (2000)
+
 
 
 
