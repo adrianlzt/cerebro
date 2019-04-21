@@ -32,3 +32,20 @@ constraint_exclusion=on
 que sentido tiene para tablas que no sean partition?
 En zabbix lo tenemos a partition (valor por defecto)
 En https://github.com/Doctorbal/zabbix-postgres-partitioning#common-partitioning-mistakes recomienda on (abierta issue para preguntar por qué)
+
+
+INDEX CONCURRENTLY
+Para simular un reindex, podemos hacer
+CRETATE INDEX CONCURRENTLY indice_bis
+DROP indice
+ALTER INDEX indice_bis RENAME TO indice
+?
+
+
+Fillfactor (index.md y fragmentación.md)
+Se dejan huecos en las páginas del almacenamiento en disco para almacenar los datos juntos?
+
+
+
+Como funcionan los índices multikey?
+Se puede buscar por cualquiera? O por las dos al mismo tiempo?

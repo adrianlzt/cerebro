@@ -18,6 +18,10 @@ Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
 
 EXPLAIN SELECT * FROM tenk1;
+EXPLAIN (ANALYZE, BUFFERS) ...
+EXPLAIN (ANALYZE, VERBOSE, BUFFERS) ...
+  verbose: añade el ouput que genera cada nodo. Algo más?
+EXPLAIN (ANALYZE, VERBOSE, BUFFERS, FORMAT JSON) ...
 
 
 Para planificar una query se tienen en cuenta las estadísticas de las tablas (periódicamente se ejecuta ANALYZE sobre las tablas y se almacenan los datos, mirar sección "Estadísticas") y varios parámetros de costes de acceso a disco (secuencial o random) y coste de procesado de la cpu (algo más?).
@@ -33,10 +37,26 @@ Con esos datos, el planner decide como obtener los datos.
 
 
   - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
-  - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales)
+  - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales). 2 lecturas, índice y tabla para obtener el dato
   - index only scan: si solo necesitamos datos que están en el índice
 
 Para los tres últimos tenemos que tener un índice creado.
+
+Significado de los nodos sacado de https://github.com/AlexTatiyants/pev/blob/6d31cdd75f557761d7581da6c46586792e5f2dad/app/services/help-service.ts
+   LIMIT:returns a specified number of rows from a record set
+   SORT: sorts a record set based on the specified sort key
+   NESTED LOOP: merges two record sets by looping through every record in the first set and trying to find a match in the second set. All matching records are returned
+   MERGE JOIN: merges two record sets by first sorting them on a join key
+   HASH: generates a hash table from the records in the input recordset. Hash is used by Hash Join
+   HASH JOIN: joins to record sets by hashing one of them (using a Hash Scan)
+   AGGREGATE: groups records together based on a GROUP BY or aggregate function (like sum())
+   HASHAGGREGATE: groups records together based on a GROUP BY or aggregate function (like sum()). Hash Aggregate uses a hash to first organize the records by a key
+   SEQ SCAN: finds relevant records by sequentially scanning the input record set. When reading from a table, Seq Scans (unlike Index Scans) perform a single read operation (only the table is read)
+   INDEX SCAN: finds relevant records based on an Index. Index Scans perform 2 read operations: one to read the index and another to read the actual value from the table
+   INDEX ONLY SCAN: finds relevant records based on an Index. Index Only Scans perform a single read operation from the index and do not read from the corresponding table
+   BITMAP HEAP SCAN: searches through the pages returned by the Bitmap Index Scan for relevant rows
+   BITMAP INDEX SCAN: uses a Bitmap Index (index which uses 1 bit per page) to find all relevant pages.  Results of this node are fed to the Bitmap Heap Scan
+   CTE SCAN: performs a sequential scan of Common Table Expression (CTE) query results. Note that results of a CTE are materialized (calculated and temporarily stored)
 
 
 # Modos de unión
