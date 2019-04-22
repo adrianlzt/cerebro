@@ -9,6 +9,10 @@ select to_timestamp(1250028000);
 Filtrar por tiempo:
 where created_at > (now() - INTERVAL '1 HOUR');
 
+NO usar cosas tipo:
+WHERE EXTRACT(YEAR FROM date_column) = 2017
+No nos permitiría usar un índice en date_column. Mejor usar rangos: date_column >= DATE'2017-01-01' AND date_column <  DATE'2018-01-01'
+
 
 timestamp es el tipo de dato que almacena fecha y hora
 
