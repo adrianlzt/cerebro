@@ -11,11 +11,14 @@ La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias ent
 
 https://powa.readthedocs.io/en/latest/index.html
 The PostgreSQL Workload Analyzer is performance tool for PostgreSQL 9.4 and superior allowing to collect, aggregate and purge statistics on a PostgreSQL instance from various sources. It is implemented as a background worker.
+Bajo impacto: https://powa.readthedocs.io/en/latest/impact_on_perf.html
 
 This includes support for various stat extensions:
   pg_stat_statements, providing data about queries being executed
   pg_qualstats, providing data about predicates, or where clauses
   pg_stat_kcache, providing data about operating-system level cache
+  pg_wait_sampling, providing data about wait events
+  HypoPG, allowing you to create hypothetical indexes and test their usefulness without creating them
 
 Nos da una interfaz gráfica para recolectar esta info.
 Podemos ver por cada database que queries se están ejecutando, cuanto tardan, posibles mejoras a aplicar, etc.

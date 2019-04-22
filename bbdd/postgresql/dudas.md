@@ -49,3 +49,21 @@ Se dejan huecos en las páginas del almacenamiento en disco para almacenar los d
 
 Como funcionan los índices multikey?
 Se puede buscar por cualquiera? O por las dos al mismo tiempo?
+Mejoras entre crear un índice para cada valor?
+
+
+
+Por qué no usa el índice?
+create table simplenum(num int);
+create index num_idx on simplenum (num );
+insert into simplenum (num ) VALUES(1),(2),(3),(4),(5),(6),(7);
+ANALYZE simplenum ;
+explain select num from simplenum where num=3;
+                       QUERY PLAN
+---------------------------------------------------------
+ Seq Scan on simplenum  (cost=0.00..1.09 rows=1 width=4)
+   Filter: (num = 3)
+
+
+
+Leyendo las mejoras que aporta el particionado, no veo en que caso el "hash partitioning" podría ser útil.

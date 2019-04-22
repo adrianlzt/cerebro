@@ -1,3 +1,5 @@
+https://postgresqlco.nf/en/doc/param/
+  explicación de las diferentes configuraciones, agrupadas por categorías, con valores sugeridos, links a más info, etc
 http://pgconfigurator.cybertec.at/
 generador online
 

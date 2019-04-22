@@ -143,6 +143,8 @@ https://www.postgresql.org/docs/11/planner-stats.html
 https://www.postgresql.org/docs/11/catalog-pg-class.html
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
   viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
+https://github.com/postgres/postgres/blob/master/src/backend/utils/adt/selfuncs.c
+  calculos de cpu, etc
 
 pg_class almacena el número de entradas en cada tabla e índice.
 
