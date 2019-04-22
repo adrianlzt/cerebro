@@ -76,6 +76,30 @@ Podemos meter constraints para:
   - referencia a claves de otras tablas (foreign key)
   - borrar los elementos de la tabla si la key referenciada se borra (ON DELETE CASCADE)
 
+Podemos ver las relaciones con \d+ nombretabla
+
+Chequear foreign keys de todo el schema:
+WITH foreign_keys AS (
+    SELECT
+      conname,
+      conrelid,
+      confrelid,
+      unnest(conkey)  AS conkey,
+      unnest(confkey) AS confkey
+    FROM pg_constraint
+    WHERE contype = 'f' -- AND confrelid::regclass = 'your_table'::regclass
+)
+-- if confrelid, conname pair shows up more than once then it is multicolumn foreign key
+SELECT fk.conname as constraint_name,
+       fk.confrelid::regclass as referenced_table, af.attname as pkcol,
+       fk.conrelid::regclass as referencing_table, a.attname as fkcol
+FROM foreign_keys fk
+JOIN pg_attribute af ON af.attnum = fk.confkey AND af.attrelid = fk.confrelid
+JOIN pg_attribute a ON a.attnum = conkey AND a.attrelid = fk.conrelid
+ORDER BY fk.confrelid, fk.conname
+;
+
+
 
 # Crear una tabla copiando a otra
 create table new (

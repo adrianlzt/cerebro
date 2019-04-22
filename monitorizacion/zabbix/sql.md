@@ -96,6 +96,7 @@ Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
 
 # Events / problems
+https://www.zabbix.com/documentation/4.2/manual/api/reference/event/object#host
 https://www.zabbix.com/documentation/current/manual/api/reference/problem/object
 Obtenidos de include/common.h
 
@@ -112,6 +113,22 @@ object
 3 - zabbix active
 4 - item
 5 - lld rule
+
+value:
+trigger events:
+0 - OK;
+1 - problem.
+
+discovery events:
+0 - host or service up;
+1 - host or service down;
+2 - host or service discovered;
+3 - host or service lost.
+
+internal events:
+0 - 'normal' state;
+1 - 'unknown' or 'not supported' state.
+
 
 acknowledged
 0 - not acknowledged
@@ -254,6 +271,9 @@ select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute 
 
 Número de eventos trigger contados cada hora para un intervalo determinado:
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where source=0 and object=0 and clock>1536745132 and clock<1536788332 group by hour order by hour;
+
+Número de eventos por segundo de los últimos 10 minutos, organizados por source y object (mirar explicación de valores en la sección de Events, más arriba):
+select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) GROUP BY source,object,value;
 
 Todos los items de un hostgroup:
 select items.name,items.itemid from hosts_groups,groups,items where items.hostid=hosts_groups.hostid and hosts_groups.groupid=groups.groupid and groups.name='SOMEHOSTGROUP' limit 10;
