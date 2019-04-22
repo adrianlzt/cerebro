@@ -73,6 +73,8 @@ El driver se encarga de la reconexión en caso de ser necesario (no hay que hace
 conex := fmt.Sprintf("user=%v password=%v host=%v dbname=%v sslmode=disable", dbuser, dbpass, dbhost, dbname)
 db, err := sql.Open("postgres", conex)
 
+Si dejamos sin definir "dbname", se pensará que no hay más parametros y nos pondrá sslmode activo.
+
 
 
 

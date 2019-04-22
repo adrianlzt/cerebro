@@ -10,3 +10,8 @@ select * from crags where country !~ '[A-Z]{3}';
 
 SIMILAR TO
 Es una mezcla entre LIKE y regex de POSIX
+
+
+En los select
+substring('foobar' from '%#"o_b#"%' for '#')   oob
+
