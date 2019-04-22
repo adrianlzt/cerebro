@@ -10,6 +10,8 @@ https://explain.depesz.com/
   Hay que pasarle el explain analyze para que sea más útil
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
   viene una descripción de como que variables usan para estimar el coste y que suposiciones hacen (read ahead del kernel, seek costs, etc)
+https://postgresqlco.nf/en/doc/param/?category=query-tuning&subcategory=planner-cost-constants
+  variables que se usan para estimar el coste con sus explicaciones y pequeña discusión.
 
 http://tatiyants.com/pev/#/plans/new
   web para pasar un explain y ver de forma más gráfica donde están los costes, etc
@@ -37,7 +39,8 @@ Con esos datos, el planner decide como obtener los datos.
 
 
   - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
-  - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales). 2 lecturas, índice y tabla para obtener el dato
+  - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales).
+    2 lecturas, índice y tabla para obtener el dato. La lectura se paga como random_page_cost (por defecto 4, VS 1 de seq_page_cost).
   - index only scan: si solo necesitamos datos que están en el índice
 
 Para los tres últimos tenemos que tener un índice creado.
@@ -81,6 +84,7 @@ SHOW seq_page_cost;
 
 
 # Coste
+https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
 backend/optimizer/path/costsize.c
 
 cost=0.00..483.00 rows=7001 width=244
@@ -100,9 +104,9 @@ Tendremos un coste 483 que es:
   10000 row * 0.0025 coste/row (coste por procesar la clausula where por cada row, cpu_operator_cost)
 
 
-Si queremos obtener una imagen de como está calculando los costes necesitaremos obtener los valores.
+# Si queremos obtener una imagen de como está calculando los costes necesitaremos obtener los valores
 Costes:
-SHOW seq_page_cost; SHOW random_page_cost; SHOW cpu_tuple_cost; SHOW cpu_index_tuple_cost; SHOW cpu_operator_cost; SHOW parallel_tuple_cost; SHOW parallel_setup_cost
+select name,short_desc,setting from pg_settings where name like '%_cost';
 
 Tuplas y páginas por tablas e índices:
 SELECT relname, relkind, reltuples, relpages FROM pg_class;

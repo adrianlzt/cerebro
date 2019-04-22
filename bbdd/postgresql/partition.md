@@ -41,6 +41,8 @@ Si creamos un índice en la tabla parent, se crearán automáticamente en las ta
 CUIDADO! Adding or removing a partition to or from a partitioned table requires taking an ACCESS EXCLUSIVE lock on the parent table
 Reducir la creación borrado de tablas a un mínimo de operaciones.
 
+CUIDADO! No podemos usar foreign keys desde otras tablas hacia una tabla particionada.
+
 
 Si usamos RANGE algunos detalles:
 FROM ('A') to ('B')  quiere decir [A,B)
@@ -101,6 +103,8 @@ Si intentamos crear dos particiones que se sobrepongan en el tramo de valores qu
 Si intentamos crear una tabla para un rango donde un valor ya existe (en la tabla default se entiende) dará un error:
   ERROR:  updated partition constraint for default partition "history_default" would be violated by some row
 
+Si intentamos crear una foreign key hacia una tabla particionada:
+  ERROR:  cannot reference partitioned table "products"
 
 When an UPDATE causes a row to move from one partition to another, there is a chance that another concurrent UPDATE or DELETE will get a serialization failure error
   code 40001

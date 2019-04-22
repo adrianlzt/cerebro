@@ -68,12 +68,12 @@ CREATE TABLE films (
 
 
 # Constraints
-https://www.postgresql.org/docs/9.5/ddl-constraints.html
+https://www.postgresql.org/docs/current/ddl-constraints.html
 
 Podemos meter constraints para:
   - chequear que un valor cumple una regla
   - valores únicos
-  - referencia a claves de otras tablas
+  - referencia a claves de otras tablas (foreign key)
   - borrar los elementos de la tabla si la key referenciada se borra (ON DELETE CASCADE)
 
 
