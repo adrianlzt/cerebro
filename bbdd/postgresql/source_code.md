@@ -7,3 +7,5 @@ https://www.postgresql.org/docs/devel/static/installation.html
 ./configure
 make
   3:36 en compilar en mi pc
+sudo -s
+make install

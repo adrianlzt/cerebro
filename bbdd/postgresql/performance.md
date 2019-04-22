@@ -39,5 +39,37 @@ pgbadger is for log analysis when during experiments we are "okay" to turn the f
 https://gitlab.com/postgres-ai-team/nancy
 pg_badger is also used by nancy, an benchmark experiment driver, so you can replay your logs, then change something, like add an index, and replay them again and nancy will show you to differential performance:
 
-pgbench
+# pgbench
 it's quite convenient in many cases to use pgbench, when logs collections is not an option due to some reason -- instead of workload replay we can use workload simulation, based on underdtanding how every query group from pg_stat_statements looks like (first of all, the main important thing is % of calls in overall picture). It's good that pgbench allows to set "weights" for every workload "piece", using multiple -f options and @weght (for example, "pgbench -f tx1.sql@20 -f tx2.sql@80", etc)
+
+
+Ejemplo: https://www.postgresql.org/message-id/CAKJS1f_1RJyFquuCKRFHTdcXqoPX-PYqAd7nz=GVBwvGh4a6xA@mail.gmail.com
+Test setup:
+
+
+
+CREATE TABLE partbench_ (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2
+INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL);
+CREATE TABLE partbench (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2
+INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL)
+PARTITION BY RANGE (date);
+\o /dev/null
+select 'CREATE TABLE partbench' || x::text || ' PARTITION OF partbench
+FOR VALUES FROM (''' || '2017-03-06'::date + (x::text || '
+hours')::interval || ''') TO (''' || '2017-03-06'::date + ((x+1)::text
+|| ' hours')::interval || ''');'
+from generate_Series(0,9999) x;
+\gexec
+\o
+
+
+
+partbench_insert.sql contains:
+insert into partbench values('2018-04-26 15:00:00',1,2,3,4,5);
+
+
+
+partbench__insert.sql contains:
+insert into partbench_ values('2018-04-26 15:00:00',1,2,3,4,5);
+
+pgbench -n -T 60 -f partbench__insert.sql postgres
