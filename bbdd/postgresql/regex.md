@@ -13,5 +13,4 @@ Es una mezcla entre LIKE y regex de POSIX
 
 
 En los select
-substring('foobar' from '%#"o_b#"%' for '#')   oob
-
+substring('foobar' from 'o.b')     oob

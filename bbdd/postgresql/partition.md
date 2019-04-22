@@ -90,6 +90,14 @@ Partitions: history_1000_2000 FOR VALUES FROM (1000) TO (2000)
 
 
 
+### Queries para extraer info
+SELECT pg_get_partkeydef('history'::regclass);
+  nos dice el tipo de partition de la tabla "history"
+
+SELECT pg_get_partition_constraintdef('history_1555891200_1555977600'::regclass);
+  contraints de la partición "history_1555891200_1555977600"
+
+
 
 ### Errores
 Si hacemos un select sobre una tabla sin partitions, no devolverá error.

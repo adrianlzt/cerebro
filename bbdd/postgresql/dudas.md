@@ -67,3 +67,7 @@ explain select num from simplenum where num=3;
 
 
 Leyendo las mejoras que aporta el particionado, no veo en que caso el "hash partitioning" podría ser útil.
+
+
+
+Donde encontrar la doc de: pg_get_partition_constraintdef
