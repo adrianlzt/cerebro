@@ -8,3 +8,5 @@ Se recomienda backup de la bbdd y los ficheros de config, por si fuese necesario
 Mirar los cambios en las templates oficiales.
 Tendremos que subirlos a mano. Podemos bajar el XML de la web de share.zabbix.com
 Las últimas templates están en https://github.com/zabbix/zabbix/tree/trunk/templates
+
+Mirar las diferencias de configuración de los ficheros de zabbix.conf, de los agents y de los proxies.

@@ -104,7 +104,7 @@ source
 0 - trigger
 1 - discovery
 2 - auto registration
-3 - internal
+3 - internal (indican cambios de estado de items/triggers/LLDs, entre ok y unsupported)
 
 object
 0 - trigger (si source=0, object=0 siempre)
@@ -274,6 +274,12 @@ select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where
 
 Número de eventos por segundo de los últimos 10 minutos, organizados por source y object (mirar explicación de valores en la sección de Events, más arriba):
 select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) GROUP BY source,object,value;
+
+Eventos internal por fallos de triggers, items, LLDs:
+select hosts.host,to_timestamp(clock),triggers.description,triggers.error from events,triggers,functions,items,hosts where hosts.hostid=items.hostid AND items.itemid=functions.itemid AND functions.triggerid=triggers.triggerid AND triggers.triggerid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=0 and source=3 and events.value=1 order by events.clock desc limit 40;
+select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=4 and source=3 and events.value=1 order by events.clock desc limit 40;
+select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=5 and source=3 and events.value=1 order by events.clock desc limit 40;
+   esta última sería para los LLDs pero no tenía resultados, no se seguro si está bien
 
 Todos los items de un hostgroup:
 select items.name,items.itemid from hosts_groups,groups,items where items.hostid=hosts_groups.hostid and hosts_groups.groupid=groups.groupid and groups.name='SOMEHOSTGROUP' limit 10;
