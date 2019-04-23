@@ -69,3 +69,6 @@ synced 59504 items in 60.878596 sec, syncing history
 Esto quiere decir que los history syncer tienen muchos elementos que sincronizar y están trabajando sin parar. Cada 60" se paran un segundo para cambiar su mensaje y siguen trabajando.
 
 Si los history syncer no dan a basto, veremos como la cache "history write" empezará a gastar espacio. También la "history index".
+
+
+# unreachable poller
