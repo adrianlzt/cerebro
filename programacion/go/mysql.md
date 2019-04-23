@@ -69,11 +69,11 @@ El driver github.com/lib/pq no devuelve los ColumnTypes
 _ "github.com/lib/pq"
 
 El driver se encarga de la reconexión en caso de ser necesario (no hay que hacer nada)
+Mejor no usar el otro sistema de conex (key=value) porque hace cosas raras si dejas las claves vacías.
 
-conex := fmt.Sprintf("user=%v password=%v host=%v dbname=%v sslmode=disable", dbuser, dbpass, dbhost, dbname)
-db, err := sql.Open("postgres", conex)
+connStr := "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
+db, err := sql.Open("postgres", connStr)
 
-Si dejamos sin definir "dbname", se pensará que no hay más parametros y nos pondrá sslmode activo.
 
 
 

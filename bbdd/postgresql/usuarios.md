@@ -57,6 +57,11 @@ dropuser nombre
 DROP USER 'nombre';
 
 
+## Limitar usuarios
+Timeout: limitar a NOMBREROLE para que las ejecuciones no puedan durar más de 1s:
+alter role NOMBREROLE set statement_timeout=1000;
+
+
 ## pg_hba.conf ##
 El control de acceso a la base de datos se realiza desde el fichero pg_hba.conf (hba = host-base auth)
 http://www.postgresql.org/docs/devel/interactive/auth-pg-hba-conf.html
