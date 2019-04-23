@@ -91,11 +91,35 @@ Partitions: history_1000_2000 FOR VALUES FROM (1000) TO (2000)
 
 
 ### Queries para extraer info
+https://www.postgresql.org/docs/current/catalog-pg-partitioned-table.html
+https://www.postgresql.org/docs/current/catalog-pg-class.html
+  relpartbound: If table is a partition (see relispartition), internal representation of the partition bound
+  esto parece que es lo más parecido a sacar con una SQL la info de como se hace el particionado de forma programática
+
+
 SELECT pg_get_partkeydef('history'::regclass);
   nos dice el tipo de partition de la tabla "history"
 
 SELECT pg_get_partition_constraintdef('history_1555891200_1555977600'::regclass);
   contraints de la partición "history_1555891200_1555977600"
+
+select c.relnamespace::regnamespace::text as schema,
+       c.relname as table_name,
+       pg_get_partkeydef(c.oid) as partition_key
+from   pg_class c
+where  c.relkind = 'p';  -- partitioned table
+  tabla con los schema, tables y partition_key
+
+Tipo de una tabla particionada: relkind='r'
+
+Para cuando esté PG12
+https://gist.github.com/amitlan/97dbed8c7c3f49be7579782ba22c9ced
+select  p.*,
+        pg_get_expr(relpartbound, relid) as partbound,
+        pg_get_partkeydef(relid) as partkey
+from    pg_partition_tree('p') p join
+        pg_class c on (p.relid = c.oid);
+
 
 
 
