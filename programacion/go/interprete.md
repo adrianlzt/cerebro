@@ -3,10 +3,6 @@ mirar neugram/ para hacer scripts en go
 https://www.tutorialspoint.com/execute_golang_online.php
 http://play.golang.org/
 
-# go-pry
-Otro repl que nos permite meter una traza tipo "breakpoint()" en python y parar ahí con una repl
-
-
 # gomacro
 https://github.com/cosmos72/gomacro
 
@@ -33,6 +29,15 @@ Esto nos genera una variable pair del typo struct{First complex64, Second struct
 
 Gomacro tambien puede ejecutar programas como si fuese bash, incluso lo podemos poner en el shebang
 En este modo podemos ejecutar el debugger https://github.com/cosmos72/gomacro#debugger
+
+Si da error:
+plugin was built with a different version of package...
+Recompilar gomacro
+
+
+# go-pry
+Otro repl que nos permite meter una traza tipo "breakpoint()" en python y parar ahí con una repl
+
 
 
 # Gophernotes / Jupyter
