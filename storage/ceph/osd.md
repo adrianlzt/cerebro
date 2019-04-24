@@ -12,7 +12,7 @@ En el dashboard veía mensajes tipo:
 Estado de los distintos OSD
 ceph osd status
 
-Más info del uso de los discos
+Más info del uso de los discos (el weight se asigna por la capacidad de cada disco, para que la carga sea homogénea. Creo que pocos PGs pueden hacer que la carga siga sin ser homogénea)
 ceph osd df
 
 VAR: variancia respecto a la media

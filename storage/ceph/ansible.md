@@ -80,6 +80,7 @@ ceph_conf_overrides:
     osd pool default pgp num = 1024
 
 Y si vamos a usar rgw, definimos el número de PGs por pool. La calculadora (https://ceph.com/pgcalc/) ya nos da el número de PGs que nos hará falta para cada pool
+Que pasa si creamos a posteriori más PGs? Se hace rebalanceo?
 Ejemplo:
 create_pools:
   .rgw.root:
