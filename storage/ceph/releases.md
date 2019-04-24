@@ -9,3 +9,7 @@ Para cada major:
 Asi que si estamos interesados en una versión estable buscaremos, por ejemplo, la 12.2.z
 
 Cada release tendrá una vida de unos 18 meses
+
+
+13: mimic
+12: luminous

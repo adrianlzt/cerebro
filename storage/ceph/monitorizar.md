@@ -43,6 +43,7 @@ ceph pg map {pg-num}
 Estado del CRUSH map:
 ceph osd crush tree
 
+
 Pools:
 ceph osd pool ls detail
   nos dice datos sobre el pool. Entre ellos:
@@ -64,6 +65,8 @@ You should also consider what percentage of the overall data the cluster stores 
 
 Generally, it’s a good idea to check the capacity of your cluster to see if you are reaching the upper end of its capacity. As your cluster reaches its near full ratio, you should add one or more OSDs to expand your cluster’s capacity.
 Warning Do not let your cluster reach its full ratio before adding an OSD. OSD failures that occur after the cluster reaches its near full ratio may cause the cluster to exceed its full ratio.
+
+Chequear que el balanceo de los OSDs es más o menos homogénea ("VAR" en ceph osd df)
 
 Sharding de RGW: https://ceph.com/community/new-luminous-rgw-dynamic-bucket-sharding/<Paste>
 
