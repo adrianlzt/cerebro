@@ -35,11 +35,25 @@ Comprobar:
 ceph osd df
 
 CUIDADO! que el balanceado no esté bajando constantemente el weight y al final tengamos un problema por que estén todos bajos.
+Aunque puede que esto sea un problema antiguo, porque en test-reweight-by-utilization veo el parámetro --no-increasing
+
+Mirar que disco se va a llenar primero analizando el crush map:
+https://ceph.com/planet/predicting-which-ceph-osd-will-fill-up-first/
+Parece que los parámetros son viejos
 
 
 ## Balancer
 Para las versiones >= luminous (12) existe un plugin que balancea los datos automáticamente
 http://docs.ceph.com/docs/luminous/mgr/balancer/
+
+ceph mgr module enable balancer
+ceph balancer status
+
+ceph balancer on
+
+El balancer no funcionará si tenemos el cluster degraded.
+Luego solo se activará si los PGs misplaced superan un %
+
 
 
 ## Manual

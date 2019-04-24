@@ -22,12 +22,13 @@ veremos el número mínimo de replicas en: replicated size 2
 HEALTH_WARN too few PGs per OSD (16 < min 30)
 Necesitamos crear mas PGs (cuantos?)
 Obtener nombre del pool:
-ceph osd pool ls
+ceph osd pool ls detail
 
 ceph osd pool set POOL pg_num 128
 ceph osd pool set POOL pgp_num 128
 
 Tal vez no nos deje poner 128 pgs con un solo nodos, tendremos que poner 32
+Podemos usar https://ceph.com/pgcalc/ para calcular en número de pgs
 
 
 Chequear

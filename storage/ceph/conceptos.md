@@ -103,3 +103,9 @@ A method of data protection in which data is broken into fragments , encoded and
 Identificador del cluster
 Está escrito en los discos OSD.
 Podemos verlo montando el disco y mirando el fichero ceph_fsid
+
+
+
+# Analizar crush map para ver llenado
+Mirar en osd.md
+https://ceph.com/planet/predicting-which-ceph-osd-will-fill-up-first/
