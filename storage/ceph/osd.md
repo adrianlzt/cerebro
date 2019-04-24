@@ -56,9 +56,17 @@ Luego solo se activará si los PGs misplaced superan un %
 
 
 
-## Manual
+## Manual automatizado
 Primero testear que cambios se van a hacer:
 ceph osd test-reweight-by-utilization
 
 Luego hacer el rebalanceo
 ceph osd reweight-by-utilization
+
+
+## Manual
+http://lab.florian.ca/?p=186
+Temporarily decrease the weight of the OSD.
+ceph osd reweight [id] [weight]
+
+id is the OSD# and weight is value from 0 to 1.0 (1.0 no change, 0.5 is 50% reduction in weight)

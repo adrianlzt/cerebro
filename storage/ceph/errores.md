@@ -29,6 +29,8 @@ ceph osd pool set POOL pgp_num 128
 
 Tal vez no nos deje poner 128 pgs con un solo nodos, tendremos que poner 32
 Podemos usar https://ceph.com/pgcalc/ para calcular en número de pgs
+Que pasa si creamos a posteriori más PGs? Se hace rebalanceo?
+
 
 
 Chequear
