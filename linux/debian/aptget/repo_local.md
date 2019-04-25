@@ -4,11 +4,16 @@ https://wiki.debian.org/HowToSetupADebianRepository
 https://www.joachim-breitner.de/blog/681-Quickest_path_to_a_local_apt_repository
 https://launchpad.net/ubuntu/+source/local-apt-repository
 Mete directamente el fichero /etc/apt/sources.list.d/local-apt-repository.list
+Solo local
 
 Solo con copiar un .deb a /srv/local-apt-repository se genera automaticamente el repo (vigila el dir con systemd)
 Si queremos hacerlo a mano:
 /usr/lib/local-apt-repository/rebuild
 
+
+# debify
+https://hub.docker.com/r/spotify/debify/
+Container de docker que solo necesita un dir con .deb y un .gnupg
 
 
 
