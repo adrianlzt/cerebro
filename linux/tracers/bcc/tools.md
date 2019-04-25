@@ -38,6 +38,7 @@ short-lived-processes
 
 # filelife
 Muestra short-lived files, que se han creado y borrado mientras la ejecucción de la app
+Lo que hace es capturar llamadas a stat()
 
 
 # filetop
