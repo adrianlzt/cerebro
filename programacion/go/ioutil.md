@@ -6,6 +6,7 @@ import "io/ioutil"
 
 
 func NopCloser(r io.Reader) io.ReadCloser
+  generar un ReadCloser a partir de un Reader
 func ReadAll(r io.Reader) ([]byte, error)
 func ReadDir(dirname string) ([]os.FileInfo, error)
 func ReadFile(filename string) ([]byte, error)
