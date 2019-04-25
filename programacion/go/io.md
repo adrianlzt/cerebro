@@ -25,3 +25,21 @@ buf.Bytes()
 
 # Copiar datos entre Writer y reader
 io.Copy(rdr, wrt)
+
+
+io.Copy a mano (por si queremos meter mano en los datos):
+buf := make([]byte, BUFFERSIZE)
+for {
+        n, err := source.Read(buf)
+        if err != nil && err != io.EOF {
+                return err
+        }
+        if n == 0 {
+                break
+        }
+
+        if _, err := destination.Write(buf[:n]); err != nil {
+                return err
+        }
+}
+
