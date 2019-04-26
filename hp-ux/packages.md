@@ -1,3 +1,14 @@
+http://nixdoc.net/man-pages/HP-UX/man5/sd.5.html
+Software Distributor
+
+Parece que los repos son "depots".
+Para buscar paquetes creo que tengo que especificar el depot que usar.
+
+
+Buscar paquetes:
+http://hpux.connect.org.uk/hppd/auto/summary_all.html<Paste>
+
+
 Listar paquetes instalados
 swlist -v
 

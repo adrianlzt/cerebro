@@ -34,6 +34,7 @@ Podemos usar los Dockerfile para hacer el build
 ./configure --enable-server --enable-agent --with-postgresql --with-net-snmp --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2 --prefix=/opt/zabbix
   dependiendo de que queramos compilar (server, agent, proxy) y que backend (mysql, postgresql, etc), deberemos poner unas configuraciones u otras
   hay una opción para generar binarios estaticos (no recomendado, al menos para el server)
+    --enable-static  (tampoco vale para hpux)
 make dbschema
 make
 make css
