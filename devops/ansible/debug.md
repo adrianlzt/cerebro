@@ -11,6 +11,9 @@ Nos da un debugger muy limitado
 Debug a lo bestia:
 ANSIBLE_DEBUG=true ansible -vvvvvv ...
 
+Podemos tambien meter en el código:
+import epdb; epdb.st()
+
 
 http://docs.ansible.com/debug_module.html
 ansible-playbook -vvvv  <- para poder ver los mensajes de debug
