@@ -14,7 +14,7 @@ git clone --mirror git://example.com/some-big-repo.git
 cp -pr some-big-repo.git ~/some-big-repo.git.bak
   backup por si acaso
 java -jar ~/Descargas/bfg-1.11.5.jar --delete-files *.rpm some-big-repo.git
-bfg -D 10 repo.git
+bfg -B 10 repo.git
   borrar los 10 ficheros más grandes
 cd some-big-repo.git
 git reflog expire --expire=now --all
