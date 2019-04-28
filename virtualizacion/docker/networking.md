@@ -42,3 +42,17 @@ crea una red solo interna, no tendrá salida a internet
 
 docker run --net=host ...
 corremos un container conectado a la misma red que el host (namespace de network mismo que el host)
+
+
+
+Si queremos elegir la subnet de una network:
+En un docker compose file:
+networks:
+  name:
+    driver: "overlay"
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+
