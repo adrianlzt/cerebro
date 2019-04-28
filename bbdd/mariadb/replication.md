@@ -17,6 +17,9 @@ default_storage_engine=InnoDB
 innodb_autoinc_lock_mode=2
 bind-address=0.0.0.0
 
+Dos ips en el nodo y tenemos que usar una para wsrep? Definir:
+wsrep_node_address="10.0.2.29"
+
 
 Quitar selinux
 Quitar, o configurar, firewall para permitir la transferencia de estado y la conexión.
@@ -44,8 +47,19 @@ SHOW GLOBAL STATUS like "wsrep%";
 
 # Agregar un nodo
 https://www.percona.com/doc/percona-xtradb-cluster/LATEST/add-node.html
+Instalar la misma version de mariadb
+Instalar tambien net-tools (necesita ifconfig)
 Copiar la conf /etc/my.cnf.d/server.cnf al nuevo nodo
-Arrancar el nuevo nodo.
+Comprobar que el datadir tiene permisos mysql:mysql
+Arrancar el nuevo nodo (tardará en terminar el comando):
+  systemctl start mariadb
+Comprobar mientras arranca los logs:
+  journalctl -f
+Si no arranca bien mirar los logs del journal entero (filtrando solo por mariadb nos perdemos cosas):
+  journalctl -n 200
+
+Si falla el wsrep_sst_rsync, podemos intentar ejecutarlo a mano para ver que dice. IP correcta?
+
 Le hará una transferencia de estado (si falla mirar los logs de todos los nodos del cluster)
 Una vez tengamos el nodo corriendo, iremos parando los nodos que ya estaban y modificando su configuración para agregar el nuevo nodo a wsrep_cluster_address
 
