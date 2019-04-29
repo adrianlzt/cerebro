@@ -36,6 +36,11 @@ Podemos usar los Dockerfile para hacer el build
   hay una opción para generar binarios estaticos (no recomendado, al menos para el server)
     --enable-static  (tampoco vale para hpux)
   --enable-agent si solo queremos compilar el agente
+  para hpux y agente v4 necesitamos http://hpux.connect.org.uk/hppd/hpux/Languages/pcre-8.41/
+  https://support.zabbix.com/browse/ZBX-15764?attachmentViewMode=list
+  configure usado:
+  CFLAGS="+DD64" ./configure --enable-agent --with-libpcre-include=/tmp/zabbix/pcre/pcre-INC/usr/local/include --with-libpcre-lib=/tmp/zabbix/pcre/pcre-RUN/usr/local/lib/hpux64/ --prefix=/tmp/zabbix/zabbix-4.0.7/empaquetar
+
 make dbschema
 make
 make css
