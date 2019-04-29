@@ -35,6 +35,7 @@ Podemos usar los Dockerfile para hacer el build
   dependiendo de que queramos compilar (server, agent, proxy) y que backend (mysql, postgresql, etc), deberemos poner unas configuraciones u otras
   hay una opción para generar binarios estaticos (no recomendado, al menos para el server)
     --enable-static  (tampoco vale para hpux)
+  --enable-agent si solo queremos compilar el agente
 make dbschema
 make
 make css
