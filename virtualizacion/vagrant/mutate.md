@@ -39,3 +39,12 @@ Crear una maquina virtual y ponerle el qcow2 como disco
 
 # Imagen a tgz
 Hacer un mountloop y despues pasarle el tar
+
+
+
+# Montar vmdk
+https://stackoverflow.com/questions/22327728/mounting-vmdk-disk-image
+  hay más opciones
+
+guestmount -a xyz.vmdk -i --ro /mnt/vmdk
+
