@@ -23,3 +23,8 @@ https://github.com/zabbix/zabbix-patches/blob/master/zabbix-3.0/ZBXNEXT-1603/ZBX
 Opciones:
   - meter pgpool para enviar las queries SELECT (solo de lectura) hacia el slave: http://www.pgpool.net/docs/latest/en/html/runtime-config-load-balancing.html
   - parchear más el web para evitar que tenga que escribir en esas tablas
+
+
+
+# Troubleshooting
+mirar troubleshooting.md

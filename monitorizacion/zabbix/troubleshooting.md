@@ -46,3 +46,14 @@ cat zabbix_server.log | grep "slow query" | grep -e "^\s*[0-9]*:" | awk '{print 
 ps -eo args | grep zabbix_serve[r] | less
 
 watch -n 1 'ps -eo args | grep zabbix | grep -v -e idle -e "waiting for"'
+
+
+
+# Zabbix-web queries pesadas
+Si tenemos un php-fpm ejecutando una TX que dura mucho tiempo, podemos hacer un volcado de memoria del proceso php-fpm y ver que está ejecutando
+dump_mem.py 4273 |& strings >& dump.4273.txt
+  parece que "gcore", de gdb, nos permite hacer un dump: gcore -o out pid
+
+cat dump.4273.txt | grep -e REMOTE_ADDR -e HTTP_USER_AGENT -e REQUEST_METHOD -e QUERY_STRING -e HTTP_REFERER -e SCRIPT_NAME -e REQUEST_URI -e '"jsonrpc"'
+  asi deberiamos poder ver quien nos está pidiendo que, a donde, que POST nos ha hecho, etc
+  mirando el "auth" de la petición json podemos ver quien es (tabla session y users)
