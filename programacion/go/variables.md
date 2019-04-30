@@ -6,6 +6,7 @@ n se declara automáticamente como int, porque viene dado por el tipo de valor q
 
 Las variables siempre tienen un valor, 0 para los números, "" para las string, nil para los struct, etc
 Variable nula: nil
+Un "truco" para distinguir una variable vacía de una no inicializada es usar un puntero. Un caso típico es cuando parseamos un fichero de configuración (unmarshal) y queremos saber si nos han dado ese valor o no han definido nada.
 
 Se declaran:
 var var1 TIPO
