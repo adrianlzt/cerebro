@@ -46,5 +46,5 @@ Hacer un mountloop y despues pasarle el tar
 https://stackoverflow.com/questions/22327728/mounting-vmdk-disk-image
   hay más opciones
 
+libguestfs
 guestmount -a xyz.vmdk -i --ro /mnt/vmdk
-
