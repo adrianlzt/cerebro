@@ -26,6 +26,7 @@ Podemos ver por cada database que queries se están ejecutando, cuanto tardan, p
 
 
 # Load testers
+https://news.ycombinator.com/item?id=19605425
 https://blog.lawrencejones.dev/building-a-postgresql-load-tester/
 https://github.com/gocardless/pgreplay-go/
 reproduce los writes?

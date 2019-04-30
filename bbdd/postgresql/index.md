@@ -75,10 +75,16 @@ Espacio dejado para que al ir actualizando los índices los cambios queden en la
 
 
 
+# Tipos de índices
+B-Tree (balanced tree): https://github.com/postgres/postgres/tree/master/src/backend/access/nbtree
+
+
+
 # Tipos de acceso
 Index scan: leemos el índice y luego obtenemos los datos del heap
 Index only scan: obtenemos toda la info que necesitamos del índice
-
+  si la página que va a leer no está "true" en el visibility map (o no existe aún), tendrá que ir al heap para ver si es una dead row
+  explicación y ejemplo: https://blog.dbi-services.com/an-index-only-scan-in-postgresql-is-not-always-index-only/
 
 
 # String

@@ -57,6 +57,10 @@ Este parámetro hace que el query planner descarte las tablas que por su range n
 Para inheritance el parámetro que hace esta funcion es constraint_exclusion
 
 
+### Subpartitioning
+partitioning on one LIST (e.g., device) and one RANGE (e.g., time) dimension first requires creating all LIST partitions and then, in each of those child tables, creating corresponding RANGE sub-partitions, or vice versa. This creates a tree hierarchy of tables where the leafs are the effective sub-partitions that hold tuples.
+
+
 ### Attach / detach
 Podemos unir tablas como particiones de un parent, o sacar childs de una tabla parent.
 Podemos por ejemplo, sacar la tabla default y volverla a unir solo con un rango determinado.
