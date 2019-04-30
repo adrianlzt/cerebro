@@ -56,7 +56,10 @@ Significado de los nodos sacado de https://github.com/AlexTatiyants/pev/blob/6d3
    HASHAGGREGATE: groups records together based on a GROUP BY or aggregate function (like sum()). Hash Aggregate uses a hash to first organize the records by a key
    SEQ SCAN: finds relevant records by sequentially scanning the input record set. When reading from a table, Seq Scans (unlike Index Scans) perform a single read operation (only the table is read)
    INDEX SCAN: finds relevant records based on an Index. Index Scans perform 2 read operations: one to read the index and another to read the actual value from the table
+     este segundo acceso tiene coste random_page_cost
    INDEX ONLY SCAN: finds relevant records based on an Index. Index Only Scans perform a single read operation from the index and do not read from the corresponding table
+    si la página que va a leer no está "true" en el visibility map (o no existe aún), tendrá que ir al heap para ver si es una dead row
+    explicación y ejemplo: https://blog.dbi-services.com/an-index-only-scan-in-postgresql-is-not-always-index-only/
    BITMAP HEAP SCAN: searches through the pages returned by the Bitmap Index Scan for relevant rows
    BITMAP INDEX SCAN: uses a Bitmap Index (index which uses 1 bit per page) to find all relevant pages.  Results of this node are fed to the Bitmap Heap Scan
    CTE SCAN: performs a sequential scan of Common Table Expression (CTE) query results. Note that results of a CTE are materialized (calculated and temporarily stored)

@@ -1,5 +1,10 @@
 https://use-the-index-luke.com
+https://habr.com/en/company/postgrespro/blog/441962/
 Enteder como funcionan los índices
+
+
+Generalmente usados para mejorar la velocidad de acceso a los datos.
+La parte negativa es que cada insert implica modificar el índice.
 
 Para usar los índices el planificador tiene que tener los datos de la tabla.
 Si estamos haciendo pruebas podemos forzar la carga de estos datos con:
@@ -70,6 +75,12 @@ Espacio dejado para que al ir actualizando los índices los cambios queden en la
 
 
 
+# Tipos de acceso
+Index scan: leemos el índice y luego obtenemos los datos del heap
+Index only scan: obtenemos toda la info que necesitamos del índice
+
+
+
 # String
 https://use-the-index-luke.com/sql/where-clause/searching-for-ranges/like-performance-tuning
 Podemos usar índices sobre strings. Se usarán los caracteres antes de "%" para buscar en el índice.
@@ -90,3 +101,10 @@ https://www.postgresql.org/docs/current/indexes-opclass.html
 
 Cuando se crea un índice se definen también los operadores que afectan a ese índice.
 Por ejemplo para int se definiran =, <, >, >=, <=, etc
+
+
+
+# HypoPG
+https://hypopg.readthedocs.io/en/latest/
+Extensión que simula tener un índice para ver si el query planner lo usaría. Sin tener que gastar los recursos de crearlo
+
