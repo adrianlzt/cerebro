@@ -1,3 +1,5 @@
+cat /etc/issue
+
 Para obtener la versión de HP-UX:
 swlist |grep -e QPKBASE -e HPUXBaseAux
 
