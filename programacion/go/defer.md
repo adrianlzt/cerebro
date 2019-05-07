@@ -10,3 +10,6 @@ Se ejecuta la función que hayamos puesto en defer cuando retorne la función do
 
 CUIDADO! con hacer un defer objetoPuntero.Metodo()
 Si antes de llegar al defer, objetoPuntero se vuelve nil, tendremos un panic.
+
+
+deferred calls are executed in last-in-first-out (LIFO) order
