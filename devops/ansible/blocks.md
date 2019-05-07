@@ -54,3 +54,6 @@ Si la tarea dentro del block falla, ejecutará rescue, finally y terminará corr
 
 Los blocks son tasks.
 No se puede hacer un playbook empezando con un block, debe empezar con un play.
+
+
+Podemos pasar variables (register: var) entre block y rescue
