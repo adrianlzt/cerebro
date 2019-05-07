@@ -53,3 +53,6 @@ Mejora de las gráficas y selector de tiempo.
 La actualizacion depende cuantos eventos tenemos en la tabla events
 
 Deprecated macros $1-$9 en prototype items names
+
+Deprecated plain protocol. Esto implica que zabbix_get v3 no es compatible con agentes v4
+Veremos el error en el agente: Message from DIRECCIONIP is missing header. Message ignored
