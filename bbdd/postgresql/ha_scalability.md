@@ -57,6 +57,20 @@ Si queremos sacar un nodo del pool, en el nodo que queremos sacar:
 su postgres -c "pg_autoctl drop node"
 
 
+Mato al nodo primario (kill -9 al keeper y postgres)
+                  Name |   Port | Group |  Node |     Current State |    Assigned State
+-----------------------+--------+-------+-------+-------------------+------------------
+nodea.pg_auto_failover |   5432 |     0 |     1 |           primary |    demote_timeout
+nodeb.pg_auto_failover |   5432 |     0 |     2 |  stop_replication |  stop_replication
+
+Y tras unos segundos:
+                  Name |   Port | Group |  Node |     Current State |    Assigned State
+-----------------------+--------+-------+-------+-------------------+------------------
+nodea.pg_auto_failover |   5432 |     0 |     1 |           primary |           demoted
+nodeb.pg_auto_failover |   5432 |     0 |     2 |      wait_primary |      wait_primary
+
+Ahora el nodob (secundario) a tomado el rol de primario y permite escrituras.
+
 
 
 
