@@ -32,6 +32,7 @@ Parece que esto no vale y tengo que parchear el web:
                                 if (!$DB['DB']) {
                                         $error = 'Error connecting to database.';
 
+Hace falta que php tenga la extensión de postgres compilado contra una versión >=10. Mirar con phpinfo
 
 
 
