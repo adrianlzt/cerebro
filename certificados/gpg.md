@@ -33,6 +33,8 @@ gpg --delete-keys nombre
 
 ## Encriptar/desencriptar
 echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
+  Si usamos "| gpg -d" no nos podrá pedir la clave, si le hace falta, porque tenemos ocupado el stdin
+  Usar gpg -d fichero
 
 -a es por si el contenido cifrado lo tenemos que pegar en ASCII
 -r es la clave publica de a quien queremos enviar el mensaje. Debemos tener su clave publica disponible
@@ -47,11 +49,17 @@ gpg -o fichero.tar -d fichero.tar.pgp
 
 ## Importar una clave
 gpg --import fichero.key
+gpg --import private.key
+  nos pedirá la password. Si ponemos --batch la importará sin pedirnos clave. Nos la pedirá al desencriptar
 
 ## Exportar mi clave publica
 gpg --output public.key --armor --export nombre@email.com
 
 gpg -a --export nombre@email.com > public.key
+
+Exportar privada (pone el ID si queremos exportar una especifica):
+gpg --export-secret-keys --armor > private.key
+gpg --export-secret-keys --armor 1234ABCD > private.key
 
 La podemos subir por ejemplo al servidor de claves del MIT: https://pgp.mit.edu/
 Todos los servers de claves GPG están sincronizados

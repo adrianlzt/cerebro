@@ -1,5 +1,9 @@
 http://git-scm.com/book/en/Git-Tools-Submodules
 
+Cada repo de git apuntará a un commit determinado de cada uno de sus submodulos.
+Si se actualiza un submodulo, tendremos que actualizar el git parent y commitear para almacenar ese nuevo commit a donde apuntar.
+
+
 Meter un submodule
 git submodule add <url> <path>
 
