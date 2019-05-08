@@ -14,10 +14,21 @@ La extensión nos gestiona la replicación y el promote de standby a master.
 Junto con la opción de libpq de conectar a varios hosts tenemos el HA.
 Prueba con docker.
 Bajar repo, hacer build de la imagen de docker: docker build -t pg_auto_failover:1.0.1 .
-Arrancar el monitor:
-  docker run --user root --rm -it --net host pg_auto_failover:1.0.1
+
+Creamos red para comunicar los containers por hostname:
+docker network create --attachable pg_auto_failover
+
+Arrancamos el monitor:
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name monitor -h monitor pg_auto_failover:1.0.1
   > mkdir /pgdata && chown postgres:postgres /pgdata
   > su postgres -c "pg_autoctl create monitor --pgdata /pgdata --nodename monitor"
+  Los nodos conectarán con: psql -h DIRECCIONIP -U autoctl_node -d pg_auto_failover
+  Ahí estará corriendo la extensión pgautofailover (podemos verlo conectando y poniendo \dx)
+
+
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodea -h nodea pg_auto_failover:1.0.1
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodeb -h nodeb pg_auto_failover:1.0.1
+
 
 
 
