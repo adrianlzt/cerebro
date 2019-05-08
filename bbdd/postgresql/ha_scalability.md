@@ -30,6 +30,8 @@ Arrancamos el monitor:
   > su postgres -c "pg_autoctl show events"
   Ver estado:
   > su postgres -c "pg_autoctl show state"
+  Si tenemos que arrancar de nuevo el monitor:
+  pg_autoctl run
 
   Primer nodo de datos
   docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodea -h nodea.pg_auto_failover pg_auto_failover:1.0.1
@@ -70,6 +72,20 @@ nodea.pg_auto_failover |   5432 |     0 |     1 |           primary |           
 nodeb.pg_auto_failover |   5432 |     0 |     2 |      wait_primary |      wait_primary
 
 Ahora el nodob (secundario) a tomado el rol de primario y permite escrituras.
+
+
+Tras arrancar de nuevo el keeper de nodea
+                  Name |   Port | Group |  Node |     Current State |    Assigned State
+-----------------------+--------+-------+-------+-------------------+------------------
+nodea.pg_auto_failover |   5432 |     0 |     1 |           primary |    demote_timeout
+nodeb.pg_auto_failover |   5432 |     0 |     2 |  stop_replication |  stop_replication
+
+Y tras unos segundo, keeper automáticamente arranca postgres:
+                  Name |   Port | Group |  Node |     Current State |    Assigned State
+-----------------------+--------+-------+-------+-------------------+------------------
+nodea.pg_auto_failover |   5432 |     0 |     1 |         secondary |         secondary
+nodeb.pg_auto_failover |   5432 |     0 |     2 |           primary |           primary
+
 
 
 
