@@ -24,12 +24,21 @@ Arrancamos el monitor:
   > su postgres -c "pg_autoctl create monitor --pgdata /pgdata --nodename monitor"
   Los nodos conectarán con: psql -h DIRECCIONIP -U autoctl_node -d pg_auto_failover
   Ahí estará corriendo la extensión pgautofailover (podemos verlo conectando y poniendo \dx)
-
+  Conex desde el propio container: psql -U postgres
+  Ver eventos:
+  > su postgres -c "watch pg_autoctl show events --pgdata /pgdata"
+  Ver estado:
+  > su postgres -c "pg_autoctl show state --pgdata /pgdata"
 
   docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodea -h nodea pg_auto_failover:1.0.1
+  > su postgres -c "pg_autoctl create postgres --nodename `hostname --fqdn` --monitor postgres://autoctl_node@monitor:5432/pg_auto_failover"
+  En los eventos veremos como el nodo primero se pone como "init" (se registra) y cuando arranca el postgres se pone como single (el único en el pool por ahora)
+
   docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodeb -h nodeb pg_auto_failover:1.0.1
 
 
+Si queremos sacar un nodo del pool, en el nodo que queremos sacar:
+su postgres -c "pg_autoctl drop node"
 
 
 
