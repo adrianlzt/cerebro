@@ -17,24 +17,40 @@ Bajar repo, hacer build de la imagen de docker: docker build -t pg_auto_failover
 
 Creamos red para comunicar los containers por hostname:
 docker network create --attachable pg_auto_failover
+La resolución inversa de las IPs nos dará "HOSTNAME.pg_auto_failover". Esto es importante, porque cuando los postgres se conecten entre si para hacer la replicación, verán una IP, a la que harán la resolución inversa, obtendrán ese fqdn y lo buscarán en el pg_hba.conf para saber si permitirle el acceso
+El monitor también necesita conectar por replication a los nodos.
 
 Arrancamos el monitor:
-  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name monitor -h monitor pg_auto_failover:1.0.1
-  > mkdir /pgdata && chown postgres:postgres /pgdata
-  > su postgres -c "pg_autoctl create monitor --pgdata /pgdata --nodename monitor"
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name monitor -h monitor.pg_auto_failover pg_auto_failover:1.0.1
+  > su postgres -c "pg_autoctl create monitor --nodename $(hostname --fqdn)"
   Los nodos conectarán con: psql -h DIRECCIONIP -U autoctl_node -d pg_auto_failover
   Ahí estará corriendo la extensión pgautofailover (podemos verlo conectando y poniendo \dx)
   Conex desde el propio container: psql -U postgres
   Ver eventos:
-  > su postgres -c "watch pg_autoctl show events --pgdata /pgdata"
+  > su postgres -c "pg_autoctl show events"
   Ver estado:
-  > su postgres -c "pg_autoctl show state --pgdata /pgdata"
+  > su postgres -c "pg_autoctl show state"
 
-  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodea -h nodea pg_auto_failover:1.0.1
-  > su postgres -c "pg_autoctl create postgres --nodename `hostname --fqdn` --monitor postgres://autoctl_node@monitor:5432/pg_auto_failover"
+  Primer nodo de datos
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodea -h nodea.pg_auto_failover pg_auto_failover:1.0.1
+  > su postgres -c "pg_autoctl create postgres --nodename $(hostname --fqdn) --monitor postgres://autoctl_node@monitor:5432/pg_auto_failover"
   En los eventos veremos como el nodo primero se pone como "init" (se registra) y cuando arranca el postgres se pone como single (el único en el pool por ahora)
+  La conf del pg_hba.conf habilita el host "monitor" para acceder a la replicación, pero docker hace la resolución inversa a monitor.pg_auto_failover
+  Agregamos esa entrada a mano y recargamos conf:
+    host all "pgautofailover_monitor" monitor.pg_auto_failover trust
+    pg_ctl reload
+  Arrancamos el keeper (llama al monitor periodicamente para actualizar el estado y gestionar cambios de estado si es necesario). Corre en foreground
+  > su postgres -c "pg_autoctl run"
 
-  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodeb -h nodeb pg_auto_failover:1.0.1
+
+  Segundo nodo de datos
+  docker run --user root --rm -it --net pg_auto_failover --net pg_auto_failover --name nodeb -h nodeb.pg_auto_failover pg_auto_failover:1.0.1
+  > su postgres -c "pg_autoctl create postgres --nodename $(hostname --fqdn) --monitor postgres://autoctl_node@monitor:5432/pg_auto_failover"
+  Ahora el nodo primero pasara a "wait_primary" y el nuevo a "wait_standby" con "Assigned state" a "catchingup" mientras se sincroniza con el primero.
+  Una vez sincronizado tendrá el current state y Assigned state a catchingup
+  Arrancamos el keeper (llama al monitor periodicamente para actualizar el estado y gestionar cambios de estado si es necesario). Corre en foreground
+  > su postgres -c "pg_autoctl run"
+  Tras arrancar el keeper en este segundo nodo los estados pasarán a "primary" para el primero nodo y "secondary" para el segundo.
 
 
 Si queremos sacar un nodo del pool, en el nodo que queremos sacar:

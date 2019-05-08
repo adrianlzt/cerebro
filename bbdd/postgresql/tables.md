@@ -31,6 +31,9 @@ CREATE TABLE distributors (
 Crear si no existe
 CREATE TABLE IF NOT EXISTS ...
 
+Crear con datos de ejemplo (una columna foo con una serie):
+create table foo as select generate_series(1,1000000) bar;
+
 
 ## Modificar tabla ##
 http://www.postgresql.org/docs/devel/static/sql-altertable.html
