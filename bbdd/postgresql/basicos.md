@@ -8,6 +8,9 @@ psql -h hostname -U username -d database
   Si no pasamos database, se intentará conectar a una con el mismo nombre que el usuario
   Si no pasamos hostname puede que no funcione porque intenta autenticarse de otra manera
 
+psql -d "postgresql://user:password@hostA:portA,hostB:portB/basededatos?target_session_attrs=read-write"
+  conectar solo a la que sea read-write (no a una standby)
+
 Con password (-W ahorra el primer intento de conex sin auth, y lo intenta directamente con auth):
 psql -h hostname -U username -d database -W
 
