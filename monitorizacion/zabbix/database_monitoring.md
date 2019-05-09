@@ -2,6 +2,8 @@ https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/odbc_chec
 
 Hace falta tener instalado y configurado ODBC
 Para saber el nombre que poner en "Driver" mirar en /etc/odbcinst.ini
+No hace falta reiniciar Zabbix.
+Si la máquina esta monitorizada por un proxy, deberá ser el proxy quien tenga odbc configurado.
 
 
 Para MySQL:

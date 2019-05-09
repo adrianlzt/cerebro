@@ -19,6 +19,12 @@ sqlite3 bd.sqlite3
 Si no tenemos los helpers ".*" podemos navegar por:
 SELECT * FROM sqlite_master WHERE type='table';
 
+
+# Time/Date
+https://www.tutorialspoint.com/sqlite/sqlite_date_time.htm
+'now' equivalente al now() de postgres (poner con comillas)
+
+
 # Develop
 http://repo.or.cz/sqlite.git/blob/HEAD:/src/shell.c
 Esta es la cli que arranca cuando hacemos ejecutamos sqlite3
