@@ -49,3 +49,12 @@ Array:
   emptyObject: 
     uno: "cpsp"
     dos: "http"
+
+
+
+# Multiline
+https://yaml-multiline.info/
+
+examle: >
+  una cosa
+  otra cosa
