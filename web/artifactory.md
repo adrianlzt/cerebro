@@ -15,3 +15,8 @@ docker run -d -v "$PWD/data:/artifactory/data" -v "$PWD/logs:/artifactory/logs -
 
 # Admin
 Para crear repositorios ir a "Admin > Repositories"
+
+
+# Subir RPM
+curl -u myUser:myP455w0rd! -X PUT "http://localhost:8081/artifactory/my-repository/my/new/artifact/directory/file.txt" -T Desktop/myNewFile.txt
+
