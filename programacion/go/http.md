@@ -116,14 +116,9 @@ En el codigo:
 proxyUrl, err := url.Parse("http://proxyIp:proxyPort")
 myClient := &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
 
-Definir proxy si lo tenemos
-var myClient *http.Client
-if variable {
-  proxyUrl,_ := url.Parse("http://proxy.com:343")
-  myClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
-} else {
-  myClient = &http.Client{Transport: &http.Transport{}}
-}
+Definir proxy si lo tenemos (podemos poner proxyUrl a nil y lo ignorara)
+proxyUrl,_ := url.Parse("http://proxy.com:343")
+myClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
 
 
 
