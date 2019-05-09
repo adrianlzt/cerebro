@@ -76,3 +76,5 @@ jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false)   ->   [{"
 # Pretty print
 jsonb_pretty(xxX)
 
+Sacar un json a un fichero:
+psql -XAt -d facts -c "select jsonb_pretty(data) from facts where host = 'XXX' order by timestamp desc limit 1;" > facts.json
