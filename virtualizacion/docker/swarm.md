@@ -106,6 +106,7 @@ docker node update --availability drain <NODE>
   saca los containers y los arranca en otro lado antes de pararlo
   no espera a que estén corriendo en otro nodo
     hacer pull de las imagenes en los otros nodos antes para acelerar la migracion?
+    un truco podría ser ponerlo en pause, hacer update de todos los services y luego el drain
   tambien quita los containers globales, si tiene
   Podriamos forzar la vuelta de containers con un rolling update --force. Ejemplo:
     docker service update --update-parallelism 1 --force NombreServicio

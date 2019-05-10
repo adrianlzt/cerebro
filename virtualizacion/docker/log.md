@@ -16,9 +16,13 @@ Ejemplo de path:
 /var/lib/docker/containers/e0e92c39f045c038c221e0162b771e2aa63e124b329399453ae37f2e9e4d4404/e0e92c39f045c038c221e0162b771e2aa63e124b329399453ae37f2e9e4d4404-json.log
 
 
+
 Cada container puede correr un driver distinto.
 Para conocer cual está usando:
 docker inspect -f '{{.HostConfig.LogConfig.Type}}' CONTAINER
+
+O con las opciones del logger:
+docker inspect -f '{{.HostConfig.LogConfig}}' CONTAINER
 
 
 Si queremos cambiar el driver a nivel global:
@@ -26,6 +30,30 @@ Si queremos cambiar el driver a nivel global:
 {
   "log-driver": "syslog"
 }
+
+
+https://docs.docker.com/config/containers/logging/json-file/
+Limitar número y tamaño (no parece que podamos preguntar al docker la running config para ver las log-opts):
+docker run --log-opt max-size=10m --log-opt max-file=5 my-app:latest
+
+my-app:
+    image: my-app:latest
+    logging:
+        driver: "json-file"
+        options:
+            max-file: 5
+            max-size: 10m
+
+También a nivel de daemon
+/etc/docker/daemon.json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+
 
 Para arrancar un container con un log-driver especifico:
 docker run --log-driver journald ...
