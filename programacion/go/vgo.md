@@ -3,6 +3,9 @@ https://github.com/golang/go/wiki/vgo
 https://talks.bjk.fyi/gcru18-vgo.html#/
 https://github.com/golang/go/wiki/vgo-user-guide
 
+Herramientas que no funcionan aún con los modules:
+https://github.com/golang/go/issues/24661
+
 vgo fue el nombre del prototipo que se le dió a modules
 
 Modules nos permite tener en un directorio, fuera de GOPATH, nuestro código junto con los packages que necesitamos para funcionar.
