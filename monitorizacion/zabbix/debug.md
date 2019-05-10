@@ -25,6 +25,9 @@ zabbix_server -R log_level_increase
 zabbix_server -R log_level_increase
 zabbix_server -R log_level_increase
 
+Al final tenemos que ver en el log los procesos diciendo:
+log level has been increased to 3 (warning)
+
 
 Activar el nivel de debug puede tener impacto sobre los procesos si usamos logeo a fichero o consola. Parece que no si logeamos a system (syslog en linux).
 Función que realiza el logeo __zbx_zabbix_log (src/libs/zbxlog/log.c). Para fichero y consola tiene un lock para escribir

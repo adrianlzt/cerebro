@@ -22,6 +22,10 @@ Parámetros de conf para proxies activos:
   ProxyOfflineBuffer controls for how long data is kept locally if proxy can't contact server (one hour by default)
   ProxyLocalBuffer allows to preserve data in proxy database for later processing
   ConfigFrequency controls how often proxy requests configuration information from Zabbix server
+    cada vez que se solicita la información se loguea un mensaje en el proxy:
+      received configuration data from server at "nombreServer", datalen 12721769
+    y tambien en el server:
+      sending configuration data to proxy "nombreProxy" at "IP.PROXY", datalen 12721769
   DataSenderFrequency controls how often data is sent to Zabbix server
   HeartbeatFrequency makes proxy contact Zabbix server even if there is no new data to transmit
 

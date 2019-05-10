@@ -43,3 +43,10 @@ En arch se generá en /usr/share/webapps/zabbix/conf/zabbix.conf.php
 
 Instalar en arch con apache:
 https://www.hiroom2.com/2017/10/12/archlinux-20171001-zabbix-en/
+
+
+
+# History / trends
+https://zabbix.org/wiki/Docs/howto/mysql_partition#Housekeeper_changes
+Si vamos a hacer una instalación grande debemos particionar las tablas history y trends.
+Deberemos también desactivar el Housekeeping (Administration -> General -> Housekeeping)
