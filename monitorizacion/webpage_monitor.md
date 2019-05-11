@@ -17,6 +17,10 @@ measures how long until most of what you can see within your browser screen is l
 
 # Webpagetest
 https://www.webpagetest.org
+Nos hace un análisis muy bueno de la web.
+Tiempos, si se usa cdn, nota para distintos aspectos de la carga, screenshot de la web en distintos momentos, que tipos de datos se cargan, etc.
+Tiene una interfaz web donde se pueden ver todos esos datos.
+
 http://shop.oreilly.com/product/0636920033592.do
 Nos permite usar una API para testear la respuesta de nuestra web
   https://sites.google.com/a/webpagetest.org/docs/advanced-features
@@ -36,9 +40,13 @@ Lib para usar con python: https://github.com/xslates/speedforce
 ## Docker
 Server, interfaz web donde haremos las peticiones para lanzar tests:
 docker run --rm -it -p 8080:80 webpagetest/server
+  tendremos que configurar /var/www/html/settings/locations.ini para usar el container agent
+  los location no externos solo aparecen si se conecta algún agente.
+  Podemos usar la web /install para ver el estado de cada location
+
 
 Agente
-docker run --rm -it --link zealous_heyrovsky:wptserver -e SERVER_URL="http://wptserver/work/" -e "LOCATION=docker" --init webpagetest/agent
+docker run --rm -it --link zealous_heyrovsky:wptserver -e SERVER_URL="http://wptserver/work/" -e "LOCATION=docker" --init --cap-add=NET_ADMIN webpagetest/agent
   importante la barra final del SERVER_URL
 
 El agente lanzará peticiones al server tipo:
