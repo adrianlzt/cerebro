@@ -15,6 +15,7 @@ Speed index
 https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index
 measures how long until most of what you can see within your browser screen is loaded
 
+# Webpagetest
 https://www.webpagetest.org
 http://shop.oreilly.com/product/0636920033592.do
 Nos permite usar una API para testear la respuesta de nuestra web
@@ -32,6 +33,20 @@ Lib para usar con python: https://github.com/xslates/speedforce
   por defecto nos lanza un test y un repeat, asi que gastamos dos de los 200req/dia
 
 
+## Docker
+Server, interfaz web donde haremos las peticiones para lanzar tests:
+docker run --rm -it -p 8080:80 webpagetest/server
+
+Agente
+docker run --rm -it --link zealous_heyrovsky:wptserver -e SERVER_URL="http://wptserver/work/" -e "LOCATION=docker" --init webpagetest/agent
+  importante la barra final del SERVER_URL
+
+El agente lanzará peticiones al server tipo:
+curl "http://wptserver/work/getwork.php?f=json&shards=1&reboot=1&location=docker&pc=ea4de2bd8e3e&version=19.04&screenwidth=1920&screenheight=1200&freedisk=65.340&upminutes=17886"
+
+
+
+# Otros
 https://serps.com/library/how-to-measure-your-website-speed-and-load-times/
 
 https://developers.google.com/speed/pagespeed/insights/
