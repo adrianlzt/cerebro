@@ -3,6 +3,7 @@ https://golang.org/pkg/builtin/#error
 http://blog.golang.org/error-handling-and-go
 https://gobyexample.com/errors
 http://www.golangpatterns.info/error-handling
+https://www.innoq.com/en/blog/golang-errors-monads/
 
 https://godoc.org/github.com/spacemonkeygo/errors
 

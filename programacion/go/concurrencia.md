@@ -7,6 +7,7 @@ http://guzalexander.com/2013/12/06/golang-channels-tutorial.html
 https://www.golang-book.com/books/intro/10
 https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html
 https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads
+https://www.reddit.com/r/golang/comments/b80dlt/go_advanced_concurrency_patterns/
 race_detector.md
 context.md
 

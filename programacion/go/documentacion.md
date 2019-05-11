@@ -16,6 +16,8 @@ http://www.amazon.com/gp/product/0134190440/ref=as_li_tl?ie=UTF8&camp=1789&creat
 
 Videos: https://www.dotconferences.com/conference/dotgo
 
+Common errors: http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
+
 
 LearningGo.pdf
 a2pi1.GoinAction.epub
