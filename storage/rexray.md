@@ -4,20 +4,24 @@ Hace de intermediario entre Docker y sistemas de almacenamiento (CEPH, cabinas, 
 
 
 # Usandolo como plugin de docker
-docker plugin install rexray/rbd RBD_DEFAULTPOOL=docker RBD_CEPHARGS="-n client.docker"
-  previamente hemos instalado ceph client y creado un user "client.docker" y puesto sy keyring en /etc/ceph/ceph.client.docker.keyring
-    no tengo claro que permisos necesito, al final he terminado usando el client.admin y el pool por defecto rbd
-      docker plugin install rexray/rbd
-  mirar como desplegar el agente con la instalación de ansible (usar sección [clients])
-  mirar /home/adrian/adrianRepo/storage/ceph/auth.md
+Mirar ceph/rbd.md para ver como crear el pool para almacenar el rbd y el usuario para acceder
 
-  Tenemos que tener cargado el modulo rdb
-	modprobe rbd
+Instalar ceph client, mirar como desplegar el agente con la instalación de ansible (usar sección [clients])
 
-  Comprobar que podemos administrar rdb:
-  CEPH_ARGS="-n client.docker" rbd ls
+Tenemos que tener cargado el modulo rdb
+  modprobe rbd
+  Para que cargue en el arranque:
+  echo "rbd" > /etc/modules-load.d/ceph-rbd.conf
 
-Crear volumen:
+Comprobar que podemos administrar rdb:
+rbd --user NOMBREUSER --pool NOMBREPOOL ls
+
+
+Instalar el plugin (ejemplo con user dockerswarm y pool dockerswarm):
+docker plugin install rexray/rbd RBD_DEFAULTPOOL=dockerswarm RBD_CEPHARGS="--user dockerswarm"
+  nos pedirá confirmación tras mostrar los permisos que solicita
+
+Crear volumen (visible por todo el docker swarm, si estamos usando swarm):
 docker volume create --driver rexray/rbd prueba
 
 
