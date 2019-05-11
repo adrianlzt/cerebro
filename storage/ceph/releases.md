@@ -10,6 +10,7 @@ Asi que si estamos interesados en una versión estable buscaremos, por ejemplo, 
 
 Cada release tendrá una vida de unos 18 meses
 
-
+15: octopus
+14: nautilus
 13: mimic
 12: luminous

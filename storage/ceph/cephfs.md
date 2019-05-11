@@ -9,7 +9,8 @@ Montando CephFS con el cliente del kernel: https://access.redhat.com/documentati
 
 Montando CephFS con FUSE: https://www.howtoforge.com/tutorial/how-to-mount-cephfs-on-centos-7/
 
-Solo un FS por cluster
+Solo un FS por cluster (más FS es experimental, al menos hasta nautilus)
+http://docs.ceph.com/docs/master/cephfs/experimental-features/#multiple-filesystems-within-a-ceph-cluster
 
 
 # Configuración

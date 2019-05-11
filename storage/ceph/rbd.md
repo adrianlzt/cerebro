@@ -6,6 +6,8 @@ Crear el pool donde se almacenará el rbd (por defecto espera un pool llamado "r
 ceph osd pool create rbd 16
 ceph osd pool application enable rbd rbd
 
+Para ver el número de PGs consultar https://ceph.com/pgcalc/
+
 
 # Crear un rbd
 rbd create NOMBRE --size 500

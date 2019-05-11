@@ -85,8 +85,13 @@ Soporta ceph rbd, virtualbox, cabinas...
 Si tenemos un cluster de Ceph podemos usar cephfs para montar localmente en cada nodo un directorio compartido donde crear los volumenes.
 Si queremos que cada container tenga su propio volumen, podemos, en el arranque del container crear un uuid único y usar ese dir: https://github.com/moby/moby/issues/30008
 
+https://gitlab.com/n0r1sk/docker-volume-cephfs
+
+Por ahora Ceph solo soporta un FS por cluster.
+
 
 ## Infinit
+Web ya no funciona (11/5/2019)
 En alpha (8/4/2017)
 Mirar storage/infinit.md
 
