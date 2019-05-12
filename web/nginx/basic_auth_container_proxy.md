@@ -9,5 +9,11 @@ docker run -d \
            --name auth \
            beevelop/nginx-basic-auth
 
+Si tenemos un POST, este container hará un http redirect sobre http://web
+
+Para que apunte sobre la web que realmente queremos:
+--link web:mi.dominio.com \
+-e FORWARD_HOST=mi.dominio.com
+
 Para crear la pareja user:pass:
 htpasswd -nb usuario contraseña

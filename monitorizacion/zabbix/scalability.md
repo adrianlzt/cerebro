@@ -26,9 +26,16 @@ No usar si tenemos muchos hosts. Es muy pesado.
 
 # Cache
 https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
+Value Cache is used for storing item values for evaluating trigger expressions and calculated items.
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
+ValueCacheSize=8M (default)
+Podemos ver como va de llena en la gráfica: "Zabbix value cache, % used"
+Se verá afectada si tenemos muchos "last(x)" donde X sean muchos valores (horas, días, etc)
+
+
 
 La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
+Shared memory size for storing host, item and trigger data
 
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.

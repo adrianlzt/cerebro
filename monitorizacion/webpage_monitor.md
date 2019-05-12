@@ -39,7 +39,7 @@ Lib para usar con python: https://github.com/xslates/speedforce
 
 ## Docker
 Server, interfaz web donde haremos las peticiones para lanzar tests:
-docker run --rm -it -p 8080:80 webpagetest/server
+docker run --rm -it --name wptserver -v "$PWD/locations.ini:/var/www/html/settings/locations.ini" -p 8080:80 webpagetest/server
   tendremos que configurar /var/www/html/settings/locations.ini para usar el container agent
   los location no externos solo aparecen si se conecta algún agente.
   Ejemplo simple de config para un agente local con Chrome
@@ -59,11 +59,16 @@ docker run --rm -it -p 8080:80 webpagetest/server
 
 
 Agente
-docker run --rm -it --link zealous_heyrovsky:wptserver -e SERVER_URL="http://wptserver/work/" -e "LOCATION=docker" --init --cap-add=NET_ADMIN webpagetest/agent
+docker run --rm -it --link wptserver:wptserver -e SERVER_URL="http://wptserver/work/" -e "LOCATION=docker" --init --cap-add=NET_ADMIN webpagetest/agent
   importante la barra final del SERVER_URL
 
 El agente lanzará peticiones al server tipo:
 curl "http://wptserver/work/getwork.php?f=json&shards=1&reboot=1&location=docker&pc=ea4de2bd8e3e&version=19.04&screenwidth=1920&screenheight=1200&freedisk=65.340&upminutes=17886"
+
+Si da error "Error configuring traffic-shaping" puede ser porque no tenemos cargado el módulo del kernel necesario.
+https://github.com/WPO-Foundation/wptagent/issues/89
+Una opción es desactivar el traffic-shaping:
+-e "SHAPER=none"
 
 
 
