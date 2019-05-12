@@ -1,0 +1,5 @@
+# Poner un robots.txt en la conf de nginx
+location = /robots.txt {
+   add_header Content-Type text/plain;
+   return 200 "User-agent: *\nDisallow: /\n";
+}

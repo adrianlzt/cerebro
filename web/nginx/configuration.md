@@ -2,3 +2,8 @@ https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configu
 
 Check:
 nginx -t
+
+
+https://github.com/h5bp/server-configs-nginx
+Configuraciones típicas usadas en nginx.
+Nos pueden ayudar a mejorar la performance.
