@@ -35,6 +35,8 @@ Tambien podemos bajarnos el software que usa por debajo: https://github.com/WPO-
 Documentacion de como desplegar en Google Cloud o Amazon EC2: https://github.com/WPO-Foundation/webpagetest-docs/blob/master/user/Private%20Instances/README.md
 Lib para usar con python: https://github.com/xslates/speedforce
   por defecto nos lanza un test y un repeat, asi que gastamos dos de los 200req/dia
+Cli para lanzar tests  (javascript) https://github.com/marcelduran/webpagetest-api
+Lanzar los tests con Lighthouse (Chrome) para obtener un reporte interesante de como funciona la web.
 
 
 ## Docker
