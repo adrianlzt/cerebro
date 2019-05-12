@@ -42,6 +42,19 @@ Server, interfaz web donde haremos las peticiones para lanzar tests:
 docker run --rm -it -p 8080:80 webpagetest/server
   tendremos que configurar /var/www/html/settings/locations.ini para usar el container agent
   los location no externos solo aparecen si se conecta algún agente.
+  Ejemplo simple de config para un agente local con Chrome
+    [locations]
+    1=Local
+    default=Local
+
+    [Local]
+    1=docker
+    label=Local
+
+    [docker]
+    browser=Chrome
+    label="Local docker"
+
   Podemos usar la web /install para ver el estado de cada location
 
 
