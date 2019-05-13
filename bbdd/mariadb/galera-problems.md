@@ -42,3 +42,22 @@ bad doc
 wsrep_notify_cmd=/usr/local/bin/wsrep_notify.sh
 
 
+
+
+
+# deadlock
+https://www.percona.com/blog/2012/08/17/percona-xtradb-cluster-multi-node-writing-and-unexpected-deadlocks/
+https://www.percona.com/blog/2012/11/20/understanding-multi-node-writing-conflict-metrics-in-percona-xtradb-cluster-and-galera/
+http://galeracluster.com/documentation-webpages/dealingwithmultimasterconflicts.html
+
+ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
+Esto se produce si dos transacciones intentan modificar el mismo valor.
+Ejemplo:
+nodoA                          nodoB
+begin;                         begin;
+update tabla set a=1;          update tabla set a=2;
+commit;
+                               commit;
+                               ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
+
+Se incrementará el valor de wsrep_local_bf_aborts en 1 (en el nodo donde falló la TX).
