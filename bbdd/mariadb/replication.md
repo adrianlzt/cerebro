@@ -4,6 +4,7 @@ Limitaciones: https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-lim
 
 bbdd/percona tambien usa galera
 
+Podemos montar un nodo con dos mariadb y un arbitrador (http://galeracluster.com/documentation-webpages/arbitrator.html)
 
 # Bootstrap cluster
 
@@ -62,6 +63,34 @@ Si falla el wsrep_sst_rsync, podemos intentar ejecutarlo a mano para ver que dic
 
 Le hará una transferencia de estado (si falla mirar los logs de todos los nodos del cluster)
 Una vez tengamos el nodo corriendo, iremos parando los nodos que ya estaban y modificando su configuración para agregar el nuevo nodo a wsrep_cluster_address
+
+
+
+# Resetting the quorum
+http://galeracluster.com/documentation-webpages/quorumreset.html
+
+En caso de parada del cluster, debemos rearrancar el cluster.
+Primero buscaremos el nodo más avanzado
+SHOW STATUS LIKE 'wsrep_last_committed';
+
+En ese ejecutaremos:
+SET GLOBAL wsrep_provider_options='pc.bootstrap=YES';
+
+
+
+# Quorum / weights
+Podemos hacer que un cluster siga funcionando aunque haya pérdida de quorum si desactivamos la protección de split brain.
+pc.ignore_sb
+
+
+http://galeracluster.com/documentation-webpages/weightedquorum.html
+Podemos jugar con los pesos de cada nodo para evitar una pérdida de quorum
+
+El quorum se pierde si la suma de nodos*su_peso < (nodos_antes*peso - nodos_eliminados_corretamente*peso)/2
+http://galeracluster.com/documentation-webpages/weightedquorum.html#quorum-calculation
+
+Si vamos quitando nodos de forma ordenada (parando mariadb correctamente) no perdemos el quorum, aunque nos quedemos con un único nodo.
+
 
 
 
