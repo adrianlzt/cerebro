@@ -39,7 +39,7 @@ radula make-bucket nombre
 radula keys/ls/list para listar contenido de un bucket
 radula ls bucket
 
-radula info bucket/fichero
+radula info bucket/fichero | jq
   info sobre el fichero
 
 Subir ficheros:
