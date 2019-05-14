@@ -1,3 +1,14 @@
+# Bajar
+go get github.com/...
+
+Bajar sin compilar
+go get -d ...
+
+# Actualizar
+go get -u ...
+
+
+# Borrar
 Borrar un paquete instalado con go get
 go clean -i github.com/nsf/gocode...
 

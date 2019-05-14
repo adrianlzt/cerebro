@@ -4,6 +4,22 @@ http://docs.ceph.com/docs/master/rados/operations/
 Mirar monitorizacion.md
 
 
+# Desactivar un nodo temporalmente
+Si es un nodo master, cuidado de no perder el quorum.
+https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/8/html/director_installation_and_usage/sect-rebooting-ceph
+
+ceph osd set noout
+  desactivar el que se puedan marcar OSDs como fuera del cluster
+ceph osd set norebalance
+  desactivar el rebalanceo
+
+reiniciar máquina
+ceph -s
+  chequear que está de vuelta correctamente. Todos los pgs en estado normal (active+clean)
+
+ceph osd unset noout
+ceph osd unset norebalance
+
 
 
 # Quitar un OSD del cluster
