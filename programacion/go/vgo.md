@@ -85,6 +85,9 @@ La cli "gohack" nos ayuda con esto.
 gohack get github.com/a/b
   se bajará esa lib en $HOME/gohack y nos pondrá un "replace" en go.mod para que usemos ese path en vez de el "bueno".
 
+gohack undo github.com/a/b
+  volver al estado original
+
 
 # Sacar una nueva versión major
 https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher
