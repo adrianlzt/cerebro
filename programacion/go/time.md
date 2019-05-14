@@ -106,3 +106,24 @@ t0.Add(20*time.Minute).Before(time.Now())
 https://github.com/olebedev/when
 https://github.com/bcampbell/fuzzytime
 https://github.com/araddon/dateparse
+
+
+
+# Ticker
+  ticker := time.NewTicker(time.Second)
+  defer ticker.Stop()
+  done := make(chan bool)
+  go func() {
+    time.Sleep(10 * time.Second)
+    done <- true
+  }()
+  for {
+    select {
+    case <-done:
+      fmt.Println("Done!")
+      return
+    case t := <-ticker.C:
+      fmt.Println("Current time: ", t)
+    }
+  }
+}
