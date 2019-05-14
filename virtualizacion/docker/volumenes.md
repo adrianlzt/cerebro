@@ -31,6 +31,7 @@ docker volume create --driver=rexray --name=pepe --opt=size=1
 docker run -d --volume-driver=rexray -v pepe:/data redis
 
 No podemos montar el mismo volumen en dos nodos distintos de un swarm. No se si esto es limitacion de rexray o docker.
+Ni si quiera como read only
 
 Openshift tiene una tabla de compatibilidades: https://docs.openshift.com/dedicated/architecture/additional_concepts/storage.html#pv-access-modes
 Los únicos que permiten RW de varios containers sobre un mismo volumen son NFS y GlusterFS, los que nativamente lo soportan.
