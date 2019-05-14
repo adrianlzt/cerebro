@@ -32,6 +32,10 @@ nmap 192.168.55.*
 
 # Escaneo de puertos
 
+Todos los puertos
+nmap -p- 1.2.3.4
+
+
 ## TCP
 nmap 127.0.0.1 -p 80
 

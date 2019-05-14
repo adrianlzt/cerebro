@@ -13,6 +13,8 @@ ceph osd set noout
 ceph osd set norebalance
   desactivar el rebalanceo
 
+Al activar alguna de estas flags el health pasará a WARN
+
 reiniciar máquina
 ceph -s
   chequear que está de vuelta correctamente. Todos los pgs en estado normal (active+clean)
