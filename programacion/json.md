@@ -74,3 +74,15 @@ Desencriptar, comprobando con la key que los datos son legitimos:
 jwt --key="this_is_my_secret_long_enough_to_be_valid" eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImRlbW8xMCJ9.eyJzdWIiOiIxMjM0In0.-4hQDsVN5XQY5LTmbx5atWCZMnSFKpaNSwG12jK0qHI
 
 
+
+
+# JSON path
+Sintaxis para seleccionar datos de un JSON
+https://goessner.net/articles/JsonPath/index.html#e2
+
+Online evaluator:
+https://jsonpath.com/
+
+Filtrar por una cadena de texto:
+.events[0].attributes[?(@.name=='screen_name')].value
+

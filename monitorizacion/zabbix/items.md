@@ -25,10 +25,30 @@ Al recibir un valor en un item podemos pasarle un procesador para decidir que qu
 Por ejemplo, podemos recibir un json pero solo almacenar un valor de ese json
 
 Uso típico, enviar un json a un trapper y luego crear items "dependent" donde usaremos el json path para extraer valores.
+JSONPath esta soportado a medias. Petición para soporte completo: https://support.zabbix.com/browse/ZBXNEXT-4502
 
 https://www.zabbix.com/documentation/3.4/manual/config/items/item
 $.document.item.value will extract 10 from {"document":{"item":{"value": 10}}}
 $.document.items[1].value will extract 20 from {"document":{"items":[{"value": 10}, {"value": 20}]}}
+
+## Javascript (version >= 4.2)
+https://www.zabbix.com/documentation/4.2/manual/appendix/items/preprocessing_javascript
+Tambien podemos pasar un script en javascript.
+Se nos pasa como parámetro "value", formato string.
+Ejemplo parseando una string como json y buscando con un loop:
+
+var data = JSON.parse(value);
+var count;
+
+data.aggregations.tasks.buckets.forEach(function(b,i) {
+  if (b.key === "nombre") {
+    count = b.count.value;
+  }
+
+})
+
+return count;
+
 
 
 # Intervals
