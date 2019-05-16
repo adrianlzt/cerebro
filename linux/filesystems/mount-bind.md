@@ -7,7 +7,7 @@ El /dir/destino debe existir
 
 Tambien se puede hacer con ficheros.
 
-Es como hacer enlaces duros pero entre distintos filesystems
+Es como hacer enlaces duros pero entre distintos filesystems y/o directorios.
 
 
 Si queremos acceder a dos sets de ficheros desde un único punto mirar unionfs o aufs
