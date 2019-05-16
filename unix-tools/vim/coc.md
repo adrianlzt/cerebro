@@ -44,3 +44,11 @@ export CGO_CFLAGS_ALLOW=".*"
 
 # Debug
 Cuando falla un LS puedo usar sysdig para ver que se le está enviando y que está contestando.
+
+El proceso node tambien genera logs en:
+/tmp/node-client.log
+/tmp/coc-nvim.log
+
+Podemos activar las trazas para ver los mensajes con el LPS con:
+:CocCommand workspace.showOutput
+
