@@ -21,7 +21,7 @@ Ejecutar comandos desde la línea de comandos:
 $ psql -c "drop database prueba;"
 
 Sacar solo los valores, sin alinear, sin cabeceras ni footers:
-psql -XAt -c "select ...;"
+psql -P pager=off -XAt -c "select ...;"
 
 Para devolver los resultados separados por un caracter (, por ejemplo) en vez de new line:
 -R ,
