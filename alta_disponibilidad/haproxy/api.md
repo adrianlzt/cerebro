@@ -16,6 +16,9 @@ global
   stats socket /var/tmp/tmp.gF4lH1KHvX/ha.sock mode 666 level admin
   stats socket 127.0.0.1:9999 mode 666 level admin
 
+O como parámetro:
+-x ha.sock
+
 
 # Comandos
 help
