@@ -9,6 +9,8 @@ haproxy -c -f config
 Se puede usar un directorio con las configuraciones repartidas en distintos ficheros.
 Una recomendación es poner un "defaults" con los tcp servers debajo y otro "defaults" para los http, así evitamos mezclar opciones tcp<->http
 
+A los backends se les suele llamar "be_XXX" y a los frontend "fe_XXX".
+
 Bloques que forman el fichero de config:
 ```
 global
@@ -125,7 +127,7 @@ Por defecto 2000
 ### bind
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#bind
 Podemos dejar bind sin IP, para que escuche en todas.
-También podemos pasar los puertos como un rango (80-90) o una lista (80,81,82)
+También podemos pasar los puertos como un rango (80-90) o una lista (80,81,82). CUIDADO no usar rangos con multiprocess: https://cbonte.github.io/haproxy-dconv/2.0/management.html#11
 Si ponemos "ssl" será para que haproxy haga el offloading.
 
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.1-crt
@@ -216,6 +218,8 @@ https://www.haproxy.com/blog/truly-seamless-reloads-with-haproxy-no-more-hacks/
 
 # Configuración dinámica
 No parece que esta función sea un "first-class citizen" de HAproxy.
+Para añadir frontend/backends tendremos que modificar la config y hacer reload (reload no tiene impacto, ni se cierra las conex activas)
+
 
 ## server-template
 Para modificar los backends.
@@ -271,3 +275,19 @@ global
 Config para número de procesos:
 global
   nbproc N
+
+CUIDADO! no usar con port ranges: https://cbonte.github.io/haproxy-dconv/2.0/management.html#11
+
+Si estamos modificando maps via la API, tendremos que hacerlo en cada socket de cada proceso (no necesario con multithreading).
+
+
+
+# Variables de entorno
+Podemos usar variables de entorno en la configuración. Las pondremo como "${NOMBRE}" (comillas incluídas):
+
+  global
+      log "${LOGGER}:514" local0
+  frontend public
+      bind "${LISTEN}:80"
+
+También podemos usarlas para poner las passwords.

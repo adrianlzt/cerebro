@@ -1,4 +1,6 @@
 https://www.haproxy.com/blog/dynamic-configuration-haproxy-runtime-api/
+https://cbonte.github.io/haproxy-dconv/2.0/management.html#9.3
+  comandos disponibles
 
 # Conectar
 $ socat readline /var/run/hapee-lb.sock
@@ -11,8 +13,11 @@ $ echo "help" | socat stdio tcp4-connect:127.0.0.1:9999
 # Comandos
 help
 
-## Stats
+## Info / Stats
 show stat
+show pools
+  uso de la memoria
+show info
 
 
 ## Parar servers
@@ -65,6 +70,9 @@ show table ft_web data.gpt0 gt 0
 
 
 ## ACL
+CUIDADO! esto no modifica el fichero de donde las podemos estar cargando.
+Si recargamos config se perderán.
+
 show acl
 
 We are interested in the 5th ACL (ID #4)
@@ -93,3 +101,15 @@ show sess
 
 Cerrar sesión
 shutdown session ID
+
+
+## MAPS
+CUIDADO ninguno de estos comando modifica el fichero, solo modifica lo que está cargado en memoria.
+
+show map /dir/file.map
+get map /dir/file.map key
+set map /dir/file.map key value
+add map /dir/file.map key value
+del map /dir/file.map key
+clear map /dir/file.map
+  borrar todas las entradas de la memoria
