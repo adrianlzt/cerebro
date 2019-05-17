@@ -62,6 +62,11 @@ docker swarm init
   ha creado la red overlay (podemos verla con: docker network ls, se llamara "ingress". Routing mesh)
   y un storage distribuido (como funciona?)
 
+docker swarm init --default-addr-pool 10.20.0.0/16
+  por si queremos que el pool de redes coja otra subred que no sea 10.0.0.0/8
+
+Si tenemos varias interfaces tendremos que decir cual usar: --advertise-addr 10.0.1.187
+
 Mirar los logs de docker por si ha dado algún fallo (tambien al unir los workers y managers):
 journalctl -n 100 -u docker
 

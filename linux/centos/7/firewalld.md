@@ -2,9 +2,8 @@ http://www.certdepot.net/rhel7-get-started-firewalld/
 https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
 
-Abrir todos los puertos:
-firewall-cmd --zone=public --permanent --add-port=1-65535/tcp
-firewall-cmd --zone=public --permanent --add-port=1-65535/tcp
+Abrir el firewall sin restricción:
+firewall-cmd --set-default-zone=trusted
 
 
 firewalld.noarch : A firewall daemon with D-BUS interface providing a dynamic firewall
@@ -69,7 +68,7 @@ Al añadir cambios, si queremos que sean permanentes meteremos:
 firewall-cmd --list-all
   muestra zonas activas y que tienen configuradas.
 
-## Zonas  
+## Zonas
 Por defecto todas las interfaces están unidas a la default zone
 firewall-cmd --get-default-zone
 
