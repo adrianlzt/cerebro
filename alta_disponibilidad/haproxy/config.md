@@ -72,6 +72,64 @@ Valores por defecto que queremos usar.
 Podemos definir varias secciones "defaults", que aplicarán a lo que siga en la configuración.
 Al encontrarnos otra sección "defaults", se reestableceran los valores a los de por defecto.
 
+Algunos valores interesantes
+
+### timeout connect / timeout client / timeout server
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#timeout%20connect
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#4-timeout%20client
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#timeout%20server
+
+timeout connect 10s  # tiempo que esperamos para conectar con un backend
+timeout client 30s   # tiempo que puede pasar mientras el cliente nos enviá datos
+timeout server 30s   # tiempo que puede pasar mientras un backend nos enviá datos
+
+
+### log
+Configuramos los frontend que sigan para que usen el logger definido en "global"
+log global
+
+
+### mode
+Si queremos un proxy nivel TCP o HTTP (inspecciona el http, pero será más lento)
+mode tcp
+mode http
+
+### maxconn
+Podemos definir aquí de nuevo maxconn (<= que el global) para los frontends que sigan en la config.
+
+### option httplog
+Aumentamos el logging de los frontend incluyendo más información útil. Recomendable activarlo.
+Si se encuentra un frontend tcp, se cambiará automáticamente a "option tcplog".
+
+
+## Frontend
+Definimos las ips:puertos donde vamos a escuhar a los clientes.
+Crearemos tantos frontends como sea necesario.
+
+Ejemplo:
+frontend www.mysite.com
+    bind 10.0.0.3:80
+    bind 10.0.0.3:443 ssl crt /etc/ssl/certs/mysite.pem
+    http-request redirect scheme https unless { ssl_fc }
+    use_backend api_servers if { path_beg /api/ }
+    default_backend web_servers
+
+### bind
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#bind
+Podemos dejar bind sin IP, para que escuche en todas.
+También podemos pasar los puertos como un rango (80-90) o una lista (80,81,82)
+Si ponemos "ssl" será para que haproxy haga el offloading.
+
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.1-crt
+El .pem puede ser un concat de certificado, cas y key. También se puede poner el .dh (Diffie-Hellman)
+Si ponemos un directorio, se leeran los ficheros en orden alfabético (excepto '.issuer', '.ocsp' or '.sctl')
+O podemos poner varios crt: crt certificado crt clave
+
+### http-request redirect
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#http-request%20(Alphabetically%20sorted%20keywords%20reference)
+Hacer un http redirect
+http-request redirect scheme https unless { ssl_fc }<Paste>
+  redirect de http a https
 
 
 # Reload
