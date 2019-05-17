@@ -6,6 +6,18 @@ yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum install -y docker-ce
 
+Limitar tamaño máximo del log para json-file?
+/etc/docker/daemon.json
+{
+  "log-driver": "json-file",
+    "log-opts": {
+      "max-size": "10m",
+    "max-file": "1"
+  }
+}
+
+A partir de kernel 4.0 o centos/rhel 3.10.0-514, debemos usar overlay2, que es el que se instala por defecto, por lo que no será necesario configurar lvm.
+
 Mirar lvm.md si queremos usar el drive lvm-direct
 systemctl start docker && systemctl enable docker
 docker run hello-world
