@@ -1,6 +1,21 @@
+https://www.haproxy.com/blog/introduction-to-haproxy-maps/
 https://cbonte.github.io/haproxy-dconv/1.6/configuration.html#7.3.1-map
 mirar ejemplo_completo_con_mapeos_y_tls.config
 
+map es un almacena de clave-valor (dict en python, map en go).
+Se suelen usar para mantener de forma dinámica el mapeo frontend->backend.
+Los ficheros de mapas se pueden modificar sin tener que hacer reload a haproxy.
+
+
+# Estructura
+clave valor
+
+Comentarios en su propia línea empezando por "#".
+Estos ficheros pueden ser muy grandes (millones de entradas) sin impacto de performance.
+
+
+# Map converters
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#7.3.1-map
 map(<map_file>[,<default_value>])
 map_<match_type>(<map_file>[,<default_value>])
 map_<match_type>_<output_type>(<map_file>[,<default_value>])

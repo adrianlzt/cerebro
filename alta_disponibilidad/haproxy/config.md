@@ -6,6 +6,9 @@ haproxy -c -f config
 
 
 # Esquema
+Se puede usar un directorio con las configuraciones repartidas en distintos ficheros.
+Una recomendación es poner un "defaults" con los tcp servers debajo y otro "defaults" para los http, así evitamos mezclar opciones tcp<->http
+
 Bloques que forman el fichero de config:
 ```
 global
@@ -31,7 +34,7 @@ Identamos para hacer más legible.
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#maxconn%20(Performance%20tuning)
 
 Algunos estimadores para calcular este valor:
-20000 concurrent saturated connections per GB of RAM
+20000 concurrent saturated connections per GB of RAM (33kB/conex con el default tune.bufsize, mirar caching.md)
 8000 concurrent TLS connections (client-side only) per GB of RAM
 5000 concurrent end-to-end TLS connections (both sides) per GB of RAM
 
@@ -96,6 +99,7 @@ mode http
 
 ### maxconn
 Podemos definir aquí de nuevo maxconn (<= que el global) para los frontends que sigan en la config.
+Por defecto 2000
 
 ### option httplog
 Aumentamos el logging de los frontend incluyendo más información útil. Recomendable activarlo.
@@ -114,6 +118,10 @@ frontend www.mysite.com
     use_backend api_servers if { path_beg /api/ }
     default_backend web_servers
 
+### maxconn
+Podemos definir aquí de nuevo maxconn (<= que el global) para los frontends que sigan en la config.
+Por defecto 2000
+
 ### bind
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#bind
 Podemos dejar bind sin IP, para que escuche en todas.
@@ -128,8 +136,75 @@ O podemos poner varios crt: crt certificado crt clave
 ### http-request redirect
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#http-request%20(Alphabetically%20sorted%20keywords%20reference)
 Hacer un http redirect
-http-request redirect scheme https unless { ssl_fc }<Paste>
+http-request redirect scheme https unless { ssl_fc }
   redirect de http a https
+
+### use_backend / ACL
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#4.2-use_backend
+Que backend usar.
+
+Podemos usar ACLs para definir que usará este backend
+https://www.haproxy.com/blog/introduction-to-haproxy-acls/
+
+default_backend
+sera el fallback si no se hace match en ningún "use_backend"
+
+
+
+## backend
+Grupo de servidores que serviran para un servicio.
+
+Ejemplo:
+backend web_servers
+    balance roundrobin
+    cookie SERVERUSED insert indirect nocache
+    option httpchk HEAD /
+    default-server check maxconn 20
+    server server1 10.0.1.3:80 cookie server1
+    server server2 10.0.1.4:80 cookie server2
+
+### balance
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#balance
+Como seleccionar el server a usar: roundrobin, leastconn, seleccionar por uri, http hedear, etc.
+Si tenemos persistencia, solo se usará para la primera conex.
+
+### cookie
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#cookie%20%28Alphabetically%20sorted%20keywords%20reference%29
+Definir una cookie HTTP (SERVERUSED, definido en la línea) en el cliente para tener persistencia (todas las peticiones que se enruten al mismo server)
+
+El nombre del server que se pondrá en la cookie está en la línea "server" (server ... cookie server 1)
+
+### option httpchk
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#option%20httpchk
+Envia peticiones HTTP a "/" para comprobar si están los servers vivios.
+Por defecto envía HTTP OPTION y espera 2xx o 3xx.
+Customizable con http-check
+Tenemos que poner "check" en el default-server, o en cada server, para que aplique este "health check"
+
+### default-server
+Opciones generales para todos los servers
+Generalmente pondremos "check" para que se chequeen los servers con http.
+También tenemos que poner, obligatoriamente, maxconn (aquí con en cada server). Será el número máximo de conex que se podrá enviar a cada server.
+Empezaremos con algún valor supuesto y luego iremos ajustando. Esto evitará saturar a los servers.
+
+
+### server
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#server
+Los servidores a donde se enviarán las peticiones.
+Si usamos un DNS, se resolverá al inicio, o si añadimos "resolvers", se actualizarán durante la ejecución.
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.2-resolvers
+
+
+## listen
+Es una forma de declarar un frontend+backend en una sola sección.
+Mejor no usar. Puede ser un lío cuando empezemos a meter más opciones.
+Ejemplo:
+listen stats
+    bind *:8404
+    stats enable
+    stats uri /monitor
+    stats refresh 5s
+
 
 
 # Reload
@@ -168,7 +243,11 @@ En general lo dejaremos con 1 proceso 1 thread. Tal vez lo querremos incrementar
 
 Si definimos alguno de estos valores seguramente queramos también tocar el "cpu-map" para pinnear los procesos a determinadas CPUs.
 
-De https://www.haproxy.com/documentation/hapee/1-8r1/onepage/intro/#3.5 podemos sacar un estimador aproximado de que haproxy tenga num_cpus/3 threads o procesos.
+https://www.haproxy.com/documentation/hapee/1-8r1/onepage/intro/#3.5
+Podemos sacar un estimador aproximado de que haproxy tenga num_cpus/3 threads o procesos.
+
+Según comentario en https://www.haproxy.com/blog/the-four-essential-sections-of-an-haproxy-configuration/
+Los procesos son más eficientes que los threads y deberán usarse siempre que no tengamos algúna de las limitaciones que imponen. En ese caso usaremos threads.
 
 ## Multithreading
 Un único proceso con varios threads.
