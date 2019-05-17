@@ -3,11 +3,18 @@ https://cbonte.github.io/haproxy-dconv/2.0/management.html#9.3
   comandos disponibles
 
 # Conectar
-$ socat readline /var/run/hapee-lb.sock
-$ socat readline tcp4-connect:127.0.0.1:9999
+socat readline /var/run/hapee-lb.sock
+socat readline tcp4-connect:127.0.0.1:9999
+  parece que me echa siempre después de ejecutar algunos comandos
 
 $ echo "help" | socat stdio /var/run/hapee-lb.sock
 $ echo "help" | socat stdio tcp4-connect:127.0.0.1:9999
+
+Config en el server:
+
+global
+  stats socket /var/tmp/tmp.gF4lH1KHvX/ha.sock mode 666 level admin
+  stats socket 127.0.0.1:9999 mode 666 level admin
 
 
 # Comandos

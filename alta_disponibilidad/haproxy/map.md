@@ -7,6 +7,10 @@ Se suelen usar para mantener de forma dinámica el mapeo frontend->backend.
 Si modificamos el fichero directamente tendremos que hacer reload.
 Pero podemos modificar estos ficheros haciendo uso de la api o con "http-request set-map", mirar abajo. (la versión enterprise tiene un módulo lb-update para actualizar los maps y acls)
 
+Se pueden usar cuando las reglas "log format" aplican.
+Sitios donde sí: use_backend, log-format, add-header, redirect, etc
+Donde do: bind/server
+
 
 # Estructura
 clave valor
@@ -60,3 +64,37 @@ Si cualquiera de esas cosas vienen en la cabecera "Host", se utilizará el backe
 
 # http-request set-map
 Solo modifica el proceso que coja la petición (nbproc).
+
+Ejemplo para usar un HTTP GET para actualizar en memoria un map.
+Solo lo permite si el source ip está en el rango 192.168.122.0/24
+
+frontend fe_main
+    bind :80
+    acl in_network src 192.168.122.0/24
+    acl is_map_add path_beg /map/add
+    http-request set-map(/etc/hapee-1.8/maps/hosts.map) %[url_param(domain)] %[url_param(backend)] if is_map_add in_network
+
+    # Esto devuelve un 200 si es una petición "/map/" (no la envía al backend)
+    http-request deny deny_status 200 if { path_beg /map/ }
+    use_backend %[req.hdr(host),lower,map(/etc/hapee-1.8/maps/hosts.map)]
+
+HTTP GET que añadiría al map la key "example.com" con el value "be_static".
+http://192.168.122.64/map/add?domain=example.com&backend=be_static
+
+
+Para borrar usaríamos:
+acl is_map_del path_beg /map/delete
+http-request del-map(/etc/hapee-1.8/maps/hosts.map) %[url_param(domain)] if is_map_del in_network
+
+
+Otra opción sería chequear el verbo HTTP (POST/PUT, DELETE)
+
+
+
+# Blue-green deployment
+Tendremos un map (/etc/hapee-1.8/maps/bluegreen.map) con:
+active be_blue
+
+Cuando queramos cambiar a green:
+echo "set map /etc/hapee-1.8/maps/bluegreen.map active be_green" | socat stdio /var/run/hapee-1.8/hapee-lb.sock
+

@@ -222,6 +222,7 @@ Para añadir frontend/backends tendremos que modificar la config y hacer reload 
 
 
 ## server-template
+https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#server-template
 Para modificar los backends.
 Con una línea precreamos un montón de "servers" de los cuales luego podremos modificar su ip puerto para añadir las IPs que necesitemos.
 
