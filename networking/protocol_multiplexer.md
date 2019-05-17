@@ -1,6 +1,9 @@
 Con iptables en principio parece que no se puede, porque si queremos usar PREROUTING para decidir donde enviar el tráfico, se tomará la decisión consultando únicamente el primer paquete de la conexión, donde aun no sabemos que tipo de tráfico vamos a usar.
 
 
+HAproxy parece que también puede hacer esto, de su doc:
+  it is possible to handle multiple protocols over a same port (e.g. HTTP, HTTPS, SSH)
+
 # Go
 https://github.com/jamescun/switcher
 Multiplexa protocolos.
