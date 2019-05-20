@@ -28,6 +28,8 @@ inotifywait -r -m /dir
   -r: recursivo
   -m: muestra eventos sin cerrarse (sin está opción, se sale tras el primer evento)
 
+El proceso termina cuando se ha modificado simple.config. Util dentro de un bucle para actuar cuando se modifica el fichero.
+inotifywait -e modify simple.config
 
 -d: debug
 -o <file>: escribe a un fichero en vez de stdout

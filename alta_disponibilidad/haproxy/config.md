@@ -6,7 +6,7 @@ haproxy -c -f config
 
 
 # Esquema
-Se puede usar un directorio con las configuraciones repartidas en distintos ficheros.
+Se puede usar un directorio con las configuraciones repartidas en distintos ficheros: haproxy -f haproxy.cfg -- /etc/haproxy.d/
 Una recomendación es poner un "defaults" con los tcp servers debajo y otro "defaults" para los http, así evitamos mezclar opciones tcp<->http
 
 A los backends se les suele llamar "be_XXX" y a los frontend "fe_XXX".
