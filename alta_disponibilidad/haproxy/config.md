@@ -36,7 +36,7 @@ Identamos para hacer más legible.
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#maxconn%20(Performance%20tuning)
 
 Algunos estimadores para calcular este valor:
-20000 concurrent saturated connections per GB of RAM (33kB/conex con el default tune.bufsize, mirar caching.md)
+20000 concurrent saturated connections per GB of RAM (33kB/conex con el default tune.bufsize, mirar troubleshooting.md)
 8000 concurrent TLS connections (client-side only) per GB of RAM
 5000 concurrent end-to-end TLS connections (both sides) per GB of RAM
 
@@ -168,7 +168,9 @@ backend web_servers
 ### balance
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#balance
 Como seleccionar el server a usar: roundrobin, leastconn, seleccionar por uri, http hedear, etc.
+"leastconn", cuidado con que en algún momento todas las conex puedan apuntar al mismo server.
 Si tenemos persistencia, solo se usará para la primera conex.
+"balance random", respeta pesos, cambios en los pesos dinámicos toman efecto inmediatamente, también agregaciones de nuevos servers. Muy Útil cuando tenemos muchos servers y estos se añaden y elminan con frecuencia.
 
 ### cookie
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#cookie%20%28Alphabetically%20sorted%20keywords%20reference%29
@@ -253,6 +255,7 @@ Podemos sacar un estimador aproximado de que haproxy tenga num_cpus/3 threads o 
 
 Según comentario en https://www.haproxy.com/blog/the-four-essential-sections-of-an-haproxy-configuration/
 Los procesos son más eficientes que los threads y deberán usarse siempre que no tengamos algúna de las limitaciones que imponen. En ese caso usaremos threads.
+En la version 1.9 han mejorado un 60% la performance del modo threading, por lo que esto puede que ya no sea cierto.
 
 ## Multithreading
 Un único proceso con varios threads.

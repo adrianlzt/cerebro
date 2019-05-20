@@ -13,6 +13,7 @@ https://www.youtube.com/watch?v=O64HDqtDrMw
 Enviar a stdout o stderr (menor performance, porque no usan unbuffered logs https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#4.2-log mirar en "A file descriptor..."):
 En este caso deberemos mirar el contador "DroppedLogs" para comprobar que no se estan dropeando mensajes.
 global
-  log stdout daemon
+  log stdout format raw daemon    # para docker
+  log stdout format short daemon  # para systemd
 
 Poner en defaults, "log global" para enviar los logs al logger definido en global.

@@ -28,6 +28,8 @@ show stat
 show pools
   uso de la memoria
 show info
+show activity
+  para ver uso de cpu por thread.
 
 
 ## Parar servers
@@ -123,3 +125,6 @@ add map /dir/file.map key value
 del map /dir/file.map key
 clear map /dir/file.map
   borrar todas las entradas de la memoria
+
+Añadir a un mapa elementos de un fichero:
+echo -e "add map #-1 <<\n$(cat data.map)\n" | socat /var/run/haproxy.sock stdio
