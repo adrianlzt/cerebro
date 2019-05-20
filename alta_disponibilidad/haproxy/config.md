@@ -197,6 +197,7 @@ https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#server
 Los servidores a donde se enviarán las peticiones.
 Si usamos un DNS, se resolverá al inicio, o si añadimos "resolvers", se actualizarán durante la ejecución.
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.2-resolvers
+Mirar server-template para predifinir varios a priori para poder luego activarlos sin tener que hacer reload.
 
 
 ## listen
@@ -228,9 +229,28 @@ https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#server-template
 Para modificar los backends.
 Con una línea precreamos un montón de "servers" de los cuales luego podremos modificar su ip puerto para añadir las IPs que necesitemos.
 
-server-template www 200 10.0.0.1:8080 check
+server-template www 200 10.0.0.1:8080 check disabled
 
 Nos creará servers desde www1 hasta www200, lo que luego podremos modificar con el runtime api.
+echo "show servers state" | nc 127.0.0.1 9999 | tr -d '#' | column -t | head -5
+  srv_op_state 0: disabled
+  srv_op_state 2: enabled and running
+
+set server be_template/websrv1 addr 192.168.122.42 port 8080
+set server be_template/websrv1 state ready
+
+CUIDADO! no persiste.
+
+Se puede sacar la config actual:
+echo "show servers state" | socat stdio /var/run/haproxy.sock > haproxy.state
+
+Y precargarla en el arranque:
+global
+   server-state-file /usr/local/haproxy/haproxy.state
+defaults
+   load-server-state-from-file global
+
+CUIDADO! en la versión 1.9 por ahora no carga los puertos del server-state-file
 
 
 ## dns service discovery

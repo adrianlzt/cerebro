@@ -1,8 +1,25 @@
 https://www.haproxy.com/blog/dynamic-configuration-haproxy-runtime-api/
 https://cbonte.github.io/haproxy-dconv/2.0/management.html#9.3
   comandos disponibles
+https://www.haproxy.com/blog/dynamic-scaling-for-microservices-with-runtime-api/
+  ejemplo de script python para actualizar configs de server
+
+En el modelo master-worker, tendremos que poner el socket al master (opción -S) y para solicitar info de cada worker lo haremos prefijando el relative pid, o pid:
+show proc
+  ver procesos
+@1 show info
+  info del primer hijo
+
+Si tenemos varios procesos (nbproc > 1), cada uno tendrá su endpoint/socket.
+
 
 # Conectar
+Mejor usar el esquema echo X | ...
+Lo otro me desconecta todo el rato
+
+
+nc 127.0.0.1 9999
+echo "command" | nc 127.0.0.1 9999
 socat readline /var/run/hapee-lb.sock
 socat readline tcp4-connect:127.0.0.1:9999
   parece que me echa siempre después de ejecutar algunos comandos
@@ -30,6 +47,19 @@ show pools
 show info
 show activity
   para ver uso de cpu por thread.
+
+
+## Configurar servers
+Típicamente usado con la config "server-template"
+echo "show servers state" | nc 127.0.0.1 9999 | tr -d '#' | column -t | head -5
+  srv_op_state 0: disabled
+  srv_op_state 2: enabled and running
+
+set server be_template/websrv1 addr 192.168.122.42 port 8080
+set server be_template/websrv1 state ready
+
+CUIDADO! no persiste
+Mirar config.md "server-template"
 
 
 ## Parar servers
@@ -126,5 +156,9 @@ del map /dir/file.map key
 clear map /dir/file.map
   borrar todas las entradas de la memoria
 
-Añadir a un mapa elementos de un fichero:
+Añadir a un mapa elementos de un fichero, tenemos que obtener primero el id con "show map":
 echo -e "add map #-1 <<\n$(cat data.map)\n" | socat /var/run/haproxy.sock stdio
+
+
+## TLS
+Version 2.0, se puede actualizar el certificado?

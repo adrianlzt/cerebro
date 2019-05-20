@@ -26,6 +26,13 @@ Si el URL path contiene "/map/", contestamos al usuario con un 200, no enviando 
 http-request deny deny_status 200 if { path_beg /map/ }
 
 
+## early hints (http status 103)
+Permite enviar una lista de objetos a precargar al cliente incluso antes de que el backend comience a responder.
+Explicación: https://www.haproxy.com/blog/haproxy-1-9-has-arrived/
+
+Ejemplo:
+http-request early-hint Link "</script.js>; rel=preload; as=script"
+
 
 # http-response
 Primero se aplican los del backend, luego los del frontend.
