@@ -3,7 +3,7 @@ Cuantos threads arrancar? Uno por cpu?
 
 # Testear
 haproxy -c -f config
-
+  se pueden pasar varias "-f", apuntando a directorios o ficheros
 
 # Esquema
 Se puede usar un directorio con las configuraciones repartidas en distintos ficheros: haproxy -f haproxy.cfg -- /etc/haproxy.d/
