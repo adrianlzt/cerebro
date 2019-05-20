@@ -77,6 +77,34 @@ stopasgroup=true
 
 
 ## Ejemplos ##
+[supervisord]
+nodaemon=true
+user=root
+
+[inet_http_server]
+port = :9111
+
+[program:haproxy_reload]
+command=/usr/local/bin/haproxy_reload
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+
+[program:haproxy]
+command=/usr/local/sbin/haproxy -f /etc/haproxy/ -db -W
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+
+[program:keepalived]
+command=/usr/sbin/keepalived --dont-fork --dump-conf --log-console --log-detail --log-facility 7 --vrrp -f /etc/keepalived/keepalived.conf
+stdout_logfile=/dev/stdout
+stdout_logfile_maxbytes=0
+stderr_logfile=/dev/stderr
+stderr_logfile_maxbytes=0
+
 
 [program:foo]
 command=/bin/cat
