@@ -8,6 +8,10 @@ Esto permitirá a haproxy ponerse a escuchar en la IP de la VIP aunque esta no e
 
 Si usamos kubernetes, usar un pod para mete haproxy y keepalived como caddy (container suplementario en el mismo pod)?
 
+# Docker
+Container con haproxy + keepalived + seamless reload
+adrianlzt/haproxy-keepalived
+
 
 # Peers
 https://cbonte.github.io/haproxy-dconv/2.0/configuration.html#3.5

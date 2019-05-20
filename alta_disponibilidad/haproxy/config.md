@@ -1,12 +1,18 @@
+http://cbonte.github.io/haproxy-dconv/1.9/management.html#3-where
+
 Cuantos threads arrancar? Uno por cpu?
 
 
 # Testear
 haproxy -c -f config
-  se pueden pasar varias "-f", apuntando a directorios o ficheros
 
 # Esquema
 Se puede usar un directorio con las configuraciones repartidas en distintos ficheros: haproxy -f haproxy.cfg -- /etc/haproxy.d/
+  se pueden pasar varias "-f", apuntando a directorios o ficheros. El directorio se ordenará alfabéticamente.
+  si es un dir, solo pillará los .cfg que no sean ocultos (empiecen por '.')
+  cada fichero comenzará con una sección: defaults, global, backend, etc
+  Cuidado con como ordenamos los defaults para ver donde aplican.
+
 Una recomendación es poner un "defaults" con los tcp servers debajo y otro "defaults" para los http, así evitamos mezclar opciones tcp<->http
 
 A los backends se les suele llamar "be_XXX" y a los frontend "fe_XXX".
