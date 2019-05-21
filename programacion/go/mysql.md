@@ -238,3 +238,8 @@ func (cli *db.SQL) FetchQuery(query string) []map[string]interface{} {
   return tableData
 }
 
+
+
+# Errores
+panic: sql: Register called twice for driver XXX
+Si importamos dos veces un driver tendremos este error.
