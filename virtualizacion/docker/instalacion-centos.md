@@ -17,6 +17,7 @@ Limitar tamaño máximo del log para json-file?
 }
 
 A partir de kernel 4.0 o centos/rhel 3.10.0-514, debemos usar overlay2, que es el que se instala por defecto, por lo que no será necesario configurar lvm.
+Mejor tener un punto de montaje dedicado en /var/lib/docker
 
 Mirar lvm.md si queremos usar el drive lvm-direct
 systemctl start docker && systemctl enable docker
