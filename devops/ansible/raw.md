@@ -6,5 +6,11 @@ http://docs.ansible.com/ansible/latest/modules/raw_module.html
 
 
 Copiar ficheros sin python en el remoto:
-- name: local scp — copy key file into authorized_keys 
-  local_action: "command scp ../.ssh/user1_user.pub {{ansible_user}}@{{inventory_hostname}}:../{{user}}/.ssh/authorized_keys"
+- name: local scp — copy key file into authorized_keys
+  local_action: "command scp ../.ssh/user1_user.pub {{ansible_user}}@{{inventory_hostname}}:../{{user}}/.ssh/authorized_keys
+
+
+# Ad-hoc
+ansible -m raw -a "some command" host
+
+Nos permite ejecutar comandos sin tener que subir ningún python

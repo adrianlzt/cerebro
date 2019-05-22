@@ -68,6 +68,19 @@ global_defs {
 }
 
 
+# Notify
+Ejecutar acciones cuando cambia de estado
+https://tobru.ch/keepalived-check-and-notify-scripts/
+
+
+# Monitoring
+https://serverfault.com/questions/560024/view-current-state-of-keepalived
+snmp
+dbus
+notify
+
+
+
 # Auth - NO USAR
 Note: authentication was removed from the VRRPv2 specification by RFC3768 in 2004.
 Use of this option is non-compliant and can cause problems
