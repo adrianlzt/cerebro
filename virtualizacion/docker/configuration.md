@@ -18,7 +18,7 @@ Ejemplo:
 	"exec-root": ""
 }
 
-# Centos
+# Centos VIEJO
 Cambiar el tipo de almacenamiento
 http://www.projectatomic.io/blog/2015/06/notes-on-fedora-centos-and-docker-storage-drivers/
 

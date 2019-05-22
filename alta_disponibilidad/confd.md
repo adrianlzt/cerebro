@@ -12,6 +12,11 @@ reloading applications to pick up new config file changes
 Demonio que mantiene via etcd (cluster que mantiene pares clave-valor) ficheros de configuración. Y si se modifica alguno, chequea la nueva configuración y reinicia el demonio indicado.
 
 
+# Install
+No parece estar en muchos repos (alpine, centos), por lo que solemos bajar el binario directamente (chequear cual es la última versión)
+wget https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64
+
+
 # Ejemplo con variables de entorno
 El directorio por defecto es /etc/confd. Si lo metemos en otro sitio habrá que especificar -confdir
 
