@@ -1,6 +1,10 @@
 https://golang.org/pkg/text/template/
 https://golang.org/pkg/html/template/
 
+http://masterminds.github.io/sprig/
+Para tener más funciones en los templates, por ejemplo, default, upper, etc
+{{ .VRID | default 40 }}
+
 ejemplos:
 http://play.golang.org/p/vVM89Ze40U
 https://jan.newmarch.name/go/template/chapter-template.html

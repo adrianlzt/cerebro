@@ -1,4 +1,5 @@
 http://www.keepalived.org
+https://www.keepalived.org/doc/index.html
 https://www.keepalived.org/manpage.html
 https://github.com/acassen/keepalived
 http://www.cyberciti.biz/faq/rhel-centos-fedora-keepalived-lvs-cluster-configuration/
@@ -29,7 +30,7 @@ vrrp_script chk_haproxy {
     fall 2
 }
 
-vrrp_instance VI_1 {
+vrrp_instance nombre {
     state MASTER
     interface enp2s0
     virtual_router_id 40
@@ -45,3 +46,28 @@ vrrp_instance VI_1 {
     }
     nopreempt
 }
+
+
+Si configuramos uno como MASTER y otro como BACKUP, la priority del MASTER deberá ser mayor.
+
+
+# Configuraciones segun id/hostname
+Podemos poner en la config secciones que solo serán interpretadas si el id (puesto con la opción "-i", o por defecto el hostname) matchea el "@xxx":
+@main   router_id main_router
+@backup router_id backup_router
+
+
+# Notificacion por email de cambios
+global_defs {
+   notification_email {
+     root@mydomain.com
+   }
+   notification_email_from svr2@mydomain.com
+   smtp_server localhost
+   smtp_connect_timeout 30
+}
+
+
+# Auth - NO USAR
+Note: authentication was removed from the VRRPv2 specification by RFC3768 in 2004.
+Use of this option is non-compliant and can cause problems
