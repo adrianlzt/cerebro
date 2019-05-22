@@ -23,3 +23,10 @@ git merge feature/rama
 
 Por último subimos los cambios al server:
 git push origin develop
+
+
+# Squash
+git merge --squash rama
+  nos trae todos los cambios de la rama y se pausa antes de mergear
+  en el commit log tenenmos puestos todos los mensajes de commit de la rama
+  lo que conseguimos es hacer un merge con un solo commit
