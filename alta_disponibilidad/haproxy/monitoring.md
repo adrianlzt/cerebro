@@ -21,8 +21,8 @@ Estas requests no se logean (evitando llenar los logs con estos checks de estado
 frontend fe_health
   bind *:9990
   monitor-uri /haproxy_test
-  #monitor-net 192.168.0.252/31  # Limitar desde que subredes se podrá preguntar por esta url
-  #errorfile 200 /etc/hostname   # Cambios la respuesta por el contenido del fichero
+  #monitor-net 192.168.0.252/31         # Limitar desde que subredes se podrá preguntar por esta url
+  #errorfile 200 /var/lib/haproxy.http  # Cambios la respuesta por el contenido del fichero. Mirar como generar el fichero en errorfile.md
 
 Devuelve HTTP 200 y body:
 <html><body><h1>200 OK</h1>
