@@ -11,11 +11,21 @@ Mirar estadisticas.md para habilitar el puerto de estadísticas que necesita el 
 Si reiniciamos haproxy perdemos las métricas anteriores.
 
 
-# Endpoint 200 OK
-Podemos poner una config tipo:
+# monitor-uri
+http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#monitor-uri
+
+Definir una URL especial que devolverá el estado de haproxy.
+Lo podemos configurar en cualquier frontend.
+Estas requests no se logean (evitando llenar los logs con estos checks de estado de haproxy)
+
 frontend fe_health
   bind *:9990
-  http-request deny deny_status 200
+  monitor-uri /haproxy_test
+  #monitor-net 192.168.0.252/31  # Limitar desde que subredes se podrá preguntar por esta url
+  #errorfile 200 /etc/hostname   # Cambios la respuesta por el contenido del fichero
 
+Devuelve HTTP 200 y body:
+<html><body><h1>200 OK</h1>
+Service ready.
+</body></html>
 
-Para poder hacer un chequeo básico para mirar si haproxy está funcionando:
