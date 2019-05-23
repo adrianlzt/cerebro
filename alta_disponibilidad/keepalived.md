@@ -35,6 +35,8 @@ vrrp_instance nombre {
     interface enp2s0
     virtual_router_id 40
     priority 110
+
+    # No hace falta ponerla si es la misma definida arriba
     track_interface {
         enp2s0
     }
