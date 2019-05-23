@@ -14,3 +14,10 @@ acl in_network src 192.168.122.0/24
 
 URL matchea un valor:
 acl is_map_add path_beg /map/add
+
+
+https://cbonte.github.io/haproxy-dconv/1.8/configuration.html#7.3.6-base
+Matchear contra la "base" (host+path) con una regexp:
+acl NOMBRE base,map_reg(/etc/haproxy/haproxy.d/route_http_redirect.map) -m found
+
+ejemplo de base: "www.example.com/some/path"

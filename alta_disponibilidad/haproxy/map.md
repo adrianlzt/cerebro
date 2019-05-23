@@ -45,7 +45,7 @@ Search the input value from <map_file> using the <match_type> matching method, a
 
 
 Usamos ficheros externos para mapear cosas.
-Por ejemplo, usamos el dominio (cabecera Host) para decidir a que backend de la configuración balancear:
+Por ejemplo, usamos "base" (dominio+path, sin la parte de "?...", www.example.com/path) para decidir a que backend de la configuración balancear:
 use_backend be_http_%[base,map_reg(/var/lib/haproxy/conf/os_http_be.map)]
 
 /var/lib/haproxy/conf/os_http_be.map:

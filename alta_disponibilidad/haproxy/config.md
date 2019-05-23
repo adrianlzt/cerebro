@@ -157,7 +157,13 @@ https://www.haproxy.com/blog/introduction-to-haproxy-acls/
 default_backend
 sera el fallback si no se hace match en ningún "use_backend"
 
-
+Podemos poner un backend default sin servers, contestará un 503. Y podemos customizar ese error (opciones necesarias? sacadas de openshift):
+backend default
+  mode http
+  option forwardfor
+  #option http-keep-alive
+  option http-pretend-keepalive
+  errorfile 503 /var/lib/haproxy/conf/error-page-503.http
 
 ## backend
 Grupo de servidores que serviran para un servicio.
