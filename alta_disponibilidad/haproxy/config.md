@@ -137,7 +137,7 @@ También podemos pasar los puertos como un rango (80-90) o una lista (80,81,82).
 Si ponemos "ssl" será para que haproxy haga el offloading.
 
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.1-crt
-El .pem puede ser un concat de certificado, cas y key. También se puede poner el .dh (Diffie-Hellman)
+El .pem DEBE ser un concat de certificado, cas y key. También se puede poner el .dh (Diffie-Hellman)
 Si ponemos un directorio, se leeran los ficheros en orden alfabético (excepto '.issuer', '.ocsp' or '.sctl')
 O podemos poner varios crt: crt certificado crt clave
 
