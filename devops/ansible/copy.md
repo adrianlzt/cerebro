@@ -35,3 +35,5 @@ copia recursiva:
 - name: set configuration basic files
   copy: src=icinga/conf.d/ dest=/etc/icinga/conf.d
         owner=icinga group=icinga mode=0644 directory_mode=0755
+
+En caso de que los ficheros sean iguales, su fecha de modificación y cambio no se verán alteradas.
