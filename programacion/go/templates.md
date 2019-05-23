@@ -5,6 +5,11 @@ http://masterminds.github.io/sprig/
 Para tener más funciones en los templates, por ejemplo, default, upper, etc
 {{ .VRID | default 40 }}
 
+https://github.com/subfuzion/envtpl
+cli para renderizar templates usando variables de entorno
+mirar virtualizacion/docker/config.md
+
+
 ejemplos:
 http://play.golang.org/p/vVM89Ze40U
 https://jan.newmarch.name/go/template/chapter-template.html

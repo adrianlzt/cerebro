@@ -18,6 +18,11 @@ Usamos templates de go y variables de entorno para generar un fichero de configu
 Ejemplo:
 IFACE=eno1 VIP=1.1.1.1 envtpl -m error keepalived.conf
 
+Es seguro hacer:
+envtpl -o fileA fileA
+
+Si usamos "-m error" y tenemos una variable con " | default x", seguirá fallando si no la definimos.
+
 
 # Confd
 Podemos usar confd al comienzo del container para generar un fichero de config a partir de variables de entorno
