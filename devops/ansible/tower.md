@@ -7,6 +7,7 @@ https://news.ycombinator.com/item?id=15450594
 # Ejecutar en docker
 git clone https://github.com/ansible/awx.git
 cd awx
+ansible-playbook -i installer/inventory installer/install.yml
 ansible-playbook installer/install.yml
 Levanta:
   postgres
