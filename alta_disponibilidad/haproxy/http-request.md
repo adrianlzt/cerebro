@@ -20,7 +20,19 @@ http-request allow/deny/reject
 Para la ejecución en ese punto, no se analizan más reglas.
 
 
-Ejemplos:
+
+# header
+http-request set-header X-Forwarded-Proto https if { ssl_fc }
+
+## forwarded
+http-request set-header X-Forwarded-Host %[req.hdr(host)]
+http-request set-header X-Forwarded-Port %[dst_port]
+http-request set-header X-Forwarded-Proto http if !{ ssl_fc }
+http-request set-header X-Forwarded-Proto https if { ssl_fc }
+http-request set-header Forwarded for=%[src];host=%[req.hdr(host)];proto=%[req.hdr(X-Forwarded-Proto)]
+
+
+# Ejemplos
 
 Si el URL path contiene "/map/", contestamos al usuario con un 200, no enviando la petición al backend.
 http-request deny deny_status 200 if { path_beg /map/ }
