@@ -1,6 +1,6 @@
 http://docs.ansible.com/copy_module.html
 
-# Mirar tambien synchronize (por ejemplo para copia manteniendo permisos y usuarios)
+# Mirar tambien synchronize (por ejemplo para copia manteniendo permisos y usuarios; para borrar ficheros en destino cuando no existan en origen)
 
 Copia ficheros entre la máquina local donde se ejecuta ansible y la máquina remota.
 
