@@ -35,3 +35,9 @@ frontend wss_prueba
   #use_backend be_tcp_%[req.ssl_sni,map_reg(/etc/haproxy/haproxy.d/tcp_be.map)] if sni sni_passthrough
 
   default_backend default
+
+
+# HTTP2
+Simplemente añadir al bind "alpn h2,http/1.1". Ejemplo:
+
+bind  *:443  ssl crt <certificate> alpn h2,http/1.1
