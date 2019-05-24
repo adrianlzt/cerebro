@@ -1,3 +1,6 @@
+https://mozilla.github.io/server-side-tls/ssl-config-generator/
+Generador de configuración segura para haproxy
+
 Parece que en 2.0 se podrá actualizar un certificado TLS con la API.
 
 https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.1-crt
@@ -41,3 +44,12 @@ frontend wss_prueba
 Simplemente añadir al bind "alpn h2,http/1.1". Ejemplo:
 
 bind  *:443  ssl crt <certificate> alpn h2,http/1.1
+
+
+# HSTS
+Forzar al cliente a que solo conecte por https
+
+16000000 seconds: a bit more than 6 months
+
+http-response set-header Strict-Transport-Security "max-age=16000000; includeSubDomains; preload;"
+
