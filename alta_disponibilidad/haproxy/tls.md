@@ -15,3 +15,23 @@ frontend fe_sni
   # terminate ssl on edge
   bind 127.0.0.1:10444 ssl no-sslv3 crt /etc/pki/tls/private/tls.crt crt-list /var/lib/haproxy/conf/cert_config.map accept-proxy
 
+
+# SNI
+Montar un frontend que escucha en tcp.
+Si encontramos que es SSL miramos si tiene la extensión SNI (saber si nos está "leakeando" el host al que quiere conectar).
+Según ese host decidimos si hacemos un "pasar tal cual" a un backend tcp.
+
+frontend wss_prueba
+  bind :8000
+  mode tcp
+  tcp-request  inspect-delay 5s
+  tcp-request content accept if { req_ssl_hello_type 1 }
+
+
+  use_backend be_tcp_wss_prod
+  # if the connection is SNI and the route is a passthrough don't use the termination backend, just use the tcp backend
+  #acl sni req.ssl_sni -m found
+  #acl sni_passthrough req.ssl_sni,map_reg(/etc/haproxy/haproxy.d/sni_passthrough.map) -m found
+  #use_backend be_tcp_%[req.ssl_sni,map_reg(/etc/haproxy/haproxy.d/tcp_be.map)] if sni sni_passthrough
+
+  default_backend default
