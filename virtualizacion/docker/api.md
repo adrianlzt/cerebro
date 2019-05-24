@@ -87,3 +87,4 @@ docker --tls --tlscacert=docker-client-ca.pem --tlscert=docker-client.pem --tlsk
 O con hostname:
 docker --tlsverify --tlscacert=docker-client-ca.pem --tlscert=docker-client.pem --tlskey=docker-client.key -H=NOMBREHOST:2376 version
 
+[Service]\nExecStart=\nExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --containerd=/run/containerd/containerd.sock --tlsverify --tlscacert=/etc/pki/CA/certs/docker-ca.pem --tlscert=/etc/pki/tls/certs/docker.pem --tlskey=/etc/pki/tls/private/docker.key
