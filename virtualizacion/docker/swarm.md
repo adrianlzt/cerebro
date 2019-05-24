@@ -2,7 +2,7 @@ swarm-mode implementacion de swarmkit.
 
 Doc: https://github.com/jpetazzo/orchestration-workshop
 
-Interfaz web -> portainer.md https://swarmpit.io/
+Interfaz web -> portainer.md https://swarmpit.io/ (mirar más abajo para swarmpit)
 
 # Swarm Mode (v >= 1.12)
 https://docs.docker.com/engine/swarm/swarm-mode/
@@ -395,3 +395,11 @@ No usar localhost porque puede resolver a ipv6 y falla.
 ## API
 https://github.com/docker/swarmkit/issues/491
 PR para tener los eventos del swarm
+
+
+
+# swarmpit
+Install:
+docker run -it --rm --name swarmpit-installer --volume /var/run/docker.sock:/var/run/docker.sock swarmpit/install:edge
+Nos preguntará ciertas cosas (puerto, user, pass)
+Por defecto se configura en el puerto 888

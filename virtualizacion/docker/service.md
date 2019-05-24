@@ -9,7 +9,7 @@ docker service create --name websrv --limit-memory 32MB --publish 8080:80 --mode
   este comando lo podremos lanzar desde cualquier manager (no desde los workers)
 
 Opciones:
---constraint node.labels.tipo==xxx   ejecutar un service en unos nodos concretos filtrando por label. Con inspect veremos esto
+--constraint node.labels.tipo==xxx   ejecutar un service en unos nodos concretos filtrando por label. Con inspect veremos esto (más info abajo)
 --limit-memory 32MB
 --replicas 1 (por defecto 1 replica)
 --mode replicated (este es el por defecto)
@@ -46,3 +46,25 @@ https://docs.docker.com/engine/api/v1.24/#39-services
 
 https://forums.docker.com/t/docker-swarm-scale-service-using-update-api/19589/9
 Ejemplos para hacer un scale de un service con la API
+
+
+
+# Constraints
+https://docs.docker.com/engine/reference/commandline/service_create/#specify-service-constraints---constraint
+
+Fijar en que nodos queremos despelgar.
+Si ponemos varias, se unirán con AND.
+
+Ejemplo constraint con label de nodo:
+node.labels.security==high
+
+Ejemplo con docker compose:
+version: "3.7"
+services:
+  db:
+    image: postgres
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - engine.labels.operatingsystem == ubuntu 14.04

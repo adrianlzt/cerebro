@@ -39,3 +39,12 @@ client = docker.from_env()
 
 Si accedemos a un docker remoto:
 dockercli = docker.DockerClient(base_url="http://127.0.0.1:12376", version="auto")
+
+
+# Activar API via TCP
+systemctl edit docker
+
+Para centos (mirar con "systemctl cat docker" el ExecStart y añadir el -H tcp...):
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd.sock
