@@ -4,6 +4,8 @@ https://kubernetes.io/docs/setup/custom-cloud/kubespray/
 https://github.com/kubernetes-incubator/kubespray
 Grupo de playbooks/roles de ansible para hacer el despliegue de kubernetes
 
+https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/getting-started.md
+
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
 # Despliegue
@@ -13,7 +15,7 @@ pipenv install -r requirements.txt
 pipenv shell
 cp -r inventory/sample inventory/mycluster
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
-CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+CONFIG_FILE=inventory/mycluster/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
   automáticamente asignará nombre "nodeN"
 
 tunear:
@@ -22,12 +24,26 @@ inventory/mycluster/group_vars/all/all.yml
   - como hacer el ha (mirar siguientes líneas)
   - configurar DNS, searchdomains
 inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+  - temas de config de kubernetes
+  - por defecto network calico: https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/calico.md
+  - kube_service_addresses y kube_pods_subnet deben ser subnets que no usemos (por defecto 10.233.x)
+  - dns (mirar más abajo)
 
 HA, usar un LB local a los nodos no master, o un LB externo (haproxy por ejemplo) que configuraremos fuera de kubespray.
 https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/ha-mode.md
 
-Desplegar:
-ansible-playbook -i inventory/mycluster/hosts.ini --become cluster.yml
+DNS: https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/dns-stack.md
+kubernetes desplegara un server dns authoritative para el dominio "dns_domain", que por defecto es el valor de "cluster_name"
+Si ponemos más de un punto en el dns_domain, tendremos que subir el ndots (creo)
+
+Comprobar que llegamos a los hosts. Mirar si queremos cambiar los nombres asignados (nodeX) por nuestros hostnames. Tal vez tocar el ansible_host por el nombre que usemos para acceder por ssh:
+ansible -i inventory/mycluster/hosts.yml all -m ping
+
+CUIDADO! ansible 2.8 no soportado (Mayo'2019): https://github.com/kubernetes-sigs/kubespray/issues/4778
+
+Desplegar (poner "time"? redirigir output a log?):
+ansible-playbook -i inventory/mycluster/hosts.yml --become cluster.yml
+
 
 
 30' en desplegar sobre vagrant (con imágenes base ya bajadas)
@@ -83,7 +99,10 @@ Mirar auth.md
 
 
 Configurar almacenamiento (por defecto no tienen ningún storageclass) -> storage.md
-
+https://github.com/kubernetes-sigs/kubespray/blob/1d5a9464e238ce5988cb902196338e3b5a517363/roles/kubernetes-apps/external_provisioner/local_volume_provisioner/README.md
+notas sobre local volumes
+https://github.com/kubernetes-sigs/kubespray/blob/9ffc65f8f3fad69dc55b7c4408d215f6971b2e73/extra_playbooks/build-cephfs-provisioner.yml
+cephfs para provisionar volumenes?
 
 
 

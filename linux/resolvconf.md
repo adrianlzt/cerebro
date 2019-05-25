@@ -16,3 +16,11 @@ search_domains="casa.lan otro.domain"
 
 tras modificar el resolvconf.conf
 resolvconf -u
+
+
+
+# ndots
+Número de puntos (".") en el nombre para que se pruebe el dominio como absoluto e intentemos conectar.
+Por defecto ndots=1
+
+Con ndots=2, un dominio "pepe.com" no se consideraría absoluto
