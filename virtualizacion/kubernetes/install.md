@@ -11,9 +11,22 @@ git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
 pipenv install -r requirements.txt
 pipenv shell
+cp -r inventory/sample inventory/mycluster
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
 CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
   automáticamente asignará nombre "nodeN"
+
+tunear:
+inventory/mycluster/group_vars/all/all.yml
+  - explicación variables: https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/vars.md
+  - como hacer el ha (mirar siguientes líneas)
+  - configurar DNS, searchdomains
+inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+
+HA, usar un LB local a los nodos no master, o un LB externo (haproxy por ejemplo) que configuraremos fuera de kubespray.
+https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/ha-mode.md
+
+Desplegar:
 ansible-playbook -i inventory/mycluster/hosts.ini --become cluster.yml
 
 
