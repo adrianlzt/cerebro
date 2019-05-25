@@ -23,6 +23,10 @@ curl -d 'variable=valor&otra=123' http://www.web.com
 Fake host:
 curl -H 'Host: be.caja-ingenieros.es' https://localhost/....
 
+Otra forma de hacer un "fake host" con que funciona con TLS SNI:
+curl --resolve adfs.mysite.com:443:192.168.1.100 https://adfs.mysite.com/
+
+
 Hacer un PUT con datos:
 curl -XPUT host:puerto -d '
 datos

@@ -3,6 +3,10 @@ man s_client
 
 openssl s_client -connect example.com:443
 
+Si queremos enviar el "Host" siguiendo el estandar SNI
+openssl s_client -servername chrismeller.com -connect chrismeller.com:443
+
+
 
 
 # HowTo
