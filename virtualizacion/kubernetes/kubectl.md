@@ -88,6 +88,7 @@ kubectl get pod -o wide
 
 Crear
 kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+  comando deprecated?
   crea un deployment, que crea un replication controller que arranca el pod.
   Como hemos puesto "--port" también levanta un Service/ClusterIP apuntando al selector con el que se crean los pods
   en docker esto arranca:

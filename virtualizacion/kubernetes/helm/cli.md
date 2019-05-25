@@ -1,14 +1,16 @@
 helm search foo
   buscar charts en el repo publico
 
-helm fetch xxx
-  bajarnos el .tgz de un chart
+helm pull xxx
+  es "fetch" en v2.x
+  bajarnos el .tgz de un chart, en el current dir que estemos
 
 helm template chart > file.yml
   renderizar como va a quedar un chart
   podemos especificar solo un fichero con "-x fichero.yaml"
 
-helm install somedir
+helm install NOMBRE somedir
+  Para la v2: helm install somedir
   instalar un chart
   --name foo
     darle un nombre, si no, cogerá uno random

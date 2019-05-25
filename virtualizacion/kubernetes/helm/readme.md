@@ -4,6 +4,7 @@ https://github.com/helm/helm/blob/master/docs/related.md
 
 Package manager para Kubernetes.
 
+Version 2.x:
 El cli (helm) habla con un servidor que tenemos que tener desplegado en kubernetes (tiller).
 Tiller habla con las APIs de Kubernetes y almacena información sobre el despliegue en ConfigMaps.
 
@@ -39,7 +40,11 @@ Luego será sencillo upgradearlas o hacerles rollback.
 Helm 3 tendrá un par de cambios bastante grandes:
   - no hará falta la parte servidor (tiller)
     - almacenamiento de info en custom resources
+    - la información de cada release estará en cada namespace (podremos desplegar el mismo helm en dos namespaces de forma completamente independiente)
     - helm (la cli) hablará directamente con las APIs de kubernetes
   - se podrán escribir los charts en LUA
+  - se puede imponer un JSONSchema a los chart values, para asegurarnos que quien lo usa mete valores esperados
+  - las dependencias (antes en el requirements.yaml) ahora se mueven al Chart.yaml (sección "dependencies")
 Estado de la v3: https://github.com/helm/helm/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Av3
 A Oct'2018 aún no se sabe fecha para la primera alpha
+May'2019 primera alpha

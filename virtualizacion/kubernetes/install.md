@@ -75,6 +75,31 @@ Comprobar que la conectividad entre las distintas partes es correcta: https://gi
 Si configuramos una variable, "deploy_netchecker" (por defecto a false), se autodespliega el netchecker de mirantis en nuestro cluster.
 Si no la hemos puesto, podemos desplegarlo despues. Mirar:
 https://github.com/Mirantis/k8s-netchecker-server
+Podemos instalarlo con helm3:
+wget https://github.com/Mirantis/k8s-netchecker-server/archive/master.zip
+unzip master.zip
+cd netche*
+cd helm-chart/netchecker-server
+helm3 install netchecker .
+  seguir las instrucciones para obtener ip:puerto (tal vez tengamos que mirar a mano el service, porque parece que hay algún bug)
+
+
+A mano:
+kc create namespace pruebas
+nkc pruebas
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+  comando deprecated. Como se hace con "create"?
+kc exec -it hello-minikube-597c997dd4-5gqf6 curl ifconfig.co<Plug>CocRefresh
+  comprobamos si salimos desde los pods a internet
+kubectl expose deployment hello-minikube --type=NodePort
+kc get service
+  desde un nodo de k8s hacemos curl a la CLUSTER-IP puerto 8080. Si contesta es que funcionan bien los services
+  desde nuestro PC atacamos a la IP de uno de los nodos de k8s al puerto de PORTS (será 31xxx)
+  Si estamos en el namespace pruebas:
+  curl $(kubectl get nodes --namespace pruebas -o jsonpath="{.items[0].status.addresses[0].address}"):$(kubectl get --namespace pruebas -o jsonpath="{.spec.ports[0].nodePort}" services hello-minikube)
+  Si funciona es que podemos exponer correctamente puertos en los nodos de k8s y el tráfico se enruta hacia el service.
+
+
 
 Desde una de las máquinas donde se ha desplegado el cluster:
 kubectl cluster-info
