@@ -1,5 +1,19 @@
 http://docs.docker.io/en/latest/
 
+Conectar a un host remoto:
+docker -H=tcp://somehost ...
+
+Con TLS:
+docker --tlsverify --tlscacert=xx --tlscert=xx --tlskey=xx -H=somehost:2376 ...
+  si conectamos a una ip cambiar --tlsverify por --tls
+
+Por SSH (docker 18.09):
+docker -H=ssh://host ...
+
+Solo se puede poner una ip/host en el -H: https://github.com/docker/docker-ce/blob/db296304bf08888d009a8e5c3a6589b7a0f9d9f6/components/cli/opts/hosts.go#L65
+Tampoco se pueden poner varios -H
+
+
 ## TOP
 Ver ps de la maquina
 docker top <instance-id>

@@ -46,6 +46,10 @@ vault_password_file = ~/.ansible.vault
 No funciona? https://github.com/ansible/ansible/pull/7649/files
 
 
+El vault password file puede ser un script (marcar como ejecutable).
+Poner el shebang al comienzo.
+
+
 ## Ejemplo de uso con variable ##
 - name: a play that runs entirely on the ansible host
   hosts: 127.0.0.1
