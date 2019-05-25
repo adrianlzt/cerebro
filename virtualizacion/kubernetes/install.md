@@ -31,6 +31,28 @@ inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
 
 HA, usar un LB local a los nodos no master, o un LB externo (haproxy por ejemplo) que configuraremos fuera de kubespray.
 https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/ha-mode.md
+Si usamos un LB externo, deberemos configurarlo antes del deploy. Si no, fallará al intentar arrancar el master, ya que este intentará conectar a la VIP:8383 para acceder a los :6443 de los master.
+Config de ejemplo (la de la doc une todo en un "listen", mala práctica, y no mete checks, provocando que en el arranque se envíe tráfico al nodo aún no arrancado)
+frontend tcp_fe_kubernetes-apiserver-https
+  bind :8383
+  option ssl-hello-chk
+  mode tcp
+  timeout client 3h
+  timeout server 3h
+
+  use_backend be_tcp_kubernetes-apiserver-https
+
+  # ya existe en otra parte de la configuración
+  default_backend default
+
+backend be_tcp_kubernetes-apiserver-https
+  option ssl-hello-chk
+  default-server check
+  server nodemaster 10.0.1.3:6443
+  server nodemaster2 10.0.1.4:6443
+
+
+
 
 DNS: https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/dns-stack.md
 kubernetes desplegara un server dns authoritative para el dominio "dns_domain", que por defecto es el valor de "cluster_name"
@@ -50,11 +72,13 @@ ansible-playbook -i inventory/mycluster/hosts.yml --become cluster.yml
 51' al desplegar sobtre tres VMs en distintos hosts
 
 Comprobar que la conectividad entre las distintas partes es correcta: https://github.com/kubernetes-incubator/kubespray/blob/master/docs/netcheck.md
+Si configuramos una variable, "deploy_netchecker" (por defecto a false), se autodespliega el netchecker de mirantis en nuestro cluster.
+Si no la hemos puesto, podemos desplegarlo despues. Mirar:
 https://github.com/Mirantis/k8s-netchecker-server
-  activar poniendo la variable 'deploy_netchecker' a true
 
 Desde una de las máquinas donde se ha desplegado el cluster:
 kubectl cluster-info
+  obtendremos la url del dashboard (mirar más abajo para ver como acceder)
 
 Para acceder remotamente podemos usar el fichero /root/.kube/config de cualquiera de las maquinas
 
@@ -71,6 +95,8 @@ Para acceder al dashboard crearemos una cuenta y meteremos el token al dashboard
 mirar dashboard.md
 https://github.com/kubernetes/dashboard/wiki/Creating-sample-user
   ejecutar los dos "create" en ficheros distintos
+It is recommended to access dashboard from behind a gateway (like Ingress Controller) that enforces an authentication token. Details and other access options here: https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above
+
 
 
 Testear el cluster con sonobuy:
@@ -78,6 +104,8 @@ Lo más facil es entrar en https://scanner.heptio.com/ y ejecutar el comando que
 En la web deberemos ver un "Your tests are running"
 Logs del container del pod:
 kubectl apply -f https://scanner.heptio.com/cd601f48985c507c5ea6dccd3b9669ff/yaml/
+  crea un namespace "heptio-sonobuoy" donde levanta los pods
+  Parece que el trabajo se hace aqui: kc logs -f sonobuoy-e2e-job-2aa6acd91a024800 e2e
   falla enviando los resultados, parece que es un bug conocido pero no parece que le den solución
 
 O sin usar el endpoint, localmente, bajándonos los resultados.

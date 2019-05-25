@@ -199,7 +199,7 @@ Tenemos que poner "check" en el default-server, o en cada server, para que apliq
 
 ### default-server
 Opciones generales para todos los servers
-Generalmente pondremos "check" para que se chequeen los servers con http.
+Generalmente pondremos check para que se chequeen (si se están estableciento conex tcp). Podemos usar otros checks especificos: httpchk, smtpchk, mysql-check, pgsql-check and ssl-hello-chk
 También tenemos que poner, obligatoriamente, maxconn (aquí con en cada server). Será el número máximo de conex que se podrá enviar a cada server.
 Empezaremos con algún valor supuesto y luego iremos ajustando. Esto evitará saturar a los servers.
 
