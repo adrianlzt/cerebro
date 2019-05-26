@@ -29,6 +29,7 @@ tags: always
 
 tags: never
   nunca se ejecuta
+  podemos jugar a poner never y otras tags, para luego solo ejecutar ciertas tags, pero que por defecto no se ejecuten
 
 --tags tagged/untagged/all
   solo se ejecutan las tareas tagged, sin tags o todo
