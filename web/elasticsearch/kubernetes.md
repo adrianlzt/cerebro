@@ -45,3 +45,12 @@ kubectl get elasticsearch
 Pods asociados:
 kubectl get pods --selector='elasticsearch.k8s.elastic.co/cluster-name=quickstart'
 
+Acceso desde nuestro pc:
+kubectl port-forward service/quickstart-es 9200
+
+Obtener password:
+PASSWORD=$(kubectl get secret quickstart-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode)
+
+curl -u "elastic:$PASSWORD" -k "https://localhost:9200"
+
+
