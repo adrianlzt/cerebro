@@ -2,6 +2,9 @@ http://www.certdepot.net/rhel7-get-started-firewalld/
 https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
 
+Ver que tenemos:
+firewall-cmd --list-all
+
 Abrir el firewall sin restricción:
 firewall-cmd --set-default-zone=trusted
 

@@ -17,8 +17,13 @@ parted -a optimal /dev/sdb mkpart primary ext4 0% 100%
 mkfs.ext4 /dev/sdb1
   si no tenemos ese comando: yum install e2fsprogs
 
+parted -a optimal mkpart primary 0% 600G
+  partición primaria de 600GB sin especificar tipo de FS
+
+
 parted -a minimal /dev/sdb mkpart primary xfs 0% 100%
   crear una partición primaria en sdb tipo xfs que ocupe todo el disco y esté alineada de manera minimal
+
 
 Parece que a parted no podemos decirle que cree una partición en el siguiente espacio libre y siempre tenemos que darle un start y un end.
 Lo más sencillo es hacer un "print free" y empezar donde empieza el hueco libre.

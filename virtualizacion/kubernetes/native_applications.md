@@ -19,6 +19,9 @@ Por ejemplo, elastic tiene el CRD "elasitcsearch cluster"
 Postgres tiene pgcluster, pgbackup, pgupgrade.
 
 
+# Funcionamiento
+Es un pod más, pero subscrito a los cambios de k8s.
+
 
 
 # Operator framework
