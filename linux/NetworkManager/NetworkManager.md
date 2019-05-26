@@ -33,6 +33,9 @@ nmcli -a c up Nombre
 nmcli c delete Nombre
   borrar conex
 
+nmcli con mod enp2s0 connection.autoconnect no
+  desactivar una interfaz del arranque:
+
 
 Servers DNS cogidos por DHCP:
   nmcli dev show | grep DNS

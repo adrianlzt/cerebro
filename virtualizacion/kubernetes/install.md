@@ -199,6 +199,12 @@ Agregarlos al inventario y al grupo que necesitemos.
 ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 
 
+## Quitar un nodo
+Apagarlo y sacarlo de kubernetes
+kubectl delete node <ip-of-node>
+
+
+
 
 ## Vagrant
 Tienen un Vagrantfile de ejemplo que desplega 3 nodos usando los roles.
