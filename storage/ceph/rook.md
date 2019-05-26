@@ -20,15 +20,23 @@ env:
 
 # Desplegar
 Se puede usar helm: https://rook.io/docs/rook/v1.0/helm-operator.html
-Aunque no explican como se pueden modificar las venv
+helm3 repo add rook-release https://charts.rook.io/release
+helm3 pull rook-release/rook-ceph
+tar zxvf rook-ceph-v1.0.1.tgz
+cd rook-ceph
+vi values.yaml
+  descomentar agent.flexVolumeDirPath y definirlo con el valor que toque
+  definir algún filtro en "nodeSelector" para desplegar solo ahí rook? Parece que esto solo aplica a donde se despliega el operator
+  enableSelinuxRelabeling a false si no estamos usando selinux
 
-
-kubectl create -f https://raw.githubusercontent.com/rook/rook/release-1.0/cluster/examples/kubernetes/ceph/common.yaml
-  namespace/rook-ceph, CRDs, permisos
-
-wget https://raw.githubusercontent.com/rook/rook/release-1.0/cluster/examples/kubernetes/ceph/operator.yaml
-Modificar el FLEXVOLUME_DIR_PATH
-kubectl create -f operator.yaml
+kc create namespace rook-ceph
+helm3 install rook-ceph .
 
 Esperar a que todos los pods esten running:
 kubectl -n rook-ceph get po
+
+
+## Cluster
+Los discos que añadamos al cluster no pueden tener particiones
+
+Cada cluster debe desplegarse sobre su propio namespace
