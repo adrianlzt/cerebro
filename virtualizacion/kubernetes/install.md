@@ -57,6 +57,14 @@ backend be_tcp_kubernetes-apiserver-https
 DNS: https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/dns-stack.md
 kubernetes desplegara un server dns authoritative para el dominio "dns_domain", que por defecto es el valor de "cluster_name"
 Si ponemos más de un punto en el dns_domain, tendremos que subir el ndots (creo)
+El server de k8s no se configurará en el resolv.conf de los servers. Meterlo?
+El netcheck levanta containers con --net=host que pillan ese resolv.conf e intentan resolver el dominio de un service (sin poder).
+Si tuviesemos esos dns en el host si funcionaría.
+Tambien hace falta agregar al search del resolv.conf, porque el pod solo buscará "nombre-service", los siguientes valores:
+search pruebas.svc.kube.mi.dominio svc.kube.mi.dominio kube.mi.dominio
+Entiendo que netchecker no lo está haciendo correctamente. Pues los hosts no deben tener en el search el dominio de un namespace.
+Según la doc, hace falta levantar netchecker en el "default" namespace
+
 
 Comprobar que llegamos a los hosts. Mirar si queremos cambiar los nombres asignados (nodeX) por nuestros hostnames. Tal vez tocar el ansible_host por el nombre que usemos para acceder por ssh:
 ansible -i inventory/mycluster/hosts.yml all -m ping
@@ -72,6 +80,7 @@ ansible-playbook -i inventory/mycluster/hosts.yml --become cluster.yml
 51' al desplegar sobtre tres VMs en distintos hosts
 
 Comprobar que la conectividad entre las distintas partes es correcta: https://github.com/kubernetes-incubator/kubespray/blob/master/docs/netcheck.md
+Desplegar sobre el namespace "default"
 Si configuramos una variable, "deploy_netchecker" (por defecto a false), se autodespliega el netchecker de mirantis en nuestro cluster.
 Si no la hemos puesto, podemos desplegarlo despues. Mirar:
 https://github.com/Mirantis/k8s-netchecker-server
@@ -83,10 +92,22 @@ cd helm-chart/netchecker-server
 helm3 install netchecker .
   seguir las instrucciones para obtener ip:puerto (tal vez tengamos que mirar a mano el service, porque parece que hay algún bug)
 
+Misma operación para instalar los agentes como un daemonset
+https://github.com/Mirantis/k8s-netchecker-agent/archive/master.zip
+...
+helm3 install netchecker-agent .
+
+Chequear analisis:
+curl http://10.0.2.135:31081/api/v1/connectivity_check | jq
+
+
+
 
 A mano:
 kc create namespace pruebas
 nkc pruebas
+
+Conexión pod->internet. k8sNode->IP Service, exterior->NodePort
 kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
   comando deprecated. Como se hace con "create"?
 kc exec -it hello-minikube-597c997dd4-5gqf6 curl ifconfig.co<Plug>CocRefresh
@@ -98,6 +119,19 @@ kc get service
   Si estamos en el namespace pruebas:
   curl $(kubectl get nodes --namespace pruebas -o jsonpath="{.items[0].status.addresses[0].address}"):$(kubectl get --namespace pruebas -o jsonpath="{.spec.ports[0].nodePort}" services hello-minikube)
   Si funciona es que podemos exponer correctamente puertos en los nodos de k8s y el tráfico se enruta hacia el service.
+
+Acceso pod en todos los nodos. Conex entre pods:
+Desplegar un daemonset, para tener un pod en cada nodo (mirar daemon_set.md)
+Intentar entrar en todos con:
+kubectl exec -it echods-XXX sh
+  hacer curl entre los pods (podemos ver sus ips con "kc get pod -o wide")
+  hacer curl hacia algún service desde todos los pods (el service de minikube que hemos creado antes)
+Intentar recuperar logs de todos los pods
+  kc logs --tail 1 echods-XXX
+
+
+Fallos?
+  - firewall en algún nodo?
 
 
 

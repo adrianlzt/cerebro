@@ -37,3 +37,24 @@ De esta manera podriamos atacar a un pod de un daemon set que este en un host es
 # Red
 Podemos hacer que los pod de un daemonSet expongan sus puertos directamente sobre la red del host con
 hostNetwork: true
+
+
+# Crear
+Template básico
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: NOMBRE
+spec:
+  selector:
+    matchLabels:
+      name: NOMBRE
+  template:
+    metadata:
+      labels:
+        name: NOMBRE
+    spec:
+      containers:
+      - name: NOMBRE
+        image: gcr.io/google_containers/echoserver:1.4
