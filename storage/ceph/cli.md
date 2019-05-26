@@ -1,3 +1,5 @@
+http://docs.ceph.com/docs/mimic/man/8/rados/
+
 rados lspools
   mostrar pools
 
@@ -9,4 +11,4 @@ rados --pool images df
 
 
 Mostrar contenido de un pool
-rados ls --pool images
+rados --pool images ls fichero.out

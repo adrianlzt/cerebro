@@ -9,6 +9,11 @@ O con API aggregation (requiere programación).
 Hay casos que tendrá más sentido usar ConfigMaps (en la web explica cuando usar cada uno).
 
 
+Listar todos los resources:
+kubectl api-resources
+
+
+
 # CRD
 Ejemplo creando un CRD y un controller para ese tipo de recursos:
 https://github.com/kubernetes/sample-controller

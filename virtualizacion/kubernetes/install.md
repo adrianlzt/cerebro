@@ -194,6 +194,12 @@ cephfs para provisionar volumenes?
 
 
 
+## Añadir más nodos
+Agregarlos al inventario y al grupo que necesitemos.
+ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
+
+
+
 ## Vagrant
 Tienen un Vagrantfile de ejemplo que desplega 3 nodos usando los roles.
 Por defecto, ubuntu1804 y flunnel para red. Podemos meter customizaciones creando el fichero de override: vagrant/config.rb
