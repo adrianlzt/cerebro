@@ -1,0 +1,1 @@
+../openshift/stateful_sets.md

@@ -29,3 +29,12 @@ kubectl describe crd environments.jenkins.io
 
 Como es "namespaced" (que los recursos pertenecen a los namespaces en vez de a todo el cluster), podemos solicitar todos los objectos de este CRD con:
 kubectl get env --all-namespaces
+
+
+Parece que la nomenclatura para llamar a los CRD que se suele seguir es, ejemplo:
+users.elasticsearch.k8s.elastic.co
+
+Al hacer:
+kubectl get users
+Si solo hay un CRD que matchea esa expresion "users", nos mostrará ese de elasticsearch.
+Si no, tendremos que especificar más.

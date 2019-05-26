@@ -28,7 +28,8 @@ Mustache tomará los valores de "values.yml" y de lo que pasemos con --set
 
 Hay repositorios (como sería ansible-galaxy), para bajarnos ya charts listos para desplegar.
 helm search xxx
-helm fetch foo/bar
+helm pull foo/bar
+  es "fetch" en helm2
   nos baja un .tgz con el chart
 
 Cuando desplegamos un chart de helm, se considera una release, que tendrá su propio nombre.
@@ -45,6 +46,9 @@ Helm 3 tendrá un par de cambios bastante grandes:
   - se podrán escribir los charts en LUA
   - se puede imponer un JSONSchema a los chart values, para asegurarnos que quien lo usa mete valores esperados
   - las dependencias (antes en el requirements.yaml) ahora se mueven al Chart.yaml (sección "dependencies")
+  - obligatorio poner un nombre al desplegar (o especificar --generate-name para que cree uno random)
+  - ahora se pueden usar docker registryV2 como repositorios de charts (experimental en v3). Siguen siendo válidos los chart repositories
+  - 
 Estado de la v3: https://github.com/helm/helm/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3Av3
 A Oct'2018 aún no se sabe fecha para la primera alpha
 May'2019 primera alpha

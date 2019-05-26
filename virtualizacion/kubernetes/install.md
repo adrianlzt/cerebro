@@ -166,6 +166,7 @@ kubectl apply -f https://scanner.heptio.com/cd601f48985c507c5ea6dccd3b9669ff/yam
   crea un namespace "heptio-sonobuoy" donde levanta los pods
   Parece que el trabajo se hace aqui: kc logs -f sonobuoy-e2e-job-2aa6acd91a024800 e2e
   falla enviando los resultados, parece que es un bug conocido pero no parece que le den solución
+  sigue sin funcionar, may'19
 
 O sin usar el endpoint, localmente, bajándonos los resultados.
 go get -u -v github.com/heptio/sonobuoy
