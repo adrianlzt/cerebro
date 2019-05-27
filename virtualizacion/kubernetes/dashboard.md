@@ -23,3 +23,8 @@ EOF
 
 Obener el token:
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+
+Aumentar tiempo de sesión.
+Cambiar el "--token-ttl" en el Deployment del dashboard.
+Lo podemos hacer desde el editor del propio dashboard.
