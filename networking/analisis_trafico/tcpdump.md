@@ -1,5 +1,7 @@
 http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt
 
+Mirar ngrep para filtrar buscando cadenas de texto (en general, como un grep para network).
+
 CUIDADO con ejecutarlo sobre interfaces 10GbE+, causa mucho overhead.
 BPF puede hacerlo más eficientemente. Hay ejemplos para analizar casos particulares (como retransmisiones TCP)
 

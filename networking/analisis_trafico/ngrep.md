@@ -5,6 +5,9 @@ ngrep strives to provide most of GNU grep's common features, applying them to th
 
 # Instalación
 
+## RHEL/Centos
+En EPEL
+
 ## Arch
 sudo pacman -S ngrep
 
