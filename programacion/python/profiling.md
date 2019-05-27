@@ -1,4 +1,5 @@
 https://docs.python.org/3/library/debug.html
+Tambien en py2. Viene por defecto.
 python -m cProfile -o PROFILE apli_ucmdb.py --mis-params
 
 Para generar un mapa:
@@ -47,14 +48,14 @@ Dice como gasta la memoria.
 Analiza que parte del código se usa más
 
 pip install vprof
-vprof -c cpmh -o analisis.prof "apli_ucmdb.py -x -m"
+vprof -c cmh "apli_ucmdb.py -x -m" -o analisis.prof
 
 -o, guarda el profiling en un fichero
 
 Ejecuta los cuatro análsis (lanza 4 veces la aplicación):
  c - CPU flame graph
- p - profiler, tabla donde nos dice por cada funcion el número de llamdas y el tiempo pasado acumulado
  m - memory graph
  h - code heatmap, nos muestra todo el codigo, marcando con colores intensos las líneas que se llevan más tiempo. Nos dice por cada linea el número de ejecucciones y el porcentaje del tiempo total
 
 Nos abre un navegador web para mostrar los resultados
+http://127.0.0.1:8000/
