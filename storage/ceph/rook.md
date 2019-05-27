@@ -40,3 +40,42 @@ kubectl -n rook-ceph get po
 Los discos que añadamos al cluster no pueden tener particiones
 
 Cada cluster debe desplegarse sobre su propio namespace
+
+Bajarnos un cluster de ejemplo y modificar según lo que queramos.
+Seguramente, al menos, definir sobre que nodos desplegar y que discos usar.
+wget https://raw.githubusercontent.com/rook/rook/release-1.0/cluster/examples/kubernetes/ceph/cluster.yaml
+
+Luego crearlo:
+kc create -f cluster.yaml
+
+Mirar los logs en el operator
+kc logs -f rook-ceph-operator-68796ffcfd-z9dgl
+
+Mirar los pods.
+Veremos que se crean los rook-ceph-mon.
+Luego rook-ceph-mgr
+Jobs para crear los osd, ver con:
+kc get jobs
+Y los osd: rook-ceph-osd
+
+Mirar
+kc get CephCluster
+
+Fallos, mirar los errores del operator
+kc logs -f rook-ceph-operator-68796ffcfd-z9dgl | grep " E "
+Tenia un fallo por el que el pod de preparar los osd fallaba. Tuve que estar rápido pillando los logs antes de que el pod desapareciese.
+Era un problema de que el disco no estaba limpio.
+
+Si vamos a redesplegar, borrar los datos de /var/lib/rook/
+
+
+
+
+
+# Toolbox
+https://rook.io/docs/rook/v1.0/ceph-toolbox.html<Paste>
+
+Crea un container donde podemos lanzar comandos de administración de ceph:
+rados df
+ceph status
+etc
