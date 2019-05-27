@@ -8,7 +8,7 @@ Para generar un mapa:
   gprof2dot -f pstats output.pstats | dot -Tpng -o output.png
 
 https://stackoverflow.com/a/10592072
-profile de memoria, moduoe memory_profiler
+profile de memoria, module memory_profiler
 
 
 python -m cProfile -s cumtime apli_ucmdb.py --mis-params > PROFILE

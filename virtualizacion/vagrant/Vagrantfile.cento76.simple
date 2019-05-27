@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "criteo/centos-7.6"
+
+  # bug, not working
+  #config.vm.hostname = ""
+
+  # CAMBIAR!
+  config.vm.network "public_network", ip: "10.0.1.187", :bridge => 'enp5s0f1'
+
+  config.vm.provider "virtualbox" do |vb|
+    # Customize the amount of memory on the VM:
+    vb.memory = "4096"
+
+    # Avoid network colission
+    vb.customize ['modifyvm', :id, '--natnet1', '192.168.25.0/24']
+  end
+
+  #config.persistent_storage.enabled = true
+  #config.persistent_storage.location = "/root/bareos/backup_hdd.vdi"
+  #config.persistent_storage.size = 100000
+  #config.persistent_storage.mountname = 'backup'
+  #config.persistent_storage.filesystem = 'ext4'
+  #config.persistent_storage.mountpoint = '/opt/backup'
+  #config.persistent_storage.volgroupname = 'backupvol'
+end
