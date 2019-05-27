@@ -9,7 +9,12 @@ https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
 Los nodos donde estén los ETCD deben estar bastante libres para poder manejar el cluster.
-Lo mejor es tener 3 masters con etcd y sin pods de aplicación. Debemos tener un número impar de nodos etcd
+Lo mejor es tener 3 masters con etcd y sin pods de aplicación (Unschedulable). Debemos tener un número impar de nodos etcd
+For durability and high availability, run etcd as a multi-node cluster in production and back it up periodically. A five-member cluster is recommended in production.
+Keeping stable etcd clusters is critical to the stability of Kubernetes clusters. Therefore, run etcd clusters on dedicated machines or isolated environments for guaranteed resource requirements.
+Lo mejor es tener los etcd sobre SSD
+https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/hardware.md#disks
+
 
 # Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
@@ -214,9 +219,27 @@ kubectl delete node <ip-of-node>
 
 ### Nuevos nodos etcd
 Al intentar añadir más nodos con etcd y quitando uno, se deconfiguró, dejándome unos certificados incorrectos y etcd sin funcionar.
+Parece que es mejor ir añadiendo de dos en dos (para mantener la imparidad).
+Y como sacar uno que ya es parte del cluster?
 Configuración en /etc/etcd.env
 
 Hay una unit de systemd que levanta/para el container de etcd
+
+Chequear a mano el estado del cluster
+cd /etc/ssl/etcd/ssl
+curl -v --cacert ./ca.pem --cert ./member-colo02bp.pem --key member-colo02bp-key.pem https://127.0.0.1:2379/health
+
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member list
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 cluster-health
+  para chequear el estado del cluster
+
+Lista de miembros configurada para el server etcd en cada server:
+https://10.0.2.135:2380,https://10.0.2.136:2380,https://10.0.2.141:2380,https://10.0.2.111:2380,https://10.0.2.26:2380
+
+
+https://coreos.com/etcd/docs/latest/v2/members_api.html
+Lista de nodos del cluster:
+curl --cacert ./ca.pem --cert ./member-colo02bp.pem --key member-colo02bp-key.pem https://127.0.0.1:2379/v2/members | python -m json.tool
 
 
 
@@ -285,3 +308,5 @@ https://github.com/kubernetes/minikube
 # kubicorn
 https://github.com/kris-nova/kubicorn
 App en golang para desplegar un cluster de kubernetes
+
+
