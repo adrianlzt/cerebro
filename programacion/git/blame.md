@@ -8,5 +8,8 @@ git blame -L 10,20 file.txt
 
 
 
-Buscar una linea borrada:
-git log -S <string> path/to/file
+Buscar una linea en los diff de los commits:
+git log -p -S <string> path/to/file
+
+Con regexp:
+git log -p -G '<regexp>' path/to/file
