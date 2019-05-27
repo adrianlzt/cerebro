@@ -9,7 +9,7 @@ https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
 Los nodos donde estén los ETCD deben estar bastante libres para poder manejar el cluster.
-Lo mejor es tener 3 masters con etcd y sin pods de aplicación.
+Lo mejor es tener 3 masters con etcd y sin pods de aplicación. Debemos tener un número impar de nodos etcd
 
 # Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
@@ -20,6 +20,7 @@ cp -r inventory/sample inventory/mycluster
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
 CONFIG_FILE=inventory/mycluster/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
   automáticamente asignará nombre "nodeN"
+
 
 tunear:
 inventory/mycluster/group_vars/all/all.yml
@@ -202,9 +203,23 @@ Agregarlos al inventario y al grupo que necesitemos.
 ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 
 
+
 ## Quitar un nodo
 Apagarlo y sacarlo de kubernetes
 kubectl delete node <ip-of-node>
+
+
+
+## Errores / troubleshooting
+
+### Nuevos nodos etcd
+Al intentar añadir más nodos con etcd y quitando uno, se deconfiguró, dejándome unos certificados incorrectos y etcd sin funcionar.
+Configuración en /etc/etcd.env
+
+Hay una unit de systemd que levanta/para el container de etcd
+
+
+
 
 
 
