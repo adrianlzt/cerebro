@@ -70,6 +70,7 @@ Fallos, mirar los errores del operator
 kc logs -f rook-ceph-operator-68796ffcfd-z9dgl | grep " E "
 Tenia un fallo por el que el pod de preparar los osd fallaba. Tuve que estar rápido pillando los logs antes de que el pod desapareciese.
 Era un problema de que el disco no estaba limpio.
+Podemos mirar esos logs en /var/lib/rook/log/rook-ceph
 
 Si vamos a redesplegar, borrar los datos de /var/lib/rook/
 
@@ -82,7 +83,7 @@ Shared File System: Create a file system to be shared across multiple pods
 
 https://rook.io/docs/rook/v1.0/ceph-object.html
 Object crearemos un pool de rados y un usuario para acceder. El container de rgw puede tardar algún minutillo en aparecer
-Mirar que puerto usar para exponer el rgw, se expondrá directamente en los nodos de k8s.
+Mirar que puerto usar para exponer el rgw, se expondrá directamente en UN SOLO nodo de k8s.
 
 Esperar a que el pod de rgw esté levantado para crear los usuarios.
 Si redesplegamos el rgw tendremos que recrear los usuarios.
@@ -138,3 +139,14 @@ Crea un container donde podemos lanzar comandos de administración de ceph:
 rados df
 ceph status
 etc
+
+
+
+# Errores
+Tras timeouts del cluster por etcd indisponible, el pod de rgw no borró y no se volvió a construir.
+Borrar el pod de operator (para que el rc lo vuelva a crear) solucionó el problema.
+
+
+
+# Troubleshooting
+Si algún CRD no está creando lo que debe, reiniciar el pod de operator para que chequee que todo está en su sitio.

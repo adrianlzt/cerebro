@@ -8,6 +8,9 @@ https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f
 
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
+Los nodos donde estén los ETCD deben estar bastante libres para poder manejar el cluster.
+Lo mejor es tener 3 masters con etcd y sin pods de aplicación.
+
 # Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
