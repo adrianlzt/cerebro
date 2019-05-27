@@ -31,7 +31,7 @@ Tenemos?
 Mirar "Problema overflow" en proxy.md
 
 
-# Audit
+# Zabbix web: Audit, login incorrectos
 Reports > Audit
 Para ver quien se ha logeado, si se han metido cambios, etc
 

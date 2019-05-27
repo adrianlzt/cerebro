@@ -17,6 +17,16 @@ http://ngrep.sourceforge.net/usage.html
 ## Basico
 ngrep port 80
 
+-q si no queremos que muestre los "#" para el tráfico que está viendo pero no matcheando.
+
+-A n
+  mostrar los n siguientes paquetes
+  no hay -B
+
+-n n
+  matchear n paquetes, luego salir.
+
+
 Escuchar en todas las interfaces:
 ngrep -d any port 22
 
