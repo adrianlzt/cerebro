@@ -82,6 +82,10 @@ Shared File System: Create a file system to be shared across multiple pods
 
 https://rook.io/docs/rook/v1.0/ceph-object.html
 Object crearemos un pool de rados y un usuario para acceder. El container de rgw puede tardar algún minutillo en aparecer
+Mirar que puerto usar para exponer el rgw, se expondrá directamente en los nodos de k8s.
+
+Esperar a que el pod de rgw esté levantado para crear los usuarios.
+Si redesplegamos el rgw tendremos que recrear los usuarios.
 Obtener credenciales del user (cambia nombre secret para matchear nuestro nomber y store):
 kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
 kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
@@ -114,10 +118,12 @@ http://docs.ceph.com/docs/nautilus/mgr/dashboard/#enabling-the-object-gateway-ma
 Para poder ver los buckets de S3 desde el dashboard, entrar en la toolbox y ejecutar (apuntar las credenciales):
 https://github.com/rook/rook/issues/2722
 radosgw-admin user create --uid=admin --display-name=admin --system
+  creo que hay que recrearlo si redesplegamos el rgw
 ceph dashboard set-rgw-api-access-key XXX
 ceph dashboard set-rgw-api-secret-key XXX
 ceph dashboard set-rgw-api-host rook-ceph-rgw-MIRAR-NOMBRE-EN-LOS-SERVICIOS
 ceph dashboard set-rgw-api-port 80
+  el puerto que hayamos puesto al object storage
 
 
 
