@@ -9,7 +9,7 @@ https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f
 Actualizar o escalar el cluster: https://kubernetes.io/docs/setup/custom-cloud/kubespray/#cluster-operations
 
 Los nodos donde estén los ETCD deben estar bastante libres para poder manejar el cluster.
-Lo mejor es tener 3 masters con etcd y sin pods de aplicación (Unschedulable). Debemos tener un número impar de nodos etcd
+Lo mejor es tener 3 masters con etcd y sin pods de aplicación (unschedulable/cordon). Debemos tener un número impar de nodos etcd
 For durability and high availability, run etcd as a multi-node cluster in production and back it up periodically. A five-member cluster is recommended in production.
 Keeping stable etcd clusters is critical to the stability of Kubernetes clusters. Therefore, run etcd clusters on dedicated machines or isolated environments for guaranteed resource requirements.
 Lo mejor es tener los etcd sobre SSD
@@ -32,6 +32,7 @@ inventory/mycluster/group_vars/all/all.yml
   - explicación variables: https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/vars.md
   - como hacer el ha (mirar siguientes líneas)
   - configurar DNS, searchdomains
+  - meter dashboard_token_ttl: 86400, para que el token caduque cada día y no nos eche del dashboard todo el rato
 inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
   - temas de config de kubernetes
   - por defecto network calico: https://github.com/kubernetes-sigs/kubespray/blob/8a5eae94ea69ca865935f00198fe9f13941f132b/docs/calico.md
@@ -213,6 +214,25 @@ ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 Apagarlo y sacarlo de kubernetes
 kubectl delete node <ip-of-node>
 
+### Quitar un nodo de etcd
+https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#replacing-a-failed-etcd-member
+
+Lo eliminamos del cluster:
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member remove b92668d10d79664b
+Parar y deshabilitar etcd en el nodo que sacamos:
+systemctl stop etcd
+systemctl disable etcd
+
+Podemos borrar ficheros de conf:
+/etc/etcd.env
+/etc/systemd/system/etcd.service
+/usr/local/bin/etcdctl
+/usr/local/bin/etcd
+/var/lib/etcd/member/
+/etc/ssl/etcd/ssl/admin*
+/etc/ssl/etcd/ssl/member*
+  podemos borrar tambien los node*, MENOS el del propio host
+
 
 
 ## Errores / troubleshooting
@@ -221,29 +241,8 @@ kubectl delete node <ip-of-node>
 Al intentar añadir más nodos con etcd y quitando uno, se deconfiguró, dejándome unos certificados incorrectos y etcd sin funcionar.
 Parece que es mejor ir añadiendo de dos en dos (para mantener la imparidad).
 Y como sacar uno que ya es parte del cluster?
-Configuración en /etc/etcd.env
 
-Hay una unit de systemd que levanta/para el container de etcd
-
-Chequear a mano el estado del cluster
-cd /etc/ssl/etcd/ssl
-curl -v --cacert ./ca.pem --cert ./member-colo02bp.pem --key member-colo02bp-key.pem https://127.0.0.1:2379/health
-
-etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member list
-etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 cluster-health
-  para chequear el estado del cluster
-
-Lista de miembros configurada para el server etcd en cada server:
-https://10.0.2.135:2380,https://10.0.2.136:2380,https://10.0.2.141:2380,https://10.0.2.111:2380,https://10.0.2.26:2380
-
-
-https://coreos.com/etcd/docs/latest/v2/members_api.html
-Lista de nodos del cluster:
-curl --cacert ./ca.pem --cert ./member-colo02bp.pem --key member-colo02bp-key.pem https://127.0.0.1:2379/v2/members | python -m json.tool
-
-
-
-
+mirar etcd.md
 
 
 
