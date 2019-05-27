@@ -7,6 +7,11 @@ modprobe rbd
 Paquete "lvm2" instalado.
 
 
+Discos limpios (tenemos que pasar discos enteros, no vale particiones).
+Limpiar los discos:
+sgdisk -Z /dev/sdX
+  sgdisk se instala con "yum install gdisk"
+
 Chequear el path donde se deben cargar los plugins de flexvolumes
 https://rook.io/docs/rook/v1.0/flexvolume.html
 
@@ -69,11 +74,59 @@ Era un problema de que el disco no estaba limpio.
 Si vamos a redesplegar, borrar los datos de /var/lib/rook/
 
 
+# Primitivas
+rook tiene CDRs para crear los siguientes elementos:
+Block: Create block storage to be consumed by a pod
+Object: Create an object store that is accessible inside or outside the Kubernetes cluster
+Shared File System: Create a file system to be shared across multiple pods
+
+https://rook.io/docs/rook/v1.0/ceph-object.html
+Object crearemos un pool de rados y un usuario para acceder. El container de rgw puede tardar algún minutillo en aparecer
+Obtener credenciales del user (cambia nombre secret para matchear nuestro nomber y store):
+kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep AccessKey | awk '{print $2}' | base64 --decode
+kubectl -n rook-ceph get secret rook-ceph-object-user-my-store-my-user -o yaml | grep SecretKey | awk '{print $2}' | base64 --decode
+
+
+# Dashboard
+https://rook.io/docs/rook/v1.0/ceph-dashboard.html
+
+Crear el NodePort (especificación en la web) para poder acceder.
+No cambiar el "rook_cluster", porque aunque nuestro cluster tenga otro nombre, el label del pod manager sigue siendo "rook-ceph" (chequear de todas maneras con kc describe pod rook-ceph-mgr...)
+
+kc get svc rook-ceph-mgr-dashboard-external-http
+  para ver el puerto asignado
+
+Accederemos con la IP de un host y el puerto conseguido antes.
+La ip de un nodo:
+kubectl get nodes --namespace pruebas -o jsonpath="{.items[0].status.addresses[0].address}"
+
+User: admin
+Password: kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo
+
+Bug en el dashboard al intentar obtener el estado
+https://github.com/rook/rook/issues/3106
+No es grave, solo no muestra el estado global
+
+
+## Object gateway managment
+http://docs.ceph.com/docs/nautilus/mgr/dashboard/#enabling-the-object-gateway-management-frontend
+
+Para poder ver los buckets de S3 desde el dashboard, entrar en la toolbox y ejecutar (apuntar las credenciales):
+https://github.com/rook/rook/issues/2722
+radosgw-admin user create --uid=admin --display-name=admin --system
+ceph dashboard set-rgw-api-access-key XXX
+ceph dashboard set-rgw-api-secret-key XXX
+ceph dashboard set-rgw-api-host rook-ceph-rgw-MIRAR-NOMBRE-EN-LOS-SERVICIOS
+ceph dashboard set-rgw-api-port 80
+
+
 
 
 
 # Toolbox
-https://rook.io/docs/rook/v1.0/ceph-toolbox.html<Paste>
+https://rook.io/docs/rook/v1.0/ceph-toolbox.html
+
+kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash
 
 Crea un container donde podemos lanzar comandos de administración de ceph:
 rados df

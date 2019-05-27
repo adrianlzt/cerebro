@@ -103,3 +103,7 @@ AKEY=NU378EA SKEY="WMdXW" ./boto_tool store-2 -l
 
 Contenido de un bucket:
 AKEY=NU378EA SKEY="WMdXW" ./boto_tool store-2 -b my-new-bucket -l
+
+Sincronizar dos buckets:
+SRC_AKEY=X SRC_SKEY=X DST_AKEY=X DST_SKEY=X SRC_SECURE=yes DST_SECURE=yes python obsync -v --src-type=s3 --src-host=ceph.domain.com --src-bucket=test-orig --dst-type=s3 --dst-host=ceph.domain.com --dst-bucket=test-dest
+
