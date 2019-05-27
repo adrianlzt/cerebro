@@ -7,6 +7,9 @@ Para generar un mapa:
   python -m profile -o output.pstats path/to/your/script arg1 arg2
   gprof2dot -f pstats output.pstats | dot -Tpng -o output.png
 
+https://stackoverflow.com/a/10592072
+profile de memoria, moduoe memory_profiler
+
 
 python -m cProfile -s cumtime apli_ucmdb.py --mis-params > PROFILE
 
