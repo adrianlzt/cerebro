@@ -9,6 +9,7 @@ Usado por kubernetes mediante un plugin.
 # Kubernetes
 Acceso por el servicio "coredns".
 Parece que hay pods (nodelocaldns) en cada nodo que reenvian las peticiones al servidor
+Estos tiene su propio configmap que envia las peticiones de nuestro dns_name (dominio del cluster) a coredns, y el resto al resolv.conf del host
 
 
 Corefile usado
