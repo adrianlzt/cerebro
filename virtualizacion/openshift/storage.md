@@ -58,8 +58,11 @@ for i in $(seq 0 2); do
   mount /mnt/vol$i
 done
 
-Crear el storag class, mirar si queremos que se borren los datos tras salir el pod o que se mantengan.
-https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-local-static-provisioner/master/deployment/kubernetes/example/default_example_storageclass.yaml
+Configurar los valores del helm chart:
+https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/tree/master/helm/provisioner
+
+nkc local-storage
+helm3 install local-storage provision/
 
 
 
