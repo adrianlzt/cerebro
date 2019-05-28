@@ -36,10 +36,9 @@ spec:
       node.ingest: true
 EOF
 
-Crea dos services (elastic + elastic-discovery) y un pod (más el CRD de elasticsearch)
-Tambien una serie de secrets
 
 # Ver ESs
+Consultar para ver si nuestro cluster esta ya activo
 kubectl get elasticsearch
 
 Pods asociados:
