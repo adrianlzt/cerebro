@@ -27,3 +27,16 @@ systemctl stop containerd
 Volver a aceptar pods:
 kubectl uncordon $NODENAME
 
+
+
+# Nodo master a worker (no funciona)
+Quitarle la label de master
+kubectl label node NODO node-role.kubernetes.io/master-
+kubectl drain NODO
+reboot
+  para sacar los daemon set de master
+
+Siguen poniendose los pods de nodo master.
+
+
+Idea: borrar el nodo y volverlo a meter?

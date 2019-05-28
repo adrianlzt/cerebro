@@ -1,6 +1,5 @@
 Las reglas de affinity y taints nos permiten jugar con donde se deben desplegar las cosas.
 
-
 # Taint
 https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 
