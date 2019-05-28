@@ -9,6 +9,16 @@ Se utiliza la solución de Kubernetes: persistent volume (PV) framework.
 
 Cuando se necesita un storage persistente se hace un persistent volume claims (PVCs), que es agnóstico a la tecnología que haya por debajo.
 
+Los drivers son los que existen en el código https://kubernetes.io/docs/concepts/storage/volumes
+Se puede extender con "flex", que es una interfaz que debe cumplir un binario: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-storage/flexvolume.md
+
+Lo más moderno (GA en v1.13) es CSI: https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/
+Es una interfaz que deben cumplir quien quiera exponer un almacenamiento de ficheros o bloques.
+https://kubernetes-csi.github.io/
+Los proyectos parecen aún un poco verdes:
+  ceph (alpha, may'19): https://github.com/ceph/ceph-csi
+  lvm: https://github.com/wavezhang/k8s-csi-lvm/
+
 
 Parece que los PV pueden ser provisionados manualmente con tamaños específicos. Esto podría ser un problema si alguien solicita un PV de un tamaño más grande de los provisionado.
 Generalmente habrá unos provisionadores dinámicos que se encargarán de crear los PVs según los PVCs que le lleguen.
@@ -22,6 +32,8 @@ Tipos de volumenes: https://kubernetes.io/docs/concepts/storage/volumes/#types-o
 Un PVC es una aplicación que quiere un volumen con unas características.
 Por ejemplo, mi aplicación que va a almacenar algo temporal mientras trabaja, necesita un volumen de 1GB tipo RWO.
 Kubernetes se encargará de mapear ese PVC a un PV de los que haya disponibles.
+
+
 
 # StorageClass
 https://kubernetes.io/docs/concepts/storage/storage-classes/
@@ -152,6 +164,8 @@ Los únicos que soportan todos: NFS o GlusterFS
 ReadWriteOnce   RWO   The volume can be mounted as read-write by a single node.
 ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
 ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
+
+CephFS tambien soporta multiwrite
 
 
 # Añadir storage
