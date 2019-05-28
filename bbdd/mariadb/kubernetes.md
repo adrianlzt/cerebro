@@ -20,3 +20,5 @@ kc apply -f deploy/secrets.yaml
 TLS: https://www.percona.com/doc/kubernetes-operator-for-pxc/TLS.html
 deploy/cr.yaml/spec/pxc/allowUnstafeConfigurations true
   para desactivarlo (no recomendado)
+
+kubectl apply -f deploy/cr.yaml
