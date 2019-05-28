@@ -61,8 +61,14 @@ done
 Configurar los valores del helm chart:
 https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/tree/master/helm/provisioner
 
+kc create namespace local-storage
 nkc local-storage
-helm3 install local-storage provision/
+helm3 install provisioner provisioner/
+
+Mirar los PVs creados
+kc get pv
+
+Tendremos que especificar el storage class que hemos creado, o hacerlo por defecto.
 
 
 

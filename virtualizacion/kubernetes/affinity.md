@@ -1,4 +1,20 @@
-Las reglas de affinity y taints nos permiten jugar con donde se deben desplegar las cosas.
+Como seleccionar donde colocar un pod
+
+
+# Nodeselector
+https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+
+El pod debe ponerse en el nodo que cumpla todas las key=value como labels
+spec:
+  containers:
+  ...
+  nodeSelector:
+    disktype: ssd
+
+
+# Affinity
+
+
 
 # Taint
 https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/

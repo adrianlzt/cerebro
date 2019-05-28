@@ -62,6 +62,9 @@ kubectl cluster-info dump
 Nodos del cluster
 kubectl get nodes
 
+-w hace como watch, y se queda mostrando la información
+
+
 Todos los "resources" que nos ofrece el cluster (tambien CRDs)
 kubectl api-resources
 
