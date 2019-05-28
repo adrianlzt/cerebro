@@ -21,7 +21,7 @@ https://github.com/kubernetes/sample-controller
 Listar CRDs (es global, no por namespace)
 kubectl get crd
 
-Para ver el nombre del recurso creado:
+Para ver la descripción completa del CRD
 kubectl describe crd environments.jenkins.io
   en este caso:
     Scope: Namespaced

@@ -53,3 +53,17 @@ PASSWORD=$(kubectl get secret quickstart-elastic-user -o=jsonpath='{.data.elasti
 curl -u "elastic:$PASSWORD" -k "https://localhost:9200"
 
 
+
+# Internals
+
+## cert-initializer
+https://github.com/elastic/cloud-on-k8s/tree/master/operators/cmd/cert-initializer
+Cuando el operator arranca el pod de ES, debe comunicarse con él para obtener el csr para luego generar un certificado
+El operator intentará conectarse a IP_POD:8001/csr
+
+
+## process-manager
+Se encarga de controlar ES (start/stop/kill/status) y el keystore.
+Tiene una api en https://IP_POD:8080
+
+
