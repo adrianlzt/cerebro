@@ -8,5 +8,7 @@ Luego se haría un cherry-pick de este único commit de la rama release sobre la
 https://ariejan.net/2011/07/05/git-squash-your-latests-commits-into-one/
 git rebase -i HEAD~3
 
+Nos abrirá el editor con los commits que vamos a mergear
 Los commits que queramos "squashear" cambiamos "pick" por squash
-Y si quiero squashear a un commit posterior?
+
+Al terminar no generará un mensaje de commit con todo lo que estamos mergeando, que podremos modificar.

@@ -1,5 +1,7 @@
 https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html#k8s-deploy-eck
 
+Mayo'19 muy verde aún. Fallos incluso en el happy-path
+
 # ECK
 Kubernetes operator
 Crea un operador de kubernetes que nos permite hacer despliegues de ES de forma más sencilla.
@@ -63,6 +65,7 @@ El operator intentará conectarse a IP_POD:8001/csr
 
 
 ## process-manager
+https://github.com/elastic/cloud-on-k8s/tree/master/operators/cmd/process-manager
 Se encarga de controlar ES (start/stop/kill/status) y el keystore.
 Tiene una api en https://IP_POD:8080
 
