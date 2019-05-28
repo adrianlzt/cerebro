@@ -27,11 +27,39 @@ Generalmente habrá unos provisionadores dinámicos que se encargarán de crear 
 Un PV es un volumen de kubernetes asociado a un disco, path, volumen ESB de amazon, bucket de ceph o lo que sea.
 Estos PVs tendrán un tamaño y unas características (como se puede acceder a ellos).
 Tipos de volumenes: https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes
+  Que me parezcan interesantes: cephfs, rbd (ceph blocks), local
+
+
 
 # PVC
 Un PVC es una aplicación que quiere un volumen con unas características.
 Por ejemplo, mi aplicación que va a almacenar algo temporal mientras trabaja, necesita un volumen de 1GB tipo RWO.
 Kubernetes se encargará de mapear ese PVC a un PV de los que haya disponibles.
+
+
+
+# Local PV
+https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner
+Podemos usar ese provisionardor para generar automáticamente los PVs a partir de una lista de discos.
+Luego podremos usar PVC para utilizar esos discos. La información de afinidad de los PVs hará que los pods se schedulen en el nodo adecuado.
+
+Podemos usar mount bind para simular varios discos, pero no tendremos limite de capacidad
+
+Usando un disco con LVM, permite tener limite de capacidad y poder modificar el tamaño:
+pvcreate /dev/sdb
+vgcreate k8s /dev/sdb
+
+Crear 3 discos de 200G:
+for i in $(seq 0 2); do
+  lvcreate -Wy --yes -L 200G -n vol$i k8s
+  mkfs.xfs /dev/k8s/vol$i
+  mkdir /mnt/vol$i
+  echo "/dev/k8s/vol$i /mnt/vol$i xfs defaults 0 2" >> /etc/fstab
+  mount /mnt/vol$i
+done
+
+Crear el storag class, mirar si queremos que se borren los datos tras salir el pod o que se mantengan.
+https://raw.githubusercontent.com/kubernetes-sigs/sig-storage-local-static-provisioner/master/deployment/kubernetes/example/default_example_storageclass.yaml
 
 
 
@@ -166,6 +194,8 @@ ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
 ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
 
 CephFS tambien soporta multiwrite
+
+
 
 
 # Añadir storage

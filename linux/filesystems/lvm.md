@@ -38,16 +38,18 @@ Crear un grupo de volumen, unir volúmenes físicos
 
 Crear un volumen lógico, que se formateará para ser una “partición”
  # lvcreate -n NombreLV -L 2G NombreVG
+   si no pasamos el -n les dara nombres tipo lvolN
+   si queremos que borre las "signatures" detectadas: -Wy --yes
  # lvcreate -n NombreLV -l 12799 NombreVG
  # lvcreate -n opt -l 50%FREE Nombrevolumen (50% del espacio libre)
  # lvcreate -n opt -l 50%ORIGIN  Nombrevolumen (50% del espacio total del volumen)
-		-n|--name LogicalVolumeName
-		-l|--extents LogicalExtentsNumber[%{VG|FREE|ORIGIN}]
-		-L|--size LogicalVolumeSize[bBsSkKmMgGtTpPeE]}
+    -n|--name LogicalVolumeName
+    -l|--extents LogicalExtentsNumber[%{VG|FREE|ORIGIN}]
+    -L|--size LogicalVolumeSize[bBsSkKmMgGtTpPeE]}
 
 Formateo del volumen lógico para poder utilizarla
-	# mkfs.xfs /dev/VolGroup00/opt1
-	# mkfs.ext4 /dev/mapper/VolGroup00-opt1
+  # mkfs.xfs /dev/VolGroup00/opt1
+  # mkfs.ext4 /dev/mapper/VolGroup00-opt1
 
 ## Escaneo de volúmenes
 pvscan
