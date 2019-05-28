@@ -211,27 +211,7 @@ ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 
 
 ## Quitar un nodo
-Apagarlo y sacarlo de kubernetes
-kubectl delete node <ip-of-node>
-
-### Quitar un nodo de etcd
-https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#replacing-a-failed-etcd-member
-
-Lo eliminamos del cluster:
-etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member remove b92668d10d79664b
-Parar y deshabilitar etcd en el nodo que sacamos:
-systemctl stop etcd
-systemctl disable etcd
-
-Podemos borrar ficheros de conf:
-/etc/etcd.env
-/etc/systemd/system/etcd.service
-/usr/local/bin/etcdctl
-/usr/local/bin/etcd
-/var/lib/etcd/member/
-/etc/ssl/etcd/ssl/admin*
-/etc/ssl/etcd/ssl/member*
-  podemos borrar tambien los node*, MENOS el del propio host
+mirar admin.md
 
 
 

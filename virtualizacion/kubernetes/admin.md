@@ -29,14 +29,46 @@ kubectl uncordon $NODENAME
 
 
 
-# Nodo master a worker (no funciona)
-Quitarle la label de master
-kubectl label node NODO node-role.kubernetes.io/master-
-kubectl drain NODO
-reboot
-  para sacar los daemon set de master
+# Nodo master a worker
+Parece que la solución es sacarlo del cluster y volverlo a meter como nodo.
+Kubespray tiene un playbook, remove-node.yml, para eliminar nodos.
 
-Siguen poniendose los pods de nodo master.
+Probé a quitarle la label de master y reiniciar, pero no funciona.
 
 
-Idea: borrar el nodo y volverlo a meter?
+# Quitar un nodo
+Apagarlo y sacarlo de kubernetes
+kubectl delete node <ip-of-node>
+
+Podemos usar el playbook remove-node.yml de kubespray para limpiarlo.
+  drain node
+  para servicios
+  borra ficheros/directorios
+  kubectl delete
+
+
+### Quitar un nodo de etcd
+https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#replacing-a-failed-etcd-member
+
+Lo eliminamos del cluster:
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member list
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 member remove b92668d10d79664b
+etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/etcd/ssl/admin-$(hostname)-key.pem --ca-file /etc/ssl/etcd/ssl/ca.pem --endpoints https://10.0.2.26:2379 cluster-health
+
+Parar y deshabilitar etcd en el nodo que sacamos:
+systemctl stop etcd
+systemctl disable etcd
+
+Podemos borrar ficheros de conf:
+rm -rf \
+/etc/etcd.env \
+/etc/systemd/system/etcd.service \
+/usr/local/bin/etcdctl \
+/usr/local/bin/etcd \
+/var/lib/etcd/member/ \
+/etc/ssl/etcd/ssl/admin* \
+/etc/ssl/etcd/ssl/member*
+
+Podemos borrar tambien los /etc/ssl/etcd/ssl/member*, MENOS el del propio host
+
+

@@ -143,3 +143,20 @@ Longitud de un array
 - fail:
     msg: "muy largo"
   when: foo|length > 4
+
+
+
+# Confirmación de borrado
+- hosts: "{{ node | default('etcd:k8s-cluster:calico-rr') }}"
+  vars_prompt:
+    name: "delete_nodes_confirmation"
+    prompt: "Are you sure you want to delete nodes state? Type 'yes' to delete nodes."
+    default: "no"
+    private: no
+
+  pre_tasks:
+    - name: check confirmation
+      fail:
+        msg: "Delete nodes confirmation failed"
+      when: delete_nodes_confirmation != "yes"
+
