@@ -42,15 +42,19 @@ Traefik: https://docs.traefik.io/user-guide/kubernetes/
 nginx
 Cuidado si tenemos muchos ingress, puede empezar a tardar en recargar
 https://itnext.io/kubernetes-ingress-controllers-how-to-choose-the-right-one-part-1-41d3554978d2?gi=3e946ab2b2c
+Este parece que envia directamente a los pods en vez de al service, por performance. Hacen todos lo mismo?
+
+haproxy
 
 
 
-Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080
+Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080, y las "/bar/*" al service bar puerto 8080
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: my-ingress
 spec:
+  # default backend (si no pilla ninguna regla)
   backend:
     serviceName: other
     servicePort: 8080

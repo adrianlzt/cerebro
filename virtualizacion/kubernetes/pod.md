@@ -46,5 +46,7 @@ busybox
 
 Levantar un nginx
 kubectl create deployment nginx --image=nginx
+kubectl expose deployment nginx --port 80 --target-port=80<Paste>
+  exponer el puerto con un ClusterIP (ip vistas desde los nodos del cluster de k8s)
 
 
