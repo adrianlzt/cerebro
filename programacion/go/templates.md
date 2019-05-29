@@ -39,6 +39,11 @@ https://jan.newmarch.name/go/template/chapter-template.html
 Variables:
 {{.Title}}
 
+{{$iface := .IFACE }}
+{{$vips := splitList "," .VIP }}
+  función de sprig
+
+
 Condicionales:
 {{if .C}}
   /path/
@@ -85,6 +90,9 @@ Agregar otros templates:
 {{ range $key, $value := . }}
  <li><strong>{{ $key }}</strong>: {{ $value }}</li>
 {{ end }}
+
+Solo podemos usar variables locales ($xxx) dentro de los loops?
+
 
 {{range .Mounts}}{{.Source}} -> {{.Destination}}{{end}}
 

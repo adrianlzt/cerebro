@@ -1,3 +1,6 @@
+https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
+
+
 # Pod que no despliega por insuficientes recursos
 https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 
@@ -10,3 +13,8 @@ kubectl get -o json nodes | jq '.items[] | .metadata.name,.status.allocatable'; 
 
 Mirando esos valores tendremos que ver que lo que nos está pidiendo el pod no tiene hueco en los servers.
 Tambien chequear las reglas de (anti)afinidad. A lo mejor cabe en un server pero tiene una regla de que no puede estar junto con ese pod (por ejemplo, dos del mismo tipo)
+
+
+
+# Services
+mirar en services.md

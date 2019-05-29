@@ -18,6 +18,7 @@ La VIP llevará el tráfico a los POD con cierta label.
 https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
 Crea automaticamente un ClusterIP
+Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
 
 Útil si tenemos nuestros propios LBs (una IP externa nuestra la balancearíamos sobre ese puerto de todos los nodos)
 Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
@@ -101,10 +102,19 @@ spec:
 https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 
 Dos tipos:
- - pasando el tráfico por userspace (app kube-proxy)
+ - pasando el tráfico por userspace (app kube-proxy) DEPRECATED
  - usando iptables (kube-proxy configura iptables) (k8s.io/kubernetes/pkg/proxy/iptables/proxier.go)
+ - ipvs (mirar más abajo)
 
 
 Kubernetes chequea periódicamente el selector de los services y guarda el resultado en un objeto Endpoint.
 Si queremos ver los endpoints de un service (y comprobar que apunta a donde esperamos)
 kubectl get endpoints NOMBRESVC
+
+
+
+# IPVS
+## Nodeport
+Crea un servidor virtual y reencamina el tráfico a las IPs de los pods.
+
+Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
