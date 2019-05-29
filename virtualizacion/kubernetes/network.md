@@ -34,6 +34,27 @@ Service/LoadBalancer, le pedimos a la cloud donde estemos que nos cree un LoadBa
 Ingress: tener desplegado en el cluster un proxy inverso (por ejemplo nginx), que recogerá las reglas que vayamos pasando al crear objetos "Ingress" (no se mete en como le llega el tráfico al ingress)
 
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns-np
+  namespace: kube-system
+spec:
+  type: NodePort
+  ports:
+  - name: dns
+    port: 53
+    protocol: UDP
+    targetPort: 53
+    nodePort: 30000–32767 # opcional, poner uno que no colisione
+  - name: dns-tcp
+    port: 53
+    protocol: TCP
+    targetPort: 53
+  selector:
+    k8s-app: kube-dns
+
+
 
 # Opciones para desarrollo
 

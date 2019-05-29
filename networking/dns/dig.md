@@ -4,6 +4,9 @@ dig @ns.domain.com dominio.com AXFR
 Obtener todos los registros
 dig example.com ANY
 
+Servidor en otro puerto
+dig -p 533 @server example.com
+
 
 MX de un server
 dig server.com MX
