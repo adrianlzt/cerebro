@@ -90,8 +90,10 @@ kubectl get pod -o wide
   con -o wide veremos la IP del pod y en que nodo está desplegado
 
 Crear
+kubectl run -it --rm --restart=Never alpine --image=alpine sh
+
 kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-  comando deprecated?
+  esta deprecated usar run para crear un deployment
   crea un deployment, que crea un replication controller que arranca el pod.
   Como hemos puesto "--port" también levanta un Service/ClusterIP apuntando al selector con el que se crean los pods
   en docker esto arranca:

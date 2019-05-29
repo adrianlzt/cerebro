@@ -44,6 +44,9 @@ gcr.io/google_containers/echoserver:1.4
 busybox
   para tener una pequeña shell
 
+kubectl run -it --rm --restart=Never alpine --image=alpine sh
+
+
 Levantar un nginx
 kubectl create deployment nginx --image=nginx
 kubectl expose deployment nginx --port 80 --target-port=80<Paste>

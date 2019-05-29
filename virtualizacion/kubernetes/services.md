@@ -95,9 +95,16 @@ spec:
 
 
 
+
+
 # Funcionamiento
 https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
 
 Dos tipos:
  - pasando el tráfico por userspace (app kube-proxy)
  - usando iptables (kube-proxy configura iptables) (k8s.io/kubernetes/pkg/proxy/iptables/proxier.go)
+
+
+Kubernetes chequea periódicamente el selector de los services y guarda el resultado en un objeto Endpoint.
+Si queremos ver los endpoints de un service (y comprobar que apunta a donde esperamos)
+kubectl get endpoints NOMBRESVC

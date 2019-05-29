@@ -1,8 +1,10 @@
-https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html#k8s-deploy-eck
+# Helm
+https://github.com/elastic/helm-charts/blob/master/elasticsearch/README.md
 
-Mayo'19 muy verde aún. Fallos incluso en el happy-path
 
 # ECK
+https://www.elastic.co/guide/en/cloud-on-k8s/current/index.html#k8s-deploy-eck
+Mayo'19 muy verde aún. Fallos incluso en el happy-path
 Kubernetes operator
 Crea un operador de kubernetes que nos permite hacer despliegues de ES de forma más sencilla.
 Crea los sigueintes CRDs:
