@@ -2,6 +2,15 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/
 https://medium.com/@cashisclay/kubernetes-ingress-82aa960f658e
 Mirar network para discusión ingress vs Service
 
+Ingress es una API para definir las reglas de un balanceador.
+Luego podremos tener varios controladores que leeran esas reglas e implementarán la configuración necesaria para hacer que esas reglas funcionen.
+Los ingress controllers tendrán por una parte una parte que se registrará contra los cambios en kubernetes para recibir los ingress.
+Por otro lado tendrán el software de balanceo, haproxy o nginx por ejemplo.
+
+Al desplegar estos controllers a su vez ellos necesitan un método de aceptar el tráfico.
+El método que suelen usar es un service LoadBalancer, que en entornos cloud asocia una IP pública a ese service.
+
+
 Balanceador para permitir el mapeo de dominios a pods.
 Para un dominio determinado (y un path opcional), definimos que "backend" servirá las peticiones.
 
@@ -55,3 +64,8 @@ spec:
         backend:
           serviceName: bar
           servicePort: 8080
+
+
+
+# Internals
+https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html

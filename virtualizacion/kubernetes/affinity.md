@@ -1,22 +1,36 @@
-Como seleccionar donde colocar un pod
+Assigning Pods to Nodes
+https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
+# nodeSelector
 
 
-# Nodeselector
-https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+# affinity
+Similar a nodeSelector
+El "IgnoreDuringExecution" es que si se cambian las labels una vez el pod ya está desplegado, lo ignoramos.
+Tenemos "required" (obligado cumplimiento) y "preferred" (se intentará cumplir, pero no es olbigado).
 
-El pod debe ponerse en el nodo que cumpla todas las key=value como labels
 spec:
-  containers:
-  ...
-  nodeSelector:
-    disktype: ssd
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/e2e-az-name
+            operator: In
+            values:
+            - e2e-az1
+            - e2e-az2
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: another-node-label-key
+            operator: In
+            values:
+            - another-node-label-value
 
 
-# Affinity
-
-
-
-# Taint
+# taint
 https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 
 taint es lo contrario a affinity. Se rechaza a los pods.
