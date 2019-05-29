@@ -43,3 +43,8 @@ gcr.io/google_containers/echoserver:1.4
   escucha en un puerto y hace eco en el puerto 8080
 busybox
   para tener una pequeña shell
+
+Levantar un nginx
+kubectl create deployment nginx --image=nginx
+
+

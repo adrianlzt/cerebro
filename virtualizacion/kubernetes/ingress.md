@@ -39,6 +39,10 @@ https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-control
 
 Traefik: https://docs.traefik.io/user-guide/kubernetes/
 
+nginx
+Cuidado si tenemos muchos ingress, puede empezar a tardar en recargar
+https://itnext.io/kubernetes-ingress-controllers-how-to-choose-the-right-one-part-1-41d3554978d2?gi=3e946ab2b2c
+
 
 
 Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080
