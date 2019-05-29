@@ -29,6 +29,13 @@ Estos PVs tendrán un tamaño y unas características (como se puede acceder a e
 Tipos de volumenes: https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes
   Que me parezcan interesantes: cephfs, rbd (ceph blocks), local
 
+Reclaim policy
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming
+Retain
+  una vez usado un PV, se quedará en estado "Released". Tendremos que borrarlos a mano y limpiar los discos
+Delete
+  se borran solo los datos y están listos para volver a usar
+
 
 
 # PVC
@@ -69,6 +76,8 @@ Mirar los PVs creados
 kc get pv
 
 Tendremos que especificar el storage class que hemos creado, o hacerlo por defecto.
+
+Si tenemos los PVs en modo Retain, una vez se hayan liberado, tendremos que borrarlos e ir al nodo a borrar los datos.
 
 
 
