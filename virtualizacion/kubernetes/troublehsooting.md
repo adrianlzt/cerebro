@@ -18,3 +18,8 @@ Tambien chequear las reglas de (anti)afinidad. A lo mejor cabe en un server pero
 
 # Services
 mirar en services.md
+
+
+
+# pod en pending
+mirar si está esperando por algún PVC
