@@ -245,7 +245,7 @@ Pegar con C-b ]
 Antes de C-space pulsar R
 
 
-# Sincronizar
+# Sincronizar / retransmitir a múltiples
 C-b :setw synchronize-panes
   escribir lo mismo en todos los panes de un window (se puede usar tab para autocompletar)
   C-b e, activar
