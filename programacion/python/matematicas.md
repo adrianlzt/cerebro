@@ -24,6 +24,9 @@ import locale
 locale.atof("2.2")
 locale.atoi("2")
 
+Comprobar si una string es digito:
+"2".isdigit()
+
 
 CUIDADO con el locale a español.
 >>> atof("2,2")
