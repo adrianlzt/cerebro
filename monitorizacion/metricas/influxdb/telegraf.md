@@ -82,6 +82,27 @@ telegraf --usage NOMBRE
 ## agregar/quitar/modificar tags/fields
 https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering
 
+## parámetros globales de los inputs
+interval
+name_override
+name_prefix
+name_suffix
+tags
+
+## selectors, para dejar pasar, o quitar, metrics enteras
+namepass
+namedrop
+tagpass
+tagdrop
+
+## Modifiers, para dejar pasar, o quitar, tags o fields
+fieldpass
+fielddrop
+taginclude
+tagexclude
+
+
+
 name_prefix
 name_suffix
 
