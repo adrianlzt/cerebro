@@ -342,6 +342,8 @@ Plugins que se encuentran entre los inputs y los outputs y nos permiten modifica
 Los procesadores permiten hacer transformaciones, decoraciones o filtrar.
 Los agregadores nos permiten hacer medias, percentiles, min/mas, contar
 
+No se ejecutan en modo --test
+
 ## basicstats
 [[aggregators.basicstats]]
   namepass = [ "procstat_nginx_worker" ]
