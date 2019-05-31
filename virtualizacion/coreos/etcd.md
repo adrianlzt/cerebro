@@ -28,31 +28,31 @@ https://github.com/coreos/etcd/tree/master/etcdctl
 
 Lo que este en v2 no tiene porque verse en v3
 
-etcdctl3 --endpoints https://server:2379 memberlist
+ETCDCTL_API=3 etcdctl --endpoints https://server:2379 member list
   lista de los nodos del cluster
 
-etcdctl memberlist
+etcdctl member list
   para la v2
 
-Contenido de etcd en v2
-etcdctl2 ls
-etcdctl2 ls --recursive
+# Contenido de etcd en v2
+etcdctl ls
+etcdctl ls --recursive
   si ponemos --debug recursive no mostrará nada
 
-etcdctl2 get /path/key
+etcdctl get /path/key
 
-etcdctl2 -o extended get /path/key
+etcdctl -o extended get /path/key
   para ver el ttl, index, created-index y modified-index
 
 Hacer long pooling de una key o un dir
-etcdctl2 watch -f /path/key
+etcdctl watch -f /path/key
   se queda recibiendo metricas
   --after-index N, para obtener solo métricas a partir de ese valor. Sin -f parece que nos devuelve la primera
   -r para poner sobre un directorio y escuchar a todos los eventos child
 
 
 
-etcdctl2 cluster-health
+etcdctl cluster-health
   nos devuelve una línea por cada miembro diciendo si esta healthy
   la última linea devuelve el estado global del cluster
   hace un curl a /v2/members
