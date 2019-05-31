@@ -65,6 +65,8 @@ for i in $(seq 0 2); do
   mount /mnt/vol$i
 done
 
+
+
 Configurar los valores del helm chart:
 https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/tree/master/helm/provisioner
 

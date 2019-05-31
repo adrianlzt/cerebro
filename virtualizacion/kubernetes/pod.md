@@ -49,7 +49,7 @@ kubectl run -it --rm --restart=Never alpine --image=alpine sh
 
 Levantar un nginx
 kubectl create deployment nginx --image=nginx
-kubectl expose deployment nginx --port 80 --target-port=80<Paste>
+kubectl expose deployment nginx --port 80 --target-port=80
   exponer el puerto con un ClusterIP (ip vistas desde los nodos del cluster de k8s)
 
 

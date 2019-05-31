@@ -47,3 +47,5 @@ Si tenemos algun LB deberemos ver algo tipo:
 {"caller":"bgp_controller.go:201","event":"updatedAdvertisements","ip":"10.0.0.64","msg":"making advertisements using BGP","numAds":1,"pool":"default","protocol":"bgp","service":"metallb/nginx","ts":"2019-05-31T16:32:07.269597785Z"}
 {"caller":"main.go:229","event":"serviceAnnounced","ip":"10.0.0.64","msg":"service has IP, announcing","pool":"default","protocol":"bgp","service":"metallb/nginx","ts":"2019-05-31T16:32:07.269653069Z"}
 
+Solo uno de los speakers remitirá la ruta a los peers.
+
