@@ -5,6 +5,7 @@ Usa enrutado a nivel 3 (IP).
 En los nodos usa el balanceo IPVS.
 
 Calico usa por debajo, como backend, el software de routing bird.
+/etc/calico/confd/config/bird.cfg
 
 
 # cli / calicoctl
@@ -51,7 +52,7 @@ spec:
   asNumber: 63400
   # Con las siguientes configs seleccionamos sobre que hosts de k8s aplicar estas reglas de BGP
   #node: rack1-host1
-  #nodeSelector:
+  #nodeSelector: example.com/bgp == 'calico'
 
   # Esta es para seleccionar nodos de k8s como peers. Tendremos que dejar sin definir peerIP y asNumber
   #peerSelector:

@@ -576,6 +576,20 @@ conf term
   no snmp-server community public
 
 
+# BGP
+https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/unicast/6_x/cisco_n6k_layer3_ucast_cfg_rel_602_N2_1/l3_bgp.html
+conf term
+router bgp ASN
+neighbor 10.0.0.7 remote-as 65000
+end
+
+sh ip route
+  mirar si estamos cogiendo las rutas
+
+write
+  si es correcto, para persistir reinicios
+
+
 
 
 # Errores
