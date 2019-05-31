@@ -34,7 +34,13 @@ ETCDCTL_API=3 etcdctl --endpoints https://server:2379 member list
 etcdctl member list
   para la v2
 
-# Contenido de etcd en v2
+
+## v3
+get / --prefix --keys-only
+  equivalente al "ls" de v2
+
+
+# v2
 etcdctl ls
 etcdctl ls --recursive
   si ponemos --debug recursive no mostrará nada

@@ -9,3 +9,6 @@ Puerto 179
 
 ASNs privados (para uso interno)
 64512 – 65534
+
+
+Cuanndo cambia la tabla de rutas se pueden producir un corte en la conexión de los clientes? (https://metallb.universe.tf/concepts/bgp/)
