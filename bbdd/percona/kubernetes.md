@@ -1,4 +1,5 @@
 https://www.percona.com/doc/kubernetes-operator-for-pxc/index.html
+https://github.com/percona/percona-xtradb-cluster-operator/
 
 Kubernetes operator para montar clusters de mariadb/xtradb cluster
 
@@ -26,3 +27,14 @@ deploy/cr.yaml/spec/pxc/allowUnstafeConfigurations true
   ajustar backup
 
 kubectl apply -f deploy/cr.yaml
+
+
+# Crear usuarios
+https://www.percona.com/doc/kubernetes-operator-for-pxc/users.html
+
+Tendremos que crearlos en la bbdd y luego darles acceso por el proxysql
+
+GRANT ALL PRIVILEGES ON database1.* TO 'user1'@'%' IDENTIFIED BY 'password1';
+
+kubectl exec -it some-name-pxc-proxysql-0 -- proxysql-admin --config-file=/etc/proxysql-admin.cnf --syncusers
+
