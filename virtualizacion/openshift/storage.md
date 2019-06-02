@@ -80,6 +80,7 @@ kc get pv
 Tendremos que especificar el storage class que hemos creado, o hacerlo por defecto.
 
 Si tenemos los PVs en modo Retain, una vez se hayan liberado, tendremos que borrarlos e ir al nodo a borrar los datos.
+Se crearán con el mismo nombre.
 
 
 
@@ -154,7 +155,10 @@ spec:
   resources:
     requests:
       storage: 25Gi
-  volumeName: nombre-volumen  # campo opcional
+  # Los sigiuentes campos son opcionales y fuerzan la selección de un volumen concreto
+  storageClassName: percona-lvm-spinning
+  volumeMode: Filesystem
+  volumeName: local-pv-500e15c3
 
 
 

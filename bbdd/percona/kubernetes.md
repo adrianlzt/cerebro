@@ -38,3 +38,18 @@ GRANT ALL PRIVILEGES ON database1.* TO 'user1'@'%' IDENTIFIED BY 'password1';
 
 kubectl exec -it some-name-pxc-proxysql-0 -- proxysql-admin --config-file=/etc/proxysql-admin.cnf --syncusers
 
+
+
+# Errores
+
+## Fallo interconexión entre nodos
+Error de conexión entre los nodos.
+Itento borrar los nodos para que se reconstruya.
+El stateful set vuelve a crear los pods, empezando por el 0.
+Como el 0 no fue el último en parar, no arranca el resto.
+
+Idea:
+ borrar el PerconaXtraDBCluster
+ mover los pvc datadir para que el datadir-xxx-pxc-0 esté con el pv de arranque
+ para esto borrar los pvc y crearlos forzadamente apuntando al PV que necesitamos
+ crear de nuevo el PerconaXtraDBCluster

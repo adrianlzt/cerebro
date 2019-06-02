@@ -4,3 +4,8 @@ A StatefulSet controller provides a unique identity to its pods and determines t
 
 
 Por cada replica se le asigna un Persistent Volume.
+
+
+# Errores
+Si hay un pod fallando, no se puede escalar, ni hacia arriba ni hacia abajo:
+https://github.com/kubernetes/kubernetes/issues/36333
