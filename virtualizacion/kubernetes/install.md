@@ -74,6 +74,7 @@ Tambien hace falta agregar al search del resolv.conf, porque el pod solo buscar�
 search pruebas.svc.kube.mi.dominio svc.kube.mi.dominio kube.mi.dominio
 Entiendo que netchecker no lo está haciendo correctamente. Pues los hosts no deben tener en el search el dominio de un namespace.
 Según la doc, hace falta levantar netchecker en el "default" namespace
+Si tenemos dns propios los tendremos que meter en upstream_dns_servers
 
 
 Comprobar que llegamos a los hosts. Mirar si queremos cambiar los nombres asignados (nodeX) por nuestros hostnames. Tal vez tocar el ansible_host por el nombre que usemos para acceder por ssh:
@@ -83,6 +84,7 @@ CUIDADO! ansible 2.8 no soportado (Mayo'2019): https://github.com/kubernetes-sig
 
 Desplegar (poner "time"? redirigir output a log?):
 ansible-playbook -i inventory/mycluster/hosts.yml --become cluster.yml
+  si desplegamos sobre un cluster activo tendremos pequeños cortes de la API y etcd
 
 
 
