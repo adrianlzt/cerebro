@@ -81,6 +81,9 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    # Opcional, agregar configuración custom
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Request-Id: $req_id";
   name: example
   namespace: foo
 spec:

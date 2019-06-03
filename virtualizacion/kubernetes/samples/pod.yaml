@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example
+spec:
+  containers:
+    - name: busybox
+      image: busybox:1.25
+      volumeMounts:
+        - name: quobytevolume
+          mountPath: /persistent
+      command:
+        - sleep
+        - 1000
+  volumes:
+  - name: quobytevolume
+    quobyte:
+      registry: ignored:7861
+      volume: testVolume
+      readOnly: false
+      user: root
+      group: root
