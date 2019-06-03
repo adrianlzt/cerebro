@@ -24,6 +24,27 @@ envtpl -o fileA fileA
 Si usamos "-m error" y tenemos una variable con " | default x", seguirá fallando si no la definimos.
 
 
+## Dockerfile
+FROM subfuzion/envtpl:latest as envtpl
+
+FROM imagen buena
+...
+COPY --from=envtpl /bin/envtpl /usr/bin/envtpl
+
+
+entrypoint.sh:
+#! /bin/sh
+
+set -e           # exit in some command fails
+set -u           # exit if it tries to use some var undefined
+set -o pipefail  # exit if some command on a pipe fails
+
+envtpl -m error -o /etc/keepalived/keepalived.conf /etc/keepalived/keepalived.conf
+
+
+
+
+
 # Confd
 Podemos usar confd al comienzo del container para generar un fichero de config a partir de variables de entorno
 Mirar confd.md
