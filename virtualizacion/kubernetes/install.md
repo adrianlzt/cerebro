@@ -84,7 +84,7 @@ CUIDADO! ansible 2.8 no soportado (Mayo'2019): https://github.com/kubernetes-sig
 
 Desplegar (poner "time"? redirigir output a log?):
 ansible-playbook -i inventory/mycluster/hosts.yml --become cluster.yml
-  si desplegamos sobre un cluster activo tendremos pequeños cortes de la API y etcd
+  si desplegamos sobre un cluster activo tendremos pequeños cortes de la API y etcd. Me tiró una bbdd percona-xtradb-cluster-operator
 
 
 
@@ -207,8 +207,10 @@ cephfs para provisionar volumenes?
 
 
 ## Añadir más nodos
-Agregarlos al inventario y al grupo que necesitemos.
+Agregarlos al inventario y al grupo que necesitemos. Es seguro ejecutarlo sobre un cluster funcionando (no se si atraverme a decir, sobre un cluster en producción)
 ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
+  limitar solo a los nuevos nodos?
+  15' tres nuevos nodos
 
 
 

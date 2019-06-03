@@ -77,7 +77,7 @@ https://github.com/sysstat/sysstat/blob/414e420b31983dfde62d844c4491dd881802a41e
 
 iostat toma medidas cada x segundos.
 Para calcular el await, w_await y r_await lo que hace es:
-tiempo dedicado a IO / numero de operaciones
+numero de operaciones / tiempo dedicado a IO
 
 Este tiempo se obtiene de /proc/diskstats, haciendo la diferencia entre el contador actual y la medida anterior.
 El número de operaciones se obtiene de la misma manera.

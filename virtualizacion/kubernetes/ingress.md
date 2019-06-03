@@ -84,6 +84,8 @@ metadata:
     # Opcional, agregar configuración custom
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "Request-Id: $req_id";
+    # Opcional, incrementar el tamaño máximo de body http permitido
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
   name: example
   namespace: foo
 spec:
