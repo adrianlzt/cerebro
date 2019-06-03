@@ -79,6 +79,18 @@ Modificar al arrancar el entrypoint:
 docker run -t -i --entrypoint="/bin/bash" imagen
 
 
+Ejemplo de entrypoint que ejecuta el comando telegraf con parámetros, si el CMD empieza por "-".
+Si no, ejecuta el comando que hayamos pasado.
+Esto permite hacer: docker run imagen bash, y saltar a bash, sin tener que modificar el entrypoint
+if [ "${1:0:1}" = '-' ]; then
+    set -- telegraf "$@"
+fi
+
+exec "$@"
+
+
+
+
 
 CMD: comando a ejecutar cuando se arranca la máquina.
 Si hay un entrypoint CMD sirve como parámetros por defecto.

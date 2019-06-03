@@ -14,6 +14,8 @@ yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
 rpm -V $INSTALL_PKGS && \
 yum clean all && rm -rf /var/cache/yum
 
+El rpm -V nos asegura haber instalado lo que queríamos. yum no falla si algún paquete no existe.
+
 
 RUN apt-get update && apt-get install -y \
     aufs-tools \

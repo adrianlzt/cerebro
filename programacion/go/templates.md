@@ -91,7 +91,7 @@ Agregar otros templates:
  <li><strong>{{ $key }}</strong>: {{ $value }}</li>
 {{ end }}
 
-Solo podemos usar variables locales ($xxx) dentro de los loops?
+Si queremos acceder a una variable "global" (definida fuera del range): $.FOO
 
 
 {{range .Mounts}}{{.Source}} -> {{.Destination}}{{end}}
