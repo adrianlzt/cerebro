@@ -13,3 +13,9 @@ Luego pinchamos con el botón derecho sobre el recurso web que queremos mapear a
 
 Solo cambios de estilo (cambiar un css) en el tab Elements se guardan a disco.
 Si queremos tocar un html debemos hacerlo en sources, pero no veremos en cambio en vivo. Al terminar deberemos dar a Control+s
+
+
+
+# Breakpoint
+https://dzone.com/articles/debug-javascript-using-chrome-developer-tools
+Engancharse a cualquier evento de click
