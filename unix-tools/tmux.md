@@ -105,8 +105,8 @@ C-b o/;
 Mostrar un numero y cada pane y luego movernos al seleccionado
 C-b q
 
-Reload (bind r source-file ~/.tmux.conf \; display "Reloaded!")
-C-b r
+Reload (bind R source-file ~/.tmux.conf \; display "Reloaded!")
+C-b R
 
 Detach
 C-b d
@@ -246,10 +246,8 @@ Antes de C-space pulsar R
 
 
 # Sincronizar / retransmitir a múltiples
-C-b :setw synchronize-panes
-  escribir lo mismo en todos los panes de un window (se puede usar tab para autocompletar)
-  C-b e, activar
-  C-b E, desactivar
+bind-key e set-window-option synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
+  C-b e, activar/desactivar
 Si queremos sincronizar un pane, podemos desactivarlo: selectp -d (para activarlo de nuevo selectp -e)
 No hay opción de hacer esto más user-friendly: https://github.com/tmux/tmux/issues/1638
 
