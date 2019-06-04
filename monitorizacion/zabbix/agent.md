@@ -53,6 +53,7 @@ Hace fork para ejecutar, cuidado con la performance
 
 Ejemplo:
 UserParameter=zabbix-nagios-wrapper[*],<Path-to>/zabbix-nagios-wrapper "$1" "$2" "$3" "$4"
+  poner "[*]" es que el UserParameter acepta parámetros. Que serán los $1, $2, etc
 UserParameter=ping,echo 1
   para preguntar por este user parameter llamaremos al item "ping"
 
