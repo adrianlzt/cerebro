@@ -20,3 +20,10 @@ Get-Counter -List "*" | Select-Object CounterSetName,Description,Paths,PathsWith
 App para ver los perf counters:
 perfmon.exe
   En el "Performance monitor" darle al "+" en las gráfica para que nos deje seleccionar que otras métricas tenemos disponibles.
+
+
+
+# CPU
+https://social.technet.microsoft.com/wiki/contents/articles/12984.understanding-processor-processor-time-and-process-processor-time.aspx
+
+% Processor time, debajo del objeto "Process" es el porcentaje de uso contando todas las CPUs, por lo que puede ser superior al 100%
