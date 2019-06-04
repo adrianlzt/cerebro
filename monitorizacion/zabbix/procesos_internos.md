@@ -47,6 +47,14 @@ Si no para de procesar, cada 5" (como mínimo), actualiza su título.
 Si no tiene otra task, duerme el máximo (1").
 Tambien puede que duerma menos, pero no queda claro como lo calcula, func "calculate_sleeptime"
 
+Si el tiempo de procesado vemos que es mayor de 5", es que se está quedando colgado en algún procesado.
+Mirar los logs en modo debug y por cada poller mirar que líneas consecutivas tienen un salto de tiempo muy grande.
+
+En un caso vimos que los poller se quedaban enganchados con el snmp:
+28303:20190604:203739.174 In zbx_snmp_get_values() num:15 level:1
+28303:20190604:203753.145 zbx_snmp_get_values() snmp_synch_response() status:0 s_snmp_errno:0 errstat:0 mapping_num:15
+
+
 
 ### Metricas a partir de los logs
 Keys que procesa el poller:
