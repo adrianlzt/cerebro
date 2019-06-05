@@ -91,7 +91,7 @@ obsync.py: the object synchronizer
 Sincronizar entre buckets o entre directorios y buckets
 
 Requisitos:
-pip install boto lxml xattr
+pip install boto lxml pyxattr
   necesita libffi y gcc para compilar
 
 Arreglos:

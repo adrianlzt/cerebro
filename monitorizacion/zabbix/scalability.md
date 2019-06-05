@@ -57,6 +57,13 @@ Se almacenan structs con los items. Para cada item se almacenan sus valores, des
 Almacena, al menos, 24h de datos. Los nuevos datos se meten en la cache antes de ir a la bbdd
 
 
+## Write cache
+Donde se almacenan los datos antes de ser enviados a la bbdd.
+Si se llena es que los histtory syncers no dan a basto.
+Chequear si la bbdd está funcionando correctamente.
+Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
+
+
 
 # Imágenes / frontend
 Si tenemos screens con muchas imágenes (50) y un tiempo de recarga pequeño (30"), esto realiza una carga muy grande sobre el frontend.
