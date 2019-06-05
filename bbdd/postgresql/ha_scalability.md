@@ -2,6 +2,10 @@ mirar:
 pgpool.md
 pgbouncer.md
 
+activo-activo:
+https://www.symmetricds.org/about/overview
+https://info.crunchydata.com/blog/active-active-on-kubernetes<Paste>
+
 https://www.last.fm/user/Russ/journal/2008/02/21/zd_postgres_connection_pools:_pgpool_vs._pgbouncer
 pgbouncer mejor que pgpool
 
