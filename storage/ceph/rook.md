@@ -70,7 +70,7 @@ Fallos, mirar los errores del operator
 kc logs -f rook-ceph-operator-68796ffcfd-z9dgl | grep " E "
 Tenia un fallo por el que el pod de preparar los osd fallaba. Tuve que estar rápido pillando los logs antes de que el pod desapareciese.
 Era un problema de que el disco no estaba limpio.
-Podemos mirar esos logs en /var/lib/rook/log/rook-ceph
+Podemos mirar esos logs en /var/lib/rook/log/rook-ceph, en el host de cada nodo que estemos desplegando.
 
 Si vamos a redesplegar, borrar los datos de /var/lib/rook/
 
@@ -142,9 +142,23 @@ etc
 
 
 
+
+# Administración
+Podemos editar el CephCluster CRD (kc edit cephclusters.ceph.rook.io Nombre) para modificar los nodos del cluster.
+El operator se dará cuenta y hara los nuevos despliegues o quitará los nodos que hayamos sacado.
+
+
+
 # Errores
 Tras timeouts del cluster por etcd indisponible, el pod de rgw no borró y no se volvió a construir.
 Borrar el pod de operator (para que el rc lo vuelva a crear) solucionó el problema.
+
+Al modificar el ceph cluster, el operador dio unos core dump. Borrarlo y que se volviese a crear lo arregló.
+
+
+Status:failed Message:failed to configure devices
+Mirar en el nodo donde se esté desplegando en /var/lib/rook/logs
+Buscar "ERROR"
 
 
 
