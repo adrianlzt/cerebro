@@ -1,4 +1,10 @@
-## Formato de salida ##
+# Tamaño captura bytes
+--snaplen 256
+  este parámetro nos permite cambiar la cantidad de bytes que se capturan de cada IO buffer
+  por defecto es 80
+
+
+# Formato de salida
 
 "%evt.num %evt.time %evt.cpu %proc.name (%thread.tid) %evt.dir %evt.type %evt.args" <- formato por defecto
 
@@ -21,16 +27,16 @@
      proc.cmdline  muestra la linea completa del comando ejecutado
      proc.args  argumentos pasados al comando
 
-     evt.num 	is the incremental event number
-     evt.time 	is the event timestamp
+     evt.num  is the incremental event number
+     evt.time   is the event timestamp
      evt.latency cuando tarda en ejecutarse
      evt.latency.s cuando tarda en ejecutarse en segundos
-     evt.cpu 	is the CPU number where the event was captured
-     proc.name 	is the name of the process that generated the event
+     evt.cpu  is the CPU number where the event was captured
+     proc.name  is the name of the process that generated the event
      thread.tid is the TID that generated the event, which corresponds to the PID for single thread processes
-     evt.dir 	is the event direction, > for enter events and < for exit events
-     evt.type 	is the name of the event, e.g. 'open' or 'read'
-     evt.args 	is the list of event arguments. In case of system calls, these tend to correspond to the system call arguments, but that’s not always the case: some system call arguments are excluded for simplicity or performance reasons.
+     evt.dir  is the event direction, > for enter events and < for exit events
+     evt.type   is the name of the event, e.g. 'open' or 'read'
+     evt.args   is the list of event arguments. In case of system calls, these tend to correspond to the system call arguments, but that’s not always the case: some system call arguments are excluded for simplicity or performance reasons.
 
    Formato de los file descriptors: num(<type>resolved_string)
      num is the FD number

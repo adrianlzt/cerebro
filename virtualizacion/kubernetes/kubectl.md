@@ -1,6 +1,7 @@
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 Herramienta administrativa de Kubernetes
+mirar plugins.md para extenderla
 
 # Instalacion
 ## Google Cloud SDK
