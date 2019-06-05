@@ -19,3 +19,27 @@ Cuidado no nos colisione con una variable "version" global.
 Importar como
 
 semver "github.com/mcuadros/go-version"
+
+
+# Version con flag
+
+var (
+  version = "0.0.0"
+)
+
+func main() {
+  versionFlag := flag.Bool("version", false, "Show version")
+
+  flag.Parse()
+
+  if *versionFlag {
+    fmt.Printf("Version: %s\n", version)
+    return
+  }
+  ...
+}
+
+
+Build:
+LDFLAGS=-ldflags "-X main.version=${VERSION}"
+go build ${LDFLAGS} -o ${BINARY} .
