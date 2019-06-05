@@ -16,12 +16,12 @@ func WriteFile(filename string, data []byte, perm os.FileMode) error
 
 
 # Leer un directorio
-	files, err := ioutil.ReadDir(".")
-	if err != nil {
-		log.Fatal(err)
-	}
+  files, err := ioutil.ReadDir(".")
+  if err != nil {
+    log.Fatal(err)
+  }
 
-	for _, file := range files {
-		fmt.Println(file.Name())
-	}
+  for _, file := range files {
+    fmt.Println(file.Name())
+  }
   //El valor que estamos descartando es el indice: 0,1,2,3...

@@ -1,3 +1,6 @@
+mirar ioutil.md
+
+
 # Convertir una string a un elemento que cumpla la interfaz io.Reader
 buf := bytes.NewBufferString("cadena")
 
