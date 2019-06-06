@@ -1,3 +1,10 @@
+# Helm
+https://github.com/helm/charts/tree/master/stable/postgresql
+
+Si borramos el helm, recordar borrar el pvc. Si no, se reusará y las configs que apliquemos en el helm no se estarán usando (por ejemplo, si cambiamos la pass)
+
+
+
 # Postgres operator
 https://github.com/zalando/postgres-operator
 

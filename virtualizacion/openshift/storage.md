@@ -96,6 +96,9 @@ Esto se hace con un annotation:
 Para modificar un storageClass ya creado:
   kubectl patch storageclass <your-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
+Si queremos especificar un storage-class determinado para un volume, lo haremos con el siguiente annotation:
+volume.beta.kubernetes.io/storage-class: "nombre"
+
 
 
 # Listar PVs/PVCs (volumes/claims)

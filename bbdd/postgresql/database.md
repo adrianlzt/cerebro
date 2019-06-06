@@ -1,3 +1,7 @@
 CREATE DATABASE "nombre";
 
 DROP DATABASE [ IF EXISTS ] name;
+
+
+# Rename
+ALTER DATABASE db RENAME TO newdb;

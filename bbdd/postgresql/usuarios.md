@@ -15,7 +15,7 @@ createuser -DRSP nombre
   -P: nos pedirá interactivamente el password
 
 También podemos crear usuarios en SQL con:
-CREATE USER 'pepe' PASSWORD 'blabla';
+CREATE USER pepe PASSWORD 'blabla';
 
 Por defecto tendrá permisos de escritura en la base de datos que se llame como el usuario.
 Será necesario crearla previamente: CREATE DATABASE pepe;
@@ -25,6 +25,12 @@ Será necesario crearla previamente: CREATE DATABASE pepe;
 http://www.postgresql.org/docs/devel/static/sql-alteruser.html
 
 ALTER USER 'pepe' ...
+
+### cambiar password
+alter user postgres password 'xxx';
+
+### dar roles a posteriori:
+alter user usuario createdb;
 
 
 ## Privilegios / Permisos ##
