@@ -6,4 +6,6 @@ case c <- x:
 case <-quit:
 	fmt.Println("quit")
 	return
+default:
+  log.Println("nos salimos por aqui si no se pueden hacer ninguna de las otras")
 }
