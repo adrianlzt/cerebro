@@ -119,6 +119,8 @@ Para setear el timeout usan el método de SIGALRM.
 
 En esta función (zbx_tcp_recv_ext) se realiza un lioso análisis para saber si el mensaje recibido cumple con lo que se espera.
 https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c#1654
+Lo que se va haciendo es ir leyendo el protocolo: https://www.zabbix.com/documentation/4.0/manual/appendix/protocols/header_datalen
+Primero la header, luego version, data length y datos
 
 
 zbx_recv_response
