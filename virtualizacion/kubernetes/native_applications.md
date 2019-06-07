@@ -40,5 +40,8 @@ https://github.com/operator-framework/getting-started<Paste>
 
 ## Operator Hub
 https://operatorhub.io/
-
 "Tienda" de operators
+
+https://github.com/operator-framework/awesome-operators
+Colección de operators
+
