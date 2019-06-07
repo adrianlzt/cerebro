@@ -56,3 +56,8 @@ Forma extraña vista en zabbix
 https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c?at=refs%2Ftags%2F4.2.3#294
 Antes de hacer el recv ponen una alarma, que cortará recv en caso de saltar.
 No la recomiendan, por lenta, pero no explican mucho: https://stackoverflow.com/a/2878982
+http://www.masterraghu.com/subjects/np/introduction/unix_network_programming_v1.3/ch14lev1sec2.html
+Parece que en linux SO_RCVTIMEO/SO_SNDTIMEO se metió sobre el año 2000: http://lkml.iu.edu/hypermail/linux/kernel/0011.3/1001.html
+Problemas con alarm: http://danzig.jct.ac.il/tcp-ip-lab/inet-dgram/timeout/
+ 1. exactly how signals are handled can differ between different types of UNIX. Also, not all system call functions might be interrupted by an alarm signal.
+ 2. If the program calls alarm in more than one place, the different calls might interfere with each other.

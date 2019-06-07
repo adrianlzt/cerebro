@@ -1,5 +1,6 @@
 mirar ioutil.md
 
+Tambien podemos usar Scanner
 
 # Convertir una string a un elemento que cumpla la interfaz io.Reader
 buf := bytes.NewBufferString("cadena")
@@ -8,7 +9,9 @@ Cumple la interfaz io.ReadWriter (https://godoc.org/io#ReadWriter)
 
 
 # Convertir un Reader en una string
-ReadAll(r io.Reader) ([]byte, error)
+ioutil.ReadAll(r io.Reader) ([]byte, error)
+
+bufio.NewReader(r io.Reader)
 
 
 # Cuando tenemos algo que quiere escribir a un io.Writer y nosotros queremos una string o []bytes

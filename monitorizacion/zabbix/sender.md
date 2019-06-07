@@ -115,8 +115,10 @@ zbx_tcp_recv_ext (Purpose: receive data)
 
 Esta función usa zbx_tcp_read para leer datos del socket. Se encarga de leer TLS/no-TLS.
 Para no-TLS usa ZBX_TCP_READ, que es un define sobre la syscall recv, con flags=0.
-Para el timout usan un método extraño, poner un "alarm" que enviará un SIGALRM para cortar el recv. Ni idea de porque no usan setsockopt: https://stackoverflow.com/a/2878982
+Para setear el timeout usan el método de SIGALRM.
 
+En esta función (zbx_tcp_recv_ext) se realiza un lioso análisis para saber si el mensaje recibido cumple con lo que se espera.
+https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c#1654
 
 
 zbx_recv_response
