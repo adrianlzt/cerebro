@@ -50,3 +50,9 @@ struct timeval tv;
 tv.tv_sec = 3;  /* 30 Secs Timeout */
 tv.tv_usec = 0;  // Not init'ing this can cause strange errors
 setsockopt(sockfd, SOL_SOCKET, SO_SNDTIMEO, (const char*)&tv,sizeof(struct timeval));
+
+
+Forma extraña vista en zabbix
+https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c?at=refs%2Ftags%2F4.2.3#294
+Antes de hacer el recv ponen una alarma, que cortará recv en caso de saltar.
+No la recomiendan, por lenta, pero no explican mucho: https://stackoverflow.com/a/2878982

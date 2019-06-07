@@ -92,3 +92,32 @@ Luego, si se queda sin nada que hacer, pondrá el título (__zbx_zbx_setproctitl
 
 Cuando un trapper recibe datos veremos una linea como:
   2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
+
+
+
+## Conex TCP
+Cada trapper escucha en un bucle for por nuevas conex tcp: zbx_tcp_accept
+
+Dentro de esa función:
+Hace "select" para escuchar en todos los sockets abiertos (sock_set) por alguno que tenga nuevos datos.
+Cuando encuentra uno con datos, hace un accept sobre ese socket.
+Lee el primer byte, para saber si es una conex TLS (primer byte = 0x16).
+En caso TLS, ejecuta zbx_tls_accept para comprobar que la conex es válida y gestionar el handshake y configuración del socket.
+
+En este punto, el trapper ya tiene una conexión, de la que aún no se ha leído nada (el primer byte leído para saber si es TLS se hace de manera que el siguiente recv lo vuelve a leer)
+
+Luego se ejecuta:
+process_trapper_child
+->
+zbx_tcp_recv_to
+#define     zbx_tcp_recv_to(s, timeout)     SUCCEED_OR_FAIL(zbx_tcp_recv_ext(s, 0, timeout))
+zbx_tcp_recv_ext (Purpose: receive data)
+
+Esta función usa zbx_tcp_read para leer datos del socket. Se encarga de leer TLS/no-TLS.
+Para no-TLS usa ZBX_TCP_READ, que es un define sobre la syscall recv, con flags=0.
+Para el timout usan un método extraño, poner un "alarm" que enviará un SIGALRM para cortar el recv. Ni idea de porque no usan setsockopt: https://stackoverflow.com/a/2878982
+
+
+
+zbx_recv_response
+read a response message (in JSON format) from socket, optionally extract "info" value.
