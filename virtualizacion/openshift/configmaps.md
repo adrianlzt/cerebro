@@ -24,6 +24,23 @@ oc get cm nombre-config-map -o yaml
 Para modificar, ver patch.md
 
 
+Crear un configmap a partir de ficheros o un directorio:
+kubectl create configmap game-config --from-file=docs/user-guide/configmap/kubectl
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: name
+data:
+  key: value
+  kibana.yml: |
+    server.host: '0.0.0.0'
+    server.port: 5601
+    elasticsearch.url: 'http://elasticsearch:9200'
+
+
+
 
 # Secrets
 Igual que configmaps.
