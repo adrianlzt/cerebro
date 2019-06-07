@@ -61,3 +61,10 @@ Parece que en linux SO_RCVTIMEO/SO_SNDTIMEO se metió sobre el año 2000: http:/
 Problemas con alarm: http://danzig.jct.ac.il/tcp-ip-lab/inet-dgram/timeout/
  1. exactly how signals are handled can differ between different types of UNIX. Also, not all system call functions might be interrupted by an alarm signal.
  2. If the program calls alarm in more than one place, the different calls might interfere with each other.
+
+Razones para no usar SIGALRM
+las alarmas y los programas multithread no se llevan muy bien
+las alarmas suelen ir a nivel de proceso
+el timeout es a nivel de socket
+asi que en el momento en el que introduces cualquier hilo, las alarmas van a liarla bastante entre los hilos, mientras que el timeout no
+los signal handlers de las señales tambien tienen una cantidad de llamadas bastante limitadas

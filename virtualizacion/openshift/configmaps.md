@@ -4,6 +4,7 @@ Irían en el Deployment Config
 
 # Configmaps
 https://docs.openshift.org/latest/dev_guide/configmaps.html
+https://unofficial-kubernetes.readthedocs.io/en/latest/tasks/configure-pod-container/configmap/
 
 Es lo que usamos para almacenar configuraciones.
 Estas configuraciones pueden ser valores o ficheros.
@@ -39,6 +40,10 @@ data:
     server.port: 5601
     elasticsearch.url: 'http://elasticsearch:9200'
 
+
+
+Los ConfigMaps se pueden montar como ficheros en un pod, pero son RO.
+Si necesitamos que sean RW, usar un init container para copiar el ConfigMap a un volumen emptyDir
 
 
 
