@@ -147,6 +147,8 @@ etc
 Podemos editar el CephCluster CRD (kc edit cephclusters.ceph.rook.io Nombre) para modificar los nodos del cluster.
 El operator se dará cuenta y hara los nuevos despliegues o quitará los nodos que hayamos sacado.
 
+https://github.com/rook/rook/blob/master/Documentation/disaster-recovery.md
+
 
 
 # Errores
