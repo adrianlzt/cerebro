@@ -77,10 +77,14 @@ helm3 install provisioner provisioner/
 Mirar los PVs creados
 kc get pv
 
+CUIDADO! si instalamos varios helm de estos, comparten configuraciones de rolebinding y clusterrolebinding. Borrar un helm afecta a otros. Pods en crash loop por falta de permisos
+
 Tendremos que especificar el storage class que hemos creado, o hacerlo por defecto.
 
 Si tenemos los PVs en modo Retain, una vez se hayan liberado, tendremos que borrarlos e ir al nodo a borrar los datos.
 Se crearán con el mismo nombre.
+
+Si borramos el privisioner, borrar los PVs a mano.
 
 
 
