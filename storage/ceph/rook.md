@@ -151,6 +151,9 @@ El operator se dará cuenta y hara los nuevos despliegues o quitará los nodos q
 https://github.com/rook/rook/blob/master/Documentation/disaster-recovery.md
 
 
+Borrar un cluster y crearlo de nuevo en principio mantiene los datos, porque están en hostPath, pero puede dar problemas a la hora de levantar los OSDs: https://github.com/rook/rook/issues/2785
+
+
 Borrar OSD a mano
 https://gist.github.com/cheethoe/49d9c1d0003e44423e54a060e0b3fbf1
 
