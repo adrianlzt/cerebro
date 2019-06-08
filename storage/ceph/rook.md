@@ -151,6 +151,10 @@ El operator se dará cuenta y hara los nuevos despliegues o quitará los nodos q
 https://github.com/rook/rook/blob/master/Documentation/disaster-recovery.md
 
 
+Borrar OSD a mano
+https://gist.github.com/cheethoe/49d9c1d0003e44423e54a060e0b3fbf1
+
+
 
 # Errores
 Tras timeouts del cluster por etcd indisponible, el pod de rgw no borró y no se volvió a construir.
@@ -167,8 +171,19 @@ Buscar "ERROR"
 Comandos killed. Tiene suficiente memoria? Buscar OOM en el dmesg el host del pod.
 
 
+Se queda pillado creando rgw. Mira si hay algún comando bloqueado en el pod (un fork del comando operator, tipicamente radosgw-admin).
+Mirar contra que IPs se intenta conectar cuando se queda pillado. Tal vez un osd muerto?
+
+
+
 # Troubleshooting
 Si algún CRD no está creando lo que debe, reiniciar el pod de operator para que chequee que todo está en su sitio.
+
+
+Si tenemos algun pod osd fallando, para ver a que disco corresponde podemos mirar el FSID del pod y buscarlo en el fichero /var/lib/rook/log/rook-ceph/ceph-volume.log
+Y ver a que identificador corresponde con lsblk
+
+
 
 
 ## Logs
