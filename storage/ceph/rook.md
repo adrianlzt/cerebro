@@ -33,6 +33,7 @@ vi values.yaml
   descomentar agent.flexVolumeDirPath y definirlo con el valor que toque
   definir algún filtro en "nodeSelector" para desplegar solo ahí rook? Parece que esto solo aplica a donde se despliega el operator
   enableSelinuxRelabeling a false si no estamos usando selinux
+  subir el límite de memoria al operator, 128MB es muy poco y da OOM
 
 kc create namespace rook-ceph
 helm3 install rook-ceph .
@@ -163,6 +164,13 @@ Mirar en el nodo donde se esté desplegando en /var/lib/rook/logs
 Buscar "ERROR"
 
 
+Comandos killed. Tiene suficiente memoria? Buscar OOM en el dmesg el host del pod.
+
 
 # Troubleshooting
 Si algún CRD no está creando lo que debe, reiniciar el pod de operator para que chequee que todo está en su sitio.
+
+
+## Logs
+Arranque de rook
+rookcmd: starting Rook v1.0.1 with arguments '/usr/local/bin/rook ceph operator'
