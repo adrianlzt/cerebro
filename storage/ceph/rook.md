@@ -151,7 +151,7 @@ El operator se dará cuenta y hara los nuevos despliegues o quitará los nodos q
 https://github.com/rook/rook/blob/master/Documentation/disaster-recovery.md
 
 
-Borrar un cluster y crearlo de nuevo en principio mantiene los datos, porque están en hostPath, pero puede dar problemas a la hora de levantar los OSDs: https://github.com/rook/rook/issues/2785
+Borrar un cluster tiene pinta de que lo destruye. No tengo claro que se pueda recuperar
 
 
 Borrar OSD a mano
