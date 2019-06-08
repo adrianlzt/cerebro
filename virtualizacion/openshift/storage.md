@@ -78,6 +78,7 @@ Mirar los PVs creados
 kc get pv
 
 CUIDADO! si instalamos varios helm de estos, comparten configuraciones de rolebinding y clusterrolebinding. Borrar un helm afecta a otros. Pods en crash loop por falta de permisos
+El problema es que el nombre de los CluterRoleBinding no se modifican, por lo que al despelgar varios se modifican.
 
 Tendremos que especificar el storage class que hemos creado, o hacerlo por defecto.
 

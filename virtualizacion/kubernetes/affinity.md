@@ -30,6 +30,19 @@ spec:
             - another-node-label-value
 
 
+## Antiaffinity para evitar dos pods en el mismo nodo
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app: "{{ template "mariadb.name" . }}"
+                  release: "{{ .Release.Name }}"
+
+
 # taint
 https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 
