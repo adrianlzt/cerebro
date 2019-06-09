@@ -39,6 +39,9 @@ El rwgs es por si queremos tener interfaz de objetos (tipo Amazon S3)
 Playbook:
 cp site.yml.sample site.yml
 
+Podemos usar docker para desplegar ceph, usar el playbook:
+site-container.yml
+
 Variables donde definimos como vamos a montar el cluster
 cp group_vars/all.yml.sample group_vars/all.yml
 vi group_vars/all.yml (típica conf mínima)
@@ -53,6 +56,8 @@ devices:
   - '/dev/sdb'
 osd_scenario: collocated
 osd_objectstore: bluestore
+
+ntp_service_enabled: true
 
 
 
