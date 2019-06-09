@@ -168,6 +168,7 @@ Montar los OSDs
 ceph-volume lvm list
   para ver los ids y fsid
 ceph-volume lvm activate --all
+  o para activar de uno en uno: ceph-volume lvm activate <osd-id> <osd-fsid>
 
 Ahora tenemos que generar el update-mon-db en cada nodo, e ir pasando la bd entre los nodos para que cada uno añada su parte:
 rsync -avz $ms nodoA:/tmp
@@ -213,6 +214,8 @@ Si algún CRD no está creando lo que debe, reiniciar el pod de operator para qu
 
 Si tenemos algun pod osd fallando, para ver a que disco corresponde podemos mirar el FSID del pod y buscarlo en el fichero /var/lib/rook/log/rook-ceph/ceph-volume.log
 Y ver a que identificador corresponde con lsblk
+Mejor, usar el comando, nos dirá device, osd-fsid y block device uuid:
+ceph-volume lvm list
 
 
 
