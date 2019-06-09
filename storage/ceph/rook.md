@@ -158,6 +158,28 @@ Borrar OSD a mano
 https://gist.github.com/cheethoe/49d9c1d0003e44423e54a060e0b3fbf1
 
 
+## Recuperación cluster
+Vamos a proceder a recuperar la info de los monitores a partide los OSDs
+
+Instalar en los hosts:
+yum install -y ceph-osd
+
+Montar los OSDs
+ceph-volume lvm list
+  para ver los ids y fsid
+ceph-volume lvm activate --all
+
+Ahora tenemos que generar el update-mon-db en cada nodo, e ir pasando la bd entre los nodos para que cada uno añada su parte:
+rsync -avz $ms nodoA:/tmp
+nodoA$ for osd in /var/lib/ceph/osd/ceph-*; do ceph-objectstore-tool --data-path $osd --op update-mon-db --mon-store-path /tmp/mon-store --no-mon-config; done
+rsync -avz nodoA:$ms /tmp
+rsync -avz $ms nodoB:/tmp
+nodoA$ for osd in /var/lib/ceph/osd/ceph-*; do ceph-objectstore-tool --data-path $osd --op update-mon-db --mon-store-path /tmp/mon-store --no-mon-config; done
+rsync -avz nodoB:$ms /tmp
+etc
+
+
+
 
 # Errores
 Tras timeouts del cluster por etcd indisponible, el pod de rgw no borró y no se volvió a construir.
