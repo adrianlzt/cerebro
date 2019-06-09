@@ -171,19 +171,23 @@ ceph-volume lvm activate --all
   o para activar de uno en uno: ceph-volume lvm activate <osd-id> <osd-fsid>
 
 Ahora tenemos que generar el update-mon-db en cada nodo, e ir pasando la bd entre los nodos para que cada uno añada su parte:
-rsync -avz $ms nodoA:/tmp
 nodoA$ for osd in /var/lib/ceph/osd/ceph-*; do ceph-objectstore-tool --data-path $osd --op update-mon-db --mon-store-path /tmp/mon-store --no-mon-config; done
-rsync -avz nodoA:$ms /tmp
-rsync -avz $ms nodoB:/tmp
+rsync -avz nodoA:/tmp/mon_store /tmp
+rsync -avz /tmp/mon_store nodoB:/tmp
 nodoA$ for osd in /var/lib/ceph/osd/ceph-*; do ceph-objectstore-tool --data-path $osd --op update-mon-db --mon-store-path /tmp/mon-store --no-mon-config; done
-rsync -avz nodoB:$ms /tmp
+rsync -avz nodoB:/tmp/mon_store /tmp
 etc
 
 En el último nodo donde tengamos toda la bbdd sync
 yum install ceph-mon
 ceph-monstore-tool /tmp/mon-store rebuild
 
-/usr/bin/ceph-mon --mon-data /var/lib/rook/mon-x -c /var/lib/rook/rook-ceph/rook-ceph.config -d
+
+Si tenemos problemas, podemos usar este comando para leer el contenido de la db rocksdb:
+ceph-kvstore-tool rocksdb /tmp/mon-store/store.db/ list
+ceph-kvstore-tool rocksdb /tmp/mon-store/store.db/ get osdmap 123
+ceph-kvstore-tool rocksdb /tmp/mon-store/store.db/ dump
+  saca el contenido como od -ax
 
 
 
