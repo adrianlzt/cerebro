@@ -1,3 +1,40 @@
+# Master-slave (nativo)
+
+SHOW SLAVE STATUS \G
+  para ver el estado de un slave (solo funciona si lo ejecutamos en un slave)
+  Para saber que la replicación está funcionando deben tener estos valores
+    Slave_IO_Running: Yes
+    Slave_SQL_Running: Yes
+
+Generalmente se configuran los slaves para bloquear la escritura.
+Podemos comprobar si está activo (1) con:
+SELECT @@global.super_read_only;
+CUIDADO! los SUPER users (root típicamente) pueden seguir modificando la tabla. Esto puede llevar a que se rompa la sincronización (por ejemplo si borramos una tabla)
+  hay un super_read_only, pero no en mariadb https://www.percona.com/blog/2016/09/27/using-the-super_read_only-system-variable/
+Modificar el valor:
+SET @@global.read_only=1;  // poner en read-only
+
+
+## promote slave to master
+https://mariadb.com/kb/en/library/changing-a-slave-to-become-the-master/
+https://www.percona.com/blog/2013/04/17/reset-slave-vs-reset-slave-all-disconnecting-a-replication-slave-is-easier-with-mysql-5-5/
+
+
+## Borrar un slave para que empieze de cero
+stop slave;
+reset slave;
+
+En este punto tendremos que dejar la bbdd limpia para que se puedan replicar los statements del master.
+Por ejemplo, tuve que renombrar el user root de mysq.user (y hacer un flush privileges;) porque el primer statement era la creación de ese usuario (que ya existía en esta bbdd)
+
+start slave;
+SHOW SLAVE STATUS \G
+
+
+
+
+
+# Galera
 http://galeracluster.com/documentation-webpages/index.html
 https://severalnines.com/blog/9-tips-going-production-galera-cluster-mysql
 Limitaciones: https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-limitations/

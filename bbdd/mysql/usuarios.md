@@ -16,10 +16,11 @@ Acceso desde cualquier ip:
 
 
 Mostrar credenciales:
-mysql> SHOW GRANTS;
+SHOW GRANTS;
   solo muestra lo del user logueado
-mysql> SHOW GRANTS FOR 'user'@'ip';
-mysql> select host, user, password from mysql.user;
+show grants for pepe;
+SHOW GRANTS FOR 'user'@'ip';
+select host, user, password from mysql.user;
 
 Borrar usuario:
 mysql> DROP USER 'user'@'localhost';
