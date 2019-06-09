@@ -48,3 +48,17 @@ disk_stat: muestra si hay HPA (https://en.wikipedia.org/wiki/Host_protected_area
 
 sorter -f <filetype> -d <dir_out> image/fs
   nos hace un resumen de lo que contiene la imagen o el fs (sin montar)
+
+
+# XFS
+http://jftp.inai.de/hxtools/
+xfs_irecover(1) – recover lost inodes from XFS filesystems. (Not that XFS would be unstable - but it provides crucial measures to simplify extraction compared to other popular filesystems.)
+
+xfs_irecover -D /dev/mapper/centos-root -o /mnt/
+
+No recupera file names.
+
+
+
+https://github.com/salviati/xfsr
+no probado

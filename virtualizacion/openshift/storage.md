@@ -158,6 +158,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: nombre-recurso
 spec:
+  storageClassName: manual  # opcional, si no cogerá la default
   accessModes:
   - ReadWriteOnce|ReadWriteMany|ReadOnlyMany  # Elegir uno
   resources:
