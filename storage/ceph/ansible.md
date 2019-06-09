@@ -42,6 +42,8 @@ cp site.yml.sample site.yml
 Podemos usar docker para desplegar ceph, usar el playbook:
 site-container.yml
 
+Si no queremos que intente instalar docker, quitar este include role: ceph-container-engine
+
 Variables donde definimos como vamos a montar el cluster
 cp group_vars/all.yml.sample group_vars/all.yml
 vi group_vars/all.yml (típica conf mínima)
@@ -54,14 +56,13 @@ monitor_interface: eth1
 radosgw_interface: eth1
 devices:
   - '/dev/sdb'
-osd_scenario: collocated
-osd_objectstore: bluestore
 
 ntp_service_enabled: true
 
 
 
 
+ANTIGUO
 http://docs.ceph.com/ceph-ansible/master/osds/scenarios.html
 osd_scenario: define como se van a configurar los discos
   - collocated: data y metadata en el mismo disco. Debemos pasar discos enteros (ceph lo particionará)
