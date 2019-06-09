@@ -178,6 +178,12 @@ nodoA$ for osd in /var/lib/ceph/osd/ceph-*; do ceph-objectstore-tool --data-path
 rsync -avz nodoB:$ms /tmp
 etc
 
+En el último nodo donde tengamos toda la bbdd sync
+yum install ceph-mon
+ceph-monstore-tool /tmp/mon-store rebuild
+
+/usr/bin/ceph-mon --mon-data /var/lib/rook/mon-x -c /var/lib/rook/rook-ceph/rook-ceph.config -d
+
 
 
 
