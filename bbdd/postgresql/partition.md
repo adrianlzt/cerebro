@@ -21,6 +21,7 @@ Ejemplo de uso: https://github.com/Doctorbal/zabbix-postgres-partitioning#create
 # Partitioning
 https://wiki.postgresql.org/wiki/Table_partitioning
 A partir de la versión 10 meten "Declarative Partitionning"
+https://www.postgresql.org/docs/current/ddl-partitioning.html
 
 \d+ nombre
   para ver la tabla y sus partitions
@@ -69,6 +70,17 @@ No podemos hacer attach de la misma tabla a dos parents distintas.
 
 Podemos usar detach para sacar una tabla de una parent a modo de "cold bucket", manteniendo los datos pero evitando que se hagan queries sobre esa tabla vieja.
 Aunque esto no tiene pinta de tener mucho beneficio, ya que cuando se hace un scan lo primero que mira postgres es si debe analizar cada tabla segun sun range
+
+ALTER TABLE measurement ATTACH PARTITION measurement_y2008m02 FOR VALUES FROM ('2008-02-01') TO ('2008-03-01' );
+  hacer un attach puede llevar tiempo. he visto 45" para 20GB
+ALTER TABLE measurement DETACH PARTITION measurement_y2006m02;
+
+Sacar, renombrar, unir (una default en una "normal"):
+alter table history_log detach partition history_log_default;
+alter table history_log_default rename to history_log_1459567933_1560211200;
+alter table history_log attach PARTITION history_log_1459567933_1560211200 FOR VALUES FROM ('1459567933') to ('1560211200');
+
+
 
 
 ### Ejemplo

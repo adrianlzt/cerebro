@@ -55,6 +55,9 @@ Modificar un field tipo texto a jsonb (el using me lo dice que lo ponga, porque 
 alter table main_host alter column variables type jsonb USING variables::jsonb;
 
 
+## Renombrar
+ALTER TABLE table_name RENAME TO new_table_name;
+
 
 
 # Tabla con una PRIMARY KEY formada por dos valores
