@@ -81,3 +81,7 @@ DELETE FROM
   table
 WHERE
   id IN (SELECT id FROM table WHERE key = 'needle' LIMIT 10000);
+
+
+Como solucionar un postgres que no arranca por disco lleno, si no podemos crecer el disco.
+Enlaces simbólicos a otros FS?
