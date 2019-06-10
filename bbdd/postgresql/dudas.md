@@ -90,3 +90,10 @@ Enlaces simbólicos a otros FS?
 
 Como funciona el wal. Que se almacena? los comandos que vamos ejecutando.
 Si hacemos un borrado de varios gigas, los wal contendran esos datos borrados?
+
+
+
+Directorio pg_wal muy grande. Estamos casi sin espacio en disco.
+Hemos movido unos cuantos a otro disco con "ln -s" pero no vemos que se borren.
+Suceden los checkpoints pero no se borran.
+Como decide postgres que debe borrar ficheros de pg_wal?
