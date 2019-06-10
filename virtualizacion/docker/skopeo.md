@@ -1,8 +1,10 @@
-https://github.com/runcom/skopeo
+https://github.com/containers/skopeo
 
 Get information about containers' images without downloading them
 
 Permite hacer copias entre registries.
+
+skopeo inspect docker://docker.io/fedora
 
 
 
