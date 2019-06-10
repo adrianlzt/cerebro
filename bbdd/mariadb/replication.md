@@ -39,6 +39,8 @@ http://galeracluster.com/documentation-webpages/index.html
 https://severalnines.com/blog/9-tips-going-production-galera-cluster-mysql
 Limitaciones: https://mariadb.com/kb/en/library/mariadb-galera-cluster-known-limitations/
 
+Problemas en producción: https://news.ycombinator.com/item?id=16561022
+
 bbdd/percona tambien usa galera
 
 Podemos montar un nodo con dos mariadb y un arbitrador (http://galeracluster.com/documentation-webpages/arbitrator.html)
