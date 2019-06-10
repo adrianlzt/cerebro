@@ -85,3 +85,8 @@ WHERE
 
 Como solucionar un postgres que no arranca por disco lleno, si no podemos crecer el disco.
 Enlaces simbólicos a otros FS?
+
+
+
+Como funciona el wal. Que se almacena? los comandos que vamos ejecutando.
+Si hacemos un borrado de varios gigas, los wal contendran esos datos borrados?
