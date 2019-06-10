@@ -71,3 +71,13 @@ Leyendo las mejoras que aporta el particionado, no veo en que caso el "hash part
 
 
 Donde encontrar la doc de: pg_get_partition_constraintdef
+
+
+
+No podemos borrar porque no hay espacio suficente. La query DELETE falla.
+Se puede hacer que no se ejecute dentro de una transacción para poder ir borrando según ejecutemos?
+Hacer con una subselect (https://stackoverflow.com/questions/3421226/deleting-many-rows-without-locking-them)?
+DELETE FROM
+  table
+WHERE
+  id IN (SELECT id FROM table WHERE key = 'needle' LIMIT 10000);

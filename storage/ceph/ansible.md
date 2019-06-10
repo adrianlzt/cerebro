@@ -42,6 +42,9 @@ cp site.yml.sample site.yml
 Podemos usar docker para desplegar ceph, usar el playbook:
 site-container.yml
 
+Como lanza los containers para simular estar en el host:
+docker run --rm --privileged --net=host --ipc=host -v /run/lock/lvm:/run/lock/lvm:z -v /var/run/udev/:/var/run/udev/:z -v /dev:/dev -v /etc/ceph:/etc/ceph:z -v /run/lvm/:/run/lvm/ -v /var/lib/ceph/:/var/lib/ceph/:z -v /var/log/ceph/:/var/log/ceph/:z --entrypoint=ceph-volume docker.io/ceph/daemon:v4.0.0-stable-4.0-nautilus-centos-7-x86_64 --cluster ceph lvm list
+
 Si no queremos que intente instalar docker, quitar este include role: ceph-container-engine
 
 Variables donde definimos como vamos a montar el cluster
