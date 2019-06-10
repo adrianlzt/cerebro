@@ -36,3 +36,7 @@ select pg_switch_wal();
 
 Si tenemos "wal_keep_segments" estamos forzando a la bbdd a dejar ese número de ficheros de wal, por si una replica se tuviese que conectar.
 Usar para este caso (mantener wal necesarios para sincronizar) connection slots? https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+
+
+# Slots
+select * from pg_replication_slots;

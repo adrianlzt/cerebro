@@ -1,6 +1,6 @@
 # Vacuum
 https://www.postgresql.org/docs/9.5/static/sql-vacuum.html
-https://severalnines.com/blog/performance-cheat-sheet-postgresql<Paste>
+https://severalnines.com/blog/performance-cheat-sheet-postgresql
   explicación sencilla de que hace vacuum
 
 VACUUM reclaims storage occupied by dead tuples. In normal PostgreSQL operation, tuples that are deleted or obsoleted by an update are not physically removed from their table; they remain present until a VACUUM is done. Therefore it's necessary to do VACUUM periodically, especially on frequently-updated tables.
@@ -47,6 +47,10 @@ select relname, reloptions from pg_class where reloptions is not null;
 Estado autovacuums corriendo:
 select * from pg_stat_progress_vacuum;
 
+
+# Analyze
+Podemos ejecutarlo con "analyze;"
+Obtiene métricas de la bbdd, espacio usado, num de rows, estimaciones para los índices, etc
 
 
 # Autovacuum

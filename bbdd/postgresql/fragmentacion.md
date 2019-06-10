@@ -12,12 +12,16 @@ Tres tipos de espacio no usado:
 
 
 # Espacio no usado en datos de tablas
-SELECT current_database(), schemaname, tblname, pg_size_pretty(bs*tblpages) AS real_size,
-  pg_size_pretty((tblpages-est_tblpages)*bs) AS extra_size,
+SELECT current_database(), schemaname, tblname, bs*tblpages AS real_size,
+  (tblpages-est_tblpages)*bs AS extra_size,
   CASE WHEN tblpages - est_tblpages > 0
     THEN 100 * (tblpages - est_tblpages)/tblpages::float
     ELSE 0
-  END AS extra_ratio, fillfactor, (tblpages-est_tblpages_ff)*bs AS bloat_size,
+  END AS extra_ratio, fillfactor,
+  CASE WHEN tblpages - est_tblpages_ff > 0
+    THEN (tblpages-est_tblpages_ff)*bs
+    ELSE 0
+  END AS bloat_size,
   CASE WHEN tblpages - est_tblpages_ff > 0
     THEN 100 * (tblpages - est_tblpages_ff)/tblpages::float
     ELSE 0
@@ -63,7 +67,8 @@ FROM (
       ORDER BY 2,3
     ) AS s
   ) AS s2
-) AS s3 order by bloat_ratio desc;
+) AS s3;
+
 
 El bloat_ratio nos indica el porcentaje de espacio usado innecesario.
 En unas tablas recien importadas veo valores del orden de 0.0%
