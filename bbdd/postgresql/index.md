@@ -32,6 +32,9 @@ Se pueden crear índices parciales, usando la clausula WHERE.
 Tambien indexar el resultado de una expresión:
 CREATE INDEX ON films ((lower(title)));
 
+## Drop
+DROP INDEX [ CONCURRENTLY ] [ IF EXISTS ] name [, ...] [ CASCADE | RESTRICT ]
+
 
 ## Multicolumn
 https://www.postgresql.org/docs/current/indexes-multicolumn.html

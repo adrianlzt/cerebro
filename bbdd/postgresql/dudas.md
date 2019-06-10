@@ -97,3 +97,8 @@ Directorio pg_wal muy grande. Estamos casi sin espacio en disco.
 Hemos movido unos cuantos a otro disco con "ln -s" pero no vemos que se borren.
 Suceden los checkpoints pero no se borran.
 Como decide postgres que debe borrar ficheros de pg_wal?
+
+Teniamos wal_keep_segments=2000 por eso no los borraba
+Tiene sentido seguir usando ese parámetro?
+https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+Aqui hablan de que los replication slots ya se encargan de mantener los wal necesarios para que las replicas no pierdan sync
