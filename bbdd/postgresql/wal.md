@@ -14,6 +14,9 @@ reset the write-ahead log and other control information of a PostgreSQL database
 
 It should be possible to start the server, but bear in mind that the database might contain inconsistent data due to partially-committed transactions
 
+Ejecutado una vez sobre la bbdd de zabbix. Datos incoherentes. Por ejemplo, dos valores en una tabla saltándose la unicidad marcada por la primary key.
+
+
 
 # Datos sobre el wal
 select pg_current_wal_lsn()
