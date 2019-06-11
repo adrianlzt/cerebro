@@ -58,11 +58,24 @@ Almacena, al menos, 24h de datos. Los nuevos datos se meten en la cache antes de
 
 
 ## Write cache
+History cache is used to store item values. A low number indicates performance problems on the database side.
+
 Donde se almacenan los datos antes de ser enviados a la bbdd.
 Si se llena es que los histtory syncers no dan a basto.
 Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
 
+El parametro para configurar su tamaño es
+HistoryCacheSize
+
+En el codigo se pide con: DCget_stats(ZBX_STATS_HISTORY_PFREE)
+Y se calcula como:
+100 * (double)hc_mem->free_size / hc_mem->total_size
+
+
+La función que saca los datos de la wcache a la db:
+DCsync_history
+Esta función es llamada por el loop de los dbsyncers
 
 
 # Imágenes / frontend
