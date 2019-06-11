@@ -84,6 +84,13 @@ lvextend -r -L +1G /dev/pruebasLVM/opt1
 lvextend -r -l +100%FREE VG/LV
   aumentar el volumen LV del volume group VG hasta el 100% de espacio disponible en el VG
 
+# Renombrar
+lvs vgrename nombreVG nuevoNombre
+
+Tambien podemos usar el UUID, por ejemplo, en el caso de tener dos con el mismo nombre (obtener uuid con vgdisplay)
+vgrename UUID nuevoNombre
+
+
 # Reducir
 lvreduce -r -L -1G /dev/pruebasLVM/opt1
 
@@ -321,3 +328,10 @@ lvm dumpconfig
 volcado de la config
 
 /etc/lvm/.cache para ver que dispositivos tienen volumenes lógicos sobre ellos
+
+
+
+# Errores
+Read-only locking type set. Write locks are prohibited.
+Pasarle a los comandos lo siguiente:
+lvs comando --config 'global {locking_type=1}' xxx
