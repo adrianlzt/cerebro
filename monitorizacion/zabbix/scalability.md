@@ -64,6 +64,7 @@ Donde se almacenan los datos antes de ser enviados a la bbdd.
 Si se llena es que los histtory syncers no dan a basto.
 Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
+Parece que los bloqueos son en el dbcache.c, que cuando coje items a procesar, si algún otro history los tiene bloqueados, se sale si hacer nada.
 
 El parametro para configurar su tamaño es
 HistoryCacheSize
@@ -76,6 +77,9 @@ Y se calcula como:
 La función que saca los datos de la wcache a la db:
 DCsync_history
 Esta función es llamada por el loop de los dbsyncers
+
+Esa función saca items del history cache (hc_pop_items)
+Se comprueba si alguno de esos items está siendo procesado ya por otro history syncer (DCconfig_lock_triggers_by_history_items), si es el caso, se sale del loop sin hacer nada.
 
 
 # Imágenes / frontend
