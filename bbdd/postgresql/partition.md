@@ -128,6 +128,10 @@ where  c.relkind = 'p';  -- partitioned table
 
 Tipo de una tabla particionada: relkind='r'
 
+Tablas child y sus rangos
+select c.relname as table_name, pg_get_expr(relpartbound, c.oid) as partbound from pg_class c where c.relispartition=true and c.relkind='r';
+
+
 Para cuando esté PG12
 https://gist.github.com/amitlan/97dbed8c7c3f49be7579782ba22c9ced
 select  p.*,
