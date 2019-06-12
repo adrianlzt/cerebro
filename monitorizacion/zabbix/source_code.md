@@ -32,8 +32,9 @@ https://github.com/zabbix/zabbix-docker/blob/3.4/server-pgsql/alpine/Dockerfile
 
 Podemos usar los Dockerfile para hacer el build
 
+
 ./bootstrap.sh
-./configure --enable-server --enable-agent --with-postgresql --with-net-snmp --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2 --prefix=/opt/zabbix
+./configure --enable-server --enable-agent --with-postgresql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2 --prefix=/opt/zabbix
   dependiendo de que queramos compilar (server, agent, proxy) y que backend (mysql, postgresql, etc), deberemos poner unas configuraciones u otras
   hay una opción para generar binarios estaticos (no recomendado, al menos para el server)
     --enable-static  (tampoco vale para hpux)
