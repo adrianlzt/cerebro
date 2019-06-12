@@ -100,11 +100,55 @@ src/zabbix_server/dbsyncer/dbsyncer.c
 
 Están en un loop infinito llamando a DCsync_history y luego durmiendo 1" o nada si el DBsync_history se lo pide.
 El sleep será de 1" cuando la cola esté vacía o la mayoría de los items a procesar estén bloqueados por triggers.
+El proceso estará como máximo 60" en DCsync_history. Se le permite salir para poder actualizar las estadísticas (proc title)
 
 DCsync_history (writes updates and new data from pool to database)
   el parámetro sync_type solo toma el valor ZBX_SYNC_FULL cuando paramos el server
   el puntero total_num lo actualizará con el número de elementos que se hayan procesado
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
+  bucle do-while hasta que no queden más elementos o pasemos el tiempo máximo (60")
+  hc_pop_items (pops the next batch of history items from cache for processing). Dice que debemos devolver los elementos con hc_pop_items() tras procesarlos.
+    obtiene de cache->history_queue hasta un máximo de 1000 items
+    lo que obtiene son itemids a procesar, no los valores
+    para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
+  DCconfig_lock_triggers_by_history_items (Lock triggers for specified items so that multiple processes do not process one trigger simultaneously)
+    NOTA: creo que sobre lo que se hace el bucle for son los values, no los itemids. No tengo claro de donde saca values_num
+    por cada item obtenido en hc_pop_items, obtenemos sus triggers
+    si alguno de los triggers asociados al item está ya bloqueado, aumentamos el contados locked_num y vamos a procesar el siguiente item (solo se tienen en cuenta trigger enabled)
+    si todos los triggers están unlocked, los bloqueamos nosotros para poder procesarlos de forma unívoca
+    retorna el número de items que ha conseguido bloquear
+    tambien pone en el puntero triggerids los triggers que es necesario procesar asociados a los items (la lista de triggers a procesar una vez hemos quitado los que estaban bloqueados)
+  hc_push_busy_items (push back the busy (locked by triggers) items into history cache)
+    devolvemos a cache->history_queue los items que están bloqueados (DCconfig_lock_triggers_by_history_items los marcó para que ahora solo tengamos que mirar el flag status de cada item)
+    los saca de history_items
+  Se sale si no tiene items que procesar. En este caso en las trazas debug deberíamos ver una transición muy rápida entre "In DCsync_history" y "setproctitle" (1ms)
+  history_num contiene el número de values con las que estamos trabajando *CREO* (o el numero de itemids?)
+  hc_get_item_values (gets item history values)
+    ahora es cuando coje, para cada itemid, los values que están en la cache
+    hc_copy_history_data (copies item value from history cache into the specified history value)
+      parece que lo que hace es trerse el comiendo de la linked list que usará para obtener los valores
+  abre transacción SQL
+  DCmass_update_items (update items info after new value is received)
+    DCget_delta_items (Get a copy of delta item history stored in configuration cache)
+    por cada item (o por cada value)
+      DCadd_update_item_sql
+        1) generate sql for updating item in database
+        2) calculate item delta value
+        3) add events (item supported/not supported)
+        4) update cache (requeue item)
+      DCinventory_value_add (añadir datos a la tabla host_inventory?)
+    DCadd_update_inventory_sql (actualización de la tabla host_inventory)
+    DCset_delta_items
+  DCmass_add_history (inserting new history data after new value is received)
+    llama a la función apropiada para almacenar el dato: dc_add_history_dbl, dc_add_history_uint, etc
+    dc_add_history_dbl (helper function for DCmass_add_history())
+      Entiendo que está generando la query tipo: insert into history (itemid,clock,ns,value) values (12794841,1560281498,27508301,17387.989214),(12794839,1560281498,27508302,10183.237600)...
+      prepara la query para insertar los datos
+      para cada uno de los values llama a zbx_db_insert_add_values para meter los datos en la query
+    zbx_vc_add_value (almacena los datos en la value cache)
+  DCmass_update_triggers
+  DCmass_update_trends
+  commit
 
 Esa función saca items del history cache (hc_pop_items)
 Se comprueba si alguno de esos items está siendo procesado ya por otro history syncer (DCconfig_lock_triggers_by_history_items), si es el caso, se sale del loop sin hacer nada.
