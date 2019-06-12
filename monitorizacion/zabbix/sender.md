@@ -62,40 +62,7 @@ Respuesta (legible):
 
 
 # Internal
-En procesos_internos.md hay detalle de como se procesan los datos
-En lld.md trazas de que hace un trap al procesar un lld enabled o disabled.
-
-Los datos de los agentes activos y los traps se tratan de igual manera.
-Entran por la función:
-recv_agenthistory (processes the received values from active agents and senders)
-En el log modo debug podemos encontrar "In recv_agenthistory"
-
-El dato se procesa con:
-process_hist_data
-
-Debajo veo siempre "process_mass_data".
-
-Luego parece que hay una función que resuelve las macros de cada item que venga en el array de traps: substitute_simple_macros
-
-En caso de que el trap procesado sea un lld veremos:
-In lld_process_discovery_rule() itemid:404200
-...
-End of lld_process_discovery_rule()
-
-Para el resto de valores el debug no mostrará nada (veremos una línea de "substitute_simple_macros" por cada trap analizado)
-
-
-Termina cuando contesta al cliente (zbx_send_response) y pone:
-End of recv_agenthistory()
-
-Luego, si se queda sin nada que hacer, pondrá el título (__zbx_zbx_setproctitle) o si no, seguirá con el siguiente item (y pondrá el título una vez cada 5")
-
-Cuando un trapper recibe datos veremos una linea como:
-  2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
-
-
-
-## Conex TCP
+## 1. Recepción de los datos TCP
 Cada trapper escucha en un bucle for por nuevas conex tcp: zbx_tcp_accept
 
 Dentro de esa función:
@@ -122,6 +89,71 @@ https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.
 Lo que se va haciendo es ir leyendo el protocolo: https://www.zabbix.com/documentation/4.0/manual/appendix/protocols/header_datalen
 Primero la header, luego version, data length y datos
 
+Si zbx_tcp_recv_to termina bien, se ejecuta process_trap.
+Aqui se mira que tipo de petición nos están enviando, un trapper, solicitar configuración, datos sobre las colas, etc
+Cada una llama a su función.
 
-zbx_recv_response
-read a response message (in JSON format) from socket, optionally extract "info" value.
+Para trappers o agent active, se llama a recv_agenthistory (mirar siguiente sección)
+
+
+## Procesado de trappers / agent active
+En lld.md trazas de que hace un trap al procesar un lld enabled o disabled.
+
+Ejemplo de logs debug para la llegada de un simple item sin macros ni lld:
+  __zbx_zbx_setproctitle() title:'trapper #1 [processing data]'
+  trapper got '{"request":"sender data","data":[{"host":"test","key":"test","value":"1"}]}'
+  In recv_agenthistory()
+  In process_hist_data()
+  In process_mass_data()
+  In substitute_simple_macros() data:EMPTY
+  End of process_mass_data()
+  End of process_hist_data():SUCCEED
+  In zbx_send_response()
+  zbx_send_response() '{"response":"success","info":"processed: 1; failed: 0; total: 1; seconds spent: 0.000105"}'
+  End of zbx_send_response():SUCCEED
+  End of recv_agenthistory()
+  __zbx_zbx_setproctitle() title:'trapper #1 [processed data in 0.000274 sec, waiting for connection]'
+
+
+Los datos de los agentes activos y los traps se tratan de igual manera (en zabbix 4 creo que esto cambia ligeramente, para comprobar que si un item es active, solo pueda recibir datos que tenga la header AGENT DATA, y la misma comprobación para los trapper)
+Entran por la función:
+recv_agenthistory (processes the received values from active agents and senders)
+En el log modo debug podemos encontrar "In recv_agenthistory"
+
+Se procesa el dato y se envia la respuesta al cliente:
+
+process_hist_data (process values sent by proxies, active agents and senders)
+  se van pasando los elementos de "data" en grupos de 256 elementos a process_mass_data
+  process_mass_data (process new item value)
+    se obtienen los items de la cache de configuración (DCconfig_get_items_by_keys)
+    se skipean las disabled, host disabled, que no pertenezcan al proxy adecuado, que estén en mantinimiento, o que no sean trapper o agent active.
+    los trappers, se les sustituye las macros (substitute_simple_macros) y se comprueba se la ip se puede comunicar (zbx_tcp_check_security)
+    si el item no está soportado, se marca como ZBX_NOTSUPPORTED
+    se almacena: dc_add_history
+    dc_requeue_items, creo que para mover items entre un/reachable
+
+
+zbx_send_response
+
+
+
+Luego parece que hay una función que resuelve las macros de cada item que venga en el array de traps: substitute_simple_macros
+
+En caso de que el trap procesado sea un lld veremos:
+In lld_process_discovery_rule() itemid:404200
+...
+End of lld_process_discovery_rule()
+
+Para el resto de valores el debug no mostrará nada (veremos una línea de "substitute_simple_macros" por cada trap analizado)
+
+
+Termina cuando contesta al cliente (zbx_send_response) y pone:
+End of recv_agenthistory()
+
+Luego, si se queda sin nada que hacer, pondrá el título (__zbx_zbx_setproctitle) o si no, seguirá con el siguiente item (y pondrá el título una vez cada 5")
+
+Cuando un trapper recibe datos veremos una linea como:
+  2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
+
+
+
