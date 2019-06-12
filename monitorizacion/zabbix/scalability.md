@@ -65,7 +65,8 @@ Si se llena es que los histtory syncers no dan a basto.
 Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
 Parece que los bloqueos son en el dbcache.c, que cuando coje items a procesar, si algún otro history los tiene bloqueados, se sale si hacer nada.
-El bloqueo se puede producir, típicamente, por trigges con last grandes, o calculated con count grandes.
+Mirar más abajo sección "Bloqueo elementos write cache"
+
 
 El parametro para configurar su tamaño es
 HistoryCacheSize
@@ -92,6 +93,30 @@ Se procesan los triggers.
 Luego se quita el lock sobre los items.
 Se devuelven los items a la cache con la función hc_push_processed_items
 Esta función es la que borra valores de la cache, excepto si se marcaron como busy por hc_push_busy_items
+
+
+## Bloqueo elementos write cache
+Trigger y items count pueden provocar que ciertos elementos no se liberen de la cache.
+Las funciones que pueden usar valores atrás en el tiempo (v3.2) son estas (el valor sec|#num es el primer parámetro excepto si se especifica lo contrario):
+avg
+band
+count
+delta
+forecast
+iregexp (segundo parámetro)
+last
+max
+min
+percentile
+regexp (segundo parámetro)
+str (segundo parámetro)
+strlen
+sum
+timeleft
+
+
+
+
 
 
 # Imágenes / frontend
