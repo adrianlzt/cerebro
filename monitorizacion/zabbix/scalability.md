@@ -95,9 +95,16 @@ Y se calcula como:
 100 * (double)hc_mem->free_size / hc_mem->total_size
 
 
-La función que saca los datos de la wcache a la db:
-DCsync_history
-Esta función es llamada por el loop de los dbsyncers
+Los procesos encargados de sincronizar la write cache con la base de datos son los dbsyncers
+src/zabbix_server/dbsyncer/dbsyncer.c
+
+Están en un loop infinito llamando a DCsync_history y luego durmiendo 1" o nada si el DBsync_history se lo pide.
+El sleep será de 1" cuando la cola esté vacía o la mayoría de los items a procesar estén bloqueados por triggers.
+
+DCsync_history (writes updates and new data from pool to database)
+  el parámetro sync_type solo toma el valor ZBX_SYNC_FULL cuando paramos el server
+  el puntero total_num lo actualizará con el número de elementos que se hayan procesado
+  cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
 
 Esa función saca items del history cache (hc_pop_items)
 Se comprueba si alguno de esos items está siendo procesado ya por otro history syncer (DCconfig_lock_triggers_by_history_items), si es el caso, se sale del loop sin hacer nada.

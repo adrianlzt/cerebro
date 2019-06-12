@@ -78,5 +78,7 @@ Esto quiere decir que los history syncer tienen muchos elementos que sincronizar
 
 Si los history syncer no dan a basto, veremos como la cache "history write" empezará a gastar espacio. También la "history index".
 
+Detalle de como saca los datos en cache.md sección "Write cache"
+
 
 # unreachable poller
