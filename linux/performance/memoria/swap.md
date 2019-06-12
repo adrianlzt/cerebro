@@ -1,3 +1,6 @@
+Mirar vmstat.md
+https://www.linux.com/news/all-about-linux-swap-space
+
 swapon, swapoff - enable/disable devices and files for paging and swapping
 
 Para saber cual es la partición de swap
@@ -29,5 +32,5 @@ Puede tardar un rato.
 Podremos ver con "free -m" como se va vaciando
 
 
-Mirar si estamos swapeando
-vmstat.md
+swap out / page out, sacar páginas de memoria a la swap
+swap in / page in, obtener páginas de memoria de la swap a memoria.
