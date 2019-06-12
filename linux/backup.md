@@ -15,6 +15,10 @@ bacula
 BackupPC
 
 
+# restic
+https://restic.readthedocs.io/en/latest/index.html
+Simple, con varios backends. Escrito en go.
+
 
 
 rsnapshot
