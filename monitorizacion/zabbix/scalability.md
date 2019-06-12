@@ -57,6 +57,9 @@ Se almacenan structs con los items. Para cada item se almacenan sus valores, des
 Almacena, al menos, 24h de datos. Los nuevos datos se meten en la cache antes de ir a la bbdd
 
 
+## History cache
+Como se insertan datos en la history cache detallado en trap.md
+
 ## Write cache
 History cache is used to store item values. A low number indicates performance problems on the database side.
 
@@ -113,6 +116,11 @@ str (segundo parámetro)
 strlen
 sum
 timeleft
+
+Para los item calculated estas funciones estarán en el field "params" de la forma:
+count("nombreitem",300,"2..",regexp)
+Pueden tener varias funciones:
+100*last(telegraf.net.err_out[eth0],0)/(last(telegraf.net.packets_sent[eth0],0)+count(telegraf.net.packets_sent[eth0],#1,0))
 
 
 
