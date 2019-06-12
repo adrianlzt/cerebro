@@ -65,6 +65,7 @@ Si se llena es que los histtory syncers no dan a basto.
 Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
 Parece que los bloqueos son en el dbcache.c, que cuando coje items a procesar, si algún otro history los tiene bloqueados, se sale si hacer nada.
+El bloqueo se puede producir, típicamente, por trigges con last grandes, o calculated con count grandes.
 
 El parametro para configurar su tamaño es
 HistoryCacheSize
@@ -80,6 +81,17 @@ Esta función es llamada por el loop de los dbsyncers
 
 Esa función saca items del history cache (hc_pop_items)
 Se comprueba si alguno de esos items está siendo procesado ya por otro history syncer (DCconfig_lock_triggers_by_history_items), si es el caso, se sale del loop sin hacer nada.
+Creo que en este caso veremos en el log de debug unas trazas muy rápidas de proctitle, ejemplo:
+ 28430:20190611:213246.049 __zbx_zbx_setproctitle() title:'history syncer #21 [synced 0 items in 0.001009 sec, syncing history]'
+ 28430:20190611:213246.050 In DCsync_history() history_num:35381850
+ 28430:20190611:213246.051 __zbx_zbx_setproctitle() title:'history syncer #21 [synced 0 items in 0.000849 sec, idle 1 sec]'
+
+Si seguimos adelante, se arranca una transacción, se meten los datos en history, se actualizan items, update triggers y trends.
+Se procesan los triggers.
+
+Luego se quita el lock sobre los items.
+Se devuelven los items a la cache con la función hc_push_processed_items
+Esta función es la que borra valores de la cache, excepto si se marcaron como busy por hc_push_busy_items
 
 
 # Imágenes / frontend

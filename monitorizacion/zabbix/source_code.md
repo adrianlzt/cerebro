@@ -1,6 +1,8 @@
-SVN
-https://zabbix.org/wiki/Get_Zabbix
+GIT
+https://git.zabbix.com/scm/zbx/zabbix.git
 
+SVN (viejo)
+https://zabbix.org/wiki/Get_Zabbix
 svn co svn://svn.zabbix.com/trunk
 svn co svn://svn.zabbix.com/branches/2.4
 svn co svn://svn.zabbix.com/tags/3.0.1
