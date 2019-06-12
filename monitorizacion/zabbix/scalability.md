@@ -25,17 +25,42 @@ No usar si tenemos muchos hosts. Es muy pesado.
 
 
 # Cache
+Tenemos tres tipos de caches: database, configuration y values
+
+Database cache, métricas zabbix[wcache,*]:
+history cache (tamaño máximo definido por HistoryCacheSize)
+history index cache (tamaño máximo definido por HistoryIndexCacheSize)
+trend cache (tamaño máximo definido por TrendCacheSize)
+
+configuration cache (tamaño máximo definido por CacheSize), métricas zabbix[rcache,*]
+
+value cache (tamaño máximo definido por ValueCacheSize), métricas zabbix[vcache,*]
+
+
+
+## Value cache
 https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
-Value Cache is used for storing item values for evaluating trigger expressions and calculated items.
+Value Cache is used for storing item values for evaluating trigger expressions, calculated items and some macros.
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
 ValueCacheSize=8M (default)
 Podemos ver como va de llena en la gráfica: "Zabbix value cache, % used"
+Métricas internal zabbix[vcache,*]
 Se verá afectada si tenemos muchos "last(x)" donde X sean muchos valores (horas, días, etc)
 
+https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
+https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L1145
+  organización de los datos en la memoria
+
+Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
+
+Almacena, al menos, 24h de datos.
 
 
-La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
+
+## Configuration cache
+Almacena una copia de la configuración de zabbix que está en la database.
 Shared memory size for storing host, item and trigger data
+La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
 
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.
@@ -47,21 +72,12 @@ zabbix_server -R config_cache_reload
 Cuando se realiza el update, se nota una pequeña congelación en los procesos. Al menos visto en los trappers, que mientras se hace el update dejan de contestar.
 
 
-## Value cache
-https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
-https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L1145
-  organización de los datos en la memoria
 
-Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
+## Write cache / history cache
+src/libs/zbxdbcache/dbcache.c
 
-Almacena, al menos, 24h de datos. Los nuevos datos se meten en la cache antes de ir a la bbdd
-
-
-## History cache
-Como se insertan datos en la history cache detallado en trap.md
-
-## Write cache
 History cache is used to store item values. A low number indicates performance problems on the database side.
+Como se insertan datos en la history cache detallado en trap.md
 
 Donde se almacenan los datos antes de ser enviados a la bbdd.
 Si se llena es que los histtory syncers no dan a basto.

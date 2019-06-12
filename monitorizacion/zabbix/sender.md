@@ -130,10 +130,56 @@ process_hist_data (process values sent by proxies, active agents and senders)
     los trappers, se les sustituye las macros (substitute_simple_macros) y se comprueba se la ip se puede comunicar (zbx_tcp_check_security)
     si el item no está soportado, se marca como ZBX_NOTSUPPORTED
     se almacena: dc_add_history
+    dc_add_history (add new value to the cache)
+      para los not supported, un short circuit: dc_local_add_history_notsupported
+      si es un lld: lld_process_discovery_rule (mirar lld.md)
+      se almacena cada tipo de dato con su función particular
+      dc_local_add_history_dbl (float)
+      dc_local_add_history_uint (int)
+        se coje un slot en la local history cache y se almacena el dato (reducido para ejemplificar como lo hace)
+        item_value = dc_local_get_history_slot();
+          si la local history cache llega a los 256 elementos, se hace un flush dc_flush_history (mirar más abajo como trabaja)
+        item_value->itemid = itemid;
+        item_value->value_type = ITEM_VALUE_TYPE_UINT64;
+        item_value->state = ITEM_STATE_NORMAL;
+        item_value->value.value_uint = value_orig;
+      dc_local_add_history_str
+      dc_local_add_history_text
+      dc_local_add_history_log
+
     dc_requeue_items, creo que para mover items entre un/reachable
-
-
+    dc_flush_history
+      hc_add_item_values (adds item values to the history cache)
+        se itera por cada value llamando a hc_clone_history_data
+        hc_clone_history_data (clones item value from local cache into history cache)
+          no entiendo muy bien que hace esto. Hace un malloc para coger memoria, pero solo si lo había hecho ya antes.
+          yo solo veo que coge memoria y copia los valores, pero no que los esté metiendo en ningún sitio.
+          y parece que los siguiente valores pisan los valores antiguos
+          el data donde se almacena los datos es zbx_hc_data, que contiene un puntero al siguiente elemento.
+          se aumentan los contadores cache->stats.history_counter y el que toque según tipo de dato, por ejemplo cache->stats.history_uint_counter
+        si el history cache está lleno se saca mensaje debug (en el trapper): "History buffer is full. Sleeping for 1 second"
+        se busca si tenemos el item ya en la history cache (cache->history_items), si no se inserta (zbx_hashset_insert_ext)
+          esto del hashset parece que es un parecido a un map[]
+          si no existía se llama a hc_queue_item (put back item into history queue), &cache->history_queue
+          estos items son una lista doble enlazada (tail y head) con el itemid y el status
+      cache->history_num += item_values_num
 zbx_send_response
+
+La cache:
+typedef struct
+{
+  zbx_hashset_t   trends;
+  ZBX_DC_STATS    stats;
+
+  zbx_hashset_t   history_items;
+  zbx_binary_heap_t history_queue;
+
+  int     history_num;
+  int     trends_num;
+  int     trends_last_cleanup_hour;
+}
+ZBX_DC_CACHE;
+
 
 
 
