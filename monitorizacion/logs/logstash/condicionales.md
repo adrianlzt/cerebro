@@ -6,6 +6,8 @@ if EXPRESSION {
   ...
 }
 
+if [matched] == "drop"
+
 
 if "metrics" in [tags] {
 

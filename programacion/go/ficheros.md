@@ -13,6 +13,23 @@ os.Open nos devuelve un *os.File, que implementa la interfaz io.Reader
 Mirar fichero.go
 
 
+Leer linea a linea
+file, err := os.Open("file.txt")
+if err != nil {
+    log.Fatal(err)
+}
+defer file.Close()
+
+scanner := bufio.NewScanner(file)
+for scanner.Scan() {
+    fmt.Println(scanner.Text())
+}
+
+if err := scanner.Err(); err != nil {
+    log.Fatal(err)
+}
+
+
 Fichero almacenado en un slice por lineas
 mounts, err := ioutil.ReadFile("/proc/mounts")
 mounts_by_line := strings.Split(string(mounts), "\n")
