@@ -1,21 +1,23 @@
-std.conf:
 input {
-  stdin {
-    type => "mitipo"
-    add_field => {"token" => "NOMBRE" }
+  file {
+    path => "/home/adrian/Documentos/datadope/carrefour/zabbix/PRP-39/logstash/fichero"
+    sincedb_path => "/dev/null"
+     start_position => "beginning"
   }
+}
+
+filter {
 }
 
 output {
   stdout {
-    codec => "json"
+    codec => "rubydebug"
   }
 }
 
 
 
-logstash --path.data . -f std.conf
-  al arrancar escribiremos algo en el stdin y daremos a enter.
 
-Resultado:
-{"message":"mi mensaje","@version":"1","@timestamp":"2015-06-12T14:55:36.668Z","type":"mitipo","token":"NOMBRE","host":"archer"}
+logstash -r --path.data . -f config.conf
+  al arrancar escribiremos algo en el stdin y daremos a enter.
+  cada vez que modifiquemos el fichero se recargará la config automáticamente
