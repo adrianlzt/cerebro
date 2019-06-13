@@ -19,8 +19,8 @@ cat /proc/vmstat
                    # estaba corriendo en otro nodo.
   %pgpgin               # page-ins https://lists.gt.net/linux/kernel/1131720
   %pgpgout              # page-outs
-  %pswpin               # swap-ins – Number of kilobytes the system has swapped in from disk per second.
-  %pswpout              # swap-out – Number of kilobytes the system has swapped out to disk per second.
+  %pswpin               # swap-ins – Number of pages the system has swapped in from disk per second (para convertir a kbytes, multiplicar por 4: https://github.com/shirou/gopsutil/commit/28f9a2862642b0fcba08ec2e79a17c36518792ba#commitcomment-15522510
+  %pswpout              # swap-out – Number of pages the system has swapped out to disk per second. (*4 para kbytes)
                         # Page faults and swapping are two independent processes. Page faults take place when a process requests for an address that has been allocated to it but has not yet been assigned to it. Upon receving this request the Kernel confirms that the address being requested belongs to the process and if so then allocates a new page frame from memory and assigns it to the process.
                         # http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization
 
