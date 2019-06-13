@@ -31,6 +31,10 @@ updated, err := time.Parse(longForm, "2016-03-14 17:52:24")
 Devuelve:
 2016-03-14 17:52:24 +0000 UTC
 
+Con milisegundos (formato zabbix)
+time.Parse("20060102:150405.000", ...)
+
+
 Otra opcion: %Y-%m-%d %H:%M:%S.%f
 t.Format("2006-01-02 15:04:05.000000000")
 
