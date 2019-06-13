@@ -1,6 +1,9 @@
 Guia para comprar gatos
 https://www.epictv.com/article/climbing/ultimate-guide-climbing-shoes-epictv-gear-guide
 
+https://www.youtube.com/watch?time_continue=420&v=a5CT8B6eI0A
+Ondra sobre las características de los gatos
+
 
 Matriz de forma y asimetría respecto a modelos de La Sportiva
 https://nomadventures.files.wordpress.com/2011/10/climbingfit_chart.jpg

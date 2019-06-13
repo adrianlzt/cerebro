@@ -62,6 +62,8 @@ devices:
 
 ntp_service_enabled: true
 
+con stable-4.0 tuve que meter a mano el repo ceph e instalar ceph-grafana-dashboards.noarch para que funcionase grafana. Arreglado upstream parece: https://github.com/ceph/ceph-ansible/commit/6e2e30db54bafb271f7f5bd087f426e5762d9e7e#diff-ff7ce8b599f33b506ce38a5c4e0a5251
+
 
 
 
