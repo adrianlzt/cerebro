@@ -32,7 +32,13 @@ jx compliance
 
 ## Install
 Sobre un cluster de kubernetes ya existente
-jx install
+jx install --helm3
+
+--no-default-environments
+  si queremos configurar luego el servidor git
+
+Long Term Storage
+  no vale para kubernetes on premises (jun'19)
 
 jx install --provider kubernetes
   especificando directamente que estamos desplegando sobre kubernetes (podría ser awx, azure, openshift, etc)
