@@ -4,6 +4,8 @@ https://www.docker.elastic.co/
 All-In-One
 https://github.com/elastic/stack-docker
 
+docker run -p 9200:9200 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+
 docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
 docker run -d -p 9200:9200 --name elastic -e ELASTIC_PASSWORD=changeme -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.0
   la pass changeme es la que usa por defecto la imagen de kibana para conectar con ES
