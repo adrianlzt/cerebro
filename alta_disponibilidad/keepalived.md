@@ -86,3 +86,8 @@ notify
 # Auth - NO USAR
 Note: authentication was removed from the VRRPv2 specification by RFC3768 in 2004.
 Use of this option is non-compliant and can cause problems
+
+
+# Errores
+daemon is already running
+Mirar si hay un .pid en /var/run/keepalived
