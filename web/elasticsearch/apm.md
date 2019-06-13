@@ -31,6 +31,7 @@ Parece que la idea aqui es poder correlar peticiones del RUM con el backend.
 
 
 # Server
+https://raw.githubusercontent.com/elastic/apm-server/v7.1.1/apm-server.docker.yml
 docker run -d --name apm-server -v "$PWD/apm-server.yml:/usr/share/apm-server/apm-server.yml" -p 8200:8200 docker.elastic.co/apm/apm-server:6.3.0
 
 Ejemplo de config corriendo como container (referencia https://github.com/elastic/apm-server/blob/6.3/apm-server.reference.yml):

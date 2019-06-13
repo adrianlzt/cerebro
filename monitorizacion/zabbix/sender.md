@@ -150,6 +150,7 @@ process_hist_data (process values sent by proxies, active agents and senders)
     dc_requeue_items, creo que para mover items entre un/reachable
     dc_flush_history
       hc_add_item_values (adds item values to the history cache)
+        se añaden de dos maneras, el itemid a la history_queue y el value a la history_data
         se itera por cada value llamando a hc_clone_history_data
         hc_clone_history_data (clones item value from local cache into history cache)
           no entiendo muy bien que hace esto. Hace un malloc para coger memoria, pero solo si lo había hecho ya antes.
@@ -161,6 +162,7 @@ process_hist_data (process values sent by proxies, active agents and senders)
         se busca si tenemos el item ya en la history cache (cache->history_items), si no se inserta (zbx_hashset_insert_ext)
           esto del hashset parece que es un parecido a un map[]
           si no existía se llama a hc_queue_item (put back item into history queue), &cache->history_queue
+            esta es la lista de itemids que hay que procesar
           estos items son una lista doble enlazada (tail y head) con el itemid y el status
       cache->history_num += item_values_num
 zbx_send_response

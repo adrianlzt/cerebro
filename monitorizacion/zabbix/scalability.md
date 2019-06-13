@@ -146,9 +146,15 @@ DCsync_history (writes updates and new data from pool to database)
       prepara la query para insertar los datos
       para cada uno de los values llama a zbx_db_insert_add_values para meter los datos en la query
     zbx_vc_add_value (almacena los datos en la value cache)
-  DCmass_update_triggers
+  DCmass_update_triggers (re-calculate and update values of triggers related to the items)
   DCmass_update_trends
+  process_trigger_events
+  DCconfig_triggers_apply_changes
+  zbx_save_trigger_changes
   commit
+  hc_push_processed_items (return processed items into history cache)
+  DCmodule_prepare_history (prepare history data to share them with loadable modules)
+  si no hemos podido sincronizar más de un 10% de los values que cogimos, salimos del do-while para dormir un segundo, esperando que el resto de history syncers liberen los locks
 
 Esa función saca items del history cache (hc_pop_items)
 Se comprueba si alguno de esos items está siendo procesado ya por otro history syncer (DCconfig_lock_triggers_by_history_items), si es el caso, se sale del loop sin hacer nada.
