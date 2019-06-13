@@ -1,3 +1,5 @@
+urllib2 y httplib son las libs nativas
+
 http://docs.python-requests.org/en/latest
 
 mirar slumber.md para un recubrimiento sobre requests para facilitar hablar con api rest
