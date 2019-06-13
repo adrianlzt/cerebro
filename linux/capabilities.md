@@ -23,3 +23,7 @@ capsh --print
 
 capsh --drop=cap_chown --
 siendo root, arrancar una nueva shell sin capability de modificar owner
+
+
+Permite el programa leer todos los ficheros, aunque el user no tenga permiso
+setcap cap_dac_read_search=+ep binario

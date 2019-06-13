@@ -27,15 +27,19 @@ Backend rest-server
 Creamos el repo:
 restic init -r rest:http://localhost:8000/
 
+Podemos crear distintos repos con distintos paths
+restic init -r rest:http://localhost:8000/dos
+
 Usar variables de entorno para pasarle el repo por defecto RESTIC_REPOSITORY
 Y la password ejecutando un comando: RESTIC_PASSWORD_COMMAND
 
 ### backups
 Hacer un backup de un directorio
-restic backup directorio/
+restic backup dir1/ dir2/ dir3/file1
   usará deduplicación para no enviar datos de más
 
 Si volvemos a ejecutar el backup contra el mismo dir, verá que es lo mismo y solo enviará los cambios
+En cada id tendremos todos los ficheros del directorio.
 
 Podemos hacer backup de un único fichero de un directorio ya backupeado:
 restic backup directorio/a
@@ -66,6 +70,17 @@ Buscar ficheros en todos los snapshots
 restic find nombre
 restic find "*.sql"
 
+Dump de un fichero
+restic dump 098db9d5 production.sql | mysql
+
+Truco para seleccionar un fichero por su path y usar latest en vez del snapshot ID
+restic dump --path /production.sql latest production.sql | mysql
+
+
+Dump de un dir, formato tar
+restic dump /home/other/work latest > restore.tar
+
+
 Mount/fuse
 restic mount mnt/
 Tendremos la información puesta organizada de varias formas. Por IDs, por hosts, por tags, por snapshots
@@ -82,6 +97,40 @@ restic restore ID --target /donde/restaurarlo
 
 Podemos poner "latest" como ID
 Seleccionar con --path --host --include
+
+
+### Borrar snapshots
+https://restic.readthedocs.io/en/latest/060_forget.html
+Costoso
+restic forget --prune a8228ef0
+  forget solo "olvida". Prune borra
+
+Si hicimos un backup de un dir y borramos un id viejo, los ficheros seguiran estando en los ids nuevos
+
+restic forget --keep-last 1 --prune
+  dejar solo el último backup de cada directorio
+
+Tenemos varios parámetros para poder políticas de borrado
+https://restic.readthedocs.io/en/latest/060_forget.html#removing-snapshots-according-to-a-policy
+
+Another example: Suppose you make daily backups for 100 years. Then forget --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 75 will keep the most recent 7 daily snapshots, then 4 (remember, 7 dailies already include a week!) last-day-of-the-weeks and 11 or 12 last-day-of-the-months (11 or 12 depends if the 5 weeklies cross a month). And finally 75 last-day-of-the-year snapshots. All other snapshots are removed.
+
+
+### Keys
+Podemos gestionar varias keys para acceder al repo
+restic key list/add/remove/passwd
+
+restic key add
+  crearemos una nueva key con la pass que pongamos. Parece que el User y Host lo pone de forma automática https://github.com/restic/restic/blob/master//internal/repository/key.go#L223
+
+si borramos la key, se dejará de tener acceso.
+
+
+
+### scripting
+podemos pasar --json para sacar el output en formato json
+
+
 
 
 
