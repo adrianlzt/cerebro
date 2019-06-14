@@ -1,3 +1,12 @@
+# timesync (systemd)
+Cliente ntp parte de systemd
+
+timedatectl status
+  comprobar estado
+
+Activar ntp
+timedatectl set-ntp true
+
 # Chrony
 Sustituto moderno de ntp
 
