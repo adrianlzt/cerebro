@@ -157,7 +157,7 @@ https://www.haproxy.com/blog/introduction-to-haproxy-acls/
 default_backend
 sera el fallback si no se hace match en ningún "use_backend"
 
-Podemos poner un backend default sin servers, contestará un 503. Y podemos customizar ese error (opciones necesarias? sacadas de openshift):
+Podemos poner un backend default sin servers, contestará un 503. Y podemos customizar ese error (opciones necesarias? sacadas de openshift). Mirar errorfile.md:
 backend default
   mode http
   option forwardfor
