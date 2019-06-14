@@ -47,6 +47,8 @@ docker run --rm --privileged --net=host --ipc=host -v /run/lock/lvm:/run/lock/lv
 
 Si no queremos que intente instalar docker, quitar este include role: ceph-container-engine
 
+No instala zabbix_sender, tendremos que meterl el paquete XXX a mano dentro del container. zabbix40
+
 Variables donde definimos como vamos a montar el cluster
 cp group_vars/all.yml.sample group_vars/all.yml
 vi group_vars/all.yml (típica conf mínima)
