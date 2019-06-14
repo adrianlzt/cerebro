@@ -60,3 +60,10 @@ Ciertos pods del namespace kube-system se desplegarán de todas maneras:
   kube-controller-manager
   kube-proxy
   nodelocaldns
+
+Ejemplo de toleration:
+tolerations:
+- key: "node-role.kubernetes.io/master"
+  operator: "Equal"
+  effect: "NoSchedule"
+
