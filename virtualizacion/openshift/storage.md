@@ -101,9 +101,18 @@ Esto se hace con un annotation:
 Para modificar un storageClass ya creado:
   kubectl patch storageclass <your-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
-Si queremos especificar un storage-class determinado para un volume, lo haremos con el siguiente annotation:
+Si queremos especificar un storage-class determinado para un volume, lo haremos con el siguiente "annotations":
 volume.beta.kubernetes.io/storage-class: "nombre"
 
+
+Ceph RBD storagelcass
+https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd
+https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/ceph_rbd_dynamic_example.html#ceph-rbd-dynamic-example-create-pool-for-dynamic-volumes
+  aqui más explicado, con los comandos para crear el cliente en ceph y obtener la key del client.admin
+
+Tendremos que crear en ceph los pools necesarios con el application "rbd" enabled.
+Crear los usuarios en algun mon con:
+ceph auth get-or-create client.NOMBREUSER mon 'profile rbd' osd 'profile rbd pool=NOMBREPOOL'
 
 
 # Listar PVs/PVCs (volumes/claims)

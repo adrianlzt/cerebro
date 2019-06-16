@@ -21,6 +21,9 @@ ceph auth get-or-create client.NOMBREUSER mon 'profile rbd' osd 'profile rbd poo
   nos devuelve el contenido del fichero /etc/ceph/ceph.client.NOMBREUSER.keyring
 Luego usaremos "rbd --user NOMBREUSER -p NOMBREPOOL ..."
 
+ceph auth get-or-create client.qemu mon 'profile rbd' osd 'profile rbd pool=vms, profile rbd-read-only pool=images'
+  varios profiles
+
 
 # CLI
 rbd carga el modulo "rbd" en el kernel, si no lo está (pero no lo deja activo).
