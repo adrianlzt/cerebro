@@ -15,6 +15,7 @@ ceph osd pool application get
 
 # Auth
 http://docs.ceph.com/docs/master/rbd/rados-rbd-cmds/
+http://docs.ceph.com/docs/mimic/rados/operations/user-management/
 Crear un usuario para que pueda usar la cli rbd
 
 ceph auth get-or-create client.NOMBREUSER mon 'profile rbd' osd 'profile rbd pool=NOMBREPOOL'

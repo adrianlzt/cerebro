@@ -1,5 +1,9 @@
 https://rook.io/docs/rook/v1.0/ceph-storage.html
 
+Nos evita tener que configurar e instalar ceph.
+También facilita la configuración de ceph en kubernetes.
+
+
 # Requisitos
 modprobe rbd
   debe funcionar

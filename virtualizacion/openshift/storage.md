@@ -114,6 +114,17 @@ Tendremos que crear en ceph los pools necesarios con el application "rbd" enable
 Crear los usuarios en algun mon con:
 ceph auth get-or-create client.NOMBREUSER mon 'profile rbd' osd 'profile rbd pool=NOMBREPOOL'
 
+Tendremos que tener instalado ceph-common en los repos (cambiar ceph release según necesitemos).
+[Ceph]
+name=Ceph packages for $basearch
+baseurl=http://download.ceph.com/rpm-nautilus/el7/$basearch
+enabled=1
+gpgcheck=1
+type=rpm-md
+gpgkey=https://download.ceph.com/keys/release.asc
+
+yum install ceph-common
+
 
 # Listar PVs/PVCs (volumes/claims)
 oc get pv
