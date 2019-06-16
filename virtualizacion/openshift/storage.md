@@ -105,25 +105,47 @@ Si queremos especificar un storage-class determinado para un volume, lo haremos 
 volume.beta.kubernetes.io/storage-class: "nombre"
 
 
-Ceph RBD storagelcass
-https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd
-https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/ceph_rbd_dynamic_example.html#ceph-rbd-dynamic-example-create-pool-for-dynamic-volumes
-  aqui más explicado, con los comandos para crear el cliente en ceph y obtener la key del client.admin
+## Ceph
+1. instalar provisioner externo
+2. crear storage class
+3. crear pvc solicitando usar esa storage class (o haberla puesto como default)
+
+Pareece que kubespray lo puede dejar instalado: https://github.com/kubernetes-sigs/kubespray/tree/d83181a2beb4ca2b759ae287f76000568480ecea/roles/kubernetes-apps/external_provisioner/rbd_provisioner
+
+Hace falta usar un external provider para gestionar rbd:
+https://github.com/kubernetes-incubator/external-storage/tree/master/ceph/rbd
+https://github.com/kubernetes-incubator/external-storage/tree/master/ceph/rbd/deploy/rbac
+Bajar ese dir, cambiar el namespace, despelgar.
+kc create -f rbac/
+
+Los storage class que creemos deberán tener:
+provisioner: ceph.com/rbd
+
 
 Tendremos que crear en ceph los pools necesarios con el application "rbd" enabled.
 Crear los usuarios en algun mon con:
 ceph auth get-or-create client.NOMBREUSER mon 'profile rbd' osd 'profile rbd pool=NOMBREPOOL'
 
-Tendremos que tener instalado ceph-common en los repos (cambiar ceph release según necesitemos).
-[Ceph]
-name=Ceph packages for $basearch
-baseurl=http://download.ceph.com/rpm-nautilus/el7/$basearch
-enabled=1
-gpgcheck=1
-type=rpm-md
-gpgkey=https://download.ceph.com/keys/release.asc
+Parece que también hace falta tener ceph-common instalado.
+ceph.repo
+[ceph]
+baseurl = http://download.ceph.com/rpm-nautilus/el7/$basearch
+gpgcheck = 1
+gpgkey = https://download.ceph.com/keys/release.asc
+name = Ceph packages for $basearch
 
-yum install ceph-common
+yum install -y ceph-common
+
+
+
+NO USAR ESTE METODO: Ceph RBD storageclass (metodo que necesita tener el binario rbd en la imagen del cluster controller)
+https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd
+https://docs.openshift.com/container-platform/3.5/install_config/storage_examples/ceph_rbd_dynamic_example.html#ceph-rbd-dynamic-example-create-pool-for-dynamic-volumes
+  aqui más explicado, con los comandos para crear el cliente en ceph y obtener la key del client.admin
+Parece que el cluster-controller necesita tener "rbd": https://github.com/kubernetes/kubernetes/issues/38923#issuecomment-313054666
+
+
+En caso de error hacer un describe al pvc
 
 
 # Listar PVs/PVCs (volumes/claims)
@@ -133,6 +155,7 @@ oc get pv (solo para admin?)
 
 No aparecen con: oc get all
 
+En caso de error hacer un describe al pvc
 
 
 # Crear un storageclass
