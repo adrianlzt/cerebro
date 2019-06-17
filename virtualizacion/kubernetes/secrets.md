@@ -24,6 +24,9 @@ kubectl create secret generic db-user-pass --from-file=./username.txt --from-fil
 
 Tendremos el secret "db-user-pass" con los data "username.txt" y "password.txt"
 
+Mover un secret de namespace
+kubectl get secret gitlab-registry --namespace=revsys-com --export -o yaml | kubectl apply --namespace=devspectrum-dev -f -
+
 
 # Secret como fichero
     spec

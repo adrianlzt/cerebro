@@ -123,6 +123,8 @@ kc create -f rbac/
 Los storage class que creemos deberán tener:
 provisioner: ceph.com/rbd
 
+Parece que los pool "erasure" dan problemas: https://github.com/rook/rook/issues/1733
+
 
 Tendremos que crear en ceph los pools necesarios con el application "rbd" enabled.
 Crear los usuarios en algun mon con:
