@@ -266,7 +266,7 @@ CUIDADO! en la versión 1.9 por ahora no carga los puertos del server-state-file
 
 
 ## dns service discovery
-https://www.haproxy.com/blog/dns-service-discovery-haproxy/<Paste>
+https://www.haproxy.com/blog/dns-service-discovery-haproxy/
 Usar el resultado de una query DNS SRV (o A) para obtener los backends.
 
 server-template www 200 _http._tcp.red.default.svc.cluster.local:8080 check resolvers kube

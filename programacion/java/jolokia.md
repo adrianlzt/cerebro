@@ -79,4 +79,4 @@ Listar todas las MBeans:
 ## Jboss
 Si queremos pedir datos a JBoss con el esquema que usa en la cli tendremos que poner delante "jboss.as:".
 Ejemplo:
-http://192.168.2.8:8080/jolokia-war-unsecured-1.6.0/read/jboss.as:subsystem=web,connector=http?ignoreErrors=true<Paste>
+http://192.168.2.8:8080/jolokia-war-unsecured-1.6.0/read/jboss.as:subsystem=web,connector=http?ignoreErrors=true

@@ -1,5 +1,5 @@
 # Operator
-https://mariadb.com/kb/en/library/mariadb-kubernetes-overview/<Paste>
+https://mariadb.com/kb/en/library/mariadb-kubernetes-overview/
 Jun'19 alpha
 
 # Helm

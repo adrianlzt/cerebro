@@ -77,7 +77,7 @@ https://www.wireshark.org/docs/man-pages/wireshark-filter.html
     gt, >     Greater Than
     lt, <     Less Than
     ge, >=    Greater than or Equal to
-    le, <=    Less than or Equal to<Paste>
+    le, <=    Less than or Equal to
 
     contains     Does the protocol, field or slice contain a value
     matches, ~   Does the protocol or text string match the given case-insensitive Perl-compatible regular expression

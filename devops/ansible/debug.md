@@ -122,7 +122,7 @@ Para mantener el directorio /tmp/ansible_XXX borraremos al final la orden que bo
 
 
 # PDB
-https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/ansible-project/wL7oS5ktRwQ<Paste>
+https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/ansible-project/wL7oS5ktRwQ
 pip install epdb
 
 Meter donde queramos parar

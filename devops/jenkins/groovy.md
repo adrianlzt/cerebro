@@ -17,7 +17,7 @@ Encontrar su constructor y crear un objeto del tipo que necesitamos.
 Ejemplo:
 https://github.com/jenkinsci/gitlab-plugin/blob/master/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java#L50
 import com.dabsquared.gitlabjenkins.connection.GitLabConnection
-GitLabConnection connection = new GitLabConnection("nombre", "http://url.com", "token", true, 60, 60)<Paste>
+GitLabConnection connection = new GitLabConnection("nombre", "http://url.com", "token", true, 60, 60)
 
 Probaremos en la consola de scripts que esto genera un objeto válido.
 

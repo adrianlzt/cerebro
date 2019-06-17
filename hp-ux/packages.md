@@ -3,10 +3,11 @@ Software Distributor
 
 Parece que los repos son "depots".
 Para buscar paquetes creo que tengo que especificar el depot que usar.
+Los paquetes son .tar
 
 
 Buscar paquetes:
-http://hpux.connect.org.uk/hppd/auto/summary_all.html<Paste>
+http://hpux.connect.org.uk/hppd/auto/summary_all.html
 
 
 Listar paquetes instalados

@@ -21,4 +21,4 @@ Si quito el modeset con nouveau se bloquea el pc al reinicar
 
 
 https://www.reddit.com/r/linux/comments/68eon1/linux_compatibility_with_nvidia_gtx_950m/
-http://redsymbol.net/linux-kernel-boot-parameters/<Paste>
+http://redsymbol.net/linux-kernel-boot-parameters/

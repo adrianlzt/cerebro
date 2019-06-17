@@ -1,4 +1,4 @@
-https://www.postgresql.org/docs/current/wal-configuration.html<Paste>
+https://www.postgresql.org/docs/current/wal-configuration.html
 
 Write ahead log
 

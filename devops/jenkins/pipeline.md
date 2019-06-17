@@ -164,7 +164,7 @@ https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-v
     environment {
         FOO = "BAR"
         BAZ = "bang"
-        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')<Paste>
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
     }
 
 Podemos usarlas en cualquier parte como: env.FOO

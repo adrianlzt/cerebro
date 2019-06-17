@@ -77,7 +77,7 @@ http://conditions.ice-fall.com/secteurs/cascades-freissinieres
 http://conditions.ice-fall.com/secteurs/cascades-entre-les-aigues
 
 ## Ceillac
-http://conditions.ice-fall.com/secteurs/cascades-ceillac<Paste>
+http://conditions.ice-fall.com/secteurs/cascades-ceillac
 
 ## Ailefroide
 https://www.camptocamp.org/waypoints/106735/fr/ailefroide

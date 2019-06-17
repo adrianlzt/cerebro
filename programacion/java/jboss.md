@@ -123,7 +123,7 @@ Subir el .war a Jboss para desplegarla.
 
 
 # Puertos
-https://access.redhat.com/documentation/en-us/jboss_enterprise_application_platform/6/html/installation_guide/network_ports_used_by_jboss_enterprise_application_platform_62<Paste>
+https://access.redhat.com/documentation/en-us/jboss_enterprise_application_platform/6/html/installation_guide/network_ports_used_by_jboss_enterprise_application_platform_62
 Cuando tenemos varios servidores corriendo dentro de jboss, cada uno tendrá un puerto distinto.
 El puerto será el socket binding group + port offset
 

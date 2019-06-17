@@ -101,7 +101,7 @@ Generalmente con 7 días de datos tendremos suficiente.
 Parámetros que tal vez queramos modificar (https://www.elastic.co/guide/en/x-pack/current/monitoring-settings.html):
 
 xpack.monitoring.collection.indices
-The indices to collect data from. Defaults to all indices, but can be a comma-separated list.<Paste>
+The indices to collect data from. Defaults to all indices, but can be a comma-separated list.
 
 xpack.monitoring.collection.interval
 How often data samples are collected. Defaults to 10s

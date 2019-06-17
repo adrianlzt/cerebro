@@ -1,4 +1,4 @@
-http://sapstudent.com/hana/sql-datetime-functions-in-sap-hana<Paste>
+http://sapstudent.com/hana/sql-datetime-functions-in-sap-hana
 
 select YEAR(CURRENT_DATE) from dummy;
 

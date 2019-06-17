@@ -68,7 +68,7 @@ Warning Do not let your cluster reach its full ratio before adding an OSD. OSD f
 
 Chequear que el balanceo de los OSDs es más o menos homogénea ("VAR" en ceph osd df)
 
-Sharding de RGW: https://ceph.com/community/new-luminous-rgw-dynamic-bucket-sharding/<Paste>
+Sharding de RGW: https://ceph.com/community/new-luminous-rgw-dynamic-bucket-sharding/
 
 
 # Crear usuarios que puedan consultar ceph

@@ -120,7 +120,7 @@ field = "Mo-Fr 06:00-21:00; Sa,Su 07:00-21:00"
 oh = hoh.OHParser(field)
 
 
-https://raw.githubusercontent.com/rezemika/humanized_opening_hours/master/humanized_opening_hours/locales/fr_FR/LC_MESSAGES/hoh.pot<Paste>
+https://raw.githubusercontent.com/rezemika/humanized_opening_hours/master/humanized_opening_hours/locales/fr_FR/LC_MESSAGES/hoh.pot
 >>> oh = hoh.OHParser("24/7", locale="es")
 >>> print(oh.plaintext_week_description())
 Lunes : 0:00–23:59

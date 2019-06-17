@@ -1,4 +1,4 @@
-https://metacpan.org/pod/distribution/libwww-perl/bin/lwp-request<Paste>
+https://metacpan.org/pod/distribution/libwww-perl/bin/lwp-request
 
 Si no tenemos wget podemos usar como alternativa:
 

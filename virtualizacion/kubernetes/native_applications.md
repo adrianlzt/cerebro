@@ -35,7 +35,7 @@ Para go, nos dan todo el boilerplate para engancharnos a las modificaciones y ac
 
 
 ## Desarrollar un operator
-https://github.com/operator-framework/getting-started<Paste>
+https://github.com/operator-framework/getting-started
 
 
 ## Operator Hub

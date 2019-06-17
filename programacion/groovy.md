@@ -106,7 +106,7 @@ def pass = new File("/run/secrets/jenkins-pass").text.trim()
 
 # Array
 http://grails.asia/groovy-array-manipulation-examples
-http://mrhaki.blogspot.fr/2015/09/groovy-goodness-removing-elements-from.html<Paste>
+http://mrhaki.blogspot.fr/2015/09/groovy-goodness-removing-elements-from.html
 
 def testArray = new String[3]
 testArray[0] = "A"
