@@ -110,6 +110,8 @@ volume.beta.kubernetes.io/storage-class: "nombre"
 2. crear storage class
 3. crear pvc solicitando usar esa storage class (o haberla puesto como default)
 
+No hace falta crear el secret de user en los namespaces donde se creen los pvc o monten los pods. Se coge del namespace donde se haya definido en el storageclass
+
 Pareece que kubespray lo puede dejar instalado: https://github.com/kubernetes-sigs/kubespray/tree/d83181a2beb4ca2b759ae287f76000568480ecea/roles/kubernetes-apps/external_provisioner/rbd_provisioner
 
 Hace falta usar un external provider para gestionar rbd:
