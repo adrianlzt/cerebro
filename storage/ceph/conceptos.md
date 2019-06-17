@@ -98,6 +98,7 @@ http://docs.ceph.com/docs/jewel/rados/operations/erasure-code/
 http://ceph.com/community/new-luminous-erasure-coding-rbd-cephfs/
 A method of data protection in which data is broken into fragments , encoded and then storage in a distributed manner. Ceph , due to its distributed nature , makes use of EC beautifully.
 The default erasure code profile sustains the loss of a single OSD. It is equivalent to a replicated pool of size two but requires 1.5TB instead of 2TB to store 1TB of data.
+Parece que tiene un coste en performance (https://github.com/rook/rook/issues/1733#issuecomment-398463316)
 
 
 # FSID
