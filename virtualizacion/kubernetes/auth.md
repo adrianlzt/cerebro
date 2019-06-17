@@ -15,6 +15,8 @@ Quitar la sección de cluster.certificate-authority-data si no estamos atacando 
 # Gestion de certificados para usuarios
 https://kubernetes.io/docs/concepts/cluster-administration/certificates/
 
+https://www.linkedin.com/pulse/adding-users-quick-start-kubernetes-aws-jakub-scholz
+
 
 
 https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/#use-case-1-create-user-with-limited-namespace-access
