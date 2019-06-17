@@ -147,6 +147,24 @@ Parece que el cluster-controller necesita tener "rbd": https://github.com/kubern
 
 En caso de error hacer un describe al pvc
 
+Probar desde el nodo de k9s si funciona rbd
+rbd ls -m 10.0.0.2:6789,10.0.0.21:6789 -p kube-pool-1 --id kube --key ACQdZzMIA/8RS5Spf6Axg=
+
+
+Podemos ignorar estas lineas de error:
+did not load config file, using default settings.
+2019-06-16 14:43:37.538 7f042b0a0b00 -1 Errors while parsing config file!
+2019-06-16 14:43:37.538 7f042b0a0b00 -1 parse_file: cannot open /etc/ceph/ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.538 7f042b0a0b00 -1 parse_file: cannot open /root/.ceph/ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.538 7f042b0a0b00 -1 parse_file: cannot open ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.539 7f042b0a0b00 -1 Errors while parsing config file!
+2019-06-16 14:43:37.539 7f042b0a0b00 -1 parse_file: cannot open /etc/ceph/ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.539 7f042b0a0b00 -1 parse_file: cannot open /root/.ceph/ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.539 7f042b0a0b00 -1 parse_file: cannot open ceph.conf: (2) No such file or directory
+2019-06-16 14:43:37.591 7f042b0a0b00 -1 auth: unable to find a keyring on /etc/ceph/ceph.client.kube.keyring,/etc/ceph/ceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin,: (2) No such file
+ or directory
+
+
 
 # Listar PVs/PVCs (volumes/claims)
 oc get pv
