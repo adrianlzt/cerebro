@@ -30,5 +30,8 @@ Corefile usado
     loadbalance
 }
 
+La línea "forward . /etc/resolv.conf" junto con "loop" parece que lo que hace es enviar la petición a alguno de los servidores de /etc/resolv.conf
+CUIDADO! si tenemos configurado un tercer "resolv" en ese fichero a modo backup, porque se enviarán las peticiones contra él.
+
 
 Podemos modificar el ConfigMap y los pods de coredns se actualizarán.
