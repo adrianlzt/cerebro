@@ -116,6 +116,12 @@ data:
 type: kubernetes.io/tls
 
 
+## Opciones
+https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap
+
+use-forwarded-headers
+If true, NGINX passes the incoming X-Forwarded-* headers to upstreams. Use this option when NGINX is behind another L7 proxy / load balancer that is setting these headers
+
 
 
 # Internals

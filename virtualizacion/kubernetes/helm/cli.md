@@ -21,6 +21,8 @@ helm install NOMBRE somedir
 
 helm upgrade releaseName chartPath
   --install: si no existe una releas con este nombre, crearla
+  configmaps not overwritten: https://github.com/helm/helm/issues/3933
+  no se modifican los configmaps. Hacerlo a mano, o borrar la release y redesplegar
 
 helm lint mychart
   buscar problemas de linting
