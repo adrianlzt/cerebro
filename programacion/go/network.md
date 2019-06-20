@@ -7,3 +7,9 @@ if err != nil {
 ones, bits := net.Mask.Size()
 freeIPs := math.Pow(2, float64(bits)-float64(ones))-2
 fmt.Println("numero de ips libres:", freeIPs)
+
+
+SplitHostPort
+SplitHostPort splits a network address of the form "host:port" into host and port
+
+net.JoinHostPort

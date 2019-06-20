@@ -15,6 +15,8 @@ Si queremos usar la clave privada del host intermedio para acceder al nodo desea
 Host C
     ProxyCommand ssh -o 'ForwardAgent yes' B 'ssh-add && nc %h %p'
 
+-W parece la cara de la otra manera de -J
+
 
 
 http://undeadly.org/cgi?action=article&sid=20070925181947
