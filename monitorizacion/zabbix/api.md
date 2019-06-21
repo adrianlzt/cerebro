@@ -34,6 +34,10 @@ zbx.login("Admin", "zabbix")
 
 Poner eso en un fichero y ejecutar con python -i para tener una shell donde hacer pruebas.
 
+Meter todos los hosts de un hostgroup (3646) en otro (844):
+hosts = zbx.host.get({"groupids": "3464", "output": "hostid"})
+zbx.hostgroup.massadd({"groups":[{"groupid": "844"}], "hosts": hosts})
+
 
 Ejemplo:
 from zabbix_api import ZabbixAPI
