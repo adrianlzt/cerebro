@@ -123,6 +123,10 @@ use-forwarded-headers
 If true, NGINX passes the incoming X-Forwarded-* headers to upstreams. Use this option when NGINX is behind another L7 proxy / load balancer that is setting these headers
 
 
+Annotations y config maps (CUIDADO este es el ingress de nginx INC, no el de kubernetes):
+https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/configmap-and-annotations.md
+
+
 
 # Internals
 https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
