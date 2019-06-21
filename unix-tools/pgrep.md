@@ -9,4 +9,7 @@ pgrep PATTERN
   nos busca el pid
 
 pgrep -f PATTERN
-  busca el pattern en toda la linea de ejecucción
+  busca el pattern en toda la linea de ejecucción (en /proc/PID/cmdline)
+  está limitado a 4096 bytes en el codigo de pgrep https://gitlab.com/procps-ng/procps/blob/master/pgrep.c#L502
+  char cmdline[CMDSTRSIZE] = "";
+  #define CMDSTRSIZE 4096
