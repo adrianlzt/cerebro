@@ -23,3 +23,8 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
   fail:
     msg: "the command failed"
   when: "'FAILED' in command_result.stderr"
+
+
+
+Parar todo el playbook si cualquier nodo falla.
+any_errors_fatal: true
