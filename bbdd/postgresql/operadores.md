@@ -38,6 +38,10 @@ select array_to_string(array(select name from projects),',') AS cosa, id FROM ta
 
 
 # Funciones
+Mirar funciones:
+\df+
+
+
 CREATE OR REPLACE FUNCTION test() RETURNS text AS
 ...
 LANGUAGE 'xxx';

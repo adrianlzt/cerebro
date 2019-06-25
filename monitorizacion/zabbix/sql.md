@@ -352,44 +352,43 @@ where
 
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
-			SELECT
-                elt(type,
-                  'Zabbix Agent',
-                  'SNMPv1 agent',
-                  'Zabbix trapper',
-                  'simple check',
-                  'SNMPv2 agent',
-                  'Zabbix internal',
-                  'SNMPv3 agent',
-                  'Zabbix agent (active)',
-                  'Zabbix aggregate',
-                  'web item',
-                  'external check',
-                  'database monitor',
-                  'IPMI agent',
-                  'SSH agent',
-                  'TELNET agent',
-                  'calculated',
-                  'JMX agent',
-                  'SNMP trap',
-                  'Dependent item'
-                ) AS type,
-                elt(status,
-                  'ON',
-                  'OFF'
-                ) AS status,
-                elt(state,
-                  'OK',
-                  'NOT SUPPORTED'
-                ) AS state,
-                count(*)
-            FROM items,hosts
-            WHERE
-                items.hostid=hosts.hostid
-				AND
-				hosts.status <> 3
-            GROUP BY type, status, state
-            ORDER BY type, status DESC;
+SELECT
+  elt(type,
+    'Zabbix Agent',
+    'SNMPv1 agent',
+    'Zabbix trapper',
+    'simple check',
+    'SNMPv2 agent',
+    'Zabbix internal',
+    'SNMPv3 agent',
+    'Zabbix agent (active)',
+    'Zabbix aggregate',
+    'web item',
+    'external check',
+    'database monitor',
+    'IPMI agent',
+    'SSH agent',
+    'TELNET agent',
+    'calculated',
+    'JMX agent',
+    'SNMP trap',
+    'Dependent item'
+  ) AS type,
+  elt(items.status,
+    'ON',
+    'OFF'
+  ) AS status,
+  elt(items.state,
+    'OK',
+    'NOT SUPPORTED'
+  ) AS state,
+  count(*)
+FROM items,hosts
+WHERE
+  items.hostid=hosts.hostid
+  AND hosts.status <> 3
+  GROUP BY items.type,  items.status, items.state
+  ORDER BY items.type, items.status DESC;
 
 
 
