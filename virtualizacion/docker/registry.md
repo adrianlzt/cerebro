@@ -14,6 +14,9 @@ Podemos especificar donde queremos que busque el fichero con:
 docker --config /foo/bar ...
   ira a buscar el fichero /foo/bar/config.json
 
+No se puede usar docker login con http (no está soportado).
+Para hacer push a un http tendremos que meterlo en nuestro demonio docker local (/etc/docker/daemon.json insecure-registries)
+
 
 Podemos usar programas externos para almacenar estas claves, entre ellos "pass":
 https://github.com/docker/docker-credential-helpers
