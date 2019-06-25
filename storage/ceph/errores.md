@@ -62,6 +62,19 @@ También puede deberse a un bug: http://tracker.ceph.com/issues/22351
 En mi caso por modificar los pg y pgp num (puestos a mano a 500)
 
 
+S3ResponseError: S3ResponseError: 416 Requested Range Not Satisfiable
+Este error también puede deberse al subir ficheros multipart, si nunca los hemos subido antes.
+Intentará crear un pool y si no tenemos hueco podremos ver ese error
+https://tracker.ceph.com/issues/38311
+En los logs veremos:
+2019-06-24 17:42:25.470 7ff05b252700  0 rgw_init_ioctx ERROR: librados::Rados::pool_create returned (34) Numerical result out of range (this can be due to a pool or placement group misconfiguration, e.g. pg_num < pgp_num or mon_max_pg_per_osd exceeded)
+
+Sobre que hacer si nos quedamos sin PGs
+https://themeanti.me/technology/2018/03/14/ceph-pgs.html
+
+
+
+
 
 reached critical levels of available space on local monitor storage
 El proceso ceph-mon se para con ese mensaje.

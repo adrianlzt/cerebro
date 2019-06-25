@@ -20,6 +20,7 @@ mirar pools.md
 # PG placement groups
 http://docs.ceph.com/docs/master/rados/operations/placement-groups/
 http://docs.ceph.com/docs/master/architecture/#mapping-pgs-to-osds
+https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/1.3/html/storage_strategies_guide/placement_groups_pgs
 
 Es un paso intermedio al almacenar/recuperar objetos.
 Los objetos se almacenan en PGs y los PGs se almacenan en OSDs.
@@ -28,10 +29,15 @@ Evitamos que los clientes intenten hablar directamente con los OSDs, que son pie
 El número de pools viene definido por el número de OSDs y la cantidad de PGs que permitimos por OSD.
 Cada PG consume recursos, por eso debemos limitar el número de estos (http://docs.ceph.com/docs/master/rados/operations/placement-groups/#memory-cpu-and-network-usage)
 Crear PGs (generalemente dos órdenes de magnitud que el número de OSDs) nos permite tener una distribución de los datos correcta entre los OSDs.
+CUIDADO! si tenemos pocos PGs y luego queremos crear más pools no podremos.
 
 Usar http://ceph.com/pgcalc/ para calcular el número de PGs por pool.
 Esta calculadora nos dará el número de PGs por cada pool que necesitamos crear para usar RGW y además podemos añadirles nuestros propios buckets para que también lo tenga en cuenta.
 Al final lo que hace es asignar no muchos PGs a pools que no van a ser muy grandes, y muchos PGs al pool que almacenará los datos del RGW.
+Crear todos los pools que solicita, si no luego puede que necesitemos alguno de esos pools y no tengamos espacio (por ejemplo si empezamos a usar rgw multipart, que necesita de ciertos PGs)
+Para rgw multipart necesitamos:
+default.rgw.buckets.non-ec
+default.rgw.buckets.extra
 
 
 Por defecto (al menos con la instalación de ansible), cada pool tendra 8 PGs
