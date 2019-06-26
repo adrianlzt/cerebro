@@ -176,3 +176,13 @@ select * from pg_stats;
 
 Mostrar los elementos más comunes almacenados en la tabla "road":
 SELECT attname, inherited, n_distinct, array_to_string(most_common_vals, E'\n') as most_common_vals FROM pg_stats WHERE tablename = 'road';
+
+
+
+Cuidado con los cast.
+Si al hacer una comparación los tipos de datos son distintos, no podrá usar el index
+
+
+
+Cuidado con los cast.
+Si al hacer una comparación los tipos de datos son distintos, no podrá usar el index

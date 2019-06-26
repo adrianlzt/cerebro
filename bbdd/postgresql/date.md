@@ -2,6 +2,7 @@ https://www.postgresql.org/docs/current/functions-datetime.html
 
 Hora en unix epoch en segundos:
 SELECT ROUND(EXTRACT(EPOCH FROM now()));
+  CUIDADO esto es un double, si lo queremos comparar con un int no podremos usar index, convertir a int con ::int
 
 Unix epoch a timestamp:
 select to_timestamp(1250028000);
