@@ -21,3 +21,18 @@ Si tenemos usuario dentro de postgre, podemos hacer psql -h localhost ... y posi
 Reducir en postgresql.conf
 max_connections
 shared_buffers
+
+
+
+
+
+Llenado file system:
+Parar postres
+Mover los WAL a otro file system.
+Crear links simbólicos
+Arrancar postgres
+Limpiar tablas
+Parar postgres
+Mover de vuelta los wal
+Arrancar postgres
+
