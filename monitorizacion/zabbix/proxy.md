@@ -56,3 +56,14 @@ ZBXDV
 }
 
 
+
+## Código
+
+### Función sincronización con el master
+ZBX_THREAD_ENTRY(proxyconfig_thread, args)
+  process_configuration_sync
+    process_proxyconfig
+      DCsync_configuration
+      DCupdate_hosts_availability
+
+
