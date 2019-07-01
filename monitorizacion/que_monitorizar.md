@@ -29,6 +29,7 @@ Basicos:
      cat /proc/self/limits| grep "Max open files"
      VS
      ls /proc/self/fd | wc -l
+  porcentaje del número de procesos máximo (el max está definido en /proc/sys/kernel/pid_max, generalmente 32768)
   procesos zombies
   slab_memory (% del uso respecto a la memoria total, /proc/meminfo)
   swap

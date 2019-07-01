@@ -20,6 +20,12 @@ Podemos simularlo con dig:
 dig +subnet=161.202.17.0/24 @8.8.4.4 www.cnn.com
   aquí le estamos diciendo a las DNS de google que nuestra ip pública se encuentra en un AS de malasia
 
+OpenDNS por ejemplo usa una whitelist para saber con quien usar esta extensión.
+
+https://developers.google.com/speed/public-dns/docs/ecs
+http://www.afasterinternet.com/ietfrfc.htm
+
+
 ## Anycast
 Al resolver el servidor siempre se devuelve la misma IP.
 Esa IP la publican muchos servidores desde distintas partes del mundo usando BGP.
