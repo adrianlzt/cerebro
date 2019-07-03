@@ -1,3 +1,5 @@
+mirar generate_series.md
+
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as slot5 from history where clock > 1527285600 and clock < 1527307200 group by hour,slot5 order by hour;
 
 Tenemos una tabla con un epoch en "clock".
