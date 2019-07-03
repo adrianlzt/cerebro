@@ -64,6 +64,11 @@ Status
 3 - template (para la tabla hosts)
 5 - proxy
 
+alert - status
+0 - not sent
+1 - sent
+2 - failed
+
 hosts - Flags
 0 - normal host
 2 - algo raro interno para discover de VMs? como un template de host descubierto? host prototype?
