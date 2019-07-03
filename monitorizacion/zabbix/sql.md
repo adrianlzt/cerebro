@@ -149,7 +149,7 @@ La tabla problem mantiene los problems sin resolver.
 Una vez resueltos podemos usar la tabla event_recovery para matchear los que están resueltos.
 
 -- problemas que estaban abiertos en un momento determinado (y ahora ya están cerrados), para un host determinado
-WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz)) AS DATE)
+WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
    hosts.host,
    triggers.description,
@@ -177,7 +177,7 @@ ORDER BY events.clock ASC;
 
 
 -- problemas abiertos en un momento determinado para un host determinado
-WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz)) AS DATE)
+WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
    hosts.host,
    triggers.description,
@@ -224,6 +224,10 @@ ORDER BY COUNT(*) DESC;
 select count(*) from problem where problem.source = 0 AND r_eventid is null;
 
 
+-- alertas pendientes de enviar agrupadas por media type
+select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
+
+
 
 
 # Queries varias
@@ -256,7 +260,7 @@ FROM
                   '2019-02-19 06:00:00+01'::timestamp,
                   '2019-02-19 16:00:00+01'::timestamp,
                   '1 hour')
-              )) AS date
+              ))::int AS date
         ) a
       ) b
     WHERE
@@ -278,12 +282,12 @@ Número de eventos trigger contados cada hora para un intervalo determinado:
 select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where source=0 and object=0 and clock>1536745132 and clock<1536788332 group by hour order by hour;
 
 Número de eventos por segundo de los últimos 10 minutos, organizados por source y object (mirar explicación de valores en la sección de Events, más arriba):
-select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) GROUP BY source,object,value;
+select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int GROUP BY source,object,value;
 
 Eventos internal por fallos de triggers, items, LLDs:
-select hosts.host,to_timestamp(clock),triggers.description,triggers.error from events,triggers,functions,items,hosts where hosts.hostid=items.hostid AND items.itemid=functions.itemid AND functions.triggerid=triggers.triggerid AND triggers.triggerid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=0 and source=3 and events.value=1 order by events.clock desc limit 40;
-select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=4 and source=3 and events.value=1 order by events.clock desc limit 40;
-select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN'))) AND object=5 and source=3 and events.value=1 order by events.clock desc limit 40;
+select hosts.host,to_timestamp(clock),triggers.description,triggers.error from events,triggers,functions,items,hosts where hosts.hostid=items.hostid AND items.itemid=functions.itemid AND functions.triggerid=triggers.triggerid AND triggers.triggerid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=0 and source=3 and events.value=1 order by events.clock desc limit 40;
+select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=4 and source=3 and events.value=1 order by events.clock desc limit 40;
+select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=5 and source=3 and events.value=1 order by events.clock desc limit 40;
    esta última sería para los LLDs pero no tenía resultados, no se seguro si está bien
 
 Todos los items de un hostgroup:
@@ -351,7 +355,7 @@ select
 from
    latest_discover
 where
-   lastcheck < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))
+   lastcheck < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int
 ;
 
 
@@ -423,7 +427,7 @@ Query para obtener los templates que tienen triggers con nodata asociados a item
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
 
 Frecuencia de inserción de items en la tabla history (una partition seleccionada). NO LANZAR EN PROD. Lanzar en una replica. Tarda varios minutos para bbdd de varios gigas (4' 60GB)
-select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m'))) and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m'))) group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
+select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m')))::int and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m')))::int group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 
 
