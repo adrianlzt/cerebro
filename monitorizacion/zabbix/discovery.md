@@ -111,6 +111,12 @@ Esto creará ese item asociado el host, usando la variable {#ID} en el nombre y 
 
 
 
+## LLD con database odbc
+https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery/sql_queries
+Las columnas pasarán a ser macros con su nombre en mayúsculas.
+Mejor usar un "as xxx" en la query para poner un nombre simple que sea fácilmente convertible a macro, si no, mirar los logs de debug para ver que nombre se le ha dado.
+
+
 ## Custom discovery para procesos
 https://github.com/q1x/zabbix-templates/tree/master/process-discovery
 
