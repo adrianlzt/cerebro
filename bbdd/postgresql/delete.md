@@ -22,3 +22,8 @@ DELETE FROM history_default i
 
 Delete puede llenar el dir base/pgsql_tmp
 Si vamos limitados de disco un truco es usar borrados de pequeñas partes en vez todo de una
+
+
+# Truncate
+Borramos todo el contenido rápidamente.
+delete escanea la tabla por lo que es más lento

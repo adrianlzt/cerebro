@@ -224,6 +224,7 @@ ORDER BY COUNT(*) DESC;
 select count(*) from problem where problem.source = 0 AND r_eventid is null;
 
 
+## Alerts
 -- alertas pendientes de enviar agrupadas por media type
 select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
 

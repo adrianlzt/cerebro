@@ -13,6 +13,8 @@ pg_track_settings is a small extension that helps you keep track of postgresql s
 
 mirar las que usa powa.md
 
+esqueleton: https://paquier.xyz/postgresql-2/blackhole-extension/
+
 
 Listar extensiones
 \dx
