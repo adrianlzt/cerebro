@@ -55,6 +55,32 @@ Se almacenan structs con los items. Para cada item se almacenan sus valores, des
 
 Almacena, al menos, 24h de datos.
 
+Trigger y items count pueden hacer uso de la value cache.
+Las funciones que pueden usar valores atrás en el tiempo (v3.2) son estas (el valor sec|#num es el primer parámetro excepto si se especifica lo contrario):
+avg
+band
+count
+delta
+forecast
+iregexp (segundo parámetro)
+last
+max
+min
+percentile
+regexp (segundo parámetro)
+str (segundo parámetro)
+strlen
+sum
+timeleft
+
+Para los item calculated estas funciones estarán en el field "params" de la forma:
+count("nombreitem",300,"2..",regexp)
+Pueden tener varias funciones:
+100*last(telegraf.net.err_out[eth0],0)/(last(telegraf.net.packets_sent[eth0],0)+count(telegraf.net.packets_sent[eth0],#1,0))
+
+
+
+
 
 
 ## Configuration cache
@@ -73,26 +99,47 @@ Cuando se realiza el update, se nota una pequeña congelación en los procesos. 
 
 
 
-## Write cache / history cache
+## Write cache / history cache + history index cache
 src/libs/zbxdbcache/dbcache.c
 
 History cache is used to store item values. A low number indicates performance problems on the database side.
 Como se insertan datos en la history cache detallado en trap.md
 
 Donde se almacenan los datos antes de ser enviados a la bbdd.
-Si se llena es que los histtory syncers no dan a basto.
+Si se llena es que los history syncers no dan a basto.
 Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
 Parece que los bloqueos son en el dbcache.c, que cuando coje items a procesar, si algún otro history los tiene bloqueados, se sale si hacer nada.
-Mirar más abajo sección "Bloqueo elementos write cache"
 
 
-El parametro para configurar su tamaño es
+Los parametros para configurar sus tamaños son:
 HistoryCacheSize
+HistoryIndexCacheSize
 
-En el codigo se pide con: DCget_stats(ZBX_STATS_HISTORY_PFREE)
+Porcentaje de memoria libre:
+en el codigo se pide con: DCget_stats(ZBX_STATS_HISTORY_PFREE)
 Y se calcula como:
 100 * (double)hc_mem->free_size / hc_mem->total_size
+
+
+
+La History Index almacena unas estructuras para acceder a la History Cache
+https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071
+
+El procesado básico con la history cache es añadir o sacar datos, que de forma resumida se hace así:
+
+Adding values
+  get item by itemid from history items hashset, add new item if none found.
+  allocate zbx_hc_data_t structure and string/log values if required in history cache.
+  add the allocated structure at the head of item value list.
+  add item to history queue if it was just created.
+
+Picking items for processing
+  pop the first N elements from history queue. This prevents item from being processed by other history syncers.
+  lock triggers for picked items, put already locked items back in history queue.
+  process the oldest (at item's value list tail) values of picked items.
+  remove the oldest values.
+  if items still have more values - put them back in queue, otherwise remove them from history items hashset.
 
 
 Los procesos encargados de sincronizar la write cache con la base de datos son los dbsyncers
@@ -108,11 +155,10 @@ DCsync_history (writes updates and new data from pool to database)
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
   bucle do-while hasta que no queden más elementos o pasemos el tiempo máximo (60")
   hc_pop_items (pops the next batch of history items from cache for processing). Dice que debemos devolver los elementos con hc_pop_items() tras procesarlos.
-    obtiene de cache->history_queue hasta un máximo de 1000 items
+    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap" almacenada en la History Index Cache.
     lo que obtiene son itemids a procesar, no los valores
     para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
   DCconfig_lock_triggers_by_history_items (Lock triggers for specified items so that multiple processes do not process one trigger simultaneously)
-    NOTA: creo que sobre lo que se hace el bucle for son los values, no los itemids. No tengo claro de donde saca values_num
     por cada item obtenido en hc_pop_items, obtenemos sus triggers
     si alguno de los triggers asociados al item está ya bloqueado, aumentamos el contados locked_num y vamos a procesar el siguiente item (solo se tienen en cuenta trigger enabled)
     si todos los triggers están unlocked, los bloqueamos nosotros para poder procesarlos de forma unívoca
@@ -122,9 +168,9 @@ DCsync_history (writes updates and new data from pool to database)
     devolvemos a cache->history_queue los items que están bloqueados (DCconfig_lock_triggers_by_history_items los marcó para que ahora solo tengamos que mirar el flag status de cada item)
     los saca de history_items
   Se sale si no tiene items que procesar. En este caso en las trazas debug deberíamos ver una transición muy rápida entre "In DCsync_history" y "setproctitle" (1ms)
-  history_num contiene el número de values con las que estamos trabajando *CREO* (o el numero de itemids?)
+  history_num contiene el número de items con los que estamos trabajando
   hc_get_item_values (gets item history values)
-    ahora es cuando coje, para cada itemid, los values que están en la cache
+    ahora es cuando coje, para cada itemid, el value más antiguo (usando el "tail" del hashset "history_items"). SOLO SE COGE UN VALUE POR ITEMID
     hc_copy_history_data (copies item value from history cache into the specified history value)
       parece que lo que hace es trerse el comiendo de la linked list que usará para obtener los valores
   abre transacción SQL
@@ -169,33 +215,6 @@ Se procesan los triggers.
 Luego se quita el lock sobre los items.
 Se devuelven los items a la cache con la función hc_push_processed_items
 Esta función es la que borra valores de la cache, excepto si se marcaron como busy por hc_push_busy_items
-
-
-## Bloqueo elementos write cache
-Trigger y items count pueden provocar que ciertos elementos no se liberen de la cache.
-Las funciones que pueden usar valores atrás en el tiempo (v3.2) son estas (el valor sec|#num es el primer parámetro excepto si se especifica lo contrario):
-avg
-band
-count
-delta
-forecast
-iregexp (segundo parámetro)
-last
-max
-min
-percentile
-regexp (segundo parámetro)
-str (segundo parámetro)
-strlen
-sum
-timeleft
-
-Para los item calculated estas funciones estarán en el field "params" de la forma:
-count("nombreitem",300,"2..",regexp)
-Pueden tener varias funciones:
-100*last(telegraf.net.err_out[eth0],0)/(last(telegraf.net.packets_sent[eth0],0)+count(telegraf.net.packets_sent[eth0],#1,0))
-
-
 
 
 

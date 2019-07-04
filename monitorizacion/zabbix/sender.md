@@ -120,6 +120,15 @@ Entran por la función:
 recv_agenthistory (processes the received values from active agents and senders)
 En el log modo debug podemos encontrar "In recv_agenthistory"
 
+
+https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071
+Resumen de como se almacenan los datos en la cache:
+Adding values
+  get item by itemid from history items hashset, add new item if none found.
+  allocate zbx_hc_data_t structure and string/log values if required in history cache.
+  add the allocated structure at the head of item value list.
+  add item to history queue if it was just created.
+
 Se procesa el dato y se envia la respuesta al cliente:
 
 process_hist_data (process values sent by proxies, active agents and senders)
