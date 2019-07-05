@@ -177,6 +177,7 @@ ORDER BY events.clock ASC;
 
 
 -- problemas abiertos en un momento determinado para un host determinado
+-- miramos la tabla problems, que se va purgando, por lo que solo estarán recientes
 WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
    hosts.host,

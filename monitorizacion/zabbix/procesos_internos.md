@@ -82,3 +82,13 @@ Detalle de como saca los datos en cache.md sección "Write cache"
 
 
 # unreachable poller
+Los que se encargan de hacer polling de los items/hosts que se han quedado unreachable
+
+
+# timer
+periodically updates time-related triggers
+
+The timer process recalculates every 30 seconds the following trigger functions:
+nodata(), date(), dayofmonth(), dayofweek(), time(), now()
+
+
