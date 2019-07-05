@@ -125,6 +125,8 @@ Y se calcula como:
 
 La History Index almacena unas estructuras para acceder a la History Cache
 https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071
+Cada history_items ocupa 32 bytes (calculado haciendo un sizeof de un struct con el formato como zbx_hc_item_t)
+El history_queue parece que ocupa 8 bytes por elemento, más otras cosas.
 
 El procesado básico con la history cache es añadir o sacar datos, que de forma resumida se hace así:
 
