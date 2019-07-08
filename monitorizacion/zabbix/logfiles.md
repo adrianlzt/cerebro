@@ -1,3 +1,23 @@
+# Configuración logging del server/proxy
+Podemos sacar el logging a fichero, syslog o consola.
+
+Lo seleccionaremos con:
+LogType=file/system/console
+
+Si usamos syslog (system), se enviará a la facility DAEMON con el programname = "zabbix_server"
+
+/etc/rsyslog.d/zabbix.conf
+:programname, isequal, "zabbix_server" -/var/log/zabbix/zabbix_server.log
+:programname, isequal, "zabbix_server" stop
+
+La segunda linea es para evitar que los logs de zabbix se envien a otra config tipo *.info
+
+systemctl restart rsyslog
+systemctl restart zabbix-server
+
+
+
+# Monitorizar logs
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/log_items
 para journald mirar journald.md
 

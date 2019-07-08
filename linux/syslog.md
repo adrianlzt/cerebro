@@ -25,6 +25,29 @@ debug | local5 = 10101111 = 175
 # rsyslogd
 http://www.rsyslog.com/doc/manual.html
 
+En la config de rsyslog se puede usar el formato antiguo de syslog (facility.level) o la configuración avanzada. La performance es la misma (dice la doc)
+El formato antiguo es con selectors ejemplo:
+  local2.error
+
+El formato avanzado es con propiedades, siguiendo el formato:
+:property, [!]compare-operation, "value"
+
+
+## condicionales
+https://www.rsyslog.com/doc/v8-stable/configuration/filters.html#examples
+https://askubuntu.com/a/186642
+
+:programname, isequal, "appname" /var/log/custom_app.log
+
+Otra forma
+
+if $msg contains 'error' then /var/log/errlog
+if $syslogfacility-text == 'local0' and $msg startswith 'DEVNAME' and ($msg contains 'error1' or $msg contains 'error0') then /var/log/somelog
+
+programname es la string que se pasa a la syscall openlog()
+/etc/rsyslog.d/puppet-master.conf
+if $programname == 'puppet-master' then -/var/log/puppet/puppetmaster.log
+
 
 
 ## Enviar a un fichero
@@ -38,12 +61,6 @@ La opción parece bastante peligrosa para el disco:
 File syncing capability is disabled by default. This feature is usually not required, not useful and an extreme performance hit
 #$ActionFileEnableSync on
 
-
-## filtrar por el program name
-Es la string que se pasa a la syscall openlog()
-
-/etc/rsyslog.d/puppet-master.conf
-if $programname == 'puppet-master' then -/var/log/puppet/puppetmaster.log
 
 
 ## logrorate
