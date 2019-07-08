@@ -44,6 +44,7 @@ notifempty: Do not rotate the log if it is empty (this overrides the ifempty opt
 missingok: If the log file is missing, go on to the next one without issuing an error message. See also nomissingok.
 delaycompress: mantiene el ultimo fichero rotado sin comprimir. Esquema de nombrado: nombre -> nombre.1 -> nombre.2.gz
 nodelaycompress
+reload: el fichero antiguo se mueve a uno nuevo, y se pide al proceso que escribe que vuelva a abrir el fichero de log. OPCION RECOMENDADA
 copytruncate: copia el fichero y luego lo trunca (echo "" > fichero). Pueden perderse algunos datos que se escriban entre el copiado y el truncado. Esto es útil para algunos programas que no podemos decirles que vuelvan a abrir el fichero de log, y se mantenga escribiendo al mismo file descriptor
 create mode owner group: permisos y dueños del nuevo fichero que se crea tras el rotado.
 compress: comprimir archivos antiguos
