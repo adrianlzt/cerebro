@@ -20,3 +20,9 @@ trigger:
 
 Para el sistema de fichero /opt el trigger saltará al 25%
 Para el resto, 10%
+
+
+# Internal
+Internamente las macros lanzan una query a la bbdd para resolverlas.
+Parece una mejor idea evitar las macros en los triggers names, para evitar lanzar tantas queries contra la bbdd.
+Esto al menos sucede con la macro {HOST.NAME} cuando los timer están chequeando un evento contra los actions, cuando hay una condition con el nombre del trigger.

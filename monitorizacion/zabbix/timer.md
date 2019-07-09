@@ -1,3 +1,7 @@
+Periódicamente coge los triggers con funciones de tiempo (nodata, last, etc) y comprueba si saltan.
+En caso positivo, genera los eventos y los chequea contra las action para ver si tiene que avisar.
+
+
 process_actions (process all actions of each event in a list)
   check_action_conditions (check if actions have to be processed for the event)
     check_action_condition (check if event matches single condition)
@@ -30,8 +34,3 @@ __zbx_zbx_setproctitle
           DCconfig_check_trigger_dependencies_rec
           UNLOCK CACHE
     SQL END
-
-
-
-Queries ¿problemáticas?
-DBget_item_value
