@@ -8,6 +8,10 @@ https://blog.0x972.info/index.php
 http://undo.io/resources/blog-articles/category/debugging/ posts con tips y guias sobre usos particulares de gdb
 http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html  ejemplo usando gdb para encontrar un problema con un programa en python
 
+Como funciona gdb
+https://blog.0x972.info/?d=2014/11/13/10/40/50-how-does-a-debugger-work
+
+
 Mejor usar GEF + voltron (https://gef.readthedocs.io/en/latest/)
 Hace la interfaz de gdb más amigable.
 mirar gef.md
@@ -16,6 +20,24 @@ mirar plugins.md
 $ cat ~/.gdbinit
 source /home/adrian/.gdbinit-gef.py
 source /usr/lib/python3.6/site-packages/voltron/entry.py
+
+
+# Symbols
+Para que gdb pueda matchear las líneas de ensamblador con el código en C tenemos que tener la info DWARF
+
+Si el binario tiene info DWARF, cuando lo mostramos con "file" pondá "debug_info, not stripped" (en versiones viejas de "file" solo pondrá "not stripped")
+Si compilamos con gcc, podemos pasar el parámetro "-g" para añadir la info DWARF.
+
+Podemos ver el contenido DWARF con:
+dwarfdump fichero
+
+Con addr2line podemos sacar a que línea de código se mapea una instrucción del binario.
+Ejemplo:
+$ dwarfdump /usr/lib/debug/usr/bin/ls.debug | grep 402ce4
+0x00402ce4  [1289, 0] NS
+$ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
+/usr/src/debug/coreutils-8.21/src/ls.c:1289
+
 
 
 # CentOS/RedHat
@@ -66,24 +88,33 @@ dir /path/
 
 
 
+# GDB a un running proc
+cat /proc/sys/kernel/yama/ptrace_scope
+Si está a 1 o más es seguridad añadida, tal vez tengamos que bajarlo a 0: https://stackoverflow.com/questions/2308653/can-i-use-gdb-to-debug-a-running-process
+
+gdb -p PID
+
+
+
+
 Como hacer debug de programas con gdb.
 
 1. Es necesario compilar el programa para que acepte debug:
-	gcc -g programa.c -o programa
+  gcc -g programa.c -o programa
 
 2. Arrancar el gdb con el programa
-	gdb programa
+  gdb programa
 
-	Si no encuentra las fuentes: gdb --directory=fuentes/ ...
+  Si no encuentra las fuentes: gdb --directory=fuentes/ ...
 
 Si queremos interrumpir el programa mientras está ejecutándose haremos Control+C
 
 Si queremos ejecutar un programa con parámetros:
-	gdb programa
-	gdb> run -h -b 3 -r
+  gdb programa
+  gdb> run -h -b 3 -r
 
-	Otra forma
-	$ gdb --args programa --arg1 --arg2
+  Otra forma
+  $ gdb --args programa --arg1 --arg2
 
 Debug stripped binaries:
 http://reverseengineering.stackexchange.com/questions/1935/how-to-handle-stripped-binaries-with-gdb-no-source-no-symbols-and-gdb-only-sho
@@ -178,6 +209,11 @@ clear file:lineno
 # Python
 https://sourceware.org/gdb/current/onlinedocs/gdb/Python.html#Python
 A partir de la version 7 de gdb
+
+API Python
+https://developers.redhat.com/blog/2017/11/10/gdb-python-api/
+explicando el por que de una api python y algunos ejemplos (aunque los ejemplos no son muy buenos, según comenta uno)
+
 
 (gdb) python print("hola")
 hola

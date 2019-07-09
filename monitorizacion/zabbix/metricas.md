@@ -27,6 +27,10 @@ that's not good idea - you can't scale it - single point of failure - module opt
 
 
 # Internals
+mirar:
+  procesos_internos.md
+  cache.md
+
 Zabbix4
 libs/zbxdbcache/dbcache.c
 dc_trends_update_float / dc_trends_update_uint

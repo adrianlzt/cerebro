@@ -17,13 +17,14 @@ Manualmente o con:
   yum install yum-utils
   yumdownloader --source pkgname
 
-Instalamos un fuente (.src.rpm): 
+Instalamos un fuente (.src.rpm):
 rpm -hvi <paquete>.src.rpm
   lo instala en ~/rpmbuild/
 
-Miramos que requisitos de build tiene el spec:
-grep BuildRequires fichero.spec
+Miramos que requisitos de build tiene el spec (mirar el fichero, porque puede que ciertos requires solo sean para ciertos entornos/versiones):
+grep BuildRequires SPECS/*.spec
 Y los instalamos
+grep BuildRequires SPECS/*.spec | awk '{print $2;}' | xargs echo yum install
 
 Modificamos spec: rpmbuild/SPECS/<nombre>.spec, o código rpmbuild/SOURCES
 Generamos rpm y src.rpm:
