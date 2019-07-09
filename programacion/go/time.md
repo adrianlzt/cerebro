@@ -87,6 +87,11 @@ fmt.Println(now)
 fmt.Println(now.In(l))
 
 
+Parsear definiendo una TZ determinada (en este caso, la local al pc):
+date, err := time.ParseInLocation("20060102:150405.000", "20190709:121701.171", time.Local)
+date -> 2019-07-09 12:17:01.171 +0200 CEST
+
+
 
 # Comparar si es no inicializado
 someTime.IsZero()
