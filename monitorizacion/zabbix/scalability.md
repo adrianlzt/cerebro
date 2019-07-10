@@ -158,11 +158,16 @@ DCsync_history (writes updates and new data from pool to database)
   Info interesante para debuggear:
     cache->history_num, número de elementos en la history write cache
     cache->history_queue->elems_num, número de items en la history queue
-    Si paramos un history syncer cuando está ocupado y subimos hasta la función DCsync_history, podemos ver que items está procesando con:
+    itemid de los elementos de la queue:
+    p cache->history_queue->elems[3]
+      entre 0 y cache->history_queue->elems_num - 1
+    En cada "elems" se almacena el itemid (cache->history_queue->elems[5]->key) y el struct de la history_items (*(zbx_hc_item_t*)cache->history_queue->elems[5]->data) donde tenemos los punteros tail y head apuntando a la history write cache
+
+    Si paramos un history syncer cuando está ocupado y subimos hasta la función DCsync_history, podemos ver que items está procesando con (si ya ha pasado por hc_pop_items):
      p ((zbx_hc_item_t *)history_items->values[0])->itemid
      p ((zbx_hc_item_t *)history_items->values[1])->itemid
      ...
-     entre 0 y history_items->values_num
+     entre 0 y history_items->values_num - 1
 
   Sacar el valor más antiguo de uno de esos items:
     p ((zbx_hc_item_t *)history_items->values[1])->tail->value
@@ -171,7 +176,9 @@ DCsync_history (writes updates and new data from pool to database)
   tail es un zbx_hc_data
   Podemos avanzar por la lista enlazada con tail->next
 
-  Tamaño usado de la history index cache:
+  Tamaño usado de la history write cache, en bytes:
+    p hc_mem->used_size
+  Tamaño usado de la history index cache, en bytes:
     p hc_index_mem->used_size
 
   Parece que podemos acceder a la info de la history index cache directamente atacando a su región de memoria:
@@ -180,10 +187,16 @@ DCsync_history (writes updates and new data from pool to database)
   Podemos ir mirando que dirección de memoria me va dando cada avance en el array hasta llegar al lo_bound:
   p &hc_index_mem->buckets[3]
 
+  Cada incremento del elemento del array sube 8 bytes la posición de memoria.
+
   Una vez en la zona de memoria activa convertimos el tipo de dato al struct de datos que almacena la history_index:
   p (zbx_hc_item_t)hc_index_mem->buckets[53]
 
   NO estoy seguro de si esto me está sacando los datos buenos, tal vez no estoy alineando y estoy interpretando otros datos como ese struct.
+
+
+  Prueba para entender hc_index_mem.
+  Tengo 6 elementos en la queue
 
 
   el parámetro sync_type solo toma el valor ZBX_SYNC_FULL cuando paramos el server
