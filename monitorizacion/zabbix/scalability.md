@@ -181,22 +181,50 @@ DCsync_history (writes updates and new data from pool to database)
   Tamaño usado de la history index cache, en bytes:
     p hc_index_mem->used_size
 
-  Parece que podemos acceder a la info de la history index cache directamente atacando a su región de memoria:
-  hc_index_mem->buckets[x]
-  el problema es que el comienzo de los datos está en hc_index_mem->lo_bound
-  Podemos ir mirando que dirección de memoria me va dando cada avance en el array hasta llegar al lo_bound:
-  p &hc_index_mem->buckets[3]
-
-  Cada incremento del elemento del array sube 8 bytes la posición de memoria.
-
-  Una vez en la zona de memoria activa convertimos el tipo de dato al struct de datos que almacena la history_index:
-  p (zbx_hc_item_t)hc_index_mem->buckets[53]
-
-  NO estoy seguro de si esto me está sacando los datos buenos, tal vez no estoy alineando y estoy interpretando otros datos como ese struct.
 
 
   Prueba para entender hc_index_mem.
   Tengo 6 elementos en la queue
+
+  hc_index_mem, en memalloc.c se explica como está estructurada la memoria. Pongo un resumen rápido.
+  Cada "chunk" tiene en sus 8 primeros bytes el tamaño y el flag de si está usado.
+  El flag de usado (MEM_FLG_USED) es el primer bit.
+  El resto es el tamaño de ese chunk.
+  Tras los datos del chunk, está repetido el bloque de flag usado + size
+  Ejemplo:
+    (gdb) p hc_index_mem->buckets[1630]
+    $42 = (void *) 0x8000000000000300
+    El primer bit es 1 (0x8 = 1000 0000), por lo que el chunk está usado.
+    Para obtener el tamaño le quitamos el primer bit, y nos queda 0x300 = 768 bytes
+    Como en este caso sabemos que está almacenado un zbx_binary_heap_elem_t, podemos obtener sus dos valores (8 bytes cada uno) con:
+      (uint64_t)hc_index_mem->buckets[1631] (itemid)
+      hc_index_mem->buckets[1632] (puntero a los datos)
+        *(zbx_hc_item_t*)hc_index_mem->buckets[1632] (ver los datos)
+        *(zbx_hc_item_t*)((zbx_binary_heap_elem_t)hc_index_mem->buckets[1641])->data (otra forma de ver data)
+
+  Entendido como almacena los elementos de la queue.
+  cache->history_queue->elems apunta a un chunk de la memoria del history index cache, directamente a la sección de user data.
+  En esa sección de user data están puestos de forma consecutiva todos los elementos de la queue.
+  El chunk queda de esta manera:
+  0x8000000000000300 | {key = 1939116, data = 0x7f41a4a61390} {key = 388836, data = 0x7f41a4a613d0} ... | 0x8000000000000300
+
+  En cache->history_queue->elems_alloc dice cuanta memoria allocated hay, para elementos zbx_binary_heap_elem_t. Por ejemplo, nos dice 48, a 16 bytes por elemento = 768 bytes (lo que vimos que ocupaba el chunk de memoria)
+  Dentro de ese chunk de memoria tendremos los zbx_binary_heap_elem_t de los items. Por lo que he visto no solo hay 6 como dice cache->history_queue->elems_num, hay más. Y al hacia al final podremos empezar a encontrar huecos vacíos
+  Los primeros cache->history_queue->elems_num tendrán data->tail apuntando a alguna dirección de memoria, ya que tienen values que deben ser procesadas.
+  A partir de elems_num+1, data->tail apuntará a 0x0 (head si conservará el puntero)
+
+  La posición de memoria del final del chunk será:
+  comienzo del chunk: 0x7f41a4a62348
+  más el tamaño, en este caso 0x300 = 0x7f41a4a62648
+  más 8 bytes, tamaño del primer size+flag = 0x7f41a4a62650
+
+  (gdb) x/tg 0x7f41a4a62348
+  0x7f41a4a62348: 1000000000000000000000000000000000000000000000000000001100000000
+  (gdb) x/tg 0x7F41A4A62650
+  0x7f41a4a62650: 1000000000000000000000000000000000000000000000000000001100000000
+
+
+
 
 
   el parámetro sync_type solo toma el valor ZBX_SYNC_FULL cuando paramos el server
@@ -204,9 +232,10 @@ DCsync_history (writes updates and new data from pool to database)
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
   bucle do-while hasta que no queden más elementos o pasemos el tiempo máximo (60")
   hc_pop_items (pops the next batch of history items from cache for processing). Dice que debemos devolver los elementos con hc_pop_items() tras procesarlos.
-    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap" almacenada en la History Index Cache.
-    lo que obtiene son itemids a procesar, no los valores
-    para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
+    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap (min-heap)" almacenada en la History Index Cache. mirar más abajo la sección "binary heap")
+    lo que obtiene son zbx_hc_item_t (itemid, status, tail y head)
+    para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue) (lo que hace es coger el elem[0]), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
+    para si elems_num = 0
   DCconfig_lock_triggers_by_history_items (Lock triggers for specified items so that multiple processes do not process one trigger simultaneously)
     por cada item obtenido en hc_pop_items, obtenemos sus triggers
     si alguno de los triggers asociados al item está ya bloqueado, aumentamos el contados locked_num y vamos a procesar el siguiente item (solo se tienen en cuenta trigger enabled)
@@ -266,6 +295,17 @@ Luego se quita el lock sobre los items.
 Se devuelven los items a la cache con la función hc_push_processed_items
 Esta función es la que borra valores de la cache, excepto si se marcaron como busy por hc_push_busy_items
 
+
+
+## Binary heap
+binaryheap.c
+Zabbix usa in binary heap (min-heap) para almacenar la history_queue.
+history_queue almacena zbx_binary_heap_elem_t donde está el itemid y un puntero a la struct zbx_hc_item_t dentro de history_items donde está los punteros tail y head a la lista de valores.
+
+Parece que tambien se usa para cosas del configuration syncer (queues y pqueue)
+
+La implementación es genérica, para poder ser usada de distintas formas.
+Por ejemplo, para la history_queue se hace el orden por fecha (->tail->ts)
 
 
 
