@@ -70,6 +70,22 @@ b nombre_func
 Hacer print de un puntero conviertiendolo primero:
 p ((zbx_hc_item_t *)history_items->values[1])->tail
 
+Imprimir en hexadecimal los 8 bytes a partir de la dirección de memoria pasada:
+x/xg 0x7f41a4a62348
+
+Lo mismo pero en formato binario:
+x/tg 0x7f41a4a62348
+
+Declarar una variable, ejemplos:
+set $foo = malloc(sizeof(struct funcOutStruct))
+set $iter = malloc(sizeof(zbx_hashset_iter_t))
+
+Llamar a una función sin retornar el resultado, usando una variable declarada por nosotros:
+call zbx_hashset_iter_reset(&cache->history_items, $iter)
+
+Devolviendo el resultado:
+p (zbx_hc_item_t *)zbx_hashset_iter_next($iter)
+
 
 
 Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comandos y en el otro varias divisiones mostrando:
