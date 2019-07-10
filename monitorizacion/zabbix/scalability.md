@@ -121,6 +121,8 @@ en el codigo se pide con: DCget_stats(ZBX_STATS_HISTORY_PFREE)
 Y se calcula como:
 100 * (double)hc_mem->free_size / hc_mem->total_size
 
+El tamaño libre de la history index: hc_index_mem->free_size
+
 
 
 La History Index almacena unas estructuras para acceder a la History Cache
@@ -152,6 +154,38 @@ El sleep será de 1" cuando la cola esté vacía o la mayoría de los items a pr
 El proceso estará como máximo 60" en DCsync_history. Se le permite salir para poder actualizar las estadísticas (proc title)
 
 DCsync_history (writes updates and new data from pool to database)
+
+  Info interesante para debuggear:
+    cache->history_num, número de elementos en la history write cache
+    cache->history_queue->elems_num, número de items en la history queue
+    Si paramos un history syncer cuando está ocupado y subimos hasta la función DCsync_history, podemos ver que items está procesando con:
+     p ((zbx_hc_item_t *)history_items->values[0])->itemid
+     p ((zbx_hc_item_t *)history_items->values[1])->itemid
+     ...
+     entre 0 y history_items->values_num
+
+  Sacar el valor más antiguo de uno de esos items:
+    p ((zbx_hc_item_t *)history_items->values[1])->tail->value
+  Su timestamp:
+    p ((zbx_hc_item_t *)history_items->values[1])->tail->ts
+  tail es un zbx_hc_data
+  Podemos avanzar por la lista enlazada con tail->next
+
+  Tamaño usado de la history index cache:
+    p hc_index_mem->used_size
+
+  Parece que podemos acceder a la info de la history index cache directamente atacando a su región de memoria:
+  hc_index_mem->buckets[x]
+  el problema es que el comienzo de los datos está en hc_index_mem->lo_bound
+  Podemos ir mirando que dirección de memoria me va dando cada avance en el array hasta llegar al lo_bound:
+  p &hc_index_mem->buckets[3]
+
+  Una vez en la zona de memoria activa convertimos el tipo de dato al struct de datos que almacena la history_index:
+  p (zbx_hc_item_t)hc_index_mem->buckets[53]
+
+  NO estoy seguro de si esto me está sacando los datos buenos, tal vez no estoy alineando y estoy interpretando otros datos como ese struct.
+
+
   el parámetro sync_type solo toma el valor ZBX_SYNC_FULL cuando paramos el server
   el puntero total_num lo actualizará con el número de elementos que se hayan procesado
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
@@ -174,7 +208,8 @@ DCsync_history (writes updates and new data from pool to database)
   hc_get_item_values (gets item history values)
     ahora es cuando coje, para cada itemid, el value más antiguo (usando el "tail" del hashset "history_items"). SOLO SE COGE UN VALUE POR ITEMID
     hc_copy_history_data (copies item value from history cache into the specified history value)
-      parece que lo que hace es trerse el comiendo de la linked list que usará para obtener los valores
+      saca de la history write cache el value más antiguo y lo copia al puntero que le pasan
+      lo que hace es copiar el valor de item->tail
   abre transacción SQL
   DCmass_update_items (update items info after new value is received)
     DCget_delta_items (Get a copy of delta item history stored in configuration cache)

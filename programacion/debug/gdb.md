@@ -64,6 +64,14 @@ gdb -q a.out
 > b N (poner en alguna linea)
 > r
 
+También podemos poner puntos de parada en funciones usando el nombre:
+b nombre_func
+
+Hacer print de un puntero conviertiendolo primero:
+p ((zbx_hc_item_t *)history_items->values[1])->tail
+
+
+
 Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comandos y en el otro varias divisiones mostrando:
   registrosstack
   codigo en asm
@@ -93,6 +101,8 @@ cat /proc/sys/kernel/yama/ptrace_scope
 Si está a 1 o más es seguridad añadida, tal vez tengamos que bajarlo a 0: https://stackoverflow.com/questions/2308653/can-i-use-gdb-to-debug-a-running-process
 
 gdb -p PID
+Nada más arrancar parará el programa donde esté.
+Podemos darle a "continue" y hacer control+c para volverlo a parar donde pille.
 
 
 
