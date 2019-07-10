@@ -86,6 +86,9 @@ call zbx_hashset_iter_reset(&cache->history_items, $iter)
 Devolviendo el resultado:
 p (zbx_hc_item_t *)zbx_hashset_iter_next($iter)
 
+Imprimir tipo de un dato
+ptype FOO
+
 
 
 Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comandos y en el otro varias divisiones mostrando:
@@ -231,6 +234,13 @@ clear file:lineno
 
 
 
+# Scripts
+Ejecutar un script con gdb y salir:
+gdb -p 5863 --batch -x simple.gdb
+
+simple.gdb:
+p hc_mem->used_size
+
 
 # Python
 https://sourceware.org/gdb/current/onlinedocs/gdb/Python.html#Python
@@ -239,6 +249,9 @@ A partir de la version 7 de gdb
 API Python
 https://developers.redhat.com/blog/2017/11/10/gdb-python-api/
 explicando el por que de una api python y algunos ejemplos (aunque los ejemplos no son muy buenos, según comenta uno)
+
+https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api
+https://sourceware.org/gdb/current/onlinedocs/gdb/Writing-a-Pretty_002dPrinter.html
 
 
 (gdb) python print("hola")
