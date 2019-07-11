@@ -3,6 +3,8 @@ RETURNS text AS $$
   SELECT $2[$1];
 $$ LANGUAGE sql;
 
+Cuidado, los arrays en postgres comienzan por 1
+
 
 
 Cambia el 0 por "OK", 1 por "NOT SUPPORTED", etc
