@@ -64,6 +64,8 @@ $ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
 /usr/src/debug/coreutils-8.21/src/ls.c:1289
 
 
+Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
+
 https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html
 Explica el funcionamiento de GDB para tener los symbols en un fichero a parte.
 Parece que el binario stripped tiene un código para chequear que lo symbols son del mismo build.
