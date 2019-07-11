@@ -17,6 +17,15 @@ hoja: nodo sin hijos
 Es un arból con solo dos ramas por nodo, como máximo.
 NO tiene porque estar ordenado (el BST si está ordenado)
 
+### binary heap
+https://en.wikipedia.org/wiki/Binary_heap
+Es un binary tree con dos condiciones adicionales:
+  el valor de cada nodo es mayor o igual (llamados max-heaps) que sus hijos (o puede definirse a la inversa, menor o igual, llamados min-heaps)
+  todos los niveles están completados, excepto tal vez el último, que en este caso estará rellenado de izquierda a derecha
+
+Insertar datos se llama "bubble up" o "up heap".
+Borra datos se llama "bubble down" o "down heap".
+
 
 ## BST (binary search tree)
 https://en.wikipedia.org/wiki/Binary_search_tree

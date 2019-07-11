@@ -254,6 +254,24 @@ https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api
 https://sourceware.org/gdb/current/onlinedocs/gdb/Writing-a-Pretty_002dPrinter.html
 
 
+Script sencillo que usa la API de python:
+simple.py:
+import gdb
+
+def main():
+    gdb.execute("source pretty_printer_zabbix.py")
+    gdb.execute("b hc_pop_items")
+    gdb.execute("continue")
+    gdb.execute("p cache->history_items")
+
+main()
+
+Lo ejecutamos con:
+gdb -p PID -P simple.py
+
+
+
+
 (gdb) python print("hola")
 hola
 
