@@ -19,17 +19,42 @@ mirar plugins.md
 
 $ cat ~/.gdbinit
 source /home/adrian/.gdbinit-gef.py
-source /usr/lib/python3.6/site-packages/voltron/entry.py
+source /usr/lib/python3.7/site-packages/voltron/entry.py (deprecated?)
 
 
-# Symbols
+# Symbols / strip
 Para que gdb pueda matchear las líneas de ensamblador con el código en C tenemos que tener la info DWARF
 
 Si el binario tiene info DWARF, cuando lo mostramos con "file" pondá "debug_info, not stripped" (en versiones viejas de "file" solo pondrá "not stripped")
 Si compilamos con gcc, podemos pasar el parámetro "-g" para añadir la info DWARF.
 
+Con el comando nm también podemos comprobar si el binario tiene los símbolos.
+nm binario
+Si no tiene símbolos fallará con "no symbols"
+
+Podemos quitar los símbolos a un binario con:
+strip -a binario
+
+Generar solo un fichero con la info debug (DWARF):
+strip --only-keep-debug -o a.out.debug a.out
+objcopy --only-keep-debug a.out a.out.debug
+  equivalente
+
+Quitar solo los símbolos de debug:
+strip --strip-debug -o a.out.no_dbg_sym a.out
+
+Por lo que veo haciendo pruebas:
+  un binario compilado normal tiene symbols pero no debug info (nm funciona, pero dwarfdump devuelve las secciones vacías). GDB nos dice que no tiene debugging symbols
+    podremos debugear porque tenemos los symbols, es decir, podemos hacer "b main", pero no podremos ver el código al que corresponde
+  un binario compilado con -g tiene debugging symbols, muestra info con dwarfdump y es debuggeable completamente con gcc (muestra código fuente)
+    necesitamos tener los ficheros de código fuente accesibles
+  un binario stripped, nm devuelve vacío. gdb no permite hacer "b main".
+
 Podemos ver el contenido DWARF con:
 dwarfdump fichero
+  aqui veremos los mapeos de las direcciones de memoria a los ficheros del código fuente (que tendremos que tener localmente)
+  ejemplo: 0x00407db6  [ 989, 0] NS uri: "/usr/src/debug/zabbix-3.2.6/src/zabbix_sender/zabbix_sender.c"
+
 
 Con addr2line podemos sacar a que línea de código se mapea una instrucción del binario.
 Ejemplo:
@@ -44,6 +69,10 @@ $ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
 Para instalar los simbolos de un binario
 yum install -y yum-utils
 debuginfo-install -y PKG
+
+https://fedoraproject.org/wiki/Packaging:Debuginfo
+Estos paquetes instalan los binarios not stripped (con debug info) en /usr/lib/debug, y el código fuente en /usr/src/debug
+
 
 
 Para cosas mas especificas de ASM:
