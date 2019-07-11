@@ -214,6 +214,9 @@ No source file named build/build.c.
 Make breakpoint pending on future shared library load? (y or [n]) y
 Breakpoint 1 (build/build.c:299) pending.
 
+tbreak SPEC
+  temporary breakpoint, se borra tras parar en ese punto
+
 Ejecutar acciones cuando salte un breakpoint:
 command NUMBP
 cosas que queremos hacer
@@ -252,6 +255,8 @@ explicando el por que de una api python y algunos ejemplos (aunque los ejemplos 
 
 https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api
 https://sourceware.org/gdb/current/onlinedocs/gdb/Writing-a-Pretty_002dPrinter.html
+https://sourceware.org/gdb/onlinedocs/gdb/Python-API.html#Python-API
+https://github.com/bminor/binutils-gdb/blob/master/gdb/python/
 
 
 Script sencillo que usa la API de python:
@@ -269,6 +274,18 @@ main()
 Lo ejecutamos con:
 gdb -p PID -P simple.py
 
+
+Podemos obtener variables y traerlas a python:
+myval = gdb.parse_and_eval ('cache->history_items')
+
+
+Eventos a los que podemos subscribirnos desde python
+https://sourceware.org/gdb/current/onlinedocs/gdb/Events-In-Python.html#index-SignalEvent_002estop_005fsignal-2015
+Por ejemplo, subscribirnos a los breakpoints, de manera que se llame a una func cada vez que se llegue a un breakpoint
+
+
+Cuidado con pararnos en un breakpoint, no podemos hacer ciertas cosas
+https://blog.0x972.info/?d=2015/05/12/08/52/11-gdbpython-executing-code-upon-events
 
 
 
