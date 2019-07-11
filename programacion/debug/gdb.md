@@ -64,6 +64,17 @@ $ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
 /usr/src/debug/coreutils-8.21/src/ls.c:1289
 
 
+https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html
+Explica el funcionamiento de GDB para tener los symbols en un fichero a parte.
+Parece que el binario stripped tiene un código para chequear que lo symbols son del mismo build.
+
+
+## Cargar symbols de un fichero externo
+Eso nos vale para debugear un binario stripped o sin debug info
+
+gdb a.out
+> symbol-file a.out.debug
+
 
 # CentOS/RedHat
 Para instalar los simbolos de un binario

@@ -7,6 +7,8 @@ unsigned sleep(unsigned seconds);
 
 
 
+Otra forma, para tener más resolución:
+
 #include <time.h>
 struct timespec time = { 1, 500000000 }; // 1s + 500.000.000ns, 1.5"
 if (nanosleep(&time, NULL) < 0) {
