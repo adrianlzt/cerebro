@@ -81,3 +81,12 @@ nm -an zabbix_server
 
 Luego:
 sudo /usr/share/bcc/tools/trace 'r:/var/tmp/zabbix_server:process_sender_history_data "retval"'
+
+
+
+# GDB
+Podemos unirnos a procesos que tengan varios forks sin parar el procesado.
+CUIDADO con pararnos entre algún LOCK de la cache, porque bloquearemos prácticamente todo
+
+Ejemplo sacando la información almacenada en la history write cache
+https://gist.github.com/28c300d362f83607094872d18eee3820

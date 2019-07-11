@@ -274,6 +274,8 @@ main()
 Lo ejecutamos con:
 gdb -p PID -P simple.py
 
+Ejemplo más complejo hecho para zabbix: gdb_zabbix_cache.py
+
 
 Podemos obtener variables y traerlas a python:
 myval = gdb.parse_and_eval ('cache->history_items')
