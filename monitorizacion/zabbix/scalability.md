@@ -224,6 +224,31 @@ DCsync_history (writes updates and new data from pool to database)
   0x7f41a4a62650: 1000000000000000000000000000000000000000000000000000001100000000
 
 
+  cache->history_items es un hashset (creo que algo como un dict) donde hay almacenadas estructuras zbx_hc_item_t para cada itemid que tiene values pendientes de procesar.
+  Más abajo hay una sección sobre los hashset
+
+  Buscar un elemento en la tabla history_items a partir del itemid:
+  p (zbx_hc_item_t *)zbx_hashset_search(&cache->history_items, &((zbx_hc_item_t *)history_items->values[0])->itemid)
+
+  Iterar por el hashset de cache->history_items
+  set $iter = malloc(sizeof(zbx_hashset_iter_t))
+  call zbx_hashset_iter_reset(&cache->history_items, $iter)
+  p (zbx_hc_item_t *)zbx_hashset_iter_next($iter)
+  p ((zbx_hc_item_t *) 0x7f41a4a5f478)->itemid
+    es la direc de memoria que me devolvió la función
+
+  Cuando nos devuelva 0x0 (NULL) es que no hay más datos
+
+  Podemos acceder al contenido de iter con:
+  p ((zbx_hashset_iter_t*)$iter)
+
+  La posición de memoria que nos devuelve zbx_hashset_iter_next sale de:
+  p &((struct zbx_hashset_entry_s *) ((zbx_hashset_iter_t*)$iter)->entry)->data
+
+  Sacar el data de un slot de cache->history_items:
+  p ((zbx_hc_item_t*)cache->history_items->slots[1]->data)->itemid
+
+
 
 
 
@@ -232,7 +257,7 @@ DCsync_history (writes updates and new data from pool to database)
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
   bucle do-while hasta que no queden más elementos o pasemos el tiempo máximo (60")
   hc_pop_items (pops the next batch of history items from cache for processing). Dice que debemos devolver los elementos con hc_pop_items() tras procesarlos.
-    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap (min-heap)" almacenada en la History Index Cache. mirar más abajo la sección "binary heap")
+    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap (min-heap)" almacenada en la History Index Cache. mirar más abajo la sección "binary heap"). Este binary heap tiene primero los elementos con un tiemstamp más antiguo.
     lo que obtiene son zbx_hc_item_t (itemid, status, tail y head)
     para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue) (lo que hace es coger el elem[0]), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
     para si elems_num = 0
@@ -306,6 +331,35 @@ Parece que tambien se usa para cosas del configuration syncer (queues y pqueue)
 
 La implementación es genérica, para poder ser usada de distintas formas.
 Por ejemplo, para la history_queue se hace el orden por fecha (->tail->ts)
+
+
+## Hashset
+hashset.c
+Usado, al menos, para almacenar las estructuras de itemids con los punteros a la history cache donde están los valores pendientes de procesar.
+
+Función para iterar por un hashset
+zbx_hashset_iter_reset
+
+Ejemplo de uso, iterando sobre todos los elementos de la history_items:
+zbx_hashset_iter_t  iter;
+zbx_hc_item_t   *item;
+zbx_hashset_iter_reset(&cache->history_items, &iter);
+while (NULL != (item = (zbx_hc_item_t *)zbx_hashset_iter_next(&iter)))
+  // hacer algo con item
+
+Esta iteración lo que hace es recorrer desde 0 hasta cache->history_items->num_slots - 1
+  cache->history_items->slots[0]
+Cuando no es NULL es que tiene un zbx_hc_item_t
+
+El hashset tendrá num_slots huecos de los cuales cache->history_items->num_data tendrán valor.
+
+Los elementos almacenados en la hashset son zbx_hashset_entry_s
+Cada elemento tiene:
+  hash (hasheo de los datos, algo tipo md5sum(data))
+  data
+  next (si empezamos a buscar desde el principio del hashset, una vez encontremos el primer elemento, podemos saltar al resto con ->next)
+  padding (temas de alineamiento de memoria)
+
 
 
 

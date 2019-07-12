@@ -127,7 +127,7 @@ Adding values
   get item by itemid from history items hashset, add new item if none found.
   allocate zbx_hc_data_t structure and string/log values if required in history cache.
   add the allocated structure at the head of item value list.
-  add item to history queue if it was just created.
+  add item to history queue if it was just created. Esta estructura es un binary_heap, de manera que el "root" siempre será el elemento con el timestamp más antiguo
 
 Se procesa el dato y se envia la respuesta al cliente:
 
@@ -159,7 +159,7 @@ process_hist_data (process values sent by proxies, active agents and senders)
     dc_requeue_items, creo que para mover items entre un/reachable
     dc_flush_history
       hc_add_item_values (adds item values to the history cache)
-        se añaden de dos maneras, el itemid a la history_queue y el value a la history_data
+        se añaden de dos maneras, el itemid a la history_queue y el value a la history_data, con el siguiente procedimiento:
         se itera por cada value llamando a hc_clone_history_data
         hc_clone_history_data (clones item value from local cache into history cache)
           no entiendo muy bien que hace esto. Hace un malloc para coger memoria, pero solo si lo había hecho ya antes.
@@ -173,7 +173,13 @@ process_hist_data (process values sent by proxies, active agents and senders)
           si no existía se llama a hc_queue_item (put back item into history queue), &cache->history_queue
             esta es la lista de itemids que hay que procesar
           estos items son una lista doble enlazada (tail y head) con el itemid y el status
+          explicado a más alto nivel lo que está sucediendo es:
+            llega un nuevo valor para un determinado itemid.
+            buscamos en history_items si ya tenemos una estructura zbx_hc_item_t para ese itemid.
+            Si la tenemos, cogemos ese nuevo value y lo metemos la history cache, que es una lista enlazada. Agregamos este nuevo value al final (head) de la lista
+            Si no tenemos el item zbx_hc_item_t en history_items, creamos esa estructura y copiamos el itemid a la history_queue, que es donde van los history syncer a coger los itemids que procesar
       cache->history_num += item_values_num
+        actualizamos ese contador para saber cuantos values están pendientes de ser procesados
 zbx_send_response
 
 La cache:

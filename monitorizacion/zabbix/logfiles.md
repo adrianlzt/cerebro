@@ -21,6 +21,24 @@ El journal tambien tira los mensajes al recibir demasiados:
 journal: Suppressed 290762 messages from /system.slice/zabbix-server.service
 
 
+Si escribimos a fichero, aún usando /dev/shm para evitar el disco, los procesos se ralentizan mucho por bloqueos a la hora de escribir al log.
+Ejemplo de backtrace con el bloqueo:
+#0  0x00007fa9e3c7b6a7 in semop () from /lib64/libc.so.6
+#1  0x000000000048c6e3 in __zbx_mutex_lock (filename=filename@entry=0x4fd47f "log.c", line=line@entry=238, mutex=mutex@entry=0x79790c <log_access>) at mutexs.c:216
+#2  0x00000000004564c0 in lock_log () at log.c:238
+#3  0x0000000000457045 in __zbx_zabbix_log (level=level@entry=4, fmt=fmt@entry=0x4fe58e "In %s() data:EMPTY") at log.c:423
+
+
+En el caso de usar syslog también se atascan. El bt
+#0  0x00007f06c2d23e6d in send () from /lib64/libc.so.6
+#1  0x00007f06c2d1cd31 in __vsyslog_chk () from /lib64/libc.so.6
+#2  0x00007f06c2d1cff2 in __syslog_chk () from /lib64/libc.so.6
+#3  0x0000000000457236 in syslog (__fmt=0x4ea938 "%s", __pri=7) at /usr/include/bits/syslog.h:31
+#4  __zbx_zabbix_log (level=level@entry=4, fmt=fmt@entry=0x4fe58e "In %s() data:EMPTY") at log.c:548
+
+Solución, los los de debug a un fichero distinto por cada pid.
+
+
 
 # Monitorizar logs
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/log_items

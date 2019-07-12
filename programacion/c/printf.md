@@ -95,7 +95,7 @@ fflush(stdout); // Forzando cuando queremos
 
 
 
-# sprintf
+# sprintf (no usar, seguir leyendo)
 Como printf, pero en vez de escribir a stdout, almacenamos en una varible el resultado.
 
 char buffer[500];
