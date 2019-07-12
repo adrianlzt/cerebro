@@ -1,11 +1,19 @@
 http://swift.siphos.be/linux_sea/logfilemanagement.html
 
 syslog escucha en /dev/log
+en sistemas con systemd, será el journal quien escucha ahi
+  para systemd podemos escribir mensajes con systemd-cat
 /dev/log es un socket donde cualquiera puede escribir
+
+Comando para enviar a /dev/log
+logger mensaje que queremos poner
 
 Escribiendo directamente al socket:
 echo "<175>abcdefgh cosas y mas cosas" | socat unix-sendto:/dev/log STDIN
 <175> es DEBUG y local5<F10>
+
+Si tenemos puerto abierto (normalmente syslog)
+echo ‘<14>sourcehost message text’ | nc -v -u -w 0 localhost 514
 
 La codificación para seleccionar level y facility:
 facility | priority
@@ -131,8 +139,13 @@ The rsyslog package has a $RepeatedMsgReduction global directive which one can s
 
 
 
+# /dev/log desaparece
+https://unix.stackexchange.com/a/317066
 
+Parece que bajo ciertas casuísticas entre systemd y rsyslog /dev/log puede desaparecer.
+Reiniciar el socket de journald y rsyslogd
+systemctl restart systemd-journald.socket
+systemctl start rsyslogd
 
-
-# Enviar un mensaje a syslog
-echo ‘<14>sourcehost message text’ | nc -v -u -w 0 localhost 514
+Chequear:
+file /dev/log
