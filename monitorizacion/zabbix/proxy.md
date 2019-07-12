@@ -35,9 +35,18 @@ Parámetros de conf para proxiex pasivos:
   ProxyDataFrequency – how often data is requested from passive proxies
 
 
+# Problema con muchos hosts/items
+Los proxies tienen un tamaño máximo de configuración que puede sincronizar.
+Si tenemos muchos hosts y/o items puede dejar de funcionar.
+Salta un mensaje de error en el log.
+
+
 
 # Problemas overflow
 when you have some Zabbix server downtime, proxies are accumulating data, and when Zabbix server comes back online, they will send all accumulated data immediately, which will go to history cache and overload history syncers, which must write the missing data to the DB. This will cause much higher NVPS rate than normal.
+24222:20190626:182125.561 Uncompressed message size 184049038 from NOMBREPROXY exceeds the maximum size 134217728 bytes. Message ignored.
+https://support.zabbix.com/browse/ZBXNEXT-4920
+
 
 
 # Internals

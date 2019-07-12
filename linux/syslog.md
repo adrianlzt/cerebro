@@ -75,6 +75,44 @@ Ejemplo de config (creo que para versiones nuevas se puede poner "reload" en vez
 }
 
 
+## formato especial para un log
+https://www.rsyslog.com/doc/master/configuration/property_replacer.html#property-options
+https://www.rsyslog.com/doc/v8-stable/configuration/templates.html
+
+template(name="ZabbixTemplate" type="list") {
+     constant(value=" ")
+     property(name="procid")
+     constant(value=":")
+     property(name="timereported" dateFormat="year")
+     property(name="timereported" dateFormat="month")
+     property(name="timereported" dateFormat="day")
+     constant(value=":")
+     property(name="timereported" dateFormat="hour")
+     property(name="timereported" dateFormat="minute")
+     property(name="timereported" dateFormat="second")
+     constant(value=".")
+     property(name="timereported" dateFormat="subseconds")
+     constant(value=" ")
+     property(name="msg")
+     constant(value="\n")
+}
+:programname, isequal, "zabbix_server" -/var/log/zabbix/zabbix_server.log;ZabbixTemplate
+
+Se puede sacar en JSON, pero tengo que meter los "{}," a mano, porque no me los mete. Cosa de la versión?
+
+template(name="ZabbixTemplate" type="list" option.jsonf="on") {
+     constant(value="{")
+     property(outname="proc" name="procid" format="jsonf")
+     constant(value=",")
+     property(outname="date" name="timereported" dateFormat="rfc3339" format="jsonf")
+     constant(value=",")
+     property(outname="msg" name="msg" format="jsonf")
+     constant(value=",")
+     property(outname="severity" name="syslogseverity" caseConversion="upper" format="jsonf" datatype="number")
+     constant(value="}\n")
+}
+
+
 
 ## enviar a un comando
 http://www.rsyslog.com/doc/omprog.html
