@@ -1,0 +1,174 @@
+Index: include/common.h
+===================================================================
+--- include/common.h	(revision 89771)
++++ include/common.h	(working copy)
+@@ -434,6 +434,7 @@
+ #define ZBX_HOUSEKEEPER_EXECUTE	"housekeeper_execute"
+ #define ZBX_LOG_LEVEL_INCREASE	"log_level_increase"
+ #define ZBX_LOG_LEVEL_DECREASE	"log_level_decrease"
++#define ZBX_WCACHE_DUMP		"wcache_dump"
+ 
+ /* value for not supported items */
+ #define ZBX_NOTSUPPORTED	"ZBX_NOTSUPPORTED"
+@@ -901,6 +902,7 @@
+ #define ZBX_RTC_LOG_LEVEL_DECREASE	2
+ #define ZBX_RTC_HOUSEKEEPER_EXECUTE	3
+ #define ZBX_RTC_CONFIG_CACHE_RELOAD	8
++#define ZBX_RTC_WCACHE_DUMP		9
+ 
+ typedef enum
+ {
+Index: src/libs/zbxdbcache/dbcache.c
+===================================================================
+--- src/libs/zbxdbcache/dbcache.c	(revision 89771)
++++ src/libs/zbxdbcache/dbcache.c	(working copy)
+@@ -3947,6 +3947,52 @@
+ 	}
+ }
+ 
++void	wcache_dump(int threshold)
++{
++	zbx_hc_item_t			*item;
++	zbx_hashset_iter_t		iter;
++	int				i, total = 0;
++	zbx_vector_uint64_pair_t	items;
++
++	zbx_vector_uint64_pair_create(&items);
++
++	LOCK_CACHE;
++
++	zbx_hashset_iter_reset(&cache->history_items, &iter);
++
++	while (NULL != (item = (zbx_hc_item_t *)zbx_hashset_iter_next(&iter)))
++	{
++		zbx_hc_data_t		*data;
++		zbx_uint64_pair_t	pair;
++
++		for (data = item->tail, i = 0; NULL != data; data = data->next, i++);
++
++		pair.first = i;
++		pair.second = item->itemid;
++
++		zbx_vector_uint64_pair_append(&items, pair);
++		total += i;
++	}
++
++	UNLOCK_CACHE;
++
++	zbx_vector_uint64_pair_sort(&items, ZBX_DEFAULT_UINT64_COMPARE_FUNC);
++
++	for (i = 0; i < items.values_num; i++)
++	{
++		if (threshold > items.values[i].first)
++			continue;
++
++		zabbix_log(LOG_LEVEL_INFORMATION, "count:" ZBX_FS_UI64 " itemid:" ZBX_FS_UI64
++				" perc:" ZBX_FS_DBL "%%", items.values[i].first, items.values[i].second,
++				100 * (double)items.values[i].first / total);
++	}
++
++	zbx_vector_uint64_pair_destroy(&items);
++
++	zabbix_log(LOG_LEVEL_INFORMATION, "total in write cache:%d", total);
++}
++
+ /******************************************************************************
+  *                                                                            *
+  * Function: hc_copy_history_data                                             *
+Index: src/libs/zbxnix/control.c
+===================================================================
+--- src/libs/zbxnix/control.c	(revision 89771)
++++ src/libs/zbxnix/control.c	(working copy)
+@@ -106,6 +106,39 @@
+ 	return SUCCEED;
+ }
+ 
++static int	parse_cache_dump_options(const char *opt, size_t len, unsigned int *scope, unsigned int *data)
++{
++	unsigned short	num;
++	const char	*rtc_options;
++
++	rtc_options = opt + len;
++
++	if ('\0' == *rtc_options)
++	{
++		*scope = 0;
++		*data = 0;
++
++		return SUCCEED;
++	}
++
++	if ('=' != *rtc_options)
++	{
++		zbx_error("invalid runtime control option: %s", opt);
++		return FAIL;
++	}
++
++	if (FAIL == is_ushort(rtc_options + 1, &num))
++	{
++		zbx_error("invalid wcache dump parameter: must be unsigned short");
++		return FAIL;
++	}
++
++	*scope = 0;
++	*data = num;
++
++	return SUCCEED;
++}
++
+ /******************************************************************************
+  *                                                                            *
+  * Function: parse_rtc_options                                                *
+@@ -154,6 +187,13 @@
+ 		scope = 0;
+ 		data = 0;
+ 	}
++	else if (0 == strncmp(opt, ZBX_WCACHE_DUMP, ZBX_CONST_STRLEN(ZBX_WCACHE_DUMP)))
++	{
++		if (SUCCEED != parse_cache_dump_options(opt, ZBX_CONST_STRLEN(ZBX_WCACHE_DUMP), &scope, &data))
++			return FAIL;
++
++		command = ZBX_RTC_WCACHE_DUMP;
++	}
+ 	else
+ 	{
+ 		zbx_error("invalid runtime control option: %s", opt);
+Index: src/libs/zbxnix/daemon.c
+===================================================================
+--- src/libs/zbxnix/daemon.c	(revision 89771)
++++ src/libs/zbxnix/daemon.c	(working copy)
+@@ -234,6 +234,9 @@
+ 			else
+ 				zbx_signal_process_by_type(ZBX_RTC_GET_SCOPE(flags), ZBX_RTC_GET_DATA(flags), flags);
+ 			break;
++		case ZBX_RTC_WCACHE_DUMP:
++			wcache_dump(ZBX_RTC_GET_DATA(flags));
++			break;
+ 	}
+ #endif
+ }
+Index: src/zabbix_agent/zabbix_agentd.c
+===================================================================
+--- src/zabbix_agent/zabbix_agentd.c	(revision 89771)
++++ src/zabbix_agent/zabbix_agentd.c	(working copy)
+@@ -1274,3 +1274,8 @@
+ 
+ 	exit(EXIT_SUCCESS);
+ }
++
++void	wcache_dump(int threshold)
++{
++	ZBX_UNUSED(threshold);
++}
+Index: src/zabbix_server/dbsyncer/dbsyncer.c
+===================================================================
+--- src/zabbix_server/dbsyncer/dbsyncer.c	(revision 89771)
++++ src/zabbix_server/dbsyncer/dbsyncer.c	(working copy)
+@@ -84,6 +84,7 @@
+ 			zbx_setproctitle("%s #%d [%s, syncing history]", process_name, process_num, stats);
+ 
+ 		zbx_sync_history_cache(&values_num, &triggers_num, &more);
++
+ 		total_values_num += values_num;
+ 		total_triggers_num += triggers_num;
+ 		total_sec += zbx_time() - sec;

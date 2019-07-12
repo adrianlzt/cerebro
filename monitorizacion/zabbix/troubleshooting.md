@@ -54,6 +54,15 @@ Si tenemos un php-fpm ejecutando una TX que dura mucho tiempo, podemos hacer un 
 dump_mem.py 4273 |& strings >& dump.4273.txt
   parece que "gcore", de gdb, nos permite hacer un dump: gcore -o out pid
 
+Mejor con gcore (de gdb). Mirar en debug.md
+
 cat dump.4273.txt | grep -e REMOTE_ADDR -e HTTP_USER_AGENT -e REQUEST_METHOD -e QUERY_STRING -e HTTP_REFERER -e SCRIPT_NAME -e REQUEST_URI -e '"jsonrpc"'
   asi deberiamos poder ver quien nos está pidiendo que, a donde, que POST nos ha hecho, etc
   mirando el "auth" de la petición json podemos ver quien es (tabla session y users)
+
+
+Si vemos peticiones tipo:
+SELECT i.itemid,i.name,i.type,i.value_type,i.units,i.hostid,i.state,i.valuemapid,i.status,i.error,i.trends,i.history,i.delay,i.key_,i.flags FROM items i WHERE i.flags IN (0,4) AND (i.hostid BETWEEN '10118' AND '10133' OR i.hostid BETWEEN '18682' AND '18686' OR i.hostid BETWEEN '18688' AND '18697' OR i.hostid BETWEEN '29766' AND '29771' OR i.hostid BETWEEN '30926' AND '30930' OR i.hostid BETWEEN '31448' AND '31454' OR i.hostid BETWEEN '31785' AND '31790' OR i.hostid BETWEEN '34368' AND '34373' OR i.hostid BETWEEN '34493' AND '34499' OR i.hostid BETWEEN '34515' AND '34521' OR i.hostid BETWEEN '34524' AND '34528' OR i.hostid BETWEEN '37431' AND '37439' OR i.hostid BETWEEN '39810' AND '39820' OR i.hostid BETWEEN '39822' AND '39830' OR i.hostid BETWEEN '39842' AND '39848' OR i.hostid BETWEEN '40901' AND '40913' OR i.hostid BETWEEN '40985' AND '40996' OR i.hostid BETWEEN '41002' AND '41012' OR i.hostid BETWEEN '41024' AND '41029' OR i.hostid BETWEEN '41034' AND '41038' OR i.hostid BETWEEN '41040' AND '41046' OR i.
+
+Es probable que fuese una consulta a latest data que se fue de madre.
+Habrá que matar a los php-fpm involucrados.

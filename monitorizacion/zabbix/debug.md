@@ -70,6 +70,13 @@ Luego hacemos:
 python dump.py PID_PHP_FPM > dump.txt
 strings dump.txt | grep -e zbx_sessionid -e REQUEST_URI -e REMOTE_ADDR -e SELECT -e UPDATE
 
+yum install -y gdb
+gcore PID
+Mientras se ejecuta, porque puede que no termine:
+strings core.PID | grep -e zbx_sessionid -e REQUEST_URI -e REMOTE_ADDR -e SELECT -e UPDATE
+
+mirar troubleshooting.md
+
 
 
 # eBPF

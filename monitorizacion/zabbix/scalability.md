@@ -101,6 +101,7 @@ Cuando se realiza el update, se nota una pequeña congelación en los procesos. 
 
 ## Write cache / history cache + history index cache
 src/libs/zbxdbcache/dbcache.c
+wcache_dump_3_4.0.3.diff parche para poder hacer un dump de la history write cache al log. Sacar los itemsid y cuantos values tiene cada uno.
 
 History cache is used to store item values. A low number indicates performance problems on the database side.
 Como se insertan datos en la history cache detallado en trap.md
