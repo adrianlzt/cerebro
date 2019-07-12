@@ -15,6 +15,11 @@ La segunda linea es para evitar que los logs de zabbix se envien a otra config t
 systemctl restart rsyslog
 systemctl restart zabbix-server
 
+Si usamos systemd, los logs se están enviando primero al journal, siendo almacenados ahí y luego al rsyslog.
+Esto no tiene pinta de ser muy buena idea y a parte satura mucho al journal (se le ve consumir una cpu bastante rato).
+El journal tambien tira los mensajes al recibir demasiados:
+journal: Suppressed 290762 messages from /system.slice/zabbix-server.service
+
 
 
 # Monitorizar logs
