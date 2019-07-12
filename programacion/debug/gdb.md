@@ -60,11 +60,33 @@ Con addr2line podemos sacar a que línea de código se mapea una instrucción de
 Ejemplo:
 $ dwarfdump /usr/lib/debug/usr/bin/ls.debug | grep 402ce4
 0x00402ce4  [1289, 0] NS
+  En la sección .debug_line es donde se hace el mapeo de posiciones de memoria a lineas del código fuente. Ejemplo:
+    <pc>        [lno,col] NS BB ET PE EB IS= DI= uri: "filepath"
+    0x00001149  [   6, 1] NS uri: "/var/tmp/tmp.xmplvj5BtO/helloworld.c"
+    0x00001158  [   8, 9] NS
+    0x0000115f  [   8, 2] NS
+
 $ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
 /usr/src/debug/coreutils-8.21/src/ls.c:1289
 
+Si tenemos un programa corriendo, para una posición determinada de memoria de la instrucción, restamos la posición inicial de memoria (cat /proc/9938/smaps | head -1 | cut -d '-' -f 1) y nos da la dirección que debemos pasar a addr2line para obtener la línea del código que queremos ver.
+
+Lo que veo es que cuando meto un programa con debug info, el mapeo del proceso aparece el la memoria a partir de 0x0.
+          Start Addr           End Addr       Size     Offset objfile
+            0x400000           0x594000   0x194000        0x0 /usr/sbin/zabbix_server_pgsql.debug_info
+            0x794000           0x795000     0x1000   0x194000 /usr/sbin/zabbix_server_pgsql.debug_info
+
+Pero el mismo programa stripped, se carga a partir de la dirección base:
+          Start Addr           End Addr       Size     Offset objfile
+      0x5593a6b70000     0x5593a6d23000   0x1b3000        0x0 /usr/sbin/zabbix_server_pgsql.stripped
+      0x5593a6f22000     0x5593a6f80000    0x5e000   0x1b2000 /usr/sbin/zabbix_server_pgsql.stripped
+
+
 
 Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
+
+Las instrucciones "directory" y "set substitute-path" valen para definir donde debe buscar las fuentes del código.
+
 
 https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html
 Explica el funcionamiento de GDB para tener los symbols en un fichero a parte.
@@ -106,6 +128,17 @@ gdb -q a.out
 > b N (poner en alguna linea)
 > r
 
+finish
+  ejecutar hasta salir de la función
+
+break context_switch if next == init_task
+  breakpoints condicionales
+
+Ejecutar una serie de comandos cuando llegamos a un breakpoint
+command BP
+> print xxx
+
+
 También podemos poner puntos de parada en funciones usando el nombre:
 b nombre_func
 
@@ -117,6 +150,10 @@ x/xg 0x7f41a4a62348
 
 Lo mismo pero en formato binario:
 x/tg 0x7f41a4a62348
+
+Imprimir una dirección de memoria interpretándola como instrucciones, mostrar esa dirección y las 4 siguientes:
+x/4i 0x555555555161
+
 
 Declarar una variable, ejemplos:
 set $foo = malloc(sizeof(struct funcOutStruct))
