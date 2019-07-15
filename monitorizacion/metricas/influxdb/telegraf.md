@@ -17,6 +17,8 @@ yum install telegraf
 
 
 # Configuración
+POC conf dinámica: https://github.com/danielnelson/tgconfig
+
 Por defecto el rpm genera:
 /etc/telegraf/telegraf.conf
 

@@ -33,7 +33,7 @@ nm binario
 Si no tiene símbolos fallará con "no symbols"
 
 Podemos quitar los símbolos a un binario con:
-strip -a binario
+strip -s -o a.out.stripped a.out
 
 Generar solo un fichero con la info debug (DWARF):
 strip --only-keep-debug -o a.out.debug a.out
@@ -50,7 +50,7 @@ Por lo que veo haciendo pruebas:
     necesitamos tener los ficheros de código fuente accesibles
   un binario stripped, nm devuelve vacío. gdb no permite hacer "b main".
 
-Podemos ver el contenido DWARF con:
+Podemos ver el contenido DWARF con (yum install libdwarf-tools):
 dwarfdump fichero
   aqui veremos los mapeos de las direcciones de memoria a los ficheros del código fuente (que tendremos que tener localmente)
   ejemplo: 0x00407db6  [ 989, 0] NS uri: "/usr/src/debug/zabbix-3.2.6/src/zabbix_sender/zabbix_sender.c"
@@ -81,6 +81,11 @@ Pero el mismo programa stripped, se carga a partir de la dirección base:
       0x5593a6b70000     0x5593a6d23000   0x1b3000        0x0 /usr/sbin/zabbix_server_pgsql.stripped
       0x5593a6f22000     0x5593a6f80000    0x5e000   0x1b2000 /usr/sbin/zabbix_server_pgsql.stripped
 
+Por lo que veo, en rhel7.3 (kernel 3.10), cargando un pequeño helloworld, siempre lo veo en posiciones de memoria pequeñas, da igual que sea stripped/symbols/debug_info.
+En arch (kernel 5.1) me lo carga en direc normales, tamién independientemente del tipo de binario.
+
+En kernel 3.10, el server de zabbix stripped, me lo carga en direc normales, pero el debug_info en direcciones pequeñas.
+En 5.1 el server de zabbix siempre lo carga en direcciones normales, tanto el stripped como el debug_info.
 
 
 Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
