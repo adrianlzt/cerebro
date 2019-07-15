@@ -15,6 +15,8 @@ git apply --stat fichero.patch
 Comprobar si se puede aplicar el parche:
 git apply --check fichero.patch
 
+Parche de los cambios unstaged:
+git diff > parche
 
 Generar el parche del ultimo commit:
 git format-patch -1
