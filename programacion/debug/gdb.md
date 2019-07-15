@@ -88,6 +88,9 @@ https://unix.stackexchange.com/questions/472449/what-is-the-difference-between-l
 Por el contrario, los "LSB executable" se cargarán en la dirección base de memoria.
 
 
+Parece que para los binarios PIE cargados con ASLR, no podemos cargarle su tabla de symbols.
+
+
 
 Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
 
