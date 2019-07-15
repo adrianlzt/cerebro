@@ -22,11 +22,13 @@ source /home/adrian/.gdbinit-gef.py
 source /usr/lib/python3.7/site-packages/voltron/entry.py (deprecated?)
 
 
-# Symbols / strip
+# Symbols / dwarf / strip
 Para que gdb pueda matchear las líneas de ensamblador con el código en C tenemos que tener la info DWARF
 
 Si el binario tiene info DWARF, cuando lo mostramos con "file" pondá "debug_info, not stripped" (en versiones viejas de "file" solo pondrá "not stripped")
 Si compilamos con gcc, podemos pasar el parámetro "-g" para añadir la info DWARF.
+
+Por lo que veo, ciertos binarios stripped parece que conservan info de las funciones. gdb "bt" me muestra los nombres de las funciones asociados a las direc de memoria.
 
 Con el comando nm también podemos comprobar si el binario tiene los símbolos.
 nm binario
@@ -71,21 +73,20 @@ $ addr2line -e /usr/lib/debug/usr/bin/ls.debug  0x00402ce4
 
 Si tenemos un programa corriendo, para una posición determinada de memoria de la instrucción, restamos la posición inicial de memoria (cat /proc/9938/smaps | head -1 | cut -d '-' -f 1) y nos da la dirección que debemos pasar a addr2line para obtener la línea del código que queremos ver.
 
-Lo que veo es que cuando meto un programa con debug info, el mapeo del proceso aparece el la memoria a partir de 0x0.
+Depende del tipo de binario el programa se cargará en la dirección base o en una random (leer más abajo):
           Start Addr           End Addr       Size     Offset objfile
             0x400000           0x594000   0x194000        0x0 /usr/sbin/zabbix_server_pgsql.debug_info
             0x794000           0x795000     0x1000   0x194000 /usr/sbin/zabbix_server_pgsql.debug_info
 
-Pero el mismo programa stripped, se carga a partir de la dirección base:
           Start Addr           End Addr       Size     Offset objfile
       0x5593a6b70000     0x5593a6d23000   0x1b3000        0x0 /usr/sbin/zabbix_server_pgsql.stripped
       0x5593a6f22000     0x5593a6f80000    0x5e000   0x1b2000 /usr/sbin/zabbix_server_pgsql.stripped
 
-Por lo que veo, en rhel7.3 (kernel 3.10), cargando un pequeño helloworld, siempre lo veo en posiciones de memoria pequeñas, da igual que sea stripped/symbols/debug_info.
-En arch (kernel 5.1) me lo carga en direc normales, tamién independientemente del tipo de binario.
+Esto de que mapee las direciones de memoria de una manera u otra depende de si el binario es PIE (Position Independent Executable).
+Estos binarios PIE (en versiones nuevas de file lo pone como "LSB pie executable", en atiguas "LSB shared object") permite al dynamic loader cargar el binario en posiciones random
+https://unix.stackexchange.com/questions/472449/what-is-the-difference-between-lsb-executable-et-exec-and-lsb-shared-object
+Por el contrario, los "LSB executable" se cargarán en la dirección base de memoria.
 
-En kernel 3.10, el server de zabbix stripped, me lo carga en direc normales, pero el debug_info en direcciones pequeñas.
-En 5.1 el server de zabbix siempre lo carga en direcciones normales, tanto el stripped como el debug_info.
 
 
 Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
@@ -138,6 +139,10 @@ finish
 
 break context_switch if next == init_task
   breakpoints condicionales
+
+b *0x7f41a4a62348
+b *main + 4
+  poner un breakpoint en una direc de memoria
 
 Ejecutar una serie de comandos cuando llegamos a un breakpoint
 command BP
