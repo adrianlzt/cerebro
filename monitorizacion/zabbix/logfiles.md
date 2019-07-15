@@ -38,6 +38,11 @@ En el caso de usar syslog también se atascan. El bt
 
 Solución, los los de debug a un fichero distinto por cada pid.
 
+Pruebas de performance.
+Con 5 trappers, inyectando con 4 procesos en paralelo, 4000 métricas 10 veces cada uno, sin debug el tiempo total para cada uno era de unos 14".
+Con debug al mismo fichero (lo estandar), 63"
+Con debug a distintos ficheros, 17"
+
 
 
 # Monitorizar logs
