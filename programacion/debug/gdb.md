@@ -168,6 +168,9 @@ p (zbx_hc_item_t *)zbx_hashset_iter_next($iter)
 Imprimir tipo de un dato
 ptype FOO
 
+Ver donde está las zonas de memoria usadas por un proceso arrancado:
+info proc mappings
+
 
 
 Tenemos que terminar con dos panes de tmux, uno con la "shell" para pasar comandos y en el otro varias divisiones mostrando:
