@@ -95,6 +95,8 @@ Parece que para los binarios PIE cargados con ASLR, no podemos cargarle su tabla
 Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB espera que el fichero está tal y como se compiló.
 
 Las instrucciones "directory" y "set substitute-path" valen para definir donde debe buscar las fuentes del código.
+Ejemplo:
+directory  /usr/src/debug/zabbix-3.2.6/src/zabbix_server/
 
 
 https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html
