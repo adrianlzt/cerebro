@@ -3,3 +3,5 @@ Cuidado si tenemos que reiniciar con dos cosas.
  - sincronización de trends. Antes de parar calculará los trends y los enviará a la bbdd. Esto puede llevar mucho tiempo, limitado por la velocidad a la que la bbdd acepte los updates, inserts y selects
 
 Una buena estrategía parece que puede ser reiniciar tras la generación de trends (a en punto), cuando la write cache se haya recuperado.
+
+Los items calculated, durante el tiempo del reinicio, se perderán.
