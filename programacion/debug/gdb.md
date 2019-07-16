@@ -97,6 +97,7 @@ Si modificamos el fichero del código fuente, el mapeo será incorrecto. GDB esp
 Las instrucciones "directory" y "set substitute-path" valen para definir donde debe buscar las fuentes del código.
 Ejemplo:
 directory  /usr/src/debug/zabbix-3.2.6/src/zabbix_server/
+set substitute-path /home/makerpm/rpmbuild/BUILD/zabbix-3.2.6 /usr/src/debug/zabbix-3.2.6/
 
 
 https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html

@@ -60,7 +60,7 @@ Asi la conf que hagamos en un lado podrá ser usada en el otro lado.
 
 
 # Generar mensajes eficientemente
-logger.debug("Send keep alive for host %s", self.hostname)
+logger.debug("Send keep alive for host %s - %s", self.hostname, "test")
 
 
 logger.debug("Send keep alive for host %s" % self.hostname)
