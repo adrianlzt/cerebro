@@ -9,6 +9,7 @@ Metadata servers and monitors must be capable of serving their data quickly, so 
 http://docs.ceph.com/docs/master/start/hardware-recommendations/#ram
 OSDs that use the BlueStore backend require 3-5 GB of RAM
 You can adjust the amount of memory the OSD consumes with the osd_memory_target configuration option when BlueStore is in use.
+Por defecto puesto a 4GiB (4294967296)
 
 
 Monitor and manager daemon memory usage generally scales with the size of the cluster. For small clusters, 1-2 GB is generally sufficient. For large clusters, you should provide more (5-10 GB). You may also want to consider tuning settings like mon_osd_cache_size or rocksdb_cache_size.
