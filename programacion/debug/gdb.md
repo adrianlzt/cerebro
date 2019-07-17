@@ -89,6 +89,7 @@ Por el contrario, los "LSB executable" se cargarán en la dirección base de mem
 
 
 Parece que para los binarios PIE cargados con ASLR, no podemos cargarle su tabla de symbols.
+Creo que PIE y ASLR son cosas distintas, aunque actuen de forma similar.
 
 
 
