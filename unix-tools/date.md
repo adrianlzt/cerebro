@@ -39,6 +39,8 @@ Definir fecha:
 date -s "Wed, 6 Oct 2010 10:43:25 +0200"
 Tener cuidado con las locale (intentar pasar una fecha en español a un sistema en inglés)
 
+date -s @1563346739
+
 
 # Más resolución
 $ date +%H:%M:%S.%N
