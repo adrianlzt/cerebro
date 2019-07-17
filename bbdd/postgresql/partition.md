@@ -29,6 +29,9 @@ https://www.postgresql.org/docs/current/ddl-partitioning.html
 
 ## Declarative partitioning
 A partir de PG10 existe la posibilidad de crear particiones en las tablas de forma nativa.
+
+Mejoras de particionado en pg12: https://www.2ndquadrant.com/en/blog/partitioning-enhancements-in-postgresql-12
+
 Se puede particionar por rango, hash o lista.
 CREATE TABLE test(id int) PARTITION BY RANGE (id);
 
