@@ -491,3 +491,7 @@ Paso 10
 # Forks
 set follow-fork-mode parent/child
  en caso de fork, a quien seguir
+
+
+# Remote
+yum install -y gdb-gdbserver
