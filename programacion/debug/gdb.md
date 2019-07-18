@@ -493,5 +493,23 @@ set follow-fork-mode parent/child
  en caso de fork, a quien seguir
 
 
+
 # Remote
+https://developers.redhat.com/blog/2015/04/28/remote-debugging-with-gdb/
+
 yum install -y gdb-gdbserver
+gdbserver :9999 --attach 14011
+  el proceso 14011 se parará al arrancar gdbserver
+
+En una máquina remota:
+(gdb) target remote hostname:9999
+se pondrá a bajar los binarios para obtener los symbols. Puede tardar un rato
+Las fuentes (.c) no los bajará, tendremos que tenerlos en local.
+
+
+Una forma más directa
+(gdb) target remote | ssh -T xyz.example.com gdbserver - --attach 5312<Paste>
+
+O sin especificar un pid, para luego añadirlos:
+(gdb) target extended-remote | ssh -T root@xyz.example.com gdbserver --multi -
+
