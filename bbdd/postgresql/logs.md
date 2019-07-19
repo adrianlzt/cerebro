@@ -11,6 +11,9 @@ Por defecto se envían los logs a stderr (si tenemos systemd, los captura journa
 log_destination = stderr
   entiendo que con systemd, poner stderr o syslog no cambia mucho (en ambos casos llegan a journald)
 
+CUIDADO! Usar syslog + rsyslog genera un fichero donde se entrecruzan las líneas muy largas (la cabecera de la línea de log muesta el id y número de secuencia bien, pero la linea aparece sin fecha, ej.: [20989-18] 8405,391,1072693)
+Parece que la única buena opción es usar el logging_collector (necesita reinicio)
+
 CUIDADO! Configurado con stderr y systemd al reiniciar systemd-journald se perdió el socket por el que postgres enviaba los logs.
 Lo pude ver con sysdig:
 sysdig proc.name=postmaster and fd.num=2
