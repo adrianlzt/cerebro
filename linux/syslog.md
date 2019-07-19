@@ -133,6 +133,13 @@ Module (load="omprog")
            template="RSYSLOG_TraditionalFileFormat")
 
 
+## rate limit
+De los mensajes que vienen del journal:
+$ModLoad imjournal
+$imjournalRatelimitInterval 600
+$imjournalRatelimitBurst 20000
+
+
 ## limitar rate de mensajes iguales
 last message repeated N times
 The rsyslog package has a $RepeatedMsgReduction global directive which one can set to off to always log data and never log those annoying messages.
