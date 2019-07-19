@@ -162,6 +162,12 @@ Valores por defecto
 RateLimitInterval=30s
 RateLimitBurst=1000
 
+Poner los dos a 0 para quitar el límite.
+Si estamos usando por detrás rsyslog, mirar si también queremos quitar los límites de este.
+
+Reinicio necesario si cambiamos los parámetros:
+systemctl restart systemd-journald
+
 Esto quiere decir que si se reciben más de 1000 mensajes, de un mismo servicio, en menos de 30", se escribará un mensaje de mensajes duplicados y se descartarán el resto.
 Mensaje de ejemplo:
 Oct 02 03:17:11 app6 systemd-journal[565]: Suppressed 25193 messages from /system.slice/docker.service
