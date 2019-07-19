@@ -20,3 +20,8 @@ Cannot create item: item with the same key "telegraf.datasource.pool.ActiveCount
 
 Zabbix value cache working in low memory mode
 mirar cache.md ValueCacheSize
+
+
+
+Items con valores en el futuro.
+Están detrás de un proxy y son calculated? Seguramente es que el proxy no tiene sincronizada la hora (está en el pasado) y esto genera los values en el futuro.
