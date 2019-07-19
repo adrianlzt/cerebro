@@ -299,19 +299,35 @@ DCsync_history (writes updates and new data from pool to database)
     zbx_vc_add_value (almacena los datos en la value cache)
   DCmass_update_triggers (re-calculate and update values of triggers related to the items)
   DCmass_update_trends
-    DCadd_trend (add new value to the trends)
-    si ha llegado el momento de flushear
-      recorre cache->trends
-      DCflush_trend (mete cada trend en una estructura "trends" para luego enviarla a la db)
-      DCflush_trends (flush trend to the database)
-        se recorre la lista de los trends
-        si el clock del trend, o el value_type, no coinciden con el del primer elemento de la lista trends, se ignora (esa comparación del clock no la entiendo)
-        cada history syncer solo sincroniza como máximo 1000 trends
-        se hace una select para obtener los itemids que tengan valores en la tabla trends (o trends_uint)
-        aqui no sigo mucho que hacen. Parece que diferenciar que trends serán actualizadas y cuales necesitan un nuevo insert
-        Para los que necesiten actualizarse, se hace una query para obtener el valor actual: select itemid,num,value_min,value_avg,value_max from trends...
-        Se actualizan los valores según lo que tengamos en la cache, y se actualiza la db: update trends set num=%d,value_min=" ZBX_FS_DBL ",value_avg="...
-        Para el resto, se hacen inserts
+    Se le pasa una lista con los items y su último value
+    Para cada item+value se llama a DCadd_trend
+    DCadd_trend (add new value to the trends).
+      se define la variable hour con la hora del value que estamos procesando
+      se obtiene el trend de la cache (o se crea si no existía)
+      si la hora del trend no coincide con la del value, se llama a DCflush_trend
+      DCflush_trend (move trend to the array of trends for flushing to DB), para ser enviados a la bbdd con DCflush_trends
+        pone a 0 los contadores, para ser usados con la siguiente hora
+      Se actualiza la hora del trend y sus valores (num, min, max, avg)
+    Entre :55 y :00 un history syncer recorrerá cache->trends, flusheando los trends que no hayan sido actualizados en esa hora
+    DCflush_trends (flush trend to the database), lo que estamos haciendo es enviar a la bbdd los elementos de cache->trends que ya han recibido un valor de la siguiente hora
+      Los inserts son para nuevos datos.
+      Los updates son para valores antiguos que hay que colocar en el trend correspondiente.
+
+      Define clock como la hora del primer tren de la lista, es la hora que acabamos de sobrepasar, por ejemplo, clock=16:00 y son las 17:01
+      También se coge el value_type del primer elemento de la lista.
+      Solo se van a procesar trends que tengan el mismo clock y mismo value_type.
+      En el primer for añadimos a la lista itemids los items que cumplan la condición de mismo clock, mismo value_type y que no tegan disable_from != 0
+      Coge un máximo de 1000 items y marca en "trends_to" el siguiente elemento del array a procesar.
+
+      Se hace una query (select distinct itemd from trends/trends_uint where clock>=clock) para ver que items ya tienen entrada en la tabla trends para la hora que acabamos de sobrepasar (16:00)
+      Quita de la lista de items a procesar los que haya encontrado en esa query, es decir, si ya tienen trend para esa hora, los ignoramos.
+      Recorremos la lista de los items que quedan (los que no tienen entrada para esa hora en trends), cogemos su trend y ponemos en disable_from el hora (16:00)
+      Lo que ha hecho es marcar en disable_from los trends que no tenían entrada en la bbdd
+
+      Ahora mete en la lista itemids solo los que ya tienen una entrada en la tabla trend.
+      Hace una query para obtener de la bbdd los valores num,min,max,avg de esos items
+      Actualiza el trend con lo obtenido de la bbdd
+      Lanza el update para actualizar la bbdd
   process_trigger_events
   DCconfig_triggers_apply_changes
   zbx_save_trigger_changes
