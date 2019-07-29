@@ -70,6 +70,14 @@ File syncing capability is disabled by default. This feature is usually not requ
 #$ActionFileEnableSync on
 
 
+## Enviar SOLO a un fichero
+Esto envía al fichero y deja de procesar el resto de reglas (evitamos enviar al messages)
+
+:programname, isequal, "zabbix_server" -/var/log/zabbix/zabbix_server.log
+:programname, isequal, "zabbix_server" stop
+
+
+
 
 ## logrorate
 Ejemplo de config (creo que para versiones nuevas se puede poner "reload" en vez del todo kill HUP etc):
