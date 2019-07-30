@@ -2,6 +2,9 @@ mejor usar nomachine.md
 
 Clientes de vnc y rdp
 
+xfreerdp
+  para arrancar un rdp con un comando
+  xfreerdp /v:HOST /u:USUARIO /p:"contraseña"
 remmina - el más completo, pero creo que no funcionaba bien el RDP. Parece que no tiene vnc
   para que tenga vnc: extra/libvncserver
   para ver una contraseña guardada usar seahorse
