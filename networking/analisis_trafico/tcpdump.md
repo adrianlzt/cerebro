@@ -23,6 +23,7 @@ Si queremos filtrar de una forma más extensa mirar ngrep.md
 
 Capturar todo el tráfico en ficheros, cada uno almacenando 15':
 tcpdump -G 900 -w '%Y-%m-%d_%H:%M:%S.pcap' -W 96
+  -W cuantos ficheros en total rotaremos
 
 
 Tipica instruccion para escuchar en todas las interfaces quitando ssh, dns, arp y ntp
