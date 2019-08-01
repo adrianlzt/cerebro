@@ -32,6 +32,9 @@ A partir de PG10 existe la posibilidad de crear particiones en las tablas de for
 
 Mejoras de particionado en pg12: https://www.2ndquadrant.com/en/blog/partitioning-enhancements-in-postgresql-12
 
+Elegir el número de particiones es dificil: https://www.postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITIONING-DECLARATIVE-BEST-PRACTICES
+Parece que mejor por debajo de miles.
+
 Se puede particionar por rango, hash o lista.
 CREATE TABLE test(id int) PARTITION BY RANGE (id);
 
