@@ -109,7 +109,6 @@ sort.Slice(keys, func(i, j int) bool {
 })
 
 
-repl.go:1:65: invalid binary operation < between <main.Part> and <main.Part>: a[i] < a[j]
 b := []int{3,4,1,6}
 sort.Slice(b, func(i,j int) bool { return b[i] < b[j] })
 [1 3 4 6]       // []int

@@ -31,6 +31,11 @@ mirar:
   procesos_internos.md
   cache.md
 
+Zabbix va almacenando cada value en las trends cache.
+Cuando llega un value con una hora superior (por ejemplo, pasamos de 10:00 a 11:00), se flushea ese trend a la bbdd y se resetea el cache del trend y se empiezan a almacenar los nuevos valores.
+Si en algún momento llega un dato viejo (de las 10:xx), se flushea la trend de las 11, se obtiene de la bbdd la trend de las 10, se actualiza y se actualizará.
+Cuando llegue el siguiente valor de las 11, se flusheará el trend que cogimos de las 10, se obtendrá de la bbdd la trend de las 11 y se actualizara.
+
 Zabbix4
 libs/zbxdbcache/dbcache.c
 dc_trends_update_float / dc_trends_update_uint
