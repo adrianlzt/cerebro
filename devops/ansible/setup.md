@@ -177,7 +177,9 @@ DATE=`date`
 echo "{\"date\" : \"${DATE}\"}"
 
 Accesible en:
-hostvars.host.ansible_local.name
+hostvars.host.ansible_local.nombre_fichero.*
+Para el caso anterior sería:
+hostvars.host.ansible_local.name.date
 
 
 Crear custom facts al desplegar:
