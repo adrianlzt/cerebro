@@ -162,3 +162,31 @@ Crear facts locales:
       copy: src=ipmi.fact dest=/etc/ansible/facts.d
     - name: re-read facts after adding custom fact
       setup: filter=ansible_local
+
+
+
+# Custom facts
+https://medium.com/@jezhalford/ansible-custom-facts-1e1d1bf65db8
+
+/etc/ansible/facts.d/name.fact
+  usar nombres con guiones bajos: ejemplo_de_nombre
+
+Tiene que ser un ejecutable que devuelva un json. Ejemplo:
+#!/bin/bash
+DATE=`date`
+echo "{\"date\" : \"${DATE}\"}"
+
+Accesible en:
+hostvars.host.ansible_local.name
+
+
+Crear custom facts al desplegar:
+- name: "Create custom fact directory"
+  file:
+    path: "/etc/ansible/facts.d"
+    state: "directory"
+- name: "Insert custom fact file"
+  copy:
+    src: files/custom.fact
+    dest: /etc/ansible/facts.d/custom.fact
+    mode: 0755
