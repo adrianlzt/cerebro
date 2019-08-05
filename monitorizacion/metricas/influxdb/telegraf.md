@@ -171,6 +171,12 @@ Nos devuelve tiempos de respuesta del servidor dns
 ## exec
 Ejecuta un programa que debe devolver las métricas en formato inline, graphite o json
 
+Puede ejecutar powershell:
+https://github.com/influxdata/telegraf/issues/3734
+[[inputs.exec]]
+  commands = [
+    "powershell -command \"Get-ClusterResource\""
+
 
 ## sysctl fs
 https://github.com/phemmer/telegraf/blob/7e77be97eb200f5e47691f4bfd62746c535eab85/plugins/inputs/system/LINUX_SYSCTL_FS_README.md

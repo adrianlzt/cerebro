@@ -1,3 +1,7 @@
+PowerShell se basa en objetos.
+Es una shell orientada  a objetos.
+
+
 Crear un fichero con nombre: ejemplo.ps1
 
 Dar con el botón derecho y dar a "Editar"
@@ -44,6 +48,25 @@ Nos permite solo quedarnos con alguna parte de los objetos que vienen por el pip
 # Subshell
 Invoke-Command {cmd1; cmd2} | cmd3
 
+cmd1; cmd2
+
+
+# Host / nslookup / DNS
+[System.Net.Dns]::GetHostAddresses("let1esa1").IPAddressToString
+
+
+# Asignar variables
+$foo = (comando)
+
+
+# Condicionales
+if ($foo) {
+  "mensaje true"
+} else {
+  "es falso"
+}
+
+Si $foo es un objecto vacío será false
 
 
 # Test
