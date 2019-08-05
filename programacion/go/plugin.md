@@ -36,6 +36,11 @@ https://github.com/golang/go/issues/18827
 
 Relacionado, el plugin y el programa deben haberse compilado con la misma versión de las librerias.
 
+plugin: not implemented
+Si vemos ese error al hacer el plugin.load() parece que es por intentar usar CGO, que no está soportado con los plugins:
+https://github.com/golang/go/issues/19569
+Lo ví intentando usar telegraf static binary
+
 
 # Hashicorp
 https://github.com/hashicorp/go-plugin
