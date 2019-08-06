@@ -10,6 +10,7 @@ Nos da tambien el pid/pids que puedan estar bloqueando a la transacción.
   https://stackoverflow.com/questions/26489244/how-to-detect-query-which-holds-the-lock-in-postgres
 
 
+A
 Si es una transacción, en query veremos la última ejecutada. No sabremos que otras cosas ha ejecutado la transacción antes.
 
 idle in transaction -> es una transacción que está esperando el "commit" para poder terminar
