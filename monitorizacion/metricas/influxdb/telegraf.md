@@ -459,8 +459,10 @@ telegraf.stacktrace (con comentarios)
 https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md
 https://www.influxdata.com/telegraf-update-1-3/
   How to Write Plugins
-https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/?__s=trqwhcsp36pvqhgtigfv
-https://www.influxdata.com/blog/building-better-telegraf-plugin/?__s=trqwhcsp36pvqhgtigfv
+https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/
+https://www.influxdata.com/blog/building-better-telegraf-plugin/
+
+En internal/internal.md tenemos algunos helpers que pueden ser útiles
 
 En este fichero se inicializa todo (inputs, processors, aggregators, outputs): https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go
 
