@@ -14,3 +14,8 @@ VBoxManage modifyvm "VM name" --unplugcpu 3
 Para añadir/quitar con la VM encendida:
 VBoxManage controlvm "VM name" plugcpu 3
 VBoxManage controlvm "VM name" unplugcpu 3
+
+
+Según le pongamos CPUs aparecerán automáticamente y se empezarán a utilizar.
+
+Parece que para quitar las CPUs tiene que estar instalado el guest additions, para hacer el eject de la cpu

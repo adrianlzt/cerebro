@@ -98,6 +98,10 @@ Usando el zabbix-internal, solo veremos un mensaje protestando porque se ha caid
 NO tengo muy claro esto último, es lo que contaron en el curso pero no lo he probado.
 
 
+# CPU
+system.cpu.num nos devuelve el número de CPUs que haya en ese momento, es consciente de posibles hot plug (si añadimos nuevas cpus nos devuelve el dato correcto)
+
+
 
 # Auto-Registration
 Se basa en active check.
