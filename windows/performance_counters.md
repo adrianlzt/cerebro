@@ -27,3 +27,9 @@ perfmon.exe
 https://social.technet.microsoft.com/wiki/contents/articles/12984.understanding-processor-processor-time-and-process-processor-time.aspx
 
 % Processor time, debajo del objeto "Process" es el porcentaje de uso contando todas las CPUs, por lo que puede ser superior al 100%
+
+
+# Process
+Métricas de procesos.
+Si hay dos procesos con el mismo nombre, para el segundo proceso se pondrá un sufijo "#1", después "#2", etc
+https://docs.microsoft.com/en-us/windows/win32/perfctrs/handling-duplicate-instance-names
