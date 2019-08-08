@@ -113,3 +113,4 @@ read:
 
 fcntl:
   control de file descriptors, definir flags, obtener nuevos FDs, obtener usuarios, etc
+

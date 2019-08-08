@@ -9,3 +9,7 @@ nslookup
 Obtener registros de email de google.com
 > set type=MX
 > google.com
+
+
+nslookup -timeout=2 -retry=1 google.es 8.8.8.8
+
