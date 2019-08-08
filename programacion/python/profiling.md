@@ -2,6 +2,13 @@ https://docs.python.org/3/library/debug.html
 Tambien en py2. Viene por defecto.
 python -m cProfile -o PROFILE apli_ucmdb.py --mis-params
 
+Para leer ese fichero podemos usar:
+pip install CProfileV
+cprofilev -f PROFILE
+http://127.0.0.1:4000
+
+
+
 Para generar un mapa:
   pip install gprof2dot
   python -m profile -o output.pstats path/to/your/script arg1 arg2
