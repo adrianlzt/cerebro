@@ -24,3 +24,9 @@ Número de puntos (".") en el nombre para que se pruebe el dominio como absoluto
 Por defecto ndots=1
 
 Con ndots=2, un dominio "pepe.com" no se consideraría absoluto
+
+
+single-request-reopen
+Usar el mismo socket para enviar las peticiones A y AAAA
+Posibles problemas de resoluciones DNS lentas (5s) por "culpa" de esa config (tambien puede que mezclada con ndots)
+https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts
