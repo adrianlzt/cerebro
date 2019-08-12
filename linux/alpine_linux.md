@@ -1,6 +1,6 @@
 https://wiki.alpinelinux.org/wiki/Main_Page
 
-Imagen mínima de linux con musl (en vez de glibc).
+Imagen mínima de linux con musl (en vez de glibc). Más info sobre musl más abajo
 
 # APK: Gestor de paquetes
 https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management
@@ -46,3 +46,10 @@ apk --no-cache --update add paquete
 
 Borrar dependencias de compilacion una vez teminado
 apk --update add --virtual build-dependencies python-dev build-base wget && compilar && apk del build-dependencies
+
+
+# Musl
+Tiene ciertas diferencias sobre glibc
+https://wiki.musl-libc.org/functional-differences-from-glibc.html
+
+Algunos problemas que me he encontrado fue conviertiendo fechas entre distintos locales y a la hora de enviar peticiones DNS (musl siempre envía las peticiones A y AAAA usando el mismo socket)

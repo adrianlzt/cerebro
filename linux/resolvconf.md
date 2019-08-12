@@ -34,4 +34,9 @@ https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts
 No parece que sea culpa de esta opción. Por defecto glibc lanza las queries A y AAAA por el mismo socket.
 Hay una opción para forzar que no (single-request)
 
+Por lo que he visto, ciertos servidores DNS no contestan bien a las peticiones en paralelo, solo contestando a la primera de ellas en algunos casos, obligando a glibc a reenviar la petición IPv6
+
+RES_SNGLKUPREOP envia en serie https://github.com/bminor/glibc/blob/41d6f74e6cb6a92ab428c11ee1e408b2a16aa1b0/resolv/res_send.c#L1004
+En la man se entiende mal.
+
 Mirar más detalles de como se resuelven los hosts en programacion/c/getaddrinfo.md
