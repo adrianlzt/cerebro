@@ -28,5 +28,10 @@ Con ndots=2, un dominio "pepe.com" no se consideraría absoluto
 
 single-request-reopen
 Usar el mismo socket para enviar las peticiones A y AAAA
-Posibles problemas de resoluciones DNS lentas (5s) por "culpa" de esa config (tambien puede que mezclada con ndots)
+Posibles problemas de resoluciones DNS lentas (5s) por "culpa" de esa config.
+El problema parece ser o un servidor que no sabe contestar a las dos, o el conntrack que se explica aqui:
 https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts
+No parece que sea culpa de esta opción. Por defecto glibc lanza las queries A y AAAA por el mismo socket.
+Hay una opción para forzar que no (single-request)
+
+Mirar más detalles de como se resuelven los hosts en programacion/c/getaddrinfo.md
