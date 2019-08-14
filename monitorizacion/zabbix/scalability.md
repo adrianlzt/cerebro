@@ -333,6 +333,9 @@ DCsync_history (writes updates and new data from pool to database)
   zbx_save_trigger_changes
   commit
   hc_push_processed_items (return processed items into history cache)
+    aqui borra el value procesado y apunta al siguiente item
+    Para "borrar" el value antiguo usa hc_free_data, que a su vez usa "__hc_mem_free_func" para liberar el struct y el ->value en caso de ser STR, TEXT o LOG.
+    si el siguiente value (->next) es NULL, no se vuelve a insertar el item en la history queue
   DCmodule_prepare_history (prepare history data to share them with loadable modules)
   si no hemos podido sincronizar más de un 10% de los values que cogimos, salimos del do-while para dormir un segundo, esperando que el resto de history syncers liberen los locks
 
