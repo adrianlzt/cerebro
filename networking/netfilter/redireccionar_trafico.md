@@ -14,6 +14,7 @@ Si usamos la tabla nat y tenemos muchas conex, tendremos que subir net.netfilter
 
 Los paquetes que vengan de 10.42.0.78:443 envialo s a 127.0.0.1:443
 iptables -t nat -A PREROUTING -s 10.42.0.78 -p tcp --dport 443 -j DNAT --to-destination 127.0.0.1:443
+  parece que para que se pueda enviar a loopback y conteste necesitamos en el sysctl: net.ipv4.conf.all.route_localnet=1
 
 iptables -t nat -A PREROUTING -s 192.168.1.0/24 -p tcp --dport 1111 -j DNAT --to-destination 2.2.2.2:1111
 
