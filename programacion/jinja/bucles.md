@@ -41,3 +41,10 @@ loop.cycle: A helper function to cycle between a list of sequences. See the Jinj
 
 # diccionario
 {% for k,v in groups.iteritems() %}{{k}}{{v}}{% endfor %}
+
+
+# Groupby + selecattr
+{% for grouper, list in process_monitor__process_list|selectattr("cluster", "defined")|groupby('cluster') %}
+
+Con esto hacemos un loop agrupando por la key "cluster" para aquellos dict que lo tengan definido.
+
