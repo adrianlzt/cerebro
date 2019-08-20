@@ -35,6 +35,7 @@ Para la zona de alemania (comprende chamonix) cada 3h
 
 # estaciones metereologicas
 http://www.meteoclimatic.net/
+http://www.e-metsys.fr/
 
 https://www.wunderground.com/
 

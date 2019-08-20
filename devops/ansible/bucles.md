@@ -150,3 +150,9 @@ https://docs.ansible.com/ansible/latest/plugins/lookup/sequence.html
     name: "group{{ item }}"
     state: present
   with_sequence: count=4
+
+
+# Iterar sobre una lista generada a partir de un filtro sobre un array de dicts
+Nos quedamos con los dicts que tengan la key "cluster" definida, y obtenmos la lista de valores únicos de esa key:
+      with_items: "{{process_monitor__process_list|selectattr('cluster', 'defined')|map(attribute='cluster')|unique}}"
+

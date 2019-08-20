@@ -126,3 +126,7 @@ RPMs: http://steki.net/code/download/zabbix/
 Versión 1.6, pero tal vez se podría reutilizar el .spec
 
 https://www.zabbix.com/forum/zabbix-help/38561-how-do-i-get-the-zabbix-agent-to-run-as-a-service-in-aix-6-1
+
+
+# Pedir a mano los checks activos
+echo '{"request":"active checks","host":"nombreHost"}' | nc 127.0.0.1 10051
