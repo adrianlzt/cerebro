@@ -1,6 +1,9 @@
 sudo apt-get install acpi
 watch --interval=5 acpi -V
 
+sudo tlp-stat -b
+  Datos sobre la bateria, carga máxima y actual, porcentaje, capacidad.
+
 
 cat /sys/class/power_supply/BAT1/capacity
 
