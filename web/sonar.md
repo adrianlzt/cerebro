@@ -10,3 +10,12 @@ npx @sonarwhal/sonar https://example.com
 npm install -g --engine-strict @sonarwhal/sonar
 sonar --init
 sonar https://awesomesite.com
+
+
+Seguridad
+https://geekflare.com/website-malware-scanning/#Web-Inspector
+Unos cuantos son gratuitos
+https://www.virustotal.com/gui/url/
+https://rescan.pro/go.php
+https://metadefender.opswat.com/
+https://transparencyreport.google.com/safe-browsing/search
