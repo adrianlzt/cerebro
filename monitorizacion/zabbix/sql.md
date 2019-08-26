@@ -454,6 +454,11 @@ Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
 SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
 
 
+# Unreachable pollers
+Ver los hosts que están unreachable, ocasionando que estos reporten estar ocupados.
+select host,error,to_timestamp(disable_until) from hosts where disable_until <> 0;
+
+
 # Tocando la bbdd
 Es el frontend el que se encarga de generar elementos en la bbdd.
 

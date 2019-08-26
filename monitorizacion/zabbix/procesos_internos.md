@@ -83,6 +83,7 @@ Detalle de como saca los datos en cache.md sección "Write cache"
 
 # unreachable poller
 Los que se encargan de hacer polling de los items/hosts que se han quedado unreachable
+Mirar en sql.md para ver la query que nos dice que hosts los están ocupando
 
 
 # timer
