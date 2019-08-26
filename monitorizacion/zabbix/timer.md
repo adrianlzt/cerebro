@@ -6,6 +6,10 @@ process_actions (process all actions of each event in a list)
   check_action_conditions (check if actions have to be processed for the event)
     check_action_condition (check if event matches single condition)
 
+En DCsync_functions se obtienen los triggers de la bbdd y se meten en config->time_triggers[i], seleccionando a donde va cada uno haciendo:
+triggerid % CONFIG_TIMER_FORKS
+Es decir, hace el modulo y asigna a cada timer proc.
+Esto es muy util si queremos activar el modo debug de algún timer si sabemos el triggerid.
 
 __zbx_zbx_setproctitle
   process_time_functions (re-calculate and update values of time-driven functions)
