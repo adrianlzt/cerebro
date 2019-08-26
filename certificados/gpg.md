@@ -31,6 +31,12 @@ gpg --list-secret-keys
 Borrar key publica
 gpg --delete-keys nombre
 
+Cambiar la passphrase con la que se proteje la clave privada:
+gpg --edit-key KEYID
+gpg> passwd
+gpg> save
+
+
 ## Encriptar/desencriptar
 echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
   Si usamos "| gpg -d" no nos podrá pedir la clave, si le hace falta, porque tenemos ocupado el stdin
@@ -105,6 +111,12 @@ gpg --verify fichero.asc
 
 # Agente
 https://wiki.archlinux.org/index.php/GnuPG#gpg-agent
+
+Corriendo debajo de systemd user
+ gpg-agent.service
+ gpg-agent.socket
+
+Socket: gpgconf --list-dirs | grep agent-socket
 
 Conf: https://wiki.archlinux.org/index.php/GnuPG#gpg-agent
 man gpg-agent
