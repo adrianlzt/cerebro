@@ -132,6 +132,8 @@ solo dejar pasar ciertos tags:
 taginclude = ["cpu"]
 
 dejar pasar solo tags que cumplan cierto key=value
+si ponemos varios valores, se unen con OR
+Si queremos AND, hay una PR y una issue no cerradas: https://github.com/influxdata/telegraf/issues/937
 [inputs.disk.tagpass]
   fstype = [ "ext4", "xfs" ]
 
