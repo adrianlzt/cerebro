@@ -56,7 +56,9 @@ Command
 Si queremos enviar más información
 
 
-# Events
+# Events / problems
+El housekeeper borra los eventos más antiguos de N días (config Administration -> General -> Housekeeping). Esto provoca también que se borren los problemas más antiguos de esa fecha.
+
 https://www.zabbix.com/documentation/3.2/manual/config/events/sources
 Cuatro tipos de fuentes de eventos:
 

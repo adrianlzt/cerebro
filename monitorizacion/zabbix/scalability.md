@@ -19,6 +19,12 @@ Por defecto zabbix tiene un proceso que revisa cada hora que métricas del histo
 Esto en instalaciones grandes mata a la bbdd.
 Mejor usar partitioning de postgres, creando nosotros un proceso que genere los trends y borre particiones con datos antiguos.
 
+# Housekeeping
+Generalmente usaremos particiones para las tablas trends y history, para poder hacer los borrados de manera más eficientes.
+El housekeeper tambien borra los eventos más viejos de N días.
+CUIDADO! Los problemas más antiguos de esos N días se borrarán.
+Subir mucho el número de eventos también puede implicar peor performance (creo). Parece que una opción es particionar también esa tabla.
+
 
 # Overview
 No usar si tenemos muchos hosts. Es muy pesado.
