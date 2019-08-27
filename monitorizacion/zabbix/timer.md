@@ -8,6 +8,8 @@ process_actions (process all actions of each event in a list)
 
 En DCsync_functions se obtienen los triggers de la bbdd y se meten en config->time_triggers[i], seleccionando a donde va cada uno haciendo:
 triggerid % CONFIG_TIMER_FORKS
+Si nos devuelve un 0 será el timer #1
+Por ejemplo, el triggerid 993118 será el timer 14
 Es decir, hace el modulo y asigna a cada timer proc.
 Esto es muy util si queremos activar el modo debug de algún timer si sabemos el triggerid.
 
@@ -38,3 +40,19 @@ __zbx_zbx_setproctitle
           DCconfig_check_trigger_dependencies_rec
           UNLOCK CACHE
     SQL END
+
+
+Siguiendo un trigger nodata en los logs de debug veo:
+In substitute_simple_macros() data:'{2020884}=1'
+zbx_substitute_functions_results() expression[89]:'{2020884}=1' => '1=1'
+In zbx_process_trigger() triggerid:993118 value:1(0) new_value:1
+  El valor entre paréntesis es si el trigger state está normal (0), o unknown (1)
+  El valor de "value" y "new value":
+    0 -> trigger ok
+    1 -> trigger problem
+    2 -> unknown
+    3 -> none
+End of zbx_process_trigger():FAIL flags:0
+
+Se generará evento si se pasa de ok->problem o viceversa (mirar la tabla para más detalle).
+E(m) se refiere a que generará evento si tiene "multiple event generation"
