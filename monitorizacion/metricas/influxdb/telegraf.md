@@ -97,6 +97,9 @@ namedrop
 tagpass
 tagdrop
 
+Se pueden usar caracteres "glob".
+Tipo: "nombre*"
+
 ## Modifiers, para dejar pasar, o quitar, tags o fields
 fieldpass
 fielddrop
@@ -351,6 +354,8 @@ Plugins que se encuentran entre los inputs y los outputs y nos permiten modifica
 
 Los procesadores permiten hacer transformaciones, decoraciones o filtrar.
 Los agregadores nos permiten hacer medias, percentiles, min/mas, contar
+
+Los processors pueden llevar "order", para definir en que orden se ejecutan.
 
 No se ejecutan en modo --test
 
