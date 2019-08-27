@@ -9,6 +9,21 @@ Dar con el botón derecho y dar a "Editar"
 En el script es como en bash, pondremos lo comandos directamente
 
 
+# Diccionario / Hash table
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-6
+$hash = @{ Number = 1; Shape = "Square"; Color = "Blue"}
+$hash.Number
+
+
+# Documentar / comentarios
+https://poshcode.gitbooks.io/powershell-practice-and-style/Style-Guide/Documentation-and-Comments.html
+
+
+# Style-Guide
+https://poshcode.gitbooks.io/powershell-practice-and-style/content/Style-Guide/Introduction.html
+
+
+
 # Mostrar ventana grafica con el output de un comando
 ... | Out-Grid
 
@@ -71,3 +86,20 @@ Si $foo es un objecto vacío será false
 
 # Test
 mirar tests.md
+
+
+# Leer/Escribir ficheros
+https://powershellexplained.com/2017-03-18-Powershell-reading-and-saving-data-to-files/#saving-and-reading-data
+
+Out-File, escribir en un fichero
+Get-Content, leer de un fichero
+
+Para serializar/deserializar (XML):
+Get-Date | Export-Clixml date.clicml
+$date = Import-Clixml .\date.clicml
+$date.GetType()
+
+
+Para usar JSON
+$Data | ConvertTo-Json | Add-Content  -Path $Path
+$NewData = Get-Content -Path $Path -Raw | ConvertFrom-Json
