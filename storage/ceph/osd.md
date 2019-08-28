@@ -28,6 +28,9 @@ Para mirar a que disco corresponse usaremos:
 blkid | grep 979
 /dev/sdc2: PARTLABEL="ceph block" PARTUUID="979f43bf-1747-432f-9aa6-367415a72b9f"
 
+Otra opción, si usamos docker, y el link apunta a /dev/ceph-...
+pvs | grep ...
+
 
 # Rebalancear
 Si tenemos un uso desigual de los OSDs podemos rebalancear.

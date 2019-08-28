@@ -27,6 +27,9 @@ ceph osd unset norebalance
 # Quitar un OSD del cluster
 http://docs.ceph.com/docs/hammer/rados/operations/add-or-rm-osds/
 
+Lista de los osds por host
+ceph osd status
+
 ceph osd out osd.NUM
 
 After executing the command you should see the placement group states change from active+clean to active, some degraded objects, and finally active+clean when migration completes.
