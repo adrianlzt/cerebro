@@ -73,3 +73,19 @@ Temporarily decrease the weight of the OSD.
 ceph osd reweight [id] [weight]
 
 id is the OSD# and weight is value from 0 to 1.0 (1.0 no change, 0.5 is 50% reduction in weight)
+
+
+
+# Consumo de memoria
+Cada osd consumirá lo definido en osd_memory_target
+Esa variable la habremos definido en all.yml (si desplegamos con ceph-ansible).
+Ese valor se verá reflejado en /etc/ceph/ceph.conf como:
+[osd]
+osd memory target = 2147483648
+
+
+Si queremos ver el running value para cada osd:
+for i in $(ceph osd ls); do echo -n "$i: "; ceph config show osd.$i osd_memory_target; done
+
+
+Si no coincide el valor del ceph.conf con el running value, podemos reiniciar el osd.

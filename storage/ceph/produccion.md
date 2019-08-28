@@ -13,3 +13,5 @@ Por defecto puesto a 4GiB (4294967296)
 
 
 Monitor and manager daemon memory usage generally scales with the size of the cluster. For small clusters, 1-2 GB is generally sufficient. For large clusters, you should provide more (5-10 GB). You may also want to consider tuning settings like mon_osd_cache_size or rocksdb_cache_size.
+
+Mirar en osd.md
