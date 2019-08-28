@@ -35,20 +35,17 @@ ceph osd out osd.NUM
 After executing the command you should see the placement group states change from active+clean to active, some degraded objects, and finally active+clean when migration completes.
 Si el OSD estaba ejecutándose, ahora estaremos en estado up+out
 
-Despues pararemos el servicio osd que corresponda a ese osd.NUM:
+Despues pararemos el servicio osd que corresponda a ese osd.NUM (stop & disable):
 ceph-osd@NUM.service
 
-Ahora lo eliminaremos delo CRUSH map:
-ceph osd crush remove osd.NUM
+This step removes the OSD from the CRUSH map, removes its authentication key. And it is removed from the OSD map as well (para versiones >= Luminous)
+ceph osd purge {id} --yes-i-really-mean-it
 
-Quitaremos la clave de auth:
-ceph auth del osd.NUM
+Esto va a provocar otro "Degraded data redundancy". Se recupera solo?
 
-Borraremos el OSD:
-ceph osd rm osd.NUM
 
 En el nodo que tenga la copia master de /etc/ceph/ceph.conf borrar la entrada (si existe) y distribuir el nuevo fichero al resto de nodos:
 Deberia tener una entrada tipo:
-[osd.1]
+[osd.NUM]
     host = {hostname}
 
