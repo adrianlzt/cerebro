@@ -24,8 +24,13 @@ ceph osd unset norebalance
 
 
 
+# Reiniciar un osd
+Si solo vamos a hacer un "restart", no hace falta que hagamos nada.
+
+
+
 # Quitar un OSD del cluster
-http://docs.ceph.com/docs/hammer/rados/operations/add-or-rm-osds/
+https://docs.ceph.com/docs/master/rados/operations/add-or-rm-osds/
 
 Lista de los osds por host
 ceph osd status
