@@ -18,6 +18,8 @@ select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid I
 Por defecto zabbix tiene un proceso que revisa cada hora que métricas del history debe convertir a trends y borrar.
 Esto en instalaciones grandes mata a la bbdd.
 Mejor usar partitioning de postgres, creando nosotros un proceso que genere los trends y borre particiones con datos antiguos.
+Mirar en instalacion.md
+
 
 # Housekeeping
 Generalmente usaremos particiones para las tablas trends y history, para poder hacer los borrados de manera más eficientes.

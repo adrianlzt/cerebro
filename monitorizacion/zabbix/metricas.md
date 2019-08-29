@@ -3,9 +3,6 @@ History: almacén de todas las métricas recuperadas
 Trends: por cada hora se agrupan los valores del history con: min, max, avg y count (solo para datos tipo float o int)
 
 Housekeeper, se encarga de ir limpiando history y trends viejos.
-En instalaciones granges se hacen particiones de tablas y se deshabilita el housekeeper. Lo que se hace es ir borrando las particiones antiguas.
-https://github.com/Doctorbal/zabbix-postgres-partitioning
-  no veo muy útil el pg_partman si usamos postgres 11
 
 
 ## Housekeeper

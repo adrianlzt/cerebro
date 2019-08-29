@@ -50,3 +50,8 @@ https://www.hiroom2.com/2017/10/12/archlinux-20171001-zabbix-en/
 https://zabbix.org/wiki/Docs/howto/mysql_partition#Housekeeper_changes
 Si vamos a hacer una instalación grande debemos particionar las tablas history y trends.
 Deberemos también desactivar el Housekeeping (Administration -> General -> Housekeeping)
+
+Otro detalle a tener en cuenta es que el valor de "History storage period (in days)" se usa al pintar las gráficas de "Latest data", para saber si debe usar tablas history o trends.
+Por lo que deberemos poner ese valor siguiendo el mismo formato que el borrado de particiones de history.
+
+Mirar postgresql.md para ver como hacer el particionado en postgres
