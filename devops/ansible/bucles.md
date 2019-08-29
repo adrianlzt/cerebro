@@ -1,5 +1,8 @@
 http://docs.ansible.com/playbooks_loops.html
 
+Lo nuevo es usar "loop".
+with_XXX es el formato antiguo
+
 No se puede usar {{item}} en el name
 
 - name: install packages loop
