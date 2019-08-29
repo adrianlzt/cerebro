@@ -78,7 +78,7 @@ Enviar nuestra clave a los servers públicos:
 gpg --send-keys key-id
 
 Buscar en los servers públicos:
-gpg --search-keys user-id
+gpg --search-keys email@buscado.com
 
 Bajarnos una key de los servers publicos:
 gpg --recv-keys key-id
