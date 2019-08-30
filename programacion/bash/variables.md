@@ -46,6 +46,8 @@ echo "para que nunca salga null la variable: ${variable:-valorDefault}"
 
 ${parameter:-word}
 If parameter is unset or null, the expansion of word is substituted. Otherwise, the value of parameter is substituted.
+  ${$(echo ""):-valorDefault}
+  ejecuta el comando 'echo ""', como es vacío, devuelve "valorDefault"
 ${parameter:=word}
 If parameter is unset or null, the expansion of word is assigned to parameter. The value of parameter is then substituted. Positional parameters and special parameters may not be assigned to in this way.
 ${parameter:?word}
