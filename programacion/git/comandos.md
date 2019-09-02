@@ -76,6 +76,7 @@ Submódulos                                          git submodule add <url> <pa
 Añadir etiqueta                                     git tag -a “v1.0” -m “mensaje”
 Listar etiquetas                                    git tag       git tag -l “v1.*”
 Borrar etiqueta                                     git tag -d "0.1.0"
+Borrar etiqueta remota                              git push origin :0.1.0
 Mirar alias                                         git aliases
 Dejar lo que estamos haciendo sin commit            git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
                                                     git stash save "mensaje"
