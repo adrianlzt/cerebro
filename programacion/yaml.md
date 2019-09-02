@@ -55,6 +55,12 @@ Array:
 # Multiline
 https://yaml-multiline.info/
 
-examle: >
+example: >
   una cosa
   otra cosa
+
+
+example: |
+  en este formato
+  se respetan los cambios
+  de linea que aqui pongo
