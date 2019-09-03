@@ -108,3 +108,6 @@ Package debug contains facilities for programs to debug themselves while they ar
 kill -ABRT xxx
 hace dump de las corutinas y mata el proceso.
 Útil para cuando se nos está quedando pillado el proceso
+
+Tal vez esté en /var/log/messages
+O en el log del programa

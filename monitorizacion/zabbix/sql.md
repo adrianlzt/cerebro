@@ -119,8 +119,7 @@ object
 4 - item
 5 - lld rule
 
-value:
-trigger events:
+value (trigger events):
 0 - OK;
 1 - problem.
 
