@@ -454,6 +454,60 @@ Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
 SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
 
 
+
+Hosts que tienen items descubiertos por LLDs, donde el LLD hace más de 4 días que no se lanza (ignorando hosts desactivados, o items/hosts que van a ser borrados).
+Se muestra el hostname, cuantos LLDs tiene sin datos recientes y la fecha más reciente en que recibió datos alguno de los LLDs sin datos recientes:
+WITH not_working_lld AS
+  (SELECT DISTINCT hosts.host,
+                   items.key_,
+                   item_discovery_proto.lastcheck
+   FROM items,
+        item_discovery AS item_discovery_proto,
+        item_discovery AS item_discovery_lld,
+        hosts
+   LEFT JOIN host_discovery ON host_discovery.hostid=hosts.hostid
+   WHERE hosts.hostid=items.hostid
+     AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
+     AND items.itemid=item_discovery_lld.parent_itemid
+     AND hosts.status=0
+     AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH
+                                                         FROM (now() - INTERVAL '4 DAY'))))
+     AND item_discovery_proto.lastcheck <> 0
+     AND item_discovery_proto.ts_delete=0
+     AND (host_discovery.ts_delete IS NULL
+          OR host_discovery.ts_delete = 0)
+   ORDER BY hosts.host)
+SELECT HOST,
+       to_timestamp(max(lastcheck)) AS max_lastcheck,
+       count(*)
+FROM not_working_lld
+GROUP BY HOST
+ORDER BY max(lastcheck);
+
+
+
+Para obtener el nombre y fecha de los LLDs sin datos recientes:
+SELECT DISTINCT hosts.host,
+                items.key_,
+                items.itemid,
+                to_timestamp(item_discovery_proto.lastcheck) AS lastcheck
+FROM items,
+     item_discovery AS item_discovery_proto,
+     item_discovery AS item_discovery_lld,
+     hosts
+LEFT JOIN host_discovery ON host_discovery.hostid=hosts.hostid
+WHERE hosts.hostid=items.hostid
+  AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
+  AND items.itemid=item_discovery_lld.parent_itemid
+  AND hosts.status=0
+  AND items.status=0
+  AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '4 DAY'))))
+  AND item_discovery_proto.lastcheck <> 0
+  AND item_discovery_proto.ts_delete=0
+  AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
+  AND hosts.host = 'NOMBREHOST';
+
+
 # Unreachable pollers
 Ver los hosts que están unreachable, ocasionando que estos reporten estar ocupados.
 select host,error,to_timestamp(disable_until) from hosts where disable_until <> 0;
