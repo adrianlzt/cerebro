@@ -507,6 +507,12 @@ WHERE hosts.hostid=items.hostid
   AND hosts.host = 'NOMBREHOST';
 
 
+
+Triggers disparados, que generaron eventos de problema, pero que ya fueron borrados por el housekeeper.
+Se muestra el host, trigger y la fecha en que se disparó.
+select host,triggers.description,to_timestamp(lastchange) from hosts,items,functions,triggers left join problem ON triggers.triggerid=problem.objectid WHERE hosts.hostid=items.hostid and items.itemid=functions.itemid and functions.triggerid=triggers.triggerid and triggers.value=1 and triggers.status=0 and problem.eventid is null;
+
+
 # Unreachable pollers
 Ver los hosts que están unreachable, ocasionando que estos reporten estar ocupados.
 select host,error,to_timestamp(disable_until) from hosts where disable_until <> 0;
