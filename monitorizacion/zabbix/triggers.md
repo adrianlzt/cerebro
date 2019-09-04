@@ -42,6 +42,10 @@ Si un trigger depende de otro, si el "padre" está activo, los hijos no se proce
 Si el padre está activo y salta el hijo, perderemos el evento hijo (aunque el padre se recupere, nunca se generará el problem del hijo). Esto no es problema si usamos nodata(), porque se evaluan cada 30". En la bbdd no se creará entrada en la tabla events ni en problem.
 En la vista de Dashboard - Triggers, veremos un símbolo (flecha hacia arriba o abajo) para los triggers dependientes o con dependencias.
 
+La hora de recuperación de un trigger nodata puede engañarnos, por ejemplo, puede ser anterior a la hora del evento.
+Esto puede suceder si los values del item que usamos para el nodata están encolados en la history cache.
+El nodata salta porque no ve datos y cuando finalmente procesa los items encolados, se pone la hora de recuperación del value que estaba encolado.
+
 Si itemA depende de itemB que a su vez depende de itemC.
 Si itemC está activo, itemB no y salta itemA, no generará evento (se respeta que por encima tienes una dependencia activa)
 
