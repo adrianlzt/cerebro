@@ -1,5 +1,7 @@
 https://www.ibm.com/developerworks/aix/library/au-aix-build-open-source-rpm-packages/index.html
 
+http://gnome.bullfreeware.com/
+  nueva
 http://www.bullfreeware.com/
 Para sacar RPMs y dependencias.
 Puede generar un .zip con todas las dependencias que se necesitan.
