@@ -107,3 +107,6 @@ Teniamos wal_keep_segments=2000 por eso no los borraba
 Tiene sentido seguir usando ese parámetro?
 https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
 Aqui hablan de que los replication slots ya se encargan de mantener los wal necesarios para que las replicas no pierdan sync
+
+
+Migración 9.6 a 11
