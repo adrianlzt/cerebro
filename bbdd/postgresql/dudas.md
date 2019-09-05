@@ -18,6 +18,11 @@ Mejor para zabbix history tables?
   work best when the data on disk is sorted: y esto como se controla?
 
 
+por que nuestras history tienen tanto bloat
+si solo sufren inserciones
+y sus índices también
+
+
 
 https://hypopg.readthedocs.io/en/latest/
 recomendable? opiniones?
