@@ -57,6 +57,9 @@ Se puede buscar por cualquiera? O por las dos al mismo tiempo?
 Mejoras entre crear un índice para cada valor?
 
 
+tabla trends zabbix emperora mucho el rendimiento cuando crece
+
+
 
 Por qué no usa el índice?
 create table simplenum(num int);
@@ -110,3 +113,6 @@ Aqui hablan de que los replication slots ya se encargan de mantener los wal nece
 
 
 Migración 9.6 a 11
+
+
+Llevarnos una copia de la bbdd + transacciones de una hora para simular carga real tuneando parámetros.
