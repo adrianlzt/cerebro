@@ -119,3 +119,8 @@ Llevarnos una copia de la bbdd + transacciones de una hora para simular carga re
 
 
 Limitar el tiempo de ejecución de las queries de un usuario.
+
+
+https://github.com/ohmu/pgmemcache
+desarrollo parado?
+Como cachear resultados? Y si estos tienen un timestamp que es now?

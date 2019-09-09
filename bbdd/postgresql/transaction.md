@@ -25,4 +25,4 @@ ROLLBACK;
 
 
 # Transactional DDL
-Los "CREATE" se pueden meter en una transacción (diferente por ejemplo en Oracle)
+Los "CREATE" se pueden meter en una transacción (diferente por ejemplo en Oracle, que no lo permite)

@@ -70,7 +70,7 @@ No crear el índice en partitions.
 ## Concurrently
 https://www.postgresql.org/docs/current/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY
 Crear índices sin hacer un lock a los writes.
-Tarda más y consume más CPU e IO
+Tarda más y consume más CPU e IO.
 
 
 ## Fillfactor
