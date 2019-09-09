@@ -1,5 +1,7 @@
 mirar logs.md
 
+para PL/pgSQL mirar omnidb.md
+
 
 Para sacar al fichero de logs todas las queries
 /var/lib/pgsql/data/postgresql.conf:
