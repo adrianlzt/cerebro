@@ -22,3 +22,7 @@ UPDATE ...;
 SELECT ...;
 
 ROLLBACK;
+
+
+# Transactional DDL
+Los "CREATE" se pueden meter en una transacción (diferente por ejemplo en Oracle)
