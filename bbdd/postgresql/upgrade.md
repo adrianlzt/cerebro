@@ -4,6 +4,8 @@ Para actualizaciones "minor" simplemente para el servidor, cambiar los binarios 
 
 Para cambios "major" tenemos que usar pg_upgrade, pg_dumpall (hacer un backup lógico e importarlo en la nueva versión) o data replication (crear un slave con la versión nueva)
 
+Si intentas arrancar una versión con una major diferente a los ficheros del PGDATA, protestará y no arrancará.
+
 
 # pg_upgrade
 https://www.postgresql.org/docs/current/pgupgrade.html
