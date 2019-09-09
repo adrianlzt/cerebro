@@ -116,3 +116,6 @@ Migración 9.6 a 11
 
 
 Llevarnos una copia de la bbdd + transacciones de una hora para simular carga real tuneando parámetros.
+
+
+Limitar el tiempo de ejecución de las queries de un usuario.
