@@ -131,5 +131,4 @@ Como saber cuanto dura cada query.
 slow queries?
 
 
-Es útil monitorizar el llenado de shared_buffers? O es normal que se mantenga lleno? Como saber si estamos forzando flushes por falta de memoria antes de lo que querría.
-Hay una pg_catalog que monitoriza cuando sucede este flusheo forzado.
+como poder capturar eventos en tablas que tienen muchos inserts y drops. la historia esta que decia alex.

@@ -1,5 +1,39 @@
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
 
+Toda la info que queremos sacar lo tendremos catalog views o tables, y también tendremos que mirar el log file para buscar WARNINGS o ERRORS.
+
+
+Current view
+  pg_stat_activity, un row por cada worker más el bgwriter, checkpointer, etc
+  pg_locks
+  pg_prepared_xacts
+
+Cumulatime view (podemos resetearlas con pg_stat_reset, podemos elegir si todas o algunas):
+  pg_stat_database
+  pg_stat_bgwriter
+  pg_stat_archiver
+  pg_stat_user_xxx
+  pg_statio_user_xxx
+    functions, tables, indexes, sequences
+
+
+# pg_stat_database
+Es útil monitorizar el llenado de shared_buffers? O es normal que se mantenga lleno? Como saber si estamos forzando flushes por falta de memoria antes de lo que querría.
+Hay una pg_catalog que monitoriza cuando sucede este flusheo forzado.
+Backend writes growing significa eso.
+
+
+blks_read, tuvimos que ir al disco a leer
+blks_hit, lo encontramos en el shared buffer
+
+tup_returned/fetched/inserted/updated/etc
+
+temp_files/bytes si usamos mucho es que el work_mem se queda corto, posiblemente tengamos que incrementar el work_mem
+
+blk_read/write movimiento de memoria a disco
+
+
+
 # pg_stat(io)
 pg_stat_
   monitoring data of tables
