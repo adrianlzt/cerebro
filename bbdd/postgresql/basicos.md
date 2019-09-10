@@ -44,6 +44,9 @@ Mostrar una fila por cada valor de cada columna
 \x
 select * from tabla;
 
+\e
+editar el último statement
+
 Ayuda:
 \h
 

@@ -12,7 +12,47 @@ LANGUAGE 'xxx';
 
 
 "security invoker", la query se corre con los permisos del user que la corre.
-Si quitamos ese parámetro, se corre con los permisos de quien la creó, es como el SUID bit en UNIX.
+"SECURITY DEFINER", se corre con los permisos de quien la creó, es como el SUID bit en UNIX.
+Cuidado con la seguridad aquí.
+
+Volatility / cache
+Al crear una función podemos definir para que cache el resultado.
+Se usa para "pure functions", que el output siempre está definido por los parámetros de entrada.
+Solo se reusa el resultado en una misma query (statement).
+
+IMMUTABLE
+VOLATILE (por defecto)
+STABLE (para casos donde lee de la db, no me queda muy claro)
+
+
+Mostrar lista de funciones:
+select * from pg_proc;
+  procnamespace es el catalog
+
+
+# Editar funciones
+\ef nombre
+Abre un editor (lo que tengamos en EDITOR) para editar la función.
+
+
+# PL/pgSQL
+https://www.postgresql.org/docs/current/plpgsql.html
+CREATE FUNCTION inc(val integer) RETURNS integer AS $$
+BEGIN
+RETURN val + 1;
+END; $$
+LANGUAGE PLPGSQL;
+
+
+# Crear función python
+CREATE EXTENSION plpythonu;
+CREATE FUNCTION pymax (a integer, b integer)
+  RETURNS integer
+AS $$
+  if a > b:
+    return a
+  return b
+$$ LANGUAGE plpythonu;
 
 
 
