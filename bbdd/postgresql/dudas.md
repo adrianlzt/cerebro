@@ -129,3 +129,7 @@ Como cachear resultados? Y si estos tienen un timestamp que es now?
 Como monitorizar, sin tocar la app, la duración de las queries.
 Como saber cuanto dura cada query.
 slow queries?
+
+
+Es útil monitorizar el llenado de shared_buffers? O es normal que se mantenga lleno? Como saber si estamos forzando flushes por falta de memoria antes de lo que querría.
+Hay una pg_catalog que monitoriza cuando sucede este flusheo forzado.

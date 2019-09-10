@@ -3,7 +3,7 @@ https://postgresqlco.nf/en/doc/param/
 http://pgconfigurator.cybertec.at/
 generador online
 
-Directorio donde se mantienen los ficheros de configuración:
+Directorio donde se mantienen los ficheros de configuración (depende del packger):
 CentOS: /var/lib/pgsql/data
 Ubuntu: /etc/postgresql/9.3/main
 
@@ -17,6 +17,28 @@ postgresql.conf <- parámetros de la base de datos
 pg_hba.conf <- fichero donde se habilita el paso a usuarios, rangos de ip, etc
 
 
+Si un parámetro se define varias veces, se tiene en cuenta la última.
+
 
 > show all
 mostrar los parámetros de configuración que están actualmente funcionando
+
+
+Podemos usar "ALTER SYSTEM SET foo = bar;"
+Esto solo cambiar el valor en el fichero de configuración $DATADIR/postgresql.auto.conf (que tiene más prioridad que postgresql.conf)
+Hace falta reload/restart
+
+ALTER SYSTEM RESET foo;
+  quitar la linea del postgresql.auto.conf
+
+ALTER SYSTEM RESET ALL;
+  borra el fichero postgresql.auto.conf
+
+
+Para saber si hace falta reload, restart o nada (sighup=reload, postmaster=restart, resto creo que nada)
+select name,context from pg_settings ;
+
+
+# Syntax
+select pg_reload_conf();
+Si devuelve 't' es que la syntax es correcta y se pudo hacer reload.

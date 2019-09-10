@@ -14,3 +14,4 @@ Si estamos dentro de psql, podemos usar
 
 # Postgres
 https://github.com/lifepillar/pgsql.vim
+No veo que haga mucho
