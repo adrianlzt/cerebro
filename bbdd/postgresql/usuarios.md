@@ -1,9 +1,41 @@
+Los usuarios y los grupos son roles.
+Los roles pueden agruparse jerárquicamente (un rol contienen otros roles)
+Son "nombres" que tienen permisos.
+La diferencia entre un grupo y un usuario sería que los usuarios pueden logearse (LOGIN privilege).
+
+Generalmente tendremos roles genéricos, por ejemplo "developer", "admin", etc, que se los asignaremos a usuarios que se logean.
+Los permisos generalemnte los asignaremos a esos "grupos".
+Podemos evitar la herencia de permisos de los grupos si ponemos NOINHERIT
+Esto se puede mezclar con "set role", para ir cambiando del rol que tenemos. Ejemplo:
+ logueamos como pepe
+ hacemos set role a "admin" (ahora tendremos el session role, "pepe", más el role "admin")
+ reset rol, ahora solo somos "pepe"
+
+Un role por usuario y por app.
+"Group" roles, uno por funcionalidad.
+Y asignar esos roles con permisos a los usuarios/aplicaciones.
+
+Por defecto, los roles tendrán acceso al schema "public" en todas las db.
+Podemos modificar los privileges por defecto:
+ALTER DEFAULT PRIVILEGES ...
+
+
+Ownership: cuando creas un objeto (ej.: tabla), te pertenece, tienes todos los permisos sobre él.
+El ownership solo puede tenerlo un role, el que crea la tabla. Se puede cambiar: ALTER TABLE foo OWNER TO otherUser;
+Solo el owner puede DROP/ALTER/GRANT
+
+
+Los superusers pueden hacer cualquier cosa. Incluso pueden borrar las trazas de lo que han hecho.
+No se puede hacer REVOKE a superadmins.
+
+
+
 Para consultar los usuarios y sus roles
-\du
+\du+
 SELECT * FROM pg_roles; <- se puede ejecutar estando en cualquier bd
 
 
-## Crear usuarios ##
+## Crear usuarios (roles con login privilege)
 http://www.postgresql.org/docs/8.4/interactive/sql-createuser.html
 http://www.postgresql.org/docs/8.4/interactive/app-createuser.html
 postgre lo llama roles
@@ -39,6 +71,25 @@ https://www.postgresql.org/docs/current/sql-grant.html
 Chequear permisos de una bbdd:
 \dp
 
+Tenemos distintos privilegios según el tipo de objeto (schema, tabla, function, etc).
+Un usuario con acceso a un schema puede crear objetos en él.
+
+Tipos de privilegios para tablas:
+  SELECT (tambien permite COPY TO)
+  INSERT (tambien permite COPY FROM)
+  UPDATE, DELETE (posiblemente necesite SELECT)
+  REFERENCES (para poder hacer referencia a otras columas de tablas a las que no tienes permisos, generalemente porque tendremos una columna referenciada a esa tabla que no tenemos acceso)
+  TRIGGER
+
+GRANT roleX to roleY;
+REVOKE roleX to roleY;
+
+La opción "WITH GRANT OPTION" es para que un role pueda dar ese privilegio a otros roles.
+
+CUIDADO! Si quitamos a un role la opción de hacer INSERT, pero ese role pertenece a otro "grupo" que si le da el permiso, lo seguirá teniendo.
+Siempre que tengas un camino con permiso con alguno de los roles, podras hacer las cosas.
+
+
 Permiso para acceder a una database:
 GRANT CONNECT ON DATABASE NombreDatabase to "user";
 
@@ -59,6 +110,7 @@ http://www.postgresql.org/docs/8.4/static/sql-dropuser.html
 http://www.postgresql.org/docs/8.4/interactive/app-dropuser.html
 
 dropuser nombre
+  comando unix
 
 DROP USER 'nombre';
 
