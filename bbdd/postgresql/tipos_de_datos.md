@@ -29,3 +29,14 @@ https://www.postgresql.org/docs/current/rangetypes.html
 
 Una columna con un tipo de dato que define un empieze y un final.
 Ejemplo de utilidad, definir las horas de uso de una sala de reuniones y poner una excepción para evitar que dos rangos se superpongan.
+
+
+
+# custom data types
+Podemos crear custom data types
+No suele ser muy común.
+
+Cuando creamos una tabla automáticamente se crea una data type con el nombre de la tabla y los parámetros con las columnas que tenga la tabla.
+
+
+Si queremos crear un data type con un "where" crearemos domains (mirar data_objects.md)

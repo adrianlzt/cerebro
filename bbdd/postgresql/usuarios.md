@@ -73,6 +73,10 @@ Chequear permisos de una bbdd:
 
 Tenemos distintos privilegios según el tipo de objeto (schema, tabla, function, etc).
 Un usuario con acceso a un schema puede crear objetos en él.
+Privilegios para schemas:
+  CREATE
+  USAGE
+  ALL
 
 Tipos de privilegios para tablas:
   SELECT (tambien permite COPY TO)

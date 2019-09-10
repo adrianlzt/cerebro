@@ -31,9 +31,13 @@ mostrar schemas (\dn), "S" para mostrar los de sistema, "+" más info.
 Se pueden hacer joins entre tablas de diferentes schemas en la misma database.
 
 
-## Crear y usar un schema
+## Crear schema
 CREATE SCHEMA IF NOT EXISTS nombre;
 CREATE TABLE IF NOT EXISTS nombre.tabla ...;
+
+## Drop schema
+DROP SCHEMA nombre CASCADE;
+Esto borrará todas las cosas que cuelgan del schema.
 
 
 Podemos mover una tabla a otro schema
@@ -54,6 +58,12 @@ Tenemos unos schemas implícitos:
 El primer schema del search_path se llama "current schema".
 
 SET search_path TO myschema, public;
+
+Mostrar schema actual:
+select current_schema();
+  mostrar el schema actual sin las implicitas. Quiere decir que es donde creamos tablas por defecto
+select current_schemas(true);
+  mostrar el search_path con el implicit path
 
 
 

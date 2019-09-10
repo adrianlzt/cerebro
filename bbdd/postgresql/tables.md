@@ -22,6 +22,7 @@ DROP TABLE nombre;
 
 Tabla temporal (desaparece cuando cerramos la sesión):
 CREATE TEMP TABLE nombre (col1 text);
+  se crean en el schema pg_temp_NN
 
 CREATE TABLE distributors (
      id    serial PRIMARY KEY,

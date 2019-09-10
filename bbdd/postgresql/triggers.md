@@ -8,3 +8,6 @@ Como los hooks en git.
 Crearemos una function/procedure y luego la asociaremos a una tabla con un create trigger.
 
 Mirar un ejemplo básico en blackhole.md
+
+
+También existen "rules" (algo parecido), pero no se usan

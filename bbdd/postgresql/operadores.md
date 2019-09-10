@@ -1,6 +1,22 @@
 https://www.postgresql.org/docs/8.1/static/sql-createfunction.html
 http://www.postgresql.org/docs/8.0/static/functions-binarystring.html
 
+\df`
+\df+ function_name
+
+Postgres usa overloading functions, mismo nombre con distintos parámetros.
+
+CREATE OR REPLACE FUNCTION test() RETURNS text AS
+...
+LANGUAGE 'xxx';
+
+
+"security invoker", la query se corre con los permisos del user que la corre.
+Si quitamos ese parámetro, se corre con los permisos de quien la creó, es como el SUID bit en UNIX.
+
+
+
+# Funciones ya definidas
 Concatenar strings de dos columnas distintas:
 select name||'.'||apellido as NombreCompleto from usuarios;
 
@@ -10,11 +26,11 @@ Juan-Ramirez
 Pepe-Martinez
 
 
-# New line
+## New line
 El caracter newline es E'\n'
 
 
-# select string_to_array('ftp,dns',',');
+## select string_to_array('ftp,dns',',');
  string_to_array
  -----------------
   {ftp,dns}
@@ -35,16 +51,6 @@ Elegir elementos según los valores de un array
 # Convertir una serie de resultados a una string separada por comas
 select array_to_string(array(select name from projects),',') AS cosa, id FROM tabla;
 
-
-
-# Funciones
-Mirar funciones:
-\df+
-
-
-CREATE OR REPLACE FUNCTION test() RETURNS text AS
-...
-LANGUAGE 'xxx';
 
 
 # Cast

@@ -2,6 +2,9 @@ https://use-the-index-luke.com
 https://habr.com/en/company/postgrespro/blog/441962/
 Enteder como funcionan los índices
 
+\di
+\d index_name
+
 
 Generalmente usados para mejorar la velocidad de acceso a los datos.
 La parte negativa es que cada insert implica modificar el índice.

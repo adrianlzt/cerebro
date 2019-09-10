@@ -1,5 +1,15 @@
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
 
+# pg_stat(io)
+pg_stat_
+  monitoring data of tables
+
+pg_statio_
+  datos "físicos", io discos, etc
+
+Esto está para tablas e índices.
+
+
 # Vacuum
 https://blog.2ndquadrant.com/autovacuum-tuning-basics/
 
