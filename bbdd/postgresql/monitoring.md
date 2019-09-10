@@ -58,6 +58,9 @@ Parámetros a monitorizar respecto a las dead tuples:
     tal vez nos interese poner un "reltuples >" un valor más alto, porque si no podremos estar viendo un montón de tablas pequeñas poco interesantes
 
 
+Tenemos info de como está corriendo, porcentaje de completado.
+
+
 # OpsDash
 https://www.opsdash.com/blog/postgresql-backup-restore.html#monitoring-backups-wal-archiving-and-replication
 Ver dashboard de ejemplo.

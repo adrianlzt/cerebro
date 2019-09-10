@@ -8,6 +8,12 @@ Cuando se borra un "row", este solo se marca para borrar, pero no se borra de lo
 Lo mismo para los updates, que internamente son DELETE+INSERT.
 El proceso de VACUUM es el que hace esta limpia.
 
+Efectos:
+  genera mucho WAL
+  locks DDL
+  solo borra el espacio libre al final de la tabla
+  solo obtiene AccessExclusiveLock (si no obtiene el lock, omite el truncation step)
+
 Si estamos usando particiones y borrandolas cada x tiempo, no tiene sentido hacer vacuum, ya que borraremos la partición entera más tarde.
 
 Si no hacemos limpia tendremos más ocupación de disco y queries maś lentas.
@@ -29,8 +35,17 @@ select relid::regclass,last_autovacuum,last_autoanalyze from pg_stat_user_tables
 
 
 
+VACUUM FULL, no hacerlo!
+  Bloquea toda la tabla (no podemos hacer ni select).
+  scans and vacuums all rowsno respeca vacuum_delay
+  destruye replication latency
+Lo bueno:
+  recupera espacio, minimizando espacio
+  similar a lo que hace CLUSTER
+  crea una copia de la tabla (temporalmente necesita más espacio)
 Note: VACUUM FULL would reclaim the space and return it to the OS, but is has a number of disadvantages. Firstly it acquires exclusive lock on the table, blocking all operations (including SELECTs). Secondly, it essentially creates a copy of the table, doubling the disk space needed, so it’s not very practical when already running out of disk space.
 No ejecutarlo si se va a volver a llenar.
+
 
 
 Zabbix recomienda desactivar autovacuum en las partitioned tables.
@@ -56,6 +71,11 @@ Obtiene métricas de la bbdd, espacio usado, num de rows, estimaciones para los 
 # Autovacuum
 https://www.postgresql.org/docs/9.6/static/runtime-config-autovacuum.html
 https://www.postgresql.org/docs/9.6/static/routine-vacuuming.html#AUTOVACUUM
+
+Hace vacuum y analyze automáticamente.
+Empieza por las tablas en orden de prioridad.
+Hace las tablas toast separadamente.
+Se cancela si intentas hacer DDL
 
 Tunnig y explicación básica
 https://blog.2ndquadrant.com/autovacuum-tuning-basics/
@@ -102,9 +122,12 @@ Luego otros parámetros deciden cuando coste se puede ejecutar por cada cuanto t
 
 Generalmente modificaremos esta parametrización aumentando el número de tokens (autovacuum_vacuum_cost_limit) a 2000 por ejemplo, teniendo un incremento de throughout de 10x.
 
+Por cada cosa que hacemos se va sumando el coste (vacuum_cost_page_*) hasta llegar al autovacuum_vacuum_cost_limit, entonces todos los vacuum workers duermen autovacuum_vacuum_cost_delay
+
 
 Podemos también incrementar el número de vacuum workers, PERO la limitación del token bucket es global, aplica a todos.
 (Se puede forzar la parametrización por tabla para evitar esto).
+
 
 
 
