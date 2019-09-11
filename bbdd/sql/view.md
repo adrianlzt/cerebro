@@ -10,3 +10,6 @@ CREATE VIEW view_name AS
 SELECT column1, column2, ...
 FROM table_name
 WHERE condition;
+
+
+En postgres tenemos las materialized views, que almacenan los datos en el momento de creación.

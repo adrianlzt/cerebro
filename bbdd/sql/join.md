@@ -22,7 +22,7 @@ Si queremos excluir, haremos un outer join y meteremos un where para que tal cam
 https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
 
 
-## SQL ## 
+## SQL ##
 
 Si no especificamos nada "select * from t1, t2" estamos usando INNER JOIN
 Si solo especificamos JOIN, estamos usando INNER JOIN
@@ -33,7 +33,10 @@ Hacer
 SELECT * FROM t1 JOIN t2 ON t1.id=t2.id
 Es más estandar, aunque por detrás puede que terminen haciendo lo mismo.
 
-# Inner join 
+Más sencillo:
+select * from hosts JOIN items USING (hostid) limit 10;
+
+# Inner join
 Select CO.Name As OwnerName ,CO.Occupation ,C.Name As CatName
   From CatOwners CO Inner Join Cats C
   On C.CatOwnerName = CO.Name;

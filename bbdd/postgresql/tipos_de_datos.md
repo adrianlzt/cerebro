@@ -20,8 +20,12 @@ range
 https://www.postgresql.org/docs/current/datatype-enum.html
 
 Se definen los valores que puede tomar una columna como si fuese una string.
-Por debajo se estará almacenando un número por debajo.
+Por debajo se estará almacenando un número float por debajo, esto nos permitirá meter valores en medio a posteriorí (1, 1.5, 2).
 
+CREATE TYPE nameType AS ENUM ('ok', 'warning', 'critical');
+
+Es mejor usar esto que boolean, porque podremos añadir más valores luego.
+También mucho mejor que usar una tercera tabla donde almacenamos el mapeo de intengers a los valores.
 
 
 # range

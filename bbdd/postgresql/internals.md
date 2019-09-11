@@ -34,10 +34,10 @@ show shared_buffers;
 
 create EXTENSION pg_buffercache;
 
-Porcentaje de uso de la buffer cache.
+Porcentaje de uso de la buffer cache (este buffer es general para todas las bbdd).
 select count(relfilenode)*100.0/count(*) as buff_pct_used from pg_buffercache;
 
-Megas usados por cada tabla:
+Megas usados por cada tabla (solo mostrará las tablas de la bbdd a la que estemos conectados):
 select relname,count(*)*8.0/1024 as cache_mb from pg_buffercache,pg_class where pg_buffercache.relfilenode=pg_class.relfilenode group by relname order by count(*) desc;
 
 
@@ -46,3 +46,12 @@ Si hacemos un avg(*) de una tabla, usará un ring buffer para ir calculando los 
 
 Ver el contenido de un block:
 select * from heap_page_items(get_raw_page('prueba4',2));
+
+
+Cuidado! Puede que los objetos no estén en la buffer cache, pero estén en la cache del SO.
+Esto quiere decir que puede estar yendo rápido (porque las cosas están en memoria) aunque no estén en la buffer cache.
+
+
+## drop cache
+https://github.com/zilder/pg_dropcache
+Extension that invalidates shared_buffers cache

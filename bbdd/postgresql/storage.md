@@ -44,6 +44,8 @@ https://www.postgresql.org/docs/current/pageinspect.html
 Mirar páginas de memoria a bajo nivel.
 Útil para debugging
 
+heap_page_items(get_raw_page(a,b))
+
 
 
 # Formato block
