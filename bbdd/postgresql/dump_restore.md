@@ -52,10 +52,13 @@ Lleva compresión (mirar parámetro -Z).
   Más compresión, limitado por la CPU
   Menos compresión, limitado por I/O
 
-pg_dump -Fc -d prueba -n public -f prueba.custom
+pg_dump -Fc -d prueba -f prueba.custom
   -x si no queremos guardar informacion de roles (permisos de las tablas)
   -j=N para meter varios hilos
   -Z=n para seleccionar la compresion
+
+Si queremos seleccionar la tabla de un schema en partiular:
+schemaName.tableName
 
 Ver contenido del dump (los schemas, no los datos):
 pg_restore -l prueba.custom

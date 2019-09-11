@@ -21,3 +21,10 @@ Al escanear las tablas vamos a puntando en la maintenance_work_mem (6 bytes por 
 Durante el vacuum no se permite DDL, pero se no se bloquean DML.
 
 Tenemos tablas donde nos dice el estado de los vacuum
+
+
+
+# Inserts
+Al insertar un dato en la tabla, se almacena el txid de la tx que metió los datos en xmin.
+Si hacemos otro insert, se actualizará el xmin con ese nuevo valor.
+Si hacemos un update, se creará una nueva row, con el txid del update puesto en xmin. Ahora lo que también se hará es poner la txid del update en el xmax del primer insert (que será el que hemos modificado).
