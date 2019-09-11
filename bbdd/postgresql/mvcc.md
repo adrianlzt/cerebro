@@ -28,3 +28,16 @@ Tenemos tablas donde nos dice el estado de los vacuum
 Al insertar un dato en la tabla, se almacena el txid de la tx que metió los datos en xmin.
 Si hacemos otro insert, se actualizará el xmin con ese nuevo valor.
 Si hacemos un update, se creará una nueva row, con el txid del update puesto en xmin. Ahora lo que también se hará es poner la txid del update en el xmax del primer insert (que será el que hemos modificado).
+
+                                       xmin  |  xmax  |  col1  |  col2
+txid=150 insert a,b                     150  |   -    |    a   |   b
+txid=160 insert x,y                     160  |   -    |    x   |   y
+
+
+txid=950 update col1=T where col1=a
+                                       xmin  |  xmax  |  col1  |  col2
+                                        150  |  950   |    a   |   b
+                                        160  |   -    |    x   |   y
+                                        950  |   -    |    T   |   y
+
+Mirar storage.md para ver como se va almacenando esto en disco.

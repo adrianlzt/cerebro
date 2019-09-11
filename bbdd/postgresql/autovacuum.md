@@ -146,6 +146,9 @@ Si un row se quedase con un XID antiguo durante mucho tiempo, podría pasar a se
 Estos XID son por database.
 
 A partir de postgres 9.6 se ha añadido un nuevo bit para marcar las tablas que ya están frozen, evitando el autovacuum sobre estas.
+https://www.postgresql.org/docs/9.6/release-9-6.html
+E.16.3.1.6. VACUUM
+
 
 Si queremos ver como cuan cerca está cada tabla de lanzar el autovacuum wraparound:
 SELECT

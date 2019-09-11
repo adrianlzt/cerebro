@@ -18,6 +18,16 @@ Ejecutado una vez sobre la bbdd de zabbix. Datos incoherentes. Por ejemplo, dos 
 
 
 
+# Checkpoint
+Cuando las páginas de memoria se flushean a disco.
+Se analiza todo el shared_buffer escribiendo todos los dirty blocks a disco.
+Esto nos permite borrar las páginas WAL antiguas a cuando comenzamos el checkpoint.
+
+Muchos ficheros WAL, aumentar la frecuencia de los checkpoint.
+
+Los checkpoints se ejecutan cada x tiempo o cuando tenemos más de N ficheros WAL.
+
+
 # Datos sobre el wal
 select pg_current_wal_lsn()
 select pg_walfile_name(pg_current_wal_lsn());

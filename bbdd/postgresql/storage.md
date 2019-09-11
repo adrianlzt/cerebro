@@ -35,3 +35,45 @@ Para evitar freeze de páginas ya freezed.
 
 # Espacio usado en disco
 Mirar disk_usage.md
+
+
+
+# Pageinspect
+https://www.postgresql.org/docs/current/pageinspect.html
+
+Mirar páginas de memoria a bajo nivel.
+Útil para debugging
+
+
+
+# Formato block
+8kB
+-----------------header--------------------------------
+pointer-1slot|pointer-2slot|---free space--------------
+----free space-----------------------------------------
+SLOT2(xmin|xmax|...|values)|SLOT1(xmin|xmax|...|values)
+
+Cuando hacemos un update que actualiza un row, por ejemplo el slot1, tenemos que crear un nuevo puntero y un nuevo slot.
+Esto obliga a actualizar todos los indexes para apuntar al nuevo puntero.
+Los índices tienen almacenado los valores del bloque y del offset del puntero (por ejemplo, bloque 50, offset puntero 2, este sería el pointer-2slot).
+
+## HOT updates
+Si usamos HOT (Heap Only Tuple) updates, lo que estamos haciendo es reusar el pointer del slot 1 para apuntar al nuevo slot3 y asi evitar tener que modificar los índices.
+Desde el slot3 se tendrá un puntero al slot1 (al antiguo que hemos actualizado).
+Esto solo sirve si no modificamos valores almacenados en el índice.
+
+Es una buena mejora, ahorramos mucho IO de actualización de índices.
+Y también tenemos mejoras con el vacuum, haciendo una pequeña limpieza en el bloque únicamente.
+Se van borrando los rows ya no visibles.
+
+El fillfactor es el porcentaje de espacio libre que dejamos en los bloques para poder hacer HOT updates.
+
+Si no tenemos espacio para meter los datos en el mismo bloque, tendremos que usar otro bloque y tendremos que actualizar los índices.
+
+pg_stat_user_tables
+n_tup_ins
+n_tup_hot_upd
+
+Si sabemos que updates hacemos que podrían ser hot updates, mirando las estadísticas, podríamos saber si tenemos que subir el fillfactor para mejorar ese ratio.
+
+Tener índices no necesarios podrían bloquear hot updates y tener penalización.
