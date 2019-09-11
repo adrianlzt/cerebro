@@ -25,7 +25,22 @@ Esto nos permite borrar las páginas WAL antiguas a cuando comenzamos el checkpo
 
 Muchos ficheros WAL, aumentar la frecuencia de los checkpoint.
 
-Los checkpoints se ejecutan cada x tiempo o cuando tenemos más de N ficheros WAL.
+Los checkpoints se ejecutan cada x tiempo (checkpoint_timeout, para evitar no hacer checkpoints en db con poco uso) o cuando tenemos más de N ficheros WAL (max_wal_size / 16MB).
+min_wal_size para mantener un número de WAL files que se irán reusando (en vez de borrarlas y crear nuevas).
+
+checkpoint está limitado para no hacer grandes picos de carga, se reparte durante un periodo de tiempo más largo.
+checkpoint_completion_target, le dice que vaya a una velocidad suficiente para tardar el porcentaje definido del checkpoint_timeout.
+
+checkpoint;
+Podemos forzar la ejecucción con ese comado. En este caso iré todo lo rápido que pueda.
+
+Si tenemos un checkpoint muy corto estaremos saturando el disco.
+Si tenemos uno muy largo, si se llena el shared buffer, estaremos obligando al "backend process" a guardar datos a disco para hacer hueco, no ayudará a limpiar wal files.
+Hay algunos casos, DDL, que se hacen escrituras por el "backend process" de manera legítima.
+
+El bgwriter escanea regularmente para ir sacando esas dirty pages no usadas.
+El número de páginas que se van a flushear es un cálculo basado en dos parametros https://postgresqlco.nf/en/doc/param/bgwriter_lru_multiplier
+
 
 
 # Datos sobre el wal

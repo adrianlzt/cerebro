@@ -22,3 +22,9 @@ Si necesitamos memoria y no tenemos, un select puede forzar que dirty blocks se 
 "checkpoint" es cuando postgres va moviendo cosas al disco y borrando los WAL files que ya no hacen falta.
 
 "bgwriter" cada 200ms, flushea los least used (el número de páginas que se van a flushear es un cálculo basado en dos parametros https://postgresqlco.nf/en/doc/param/bgwriter_lru_multiplier)
+Mirar checkpoint.md "# Checkpoint"
+
+
+# buffers
+Consultar el shared buffer, podemos usar la extensión pg_buffercache
+https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/
