@@ -41,6 +41,7 @@ Hay algunos casos, DDL, que se hacen escrituras por el "backend process" de mane
 El bgwriter escanea regularmente para ir sacando esas dirty pages no usadas.
 El número de páginas que se van a flushear es un cálculo basado en dos parametros https://postgresqlco.nf/en/doc/param/bgwriter_lru_multiplier
 
+Después de un checkpoint el wal crece más para poder recuperarse de una escritura parcial de un bloque (8kB de bloque de postgres VS 4kB de linux)
 
 
 # Datos sobre el wal

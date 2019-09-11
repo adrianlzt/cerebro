@@ -26,6 +26,8 @@ Podemos ver por cada database que queries se están ejecutando, cuanto tardan, p
 
 
 # Load testers
+Por lo hablado en el curso de Postgres, hacer replay no es una buena estrategía. Puede influir donde postgres realize actuaciones automáticas, por lo que no parece que el resultado sea interesante.
+
 https://news.ycombinator.com/item?id=19605425
 https://blog.lawrencejones.dev/building-a-postgresql-load-tester/
 https://github.com/gocardless/pgreplay-go/

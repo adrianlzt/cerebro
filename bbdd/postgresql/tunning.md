@@ -14,6 +14,22 @@ Por defecto = 100, sin huecos.
 Cuidado! Cada nodo de un statement puede usar hasta esa cantidad de memoria.
 Incrementarlo puede consumir mucha memoria en una sola query.
 
+Regla general, solo incrementarlo para usuarios haciendo analíticas.
+
+Si es muy pequeño, podemos estar forzando al planner a usar otros planes que quepan en la work_mem.
+Muy grande, una query complicada puede hacer saltar el OOM.
+
+
+
+# maintenance_work_mem
+La memoria que usa vacuum.
+Si es muy pequeño tendremos que hacer varias pasadas con el vacuum porque no dará a basto.
+Más de 1GB no suele ser útil.
+
+También afecta en la creación de índices, esta memoria se usará para escanear la tabla e ir escribiendo al disco.
+
+
+
 
 # max_connections
 Valor recomendado: 2 x cores
@@ -23,4 +39,35 @@ Poner un connection pooler puede ayudar.
 Idea: si los procesos de postgres tienen muchos forced context switches puede estar indicando que tenemos demasiados procesos compitiendo por los CPUs
 
 
+
 # shared_buffers
+25% de la memoria, MAL. Consejo antiguo no válido.
+
+Otras areas de memoria que coge postgres tienen un tamaño proporcional al shared_buffers
+
+shared_buffers muy grandes causa checkpoints más costosos.
+Muy pequeños obliga a forzar el vaciado de bloques para poder cargar datos nuevos.
+
+La idea es tener el valor más pequeño posible.
+
+Será muy grande si vemos que no se le está dando uso.
+Dejaremos ese uso más un pequeño percentaje.
+
+pg_buffercache para ver como de lleno está.
+
+
+Por debajo también está el cache de FS de linux.
+Si nos comemos toda la memoria del sistema aquí, no la dejaremos para el cache de linux.
+
+
+
+
+# full_page_writes
+Podemos desactivarlo si conocemos con seguridad que no vamos a escribir la mitad de una página.
+Si tenemos una cache de disco con baterias auxiliares, podemos considerar que tenemos un buen sistema que no va a cortar una escritura a mitad.
+
+
+
+# wal
+Mejor ponerlo en otro disco que esté tuneado para escrituras secuenciales.
+Si tiene una cache battery-backuped conseguiremos fsync inmediatos que será lo mejor para los wal.

@@ -28,3 +28,5 @@ Mirar checkpoint.md "# Checkpoint"
 # buffers
 Consultar el shared buffer, podemos usar la extensión pg_buffercache
 https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/
+
+create EXTENSION pg_buffercache;

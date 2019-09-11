@@ -16,5 +16,5 @@ mirar las que usa powa.md
 esqueleton: https://paquier.xyz/postgresql-2/blackhole-extension/
 
 
-Listar extensiones
-\dx
+Listar extensiones y funciones de estas
+\dx+
