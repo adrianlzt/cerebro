@@ -154,6 +154,8 @@ Que backend usar.
 Podemos usar ACLs para definir que usará este backend
 https://www.haproxy.com/blog/introduction-to-haproxy-acls/
 
+He tenido un caso donde un use_backend puesto despues de otro que hacía uso de un fichero de config, no funcionaba. Al mover el básico (sin fichero) encima, funcionan los dos.
+
 default_backend
 sera el fallback si no se hace match en ningún "use_backend"
 
