@@ -145,3 +145,9 @@ se.wait_runtime
 
 
 The "sum_exec_runtime/nr_switches" number is also interesting: it shows the average time ('scheduling atom') a task has spent executing on the CPU between two context-switches. The lower this value, the more context-switching-happy a task is.
+
+
+Minor/major faults de un proceso
+ps -o min_flt,maj_flt NUMPID
+  min_flt, ir a por una página a memoria
+  maj_flt, ir a por una página a disco

@@ -33,7 +33,7 @@ Crear si no existe
 CREATE TABLE IF NOT EXISTS ...
 
 Crear con datos de ejemplo (una columna foo con una serie):
-create table foo as select generate_series(1,100) bar;
+CREATE TABLE foo as select generate_series(1,100) bar;
 
 
 ## Modificar tabla ##

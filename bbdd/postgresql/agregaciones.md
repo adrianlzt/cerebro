@@ -21,3 +21,11 @@ WHERE hosts.hostid=hosts_groups.hostid
   AND hosts_groups.groupid=groups.groupid
 GROUP BY hosts.hostid
 
+
+
+# Count
+select count(*)
+  contar número de apariciones
+
+select count(some_col)
+  número de rows donde some_col is not null

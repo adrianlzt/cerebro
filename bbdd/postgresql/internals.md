@@ -29,4 +29,20 @@ Mirar checkpoint.md "# Checkpoint"
 Consultar el shared buffer, podemos usar la extensión pg_buffercache
 https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/
 
+Tamaño:
+show shared_buffers;
+
 create EXTENSION pg_buffercache;
+
+Porcentaje de uso de la buffer cache.
+select count(relfilenode)*100.0/count(*) as buff_pct_used from pg_buffercache;
+
+Megas usados por cada tabla:
+select relname,count(*)*8.0/1024 as cache_mb from pg_buffercache,pg_class where pg_buffercache.relfilenode=pg_class.relfilenode group by relname order by count(*) desc;
+
+
+Postgres usa algunos trucos al leer, dando por hecho que por debajo tenemos un SO que va a gestionar la lectura del disco.
+Si hacemos un avg(*) de una tabla, usará un ring buffer para ir calculando los datos, por eso solo usará algunos bloques.
+
+Ver el contenido de un block:
+select * from heap_page_items(get_raw_page('prueba4',2));
