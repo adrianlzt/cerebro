@@ -24,6 +24,11 @@ Las queries se dividen en operaciones (nodes)
   - join nodes: combinar relaciones
   - otros: ordenar, agrupar, etc
 
+Hay muchas formas de resolver la query: que índices usar, como hacer los join, que algoritmo join/group usar?
+El optimizer es el encargado de encargar el plan.
+
+Entre versiones de postgres, las piezas generales no cambian, pero los segundos niveles se suelen ver modificados mucho.
+
 EXPLAIN SELECT * FROM tenk1;
 EXPLAIN (ANALYZE, BUFFERS) ...
 EXPLAIN (ANALYZE, VERBOSE, BUFFERS) ...
@@ -36,22 +41,30 @@ Para planificar una query se tienen en cuenta las estadísticas de las tablas (p
 
 # Modos de escaneo
 Con esos datos, el planner decide como obtener los datos.
-  - sequential scan: cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
+  - sequential scan (full table scan): cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
       https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c#L202
         total_cost = startup_cost + cpu_run_cost + disk_run_cost;
         Parece que el grueso del coste es: seq_page_cost * pages
         el cálculo de las pages parece que se cachea (https://github.com/postgres/postgres/blob/master/src/backend/optimizer/util/relnode.c#L1230)
 
 
-  - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
   - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales).
     2 lecturas, índice y tabla para obtener el dato. La lectura se paga como random_page_cost (por defecto 4, VS 1 de seq_page_cost).
+
   - index only scan: si solo necesitamos datos que están en el índice
+    Si a veces vemos un recheck es porque puede que en el índice haya datos viejos y tiene que ir a comparar si los datos deben ser visibles.
+
+  - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
+    Lo que hace es crear un array de bits que luego servirán para saber que bloques leer y cuales ignorar.
+    Lo mejor es que si tenemos OR/AND podemos hacer joins sencillos de esos arrays de bits, veremos nodos tipo BitmapAnd
+    BitmapHeapScan es quien se irá a las tablas a buscar los datos.
+    Este modo de escaneo es el único que puede usar varios índices.
 
 Para los tres últimos tenemos que tener un índice creado.
 
 Significado de los nodos sacado de https://github.com/AlexTatiyants/pev/blob/6d31cdd75f557761d7581da6c46586792e5f2dad/app/services/help-service.ts
-   LIMIT:returns a specified number of rows from a record set
+   LIMIT:returns a specified number of rows from a record set, si vemos que el cost estimado es igual que el nodo inferior, postgres nos está diciendo que este nodo se ejecuta junto con el nodo inferior
+     por ejemplo, si tenemos un sort + limit, la función sort se le pasa que solo queremos el top 25 y no se encargará de ordenar los que no sean top 25.
    SORT: sorts a record set based on the specified sort key
    NESTED LOOP: merges two record sets by looping through every record in the first set and trying to find a match in the second set. All matching records are returned
    MERGE JOIN: merges two record sets by first sorting them on a join key
