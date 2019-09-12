@@ -4,6 +4,8 @@ mirar pgbouncer.md
 
 Pgpool-II is a middleware that works between PostgreSQL servers and a PostgreSQL database client.
 
+Más pesado que pgbouncer
+
 Connection Pooling
 Pgpool-II saves connections to the PostgreSQL servers, and reuse them whenever a new connection with the same properties (i.e. username, database, protocol version) comes in. It reduces connection overhead, and improves system's overall throughput.
 
@@ -12,6 +14,7 @@ Pgpool-II can manage multiple PostgreSQL servers. Using the replication function
 
 Load Balancing
 If a database is replicated, executing a SELECT query on any server will return the same result. Pgpool-II takes an advantage of the replication feature to reduce the load on each PostgreSQL server by distributing SELECT queries among multiple servers, improving system's overall throughput. At best, performance improves proportionally to the number of PostgreSQL servers. Load balance works best in a situation where there are a lot of users executing many queries at the same time.
+En el curso nos han comentado que esta funcionalidad puede no funcionar correctamente, porque un select puede llevar una función que haga un insert.
 
 Limiting Exceeding Connections
 There is a limit on the maximum number of concurrent connections with PostgreSQL, and connections are rejected after this many connections. Setting the maximum number of connections, however, increases resource consumption and affect system performance. pgpool-II also has a limit on the maximum number of connections, but extra connections will be queued instead of returning an error immediately.

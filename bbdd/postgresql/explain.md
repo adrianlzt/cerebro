@@ -19,6 +19,11 @@ http://tatiyants.com/pev/#/plans/new
 Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
 
+Las queries se dividen en operaciones (nodes)
+  - scan nodes: leer datos de las tablas
+  - join nodes: combinar relaciones
+  - otros: ordenar, agrupar, etc
+
 EXPLAIN SELECT * FROM tenk1;
 EXPLAIN (ANALYZE, BUFFERS) ...
 EXPLAIN (ANALYZE, VERBOSE, BUFFERS) ...

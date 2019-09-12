@@ -122,6 +122,10 @@ radula -p usyncnoprod -rw allow cephnfs prueba
 s3cmd setacl s3://joe-bucket --acl-grant=all:tom --recursive
   da todos los permisos al usuario "tom" sobre el bucket "joe-bucket"
 
+Permitir acceso público a un objeto:
+radula -p test set-acl app-test/313bc90f42e83bb16bcb97d4 public-read
+  si solo especificamos un bucket, cambiará todos los objetos del bucket
+
 
 
 ## Elasticsearch
