@@ -74,3 +74,12 @@ Mirar disk_usage.md
 https://www.scalingpostgres.com/tutorials/postgresql-replication-monitoring/
 
 Tenemos funciones y valores, en pg_stat_replication, para poder ver en donde tenemos un problema.
+
+Mirar write_lag, flush_lag, reply_lag también, pero si se para la replicación este número se quedará parado (no tiene forma de saber el número).
+Por lo que tendremos que mirar este número junto con la diferencia de bytes entre los wal del master y lo del slave.
+
+Podemos también ir mirando la delta de los bytes que se están procesando en el receiver, para ver la velocidad en bytes que está procesando el receiver.
+
+La gráfica puede tener picos por que los envíos pueden ir a golpes y porque los VACUUM no tiene que aplicarse automáticamente, así que pueden hacerse esperar.
+
+Cuidado, si los slaves no flushean los wal, el master los mantendrá llenando su disco.

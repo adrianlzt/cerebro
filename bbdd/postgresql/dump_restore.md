@@ -3,7 +3,6 @@ https://www.opsdash.com/blog/postgresql-backup-restore.html
 
 https://www.pgbarman.org/index.html
 Solución completa de backup y restore simplificada
-No soporta "streaming replication protocol"
 
 
 Dos tipos de backups:
@@ -188,3 +187,21 @@ Ejecutar pg_start_backup no limita que se siga escribiendo al data directory.
 
 The key point is that the base backup is NOT a consistent copy of the database. You might have copied every file, but all the data is taken at different times. So its wrong. Until you recover the database with the WAL changes that occurred between the start backup and the stop backup.
 FIN NO HACER!
+
+
+
+
+# Point in time recovery (PITR)
+Nos permite, a partir de un base backup, ir aplicando los WAL files hasta la hora que queramos, de esta manera dejaremos la bbdd en un punto en el tiempo determinado.
+
+
+
+# Restaurar
+Muchas veces será más facil usar PITR en otro server para ir al momento antes de un problema y recuperar esos datos en la bd de producción.
+Si solo hacemos recuperación del backup, perderemos los nuevos datos escritos desde el problema hasta el momento actual.
+
+
+Si tenemos que restaurar un backup:
+  1. Para recuperar de un base backup
+  2. Definir el recovery target (edit recovery.conf)
+  3. start database server

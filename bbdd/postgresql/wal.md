@@ -9,6 +9,7 @@ Por defecto cada fichero crece hasta 16MB.
 Se define el número mínimo de ficheros wal que debemos tener.
 
 
+
 # pg_resetwal
 reset the write-ahead log and other control information of a PostgreSQL database cluster
 

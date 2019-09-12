@@ -1,5 +1,6 @@
 mirar ha_scalability.md
 mirar pl-proxy.md
+mirar monitoring.md
 
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 
@@ -21,9 +22,12 @@ En el slave, del wal pasa al "startup" y de ahí a la database (recive en memori
 
 El master tendrá un "WAL sender" por cada slave. max_wal_senders para evitar crear muchos wal seders en caso de bugs, problemas de reconexión, etc
 El slave pide datos desde un punto y arranca un "COPY" que envia indefinidamente datos.
+El master no borrará los wal hasta que los slaves hayan hecho flush.
 
 El slave va dando feedback enviando el LSN (Log Sequence Number) que ha procesado.
 LSN es un puntero a una posición del WAL, empezando en 0 cuando se inició el db server (no cuando arrancó, si no la primera vez que se creó)
+
+Las cosas uncommited también se envían, porque se están escribiendo en el WAL.
 
 
 
