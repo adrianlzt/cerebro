@@ -71,3 +71,15 @@ Si tenemos una cache de disco con baterias auxiliares, podemos considerar que te
 # wal
 Mejor ponerlo en otro disco que esté tuneado para escrituras secuenciales.
 Si tiene una cache battery-backuped conseguiremos fsync inmediatos que será lo mejor para los wal.
+
+
+
+# seq_page_cost / random_page_cost
+Por defecto 1 / 4
+Para disco ssd poner random_page_cost 1.5 o 2.
+Si los datos siempre están en memoria poner random_page_cost=1
+
+
+# cpu_tuple_cost / cpu_index_tuple_cost / cpu_operator_cost / effective_cace_size
+Mirar en explain.md
+Generalmente no tiene mucho sentido tunear estos parámetros.

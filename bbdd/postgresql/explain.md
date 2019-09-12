@@ -16,6 +16,8 @@ https://postgresqlco.nf/en/doc/param/?category=query-tuning&subcategory=planner-
 http://tatiyants.com/pev/#/plans/new
   web para pasar un explain y ver de forma más gráfica donde están los costes, etc
 
+Mirar tunning.md para los parametros de coste
+
 Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
 
@@ -37,6 +39,7 @@ EXPLAIN (ANALYZE, VERBOSE, BUFFERS, FORMAT JSON) ...
 
 
 Para planificar una query se tienen en cuenta las estadísticas de las tablas (periódicamente se ejecuta ANALYZE sobre las tablas y se almacenan los datos, mirar sección "Estadísticas") y varios parámetros de costes de acceso a disco (secuencial o random) y coste de procesado de la cpu (algo más?).
+Mirar "Estadísticas" más abajo.
 
 
 # Modos de escaneo
@@ -47,20 +50,22 @@ Con esos datos, el planner decide como obtener los datos.
         Parece que el grueso del coste es: seq_page_cost * pages
         el cálculo de las pages parece que se cachea (https://github.com/postgres/postgres/blob/master/src/backend/optimizer/util/relnode.c#L1230)
 
-
   - index scan: cuando tenemos que obtener muy pocos datos (escanemos siguiendo el índice. Más caro porque los bloques no son secuenciales).
     2 lecturas, índice y tabla para obtener el dato. La lectura se paga como random_page_cost (por defecto 4, VS 1 de seq_page_cost).
+    Tiene un pequeño tiempo de carga y luego es logarítmico para obtener un valor, es decir, por mucho que crezca el tamaño del índice, encontrar un solo valor no costará mucho más.
+    Pero si tenemos que obtener varios valores, la curva empieza a ser más lineal.
 
   - index only scan: si solo necesitamos datos que están en el índice
-    Si a veces vemos un recheck es porque puede que en el índice haya datos viejos y tiene que ir a comparar si los datos deben ser visibles.
 
   - bitmap scan: para cuando no son muchos datos ni muy pocos. Consulta el índice (bitmap index) y luego obtiene los datos (bitmap heap) de cada valor resuelto por el índice
     Lo que hace es crear un array de bits que luego servirán para saber que bloques leer y cuales ignorar.
     Lo mejor es que si tenemos OR/AND podemos hacer joins sencillos de esos arrays de bits, veremos nodos tipo BitmapAnd
     BitmapHeapScan es quien se irá a las tablas a buscar los datos.
     Este modo de escaneo es el único que puede usar varios índices.
+    En este modo es también logarítmico, pero con mayor coste de comienzo.
 
 Para los tres últimos tenemos que tener un índice creado.
+
 
 Significado de los nodos sacado de https://github.com/AlexTatiyants/pev/blob/6d31cdd75f557761d7581da6c46586792e5f2dad/app/services/help-service.ts
    LIMIT:returns a specified number of rows from a record set, si vemos que el cost estimado es igual que el nodo inferior, postgres nos está diciendo que este nodo se ejecuta junto con el nodo inferior
@@ -97,11 +102,15 @@ To combine multiple indexes, the system scans each needed index and prepares a b
 
 
 # Desactivar nodos de escaneo / unión
-https://www.postgresql.org/docs/9.6/runtime-config-query.html
+https://www.postgresql.org/docs/current/runtime-config-query.html
+
+enable_bitmapscan y otros similares.
+Solución temporal para debugear, forzando quitando distintos tipos de nodos.
 
 En realidad no se desactivan, pero se penalizan sumando 1^10 (https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c#L118)
 
 Ejemplo:
+set enable_seqscan = off;
 SET seq_page_cost to off;
 SHOW seq_page_cost;
 
@@ -111,6 +120,21 @@ SHOW seq_page_cost;
 # Coste
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
 backend/optimizer/path/costsize.c
+
+cpu_tuple_cost = 0.01 (default)
+  leer una tuple de una página de una tabla
+
+cpu_index_tuple_cost = 0.005
+  leer una tupla de una página de un índice
+
+cpu_operator_cost = 0.0025
+  evaluar un operador en una tupla
+
+effective_cace_size = 4GB
+  cantidad de cache usado para index scan
+
+Ciertos nodos tiene también internamente sus costes.
+
 
 cost=0.00..483.00 rows=7001 width=244
   0.00: coste de arranque
@@ -129,7 +153,16 @@ Tendremos un coste 483 que es:
   10000 row * 0.0025 coste/row (coste por procesar la clausula where por cada row, cpu_operator_cost)
 
 
-# Si queremos obtener una imagen de como está calculando los costes necesitaremos obtener los valores
+
+# Estadísticas
+Si queremos obtener una imagen de como está calculando los costes necesitaremos obtener los valores
+
+Solo se analiza una porción de los datos. Se puede incrementar la precisión (default_statistics_target), pero analyze tardará más.
+Se almacena, para los 100 valores más repetidos (MCV: Most Common Values), su frecuencia.
+Histograma de los no MCV
+Número de valores distintos, factor de escalado.
+
+
 Costes:
 select name,short_desc,setting from pg_settings where name like '%_cost';
 
@@ -143,6 +176,14 @@ Cuando se generaron las últimas estadísticas:
 select relname,last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables;
 
 Obtener un EXPLAIN y un EXPLAIN ANALYZE de la query
+
+
+Modificar como se recolectan las estadísticas de una columna:
+ALTER TABLE myTable ALTER COLUMN myCol SET STATISTICS n;
+
+
+Modificar a mano una estadística, para forzar algún plan determinado, si sabemos que no es correcto:
+ALTER TABLE myTable ALTER COLUMN myCol SET (n_distinct = 1);
 
 
 
