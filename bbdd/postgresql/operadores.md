@@ -103,3 +103,10 @@ select array_to_string(array(select name from projects),',') AS cosa, id FROM ta
 # Truncate
 left("qwerty", 2) -> qw
 right("qwerty", 2) -> ty
+
+
+
+# Function optimization
+Postgres no puede saber el coste, debe ser el desarrollador de la función el que meta esos datos como metadatos.
+Será un valor fijo.
+ALTER FUNCTION myFunc {COST c} {ROWS w};

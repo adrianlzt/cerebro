@@ -3,6 +3,12 @@ https://github.com/jfcoz/postgresqltuner
 https://postgresqlco.nf/en/doc/param/
   explicación de las diferentes configuraciones, agrupadas por categorías, con valores sugeridos, links a más info, etc
 
+Mirar "Function optimization" en funciones.md
+
+Mirar explain.md
+Mirar troubleshooting.md
+
+
 # Fillfactor
 https://www.postgresql.org/docs/9.6/sql-createtable.html#SQL-CREATETABLE-STORAGE-PARAMETERS
 

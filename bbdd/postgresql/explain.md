@@ -187,6 +187,16 @@ ALTER TABLE myTable ALTER COLUMN myCol SET (n_distinct = 1);
 
 
 
+# Correlated columns
+https://www.postgresql.org/docs/10/planner-stats.html#id-1.5.13.5.4.10
+
+Se pueden crear nuevas estadísticas para columnas que tienen corelación (por ejemplo, ciudades y países).
+Esto reduce el problema de que pongamos filtro por ciudad y por país y postgres piense que la probabilidad de estar en londres y en UK es prob(lon)*prob(UK), pero esto no es cierto, porque están en londres implica estar en UK.
+
+
+
+
+
 # Tiempo
 https://stackoverflow.com/questions/17653884/postgres-query-execution-time
 
