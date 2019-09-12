@@ -67,3 +67,10 @@ Ver dashboard de ejemplo.
 
 # Espacio usado en disco
 Mirar disk_usage.md
+
+
+
+# Replication
+https://www.scalingpostgres.com/tutorials/postgresql-replication-monitoring/
+
+Tenemos funciones y valores, en pg_stat_replication, para poder ver en donde tenemos un problema.
