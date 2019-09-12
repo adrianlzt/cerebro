@@ -26,12 +26,6 @@ pg_jbomon, para que sirve?
 test.md Util? caso de uso? Con python o golang?
 
 
-constraint_exclusion=on
-que sentido tiene para tablas que no sean partition?
-En zabbix lo tenemos a partition (valor por defecto)
-En https://github.com/Doctorbal/zabbix-postgres-partitioning#common-partitioning-mistakes recomienda on (abierta issue para preguntar por qué)
-
-
 
 Como funciona el wal. Que se almacena? los comandos que vamos ejecutando.
 Si hacemos un borrado de varios gigas, los wal contendran esos datos borrados?
