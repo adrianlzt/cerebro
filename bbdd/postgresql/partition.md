@@ -26,6 +26,8 @@ https://www.postgresql.org/docs/current/ddl-partitioning.html
 \d+ nombre
   para ver la tabla y sus partitions
 
+\dP to list partitioned tables and indexes
+  version 12
 
 ## Declarative partitioning
 A partir de PG10 existe la posibilidad de crear particiones en las tablas de forma nativa.
