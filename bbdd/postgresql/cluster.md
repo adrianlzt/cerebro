@@ -2,9 +2,10 @@ mirar ha_scalability.md
 mirar pl-proxy.md
 mirar monitoring.md
 
-https://www.opsdash.com/blog/postgres-getting-started-patroni.html
-
 https://repmgr.org/
+Usar repmgr.md para gestionar replication
+
+https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 
 physical replication es "sencillo".
 logical replication es un poco más complejo (gestión de conflictos)
@@ -14,7 +15,34 @@ multi master logical replication (muy complejo)
 El el nodo "slave" quien conecta al master para obtener los valores.
 
 # Physical streaming replication
-Solo para mismas versiones de postgres
+Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
+Se pasan diffs de binary files.
+
+Conf needed:
+wal_level = replica (or higher)
+max_wal_senders, por defecto vale
+
+Conf slave, in recovery.conf:
+standby_mode = on
+primary_conninfo = "host=nodeMaster"
+application_name = "xxx"  # nombres para distinguir varios stand-bys, típicamente hostname
+
+También info en ha_scalability.md "Hot standby"
+
+
+Delayed apply:
+Por defecto se intentan aplicar los cambios tan rápido como sea posible.
+Podemos usarlo como truco para retrasar los cambios y usarlo como un "control+z"
+
+Podemos forzar el pausado de replication pg_wal_replay_pause(), pg_wal_replay_resume()
+
+
+Chequear estados:
+pg_is_in_backup()
+pg_is_in_recovery()
+pg_is_wal_replay_paused()
+
+
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recive en memoria, escribe a disco, flush and replay changes)

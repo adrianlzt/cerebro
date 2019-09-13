@@ -83,3 +83,5 @@ Podemos también ir mirando la delta de los bytes que se están procesando en el
 La gráfica puede tener picos por que los envíos pueden ir a golpes y porque los VACUUM no tiene que aplicarse automáticamente, así que pueden hacerse esperar.
 
 Cuidado, si los slaves no flushean los wal, el master los mantendrá llenando su disco.
+
+Monitorizar conflictos, mirar ha_scalability.md

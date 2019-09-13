@@ -6,9 +6,46 @@ activo-activo:
 mirar replication.md
 
 
+
 # hot standby
+Detalle de los datos como funciona, mirar replication.md "Physical streaming replication"
+
+Usar repmgr.md para gestionar replication
+
 pg_promote()
   standby -> master (pg12)
+
+Si un nodo standby está atendiendo a una query, si cambia a master, la query continuará sin problema.
+
+Tendremos un nodo master y un nodo stand-by recibiendo los cambios aplicados en el master, donde se podrán hacer reads (si ponemos hot_standby = off, no permitiremos conexiones al standby).
+Conflictos que podemos tener:
+  - drop database (se hace un drop en el master pero hay una query en el select usando esa tabla. O se mata la query o se para temporalmente la replicación)
+  - drop tablespace
+  - access exclusive locks (estamos leyendo una tabla en el standby y el master quiere un exclusive lock)
+  - cleanup records ("Snapshot too old" error)
+  - low-level buffer celanup locks & deadlocks
+
+Generalmente la solución es esperar un tiempo, pausando la replicación: max_standby_streaming_delay
+Este tiempo es global, no de una query en particular. Si varias queries de 10' de duración son consecutivas pueden sumar 30'
+
+hot_standby_feedback (en el slave), para que el master sepa que queries se están ejecutando en los slaves y no borre tuplas que se están usando en el standby
+
+En caso de tener conflictos sin resolución:
+  - la query da error
+  - si es con la sessión, nos echa de la sesión
+
+## Monitorizar conflictos
+pg_stat_database
+  número total de conflictos en la db
+
+pg_stat_database_conflicts
+  detalle sobre los conflictos
+
+
+## Tunning
+Podemos cambiar parámetros en la hot standby: work_mem, enable_seqscan, etc
+maintenance_work_mem no tiene sentido, porque los índices se generan en el master
+
 
 
 

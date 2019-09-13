@@ -59,3 +59,10 @@ almacenar cambios en una tabla para poder volver al estado de esa tabla en un pu
 ventajas de velocidad de inserción de postgres 12 vs 10/11 vs timescaledb
 
 ventajas/desventajas de meter más particiones para la misma tabla
+
+
+
+
+hot stand by, como auto cambiar cuando el master peta
+
+hot standby, meterlo el barman a ese nodo?
