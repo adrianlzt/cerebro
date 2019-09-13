@@ -85,7 +85,9 @@ Si queremos seleccionar la tabla de un schema en partiular:
 schemaName.tableName
 
 Ver contenido del dump (los schemas, no los datos):
-pg_restore -l prueba.custom
+pg_restore -l prueba.custom > fichero.list
+
+Podemos usar la salida de este comando para quitar (o comentar ";") lo que no queremos restaurar y luego usar "pg_restore --use-list=fichero.list fichero.dump" para recuperar solo lo que queramos.
 
 Ver todo el contenido:
 pg_restore fichero.custom | less
@@ -101,6 +103,8 @@ pg_restore -v -e -Fc -d prueba -1 /backup/prueba.custom
 
 Podemos quitar -1 y usar -jN para paralelizar (no compatible con -1)
 Mejorar performance con fsync=off en el file system? (https://www.hagander.net/talks/Backup%20strategies.pdf)
+
+Meter -j va a consumir mucha memoria. Va a usar muchas veces la maintenance_working_mem para crear los índices.
 
 
 ## Formato SQL plano
@@ -121,6 +125,14 @@ Restaurar simple
 
 La forma correcta (-1 indica que se haga todo en una única transacción, "o todo o nada"):
 PGOPTIONS='--client-min-messages=warning' psql -X -q -1 -v ON_ERROR_STOP=1 --pset pager=off -d mydb_new -f mydb.sql -L restore.log
+
+-1, hacer en una única transaction
+-X, no cargar el ~/.psqlrc
+
+Tras el restaure, ejecutar ANALYZE:
+vacuumdb --analyze-in-stages
+  genera las estadísticas en tres fases, para ir conociendo un poco sobre las tablas.
+  Si intentamos generarlas de golpe tenemos un gap tan grande entre no tener nada que puede ser muy costoso
 
 
 Con compresión

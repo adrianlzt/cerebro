@@ -6,8 +6,14 @@ https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 
 https://repmgr.org/
 
+physical replication es "sencillo".
+logical replication es un poco más complejo (gestión de conflictos)
+multi master logical replication (muy complejo)
+
 
 El el nodo "slave" quien conecta al master para obtener los valores.
+
+# Physical streaming replication
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recive en memoria, escribe a disco, flush and replay changes)
@@ -54,9 +60,27 @@ https://cloud.google.com/community/tutorials/setting-up-postgres-hot-standby
 
 
 # Logical replication
-Streaming replication is a fast, secure and is a perfect mechanism for high availability/disaster recovery needs. As it works on the whole instance, replicating only part of the primary server is not possible, nor is it possible to write on the secondary. Logical replication will allow us to tackle those use-cases.
+Streaming replication is a fast, secure and is a perfect mechanism for high availability/disaster recovery needs.
+Logical replication allows us replicating only part of the primary server.
+
+
+Opciones:
+  - está en version 10.
+  - pglogical, módulo (CREATE EXTENSION), open source
+  - algunas otras soluciones, no parecen muy recomendables (triggers es muy mala idea)
+
+
+Se instala una extensión en wal_sender y en el backgroup worker (en el slave, que es quien inicia la conex).
+Ese plugin es el que gestiona la traducción de los WAL al formato para replicación lógica.
+
+La diferencias más importantes contra el physical replication:
+  - el target node (el que recibe los datos de la replicación) es un nodo master
+    - permite tener temp tables en el target
+    - permite diferentes índices
+    - permite tener distintos security/users
+  - selective replication
+  - cross-version replication
 
 
 # master-master
-Postgres-BDR
-De pago
+Postgres-BDR, de pago
