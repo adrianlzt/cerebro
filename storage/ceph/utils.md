@@ -56,6 +56,12 @@ https://github.com/bibby/radula/issues/8#issuecomment-299024816
 Más comandos, rollo administrativo, en rgw.md
 
 
+## ACL
+Permitir acceso público a un objeto:
+radula -p test set-acl app-test/313bc90f42e83bb16bcb97d4 public-read
+  si solo especificamos un bucket, cambiará todos los objetos del bucket y la default del bucket
+
+
 
 
 https://github.com/s3tools/s3cmd
