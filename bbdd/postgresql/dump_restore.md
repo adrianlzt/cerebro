@@ -5,6 +5,7 @@ https://www.pgbarman.org/index.html
 Solución completa de backup y restore simplificada
 NOTA: Usar esto para hacer backups!!
 
+La idea es que el backup es un servicio que debe estar corriendo todo el rato, llevándose los WAL y de vez en cuando haciendo basebackup.
 
 
 Los roles y tablespaces no están dentro de ninguna database, están a nivel global.
@@ -202,11 +203,11 @@ max_wal_senders = 4
 wal_level = replica  # puede tener cierto impacto en performance para algunos comandos (crear tablas, indices, etc) https://www.postgresql.org/docs/9.6/static/populate.html#POPULATE-PITR
 systemctl restart postgres (requiere reinicio)
 
-Para evitar perder datos entre el comienzo del backup y el fin, es necesario que se obtengan tambien los ficheros transaction log (WAL)
+Para evitar perder datos entre el comienzo del backup y el fin, es necesario que se obtengan tambien los ficheros transaction log (WAL), tendremos que poner el -D
 
 Si queremos hacer un base backup parece que hay que usar
 pg_basebackup --xlog-method=stream -D /path/to/dir -P
-  con "stream" no podemos usar tar
+  con "stream" no podemos usar tar. Lo mejor es usar stream (el de por defecto)
   el espacio consumido será lo que ocupe PGDATA
   tiene bastante impacto en el I/O
   --xlog-method=stream se lleva los WAL mientras dure el backup (valor por defecto)
@@ -216,6 +217,11 @@ pg_basebackup --xlog-method=fetch --format=tar -z -D /path/to/dir -P
   -P show progress (hace el backup algo más lento)
   --format=tar -Z: generamos ficheros .tar.gz por cada tablespace
   -Z [0-9] nos permite especificar mayor/menor tasa de compresión
+
+
+Si por otro lado ya nos estamos llevando los ficheros WAL, solo tenemos que hacer el basebackup
+Podemos usar el "archive_command = %p /archiveDir/%f", que, cuando se llene un WAL, se copiará a otro directorio.
+También podemos usar pg_receivewal con el que nos vamos llevando los WAL files.
 
 
 Restaurar, parar postgres, mover los ficheros al PGDATA y arrancar.

@@ -12,6 +12,11 @@ Detalle de los datos como funciona, mirar replication.md "Physical streaming rep
 
 Usar repmgr.md para gestionar replication
 
+Cuidado, si no tenemos synchronous_commit=on, en un caso de failover, se pueden perder commits.
+Activarlo hace los commits más lentos, porque espera a que se guarde en los standby nodes.
+La aplicación puede ser aware de estos posibles fallos y saber gestionarlos, para evitar tener que activar synchronous_commit (aunque parece complicado poder programar esto)
+Parece que este parámetro es complejo, afectan varias cosas. Si tenemos una conex, podemos tener mucho slowdown, pero si tenemos muchas conex en paralelas, puede ser seguro ponerlo.
+
 pg_promote()
   standby -> master (pg12)
 
