@@ -3,17 +3,24 @@ https://www.opsdash.com/blog/postgresql-backup-restore.html
 
 https://www.pgbarman.org/index.html
 Solución completa de backup y restore simplificada
+NOTA: Usar esto para hacer backups!!
+
+
+
+Los roles y tablespaces no están dentro de ninguna database, están a nivel global.
 
 
 Dos tipos de backups:
  - lógicos (lo que hace pg_dump): saca el contenido de una base de datos
    Cons:
+     - hace queries y carga la bbdd y si metemos mas parallel jobs, más carga
      - no permite arrancar un standy server
      - ocupa mucho espacio
      - mala performance
      - puede joder el filesystem cache
      - escribir el dump genera I/O
      - restore muy lento para ddbb grandes!
+     - locks que bloquean DDL
    Pros:
      - flexibilidad
      - solo hace falta un user read only
@@ -44,8 +51,26 @@ Monitorizar que estamos realizando los backups, el tiempo que tardan, probar a r
 
 
 # Backup lógico
+Se un dump de los datos, no da la database tal cual.
+Permite mover datos entre distintas releases.
+Nos permite sacar solo algunas tablas, o solo obtener los schemas de las tablas.
+
+pg_dumpall -g
+  dump solo los elementos globales (roles y tablespaces)
+
+pg_dumpall
+  usar ~/.pgpass porque nos pedirá la password después de cada dump de cada db
+
+pg_dump siempre es compatible con versiones antiguas. Siempre mejor usar el último psql aunque ataquemos a bbdd antiguas.
+
+Podemos solo hacer dump de los datos o solo del schema.
 
 ## Formato custom
+Lo mejor es siempre usar el archive (custom) format.
+Nos permite pasar a sql file con pg_restore.
+
+El formato dir lo bueno es que nos permite ejecutar en paralelo.
+
 Custom, más potente. Nos permite a la hora de restaurar elegir el orden o seleccionar que restaurar:
 Lleva compresión (mirar parámetro -Z).
   Más compresión, limitado por la CPU
@@ -107,6 +132,12 @@ Con compresión
     $ createdb dbname
     $ gunzip -c filename.gz | psql dbname
 
+
+
+-c, pone unos drops para borrar todo antes de hacer un recover, cómodo para desarrollo para destruir&crear rápido
+-C, incluir los crearate database
+--insert, para ser más compatible, usar INSERT en vez de COPY, pero será más lento
+  -D, para añadir también los nombres de las columnas a los INSERT
 
 
 ## Backup periodico en cron

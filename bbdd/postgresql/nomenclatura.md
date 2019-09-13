@@ -11,6 +11,7 @@ Dentro del schema hay tablas, etc.
 Tablespaces, usado para poner objetos en otros data dir.
 La idea es crear distintos datadirs, que estarán en distintos discos, posíblemente, uno rápido y pequeño y otro grande y lento.
 Pondremos determinadas tablas en los discos rápidos y otras en los lentos.
+Es el único uso que tiene sentido para los tablespaces.
 
 \db+
 para mostrar los tablespaces

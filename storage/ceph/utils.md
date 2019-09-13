@@ -59,7 +59,7 @@ Más comandos, rollo administrativo, en rgw.md
 ## ACL
 Permitir acceso público a un objeto:
 radula -p test set-acl app-test/313bc90f42e83bb16bcb97d4 public-read
-  si solo especificamos un bucket, cambiará todos los objetos del bucket y la default del bucket
+    si solo especificamos un bucket, cambiará todos los objetos del bucket y la default del bucket
 
 
 

@@ -120,3 +120,14 @@ create table new (
     like old
     including all
 ) PARTITION BY RANGE (clock);
+
+
+
+# Unlogged tables
+Estas tablas no tienen ficheros WAL.
+Si tenemos un crash, estas tablas no se podrán recuperar.
+Más rápidas porque no tienen que escribir en WAL.
+
+Normalmente usadas en casos donde podemos regenerar los datos, por ejemplo si cargamos unos .csv
+
+Los backups tampoco tendrán estos datos.
