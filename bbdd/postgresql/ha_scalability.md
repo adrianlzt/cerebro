@@ -3,13 +3,16 @@ pgpool.md
 pgbouncer.md
 
 activo-activo:
-https://www.symmetricds.org/about/overview
-https://info.crunchydata.com/blog/active-active-on-kubernetes
-
-https://www.last.fm/user/Russ/journal/2008/02/21/zd_postgres_connection_pools:_pgpool_vs._pgbouncer
-pgbouncer mejor que pgpool
+mirar replication.md
 
 
+# hot standby
+pg_promote()
+  standby -> master (pg12)
+
+
+
+# pg_auto_failover
 https://cloudblogs.microsoft.com/opensource/2019/05/06/introducing-pg_auto_failover-postgresql-open-source-extension-automated-failover-high-availability/
 https://github.com/citusdata/pg_auto_failover
 Para montar postgres con HA

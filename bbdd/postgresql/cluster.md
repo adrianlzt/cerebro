@@ -92,3 +92,9 @@ La diferencias más importantes contra el physical replication:
 
 # master-master
 Postgres-BDR, de pago
+  permite hacer sharding
+  multimaster simétrico
+  tiene solución de conflictos, un log donde se muestran errores de, por ejemplo, inserciones que colisionan
+https://www.symmetricds.org/about/overview
+https://info.crunchydata.com/blog/active-active-on-kubernetes
+
