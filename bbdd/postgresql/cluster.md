@@ -14,6 +14,7 @@ multi master logical replication (muy complejo)
 El el nodo "slave" quien conecta al master para obtener los valores.
 
 # Physical streaming replication
+Solo para mismas versiones de postgres
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recive en memoria, escribe a disco, flush and replay changes)
@@ -62,11 +63,18 @@ https://cloud.google.com/community/tutorials/setting-up-postgres-hot-standby
 # Logical replication
 Streaming replication is a fast, secure and is a perfect mechanism for high availability/disaster recovery needs.
 Logical replication allows us replicating only part of the primary server.
-
+Compatible entre distintas versiones.
+Suele usarse para upgradear.
 
 Opciones:
-  - está en version 10.
+  - está en version 10 (no avanza en 11 y 12), básica (CREATE PUBLICATION/SUBSCRIPTION)
+    - limitado, no gestiona conflictos
+    - no se lleva los índices
+    - no se lleva las secuencias
+    - podemos escribir en el target, pero con eso podemos romperlo, así que lo mejor es dar solo read-only a los usuarios
   - pglogical, módulo (CREATE EXTENSION), open source
+    - más avanzada y compleja que la versión básica que está en pg10
+    - más parámetros
   - algunas otras soluciones, no parecen muy recomendables (triggers es muy mala idea)
 
 
