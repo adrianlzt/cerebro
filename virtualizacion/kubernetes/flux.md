@@ -11,8 +11,12 @@ Se creará un "deployment" en un namespace (típicamente "flux") donde correrá 
 Si estamos usando un repo privado, seguir estas instrucciones para permitir el clonado:
 https://docs.fluxcd.io/en/latest/guides/use-private-git-host.html
 Tendremos que meter la ssh key del repo en los known_hosts de ssh del pod flux user root
+En el yaml que genera fluxctl install, tendremos que añadir el ConfigMap con los known_hosts de nuestro server y descomentar el volume "ssh-config" y el volume del mismo nombre.
 
-fluxctl install --git-url 'git@git.usync.us:adrian/flux-get-started.git' --git-email adrian@usync.com --git-path=namespaces,workloads  | kc apply -f -
+fluxctl install --git-url 'git@git.usync.us:adrian/flux-get-started.git' --git-email adrian@email.com --git-path=namespaces,workloads  | kc apply -f -
+
+Si tenemos ssh en otro puerto:
+--git-url 'ssh://git@git.dominio.com:2222/adrian/flux-get-started.git'
 
 Crea:
   serviceaccount/flux
