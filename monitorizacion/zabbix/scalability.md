@@ -304,6 +304,7 @@ DCsync_history (writes updates and new data from pool to database)
       Entiendo que está generando la query tipo: insert into history (itemid,clock,ns,value) values (12794841,1560281498,27508301,17387.989214),(12794839,1560281498,27508302,10183.237600)...
       prepara la query para insertar los datos
       para cada uno de los values llama a zbx_db_insert_add_values para meter los datos en la query
+      insertará el último value para cada itemid que haya conseguido obtener, máximo 1000
     zbx_vc_add_value (almacena los datos en la value cache)
   DCmass_update_triggers (re-calculate and update values of triggers related to the items)
   DCmass_update_trends

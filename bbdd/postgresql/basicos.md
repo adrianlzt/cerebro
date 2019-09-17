@@ -56,6 +56,11 @@ Salir:
 Info de la conexión (user, database, metodo de conex):
 \conninfo
 
+\set AUTOCOMMIT off
+desactivar el autocommit, de esta manera si queremos hacer cualquier cosa tendremos que poner "COMMIT;" al final
+Chequear el estado del autocommit:
+\echo :AUTOCOMMIT
+
 
 # System info
 https://www.postgresql.org/docs/current/functions-info.html
