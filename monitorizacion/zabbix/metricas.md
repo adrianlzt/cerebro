@@ -26,7 +26,7 @@ that's not good idea - you can't scale it - single point of failure - module opt
 # Internals
 mirar:
   procesos_internos.md
-  cache.md
+  cache.md (descripción de los internals)
 
 Zabbix va almacenando cada value en las trends cache.
 Cuando llega un value con una hora superior (por ejemplo, pasamos de 10:00 a 11:00), se flushea ese trend a la bbdd y se resetea el cache del trend y se empiezan a almacenar los nuevos valores.

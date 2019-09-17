@@ -15,6 +15,14 @@ bacula
 BackupPC
 
 
+# borg
+export BORG_PASSCOMMAND="gopass show -o backup_borg"
+export BORG_REPO="borgbackup@server.borg.cloud:backup"
+borg list
+
+vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
+
+
 # restic
 https://restic.readthedocs.io/en/latest/index.html
 Simple, con varios backends. Escrito en go.
