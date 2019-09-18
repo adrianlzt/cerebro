@@ -153,7 +153,18 @@ Arrancar el proxy:
   curl http://localhost:58080/proxy/8200/har
     obtener el HAR desde la última vez que se borró
 
-También podemos usar burp proxy
+  El HAR que genera no es completo. Solo se ve la petición y el código de retorno.
+
+  Si tenemos que meter un cert nuevo para que el proxy pueda conectar con un tercer servidor (una CA de nuestra empresa, por ejemplo):
+    1.- arrancar el container con "sh"
+    2.- copiarle el cert (docker cp ...)
+    3.- meter el cert en los certs de java: keytool -import -alias UNNOMBRE -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/cert.pem
+    4.- commitear el container: docker commit IDcorriendo browsermob-proxy-NUEVO
+    5.- arrancar la imagen con ese container y especificando el command: docker run --ulimit nofile=122880:122880 --rm -it -p 58080:8080 -p 58200:8200 browsermob-proxy-NUEVO /home/browsermob-proxy-2.1.2/bin/browsermob-proxy
+
+
+
+También podemos usar burp proxy, lo malo es que no exporta en HAR y no deja guardar (la versión grautita)
 
 
 
