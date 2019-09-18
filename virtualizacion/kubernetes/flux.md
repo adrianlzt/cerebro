@@ -79,14 +79,14 @@ fluxctl --k8s-fwd-ns flux list-images
 # Config
 
 ## Actualización automática ante nuevas imágenes
-Tendremos que meter esto en nuestro deployment:
+Una opción es hacerlo con fluxctl (que modificará el repo para meter esa annotation):
+fluxctl --k8s-fwd-ns nuestroNS automate -w nuestroNS:deployment/nombreDeployment
+
+Otra opción es meter una annotation en el yaml:
 metadata:
   annotations:
-    flux.weave.works/automated: "true"
+    fluxcd.io/automated: 'true'
 
-
-Otra opción es hacerlo con fluxctl (que modificará el repo para meter esa annotation):
-fluxctl --k8s-fwd-ns nuestroNS automate -w nuestroNS:deployment/nombreDeployment
 
 
 Podemos también seleccionar que imágenes se usarán, por ejemplo si solo queremos 1.x.x:
