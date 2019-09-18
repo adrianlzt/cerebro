@@ -97,6 +97,14 @@ vars/other.json
 }
 
 
+vars a nivel de task:
+    - debug:
+        msg: "hola {{foo}}"
+      vars:
+        foo: local
+
+
+
 Se pueden pasar funciones jinja a las variables
 {{ variable.replace('a','b') }}
 Mirar jinja.md
