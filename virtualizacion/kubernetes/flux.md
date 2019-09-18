@@ -59,6 +59,7 @@ kc logs -l name=flux | grep "git repo"
 Para ver que está pasando con el repo me ha sido útil mirar los logs quitando los errores de sincronización de imágenes:
 kc logs -f flux-56d579f875-t5z58 | grep -v -e images.go -e warming.go -e repocachemanager.go
 
+Podemos lanzar list-images para ver si recupera correctamente la info de las imágenes.
 
 
 
