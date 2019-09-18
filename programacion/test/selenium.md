@@ -5,6 +5,9 @@ http://www.seleniumhq.org/
 
 Opción más sencilla con scripts python: /home/adrian/adrianRepo/programacion/python/behave.md
 
+robotframework nos permite definir en un DSL propio sencillo lo que queremos hacer. Él se encarga de levantar el navegador, realizar las pruebas y devolver el resultado
+Mirar más abajo su sección
+
 
 Selenium automates browsers. That's it. What you do with that power is entirely up to you. Primarily it is for automating web applications for testing purposes, but is certainly not limited to just that. Boring web-based administration tasks can (and should!) also be automated as well.
 
@@ -134,7 +137,34 @@ el = WebDriverWait(driver, 10).until(lambda d: d.find_element_by_tag_name("p"))
 
 
 
+# Proxy
+Si queremos analizar lo que está pasando podemos usar:
+https://bmp.lightbody.net
+Certificado a meter en el navegador para que acepte los TLS del proxy: https://github.com/lightbody/browsermob-proxy/blob/browsermob-proxy-2.1.2/browsermob-core/src/main/resources/sslSupport/ca-certificate-rsa.cer
+Lo que he hecho es configurar firefox con el proxy y luego decirle a selenium que use mi profile.
+Arrancar el proxy:
+  docker run --ulimit nofile=122880:122880 --rm -it -p 58080:8080 -p 58200:8200 bwowk/browsermob-proxy
+  curl -X POST -d 'port=8200' http://localhost:58080/proxy
+    crear proxy en el puerto 8200
+  curl -X PUT http://localhost:58080/proxy/8200/har
+    poner a grabar un HAR en ese proxy-puerto
+  curl -X PUT http://localhost:58080/proxy/8200/har
+    obtener el json del HAR y borrar
+  curl http://localhost:58080/proxy/8200/har
+    obtener el HAR desde la última vez que se borró
+
+También podemos usar burp proxy
+
+
+
+
 # Errores
 is not clickable at point
 Coger el elemento, esperar un poco y luego hacer click.
 Puede ser por otras razones que esto no lo arregle
+
+
+
+# robotframework
+Configurar firefox para que use un profile determinado:
+Suite Setup    Open Browser     https://example.com    firefox    ff_profile_dir=/home/adrian/.mozilla/firefox/3eh5eabz.light
