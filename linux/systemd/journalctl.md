@@ -134,6 +134,9 @@ verbose: Shows every journal field available for the entry, including those usua
 # Storage / max sizes
 journalctl --disk-usage
   uso del disco
+  va creciendo en bloques de 8M
+
+Journald automáticamente cuando supera un treshold
 
 journalctl --vacuum-time=04222015
   borrar ficheros más antiguos de 22/4/2015

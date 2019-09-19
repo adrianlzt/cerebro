@@ -33,6 +33,7 @@ Las sesiones ya conectadas no se verán afectadas por los cambios (para alter da
 Podemos forzar terminar una sesión con:
 select pg_terminate_backend(15705);
   mirar el pid en pg_stat_activity
+  mirar status.md para notas sobre usar esta función
 
 
 # Formato
@@ -48,6 +49,8 @@ Ejemplo:
 
 Si usamos journald una forma para sacarlo en formato grepeable:
 journalctl -n 100 -u postgresql-9.6 -f -o cat
+
+El logging de una query se produce en el momento en el que el cliente la manda, no se espera a la respuesta.
 
 
 
