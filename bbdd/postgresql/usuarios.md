@@ -142,10 +142,15 @@ dropuser nombre
 DROP USER 'nombre';
 
 
-## Limitar usuarios
+## Parámetros usuarios
+Consultar:
+\drds
+
+### Limitar tiempo queries
 Timeout: limitar a NOMBREROLE para que las ejecuciones no puedan durar más de 1s:
 alter role NOMBREROLE set statement_timeout=1000;
 Esto solo aplica cuando el user vuelve a conectar.
+
 
 
 ## Cerrar sesiones de usuario

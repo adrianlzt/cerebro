@@ -4,6 +4,8 @@ https://use-the-index-luke.com/
   SQL Indexing and Tuning e-Book
 
 Mirar explain.md
+mira async_commit.md
+
 
 # Performance
 La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias entradas en la misma query.

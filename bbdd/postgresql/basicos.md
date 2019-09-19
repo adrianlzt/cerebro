@@ -71,3 +71,16 @@ SELECT pg_backend_pid();
 
 select inet_server_addr();
   ip del server
+
+
+# Pager
+https://github.com/okbob/pspg
+
+\setenv PAGER 'pspg -Xs 16'
+
+-- cambiar de pager con :x o :xx
+\set x '\\setenv PAGER less'
+\set xx '\\setenv PAGER \'pspg -Xs 16\''
+
+
+pspg es un pager específico para postgres
