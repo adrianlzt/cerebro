@@ -6,6 +6,12 @@ grub-customizer
 Modificar /etc/grub.conf
 No hace falta ejecutar luego ningún comando
 
+No tengo claro si no hace falta modificar nada.
+Actualizar config con
+grub2-mkconfig -o "$(readlink -e /etc/grub2.cfg)"
+Esto modifica /boot/grub2/grub.cfg
+
+
 
 /boot/config-3.13.8
   Configuración del kernel

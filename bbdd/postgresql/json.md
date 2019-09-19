@@ -60,6 +60,9 @@ jsonb_object_keys para jsonb
 # WHERE
 notes::jsonb->>'class' = 'db';
 
+select * from main_job where extra_vars::jsonb->>'telegraf_hostname' = 'linux123';
+
+
 # Modificar
 Ejemplo donde actualizamos el campo "variables" (tipo text, pero que contiene un json).
 Lo que hacemos es modificar "ansible_host", haciéndole un append de ".com"
