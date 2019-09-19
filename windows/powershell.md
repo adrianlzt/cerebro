@@ -103,3 +103,9 @@ $date.GetType()
 Para usar JSON
 $Data | ConvertTo-Json | Add-Content  -Path $Path
 $NewData = Get-Content -Path $Path -Raw | ConvertFrom-Json
+
+
+# Calcular SHA
+Get-FileHash fichero
+  por defecto es SHA256
+Get-FileHash -Algorithm MD5 fichero
