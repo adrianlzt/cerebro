@@ -7,7 +7,7 @@ https://www.postgresql.org/docs/devel/static/installation.html
 
 Para instalar las deps en centos podemos usar:
 yum groupinstall "Development Tools"
-yum install -y readline-devel
+yum install -y readline-devel zlib-devel
 
 ./configure
 make
