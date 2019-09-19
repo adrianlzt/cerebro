@@ -71,6 +71,27 @@ https://www.postgresql.org/docs/current/sql-grant.html
 Chequear permisos de una bbdd:
 \dp
 
+Explicación output:
+rolename=xxxx -- privileges granted to a role
+        =xxxx -- privileges granted to PUBLIC
+
+            r -- SELECT ("read")
+            w -- UPDATE ("write")
+            a -- INSERT ("append")
+            d -- DELETE
+            D -- TRUNCATE
+            x -- REFERENCES
+            t -- TRIGGER
+            X -- EXECUTE
+            U -- USAGE
+            C -- CREATE
+            c -- CONNECT
+            T -- TEMPORARY
+      arwdDxt -- ALL PRIVILEGES (for tables, varies for other objects)
+            * -- grant option for preceding privilege
+
+        /yyyy -- role that granted this privilege
+
 Tenemos distintos privilegios según el tipo de objeto (schema, tabla, function, etc).
 Un usuario con acceso a un schema puede crear objetos en él.
 Privilegios para schemas:
@@ -106,7 +127,9 @@ GRANT UPDATE ON accounts TO joe;
 Todos los permisos para una db.
 GRANT ALL ON DATABASE basededatos TO joe;
 
-Para conectarse a una base de datos distinta al nombre del usuario deberemos especificarlo con el parámetro -d
+Quitar permisos a un role:
+REVOKE SELECT ON public.events FROM auditor;
+
 
 
 ## Borrar usuarios ##
@@ -123,6 +146,13 @@ DROP USER 'nombre';
 Timeout: limitar a NOMBREROLE para que las ejecuciones no puedan durar más de 1s:
 alter role NOMBREROLE set statement_timeout=1000;
 Esto solo aplica cuando el user vuelve a conectar.
+
+
+## Cerrar sesiones de usuario
+select pg_terminate_backend(15705);
+  mirar el pid en pg_stat_activity
+  mirar status.md para notas sobre usar esta función
+
 
 
 ## pg_hba.conf ##

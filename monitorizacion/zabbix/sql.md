@@ -473,8 +473,7 @@ WITH not_working_lld AS
                                                          FROM (now() - INTERVAL '4 DAY'))))
      AND item_discovery_proto.lastcheck <> 0
      AND item_discovery_proto.ts_delete=0
-     AND (host_discovery.ts_delete IS NULL
-          OR host_discovery.ts_delete = 0)
+     AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
    ORDER BY hosts.host)
 SELECT HOST,
        to_timestamp(max(lastcheck)) AS max_lastcheck,
@@ -551,3 +550,13 @@ src/libs/zbxdbupgrade/dbupgrade.c
 {DBPATCH_VERSION(3050), "4.0 development"},
 {DBPATCH_VERSION(4000), "4.0 maintenance"},
 
+
+
+# pgaudit
+Auditar que está pasando en ciertas tablas.
+Mirar postgresql/audit.md
+
+Config para auditar inserts y updates en la tabla events:
+psql> create role auditor;
+psql> alter database 'zabbix-server' SET pgaudit.role='auditor';
+psql> grant insert,update on public.events to auditor;
