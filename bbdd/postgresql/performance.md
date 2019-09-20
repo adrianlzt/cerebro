@@ -6,6 +6,8 @@ https://use-the-index-luke.com/
 Mirar explain.md
 mira async_commit.md
 
+WAL en un disco distinto, optimizado para escrituras secuenciales.
+DATADIR debe permitir lecturas/escrituras random.
 
 # Performance
 La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias entradas en la misma query.

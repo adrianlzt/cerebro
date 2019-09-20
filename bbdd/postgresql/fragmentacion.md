@@ -7,8 +7,11 @@ Tres tipos de espacio no usado:
   - fillfactor, espacio que se deja libre a posta en las tablas o índices (https://www.postgresql.org/docs/9.6/sql-createtable.html#SQL-CREATETABLE-STORAGE-PARAMETERS)
     Por defecto fillfactor=100, por lo que no se dejan espacios libres.
     Para índices B-tree el fillfactor es 90 por defecto
-    Esta opcion deja huecos para que las actualizaciones de rows puedan caer en la misma page que el dato y evitar fragmentación en tablas con muchos updates.:w
+    Esta opcion deja huecos para que las actualizaciones de rows puedan caer en la misma page que el dato y evitar fragmentación en tablas con muchos updates.
   - bloat, espacio no usado pero consumido tras borrados/updates, etc
+
+En tablas que solo sufren inserts no tiene sentido dejar fillfactor.
+En tablas con updates, si tienen HOT updates (modificación de valores no indexados) sí tiene sentido dejar fillfactor.
 
 
 # Espacio no usado en datos de tablas

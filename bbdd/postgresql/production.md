@@ -1,5 +1,7 @@
 https://severalnines.com/blog/ten-tips-going-production-postgresql
 
+Activar pgstatstatements para tener más info.
+
 
 # Scale up
 mirar vldb.md para tunning de grandes bbdd

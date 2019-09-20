@@ -18,6 +18,10 @@ http://tatiyants.com/pev/#/plans/new
 
 Mirar tunning.md para los parametros de coste
 
+Podemos activar auto_explain para mostrar el plan de queries que consuman mucho tiempo.
+Activarlo impacta en el performance, se debe almacenar el explain de todas las queries para mostrarlo si consumen mucho tiempo.
+https://www.postgresql.org/docs/current/auto-explain.html
+
 Mostrar el plan para obtener los resultados de la query.
 Sirve para buscar problemas de performance.
 
@@ -245,11 +249,6 @@ select * from pg_stats;
 
 Mostrar los elementos más comunes almacenados en la tabla "road":
 SELECT attname, inherited, n_distinct, array_to_string(most_common_vals, E'\n') as most_common_vals FROM pg_stats WHERE tablename = 'road';
-
-
-
-Cuidado con los cast.
-Si al hacer una comparación los tipos de datos son distintos, no podrá usar el index
 
 
 
