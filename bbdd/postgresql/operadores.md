@@ -2,7 +2,7 @@ https://www.postgresql.org/docs/8.1/static/sql-createfunction.html
 http://www.postgresql.org/docs/8.0/static/functions-binarystring.html
 https://www.postgresql.org/docs/current/functions-info.html
 
-\df`
+\df
 \df+ function_name
 
 Postgres usa overloading functions, mismo nombre con distintos parámetros.
@@ -111,3 +111,9 @@ right("qwerty", 2) -> ty
 Postgres no puede saber el coste, debe ser el desarrollador de la función el que meta esos datos como metadatos.
 Será un valor fijo.
 ALTER FUNCTION myFunc {COST c} {ROWS w};
+
+
+
+
+# Funciones para obtener datos de postgres
+https://www.postgresql.org/docs/current/functions-info.html
