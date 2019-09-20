@@ -5,9 +5,14 @@ https://use-the-index-luke.com/
 
 Mirar explain.md
 mira async_commit.md
+  evitar esperar el flusheo a disco de los wal
 
 WAL en un disco distinto, optimizado para escrituras secuenciales.
 DATADIR debe permitir lecturas/escrituras random.
+
+Los índices afectan al coste de INSERT/UPDATE.
+
+
 
 # Performance
 La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias entradas en la misma query.
@@ -29,6 +34,8 @@ Podemos ver por cada database que queries se están ejecutando, cuanto tardan, p
 
 
 
+
+
 # Load testers
 Por lo hablado en el curso de Postgres, hacer replay no es una buena estrategía. Puede influir donde postgres realize actuaciones automáticas, por lo que no parece que el resultado sea interesante.
 
@@ -46,7 +53,31 @@ pgbadger is for log analysis when during experiments we are "okay" to turn the f
 https://gitlab.com/postgres-ai-team/nancy
 pg_badger is also used by nancy, an benchmark experiment driver, so you can replay your logs, then change something, like add an index, and replay them again and nancy will show you to differential performance:
 
-# pgbench
+
+
+
+## pgbench
+https://www.postgresql.org/docs/current/pgbench.html
+
+
+Podemos pasar scripts customizados para simular la carga que necesitemos.
+Ejemplo de un script muy simple que hace un insert:
+\set n random(1,10)
+BEGIN;
+INSERT INTO prueba2 VALUES(:n);
+END;
+
+Lo ejecutamos contra la database "pruebas" con:
+pgbench -f insert-prueba2.sql pruebas
+
+-t 1000
+  cada cliente ejecuta 1000 tx (por defecto es 10)
+-j N
+  número de threads que usar, la idea es que podemos ocupar cada core con un thread. Los clientes se repartiran entre los threads (default 1)
+-c N
+  número de clientes concurrentes (default 1)
+
+
 it's quite convenient in many cases to use pgbench, when logs collections is not an option due to some reason -- instead of workload replay we can use workload simulation, based on underdtanding how every query group from pg_stat_statements looks like (first of all, the main important thing is % of calls in overall picture). It's good that pgbench allows to set "weights" for every workload "piece", using multiple -f options and @weght (for example, "pgbench -f tx1.sql@20 -f tx2.sql@80", etc)
 
 
@@ -80,3 +111,23 @@ partbench__insert.sql contains:
 insert into partbench_ values('2018-04-26 15:00:00',1,2,3,4,5);
 
 pgbench -n -T 60 -f partbench__insert.sql postgres
+
+
+
+### sysbench
+http://lwn.net/Articles/368908/
+
+http://sysbench.sourceforge.net/docs/#database_mode
+
+Example usage:
+
+  $ sysbench --test=oltp --mysql-table-engine=myisam --oltp-table-size=1000000 --mysql-socket=/tmp/mysql.sock prepare
+  $ sysbench --num-threads=16 --max-requests=100000 --test=oltp --oltp-table-size=1000000 --mysql-socket=/tmp/mysql.sock --oltp-read-only=on run
+
+The first command will create a MyISAM table 'sbtest' in a database 'sbtest' on a MySQL server using /tmp/mysql.sock socket, then fill this table with 1M records. The second command will run the actual benchmark with 16 client threads, limiting the total number of request by 100,000.
+
+
+sysbench --test=oltp --db-driver=mysql --oltp-table-size=1000000 --mysql-host=10.2.26.9 --mysql-user=user --mysql-password=pass --mysql-db=sbtest prepare
+sysbench --db-driver=mysql --num-threads=16 --max-requests=100000 --test=oltp --oltp-table-size=1000000 --oltp-reconnect-mode=random --mysql-host=10.2.6.9 --mysql-user=user --mysql-password=pass --mysql-db=sbtest --max-time=60 run
+
+sysbench --test=oltp --db-driver=mysql --oltp-table-size=1000000 --mysql-host=10.6.36.9 --mysql-user=user --mysql-password=pass --mysql-db=sbtest cleanup

@@ -1,1 +1,1 @@
-../mysql/benchmark.md
+performance.md
