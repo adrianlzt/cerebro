@@ -1,5 +1,6 @@
 https://www.postgresql.org/docs/8.1/static/sql-createfunction.html
 http://www.postgresql.org/docs/8.0/static/functions-binarystring.html
+https://www.postgresql.org/docs/current/functions-info.html
 
 \df`
 \df+ function_name

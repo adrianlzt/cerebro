@@ -1,3 +1,7 @@
+https://www.postgresql.org/download/
+
+Para instalar desde código mirar develop.md
+
 Para instalar la última versión en debian-like:
 http://wiki.postgresql.org/wiki/Apt
 

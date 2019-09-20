@@ -67,6 +67,8 @@ alter user usuario createdb;
 
 ## Privilegios / Permisos ##
 https://www.postgresql.org/docs/current/sql-grant.html
+https://www.postgresql.org/docs/current/functions-info.html#FUNCTIONS-INFO-ACCESS-TABLE
+  comprobar si un usuario tiene determinados permisos, ejemplo has_any_column_privilege(user, table, privilege)
 
 Chequear permisos de una bbdd:
 \dp
