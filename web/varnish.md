@@ -30,6 +30,19 @@ curl -w "Time total: %{time_total}\n" -H "Host: httpbin.org" localhost:8000/dela
   la primera vez tardará ~1200ms, las siguientes ~1ms
 
 
+## Rewrite
+http://book.varnish-software.com/3.0/build/exercises/complete-rewrite_urls_and_headers.html
+
+Modificar URL, host, etc
+set req.http.host = "www.example.com"
+
+
+
+## Cachear POST
+https://docs.varnish-software.com/tutorials/caching-post-requests/
+https://info.varnish-software.com/blog/caching-post-requests-with-varnish
+
+
 
 # Logs / debug
 Podemos sacar las peticiones que está parseando varnish con el comando varnishlog.
