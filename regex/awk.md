@@ -8,6 +8,9 @@ BEGIN { printf "solo se hace al comienzo" }
 cuerpo que se ejecuta una vez por cada línea
 END { printf "solo al final" var }'
 
+awk -v ORS="," '{print "pepe"};'
+  ORS es lo que imprime el print al final, por defecto es \n
+
 
 Imprimir el campo 7 si separamos mediante barras (/)
 cat update_database  | awk '{FS="/"; print $7;}'
