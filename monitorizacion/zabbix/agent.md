@@ -61,6 +61,15 @@ Por defecto el timeout para estos userparameters es de 3s
 La siguiente ejecucción será "item interval" + el timestamp de la última ejecucción.
 
 
+## Override
+Podemos pisar keys del agente original.
+https://support.zabbix.com/browse/ZBXNEXT-3874
+Alias=agent.ping:custom.agent.ping
+UserParameter=custom.agent.ping,echo 2
+
+Al preguntar por agent.ping se ejecutará custom.agent.ping
+
+
 # Forzar chequeo inmediato
 No se puede por ahora (Nov 2017)
 https://support.zabbix.com/browse/ZBXNEXT-473
