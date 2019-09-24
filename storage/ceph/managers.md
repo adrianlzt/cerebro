@@ -39,7 +39,12 @@ Podemos crear nuestro propio plugin con python
 http://docs.ceph.com/docs/master/mgr/zabbix/
 
 Hace uso del zabbix_sender para enviar métricas a un servidor de Zabbix.
-Tenemos que meter la template que está en la web y configurarla para los hosts.
+Tenemos que meter la template que está en la web y configurarla para los hosts: https://raw.githubusercontent.com/ceph/ceph/master/src/pybind/mgr/zabbix/zabbix_template.xml
+
+Donde corra el mgr tiene que estar instalado el zabbix_sender
+No viene en los container ceph-mgr-xxx
+yum install -y zabbix40
+docker exec -it ceph-mgr-$(hostname) yum install -y zabbix40
 
 Tendremos un host de zabbix por cluster de ceph.
 La config de zabbix se comparte entre todos los nodos del cluster.
