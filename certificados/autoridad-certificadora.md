@@ -8,6 +8,8 @@ Para que se ponga el icono verde de los navegadores también cobran.
 
 
 # easy-rsa
+mirar mkcert.md
+
 Para crear una CA de forma sencilla
 yum install -y easy-rsa
 cd /usr/share/easy-rsa/2.0
