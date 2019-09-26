@@ -16,6 +16,9 @@ https://postgresqlco.nf/en/doc/param/?category=query-tuning&subcategory=planner-
 http://tatiyants.com/pev/#/plans/new
   web para pasar un explain y ver de forma más gráfica donde están los costes, etc
 
+Un analizador de pago, 10 gratis. Da recomendaciones.
+https://www.pgmustard.com/pricing
+
 Mirar tunning.md para los parametros de coste
 
 Podemos activar auto_explain para mostrar el plan de queries que consuman mucho tiempo.
@@ -254,3 +257,10 @@ SELECT attname, inherited, n_distinct, array_to_string(most_common_vals, E'\n') 
 
 Cuidado con los cast.
 Si al hacer una comparación los tipos de datos son distintos, no podrá usar el index
+
+
+
+# Memoria
+Fijarnos también cuanta memoria está usando las operaciones.
+Por ejemplo, un SORT puede usar mucha memoria (Sort Space Used, son KB), superando la asignada (work_mem) y viéndose obligado a swapear.
+Cuidado con subir work_mem, es el uso de memoria por nodo en el explain.
