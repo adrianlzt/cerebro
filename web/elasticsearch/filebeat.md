@@ -31,6 +31,13 @@ output.elasticsearch:
 
 #logging.metrics.enabled: true  # por defecto cada 30s se envian metricas de como esta funcionando filebeat
 
+Output a logstash (protocolo beats)
+output.logstash:
+  hosts: ["10.233.107.172:5044"]
+
+Prueas, sacar a la consola:
+output.console:
+  pretty: true
 
 
 Testear config:
