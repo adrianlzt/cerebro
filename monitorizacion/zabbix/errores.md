@@ -25,3 +25,8 @@ mirar cache.md ValueCacheSize
 
 Items con valores en el futuro.
 Están detrás de un proxy y son calculated? Seguramente es que el proxy no tiene sincronizada la hora (está en el pasado) y esto genera los values en el futuro.
+
+
+cannot create IPC key for path [zabbix_agentd.conf] id [l]: [2] No such file or directory
+Estamos arrancando con "-c fichero.conf"?
+Poner un path completo
