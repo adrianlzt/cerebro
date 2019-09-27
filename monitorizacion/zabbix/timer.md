@@ -15,7 +15,7 @@ Esto es muy util si queremos activar el modo debug de algún timer si sabemos el
 
 __zbx_zbx_setproctitle
   process_time_functions (re-calculate and update values of time-driven functions)
-    DCconfig_get_time_based_triggers (obtiene una lista de triggers con functiones time-based)
+    DCconfig_get_time_based_triggers (obtiene una lista de triggers con functiones time-based, "nodata,date,dayofmonth,dayofweek,time,now")
       hace lock de la cache
     evaluate_expressions (en el log nos pone el número de triggers a procesar, "tr_num")
       substitute_simple_macros (expandimos las macros)
