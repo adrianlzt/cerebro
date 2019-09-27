@@ -43,6 +43,11 @@ output.console:
 Testear config:
 filebeat -c filebeat.yml test config
 
+Testear ejecución
+filebeat run -c filebeat.yml -v -e
+
+Con docker:
+docker run --rm -it -v $PWD/filebeat.yaml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:7.3.2
 
 
 # Internals
