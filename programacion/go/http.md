@@ -98,6 +98,9 @@ req.URL.RawQuery = q.Encode()
 ## Headers
 req.Header.Add("If-None-Match", `W/"wyzzy"`)
 
+### Definir header en el server
+w.Header().Add("Content-Type", "application/json")
+
 
 ## TLS/SSL sin chequear
 http://stackoverflow.com/questions/12122159/golang-how-to-do-a-https-request-with-bad-certificate
