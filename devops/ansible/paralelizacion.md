@@ -14,3 +14,10 @@ Se puede pasar como un porcentaje
 
 
 Si ponemos serial: 1, se ejecutarán todas las task en el primer servidor, y si no ha habido ningún fallo, se pasará al siguiente.
+
+
+
+Si queremos serialización a nivel de task podemos usar throttle, a partir de la versión 2.9
+tasks:
+  - command: /path/to/cpu_intensive_command
+    throttle: 1
