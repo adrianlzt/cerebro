@@ -37,3 +37,8 @@ http://jinja.pocoo.org/docs/dev/templates/#map
 Users on this page: {{ users|map(attribute='username')|join(', ') }}
 Users on this page: {{ titles|map('lower')|join(', ') }}
 
+
+
+# selecattr
+Comprobar si en ese "path" el valor es igual al pasado como parámetro:
+selectattr("cluster.virtual_host", "equalto", "hostAB")

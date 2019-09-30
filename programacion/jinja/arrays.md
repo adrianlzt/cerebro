@@ -10,3 +10,9 @@ https://stackoverflow.com/questions/41521138/ansible-template-adds-u-to-array-in
 
 # Unir
 {{ ["a","b"] | union(["c"]) }}
+
+
+# Elegir el elemento N
+lista.0
+lista.1
+lista.N
