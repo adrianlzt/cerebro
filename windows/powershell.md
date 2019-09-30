@@ -109,3 +109,14 @@ $NewData = Get-Content -Path $Path -Raw | ConvertFrom-Json
 Get-FileHash fichero
   por defecto es SHA256
 Get-FileHash -Algorithm MD5 fichero
+
+
+# IPs
+Versiones 2008 R2 y anteriores:
+Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE -ComputerName . | Select-Object -Property IPAddress
+
+Versiones 2012 y superiores:
+Get-NetIPAddress -AddressFamily IPv4
+
+Mirar Si tenemos alguna IP
+comandoAnterior | Where-Object IPAddress -Eq 1.2.3.4
