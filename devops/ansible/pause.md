@@ -10,3 +10,5 @@ Task para parar la ejecucción hasta que pulsemos enter
 
 - pause: prompt="Quieres continuar? (Control+c para salir)"
 
+
+- pause: "seconds={{ 10 | random }}"
