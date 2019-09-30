@@ -21,3 +21,5 @@ Si queremos serialización a nivel de task podemos usar throttle, a partir de la
 tasks:
   - command: /path/to/cpu_intensive_command
     throttle: 1
+
+Workaround, mirar condicionales.md "Filtrando por una variable común de hostvars"

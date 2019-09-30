@@ -20,6 +20,11 @@ when: (ansible_distribution == "CentOS" and ansible_distribution_major_version =
 
 when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= 6
 
+when:
+  - una condicion
+  - otra condicion
+  - unidas todas por AND
+
 
 
 {% if 'http://gogolg.es/asd' | match("http://.*") %}
@@ -160,3 +165,14 @@ Longitud de un array
         msg: "Delete nodes confirmation failed"
       when: delete_nodes_confirmation != "yes"
 
+
+# Filtrando por una variable común de hostvars
+En este caso cada host tiene un valor en cluster.virtual_host.
+Queremos que solo uno de los hosts que compartan el valor de esa variable haga algo.
+Lo que hacemos es convertir el hostvars en una tupla de (inventory_hostname, valores).
+Luego nos quedamos solo con los hosts cuyo virtual_host sea igual a nuestro host (en cada host tomará el valor que corresponda).
+Ordenamos alfabéticamente y nos quedamos con el primero.
+
+De esta manera, todos los hosts que compartan "cluster.virtual_host" siempre eligirán al mismo "inventory_hostname" y solo aquel cuyo hostname sea el elegido ejecutará la acción.
+
+when:  hostvars.items() | list | selectattr("1.cluster", "defined") | selectattr("1.cluster.virtual_host", "equalto", cluster.virtual_host) | map(attribute="0") | sort | first == inventory_hostname
