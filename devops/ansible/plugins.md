@@ -1,3 +1,4 @@
+https://docs.ansible.com/ansible/latest/dev_guide/developing_plugins.html
 https://docs.ansible.com/ansible/devel/plugins.html
 
 
@@ -11,3 +12,9 @@ Mirar también como definirlos correctamente (dentro de la clase): http://www.da
 Si creamos un plugin para connection, tambien podemos meterlo en:
 /usr/share/ansible/plugins/connection/
 $HOME/.ansible/plugins/connection/
+
+
+Podemos meter distintos tipos de plugins custom en directorios a nivel del playbook o del role:
+  filter_plugins/
+  lookup_plugins/
+  module_plugins/
