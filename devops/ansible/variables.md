@@ -116,7 +116,8 @@ También vale para obtener variables de otro play dentro del mismo playbook (por
 Parece que no vale para variables obtenidas con "vars_prompt"
 
 Tendremos accesibles las hostvars de todos los hosts que estén en el inventario que estemos usando, aunque hayamos usado limit (-l).
-Pero si usamos un inventario que solo tiene un host, aunque tengamos más hosts en host_vars/ no estarán accesibles en hostvars
+Pero si usamos un inventario que solo tiene un host, aunque tengamos más hosts en host_vars/ no estarán accesibles en hostvars.
+Como workaround podemos usar include_vars
 
 
 Hack para solucionarlo. Hacer un echo de la variable y guardarla en un registro:
