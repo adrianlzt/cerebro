@@ -115,6 +115,10 @@ hostvars.localhost.rpm_name.stdout
 También vale para obtener variables de otro play dentro del mismo playbook (por ejemplo un register de un nodo que se ha ejecutado antes)
 Parece que no vale para variables obtenidas con "vars_prompt"
 
+Tendremos accesibles las hostvars de todos los hosts que estén en el inventario que estemos usando, aunque hayamos usado limit (-l).
+Pero si usamos un inventario que solo tiene un host, aunque tengamos más hosts en host_vars/ no estarán accesibles en hostvars
+
+
 Hack para solucionarlo. Hacer un echo de la variable y guardarla en un registro:
 - name: hack, copy dsn_branch to puppet play
   shell: echo "{{ dsn_branch }}"
