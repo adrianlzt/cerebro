@@ -3,6 +3,7 @@ mirar containers.md
 Analizar una imagen (nos muestra por cada capa que se ha ejecutado y que ficheros se han modificado):
 dive nombre
 
+Info sin bajar la imagen: skopeo.md
 
 Mirar datos de una imagen
 docker image ID
