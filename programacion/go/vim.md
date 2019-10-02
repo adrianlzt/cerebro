@@ -24,3 +24,7 @@ crear los stubs para implementar una interfaz
 
 :GoImplements
 nos dice que interfaces implementa ese elemento
+
+
+Desactivar metalinter al guardar
+:let g:go_metalinter_autosave=0
