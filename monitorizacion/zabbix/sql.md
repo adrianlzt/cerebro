@@ -230,6 +230,9 @@ select media_type.description,count(*) from alerts,media_type where media_type.m
 
 
 
+# Trigger - functions - items - hosts
+select hosts.host,items.key_,triggers.description from triggers join functions USING(triggerid) join items using (itemid) join hosts using (hostid) limit 10;
+
 
 # Queries varias
 Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
@@ -550,13 +553,3 @@ src/libs/zbxdbupgrade/dbupgrade.c
 {DBPATCH_VERSION(3050), "4.0 development"},
 {DBPATCH_VERSION(4000), "4.0 maintenance"},
 
-
-
-# pgaudit
-Auditar que está pasando en ciertas tablas.
-Mirar postgresql/audit.md
-
-Config para auditar inserts y updates en la tabla events:
-psql> create role auditor;
-psql> alter database 'zabbix-server' SET pgaudit.role='auditor';
-psql> grant insert,update on public.events to auditor;
