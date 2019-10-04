@@ -150,6 +150,13 @@ agregar tags:
     tag1 = "foo"
 
 
+Tirar todas las métricas de un nombre determinado:
+[[processors.rename]]
+  order = 2
+  namepass = ["sqlserver_performance"]
+  fieldpass = [""]
+
+
 ## elasticsearch
 no nos da info detallada de cada índice: https://github.com/influxdata/telegraf/pull/2872
 una vez tengamos esa info detallada, hacer un aggregator para sacar la info de un pattern junta, por ejemplo, sacar toda la info de los índices logstash-* como una sola métrica
