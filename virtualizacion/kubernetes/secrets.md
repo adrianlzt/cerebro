@@ -62,3 +62,10 @@ EOF
 
 kubectl apply -k .
 secret/db-user-pass-96mffmfh4k created
+
+
+secretGenerator:
+- name: db-user-pass
+  literals:
+  - username=admin
+  - password=secret
