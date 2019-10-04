@@ -32,11 +32,33 @@ Otra forma para especificar exactamente lo que queremos modificar, por ejemplo u
 https://github.com/kubernetes-sigs/kustomize/tree/master/examples/transformerconfigs/images
 
 ## Patches
+https://github.com/kubernetes-sigs/kustomize/blob/master/examples/inlinePatch.md
+
 Formas de modificar los yaml base.
 Hay 3: patches, patchesJson6902 y strategicMerge
 
+### patchesJSON6902
+patchesJSON6902:
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: deploy
+    namespace: nombre # opcional
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: nginx:latest
+
+Si en el path tenemos que usar el caracter "~" o "/" los pondremos como "~0" o "~1"
+https://stackoverflow.com/a/54820201
+Ejemplo:
+  path: /metadata/annotations/kubernetes.io~1ingress.class
+
+
 ### strategicMerge
 Un parche que modifica algún campo de uno de los yaml base
+No funciona si el yaml base tiene "namespace" configurado.
 
 patchesStrategicMerge:
 - |-
