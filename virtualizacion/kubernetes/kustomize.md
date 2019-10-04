@@ -78,6 +78,7 @@ patchesStrategicMerge:
 # Generators
 https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md#generators
 
+
 ## Secrets
 https://github.com/kubernetes-sigs/kustomize/blob/master/examples/secretGeneratorPlugin.md
 https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-from-generator
@@ -104,6 +105,21 @@ secret/db-user-pass-96mffmfh4k created
 foo.env
 ROUTER_PASSWORD=admin
 DB_PASSWORD=iloveyou
+
+
+Teóricamente kustomize modifica los recursos que usen los secrets para ponerle el hash que se le añade a los nombres.
+Resources such as PodTemplates should reference Secrets by the name secretsGenerator field, and Kustomize will update the reference to match the generated name, as well as namePrefix's and nameSuffix's.
+
+Pero no me funciona.
+Se puede desactivar esta funcionalidad:
+https://kubectl.docs.kubernetes.io/pages/reference/kustomize.html#generatoroptions
+generatorOptions:
+  disableNameSuffixHash: true
+
+
+### Encriptar
+https://teuto.net/deploying-jupyterhub-to-kubernetes-via-kustomize-using-sops-secret-management/
+Mirar SOPS
 
 
 
