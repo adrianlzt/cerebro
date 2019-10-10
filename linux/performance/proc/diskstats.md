@@ -28,8 +28,10 @@ Ejemplo:
 
 ---- General -----
 (12) 0 -- num of I/Os currently in progress
-(13) 295570 -- num of milliseconds spent doing I/Os (This field increases so long as field 9 is nonzero)
-(14) 402430 -- weighted num of milliseconds spent doing I/Os 
+(13) 295570 -- num of milliseconds spent doing I/Os (This field increases so long as field 12 is nonzero)
+               CUIDADO! este campo no es la suma de num ms writing + num ms reads
+               Parece que es el tiempo pasado de reloj, no el tiempo sumado de ops de io
+(14) 402430 -- weighted num of milliseconds spent doing I/Os
                This field is incremented at each I/O start, I/O completion, I/O merge, or read of these stats by the
                number of I/Os in progress times the number of milliseconds spent doing I/O since the last update of this field.
                This can provide an easy measure of both I/O completion time and the backlog that may be accumulating.
