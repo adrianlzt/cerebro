@@ -13,3 +13,8 @@ pslist64.exe
 https://docs.microsoft.com/es-es/sysinternals/downloads/procmon
 Una especie de ps con superpoderes que nos permite ver que están haciendo los procesos
 Tiene alguna funcionalidad como strace
+
+
+# Powershell
+Get-Process | Sort-Object -Property WorkingSet64 -Descending | Select -First 10
+

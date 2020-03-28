@@ -46,8 +46,9 @@ sar -W
 
 
 Por proceso
-dmesg | grep killed
+dmesg | grep -i 'killed process'
   si ha saltado el OOM es que el sistema se quedó sin memoria (ram + swap)
+  mirar oom.md para más detalles y ver como sacer el oom score
 
 ps -o min_flt,maj_flt 1
   min_flt: fallos de página menores (sin acceso a disco)

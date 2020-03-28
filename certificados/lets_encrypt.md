@@ -11,6 +11,7 @@ Lo aceptan todos los navegadores.
 
 # Certbot
 https://certbot.eff.org/docs/using.html
+Utilidad para obtener un cert de Let’s Encrypt usando el protocolo ACMEv2 (https://tools.ietf.org/html/rfc8555)
 
 yum install certbot
 certbot certonly --webroot-path /var/www/html/ --email email@mail.com -d domain.com --preferred-challenges http -n --webroot
@@ -21,6 +22,18 @@ Usando el puerto 80 (http) y usando webroot
 
   Poniendo ficheros en el www root:
   /usr/bin/certbot renew --webroot-path /var/www/html/
+
+
+## DNS-01
+Para que verifiquen que el dominio es nuestro, crearemos una entrada TXT
+certbot -d dominio.com --manual --preferred-challenges dns --config-dir . --work-dir . --logs-dir . certonly
+
+Nos dará una clave que tendremos que meter en un registro TXT para el dominio:
+_acme-challenge.dominio.com
+
+DNS+Docker
+mkdir etc var
+docker run -it --rm --name certbot -v "$PWD/etc:/etc/letsencrypt" -v "$PWD/var:/var/lib/letsencrypt" certbot/certbot --no-eff-email --agree-tos -m MIEMAIL@DOMINIO.COM --manual-public-ip-logging-ok -d MI.DOMINIO.COM --manual --preferred-challenges dns certonly
 
 
 

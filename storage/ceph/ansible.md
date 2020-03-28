@@ -172,7 +172,7 @@ site.yml:
   gather_facts: false
   become: True
   pre_tasks:
-    - name: copy cert for usync
+    - name: copy cert
       copy: src=cert_with_bundle_and_key.pem dest=/etc/ceph/keyandcert.pem
             owner=root group=root mode=0440
 

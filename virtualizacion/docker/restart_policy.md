@@ -6,3 +6,6 @@ Lo podemos usar con unless-stopped para que se arranquen los containers tras un 
 
 Se puede modificar en caliente
 docker update --restart=always CONTAINERID
+
+
+--restart=unless-stopped

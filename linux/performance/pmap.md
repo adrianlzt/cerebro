@@ -7,6 +7,9 @@ pmap -d PID
 Nos dice donde esta cada kilobyte de la memoria que está usando el proceso, y que tiene cargada en cada parte.
 
 pmap -x PID
-The -x option can be used to provide information about the memory allocation and mapping types per mapping. The amount of resident, non-shared anonymous, and locked memory is shown for each mapping:
+The -x (extended) option can be used to provide information about the memory allocation and mapping types per mapping. The amount of resident, non-shared anonymous, and locked memory is shown for each mapping:
+
+pmap -XX PID
+  nos da más info. Lo podemos usar para saber el tipo de memoria de una zona (lo he usado para buscar si era heap)
 
 

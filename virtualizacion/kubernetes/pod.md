@@ -34,7 +34,7 @@ kc logs nombrepod -c nombreinit
 Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.
 
 
-Levantar un pod -> mirar kubectl.md
+Levantar un pod -> mirar shell.md
 
 
 

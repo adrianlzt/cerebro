@@ -122,6 +122,13 @@ def perfect_square(string):
 parser.add_argument('foo', type=perfect_square)
 
 
+# Errores
+Ante un error en los argumentos, parse_args() mostrará un mensaje y saldrá (sys.exit)
+
+Podemos cambiar este mecanismo reimplementando exit().
+https://docs.python.org/3/library/argparse.html#exiting-methods
+
+
 
 # Debug
 import argparse

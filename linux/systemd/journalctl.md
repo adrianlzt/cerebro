@@ -146,12 +146,21 @@ journalctl --vacuum-size=1G
   borrar logs hasta que solo ocupemos 1GB
 
 Limitar el tamaño, /etc/systemd/journald.conf
-System* para cuando se usa /var/log/journal
-Runtime* para cuando se usa /run/log/journal
+System* para cuando se usa /var/log/journal (fs persistente)
+Runtime* para cuando se usa /run/log/journal (memoria)
 
-_MaxUse= espacio máximo usado por los ficheros de journal en total (default 10% del filesystem)
-_KeepFree= espacio libre que debe dejarse en la partición (se usará el más restrictivo entre este y el _MaxUse. Default 15%)
-_MaxFileSize= tamaño máximo de un fichero de journal antes de rotarlo
+*MaxUse= espacio máximo usado por los ficheros de journal en total (default 10% del filesystem)
+*KeepFree= espacio libre que debe dejarse en la partición, usando el available (se usará el más restrictivo entre este y el *MaxUse. Default 15%)
+*MaxFileSize= tamaño máximo de un fichero de journal antes de rotarlo
+Hay un límite máximo de 4GB
+Specify values in bytes or use K, M, G, T, P, E
+
+El límite se calculará en el arranque de journald, teniendo en cuenta el espacio libre en /run (que se crea con la mitad del tamaño de la memoria).
+Si reiniciamos journald, tendrá en cuenta el espacio dispoible en ese momento (para el KeepFree)
+
+Si queremos mirar que límites tiene podemos buscar su mensaje de arranque:
+systemctl status systemd-journald.service
+journalctl -u systemd-journald.service
 
 SIGUSR1: obligar a journald a flushear hacia /var/log/journal (por ejemplo, si acabamos de montar /var)
 SIGUSR2: obligar a un rotado de ficheros

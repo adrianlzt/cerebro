@@ -18,6 +18,8 @@ class Main:
 
     def run(self):
         """ do stuff here """
+        logger.info(sys._getframe().f_code.co_name)
+
         logger.info("info-level log message")
         logger.debug("debug-level log message")
         logger.error("error-level log message")

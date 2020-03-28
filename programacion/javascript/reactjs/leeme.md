@@ -2,6 +2,10 @@ https://facebook.github.io/react/docs/installation.html
 
 React is flexible and can be used in a variety of projects. You can create new apps with it, but you can also gradually introduce it into an existing codebase without doing a rewrite.
 
+https://www.gatsbyjs.org/
+para hacer apps de react
+
+
 # Install
 sudo npm install -g create-react-app
 

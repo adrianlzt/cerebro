@@ -72,6 +72,13 @@ type ReadWriter interface {
     Writer
 }
 
+A partir de 1.14 se pueden heredar dos interfaces que compartan métodos:
+type MyReadCloser interface {
+  io.ReadCloser
+  io.WriteCloser
+}
+
+
 # Ejemplo cliente
 https://play.golang.org/p/f65A9LKxLw
 

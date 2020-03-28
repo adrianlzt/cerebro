@@ -10,6 +10,8 @@ Distingue por particiones
 Ejemplo:
    8       0 sda 402948 2350 8309496 87260 226371 253149 5347889 315430 0 295570 402430
 
+cat /proc/diskstats| grep sda4 | awk '{print "r_ops:"$4"\tr_ms:"$7"\tw_ops:"$8"\tw_ms:"$11"\tIOs_current:"$12"\tiotime:"$13"\tiotime_weighted:" $14};'
+
 (1) 8 -> major
 (2) 0 -> minor
 (3) sda -> device name

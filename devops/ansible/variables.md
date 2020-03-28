@@ -1,42 +1,32 @@
 http://docs.ansible.com/playbooks_variables.html
 http://docs.ansible.com/intro_inventory.html#group-variables
 
-From highest precedence to lowest:
+De menos a más precedencia:
 
-"Facts" derived from the setup module.
-Passed from the command line using the -e switch. (these variables always win)
-Set in playbook.
-Role variables. (More on roles later)
-Variables passed from inventory.
-Host variables. (from /etc/ansible/host_vars/<HOSTNAME>)
-Group variables. (from /etc/ansible/group_vars/<GROUPNAME>)
-Site default variables. ( from /etc/ansible/group_vars/all)
-  ansible buscará los dirs host_vars y group_vars en el mismo path que esté el inventario y donde este el playbook
-Role "default" variables.
+command line values (eg “-u user”)
+role defaults [1]
+inventory file or script group vars [2]
+inventory group_vars/all [3]
+playbook group_vars/all [3]
+inventory group_vars/* [3]
+playbook group_vars/* [3]
+inventory file or script host vars [2]
+inventory host_vars/* [3]
+playbook host_vars/* [3]
+host facts / cached set_facts [4]
+play vars
+play vars_prompt
+play vars_files
+role vars (defined in role/vars/main.yml)
+block vars (only for tasks in block)
+task vars (only for the task)
+include_vars
+set_facts / registered vars
+role (and include_role) params
+include params
+extra vars (always win precedence)
 
-# Del código: /home/adrian/.virtualenvs/platon/local/lib/python2.7/site-packages/ansible/runner/__init__.py(634)get_inject_vars()
-# default vars are the lowest priority
-inject = utils.combine_vars(inject, self.default_vars)
-# next come inventory variables for the host
-inject = utils.combine_vars(inject, host_variables)
-# then the setup_cache which contains facts gathered
-inject = utils.combine_vars(inject, self.setup_cache.get(host, {}))
-# next come variables from vars and vars files
-inject = utils.combine_vars(inject, self.play_vars)
-inject = utils.combine_vars(inject, self.play_file_vars)
-# next come variables from role vars/main.yml files
-inject = utils.combine_vars(inject, self.role_vars)
-# then come the module variables
-inject = utils.combine_vars(inject, module_vars)
-# followed by vars_cache things (set_fact, include_vars, and
-# vars_files which had host-specific templating done)
-inject = utils.combine_vars(inject, self.vars_cache.get(host, {}))
-# role parameters next
-inject = utils.combine_vars(inject, self.role_params)
-# and finally -e vars are the highest priority
-inject = utils.combine_vars(inject, self.extra_vars)
-# and then special vars
-inject.setdefault('ansible_ssh_user', self.remote_user)
+
 
 
 No usar guiones (-) en los nombres de las varibables, porque jinja2 piensa que son restas.
@@ -238,6 +228,9 @@ No sobrevien, pero se pueden acceder mediante la variable hostvars
 
 # Valor por defecto / default value
 {{ some_variable | default(5) }}
+
+Si queremos que sea como si no hubiesemos definido el parámetro foo:
+foo: {{ some_variable | default(omit) }}
 
 
 

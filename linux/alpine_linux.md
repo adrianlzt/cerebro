@@ -35,6 +35,15 @@ build-base
 Cosas basicas:
 apk add libc-dev gcc
 
+
+Como rpm -qf
+apk info --who-owns /path/to/the/file
+
+Si queremos un whatprovides, usar la web
+https://pkgs.alpinelinux.org/contents
+
+
+
 # Docker
 docker run -it alpine /bin/sh
 
@@ -53,3 +62,6 @@ Tiene ciertas diferencias sobre glibc
 https://wiki.musl-libc.org/functional-differences-from-glibc.html
 
 Algunos problemas que me he encontrado fue conviertiendo fechas entre distintos locales y a la hora de enviar peticiones DNS (musl siempre envía las peticiones A y AAAA usando el mismo socket)
+
+Otro problema nos encontramos intentando correr un elastalert+nodejs. Pero esta vez parece que el probelma era instalar la versión de python de alpine3.6 en la 3.11.
+Intentaba hacer una llamada a la syscall getrandom, pero docker no parecía entenderlo y mandaba un kill directo.

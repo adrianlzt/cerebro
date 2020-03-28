@@ -55,6 +55,27 @@ driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', desir
 Cuanto esperar a elementos del DOM en cada paso
 driver.implicitly_wait(30)
 
+Si queremos especificar el path exacto:
+chrome_options.binary_location = '/usr/bin/chromium'
+
+
+## Conectar al chrome local arrancado
+Arrancar chromium con el parámetro:
+--remote-debugging-port=9222
+
+Luego configurar el driver como:
+chrome_options = Options()
+chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
+driver = webdriver.Chrome(options=chrome_options)
+
+
+## Teclas
+Si queremos enviar pulsaciones de teclas.
+Ejemplo para crear un nuevo tab
+
+from selenium.webdriver.common.keys import Keys
+driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
+
 
 ### Throttle connetion / meter delay y limites de ancho de banda
 https://stackoverflow.com/a/46672769
@@ -112,6 +133,12 @@ driver.findElement(By.name("name")).sendKeys(name);
 
 Click
 driver.findElement(By.cssSelector("input[type='submit']")).click();
+
+
+## Javascript
+Ejecutar javascript como en la consola del navegador
+driver.execute_script("document.getElementById('notifications-popover').remove()")
+
 
 
 ## Waits

@@ -1,5 +1,7 @@
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
 
+https://learnk8s.io/troubleshooting-deployments
+
 
 # Pod que no despliega por insuficientes recursos
 https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
@@ -23,3 +25,15 @@ mirar en services.md
 
 # pod en pending
 mirar si está esperando por algún PVC
+
+
+had taints that the pod didn't tolerate
+Mirar si los nodos estan bajo presión (no tienen suficiente disco/mem/cpu)
+
+
+
+# pod en terminating indefinidamente
+Un nodo del cluster sale abruptamente o deja de contestar.
+Los pods se quedan en terminating y no se crean nuevos que los sustituyan.
+Esto puede deberse a que esos pods estén usando volúmenes locales de ese nodo.
+También puede deberse a que el pod en el nodo que ha salido abruptamente no ha avisado al storage de que desmonte el volumen, por lo que el nuevo pod no puede montarlo.

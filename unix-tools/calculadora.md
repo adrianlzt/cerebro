@@ -8,6 +8,8 @@ Tiene autocompletado.
 Ejemplo calculando el tiempo de envio de un fichero, en minutos, dada una velocidad:
   500 MB / 5 Mbps -> min
 
+ans
+  último resultado
 
 
 BC:

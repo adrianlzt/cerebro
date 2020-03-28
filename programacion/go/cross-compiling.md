@@ -7,6 +7,9 @@ GOOS=linux GOARCH=amd64 go build -o hello main.go
 En linux generar mac:
 GOOS=darwin GOARCH=amd64 go build/install...
 
+Para raspberry pi zero:
+GOOS=linux GOARCH=arm GOARM=6
+
 GOOS=windows GOARCH=amd64 go build/install
 
 32bits -> 386

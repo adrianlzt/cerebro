@@ -15,11 +15,11 @@ Si ejecutamos un playbook y limitamos por tags, si una máquina no tiene ninguna
 No obtener los facts de facter:
 ansible all -m setup -a 'gather_subset=!facter'
 
-  si ponemos !all aun tendremos unos cuanto de ansible_*
+  si ponemos !all aun tendremos unos cuanto de ansible_*, los del subset "min"
 
 También se le puede espicificar un gather_timeout (por cada grupo de facts)
 
-Grupos: all, hardware, network, virtual, ohai, and facter
+Grupos: all, min, hardware, network, virtual, ohai, and facter
 
 
 Tambien podemos filtrar:
@@ -192,3 +192,36 @@ Crear custom facts al desplegar:
     src: files/custom.fact
     dest: /etc/ansible/facts.d/custom.fact
     mode: 0755
+
+
+
+# ansible_os_family
+ansible_os_family == 'RedHat'
+ansible_os_family == 'Suse'
+
+
+# ansible_system
+HP-UX
+AIX
+Linux
+Darwin
+Java
+Win32NT
+
+Sale de platform.system()
+https://github.com/python/cpython/blob/2.7/Lib/platform.py#L1154:5
+
+
+# Cache
+Podemos cachear los facts durante determinado tiempo para acelerar los despliegues
+https://docs.ansible.com/ansible/latest/plugins/cache.html
+
+Una configuración simple:
+Meter en el .envrc del directorio:
+export ANSIBLE_CACHE_PLUGIN=jsonfile
+export ANSIBLE_CACHE_PLUGIN_CONNECTION=$PWD/.cache
+export ANSIBLE_GATHERING=smart
+
+Y crear el dir:
+mkdir .cache
+

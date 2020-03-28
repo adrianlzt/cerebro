@@ -262,3 +262,14 @@ func main() {
 
 
 Podemos usarlo para pintar una gráfica (mirar plot.md) para ver la función Big-O que seguimos.
+
+
+# clean up
+Desde 1.14
+
+func TestXX(..) {
+  ...
+  t.CleanUp(func() {
+    // hacer algo para limpiar lo que hemos hecho
+  }
+}

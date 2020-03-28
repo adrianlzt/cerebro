@@ -1,3 +1,9 @@
+pip install iredis
+otro cliente que SI tiene autocompletado de nombres de keys
+iredis
+
+
+
 redis-cli -h hostname -p puerto CMD
 
 echo "pepe" | redis -x SET CLAVE

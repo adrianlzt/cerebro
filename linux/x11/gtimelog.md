@@ -3,7 +3,7 @@ https://gtimelog.org/
 Para almacenar el tiempo que trabajamos y en que.
 
 La idea es de cuando empezamos poner:
-start **
+start ***
 
 Y cuando terminamos una tarea simplemente ponemos el nombre.
 

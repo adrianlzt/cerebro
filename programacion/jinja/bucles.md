@@ -48,3 +48,17 @@ loop.cycle: A helper function to cycle between a list of sequences. See the Jinj
 
 Con esto hacemos un loop agrupando por la key "cluster" para aquellos dict que lo tengan definido.
 
+
+
+# Loop control
+continue
+break
+
+{% for user in users %}
+    {%- if loop.index is even %}{% continue %}{% endif %}
+    ...
+{% endfor %}
+
+Tenemos que meter una extensión
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+

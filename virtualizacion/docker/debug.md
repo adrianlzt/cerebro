@@ -36,6 +36,9 @@ Veremos los comandos donde hayamos arrancado el socat
 mirar linux/namespaces.md (nsenter, unshare)
 
 
+# Filesystem
+Podemos acceder a /proc/PID/root para ver como ve el FS el container.
+
 
 # Ver info de containers sin poder usar el client
 /run/docker/libcontainerd/IDCONTAINER

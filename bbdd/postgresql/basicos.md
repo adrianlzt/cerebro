@@ -17,6 +17,15 @@ psql -h hostname -U username -d database -W
 Pasando la pass como venv:
 PGPASSWORD=yourpass psql ...
 
+Pasando la pass en un fichero:
+https://www.postgresql.org/docs/current/libpq-pgpass.html
+~/.pgpass
+Formato
+hostname:port:database:username:password
+
+Si en hostname ponemos localhost, esa línea se usará tambien para conex via sockeg
+
+
 Ejecutar comandos desde la línea de comandos:
 $ psql -c "drop database prueba;"
 
@@ -37,8 +46,12 @@ puppetdb=> \l
 Cambiar de database (como "use" en mysql):
 \c basededatos
 
-Mostrar tablas:
+Mostrar tablas, vistas, secuencias e índices:
 \d
+\d a*
+
+Mostrar tablas del schema "partman":
+\dp partman.*
 
 Mostrar una fila por cada valor de cada columna
 \x
@@ -84,3 +97,15 @@ https://github.com/okbob/pspg
 
 
 pspg es un pager específico para postgres
+
+
+# Placeholders
+Ejemplo de un workaround para usar placeholders con psql -f
+$ cat test.sql
+\echo -n 'Enter something: '
+\set val1 `read && echo $REPLY`
+\echo -n 'And something else: '
+\set val2 `read && echo $REPLY`
+select :val1, :val2;
+
+$ psql -f test.sql

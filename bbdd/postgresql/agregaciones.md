@@ -22,6 +22,9 @@ WHERE hosts.hostid=hosts_groups.hostid
 GROUP BY hosts.hostid
 
 
+# Order
+select json_agg(event_data::jsonb order by counter asc) from ...
+
 
 # Count
 select count(*)

@@ -14,6 +14,13 @@ testuser    ALL = (root) NOPASSWD: sudoedit /etc/services
 Y el usuario tendrá que usar: sudoedit /etc/services
 
 
+Siendo un usuario, saber que cosas podemos ejecutar con sudo:
+sudo -l
+
+Por defecto se usará el entorno (PATH por ejemplo) del user que sudeamos.
+Si queremos mantener el entorno local pasaremos -E
+Pero esto requiere que esté especificado.
+Está el riesgo de que si no ponemos el path exacto al usuario y le dejamos -E, se cambie el path y ejecute lo que quiera.
 
 
 Editar siempre con visudo.
@@ -28,7 +35,7 @@ user    MACHINES= (como_que_usuario) FLAGS: COMMANDS
 dgb     boulder = (operator) /bin/ls, /bin/kill, /usr/bin/lprm
 The user dgb may run /bin/ls, /bin/kill, and /usr/bin/lprm—but only as operator in host boulder
 
-Permitir a un usuario todos los comandos sin password
+Permitir a un usuario todos los comandos y todos los usuarios, sin password
 NOMBRE ALL=(ALL) NOPASSWD: ALL
 
 Permitir a los usuarios de "grupo" hacer sudo contra todos los comandos.

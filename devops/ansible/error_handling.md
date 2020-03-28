@@ -33,5 +33,26 @@ Ejemplo donde fallo únicamente si el job ha fallado excepto para un caso de err
 
 
 
+Fallar una tarea si la tarea no falla.
+Ejemplo: estamos haciendo tests y este test debe fallar.
+- name: este comando debe dar error, la tarea fallara si no es el caso
+  command: ls  -123
+  register: cmdexec
+  failed_when: "cmdexec.failed == false"
+
+
+Otra manera. En este caso se verá el mensaje de error marcado en rojo, pero se ignora y no cuenta como error.
+- name: este comando debe dar error, la tarea fallara si no es el caso
+  command: ls -23
+  register: cmdexec
+  ignore_errors: True
+
+- fail:
+    msg: "El comando anterior deberia haber fallado"
+  when: not cmdexec.failed
+
+
+
+
 Parar todo el playbook si cualquier nodo falla.
 any_errors_fatal: true

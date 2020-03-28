@@ -1,14 +1,23 @@
-http://www.postgresql.org/docs/8.1/static/backup.html
-https://www.opsdash.com/blog/postgresql-backup-restore.html
+https://www.postgresql.org/docs/current/backup.html
 
-https://www.pgbarman.org/index.html
-Solución completa de backup y restore simplificada
-NOTA: Usar esto para hacer backups!!
 
-La idea es que el backup es un servicio que debe estar corriendo todo el rato, llevándose los WAL y de vez en cuando haciendo basebackup.
+Opciones de apps para gestionar los backups (secciones de cada uno al final del doc)
+  wal-g (https://github.com/wal-g/wal-g)
+  pg_probackup (https://github.com/postgrespro/pg_probackup)
+  barman (https://www.pgbarman.org/index.html) Utilizado, no muy bien diseñado, pero hace el trabajo
+  pgbackrest (https://pgbackrest.org/)
+
+
+Idea, hacer un base backup al comienzo, llevarnos los WAL con pg_receivewal y de vez en cuando arrancar un postgres para generar otro basebackup a partir del inicial más los WAL.
+Si hacemos esto fuera, el único impacto sobre el server es llevarnos los wal.
+
+Idea, implementada muy básicamente, sobre como probar que un backup es correcto de forma automática:
+https://pgdash.io/blog/testing-postgres-backups.html
 
 
 Los roles y tablespaces no están dentro de ninguna database, están a nivel global.
+
+Tenemos que realizar el backup de los ficheros de config fuera del PGDATA con otro sistema.
 
 
 Dos tipos de backups:
@@ -16,7 +25,6 @@ Dos tipos de backups:
    Cons:
      - hace queries y carga la bbdd y si metemos mas parallel jobs, más carga
      - no permite arrancar un standy server
-     - ocupa mucho espacio
      - mala performance
      - puede joder el filesystem cache
      - escribir el dump genera I/O
@@ -29,15 +37,22 @@ Dos tipos de backups:
      - se puede modificar el SQL a mano antes de restaurarlo (usando el formato SQL)
      - comprime
      - ocupa poco espacio
+     - compatible entre distintas versiones
 
  - físicos (base backup): copia de los ficheros de pg_data
    Cons:
-     - ocupa más??
+     - ocupa más (se lleva los índices, por ejemplo, mientras que el lógico los recrea)
      - se hace un backup de todo (no podemos elegir ciertas databases)
      - tiene que restaurarse en un postgres igual (arquitectura, version, compile flags and paths)
      - genera mucho I/O (lectura de todos los ficheros)
    Pros:
      - más rápidos
+     - comprime
+
+  - copia del pgdata y pgwal dirs (https://www.postgresql.org/docs/current/backup-file.html)
+    Podemos hacer checkpoint + snapshot del pgdata (incluyendo el dir de los wal).
+    Tiene que ser atómico (en la doc hacen referencia a que tienes que fiarte que esté bien implementado).
+    Al recuperar tendrá que hacer un replay de los wal.
 
 Parece que lo mejor es tener un hot standby server donde realizar los backups (pero tenemos el coste de tener otro server).
 Y realizar full backups periodicamente mientras almacenamos continuamente los ficheros WAL, esto nos permite restaurar en un punto determinado del tiempo (PITR, point-in-time recovery)
@@ -101,6 +116,8 @@ pg_restore -v -e -Fc -d prueba -1 /backup/prueba.custom
   -e exit on error
   -Fc format custom
   --no-privileges --no-owner "role XXX does not exist"
+  -d xxx, importar el dump en esa base de datos determinada.
+  -t A -t B, podemos poner uno o varios -t para importar varias tablas. Tendremos que poner las dependencias adecuadas
 
 Podemos quitar -1 y usar -jN para paralelizar (no compatible con -1)
 Mejorar performance con fsync=off en el file system? (https://www.hagander.net/talks/Backup%20strategies.pdf)
@@ -186,8 +203,16 @@ cp pg_backup_rotated.sh /usr/local/sbin/ && chmod 755 /usr/local/sbin/pg_backup_
 
 
 # Base backup / físico
-https://blog.2ndquadrant.com/what-does-pg_start_backup-do/
+https://www.postgresql.org/docs/current/app-pgbasebackup.html
+
+Explicación simple: https://blog.2ndquadrant.com/what-does-pg_start_backup-do/
 Esto hace un backup de un postgres entero, de los ficheros binarios.
+
+Hace un checkpoint (para llevarse cambios a disco), full page write y marca el inicio del backup.
+Luego se copia todos los ficheros del PGDATA.
+En este momento tenemos una copia de los ficheros pero no consistente, cada fichero se ha copiado en un momento distinto.
+Por eso necesitamos irnos llevando al mismo tiempo los ficheros WAL (--xlog-method=stream), para poder restaurar una copia consistente.
+
 
 Se hace conectando un cliente con el protocolo de replicación y obteniendo una copia consistente de PGDATA tras el final de alguna transacción.
 
@@ -195,22 +220,47 @@ Necesitamos explicitar un usuario que pueda conectarse de este modo (pg_hba.conf
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 local   replication     postgres                                trust
 
-kill -HUP PID_POSTGRES
+select pg_reload_conf()
+o
+pg_ctl reload
 
 
 Necesitamos configurar el max_wal_senders a, al menos, 4 (dos conex para el pg_basebackup y otras dos extra por si se desconectase pudiese inmediatamente reconectar)
 max_wal_senders = 4
 wal_level = replica  # puede tener cierto impacto en performance para algunos comandos (crear tablas, indices, etc) https://www.postgresql.org/docs/9.6/static/populate.html#POPULATE-PITR
+
+alter system set max_wal_senders=4;
+alter system set max_replication_slots = 4;
+alter system set wal_level = replica;
+
 systemctl restart postgres (requiere reinicio)
+
+Estado de los replication slots:
+https://www.postgresql.org/docs/current/view-pg-replication-slots.html
+select * from pg_replication_slots;
+  solo vemos entradas si hay cosas conectadas
+
 
 Para evitar perder datos entre el comienzo del backup y el fin, es necesario que se obtengan tambien los ficheros transaction log (WAL), tendremos que poner el -D
 
 Si queremos hacer un base backup parece que hay que usar
-pg_basebackup --xlog-method=stream -D /path/to/dir -P
-  con "stream" no podemos usar tar. Lo mejor es usar stream (el de por defecto)
+pg_basebackup -D /path/to/dir -P -F tar -z -Z 0-9
   el espacio consumido será lo que ocupe PGDATA
-  tiene bastante impacto en el I/O
+  tiene bastante impacto en el I/O (lectura en el pgdata, escritura en el disco de destino)
   --xlog-method=stream se lleva los WAL mientras dure el backup (valor por defecto)
+  tendremos dos ficheros: base.tar y pg_wal.tar (más si tenemos otros tablespaces)
+  El tamaño será un poco más pequeño que el PGDIR
+  -z comprimir gzip
+  -Z 0-9, nivel de compresión (0 sin compresión)
+  la compresion tiene coste en cpu mientras se hace el backup y parece que tambien impata en las caches del SO (free -> buff/cache)
+  solo se come una cpu
+  Al variar -Z nos moveremos entre cpu-bound y disk-bound
+  Pruebas con una BD de 6.8GB
+    -Z 9,   30m    , 675M
+    -Z 5,    2m 20s, 679M
+    -Z 2,    1m 23s, 812M
+    sin -z,     30s, 6.6G
+
 pg_basebackup --xlog-method=fetch --format=tar -z -D /path/to/dir -P
   --xlog-method=fetch it is necessary for the wal_keep_segments parameter to be set high enough that the log is not removed before the end of the backup. If the log has been rotated when it's time to transfer it, the backup will fail and be unusable.
 
@@ -240,8 +290,22 @@ FIN NO HACER!
 
 
 
-# Point in time recovery (PITR)
-Nos permite, a partir de un base backup, ir aplicando los WAL files hasta la hora que queramos, de esta manera dejaremos la bbdd en un punto en el tiempo determinado.
+# Point in time recovery (PITR) / Continuous archiving
+https://www.postgresql.org/docs/current/continuous-archiving.html
+
+Se trata de llevarnos los ficheros WAL (una vez completados) a un directorio distinto de donde no sean borrados.
+Con un base backup + wal podemos restaurar la bd en el punto que necesitmos (PITR).
+Tenemos que configurar el wal_level (restart para cambiarlo) a archive o superior y el archive_command (reload para cambiarlo) (también archive_mode=on)
+
+Aplicar los WAL es lento.
+
+Monitorizar que el proceso se archivado de los WAL se está realizando correctamente.
+El comando de archivado debe fallar (RC!=0) si no puede copiar el fichero o ya existe (esto debería ser un error, algo que se ha copiado donde no debía).
+
+El tamaño de los WAL impacta en como se realiza este backup.
+Si tenemos poco tráfico, podría pasar mucho tiempo hasta que se genere un nuevo WAL completo (cuando se archivará).
+Esto podría provocar que perdamos datos.
+Podemos modificar el archive_timeout para marcar un tiempo máximo hasta cerrar un WAL, pero si tenemos poco tráfico, estaremos generando ficheros de 16MB (tamaño estandar de los WAL) que en realidad tendrán menos información.
 
 
 
@@ -262,7 +326,69 @@ Si tenemos que restaurar un backup:
   3. start database server
 
 
+Parámetros que nos permiten ejecutar comandos tras un recovery, típicamente para limpiar WAL ya no necesitados y el otro ¿para avisar el fin?.
+https://postgresqlco.nf/en/doc/param/archive_cleanup_command/?category=write-ahead-log&subcategory=archive-recovery
+https://postgresqlco.nf/en/doc/param/recovery_end_command/?category=write-ahead-log&subcategory=archive-recovery
+
+Comando para traerse los WAL de otro directorio al hacer un restaurar
+https://postgresqlco.nf/en/doc/param/restore_command/?category=write-ahead-log&subcategory=archive-recovery
+
+
+
 
 # Limpiar
 Generalmente tendremos varios base_backups y luego un archiveDir con todos los wal.
 Si queremos borrar backups antiguos, tendremos que chequear el LSN de start del backup que queremos borrar y podremos borrar los wal previos a esos.
+
+
+
+# Barman
+https://www.pgbarman.org
+https://github.com/2ndquadrant-it/barman
+Empresa: 2ndquadrant
+Solución completa de backup y restore simplificada
+La idea es que el backup es un servicio que debe estar corriendo todo el rato, llevándose los WAL y de vez en cuando haciendo basebackup.
+Lenguaje: python
+
+Scripts ejecutados por cron para mantener una recepción continua de WAL (con pg_receivewal) y lanzar basebackup periódicamente.
+Gestiona también borrado.
+Gracias al pg_receivewal tenemos la info actualizada del server (si se usa archive_command podemos perder hasta un wal)
+Recibe actualizaciones, pero tiene muchas issues sin respuesta
+Más info en barman.md
+
+
+# wal-g
+https://github.com/wal-g/wal-g
+Empresa: Yandex (mantenedor principal) / Citus (creadores)
+Lenguaje: go
+Parece pensado en enviar backups/WALs a object storages
+
+Sucesor de WAL-E (aunque no quiere decir que este deje de existir).
+https://news.ycombinator.com/item?id=19259099
+Our goal is to make the most performant PostgreSQL backup system for cloud deployments. WAL-G is not just fast compression tool: we parallelize serial archive\restore interface and provide very cheap delta-backups. In PostgreSQL, you usually have PITR through WAL. If you have rare backups, your restore time is slow: WAL is applied serially. With WAL-G you can have delta-backups often, they are applied in parallel and much faster than WAL
+
+Parece que tiene sentido si queremos subir backups a algún object storage.
+Configurando el archive command para usar walg y enviar base backups periódicamente.
+No me queda del todo claro como funciona y la doc es bastante mala.
+
+Ejemplo de config para wal-e que parece similar a lo que se haría con wal-g
+https://gist.github.com/ruckus/2293434
+
+
+# pg_probackup
+https://github.com/postgrespro/pg_probackup
+Empresa: 
+Lenguaje: python
+
+
+# pgbackrest
+https://pgbackrest.org/
+Empresa: 
+Lenguaje: c
+
+Check nagios para monitorizar https://labs.dalibo.com/check_pgbackrest
+
+
+# omnipitr
+https://github.com/omniti-labs/omnipitr/
+Descontinuado

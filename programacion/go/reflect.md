@@ -20,6 +20,10 @@ slice := reflect.ValueOf(m) // Obtenemos los valores del interface{} m
 typ := reflect.TypeOf(slice.Index(0).Interface()) // Convertimos el primer elemento del slice m en una interfaz y obtenemos sus "metadatos"
 val := reflect.ValueOf(slice.Index(0).Interface()) // Lo mismo pero obtenemos los valores
 
+Tenemos una func para chequear si algo es zero
+reflect.ValueOf("").IsZero()
+
+
 if typ.Kind() != reflect.Struct { // Comprobamos que estamos cogiendo un struct
   fmt.Printf("%v type can't have attributes inspected\n", typ.Kind())
 }

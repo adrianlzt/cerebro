@@ -52,3 +52,8 @@ b  previous page
 
 Líneas largas, no cortarlas para mostrar toda la línea:
 less -S
+
+
+
+Ejecutar comando:
+!comando

@@ -4,7 +4,14 @@ Repositorio de paquetes de la comunidad Arch
 Funciona como pkgsrc, te baja el código y un script PKGBUILD define las instrucciones para compilarlo,  instalarlo y crear el paquete.
 
 Usar con yay
-Instalar con yaourt (deprecated)
+Instalar:
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+  Para poder ejecutar el makepkg necesitamos:
+    - hacerlo con un user que no sea root
+    - instalar: pacman -S fakeroot binutils make gcc
+    - darle sudo al user
 
 
 # Paquetes AUR

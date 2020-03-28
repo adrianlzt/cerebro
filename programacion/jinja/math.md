@@ -1,4 +1,5 @@
 http://jinja.pocoo.org/docs/2.9/templates/#math
+https://www.mydailytutorials.com/ansible-arithmetic-operations/
 
 {{ 1 + 1 }} is 2.
 

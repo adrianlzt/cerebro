@@ -23,12 +23,20 @@ smem
   %PSS          # proportional: USS + (shared / nº proc. que comparten)
   %RSS          # total en RAM (shared + unshared)
 
+sudo smem -kt | { sed -u 1q; tail -12; }
+  mostrar los 10 procesos que más USS consumen, manteniendo el header y mostrando un total
+
+Ordenado por swap
+sudo smem -kts swap | { sed -u 1q; tail -12; }
+
 sudo smem -kt
   para cada proceso del sistema, swap, uss, pss y rss
   muestra un global al final
+  ordenado por USS (no compartida)
 
 smem -rtk
   nos muestra totales de memoria usada de cada tipo
+  r=reverse, top consumidores arriba
   solo para el usuario que lo ejecuta. Si queremos todo el sistema: sudo smem -rt
 
 sudo smem -uk

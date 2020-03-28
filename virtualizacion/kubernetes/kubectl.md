@@ -3,6 +3,14 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 Herramienta administrativa de Kubernetes
 mirar plugins.md para extenderla
 
+Extensión fzf para mayor velocidad a la hora de pedir recursos:
+https://github.com/bonnefoa/kubectl-fzf
+Hace falta tener un demonio corriendo cacheando a un fichero.
+
+
+Instalar plugin kubectx para moverse entre contexts y namespaces
+kubens / kubects / kubectl ns / kubectl ctx
+
 # Instalacion
 ## Google Cloud SDK
 Si tenemos instalado Google Cloud SDK
@@ -24,6 +32,15 @@ nkc = cambiar de namespace
 
 
 # Config / contexts
+~/.kube/config
+Si queremos poner ficheros usamos estilo "client-certificate", si queremos poner texto usamos estilo "client-certificate-data" y hacemos un "base64 -w 0" del fichero
+Tres secciones:
+  - cluster
+      podemos poner "insecure-skip-tls-verify: true" para ignorar cert
+  - context (cluster+user+namespace)
+  - users
+
+
 kubectl config view
 
 Contexto actual:
@@ -90,16 +107,7 @@ Listar
 kubectl get pod -o wide
   con -o wide veremos la IP del pod y en que nodo está desplegado
 
-Crear
-kubectl run -it --rm --restart=Never alpine --image=alpine sh
-
-kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-  esta deprecated usar run para crear un deployment
-  crea un deployment, que crea un replication controller que arranca el pod.
-  Como hemos puesto "--port" también levanta un Service/ClusterIP apuntando al selector con el que se crean los pods
-  en docker esto arranca:
-    - con container denombre k8s_POD_hello-minikube-xxx
-    - el container que ejecuta el servicio, nombre k8s_hello-minikube_hello-minikube-xxx
+Crear: mirar shell.md
 
 Exponer
 kubectl expose deployment hello-minikube --type=NodePort
@@ -124,7 +132,7 @@ kubectl -v 6 ...
 
 
 
-# JSON
+# JSON / output
 https://kubernetes.io/docs/reference/kubectl/jsonpath/
 kubectl get XX -o json
 kubectl get pods -o=jsonpath='{.items[0]}'

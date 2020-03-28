@@ -39,6 +39,9 @@ Database cache, métricas zabbix[wcache,*]:
 history cache (tamaño máximo definido por HistoryCacheSize)
 history index cache (tamaño máximo definido por HistoryIndexCacheSize)
 trend cache (tamaño máximo definido por TrendCacheSize)
+  parece que esta memoria siempre está en uso, cacheando la última hora, antes de enviarla a la bd
+  150MB de uso máximo visto con 1.5M items / 500k triggers
+  Orientativo: unos 64 bytes por número de items uint + float
 
 configuration cache (tamaño máximo definido por CacheSize), métricas zabbix[rcache,*]
 
@@ -54,6 +57,8 @@ ValueCacheSize=8M (default)
 Podemos ver como va de llena en la gráfica: "Zabbix value cache, % used"
 Métricas internal zabbix[vcache,*]
 Se verá afectada si tenemos muchos "last(x)" donde X sean muchos valores (horas, días, etc)
+
+En un entorno productivo con 1.5M trigger y 500k triggers nunca superó los 850MB de uso (teniendo 2GB) (version 3.2.6)
 
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L32
 https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L1145
@@ -86,6 +91,12 @@ count("nombreitem",300,"2..",regexp)
 Pueden tener varias funciones:
 100*last(telegraf.net.err_out[eth0],0)/(last(telegraf.net.packets_sent[eth0],0)+count(telegraf.net.packets_sent[eth0],#1,0))
 
+Mirando el código de la value cache, parece que cada dato que insertemos (double o int) serán 76 bytes.
+Por cada value parece que almacena un zbx_vc_chunk_t, que entre otros campos almacena un zbx_history_record_t y este a su vez history_value_t.
+Sumando los bytes de cada tipo de dato de los struct me sale 76 bytes
+history_value_t -> 8*5=40 bytes
+zbx_history_record_t -> 2*4 + history_value_t = 48 bytes
+zbx_vc_chunk_t -> 8*2 + 4*3 + zbx_history_record_t = 76 bytes
 
 
 
@@ -95,6 +106,11 @@ Pueden tener varias funciones:
 Almacena una copia de la configuración de zabbix que está en la database.
 Shared memory size for storing host, item and trigger data
 La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
+
+Para 11k hosts, 1.5M items, 500k triggers -> ~1GB
+El trigger por defecto salta cuando estamos al 25% de capacidad disponible.
+
+Aproximación burda: 1GB / 11k+1.5M+500k = 0.5kB/elemento
 
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.
@@ -120,10 +136,18 @@ Chequear si la bbdd está funcionando correctamente.
 Modificar StartDBSyncers? Muchos tampoco es bueno, provoca más bloqueos.
 Parece que los bloqueos son en el dbcache.c, que cuando coje items a procesar, si algún otro history los tiene bloqueados, se sale si hacer nada.
 
+El problema típico es un item trapper con mucha frecuencia (varios items cada segundo), de manera que los history syncers no tienen tiempo de sacar los datos.
+
+También vimos una caída por un telegraf enviando miles de métricas (100k métricas por segundo en intervalos de 5" cada minuto) que eran rechazadas por Zabbix.
+De alguna manera impactaba llenando está cache.
+
 
 Los parametros para configurar sus tamaños son:
 HistoryCacheSize
+  cuanto más grande sea, más tiempo de maniobra tendremos en caso de que ciertos items se estén encolando
+  32 bytes por item encolado (+ 8bytes por cada item distinto)
 HistoryIndexCacheSize
+  una estimación aproximada del uso máximo que puede tener esta memoria: número de items * 77B
 
 Porcentaje de memoria libre:
 en el codigo se pide con: DCget_stats(ZBX_STATS_HISTORY_PFREE)
@@ -134,9 +158,12 @@ El tamaño libre de la history index: hc_index_mem->free_size
 
 
 
-La History Index almacena unas estructuras para acceder a la History Cache
 https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071
-Cada history_items ocupa 32 bytes (calculado haciendo un sizeof de un struct con el formato como zbx_hc_item_t)
+La History Index almacena unas estructuras (zbx_hc_data_t) para acceder a la History Cache
+Contando el tamaño de cada tipo de dato de ese struct me salen 77 bytes (https://github.com/zabbix/zabbix/blob/68f1cdcc30a1c8fc14e9f2c452186ad77baae596/include/dbcache.h)
+
+Para la history cache:
+Cada history_items (lo que se almacena en la history cache) ocupa 32 bytes (calculado haciendo un sizeof de un struct con el formato como zbx_hc_item_t)
 El history_queue parece que ocupa 8 bytes por elemento, más otras cosas.
 
 El procesado básico con la history cache es añadir o sacar datos, que de forma resumida se hace así:

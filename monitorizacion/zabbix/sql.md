@@ -177,6 +177,7 @@ ORDER BY events.clock ASC;
 
 -- problemas abiertos en un momento determinado para un host determinado
 -- miramos la tabla problems, que se va purgando, por lo que solo estarán recientes
+-- CUIDADO! aparecen filas duplicadas si la expresión del trigger usa items distintos (una línea por item)
 WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
    hosts.host,
@@ -190,6 +191,7 @@ FROM
    hosts
 WHERE
    problem.source = 0 -- solo eventos generados por triggers
+   AND triggers.status = 0 -- solo triggers activos
    AND r_eventid IS NULL
    AND problem.objectid = triggers.triggerid
    AND functions.triggerid = triggers.triggerid
@@ -211,6 +213,7 @@ FROM
    hosts
 WHERE
    problem.source = 0 -- solo eventos generados por triggers
+   AND triggers.status = 0 -- solo triggers activos
    AND r_eventid IS NULL
    AND problem.objectid = triggers.triggerid
    AND functions.triggerid = triggers.triggerid
@@ -222,6 +225,7 @@ ORDER BY COUNT(*) DESC;
 
 -- número de problems abiertos
 select count(*) from problem where problem.source = 0 AND r_eventid is null;
+MAL! tenemos que al menos coger solo los triggers enabled y los objectid que hagan match a un triggerid
 
 
 ## Alerts
@@ -324,7 +328,7 @@ Número de items LLD (ejemplo telegraf.lld.xxx). En esta cuenta se cuelan los de
 select count(*) from (select parent_itemid from item_discovery where key_ = '' group by parent_itemid) a;
 
 
-LLDs enviados por los clientes por segundo:
+LLDs enviados por los clientes por segundo (media sobre los recibidos en la última hora):
 WITH llds as
 (
    select
@@ -355,12 +359,13 @@ latest_discover as
       id2.lastcheck
 )
 select
-   count(*)/(10*60.0) as llds_per_sec
+   count(*)/(60*60.0) as llds_per_sec
 from
    latest_discover
 where
-   lastcheck < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int
+   lastcheck > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '1 HOUR')))
 ;
+
 
 
 
@@ -428,9 +433,6 @@ select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g wh
 
 
 Query para obtener los templates que tienen triggers con nodata asociados a items trapper (solo triggers originales, no heredados de linked templates):
-select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and functions.function='nodata' and hosts.status=3 and items.type=2 and triggers.templateid is null order by triggers.description;
-
-Frecuencia de inserción de items en la tabla history (una partition seleccionada). NO LANZAR EN PROD. Lanzar en una replica. Tarda varios minutos para bbdd de varios gigas (4' 60GB)
 select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m')))::int and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m')))::int group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 
@@ -510,9 +512,93 @@ WHERE hosts.hostid=items.hostid
 
 
 
+Triggers con nombres duplicados para un mismo host:
+with hosts_triggers as (
+  select
+    h.host,
+    t.description,
+    t.triggerid
+  from
+    hosts h
+    join items i using(hostid)
+    join functions using (itemid)
+    join triggers t using (triggerid)
+  where
+    t.flags <> 2
+  group by
+    t.description,
+    h.host,
+    t.triggerid
+)
+select
+  ht.host,
+  ht.description
+from
+  hosts_triggers ht
+group by
+  ht.host,
+  ht.description
+having
+  count(*) > 1;
+
+
+
+
+
 Triggers disparados, que generaron eventos de problema, pero que ya fueron borrados por el housekeeper.
 Se muestra el host, trigger y la fecha en que se disparó.
 select host,triggers.description,to_timestamp(lastchange) from hosts,items,functions,triggers left join problem ON triggers.triggerid=problem.objectid WHERE hosts.hostid=items.hostid and items.itemid=functions.itemid and functions.triggerid=triggers.triggerid and triggers.value=1 and triggers.status=0 and problem.eventid is null;
+
+
+Hosts en mantenimiento (cada minuto los timer actualizan el estado)
+select host from hosts where maintenance_status=1;
+
+
+
+# Audit
+details
+detalle de la operación
+
+action
+0 AUDIT_ACTION_ADD
+1 AUDIT_ACTION_UPDATE
+2 AUDIT_ACTION_DELETE
+3 AUDIT_ACTION_LOGIN
+4 AUDIT_ACTION_LOGOUT
+5 AUDIT_ACTION_ENABLE
+6 AUDIT_ACTION_DISABLE
+
+resourcetype
+0  AUDIT_RESOURCE_USER
+2  AUDIT_RESOURCE_ZABBIX_CONFIG
+3  AUDIT_RESOURCE_MEDIA_TYPE
+4  AUDIT_RESOURCE_HOST
+5  AUDIT_RESOURCE_ACTION
+6  AUDIT_RESOURCE_GRAPH
+7  AUDIT_RESOURCE_GRAPH_ELEMENT
+11 AUDIT_RESOURCE_USER_GROUP
+12 AUDIT_RESOURCE_APPLICATION
+13 AUDIT_RESOURCE_TRIGGER
+14 AUDIT_RESOURCE_HOST_GROUP
+15 AUDIT_RESOURCE_ITEM
+16 AUDIT_RESOURCE_IMAGE
+17 AUDIT_RESOURCE_VALUE_MAP
+18 AUDIT_RESOURCE_IT_SERVICE
+19 AUDIT_RESOURCE_MAP
+20 AUDIT_RESOURCE_SCREEN
+22 AUDIT_RESOURCE_SCENARIO
+23 AUDIT_RESOURCE_DISCOVERY_RULE
+24 AUDIT_RESOURCE_SLIDESHOW
+25 AUDIT_RESOURCE_SCRIPT
+26 AUDIT_RESOURCE_PROXY
+27 AUDIT_RESOURCE_MAINTENANCE
+28 AUDIT_RESOURCE_REGEXP
+29 AUDIT_RESOURCE_MACRO
+30 AUDIT_RESOURCE_TEMPLATE
+31 AUDIT_RESOURCE_TRIGGER_PROTOTYPE
+
+
+
 
 
 # Unreachable pollers
@@ -552,4 +638,38 @@ src/libs/zbxdbupgrade/dbupgrade.c
 {DBPATCH_VERSION(3040), "3.4 maintenance"},
 {DBPATCH_VERSION(3050), "4.0 development"},
 {DBPATCH_VERSION(4000), "4.0 maintenance"},
+
+
+
+# Sacar max/min/avg de las trends
+
+with time as (select EXTRACT(EPOCH FROM (now() - INTERVAL '24 HOUR')) as e)
+select
+  h.host,
+  i.key_,
+  COALESCE(t.value_min, tu.value_min) as min,
+  COALESCE(t.value_avg, tu.value_avg) as avg,
+  COALESCE(t.value_max, tu.value_max) as max,
+  to_timestamp(COALESCE(t.clock, tu.clock)) as clock
+from
+  hosts h
+  join items i using(hostid)
+  left join trends t using(itemid)
+  left join trends_uint tu using(itemid)
+where
+  h.host IN ('lel1zb01')
+  AND i.key_ IN (
+    'zabbix[wcache,values,float]',
+    'net.tcp.service[tcp,,10051]'
+  )
+  AND (
+    (
+      t.clock is not null
+      and t.clock > (select e from time)
+    )
+    OR (
+      tu.clock is not null
+      and tu.clock > (select e from time)
+    )
+  );
 

@@ -78,6 +78,8 @@ http://word.bitly.com/post/74839060954/ten-things-to-monitor
     Para hacer un análsis a mano podemos ejecutar:
       grep process /proc/stat | cut -d ' ' -f 2; sleep 1m; grep process /proc/stat | cut -d ' ' -f 2
     Luego restamos y dividimos entre 60 para obtener el ratio por segundo.
+    Podemos usar pspy para ver que comandos se están ejecutando
+    O usar forkstat (necesita root)
   Swap-in/out rate
     es más importante ver el número de páginas que se están swapeando por minuto que el tamaño total de swap; un gran swap estático puede no empeorar el performance
   Server boot notification (avisar si el servidor se ha reiniciado).

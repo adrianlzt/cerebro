@@ -83,3 +83,10 @@ sum(//foo:singer/@id)
 
 24. Hermanos
 //div[@class="cover"]/following::span
+
+25. Comentarios
+/html/head/comment()
+
+Con cierto contenido
+/xhtml:html/xhtml:head/comment()[contains(.,'link')]
+

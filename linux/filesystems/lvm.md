@@ -132,11 +132,6 @@ vgchange -an vg_XXX
 
 
 
-# Autoextension
-ejemplo de conf para que un pool se pueda extender automáticamente sobre un group
-https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/for-a-direct-lvm-mode-configuration
-
-
 # Monitorizar
 Pasa sacar los datos en formato monitorización:
 lvs --noheadings --options data_percent
@@ -165,20 +160,36 @@ lvextend -r -l +100%FREE VOL/LV
 
 
 
-# Thinpool
+
+
+# Autoextension / Thinpool
+Ejemplo de conf para que un pool se pueda extender automáticamente sobre un group
+https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/#/for-a-direct-lvm-mode-configuration
+
 lvcreate --wipesignatures y -n thinpool docker -l 95%VG
 lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
 lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
 
 echo -e "activation {\nthin_pool_autoextend_threshold=80\nthin_pool_autoextend_percent=20\n}" > /etc/lvm/profile/docker-thinpool.profile
 lvchange --metadataprofile docker-thinpool docker/thinpool
-lvs -o+seg_monitor
+lvs -o+seg_monitor,lv_profile
 
 Para calcular el tamaño del volumen de metadatos podemos usar la utilidad:
 thin_metadata_size -b64k -s1t -m1000 --unit=G
   para bloques de 64k (creo que el por defecto), una unidad de 1TB y 1000 snaphots (o devices?), el tamaño es de 0.55GB
   para 2TB/1000snap -> ~1GB
   para 1TB/100000snap -> ~1GB
+
+
+Si queremos ver el profile configurado de un lv
+lvs -o+seg_monitor,lv_profile
+
+O para un VG:
+vgs -o+seg_monitor,vg_profile
+
+El profile lo tendremos en:
+/etc/lvm/profile/NOMBRE.profile
+
 
 
 
@@ -335,3 +346,28 @@ volcado de la config
 Read-only locking type set. Write locks are prohibited.
 Pasarle a los comandos lo siguiente:
 lvs comando --config 'global {locking_type=1}' xxx
+
+
+
+Logical volume stack-volumes-lvmdriver-1/volume-1911fd7a-faf8-4ea7-aad6-9dd25c70435f is used by another device
+Mirar con "pvs" si ese volumen está siendo usado en un volume group (cosas de openstack, mirar cinder.md)
+
+
+Volume group "postgres" not found, is inconsistent or has PVs missing
+Si alguno de los PVs que lo formaban ya no está, tendremos que forzar al VG para que lo olvide:
+vgreduce --removemissing postgres
+
+
+
+Intentando borrar un pv
+Can't open /dev/stack-volumes-lvmdriver-1/volume-1911fd7a-faf8-4ea7-aad6-9dd25c70435f exclusively.  Mounted filesystem?
+https://www.thegeekdiary.com/lvm-error-cant-open-devsdx-exclusively-mounted-filesystem/
+https://access.redhat.com/solutions/2124101
+Varias causas, un puede ser que tenga entradas aún en el device mapper
+dmsetup ls | grep id-del-disco
+Mirar si está montado, usando el major y minor que nos devuelve al final entre paréntesis
+cat /proc/partitions | grep 253 | grep 31
+
+dmsetup remove stack--volumes--lvmdriver--1-volume--1911fd7a--faf8--4ea7--aad6--9dd25c70435f
+
+Mirar en lsblk si vemos el disco montado

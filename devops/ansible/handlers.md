@@ -49,9 +49,14 @@ Y en restart_tasks.yml metemos las tareas que queremos hacer
 - name: comprobamos si apache se encuentra corriendo
   shell: pgrep -P 1 httpd
   register: httpd_status
-  ignore_errors: True 
+  ignore_errors: True
 
 - name: recargamos apache si esta ejecutandose
   service: name=httpd state=restarted
   when: httpd_status.rc == 0
 
+
+
+# Cuando se ejecutan
+Al final de cada play
+O cuando los forzamos con el flush

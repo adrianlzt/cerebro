@@ -67,6 +67,9 @@ awk "BEGIN {printf \"${BASH}\";}"
 Mates, en el man hay un monton de funciones matemáticas: 
 awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}"
 
+Print sin decimales
+printf \"%.0f\", 23423.2342
+
 
 Imprimir variables de entorno:
 print ENVIRON["file"]

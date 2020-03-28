@@ -1,3 +1,10 @@
+https://serverfault.com/questions/383526/how-do-i-select-which-apache-mpm-to-use
+Hoy en día (Marzo 2020) elegir event excepto si tenemos algún módulo que no lo permita.
+
+
+
+
+# OLD (cuando no había event)
 http://codebucket.co.in/apache-prefork-or-worker/
 
 Dos opciones:

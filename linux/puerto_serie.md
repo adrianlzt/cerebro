@@ -18,3 +18,8 @@ Otras opciones:
 sudo picocom -b 9600 /dev/ttyUSB0
 sudo minicom -b 9600 -D /dev/ttyUSB0
 
+Para salir
+control+a control+x
+
+Si estamos en tmux
+control+a control+a control+x

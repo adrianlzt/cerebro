@@ -1,6 +1,8 @@
 https://golang.org/ref/spec#MapType
 https://blog.golang.org/go-maps-in-action
 
+mirar hash/hasmaps
+
 Une keys a valores
 Hace falta inicializarlo (si solo hacemos "var x map..." nos dirá "assignment to entry in nil map")
 

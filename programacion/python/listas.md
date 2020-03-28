@@ -173,6 +173,13 @@ Otra forma:
 from copy import copy
 nueva = copy(vieja)
 
+NO FUNCIONA si dentro de la lista tenemos diccionarios
+Tenedremos que usar:
+import copy
+new_list = copy.deepcopy(old_list)
+
+
+
 
 # Buscar una cadena en un array de cadenas
 some_list = ['abc-123', 'def-456', 'ghi-789', 'abc-456']

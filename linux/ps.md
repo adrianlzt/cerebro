@@ -4,11 +4,16 @@ Básico:
 ps -ef
 ps aux
   la columna TIME es "accumulated cpu time, user + system"
+  si una shell comienza por "-" (ejemplo: "-bash") es que es una login shell (por ejemplo cuando hacemos "sudo su -")
 
 --sort rss
   ordena poniendo al final lo que más consumo de RSS tengan
 --sort -rss
   ordena inversamente
+
+O para quedarnos con el header y hacer un grep:
+ps -ef | { sed -u 1q; grep foo; }
+
 
 Ver los parámetros enteros:
 ps auxww
@@ -43,7 +48,7 @@ ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=
   VSZ: consumo de memoria virtual (total)
 Para hacernos mejor una idea de la memoria consumida: linux/performance/memoria/smem.md
 
-Total memoria usada en MB
+Total memoria usada en MB (CUIDADO! esto no tiene en cuenta que varios procesos comparten RSS, mirar smem)
 ps --no-headers -eo rss | awk '{ SUM += $1} END { print SUM/1024 }'
 
 Ver en continuo, remarcando los cambios cada 2 segundos:

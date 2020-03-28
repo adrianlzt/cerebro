@@ -1,9 +1,14 @@
+Mirar disk_usage.md
+
 # FSM / Free Space Map
 https://www.postgresql.org/docs/current/storage-fsm.html
 Los ficheros de datos (heap) e índices (excepto los index hash), mantiene este fichero (xxx_fsm) para almacenar el espacio disponible en la relation (relatión serán los datos, los índices, etc)
 
 Cuando se borran cosas de un bloque, se empujan los datos a hacia el final del bloque, para dejar siempre el espacio al comienzo.
 El FSM se actualiza por VACUUM.
+
+pg_filedump is a utility to format PostgreSQL heap/index/control files into a human-readable form.
+https://wiki.postgresql.org/wiki/Pg_filedump
 
 
 # VM / Visibility map
@@ -35,6 +40,8 @@ Para evitar freeze de páginas ya freezed.
 
 # Espacio usado en disco
 Mirar disk_usage.md
+
+Podemos reducir el uso de disco, a cambio de usar más CPU, activando wal_compression
 
 
 

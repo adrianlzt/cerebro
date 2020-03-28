@@ -1,12 +1,18 @@
 https://kubernetes.io/docs/getting-started-guides/minikube/
 https://github.com/kubernetes/minikube
 
+mirar distros.md
+
 Run Kubernetes locally
 
 # Install
 Instalar la herramienta minikube:
 Arch: yaourt -Ss aur/minikube-bin
 Manual: Bajar ultimo binario de https://github.com/kubernetes/minikube/releases
+
+https://minikube.sigs.k8s.io/docs/start/linux/
+  generalmente será instalar un rpm/deb/x y arrancar minikube seleccionando el driver (depende si es kvm/virtualbox/baremetal)
+  hace falte tener docker instalado (u otro runtime de containers)
 
 
 # Start minikube instance

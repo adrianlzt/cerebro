@@ -1,0 +1,1 @@
+tipos_de_certificados.md

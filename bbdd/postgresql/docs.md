@@ -1,6 +1,7 @@
 https://pgexercises.com/
 
 https://tapoueh.org/tags/yesql/
+https://www.highgo.ca/blog/
 articulos interesantes sobre postgres
 
 

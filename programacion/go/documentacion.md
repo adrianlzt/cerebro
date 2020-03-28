@@ -44,3 +44,11 @@ package leap
 // It returns the number of bytes written and any write error encountered.
 func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
 
+
+
+# Documentación offline
+godoc -goroot $GOPATH
+  webserver en localhost:6060 con los paquetes que tengamos ahí descargados
+
+go doc NOMBRE_PKG
+  texto con la documentación de ese paquete

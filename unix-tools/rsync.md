@@ -1,5 +1,6 @@
 CUIDADO, el directorio origen, NO poner "directorio/", porque entonces copiará lo que hay dentro, pero no el directorio.
 Peor poner dir/*, porque copiará lo que hay dentro de cada dir
+Si queremos mover hostA:/mnt/foo a hostB:/mnt/foo hacer: rsync -r /mnt/foo hostB:/mnt
 
 Mejora sobre rcp y scp. Hace transmisiones incrementales, evitando enviar los datos de los que ya dispone la otra parte.
 

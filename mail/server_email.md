@@ -38,6 +38,8 @@ host -t TXT CLAVE._domainkey.SUDOMINIO.COM
 amavisd -c /etc/amavisd/amavisd.conf testkeys
   si usamos amavis para firmar los emails podemos comprobar con él que la firma pública y privada son válidas
 
+Obtener la clave pública para configurar el DNS
+amavisd -c /etc/amavisd/amavisd.conf showkeys nombre.dominio
 
 
 

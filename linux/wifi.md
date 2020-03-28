@@ -40,6 +40,11 @@ sudo iw reg set ES
 vi /etc/default/crda
 REGDOMAIN=ES
 
+Si queremos saber las DNS asignadas por DHCP:
+nmcli d show wlo1
+
+Tal vez tenemos que usar esas DNS si no no funciona la resolución (wifis capando el resto de dns)
+
 
 # Conectar a una wifi con wpa:
 wpa_passphrase SSID PASSPHRASE >> /etc/wpa_supplicant.conf

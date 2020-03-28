@@ -1,3 +1,10 @@
+# Ver un secret
+https://github.com/elsesiy/kubectl-view-secret
+kubectl krew install view-secret
+kubectl view-secret <secret> <key>
+kubeclt view-secret <secret> -a/--all
+
+
 # https://kubernetes.io/docs/concepts/configuration/secret/
 #
 apiVersion: v1

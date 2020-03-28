@@ -35,3 +35,8 @@ Para que no le espire la cookie de sesion
 
 # Resetear session (reset)
 http://yourserver.fq.dn/zabbix/latest.php?filter_rst=1
+
+
+# database
+Se almacena en la tabla users
+La contrseña es md5 sin hashear

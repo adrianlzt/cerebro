@@ -2,6 +2,20 @@ https://www.inet.no/dante/index.html
 https://www.inet.no/dante/doc/latest/config/socks.html
 
 Dante funciona modificando el LD_PRELOAD (https://www.inet.no/dante/doc/faq.html#socksify_system) de manera que las syscalls connect, bind y udpassociate ejecutan unas llamadas modificadas que meten el tráfico en un proxy. Más información en su [https://www.inet.no/dante/doc/latest/config/socks.html web].
+Otras opciones para modificar syscall, mirar en linux/syscall.md
+http://www.alfonsobeato.net/c/modifying-system-call-arguments-with-ptrace/
+http://www.goldsborough.me/c/low-level/kernel/2016/08/29/16-48-53-the_-ld_preload-_trick/
+https://news.ycombinator.com/item?id=19187417
+  explicaciones de como hacer el truco del LD_PRELOAD
+https://github.com/pmem/syscall_intercept
+  lib para hacer estas modificaciones, me da error al compilar, no he mirado mucho
+
+Ejemplo con open/openat y otras llamadas: https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/misc/saleae-logic/preload.c
+Aunque en strace veamos que se llama a openat, al final la función que debemos "fakear" es open.
+
+Otra lib donde fakean muchas syscall: https://github.com/mikix/deb2snap/blob/master/src/preload.c
+
+
 
 Otra opcion: tsocks.md (deprecated)
 Tambíen torsocks, aunque orientado a la red tor.

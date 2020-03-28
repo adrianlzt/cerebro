@@ -2,6 +2,7 @@ http://stedolan.github.io/jq/
 Otra opción: jp (https://github.com/jmespath/jp)
 
 faq: otra opción que vale para bson,json, toml, xml, yaml: https://github.com/jzelinskie/faq/blob/master/README.md
+para xml: xq
 
 "gron" nos vale para hacer grep sobre json (nos saca la estructura en plano del json, una linea por elemento)
 
@@ -54,6 +55,26 @@ Localizar un elemento en un array:
   jq 'indices(1)'
   Input[0,1,2,1,3,1,4]
   Output[1,3,5]
+
+
+Convertir diccionario a array. Tambien tenemos from_entries (array a dict) y with_entries (para hacer to_entries | map | from_entries)
+echo '{"aa": {"foo": 2}, "bb": {"foo": 1}}' | jq '. | to_entries'
+[
+  {
+    "key": "aa",
+    "value": {
+      "foo": 2
+    }
+  },
+  {
+    "key": "bb",
+    "value": {
+      "foo": 1
+    }
+  }
+]
+
+
 
 
 Extraer las keys de un diccionario:

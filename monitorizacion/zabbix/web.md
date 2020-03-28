@@ -28,3 +28,4 @@ Opciones:
 
 # Troubleshooting
 mirar troubleshooting.md
+https://www.zabbix.com/documentation/3.0/manual/web_interface/debug_mode

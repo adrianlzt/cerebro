@@ -1,3 +1,15 @@
+https://github.com/DominicBreuker/pspy
+app en go que permite ver que se está ejecutando en el sistema, sin ser root.
+Engancha inotfy en ciertos directorios para pillar lecturas/escrituras de los procesos.
+Puede que se le escapen algunos.
+
+
+forkstat, necesita root (se engancha a fork() y exec())
+Esta coge todos los eventos.
+Usa el proc event connector: https://lwn.net/Articles/157150/
+https://github.com/dbrandt/proc_events
+
+
 Una opción es usar atop (como??)
 Otra la herramienta execsnoop de perf-tools o bcc-tools
 Programa en perl: https://serialized.net/2010/06/capturing-short-lived-programs-on-linux/

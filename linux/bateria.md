@@ -1,3 +1,9 @@
+xfce4-power-manager
+para actuar ante eventos de bateria
+Configuración:
+xfce4-power-manager --customize
+
+
 sudo apt-get install acpi
 watch --interval=5 acpi -V
 

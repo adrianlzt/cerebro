@@ -5,11 +5,12 @@ helm pull xxx
   es "fetch" en v2.x
   bajarnos el .tgz de un chart, en el current dir que estemos
 
-helm template chart > file.yml
+helm template nombre chart > file.yml
   renderizar como va a quedar un chart
   podemos especificar solo un fichero con "-x fichero.yaml"
 
-helm install NOMBRE somedir
+helm install NOMBRE somedir --set foo=bar,foobar=barfoo
+helm install miredis stable/redis
   Para la v2: helm install somedir
   instalar un chart
   --name foo

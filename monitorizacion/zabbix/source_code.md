@@ -52,7 +52,17 @@ make install
 
 ./bootstrap.sh && ./configure --enable-server --enable-agent --with-postgresql --with-net-snmp --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-ssh2 --prefix=/opt/zabbix && make dbschema && make && make css && sudo make install
 
+Cargar schema y datos en la bbdd:
+psql -U zabbix -d zabbix -f database/postgresql/schema.sql
+psql -U zabbix -d zabbix -f database/postgresql/images.sql
+psql -U zabbix -d zabbix -f database/postgresql/data.sql
+
+
 
 # Frontend
 cd frontends/php
-docker run --rm -it -v "$PWD:/var/www/html/" -p 80:80 richarvey/nginx-php-fpm:latest
+docker run --name zabbix-web-dev --rm -it -v "$PWD:/usr/share/zabbix" -e ZBX_SERVER_HOST=localhost -e DB_SERVER_HOST=localhost --net host zabbix/zabbix-web-nginx-pgsql:latest
+
+http://localhost
+user: Admin
+password: zabbix

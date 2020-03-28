@@ -19,8 +19,11 @@ The value of HZ varies across kernel versions and hardware platforms. On i386 th
 The times(2) system call is a special case. It reports times with a granularity defined by the kernel constant USER_HZ. Userspace applica‐ tions can determine the value of this constant using sysconf(_SC_CLK_TCK).
 
 
+Obtener el valor:
+getconf CLK_TCK
+
 Para obtener el valor con python:
-$ python 
+$ python
 >>> import os
 >>> os.sysconf_names['SC_CLK_TCK']
 2

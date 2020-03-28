@@ -74,6 +74,18 @@ https://golang.org/pkg/reflect/#DeepEqual
 reflect.DeepEqual(a,b)
 
 In general DeepEqual is a recursive relaxation of Go's == operator.
+Si tenemos elementos en un array desordenados, dará false
+reflect.DeepEqual([]int{1,2,3}, []int{2,3,1}) -> false
+
+## Comparar ignorando posición
+Una opción es ordenar y luego comparar:
+https://godoc.org/github.com/google/go-cmp/cmp#example-Option--SortedSlice
+
+https://play.golang.org/p/xUS2ngrUWUl
+Opción generalizada a partir de ElementsMatch https://github.com/stretchr/testify/blob/85f2b59c4459e5bf57488796be8c3667cb8246d6/assert/assertions.go#L836
+Compara cualquier tipo de dato e ignora la posición en los arrays.
+
+
 
 
 # Elemento dentro del array
@@ -93,6 +105,24 @@ A lo mejor nos vale hacer algo tipo?
         "music":
         return true
     }
+
+
+Cuidado! con sort.SearchString (https://www.geeksforgeeks.org/searching-an-element-of-string-type-in-golang-slice/)
+No nos vale para saber si un elemento está en la lista.
+Nos da la posición donde debería meterse el elemento para mantener la lista ordenada
+Para saber si el elemento estaba en la lista tendremos que comparar el elemento en esa posición con el que estamos buscando.
+
+
+Ejemplo:
+// Contains tells whether a contains x.
+func Contains(a []string, x string) bool {
+        for _, n := range a {
+                if x == n {
+                        return true
+                }
+        }
+        return false
+}
 
 # Ordenar
 https://golang.org/pkg/sort/#Ints

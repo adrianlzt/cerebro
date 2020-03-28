@@ -42,6 +42,16 @@ rune // alias for int32. represents a Unicode code point
 float32 float64
 complex64 complex128  http://golang.org/pkg/math/cmplx/
 
+Tenemos binarios y octales
+0b100
+080
+
+1_000_000 es l mismo que 1000000
+
+También hay notación exponencial
+
+
+
 # Constantes
 números, strings o booleanos (https://groups.google.com/forum/#!topic/golang-nuts/xUaDMciyB5Q)
 

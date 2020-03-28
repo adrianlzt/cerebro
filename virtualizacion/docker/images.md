@@ -9,7 +9,7 @@ Mirar datos de una imagen
 docker image ID
 
 Historico de como se creo:
-docker histry ID
+docker history --no-trunc ID
 
 
 Podemos crear una imagen también a partir de un .tar con import

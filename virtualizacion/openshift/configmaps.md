@@ -3,6 +3,7 @@ Irían en el Deployment Config
 
 
 # Configmaps
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/
 https://docs.openshift.org/latest/dev_guide/configmaps.html
 https://unofficial-kubernetes.readthedocs.io/en/latest/tasks/configure-pod-container/configmap/
 
@@ -25,7 +26,7 @@ oc get cm nombre-config-map -o yaml
 Para modificar, ver patch.md
 
 
-Crear un configmap a partir de ficheros o un directorio:
+Crear un configmap a partir de ficheros o un directorio (lo crea en la key "data.nombreFichero"):
 kubectl create configmap game-config --from-file=docs/user-guide/configmap/kubectl
 
 
@@ -44,7 +45,61 @@ data:
 
 Los ConfigMaps se pueden montar como ficheros en un pod, pero son RO.
 Si necesitamos que sean RW, usar un init container para copiar el ConfigMap a un volumen emptyDir
+También pueden ser variables de entorno.
 
+
+Ejemplo, config map como dir. Cada fichero del CM se pondrá en el path especificado en el volumeMount:
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: test-container
+      image: gcr.io/google_containers/busybox
+      command: [ "/bin/sh", "-c", "cat /etc/config/special.how" ]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: special-config
+
+
+Ejemplo forzando un path determinado:
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: test-container
+      image: gcr.io/google_containers/busybox
+      command: [ "/bin/sh","-c","cat /etc/config/path/to/special-key" ]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: special-config
+        items:
+        - key: special.how
+          path: path/to/special-key
+
+
+Ejemplo añadiendo un fichero de un CM a un dir que ya existe en el pod
+https://stackoverflow.com/a/43404857/1407722
+
+        volumeMounts:
+        - name: "config"
+          mountPath: "/<existing folder>/<file1>"
+          subPath: "<file1>"
+        - name: "config"
+          mountPath: "/<existing folder>/<file2>"
+          subPath: "<file2>"
+      restartPolicy: Always
+      volumes:
+        - name: "config"
+          configMap:
+            name: "config"
 
 
 # Secrets

@@ -61,6 +61,9 @@ O alguna en concreto:
                         l=task,exit,user,exclude
 			a=never,always
 
+O parar borrar watchers de file (-w /foo/bar), tendremos que poner los parámetros que pusismos (podemos verlo con auditctl -l)
+auditctl -W /foo/bar -p wa -k foobar
+
 Para borrar los resultados deberemos borrar los ficheros que están en /var/log/auditd/
 
 

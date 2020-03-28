@@ -18,3 +18,16 @@ Si queremos cambiar en la VM la ip que viene por defecto (10.0.2.15):
 VBoxManage  modifyvm NOMBREVM --natnet1 "192.168.25.0/24"
 
 La VM tiene que estar parada
+
+
+# Redirección puertos
+Si está parada:
+VBoxManage modifyvm "VM name" --natpf1 "guestssh,tcp,,2222,,22"
+  natpf1 porque es para la NIC 1 (comprobar con vboxmanage showvminfo NOMBREVM | grep NIC)
+
+Si está arrancada:
+vboxmanage controlvm NOMBREVM natpf1 "tcp8443,tcp,,8443,,443"
+
+
+Borrar regla:
+vboxmanage controlvm NOMBREVM natpf1 delete tcp443

@@ -32,3 +32,14 @@ En la tabla se almacenan estructuras de 64 bits.
     Data/Code
     Read-Only  Read/Write  Execute-Only  Execute/Read
     accessed, expand-down (http://www.sudleyplace.com/dpmione/expanddown.html), conforming (si es 1, puede ser ejecutado por lower-level, user-level)
+
+
+
+# CPU class, temperatura
+https://www.apple.com/newsroom/2020/03/apple-unveils-new-ipad-pro-with-lidar-scanner-and-trackpad-support-in-ipados/
+
+U/Y/H. This letter determines the TDP (thermal design power/point) them machine is designed to run at. The TDP will govern the setting for the base clock speed, and, just as importantly, the throttling behabior under load.
+Processor series TDPs are Y: 4.5W, U: 15W, H: 45W.
+
+The new MacBook Air appears to have a Y series processor, like the MacBook, which means it will be aggressively throttled to keep power consumption and heat generation low.
+Practically, that means that the new Air will not be capable of running sustained workloads much above its base clock speed, which makes it unsuitable for many programming-related tasks.

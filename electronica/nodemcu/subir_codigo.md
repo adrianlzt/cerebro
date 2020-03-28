@@ -1,3 +1,8 @@
+mirar micropython/rshell.md
+
+Si da problemas, borrar la flash y flahsear de nuevo.
+
+
 http://nodemcu.readthedocs.org/en/dev/en/upload/
 http://lb9mg.no/2015/05/30/first-steps-with-nodemcu/
 

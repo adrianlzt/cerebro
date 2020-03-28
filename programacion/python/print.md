@@ -1,6 +1,7 @@
 Con colores: https://pypi.python.org/pypi/termcolor
 termcolor.md
 colorama.md
+para format mirar string.md
 
 Tabulado:
 https://pypi.python.org/pypi/tabulate

@@ -1,5 +1,8 @@
 http://docs.ansible.com/ansible/latest/zabbix_host_module.html
 
+Otros módulos no oficiales:
+https://github.com/openshift/openshift-tools/commits/prod/ansible/roles/lib_zabbix/library
+
 Hace falta tener instalado en la maquina donde se lance la task:
 pip install zabbix-api
 

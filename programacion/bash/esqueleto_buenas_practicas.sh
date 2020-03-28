@@ -35,7 +35,7 @@ usage() {
 
        Just show what you are going to do:
        $PROGNAME -vn -c /path/to/config/$PROGNAME.conf
-    EOF
+EOF
 }
 
 cmdline() {

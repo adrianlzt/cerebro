@@ -47,6 +47,24 @@ SELECT pid, now() - query_start as "runtime", usename, datname, waiting, state, 
 
 
 
+# deadlocks
+http://shiroyasha.io/deadlocks-in-postgresql.html
+
+Cuando sale un error deadlock, el proceso que la pinta es quien muere
+En este ejemplo, muere el 522300:
+
+2019-12-10 13:18:25.882 CET [522300] ERROR:  se ha detectado un deadlock
+2019-12-10 13:18:25.882 CET [522300] DETALLE:  El proceso 522300 espera ShareLock en transacción 694; bloqueado por proceso 522346.
+        El proceso 522346 espera ShareLock en transacción 695; bloqueado por proceso 522300.
+        Proceso 522300: update users set name='x' where id=1;
+        Proceso 522346: update users set name='y' where id=2;
+2019-12-10 13:18:25.882 CET [522300] HINT:  Vea el registro del servidor para obtener detalles de las consultas.
+2019-12-10 13:18:25.882 CET [522300] CONTEXTO:  mientras se actualizaba la tupla (0,3) en la relación «users»
+2019-12-10 13:18:25.882 CET [522300] SENTENCIA:  update users set name='x' where id=1;
+
+
+
+
 https://wiki.postgresql.org/wiki/Lock_Monitoring
 https://wiki.postgresql.org/wiki/Lock_dependency_information
   query para ver de donde viene los bloqueos originarios

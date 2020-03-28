@@ -11,16 +11,41 @@ physical replication es "sencillo".
 logical replication es un poco más complejo (gestión de conflictos)
 multi master logical replication (muy complejo)
 
+pgcat logical replication (go): https://github.com/kingluo/pgcat
+
 
 El el nodo "slave" quien conecta al master para obtener los valores.
 
+
+Crear user para streaming
+createuser -P --replication streaming_barman
+Añadirlo al pg_hba:
+local   replication  streaming_barman  trust
+Probarlo:
+psql -U streaming_barman -h pg -c "IDENTIFY_SYSTEM" replication=1
+
+
+
+
 # Physical streaming replication
+Just 4 steps to set up streaming replication in #PostgreSQL:
+In master server
+ initdb -D data
+ pg_ctl -D data start
+In standby server
+ pg_basebackup -D data -R -h <master's ip>
+ pg_ctl -D data start
+
+
 Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
 Se pasan diffs de binary files.
 
 Conf needed:
-wal_level = replica (or higher)
+wal_level = replica (o logical, si queremos que también se pueda hacer replicación lógica)
 max_wal_senders, por defecto vale
+max_replication_slots
+  estos slots se les asocia un id y evitan borrar WALs si no han sido consumidos, por una desconexión del cliente por ejemplo.
+  https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
 
 Conf slave, in recovery.conf:
 standby_mode = on
@@ -105,6 +130,8 @@ Opciones:
     - más parámetros
   - algunas otras soluciones, no parecen muy recomendables (triggers es muy mala idea)
 
+Config necesaria:
+wal_level = logical
 
 Se instala una extensión en wal_sender y en el backgroup worker (en el slave, que es quien inicia la conex).
 Ese plugin es el que gestiona la traducción de los WAL al formato para replicación lógica.
@@ -118,6 +145,13 @@ La diferencias más importantes contra el physical replication:
   - cross-version replication
 
 
+# Estado de los replication slots
+https://www.postgresql.org/docs/current/view-pg-replication-slots.html
+select * from pg_replication_slots;
+  solo vemos entradas si hay cosas conectadas
+
+
+
 # master-master
 Postgres-BDR, de pago
   permite hacer sharding
@@ -126,3 +160,8 @@ Postgres-BDR, de pago
 https://www.symmetricds.org/about/overview
 https://info.crunchydata.com/blog/active-active-on-kubernetes
 
+
+https://github.com/timbira/krahodb
+
+open source asynchronous multi-master
+https://bucardo.org

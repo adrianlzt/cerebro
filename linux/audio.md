@@ -7,7 +7,7 @@ pacmd
 stat
 muestra el default sink y source.
 
-list-sinks
+pactl list sinks
 nos muestra el listado de devices que se puede configurar como salida
 
 Modificar volumen de un sink

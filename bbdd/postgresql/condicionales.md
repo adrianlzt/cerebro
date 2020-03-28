@@ -17,3 +17,11 @@ END IF;
 
 # null
 NULL
+
+
+# insert
+Pequeño truco que nos permite hacer un condicional en el insert.
+En este caso, estamos haciendo insert de "VALUES('x','y')" si la tabla jobmon.dblink_mapping_jobmon está vacía:
+with j as (select 'x' as username, 'y' as pwd where (select count(*)=0 from jobmon.dblink_mapping_jobmon))
+INSERT into jobmon.dblink_mapping_jobmon (username,pwd) select username,pwd from j;
+

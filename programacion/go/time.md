@@ -80,9 +80,10 @@ diff.Nanoseconds()
 
 # zona horaria
 Imprime la fecha en otra zona horaria
+https://golang.org/pkg/time/#LoadLocation
 
 now := time.Now()
-l,_ := time.LoadLocation("CET")
+l,err := time.LoadLocation("Europe/Madrid")
 fmt.Println(now)
 fmt.Println(now.In(l))
 

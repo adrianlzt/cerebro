@@ -20,14 +20,17 @@ Una única línea con todos los ficheros:
 find . -exec echo {} \+
 
 
+
+Si tenemos una versión reciente de du (-x, no cruza filesystems)
+du -hax -d 3 / | sort -hr | uniq | head -20
+  ESTE ES EL BUENO
+
 Nos dice el tamaño de los ficheros y directorios analizando tres niveles. Para encontrar que es lo que ocupa el disco duro
 find . -maxdepth 3 -exec du -h {} \; | sort -hr | uniq | head -20
 
 find . -maxdepth 3 -xdev -exec du -xh {} \; | sort -hr | uniq | head -20
   sin cruzar filesystems
-
-Si tenemos una versión reciente de du (-x, no cruza filesystems)
-du -hax -d 3 / | sort -hr | uniq | head -20
+  no cruza, pero lista mount points de otros FS, que serán analizados por du
 
 
 Uso de inodos:

@@ -38,12 +38,16 @@ Server=
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_agent
 Documentación de que es cada item y que parámetros se pueden pasar
 
+https://www.zabbix.com/documentation/3.4/manual/appendix/items/supported_by_platform
+Items soportados por plataforma
+
 
 # Comandos externos
 https://www.zabbix.com/documentation/3.4/manual/config/items/itemtypes/zabbix_agent
 system.run[command,<mode>]
 Luego podemos usar un preprocesador para obtener valores del check
 Hace fork para ejecutar, cuidado con la performance
+
 
 # UserParameter
 https://www.zabbix.com/documentation/3.4/manual/config/items/userparameters

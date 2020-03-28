@@ -74,6 +74,13 @@ type error interface {
 Podemos definirlo de cualquier manera con total que tengamos esa interfaz para sacar el texto
 
 
+# Error wrapping
+newerr := fmt.Errorf("mas info: %w", err)
+
+errors.Is(err, os.ErrNotExist)
+  nos dice si el "err" dentro de "newerr" es del tipo os.ErrNotExist
+
+
 # Named return values
 http://golangtutorials.blogspot.com.es/2011/06/return-values-from-go-functions.html
 
@@ -175,3 +182,10 @@ Workaround cutre para pasar todas:
 export CGO_CXXFLAGS_ALLOW=".*"
 export CGO_LDFLAGS_ALLOW=".*"
 export CGO_CFLAGS_ALLOW=".*"
+
+
+
+# build constraints exclude all Go files in
+Tenemos puesto en los ficheros cosas tipo:
+// +build
+que evitan poder ser usados para determinadas versiones y/o archs

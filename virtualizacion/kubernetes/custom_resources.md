@@ -13,6 +13,10 @@ Listar todos los resources:
 kubectl api-resources
 
 
+Ejemplo CRD con app en go que se registra a cambios (FOSDEM 2020)
+https://github.com/sttts/beerdb
+
+
 
 # CRD
 Ejemplo creando un CRD y un controller para ese tipo de recursos:

@@ -3,19 +3,32 @@ https://github.com/brunofarina/Simple-DAO-Postgres-Example/blob/master/userDAO.p
 
 
 # psycopg2
+https://www.psycopg.org/docs/
 pip install psycopg2
+pip install psycopg2-binary
 
 import psycopg2
-conn = psycopg2.connect("dbname=test user=postgres")
+conn = psycopg2.connect("dbname='template1' user='dbuser' host='localhost' password='dbpass'")  # Puede generar excepcion
 cur = conn.cursor()
 cur.execute("SELECT 1")
 cur.fetchall()
 
+Solo un resultado
+curs.execute(sql)
+template = curs.fetchone()  # Formato ('primera col', 'segunda')
+
+
 cur.execute("INSERT INTO test (num, data) VALUES (%s, %s)",(100, "abc'def"))
 conn.commit()
+  despues de insert/update hacer commit para que se registre el cambio
 
 cur.close()
 conn.close()
+
+Gestionar cerrado de conex y/o cursor:
+with psycopg2.connect(DSN) as conn:
+    with conn.cursor() as curs:
+        curs.execute(SQL)
 
 
 Se puede iterar directamente sobre un cursor tras un .execute()

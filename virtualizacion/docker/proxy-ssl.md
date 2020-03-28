@@ -3,7 +3,7 @@ https://hub.docker.com/r/adrianlzt/docker-ssl-proxy/
 https://github.com/adrianlzt/docker-ssl-proxy
 
 Ejemplo:
-docker run -d -e "CUSTOM_CERTS=1" -e "TARGET_PORT=6010" -e "TARGET_HOST=172.17.0.1" -v "/home/test/certs/:/etc/nginx/certs/" -p 443:443 adrianlzt/docker-ssl-proxy
+docker run --restart=unless-stopped -d -e "CUSTOM_CERTS=1" -e "TARGET_PORT=6010" -e "TARGET_HOST=172.17.0.1" -v "/home/test/certs/:/etc/nginx/certs/" -p 443:443 adrianlzt/docker-ssl-proxy
 
 
 Para algo más elaborado, gestionando automáticamente nuevos containers mirar:

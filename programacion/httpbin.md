@@ -13,3 +13,7 @@ print r.text
 
 
 curl -XPOST http://httpbin.org/post -H "Content-Type: application/json" -d '{"test":123}'
+
+
+# Redirect
+http://httpbin.org/redirect-to?url=http://example.com

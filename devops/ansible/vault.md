@@ -26,6 +26,14 @@ ansible-vault encrypt foo.yml bar.yml baz.yml
 Desencriptar ficheros (coje un fichero encriptado y lo desencripta)
 ansible-vault decrypt foo.yml bar.yml baz.yml
 
+Inline:
+En un fichero .yaml podemos encriptar solo el value
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_vault.html#single-encrypted-variable
+
+ansible-vault encrypt_string -n clave valor >> fichero_secrets
+
+
+
 
 Para usarlo en un playbook:
 ansible-playbook site.yml --ask-vault-pass

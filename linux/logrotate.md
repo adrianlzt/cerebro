@@ -29,6 +29,8 @@ NO se pueden poner dos reglas simultáneamente.
 As of logrotate 3.8.1, maxsize and timeperiod are supported
 maxsize & timeperiod rotate when either size exceeds maxsize, or after elapsed timeperiod. logrotate may need to be run more than the default once per day in this case.
 
+Si rotamos por tamaño cuidado con el formato, que no se pisen los ficheros. Mirar ejemplo con postgres más abajo.
+
 
 Cuando rotar:
 size n[k|M|G] : rota cuando el tamaño del fichero sea mayor del especificado
@@ -108,7 +110,7 @@ Si ponemos un fichero de logrotate.d directamente, no estaremos pillando los def
 Lo mejor es hacer un cat >> de /etc/logrotate.conf y del logrotate.d que nos interese a otro fichero y ejecutar
 logrotate --state=/tmp/prueba.logrotate -v nuevo_fichero
 
-Para rotar pero sin tocar el fichero de estado del sistema:
+Para rotar pero sin tocar el fichero de estado del sistema (que por defecto es /var/lib/logrotate/logrotate.status):
 logrotate --state=status.logrotate -v prueba.conf
 
 prueba.conf:
@@ -116,6 +118,30 @@ prueba.conf:
    notifempty
    size 1k
    rotate 3
+}
+
+
+# Rotado por tamaño con cron cada hora
+
+/etc/cron.d/postgres
+25 * * * * root /usr/sbin/logrotate --state=/var/lib/logrotate/postgres.status /etc/logrotate.d/postgres
+
+El formato de rotado genera nombres tipo:
+postgresql.csv-2020-03-05-17.gz
+Metemos la hora para poder rotar varias veces el mismo día.
+
+/var/log/postgresql/postgresql.csv {
+  rotate 14
+  daily
+  compress
+  maxsize 20M
+  nodelaycompress
+  create 0600 postgres postgres
+  dateext
+  dateformat -%Y-%m-%d-%H
+  postrotate
+    sudo -u postgres /usr/pgsql-12/bin/pg_ctl logrotate -D /var/lib/pgsql/12/data
+  endscript
 }
 
 

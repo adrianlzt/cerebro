@@ -5,12 +5,16 @@ https://github.com/srdja/Collections-C
 A library of generic data structures including a list, array, hashtable, deque etc..
 
 
+Tamaño de los distintos tipos, según sean 32 o 64 bits:
+https://docs.oracle.com/cd/E19253-01/817-6223/chp-typeopexpr-2/index.html
+
+
 sizeof(char);
 
 Tipos estandar:
 #include <stdint.h>
-int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 byte = 8 bits)
-uint8_t, uint16_t, uint32_t, uint64_t - enteros sin signo
+int8_t, int16_t, int32_t, int64_t - enteros con signo (el numero son los bits, 1 byte = 8 bits. int a secas son 4bytes)
+uint8_t, uint16_t, uint32_t, uint64_t - enteros sin signo (32-4bytes, 64->8 bytes)
 float - coma flotante de 32 bits (4 bytes). Para definir un valor float: 8.40f
 double - coma flotante de 64 bits  (8 bytes)
 

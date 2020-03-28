@@ -5,6 +5,11 @@ Si quermos controlar los servicios podemos hacerlo con dbus
 https://dbus.freedesktop.org/doc/dbus-python/doc/tutorial.html
 
 
+busctl --user tree ...
+busctl --user introspect ...
+
+
+
 https://zignar.net/2014/09/08/getting-started-with-dbus-python-systemd/
 from pydbus import SystemBus
 bus = SystemBus()

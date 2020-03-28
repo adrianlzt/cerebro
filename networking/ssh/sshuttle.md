@@ -19,7 +19,7 @@ sshuttle necesita poder hacer sudo sin passwd, por lo que ejecutaremos un comand
 Iremos a nuestro HOME porque necesita crear el fichero sshuttle.pid
 sudo pwd
 cd
-sshuttle -DHr maquina-salto 192.168.42.0/24
+sshuttle -r maquina-salto 192.168.42.0/24
   -D dameon mode (dificil de matar)
   -H poner los hosts de la maquina-salto accesible localmente
 

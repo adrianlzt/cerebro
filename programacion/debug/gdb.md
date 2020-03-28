@@ -8,6 +8,10 @@ https://blog.0x972.info/index.php
 http://undo.io/resources/blog-articles/category/debugging/ posts con tips y guias sobre usos particulares de gdb
 http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html  ejemplo usando gdb para encontrar un problema con un programa en python
 
+Tal vez es mejor idea usar rr
+Permite grabar una sesión y reproducirla varias veces
+
+
 Como funciona gdb
 https://blog.0x972.info/?d=2014/11/13/10/40/50-how-does-a-debugger-work
 

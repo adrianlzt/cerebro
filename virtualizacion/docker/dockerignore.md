@@ -7,3 +7,9 @@ Docker envia todos los ficheros al daemon si no están aqui
 
 
 .dockerignore
+
+Ejemplo para ignorar todo menos fichero go:
+*
+!*.go
+!go.mod
+!go.sum

@@ -18,10 +18,12 @@ ExecStart=/usr/lib/systemd/systemd-socket-proxyd 73.223.250.65:80
 [Install]
 WantedBy=multi-user.target
 
+En ubuntu el binario está en:
+/lib/systemd/systemd-socket-proxyd
 
 
 
-sudo systemctl start test.socket
+sudo systemctl enable --now test.socket
 
 
 curl localhost:1234 nos lleva a 73.223.250.65:80

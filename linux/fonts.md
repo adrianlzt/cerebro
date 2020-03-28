@@ -28,3 +28,12 @@ Depende de las fuentes que usamos se renderizará de una manera u otra
 
 
 Para ver que fuentes usa una terminal podemos usar lsof
+lsof -c termite | grep fonts
+
+
+gtk2fontsel
+nos muetras las fuentes instaladas, sus opciones y un render de como queda
+
+
+La fuente que se elige es la que se encuente antes en este fichero y esté instalada:
+/etc/fonts/conf.avail/60-latin.conf

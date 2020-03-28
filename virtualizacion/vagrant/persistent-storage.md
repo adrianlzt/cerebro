@@ -2,29 +2,6 @@ https://github.com/kusnier/vagrant-persistent-storage
 
 vagrant plugin install vagrant-persistent-storage
 
-Si queremos varios discos tendremos que llamar directamente a virtualbox, ejemplo:
-https://github.com/kusnier/vagrant-persistent-storage/issues/22
-Un disco (ver issue para dos discos)
-/root/kubernetes/demo
-  config.vm.provider "virtualbox" do |vb|
-    vb.customize [
-      'createmedium', 'disk',
-      '--filename', "/root/sdb.vdi",
-      '--format', 'VDI',
-      '--size', 50 * 1024]
-    vb.customize [
-      'storageattach', :id,
-      '--storagectl', 'SATAController',
-      '--port', 1,
-      '--device', 0,
-      '--type', 'hdd',
-      '--medium', "/root/sdb.vdi"]
-  end
-
-Si falla probar con --storagectl IDE, o "SATA Controller" o SCSI
-Podemos ver que controlador soporta nuestra box:
-cat ~/.vagrant.d/boxes/centos-VAGRANTSLASH-7/1809.01/virtualbox/box.ovf | egrep -oi "StorageController.{100}"
-
 
 
 Crea un disco /dev/sdb:
@@ -53,4 +30,31 @@ ERROR:
   for controlling VirtualBox. The command and stderr is shown below.
 
   Command: ["storagectl", "5c4c1ebf-6b08-4c4a-a870-0a6d167f6f77", "--name", "SATA Controller", "--hostiocache", "on"]
+
+
+
+
+
+Si queremos varios discos tendremos que llamar directamente a virtualbox, ejemplo:
+https://github.com/kusnier/vagrant-persistent-storage/issues/22
+Un disco (ver issue para dos discos)
+/root/kubernetes/demo
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize [
+      'createmedium', 'disk',
+      '--filename', "/root/sdb.vdi",
+      '--format', 'VDI',
+      '--size', 50 * 1024]
+    vb.customize [
+      'storageattach', :id,
+      '--storagectl', 'SATAController',
+      '--port', 1,
+      '--device', 0,
+      '--type', 'hdd',
+      '--medium', "/root/sdb.vdi"]
+  end
+
+Si falla probar con --storagectl IDE, o "SATA Controller" o SCSI
+Podemos ver que controlador soporta nuestra box:
+cat ~/.vagrant.d/boxes/centos-VAGRANTSLASH-7/1809.01/virtualbox/box.ovf | egrep -oi "StorageController.{100}"
 

@@ -3,6 +3,29 @@ mirar neugram/ para hacer scripts en go
 https://www.tutorialspoint.com/execute_golang_online.php
 http://play.golang.org/
 
+# yaegi
+## goexports
+Si necesitamos generar los symbolos de otro package
+Desde un directorio cualquier (mejor un /var/tmp/x)
+go run github.com/containous/yaegi/cmd/goexports github.com/influxdata/telegraf
+Me ha generado un fichero go1_13_github.com_influxdata_telegraf.go
+Le tenido que añadir antes del init()
+var Symbols = map[string]map[string]reflect.Value{}
+Luego lo he metido en otro dir, hecho import y i.Use:
+import "./dirDondeEstaElFichero"
+...
+i.Use(tres.Symbols)  // el "package" del fichero le he llamado tres
+
+De esta manera me ha dejado convertir un Interface de funcion a
+  processor := v.Interface().(func(telegraf.Metric) telegraf.Metric)
+
+
+## Errores
+incomplete type
+mirar si falta algun import
+
+
+
 # gomacro
 https://github.com/cosmos72/gomacro
 

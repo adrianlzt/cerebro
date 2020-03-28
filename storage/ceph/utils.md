@@ -63,7 +63,21 @@ radula -p test set-acl app-test/313bc90f42e83bb16bcb97d4 public-read
 
 
 
+# rclone
+Migrar datos entre distintos object storage
 
+rclone config
+  wizard para configurarlo
+
+Config en ~/.config/rclone/rclone.conf
+
+
+Sync entre dos buckets (pasa por local, ignorando certs)
+rclone --no-check-certificate copy --progress A:bucketenA B:bucketenB
+
+
+
+# s3cmd
 https://github.com/s3tools/s3cmd
 Official s3cmd repo -- Command line tool for managing Amazon S3 and CloudFront services http://s3tools.org/s3cmd
 https://lollyrock.com/articles/s3cmd-with-radosgw/
@@ -85,6 +99,8 @@ Ejemplos de uso en rgw.md
 
 
 
+# obsync
+mejorar usar rclone
 https://github.com/dreamhost/obsync
   fork mas actualizado que el oficial de ceph, aunque ambos antiguos (2013)
 http://docs.ceph.com/docs/argonaut/man/1/obsync/

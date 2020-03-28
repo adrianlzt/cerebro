@@ -1,3 +1,4 @@
+https://rtfmp.wordpress.com/2016/03/18/balloon-driver-linux/
 https://www.vmware.com/files/pdf/perf-vsphere-memory_management.pdf
 https://pubs.vmware.com/vsphere-4-esx-vcenter/index.jsp?topic=/com.vmware.vsphere.resourcemanagement.doc_40/managing_memory_resources/c_memory_balloon_driver.html
 https://access.redhat.com/solutions/901253
@@ -31,13 +32,17 @@ If host free memory drops towards the soft threshold, the hypervisor starts to r
 http://superuser.com/questions/704675/vmware-ballooning-state-from-inside-guest
 
 Proceso encargado del ballooning:
-ps aux| grep -i vmmemctl 
+ps aux| grep -i vmmemctl
 [vmmemctl]
 
 
 Driver encargado de robar memoria en las VM
- # lsmod | grep -i ball
- vmware_balloon          7199  0 
+El grep que he puesto son ejemplos de varios posibles nombres:
+$ lsmod | grep -i -e vmmemctl -e balloon
+vmware_balloon          7199  0
+vmw_balloon            18094  0
+vmmemctl               46424  0
+
 
 Consultar el valor:
 

@@ -2,11 +2,17 @@ https://pgtune.leopard.in.ua/#/
 https://github.com/jfcoz/postgresqltuner
 https://postgresqlco.nf/en/doc/param/
   explicación de las diferentes configuraciones, agrupadas por categorías, con valores sugeridos, links a más info, etc
+https://github.com/jberkus/annotated.conf/blob/master/guc_tutorial_10.pdf
+  GUCS: grand unified configuration settings
+  traspa con los 19 típicos que querremos tunear
 
 Mirar "Function optimization" en funciones.md
 
 Mirar explain.md
 Mirar troubleshooting.md
+
+
+Comenzar con pgtune para tener una primera aproximación.
 
 
 # Fillfactor
@@ -47,12 +53,14 @@ Idea: si los procesos de postgres tienen muchos forced context switches puede es
 
 
 # shared_buffers
+https://www.postgresql.org/docs/current/runtime-config-resource.html
 25% de la memoria, MAL. Consejo antiguo no válido.
 
 Otras areas de memoria que coge postgres tienen un tamaño proporcional al shared_buffers
 
 shared_buffers muy grandes causa checkpoints más costosos.
 Muy pequeños obliga a forzar el vaciado de bloques para poder cargar datos nuevos.
+Más discusión en checkpoint.md
 
 La idea es tener el valor más pequeño posible.
 
@@ -61,6 +69,8 @@ Dejaremos ese uso más un pequeño percentaje.
 
 pg_buffercache para ver como de lleno está.
 
+Mirar monitoring.md pg_stat_m tunning.md
+bgwriter para ver si los checkpoints llegan tarde y los shared_buffers están saturados.
 
 Por debajo también está el cache de FS de linux.
 Si nos comemos toda la memoria del sistema aquí, no la dejaremos para el cache de linux.
@@ -89,3 +99,7 @@ Si los datos siempre están en memoria poner random_page_cost=1
 # cpu_tuple_cost / cpu_index_tuple_cost / cpu_operator_cost / effective_cace_size
 Mirar en explain.md
 Generalmente no tiene mucho sentido tunear estos parámetros.
+
+
+# checkpoint
+mirar checkpoint.md

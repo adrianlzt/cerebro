@@ -62,6 +62,10 @@ notes::jsonb->>'class' = 'db';
 
 select * from main_job where extra_vars::jsonb->>'telegraf_hostname' = 'linux123';
 
+Comprobar si tenemos una key en el json
+'{"a":1, "b":2}'::jsonb ? 'b'
+  este sería true
+
 
 # Modificar
 Ejemplo donde actualizamos el campo "variables" (tipo text, pero que contiene un json).
@@ -75,9 +79,47 @@ Ejemplo de la doc:
 jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false)   ->   [{"f1":[2,3,4],"f2":null},2,null,3]
 
 
+Insertar un elemento dentro de otro
+jsonb_insert(target jsonb, path text[], new_value jsonb [, insert_after boolean])
+
+jsonb_insert('{"a": [0,1,2]}', '{a, 1}', '"new_value"')
+{"a": [0, "new_value", 1, 2]}
+
+
 
 # Pretty print
 jsonb_pretty(xxX)
 
 Sacar un json a un fichero:
 psql -XAt -d facts -c "select jsonb_pretty(data) from facts where host = 'XXX' order by timestamp desc limit 1;" > facts.json
+
+
+# Generar un objeto custom
+select json_build_object('hola', event) from main_jobevent ..
+
+select
+  jsonb_build_object(
+    'query',
+    'asd',
+    'set',
+    jsonb_agg(
+      jsonb_build_object(
+        'uid',
+        'uid(Parent)',
+        'depends_on',
+        jsonb_build_object('uid', 'uid(Child)')
+      )
+    )
+  );
+
+Retorna:
+{"set": [{"uid": "uid(Parent)", "depends_on": {"uid": "uid(Child)"}}], "query": "asd"}
+
+
+# NULL
+Si al hacer un left join estamos generando cosas tipo:
+[{"foo": null}, {"bar": "123"}] podemos quitar los null con:
+json_strip_nulls('[{"f1":1,"f2":null},2,null,3]')
+->
+[{"f1":1},2,null,3]
+Quita las parejas clave-valor cuyo valor sea null

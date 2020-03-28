@@ -11,10 +11,19 @@ machine.reboot()
 1 -> D4
 2 -> LED
 
+Mirar en nodemcu/mapa_pines.md
+
+Parece que cuando haemos un Pin(N, Pin.OUT) lo que hacemos es ponerlo a 0v
+Y cuando le hacemos un .on() le ponemos al voltaje
+
+Si lo ponemos como IN
+Al aire tendrá valor 1
+Si lo cortocircuitamos con GND tendrá valor 0
+
 Encender LED de NodeMCU, asociado a GPIO2 (y parece que tambien al pin D4)
 pin = machine.Pin(2, machine.Pin.OUT)
-pin.high() # apagar el led (pin voltaje a 3.3v)
-pin.low() # encender el led
+pin.on() # apagar el led (pin voltaje a 3.3v)
+pin.off() # encender el led
 pin.value() # valor actual
 pin.value(0) # encender, 1 para apagar
 
@@ -48,4 +57,4 @@ La idea seria subirla cuando necesitamos y luego bajarla
 # Deep-sleep / bajo consumo
 http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/powerctrl.html#deep-sleep-mode
 
-Dejarl el dispositivo en un modo de bajo consumo
+Dejar el dispositivo en un modo de bajo consumo

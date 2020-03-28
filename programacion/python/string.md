@@ -39,7 +39,7 @@ a=u'3'
 a.isnumeric()
 True
 a.isdecimal()
-True 
+True
 
 No vale para los float. Usar: http://stackoverflow.com/questions/736043/checking-if-a-string-can-be-converted-to-float-in-python
 def isfloat(value):
@@ -48,6 +48,13 @@ def isfloat(value):
     return True
   except ValueError:
     return False
+
+## Convertir un caracter a su número unicode
+>>> chr(65)
+'A'
+>>> ord("A")
+65
+
 
 
 
@@ -78,7 +85,7 @@ string = (
 msn = (
    'priemra %s linea\n'
    'segunda linea %s'
-   % (4,999) 
+   % (4,999)
 )
 
 
@@ -105,6 +112,11 @@ f"Mi nombre es {nombre} y mido {altura*100}cm"
 f"""nombre: {nombre}
 apellido: {apellido}"""
 
+Escapar "{" o "}" con dobles:
+a = f"ejemplo {{}}"
+
+Para formateos especiales {xx:M.M} mirar string.md
+
 f"{nombre:>12}"
 alineado a la derecha
 
@@ -117,6 +129,7 @@ alineado a la izquierda
 
 >>> "%0.2f" % 10
 '10.00'
+
 
 
 
@@ -199,6 +212,12 @@ Si info es un "dict", usar directamente sus valores
 print('{name} works at {status} {company}'.format_map(info))
 
 
+{var:60.50}
+Ocupa 60 espacios, pero la cadena muestra como mucho 50
+
+{var:>60.50}
+como antes pero identado a la derecha
+
 
 ## Comparación ##
 http://stackoverflow.com/questions/9573244/most-elegant-way-to-check-if-the-string-is-empty-in-python
@@ -228,6 +247,3 @@ b'a string'
 http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
 
 Buscar cadenas parecidas
-
-
-

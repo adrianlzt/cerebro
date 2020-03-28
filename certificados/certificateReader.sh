@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #
 # certificateReader.sh
 # Copyright (C) 2017 Adrián López Tejedor <adrianlzt@gmail.com>

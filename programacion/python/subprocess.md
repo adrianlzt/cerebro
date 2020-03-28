@@ -5,7 +5,11 @@ python3 (stderr a su propia pipe, si queremos que valla a stdout poner stderr=su
 CompletedProcess(args=['ls', '-53y'], returncode=2, stdout=b"ls: opci\xc3\xb3n inv\xc3\xa1lida -- '5'\nPruebe 'ls --help' para m\xc3\xa1s informaci\xc3\xb3n.\n")
 
 
-python2
+py2
+subprocess.check_output(["ls", "-la"])
+
+
+python2 (para py2.3 https://docs.python.org/2.3/lib/os-newstreams.html os.popen, putenv para definir variables de entorno)
 import subprocess
 returncode = subprocess.call(["ls", "-l"])
 Esto saca el stdout y stderr directamente, no podemos almacenarlo en una variable.

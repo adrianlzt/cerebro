@@ -193,4 +193,3 @@ Parsear fecha tipo "tomorrow 10:00", "in 2 h", "20m"
 from parsedatetime.parsedatetime import Calendar
 fuzzy_date_parse = Calendar().parse
 fuzzy_date_parse("in 20m")
-

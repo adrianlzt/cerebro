@@ -15,4 +15,8 @@ UNIX95=t ps -C nombreproc -o pid,pcpu,comm
 -H hierarchy/forest
 
 
+Para poder usar ps -o tenemos que poner
+UNIX_STD=2003 ps -o ..
+
+
 Mirar pstat_whitepaper.pdf para ver como usar las llamadas al sistema para obtener más info de los procesos.

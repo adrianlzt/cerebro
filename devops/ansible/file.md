@@ -103,6 +103,17 @@ Meter una linea al final
 create=yes
   para crear el fichero si no existe
 
+Comentar todas las lineas que cumplan un patrón:
+- lineinfile:
+    path: /var/tmp/tmp.SdrpELXTLQ/file
+    regexp: "^(php_value .*)"
+    line: '#\1'
+    backrefs: yes
+  register: x
+  until: not x.changed
+  retries: 9999
+  delay: 0
+
 
 # Ad-hoc
 ansible -s maquina -m lineinfile -a "dest=/etc/nagios/nrpe.cfg regexp=^allowed_hosts= line=allowed_hosts=10.0.0.0/16"

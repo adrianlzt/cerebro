@@ -27,6 +27,14 @@ El que usan en openstack (flake8 más instrucciones)
 https://pypi.python.org/pypi/hacking
 
 
+https://pycodestyle.readthedocs.io/en/latest/intro.html#configuration
+pydocstyle, para meter configs, generar un fichero tox.ini y meter, ejemplo:
+[pycodestyle]
+count = False
+ignore = E226,E302,E41
+max-line-length = 160
+
+
 py3status usa
 pytest-flake8
 pytest

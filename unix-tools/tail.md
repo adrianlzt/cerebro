@@ -18,6 +18,9 @@ cat fichero | tail -n +2
 Borrar todos los ficheros del directorio salvo los dos más nuevos:
 ls -1t | tail -n +3 | xargs rm
 
+Coger el tail y el hader
+cat fichero | (head -1; tail)
+
 
 
 Cuidado con concatenar varios greps con tails:

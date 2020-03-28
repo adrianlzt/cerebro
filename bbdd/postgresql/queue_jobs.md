@@ -8,3 +8,7 @@ Implementar un sistema de colas con Postgres.
 A partir de Postgresql 9.5 tenemos SKIP LOCKED.
 Esta nueva funcionalidad nos permite que cada worker, cuando vaya a pedir un elemento de la cola, ignore los que ya estén locked por otros workers.
 De esta manera los workers pueden trabajar en paralelo.
+
+
+https://gist.github.com/chanks/7585810
+https://news.ycombinator.com/item?id=21536698

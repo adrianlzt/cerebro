@@ -21,6 +21,10 @@ En inner join no tiene sentido hablar de left o right.
 Si queremos excluir, haremos un outer join y meteremos un where para que tal campo sea NIL
 https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
 
+Ejemplo que saca los números que están en una serie pero no en la otra:
+select * from generate_series(1,5) g1 full outer join generate_series(4,9) g2 ON g1.g1 = g2.g2 WHERE g1.g1 IS null or g2.g2 IS null;
+
+
 
 ## SQL ##
 

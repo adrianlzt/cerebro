@@ -95,6 +95,9 @@ Automatización de la creación de PVs.
 Podemos tener varios StorageClass con distintas "calidades" por ejemplo. El usuario podrá seleccionar uno y el StorageClass creará un PV del tipo que tenga definido para el usuario
 En la tabla de la web podemos ver que "volume plugins" tienen un provisionador ya en kubernetes, de manera que podrá crear los PVs dinámicamente.
 
+Ver cuales tenemos:
+kc get storageclass
+
 Debemos marcar un storage class como "default" para que los PVC que no lo especifiquen usen ese.
 Esto se hace con un annotation:
   storageclass.kubernetes.io/is-default-class=true
@@ -109,6 +112,8 @@ volume.beta.kubernetes.io/storage-class: "nombre"
 1. instalar provisioner externo
 2. crear storage class
 3. crear pvc solicitando usar esa storage class (o haberla puesto como default)
+
+CUIDADO! Si un nodo se sale abruptamente del cluster, parece que no manda la orden de desmontar a ceph. K8s intenta levantar un nuevo pod que no puede montar el volumen, por lo que nos quedamos sin servicio.
 
 No hace falta crear el secret de user en los namespaces donde se creen los pvc o monten los pods. Se coge del namespace donde se haya definido en el storageclass
 
@@ -212,6 +217,21 @@ spec:
   awsElasticBlockStore:
     volumeID: vol-867g5kii
     fsType: ext4
+
+
+Permisos para que un user pueda crear un PV
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nombreUser-provisioner-pv-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:persistent-volume-provisioner
+subjects:
+- kind: User
+  name: nombreUser
+  apiGroup: rbac.authorization.k8s.io
 
 
 

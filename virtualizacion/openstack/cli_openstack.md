@@ -1,5 +1,9 @@
 pip install python-openstackclient
 
+Si falla, mirar razón con:
+openstack --debug --help
+
+
 Esta cli sustituye a las antiguas que estaban separadas: nova, neutron, keystone, etc
 
 openstack availability zone list - Lista las AZs
@@ -10,3 +14,4 @@ openstack host show [HOST] - info del host (CPU, RAM y Disco)
 openstack hypervisor stats show - Estadisticas globales del entorno
 openstack hypervisor show [ID or Hypervisor Hostname] - info especifica del host
   --> con el parametro "-c [campo]" obtienes únicamente el valor requerido
+

@@ -92,11 +92,21 @@ Para el caso de un evento de un trigger, almacenaremos, el actionid, triggerid, 
             6 |        7 |     13997 |     133 |           | 1545928942 |        1 |      0 |
 
 Luego tenemos el proceo "escalator" (process_escalations src/zabbix_server/escalator/escalator.c), que comprueba periódicamente la tabla "escalations" y genera entradas en la tabla "alerts".
+Periódicamente hace una query para obtener todas las escalations (en la tabla están todas las escalations activas, se van borrando según se terminan).
+En realidad hay varias queries, dependienendo si triggerid es null y otras dos condiciones.
+Las que su nextcheck esté en el futuro, se ignora (execpto si está en recovery, que hace algo especial, no comprendido completamente).
+Luego se obtiene de la bbdd cierta info (info del trigger, host, etc).
+Después se se obtiene de la cache info sobre la relación del trigger con los items y otras cosas, estas consultas se hacen a la cache, donde se hace LOCK para acceder a los datos.
+Este LOCK tiene que esperar hasta que esté liberado, esto inserta cierto delay.
+Si hay muchos elementos en escalation con nextcheck=0 (pausados, por estar en modo mantenimiento), cada uno de ellos realizando varias consultas a la cache, cargará mucho al escalation.
+Meter más escalations no parece que mejore este problema, porque tendríamos más procesos cogiendo LOCKs.
 
 escalation_execute_operations: para saber que generar, escalator comprobará las tablas operations y opmessage. Esta función ejecutará comandos (execute_commands) o generará entradas en la tabla alerts (add_message_alert)
 
 
 En zabbix 3.2 tenemos un único procesor alerter. A partir de 3.4 hay un alerter manager que lee entradas en alerts y envia mensajes via IPC a los alerter workers.
+En zabbix 3.2, tras 40" el proceso alerter intentará matar el script de alertado con SIGTERM. Podemos manejar la señal para evitarlo, pero saturaremos el alerter.
+Si el programa que queremos ejecutar no funciona, zabbix parece que retorna un código OK, aunque veremos que reinenta tres veces el envío.
 
 
 

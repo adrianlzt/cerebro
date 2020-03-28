@@ -2,6 +2,7 @@ https://github.com/coreos/etcd
 https://coreos.com/using-coreos/etcd/
 
 competencia: consul, zookeper
+https://github.com/rancher/kine APIs compatibles de ETCD sobre postgres, mysql, etc
 
 A highly-available key value store for shared configuration and service discovery. etcd is inspired by zookeeper and doozer, with a focus on:
 

@@ -5,6 +5,16 @@ iotop
   -b no interactivo (scriptable, podemos redirigirlo a un fichero)
   -n <NUM> numero de ejecuciones antes de terminar
   -d <SEC> segundos entre interacciones
+  -o solo mostrar procesos que están haciendo io
+
+iotop -b -n 4 -d 3 -toPa
+  modo bacth
+  4 ejecuciones
+  con un delay de 3"
+  no mostrar threads (-P)
+  solo procesos con valores (-o)
+  valores acumulados (-a)
+  mostrar hora (-t)
 
   %TID  identificador de hebra
   %PRIO  scheduling class y prioridad IO (para CFQ)

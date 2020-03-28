@@ -1,6 +1,7 @@
 mirar:
 pgpool.md
 pgbouncer.md
+odyssey (https://github.com/yandex/odyssey)
 
 activo-activo:
 mirar replication.md

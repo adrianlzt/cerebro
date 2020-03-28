@@ -4,6 +4,7 @@ iptables -L
 iptables -L -v  -> mostrar numero de paquetes procesados en cada regla
 iptables -t nat -S
 iptables -t mangle -L
+iptables -t filter -L INPUT --line-numbers
 
 
 Borrar:
@@ -31,6 +32,8 @@ Denega ping:
 		iptables -A INPUT -p icmp -j REJECT
 		Se puede definir un interfaz en particular con -i ethx
 
+Si queremos meter una regla en una posición determinada:
+iptables -t filter -I INPUT 9 -p tcp -m state --state NEW -m tcp --dport 8443 -j ACCEPT
 
 Abrir puertos:
 iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT

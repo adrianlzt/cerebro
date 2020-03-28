@@ -39,6 +39,10 @@ Para saber si hace falta reload, restart o nada (sighup=reload, postmaster=resta
 select name,context from pg_settings ;
 
 
+No existe la posibilidad de hacer append a las configuraciones.
+Discutido aquí, pero sin llegar a nada: https://www.postgresql.org/message-id/74af1f60-34af-633e-ee8a-310d40c741a7%402ndquadrant.com
+
+
 # Syntax
 select pg_reload_conf();
 Si devuelve 't' es que la syntax es correcta y se pudo hacer reload.

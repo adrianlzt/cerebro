@@ -72,9 +72,6 @@ execute
   ejecuta el modulo de ansible que previamente hemos extraido con explode
   usa subprocess para llamar a python y al modulo de ansible
 
-excommunicate
-  otra forma de execute. Mejor no usarla
-
 Para ejecutar directamente el modulo de ansible
 cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py
@@ -82,6 +79,14 @@ cat args | PYTHONPATH=. python ansible_module_*.py
 Con los AnsiballZ parece que solo hace falta:
 python __main__.py args
 python -m pdb __main__.py args
+
+O en versiones más nuevas:
+PYTHONPATH=. python ansible/modules/zbx_user.py args
+
+Parece que con la nueva versión de ansible 2.9, ya no tenemos un fichero __main_.py.
+Tendremos que ejecutar directamente el módulo, ej.:
+python ./ansible/modules/monitoring/zabbix/zabbix_host.py args
+
 
 Para hacer debug (antiguos no soportan el args como param?):
  En una terminal:

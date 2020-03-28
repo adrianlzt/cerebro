@@ -6,6 +6,20 @@ SELECT * FROM generate_series(0,5);
 Nos da valores del 0 al 5 incluidos
 
 
+select g.id FROM generate_series(1,4) AS g(id);
+
+
+INSERT INTO history(itemid,clock,ns,value)
+SELECT itemid, clock, 0, value
+FROM
+generate_series(1,4) AS x(itemid),
+generate_series(1583910000,1583910002) AS y(clock),
+generate_series(100,102) AS z(value);
+
+Inserta 36 rows (4*3*3)
+
+
+
 SELECT * FROM generate_series('2008-03-01 00:00'::timestamp, '2008-03-04 12:00', '10 hours');
  2008-03-01 00:00:00
  2008-03-01 10:00:00

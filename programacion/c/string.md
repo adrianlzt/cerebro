@@ -93,6 +93,9 @@ toupper(char)
 
 
 
+# Números a string
+sprintf
+
 # Strings a números
 Si queremos un control exacto es mejor usar expresiones regulares nuestras.
 

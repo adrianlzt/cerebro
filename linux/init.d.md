@@ -56,6 +56,9 @@ Este ejecuta
   También se comprueba que el fichero exista y sea ejecutable
   No se tendrán en cuenta los ficheros: *~ | *.bak | *.orig | *.rpmnew | *.rpmorig | *.rpmsave
 
+En SysV usamos este comando para habilitar/deshabilitar
+chkconfig --del zabbix-agent
+
 
 Los scripts de init.d necesitan tener un fichero de lock: https://www.redhat.com/magazine/008jun05/departments/tips_tricks/
 Esto sirve porque puede haber servicios que tengan varios PIDs y conocer el estado de uno de estos PID puede no ser suficiente para determinar el estado del servicio.

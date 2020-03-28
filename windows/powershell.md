@@ -9,6 +9,12 @@ Dar con el botón derecho y dar a "Editar"
 En el script es como en bash, pondremos lo comandos directamente
 
 
+# echo
+"hola"
+
+"hola`ncambio de linea`nnew line"
+
+
 # Diccionario / Hash table
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_hash_tables?view=powershell-6
 $hash = @{ Number = 1; Shape = "Square"; Color = "Blue"}
@@ -84,6 +90,17 @@ if ($foo) {
 Si $foo es un objecto vacío será false
 
 
+
+# Head / top / tail
+Get-Process | Sort-Object -Property WorkingSet64 -Descending | Select -First 10
+
+
+# Sort / order
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/sort-object?view=powershell-7
+Get-ChildItem -Path C:\Test -File | Sort-Object -Property Length
+
+
+
 # Test
 mirar tests.md
 
@@ -120,3 +137,12 @@ Get-NetIPAddress -AddressFamily IPv4
 
 Mirar Si tenemos alguna IP
 comandoAnterior | Where-Object IPAddress -Eq 1.2.3.4
+
+
+# Loop
+https://www.business.com/articles/powershell-for-loop/
+For ($i=0; $i -le 10; $i++) {
+  "10 * $i = " + (10 * $i)
+}
+
+También tenemos: ForEach-Object

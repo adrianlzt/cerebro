@@ -78,7 +78,16 @@ Testear con el programa python radula (mirar utils.md)
 
 
 # Administracion y consulta
-Ejemplos de comandos con s3cmd y radula
+
+## radosgw-admin
+### Buckets
+Listar buckets:
+radosgw-admin bucket list
+
+Borrar bucket y su contenido (CUIDADO!):
+radosgw-admin bucket rm --bucket NOMBRE --purge-objects
+
+## Ejemplos de comandos con s3cmd y radula
 
 s3cmd ls
 radula lb
@@ -108,13 +117,16 @@ Hay 5 permisos posibles, que pueden ser aplicados sobre un bucket o un objeto:
   WRITE_ACP: permite modificar la ACL (del bucket u objeto)
   FULL_CONTROL: los 4 anteriores juntos
 
-radula get-acl usync
+ACL que permite bjar objetos de un bucket "notifier" pero no listar:
+https://gist.github.com/3873876d87da2b8a18f3d92d3d5e304d
+
+radula get-acl nombre
   info sobre acls de un bucket
 
 s3cmd info s3://nombre
   info varia, sobre todo nos interesa las ACL
 
-radula -p usyncnoprod -rw allow cephnfs prueba
+radula -p prod -rw allow cephnfs prueba
   "allow" y "allow-user" es lo mismo
   dar permisos al usuario "cephnfs" sobre todos los elementos del bucket "prueba"
   esto irá elemento a elemento poniendo la ACL

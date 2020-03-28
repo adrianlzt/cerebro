@@ -5,6 +5,14 @@ Using include_* (include_tasks, include_role, include_vars) directives are dynam
 include_vars no sobreescribe las variables si ya están definidas.
 
 
+Truco para importar dinámicamente un fichero solo si existe:
+- include_tasks:
+    file: "{{item}}"
+  with_fileglob:
+    - "{{unit}}/{{ansible_system}}.yml"
+
+
+
 Se puede usar includes al igual que en puppet:
 
 Ejemplo de main.yaml

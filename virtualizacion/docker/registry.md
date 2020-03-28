@@ -90,7 +90,7 @@ $ docker push localhost:5000/ubuntu
 
 # Administracion registry
 
-Limpiar blobs no usados
+Limpiar blobs no usados (para borrar imágenes viejas mirar más abajo, en "Borrar una imagen")
 docker exec -it registry bin/registry garbage-collect /etc/docker/registry/config.yml
 
 Parece que no se pueden borrar "registries" aunque estén vacíos.

@@ -13,8 +13,14 @@ https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/cost
 https://postgresqlco.nf/en/doc/param/?category=query-tuning&subcategory=planner-cost-constants
   variables que se usan para estimar el coste con sus explicaciones y pequeña discusión.
 
+https://dalibo.github.io/pev2/#/
+  nueva versión del pev de tatiyants
+
 http://tatiyants.com/pev/#/plans/new
   web para pasar un explain y ver de forma más gráfica donde están los costes, etc
+
+https://github.com/StarfishStorage/explain-running-query
+  ejecutar un explain sobre una running querie. Requiere instalar simbolos y gdb
 
 Un analizador de pago, 10 gratis. Da recomendaciones.
 https://www.pgmustard.com/pricing
@@ -176,8 +182,9 @@ select name,short_desc,setting from pg_settings where name like '%_cost';
 Tuplas y páginas por tablas e índices:
 SELECT relname, relkind, reltuples, relpages FROM pg_class;
 
-Estadísticas:
+Estadísticas (https://www.postgresql.org/docs/current/view-pg-stats.html):
 select * from pg_stats;
+  n_distinct número de distintos valores estimados para una columna. -1 indica que el valor debe ser igual al número de rows
 
 Cuando se generaron las últimas estadísticas:
 select relname,last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables;

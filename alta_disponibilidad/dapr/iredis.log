@@ -1,0 +1,560 @@
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572190092.0400622
+DEBUG [timer 0] 0.00016975 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.00181198 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+ INFO History file /home/adrian/.iredis_history not exists, create now...
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.05314851 -> First REPL command enter, time cost: 0.031197309494018555
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [compile] Compile finished! Cost: 3.2249693870544434
+DEBUG [compile] Patch finished!
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: []
+DEBUG [Complter key updated] Done: []
+DEBUG [Complter destination updated] Done: []
+DEBUG [Complter newkey updated] Done: []
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [b'mynode-order']
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:key', '"mynode-order"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: get Args: []
+DEBUG [Utils split command] Command: get Args: []
+DEBUG [Utils split command] Command: get Args: ['m']
+DEBUG [Utils split command] Command: get Args: ['my']
+DEBUG [Utils split command] Command: get Args: ['mynode-order']
+ INFO [Command] get mynode-order
+DEBUG [Utils split command] Command: get Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ERROR WRONGTYPE Operation against a key holding the wrong kind of value
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/site-packages/iredis/client.py", line 170, in send_command
+    completer, command_name, *args
+  File "/usr/lib/python3.7/site-packages/iredis/client.py", line 103, in execute_command_and_read_response
+    response = self.connection.read_response()
+  File "/usr/lib/python3.7/site-packages/redis/connection.py", line 718, in read_response
+    raise response
+redis.exceptions.ResponseError: WRONGTYPE Operation against a key holding the wrong kind of value
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: mget Args: []
+DEBUG [Utils split command] Command: mget Args: []
+DEBUG [Utils split command] Command: mget Args: ['m']
+DEBUG [Utils split command] Command: mget Args: ['mynode-order']
+ INFO [Command] mget mynode-order
+DEBUG [Utils split command] Command: mget Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [None]
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:type', '(nil)')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: mget Args: ['mynode-order']
+ INFO [Command] mget mynode-order
+DEBUG [Utils split command] Command: mget Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [None]
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:type', '(nil)')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: get Args: []
+DEBUG [Utils split command] Command: get Args: []
+DEBUG [Utils split command] Command: get Args: ['m']
+DEBUG [Utils split command] Command: get Args: ['mynode-order']
+ INFO [Command] get mynode-order
+DEBUG [Utils split command] Command: get Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ERROR WRONGTYPE Operation against a key holding the wrong kind of value
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/site-packages/iredis/client.py", line 170, in send_command
+    completer, command_name, *args
+  File "/usr/lib/python3.7/site-packages/iredis/client.py", line 103, in execute_command_and_read_response
+    response = self.connection.read_response()
+  File "/usr/lib/python3.7/site-packages/redis/connection.py", line 718, in read_response
+    raise response
+redis.exceptions.ResponseError: WRONGTYPE Operation against a key holding the wrong kind of value
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: type Args: []
+DEBUG [Utils split command] Command: type Args: []
+DEBUG [Utils split command] Command: type Args: ['g']
+DEBUG [Utils split command] Command: type Args: []
+DEBUG [Utils split command] Command: type Args: ['mynode-order']
+ INFO [Command] type mynode-order
+DEBUG [Utils split command] Command: type Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: b'hash'
+ INFO [rendered] "hash"
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: []
+DEBUG [Utils split command] Command: hget Args: []
+DEBUG [Utils split command] Command: hgetall Args: []
+DEBUG [Utils split command] Command: hgetall Args: []
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+ INFO [Command] hgetall mynode-order
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [b'data', b'{"orderId":"42"}', b'version', b'1']
+DEBUG [Completer] field completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:field', '"data"'), ('', '\n'), ('', '   '), ('class:string', '"{\\"orderId\\":\\"42\\"}"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:field', '"version"'), ('', '\n'), ('', '   '), ('class:string', '"1"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+ INFO [Command] hgetall mynode-order
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: ['version', 'data']
+DEBUG [Complter fields updated] Done: ['version', 'data']
+ INFO [Redis-Server] Response: [b'data', b'{"orderId":"42"}', b'version', b'1']
+DEBUG [Completer] field completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:field', '"data"'), ('', '\n'), ('', '   '), ('class:string', '"{\\"orderId\\":\\"42\\"}"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:field', '"version"'), ('', '\n'), ('', '   '), ('class:string', '"1"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+ INFO [Command] hgetall mynode-order
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: ['version', 'data']
+DEBUG [Complter fields updated] Done: ['version', 'data']
+ INFO [Redis-Server] Response: [b'data', b'{"orderId":"42"}', b'version', b'2']
+DEBUG [Completer] field completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:field', '"data"'), ('', '\n'), ('', '   '), ('class:string', '"{\\"orderId\\":\\"42\\"}"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:field', '"version"'), ('', '\n'), ('', '   '), ('class:string', '"2"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO [Command] 
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+DEBUG [Utils split command] Command: type Args: ['mynode-order']
+DEBUG [Utils split command] Command: get Args: ['mynode-order']
+DEBUG [Utils split command] Command: type Args: ['mynode-order']
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572190377.9003491
+DEBUG [timer 0] 0.00013781 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.00151157 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.03628302 -> First REPL command enter, time cost: 0.023560285568237305
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO [Command] 
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO [Command] 
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [compile] Compile finished! Cost: 3.1490488052368164
+DEBUG [compile] Patch finished!
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572190384.6281931
+DEBUG [timer 0] 0.00013781 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.00149941 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.03630781 -> First REPL command enter, time cost: 0.02361154556274414
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+ INFO [Command] hgetall mynode-order
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+WARNING [Pre patch completer] Complter not ready, not patched...
+ INFO [Redis-Server] Response: [b'data', b'{"orderId":"42"}', b'version', b'2']
+DEBUG [Completer] completer is None, not updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:field', '"data"'), ('', '\n'), ('', '   '), ('class:string', '"{\\"orderId\\":\\"42\\"}"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:field', '"version"'), ('', '\n'), ('', '   '), ('class:string', '"2"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [compile] Compile finished! Cost: 3.1703107357025146
+DEBUG [compile] Patch finished!
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+WARNING KeyboardInterrupt!
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572190452.3340821
+DEBUG [timer 0] 0.00013709 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.00150800 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.03616524 -> First REPL command enter, time cost: 0.02348613739013672
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: hgetall Args: ['mynode-order']
+DEBUG [compile] Compile finished! Cost: 3.128852605819702
+DEBUG [compile] Patch finished!
+WARNING KeyboardInterrupt!
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572340243.6260211
+DEBUG [timer 0] 0.00018358 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.00335574 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.09244180 -> First REPL command enter, time cost: 0.0685420036315918
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [compile] Compile finished! Cost: 3.369389533996582
+DEBUG [compile] Patch finished!
+DEBUG [Utils split command] Command: hget Args: []
+DEBUG [Utils split command] Command: hget Args: []
+DEBUG [Utils split command] Command: hget Args: []
+DEBUG [Utils split command] Command: hget Args: ['a']
+DEBUG [Utils split command] Command: hget Args: ['al']
+DEBUG [Utils split command] Command: hget Args: ['al']
+DEBUG [Utils split command] Command: hget Args: ['al']
+DEBUG [Utils split command] Command: hgetall Args: []
+DEBUG [Utils split command] Command: hgetall Args: []
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: []
+DEBUG [Complter key updated] Done: []
+DEBUG [Complter destination updated] Done: []
+DEBUG [Complter newkey updated] Done: []
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [b'mynode-foo', b'mynode4000-order', b'mynode-order']
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:key', '"mynode-foo"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:key', '"mynode4000-order"'), ('', '\n'), ('', '3)'), ('', ' '), ('class:key', '"mynode-order"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['e']
+DEBUG [Utils split command] Command: del Args: ['et']
+DEBUG [Utils split command] Command: del Args: ['ete']
+DEBUG [Utils split command] Command: del Args: ['et']
+DEBUG [Utils split command] Command: del Args: ['e']
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+ INFO [Command] del mynode-order
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter key updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter destination updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter newkey updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 1
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '1')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+ INFO [Command] del mynode-order
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter key updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter destination updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter newkey updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 0
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '0')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+ INFO [Command] del mynode-order
+DEBUG [Utils split command] Command: del Args: ['mynode-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter key updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter destination updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter newkey updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 0
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '0')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter key updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter destination updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter newkey updated] Done: ['mynode-order', 'mynode4000-order', 'mynode-foo']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [b'mynode-foo', b'mynode4000-order']
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:key', '"mynode-foo"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:key', '"mynode4000-order"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['m']
+DEBUG [Utils split command] Command: del Args: ['my']
+DEBUG [Utils split command] Command: del Args: ['mynode4000-order']
+ INFO [Command] del mynode4000-order
+DEBUG [Utils split command] Command: del Args: ['mynode4000-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 1
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '1')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['m']
+DEBUG [Utils split command] Command: del Args: ['my']
+DEBUG [Utils split command] Command: del Args: ['mynode4000-order']
+ INFO [Command] del mynode4000-order
+DEBUG [Utils split command] Command: del Args: ['mynode4000-order']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 0
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '0')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode4000-order', 'mynode-foo', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: [b'mynode-foo']
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:key', '"mynode-foo"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: []
+DEBUG [Utils split command] Command: del Args: ['m']
+DEBUG [Utils split command] Command: del Args: ['my']
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+ INFO [Command] del mynode-foo
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 1
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '1')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: []
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('class:type', '(empty list or set)')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+ INFO [Command] del mynode-foo
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: 0
+ INFO [rendered] FormattedText([('class:type', '(integer) '), ('', '0')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: del Args: ['mynode-foo']
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: []
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('class:type', '(empty list or set)')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+DEBUG [PRE HOOK] withscores: None
+DEBUG [Complter keys updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter key updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter destination updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter newkey updated] Done: ['mynode-foo', 'mynode4000-order', 'mynode-order']
+DEBUG [Complter member updated] Done: []
+DEBUG [Complter members updated] Done: []
+DEBUG [Complter field updated] Done: []
+DEBUG [Complter fields updated] Done: []
+ INFO [Redis-Server] Response: []
+DEBUG [Completer] key completer updated.
+ INFO [rendered] FormattedText([('class:type', '(empty list or set)')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+ INFO ------ iRedis ------
+DEBUG [timer] start on 1572423899.103916
+DEBUG [timer 0] 0.00063491 -> [Loader] Start loading commands file...
+DEBUG [timer 1] 0.01264238 -> [Loader] Finished loading commands.
+ INFO [start args] host=127.0.0.1, port=6379, db=None, raw=False, cmd=(), decode=None.
+DEBUG [Redis Version] 5.0.6
+DEBUG [compile] start compile grammer...
+DEBUG [timer 2] 0.16447735 -> First REPL command enter, time cost: 0.09486842155456543
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: []
+DEBUG [Utils split command] Command: keys Args: ['*']
+ INFO [Command] keys *
+DEBUG [Utils split command] Command: keys Args: ['*']
+WARNING [Pre patch completer] Complter not ready, not patched...
+ INFO [Redis-Server] Response: [b'A', b'', b'C']
+DEBUG [Completer] completer is None, not updated.
+ INFO [rendered] FormattedText([('', '1)'), ('', ' '), ('class:key', '"A"'), ('', '\n'), ('', '2)'), ('', ' '), ('class:key', '""'), ('', '\n'), ('', '3)'), ('', ' '), ('class:key', '"C"')])
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [Utils split command] Command: get Args: []
+DEBUG [Utils split command] Command: type Args: []
+DEBUG [Utils split command] Command: type Args: []
+DEBUG [Utils split command] Command: type Args: ['A']
+ INFO [Command] type A
+DEBUG [Utils split command] Command: type Args: ['A']
+WARNING [Pre patch completer] Complter not ready, not patched...
+ INFO [Redis-Server] Response: b'stream'
+ INFO [rendered] "stream"
+ INFO ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+ INFO REPL waiting for command...
+DEBUG [compile] Compile finished! Cost: 7.272686004638672
+DEBUG [compile] Patch finished!

@@ -20,6 +20,21 @@ Acceso en:
 http://localhost
 admin:password
 
+La versión de ansible que utilizará será la que instale con dnf
+https://github.com/ansible/awx/blob/eafd40291e786599c712b36bc4012199619a97fc/installer/roles/image_build/templates/Dockerfile.j2#L11
+
+
+# Virtualenvs
+https://github.com/ansible/awx/blob/84b5fb89a3865ebed98f2737b63e448c34ceffb2/docs/custom_virtualenvs.md
+
+Por defecto las jobs se lanzan con el venv /var/lib/awx/venv/ansible
+
+Podemos crear otros venv custom para correr nuestras jobs.
+
+Existe otro venv /var/lib/awx/venv/awx
+No tengo claro que uso se le da
+
+
 
 # awx-manage
 comandos para gestionar/administrar awx
@@ -136,11 +151,124 @@ Poder buscar por una variable en concreto aun no se puede: https://github.com/an
 
 
 
+
+# SQL
+
+Tabla con las jobs
+main_job
+Las jobs "nivel usuario".
+select * from main_job where unifiedjob_ptr_id=727;
+
+Buscar por algún parámetro de las extra_vars
+select * from main_job where extra_vars like '%cpu%';
+
+En esta vemos el resultado, comando ejecutado, todas las env, donde se ejecuta, etc
+main_unifiedjob
+select * from main_unifiedjob where id=727;
+
+
+Toda la info junta
+select * from main_job join main_unifiedjob ON (id=unifiedjob_ptr_id);
+
+
+Resultados de una ejecucción (las líneas/eventos) para el job 950:
+select event_data from main_jobevent where job_id=950;
+
+
+Tabla actualizaciones projects:
+main_projectupdate
+Solo tiene las peticiones.
+Si queremos ver los resultados hacer un join con la main_unifiedjob
+select * from main_projectupdate join main_unifiedjob ON unifiedjob_ptr_id=id order by unifiedjob_ptr_id
+
+
+Tabla de projects
+select * from main_unifiedjobtemplate join main_project ON unifiedjobtemplate_ptr_id=id where id=116;
+
+
+Tablas de plantillas/templates
+select * from main_jobtemplate join main_unifiedjobtemplate ON (id=unifiedjobtemplate_ptr_id) where id=166;
+
+
+Plantillas + projects (con su scm_url y scm_branch)
+select utemplate.id as template_id, utemplate.name as template, uproject.id as project_id, uproject.name as project, project.scm_url, project.scm_branch from main_jobtemplate template join main_unifiedjobtemplate utemplate ON (utemplate.id=template.unifiedjobtemplate_ptr_id) join main_project project ON (template.project_id=project.unifiedjobtemplate_ptr_id) join main_unifiedjobtemplate uproject ON (uproject.id=template.project_id);
+
+
+
+Resultados de un job agrupados en un json, añadiendo info extra
+select
+  json_build_object(
+    'name', name,
+    'description', description,
+    'status', status,
+    'started', started,
+    'finished', finished,
+    'elapsed', elapsed,
+    'extra_vars', extra_vars,
+    'limit', "limit",
+    'execution_node', execution_node,
+    'template', 'file://awx__template__test_callback.j2',
+    'data',
+    json_agg(
+      event_data :: jsonb
+      order by
+        counter asc
+    )
+  )
+from
+  main_job
+  join main_unifiedjob uj ON (uj.id = unifiedjob_ptr_id)
+  join main_jobevent ON (job_id = uj.id)
+where
+  uj.id = 311
+group by
+  name,
+  description,
+  status,
+  started,
+  finished,
+  elapsed,
+  extra_vars,
+  "limit",
+  execution_node
+  ;
+
+
+main_host
+hosts obtenidos de los inventarios
+
+Hosts RHEL6 que no sean baja
+select name from main_host where variables like '%RED HAT ENTERPRISE LINUX SERVER RELEASE 6%' and name not like '%_baja';
+
+
 # Debug
 Si queremos capturar lo que está ejecutando awx, entraremos en el container task y:
 cd /tmp
 while true; do  cp -fr awx* AWX/; sleep 0.5; done
 Al terminar deberemos tener uno o varios directorios en /tmp/AWX
+
+## worker
+Si queremos ver que están haciendo los run_dispatchers
+/usr/bin/awx-manage run_dispatcher --status
+https://github.com/ansible/awx/blob/fcfd59ebe26d0051a838ea395d05665dba0db15d/docs/tasks.md#debugging
+
+
+# API
+Enrutado api (es django)
+https://github.com/ansible/awx/blob/devel/awx/api/urls/urls.py
+
+Filtrados posibles: https://docs.ansible.com/ansible-tower/2.3.0/html/towerapi/intro.html
+Ejemplo:
+http://AWX/api/v2/job_templates/12/jobs/?limit=HOSTPRUEBA&created__gte=2019-12-17T15:14:00Z
+
+started__lt=2019-12-16T18:40:59.000000%2B0100
+%2B es +, por lo que estamos poniendo el time zone +1
+
+
+api/v2/jobs/?or__status=waiting&or__status=pending&or__status=new
+
+no podemos filtrar por "elapsed" mientras está running, porque se pone en la bd al terminar.
+
 
 
 
@@ -149,6 +277,8 @@ git clone https://github.com/ansible/awx.git
 cd awx
 mirar CONTRIBUTING.md
 
+
+## Build
 Hacer build de las imágenes:
 ansible-playbook installer/build.yml
   hay un bug que hace necesario usar python docker<3.0 (20/2/2018)
@@ -210,6 +340,13 @@ Si modificamos algo del backend (python), uwsgi se recargará automáticamente.
 Para el frontend tendremos que lanzar: make devel-ui
 
 
+# Actualización proyectos
+Hay un role que se encarga:
+https://github.com/ansible/awx/blob/devel/awx/playbooks/project_update.yml
+
+
+
+# Internals (versión antigua)
 
 Cuando hacemos un variables.icontains lo que hace es un LIKE en el field "variables" de la tabla de postgres.
 

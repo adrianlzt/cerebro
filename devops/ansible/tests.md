@@ -1,7 +1,16 @@
+# Desarrollo de Ansible
 https://docs.ansible.com/ansible/devel/dev_guide/testing_units.html
 Lanzar los unit tests
 
 
+## Tests de integracion
+https://docs.ansible.com/ansible/devel/dev_guide/testing_integration.html#testing-integration
+Correr los tests de integración del módulo zabbix_host usando una imagen de ubuntu:
+source hacking/env-setup
+ansible-test integration -v zabbix_host --docker ubuntu1804
+
+
+# Probar nuestros roles/plays
 mirar molecule.md
 
 

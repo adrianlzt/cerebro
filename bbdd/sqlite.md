@@ -7,6 +7,9 @@ sqlitebrowser - Editor de interfaz de usuario para bases de datos SQLite
 Los paquetes sqlite y sqlite3 traen un cliente para ver/editar una base de datos sqlite.
 Asegurarse que usamos la versión (2.x o 3.x) de sqlite adecuada.
 
+Ejecutar comando
+sqlite3 fichero.db "select 1"
+
 Para abrir una base de datos sqlite:
 sqlite3 bd.sqlite3
 > .tables <- como SHOW TABLES en mysql
@@ -30,7 +33,11 @@ http://repo.or.cz/sqlite.git/blob/HEAD:/src/shell.c
 Esta es la cli que arranca cuando hacemos ejecutamos sqlite3
 
 # Python
-https://docs.python.org/2/library/sqlite3.html
+Esta el la standard library
+https://docs.python.org/3.8/library/sqlite3.html
+
+import sqlite3
+conn = sqlite3.connect('example.db')
 cursor.execute("select * from sqlite_master")
 
 Database activada:

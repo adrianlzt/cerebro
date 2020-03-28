@@ -13,7 +13,8 @@ RUN mkdir /user && \
 # Install the Certificate-Authority certificates for the app to be able to make
 # calls to HTTPS endpoints.
 # Git is required for fetching the dependencies.
-RUN apk add --no-cache ca-certificates git
+# tzdata to use timezones
+RUN apk add --no-cache ca-certificates git tzdata
 
 # Set the working directory outside $GOPATH to enable the support for modules.
 WORKDIR /src
@@ -39,6 +40,12 @@ COPY --from=builder /user/group /user/passwd /etc/
 
 # Import the Certificate-Authority certificates for enabling HTTPS.
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
+# Copy timezone data
+COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+
+# Define time zone
+ENV TZ=Europe/Madrid
 
 # Import the compiled executable from the first stage.
 COPY --from=builder /app /app

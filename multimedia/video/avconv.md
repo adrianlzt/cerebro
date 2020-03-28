@@ -34,3 +34,14 @@ ffplay http://127.0.0.1:8081/video
 
 ## RTSP
 ffplay rtsp://127.0.0.1:8554/video
+
+
+# Rotar
+ffmpeg -i input.mp4 -vf "transpose=1" output.mp4
+
+0 – Rotate by 90 degrees counter-clockwise and flip vertically. This is the default.
+1 – Rotate by 90 degrees clockwise.
+2 – Rotate by 90 degrees counter-clockwise.
+3 – Rotate by 90 degrees clockwise and flip vertically.
+
+

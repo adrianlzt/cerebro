@@ -1,3 +1,4 @@
 Sacar por stdout una pareja user:password encriptada:
 
-htpasswd -nb usuario contraseña
+htpasswd -m -nb usuario contraseña
+  -m para usar md5

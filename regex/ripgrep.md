@@ -11,3 +11,9 @@ rg -uu es como grep -r
 rg -uuu es como grep -r -a
 -u es "unrestricted". Lo que hace es reducir el "smart" searching buscando más "a saco"
 
+rg -L
+  sigue enlaces simbólicos
+
+
+rg -w git -g '*py'
+  buscar "git", como palabra entera, solo en los ficheros py

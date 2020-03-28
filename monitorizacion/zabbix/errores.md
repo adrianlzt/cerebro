@@ -6,9 +6,22 @@ Received empty response from Zabbix Agent at [172.17.0.1]. Assuming that agent d
   mensaje visto en un proxy que tenia una versión superior al servidor de zabbix
 
 
+130276:20200219:184142.048 cannot send list of active checks to "10.1.7.1": host [nombreHostA] not found
+  trapper/active.c
+  send_list_of_active_checks_json
+  Error al enviar lista de checks activos a un agente
+
+
+
 No podemos borrar un host, ni quitar el template, cuando tiene muchísimos items (150k) creados por un discovery.
   desde el template, deslinkar el host
   luego borrar todos los items seleccionando las aplicaciones en el host
+
+
+Al intentar añadir una macro a un template la interfaz web vuelve a la edición de macros sin tener nada.
+En los logs de php-fpm aparece:
+PHP message: PHP Warning:  Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini
+https://support.zabbix.com/browse/ZBX-12044
 
 
 
@@ -30,3 +43,15 @@ Están detrás de un proxy y son calculated? Seguramente es que el proxy no tien
 cannot create IPC key for path [zabbix_agentd.conf] id [l]: [2] No such file or directory
 Estamos arrancando con "-c fichero.conf"?
 Poner un path completo
+
+
+
+Query failed: ERROR: deadlock detected
+Podríamos verlo en el zabbix web y zabbix server.
+Una razón, no problemática, podría ser un borrado de un template que tarde bastante junto con la llegada de un LLD.
+El borrado del template es una TX que accede y borra items.
+La llegada del lld actualiza item_discovery.
+Puede producirse un deadlock entre ellos.
+Terminará con un fallo en zabbix web (habrá que repetir).
+O con un fallo en zabbix server que podremos ignorar (no pudo actualizar item_discovery porque se estaban borrado los items).
+

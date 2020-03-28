@@ -1,1 +1,3 @@
 prtconf
+
+lsconf

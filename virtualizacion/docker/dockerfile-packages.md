@@ -69,3 +69,7 @@ apt-get -qq update&& apt-get install -y -qq ca-certificates build-essential cmak
 # Alpine
 ARG SUPERVISOR_VERSION=3.3.4-r1
 RUN apk add --no-cache --update keepalived=$SUPERVISOR_VERSION
+
+
+# Arch / Pacman
+RUN pacman -Sy && pacman -S ... && pacman -Sc --noconfirm

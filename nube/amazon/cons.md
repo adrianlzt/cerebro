@@ -3,7 +3,9 @@ Did not account for increased latency after moving to EC2. In the datacenter the
 
 
 https://segment.com/blog/the-million-dollar-eng-problem/
+https://webcache.googleusercontent.com/search?q=cache:rT7cu7POT0UJ:https://segment.com/blog/the-million-dollar-eng-problem/+&cd=1&hl=es&ct=clnk&gl=fr
 Cuidado con los costes
+Lograron ahorrar 1M$
 
 
 
@@ -14,3 +16,8 @@ Data driven applications on AWS are already expensive because of the high traffi
 
 https://news.ycombinator.com/item?id=14366881
 empresa haciendo un programa para analizar los costes
+
+
+
+Hear how we cut $500,000 in cloud spend costs on the latest episode of The REWORK Podcast:
+https://rework.fm/spending-in-the-clouds/

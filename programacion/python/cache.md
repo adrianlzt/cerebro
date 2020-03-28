@@ -21,6 +21,7 @@ Si llamamos dos veces a get_pep(num), la segunda usará la cache automáticament
 No funciona si los parametros son un array.
 No usar si hacemos yield desde dentro de la función (ya que no se hará el yield al cachear)
 Si hay un raise dentro de la funión tampoco funciona.
+Parece que si tenemos logger dentro, se sigue ejecutando aunque esté la función cacheada.
 
 
 Since a dictionary is used to cache results, the positional and keyword arguments to the function must be hashable.
@@ -37,7 +38,12 @@ funcionCacheada.cache_clear()
 
 
 Si es un método de una clase (con self):
-https://stackoverflow.com/questions/14946264/python-lru-cache-decorator-per-instance
+https://pypi.org/project/methodtools/
+from methodtools import lru_cache
+class A(object):
+    @lru_cache()
+    def cached_method(self, args):
+        pass
 
 
 

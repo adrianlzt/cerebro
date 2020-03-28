@@ -58,11 +58,14 @@ user time y systime mirar time.md
 - Los fallos "minor" (attaches) no implican I/O (página en RAM
   pero su dirección no está en la TLB).
 
+Todos en https://www.kernel.org/doc/Documentation/filesystems/proc.txt
+
 cat /proc/<PID>/stat
   (10) %min_flt       # nº de fallos de página "minor" (attaches)
   (11) %cmin_flt      # number of minor faults with child's
   (12) %maj_flt       # nº de fallos de página "major"
   (13) %cmaj_flt      # number of major faults with child's
+  (22) %stime         # time the process started after system boot. Calcular fecha de arranque: date -d @$(cat /proc/$(pgrep -f telegraf.conf)/stat | awk "{printf \"%.0f\", $(grep btime /proc/stat | cut -d ' ' -f 2)+\$22/$(getconf CLK_TCK);}"). NO FIARSE de la fecha del directorio ni ficheros de /proc/PID/
   (23) %vsize         # VmSize%status (en bytes)
   (24) %rss           # resident%statm (en nº de páginas)
   (26) %start_code    # addr. above which program text can run
@@ -75,5 +78,3 @@ cat /proc/<PID>/stat
   (49) %arg_end       # addr. below which program command line is placed
   (50) %env_start     # addr. above which program environment is placed
   (51) %env_end       # addr. below which program environment is placed
-
-

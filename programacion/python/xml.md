@@ -17,6 +17,9 @@ from xml.etree.ElementTree import ElementTree
 conf = ElementTree(file=host_xml_file)
 conf.findall(...")
 
+Para cargar desde string:
+from xml.etree.ElementTree import fromstring
+
 Subset de xpath:
 https://docs.python.org/2/library/xml.etree.elementtree.html#xpath-support
 

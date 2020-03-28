@@ -35,3 +35,6 @@ https://docs.python.org/3/library/secrets.html#module-secrets
 import secrets
 secrets.token_bytes(24)
 b'wm\xe7\xd5\x14\x81XGd\x90\\H\xef\x01\x92\x9a|\xcbpb\x8d\xc6\xb4!'
+
+secrets.token_urlsafe()
+'URKHaefSb-TMWm7qh9w4GvBtPO7I4UsAAg0HPF6h-pI'

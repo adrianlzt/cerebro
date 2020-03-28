@@ -19,3 +19,8 @@ Esto creara un fichero en:
 Ahi pondremos:
 [Service]
 Environment="USER=coyote"
+
+
+O un fichero
+EnvironmentFile=/run/metadata/coreos
+

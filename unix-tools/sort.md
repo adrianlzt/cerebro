@@ -40,6 +40,9 @@ sort --random-sort
 Ordenar por una columna determinada
 sort -k 4
 
+Ordernar primero por la columna 4 y luego por la 2 separador "/"
+sort -k 4 -k 2 -t /
+
 
 Ordenar valores con K, G, etc (human):
 sort -h

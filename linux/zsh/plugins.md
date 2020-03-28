@@ -35,6 +35,7 @@ pass
 
 per-directory-history
   historial relativo a cada directorio. Se puede cambiar al historial global con control+g
+  se almacenan en $HISTORY_BASE
 
 pip
   autocompletado

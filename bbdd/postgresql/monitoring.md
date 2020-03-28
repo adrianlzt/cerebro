@@ -1,6 +1,14 @@
+mirar pg_stat_statements.md
+mirar pgmetrics.md
+
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
+Tiempo entre checkpoints (más datos en checkpoint.md)
+Mirar si al menos tenemos una hora de WALs, si tenemos menos, deberíamos incrementar el max_wal_size para reducir los checkpoints.
 
 Toda la info que queremos sacar lo tendremos catalog views o tables, y también tendremos que mirar el log file para buscar WARNINGS o ERRORS.
+
+Es mejor llevarse los números en crudos y no haciendo los cálculos en la query.
+Por ejemplo, el cálculo del tiempo entre checkpoints que se hace aqui (https://github.com/cavaliercoder/libzbxpgsql/blob/master/src/pg_bgwriter.c#L93) lo calcula en la bd, usando el tiempo respecto al último reset de las métricas. Esto implica que cuanto más largo sea ese tiempo, tendremos un valor medio cada vez más suavizado.
 
 
 Current view
@@ -15,6 +23,12 @@ Cumulatime view (podemos resetearlas con pg_stat_reset, podemos elegir si todas 
   pg_stat_user_xxx
   pg_statio_user_xxx
     functions, tables, indexes, sequences
+
+  Borrar todas las estadísticas. Útil resetearlas de vez en cuando? Si obtenemos las métricas con cálculos respecto al tiempo del reset, si no resteamos, estaremos obteniendo cada vez una media más suavizada:
+  select pg_stat_reset();
+
+  Ejemplo reset las estadísticas del bgwriter:
+  select pg_stat_reset_shared('bgwriter')
 
 
 # pg_stat_database
@@ -31,6 +45,25 @@ tup_returned/fetched/inserted/updated/etc
 temp_files/bytes si usamos mucho es que el work_mem se queda corto, posiblemente tengamos que incrementar el work_mem
 
 blk_read/write movimiento de memoria a disco
+
+En esta tabla tambien tenemos: blk_read_time y blk_write_time. Tiempo de las llamadas IO en ms.
+Está desactivado por defecto porque hace muchas llamadas al SO para obtener el tiempo actual.
+https://www.postgresql.org/docs/current/runtime-config-statistics.html#GUC-TRACK-IO-TIMING
+Hay una herramienta para poder medir ese overhead para decidir si activar estas métricas.
+Al ejecutar la herramienta debemos obtener >90% por debajo de 1us para considerarlo adecuado (la doc oficial más o menos dice eso)
+Para activar esta medición:
+alter database "zabbix-server" set track_io_timing=on;
+
+
+
+# pg_stat_bgwriter
+Como se flushea la memoria a disco
+https://www.influxdata.com/blog/metrics-to-monitor-in-your-postgresql-database/
+
+buffers_backend – via backends
+buffers_clean – via the background writer
+buffers_checkpoint – via the checkpoint process
+Ideally you want most of the flushes happening via the checkpoint process, but sometimes the background writer steps in to help lighten the I/O load that often occurs in the checkpoint process. An increase in buffers written directly by backends could mean a write-intensive load that is creating buffers so fast the checkpoint process can’t keep up.
 
 
 
@@ -83,5 +116,15 @@ Podemos también ir mirando la delta de los bytes que se están procesando en el
 La gráfica puede tener picos por que los envíos pueden ir a golpes y porque los VACUUM no tiene que aplicarse automáticamente, así que pueden hacerse esperar.
 
 Cuidado, si los slaves no flushean los wal, el master los mantendrá llenando su disco.
+Número de WALs en disco (hace falta permiso especial para esta función):
+SELECT COUNT(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ '^[0-9A-F]{24}';
+
 
 Monitorizar conflictos, mirar ha_scalability.md
+
+
+
+# Checkup
+gitlab.com/postgres-ai/postgres-checkup
+
+App en go para lanzar a mano cada x tiempo y obtener reportes del estado y futuras estimaciones.

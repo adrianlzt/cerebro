@@ -7,3 +7,6 @@ ejecuta el comando cada N segundos
 --differences
 -d
 va resaltando los cambios entre cada refresco
+
+-d=permanent
+deja resaltados los cambios desde el comienzo de watch

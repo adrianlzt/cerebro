@@ -27,7 +27,9 @@ yaourt -S aur/esptool-git
 Cargar el firmware en el nodemcu:
 sudo esptool.py --port /dev/ttyUSB0 write_flash -fm dio -fs 32m 0x00000 nodemcu-master-6-modules-2016-02-14-23-31-55-integer.bin
   IMPORTANTE poner los param: -fm dio -fs 32m
-   
+
+Podemos meter nuestro user en el grupo uucp para poder escribir sobre /dev/ttyUSB0
+
 
 # Conectando a la consola del nodemcu
 Esto deberia devolvernos un prompt ('>') segun conectemos.
@@ -35,6 +37,8 @@ Si no lo vemos, pulsar el boton de reset.
 
 Por defecto:
 sudo picocom -b 9600 /dev/ttyUSB0
+  Para salir control+a control+x
+
 
 Si queremos podemos subir la velocidad:
 > uart.setup(0, 115200, 8, 0, 1, 1 )
@@ -51,6 +55,13 @@ Mas comandos en el apartado terminal
 # Subiendo codigo
 http://nodemcu.readthedocs.org/en/dev/en/upload/
 http://lb9mg.no/2015/05/30/first-steps-with-nodemcu/
+
+adafruit-ampy
+pip install adafruit-ampy
+Podemos meter nuestro user en el grupo uucp para poder escribir sobre /dev/ttyUSB0
+ampy -p /dev/ttyUSB0 -b 115200 ls
+Me falla
+
 
 Arch:
 yaourt -S aur/esplorer

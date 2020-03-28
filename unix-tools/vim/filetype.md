@@ -1,3 +1,6 @@
+Se muestra en la esquina inferior derecha
+
+
 Obtener el filetype actual:
 :set filetype?
 :se ft?
@@ -10,3 +13,8 @@ Obtener el filetype actual:
 Forzar un filetype en un fichero.
 Poner esto al comienzo:
 # vim:ft=ansible:
+
+
+Recargar ft
+:w
+:e

@@ -1,3 +1,5 @@
+https://www.postgresql.org/docs/current/sql-delete.html
+
 Si tenemos problemas al borrar porque está bloqueando todo lo que va a borrar mientras se ejecuta, o falla la tx por falta de espacio, podemos intentar borrar con una subselect:
 https://stackoverflow.com/questions/3421226/deleting-many-rows-without-locking-them
 
@@ -16,6 +18,14 @@ DELETE FROM history_default i
   USING items_to_be_deleted
   WHERE history_default.itemid=items_to_be_deleted.itemid and clock < 1559567933;
 
+
+Podemos hacer un returning para ver que hemos borrado, que metido en un TX nos sirve para ver que estamos borrando antes de comitear
+begin;
+delete from history where foo='bar' returning foo;
+
+
+No podemos hacer joins (hay una forma no standar), lo que hacemos es usar un subselect:
+DELETE FROM films WHERE producer_id IN (SELECT id FROM producers WHERE name = 'foo');
 
 
 

@@ -1,6 +1,18 @@
+https://docs.ansible.com/ansible/latest/plugins/callback.html
+
 http://docs.ansible.com/developing_plugins.html#callbacks
 https://github.com/ansible/ansible/tree/devel/plugins/callbacks
 http://jpmens.net/2012/09/11/watching-ansible-at-work-callbacks/
+
+https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/callback/unixy.py
+callback que saca el resultado en modo unix
+
+
+# usar callback
+[defaults]
+stdout_callback = unixy
+
+
 
 Por cada tarea que hace ansible podemos realizar una acción.
 

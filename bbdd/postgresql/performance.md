@@ -14,6 +14,11 @@ Los índices afectan al coste de INSERT/UPDATE.
 
 
 
+https://postgresqlco.nf/en/doc/param/stats_temp_directory/
+stats_temp_directory apuntar a un SSD para reducir IO
+
+
+
 # Performance
 La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias entradas en la misma query.
 
@@ -45,19 +50,26 @@ https://github.com/gocardless/pgreplay-go/
 reproduce los writes?
 
 https://github.com/laurenz/pgreplay
+En una db, activamos el logging para guardar todas las transacciones.
+Luego usamos pgreplay para reproducir esas llamadas en el mismo tiempo o más rápido.
+
 
 https://github.com/darold/pgbadger
 pg_badger which can run parallel jobs
 pgbadger is for log analysis when during experiments we are "okay" to turn the full query logging on -- it's a great tool being developed for years; it can produce JSON, so it's machine/integration-friendly
 
-https://gitlab.com/postgres-ai-team/nancy
+
+https://gitlab.com/postgres-ai/nancy
 pg_badger is also used by nancy, an benchmark experiment driver, so you can replay your logs, then change something, like add an index, and replay them again and nancy will show you to differential performance:
 
+Parece que vale para lanzar un nuevo postgres, cargar una schema determinado, lanzar unas queries, luego realizar un cambio y lanzar las mismas queries y ver las diferencias en rendimiento.
 
 
 
 ## pgbench
 https://www.postgresql.org/docs/current/pgbench.html
+
+PGPASSWORD=xxx pgbench -U zabbix_server -h 172.16.0.95 zabbix -f history_test_basico.sql
 
 
 Podemos pasar scripts customizados para simular la carga que necesitemos.
@@ -77,6 +89,13 @@ pgbench -f insert-prueba2.sql pruebas
 -c N
   número de clientes concurrentes (default 1)
 
+-r / --report-latencies
+  saca un resumen de latencias al final de la ejecución
+
+-L / --latency-limit=limit
+  mostrar tx que tarden más de "limi" ms
+  al terminar nos mostrará algo tipo: number of transactions above the 500.0 ms latency limit: 249/1607 (15.495 %)
+
 
 it's quite convenient in many cases to use pgbench, when logs collections is not an option due to some reason -- instead of workload replay we can use workload simulation, based on underdtanding how every query group from pg_stat_statements looks like (first of all, the main important thing is % of calls in overall picture). It's good that pgbench allows to set "weights" for every workload "piece", using multiple -f options and @weght (for example, "pgbench -f tx1.sql@20 -f tx2.sql@80", etc)
 
@@ -86,11 +105,8 @@ Test setup:
 
 
 
-CREATE TABLE partbench_ (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2
-INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL);
-CREATE TABLE partbench (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2
-INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL)
-PARTITION BY RANGE (date);
+CREATE TABLE partbench_ (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2 INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL);
+CREATE TABLE partbench (date TIMESTAMP NOT NULL, i1 INT NOT NULL, i2 INT NOT NULL, i3 INT NOT NULL, i4 INT NOT NULL, i5 INT NOT NULL) PARTITION BY RANGE (date);
 \o /dev/null
 select 'CREATE TABLE partbench' || x::text || ' PARTITION OF partbench
 FOR VALUES FROM (''' || '2017-03-06'::date + (x::text || '

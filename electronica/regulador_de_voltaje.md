@@ -1,3 +1,8 @@
+# Regulador DC-DC
+Input: 6-38
+Output: 1.25-36
+https://www.ebay.com/itm/DC-Step-Down-Voltage-Constant-Current-Buck-Regulator-Battery-Charger-LED-Driver/191902394789
+
 # NCP1117
 El NodeMCU usa un NCP1117 (exactamente el NCP1117ST33T3G) para bajar de 4.75-10V a 3.3V estables.
 

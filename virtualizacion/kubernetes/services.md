@@ -5,6 +5,8 @@ Ejemplo, un backend que es accedido por un frontend.
 
 El service decidirá a que pods ataca según un selector (una label con un valor).
 
+mirar kube-proxy.md
+
 
 
 # Tipos
@@ -68,6 +70,25 @@ https://metallb.universe.tf/
 
 Cloud providers no integrados directamente en el código: https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller.md#examples
 
+Ejemplo:
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-mariadb-slave-lb
+spec:
+  ports:
+  - name: mysql
+    port: 3306
+    protocol: TCP
+    targetPort: mysql
+  selector:
+    app: mariadb
+    component: slave
+    release: db
+  sessionAffinity: None
+  type: LoadBalancer
+
+
 
 
 ## ExternalName
@@ -109,7 +130,7 @@ Dos tipos:
 
 Kubernetes chequea periódicamente el selector de los services y guarda el resultado en un objeto Endpoint.
 Si queremos ver los endpoints de un service (y comprobar que apunta a donde esperamos)
-kubectl get endpoints NOMBRESVC
+kubectl get endpoints NOMBRESVC -o yaml
 
 
 

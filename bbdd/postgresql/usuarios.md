@@ -1,3 +1,5 @@
+https://www.postgresql.org/docs/12/user-manag.html
+
 Los usuarios y los grupos son roles.
 Los roles pueden agruparse jerárquicamente (un rol contienen otros roles)
 Son "nombres" que tienen permisos.
@@ -25,14 +27,47 @@ El ownership solo puede tenerlo un role, el que crea la tabla. Se puede cambiar:
 Solo el owner puede DROP/ALTER/GRANT
 
 
-Los superusers pueden hacer cualquier cosa. Incluso pueden borrar las trazas de lo que han hecho.
 No se puede hacer REVOKE a superadmins.
+Los superusers pueden hacer cualquier cosa. Incluso pueden borrar las trazas de lo que han hecho.
 
 
 
 Para consultar los usuarios y sus roles
 \du+
 SELECT * FROM pg_roles; <- se puede ejecutar estando en cualquier bd
+SELECT rolname, rolpassword FROM pg_authid;
+  aqui vemos la pass en md5
+
+Si queremos meter la pass directamente encriptada podemos generarla asi (el nombre de role debe ponerse como sufijo):
+echo -n "CONTRASEÑAROLE" | md5sum | awk '{print "md5"$1;}'
+Ejemplo, user=pepe contraseña=bla123, pondríamos:
+echo -n "bla123pepe" ...
+
+Con ansible: "{{ 'md5' + (password + user) | hash('md5') }}"
+
+
+
+Consultar los grants en una db:
+SELECT grantee as role, table_schema as schema, table_name as table, privilege_type FROM information_schema.role_table_grants;
+
+SELECT grantee
+      ,table_catalog
+      ,table_schema
+      ,table_name
+      ,string_agg(privilege_type, ', ' ORDER BY privilege_type) AS privileges
+FROM information_schema.role_table_grants
+WHERE grantee != 'postgres'
+--  and table_catalog = 'somedatabase' /* uncomment line to filter database */
+--  and table_schema  = 'someschema'   /* uncomment line to filter schema  */
+--  and table_name    = 'sometable'    /* uncomment line to filter table  */
+GROUP BY 1, 2, 3, 4;
+
+
+\z table
+  para permisos de una tabla
+
+
+Los usuarios tendrán los grants puestos directamente a él, a los roles heredados y los grants de public.
 
 
 ## Crear usuarios (roles con login privilege)
@@ -58,8 +93,9 @@ http://www.postgresql.org/docs/devel/static/sql-alteruser.html
 
 ALTER USER 'pepe' ...
 
-### cambiar password
+### cambiar password / contraseña
 alter user postgres password 'xxx';
+ALTER ROLE partman PASSWORD 'par3456man';
 
 ### dar roles a posteriori:
 alter user usuario createdb;
@@ -69,6 +105,15 @@ alter user usuario createdb;
 https://www.postgresql.org/docs/current/sql-grant.html
 https://www.postgresql.org/docs/current/functions-info.html#FUNCTIONS-INFO-ACCESS-TABLE
   comprobar si un usuario tiene determinados permisos, ejemplo has_any_column_privilege(user, table, privilege)
+
+
+Como se chequean los permisos:
+Antes de nada, no podemos conectar si no tenemos CONNECT
+Do you have `USAGE` on the schema?
+    No:  Reject access.
+    Yes: Do you also have the appropriate rights on the table?
+        No:  Reject access.
+        Yes: Check column privileges.
 
 Chequear permisos de una bbdd:
 \dp
@@ -117,6 +162,10 @@ CUIDADO! Si quitamos a un role la opción de hacer INSERT, pero ese role pertene
 Siempre que tengas un camino con permiso con alguno de los roles, podras hacer las cosas.
 
 
+Dar permiso de login a un role:
+ALTER ROLE nombre LOGIN;
+
+
 Permiso para acceder a una database:
 GRANT CONNECT ON DATABASE NombreDatabase to "user";
 
@@ -132,6 +181,19 @@ GRANT ALL ON DATABASE basededatos TO joe;
 Quitar permisos a un role:
 REVOKE SELECT ON public.events FROM auditor;
 
+
+### Privilegios por defecto
+Cuando un usuario crea tablas las crea siendo su dueño.
+Podemos configurar el usuario para que cuando cree tablas de permisos a otros roles, a parte de a si mismo.
+
+Consultar que privilegios por defecto da cada user:
+\ddp
+
+Ejemplo para que las tablas creadas por foo le den permisos de lectura a bar:
+ALTER DEFAULT PRIVILEGES
+FOR USER foo
+IN SCHEMA schema_name
+GRANT SELECT ON TABLES TO bar;
 
 
 ## Borrar usuarios ##
@@ -181,3 +243,26 @@ pg_ctl reload
 ## pg_ident.conf ##
 Mapeos entre usuarios del SO y de la base de datos
 Aquí se define que usuarios del SO pueden conectarse a que usuarios de la BD
+
+
+
+# PUBLIC
+https://wiki.postgresql.org/images/d/d1/Managing_rights_in_postgresql.pdf
+
+Role especial heradado por todos los otros roles.
+Por defecto tiene permisos, sobre todos los public schema:
+  USAGE: acceder a todos los objetos (puede listar, pero no hacer select)
+  CREATE: crear nuevos objetos (puede crear, por ejemplo, nuevas tablas)
+
+
+Con \dp podemos ver que permisos tiene.
+Es el que aparece sin nombre, ejemplo:
+=UC/postgres
+
+
+Quitar permisos por defecto de PUBLIC:
+REVOKE ALL ON DATABASE db_name FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+
+Los roles que creemos tendrán que tener los permisos CONNECT a la db y USAGE sobre el schema public.
+

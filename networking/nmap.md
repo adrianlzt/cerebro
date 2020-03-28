@@ -1,4 +1,12 @@
+zmap para escanear en internet, mucho más rápido
+
+
 http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/
+
+nmap -p- --min-rate 10000 -oA nmap-alltcp 1.2.3.4
+nmap -p 22,80,1337 -sC -sV -oA nmap-tcpscripts 1.2.3.4
+  elegimos solo los puertos de los que queremos obtener más info
+
 
 Escaner de red.
 
@@ -14,7 +22,12 @@ Escaner de red.
 
 -sV
   obtener servicios y sus versiones
+  Si devuelve tcpwrapped es que puede haber algún tipo de software protegiendo el puerto
+  https://security.stackexchange.com/questions/23407/how-to-bypass-tcpwrapped-with-nmap-scan
 
+
+Escanear todos los puertos de una IP, enviando 10k pks/s y salvando el resultado en el fichero
+nmap -p- --min-rate 10000 -oA scans/nmap-alltcp 10.10.10.147
 
 Escaneo de una red para ver que ips contestan
 nmap -sP x.x.x.x/a
@@ -27,6 +40,12 @@ nmap -p 22 192.168.1.1/24
 
 Escanear una red:
 nmap 192.168.55.*
+
+Escanear tomando las ips/redes de un fichero de texto
+nmap -iL fichero...
+
+Output en formato normal:
+nmap -oN fichero.txt ...
 
 
 
@@ -66,6 +85,9 @@ Parece que no es fácil comprobar que un puerto UDP está abierto.
 nmap --max-retries 5 --min-rtt-timeout 10 10.0.1.1
   metemos más retries y mas tiempo de espera
   no lo he probado
+
+# Timing parameters
+https://www.hackingarticles.in/nmap-scan-with-timing-parameters/
 
 # SNMP
 nmap -P0 -v -sU -p 161 10.0.2.5

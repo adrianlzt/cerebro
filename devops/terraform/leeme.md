@@ -20,3 +20,6 @@ provisioner "local-exec" {
     EOT
   }
 
+
+
+Seguir mirando terraform.md

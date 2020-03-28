@@ -67,15 +67,16 @@ Type=idle
 
 
 # Dependencias / Orden
-dependency significa que si la unidad A se activa, la unidad B debe activarse también (se arrancarán en paralelo)
-order significa que la unidad A debe activarse antes de la B
+dependency significa que si la unidad A se activa, la unidad B debe activarse también (se arrancarán en paralelo) (Requires= Wants=). Con Wants= el servicio arrancará aunque lo que quiere falle.
+order significa que la unidad A debe activarse antes de la B (After= Before=)
 Si nuestra app, grafana por ejemplo, necesita de mysql, meteremos un override (systemctl edit grafana-server) con:
 [Unit]
 Requires=mariadb.service
 After=mariadb.service
 
+Si solo ponemos requires, arrancará grafana y mariadb al mismo tiempo.
+Si solo ponemos After=, y mariadb no está marcado para arrancar, grafana arrancará pero no tendrá mariadb disponible.
 
-Esto hará que al habilitar nuestra unidad se cree un enlace entre esta unidad y /etc/systemd/system/multi-user.target.wants/
 
 
 Dependencias que requiere nuestra unidad:
@@ -194,3 +195,8 @@ Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/echo "he arrancado"
 
+
+
+# Working directory
+[Service]
+WorkingDirectory=/home/pi

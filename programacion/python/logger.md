@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s %(filename)s %(levelname)s %(message)s',
 logger = logging.getLogger(__name__)
 
 class ...
-   logger.debug("Service %s scheduled each %s minutes" % (s[SERVICE_NAME],s[SERVICE_PERIOD]))
+   logger.debug("Service %s scheduled each %s minutes", s[SERVICE_NAME], s[SERVICE_PERIOD])
 
 
 # Logging en varios modulos
@@ -30,11 +30,19 @@ Si ponemos un nombre "myapp.models.pools", estaremos heredando del root, de myap
 
 
 # Formato
-FORMAT = "[%(levelname)s %(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
+FORMAT = "[%(levelname)8s %(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(level=logging.ERROR, format=FORMAT)
 
 Ejemplo:
-[DEBUG traza.py:21 -             <module>() ] mensaje
+[CRITICAL prueba.py:18 -             <module>() ] prueba
+[ WARNING prueba.py:19 -             <module>() ] prueba
+[    INFO prueba.py:22 -                 pepe() ] test pepe
+
+Con fecha:
+FORMAT = "%(asctime)s %(levelname)8s %(filename)s:%(lineno)s - %(funcName)20s(): %(message)s"
+logging.basicConfig(format=FORMAT, level=logging.DEBUG)
+2019-11-26 14:44:52,447 CRITICAL prueba.py:18 -             <module>(): prueba
+
 
 
 Definir el nivel de logger externo a una app:
@@ -157,6 +165,7 @@ record.__dict__
 # Niveles
 
 Level	    Numeric value
+FATAL     50 (mejor usar critical: https://stackoverflow.com/questions/31170317/what-is-the-difference-between-logging-fatal-and-logging-critical)
 CRITICAL	50
 ERROR	    40
 WARNING	  30
@@ -165,8 +174,8 @@ DEBUG	    10
 NOTSET	  0
 
 logger.debug("...
-logger.warn("...
 logger.warning("...
+logger.exception -> saca error más el trace
 
 
 # Parametros custom

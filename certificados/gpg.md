@@ -36,6 +36,14 @@ gpg --edit-key KEYID
 gpg> passwd
 gpg> save
 
+También podemos añadir más direcciones de email:
+gpg> adduid
+  nos pedira nombre, comentario y email
+gpg> save
+
+gpg --send-keys key-id (o email)
+para enviar a los servers
+
 
 ## Encriptar/desencriptar
 echo "otra" | gpg -a -r destinatario@mail.com -e - | gpg -d -
@@ -71,6 +79,7 @@ La podemos subir por ejemplo al servidor de claves del MIT: https://pgp.mit.edu/
 Todos los servers de claves GPG están sincronizados
 http://keys.gnupg.net/
 https://pgp.mit.edu/
+Si queremos usar otro server: gpg --keyserver keys.openpgp.org ...
 
 La key-id es el nombre que aparece cuando hacemos gpg -k o gpg -K al lado de la longitud de la clave. Ejemplo: "pub   2048R/403E82AF 2019-03-05" -> 403E82AF
 

@@ -136,3 +136,8 @@ sed "$ s/,//"
 
 # Cambiar muchos espacios en blanco por uno solo
 sed "s/\s\+/ /g"
+
+
+# Sacar las n primeras líneas
+ps -ef | sed -u 10q
+La diferencia con head es que sed solo gasta del stream las N líneas que le digamos.

@@ -1,18 +1,30 @@
+https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/
 https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 
 Se distinguen entre service accounts (manejadas por Kubernetes) y normal accounts (gestionadas por el admin del cluster).
+
+Las service accounts pertenecen a un namespace y están pensadas para los pods.
 
 Para las normal accounts tenemos varios métodos de auth, siendo el más típico certificado X509
 Parece que openshift usa tokens.
 
 
-# Admin
+Authentication: permitir acceso al cluster
+Authorization: roles/bindings para permitir acceso al usuario a distintos objetos
+
+
+
+# Authentication
+
+## Token
+
+## Admin
 Podemos copiarnos el fichero /etc/kubernetes/admin.conf a nuestro ~/.kube/config para acceder como admin (mejor mergearlo con lo que ya tengamos)
 Quitar la sección de cluster.certificate-authority-data si no estamos atacando a la IP registrada en el cert, y poner "insecure-skip-tls-verify: true"
 
 
 
-# Gestion de certificados para usuarios
+## Gestion de certificados para usuarios
 https://kubernetes.io/docs/concepts/cluster-administration/certificates/
 
 https://www.linkedin.com/pulse/adding-users-quick-start-kubernetes-aws-jakub-scholz
@@ -35,30 +47,13 @@ kubectl config set-credentials adrian --client-certificate=adrian.pem --client-k
 kubectl config set-context demo-adrian --cluster=demo --namespace=default --user=adrian
   los "context" relacionan un cluster, un usuario y un namespace
 
-Nos falta asociar (RoleBinding) el usuario (User) a un rol (Role)
-
-Podemos asociarle uno de los roles ya existentes (los que no empiecen por "system:"):
-kubectl get clusterroles
-
-cluster-admin -> super role
-cluster-* -> que aplican a todos los namespaces
-admin/edit/view -> pensados para proveer esos permisos en uno o varios namepsaces
-  admin: allows read/write access to most resources in a namespace, including the ability to create roles and rolebindings within the namespace. It does not allow write access to resource quota or to the namespace itself.
-  edit: Allows read/write access to most objects in a namespace. It does not allow viewing or modifying roles or rolebindings
-  view: Allows read-only access to see most objects in a namespace. It does not allow viewing roles or rolebindings. It does not allow viewing secrets, since those are escalating
-
-Darle permisos máximos al usuario adrian:
-kubectl create clusterrolebinding admin-adrian --clusterrole=cluster-admin --user=adrian
-
-Si queremos asignar un rol, o clusterrol, para un determinado namespace usaremos:
-kubectl create rolebinding NOMBRE --role|--clusterrole NOMBRE --user NOMBRE
-
-Si nos equivocamos al poner el nombre del rol no habrá ningún error.
+Nos falta asociar (RoleBinding) el usuario (User) a un rol (Role) (que sería authorization)
 
 
 
 
-# Roles
+
+# Authorization / Roles
 Los namespaces no tienen roles por defecto.
 
 Los roles los tenemos de dos tipos, clusterrole o role a secas.
@@ -80,3 +75,26 @@ rules:
 
 kubectl create -f role-deployment-manager.yaml
 
+
+Podemos asociarle uno de los roles ya existentes (los que no empiecen por "system:"):
+kubectl get clusterroles
+
+cluster-admin -> super role
+cluster-* -> que aplican a todos los namespaces
+admin/edit/view -> pensados para proveer esos permisos en uno o varios namepsaces
+  admin: allows read/write access to most resources in a namespace, including the ability to create roles and rolebindings within the namespace. It does not allow write access to resource quota or to the namespace itself.
+  edit: Allows read/write access to most objects in a namespace. It does not allow viewing or modifying roles or rolebindings
+  view: Allows read-only access to see most objects in a namespace. It does not allow viewing roles or rolebindings. It does not allow viewing secrets, since those are escalating
+
+Darle permisos máximos al usuario adrian:
+kubectl create clusterrolebinding admin-adrian --clusterrole=cluster-admin --user=adrian
+
+Si queremos asignar un rol, o clusterrol, para un determinado namespace usaremos:
+kubectl create rolebinding NOMBRE --role|--clusterrole NOMBRE --user NOMBRE
+
+Si nos equivocamos al poner el nombre del rol no habrá ningún error.
+
+
+## Comprobar permisos
+Podemos usar este comando para comprobar si un usuario tiene determinados permisos:
+kubectl auth can-i list pods --namespace engineering --as bob

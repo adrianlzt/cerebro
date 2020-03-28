@@ -1,5 +1,8 @@
-Periódicamente coge los triggers con funciones de tiempo (nodata, last, etc) y comprueba si saltan.
+Periódicamente coge los triggers con funciones de tiempo (nodata,date,dayofmonth,dayofweek,time,now, función "is_time_function" en misc.c) y comprueba si saltan.
 En caso positivo, genera los eventos y los chequea contra las action para ver si tiene que avisar.
+
+Todos los timer se ejecutan cada 30 segundos, todos al mismo tiempo.
+Se ejecuta a :00 y :30, independientemente de cuanto tiempo pasen procesando.
 
 
 process_actions (process all actions of each event in a list)

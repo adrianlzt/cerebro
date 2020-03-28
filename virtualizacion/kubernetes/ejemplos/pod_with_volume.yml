@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nombre-recurso
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: task-pod
+spec:
+  volumes:
+    - name: task-volume
+      persistentVolumeClaim:
+       claimName: nombre-recurso
+  containers:
+    - name: task-container
+      image: busybox
+      command:
+        - sleep
+        - infinity
+      volumeMounts:
+        - mountPath: "/mnt"
+          name: task-volume

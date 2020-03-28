@@ -1,0 +1,3 @@
+# reserved word / palabras reservadas
+SELECT a una columna que usa una palabra reservada:
+select "limit" from ...

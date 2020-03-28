@@ -75,9 +75,14 @@ fluxctl --k8s-fwd-ns flux list-images
   aquí podremos ver, por ejemplo, si un workload tiene disponible una imagen nueva pero no la está usando
   las imágenes se ordenan de más nuevas (arriba) a más antiguas (abajo)
 
+Si queremos solo ver las imágenes para un determinado workload:
+fluxctl list-images -w demo:deployment/podinfo
+
+
 
 
 # Config
+Todos los cambios que hagamos con fluxctl en realidad lo que harán es un commit en el repo. Y luego el pod verá los cambios y ejecutará modificaciones si es necesario.
 
 ## Actualización automática ante nuevas imágenes
 Una opción es hacerlo con fluxctl (que modificará el repo para meter esa annotation):
@@ -92,3 +97,21 @@ metadata:
 
 Podemos también seleccionar que imágenes se usarán, por ejemplo si solo queremos 1.x.x:
 https://docs.fluxcd.io/en/latest/tutorials/driving-flux.html?highlight=tag.init#driving-flux
+
+Ejemplo, actualizar siempre que sea una imagen 1.4.*
+fluxctl policy -w demo:deployment/podinfo --tag-all='1.4.*'
+
+La diferencia entre --tag y --tag-all es que este último aplica a todas las imágenes del pod (para casos de pods con multiples containers).
+
+Para ver los distintos tipos de filtrado que podemos usar para seleccionar imágenes:
+https://docs.fluxcd.io/en/1.18.0/references/fluxctl.html#image-tag-filtering
+
+Ejemplo para que solo actualice a tags tipo A.B.C (en la doc dice que "--tag-all='semver:*'" hace eso, pero en una prueba que hice me pillo una tag tipo NNN):
+--tag-all='regexp:^([0-9]+\.[0-9]+\.[0-9]+)' --automate
+
+
+
+## Borrado
+Podemos hacer que flux borre objetos cuando los deje de detectar
+https://docs.fluxcd.io/en/1.18.0/faq.html#will-flux-delete-resources-when-i-remove-them-from-git
+Tendremos que pasar el parámetro --sync-garbage-collection al fluxd.

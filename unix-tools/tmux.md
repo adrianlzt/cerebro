@@ -256,6 +256,18 @@ No hay opción de hacer esto más user-friendly: https://github.com/tmux/tmux/is
 
 # Plugins
 
+## TMUX plugin manager: tpm
+prefix + I
+    Installs new plugins from GitHub or any other git repository
+    Refreshes TMUX environment
+
+prefix + U
+    updates plugin(s)
+
+prefix + alt + u
+    remove/uninstall plugins not on the plugin list
+
+
 ## Copycat
 https://github.com/tmux-plugins/tmux-copycat
 n: next

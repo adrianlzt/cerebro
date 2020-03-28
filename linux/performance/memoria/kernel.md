@@ -1,7 +1,7 @@
 http://unix.stackexchange.com/questions/97261/how-much-ram-does-the-kernel-use
 
-Memoria consumida por modulos (disk? ram?)
-$ awk '{print $1 " " $2 }' /proc/modules | head -5
+Memoria consumida por modulos
+awk '{print $1 " " $2 }' /proc/modules | sort -nrk2 | numfmt --from=iec --to=iec --field 2 | column -t
 
 
 https://www.kernel.org/doc/Documentation/kmemleak.txt

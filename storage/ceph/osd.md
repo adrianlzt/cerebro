@@ -77,7 +77,7 @@ id is the OSD# and weight is value from 0 to 1.0 (1.0 no change, 0.5 is 50% redu
 
 
 # Consumo de memoria
-Cada osd consumirá lo definido en osd_memory_target
+Cada osd consumirá lo definido en osd_memory_target (bytes)
 Esa variable la habremos definido en all.yml (si desplegamos con ceph-ansible).
 Ese valor se verá reflejado en /etc/ceph/ceph.conf como:
 [osd]

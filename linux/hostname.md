@@ -17,3 +17,8 @@ RedHat like usan SystemV
 
 Para definir el fqdn correctamente:
 hostname hostname.domainname
+
+
+
+/proc/sys/kernel/hostname
+

@@ -1,3 +1,29 @@
+# vim-gitgutter
+Mostrar las líneas modificadas y gestionar los cambios pendientes
+
+F10             activar/desactivar columna y colores con cambios
+]c              siguiente cambio
+[c              cambio anterior
+,hu             quitar la modificación, dejandolo como estuviese en el commit anterior
+,hs             meter ese cambio en el stage (nos permite commitear solo unos pocos cambios de un fichero). Podemos hacer selección visual para coger varias líneas
+,hp             sobre un cambio, nos muestra una línea con el valor antiguo y otra con el nuevo
+                si queremos stagear solo cierta parte de un cambio de una línea, hacemos el ,hp, saltamos a esa preview (C-w C-w), modificamos lo que no queremos y guardamos (:w)
+:GitGutterFold  esconder todo menos los cambios. 'zr' para mostrar contexto (3 líneas por encima y por debajo). Mismo comando de nuevo para deshacer
+
+
+# vim-fugitive
+https://github.com/tpope/vim-fugitive
+:G           git status
+:Gblame      mostrar en vim git blame. Si damos intro sobre una linea nos lleva diff del commit
+:Gdiffsplit  mostrar la ventana partida con git diff
+:Git xxx     ejecutar git xxx
+:Git xxx %   ejecutar git xxx, el % es el nombre del fichero que tenemos abierto
+:Gwrite      hacer un git add al fichero
+:Gcommit
+:Gcommit -v  si queremos la vista como git commit -v
+
+
+#
 *git-vim.txt*  Git Bindings for Vim
 
 ==============================================================================

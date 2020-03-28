@@ -531,3 +531,15 @@ $GOPATH/bin/telegraf --config telegraf.conf --test
 Tambien, para probar, podemos poner el outputs.file a stdout y opciones para sacar las cosas cada 2 segundos:
 interval = "2s"
 flush_interval = "2s"
+
+
+
+# Errores
+
+## Metric buffer overflow
+Ejemlo:
+2020-02-11T12:39:30Z W! [outputs.zabbix] Metric buffer overflow; 5652 metrics have been dropped
+
+https://github.com/influxdata/telegraf/issues/6336
+
+Input plugins write into the memory buffer and outputs take from the buffer and write to the database, but if the inputs are producing more metrics than the size of the buffer they may be almost immediately dropped.

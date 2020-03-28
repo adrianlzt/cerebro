@@ -45,10 +45,58 @@ stepout salir a la funcion de arriba
 n       siguiente linea
 stack   mostrar stack
 
+condicinonal breapoints
+cond b2 num == 3
+
+Podemos cambiar valores de variables:
+set a = 3
+
+Podemos llamar funciones (limitado)
+call myFunc(2,3,4)
+
+Podemos listar las funciones disponibles y seleccionar con regex
+
+## Docker
+Para poder correr delve dentro de un container
+docker run --security-opt=apparmor=unconfined" --cap-add=SYS_PTRACE ...
+
+También podemos hacer un "docker run" para arrancar delve en modo servior y conectar remotamente
+
+delve connect IP:PORT
+
+Para mapear los ficheros del container a nuestro path local:
+~/.dlv/config.yml
+  tenemos que forzar el path (mirar charla fosdem 2020 advanced debugging go)
+> config
+  aqui parece que también se puede configurar
+
 
 ## Debug tests
 dlv test -- -test.run TestZabbixLLDForceSamePointSeveralPushes$
 (dlv) b TestZabbixLLDForceSamePointSeveralPushes
+
+
+## Scripting
+https://github.com/go-delve/delve/blob/master/Documentation/cli/starlark.md
+Scriptable con starlark (https://github.com/bazelbuild/starlark)
+
+Nos permite crear funciones para usar en el debugger
+
+
+## rr (deterministic debugging)
+
+### Manual
+Build sin optimizaciones
+
+### Automático
+dlv debug --backend=rr
+
+> b main.main
+> c
+
+### Scripting
+Un ejemplo interesante hacemos un pequeño script que ejecuta el programa hasta que falla.
+Y en ese momento tenemos el record para hacer debug
 
 
 # Trace
@@ -111,3 +159,22 @@ hace dump de las corutinas y mata el proceso.
 
 Tal vez esté en /var/log/messages
 O en el log del programa
+
+
+# GDB
+No funciona por defecto porque los binarios son DWARF comprimidos.
+Tenemos que compilar go sin compresión dwarf
+
+Creo que hay que cargar algun .py para que se vea bien (mirar fosdem 2020 advanced debugging go)
+bit.ly/adv_debug_goF0SD3M
+
+No funciona bien, pero puede ser útil para CGo
+
+
+> b main.main
+> c
+> run
+
+
+
+# Go / ASM / reverse engineering

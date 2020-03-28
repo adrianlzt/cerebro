@@ -26,7 +26,10 @@ ceph osd unset norebalance
 
 # Reiniciar un osd
 Seguir el mismo esquema como si fuesemos a parar un nodo temporalmente:
-ceph osd set noout; ceph osd set norebalance; systemctl restart ceph-osd@NUM
+ceph osd set noout; ceph osd set norebalance
+systemctl restart ceph-osd@NUM
+ceph status
+  hasta que no enganche de nuevo el osd veremos: 1 osds down
 ceph -s
   esperar hasta que estemos GREEN
 ceph osd unset noout; ceph osd unset norebalance

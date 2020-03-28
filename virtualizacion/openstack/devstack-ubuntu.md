@@ -11,6 +11,7 @@ Vagrant:
   en los scripts de despliegue de vagrant hago que instale git y haga un clone de devstack
   Mas automatización sería crear el fichero localrc y ejecutar stack.sh
 
+# Config
 localrc (sigiendo lo visto en http://www.stackgeek.com/blog/kordless/post/taking-openstack-for-a-spin):
 HOST_IP=192.168.1.40 #La ip que asigne vagrant a eth1 sera la publica
 FLAT_INTERFACE=eth1 #la interfaz publica es la 1
@@ -23,8 +24,11 @@ RABBIT_PASSWORD=password
 SERVICE_PASSWORD=password
 SERVICE_TOKEN=tokentoken
 
+# Despliegue
 ./stack.sh
 
+
+# Uso
 Horizon is now available at http://192.168.1.40/
 Keystone is serving at http://192.168.1.40:5000/v2.0/
 Examples on using novaclient command line is in exercise.sh
@@ -36,6 +40,20 @@ stack.sh completed in 774 seconds.
 
 The OpenStack repos on Github get updated all the time. If you want to stay up-to-date with these changes, I recommend periodically doing a git pull request in each of the directories that get stuffed into /opt/stack/. You can kill your instance of OpenStack before you do this by doing a killall screen.
 You can also use the rejoin-stack.sh script if you've already run the script and are wanting to fire it back up again after killing it.
+
+
+# Networking
+https://docs.openstack.org/devstack/latest/networking.html
+https://docs.openstack.org/devstack/latest/guides/neutron.html
+
+br-int is a bridge that the Open vSwitch mechanism driver creates, which is used as the “integration bridge” where ports are created, and plugged into the virtual switching fabric.
+
+br-ex is an OVS bridge that is used to connect physical ports (like eth0), so that floating IP traffic for project networks can be received from the physical network infrastructure (and the internet), and routed to self service project network ports.
+
+br-tun is a tunnel bridge that is used to connect OpenStack nodes (like devstack-2) together. This bridge is used so that project network traffic, using the VXLAN tunneling protocol, flows between each compute node where project instances run.
+
+ovs-vsctl show
+  ver estado de los br-*
 
 
 

@@ -18,6 +18,8 @@ import importlib
 pepe = importlib.import_module("sys")
 pepe.path
 
+__import__("time").sleep(1)
+
 
 # Peformance
 https://wiki.python.org/moin/PythonSpeed/PerformanceTips#Import_Statement_Overhead

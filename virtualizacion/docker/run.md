@@ -40,6 +40,10 @@ Si quiero entrar a una imagen pero tiene un entrypoint y no me deja con el típi
 docker run -t -i --entrypoint="/bin/bash" imagen -i
 
 
+Correr infinito:
+docker run .... sleep infinity
+
+
 Correr un mysql:
 docker run -d msturm/percona /usr/bin/mysqld_safe
   -d=false: Detached mode: Run container in the background, print new container id

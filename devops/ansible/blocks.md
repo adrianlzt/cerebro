@@ -21,6 +21,9 @@ http://docs.ansible.com/ansible/playbooks_blocks.html
 # Loops
 No se puede: https://github.com/ansible/ansible/issues/13262
 
+Workaround con llamadas recursivas
+https://github.com/ansible/ansible/issues/46203#issuecomment-556013701
+
 
 # Error handling
 

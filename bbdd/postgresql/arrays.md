@@ -28,3 +28,14 @@ array_agg(count ORDER BY date DESC)
 
 
 select (string_to_array(name,'/'))[1] from groups where groupid=14730;
+
+
+
+Generar rows a partir de un array:
+
+SELECT 'test',UNNEST(ARRAY['foo', 'bar']);
+ ?column? | unnest
+----------+--------
+ test     | foo
+ test     | bar
+

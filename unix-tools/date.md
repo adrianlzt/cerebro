@@ -1,3 +1,7 @@
+Convertir con distintos lenguajes:
+https://www.epochconverter.com/#code
+
+
 Convertir fecha unix timestamp a normal:
 date --date @1012312312
 date -d @1012312312

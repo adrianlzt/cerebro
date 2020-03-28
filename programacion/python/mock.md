@@ -185,3 +185,12 @@ from xxx import blabla
 
 Al hacer el patch tendremos que hacerlo de
 "cosa.blabla"
+
+
+
+# Mock un import
+https://stackoverflow.com/questions/8658043/how-to-mock-an-import
+
+import sys
+sys.modules['B'] = Mock()
+import A

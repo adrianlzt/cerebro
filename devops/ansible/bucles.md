@@ -1,7 +1,7 @@
 http://docs.ansible.com/playbooks_loops.html
 
 Lo nuevo es usar "loop".
-with_XXX es el formato antiguo
+with_XXX es el formato antiguo (anque with_lines sigue siendo válido)
 
 No se puede usar {{item}} en el name
 
@@ -44,6 +44,10 @@ Podemos poner
   until: result.stdout.find("all systems go") != -1
   retries: 5
   delay: 10
+
+La task ejecutada por until será siempre la misma, es decir, si tenemos puesto un jinja en el argumento, se renderizará la primera vez y luego siempre usará el mismo.
+workaround, blocks + llamadas recursivas:
+https://github.com/ansible/ansible/issues/46203#issuecomment-556013701
 
 
 - command: /bin/false
@@ -158,4 +162,28 @@ https://docs.ansible.com/ansible/latest/plugins/lookup/sequence.html
 # Iterar sobre una lista generada a partir de un filtro sobre un array de dicts
 Nos quedamos con los dicts que tengan la key "cluster" definida, y obtenmos la lista de valores únicos de esa key:
       with_items: "{{process_monitor__process_list|selectattr('cluster', 'defined')|map(attribute='cluster')|unique}}"
+
+
+# Ejecutar un comando y hacer algo con sus lineas
+- name: We could read the file directly, but this shows output from command
+  debug: msg="{{ item }} is an output line from running cat on /etc/motd"
+  with_lines: cat /etc/motd
+
+- name: More useful example of looping over a command result
+  shell: "/usr/bin/frobnicate {{ item }}"
+  with_lines:
+    - "/usr/bin/frobnications_per_host --param {{ inventory_hostname }}"
+
+
+# Selecionar el primer fichero que encontremos de una lista
+- name: load OS/version specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ansible_system}}_{{ansible_os_family}}_{{ansible_distribution_major_version}}.yml"
+        - "{{ansible_system}}_{{ansible_os_family}}.yml"
+        - "{{ansible_system}}.yml"
+        - "default.yml"
+    - paths:
+        - "../vars/"
 

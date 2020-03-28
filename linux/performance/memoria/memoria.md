@@ -1,4 +1,5 @@
-#http://www.linuxatemyram.com/play.html
+http://www.linuxatemyram.com/play.html
+https://linux-mm.org/LinuxMM
 
 $ LANG=en_US free -m
              total       used       free     shared    buffers     cached
@@ -130,7 +131,7 @@ Highlights:
 
 
 
-vfs_cache_pressure (https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
+vm.vfs_cache_pressure (https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
  Controls the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects.
  At the default value of vfs_cache_pressure=100 the kernel will attempt to reclaim dentries and inodes at a "fair" rate with respect to pagecache and swapcache reclaim. Decreasing vfs_cache_pressure causes the kernel to prefer to retain dentry and inode caches. ...
 

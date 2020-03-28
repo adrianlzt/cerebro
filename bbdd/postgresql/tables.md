@@ -17,6 +17,8 @@ pg_dump NOMBREBBDD -t NOMBRETABLA --schema-only
 http://www.postgresql.org/docs/devel/static/sql-createtable.html
 http://www.postgresql.org/docs/devel/static/sql-droptable.html
 
+Se pueden añadir comentarios a las tablas y/o columnas. Mirar comment.md
+
 CREATE TABLE nombre (col1 CHAR(20, ...);
 DROP TABLE nombre;
 
@@ -27,6 +29,7 @@ CREATE TEMP TABLE nombre (col1 text);
 CREATE TABLE distributors (
      id    serial PRIMARY KEY,
      name   varchar(40) NOT NULL CHECK (name <> '')
+     ejemplo text default 'prueba'
 );
 
 Crear si no existe
@@ -84,6 +87,14 @@ Podemos meter constraints para:
   - borrar los elementos de la tabla si la key referenciada se borra (ON DELETE CASCADE)
 
 Podemos ver las relaciones con \d+ nombretabla
+
+Crear tabla con relación a la columna de otra tabla:
+CREATE TABLE zabbix (
+ server varchar(128) PRIMARY KEY,
+ registrada sino NOT NULL,
+ FOREIGN KEY (server) REFERENCES inventario(server) ON DELETE CASCADE
+);
+
 
 Chequear foreign keys de todo el schema:
 WITH foreign_keys AS (

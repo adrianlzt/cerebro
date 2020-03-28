@@ -5,6 +5,11 @@ https://www.postgresql.org/docs/current/functions-info.html
 \df
 \df+ function_name
 
+Podemos llamar a funciones especificando un parámetro sin tener que definir todos:
+Ejemplo de función: create_parent(p_parent_table text, p_control text, p_type text, p_interval text, ...
+Ejemplo de llamada: SELECT create_parent('schema.table', 'xx', 'aa', p_interval := 'daily' ...
+Siempre tendremos que definir los parámetros que no tengan default.
+
 Postgres usa overloading functions, mismo nombre con distintos parámetros.
 
 CREATE OR REPLACE FUNCTION test() RETURNS text AS
@@ -69,6 +74,12 @@ Pepe-Martinez
 
 ## New line
 El caracter newline es E'\n'
+
+
+## substring
+substring('Thomas' from 2 for 3)
+substring('Thomas' from '...$')
+substring('Thomas' from '%#"o_a#"_' for '#')
 
 
 ## select string_to_array('ftp,dns',',');

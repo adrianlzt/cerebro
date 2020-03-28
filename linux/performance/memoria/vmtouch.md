@@ -22,6 +22,7 @@ Que parte de un fichero está en memoria (-v verbose, contra directorios saca de
 vmtouch -v fichero.txt
 
 Cargar un fichero/directorio en memoria (vmtouch va a leer las páginas del fichero, pero el sistema podría estarlas sacando antes incluso de que termine):
+Lo carga en la sección Cached
 vmtouch -tv fichero.txt
 
 Sacar un fichero de la mmemoria

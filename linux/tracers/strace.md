@@ -14,10 +14,11 @@ http://www.hokstad.com/5-simple-ways-to-troubleshoot-using-strace
 
 Nos sirve para ver que instrucciones ejecuta un binario.
 
-strace -Tttvvvffo file.out -s 8192 programa
+strace -Tttvvvffyyo file.out -s 8192 programa
   -T Show the time spent in system calls
   -tt Prefix each line of the trace with the time of day, will include the microseconds
   -vvv informacion sin abreviar
+  -yy mostrar info sobre la conex, fichero usado, etc
   -ffo file.out  escribe cada proceso nuevo en su propio fichero .pid
   -s 8192  incrementar el tamaño de las string mostradas
 
@@ -114,3 +115,6 @@ read:
 fcntl:
   control de file descriptors, definir flags, obtener nuevos FDs, obtener usuarios, etc
 
+
+Mostrar los parámetros en hexadecimal
+-X raw
