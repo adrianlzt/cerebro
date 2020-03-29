@@ -5,7 +5,7 @@ https://www.raspberrypi.org/documentation/installation/installing-images/README.
 Version de Debian para la raspberry
 
 Flashear:
-sudo fdisk -l
+lsblk
   para ver donde está montada
 sudo dcfldd bs=4M if=2017-01-11-raspbian-jessie.img of=/dev/sdX
   puede llevar unos 10/11min
@@ -56,6 +56,7 @@ export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
 make bcmrpi_defconfig
 make menuconfig
+  al activar el driver de hx711 (célula de carga), me mete en el fichero .config: CONFIG_HX711=m
 make -j 12 zImage modules dtbs
   -j 12 es el núm de CPUs * 1.5, para paralelizar
 
