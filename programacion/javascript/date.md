@@ -2,8 +2,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 Date();
 
+No tiene un formateo de fecha, tenemos que construirlo a mano.
+
+Moment.js
+
 Mirar https://github.com/wanasit/chrono
 A natural language date parser in Javascript, designed for extracting date information from any given text.
+
 
 
 
