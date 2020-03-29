@@ -21,6 +21,17 @@ docker run \
 Si estamos por detrás de un balanceador que nos hace el ssl offloading y configuramos la url con https, el LB debe pasar la cabecera:
 X-Forwarded-Proto: https
 
+# Interfaz administrativa
+example.com/ghost/
 
 # Cli administrativa
 https://github.com/TryGhost/Ghost-CLI
+
+
+# Upgrade
+Exportar datos desde la interfaz administrativa (Export your content)
+Hacer backup del directorio /var/lib/ghost/content (imágenes y themes)
+Levantar la nueva versión
+Importar content
+Copiar el directorio /var/lib/ghost/content al nuevo container.
+Reiniciar el nuevo container
