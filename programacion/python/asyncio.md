@@ -70,6 +70,11 @@ Al terminar:
 loop.close()
 
 
+Si queremos esperar a varias tasks a que terminen:
+await asyncio.wait([on_con_lost, start_server])
+
+
+
 
 # Scheduler
 Podemos hacer un scheduler muy sencillo con:
