@@ -28,3 +28,5 @@ Dejar un fichero para poder borrarlo en caso de llenado del pg_wal
 Quitar permisos por defecto de PUBLIC:
 REVOKE ALL ON DATABASE db_name FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
+
+Revisar pg_hba. Cuidado con tener lineas "trust"
