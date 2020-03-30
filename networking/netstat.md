@@ -1,5 +1,11 @@
+ss utiliza la API netlink para obtener la info de red (parece que es una opción más rápida).
+Mientras que netstat parsea /proc/net
+https://pcarleton.com/2018/05/31/netstat-vs-ss/
+https://github.com/shirou/gopsutil/issues/695
+
+
 Listening ports (tcp+udp+unix+ipv4+ipv6)
-netstat -nlp 
+netstat -nlp
   -n numeric
   -l listening
   -p process

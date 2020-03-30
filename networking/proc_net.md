@@ -2,6 +2,12 @@ http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
 https://www.kernel.org/doc/Documentation/filesystems/proc.txt 1.4
 /proc/net
 
+ss utiliza la API netlink para obtener la info de red (parece que es una opción más rápida).
+Mientras que netstat parsea /proc/net
+https://pcarleton.com/2018/05/31/netstat-vs-ss/
+https://github.com/shirou/gopsutil/issues/695
+
+
 Para modificar valores:
 sysctl -w net.core.somaxconn=1024
 

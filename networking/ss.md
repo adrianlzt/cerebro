@@ -3,6 +3,12 @@ http://git.kernel.org/cgit/linux/kernel/git/shemminger/iproute2.git/tree/misc/ss
 
 ss  is  used to dump socket statistics. It allows showing information similar to netstat.  It can display more TCP and state informations than other tools.
 
+ss utiliza la API netlink para obtener la info de red (parece que es una opción más rápida).
+Mientras que netstat parsea /proc/net
+https://pcarleton.com/2018/05/31/netstat-vs-ss/
+https://github.com/shirou/gopsutil/issues/695
+
+
 Es el nuevo netstat (que quedará deprecated)
 
 ss [ OPTIONS ] [ state TCP-STATE ] [ EXPRESSION ]
