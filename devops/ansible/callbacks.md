@@ -13,6 +13,10 @@ callback que saca el resultado en modo unix
 stdout_callback = unixy
 
 
+Saca los errores más claros, en vez del json gigante
+stdout_callback = yaml
+
+
 
 Por cada tarea que hace ansible podemos realizar una acción.
 
