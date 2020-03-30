@@ -1,3 +1,9 @@
+Mirar quilt como opción.
+Es lo que usa debian para sus pkgs
+http://www.shakthimaan.com/downloads/glv/quilt-tutorial/quilt-doc.pdf
+
+
+
 # http://www.cyberciti.biz/faq/appy-patch-file-using-patch-command/
 
 diff -Naur standard_moodle my_moodle > patch.txt

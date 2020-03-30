@@ -1,4 +1,5 @@
 https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html
+https://docs.ansible.com/ansible/latest/user_guide/collections_using.html#id1
 Un package de plugins, roles y modules.
 
 Se pueden instalar con ansible-galaxy
@@ -11,6 +12,8 @@ ansible-galaxy collection init <namespace>.<collection>
 
 En galaxy.yml podemos poner otras collections de las que depende esta collection.
 Formato del fichero: https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html#collections-galaxy-meta
+
+
 
 
 # Movimiendo modules version 2.10
