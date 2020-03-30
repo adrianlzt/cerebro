@@ -17,6 +17,7 @@ Log del git (o de un fichero)                       git log <fichero>
 Log mostrando los diff de los n ult commits         git log -p -2
 Log de un fichero poniendo los cambios              git log -p -2 <fichero>
 Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla)
+Log de un fichero borrado                           git log --all --full-history -- FICHERO
 Log en JSON                                         https://gist.github.com/varemenos/e95c2e098e657c7688fd
                                                     https://gist.github.com/adrianlzt/b12c47715c2f68501e8e6cac098af77c
 El ultimo sed quita los cambios de linea            git log --pretty=format:'{ "commit": "%H", "abbreviated_commit": "%h", "tree": "%T", "abbreviated_tree": "%t", "parent": "%P", "abbreviated_parent": "%p", "refs": "%D", "encoding": "%e", "subject": "%s", "sanitized_subject_line": "%f", "body": "%b", "commit_notes": "", "verification_flag": "%G?", "signer": "%GS", "signer_key": "%GK", "author": { "name": "%aN", "email": "%aE", "date": "%aD" }, "commiter": { "name": "%cN", "email": "%cE", "date": "%cD" }},' | sed "$ s/,$//" | sed ':a;N;$!ba;s/\r\n\([^{]\)/\\n\1/g'| awk 'BEGIN { print("[") } { print($0) } END { print("]") }' | sed ':a;N;$!ba;s/\n/ /g'

@@ -1,3 +1,8 @@
+Para mostrar más sencillamente los errores podemos usar el callback de yaml
+https://www.jeffgeerling.com/blog/2018/use-ansibles-yaml-callback-plugin-better-cli-experience
+En 2.10 parece que estará en la collection community.general.yaml
+
+
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
 - name: this will not be counted as a failure
