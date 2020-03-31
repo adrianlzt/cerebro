@@ -60,6 +60,13 @@ queue = asyncio.Queue()
 
 
 
+Poner varios "async def" a correr:
+p = asyncio.ensure_future(producer(queue))
+s = asyncio.ensure_future(start_server)
+loop.run_forever()
+
+
+
 # Loops
 loop = asyncio.get_event_loop()
 
