@@ -2,6 +2,11 @@ https://opentokdemo.tokbox.com/
 https://opentokrtc.com/
 
 https://meet.jit.si/
+  jitsi.org permite construir encima tu app, open source
+
+https://openvidu.io/
+  para montar tu app encima. Ciertas features son de pago
+  https://news.ycombinator.com/item?id=22607065
 
 https://meet.tokbox.com/NOMBRE
   permite compartir pantalla
