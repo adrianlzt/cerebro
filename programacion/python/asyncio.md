@@ -51,6 +51,15 @@ Esperar a que todas las corutinas terminen para proseguir
     print(results)
 
 
+Producer / consumer
+https://asyncio.readthedocs.io/en/latest/producer_consumer.html
+
+
+Para pasarnos datos:
+queue = asyncio.Queue()
+
+
+
 # Loops
 loop = asyncio.get_event_loop()
 
