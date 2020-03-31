@@ -3,7 +3,7 @@ https://www.zabbix.com/documentation/3.4/manual/api/reference/host/object#host
 Modelo de la bbdd (version 2.x): https://zabbix.org/wiki/Database_Schemas
 
 Esquema tablas:
-https://zabbix.org/wiki/Docs/DB_schema/3.4/dbversion
+https://zabbix.org/wiki/Docs/DB_schema/4.0
 
 
 Accediendo directamente a la base de datos de zabbix.
@@ -606,10 +606,20 @@ Ver los hosts que están unreachable, ocasionando que estos reporten estar ocupa
 select host,error,to_timestamp(disable_until) from hosts where disable_until <> 0;
 
 
-# Tocando la bbdd
+# Tocando la bbdd / inserts
 Es el frontend el que se encarga de generar elementos en la bbdd.
 
 La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "ids" el útimo ID generado por tabla y field.
+
+En la tabla de ids estará el último utilizado.
+
+Ejemplo de update:
+begin;
+SELECT nextid FROM ids WHERE table_name='regexps' AND field_name='regexpid' FOR UPDATE
+UPDATE ids SET nextid=7 WHERE table_name='regexps' AND field_name='regexpid'
+INSERT INTO regexps (name,test_string,regexpid) VALUES ('PRUEBA','','7')
+commit;
+
 
 
 # Config

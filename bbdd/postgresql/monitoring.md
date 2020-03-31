@@ -1,5 +1,6 @@
 mirar pg_stat_statements.md
 mirar pgmetrics.md
+Queries que hace zabbix para monitorizar postgres: https://github.com/zabbix/zabbix/tree/master/templates/db/postgresql/postgresql
 
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
 Tiempo entre checkpoints (más datos en checkpoint.md)

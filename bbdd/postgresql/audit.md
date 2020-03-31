@@ -103,6 +103,10 @@ set pgaudit.role = 'auditor';
 create role auditor;
 grant select on public.account to auditor;
 
+Quitar permisos:
+revoke delete,insert,update on public.ids from auditor;
+
+
 Los permisos que le demos serán para la database a la que estemos conectados.
 Los cambios de permisos afectan inmediatamente, no hace falta desconectar la sesión.
 
