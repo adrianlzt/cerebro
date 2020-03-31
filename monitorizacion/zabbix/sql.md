@@ -621,6 +621,33 @@ INSERT INTO regexps (name,test_string,regexpid) VALUES ('PRUEBA','','7')
 commit;
 
 
+Lanzar una tx para realizar una actualización, cogiendo el id, updateandolo y usándolo para crear lo necesario:
+
+BEGIN;
+DO $$
+  DECLARE
+    rid INTEGER;
+    eid INTEGER;
+    regex integer;
+    regex_name VARCHAR := 'Oracle tablespaces bisbis';
+
+BEGIN
+
+select regexpid into regex from regexps where name = regex_name;
+
+if not found then
+  update ids set nextid = nextid + 1 where table_name = 'regexps' returning nextid into rid;
+  insert into regexps values(rid, regex_name);
+
+  update ids set nextid = nextid + 1 where table_name = 'expressions' returning nextid into eid;
+  insert into expressions values(eid, rid, 'mi expresion');
+
+end if;
+
+END $$;
+COMMIT;
+
+
 
 # Config
 select * from config;
