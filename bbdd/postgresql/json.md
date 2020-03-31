@@ -48,6 +48,14 @@ jsonb_typeof(data->'software')
 Length de un array
 jsonb_array_length()
 
+JSON array a postgres array
+> SELECT jsonb_array_elements_text('[{"foo": "3fo1"}, {"foo": "333"}]'::jsonb);
+ jsonb_array_elements_text
+---------------------------
+ {"foo": "3fo1"}
+ {"foo": "333"}
+
+
 
 Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);

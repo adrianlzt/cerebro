@@ -64,3 +64,11 @@ example: |
   en este formato
   se respetan los cambios
   de linea que aqui pongo
+
+foo:
+  bar: |
+    el identado tiene que
+      ser a partir
+    de donde tenemos la
+    key donde metemos
+        las cosas
