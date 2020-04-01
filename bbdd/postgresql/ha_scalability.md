@@ -2,6 +2,10 @@ mirar:
 pgpool.md
 pgbouncer.md
 odyssey (https://github.com/yandex/odyssey)
+https://github.com/ClusterLabs/PAF
+  High-Availibility for Postgres, based on industry references Pacemaker and Corosync.
+
+
 
 activo-activo:
 mirar replication.md
