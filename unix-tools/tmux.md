@@ -201,6 +201,9 @@ Attacharme a una tmux existente:
 tmux a
 tmux a -t nombre
 
+Unirte a la sesión "notas" o crearla si no existe (y unirte):
+tmux new-session -A -s notas
+
 Matar session
 tmux kill-session -t nombre
 
