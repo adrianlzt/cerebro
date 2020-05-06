@@ -28,3 +28,11 @@ nos dice que interfaces implementa ese elemento
 
 Desactivar metalinter al guardar
 :let g:go_metalinter_autosave=0
+
+
+# Struct
+:GoFillStruct
+    Use `fillstruct` to fill a struct literal with default values.
+
+:GoKeyify
+    Uses `keyify` to turn unkeyed struct literals into keyed ones.

@@ -87,3 +87,17 @@ dependencies:
 
 # Estructura
 No usar directorios dentro de tasks/ porque entonces no encontrará bien los ficheros de files/ o templates/
+
+
+
+# Requirements
+En el requirements.yml
+collections:
+  - name: community.zabbix
+    version: v0.1.0
+roles:
+  - name: foobar
+    version: 1.0.0
+
+ansible-galaxy collection install -r requirements.yml
+ansible-galaxy role install -r requirements.yml

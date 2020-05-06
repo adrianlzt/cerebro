@@ -115,7 +115,6 @@ apellido: {apellido}"""
 Escapar "{" o "}" con dobles:
 a = f"ejemplo {{}}"
 
-Para formateos especiales {xx:M.M} mirar string.md
 
 f"{nombre:>12}"
 alineado a la derecha
@@ -197,6 +196,9 @@ partition devuelve una tupla
 
 
 ## Format ##
+https://pyformat.info/
+
+
 BASE_URL_TEMPLATE = '{protocol}://{host}:{port}/api/{version}/'
 BASE_URL_TEMPLATE.format(protocol=protocol, host=host, port=port, version=version)
 
@@ -217,6 +219,10 @@ Ocupa 60 espacios, pero la cadena muestra como mucho 50
 
 {var:>60.50}
 como antes pero identado a la derecha
+
+'{:06.2f}'.format(3.141592653589793)
+003.14
+
 
 
 ## Comparación ##

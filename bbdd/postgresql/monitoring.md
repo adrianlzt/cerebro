@@ -17,7 +17,7 @@ Current view
   pg_locks
   pg_prepared_xacts
 
-Cumulatime view (podemos resetearlas con pg_stat_reset, podemos elegir si todas o algunas):
+Cumulatime view (podemos resetearlas con pg_stat_reset(), podemos elegir si todas o algunas con pg_stat_reset_shared('nombre'), siendo nombre, bgwriter o archiver):
   pg_stat_database
   pg_stat_bgwriter
   pg_stat_archiver
@@ -37,6 +37,9 @@ Es útil monitorizar el llenado de shared_buffers? O es normal que se mantenga l
 Hay una pg_catalog que monitoriza cuando sucede este flusheo forzado.
 Backend writes growing significa eso.
 
+Si queremos borrar las métricas tendremos que llamar a pg_stat_reset(), borrando todo.
+
+Aquí también tenemos un contador de deadlocks.
 
 blks_read, tuvimos que ir al disco a leer
 blks_hit, lo encontramos en el shared buffer
@@ -106,6 +109,8 @@ Mirar disk_usage.md
 
 # Replication
 https://www.scalingpostgres.com/tutorials/postgresql-replication-monitoring/
+https://github.com/aiven/pglookout
+  de aqui podemos ver cosas interesantes que monitorizar. Se integra con telegraf
 
 Tenemos funciones y valores, en pg_stat_replication, para poder ver en donde tenemos un problema.
 

@@ -20,3 +20,5 @@ export class Animal extends Component {...
 No tengo claro como se pone esto con el formato de import.
 var chrono = require('chrono-node');
 
+Cambiarle el nombre:
+import { Router as MyRouter } from "@reach/router"

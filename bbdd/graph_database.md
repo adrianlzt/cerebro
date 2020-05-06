@@ -2,16 +2,24 @@ Una de las casúisticas donde graph db es mejor:
 Imagine there is a people table, and a children table mapping each person_id to the person_ids of their children. The logic to find all the descendants of a person with SQL is not trivial and requires a bunch of back and forth interactions between the application and the database.
 
 
+El grupo que define SQL está creando un lenguaje estandar para graph databaes:
+GQL
+
 
 Neo4j
 The Graph Foundation for Internet-scale Applications
+  Un mejor visualizador para neo4j
+  https://neo4j.com/docs/labs/apoc/current/export/gephi/
 
 dgraph
 Otra opción, en go
 
-
-Un mejor visualizador para neo4j
-https://neo4j.com/docs/labs/apoc/current/export/gephi/
+Graffiti
+https://fosdem.org/2020/schedule/event/graph_graffiti/
+No tanto una bbdd pura de grafos, pero buena para inyectar datos y visualizar. Usa el lenguaje gremlin
+Pensada para ser embedida en un proyecto de go
+https://github.com/skydive-project/skydive/tree/897da7d5c13eff752da8c4dd48b8b46b64118afe/graffiti
+skydive.md
 
 
 # Container

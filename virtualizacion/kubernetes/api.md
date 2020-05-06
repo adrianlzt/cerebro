@@ -16,3 +16,8 @@ bearer tokens
 authenticating proxy
 HTTP basic auth
 
+
+
+# RAW
+Obtener el resultado de llamada a la api en crudo
+Mirar kubectl

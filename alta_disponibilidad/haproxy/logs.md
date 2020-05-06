@@ -42,8 +42,13 @@ Tr - The server response time (HTTP mode only).
 Ta - The total active time for the HTTP request (HTTP mode only).
 
 
-## Term code
+## Termination code
 https://cbonte.github.io/haproxy-dconv/1.7/configuration.html#8.5
 Significado de los códigos
 
 En http cuatro caracteres
+
+Una respuesta con error será tipo:
+<30>Apr 19 11:07:09 haproxy[25274]: 10.0.2.32:42174 [19/Apr/2020:11:07:09.283] public_istio_ssl_passthrough be_istio_https/<NOSRV> -1/-1/140 187 PR 3/1/0/0/3 0/0
+
+Las siglas "PR" nos explican el error. Mirar en la web de esta sección.

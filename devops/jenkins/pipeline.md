@@ -8,6 +8,7 @@ Hay dos tipos (https://jenkins.io/doc/book/pipeline/syntax/#compare):
    Declarative Pipeline, empieza con "pipeline {". Más sencilla
    Scripted Pipeline -> empieza por "node {", es groovy. Más potente https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline
    mirar abajo del todo para ver que steps tenemos para scripted pipeline
+   podemos meter secciones "scripted" en la declarative pipeline (con "scripted { }")
 
 Syntax
 https://jenkins.io/doc/book/pipeline/syntax/
@@ -85,6 +86,7 @@ pipeline {
 
 
 # Auth / credentials
+https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#handling-credentials
 https://jenkins.io/doc/pipeline/steps/credentials-binding/
 
 ## Scripted
@@ -106,6 +108,15 @@ stage('Push') {
         }
     }
 }
+
+pipeline {
+    agent {
+        // Define agent details here
+    }
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }
 
 
 # Condicionales
@@ -161,6 +172,11 @@ node {
 # Variables de entorno
 https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-variables
 
+pipeline {
+    agent {
+        label '!windows'
+    }
+
     environment {
         FOO = "BAR"
         BAZ = "bang"
@@ -168,7 +184,7 @@ https://github.com/jenkinsci/pipeline-model-definition-plugin/wiki/Environment-v
     }
 
 Podemos usarlas en cualquier parte como: env.FOO
-O en script sh con ${FOO}
+O en script sh con ${FOO} (usar comillas dobles para el comando, si no, nos pone ${FOO} tal cual)
 
 
 

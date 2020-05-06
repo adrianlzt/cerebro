@@ -8,6 +8,7 @@ forkstat, necesita root (se engancha a fork() y exec())
 Esta coge todos los eventos.
 Usa el proc event connector: https://lwn.net/Articles/157150/
 https://github.com/dbrandt/proc_events
+yum install https://download.opensuse.org/repositories/server:/monitoring/RHEL_7/x86_64/forkstat-0.02.12-25.1.x86_64.rpm
 
 
 Una opción es usar atop (como??)

@@ -1,6 +1,9 @@
 http://jinja.pocoo.org/docs/2.9/templates/#math
 https://www.mydailytutorials.com/ansible-arithmetic-operations/
 
+{{ "1"|int + 2}}
+  no probado
+
 {{ 1 + 1 }} is 2.
 
 {{ 1 / 2 }} is {{ 0.5 }}

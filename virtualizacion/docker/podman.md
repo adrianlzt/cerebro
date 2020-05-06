@@ -39,7 +39,8 @@ sysctl -p /etc/sysctl.d/userns.conf
 echo "testuser:100000:65536" > /etc/subuid
 echo "testuser:100000:65536" > /etc/subgid
 
-Parece que la manera correcta de meter cosas en los /etc/sub*id es:
+El valor máximo soportado de uid es 4294967295 (2^32-1, 32 bits), al menos en RHEL: https://access.redhat.com/solutions/25404
+Parece que la manera correcta de meter cosas en los /etc/sub*id es (en versiones recientes de usermod):
 sudo usermod --add-subuids 10000-75535 $(whoami)
 
 Se suele poner 65536 porque parece que es lo que necesita podman
@@ -69,6 +70,9 @@ podman system df
 # Images
 podman images
   listar imágenes
+
+podman pull --tls-verify=false registr/imagen
+  bajar sin verificar cert del registry
 
 
 # Isolation / namespaces
@@ -117,6 +121,7 @@ podman play kube pod.yml
 podman mount
   para montar el working dir de un container
   no me funciona
+  en rootless no funciona
 
 
 
@@ -174,6 +179,18 @@ Parece que almacena en /home/adrian/.local/share/containers
 
 Modificar donde almacena: https://github.com/containers/libpod/issues/1916
 
+
+## runc
+Por debajo corre los pods con runc
+mirar runc.md para ver como usarlo
+
+
+## flow
+Cuando llamamos a podman este llama a conmon, que es quien se comunica con runc.
+Conmon deja un socket abierto para que podman pueda hablar con los containers arrancados.
+
+Cuando se para un container, conmon llama a podman para terminar y limpiar la ejecucción, ejemplo de llamada al parar un container:
+/usr/bin/podman --root /var/lib/zabbix/.local/share/containers/storage --runroot /tmp/run-776 --log-level error --cgroup-manager cgroupfs --tmpdir /tmp/run-776/libpod/tmp --runtime runc --storage-driver overlay --storage-opt overlay.mount_program=/usr/bin/fuse-overlayfs --events-backend journald container cleanup 1afa4381c48bd0ec17f35709199378aa2992ea99fe8d5fe324b3d7271e0e94d8
 
 
 # Seccomp
@@ -279,3 +296,9 @@ No podemos devolver errores distintos de 1 ni realizar modificaciones.
 
 https://google.github.io/kafel/ es un lenguaje para definir reglas de seccomp usado por nsjail (buscar nsjail.md)
 
+
+
+
+# Errores
+chown: changing ownership of ‘/var/lib/zabbix/.local/share/containers/storage/overlay/l’: Operation not permitted
+Parece que me daba si intentaba ejecutar "podman info" (o cualquier cosa) en un dir donde no tenía permisos.

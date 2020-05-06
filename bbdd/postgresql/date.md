@@ -16,6 +16,7 @@ No nos permitiría usar un índice en date_column. Mejor usar rangos: date_colum
 
 
 timestamp es el tipo de dato que almacena fecha y hora
+CUIDADO sin comparamos contra NULL un timestamp, siempre devolverá NULL si alguno es NULL.
 
 CREATE TABLE weather (crag_id integer,date timestamp,data json,CONSTRAINT crag_id_date PRIMARY KEY(crag_id, date));
 ALTER TABLE weather ALTER COLUMN date SET DEFAULT now(); // Para que por defecto se ponga la fecha actual
@@ -46,3 +47,7 @@ make_timestamp(year int, month int, day int, hour int, min int, sec double preci
 
 Agrupar en buckets de tiempo:
 select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:40:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
+
+Interval a segundos
+EXTRACT(EPOCH FROM interval_value)

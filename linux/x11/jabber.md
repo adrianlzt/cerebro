@@ -1,5 +1,16 @@
 # Cliente
 dino
+Crecer tamaño texto:
+ ~/.config/gtk-3.0/gtk.css
+window.dino-main {
+        font-size: 20px;
+}
+
+window.dino-main .dino-conversation {
+        font-size: 24px;
+}
+
+
 
 Conectará al puerto 5222 del server.
 Al comienzo en texto plano, luego intentará cambiar a tls

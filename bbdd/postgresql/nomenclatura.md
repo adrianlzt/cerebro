@@ -1,3 +1,22 @@
+https://wiki.postgresql.org/wiki/Change_management_tools_and_techniques
+
+https://github.com/perseas/Pyrseas
+python para generar un yaml/json a partir de un schema de postgres.
+Útil para comparar diferentes schemas.
+He probado con la db de zabbix pero da un error: KeyError: ('public', 'history_default_itemid_clock_idx')
+dbaugment; yamltodb, dbtoyaml son los comandos
+
+http://eulerto.github.io/pgquarrel/
+Util para generar deltas de schemas
+
+Comparar schemas
+https://stackoverflow.com/questions/2178907/postgres-pg-dump-dumps-database-in-a-different-order-every-time
+http://www.cri.ensmp.fr/people/coelho/pg_comparator/
+https://www.schemacrawler.com/
+  esta también genera gráficos a partir de los schemas de la db
+
+
+
 Un host puede tener uno o varios "db servers" (también llamadas "instances").
 
 Dentro de cada "db server" hay una o varias "tablespaces" (por defecto pg_default y pg_global).

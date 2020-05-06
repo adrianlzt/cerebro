@@ -55,7 +55,9 @@ En este modo podemos ejecutar el debugger https://github.com/cosmos72/gomacro#de
 
 Si da error:
 plugin was built with a different version of package...
-Recompilar gomacro
+O pone "... update tool"
+Recompilar gomacro:
+go get -u github.com/cosmos72/gomacro
 
 
 # go-pry

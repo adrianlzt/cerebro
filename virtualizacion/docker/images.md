@@ -1,3 +1,8 @@
+Para crear imágenes sin docker (en el userspace):
+buildah (redhat)
+kaniko (Google, usado por JenkinsX)
+
+
 mirar containers.md
 
 Analizar una imagen (nos muestra por cada capa que se ha ejecutado y que ficheros se han modificado):

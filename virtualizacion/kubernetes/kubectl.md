@@ -129,6 +129,7 @@ kubectl apply -f fichero.yml
 
 # Debug
 kubectl -v 6 ...
+Esto nos saca que llamada HTTP se hace
 
 
 
@@ -138,3 +139,10 @@ kubectl get XX -o json
 kubectl get pods -o=jsonpath='{.items[0]}'
 
 Me parece más sencillo usar "-o json" y luego jq
+
+
+
+# RAW
+Obtener el resultado crudo de la llamada a la API
+
+kubectl get --raw /api/v1/nodes/colo00ap/proxy/metrics

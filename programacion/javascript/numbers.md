@@ -31,3 +31,11 @@ String.prototype.hexDecode = function(){
 }
 
 "mi cadena".hexEncode().hexDecode()
+
+
+Float con dos decimales
+float_num.toFixed(2);
+
+
+
+parseInt(3.14)

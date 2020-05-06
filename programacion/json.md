@@ -26,6 +26,8 @@ Lo cuentan en el video: http://vimeo.com/64659016  16:45
 
 Prometheus tampoco lo usa para su formato por ser muy lento: https://youtu.be/qMwdwHiuzsc?t=500
 
+Mismo Skydive: https://youtu.be/EGUzIPTb9cs?t=1301 (usan protocol buffers)
+
 Solución messagepack, protocol buffers?
 Enviar informacion json desde la linea de comandos
 
@@ -74,6 +76,10 @@ It's important to know that JWT does not provide encryption, which means anyone 
 Python: https://github.com/jpadilla/pyjwt (pacman -S python-pyjwt)
 Desencriptar, comprobando con la key que los datos son legitimos:
 jwt --key="this_is_my_secret_long_enough_to_be_valid" eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImRlbW8xMCJ9.eyJzdWIiOiIxMjM0In0.-4hQDsVN5XQY5LTmbx5atWCZMnSFKpaNSwG12jK0qHI
+
+Descifrar online: https://www.jsonwebtoken.io/
+
+Usado en openid
 
 
 

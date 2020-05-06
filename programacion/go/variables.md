@@ -49,6 +49,7 @@ Tenemos binarios y octales
 1_000_000 es l mismo que 1000000
 
 También hay notación exponencial
+1000000000 = 1e9
 
 
 

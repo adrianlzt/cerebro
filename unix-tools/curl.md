@@ -52,7 +52,6 @@ curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: app
 "licenses": ["Public Domain"],
 }'
 
-
 Multipart
 curl -F "clave=valor" ...
 
@@ -116,6 +115,11 @@ Accept-Encoding: deflate, gzip
 
 Podemos poner:
 --compress
+
+
+# output status en json (version 7.70)
+curl --write-out '%{json}' https://example.com -o saved
+
 
 # Medir tiempo
 curl -s -w "Time total: %{time_total}\n" http://localhost:8086/ -o /dev/null

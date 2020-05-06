@@ -96,3 +96,9 @@ https://github.com/golang/go/wiki/Modules#releasing-modules-v2-or-higher
 
 Podemos cambiar el nombre de nuestro módulo (en go.mod) para ponerle el "v2" al final.
 O podemos crear un nuevo directorio con su propio go.mod
+
+
+# Errores
+Si nos falla con un "410 Gone" al bajar módulos es porque es un repo privado.
+Podemos quitar ese chequeo con:
+GOSUMDB=off

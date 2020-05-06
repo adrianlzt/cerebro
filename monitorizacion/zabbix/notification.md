@@ -56,6 +56,11 @@ Command
 Si queremos enviar más información
 
 
+# Alerter
+En la version 4, los alerter corren como user zabbix, con cwd / y las variables de entorno no seteadas (HOME lo tienen a / también)
+
+
+
 # Events / problems
 El housekeeper borra los eventos más antiguos de N días (config Administration -> General -> Housekeeping). Esto provoca también que se borren los problemas más antiguos de esa fecha.
 

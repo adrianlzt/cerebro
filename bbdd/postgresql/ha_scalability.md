@@ -2,8 +2,13 @@ mirar:
 pgpool.md
 pgbouncer.md
 odyssey (https://github.com/yandex/odyssey)
+repmgr
+  con el autofailover nos permite hacer promote de un master en caso de que el master casque
 https://github.com/ClusterLabs/PAF
   High-Availibility for Postgres, based on industry references Pacemaker and Corosync.
+https://github.com/citusdata/pg_auto_failover
+
+Los clientes, si usan libq, se pueden configurar para pasarle varios hosts y que conecten al primario (mirar sección libq)
 
 
 
@@ -24,6 +29,9 @@ Parece que este parámetro es complejo, afectan varias cosas. Si tenemos una con
 
 pg_promote()
   standby -> master (pg12)
+
+También podemos definir un trigger_file, que si existe, será como ejecutar el "pg_ctl promote"
+
 
 Si un nodo standby está atendiendo a una query, si cambia a master, la query continuará sin problema.
 
@@ -145,12 +153,16 @@ nodeb.pg_auto_failover |   5432 |     0 |     2 |           primary |           
 
 
 
+# Libq
 https://paquier.xyz/postgresql-2/postgres-10-libpq-read-write/
 libpq y postgres JDBC permiten definir varios hosts a donde conectar seleccionando que sea el master (read-write) o cualquiera (read-only)
 Ejemplo con psql:
 psql -d "postgresql://hostA,hostB/?target_session_attrs=read-write" -U usuario
 Esto nos puede servir para tener HA sin necesidad de balanceador.
 Si ponemos varios hosts, donde se puede conectar al primero, pero falla por que no existe el user o la database, no continuará probando con el resto de servers.
+
+Para java (mirar sección "Connection Fail-over":
+https://jdbc.postgresql.org/documentation/head/connect.html
 
 
 http://highscalability.com/blog/2013/8/26/reddit-lessons-learned-from-mistakes-made-scaling-to-1-billi.html

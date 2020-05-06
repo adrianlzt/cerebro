@@ -4,7 +4,23 @@ https://blog.bitsrc.io/11-react-ui-component-playgrounds-for-2018-eef5a87a1bf8
 
 
 Prebuild components: https://news.ycombinator.com/item?id=18234867
+
+
+
 https://jetbrains.github.io/ring-ui/master/index.html?ref=stackshare
+mkdir miproyecto
+cd miproyecto
+npm install -g yo @jetbrains/generator-ring-ui
+yo @jetbrains/ring-ui
+npm start
+No me gusta mucho que cambia bastante el esquema de la create-react-app
+
+
+
+https://elastic.github.io/eui/#/
+yarn add @elastic/eui @elastic/datemath moment
+
+
 
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
@@ -15,6 +31,10 @@ Los "props" son los parámetros. Son read-only, no podemos modificarlos.
 
 Generalmente tendremos un component "App", y ahí iremos metiendo el resto de components:
 Components must return a single root element. This is why we added a <div> to contain all the <Welcome /> elements.
+
+Tenemos dos tipos de componentes, funciones o clases.
+Parece que se tiende a usar más funciones, que con los hooks pueden mantener estado y hacer más cosas "interesantes" sin tener que ser clases.
+
 
 function App() {
   return (
@@ -154,3 +174,34 @@ return React.Children.map(children, c => {
     mapCenter: this.state.currentLocation
   });
 })
+
+
+
+# Evitar rerender
+Formats para evitar un render un objeto.
+
+Si usamos componentes que son funciones:
+https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate
+Memo compara los props y si no cambian no renderiza.
+
+
+Si usamos clases podemos usar PureComponent (se comparan las props y si no cambian no se modifica):
+class GraphPure extends PureComponent {
+  render() {
+    console.log('graficaPure', this.props.from, this.props.to);
+    return <b>hola</b>;
+  }
+}
+
+
+Si usamos clases y queremos un control más fino:
+class Square extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.number === nextProps.number) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  ...
+}

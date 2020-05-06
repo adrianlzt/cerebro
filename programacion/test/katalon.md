@@ -1,3 +1,11 @@
+Si queremos comprobar la performance: monitorizacion/webpage_monitor.md
+
+
+Mirar tamibén como alternativa https://www.cypress.io/
+Que es lo que usa Grafana para hacer los tests a su app
+https://github.com/grafana/grafana/blob/master/contribute/style-guides/e2e.md
+
+
 https://www.katalon.com/
 
 Interfaz para generar tests que funciona encima de selenium

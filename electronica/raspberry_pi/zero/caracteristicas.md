@@ -7,3 +7,6 @@ Finally, a MicroSDHC slot is provided, for high storage disks with robust error-
 La versión 1.3 tambien tiene un slot para la cámara
 
 Es ARMv6
+
+
+Kernel armel for softfloat (compatible with ARMv5) or armhf for hardware floating point (ARMv6 and above).

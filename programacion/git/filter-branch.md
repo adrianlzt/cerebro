@@ -4,7 +4,26 @@ El problema es que esos rpms pesan mucho y se bajan cada vez que se hace un git 
 Buscamos donde se encontraba el directorio que contenía los rpms (buscando por las ramas hasta encontrar uno donde aún estaban)
 localrepo/
 
-## Usando el jar bfg ##
+
+# git-filter-repo
+https://github.com/newren/git-filter-repo
+
+En Arch: pacman -Ss git-filter-repo
+
+Mirar ejemplos con:
+git-filter-repo --help
+https://github.com/newren/git-filter-repo/blob/master/Documentation/git-filter-repo.txt
+
+Borrar la palabra "secret":
+git filter-repo --replace-text <(echo 'secret==>foobar')
+
+Parece que el commit original sigue existiendo, pero sin enlazar.
+Mirar si hay opciones para eliminarlo.
+
+
+
+-- DEPRECATED --
+## Usando el jar bfg
 http://rtyley.github.io/bfg-repo-cleaner/
 yaourt -S bfg
 

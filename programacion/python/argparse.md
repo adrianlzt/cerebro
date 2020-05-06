@@ -38,7 +38,7 @@ Parsear numeros (type=[float,int]):
       dest=OpenstackConstants.KEY_TIMEOUT_CINDER, action='store',required=False, default=OpenstackConstants.DEFAULT_TIMEOUT_CINDER,type=int)
 
 Tambien se pueden pasar ficheros:
-parser.add_argument("-c", "--cert", type=args.FileType('r'), dest="cert", help="Server cert to check")
+parser.add_argument("-c", "--cert", type=argparse.FileType('r'), dest="cert", help="Server cert to check")
 contenido_fichero = args.cert.read()
 for line in args.cert.readlines(): ...
 

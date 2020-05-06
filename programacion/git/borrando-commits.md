@@ -20,3 +20,8 @@ git push mathnet +dd61ab32^:master
 
 Que lo hace hace es ir a la rama master del server mathnet y mover el repositorio para ir al commit anterior (padre) de dd61ab32.
 Where git interprets x^ as the parent of x and + as a forced non-fastforward push
+
+
+Si lo que buscamos en borrar algo en muchos commits:
+remove-sensitive-data.md
+

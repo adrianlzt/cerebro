@@ -19,6 +19,12 @@ Thu Oct  1 08:47:24 CEST 2015
 $ LC_ALL=C date -d "Thu Oct  1 08:47:24 CEST 2015" +%s
 1443682044
 
+
+date -u "+%Y-%m-%dT%H:%M:%S.000Z"
+2020-04-14T07:40:17.000Z
+
+
+
 date +%F
 YYYY-MM-DD
 

@@ -28,9 +28,12 @@ def worker():
 
 # Create thread pool.
 for i in range(4):
-     t = threading.Thread(target=worker)
-     t.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
-     t.start()
+    t = threading.Thread(target=worker)
+    # Para pasar parámetros: 
+    # processThread = threading.Thread(target=processLine, args=(dRecieved));
+
+    t.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
+    t.start()
 
 # stuff work items on the queue (in this case, just a number).
 start = time.perf_counter()

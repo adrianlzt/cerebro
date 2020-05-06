@@ -19,3 +19,19 @@ CONCEPTO: In our experience, thinking about how the UI should look at any given 
 
 # Evitar el render
 render null;
+
+
+# Rerender
+Common reasons for rerendering:
+
+Hooks changing (ie useState’s setState methode being called)
+props changing (it will list the exact props!)
+a component’s parent rerendering
+
+
+
+# Debug render
+https://brycedooley.com/debug-react-rerenders/
+Con chrome, usar la extension de react
+En la config, Profiler, Record why each componente rendered...
+Damos a grabar y al parar podemos ver la razon de cada render.

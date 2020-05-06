@@ -10,6 +10,11 @@ Por otro lado tendrán el software de balanceo, haproxy o nginx por ejemplo.
 Al desplegar estos controllers a su vez ellos necesitan un método de aceptar el tráfico.
 El método que suelen usar es un service LoadBalancer, que en entornos cloud asocia una IP pública a ese service.
 
+A partir de la versión 1.18 se crea la IngressClass (para sustituir lo que antes usaba las annotations ingress-class).
+https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class
+
+Para versiones anteriores tendremos que mirar la config de los ingress controllers desplegados para ver que "class" atienden.
+
 
 Balanceador para permitir el mapeo de dominios a pods.
 Para un dominio determinado (y un path opcional), definimos que "backend" servirá las peticiones.

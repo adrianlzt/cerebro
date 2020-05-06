@@ -13,3 +13,7 @@ WHERE condition;
 
 
 En postgres tenemos las materialized views, que almacenan los datos en el momento de creación.
+
+
+Definición de una vista:
+\d+ nombreVista

@@ -6,6 +6,7 @@ Opciones de apps para gestionar los backups (secciones de cada uno al final del 
   pg_probackup (https://github.com/postgrespro/pg_probackup)
   barman (https://www.pgbarman.org/index.html) Utilizado, no muy bien diseñado, pero hace el trabajo
   pgbackrest (https://pgbackrest.org/)
+  https://github.com/aiven/pghoard Usado por el SaaS Aiven. Script en python llevándose los wal. Parece un poco como barman
 
 
 Idea, hacer un base backup al comienzo, llevarnos los WAL con pg_receivewal y de vez en cuando arrancar un postgres para generar otro basebackup a partir del inicial más los WAL.
@@ -106,7 +107,7 @@ pg_restore -l prueba.custom > fichero.list
 Podemos usar la salida de este comando para quitar (o comentar ";") lo que no queremos restaurar y luego usar "pg_restore --use-list=fichero.list fichero.dump" para recuperar solo lo que queramos.
 
 Ver todo el contenido:
-pg_restore fichero.custom | less
+pg_restore fichero.custom -f - | less
 
 Restaurar (CUIDADO, muy lento para ddbb grandes):
 createdb prueba

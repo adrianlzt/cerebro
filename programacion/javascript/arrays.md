@@ -8,6 +8,9 @@ var y = cars.sort();
 Añadir elemento:
 arr.push("Hola");
 
+a = [1,2,3]
+[...a, 4] -> [1,2,3,4]
+
 O varios elementos:
 arr.push("Hola","Adios");
 

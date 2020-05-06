@@ -181,6 +181,11 @@ GRANT ALL ON DATABASE basededatos TO joe;
 Quitar permisos a un role:
 REVOKE SELECT ON public.events FROM auditor;
 
+Dar permisos en una función que está en otro schema que usa determianda tabla:
+GRANT USAGE ON SCHEMA partman to zabbix_odbc;
+grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
+GRANT SELECT ON partman.part_config TO zabbix_odbc;
+
 
 ### Privilegios por defecto
 Cuando un usuario crea tablas las crea siendo su dueño.

@@ -6,6 +6,9 @@ mirar:
   espacio.md
   performance.md
 
+# Terminal / shell
+wpterm
+
 
 # Editor WYSIWYG
 Editar web desde wordpress, para crear estilos customizados

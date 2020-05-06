@@ -62,7 +62,10 @@ $$ LANGUAGE plpythonu;
 
 
 
-# Funciones ya definidas
+
+# Funciones para strings y otras
+https://www.postgresql.org/docs/current/functions-string.html
+
 Concatenar strings de dos columnas distintas:
 select name||'.'||apellido as NombreCompleto from usuarios;
 
@@ -70,6 +73,16 @@ usuarios
 --------
 Juan-Ramirez
 Pepe-Martinez
+
+
+Dividir por un caracter y coger una de las partes:
+select split_part('foo.bar', '.', 2);
+bar
+
+lower('AAA')
+lowercase
+
+replace('abcdefabcdef', 'cd', 'XX')
 
 
 ## New line

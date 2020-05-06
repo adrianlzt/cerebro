@@ -14,6 +14,7 @@ stdout_callback = unixy
 
 
 Saca los errores más claros, en vez del json gigante
+[defaults]
 stdout_callback = yaml
 
 

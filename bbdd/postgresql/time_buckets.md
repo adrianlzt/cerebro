@@ -10,3 +10,12 @@ select count(*),date_trunc('hour',to_timestamp(clock)) as hour from history wher
 
 Luego añadimos otro grupo que son los minutos divididos entre 10 para que nos queden 6 subgrupos (00-10, 10-20, etc) y hacemos una segunda agrupación por ellos, quedándo la query total
 
+
+
+Como lo hace grafana:
+SELECT
+  floor(extract(epoch from updated_at)/3600)*3600 AS "time",
+  sum((prices)::float) AS prices
+FROM ship
+WHERE
+  updated_at BETWEEN '2020-03-30T18:40:07.496Z' AND '2020-04-06T18:40:07.496Z'

@@ -109,3 +109,10 @@ $ cat test.sql
 select :val1, :val2;
 
 $ psql -f test.sql
+
+
+# metacommands
+Mostrar que están lanzando
+$ psql -E
+=# /d
+Saldrá la query qye estamos lanzando

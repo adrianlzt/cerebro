@@ -4,14 +4,31 @@ Viene con Jenkins, Helm, integraciones con Github, etc
 
 jx es la herramienta que usaremos para desplegar Jenkins X
 
+A partir de Abril/2020 ya deprecan el modo de JX con un jenkins master.
+Ahora se hace todo con tekton (webhook: prow)
+https://github.com/jenkins-x/jx-docs/blob/c77f6d31a354c0d43676e60f5076e86b1cb505e3/content/en/blog/news/jenkins-x-tekton.md
+
+El problema es que prow solo está soportado para github.com
+Nos dice que cambiemos a lighthouse, pero ese monta un jenkins master.
+
+
+
+
 # install cli
-Mirar cual es la última release: https://github.com/jenkins-x/jx/releases
-curl -L https://github.com/jenkins-x/jx/releases/download/v1.3.474/jx-linux-amd64.tar.gz | tar xzv
+yay jx
+
+Si no está actualizado:
+curl -L "https://github.com/jenkins-x/jx/releases/download/$(curl --silent "https://github.com/jenkins-x/jx/releases/latest" | sed 's#.*tag/\(.*\)\".*#\1#')/jx-linux-amd64.tar.gz" | tar xzv "jx"
+chmod a+x /usr/local/bin
 sudo mv jx /usr/local/bin
 
 
-# install Jenkins X sobre un cluster de kubernetes ya montado
+# Install Jenkins X sobre un cluster de kubernetes ya montado
 https://jenkins-x.io/getting-started/install-on-cluster/
+
+On premises:
+https://jenkins-x.io/docs/getting-started/setup/boot/clouds/on-premise/
+
 
 ## Requisitos
 https://jenkins-x.io/getting-started/install-on-cluster/
@@ -30,7 +47,134 @@ Podemos comprobar si cumple ejecutando (ejecuta https://scanner.heptio.com/):
 jx compliance
 
 
-## Install
+## jxl
+JX lab, con helm3, lighthouse+tekton
+Bajar binario de https://github.com/jenkins-x-labs/jxl/releases
+
+https://jenkins-x.io/docs/labs/boot/
+https://jenkins-x.io/docs/labs/boot/getting-started/repository/
+
+jxl boot create --provider kubernetes --domain 10.10.10.31.nip.io
+
+Usando github.com funciona correctamente
+
+Nos creará un repo en la org que le hayamos especificado.
+
+Para desplegar el entorno de dev:
+git clone git@github.com:ORGANIZACION/environment-jxlab-dev.git
+cd environment-jxlab-dev
+jxl boot secrets edit
+jxl boot run
+
+
+
+
+## Boot
+Es el nueva forma de desplegar jx
+
+Fichero de config: jx-requirements.yml
+Variables por defecto:
+https://github.com/jenkins-x/jenkins-x-boot-config/blob/master/jx-requirements.yml
+
+Providers soportados: https://github.com/jenkins-x/jenkins-x-boot-config/tree/master/kubeProviders
+
+### On premises
+git clone https://github.com/jenkins-x/jenkins-x-boot-config.git
+cd jenkins-x-boot-config
+La idea es que nos clonaremos ese repo en nuestro git y será la forma que tengamos de configurar/redesplegar/actualizar jx
+
+Han cambiado cosas tras quitar los master? Revisar
+Editar jx-requirements.yml (spec https://jenkins-x.io/docs/reference/config/config/#config.jenkins.io/v1.RequirementsConfig):
+cluster.clusterName: jxTest
+cluster.provider: kubernetes
+cluster.git* configurar nuestro git. El gitName no puede tener mayúsculas, tiene que ser compatible con los nombres de k8s
+cluster.environmentGitOwner: jx
+  la org de git donde se almacenarán los repos
+cluster.devEnvApprovers: xxx
+  array de los usuarios que irán por defecto al fichero OWNERS (los que podrán aprobar las PRs)
+Configurar los environments[].ingress.domain, podemos usar valores tipo 10.10.10.31.nip.io
+  meter   ignoreLoadBalancer: true
+También ingress.domain (este para que es?)
+devEnvApprovers
+webhook: lighthouse
+  prow solo está soprtado para github.com
+
+Por defecto estará sin TLS
+
+necesita kubectl < 1.17.0 (abril 2020)
+https://github.com/kubernetes/kubectl/releases?after=kubernetes-1.17.0
+La última que he visto de 1.16:
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl
+Parece que el problema es que no soporta kubernetes 1.17
+no matches for kind "Deployment" in version "extensions/v1beta1"
+
+Usar la última 1-16
+https://github.com/rancher/k3s/releases
+sudo ./k3s-1.16 server
+
+extensions/v1beta1/Deployment se depreco en la 1.16
+https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/
+Issue abierta desde 10/2019 para soportar k8s 1.16
+https://github.com/jenkins-x/jx/issues/5675
+Charts que fallan están en:
+https://github.com/jenkins-x/jenkins-x-platform/blob/master/jenkins-x-platform/requirements.yaml
+
+chartmuseum 1.1.5 (http://chartmuseum.jenkins-x.io)
+  arreglado en la 1.1.7
+jenkins 0.10.38 (http://chartmuseum.jenkins-x.io)
+  no arreglado, no hay nueva versión
+  fallo en jenkins/templates/jenkins-master-deployment.yaml
+  está intentando desplegar un jenkins master, pero queremos headless. Que pasa??
+docker-registry 1.5.0 (https://kubernetes-charts.storage.googleapis.com)
+  la 1.9.2 está arreglado
+heapster 0.3.2 (https://kubernetes-charts.storage.googleapis.com)
+  en la 1.0.2 está arreglado
+
+Todo esto viene de este requirement
+Que se baja este helm: https://github.com/jenkins-x/jenkins-x-platform/tree/master/jenkins-x-platform
+Que tiene esos requisitos.
+
+
+
+Parece que hace falta helm2 (abril 2020)
+https://github.com/helm/helm/releases
+
+
+Supuestamente podemos poner helm3, pero no está funcionando:
+cluster.helmMajorVersion: "3"
+
+
+Definir?
+  cluster.registry?
+
+Storage: https://jenkins-x.io/docs/managing-jx/common-tasks/storage/
+Como ficheros (en una rama de un repo?)
+O en un s3-like.
+Lo usa para logs, texts, coverage
+
+
+
+Ver lo que está haciendo con helm:
+export JX_NO_DELETE_TMP_DIR=true
+
+Parece que lo que ejecuta es algo tipo:
+kubectl apply --recursive -f /tmp/helm-template-workdir-947282688/jenkins-x/output/namespaces/jx -l jenkins.io/chart-release=jenkins-x --namespace jx --wait --validate=false
+El directorio temporal es algo tipo: /tmp/jx-helm-apply-616924604/env
+Crea un montón de recursos en k8s
+
+
+Borrar lo que haya hecho:
+helm template jenkins-x . --namespace jx | kubectl delete -f -
+
+
+
+## Edit
+jx edit xxx
+Nos permite modificar la config de jx
+
+
+
+## Install (deprecated 1/6/2020)
 Sobre un cluster de kubernetes ya existente
 jx install --helm3
 

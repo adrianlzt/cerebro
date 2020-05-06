@@ -32,6 +32,10 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_vault.html#single-e
 
 ansible-vault encrypt_string -n clave valor >> fichero_secrets
 
+Para leerlo:
+ansible all -i localhost, -e @vars.yaml -m debug -a "var=foobar"
+
+
 
 
 

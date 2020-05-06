@@ -31,3 +31,6 @@ programacion/tracing.md
 
 Problemas con los microservicios, preguntas que hacerte antes de elegir esta arquitectura:
 https://news.ycombinator.com/item?id=16200007
+
+Istio moviendo su control plane de microservicios a monolito:
+https://istio.io/blog/2020/istiod/

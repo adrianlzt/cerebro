@@ -89,3 +89,52 @@ func.__module__
 
 func.__defaults__
   valores por defecto de la funcion
+
+
+
+# Hacer override de una función
+Como llamar a funciones de una clase que no existen y generar las funciones dinámicamente
+Este ejemplo lo que hace es printar a que función estamos llamando de la clase Prueba y devolver la función print.
+Por lo que todas las llamadas a p.xxx(...) será como si hiciesemos print(...)
+
+class Prueba:
+    def _foo(self):
+        """funcion que queremos poder llamar desde dentro de la clase"""
+        pass
+    def __getattr__(self, name):
+        if name == "_foo":
+            return self._foo
+        print(f"has llamado a {name}")
+        # Si queremos devolver un resultado podemos hacer algo tipo
+        # return lambda x: results
+        return print
+
+p = Prueba()
+
+p.mi_func("hola")
+
+
+
+
+Algo similar pero pudiendo acceder a los parámetros:
+from functools import partial
+
+def bar(p1, p2):
+    print(f"BAR: p1: {p1}, p2: {p2}")
+    return "barfoo"
+
+
+class Prueba:
+    def _exec(self, name, *param):
+        return globals()[name](*param)
+
+    def __getattr__(self, name):
+        if name == "_exec":
+            return self._exec
+
+        return partial(self._exec, name)
+
+
+p = Prueba()
+print(p.bar("p1", "p2"))
+

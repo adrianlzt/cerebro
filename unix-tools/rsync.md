@@ -70,6 +70,9 @@ rsync -av datos backup
 rsync -av datos/ backup
   copia el contenido de datos/ dentro de backup
 
+rsync -r vars/ host:foo/vars
+  copia el contenido de vars en el dir vars/ remoto
+
 
 # Hard links
 -H

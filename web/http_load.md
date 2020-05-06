@@ -1,6 +1,9 @@
 Ideas de como lanzar load tests com AWS:
 https://www.reddit.com/r/aws/comments/640cb6/using_aws_for_load_testing/
 
+Uno que usa la gente de istio
+https://github.com/fortio/fortio
+
 https://locust.io/
 programa en python para hacer pruebas
 podemos distribuir los workers por varios servers

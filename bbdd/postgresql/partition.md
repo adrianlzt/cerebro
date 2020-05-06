@@ -66,7 +66,7 @@ CREATE EXTENSION pg_partman SCHEMA partman; -- cargar la extension en el schema 
 
 En este momento podemos ver las tablas y funciones que crea partman:
 \df partman.*
-\dp partman.*
+\dt partman.*
 
 
 Crear usuario (para particionado nativo no necesitamos un superuser):
@@ -124,19 +124,28 @@ Podemos especificar un intervalo de partición tipo tiempo porque le estamos dic
 También creará 10 particiones del futuro cada vez (nos da un margen por si dejase de funcionar el partman).
 select partman.create_parent('public.history', 'time', 'native', 'daily', p_premake := 10, p_epoch := 'seconds' );
 
+Luego tendremos que definir el retention y poner el infinite_time_partitions=true (para que siempre cree las tablas aunque no tengamos datos, mirar https://github.com/pgpartman/pg_partman/issues/303)
+UPDATE partman.part_config SET retention_keep_table=false, retention='{{table.retention}}' WHERE parent_table = '{{table.name}}';
+UPDATE partman.part_config SET infinite_time_partitions=true;
+
 Podemos ver las particiones creadas con:
 \d+ history
 
 Se crean automáticamente o ha sido el worker?
 
 
-Si queremos mover datos que han caído en la tabla "default" a paticiones podemos usar la función: partition_data_time() (mirar también partition_data_proc)
+Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_time() (mirar también partition_data_proc)
 
 
 La función run_maintenance() es la que tendremos que llamar periódicamente para crear las particiones.
+CUIDADO al ejecutar este comando, ya que podremos estar creando las tablas con otro owner que luego el bgwriter no pueda tocar.
+SELECT "partman".run_maintenance(p_analyze := false, p_jobmon := true);
+  aqui le decimos que use jobmon para registrar el resultado y que p_analze a false (no hace falta en pg11+)
 Si tenemos cargado el background worker (bgw), él se encargará de estas llamadas.
 Si queremos llamar a mano mejor llamar a run_maintenance_proc()
 
+Si solo queremos ejecutarlo sobre una tabla:
+SELECT partman.run_maintenance('public.history_str', p_jobmon := 't', p_debug := 't');
 
 undo_partition()
 mover los datos de las particiones a la tabla parent y hacer unattach las partitions
@@ -149,7 +158,13 @@ select parent_table,control,partition_interval,premake from partman.part_config;
 
 ## Monitoring
 Nos dice si hay datos en las tablas default, cosa que no debería. Puede indicarnos que están llegando datos del futuro o del pasado (tablas ya borradas).
+select * from  partman.check_default(false);
+  devuelve una linea por cada tabla default con valores
+
+Si queremos sacar una query para usar como monitorización (que nos de >0 si tenemos cosas en default):
 select count(*) from  partman.check_default(false);
+
+check_default(true) es bastante costoso.
 
 
 Mirar si todos los jobs de partman se están ejecutando bien (más info sobre jobs en jobmon.md):
@@ -164,6 +179,61 @@ En los logs de postgres se ve al arrancar:
 Y cada vez que se ejecuta el "maintenance":
 2020-03-04 18:21:51.454 UTC user= db= host= pid=29165 sess=5e5ff1bf.71ed: LOG:  pg_partman dynamic background worker (dbname=zabbix) dynamic background worker initialized with role partman on database zabbix
 2020-03-04 19:56:24.127 UTC user= db= host= pid=13084 sess=5e6007e8.331c: LOG:  pg_partman dynamic background worker (dbname=zabbix): SELECT "partman".run_maintenance(p_analyze := false, p_jobmon := true) called by role partman on database zabbix
+
+
+
+Número esperado de tablas particionadas VS al número real de particiones.
+Cuidado, si aún no ha pasado suficiente tiempo el número de particiones aún puede ser menor al esperado.
+WITH partman AS (
+  select
+    split_part(parent_table, '.', 2) as table,
+    partition_interval,
+    premake,
+    retention,
+    EXTRACT(
+      EPOCH
+      FROM
+        retention :: interval
+    ) / EXTRACT(
+      EPOCH
+      FROM
+        partition_interval :: interval
+    ) + premake as expected_partitions
+  from
+    partman.part_config
+),
+partitioned_tables AS (
+  select
+    relname
+  from
+    pg_catalog.pg_class c
+    LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+  WHERE
+    c.relkind = 'p'
+),
+partition_count AS (
+  select
+    p.parentrelid as parent_table,
+    count(*) as count
+  from
+    partitioned_tables,
+    pg_partition_tree(partitioned_tables.relname :: varchar) p
+    join pg_class c on (p.relid = c.oid)
+  where
+    isleaf
+    and pg_get_expr(relpartbound, relid) <> 'DEFAULT'
+  group by
+    p.parentrelid
+)
+select
+  partman.*,
+  partition_count.count as partition_count,
+  partman.expected_partitions - partition_count.count as missing_tables
+from
+  partman
+  join partition_count on partman.table = partition_count.parent_table :: varchar
+order by
+  partman.table;
 
 
 
@@ -183,6 +253,50 @@ UPDATE partman.part_config SET retention_keep_table=false, retention='RETENTION'
 ## BGW / background worker
 Lo único que hace es ejecutar run_maintenance() para las particiones que tengan configurado automatic_maintenance=true
 
+
+## Debug
+Mirar que está haciendo run_maintenance()
+CALL partman.run_maintenance_proc(p_jobmon := true, p_debug := true);
+
+Si solo queremos ejecutarlo sobre una tabla:
+SELECT partman.run_maintenance('public.history_str', p_jobmon := 't', p_debug := 't');
+
+Código: https://github.com/pgpartman/pg_partman/blob/d28670fbf56757442b8b6fb33e750f032f561a71/sql/functions/run_maintenance.sql
+
+Coge la config:
+SELECT parent_table , partition_type , partition_interval , control , premake , undo_in_progress , sub_partition_set_full , epoch , infinite_time_partitions , retention FROM partman.part_config WHERE undo_in_progress = false AND parent_table = 'public.history_uint';
+
+Comprobamos que la tabla parent existe.
+
+Obtenemos el tipo de dato por el que estamos particionando (time o id)
+SELECT general_type FROM partman.check_control_type('public', 'history_str', 'clock');
+
+Se muestra la expresión usada para particionar (si estamos en debug), ejemplo:
+NOTICE:  run_maint: v_partition_expression: to_timestamp(clock)
+
+Se muestra, si estamos en debug, la tabla parent y la última partición, ejemplo:
+NOTICE:  run_maint: parent_table: public.history_str, v_last_partition: history_str_p2020_03_27_1300
+
+Ahora se divide la ejecución según si tenemos que hacer un split por tiempo o por id.
+Por aquí sigo explicando el caso con división por tiempo.
+
+Se ejecuta partman.drop_partition_time(parent_table) si tenemos configurado retention (borrado de particiones antiguas)
+select partman.drop_partition_time('public.history_str');
+Devuelve el número de tablas dropeadas.
+En caso de que solo quede una partición, devolverá un error y no la dropeará.
+
+Obtenemos el comienzo del intervalo de la última partición que existe:
+SELECT child_start_time FROM partman.show_partition_info('public.history_str_p2020_03_27_1300', '01:00:00', 'public.history_str');
+
+Aqui hay dos opciones para definir el valor de current_partition_timestamp
+Si infinite_time_partitions=true, lo ponemos a now()
+Si infinite_time_partitions=false, buscará por todas las particiones el valor máximo del particionado. Lo que quiere es obtener el último valor que ser insertó.
+
+En caso de no obtener ningún valor en las particiones, buscará en la tabla default el valor máximo (lo pondrá en v_max_time_parent)
+
+Si tenemos debug, mostrará el valor máximo encontrado y las particiones y el la tabla default.
+
+Si el valor máximo de la tabla default es superior al current, se calculará el current_partition_timestamp basado en ese valor (por ejemplo, si el último dato es a las 13:05:04 y estamos particionando por hora, definirá current_partition_timestamp a 13:00:00)
 
 
 
@@ -222,6 +336,8 @@ CUIDADO! Adding or removing a partition to or from a partitioned table requires 
 Reducir la creación borrado de tablas a un mínimo de operaciones.
 
 CUIDADO! No podemos usar foreign keys desde otras tablas hacia una tabla particionada.
+A partir de la versión 12 si se puede.
+Pero si declaramos una primary key, el valor por el que particionemos debe estar en esa primary key.
 
 
 Si usamos RANGE algunos detalles:
@@ -298,12 +414,12 @@ SELECT pg_get_partkeydef('history'::regclass);
 SELECT pg_get_partition_constraintdef('history_1555891200_1555977600'::regclass);
   contraints de la partición "history_1555891200_1555977600"
 
+Tabla con los schema, tables y partition_key
 select c.relnamespace::regnamespace::text as schema,
        c.relname as table_name,
        pg_get_partkeydef(c.oid) as partition_key
 from   pg_class c
 where  c.relkind = 'p';  -- partitioned table
-  tabla con los schema, tables y partition_key
 
 Tipo de una tabla particionada: relkind='r'
 
@@ -311,14 +427,46 @@ Tablas child y sus rangos
 select c.relname as table_name, pg_get_expr(relpartbound, c.oid) as partbound from pg_class c where c.relispartition=true and c.relkind='r';
 
 
-Para cuando esté PG12
-https://gist.github.com/amitlan/97dbed8c7c3f49be7579782ba22c9ced
+Tablas child de la tabla parent nombreTablaParent:
 select  p.*,
         pg_get_expr(relpartbound, relid) as partbound,
         pg_get_partkeydef(relid) as partkey
-from    pg_partition_tree('p') p join
+from    pg_partition_tree('nombreTablaParent') p join
         pg_class c on (p.relid = c.oid);
 
+
+Tablas parent particionadas:
+select
+  relname
+from
+  pg_catalog.pg_class c
+  LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+WHERE
+  c.relkind = 'p';
+
+
+Cuantas particiones hay por cada tabla (sin contar el parent ni la default):
+WITH partitioned_tables AS (
+  select
+    relname
+  from
+    pg_catalog.pg_class c
+    LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+  WHERE
+    c.relkind = 'p'
+)
+select
+  p.parentrelid,
+  count(*)
+from
+  partitioned_tables,
+  pg_partition_tree(partitioned_tables.relname :: varchar) p
+  join pg_class c on (p.relid = c.oid)
+where
+  isleaf
+  and pg_get_expr(relpartbound, relid) <> 'DEFAULT'
+group by
+  p.parentrelid;
 
 
 
@@ -379,3 +527,28 @@ Si está desactivado el query planner comprobará todas las tablas child al hace
 
 # Errores
 Bloqueado borrado una partición, mirar a ver si está el vacuum ejecutándose.
+
+
+
+
+
+
+# Querys contra tablas particionadas
+Si usamos "now()" (o valores dinámicos), esos valores no se pueden usar para filtrar tablas particionadas.
+
+https://stackoverflow.com/questions/30446526/partition-pruning-based-on-check-constraint-not-working-as-expected/30448533#30448533
+
+https://stackoverflow.com/questions/47360199/postgres-query-partitioned-table-on-current-date
+http://www.peterhenell.se/msg/PostgreSQL---Partition-Exclusion-with-nowcurrent_timestampcurrent_date
+
+Si estamos filtrando tablas con algo tipo "clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 min')))" podemos crear una función que retorne el timestamp inmutable:
+
+CREATE FUNCTION f_epoch_immutable()
+  RETURNS integer AS
+$func$
+SELECT (ROUND(EXTRACT(EPOCH FROM now())))::integer
+$func$  LANGUAGE sql IMMUTABLE;
+
+Y cambiamos por: "clock > f_epoch_immutable() - 3600"
+Tardando un orden de magnitud menos.
+

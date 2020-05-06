@@ -15,6 +15,7 @@ Hacer backup del dir /your/home
 conectaran por el puerto 50000
 
 
+
 # Primer arranque
 Tras arrancar la primera vez escupirá una password de admin aleatoria
 Tambien la podremos encontrar en: /var/jenkins_home/secrets/initialAdminPassword
@@ -35,17 +36,20 @@ Una vez instalado ir a la configuración y bajar hasta "Nube" y agregar una tipo
 Podemos usar distintos métodos de conex con los slaves:
 
 1.- attach container
-Usaremos esta imagen: https://hub.docker.com/r/jenkinsci/slave/
+Usaremos esta imagen: https://hub.docker.com/r/jenkins/agent/
 La imagen parece que solo tiene que tener java instalado, nada más es necesario.
+Entiendo que la lanza docker on demand
 Connect mthod: Attach Docker container (experimental 21/01/2018)
 User: Jenkins
 
 2.- agent jlnp
-Imagen: https://hub.docker.com/r/jenkins/jnlp-slave/
-Parece que no funciona, porque cuando arranca la imagen pone en el CMD /bin/sh, que evita que se arranque el agente java (21/01/2018)
+Imagen: https://hub.docker.com/r/jenkins/inbound-agent
+Está arrancada y se conecta al master. Por ejemplo para agentes corriendo en otros nodos
 
 3.- ssh
-Imagen: https://hub.docker.com/r/jenkins/ssh-slave/
+Imagen: https://hub.docker.com/r/jenkins/ssh-agent
+
+Estas notas son antiguas, tal vez ssh-agent ya funciona bien.
 Parece que no funciona si el docker host esta configurado con unix:///var/run/docker.sock (https://github.com/jenkinsci/docker-plugin/issues/455) (error intentando conectar a 0.0.0.0)
 
 Podemos bajarnos esta imagen evarga/jenkins-slave para usarla como base.

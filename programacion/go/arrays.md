@@ -52,7 +52,16 @@ func foo(is []int) {
 }
 
 
-# Borrar
+# Limpiar slice
+Manteniendo le capacidad (el array de por debajo)
+a = a[:0]
+
+Cap=0, len=0
+a=nil
+
+
+
+# Sacar elementos de la lista
 https://github.com/golang/go/wiki/SliceTricks#cut
 
 CUIDADO! si los elementos de la lista son punteros, o struct que contienen punteros, debemos usar una implementación especial para que el garbage collector funcione bien
@@ -184,3 +193,13 @@ batches = append(batches, actions)
 // resultado: [[0 1 2] [3 4 5] [6 7 8] [9]]
 batches seguirá apuntando a la misma estructura de "actions", por lo que si modificamos "actions" veremos el cambio en los valores de "batches"
 batches seguirá apuntando a la misma estructura de "actions", por lo que si modificamos "actions" veremos el cambio en los valores de "batches"
+
+
+
+# Push and delete
+Vamos insertando valores en una slice, quedándonos solo con los 8 más recientes
+v := make([]int, 8)
+for i:=0; i<11; i++ { v = append(v,i); v = v[1:] }
+
+[3 4 5 6 7 8 9 10]
+

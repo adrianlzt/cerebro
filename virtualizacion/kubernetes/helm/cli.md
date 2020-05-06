@@ -22,7 +22,7 @@ helm install miredis stable/redis
 
 helm upgrade releaseName chartPath
   --install: si no existe una releas con este nombre, crearla
-  configmaps not overwritten: https://github.com/helm/helm/issues/3933
+  configmaps not overwritten: https://github.com/helm/helm/issues/5915
   no se modifican los configmaps. Hacerlo a mano, o borrar la release y redesplegar
 
 helm lint mychart

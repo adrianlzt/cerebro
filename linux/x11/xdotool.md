@@ -1,3 +1,7 @@
+Mirar también linux/events.md
+
+
+
 http://tuxradar.com/content/xdotool-script-your-mouse
 
 Controlar el mouse desde la linea de comandos

@@ -42,3 +42,10 @@ Users on this page: {{ titles|map('lower')|join(', ') }}
 # selecattr
 Comprobar si en ese "path" el valor es igual al pasado como parámetro:
 selectattr("cluster.virtual_host", "equalto", "hostAB")
+
+
+
+# join paths
+Unir paths sin saber si "directorio" termina con barra o no.
+"{{ directorio | regex_replace('/$','') }}/fichero.yml"
+

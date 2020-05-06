@@ -3,6 +3,8 @@ https://pgxn.org/dist/pg_jobmon/ <- versión más nueva que en github (mirar PR)
 pg_jobmon is an extension to add the capability to log the progress of running functions and provide a limited monitoring capability to those logged functions.
 Caso de uso: https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md#loggingmonitoring
 pg_partman lo usa para loguear y generar alarmas cuando su worker falla.
+
+# Install
 Instalar con pgxnclient
 Solo instala (aparte de doc y updates):
 /usr/pgsql-12/share/extension/pg_jobmon.control

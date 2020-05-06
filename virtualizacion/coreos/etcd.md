@@ -31,6 +31,7 @@ Lo que este en v2 no tiene porque verse en v3
 
 ETCDCTL_API=3 etcdctl --endpoints https://server:2379 member list
   lista de los nodos del cluster
+  si da fallo, comprobar con http://
 
 etcdctl member list
   para la v2

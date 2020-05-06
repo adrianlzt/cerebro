@@ -15,3 +15,7 @@ openstack hypervisor stats show - Estadisticas globales del entorno
 openstack hypervisor show [ID or Hypervisor Hostname] - info especifica del host
   --> con el parametro "-c [campo]" obtienes únicamente el valor requerido
 
+
+Mirar servers:
+server list
+server list --all-projects

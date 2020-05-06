@@ -8,6 +8,8 @@ https://www.golang-book.com/books/intro/10
 https://www.goinggo.net/2014/02/the-nature-of-channels-in-go.html
 https://softwareengineering.stackexchange.com/questions/222642/are-go-langs-goroutine-pools-just-green-threads
 https://www.reddit.com/r/golang/comments/b80dlt/go_advanced_concurrency_patterns/
+https://drive.google.com/file/d/1nPdvhB0PutEJzdCq5ms6UI58dp50fcAN/view
+  Rethinking Classical Concurrency Patterns
 race_detector.md
 context.md
 
@@ -120,6 +122,27 @@ func (c *RedisClient) Messages() <-chan []byte {
 }
 
 
+
+## Operaciones sin bloqueo
+Usar select
+https://gobyexample.com/non-blocking-channel-operations
+
+Ejemplo de send sin bloqueo:
+    select {
+    case messages <- msg:
+        fmt.Println("sent message", msg)
+    default:
+        fmt.Println("no message sent")
+    }
+
+
+# Drain / vaciar un channel
+go func() {
+  for range c {
+  }
+}()
+
+
 # Cerrar un canal
 https://gobyexample.com/closing-channels
 
@@ -140,6 +163,8 @@ close(c)
 
 # Stateful goroutines
 https://gobyexample.com/stateful-goroutines
+
+
 
 # Waiting groups
 https://golang.org/pkg/sync/#example_WaitGroup
@@ -238,3 +263,18 @@ done <- struct{}{}
 
 ## Pipelines
 https://blog.golang.org/pipelines
+
+
+## Fan-out
+Enviar a un canal donde hay muchos workers
+
+## Fan-in
+Un worker escuchando en muchos canales
+
+
+## Broadcasting
+Mismo mensaje a varios workers
+https://github.com/golang/go/issues/28157
+
+Broadcast patterns are covered in the section starting at slide 67, with some extended examples on 102–105.
+https://drive.google.com/file/d/1nPdvhB0PutEJzdCq5ms6UI58dp50fcAN/view

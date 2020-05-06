@@ -291,6 +291,7 @@ select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where
 
 Número de eventos por segundo de los últimos 10 minutos, organizados por source y object (mirar explicación de valores en la sección de Events, más arriba):
 select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int GROUP BY source,object,value;
+  NOTA: elt() es una función, cón código "SELECT $2[$1+1];", podemos usar (ARRAY['a','b'])[type+1] en vez de usar la función
 
 Eventos internal por fallos de triggers, items, LLDs:
 select hosts.host,to_timestamp(clock),triggers.description,triggers.error from events,triggers,functions,items,hosts where hosts.hostid=items.hostid AND items.itemid=functions.itemid AND functions.triggerid=triggers.triggerid AND triggers.triggerid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=0 and source=3 and events.value=1 order by events.clock desc limit 40;
@@ -370,6 +371,7 @@ where
 
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
+  NOTA: elt() es una función, cón código "SELECT $2[$1+1];", podemos usar (ARRAY['a','b'])[type+1] en vez de usar la función
 SELECT
   elt(type,
     'Zabbix Agent',

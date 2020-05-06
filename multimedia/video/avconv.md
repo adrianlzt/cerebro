@@ -45,3 +45,7 @@ ffmpeg -i input.mp4 -vf "transpose=1" output.mp4
 3 – Rotate by 90 degrees clockwise and flip vertically.
 
 
+
+
+# Unir audio + video
+ffmpeg -i alexandermegos_taping.mp4 -i alexandermegos_taping_audio.mp4 -c:v copy -c:a aac output.mp4

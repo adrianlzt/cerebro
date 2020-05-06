@@ -9,6 +9,12 @@ GOOS=darwin GOARCH=amd64 go build/install...
 
 Para raspberry pi zero:
 GOOS=linux GOARCH=arm GOARM=6
+Si necesitamos cgo, instalar AUR (en este orden):
+arm-linux-gnueabihf-glibc-headers
+arm-linux-gnueabihf-glibc
+  es un poco jaleo, vamos instalando y borrando los distitnos arm-linux-gnueabihf-gcc-stageX
+CC=arm-linux-gnueabihf-gcc CGO_ENABLED=1 GOARCH=arm GOARM=6 go build
+
 
 GOOS=windows GOARCH=amd64 go build/install
 

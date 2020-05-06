@@ -2,18 +2,19 @@ https://facebook.github.io/react/docs/installation.html
 
 React is flexible and can be used in a variety of projects. You can create new apps with it, but you can also gradually introduce it into an existing codebase without doing a rewrite.
 
-https://www.gatsbyjs.org/
-para hacer apps de react
+Para crear apps usar uno de estos dos:
+Gatsby is a static site generator tool. A static site generator generates static HTML on build time. It doesn’t use a server.
+Next.JS is mainly a tool for server-side rendered pages. It dynamically generates the HTML every time a new request comes in with the use of a server.
 
 
-# Install
-sudo npm install -g create-react-app
+
 
 # Uso básico
-create-react-app hello-world
+https://github.com/facebook/create-react-app
+npx create-react-app hello-world
 cd hello-world
 
-  npm start
+  yarn start
     Starts the development server.
     Abre un browser (localhost:3000) donde hay la app de ejemplo corriendo
     podemos modificar el codigo .js y la web se recargará automáticamente

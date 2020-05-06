@@ -63,6 +63,24 @@ alter table main_host alter column variables type jsonb USING variables::jsonb;
 ALTER TABLE table_name RENAME TO new_table_name;
 
 
+## Cambiar owner
+alter table <tabla> owner to <role>;
+
+
+## Modificar varias tablas
+
+DO
+$$
+DECLARE
+    row record;
+BEGIN
+    FOR row IN SELECT tablename FROM pg_tables WHERE schemaname = 'public' -- and other conditions, if needed
+    LOOP
+        EXECUTE 'ALTER TABLE public.' || quote_ident(row.tablename) || ' SET SCHEMA [new_schema];';
+    END LOOP;
+END;
+$$;
+
 
 # Tabla con una PRIMARY KEY formada por dos valores
 CREATE TABLE films (
@@ -142,3 +160,27 @@ Más rápidas porque no tienen que escribir en WAL.
 Normalmente usadas en casos donde podemos regenerar los datos, por ejemplo si cargamos unos .csv
 
 Los backups tampoco tendrán estos datos.
+
+
+
+# pg_catalog
+Podemos abrir con "psql -E" y ejecutar los comandos \xxx para ver lo que ejeutan.
+
+Normally, one should not change the system catalogs by hand, there are normally SQL commands to do that
+
+Tenemos la vista pg_tables que es más sencilla.
+
+
+Tablas del schema public
+select
+  relname
+from
+  pg_catalog.pg_class c
+  LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+WHERE
+  c.relkind = 'r' OR c.relkind = 'p'
+  AND n.nspname = 'public'
+  AND pg_catalog.pg_table_is_visible(c.oid);
+
+Para mostrar tablas particionadas:
+c.relkind = 'p'

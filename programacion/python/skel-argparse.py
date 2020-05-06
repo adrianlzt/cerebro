@@ -40,7 +40,7 @@ def parse_args(argv):
     p.add_argument('-v', '--verbose', dest='verbose', action='count', default=0,
                    help='verbose output. specify twice for debug-level output.')
     p.add_argument("-c", "--config", action="store", dest="input_config_file",
-                   help="Path to the cyclops configuration file.", default=None)
+                   help="Path to the configuration file.", default=None)
 
     args = p.parse_args(argv)
 

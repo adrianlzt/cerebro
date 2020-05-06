@@ -46,16 +46,17 @@ nmcli d show wlo1
 Tal vez tenemos que usar esas DNS si no no funciona la resolución (wifis capando el resto de dns)
 
 
-# Conectar a una wifi con wpa:
-wpa_passphrase SSID PASSPHRASE >> /etc/wpa_supplicant.conf
-wpa_supplicant -Dwext -iwlan0 -c /etc/wpa_supplicant.conf
-dhclient wlan0
-ip r add default wlan0 via 192.168.1.1
+# Conectar a una wifi con wpa
+wpa_passphrase "nombreRed"
+  nos pedira la contraseña
 
+Meter la respuesta en /etc/wpa_supplicant/wpa_supplicant.conf
 
-10.58.242.242
-255.248.0.0
-10.63.255.254
+wpa_cli -i wlan0 reconfigure
+
+Comprobar:
+ifconfig wlan0
+
 
 # Errores
 wlo1      Interface doesn't support scanning : Network is down

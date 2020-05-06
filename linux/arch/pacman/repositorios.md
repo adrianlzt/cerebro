@@ -1,5 +1,7 @@
 /etc/pacman.conf
 
+Mirar mirrors.md para ver que servidores configurar.
+
 
 # Fuentes
 [infinality-bundle]

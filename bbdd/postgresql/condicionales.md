@@ -25,3 +25,25 @@ En este caso, estamos haciendo insert de "VALUES('x','y')" si la tabla jobmon.db
 with j as (select 'x' as username, 'y' as pwd where (select count(*)=0 from jobmon.dblink_mapping_jobmon))
 INSERT into jobmon.dblink_mapping_jobmon (username,pwd) select username,pwd from j;
 
+
+
+# Operadores de comparación
+https://www.postgresql.org/docs/current/functions-comparison.html
+
+Cuidado con NULL.
+Si alguno de los operadores es NULL, la operación devolverá NULL:
+
+> SELECT ('2018-03-11 02:30'::timestamp > NULL) IS NULL;
+ ?column?
+----------
+ t
+
+
+
+# case
+SELECT a,
+       CASE WHEN a=1 THEN 'one'
+            WHEN a=2 THEN 'two'
+            ELSE 'other'
+       END
+    FROM test;

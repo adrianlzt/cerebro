@@ -5,6 +5,8 @@ kubectl view-secret <secret> <key>
 kubeclt view-secret <secret> -a/--all
 
 
+kubectl create secret generic my-secret --from-literal=key1=supersecret
+
 # https://kubernetes.io/docs/concepts/configuration/secret/
 #
 apiVersion: v1
@@ -33,6 +35,11 @@ Tendremos el secret "db-user-pass" con los data "username.txt" y "password.txt"
 
 Copiar un secret de namespace
 kubectl get secret gitlab-registry --namespace=revsys-com --export -o yaml | kubectl apply --namespace=devspectrum-dev -f -
+
+
+# Cert TLS
+kc create secret tls NOMNRE --cert certs/cert.pem --key certs/cert.key
+
 
 
 # Secret como fichero

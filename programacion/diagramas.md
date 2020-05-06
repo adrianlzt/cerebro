@@ -1,3 +1,12 @@
+https://excalidraw.com/
+gratis
+simula esquemas hechos a mano
+figuras básicas
+
+
+https://miro.com/
+
+
 rail_road_diagram.md
 
 

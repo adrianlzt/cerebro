@@ -17,3 +17,6 @@ rg -L
 
 rg -w git -g '*py'
   buscar "git", como palabra entera, solo en los ficheros py
+
+rg -g '!vendor' dbus
+  buscar "dbus" excepto en el dir vendor

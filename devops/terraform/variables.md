@@ -17,7 +17,7 @@ terraform apply -var "ost_pass=1234"
 O con un fichero:
 terraform.tfvars *.auto.tfvars (estos se cogerán automáticamente)
 
-En un fichero definiremos las variables como (tendrán que estar definidas en algun sitio: variable nombrevariable {}):
+En un fichero damos valores a las variables como (NOTA: tendrán que estar definidas en algun sitio (en algún fichero .tf), ejemplo de definición: variable nombrevariable {}):
 nombrevariable = "valor"
 
 

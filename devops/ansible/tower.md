@@ -73,7 +73,7 @@ tower-cli send awx_$(date +%Y%m%d).json
 https://github.com/autops/awx-migrate
 
 Lo que hace el script:
-	Mete las settings de la bbdd en la nueva
+  Mete las settings de la bbdd en la nueva
   Exporta todo con tower-cli y lo mete en la nueva
 
 A mano:
@@ -254,6 +254,21 @@ https://github.com/ansible/awx/blob/fcfd59ebe26d0051a838ea395d05665dba0db15d/doc
 
 
 # API
+
+## towerlib
+https://towerlib.readthedocs.io/en/latest/usage.html
+pip install towerlib
+
+from towerlib import Tower
+tower = Tower('awx.com:8071', 'admin', 'admin')
+job_postcheck = tower.get_job_template_by_name("foobar")
+j = job_postcheck.launch(extra_vars={"foo": "bar"}, limit="somhost")
+j.id
+j.status
+j.stdout
+
+
+## raw
 Enrutado api (es django)
 https://github.com/ansible/awx/blob/devel/awx/api/urls/urls.py
 
