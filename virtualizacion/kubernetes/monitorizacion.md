@@ -18,3 +18,5 @@ Ofrece varias vistas.
  - un dashboard de cosas desplegadas similar al dashboard oficial
  - una vista de relaciones entre pods y los datos de cada pod (procesos, consumos, etc)
  - una vista de monitorización
+
+UI en react: https://github.com/weaveworks/scope/tree/master/client

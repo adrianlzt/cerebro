@@ -2,6 +2,9 @@ mirar pg_stat_statements.md
 mirar pgmetrics.md
 Queries que hace zabbix para monitorizar postgres: https://github.com/zabbix/zabbix/tree/master/templates/db/postgresql/postgresql
 
+https://github.com/dalibo/pg_activity
+herramienta tipo top
+
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
 Tiempo entre checkpoints (más datos en checkpoint.md)
 Mirar si al menos tenemos una hora de WALs, si tenemos menos, deberíamos incrementar el max_wal_size para reducir los checkpoints.

@@ -20,6 +20,14 @@ Los proyectos parecen aún un poco verdes:
   lvm: https://github.com/wavezhang/k8s-csi-lvm/
 
 
+Parece que los competidores opensource son:
+ceph y openebs
+
+https://www.reddit.com/r/kubernetes/comments/cmqd7s/storage_on_kubernetes_openebs_vs_rook_ceph_vs/
+https://vitobotta.com/2019/08/06/kubernetes-storage-openebs-rook-longhorn-storageos-robin-portworx/
+https://docs.openebs.io/docs/next/casengines.html#cstor-vs-jiva-vs-localpv-features-comparison
+
+
 Parece que los PV pueden ser provisionados manualmente con tamaños específicos. Esto podría ser un problema si alguien solicita un PV de un tamaño más grande de los provisionado.
 Generalmente habrá unos provisionadores dinámicos que se encargarán de crear los PVs según los PVCs que le lleguen.
 
