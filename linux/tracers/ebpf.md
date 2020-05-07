@@ -29,6 +29,8 @@ samples/bpf (raw)
 bcc: python, c
 linux perf_events
 
+https://github.com/weaveworks/tcptracer-bpf
+
 
 # Comunicación
 La comunicación entre el kernel space y el user space se puede producir mediante perf_events o "maps" (resúmenes de la utilización).

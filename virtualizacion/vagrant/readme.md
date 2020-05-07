@@ -1,3 +1,6 @@
+Competencia: footloose, levanta containers que parecen VMs
+
+
 mkdir directorio/
 cd directorio/
 vagrant init [nombreVox]

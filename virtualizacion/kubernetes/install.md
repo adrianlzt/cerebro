@@ -1,3 +1,7 @@
+# https://github.com/weaveworks/wksctl
+No lo he probado
+GitOps para instalar kubernetes
+
 # Kubespray
 https://kubespray.io/
 https://kubernetes.io/docs/setup/custom-cloud/kubespray/
