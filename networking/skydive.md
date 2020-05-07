@@ -125,12 +125,22 @@ Podemos meter en el dump (json) nodos nuevos, inventándonos un ID, para insetar
 ## API
 http://skydive.network/swagger/
 
+### Topology
+Lanzar una query gremlin sobre la topología:
+curl 10.20.20.151:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
+
 ### Python
 http://skydive.network/documentation/api-python
 
 Tanto para solicitar cosas (API REST) como para modificar o recibir cambios del grafo, via websockets
 
 pip install skydive-client
+
+from skydive.rest.client import RESTClient
+restclient = RESTClient("10.20.20.151:8082")
+nodes = restclient.lookup_nodes("G.V().Has('Name', 'TOR3')")
+nodes[0].metadata
+
 
 
 
