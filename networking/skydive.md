@@ -110,24 +110,55 @@ Base de datos de grafos que funciona como backend
 Ejemplo en python para comunicarse con la graffiti:
 https://github.com/skydive-project/skydive/blob/master/contrib/python/api/samples/fs-watcher.py
 
+Tenemos que distinguir que datos son de "skydive" y cuales de "graffiti".
+
+
 ## Schema / topology
 Por debajo se almacena como una serie de Nodes y Edges.
 Podemos hacer un dump de la topología:
-curl -o /tmp/skydive.json http://localhost:8082/api/topology
+SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology export > graph.json
 
 Y también subir un dump (con la cli que se instala con python)
-skydive-ws-client --analyzer localhost:8082 --username admin --password password  add /tmp/skydive.dump
+SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology import --file graph.json
 
-Podemos meter en el dump (json) nodos nuevos, inventándonos un ID, para insetarlo en la topología.
+
+
+
+
+## Client
+http://skydive.network/blog/topology-rules.html
+Para interactuar con los analyzers, crear nodos, etc.
+SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client status
+
+SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client node-rule create --action create --description cli --name archerRule --node-name archer --node-type fabric --metadata 'foo=bar, bar=foo'
+
+Los nodos y edges creados con "node-rule" y "edge-rule" no pertenecen a skydive.
+Pero si están en la bd de graffiti
 
 
 
 ## API
 http://skydive.network/swagger/
+http://skydive.network/documentation/api#topologyflow-request
 
-### Topology
+Podemos ver como funciona "skydive client"
+
+Los nodos y edges creados con "node-rule" y "edge-rule" no pertenecen a skydive.
+Pero si están en la bd de graffiti
+
+Mediante websockets sí que podemos meter nodos en skydive.
+
+
+
+### RAW / Topology
 Lanzar una query gremlin sobre la topología:
 curl 10.20.20.151:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
+
+Crear nodo:
+POST /api/noderule
+Content-Type: application/json
+{"Name":"jRule","Description":"directora","Metadata":{"Foo":"bar","Name":"Jaria","Type":"people"},"Action":"create","Query":"","UUID":""}
+
 
 ### Python
 http://skydive.network/documentation/api-python
@@ -135,6 +166,9 @@ http://skydive.network/documentation/api-python
 Tanto para solicitar cosas (API REST) como para modificar o recibir cambios del grafo, via websockets
 
 pip install skydive-client
+
+Biene con un pequeño cliente para websockets, aunque es mejor "skydive agent"
+skydive-ws-client --analyzer localhost:8082 --username admin --password password  add /tmp/skydive.dump
 
 from skydive.rest.client import RESTClient
 restclient = RESTClient("10.20.20.151:8082")
