@@ -183,3 +183,12 @@ https://github.com/skydive-project/graffiti-ui
 Basada en ReactJS
 
 docker run -p 8080:8080 skydive/skydive-ui
+
+Pruebas de visualización
+https://github.com/skydive-project/skydive-ui/tree/master/tools/csvstoskyui
+
+### Dev
+Cada "nodo" del gráfico puede tener:
+  icon
+  weight
+  badges (iconitos que le aparecen arriba)
