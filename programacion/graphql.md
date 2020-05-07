@@ -46,6 +46,9 @@ graphql lint
 Otra app web que autogenera código:
 https://graphql-code-generator.com/
 
+Unstructured data: https://github.com/graphql/graphql-js/issues/32
+Parece que no hay mucha forma de gestionar esto. Meterlo en una string y poco más.
+
 
 ## Doc
 Podemos meter comentarios sobre todos los elementos tipo

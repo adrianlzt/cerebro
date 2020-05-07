@@ -110,6 +110,17 @@ Base de datos de grafos que funciona como backend
 Ejemplo en python para comunicarse con la graffiti:
 https://github.com/skydive-project/skydive/blob/master/contrib/python/api/samples/fs-watcher.py
 
+## Schema / topology
+Por debajo se almacena como una serie de Nodes y Edges.
+Podemos hacer un dump de la topología:
+curl -o /tmp/skydive.json http://localhost:8082/api/topology
+
+Y también subir un dump (con la cli que se instala con python)
+skydive-ws-client --analyzer localhost:8082 --username admin --password password  add /tmp/skydive.dump
+
+Podemos meter en el dump (json) nodos nuevos, inventándonos un ID, para insetarlo en la topología.
+
+
 
 ## API
 http://skydive.network/swagger/
@@ -118,6 +129,8 @@ http://skydive.network/swagger/
 http://skydive.network/documentation/api-python
 
 Tanto para solicitar cosas (API REST) como para modificar o recibir cambios del grafo, via websockets
+
+pip install skydive-client
 
 
 
