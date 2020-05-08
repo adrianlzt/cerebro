@@ -238,6 +238,11 @@ Container (classes.linkTagsPanel): menu de abajo a la izquierda con los tipos de
 Parece que usa d3js para generar un SVG.
 En renderTree() parece que está la función más general que llama al resto de "renderizadores"
 
+Se usa https://github.com/d3/d3-selection para selecionar nodos y trabajar con ellos.
+
+Para generar el "arbol", se le pasa un nodo root con los child a la funcion "tree" de d3:
+https://observablehq.com/@d3/tidy-tree
+
 #### Levels
 La información se organiza en distintos levels.
 Que levels hay se define en Config.tx weightTitles, asignado un peso a cada uno (como de arriba debe estar respecto al resto).
