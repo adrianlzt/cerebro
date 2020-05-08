@@ -75,3 +75,8 @@ points.sort(function(a, b){return a-b});
 
 # Copiar
 nuevo = viejo.slice()
+
+
+# Condicionales
+Array.isArray([1, 2, 3]);  // true
+Array.isArray({foo: 123}); // false

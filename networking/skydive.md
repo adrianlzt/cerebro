@@ -187,6 +187,9 @@ docker run -p 8080:8080 skydive/skydive-ui
 Pruebas de visualización
 https://github.com/skydive-project/skydive-ui/tree/master/tools/csvstoskyui
 
+Con Alt+Click podemos mover los "rows"
+
+
 ## Entorno desarrollo
 Clonar repo
 npm install
@@ -197,13 +200,39 @@ npm install
 Podemos generar un .json en assets/dump.json y visualizarlo usando la url:
 http://localhost:8080/?data=/assets/dump.json
 
+Si queremos que el server de pruebas envíe una nueva versión de este fichero tenemos que forzar un render, podemos hacerlo guardando cualquier otro fichero de código.
+Y activar en el navegador "Disable cache"
+
 Para generar ejemplos de dumps podemos usar tools/csvstoskyui
 
 
 ## ReactJS
 
 src/Config.ts
-donde se almacena 
+donde se almacena todo el tema de como pintar los distintos nodos según sus propiedades
+
+src/App.tsx y src/Topology.tsx agrupan prácticamente toda la lógica. Dos ficheros enormes
+
+src/api/api.ts lib autogenerada por swagger para comunicarnos con la API rest del analyzer
+
+La ui usa componentes de https://material-ui.com/components/
+
+A grandes rasgos se compone de:
+AppBar (con algunos botones que no se usan)
+Drawer (barra lateral izquierda, escondida, no se usa)
+Container (classes.content)
+  Topology (custom): se le pasan muchos props
+Container (classes.rightPanel): donde se muestran las propiedades de los nodos
+Container (classes.nodeTagsPanel): tags, para poder solo mostrar los nodos que tengan ciertos tags
+  estos tags se generan a partir de la metadata, puesto en Config.ts nodeTags a fuego solo el caso de k8s
+Container (classes.filtersPanel): filtrar mediante una expresion gremlin, debajo del icono de login
+  solo se muestran si no estamos cargando valores estáticos (?data=/assets/dump.json)
+  definidos en this.props.config.filters
+  estos filtros están definidos en Config.ts: DefaultConfig.filters, son queries gremlin que se lanzan por websocket
+Container (classes.linkTagsPanel): menu de abajo a la izquierda con los tipos de links y posibilidad de des/activar
+
+
+
 ### Nodos
 Cada "nodo" del gráfico puede tener:
   icon
