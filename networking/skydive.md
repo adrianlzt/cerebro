@@ -222,6 +222,7 @@ AppBar (con algunos botones que no se usan)
 Drawer (barra lateral izquierda, escondida, no se usa)
 Container (classes.content)
   Topology (custom): se le pasan muchos props
+  Se encarga de generar el SVG que se muestra
 Container (classes.rightPanel): donde se muestran las propiedades de los nodos
 Container (classes.nodeTagsPanel): tags, para poder solo mostrar los nodos que tengan ciertos tags
   estos tags se generan a partir de la metadata, puesto en Config.ts nodeTags a fuego solo el caso de k8s
@@ -233,7 +234,21 @@ Container (classes.linkTagsPanel): menu de abajo a la izquierda con los tipos de
 
 
 
+### Toplogy
+Parece que usa d3js para generar un SVG.
+En renderTree() parece que está la función más general que llama al resto de "renderizadores"
+
+#### Levels
+La información se organiza en distintos levels.
+Que levels hay se define en Config.tx weightTitles, asignado un peso a cada uno (como de arriba debe estar respecto al resto).
+Cada nodo se le asignan unos atributos (_nodeAttrsInfra), esa función, en base a su "Metadata.Type" decide que "weight" le pone, que será en que nivel irá.
+
+Los hijos de un nodo siempre deben estar en un weight de valor superior (debajo), si no, se pintarán igualmente debajo pero dentro del level del padre.
+
+
 ### Nodos
+Hay una clase "Node" donde se definen las propiedades y se puede obtener su weight.
+
 Cada "nodo" del gráfico puede tener:
   icon
   weight
