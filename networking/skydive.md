@@ -178,7 +178,7 @@ nodes[0].metadata
 
 
 
-## Graffiti UI
+# Graffiti UI
 https://github.com/skydive-project/graffiti-ui
 Basada en ReactJS
 
@@ -187,8 +187,30 @@ docker run -p 8080:8080 skydive/skydive-ui
 Pruebas de visualización
 https://github.com/skydive-project/skydive-ui/tree/master/tools/csvstoskyui
 
-### Dev
+## Entorno desarrollo
+Clonar repo
+npm install
+  con node 13 me funciona. En el dockerfile usan v10
+./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0
+
+## Pruebas schemas
+Podemos generar un .json en assets/dump.json y visualizarlo usando la url:
+http://localhost:8080/?data=/assets/dump.json
+
+Para generar ejemplos de dumps podemos usar tools/csvstoskyui
+
+
+## ReactJS
+
+src/Config.ts
+donde se almacena 
+### Nodos
 Cada "nodo" del gráfico puede tener:
   icon
   weight
   badges (iconitos que le aparecen arriba)
+
+Las relaciones de "ownership" solo pueden ser 1:N (un hijo no puede tener varios padres), pero si podemos crear otros tipos de edges M:N (creo, he probado N:1)
+
+El weight sirve para ordenar los distintos tipos de nodo, pero solo cuando no tienen relacion de ownership.
+En caso de tener ownership, el parent siempre va arriba
