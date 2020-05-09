@@ -1,6 +1,8 @@
 https://facebook.github.io/react/docs/handling-events.html
 https://facebook.github.io/react/docs/events.html
 
+mirar tambien event_propagation.md para pasar eventos entre componentes
+
 Llamar a los eventos con camelCase
 
 <button onClick={activateLasers}>
