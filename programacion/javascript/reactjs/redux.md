@@ -1,0 +1,1 @@
+Gestion global de estado
