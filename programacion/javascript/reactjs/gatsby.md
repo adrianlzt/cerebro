@@ -9,6 +9,7 @@ npm install -g gatsby-cli
 gatsby new my-eui-starter https://github.com/elastic/gatsby-eui-starter
 cd my-eui-starter
 gatsby develop
+  Usa gatsby-browser.js para wrappear todo con ./src/components/chrome/chrome
 
 http://localhost:8000/___graphql
 Tendremos montada la interfaz web de kibana
