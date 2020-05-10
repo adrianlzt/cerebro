@@ -12,6 +12,11 @@ Si no renderizo el GoogleLogin, se queda en Loading
 Tal vez tiene que ver con el tema de async/await (porque hace uso de ello)? Que no lo esté cargando si no pongo el GoogleLogin?
 He probado a meterlo como import donde llamo a react-google-sheet, pero no me tiraba
 
+Si le pongo mal el scope de la app, se queda también en Loading
+Parece que hace falta poner el scope:             'https://www.googleapis.com/auth/spreadsheets.readonly'
+Y luego en los discoveryDocs las apis que queremos usar
+
+
 
 
 GapiAppendComponent
