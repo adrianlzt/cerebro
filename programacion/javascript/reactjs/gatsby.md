@@ -201,3 +201,17 @@ https://www.gatsbyjs.org/docs/node-apis/
 Nos permite crear nodos (cosas) en la capa de datos (graphql)
 
 Tenemos que meter lo que queremos en el fichero: gatsby-node.js
+
+
+# Await/async
+ReferenceError: regeneratorRuntime is not defined
+https://github.com/gatsbyjs/gatsby/issues/341
+
+Instalar babel-polyfill
+
+Meter lo del primer comentario en gatsby-node.js
+
+
+Meter donde se use async/await:
+import 'regenerator-runtime/runtime';
+
