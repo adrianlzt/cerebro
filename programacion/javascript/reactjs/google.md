@@ -1,5 +1,11 @@
+https://github.com/lourd/react-google-api
+Usar este
+Nos da un context que podemos usar en los child
+
+
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 Funciona, pero no me da acceso a la api
+No funciona con linux chromium (10/5/2020)
 https://github.com/anthonyjgrove/react-google-login
 
 https://github.com/lourd/react-google-sheet
