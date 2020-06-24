@@ -77,6 +77,9 @@ E instalar en chrome apuntando al dir gopassbridge/chrome-release
 Hara falta ejecutar de nuevo "gopass jsonapi configure"
 Habrá que modificar el fichero /home/adrian/.config/chromium/NativeMessagingHosts/com.justwatch.gopass.json para poner el id que nos haya asignado chrome
 
+Si ya la tenemos instalada, podemos darle simplemente a recargar en Chrome.
+En esa ventana también tenemos la opción de arrancar el debugger
+
 
 Mi version modificada (ultimos commits del repo oficial mas mi cambio para tener -e. Lo ultimo del repo oficial está más adelantado de la 1.6.3):
 https://github.com/adrianlzt/password-store/releases/tag/1.6.3-1

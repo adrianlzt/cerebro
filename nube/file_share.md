@@ -1,3 +1,7 @@
+curl --upload-file ./hello.txt https://transfer.sh/hello.txt
+https://transfer.sh/66nb8/hello.txt
+
+
 magic-wormhole
 https://github.com/warner/magic-wormhole
 Compartir ficheros, o pequeños texos, usando únicamente dos palabras legibles.

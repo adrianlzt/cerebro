@@ -87,6 +87,11 @@ var d = new Dog('Mitzie');
 d.speak();
 
 
+Exntender dos clases
+interface Props extends PanelProps<SimpleOptions>, WithSnackbarProps {
+
+
+
 
 # Antiguo (<= ecma5)
 Cosas raras con prototype

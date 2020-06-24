@@ -16,3 +16,7 @@ Depende de que punto de montaje, podremos reducir este margen, por ejemplo en /h
 
 Para consultar el valor:
 
+
+
+Si queremos ver un listado de los sistemas de ficheros:
+findmnt

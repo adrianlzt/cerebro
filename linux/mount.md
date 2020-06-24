@@ -13,7 +13,9 @@ mount -o remount,rw /
 
 
 findmnt para ver /etc/fstab /etc/mtab
+Nos permite ver que está montado de forma jerárquica
 
 
 # Bind
 mirar filesystems/mount-bind.md
+

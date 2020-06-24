@@ -74,9 +74,22 @@ points.sort(function(a, b){return a-b});
 
 
 # Copiar
-nuevo = viejo.slice()
+https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+nuevo = viejo.slice()  // forma antigua
+nuevo = [...viejo]
 
 
 # Condicionales
 Array.isArray([1, 2, 3]);  // true
 Array.isArray({foo: 123}); // false
+
+
+
+# Intersección
+[3,4,5,6].filter(value => [1,2,3].includes(value))
+devuelve [3]
+
+
+# Generate
+Generar un array del 1 al 10
+Array(10).fill(1).map( (_, i) => i+1 )

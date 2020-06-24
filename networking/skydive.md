@@ -80,10 +80,66 @@ func NewProbe(ctx tp.Context, bundle *probe.Bundle) (probe.Handler, error)
 https://github.com/skydive-project/skydive/blob/master/agent/topology_probes.go#L48
 
 Ejemplo básico de probes:
-https://github.com/skydive-project/skydive-plugins/pull/1/files
+https://github.com/skydive-project/skydive-plugins/
 
 Parece que se pueden añadir como plugins
 https://github.com/skydive-project/skydive/issues/2209
+
+Creo que el sistema de plugins de Go no cuadra, porque al tener que hacer el build distinto a skydive usando gomod, siempre protesta por usar ficheros distintos.
+
+#### Añadir nuevo probe
+Crear topology/probes/nombre/nombre.go
+
+Si queremos probarlo tenemos que comitearlo, si no, el go:generate no lo detectará.
+
+Añadir la nueva probe al fichero de config: etc/skydive.yml
+
+Añadirla a agent/topology_probes.go
+import ...
+name.Register()
+case "name":
+  return name.NewProbe(ctx, bundle)
+
+
+NewProbe() debe devolver un objeto que cumpla la interfaz Handler
+  Start() error
+  Stop()
+
+
+Tenemos disponible también el concepto bundle, para agrupar varias probes: probe/bundle.go
+Parece que nos permite arrancarlas y pararlas
+
+
+
+Registrar un nodo (internamente crea el nodo y lo añade):
+p.Ctx.Graph.NewNode
+
+// Crear un link al root node (que como estamos en el agente, será el nodo del "server") si no lo tiene ya
+if !topology.HaveOwnershipLink(p.Ctx.Graph, p.Ctx.RootNode, node) {
+  topology.AddOwnershipLink(p.Ctx.Graph, p.Ctx.RootNode, node, nil)
+}
+
+Mirar si dos nodos están unidos con un tipo de link determinado:
+g.AreLinked(n1, n2, Metadata{"RelationType": "simpleLinker"}
+
+
+Analyzer probe:
+A grandes rasgos se suele implementar de la siguiente manera.
+Implementamos unos indexers para los tipos de datos que queremos enganchar.
+Por ejemplo, uno para los listen ports, que se alimentará de cierta información de Metadata y devolverá un map con hashes de las conex que tiene.
+Por otro lado haremos algo similar para las conex salientes.
+
+Hasta aqui tendremos unos "índices" (en el sentido de bbdd), donde podemos pasar unos valores y nos devuelve el nodo que lo tiene.
+
+Ahora implementamos los GetABLinks/GetBALinks, que deben devolver los links del nodo que se para como argumento.
+Lo que haremos es coger de la metadata sus conex remotas y buscar en el índice algún listener que matchee y entonces creamos el edge.
+
+Cuando generamos el Linker llamando a NewResourceLinker, pasamos los listas de handlers, glhs1 y glhs2.
+Cuando se produce un evento en glhs1 se llama a GetABLinks
+Cuando se produce un evento en glhs2 se llama a GetBALinks
+No tenemos porque necesitar implementar ambos.
+
+
 
 
 #### blockdev
@@ -114,6 +170,8 @@ Tenemos que distinguir que datos son de "skydive" y cuales de "graffiti".
 
 
 ## Schema / topology
+La primary key de los nodos es Metadata.Name+Metadata.Type (si creamos dos nodos que compartan esos parámetros se tratarán como el mismo)
+
 Por debajo se almacena como una serie de Nodes y Edges.
 Podemos hacer un dump de la topología:
 SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology export > graph.json
@@ -121,6 +179,11 @@ SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology export > graph.jso
 Y también subir un dump (con la cli que se instala con python)
 SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology import --file graph.json
 
+
+## Desarrollo
+
+### Parseo de gremlin
+https://github.com/skydive-project/skydive/blob/master/graffiti/graph/traversal/traversal.go
 
 
 
@@ -132,8 +195,41 @@ SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client status
 
 SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client node-rule create --action create --description cli --name archerRule --node-name archer --node-type fabric --metadata 'foo=bar, bar=foo'
 
+Crear edge:
+skydive client edge-rule create --src "G.V().Has('Name', 'miveth')" --dst "G.V().Has('Name', 'mivm1')" --relationtype ownership
+
 Los nodos y edges creados con "node-rule" y "edge-rule" no pertenecen a skydive.
 Pero si están en la bd de graffiti
+Si creamos un edge-rule y no hace match se quedará escuchando a ver si aparece algún nodo que haga match y en ese momentó creará la rule.
+
+Si creamos un edge typo "ownership" y el nodo child ya tenía otra relación de ownership con otro parent, se borrará la antigua y se creará esta nueva.
+Del código: "a child node can only have one parent of type ownership, so delete the previous link"
+https://github.com/skydive-project/skydive/blob/b7609ba971e37b9a43cb6bf9977d4160e2644334/topology/topology.go#L130
+
+
+Lanzar query:
+./skydive client query "G.V()"
+
+
+Actualizar un nodo:
+./skydive client node-rule create --action update --query "G.V().Has('Name', 'nodoA')" --metadata 'foo=bar'
+  en este caso añadiremos más metadata (no se sustituye, se hace append)
+  con curl: curl http://127.0.0.1:8082/api/noderule -d '{"Action": "update", "Metadata":{"Alarms": [{"Name": "disk", "Severity": 1}]}, "Query": "G.V().Has(\"Name\", \"test1\")"}'
+
+
+
+## Gremlin
+http://skydive.network/documentation/api-gremlin
+Queries para atacar a graffiti.
+
+Mirar como estaba la db de grafos en un momoento del tiempo.
+./skydive client query "G.At('Thu, 14 May 2020 15:12:04 CEST')"
+
+Obtener los nodos de un type y sus descendientes. Se puede pasar un parámetro a Descendants para decir cuantas veces debe buscar hacia abajo, ejemplo Descendants(4):
+G.V().Has("Type", "VMs").Descendants()
+
+Si queremos obtener añadir los links a partir de un filtro:
+.SubGraph()
 
 
 
@@ -143,10 +239,22 @@ http://skydive.network/documentation/api#topologyflow-request
 
 Podemos ver como funciona "skydive client"
 
+node/edge VS noderule/edgerule
+  node is to create a node directly, while node rule is to create node based on event on the graph
+  for example, in order to create a node if another one is present or to update a node if a node has specific attributes
+
+  noderule and edgerule APIs create objects on etcd
+  with these, Skydive will watch the graph and react on changes : when a change occurs, it will check if an noderule/edgerule applies and will apply the change specified by the rule
+  the main purpose was when you are Skydive with agents. If you want to add metadata on a node created by an agent, we would use noderule to create additional properties
+  the node and edge API are simpler (dumber ?) : you directly create nodes and edges on the graph
+
 Los nodos y edges creados con "node-rule" y "edge-rule" no pertenecen a skydive.
 Pero si están en la bd de graffiti
 
 Mediante websockets sí que podemos meter nodos en skydive.
+
+A partir de esta PR si se se pueden crear nodos/edges de skydive mediante la API
+https://github.com/skydive-project/skydive/pull/2139
 
 
 
@@ -158,6 +266,18 @@ Crear nodo:
 POST /api/noderule
 Content-Type: application/json
 {"Name":"jRule","Description":"directora","Metadata":{"Foo":"bar","Name":"Jaria","Type":"people"},"Action":"create","Query":"","UUID":""}
+
+curl http://127.0.0.1:8082/api/noderule -d '{"Action": "create", "Metadata":{"Name": "nodo", "Type": "VMs"}}'
+
+Actualizar:
+  Seleccionando con ID:
+    curl http://127.0.0.1:8082/api/noderule -d '{"Action": "update", "Metadata":{"ID": "74baf067-ee31-5458-7b0d-c7ea8d46afb7", "Alarms": [{"Name": "disk", "Severity": 1}]}}'
+  Seleccionando con una query:
+    curl http://127.0.0.1:8082/api/noderule -d '{"Action": "update", "Metadata":{"Alarms": [{"Name": "disk", "Severity": 1}]}, "Query": "G.V().Has(\"Name\", \"test1\")"}'
+
+
+Crear edge rule:
+curl  http://127.0.0.1:8082/api/edgerule -H "Content-Type: application/json" -d '{"Src": "G.V().Has('Name', 'nodo')", "Dst": "G.V().Has('Name', 'nodo2')", "Metadata":{"foo": "bar"}}'
 
 
 ### Python
@@ -175,6 +295,23 @@ restclient = RESTClient("10.20.20.151:8082")
 nodes = restclient.lookup_nodes("G.V().Has('Name', 'TOR3')")
 nodes[0].metadata
 
+restclient.noderule_create("create", {"Name": "pruebavm3", "Type": "libvirt"})
+
+
+En la respuesta nos devuelve un json con lo que ha creado.
+No nos avisa si alguna de las queries no ha hecho match.
+Pero si da error en skydive:
+  (*TopologyManager).createEdge e66b00ef339a: Source or Destination node not found
+
+restclient.edgerule_create(
+    f"G.V().Has('Name', '{edge.get(PARENT)}')",
+    f"G.V().Has('Name', '{edge.get(CHILD)}')",
+    {
+        "RelationType": edge.get(TYPE, "ownership"),
+    },
+)
+
+
 
 
 
@@ -188,6 +325,8 @@ Pruebas de visualización
 https://github.com/skydive-project/skydive-ui/tree/master/tools/csvstoskyui
 
 Con Alt+Click podemos mover los "rows"
+
+Si no hay ninguna relación entre nodos, no pinta nada -> Arreglar
 
 
 ## Entorno desarrollo
@@ -210,6 +349,7 @@ Para generar ejemplos de dumps podemos usar tools/csvstoskyui
 
 src/Config.ts
 donde se almacena todo el tema de como pintar los distintos nodos según sus propiedades
+Puede sustituirse por una URL, mirar App.tsx fetchExtraConfig, parámetro extraConfigURL
 
 src/App.tsx y src/Topology.tsx agrupan prácticamente toda la lógica. Dos ficheros enormes
 
@@ -234,14 +374,16 @@ Container (classes.linkTagsPanel): menu de abajo a la izquierda con los tipos de
 
 
 
-### Toplogy
-Parece que usa d3js para generar un SVG.
-En renderTree() parece que está la función más general que llama al resto de "renderizadores"
+### Topology
+Usa tree de d3 para generar el arbol.
+Le pasa un dict con nodos y children y el tree le genera la estructura y las coordenadas (según unos valores con los que inicializamos).
 
 Se usa https://github.com/d3/d3-selection para selecionar nodos y trabajar con ellos.
 
 Para generar el "arbol", se le pasa un nodo root con los child a la funcion "tree" de d3:
 https://observablehq.com/@d3/tidy-tree
+https://github.com/d3/d3-hierarchy/blob/v1.1.9/README.md#hierarchy
+
 
 #### Levels
 La información se organiza en distintos levels.
@@ -257,9 +399,61 @@ Hay una clase "Node" donde se definen las propiedades y se puede obtener su weig
 Cada "nodo" del gráfico puede tener:
   icon
   weight
-  badges (iconitos que le aparecen arriba)
+  badges (iconitos que le aparecen arriba, https://fontawesome.com/cheatsheet)
 
 Las relaciones de "ownership" solo pueden ser 1:N (un hijo no puede tener varios padres), pero si podemos crear otros tipos de edges M:N (creo, he probado N:1)
 
 El weight sirve para ordenar los distintos tipos de nodo, pero solo cuando no tienen relacion de ownership.
 En caso de tener ownership, el parent siempre va arriba
+
+
+Tal vez que la UI detecte automáticamente un doble ownership y gestione otro tipo de enlace?
+
+
+### Edges
+Pueden tener atributos especiales: color, movimiento, dirección, etiqueta.
+Mirar función linkAttrs en Config.ts
+
+
+
+## Analyzer
+
+### API REST
+graffiti/api/server/server.go
+  Si estamos creando/actualizando algo, se llamará a la función "Create(resource Resource, createOpts *CreateOptions) error" (graffiti/api/rest/rest.go)
+  Esa función create la gestiona un handler, que ha sido previamente registrado con "RegisterAPIHandler"
+  En particular, la de creación de nodos: api/server/node.go RegisterNodeAPI
+  "func (h *NodeAPIHandler) Create" añade el nodo al graph: "h.g.AddNode(&graphNode)"
+  Esa llamada mete el nodo en el backend y genera un evento (g.eventHandler.NotifyEvent(NodeAdded, n))
+  Esta notificación parece que termina llamando a g.currentEventListener.OnXXX, por ejemplo g.currentEventListener.OnNodeUpdated
+
+  Por otro lado, el topoloy manager, en su función syncTopology(), recorre los nodos y los procesa, Esto solo para las "rules"?
+
+  En algún momento llega a "func (tm *TopologyManager) handleCreateNode(node *types.NodeRule) error", que ejecuta "tm.updateMetadata(node.Query, node.Metadata)"
+
+
+  Al crear un nodo su definición tiene que validarse contra el JSON schema: statics/schemas/node.schema
+
+
+### Backend
+Interfaz que cumplen:
+
+type Backend interface {
+  NodeAdded(n *Node) error
+  NodeDeleted(n *Node) error
+  GetNode(i Identifier, at Context) []*Node
+  GetNodeEdges(n *Node, at Context, m ElementMatcher) []*Edge
+
+  EdgeAdded(e *Edge) error
+  EdgeDeleted(e *Edge) error
+  GetEdge(i Identifier, at Context) []*Edge
+  GetEdgeNodes(e *Edge, at Context, parentMetadata, childMetadata ElementMatcher) ([]*Node, []*Node)
+
+  MetadataUpdated(e interface{}) error
+
+  GetNodes(t Context, m ElementMatcher) []*Node
+  GetEdges(t Context, m ElementMatcher) []*Edge
+
+  IsHistorySupported() bool
+}
+

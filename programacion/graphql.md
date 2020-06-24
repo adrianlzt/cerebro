@@ -1,6 +1,8 @@
 http://graphql.org/
 https://raw.githubusercontent.com/sogko/graphql-shorthand-notation-cheat-sheet/master/graphql-shorthand-notation-cheat-sheet.png
   cheatsheet
+https://relay.dev/graphql/connections.htm
+  pagination best practices
 
 Es un lenguaje para accede a los datos de tu api.
 Le pasamos los datos que queremos obtener con una especie de json.
@@ -43,7 +45,7 @@ graphql lint
   chequear el schema en busca de errores
 
 
-Otra app web que autogenera código:
+Otra app web que autogenera código (TypeScript, Java y .net):
 https://graphql-code-generator.com/
 
 Unstructured data: https://github.com/graphql/graphql-js/issues/32

@@ -7,6 +7,7 @@ Opciones de apps para gestionar los backups (secciones de cada uno al final del 
   barman (https://www.pgbarman.org/index.html) Utilizado, no muy bien diseñado, pero hace el trabajo
   pgbackrest (https://pgbackrest.org/)
   https://github.com/aiven/pghoard Usado por el SaaS Aiven. Script en python llevándose los wal. Parece un poco como barman
+  http://dalibo.github.io/pitrery/ PITR made simple (Shell script)
 
 
 Idea, hacer un base backup al comienzo, llevarnos los WAL con pg_receivewal y de vez en cuando arrancar un postgres para generar otro basebackup a partir del inicial más los WAL.

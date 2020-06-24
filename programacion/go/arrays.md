@@ -103,6 +103,8 @@ http://stackoverflow.com/a/33323321
 No hay función, tendremos que implementarla.
 Si es pequeño podremos recorrerlo con un for. Cuidado si es grande
 
+Tal vez nos vale con un dict tipo map[string]interface{} y almacenar los valores en las keys
+
 Si esta ordenado, podemos usar Sort.Search
 
 A lo mejor nos vale hacer algo tipo?

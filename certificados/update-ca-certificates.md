@@ -28,3 +28,9 @@ pacman -S ca-certificates
 sudo update-ca-trust enable
 sudo cp fichero.crt /etc/ca-certificates/trust-source/anchors
 sudo trust extract-compat
+
+
+## Blacklist
+https://nullroute.eu.org/~grawity/journal-2016.html
+Ejemplo de como meter un cert en blacklist
+sudo cp /etc/ca-certificates/extracted/cadir/AddTrust_External_Root.pem /etc/ca-certificates/trust-source/blacklist && sudo trust extract-compat

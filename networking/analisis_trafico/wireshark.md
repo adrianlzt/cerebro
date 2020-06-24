@@ -85,3 +85,9 @@ https://www.wireshark.org/docs/man-pages/wireshark-filter.html
 
 tcp.time_relative > 3
 tiempo entre el paquete y el primero de su frame mayor a 3"
+
+
+
+# tshark
+Leer ficheros con la cli y aplicar filtros:
+tshark -r 2020-05-25_11:49:13.pcap -Y '(mysql.command == 22) && !(mysql.query contains "SELECT")'

@@ -14,3 +14,7 @@ https://codepen.io/shshaw/full/LVKEdv
 
 
 https://css-tricks.com/mega-list-svg-information/
+
+
+Convertir svg a png:
+inkscape -w 1024 -h 1024 input.svg --export-filename output.png

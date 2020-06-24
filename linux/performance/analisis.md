@@ -10,6 +10,8 @@ http://techblog.netflix.com/2015/08/netflix-at-velocity-2015-linux.html
 4.- Afecta a otras personas o a las aplicaciones
 6.- Cual es el entorno? Que software y hardware se usa? versiones? configuraciones?
 
+Pensar siempre que la aplicación custom puede ser la fuente de problemas.
+
 
 # USE method (siguiente paso en el análisis)
 http://www.brendangregg.com/usemethod.html
@@ -186,10 +188,26 @@ cat /proc/cpuinfo | grep processor
   numero de procesadores en el servidor. Nos servirá para comprender mejor la carga de cpu
 
 uptime
-  visión rápida de si tenemos carga, y como está variando
+  visión rápida de si tenemos carga, como está variando y si la máquina se reinició hace poco
+
+free -h
+  cuanta memoria tiene, usada, swap, etc
+
+cat /sys/devices/virtual/dmi/id/product_name
+  saber si es una VM
+
+findmnt, lsblk, pvs, vgs, lvs
+  cuantos discos, que FS usan, como están organizados
+
+df -h, df -i
+  uso del storage e inodos
 
 dmesg | tail
   chequear por si ha saltado algún call trace, oom, tcp dropping, etc
+
+abrt
+  mirar si se han almacenados errores en el demonio de abrtd
+  abrt-cli ls
 
 vmstat 1
   resumen cada segundo
@@ -258,6 +276,7 @@ linux/tracers/perf/perf-tools.md
 
 Mirar logs
 
+Muchas conexiones establecidas?
 
 
 # Máquina tostada
@@ -271,6 +290,3 @@ iostat
 Red?
 NFS?
   nfsiostat
-
-
-

@@ -1,6 +1,9 @@
 Generador de JSONs: http://beta.json-generator.com/
 Se le puede pasar un template
 
+Pseudocódigo para definir funciones y pseudoprogramación para generar json
+jsonnet (mirar ejemplos de libs de grafana grafananet)
+
 Comparador:
 http://tlrobinson.net/projects/javascript-fun/jsondiff
 http://json-diff.com/

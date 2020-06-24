@@ -193,6 +193,14 @@ Un uso típico será iterar sobre un array para pintar cosas:
 
 
 
+# Redux
+https://www.gatsbyjs.org/docs/adding-redux-store/
+
+Si queremos usar redux (global state store) para nuestra app.
+mirar redux.md
+
+
+
 # APIs
 https://www.gatsbyjs.org/docs/api-reference/
 
@@ -215,3 +223,10 @@ Meter lo del primer comentario en gatsby-node.js
 Meter donde se use async/await:
 import 'regenerator-runtime/runtime';
 
+
+
+# Build
+gatsby build
+Puede darnos problemas por usar librerias que usen window u otras cosas no disponibles al hacer "server side rendering"
+Tras el build tendremos la app disponible en public/
+Podemos probarla con: gatsby serve

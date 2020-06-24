@@ -58,3 +58,26 @@ spec:
   #peerSelector:
 
 calicoctl create -f config.yaml
+
+
+
+# Troubleshooting
+https://docs.projectcalico.org/maintenance/troubleshoot/troubleshooting#:~:text=Error%3A%20calico%2Fnode%20is%20not,is%20allowed%20in%20the%20environment.
+
+
+Error: calico/node is not ready: BIRD is not ready: BGP not established with 10.0.0.1
+Si es porque tenemos nodos parados, tendremos que decomisionarlos
+https://docs.projectcalico.org/maintenance/decommissioning-a-node
+
+calicoctl delete -c calico.yaml node HOSTNAME
+
+
+Problemas conexión.
+  tenemos conex entre pods? Probar ping y luego algo tcp (curl a algún servicio http por ejemplo)
+  de pods a services? (misma prueba que arriba)
+
+
+
+Desde dentro de los nodos de k8s:
+calicoctl node status
+

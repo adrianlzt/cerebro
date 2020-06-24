@@ -38,7 +38,7 @@ etcdctl member list
 
 
 ## v3
-get / --prefix --keys-only
+get --prefix --keys-only /
   equivalente al "ls" de v2
 
 

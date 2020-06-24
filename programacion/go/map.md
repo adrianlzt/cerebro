@@ -1,6 +1,8 @@
 https://golang.org/ref/spec#MapType
 https://blog.golang.org/go-maps-in-action
 
+convertir generic maps -> structs y viceversa: https://github.com/mitchellh/mapstructure
+
 mirar hash/hasmaps
 
 Une keys a valores

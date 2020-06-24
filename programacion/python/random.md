@@ -8,7 +8,7 @@ random()
 
 from random import randint
 randint(0,10)
-  numero entero entre 0 y 10
+  numero entero entre 0 y 10, incluídos
 
 Float entre 1.0 y 3.0
 random.uniform(1.0, 3.0)

@@ -52,6 +52,9 @@ kubectl config use-context FOO
 Namespace actual:
 kubectl config view -o jsonpath="{.contexts[?(@.name == '$(kubectl config current-context)')].context.namespace}"
 
+Usar otro fichero de config:
+kubectl --kubeconfig config get ns
+
 
 ## Contextos
 Un contexto relaciona un cluster, un usuario y un namespace.
@@ -139,10 +142,3 @@ kubectl get XX -o json
 kubectl get pods -o=jsonpath='{.items[0]}'
 
 Me parece más sencillo usar "-o json" y luego jq
-
-
-
-# RAW
-Obtener el resultado crudo de la llamada a la API
-
-kubectl get --raw /api/v1/nodes/colo00ap/proxy/metrics

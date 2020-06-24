@@ -28,3 +28,7 @@ sed -i "s/WATERMARK//g" uncompressed.pdf
 
 3.- Reparar pdf
 pdftk uncompressed.pdf output fixed.pdf compress
+
+
+# Ver firmas en un pdf
+pdfsig fichero.pdf

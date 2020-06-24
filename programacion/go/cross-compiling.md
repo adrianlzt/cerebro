@@ -31,12 +31,18 @@ Podemos definir determinados ficheros que solo se compilarán si goos y/o goarch
 Esta selección podemos hacerla poniendo una tag al comienzo del fichero (luego hay que dejar una línea en blanco):
 // +build darwin dragonfly freebsd linux netbsd openbsd
 
+// +build linux darwin
+// +build 386
+esto hará AND entre las listas
+
 O nombrando el fichero con el os/arch:
 mypkg_linux.go         // only builds on linux systems
 mypkg_windows_amd64.go // only builds on windows 64bit platforms
 
 Podemos usar negación:
 // +build !darwin,!linux,!freebsd,!openbsd,!windows
+
+no llamar a los ficheros xxx_not_linux.go, porque entonces le estamos diciendo que es linux
 
 
 Si queremos usar una función que no existe en un grupo de máquinas, definiremos la misma función en dos ficheros, unix (por ejemplo) y fallback (donde no existe).

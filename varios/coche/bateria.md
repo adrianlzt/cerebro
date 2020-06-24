@@ -11,6 +11,8 @@ mayor de 14,7 -> mal
 Al ralentí con el multímetro en alterna:
 mayor de 0,2 voltios -> mal
 
+Carga según voltaje: https://batteryuniversity.com/learn/article/how_to_measure_state_of_charge
+
 
 # Consumo del coche
 http://www.actualidadmotor.com/se-me-descarga-la-bateria-coche-como-comprobar-si-hay-consumos-electricos/

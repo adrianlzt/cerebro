@@ -50,6 +50,10 @@ EXPLAIN (ANALYZE, VERBOSE, BUFFERS) ...
   verbose: añade el ouput que genera cada nodo. Algo más?
 EXPLAIN (ANALYZE, VERBOSE, BUFFERS, FORMAT JSON) ...
 
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS, FORMAT JSON) SELECT ...
+psql -qAt -f explain.sql > analyze.json
+
+
 
 Para planificar una query se tienen en cuenta las estadísticas de las tablas (periódicamente se ejecuta ANALYZE sobre las tablas y se almacenan los datos, mirar sección "Estadísticas") y varios parámetros de costes de acceso a disco (secuencial o random) y coste de procesado de la cpu (algo más?).
 Mirar "Estadísticas" más abajo.
@@ -271,3 +275,21 @@ Si al hacer una comparación los tipos de datos son distintos, no podrá usar el
 Fijarnos también cuanta memoria está usando las operaciones.
 Por ejemplo, un SORT puede usar mucha memoria (Sort Space Used, son KB), superando la asignada (work_mem) y viéndose obligado a swapear.
 Cuidado con subir work_mem, es el uso de memoria por nodo en el explain.
+
+
+
+# Planning time grande
+Un tip que dan es "make sure every column and table is given an explicit and unique alias in your query text"
+https://dba.stackexchange.com/questions/252222/how-to-profile-the-postgresql-query-planner-diagnose-what-is-causing-it-to-take#comment497332_252248
+Parece muy interesante para queries autogeneradas, donde se pueden estar repitiendo una y otra vez cada nombre de columna.
+
+Pero parece que por lo general no tenemos mucha forma de debugear las razones de queries lentas.
+
+Podemos usar "perf" para ver el uso de los recursos.
+Entrar con psql.
+Mirar que pid se nos ha asignado.
+Comenzar record con perf:
+perf record -p PID
+Ejecutar el EXPLAIN.
+Analizar el perf:
+perf report

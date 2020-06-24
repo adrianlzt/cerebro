@@ -32,12 +32,19 @@ alert(methods.join(","));
 
 
 # Copiar objecto (en vez de pasar referencia)
-let cloned = Object.assign({}, source);
-
-Con babel:
+https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/
+let cloned = Object.assign({}, source);  // forma antigua
 let cloned = { ... source };
 
 
 
 # Ver si es un objeto
 typeof a === "object"
+
+
+Iterar:
+ES2017 adds Object.entries() which avoids having to look up each value in the original object:
+
+Object.entries(obj).forEach(
+    ([key, value]) => console.log(key, value)
+);

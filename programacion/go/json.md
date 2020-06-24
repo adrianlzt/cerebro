@@ -1,3 +1,7 @@
+https://github.com/mailru/easyjson
+generar marshaler y unmarshaler de los structs que tengamos definidos
+No vale con package main: https://github.com/mailru/easyjson/issues/236
+
 https://github.com/Jeffail/gabs
 libreria para facilitar el acceso a los json
 

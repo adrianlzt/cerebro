@@ -33,6 +33,8 @@ El fork de opendiffy no contesta al cliente con la respuesta (https://github.com
 Este fork de opendiffy si envía respuesta al cliente: https://github.com/hemanth-s-a/diffy
 En la version de twitter si existe esa opción (https://github.com/twitter/diffy/pull/48)
 
+opendiffy ahora si soporta contestar al cliente: https://github.com/opendiffy/diffy/issues/28#event-3455159134
+
 podman run --rm -it --net=host --add-host "diffyproject.appspot.com:0.0.0.0" adrianlzt/diffy:hemanth-s-a-c50288c -candidate=localhost:9992 -master.primary=localhost:9990 -master.secondary=localhost:9991 -service.protocol=http -serviceName='Test-Service' -proxy.port=:8880 -admin.port=:8881 -http.port=:8888 -rootUrl=localhost:8888 -summary.email=some@email.com -responseMode=primary -resource.mapping='/query;query,/search;search,/;root' -allowHttpSideEffects=true
 
 Para que sí se conteste al cliente:

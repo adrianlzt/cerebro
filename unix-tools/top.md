@@ -2,7 +2,7 @@ top version 3.3.10
 P - ordenar por CPU
 c - mostrar comando entero
 E - memoria general en Megabytes
-e - procesos en megabytes
+e - cambiar unidades de memoria, iterando sobre kb, mb, gb
 
 M - ordenar por uso de memoria
 1 - mostrar el uso de todas las CPUs

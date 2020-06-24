@@ -98,3 +98,15 @@ Si nos equivocamos al poner el nombre del rol no habrá ningún error.
 ## Comprobar permisos
 Podemos usar este comando para comprobar si un usuario tiene determinados permisos:
 kubectl auth can-i list pods --namespace engineering --as bob
+
+Ver todo lo que podemos hacer:
+kubectl auth can-i --list
+  selfsubjectaccessreviews.authorization.k8s.io y selfsubjectrulesreviews.authorization.k8s.io es para poder ver lo que podemos hacer (el comando de arriba) (el comando de arriba)
+
+
+
+# User admin perdido
+Obtener el cert de admin de nuevo, desde un nodo master del cluster:
+kubeadm alpha kubeconfig user --client-name admin
+
+Luego tendremos que darle los permisos

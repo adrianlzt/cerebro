@@ -58,3 +58,7 @@ String.prototype.capitalizeFirstLetter = function() {
 }
 
 'string'.capitalizeFirstLetter()
+
+
+# Substring
+"ownership_shared".substring(0, 10)

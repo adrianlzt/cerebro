@@ -33,6 +33,12 @@ fluxctl install --git-url 'git@git.usync.us:adrian/flux-get-started.git' --git-e
 Si tenemos ssh en otro puerto:
 --git-url 'ssh://git@git.dominio.com:2222/adrian/flux-get-started.git'
 
+Para evitar escaneos de repos que seguramente no queremos auto actualizar:
+--registry-exclude-image=docker.elastic.co/*,index.docker.io/*,registry.gitlab.com/*,gcr.io/*,docker.io/*,k8s.gcr.io/*,quay.io/*
+https://github.com/fluxcd/flux/issues/2864
+Esto no ignorará las imágenes sin prefijo, por ejemplo "alpine", al no tener el prefijo index.docker.io/
+
+
 Crea:
   serviceaccount/flux
   clusterrole.rbac.authorization.k8s.io/flux

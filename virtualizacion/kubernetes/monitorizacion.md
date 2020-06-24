@@ -1,5 +1,19 @@
 Chequear los certificados de etcd
 
+Problemas de lentitud de etcd
+May 24 03:40:24 localhost etcd: 2020-05-24 08:40:24.738911 W | etcdserver: read-only range request "key:\"/registry/leases/kube-node-lease/HOSTNAME\" " with result "range_response_count:1 size:297" took too long (313.785859ms) to execute
+
+
+Y los de los apiserver. Deberían renovarse solos, pero puede fallar la renovación. Estos deberían renovarse solos o es el del kubelet el que se renueva solo?
+Vigilar también la CA de esos certs
+Si se ha instalado con kubespray
+messages-20200531
+
+El del kubelet está en /var/lib/kubelet/pki/kubelet.crt
+
+
+Vigilar tamién caducidad de los certs de los usuarios (apuntarlo en algún lado? se almacenan en k8s?)
+
 
 https://github.com/robscott/kube-capacity
 kubectl krew install resource-capacity
@@ -20,3 +34,13 @@ Ofrece varias vistas.
  - una vista de monitorización
 
 UI en react: https://github.com/weaveworks/scope/tree/master/client
+
+
+
+Los deployments están creando los replication controller adecuados.
+Debido a un bug los deployments tenían una imagen definida, pero los replication controller no se estaban generando con la nueva imagen
+
+
+Monitorizar que el networking está funcionando.
+Por ejemplo, si tenemos algún node port usado globalmente, que conteste.
+Que los pods, por ejemplo de cálilo, estén healthy

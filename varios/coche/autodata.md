@@ -1,3 +1,11 @@
+Programas para saber como reparar, testear vehículos
+
+
+# Alldata
+https://www.alldata.com/alldata-repair
+
+
+# Autodata
 Programa de información sobre coches (datos técnicos, reparación, códigos de avería, etc)
 
 Descargar de: https://mega.co.nz/#!49ZnCZRa!SEBzp3KEyA2gBw6PrWnh9gvF1hRN9Wa36uogs-q5n9U
