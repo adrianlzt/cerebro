@@ -7,6 +7,9 @@ https://github.com/bashrc666/arch-gotoole
 
 https://wiki.archlinux.org/index.php/Installation_guide
 
+Bajar imagen desde https://www.archlinux.org/download/
+sudo dd if=archlinux-2020.06.01-x86_64.iso of=/dev/sdc
+
 Cargar desde usb, nos abre un terminal como root:
 
 loadkeys en
