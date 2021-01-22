@@ -12,6 +12,8 @@ Ver una conf almacenada:
 docker config inspect --pretty NOMBRE
 
 
+Mirar unix-tools/env_var_substitute.md (envsubst)
+
 # envtpl
 https://github.com/subfuzion/envtpl
 Usamos templates de go y variables de entorno para generar un fichero de configuración.

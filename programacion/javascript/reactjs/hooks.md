@@ -1,5 +1,8 @@
 https://reactjs.org/docs/hooks-intro.html
 
+Ejemplos para http get/post
+https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples
+
 Nos permite hacer cosas en componentes sin tener que usar clases.
 Son únicos de cada componente, creando dos con el mismo nombre en distintos componentes no quiere decir que compartan el estado.
 
@@ -31,6 +34,8 @@ https://codesandbox.io/s/react-playground-ci5e3?file=/Hello.js
 
 
 Timer:
+import React, { useState, useEffect } from 'react';
+
 const [time, setTime] = useState(Date.now());
 
 useEffect(() => {

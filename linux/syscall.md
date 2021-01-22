@@ -55,3 +55,26 @@ sudo ./nsjail --disable_clone_newuser --disable_clone_newns --disable_clone_newp
 Para anular una syscall:
 SECCOMP_RET_TRACE
 The  tracer  can  skip  the  system  call by changing the system call number to -1
+
+
+
+
+# vDSO
+https://0xax.gitbooks.io/linux-insides/content/SysCall/linux-syscall-3.html
+
+Hay 3 syscall, que por su naturaleza (sin problemas de seguridad y que pueden ser llamadas muchas veces) son expuestas en la memoria del proceso (userland) mediante vDSO
+#define VSYSCALL_ADDR_vgettimeofday   0xffffffffff600000
+#define VSYSCALL_ADDR_vtime           0xffffffffff600400
+#define VSYSCALL_ADDR_vgetcpu          0xffffffffff600800
+
+Go por ejemplo usa estas llamadas en vez de syscall para obtener la fecha (libc también lo hace):
+// func now() (sec int64, nsec int32)
+TEXT time·now(SB), 7, $32
+  LEAQ  8(SP), DI
+  MOVQ  $0, SI
+  MOVQ  $0xffffffffff600000, AX
+
+O en versiones más recientes (dic'2020):
+https://github.com/golang/go/blob/a313eec3869c609c0da2402a4cac2d32113d599c/src/runtime/sys_linux_amd64.s#L247
+  MOVQ  runtime·vdsoClockgettimeSym(SB), AX
+

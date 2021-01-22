@@ -12,11 +12,23 @@ sudo dd if=archlinux-2020.06.01-x86_64.iso of=/dev/sdc
 
 Cargar desde usb, nos abre un terminal como root:
 
-loadkeys en
+loadkeys es
+ls /sys/firmware/efi/efivars
+  para chequear que hemos booteado con UEFI
+
+conectar a internet
+  a partir de aqui podemos usar una remote shell para conectarnos desde otra máquina:
+  en la máquina de control: nc -kl 3000
+  en el arch install: ncat -e /bin/sh maquina.control 3000
+  una vez dentro, para tener una shell full: python -c 'import pty; pty.spawn("/usr/bin/zsh")'
+
+timedatectl set-ntp true
+
 fdisk -l
   mirar como se llama el HD
 gdisk /dev/sdX
   para 250GB, 4GB RAM, 35GB /, resto /home
+  para 1TB, 512MB UEFI, 8GB RAM, 250GB /, resto /home
   Ejemplo:
 
 Number  Start (sector)    End (sector)  Size       Code  Name
@@ -27,8 +39,10 @@ Number  Start (sector)    End (sector)  Size       Code  Name
   (hacer tambien una particion de 1MiB tipo ef02 para el boot si vamos con BIOS)
 mkfs.XXXX /dev/sda1
 mkfs.XXXX /dev/sda3
-  btrfs parece que mola, pero inestable y no permite swap (como particion tampoco?)
+  btrfs
   ext4 paree que sigue siendo el rey para sistemas desktop.
+mkswap /dev/xxxx
+swapon /dev/xxx
 
 
 # Si estamos instalando con el disco duro montado en otro linux, si no, saltar hasta "Si estamos en el propio ...":
@@ -54,13 +68,9 @@ mkdir /mnt/home
 mount /dev/sda3 /mnt/home
 
 
-wifi-menu
-  conectar a una wifi
-dhcpcd
-  configura automaticamente ethernet
 
-pacstrap /mnt base base-devel
-  ~4min
+pacstrap /mnt base base-devel linux linux-firmware
+  ~1min
 
   Si tenemos errores tipo: error: key "FCF2CB179205AC90" could not be looked up remotely
   Editar /etc/pacman.d/gnupg/gpg.conf para cambiar el puerto (por defecto 11371, que podría estar capado) por:
@@ -71,22 +81,27 @@ pacstrap /mnt base base-devel
   SigLevel = Never
 
 
-genfstab -p /mnt >> /mnt/etc/fstab
-Quitar la linea de swap (si esta presente) https://bbs.archlinux.org/viewtopic.php?pid=1558001#p1558001
+genfstab -U /mnt >> /mnt/etc/fstab
+  Quitar la linea de swap (si esta presente) https://bbs.archlinux.org/viewtopic.php?pid=1558001#p1558001
 arch-chroot /mnt
 echo "hostname" > /etc/hostname
 ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+hwclock --systohc
 echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 locale > /etc/locale.conf
-vi /etc/locale.conf
-  :%s/en_US/es_ES/g
+sed -i "s/en_US/es_ES/g" /etc/locale.conf
 echo "KEYMAP=es" > vconsole.conf
-mkinitcpio -p linux
+pacman -S neovim btrfs-progs zsh networkmanager
+mkinitcpio -P
 passwd
-pacman -S grub
+pacman -S grub efibootmgr
 pacman -S intel-ucode # si tenemos intel
-grub-install --target=i386-pc --recheck --debug /dev/sda
+
+Con UEIF:
+mount /dev/xxx /mnt
+  la partición de UEFI
+grub-install --target=x86_64-efi --efi-directory=/mnt --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 
@@ -96,11 +111,10 @@ Descomentar [multilib] (solo 64 bits)
 
 useradd -m adrian
 passwd adrian
-groupadd sudo
-gpasswd -a adrian sudo
+gpasswd -a adrian wheel
 
 Descomentar de /etc/sudoers
-%sudo   ALL=(ALL) ALL
+%wheel ALL=(ALL) ALL
 
 
 

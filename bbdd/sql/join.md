@@ -24,6 +24,11 @@ https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/
 Ejemplo que saca los números que están en una serie pero no en la otra:
 select * from generate_series(1,5) g1 full outer join generate_series(4,9) g2 ON g1.g1 = g2.g2 WHERE g1.g1 IS null or g2.g2 IS null;
 
+Sacar los elementos de la tabla 'b' que no están en 'a':
+select b.id from a full outer join b ON a.id = b.id WHERE a.id IS NULL;
+
+Con el resultado de queries:
+select b.id from (select * from a) a full outer join (select * from b) b ON a.id = b.id WHERE a.id IS NULL;
 
 
 ## SQL ##

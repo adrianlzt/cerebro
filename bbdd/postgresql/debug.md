@@ -1,5 +1,7 @@
 mirar logs.md
 
+mirar en wal.md pg_filedump para mostrar contenido de ficheros
+
 para PL/pgSQL mirar omnidb.md
 
 

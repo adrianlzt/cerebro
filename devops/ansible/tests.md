@@ -10,6 +10,10 @@ source hacking/env-setup
 ansible-test integration -v zabbix_host --docker ubuntu1804
 
 
+## Sanity tests
+ansible-test sanity
+
+
 # Probar nuestros roles/plays
 mirar molecule.md
 

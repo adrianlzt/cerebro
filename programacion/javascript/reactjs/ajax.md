@@ -1,5 +1,8 @@
 http://andrewhfarmer.com/react-ajax-best-practices/
 
+Peticiones http get/post
+https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples
+
 Varias opciones, la más simple, fetch() desde un componente padre.
 
 
@@ -13,6 +16,8 @@ componentDidMount() {
       console.log(json);
     });
 }
+
+Si no usamos clases, mirar hooks.md
 
 
 Leer un fichero de texto (data.txt lo resolvera a $URLACTUAL/data.txt):

@@ -28,3 +28,7 @@ PIDFile={{podman_pid_dir}}/{{podman_name}}
 [Install]
 WantedBy=multi-user.target
 
+
+
+Fact que nos dice si tenemos systemd:
+"ansible_service_mgr": "systemd"

@@ -9,8 +9,16 @@ date -d @1012312312
 Fecha en timestamp con nanoseconds
 date +%s.%N
 
+Epoch milisegundos (puede que %N no esté implementado en todas las plataformas)
+date +%s%3N
+
+
+
 Convertir fecha a unix timestamp:
 date -d "Wed, 6 Oct 2010 10:43:25 +0200" +"%s"
+
+Es lo mismo que:
+date -d "2010/10/6 10:43:25 +0200" +"%s"
 
 Cuidado con meterle una fecha tipo "6/11/2016", por en españa es 6 de Noviembre, pero en US es 11 de Junio
 

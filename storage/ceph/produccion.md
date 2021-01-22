@@ -11,6 +11,16 @@ OSDs that use the BlueStore backend require 3-5 GB of RAM
 You can adjust the amount of memory the OSD consumes with the osd_memory_target configuration option when BlueStore is in use.
 Por defecto puesto a 4GiB (4294967296)
 
+Según https://access.redhat.com/solutions/3958361 ansible se empeña en poner 4GB como mínimo.
+The ceph.conf building script calculates the final osd_memory_target per node based on number of RAM and OSDs on the node. If the calculated value is lower then default 4GB , default is set anyway
+if the (GB_RAM/OSDs > 4GB) use calculated value, otherwise default 4GB
+
+En el rol de ansible parece que andan moviéndolo. Al principio con 4GB de mínimo, luego pudiendo definirlo y luego que sea al menso 896MB
+https://github.com/ceph/ceph-ansible/commit/aa6e1f20eaa5272ff0bb5e8b3cded16273aa120c
+
+Setting the osd_memory_target below 2GB is typically not recommended (it may fail to keep the memory that low and may also cause extremely slow performance.
+https://github.com/ceph/ceph/blob/8624f6f93d2b58ad919a2d9476f90a90d79acf09/doc/start/hardware-recommendations.rst#memory
+
 
 Monitor and manager daemon memory usage generally scales with the size of the cluster. For small clusters, 1-2 GB is generally sufficient. For large clusters, you should provide more (5-10 GB). You may also want to consider tuning settings like mon_osd_cache_size or rocksdb_cache_size.
 

@@ -49,7 +49,7 @@ Desde la interfaz admin podemos crear users para los distintos dominios (pero no
 ## TLS
 Configurar un redir del puerto 80 al 5280 y poner nuesto email en la sección ACME de la config para tener certs let's encrypt
 
-https://docs.ejabberd.im/admin/configuration/#acme
+https://docs.ejabberd.im/admin/configuration/basic/#acme
 
 /home/ejabberd/conf/cacert.pem
 /home/ejabberd/conf/server.pem

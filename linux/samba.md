@@ -33,8 +33,11 @@ smbclient -L <windows-box> -U <username> //Mirar lo que puede montar mi usuario 
 sudo mount -t cifs -o username=<username>,password=<password> //<win-box>/<share> /mnt/<name-of-mountpoint>
 sudo mount -t cifs "//<win-box>/<share unit>" /mnt/<name-of-mountpoint>
 
+Con la Freebox (operador frances) expone SMBv1 y no consigo que me funcione ni smbtree ni smbclient, pero si mount, con:
+sudo mount -t cifs -o username=freebox,password=XXX,vers=1.0 "//192.168.1.254/Freebox" /mnt
+
 /etc/fstab:
-//192.168.0.6/nombre /mnt/punto        smbfs           username=user,password=pass	0       0
+//192.168.0.6/nombre /mnt/punto        cifs           username=user,password=pass	0       0
 
 Si no tenemos password, en vez de "username=user,password=pass" pondremos "guest"
 

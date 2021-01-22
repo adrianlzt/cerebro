@@ -68,6 +68,10 @@ strings.Split("60123234","")
 strings.Fields("  foo bar  baz   ")
 ["foo", "bar", "baz"]
 
+len(strings.Split("", ","))
+1
+
+
 # Contains
 strings.Contains("seafood", "foo")
 

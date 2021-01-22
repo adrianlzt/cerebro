@@ -15,10 +15,22 @@ CUIDADO! meter resources en un modulo va a cambiar su nombre, por lo tanto Terra
 Chequear con "plan" antes para ver que va a hacer.
 
 
-# Acceso a las variables
+# Variables
+Para usar las variables que nos pasan dentro del módulo:
+var.foo
+
+Las declararemos en el fichero variables.terraform
+variable "foo_bar" {
+  description = "foo bar"
+  default = 10
+}
+
+## Acceso a las variables generadas por el módulo
 module.NAME.TIPO_RESOURCE.RESOUCE_NAME
 Ejemplo:
 module.assets_bucket.aws_s3_bucket.the_bucket
+
+Solo podemos referenciar variables "outputted" por el module
 
 
 

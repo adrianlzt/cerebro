@@ -18,9 +18,10 @@ def get_pep(num):
 Si llamamos dos veces a get_pep(num), la segunda usará la cache automáticamente.
 
 
-No funciona si los parametros son un array.
+No funciona si los parametros son un array (usar tuplas https://stackoverflow.com/a/49210802/1407722)
+Para dict, usar otro decorador para hacer el dict inmutable (necesitamos pip install frozendict): https://stackoverflow.com/a/53394430/1407722
 No usar si hacemos yield desde dentro de la función (ya que no se hará el yield al cachear)
-Si hay un raise dentro de la funión tampoco funciona.
+Si hay un raise dentro de la función tampoco funciona.
 Parece que si tenemos logger dentro, se sigue ejecutando aunque esté la función cacheada.
 
 

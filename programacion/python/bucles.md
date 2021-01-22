@@ -72,6 +72,12 @@ Obtener de un dict solo la clave filtrando por los valores
 
 
 
+# product
+combinaciones = product("TF", repeat=4)
+
+Posibles combinaciones de 4 elementos con "T" y "F" (lista con 2^4 elementos)
+
+
 # Group by
 Podemos agrupar arrays por una clave.
 Obtendremos una iterador tipo diccionario con:
@@ -97,3 +103,4 @@ Los filter() con iteradores
 
 # tqdm
 Para mostrar un ncurses de cuanto lleva en porcentaje y cuando tarda por item y va a tardar en total
+

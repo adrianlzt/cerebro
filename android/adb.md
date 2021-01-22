@@ -39,6 +39,8 @@ adb uninstall [-k] <package> - remove this app package from the device
 
 Mirar logs de android
 adb logcat
+adb logcat -T 50
+  como tail -n 50 -f
 
 
 # adb con root
@@ -58,3 +60,7 @@ adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>
 ## external apps only (at least on marshmallow), assuming only one expandable device, and might include duplicates
 
 adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>'; ls /mnt/expand/$(ls /mnt/expand/ | head)/app | sed -e 's/-.*//' | sed -e 's/.*://' | sort | while read -r line; do echo $'<a href="https://play.google.com/store/apps/details?id='$line$'" target="_blank">'$line$'</a><br/>'; done; echo $'</body></html>'" > ./myapps.html
+
+
+# Llamar / dial
+adb shell am start -a android.intent.action.CALL -d tel:+CCXXXXXXXXXX

@@ -30,8 +30,15 @@ mirar:
 
 Zabbix va almacenando cada value en las trends cache.
 Cuando llega un value con una hora superior (por ejemplo, pasamos de 10:00 a 11:00), se flushea ese trend a la bbdd y se resetea el cache del trend y se empiezan a almacenar los nuevos valores.
-Si en algún momento llega un dato viejo (de las 10:xx), se flushea la trend de las 11, se obtiene de la bbdd la trend de las 10, se actualiza y se actualizará.
+Si en algún momento llega un dato viejo, o nuevo, (de las 10:xx), se flushea la trend de las 11, se obtiene de la bbdd la trend de las 10, se actualiza y se actualizará.
 Cuando llegue el siguiente valor de las 11, se flusheará el trend que cogimos de las 10, se obtendrá de la bbdd la trend de las 11 y se actualizara.
+
+Podemos ver si estamos teniendo problemas de este tipo si encontramos métricas en trends/trends_uint de la hora actual (querrá decir que alguna métrica llegó descolozada y le ha obligado a flushear el contenido de la hora actual)
+Lo malo es que nos devolverá también métricas de máquinas que tienen su hora en el futuro
+
+https://excalidraw.com/#room=a60e0ff6649a5cb87234,wMBqlGnvO_GEWEeALIAQag
+gráfico explicativo
+
 
 Zabbix4
 libs/zbxdbcache/dbcache.c

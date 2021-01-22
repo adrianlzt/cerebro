@@ -10,6 +10,8 @@ http://onsi.github.io/ginkgo/
 https://github.com/maxbrunsfeld/counterfeiter
   A tool for generating self-contained, type-safe test doubles in go
 
+mirar examples.md para testear stdout
+
 
 Correr test a mano:
 go test -v
@@ -92,6 +94,14 @@ t.Skip("no ejecutar")
 t.FailNow()
 
 
+# SetUp
+https://golang.org/pkg/testing/#hdr-Main
+Función que se ejecuta al llamar los test, es un wrapper para cada test
+
+func TestMain(m *testing.M) {
+  os.Exit(m.Run())
+}
+
 
 # Mock
 Libreria que nos facilita los mock: https://github.com/stretchr/testify
@@ -110,6 +120,23 @@ type FakeClient struct {}
 func (c FakeClient) Get() string {
   return "fake result"
 }
+
+
+## Mock ServeHTTP
+https://blog.questionable.services/article/testing-http-handlers-go/
+
+p := ProcconMock{}
+
+req, err := http.NewRequest("GET", "/api/projects", nil)
+if err != nil {
+  t.Fatal(err)
+}
+
+rr := httptest.NewRecorder()
+p.ServeHTTP(rr, req)
+
+En "rr" tenemos lo que escribe la función al response writer
+
 
 
 
@@ -273,3 +300,8 @@ func TestXX(..) {
     // hacer algo para limpiar lo que hemos hecho
   }
 }
+
+
+# gorutinas
+Si usamos gorutinas y queremos llamar a t.Fatal mejor usar un channel y recuperar los errores luego
+https://github.com/ipfs/go-ipfs/issues/2043#issuecomment-164136026

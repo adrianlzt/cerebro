@@ -455,6 +455,23 @@ TELEGRAF_LOG_LEVEL (?:[DIWE]+)
 '''
 
 
+## Zabbix (custom nuestro)
+[[aggregators.zabbix_lld]]
+  ## Time between sending LLD traps, only new ones, modifications or deleteions
+  period = "11m"
+  ## Numer of executions after all LLDs are sent again
+  reset_period = 11
+
+[[outputs.zabbix]]
+  ## Address of zabbix host
+  host = "zabbix.com"
+  ## Port of the Zabbix server
+  port = 10051
+  ## Add prefix to all keys sent to Zabbix
+  prefix = "telegraf."
+
+
+
 
 
 # Debug / Profiling
@@ -476,6 +493,7 @@ https://www.influxdata.com/telegraf-update-1-3/
   How to Write Plugins
 https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/
 https://www.influxdata.com/blog/building-better-telegraf-plugin/
+https://es.slideshare.net/influxdata/how-to-build-a-telegraf-plugin-by-noah-crowley
 
 En internal/internal.md tenemos algunos helpers que pueden ser útiles
 

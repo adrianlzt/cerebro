@@ -44,3 +44,6 @@ Ultra-rapide Maximum Power Point Tracking (MPPT) en particulier lorsque le ciel 
 
 Para MPTT, con 20A lo ponen para una potencia máxima de paneles de 320W. Calculan 16v
 http://www.antares-diffusion.com/WordPress3/wp-content/uploads/2019/01/Fiche-Technique-ANTARES-REGULATEURS-ANTARION-2019.pdf
+
+El MPTT de antarion en realidad es de esta empresa:
+https://www.olyssolar.com/product_Info-3-62.html

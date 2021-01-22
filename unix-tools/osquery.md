@@ -1,5 +1,7 @@
 https://osquery.io/
 
+interfaz gráfica con info de toda la "flota": https://github.com/kolide/fleet
+
 mirar tambien grr.md
 
 osquery (http://osquery.io/) is a new open source tool from Facebook that exposes low level details of your system via a familiar SQL interface. Want to query for processes listening on a given network interface? Or for services that launch at startup? This is the tool for you.

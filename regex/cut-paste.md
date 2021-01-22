@@ -1,3 +1,6 @@
+Para cortar por ficheros por lineas, mirar split
+
+
 Manual: http://www.semicomplete.com/blog/articles/week-of-unix-tools/day-2-cut-and-paste.html
 
 cut -d, -f2-4

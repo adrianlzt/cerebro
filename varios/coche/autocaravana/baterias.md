@@ -4,6 +4,12 @@ SoC: state of charge, porcentaje de carga de la batería
 
 
 
+@Lulukabaraka
+La recomendación es mantenerla cargada, nunca vacía.
+Utilizarla regularmente para evitar la sulfatación.
+Y utilizarla según necesidades, a más utilización y descargas más profundas, irá bajando la vida de la batería, pero al final para eso las utilizamos.
+
+
 # Tipos de batería
 Gel vs AGM: https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTM5ctAM0yeLXoWVUSpL8COc8TIjjyVC1oSBzu9VBg9Gsxhpio6&usqp=CAU
 

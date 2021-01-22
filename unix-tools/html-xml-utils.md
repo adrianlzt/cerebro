@@ -1,3 +1,12 @@
+https://github.com/ericchiang/pup
+pup
+Una especie de "jq" para html
+
+$ curl -s https://news.ycombinator.com/ | pup 'table table tr:nth-last-of-type(n+2) td.title a'
+
+cat respuesta.html| pup 'json{}'
+
+
 Utilidades para parsear html
 
 http://www.w3.org/Tools/HTML-XML-utils/README

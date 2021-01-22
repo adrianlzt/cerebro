@@ -1,3 +1,5 @@
+mirar command.md
+
 - name: echo prueba 
   shell: echo 'still busy'
 

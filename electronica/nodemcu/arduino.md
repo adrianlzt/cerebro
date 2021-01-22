@@ -5,7 +5,10 @@ En arduino
 Archivo -> Preferencias -> Gestor de URLs Adicionales de tarjetas:
 https://arduino.esp8266.com/stable/package_esp8266com_index.json
 
-Herramientas -> Gestor de tarjetas -> nodemcu
+Herramientas -> Placa XXX -> Gestor de tarjetas -> nodemcu
+Instalar
+
+Si vamos a usar arduino-cli, mirar ahora allí para instalar el core
 
 
 Probar a cargar uno de los ejemplos básicos, blink

@@ -1,3 +1,9 @@
+Para mostrar los errores correctamente (cambios de línea), en ansible.cfg:
+[defaults]
+stdout_callback = yaml
+
+
+
 Podemos ignorar un error de una task concreto:
 
 - name: move nrpe.d to nrpe.manual

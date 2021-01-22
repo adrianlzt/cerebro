@@ -8,3 +8,5 @@ yay oracle-instantclient-sqlplus
 
 # Uso
 sqlplus hr/my_hr_password@host_computer_name:1521/SID
+
+echo "select 1" | sqlplus '/as sysdba'

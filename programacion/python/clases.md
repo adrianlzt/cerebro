@@ -120,6 +120,9 @@ t.getEdad()
 # Multiple herencia
 class DerivedClassName(Base1, Base2, Base3):
 
+https://stackoverflow.com/a/3277407/1407722
+Si usamos super(), intentará primero ejecutar el __init__ de Base1, si no encuentra los atributos, usará Base2, etc
+
 
 
 # Igualdad de objetos

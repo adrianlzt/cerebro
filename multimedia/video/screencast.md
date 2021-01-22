@@ -10,3 +10,5 @@ gtk-recordmydesktop
   Permite hacer pausa
   Deja grabar todas las pantallas, o seleccionar una ventana
   No me pilla el microfono
+
+simplescreenrecorder

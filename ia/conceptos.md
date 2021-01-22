@@ -10,7 +10,11 @@ Sin ML haríamos un programa con un montón de if-else para crear el algoritmo q
 Con ML le pasamos unos datos, le pedimos que los clasifique y luego le decimos que modifique sus parámetros para reducir los errores.
 
 ## Supervised Machine Learning
-showing the algorithm a data set of situations and telling it what the right decision is (training model)
+mirar supervised_learning.md
+
+
+## Unsupervised Machine Learning
+
 
 
 ## Deep learning (implementación de ML)
@@ -30,6 +34,7 @@ Poder entender todo el contexto al rededor de una pregunta o acción es vital pa
 # Features / attributes
 Propiedades de las cosas sobre las que queremos aprender.
 Por ejemplo, en una naranja, su color y su peso.
+Para detectar un cancer: edad, tamaño, grosor de los grupos, uniformidad del tamaño, uniformidad de la forma
 Saber elegir que features necesitamos clasificar para distinguir los elementos de nuestro ML es básico y muchas veces no trivial.
 En el reconocimiento de imágenes cada pixel se considera una feature.
 

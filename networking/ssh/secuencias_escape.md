@@ -1,0 +1,1 @@
+cerrar_forzado.md

@@ -4,6 +4,8 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 Tirar paquetes entrantes al puerto 53/UDP de la IP 192.168.0.5 por la interfaz eth0
 iptables -A INPUT -i eth0 -p udp --dport 53 -s 192.168.0.5 -j DROP
 
+DROP solo se puede usar en INPUT, FORWARD and OUTPUT chains.
+
 
 
 Source port

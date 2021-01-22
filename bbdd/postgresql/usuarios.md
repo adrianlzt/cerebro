@@ -100,6 +100,9 @@ ALTER ROLE partman PASSWORD 'par3456man';
 ### dar roles a posteriori:
 alter user usuario createdb;
 
+Asociar un role a un usuario:
+grant read_only_user to intdevteam;
+
 
 ## Privilegios / Permisos ##
 https://www.postgresql.org/docs/current/sql-grant.html
@@ -172,6 +175,10 @@ GRANT CONNECT ON DATABASE NombreDatabase to "user";
 Permiso para leer una tabla:
 GRANT SELECT ON nombreTabla to user;
 
+Permiso para leer de todas las tablas del schema public:
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
+
+
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
 
@@ -180,6 +187,7 @@ GRANT ALL ON DATABASE basededatos TO joe;
 
 Quitar permisos a un role:
 REVOKE SELECT ON public.events FROM auditor;
+REVOKE SELECT ON ALL TABLES IN SCHEMA public FROM prueba;
 
 Dar permisos en una función que está en otro schema que usa determianda tabla:
 GRANT USAGE ON SCHEMA partman to zabbix_odbc;
@@ -219,6 +227,35 @@ Consultar:
 Timeout: limitar a NOMBREROLE para que las ejecuciones no puedan durar más de 1s:
 alter role NOMBREROLE set statement_timeout=1000;
 Esto solo aplica cuando el user vuelve a conectar.
+
+Para ver los params de los usuarios: \drds
+
+
+## Gestión timeout
+Hay unos cuantos parámetros que podemos tocar en la config de postgres para desconectar a usuarios que no contestan.
+En monitoring.md ("Mirar si tenemos queries idle in transactions") cuento un típico problema con python que deja transacciónes indefinidamente.
+
+https://postgresqlco.nf/en/doc/param/tcp_user_timeout/
+  https://patchwork.ozlabs.org/project/netdev/patch/1282972408-19164-1-git-send-email-hkchu@google.com/
+  parece que esta opción es el tiempo que esperará el server a que el cliente devuelva un ACK
+  si el cliente es el que ha perdido la conex, no habrá ACK en tránsito que esperar, por lo que no se desconectará al cliente
+https://postgresqlco.nf/en/doc/param/tcp_keepalives_count/
+  número de keepalives hasta matar la conex
+  por defecto 0 (lo que diga el SO), en RHEL7: 9
+https://postgresqlco.nf/en/doc/param/tcp_keepalives_interval/
+  tiempo entre envíos de keepalive
+  por defecto 0 (lo que diga el SO), en RHEL7: 75s
+https://postgresqlco.nf/en/doc/param/tcp_keepalives_idle/
+  tras cuantos tiempo sin actividad se enviará un keepalive
+  por defecto 0 (lo que diga el SO), en RHEL7: 7200s (2h)
+
+Con estos parámetro gestionamos los keepalive contra los usuarios, cerrando la conex (desde el lado servidor) si el cliente se queda irresponsive.
+
+En los logs del server veremos:
+LOG:  could not receive data from client: Connection timed out
+LOG:  unexpected EOF on client connection with an open transaction
+  este último mensaje si tenía una tx sin terminar
+
 
 
 

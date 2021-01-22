@@ -1,6 +1,7 @@
 https://www.postgresql.org/docs/current/wal-configuration.html
 
 Write ahead log
+Más info en debug.md
 
 Ficheros donde postgres va escribiendo las transacciones antes de sincronizarlas con disco.
 
@@ -39,6 +40,21 @@ reset the write-ahead log and other control information of a PostgreSQL database
 It should be possible to start the server, but bear in mind that the database might contain inconsistent data due to partially-committed transactions
 
 Ejecutado una vez sobre la bbdd de zabbix. Datos incoherentes. Por ejemplo, dos valores en una tabla saltándose la unicidad marcada por la primary key.
+
+
+# pg_waldump
+https://www.postgresql.org/docs/12/pgwaldump.html
+
+Mostrar contenido de los ficheros wal.
+Muestra datos generales de las operaciones, no el contenido (no podemos ver que se ha insertado tal o cual dato)
+
+
+# pg_filedump
+https://git.postgresql.org/gitweb/?p=pg_filedump.git;a=blob;f=README.pg_filedump
+Display formatted contents of a PostgreSQL heap, index or control file.
+
+Lo mismo pero para un editor hex gráfico
+https://github.com/petergeoghegan/pg_hexedit/blob/master/README.md
 
 
 
@@ -109,8 +125,13 @@ Podemos forzar a que se escriba en un nuevo wal con
 select pg_switch_wal();
 
 
+# wal_keep_segments / wal_keep_size
+https://postgresqlco.nf/doc/en/param/wal_keep_segments/
 Si tenemos "wal_keep_segments" estamos forzando a la bbdd a dejar ese número de ficheros de wal, por si una replica se tuviese que conectar.
-Usar para este caso (mantener wal necesarios para sincronizar) connection slots? https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+Por defecto está a 0, que quiere decir que no guardamos ninguno extra
+Si usamos replicación, podemos poner >0 para conseguir que si se pierde la replicación, darle un tiempo a la réplica a que conecte.
+
+En PG13 ahora se llama wal_keep_size
 
 
 # wal_level
@@ -124,3 +145,14 @@ Por defecto "replica", que permite hacer streaming replication.
 # wal_compression
 https://postgresqlco.nf/en/doc/param/wal_compression/
 Podemos reducir el uso de disco, a cambio de usar más CPU, activando wal_compression
+
+
+# Llenado directorio wal
+https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+Posibles causas:
+  - archive command no funcion
+  - replication slot sin cliente conectado
+    select * from  pg_replication_slots;
+    Parece que la única solución es monitorizar que no se llene el disco: https://info.crunchydata.com/blog/wheres-my-replica-troubleshooting-streaming-replication-synchronization-in-postgresql
+    Mirar en monitoring.md
+

@@ -27,7 +27,12 @@ wget https://raw.githubusercontent.com/sysdiglabs/kubectl-capture/master/kubectl
   podemos quitarle los "> /dev/null" del script si queremos ver que está pasando por debajo.
 
 kubectl capture rook-ceph-operator-68796ffcfd-2c2j2 -M 3 --snaplen 256 -ns rook-ceph
+  -M 3, recolectar 3 segundos
+  --snaplen capturar los primeros 256 bytes de cada IO buffer
+  --ns namespace donde está el pod
+Para 3" de captura, tarda unos 2 min entre que arranca, captura, para y recupera el fichero.
+Puede tardar unos cuantos segundos en arrancar si no tenemos la imagen de sysdig en el host
 
 gunzip capture*.gz
-sysdig-capture
+sysdig-inspect
   abrir el .scap

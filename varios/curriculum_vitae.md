@@ -25,3 +25,8 @@ Lenguajes de programación, poner en orden de conocimiento y entre parentesis qu
 Si está en inglés, que alguien nativo lo revise en busca de fallos.
 
 Para US no poner edad, estado (casado, soltero, etc) y nacionalidad.
+
+
+
+App online para poner el CV en línea
+https://read.cv/

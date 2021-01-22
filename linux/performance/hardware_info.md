@@ -1,4 +1,6 @@
 dmidecode
+Módulos de memoria:
+dmidecode | grep -A 12 "^Memory Device$" | grep -e "^Mem" -e "^\s*Size: " -e "Speed: "
 
 x86info
 

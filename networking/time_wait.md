@@ -1,3 +1,5 @@
+Info sobre establecimiento de conexiones TCP en linux: linux/tcp_handle.md
+
 http://vincent.bernat.im/en/blog/2014-tcp-time-wait-state-linux.html
 Análsis conciencudo del problema del TIME_WAIT
 

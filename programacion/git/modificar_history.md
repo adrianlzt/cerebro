@@ -8,5 +8,16 @@ Se abrirá el mensaje del commit.
 Cambiar
 
 
-Modificar contenido:
+# Modificar contenido
+Cambiar "pick" por "edit".
+
+Tras modificar lo que queremos:
+git commit --amend -a
+
+Y para terminar:
+git rebase --continue
+
+
+
+Mirar también:
 remove-sensitive-data.md

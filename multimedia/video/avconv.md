@@ -1,3 +1,7 @@
+https://github.com/yuanqing/vdx
+Comando que simplifica la conversión de video (usando por debajo ffmpeg)
+
+
 https://trac.ffmpeg.org/wiki/Encode/AAC
 -> mp4
 ffmpeg -i input.wav -c:a libfdk_aac -b:a 128k output.m4a

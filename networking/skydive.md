@@ -174,10 +174,10 @@ La primary key de los nodos es Metadata.Name+Metadata.Type (si creamos dos nodos
 
 Por debajo se almacena como una serie de Nodes y Edges.
 Podemos hacer un dump de la topología:
-SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology export > graph.json
+SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client topology export > graph.json
 
 Y también subir un dump (con la cli que se instala con python)
-SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology import --file graph.json
+SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client topology import --file graph.json
 
 
 ## Desarrollo
@@ -186,14 +186,19 @@ SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client topology import --file grap
 https://github.com/skydive-project/skydive/blob/master/graffiti/graph/traversal/traversal.go
 
 
+### Tests funcionales
+make functional TEST_PATTERN=APIPatchNode$
+
 
 
 ## Client
 http://skydive.network/blog/topology-rules.html
 Para interactuar con los analyzers, crear nodos, etc.
-SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client status
+SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client status
 
-SKYDIVE_ANALYZERS=10.20.20.151:8082 ./skydive client node-rule create --action create --description cli --name archerRule --node-name archer --node-type fabric --metadata 'foo=bar, bar=foo'
+SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client node-rule create --action create --description cli --name archerRule --node-name archer --node-type fabric --metadata 'foo=bar, bar=foo'
+
+SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client node create --host pepito2 --metadata 'Type=v2'
 
 Crear edge:
 skydive client edge-rule create --src "G.V().Has('Name', 'miveth')" --dst "G.V().Has('Name', 'mivm1')" --relationtype ownership
@@ -224,6 +229,9 @@ Queries para atacar a graffiti.
 
 Mirar como estaba la db de grafos en un momoento del tiempo.
 ./skydive client query "G.At('Thu, 14 May 2020 15:12:04 CEST')"
+
+"Context" es lo mismo que "At".
+A estos dos también se le puede pasar al fecha en unix epoch
 
 Obtener los nodos de un type y sus descendientes. Se puede pasar un parámetro a Descendants para decir cuantas veces debe buscar hacia abajo, ejemplo Descendants(4):
 G.V().Has("Type", "VMs").Descendants()
@@ -257,15 +265,26 @@ A partir de esta PR si se se pueden crear nodos/edges de skydive mediante la API
 https://github.com/skydive-project/skydive/pull/2139
 
 
+## ETCD
+Usa etcd para gestionar el cluster
+
+Cuando usa un etcd externo debe ser un v2
+
+Configuraremos:
+etcd:
+  embedded: false
+  servers:
+    - http://127.0.0.1:2379
+
+
+
 
 ### RAW / Topology
 Lanzar una query gremlin sobre la topología:
-curl 10.20.20.151:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
+curl 127.0.0.1:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
 
-Crear nodo:
-POST /api/noderule
-Content-Type: application/json
-{"Name":"jRule","Description":"directora","Metadata":{"Foo":"bar","Name":"Jaria","Type":"people"},"Action":"create","Query":"","UUID":""}
+Crear noderule:
+curl 127.0.0.1:8082/api/noderule -H "Content-Type: application/json" -d '{"Name":"jRule","Description":"directora","Metadata":{"Foo":"bar","Name":"Jaria","Type":"people"},"Action":"create","Query":"","UUID":""}'
 
 curl http://127.0.0.1:8082/api/noderule -d '{"Action": "create", "Metadata":{"Name": "nodo", "Type": "VMs"}}'
 
@@ -280,6 +299,23 @@ Crear edge rule:
 curl  http://127.0.0.1:8082/api/edgerule -H "Content-Type: application/json" -d '{"Src": "G.V().Has('Name', 'nodo')", "Dst": "G.V().Has('Name', 'nodo2')", "Metadata":{"foo": "bar"}}'
 
 
+Crear nodo:
+curl 127.0.0.1:8082/api/node -H "Content-Type: application/json" -d "{\"ID\": \"test\", \"CreatedAt\": $(date +%s%3N), \"UpdatedAt\": $(date +%s%3N), \"Metadata\": {\"Name\": \"foo\", \"Type\": \"bar\"}}"
+Si usamos el binario de skydive para crear nodos, el automáticamente mete:
+  "ID":"a78601e2-a3d7-4bbc-63b8-fffa83c69f54"   (función graph.GenID(), uuid.NewV4())
+  "Origin":"agent.archer"                       (config.AgentService)
+  "CreatedAt":1593006895231                     (time.Now())
+  "UpdatedAt":1593006895231                     (time.Now())
+  "Revision":1                                  (a fuego, siempre 1)
+
+Parchear nodo:
+curl -H "Content-Type: application/json" -XPATCH localhost:8082/api/node/1f0058f8-2505-11eb-8a2c-005056934e00 -d '[{"op": "add", "path": "/Metadata/Alarms/123456789", "value": {"description": "Fake alarm", "level": 3, "datetime": "2020-11-12T17:58:48.570777"}}]'
+
+
+Crear edge:
+curl 127.0.0.1:8082/api/edge -H "Content-Type: application/json" -d "{\"ID\": \"test\", \"CreatedAt\": $(date +%s%3N), \"UpdatedAt\": $(date +%s%3N), \"Origin\": \"CMDB-Syncer\", \"Metadata\": {\"RelationType\": \"foo\"}, \"Child\": \"a\", \"Parent\": \"b\"}"
+
+
 ### Python
 http://skydive.network/documentation/api-python
 
@@ -291,7 +327,7 @@ Biene con un pequeño cliente para websockets, aunque es mejor "skydive agent"
 skydive-ws-client --analyzer localhost:8082 --username admin --password password  add /tmp/skydive.dump
 
 from skydive.rest.client import RESTClient
-restclient = RESTClient("10.20.20.151:8082")
+restclient = RESTClient("127.0.0.1:8082")
 nodes = restclient.lookup_nodes("G.V().Has('Name', 'TOR3')")
 nodes[0].metadata
 
@@ -312,6 +348,38 @@ restclient.edgerule_create(
 )
 
 
+
+
+# Elastic backend
+Los nodos los crea en el índice skydive_topology_live_v12 (alias skydive_topology_live).
+Cuando se borra un nodo o edge lo mueve al índice skydive_topology_archive_v12-NNNNNN (alias skydive_topology_archive) y le pone DeletedAt y ArchivedAt.
+
+Si parcheamos un nodo (PATCH), nos mueve el documento antiguo al archive y crea uno nuevo en el índice "live", actualizando el UpdatedAt y haciendo +1 al Revision (este campo empieza en 0).
+El que mueve al archive le mete el campo "ArchivedAt"
+
+Lo que hace es enviar un POST al endpoint /_bulk con dos operaciones.
+En la primera crea un nuevo documento en el índice archive con el estado actual del nodo/edge.
+En la segunda operación, selecciona un documento de ES y lo actualiza con los nuevos datos.
+
+
+## Datos permanentes
+Teóricamente a partir de esta PR se consigue permanencia en los datos (que si se reinicia el server de skydive no se pierdan los datos).
+Entiendo que usando un etcd externo
+https://github.com/skydive-project/skydive/pull/2221
+
+Hace esta query a ES para recuperar los datos:
+{"query":{"bool":{"must":[{"term":{"_Type":"node"}},{"bool":{"must_not":{"exists":{"field":"ArchivedAt"}}}}]}},"size":10000,"sort":[{"UpdatedAt":{"order":"asc","unmapped_type":"date"}}]}
+
+Parece que la magia está en:
+https://github.com/safchain/skydive/blob/d254aee281c5d713f8c39a3cd98e7d1ddcbeb396/graffiti/graph/cachedbackend.go#L207
+https://github.com/skydive-project/skydive/blob/8a76bba8a9e9b611698910258da8316f130fd3dc/graffiti/graph/cachedbackend.go#L211
+  más reciente
+
+Parece que metieron cambios para no recuperar todo https://github.com/skydive-project/skydive/commit/7c0d9c284cff55472da4442fff571790a7978818
+A partir de este cambio lo que se hace es, tras arrancar:
+ - Marcar como DeletedAt y ArchiveAt en ese momento los nodos con Origin: analyzer\..*
+ - Obtener los "nodes" que no estén archivados ni tengan Origin: analyzer\..*
+ - Obtener los "edges" que no estén archivados ni tengan Origin: analyzer\..*
 
 
 
@@ -433,6 +501,12 @@ graffiti/api/server/server.go
 
 
   Al crear un nodo su definición tiene que validarse contra el JSON schema: statics/schemas/node.schema
+
+
+#### Parser gremlin
+Aqui es donde se reconocen las distintas funciones:
+graffiti/graph/traversal/traversal_scanner.go
+func (s *GremlinTraversalScanner) scanIdent() (tok Token, lit string) {
 
 
 ### Backend

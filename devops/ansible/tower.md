@@ -279,6 +279,11 @@ http://AWX/api/v2/job_templates/12/jobs/?limit=HOSTPRUEBA&created__gte=2019-12-1
 started__lt=2019-12-16T18:40:59.000000%2B0100
 %2B es +, por lo que estamos poniendo el time zone +1
 
+order_by=-id
+orden inverso del campo "id"
+
+Si le preguntamos OPTIONS nos da info de como hacer las queries.
+
 
 api/v2/jobs/?or__status=waiting&or__status=pending&or__status=new
 

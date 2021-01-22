@@ -2,6 +2,8 @@ https://wiki.alpinelinux.org/wiki/Main_Page
 
 Imagen mínima de linux con musl (en vez de glibc). Más info sobre musl más abajo
 
+Versión en /etc/alpine-release
+
 # APK: Gestor de paquetes
 https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management
 https://github.com/gliderlabs/docker-alpine/blob/master/docs/usage.md
@@ -62,6 +64,12 @@ Tiene ciertas diferencias sobre glibc
 https://wiki.musl-libc.org/functional-differences-from-glibc.html
 
 Algunos problemas que me he encontrado fue conviertiendo fechas entre distintos locales y a la hora de enviar peticiones DNS (musl siempre envía las peticiones A y AAAA usando el mismo socket)
+
+Otro problema encontrado, con time zones, la variable TZ y go.
+Los binarios dinámicos (contra musl) que usan tzdata (via la variable TZ) reportaban mal la hora.
+Tal vez relacionado con: https://gitlab.alpinelinux.org/alpine/aports/-/issues/12057
+
+
 
 Otro problema nos encontramos intentando correr un elastalert+nodejs. Pero esta vez parece que el probelma era instalar la versión de python de alpine3.6 en la 3.11.
 Intentaba hacer una llamada a la syscall getrandom, pero docker no parecía entenderlo y mandaba un kill directo.

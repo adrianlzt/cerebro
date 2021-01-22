@@ -52,3 +52,12 @@ El proceso node tambien genera logs en:
 Podemos activar las trazas para ver los mensajes con el LPS con:
 :CocCommand workspace.showOutput
 
+
+
+Podemos subir el nivel de debug:
+export NVIM_COC_LOG_LEVEL=debug
+
+Arrancar nvim
+
+Y luego ver los logs con:
+:CocOpenLog

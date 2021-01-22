@@ -7,4 +7,6 @@ nm -an programa
 
 readelf -Ws programa
 
+nm -D fichero
+
 objdump -d -l programa

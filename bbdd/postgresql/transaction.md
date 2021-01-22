@@ -3,6 +3,8 @@ All statements in postgres runs inside of a transaction either explicit/implicit
 # Isolation levels
 https://www.postgresql.org/docs/current/transaction-iso.html
 
+Problemas de aislamiento: http://jepsen.io/analyses/postgresql-12.3
+
 Las transacciones pueden tener distintos niveles de aislamiento respecto a otras transacciones ocurriendo al mismo tiempo.
 Esto viene definido por el estandar SQL.
 

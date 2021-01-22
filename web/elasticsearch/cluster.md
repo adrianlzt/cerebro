@@ -216,7 +216,7 @@ Swapping mata la performance. Recomiendan quitarla o bajar mucho el swappiness (
 Debe vigilarse igualmente que no se esté quedando sin filedescriptors.
 En centos7 la unit de systemd ya configura para poner el limite a 65536
 
-Elasticsearch reparte la carga por igual entre nodos, igualando el número de shards asignados por nodo y manteniendo un equilibrio en cuanto a almacenamiento se refiere, sin tener en cuenta los recursos de uno u otro nodo. Esto uno al uso actual que se está haciendo de esta plataforma, el nodo con menos cantidad de memoria (lep1efb1) está en situación de saturación continua. Esto se puede evidenciar al comprobar desde el módulo de Monitoring que las métricas de este nodo no se están obteniendo bien.
+Elasticsearch reparte la carga por igual entre nodos, igualando el número de shards asignados por nodo y manteniendo un equilibrio en cuanto a almacenamiento se refiere, sin tener en cuenta los recursos de uno u otro nodo. Esto uno al uso actual que se está haciendo de esta plataforma, el nodo con menos cantidad de memoria está en situación de saturación continua. Esto se puede evidenciar al comprobar desde el módulo de Monitoring que las métricas de este nodo no se están obteniendo bien.
 
 
 # Auto generación de índices
@@ -444,6 +444,9 @@ By default, the JVM heap size is 1 GB
 Some guidelines for configuring the heap size:
   set Xms and Xmx to the same size (bootstrap check)
   set Xmx to no more than 50% of your physical RAM
+  Elasticsearch requires memory for purposes other than the JVM heap and it is important to leave space for this. For instance, Elasticsearch uses off-heap buffers for efficient network communication, relies on the operating system’s filesystem cache for efficient access to files, and the JVM itself requires some memory too. It is normal to observe the Elasticsearch process using more memory than the limit configured with the Xmx setting.
+
+
 
 Rule of thumb for setting the JVM heap is:
   do not exceed more than 30GB of memory (to not exceed the compressed ordinary object pointers limit)

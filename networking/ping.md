@@ -10,3 +10,7 @@ Si queremos que un ping en ejecución nos muestre estadísticas le enviamos la s
 
 Envia el ping a través de la interfaz eth3
 ping -I eth3 google.es
+
+
+# https://github.com/orf/gping
+gráfico ncurses con los valores del ping a lo largo del tiempo, pudiendo comparar varios hosts simultáneamnete

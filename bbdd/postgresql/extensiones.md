@@ -1,3 +1,6 @@
+En principio no es necesario reiniciar (tal vez alguna extensión particular lo requiera)
+
+
 https://github.com/omniti-labs/pg_jobmon
 https://pgxn.org/dist/pg_jobmon/ <- versión más nueva que en github (mirar PR)
 pg_jobmon is an extension to add the capability to log the progress of running functions and provide a limited monitoring capability to those logged functions.
@@ -37,6 +40,9 @@ https://github.com/omniti-labs/pg_jobmon/blob/master/doc/pg_jobmon.md
 
 Mostrar todas las jobs (100 es el limit que ponemos):
 select * from jobmon.show_job_like('.*', 100);
+
+Mostrar los datos y duración de los jobs entre dos fechas:
+select *,end_time-start_time as duration from jobmon.show_job_like('.*', 1600) where end_time < '2020-09-21 20:30:00.000000+02' and start_time > '2020-09-21 18:00:00.000000+02'
 
 
 Jobs running:

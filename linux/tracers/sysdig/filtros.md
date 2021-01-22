@@ -38,6 +38,9 @@ proc.name="check_logfiles." and fd.type=file and evt.type=open
 Ficheros que toca uwsgi que no se llamen alarmer (que no esté en su path)
 proc.name=uwsgi and fd.type=file and not fd.name contains alarmer
 
+evt.type=write and evt.buffer contains FATAL
+  escrituras a disco que contengan la cadena FATAL
+
 proc.name solo pilla los 15 primeros caracteres
 
 evt.type=chdir

@@ -21,11 +21,11 @@ Cada cierto tiempo puede que se cierre el agente y nos solicite la clave de nuev
 
 # GPG
 Mostrar mis claves
-gpg -K
+gpg -k
 gpg --list-public-keys
 
 Lista todas las claves aceptadas
-gpg -k
+gpg -K
 gpg --list-secret-keys
 
 Borrar key publica

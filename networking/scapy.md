@@ -154,3 +154,11 @@ del packet[TCP].chksum
 pkt.set_payload(str(packet))
 pkt.accept()
 
+
+
+
+# Enviar paquete RST
+He intentando generar un paquete RST para romper una conexión, pero no funciona, no tengo claro por que.
+
+tcpkill si consigue enviar un reset y matar la conex, pero solo funciona tras ver algún paquete.
+Mi idea era poder enviar un paquete cuando yo quisiera para matar una conex.

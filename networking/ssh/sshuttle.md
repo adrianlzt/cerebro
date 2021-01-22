@@ -13,6 +13,9 @@ http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
 
 Using Sshuttle to Forward Connections
 
+A partir de la versión 1.0.0, no soporta python 2.x (la máquina de salto necesita py3)
+https://github.com/sshuttle/sshuttle/issues/469
+
 Montar una VPN a través de una conexión ssh.
 
 sshuttle necesita poder hacer sudo sin passwd, por lo que ejecutaremos un comando con sudo que permitirá durante unos minutos que se pueda usar sudo sin password.

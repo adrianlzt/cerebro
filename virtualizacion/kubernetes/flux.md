@@ -5,6 +5,8 @@ El típico caso de uso será tener arrancado un flux en el mismo namespace que n
 Cada 5' flux buscará cambios en ese repo y los aplicará sobre los recursos desplegados en k8s.
 Este es el funcionamiento por defecto.
 
+Parece que si tenemos nuevos .yaml, despliega un nuevo pod (mismo deployment)
+
 También podemos configurarlo para buscar nuevas imágenes de los pods desplegados relacionados con nuestro repo de git y cuando haya una imagen nueva, modificar el yaml que corresponda y actualizar el despliegue.
 Que imagen más nueva se basará en la fecha, no en el version. Podemos ver con "list-images" cual considera que es más nueva (arriba más nuevas)
 

@@ -12,7 +12,7 @@ NOMBRE ITEM           funcion a la que llama
 ITEM_TYPE_ZABBIX      get_value_agent
 ITEM_TYPE_IPMI        get_value_ipmi
 ITEM_TYPE_SIMPLE      get_value_simple
-ITEM_TYPE_INTERNAL    get_value_internal (este nombre de func no sale, depende de que pidamos puede salir "get_selfmon_stats" o tal vez ninguno?)
+ITEM_TYPE_INTERNAL    get_value_internal (retrieve data from Zabbix server (internally supported items))
 ITEM_TYPE_DB_MONITOR  get_value_db
 ITEM_TYPE_AGGREGATE   get_value_aggregate
 ITEM_TYPE_EXTERNAL    get_value_external
@@ -79,6 +79,8 @@ Esto quiere decir que los history syncer tienen muchos elementos que sincronizar
 Si los history syncer no dan a basto, veremos como la cache "history write" empezará a gastar espacio. También la "history index".
 
 Detalle de como saca los datos en cache.md sección "Write cache"
+
+Esquema gráfico: history_syncer.png history_syncer.excalidraw
 
 
 # unreachable poller

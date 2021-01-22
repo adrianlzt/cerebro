@@ -1,3 +1,4 @@
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html
 http://docs.ansible.com/ansible/latest/playbooks_debugger.html
 - hosts: test
   strategy: debug

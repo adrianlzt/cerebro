@@ -24,3 +24,12 @@ char to hex: rax2 -S A J A
 int to hex: rax2 100
 hex to int: rax2 0x1A
 
+
+Mostrar caracteres en binario:
+echo -n ABC | xxd -b
+
+Mostrar el binario 1:
+echo -n '\x01' | xxd -b
+
+Interpretar una cadena de texto como un número, nos saca la representación binaria del número que devuelva el cat:
+cat /proc/sys/kernel/sysrq | xxd -r -p | xxd -b

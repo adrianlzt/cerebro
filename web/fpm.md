@@ -40,3 +40,13 @@ SCRIPT_NAME=/status SCRIPT_FILENAME=/status REQUEST_METHOD=GET cgi-fcgi -bind -c
 Para instalarlo:
 pacman -S fcgi
 yum install -y fcgi
+
+
+# Formato log
+/etc/php-fpm.d/www.conf
+access.format = '"%{REMOTE_ADDR}e - - [%t] \"%m %r%Q%q\" %s %l \"%{HTTP_REFERER}e\" \"%{HTTP_USER_AGENT}e\" %{mili}dT PID=%p MEM=%{kilo}M CPU=%C%%"'
+
+https://www.php.net/manual/es/install.fpm.configuration.php#122456
+
+https://www.tothenew.com/blog/php5-fpm-logging/
+%t : server time of receiving request

@@ -1,3 +1,6 @@
+https://github.com/lavie/runlike
+Obtener el "docker run" de una imagen que ya está corriendo
+
 Usage: docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 
 docker run --rm -P --name=pepe CONTENEDOR

@@ -6,3 +6,6 @@ adb shell pm path com.example.someapp
 
 bajar el path
   adb pull /data/app/com.example.someapp-2.apk
+
+
+unzip file.apk

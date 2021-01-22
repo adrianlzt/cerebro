@@ -43,7 +43,7 @@ valor de x: 1
 >>> eval("otra")(4)
 valor de x: 4
 
-locals() es para funciones locales (de la misma clase?)
+locals() es para funciones locales (de la misma función/clase?)
 
 
 Otra opción (fichero foo.py con clase o funcion 'bar'):

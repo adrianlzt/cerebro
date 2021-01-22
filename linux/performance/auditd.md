@@ -3,6 +3,9 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Se
 
 GUI: audit-viewer
 
+Tiene que estar arrancado:
+systemctl start auditd
+
 lib en go: https://github.com/elastic/go-libaudit
 
 aureport: generar informes más sencillos de leer

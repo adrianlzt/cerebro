@@ -19,6 +19,8 @@ ceph osd stat
 ceph osd tree
   vista en arbol donde vemos los OSD que hay corriendo en cada maquina
 
+Más info sobre los OSD en osd.md (por ejemplo para obtener valores de config en ejecución)
+
 Estado del quorum (maquinas monitoras):
 ceph quorum_status --format json-pretty
 

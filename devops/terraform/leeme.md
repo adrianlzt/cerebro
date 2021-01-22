@@ -22,4 +22,7 @@ provisioner "local-exec" {
 
 
 
+Estructura de ficheros:
+https://www.digitalocean.com/community/tutorials/how-to-structure-a-terraform-project#:~:text=A%20Terraform%20project%20is%20any,actually%20deployed%20in%20the%20cloud.
+
 Seguir mirando terraform.md

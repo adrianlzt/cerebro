@@ -18,3 +18,26 @@ Podemos meter distintos tipos de plugins custom en directorios a nivel del playb
   filter_plugins/
   lookup_plugins/
   module_plugins/
+
+
+
+
+# Filter plugins
+https://blog.oddbit.com/post/2019-04-25-writing-ansible-filter-plugins/
+
+filter_plugins/upper.py
+def filter_unique(things):
+  seen = set()
+  unique_things = []
+
+  for thing in things:
+    if thing not in seen:
+      seen.add(thing)
+      unique_things.append(thing)
+
+  return unique_things
+
+
+class FilterModule(object):
+    def filters(self):
+      return {'unique': filter_unique}

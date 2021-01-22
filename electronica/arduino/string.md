@@ -6,3 +6,6 @@ String(stringTwo + " with more")
 
 Convertir a integer:
 inString.toInt()
+
+Double a str:
+char * dtostrf(double number, signed char width, unsigned char prec, char *s)

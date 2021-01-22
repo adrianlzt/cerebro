@@ -1,3 +1,11 @@
+# Naming
+https://blog.golang.org/package-names
+
+Cortos.
+No usar "_" ni camelCase
+
+
+# Gestión paquetes
 Usar vgo.md
 
 

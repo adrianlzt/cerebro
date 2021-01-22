@@ -112,6 +112,15 @@ escalation_execute_operations: para saber que generar, escalator comprobará las
 En zabbix 3.2 tenemos un único procesor alerter. A partir de 3.4 hay un alerter manager que lee entradas en alerts y envia mensajes via IPC a los alerter workers.
 En zabbix 3.2, tras 40" el proceso alerter intentará matar el script de alertado con SIGTERM. Podemos manejar la señal para evitarlo, pero saturaremos el alerter.
 Si el programa que queremos ejecutar no funciona, zabbix parece que retorna un código OK, aunque veremos que reinenta tres veces el envío.
+  src/zabbix_server/alerter/alerter.c
+    execute_action()
+      res = zbx_execute(cmd, &output, error, max_error_len, ALARM_ACTION_TIMEOUT)
+    #define ALARM_ACTION_TIMEOUT 40
+
+En zabbix 4 cambia un poco, pero sigue el mismo timeout
+  execute_script_alert()
+    zbx_execute(command, &output, Rrror, max_error_len, ALARM_ACTION_TIMEOUT, ZBX_EXIT_CODE_CHECKS_ENABLED)
+
 
 
 

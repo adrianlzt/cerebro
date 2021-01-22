@@ -2,12 +2,27 @@ mirar pg_stat_statements.md
 mirar pgmetrics.md
 Queries que hace zabbix para monitorizar postgres: https://github.com/zabbix/zabbix/tree/master/templates/db/postgresql/postgresql
 
+http://pgstats.dev/
+Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace 
+
 https://github.com/dalibo/pg_activity
 herramienta tipo top
+
+Capturar tráfico y decodificar el wire protocol para saber que está haciendo:
+https://www.cncf.io/blog/2020/08/13/envoy-1-15-introduces-a-new-postgres-extension-with-monitoring-support/
+https://www.elastic.co/guide/en/beats/packetbeat/current/packetbeat-pgsql-options.html
 
 Cosas importantes que monitorizar: VACUUM, connection overhead, shared buffers
 Tiempo entre checkpoints (más datos en checkpoint.md)
 Mirar si al menos tenemos una hora de WALs, si tenemos menos, deberíamos incrementar el max_wal_size para reducir los checkpoints.
+
+Mirar si tenemos queries idle in transactions.
+Un típico fallo es un programa en python que se cierra incorrectamente y deja una tx abierta. Esta TX puede bloquear otras operaciones (nos pasó que no dejaba particionar una tabla por un select que se había realizado desde esa tx)
+Podemos limitar el tiempo que las sesiones están en idling transaction: https://postgresqlco.nf/en/doc/param/idle_in_transaction_session_timeout/
+
+mirar en timeout_queries.md sección "Gestion timeout"
+
+
 
 Toda la info que queremos sacar lo tendremos catalog views o tables, y también tendremos que mirar el log file para buscar WARNINGS o ERRORS.
 
@@ -126,7 +141,13 @@ La gráfica puede tener picos por que los envíos pueden ir a golpes y porque lo
 
 Cuidado, si los slaves no flushean los wal, el master los mantendrá llenando su disco.
 Número de WALs en disco (hace falta permiso especial para esta función):
-SELECT COUNT(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ '^[0-9A-F]{24}';
+SELECT COUNT(*) FROM pg_ls_dir('pg_wal') WHERE pg_ls_dir ~ '^[0-9A-F]{24}';
+  SELECT COUNT(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ '^[0-9A-F]{24}'; -- antiguo, postgres <=9.6 creo
+
+Si usamos replication slots y el cliente se desconecta, estaremos llenando el disco con los wal hasta que reconecte.
+La solución es monitorizar ese número de arriba o el espacio en disco
+https://info.crunchydata.com/blog/wheres-my-replica-troubleshooting-streaming-replication-synchronization-in-postgresql
+Si hemos perdido el cliente y se nos está llenando, tal vez la solución es borrar el replication slot. Mirar en replication.md
 
 
 Monitorizar conflictos, mirar ha_scalability.md

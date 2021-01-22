@@ -3,6 +3,7 @@ Nos permite recolectar información de procesos que están ejecutándose
 Sacar su stack, forzar GC, tracear, etc
 
 
+
 # Delve
 https://github.com/derekparker/delve
 go get -u github.com/derekparker/delve/cmd/dlv
@@ -100,6 +101,8 @@ Y en ese momento tenemos el record para hacer debug
 
 
 # Trace
+https://blog.gopheracademy.com/advent-2017/go-execution-tracer/
+
 ## runtime/trace
 f, _ := os.Create("trace.out")
 defer f.Close()
@@ -159,6 +162,66 @@ hace dump de las corutinas y mata el proceso.
 
 Tal vez esté en /var/log/messages
 O en el log del programa
+
+
+Si queremos separar cada gorutina en un fichero:
+csplit -n 3 out.txt /goroutine/ '{*}'
+
+
+## Entender output
+https://www.ardanlabs.com/blog/2015/01/stack-traces-in-go.html
+
+### Cabeceras
+La cabecera "running" nos indica la gorutina que se estaba ejecutando en el momento del panic.
+
+"chan receive", el hilo está esperando, ejemplo "<-ch"
+
+Si tenemos un tiempo será la duración que llevan en ese estado por estar blocked/sleeping/waiting
+
+Ejemplos de cabeceras:
+[chan receive]:
+[chan receive, 1072 minutes]:
+[IO wait]:
+[IO wait, 1072 minutes]:
+[runnable]:
+[running]:
+[select]:
+[select, 1072 minutes]:
+[syscall, 1072 minutes]:
+[syscall, 9 minutes, locked to thread]:
+  Locked to thread is due to this syscall being blocking, so an operating system thread is assigned to this goroutine for the duration of the syscall and a new one has been created to replace the loss of this one
+
+
+### Cuerpo
+Se nos muestra la anidación de llamadas (más arriba, la llamada que estaba siendo/iba a ser procesada.
+
+Por cada llamada se nos muestra la función donde estábamos, son sus parámetros y debajo una línea indicando la línea del código fuente.
+
+El paso de parámetros dependerá del tipo de dato que estemos pasando.
+
+bool: false=0, true=1
+integer, un word, ejemplo: 0xa (10 en decimal)
+string -> pointer + length, ejemplo: 0x425c0, 0x5
+slice -> (puntero, length, capacity), ejemplo: 0x2080c3f50, 0x2, 0x4
+struct, el contenido del struct, por ejemplo, para un struct que tiene un puntero y un bool: 0xc0018e4090, 0x0
+valores que caben en una única palabra se empaquetan juntos: func Example(b1, b2, b3 bool, i uint8) -> main.Example(0x19010001)
+
+En el caso de ser métodos, ejemplo "func (t *trace) Foo()", veremos en el nombre de la función esa declaración y el primer parámetro será el puntero al "receiver":
+02 main.(*trace).Example(0x1553a8, 0x2081b7f50, 0x2, 0x4, 0xdc1d0, 0x5, 0xa)
+                            ^
+                            |
+                        puntero a t
+
+Ejemplo:
+runtime.throw(0x540e13e, 0x26)
+  /usr/local/go/src/runtime/panic.go:1116 +0x72 fp=0xc00343f620 sp=0xc00343f5f0 pc=0x1f507c2
+runtime.mapiternext(0xc00343f720)
+  /usr/local/go/src/runtime/map.go:853 +0x552 fp=0xc00343f6a0 sp=0xc00343f620 pc=0x1f2b5c2
+github.com/skydive-project/skydive/graffiti/graph.(*MemoryBackend).GetNodeEdges(0xc00044fa60, 0xc0018e4090, 0x0, 0x203001, 0x58d9c60, 0xc0017dcfc0, 0xc00343f860, 0x1f28376, 0xc0017b17a0)
+  /go/src/github.com/skydive-project/skydive/graffiti/graph/memory.go:150 +0xf1 fp=0xc00343f790 sp=0xc00343f6a0 pc=0x25e3ed1
+
+
+
 
 
 # GDB

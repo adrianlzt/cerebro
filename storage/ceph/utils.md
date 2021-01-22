@@ -70,7 +70,10 @@ rclone config
   wizard para configurarlo
 
 Config en ~/.config/rclone/rclone.conf
+Podemos definir ahí el endpoint de ceph a mano con http://1.2.3.4:8080 si no queremos usar tls
 
+Directorios/buckets en un remote:
+rclone --no-check-certificate lsd nombreRemote:
 
 Sync entre dos buckets (pasa por local, ignorando certs)
 rclone --no-check-certificate copy --progress A:bucketenA B:bucketenB

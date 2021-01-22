@@ -1,3 +1,5 @@
+mirar utilizacion.md
+
 nproc
   numero de procesadores
 cat /proc/cpuinfo

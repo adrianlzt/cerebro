@@ -4,6 +4,10 @@ Información sobre la imagen (datos exif):
 http://www.imagemagick.org/script/identify.php
 identify file.jpg
 identify -verbose file.jpg
+exiftool fichero.jpg
+
+Borrar datos exif:
+exiftool -all= file.jpg
 
 
 Resize

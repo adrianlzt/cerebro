@@ -13,3 +13,10 @@ irb
 require 'bankscrap-ing'
 ing = Bankscrap::ING::Bank.new(dni: "0000000p", password: "000000", birthday:"00/00/1980")
 ing.accounts.first.balance
+
+
+# Mi notificador
+github.com:adrianlzt/notificador-ing
+~/Documentos/ingdirect/banco-heroku
+
+Si deja de funcionar, entrar en la url para que vuelva a funcionar.

@@ -28,6 +28,8 @@ Para pasar a lista: list(range(3))
 >>> for k, v in knights.iteritems():
 ...     print k, v
 
+En py3 es knights.items()
+
 
 >>> words = ['cat', 'window', 'defenestrate']
 >>> for w in words[:]:  # Loop over a slice copy of the entire list.

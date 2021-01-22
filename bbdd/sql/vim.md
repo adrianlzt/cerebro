@@ -15,3 +15,7 @@ Si estamos dentro de psql, podemos usar
 # Postgres
 https://github.com/lifepillar/pgsql.vim
 No veo que haga mucho
+
+
+https://github.com/joe-re/sql-language-server
+Necesitamos configurarle los servers SQL para que pueda completar

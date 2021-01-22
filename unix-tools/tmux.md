@@ -108,7 +108,7 @@ C-b q
 Reload (bind R source-file ~/.tmux.conf \; display "Reloaded!")
 C-b R
 
-Detach
+Dettach
 C-b d
 
 Listar sessiones (nos da una previsualizacion de que hay en cada uno)

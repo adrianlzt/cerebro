@@ -39,6 +39,9 @@ select * from pg_proc;
 # Editar funciones
 \ef nombre
 Abre un editor (lo que tengamos en EDITOR) para editar la función.
+Si tenemos varias con el mismo nombre tendremos que especificar los tipos de los parámetros:
+\ef nombre(int, int)
+NOTA al final poner ";" y enter para guardar
 
 
 # PL/pgSQL
@@ -48,6 +51,16 @@ BEGIN
 RETURN val + 1;
 END; $$
 LANGUAGE PLPGSQL;
+
+
+Formatear strings
+https://www.postgresql.org/docs/current/functions-string.html#FUNCTIONS-STRING-FORMAT
+%s string
+%I SQL identifier, double-quoting if necessary
+%L SQL literal
+
+%4$s cuarto parámetro como string
+
 
 
 # Crear función python
@@ -141,3 +154,19 @@ ALTER FUNCTION myFunc {COST c} {ROWS w};
 
 # Funciones para obtener datos de postgres
 https://www.postgresql.org/docs/current/functions-info.html
+
+
+
+# Debug
+
+## RAISE (prints)
+https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html
+
+RAISE DEBUG 'hola';
+RAISE NOTICE 'Calling cs_create_job(%)', v_job_id;
+
+Por defecto al cliente se le envían niveles >=NOTICE (INFO siempre se le envía)
+https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-CLIENT-MIN-MESSAGES
+
+A los logs del server: https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-MIN-MESSAGES
+Por defecto >= WARNING

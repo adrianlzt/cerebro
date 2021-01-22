@@ -13,6 +13,9 @@ tasks/main.yml:
   template: src=interface.json.j2 dest=/tmp/ansible/interface.json backup=yes
   when: interface is defined
 
+La contraria:
+  when: interface is not defined
+
 Tambien tenemos el "VARIABLE is not defiend"
 
 when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or

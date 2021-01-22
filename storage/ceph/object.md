@@ -84,6 +84,9 @@ Testear con el programa python radula (mirar utils.md)
 Listar buckets:
 radosgw-admin bucket list
 
+Renombrar (a partir de v15, octopus):
+radosgw-admin bucket link --bucket=prod-clone --bucket-new-name=development
+
 Borrar bucket y su contenido (CUIDADO!):
 radosgw-admin bucket rm --bucket NOMBRE --purge-objects
 

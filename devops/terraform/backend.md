@@ -1,3 +1,5 @@
+https://www.terraform.io/docs/backends/index.html
+
 Podemos usar backends en linea para mantener un estado compartido.
 Por ejemplo, etcd
 

@@ -8,13 +8,18 @@ Tres tipos de espacio no usado:
     Por defecto fillfactor=100, por lo que no se dejan espacios libres.
     Para índices B-tree el fillfactor es 90 por defecto
     Esta opcion deja huecos para que las actualizaciones de rows puedan caer en la misma page que el dato y evitar fragmentación en tablas con muchos updates.
-  - bloat, espacio no usado pero consumido tras borrados/updates, etc
+  - bloat, espacio no usado pero consumido tras borrados/updates, etc. Debería estar bajo el control de vacuum
 
 En tablas que solo sufren inserts no tiene sentido dejar fillfactor.
 En tablas con updates, si tienen HOT updates (modificación de valores no indexados) sí tiene sentido dejar fillfactor.
 
 
+
 # Espacio no usado en datos de tablas
+
+extra_size, estimación del espacio extra ocupado por fillfactor, padding y bloat
+bloat_size, estimación del espacio extra ocupado por padding y bloat
+
 SELECT current_database(), schemaname, tblname, bs*tblpages AS real_size,
   (tblpages-est_tblpages)*bs AS extra_size,
   CASE WHEN tblpages - est_tblpages > 0
@@ -83,7 +88,13 @@ En otras tablas que tienen muchos updates veo valores de 80%
 Reindexar un índice para eliminar fragmentación:
 reindex index NOMBRE;
 
+mirar reindex.md para saber las implicaciones
+
 ## Comprobar fragmentación
+
+extra_size, estimación del espacio extra ocupado por fillfactor, padding y bloat
+bloat_size, estimación del espacio extra ocupado por padding y bloat
+
 SELECT current_database(), nspname AS schemaname, tblname, idxname, pg_size_pretty(bs*(relpages)::bigint) AS real_size,
   pg_size_pretty(bs*(relpages-est_pages)::bigint) AS extra_size,
   100 * (relpages-est_pages)::float / relpages AS extra_ratio,

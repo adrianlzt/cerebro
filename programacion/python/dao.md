@@ -7,8 +7,25 @@ https://www.psycopg.org/docs/
 pip install psycopg2
 pip install psycopg2-binary
 
+CUIDADO! parec que cuando iniciamos la conex arranca una tx y no la cierra hasta que cerramos la conex.
+Hacer siempre commit en la propia query:
+curprod.execute("select * from history limit 1; commit;")
+
+En la propia doc hacen referencia al problema este:
+https://www.psycopg.org/docs/usage.html#transactions-control (en el Warning).
+
+Podemos usar también autocommit.
+NOTA!
+Usar conn.autocommit = True
+
+
+¿Por qué está por defecto a off?
+https://stackoverflow.com/questions/22019154/rationale-for-db-api-2-0-auto-commit-off-by-default
+
+
 import psycopg2
 conn = psycopg2.connect("dbname='template1' user='dbuser' host='localhost' password='dbpass'")  # Puede generar excepcion
+conn.autocommit = True
 cur = conn.cursor()
 cur.execute("SELECT 1")
 cur.fetchall()

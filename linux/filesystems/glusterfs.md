@@ -7,3 +7,8 @@ http://www.gluster.org/community/documentation/index.php/GlusterFS_Concepts
 Parece que Facebook lo usa:
 https://www.linux.com/news/learn/intro-to-linux/how-facebook-uses-linux-and-btrfs-interview-chris-mason
 We also have a number of machines running Gluster, using both XFS and Btrfs
+
+
+Integración con k8s muerta: https://github.com/gluster/gluster-kubernetes
+
+Malo rendimiento con muchos ficheros pequeños.
