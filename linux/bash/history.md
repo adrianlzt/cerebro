@@ -9,7 +9,9 @@ stty -ixon
 Control+s
 
 Desactivar historial
+set +o history
 unset HISTFILE
+  este en bash no me funciona
 
 Generalmente si escribimos
  comando

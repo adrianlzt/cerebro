@@ -26,6 +26,7 @@ dumpcap -f "port 25" -w -
 
 Ver captura remota
 http://wiki.wireshark.org/CaptureSetup/Pipes
+https://www.wireshark.org/docs/man-pages/sshdump.html
 wireshark -k -i <(ssh compaq "dumpcap -P -w - -i any -f 'not tcp port 22'")
 wireshark-gtk -k -i <(ssh REMOTEHOST "tcpdump -w - -i enp4s0f1")
 
@@ -35,10 +36,6 @@ apt-get install wireshark-common
 Si no podemos hacer ssh como root tendremos que permitir a un usuario normal tener permisos para capturar con dumpcap
 setfacl -m u:adrian:rx /usr/bin/dumpcap
 setcap "CAP_NET_RAW+eip" /usr/bin/dumpcap
-
-
-Filtrar por fecha:
-frame.time <= "2013-09-11 10:35:20.000697"
 
 
 
@@ -69,8 +66,14 @@ https://wiki.wireshark.org/SampleCaptures#Other_Sources_of_Capture_Files
 
 
 
-# filters
+
+# Filtros / condicionales
 https://www.wireshark.org/docs/man-pages/wireshark-filter.html
+https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html
+
+Filtrar por fecha:
+frame.time <= "2013-09-11 10:35:20.000697"
+
 
     eq, ==    Equal
     ne, !=    Not Equal
@@ -88,6 +91,28 @@ tiempo entre el paquete y el primero de su frame mayor a 3"
 
 
 
+# Visualización / columnas
+https://unit42.paloaltonetworks.com/unit42-customizing-wireshark-changing-column-display/
+
+Podemos añadir un campo cualquier como columna custom, picharle con el botón derecho.
+
+
 # tshark
 Leer ficheros con la cli y aplicar filtros:
 tshark -r 2020-05-25_11:49:13.pcap -Y '(mysql.command == 22) && !(mysql.query contains "SELECT")'
+
+
+
+# USB
+https://wiki.wireshark.org/CaptureSetup/USB
+
+sudo modprobe usbmon
+
+lsusb para ver que usbmonX mirar
+usbmon0 es como el "any" para usb
+
+En Source/Destination se usa BUS.DEVICE.N
+Bus y Device lo vemos en lsusb. El tercer número no se que es.
+
+
+Si conectamos el USB a una windows via virtualbox, seguiremos viendo el dispositivo en el mismo puerto.

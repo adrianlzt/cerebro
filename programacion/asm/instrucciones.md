@@ -1,3 +1,7 @@
+mirar sintaxis.md para los dos tipos que existen
+
+https://www.aldeid.com/wiki/X86-assembly/Instructions/call
+
 https://msdn.microsoft.com/en-us/library/ff561504(v=vs.85).aspx
 https://msdn.microsoft.com/en-us/library/ff561500(v=vs.85).aspx
   solo las diferencias que hay entre 32 y 64
@@ -42,3 +46,8 @@ jnz (jump if not zero)
 
 
 JE [Jump if Equals] tests the zero flag and jumps if the flag is set. JE is an alias of JZ [Jump if Zero]
+
+
+# CALL
+https://www.aldeid.com/wiki/X86-assembly/Instructions/call
+Llamar a función

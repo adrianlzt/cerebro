@@ -88,7 +88,6 @@ Usado en openid
 
 
 # JSON path
-Sintaxis para seleccionar datos de un JSON
 https://goessner.net/articles/JsonPath/index.html#e2
 
 Online evaluator:
@@ -97,3 +96,19 @@ https://jsonpath.com/
 Filtrar por una cadena de texto:
 .events[0].attributes[?(@.name=='screen_name')].value
 
+
+# JSON patch
+Sintaxis para seleccionar y modificar datos de un JSON
+https://tools.ietf.org/html/rfc6902#page-12
+
+[
+  { "op": "add", "path": "/baz", "value": "qux" }
+]
+
+[
+  { "op": "remove", "path": "/baz" }
+]
+
+[
+  { "op": "replace", "path": "/baz", "value": "boo" }
+]

@@ -10,11 +10,12 @@ A preconfigured Zabbix Template is also included for your convenience.
 https://github.com/cavaliercoder/zabbix-pgsql-partitioning
 Debate general en instalacion.md
 
+Usar partman para el particionado nativo
+
 
 En instalaciones granges se hacen particiones de tablas y se deshabilita el housekeeper (mirar instalacion.md). Lo que se hace es ir borrando las particiones antiguas.
 https://github.com/Doctorbal/zabbix-postgres-partitioning
-  no veo muy útil el pg_partman si usamos postgres 11
-
+Dudo que los índices BRIN sean útiles: https://github.com/Doctorbal/zabbix-postgres-partitioning/issues/14
 
 
 # Conexiones de zabbix a postgres

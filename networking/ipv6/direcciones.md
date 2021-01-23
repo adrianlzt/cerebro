@@ -26,3 +26,6 @@ FF80::02:11:22:FF:FE:33:44:55/64
 
 localhost especificando puerto:
 [::1]:80
+
+Otro ejemplo con puerto:
+[2001:db8::1]:8080

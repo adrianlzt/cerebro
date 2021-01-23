@@ -8,6 +8,8 @@ Mientras que netstat parsea /proc/net
 https://pcarleton.com/2018/05/31/netstat-vs-ss/
 https://github.com/shirou/gopsutil/issues/695
 
+Suele venir con el paquete iproute2
+
 
 Es el nuevo netstat (que quedará deprecated)
 
@@ -40,6 +42,9 @@ ss -at
 
 ss -ap
   muestra los procesos y pids asociados a las conexiones
+
+ss -ntpo
+  -o muestra info de timeouts
 
 ss -o state established '( dport = :ssh or sport = :ssh )'
   Display all established ssh connections.

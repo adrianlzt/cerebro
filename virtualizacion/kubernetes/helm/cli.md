@@ -1,5 +1,15 @@
-helm search foo
+helm search hub foo
+  busca en el hub de helm
+  no nos dice en que repo está para poder añadirlo, entrar en la web para mirarlo
+helm search repo foo
   buscar charts en el repo publico
+
+Parece que como funciona el "hub" es un poco raro:
+https://stackoverflow.com/questions/60994725/k8s-how-to-install-charts-from-the-helm-hub
+
+Podemos buscar a mano en
+https://artifacthub.io/
+
 
 helm pull xxx
   es "fetch" en v2.x

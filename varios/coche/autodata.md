@@ -1,6 +1,36 @@
 Programas para saber como reparar, testear vehículos
 
 
+https://www.fiatdalys.lt/en
+Esta es una tienda de piezas oficiales fiat, pero tienen buenos esquemas para saber donde está cada pieza, que pueden servir para entender partes.
+
+Autodata
+Se puede comprar por 9€ 7 días de acceso online
+https://workshop.autodata-group.com/
+Buenos esquemas eléctricos
+Pocos manuales de cambios (supongo que también depende del modelo)
+
+
+Haynes 35$/mes
+https://haynesmanualsallaccess.com/en-us/
+
+HaynesPro
+https://www.workshopdata.com/
+https://e3technical.haynespro.com/Login.aspx
+https://www.logicat.eu/
+  prueba gratis 7 dias?
+  bueno para poner códigos de error y ver procedimientos
+
+
+https://www.technicalinformation.fiat.com/
+El oficial de Fiat
+Tras registrarnos podemos pagar accesos de 1h
+Pero tienen que aceptarnos primero el usuario
+
+
+HGS Data
+
+
 # Alldata
 https://www.alldata.com/alldata-repair
 

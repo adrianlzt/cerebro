@@ -37,3 +37,7 @@ Si vamos limitados de disco un truco es usar borrados de pequeñas partes en vez
 # Truncate
 Borramos todo el contenido rápidamente.
 delete escanea la tabla por lo que es más lento
+
+https://www.postgresql.org/docs/current/sql-truncate.html
+TRUNCATE table;
+

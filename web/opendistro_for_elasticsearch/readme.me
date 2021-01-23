@@ -1,0 +1,14 @@
+https://opendistro.github.io/for-elasticsearch/
+
+Fork de elasticsearch con licencia Apache2.0 y nuevas features
+
+
+
+Comentarios de un usuario Enero 2021
+Pues a ver, al principio estaba verde, muy verde y ahora esta menos verde. Pero aún así, todavía le queda mucho para parecerse a Elastic al completo.
+El módulo de Security, nosotros lo usamos con SAML. Al principio estaba un poco verde pero ha mejorado, aunque de momento no puedes agregar un grupo de AD para darle permisos, siendo necesario añadir los permisos usuario a usuario. También usamos la opción de multitenant de Kibana.
+El módulo de Alerting, es básico y aún no esta integrado con el modulo de Security, por lo que todos los usuarios van a poder hacer todo.
+ISM, que es el equivalente a ILM, tras la última actualización no hemos tenido problemas, pero es verdad que antes se quedaba algún cambio de estado atascado y no lo volvía a reintentar, por lo que nos hemos llegado a encontrar índices viejos por allí e incluso algunos con mas GB de los que deberían porque no se había hecho el rollover. Pero desde la actualización de hace un par de semanas parece que va todo bien.
+Anomaly Detection, que es el equivalente a ML, creo que en la penúltima o última versión lo sacaron ya (antes estaba en beta). Lo está probando un equipo pero aún no tenemos feedback. Supongo que tampoco estará integrado con Security.
+Cosa importante: Pierdes el Monitoring de Elasticsearch, que es muy potente.
+Al final, para ingestas y consultas va bien, ya que en el fondo es el propio Elastic.

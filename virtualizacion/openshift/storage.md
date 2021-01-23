@@ -23,6 +23,11 @@ Los proyectos parecen aún un poco verdes:
 Parece que los competidores opensource son:
 ceph y openebs
 
+La integración de glusterfs con k8s parece que está muerta: https://github.com/gluster/gluster-kubernetes
+
+openebs usa iSCSI, no soporta ReadWriteMany
+ceph usa cephfs, que soporta todos los modos
+
 https://www.reddit.com/r/kubernetes/comments/cmqd7s/storage_on_kubernetes_openebs_vs_rook_ceph_vs/
 https://vitobotta.com/2019/08/06/kubernetes-storage-openebs-rook-longhorn-storageos-robin-portworx/
 https://docs.openebs.io/docs/next/casengines.html#cstor-vs-jiva-vs-localpv-features-comparison
@@ -40,7 +45,8 @@ Tipos de volumenes: https://kubernetes.io/docs/concepts/storage/volumes/#types-o
 Reclaim policy
 https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming
 Retain
-  una vez usado un PV, se quedará en estado "Released". Tendremos que borrarlos a mano y limpiar los discos
+  una vez usado un PV, se quedará en estado "Released". Tendremos que borrarlos a mano y limpiar los discos.
+  Para los locales, se recrearán solos los PVs (si vemos que un PV se queda en Terminating, mirar si es que aún tiene asociado el PVC)
 Delete
   se borran solo los datos y están listos para volver a usar
 
@@ -313,8 +319,8 @@ spec:
 
 
 # Modos
-Tabla con que modos soporta cada plugin: https://docs.openshift.com/container-platform/3.5/architecture/additional_concepts/storage.html#pv-access-modes
-Los únicos que soportan todos: NFS o GlusterFS
+Tabla con que modos soporta cada plugin: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
+Los únicos que soportan todos: CephFS, NFS, GlusterFS
 ReadWriteOnce   RWO   The volume can be mounted as read-write by a single node.
 ReadOnlyMany    ROX   The volume can be mounted read-only by many nodes.
 ReadWriteMany   RWX   The volume can be mounted as read-write by many nodes.
@@ -382,6 +388,7 @@ https://kubernetes.io/blog/2018/04/13/local-persistent-volumes-beta/
 Usar discos, o directorios, locales para crear los voluemens. Estos volumenes estarán fijados a un nodo (nodeAffinity).
 La asignación de PVC a PV solo se hará cuando se levante el POD.
 Si queremos automatizar la creación de los PVs hay un script en: https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume
+DEPRECATED, movido a https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner
 
 Asegurarnos de marcar el storageclass como default si solo tenemos ese.
 

@@ -34,12 +34,22 @@ variable "aws_access_key" {
   default = "valor_si_no_se_define"
 }
 
+Type de las variables:
+  string
+  number
+  bool (se usa como true / false)
+
+  list
+  set
+  maps
+  object
+  tuple
+
 # Lists
 https://www.terraform.io/intro/getting-started/variables.html#lists
 
 variable "cidrs" { default = [] }
 
-# explicitly
 variable "cidrs" { type = "list" }
 You can specify lists in a terraform.tfvars file:
 
@@ -59,6 +69,10 @@ Si tenemos una variable con muchos elementos por que se ha generado con un count
 Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)
 aws_instance.example.0.public_ip
 
+
+## concat
+> concat(["a", ""], ["b", "c"])
+[ "a", "", "b", "c", ]
 
 
 # Maps

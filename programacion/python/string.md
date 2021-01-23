@@ -159,6 +159,14 @@ este_es_elnom_bre
 >>> s.lstrip()
 'abc   def   '
 
+Le podemos pasar una lista de caracteres a quitar (NO es una substring)
+'abcdefghij'.lstrip('acb')
+
+python2.9
+removeprefix()
+removesuffix()
+
+
 Funciona quitando los caracteres de la lista que le pasemos.
 Si queremos quitar un prefijo:
 def remove_prefix(text, prefix):

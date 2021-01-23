@@ -18,6 +18,9 @@ Contenido del inventario:
 ansible-inventory -i foo --list
   en el caso de un plugin de inventario, foo seguramente sea un yaml de configuración
 
+ansible-inventory --graph
+  para mostrar solo grupos y hosts asociados
+
 
 ## Dev inv plugin
 Coger como ejemplo uno de los que tiene ansible.

@@ -8,8 +8,11 @@ dunstify es una mejora sobre notify-send con más opciones:
 dunstify -a app -h int:nombre:2 -A action,YES -A other,NO pepe
   si el usuario elige "YES", dunstify nos devolverá la cadena "action"
 
-killall -SIGUSR1 dunst # pause
-killall -SIGUSR2 dunst # resume
+Pausar notifications:
+dunstctl set-paused true
+
+Volver a notificar:
+dunstctl set-paused false
 
 
 Alt+shift+n -> historial de notificaciones

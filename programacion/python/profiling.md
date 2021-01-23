@@ -1,6 +1,7 @@
 https://docs.python.org/3/library/debug.html
 Tambien en py2. Viene por defecto.
 python -m cProfile -o PROFILE apli_ucmdb.py --mis-params
+  genera un fichero PROFILE
 
 Para leer ese fichero podemos usar:
 pip install CProfileV

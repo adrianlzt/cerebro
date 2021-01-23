@@ -102,6 +102,36 @@ https://stackoverflow.com/a/43404857/1407722
             name: "config"
 
 
+ConfigMap como variables de entorno, seleccionando una a una
+spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      env:
+        - name: SPECIAL_LEVEL_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: special-config
+              key: special.how
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: log_level
+
+
+Todas las values de un configMap como variables de entorno:
+spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      envFrom:
+      - configMapRef:
+          name: special-config
+
+
 # Secrets
 Igual que configmaps.
 Son ficheros.

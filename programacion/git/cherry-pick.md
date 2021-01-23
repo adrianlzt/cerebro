@@ -1,4 +1,5 @@
 http://git-scm.com/docs/git-cherry-pick
+revert.md para el caso contrario
 
 git-cherry-pick - Apply the changes introduced by some existing commits
 

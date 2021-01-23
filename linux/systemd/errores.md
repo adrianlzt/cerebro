@@ -14,3 +14,8 @@ En la linea 10 se estaba definiendo mal el parámetro "Provides" (https://wiki.d
 
 El estado dice: active (exited)
 Dar a stop y luego a start
+
+
+
+Error: No space left on device
+Se soluciona con: sysctl -w fs.inotify.max_user_watches = 262144

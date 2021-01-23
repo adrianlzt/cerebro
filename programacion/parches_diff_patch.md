@@ -21,3 +21,5 @@ patch -N -r - fichero < parche
   para hacer la operacion idempotente
   -N permite aplicar dos veces el mismo parche
   -r -, envia la salida de -N a /dev/null
+
+Si falla y no vemos diferenias, probar con --ignore-whitespace

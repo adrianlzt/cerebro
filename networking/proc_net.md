@@ -33,6 +33,7 @@ La columna rx_queue es el backlog en conexiones LISTEN:
       rx_queue = sk->sk_ack_backlog;
 
 st: status  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/net/tcp_states.h?id=HEAD
+significados de los estados en networking/tcp.md
   TCP_ESTABLISHED = 01,
   TCP_SYN_SENT = 02,
   TCP_SYN_RECV = 03,
@@ -43,8 +44,8 @@ st: status  http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/
   TCP_CLOSE_WAIT = 08,
   TCP_LAST_ACK = 09,
   TCP_LISTEN = 0A,
-  TCP_CLOSING, = 0B,	
-  TCP_MAX_STATES = 0C,
+  TCP_CLOSING, = 0B,
+  TCP_NEW_SYN_RECV = 0C
 
 local_address: ip local en hexadecimal little indian, junto con el puerto
 rem_address: ip remota en hexadecimal little indian, junto con el puerto

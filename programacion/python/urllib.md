@@ -12,6 +12,10 @@ response = urllib2.urlopen('http://python.org/')
 html = response.read()
 
 # Encode
+python3:
+import urllib
+urllib.parse.quote("foobar")
+
 Si queremos generar algo tipo: 
 import urllib
 cadena = urllib.urlencode({"Cabecera": "valor", "xx": 3})

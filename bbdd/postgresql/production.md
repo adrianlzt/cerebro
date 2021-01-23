@@ -3,6 +3,17 @@ https://severalnines.com/blog/ten-tips-going-production-postgresql
 Activar pg_stat_statements para tener más info.
 
 
+# Cache
+https://stackoverflow.com/questions/1216660/see-and-clear-postgres-caches-buffers
+https://2ndquadrant.com/media/pdfs/talks/InsideBufferCache.pdf
+
+El drop cache del SO (linux/performance/memoria/drop_caches.md) puede que no afecte en nada, ya que el cacheo lo esté realizando postgres
+
+Podemos flushear memoria y reiniciar postgres (pg_ctl restart).
+
+Extensión (ANTIGUA y parece que peligrosa) para dropear la cache: https://github.com/zilder/pg_dropcache
+
+
 # Scale up
 mirar vldb.md para tunning de grandes bbdd
 

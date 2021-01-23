@@ -19,6 +19,18 @@ BackupPC
 export BORG_PASSCOMMAND="gopass show -o backup_borg"
 export BORG_REPO="borgbackup@server.borg.cloud:backup"
 borg list
+  sacar listado de backups
+
+borg list ::default-2020-05-21T08:42:00
+  sacar listado de un backup determinado
+
+borg extract --list ::default-2020-05-21T08:42:00 home/user/pulse
+  extraer/recuperar ciertos ficheros de un backup
+  los dejará en home/user/pulse
+
+
+
+Conectará con la clave ssh que tengamos en ~/.ssh/id_rsa
 
 vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
 

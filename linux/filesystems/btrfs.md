@@ -2,6 +2,12 @@ http://en.wikipedia.org/wiki/Btrfs
 man btrfs
 man 5 btrfs
 
+RedHat 8 ha quitado brtfs: https://access.redhat.com/discussions/3138231
+Fedora 33 lo ha puesto por defecto
+
+Artículo sobre la implementación de btrfs en facebook
+https://lwn.net/Articles/824855/
+
 Atomic Copy On Write Snapshots: solo ocupan la diferencia entre el snapshot y los cambios
 bitrot protection (protección ante un bit que cambia de valor por error del hardware, gracias a per-block checksumming y siempre que tengamos un raid configurado)
 Raid

@@ -1,6 +1,9 @@
 xournal
 Para tomar notas e insertar imágenes sobre pdfs
 
+masterpdfeditor
+A complete solution for viewing, creating and editing PDF files
+
 
 pdfcrop
 pdfcrop --margins '-50 -50 -50 -50' input.pdf output.pdf

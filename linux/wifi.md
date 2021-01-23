@@ -12,11 +12,21 @@ rfkill list
 Habilitar
 rfkill unblock wifi
 
+Podemos también usar (nos abrirá una consola propia donde con help podemos navegar)
+iwctl
+ > device list
+ > station device get-networks
+ > station device connect SSID
 
 Conectar a una wifi:
 nmcli device wifi list
-sudo ifconfig wlo1 up
+sudo ip l set wlan0 up
+  sudo ifconfig wlo1 up
+  antiguo
 nmcli device wifi connect 'nombrred' password 'contraseña' ifname wlo1
+
+Mostrar a donde estamos conectados, su pass y un bidi de conexión:
+nmcli dev wifi show
 
 
 Numero de redes en cada canal

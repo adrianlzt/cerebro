@@ -34,6 +34,10 @@ for i in b['key']:
 >>> inventario
 {'BBB': 1111, 'asd': 3}
 
+Merge (https://www.python.org/dev/peps/pep-0584/), python2.9
+dictA | dictB
+dictC =| dictD
+
 
 
 Loop sobre el diccionario

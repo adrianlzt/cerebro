@@ -5,7 +5,10 @@ Extensión que simula tener una partición para ver si el query planner la usar�
 
 # pg_partman
 https://github.com/pgpartman/pg_partman
+https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman_howto_native.md
+  explicación paso a paso de como hacerlo (no existía cuando escribí esta guía)
 https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md
+
 Extensión que nos facilita crear las particiones.
 Unicamente llamar a una función para convertir una tabla en parent.
 Podemos activar un worker que trae que se encargue de crear las tablas child automáticamente.
@@ -14,6 +17,7 @@ Para PG11 no parece mucho el beneficio que da.
 Crear las tablas automáticamente lo hace con un background worker, que la docu de postgres recomienda mejor no usar.
 Las tablas tienen que haberse creado a priori con la partition activada (https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md#creation-functions)
 Crea una tabla _default donde van las cosas que no caen en ninguna partition.
+CUIDADO! Si se meten datos futuros en default, cuando partman vaya a intentar crear esas particiones fallará, y si no nos damos cuenta, empezará a meter todos los datos en default. Mirar en la sección de monitoring
 
 The PG Jobmon extension (https://github.com/omniti-labs/pg_jobmon) is optional and allows auditing and monitoring of partition maintenance
 
@@ -124,7 +128,7 @@ Podemos especificar un intervalo de partición tipo tiempo porque le estamos dic
 También creará 10 particiones del futuro cada vez (nos da un margen por si dejase de funcionar el partman).
 select partman.create_parent('public.history', 'time', 'native', 'daily', p_premake := 10, p_epoch := 'seconds' );
 
-Luego tendremos que definir el retention y poner el infinite_time_partitions=true (para que siempre cree las tablas aunque no tengamos datos, mirar https://github.com/pgpartman/pg_partman/issues/303)
+Luego tendremos que definir el retention y poner el infinite_time_partitions=true (para que siempre cree las tablas aunque no tengamos datos, mirar https://github.com/pgpartman/pg_partman/issues/303#issuecomment-613038035)
 UPDATE partman.part_config SET retention_keep_table=false, retention='{{table.retention}}' WHERE parent_table = '{{table.name}}';
 UPDATE partman.part_config SET infinite_time_partitions=true;
 
@@ -134,7 +138,8 @@ Podemos ver las particiones creadas con:
 Se crean automáticamente o ha sido el worker?
 
 
-Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_time() (mirar también partition_data_proc)
+Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_proc() (más en sección monitoring)
+
 
 
 La función run_maintenance() es la que tendremos que llamar periódicamente para crear las particiones.
@@ -165,6 +170,17 @@ Si queremos sacar una query para usar como monitorización (que nos de >0 si ten
 select count(*) from  partman.check_default(false);
 
 check_default(true) es bastante costoso.
+
+CUIDADO! Si se meten datos futuros en default, cuando partman vaya a intentar crear esas particiones fallará, y si no nos damos cuenta, empezará a meter todos los datos en default.
+Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_time() (mirar también partition_data_proc)
+Aquí (https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md#about) se explica que no se autocrean las particiones porque podría tener un coste muy alto en la db.
+
+Si queremos mover los datos que estén en la tabla "default" a sus particiones correspondientes usaremos:
+CALL partman.partition_data_proc('public.history_text');
+Esto creará las particiones necesarias y moverá ahi los datos, dejando vacía la tabla default.
+A parte de monitorizar si la tabla default tiene rows, podemos meter un cron que ejecute esta tarea cada cierto tiempo (menos que el premake, para evitar que no dejemos crear las particiones por ese dato futuro).
+Esta función es bastante lenta.
+1' para 6000 rows, aunque parece que depende más de cuantas particiones se vean afectadas que del número.
 
 
 Mirar si todos los jobs de partman se están ejecutando bien (más info sobre jobs en jobmon.md):
@@ -258,7 +274,7 @@ Lo único que hace es ejecutar run_maintenance() para las particiones que tengan
 Mirar que está haciendo run_maintenance()
 CALL partman.run_maintenance_proc(p_jobmon := true, p_debug := true);
 
-Si solo queremos ejecutarlo sobre una tabla:
+Si solo queremos ejecutarlo sobre una tabla (tenemos que poner "public."):
 SELECT partman.run_maintenance('public.history_str', p_jobmon := 't', p_debug := 't');
 
 Código: https://github.com/pgpartman/pg_partman/blob/d28670fbf56757442b8b6fb33e750f032f561a71/sql/functions/run_maintenance.sql
@@ -329,6 +345,8 @@ Podemos crear una tabla "default" donde caerán todos los valores que no hagan m
 CREATE TABLE history_default PARTITION OF history DEFAULT;
 Si miramos (\d+ history_default) la tabla veremos que las condiciones se van poniendo dinámicamente para matchear el resto de casos que no estén definidos en otras tablas.
 CUIDADO! si tenemos un valor del partition key en la tabla default, por ejemplo, el 5, no podremos crear una partición que contenga el valor 5. Tendremos que moverlo a mano.
+
+Al hacer estos create table obtendremos un AccessExclusiveLock sobre la tabla padre (no permitimos a nadie ni leer ni escribir, y tenemos que esperar a que todos terminen de leer/escribir).
 
 Si creamos un índice en la tabla parent, se crearán automáticamente en las tablas child.
 

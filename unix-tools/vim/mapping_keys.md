@@ -1,4 +1,5 @@
 https://web.archive.org/web/20160718060038/http://www.badassvim.com/how-to-remap-keys-in-vim/
+https://stackoverflow.com/a/3776182
 
 C-s
   quiere decir control+s
@@ -10,10 +11,20 @@ C-S
 
 
 Ver mapping actual:
-:map
+:map normal, visual+select, operator-pending
 :nmap for normal mode mappings
-:vmap for visual mode mappings
+:vmap for visual+select mode mappings
+:xmap for visual mode mappings
+:smap for select mode mappings
 :imap for insert mode mappings
+:omap operator-pending
+
+:noremap -> non recursive map (si hacemos noremap "W j", y "j" ya estaba mapeado a "gg", W no se mapeará a "gg"
 
 Mapear:
 nmap j comando
+
+
+Ver mapeo de una tecla:
+:verbose imap <tab>
+

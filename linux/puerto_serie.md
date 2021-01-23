@@ -1,5 +1,7 @@
 http://www.idevelopment.info/data/Unix/Linux/LINUX_UsingSerialConsoles.shtml
 
+También con screen y también con psedo-terminals
+screen /dev/pts/113
 
 Usar el programa minicom
 Arrancar como root, en una sesión sin screen (usa comandos control+a)

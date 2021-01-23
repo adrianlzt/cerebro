@@ -1,3 +1,6 @@
+mirar web/rod.md para una librería en go para manejar Chrome
+
+
 mirar katalon.md para una interfaz para crear los tests.
 Nos da un plugin de chrome para generar los tests grabando las interaciones que hacemos en el navegador.
 

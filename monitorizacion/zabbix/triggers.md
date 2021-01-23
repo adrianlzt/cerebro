@@ -21,6 +21,7 @@ Si tenemos una métrica que sea un contador creciente lo que haremos es almacena
 De esta manera ya podremos aplicar los triggers sobre el ese valor derivado.
 
 multiple problem event generation: si está a "mutltiple", cada vez que se recolecta un dato se genera el/los actions asociados al trigger.
+  mirar event_correlation.md
 
 
 CUIDADO!
@@ -148,3 +149,23 @@ IMPORTANTE, la condición de alerta del trigger no puede seguir activa para que 
 https://www.zabbix.com/documentation/3.4/manual/config/triggers/expression
 A<B ⇔ (A<B-0.000001) since Zabbix 3.4.9
 A<B ⇔ (A≤B-0.000001) before Zabbix 3.4.9
+
+
+
+# change, disparar cuando hay cambios, gestionar la primera llegada de un dato
+una curiosidad que me he encontrado con zabbix. El tema es que tenía un trigger tipo:
+xxx.change()}>0
+
+pero el tema es que la primera vez que llega un dato casca, porque intenta ir a buscar el valor previo y no existe
+
+solución
+({idocs:item3.count(#2)}=1 and {idocs:item3.last()}>0) or {idocs:item3.change()}>0
+
+si solo tengo un elemento, pues disparo si el valor es mayor que 0, si tengo varios elementos, solo si hay variación
+
+
+
+# Dev
+## Procesamiento de las funciones
+libs/zbxserver/evalfunc.c
+evaluate_XXX

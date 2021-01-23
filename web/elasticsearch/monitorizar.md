@@ -31,6 +31,8 @@ Pending Cluster Tasks API: _cluster/pending_tasks
   tareas cluster-level que no se han ejecutado aún. Suele estar vacío. Tenemos que mirar que no haya tareas que su time_in_queue_millis sea superior a 100ms
   seguramente tendremos otros problemas primero, por ejemplo una alta latencia en el cluster
 
+Analizar también tareas de lectura/escritura, para ver si se está quedando encolado.
+
 
 https://www.elastic.co/guide/en/elasticsearch/reference/6.4/tasks.html#_current_tasks_information
 GET _tasks/?detailed&pretty&human

@@ -3,6 +3,11 @@ https://docs.python.org/3.6/library/urllib.parse.html?highlight=urlparse#urllib.
 
 from urllib.parse import urljoin
 
+# Python 2+3
+from future.standard_library import install_aliases
+install_aliases()
+from urllib.parse import urljoin
+
 
 # Python2
 https://docs.python.org/2/library/urlparse.html

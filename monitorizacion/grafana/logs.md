@@ -1,0 +1,2 @@
+Ejemplo formato JSON:
+{"logger":"context","lvl":"info","method":"POST","msg":"Request Completed","orgId":1,"path":"/api/datasources/proxy/5","referer":"https://grafana.com/d/tomcat/detail?refresh=1m\u0026orgId=1\u0026var-jvm_memory_pool=All\u0026var-entity=tri%20tomcat\u0026from=now-1h\u0026to=now","remote_addr":"12.3.12.8","size":0,"status":502,"t":"2020-10-30T17:04:16.405184446+01:00","time_ms":60008,"uname":"NAME","userId":5}

@@ -37,6 +37,14 @@ org := r.URL.Query().Get("org")
 
 Si no existe org nos devuelve la cadena vacía ("")
 
+## Leer un POST JSON
+err := json.NewDecoder(r.Body).Decode(&p)
+if err != nil {
+    http.Error(w, err.Error(), http.StatusBadRequest)
+    return
+}
+
+
 ## Errores
 https://blog.golang.org/error-handling-and-go
 
@@ -124,6 +132,12 @@ proxyUrl,_ := url.Parse("http://proxy.com:343")
 myClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
 
 
+
+## POST json
+jsonStr := []byte(`{"title":"Buy cheese and bread for breakfast."}`)
+req, err := http.NewRequest("POST", "/", bytes.NewBuffer(jsonStr))
+Pasar cabeceras?
+https://stackoverflow.com/questions/24455147/how-do-i-send-a-json-string-in-a-post-request-in-go
 
 ## POST con file multipart
 post_multipart_file.go

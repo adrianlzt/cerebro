@@ -270,6 +270,16 @@ def grouper(iterable, n, fillvalue=None):
     args = [iter(iterable)] * n
     return zip_longest(*args, fillvalue=fillvalue)
 
+Para un array, pudiendo devolver el último con menos elementos
+>>> def mygrouper(n, iterable):
+...     args = [iter(iterable)] * n
+...     return ([e for e in t if e != None] for t in itertools.zip_longest(*args))
+...
+>>> list(mygrouper(3, range(9)))
+[[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+>>> list(mygrouper(3, range(10)))
+[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
+
 
 # Aplanar / flat
 itertools.chain.from_iterable([[1,2,3],[4,5,6]])

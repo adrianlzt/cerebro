@@ -1,0 +1,6 @@
+# Nmap 7.91 scan initiated Sun Jan 17 18:11:10 2021 as: nmap -p- --min-rate 10000 -oA nmap-alltcp 192.168.1.38
+Nmap scan report for 192.168.1.38
+Host is up (0.11s latency).
+All 65535 scanned ports on 192.168.1.38 are filtered (65294) or closed (241)
+
+# Nmap done at Sun Jan 17 18:11:25 2021 -- 1 IP address (1 host up) scanned in 15.36 seconds

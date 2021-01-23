@@ -1,3 +1,15 @@
+# JSN-SR04T
+25cm - 800cm
+resistente al agua
+Lib para arduino: NewPing (https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
+
+# AJ-SR04M
+Los que parece que se empiezan a vender ahora (2020)
+https://bitbucket.org/teckel12/arduino-new-ping/issues/40/aj-sr04m-board
+
+He tenido que meter un factor de correción para que mida correctamente.
+
+
 # HC-SR04
 https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
 

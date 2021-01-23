@@ -160,8 +160,11 @@ Mirar tap.md
 # Namespaces
 Una interfaz de red solo puede estar en un Namespace al mismo tiempo
 
+lsns -t net
+sudo lsns -t net --output-all
+
 ip netns list
-  listar namespaces
+  listar namespaces, no me saca nada (arch dic'2020)
 
 ip netns add NOMBRE
   crear namespace

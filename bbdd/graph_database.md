@@ -10,6 +10,7 @@ Neo4j
 The Graph Foundation for Internet-scale Applications
   Un mejor visualizador para neo4j
   https://neo4j.com/docs/labs/apoc/current/export/gephi/
+  Parece que es bastante lento con las actualizaciones, dicho por compañeros y en https://github.com/skydive-project/skydive/issues/2239#issuecomment-654492149
 
 dgraph
 Otra opción, en go

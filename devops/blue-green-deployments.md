@@ -1,5 +1,7 @@
 http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/
 
+Mirar diffy, para comparar respuesta de dos versiones.
+
 # Blue-green
 http://martinfowler.com/bliki/BlueGreenDeployment.html
 

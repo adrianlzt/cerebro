@@ -61,3 +61,9 @@ Otra manera. En este caso se verá el mensaje de error marcado en rojo, pero se 
 
 Parar todo el playbook si cualquier nodo falla.
 any_errors_fatal: true
+
+
+
+Para mostrar los errores correctamente (cambios de línea), en ansible.cfg:
+[defaults]
+stdout_callback = yaml

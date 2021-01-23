@@ -84,3 +84,34 @@ http://curated.us10.list-manage.com/track/click?u=6ee1802497b4ea1c66ce61da4&id=3
 
 
 http://aiplaybook.a16z.com/
+
+
+Andrew Ng’s class on Coursera (https://www.coursera.org/learn/machine-learning) is quite good
+it’s accessible with a bit of basic calculus knowledge (simple single variable derivatives and partial derivatives are all you need) and basic linear algebra (like, matrix multiplication). The whole class took me around 30 hours to get through, so if you’re determined, you could probably finish it in 2-3 weeks even if you’re pretty busy.
+
+
+https://www.cs.toronto.edu/~hinton/coursera_lectures.html
+El propio autor en un tweet: My Coursera MOOC "Neural Networks for Machine Learning" was prepared in 2012 and is now seriously out of date so I have asked them to discontinue the course. But the lectures are still a good introduction to many of the basic ideas
+
+https://www.kaggle.com/
+podems ver competiciones y ver como la gente soluciona los problemas
+
+
+
+Machine Learning:
+* https://www.youtube.com/watch?v=UzxYlbK2c7E: Andrew Ng's machine Learning course, the recommended entry point by most people
+* https://mlcourse.ai/ : More kaggle focused, but also more modern and has interesting projects
+
+
+Deep Learning
+* https://www.fast.ai/ - Very hands-on, begin with " Practical Deep Learning for Coders" and then "Advanced Deep Learning for coders"
+* https://www.coursera.org/specializations/deep-learning : More bottom-up approach, helps to understand the theory better
+
+
+Estadistica, cálculo, gratis:
+- MIT: Big Picture of Calculus
+- Harvard: Stats 110
+- MIT: Matrix Methods in Data Analysis, Signal Processing, and Machine Learning
+- https://www.3blue1brown.com/essence-of-linear-algebra-page
+
+https://www.oreilly.com/library/view/building-machine-learning/9781492045106/

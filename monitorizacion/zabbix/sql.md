@@ -371,9 +371,8 @@ where
 
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
-  NOTA: elt() es una función, cón código "SELECT $2[$1+1];", podemos usar (ARRAY['a','b'])[type+1] en vez de usar la función
 SELECT
-  elt(type,
+  (ARRAY[
     'Zabbix Agent',
     'SNMPv1 agent',
     'Zabbix trapper',
@@ -383,25 +382,25 @@ SELECT
     'SNMPv3 agent',
     'Zabbix agent (active)',
     'Zabbix aggregate',
-    'web item',
-    'external check',
-    'database monitor',
+    'Web item',
+    'External check',
+    'Database monitor',
     'IPMI agent',
     'SSH agent',
     'TELNET agent',
-    'calculated',
+    'Calculated',
     'JMX agent',
     'SNMP trap',
     'Dependent item'
-  ) AS type,
-  elt(items.status,
+  ])[type+1] AS type,
+  (ARRAY[
     'ON',
     'OFF'
-  ) AS status,
-  elt(items.state,
+  ])[items.status+1] AS status,
+  (ARRAY[
     'OK',
     'NOT SUPPORTED'
-  ) AS state,
+    ])[items.state+1] AS state,
   count(*)
 FROM items,hosts
 WHERE
@@ -409,6 +408,7 @@ WHERE
   AND hosts.status <> 3
   GROUP BY items.type,  items.status, items.state
   ORDER BY items.type, items.status DESC;
+
 
 
 
@@ -454,6 +454,9 @@ select fs,count(*) from (select (string_to_array(key_,','))[2] as fs from items 
 
 Funciones que ejecutan los timers:
 SELECT function, parameter, count(*) FROM functions where function IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY function, parameter ORDER BY count;
+
+Para zabbix 4:
+SELECT name, parameter, count(*) FROM functions where name IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY name, parameter ORDER BY count;
 
 
 Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
@@ -600,6 +603,10 @@ resourcetype
 31 AUDIT_RESOURCE_TRIGGER_PROTOTYPE
 
 
+Ejemplo de query buscando un update (action=1) de un host (resourcetype=4)
+select *,to_timestamp(clock) as fecha from auditlog join auditlog_details using (auditid) where action=1 and resourcetype=4 and resourcename like '%zbxalerter' limit 10;
+
+
 
 
 
@@ -712,3 +719,89 @@ where
     )
   );
 
+
+Query que realiza zabbix-web para obtener trends:
+SELECT
+  itemid,
+  round(
+    1395 * MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
+    0
+  ) AS i,
+  SUM(num) AS count,
+  AVG(value_avg) AS avg,
+  MIN(value_min) AS min,
+  MAX(value_max) AS max,
+  MAX(clock) AS clock
+FROM
+  trends_uint
+WHERE
+  itemid = '10715785'
+  AND clock >= '1592300137'
+  AND clock <= '1594892137'
+GROUP BY
+  itemid,
+  round(
+    1395 * MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
+    0
+  );
+
+
+
+# Número de triggers activos en cada nivel para una lista de hosts
+WITH alarms AS (
+  select
+    distinct h.host,
+    t.description,
+    t.priority,
+    count(*)
+  from
+    hosts h
+    join items i using(hostid)
+    join functions f using(itemid)
+    join triggers t using(triggerid)
+  where
+    h.status = 0
+    AND t.status = 0
+    and t.value = 1
+    AND h.host IN (
+      'zabbix_web01',
+      'zabbix_server01..notification__zbxalerter',
+      'zabbix_web01..zabbix__httpd_80',
+      'awx01',
+      'pruebasSLA'
+    )
+  group by
+    h.host,
+    t.priority,
+    t.description
+)
+select
+  host,
+  count(*) FILTER (where priority=0) as "0",
+  count(*) FILTER (where priority=1) as "1",
+  count(*) FILTER (where priority=2) as "2",
+  count(*) FILTER (where priority=3) as "3",
+  count(*) FILTER (where priority=4) as "4",
+  count(*) FILTER (where priority=5) as "5"
+from
+  alarms
+group by
+  host
+  ;
+
+              host              | 0 | 1 | 2 | 3 | 4 | 5
+--------------------------------+---+---+---+---+---+---
+ awx01                          | 0 | 0 | 1 | 0 | 2 | 0
+ pruebasSLA                     | 2 | 0 | 0 | 0 | 0 | 0
+ zabbix_web01                   | 0 | 0 | 1 | 0 | 0 | 0
+ zabbix_web01..zabbix__httpd_80 | 0 | 0 | 1 | 0 | 0 | 0
+
+
+
+Itemids que están en history pero no en items-float (MUY COSTOSA!):
+select distinct b.itemid from (select itemid from items where value_type=0) a full outer join history b ON a.itemid=b.itemid WHERE a.itemid IS NULL;
+
+Itemids que están en history_uint pero no en items-int (MUY COSTOSA!):
+select distinct b.itemid from (select itemid from items where value_type=3) a full outer join history_uint b ON a.itemid=b.itemid WHERE a.itemid IS NULL;
+
+Si no ponemos distinct, tendremos el número total de entradas sin asociación con la tabla items

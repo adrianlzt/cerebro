@@ -1,3 +1,8 @@
+hdbsql
+  usar -m si queremos poder poner multilinea
+  usar -A para ver como tabla
+
+
 /usr/sap/H4D/HDB00/exe/hdbsql
   parte de ese path es el id de la maquina
 
@@ -23,3 +28,7 @@ Conectar usando user/pass:
 \h para ayuda y comandos típicos
 
 \dt mostrar tablas
+
+
+# Debug
+Si queremos ver que comandos se generan con los comandos \XX, arrancar con "-T debug.log", ejecutar el comando y luego mirar ese log

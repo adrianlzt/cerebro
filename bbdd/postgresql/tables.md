@@ -58,6 +58,9 @@ ALTER TABLE checks ALTER COLUMN command_line DROP NOT NULL;
 Modificar un field tipo texto a jsonb (el using me lo dice que lo ponga, porque si no no sabe como hacer el cast de los valores):
 alter table main_host alter column variables type jsonb USING variables::jsonb;
 
+Modificar un int a bool:
+ALTER TABLE exec ALTER COLUMN exec_on_success TYPE bool USING exec_on_success::int::bool;
+
 
 ## Renombrar
 ALTER TABLE table_name RENAME TO new_table_name;

@@ -93,7 +93,7 @@ Pueden tener varias funciones:
 
 Mirando el código de la value cache, parece que cada dato que insertemos (double o int) serán 76 bytes.
 Por cada value parece que almacena un zbx_vc_chunk_t, que entre otros campos almacena un zbx_history_record_t y este a su vez history_value_t.
-Sumando los bytes de cada tipo de dato de los struct me sale 76 bytes
+Sumando los bytes de cada tipo de dato de los struct me sale 76 bytes (también cuadra con el número de puntos que vi cuando teníamos la cache llena)
 history_value_t -> 8*5=40 bytes
 zbx_history_record_t -> 2*4 + history_value_t = 48 bytes
 zbx_vc_chunk_t -> 8*2 + 4*3 + zbx_history_record_t = 76 bytes
@@ -293,7 +293,7 @@ DCsync_history (writes updates and new data from pool to database)
   cuando arranca, muestra una traza debug con el número de elementos que hay en la cache (cache->history_num, valor definido en dc_flush_history)
   bucle do-while hasta que no queden más elementos o pasemos el tiempo máximo (60")
   hc_pop_items (pops the next batch of history items from cache for processing). Dice que debemos devolver los elementos con hc_pop_items() tras procesarlos.
-    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap (min-heap)" almacenada en la History Index Cache. mirar más abajo la sección "binary heap"). Este binary heap tiene primero los elementos con un tiemstamp más antiguo.
+    obtiene de cache->history_queue hasta un máximo de 1000 items (esta "history_queue" es un "binary heap (min-heap)" almacenada en la History Index Cache. mirar más abajo la sección "binary heap"). Este binary heap tiene primero los elementos con un tiemstamp más antiguo (FIFO)
     lo que obtiene son zbx_hc_item_t (itemid, status, tail y head)
     para sacar los elementos va dando vueltas llamando a zbx_binary_heap_find_min(&cache->history_queue) (lo que hace es coger el elem[0]), añadiéndolos al puntero retornado a DCsync_history y borrándolos del heap
     para si elems_num = 0
@@ -334,6 +334,16 @@ DCsync_history (writes updates and new data from pool to database)
       insertará el último value para cada itemid que haya conseguido obtener, máximo 1000
     zbx_vc_add_value (almacena los datos en la value cache)
   DCmass_update_triggers (re-calculate and update values of triggers related to the items)
+    evaluate_expressions
+      zbx_evaluate_item_functions
+        evaluate_function
+          evaluate_AVG / _MAX / _MIN / etc
+            get_function_parameter_int / _uint64 / _float / _etc
+              substitute_simple_macros
+                DCget_user_macro
+                  Se hace uso de la config cache.
+                  Vemos un LOCK_CACHE, pero esto solo bloquea si se está sincronizando (sync config cache <-> db)
+    zbx_process_triggers
   DCmass_update_trends
     Se le pasa una lista con los items y su último value
     Para cada item+value se llama a DCadd_trend

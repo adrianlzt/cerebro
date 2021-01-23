@@ -59,6 +59,9 @@ Para planificar una query se tienen en cuenta las estadísticas de las tablas (p
 Mirar "Estadísticas" más abajo.
 
 
+Si un índice está bloqueado para lectura (por un REINDEX por ejemplo), ese tiempo de bloqueo se contará en el "Planning time"
+
+
 # Modos de escaneo
 Con esos datos, el planner decide como obtener los datos.
   - sequential scan (full table scan): cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)

@@ -29,6 +29,9 @@ Con este comando aplicaremos el plan sobre los providers.
 
 Tras su ejecucción se creará un fichero (json) terraform.tfstate con lo que se ha generado y los outputs que pusimos.
 
+Se puede usar un backend para mantener el estado desplegado. Mirar backend.md
+Útil para trabajar en equipo (manteniendo un estado común), esconder secretos, remote operations.
+
 
 
 

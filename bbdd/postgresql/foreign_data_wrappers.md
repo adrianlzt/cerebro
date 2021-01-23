@@ -28,6 +28,8 @@ COPY persons TO 'C:\tmp\persons_db.csv' DELIMITER ',' CSV HEADER;
 Método usando psql, esscribiendo en local:
 \copy hosts TO 'hosts.csv' DELIMITER ',' CSV HEADER;
 
+\copy (select name from hosts) TO 'hosts.csv' CSV HEADER;
+
 
 
 ## Importar

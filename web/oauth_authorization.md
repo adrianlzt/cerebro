@@ -18,6 +18,10 @@ Tiene un "playground"
 http://oauth.net/
 https://developers.google.com/identity/protocols/OAuth2
 
+https://twitter.com/sec_r0/status/1347603985096724493
+gráficos explicativos con los distintos code flows
+
+
 An open protocol to allow secure authorization in a simple and standard method from web, mobile and desktop applications.
 Es una forma de autenticarse por tokens en vez de htpasswd
 OAuth1 ya no se usa.

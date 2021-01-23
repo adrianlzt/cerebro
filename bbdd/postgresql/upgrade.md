@@ -1,3 +1,7 @@
+https://why-upgrade.depesz.com/show?from=9.6.19&to=13&keywords=
+web que nos muestra los cambios entre versiones, recalcando los security fixes
+
+
 https://www.postgresql.org/docs/current/upgrading.html
 
 Para actualizaciones "minor" simplemente para el servidor, cambiar los binarios y arrancar de nuevo.

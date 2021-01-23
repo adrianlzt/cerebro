@@ -45,6 +45,7 @@ wal_level = replica (o logical, si queremos que también se pueda hacer replicac
 max_wal_senders, por defecto vale
 max_replication_slots
   estos slots se les asocia un id y evitan borrar WALs si no han sido consumidos, por una desconexión del cliente por ejemplo.
+  Mirar monitoring.md para evitar llenar el disco
   https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
 
 Conf slave, in recovery.conf:
@@ -70,15 +71,25 @@ pg_is_wal_replay_paused()
 
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
-En el slave, del wal pasa al "startup" y de ahí a la database (recive en memoria, escribe a disco, flush and replay changes)
-  pg_current_wal_insert_lsn -> wal en memoria
-  pg_current_wal_lsn -> wal escrito en disco
-  pg_current_waL_flush_lsn -> wal flushed al disco
-  sent_lsn -> el último enviado al slave
-  write_lsn -> wal escrito por el slave
-  flush_lsn -> wal flusheado por el slave
-  replay_lsn -> wal aplicado en el slave
+En el slave, del wal pasa al "startup" y de ahí a la database (recibe en memoria, escribe a disco, flush and replay changes)
+  pg_current_wal_insert_lsn() -> wal en memoria
+  pg_current_wal_lsn() -> wal escrito en disco
+  pg_current_waL_flush_lsn() -> wal flushed al disco
   Podemos usar pg_wal_lsn_diff() para comparar lsn
+  select * from pg_stat_replication;
+    solo muestra clientes actualmente conectados
+    sent_lsn -> el último enviado al slave
+    write_lsn -> wal escrito por el slave
+    flush_lsn -> wal flusheado por el slave
+    replay_lsn -> wal aplicado en el slave
+
+Si estamos usando replication slots, podemos ver la configuración y el último LSN pendiente de enviar con:
+select * from  pg_replication_slots;
+select slot_name,pg_walfile_name(restart_lsn) from pg_replication_slots;
+
+
+Doc de esos comandos: https://www.postgresql.org/docs/12/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE
+
 
 El master tendrá un "WAL sender" por cada slave. max_wal_senders para evitar crear muchos wal seders en caso de bugs, problemas de reconexión, etc
 El slave pide datos desde un punto y arranca un "COPY" que envia indefinidamente datos.
@@ -100,11 +111,19 @@ Un LSN podría ser (primera parte matchea la parte de enmedio del wal, la segund
 select pg_current_wal_lsn();
 4/DF75D0E0
 
-Esto apuntaría al fichero:
+Esto apuntaría al fichero (tambien podemos usar la función "select pg_walfile_name(pg_current_wal_lsn());" para obtener el nombre del fichero):
 00000001 00000005 000000DF
 
 
 Podemos usar pg_dumpwall para ver el contenido de un fichero WAL.
+
+
+Si queremos crear a mano un replication slot:
+SELECT * FROM pg_create_physical_replication_slot('replica1');
+
+Borrar a mano un replication slot (le llevará unos minutos hasta que borre los WAL antiguos, posiblemente espere a un checkpoint, pero no lo he comprobado):
+SELECT * FROM pg_drop_replication_slot('replica1');
+
 
 
 

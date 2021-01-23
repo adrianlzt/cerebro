@@ -2,6 +2,7 @@ https://github.com/jenkinsci/configuration-as-code-plugin
 https://docs.google.com/presentation/d/1VsvDuffinmxOjg0a7irhgJSRWpCzLg_Yskf7Fw7FpBg/edit#slide=id.g2c61443589_0_31
 
 Configurar jenkins usando código en vez de complejos scripts en groovy
+No vale para instalar plugins: https://github.com/jenkinsci/configuration-as-code-plugin#installing-plugins
 
 
 Verificar fichero de config:

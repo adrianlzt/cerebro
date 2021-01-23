@@ -1,4 +1,4 @@
-https://www.terraform.io/docs/configuration/interpolation.html#conditionals
+https://www.terraform.io/docs/configuration/expressions/conditionals.html
 
 CONDITION ? TRUEVAL : FALSEVAL
 

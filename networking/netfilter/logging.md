@@ -1,6 +1,6 @@
 http://www.toastresearch.com/2011/04/09/packet-logging-with-iptables/
 
-La cadena LOG envia las trazas al logging del sistema.
+La cadena LOG envia las trazas al logging del sistema y continua analizando la chain (LOG is a "non-terminating target", so rule traversal will continue on to the next rule).
 Si tenemos systemctl veremos estos logs en:
 journalctl -t kernel -f
 
@@ -20,7 +20,7 @@ Más opciones para sacar por el log:
 --log-uid
 --log-tcp-sequence
 --log-tcp-options
---log-ip-options 
+--log-ip-options
 
 
 --limit 5/min
@@ -50,5 +50,17 @@ iptables -L -v -Z -n -x
 Trazas de ejemplo
 
 nat-PREROUTING
-IN=eno1 OUT= MAC=ec:9a:74:f7:ac:f1:00:15:c7:8b:b4:00:08:00 SRC=158.85.224.176 DST=10.95.194.221 LEN=95 TOS=0x00 PREC=0x20 TTL=43 ID=34216 DF PROTO=TCP SPT=443 DPT=47998 WINDOW=16386 RES=0x00 ACK PSH URGP=0 
+IN=eno1 OUT= MAC=ec:9a:74:f7:ac:f1:00:15:c7:8b:b4:00:08:00 SRC=158.85.224.176 DST=10.95.194.221 LEN=95 TOS=0x00 PREC=0x20 TTL=43 ID=34216 DF PROTO=TCP SPT=443 DPT=47998 WINDOW=16386 RES=0x00 ACK PSH URGP=0
 
+
+
+
+# Audit
+https://ipset.netfilter.org/iptables-extensions.man.html
+TARGET EXTENSIONS -> AUDIT
+
+This target allows to create audit records for packets hitting the target. It can be used to record accepted, dropped, and rejected packets. See auditd(8) for additional details.
+
+iptables -N AUDIT_DROP
+iptables -A AUDIT_DROP -j AUDIT
+iptables -A AUDIT_DROP -j DROP

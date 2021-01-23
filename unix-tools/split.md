@@ -6,3 +6,6 @@ split -l 4 file
 
 csplit
 como split pero permite regex
+
+Partir un fichero cada vez que encuentre una expresión regular, en tantos cachos como sea posible (ficheros xxNNN):
+csplit -n 3 skydive_fatal_trace.txt /goroutine/ '{*}'

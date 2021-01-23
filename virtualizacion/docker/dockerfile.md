@@ -162,3 +162,13 @@ No podremos cachear el RUN porque el ONBUILD siempre estará delante.
 
 # Secrets
 mirar secrets.md
+
+
+# ARG
+Podemos definir ARG en el Dockerfile y modificarlas en build time con:
+docker build --build-arg arg=2.3 .
+
+
+Podemos también usar una ARG antes del FROM para poner ahí la versión, ejemplo:
+ARG TAG=slim
+FROM node:$TAG

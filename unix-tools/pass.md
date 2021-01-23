@@ -29,6 +29,9 @@ Usar version go: https://github.com/gopasspw/gopass
   echo -n "bar" | pass insert some/path foo
 
   almacenar binarios:
+  Nueva forma: https://github.com/gopasspw/gopass/blob/master/docs/features.md#support-for-binary-content
+    gopass fscopy foo.com.crt foo/certs/foo.com.crt
+  Forma antigua:
     gopass binary cp fichero algun/sitio
     gopass binary cp algun/sitio fichero
 
@@ -44,6 +47,7 @@ Usar version go: https://github.com/gopasspw/gopass
 
     Si aparece un nuevo usuario, hay que reencritpar los ficheros con su clave pública.
     gopass recipients add email@nuevo.user
+    Si falla con ciertas claves, ejecutar: gopass fsck
     gopass sync
 
     Para chequear: gpg -d algunfichero.gpg
@@ -74,7 +78,7 @@ cargar desde chrome chrome://extensions/ con "Carga descromprimida", despues de 
 make clean
 make package
 E instalar en chrome apuntando al dir gopassbridge/chrome-release
-Hara falta ejecutar de nuevo "gopass jsonapi configure"
+Hara falta ejecutar de nuevo "gopass-jsonapi configure"
 Habrá que modificar el fichero /home/adrian/.config/chromium/NativeMessagingHosts/com.justwatch.gopass.json para poner el id que nos haya asignado chrome
 
 Si ya la tenemos instalada, podemos darle simplemente a recargar en Chrome.

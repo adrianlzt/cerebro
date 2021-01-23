@@ -1,3 +1,4 @@
+https://momjian.us/main/writings/pgsql/cte.pdf
 https://di.nmfay.com/postgres-vs-mysql
 Common Table Expressions or CTEs allow complex queries to be broken up and assembled from self-contained parts. You might write this:
 
@@ -53,3 +54,13 @@ FROM   hosts_notification
        LEFT OUTER JOIN notif_hosts
                     ON hosts_notification.hostid = notif_hosts.hostid
 ORDER  BY count;
+
+
+
+Delete a given order, all the items associated with order an dplace order in a historical table:
+WITH source (order_id) AS (
+  DELETE FROM orders WHERE name = ’my order’ RETURNING order_id
+), source2 AS (
+  DELETE FROM items USING source WHERE source.order_id = items.order_id
+)
+INSERT INTO old_orders SELECT order_id FROM source;

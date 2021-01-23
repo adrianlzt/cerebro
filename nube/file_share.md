@@ -1,3 +1,10 @@
+Si tengo la Freebox, tiene un mecanismo para compartir carpetas.
+
+
+https://driveuploader.com/
+app que usa nuestro drive para recibir ficheros de un tercero
+
+
 curl --upload-file ./hello.txt https://transfer.sh/hello.txt
 https://transfer.sh/66nb8/hello.txt
 
@@ -29,7 +36,3 @@ CLI: https://github.com/ogarcia/FileTeaSend
 filetea fichero
   nos da una URL. Mientras tengamos el programa corriendo estaremos compartiendo el fichero
 yaourt fileteasend-git (roto por ahora)
-
-
-https://send.firefox.com
-compartir ficheros de manera encriptada

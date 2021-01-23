@@ -72,3 +72,15 @@ Creates: no ejecuta el command si el fichero existe
   register: docker_hold
   changed_when: docker_hold.stdout != 'HOLDED'
 
+
+
+# Ejecutar segundo comando si el primero ha ido bien
+    - name: test
+      shell: "ps -ef | grep 123a[s]d"
+      register: foo
+      ignore_errors: true
+
+    - name: ejecutada si el comando de arriba termina bien
+      debug:
+        msg: ejecutado
+      when: foo.rc == 0

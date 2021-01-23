@@ -18,7 +18,7 @@ ceph osd df
 VAR: variancia respecto a la media
 
 
-Los distintos OSDs almacenan su info en
+Los distintos OSDs almacenan su info en (si estamos con docker, este monta el disco en ese path, por lo que solo lo veremos desde dentro del container):
 /var/lib/ceph/osd/ceph-N
 
 El fichero block será un link a la partición en uso:
@@ -30,6 +30,9 @@ blkid | grep 979
 
 Otra opción, si usamos docker, y el link apunta a /dev/ceph-...
 pvs | grep ...
+
+Si usamos docker, para ver el mapeo de OSD.id a disco:
+docker run --rm -it -e CEPH_DAEMON=OSD_CEPH_VOLUME_ACTIVATE -e OSD_ID=999 --entrypoint bash --privileged -v /dev:/dev -v /etc/ceph:/etc/ceph -v /var/run/ceph:/var/run/ceph -v /var/run/udev:/var/run/udev -v /run/lvm:/run/lvm -v /var/lib/ceph:/var/lib/ceph ceph/daemon:v4.0.0-stable-4.0-nautilus-centos-7-x86_64 -c 'ceph-volume lvm list | grep -e "osd id" -e "devices"'
 
 
 # Rebalancear
@@ -77,11 +80,16 @@ id is the OSD# and weight is value from 0 to 1.0 (1.0 no change, 0.5 is 50% redu
 
 
 # Consumo de memoria
+https://docs.ceph.com/en/nautilus/rados/configuration/bluestore-config-ref/#automatic-cache-sizing
+
 Cada osd consumirá lo definido en osd_memory_target (bytes)
 Esa variable la habremos definido en all.yml (si desplegamos con ceph-ansible).
 Ese valor se verá reflejado en /etc/ceph/ceph.conf como:
 [osd]
-osd memory target = 2147483648
+osd_memory_target = 2147483648
+
+CUIDADO! en la doc pone con guiones bajos, pero en algunos sitios aparece con espacios en blanco
+En el rol de ansible lo ponen con espacios en blanco!
 
 
 Si queremos ver el running value para cada osd:
@@ -89,3 +97,7 @@ for i in $(ceph osd ls); do echo -n "$i: "; ceph config show osd.$i osd_memory_t
 
 
 Si no coincide el valor del ceph.conf con el running value, podemos reiniciar el osd.
+
+
+Aqui dicen que recomiendan como mínimo 1GB
+https://docs.ceph.com/en/nautilus/rados/troubleshooting/troubleshooting-osd/#insufficient-ram

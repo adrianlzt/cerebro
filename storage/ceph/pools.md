@@ -16,7 +16,7 @@ Si usamos rgw, se crearán automáticamente los pools:
 Por defecto CEPH creará 3 réplicas de cada objeto.
   Definido por la configuración: osd pool default size = 3
 
-También se define el mínimo número de réplicas para casos de degrafación:
+También se define el mínimo número de réplicas para casos de degradación (si no tenemos min sizes, no se aceptan IOs https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/2/html/storage_strategies_guide/pools-1#:~:text=By%20default%2C%20Ceph%20creates%20two,or%20a%20size%20of%203%20.):
   osd pool default min size = 2
 
 

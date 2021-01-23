@@ -36,7 +36,7 @@ C-a C-w //lista las ventanas
 C-a "  //muestra la ventanas y elige una
 C-a '  // cambiar por nombre o numero
 C-a A  //set title
-C-a H //log window to file. Start & stop
+C-a H //log window to file. Start & stop. Begins/ends logging of the current window to the file screenlog.n in the window’s default directory
 C-a x //lock screen
 C-a : quit  //Salir de todas las windows
 

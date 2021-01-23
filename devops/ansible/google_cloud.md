@@ -1,0 +1,1 @@
+../../programacion/google/cloud/ansible.md

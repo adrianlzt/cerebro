@@ -146,7 +146,8 @@ fqdn hasta el primer punto
 
 
 ## hostvars
-lets you ask about the variables of another host, including facts that have been gathered about that host. If, at this point, you haven’t talked to that host yet in any play in the playbook or set of playbooks, you can get at the variables, but you will not be able to see the facts.
+Lets you ask about the variables of another host, including facts that have been gathered about that host.
+If, at this point, you haven’t talked to that host yet in any play in the playbook or set of playbooks, you can get at the variables, BUT you will not be able to see the facts.
 
 {{ hostvars['test.example.com']['ansible_distribution'] }}
 

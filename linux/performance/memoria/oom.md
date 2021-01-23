@@ -1,3 +1,5 @@
+Para sistemas de escritorio tal vez queramos usar earlyoom, para matar procesos antes de llegar al límite del oom.
+
 http://man7.org/linux/man-pages/man5/proc.5.html
 http://lwn.net/Articles/317814/
 https://linux-mm.org/OOM_Killer

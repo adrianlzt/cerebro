@@ -6,7 +6,20 @@ Si queremos modificar la cabecera pasaremos el slice como puntero y modificaremo
 Este ejemplo muestra bien lo que ocurre: https://play.golang.org/p/SvvN1HkUtq
 El array siempre es el mismo (la letra 'B' se modifica), pero el len que tiene cada slice varia, por eso muestran cosas distintas.
 
-mirar lista.md
+mirar lista.md (double linked list)
+
+lib para hacer github.com/adam-hanna/arrayOperations
+  Difference
+  Distinct
+  Intersect
+  Union
+  Restar un array a otro: Intersect + Difference
+
+expectedListenEndpoints, ok := arrayOperations.Union(givenOthersSoftwareListenEndpoints, metricListenEndpoints)
+if !ok {
+  t.Error("Not able to join listening endpoints")
+}
+
 
 
 http://golang.org/doc/articles/slices_usage_and_internals.html
@@ -50,6 +63,12 @@ Si queremos usar esto es una func:
 func foo(is []int) {
    nil
 }
+
+
+github.com/mpvl/unique
+a := []string{"1", "2", "2", "3", "3", "3"}
+sort.Strings(a)  // debe estar ordenado
+unique.Strings(&a)
 
 
 # Limpiar slice

@@ -57,3 +57,8 @@ Fichero de settings por defecto:
 /usr/share/logstash/config/logstash.yml
 
 
+
+# Memoria
+Si queremos poner un límite de memoria, cuanto más poner del heap?
+No queda claro, preguntado en:
+https://github.com/elastic/helm-charts/commit/42c5cfb4bbcb1389a9241075ff16fb04501c11c7

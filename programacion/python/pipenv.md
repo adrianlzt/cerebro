@@ -23,6 +23,12 @@ pipenv install --system
   instalar los paquetes en el python del sistema
   nos vale si queremos usar pipenv en docker
 
+Instalar desde un repo de git:
+pipenv install -e git+https://github.com/datadope-io/python-protobix.git@feature/sender_ns#egg=protobix
+
+Si está en un subdir:
+pipenv install -e 'git+https://github.com/skydive-project/skydive.git@master#subdirectory=contrib/python/api&egg=skydive-client'
+
 pipenv sync
 instalamos lo que diga el .lock (en vez de lo que diga el Pipenv)
 
@@ -41,5 +47,3 @@ pipenv --rm
 
 # Limitaciones
 La principal que encuentro respecto a virtualenvwrapper, es que para activar un virtualenv tenemos que estar en el directorio donde creamos el venv o en un subdirectorio.
-
-

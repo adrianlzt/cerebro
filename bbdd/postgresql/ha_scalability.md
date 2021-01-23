@@ -1,12 +1,15 @@
 mirar:
 pgpool.md
-pgbouncer.md
+pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
+https://agroal.github.io/pgagroal/
+  de RedHat
 odyssey (https://github.com/yandex/odyssey)
 repmgr
   con el autofailover nos permite hacer promote de un master en caso de que el master casque
 https://github.com/ClusterLabs/PAF
   High-Availibility for Postgres, based on industry references Pacemaker and Corosync.
 https://github.com/citusdata/pg_auto_failover
+https://agroal.github.io/pgagroal/
 
 Los clientes, si usan libq, se pueden configurar para pasarle varios hosts y que conecten al primario (mirar sección libq)
 

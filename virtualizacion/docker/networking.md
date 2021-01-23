@@ -56,3 +56,10 @@ networks:
       config:
         - subnet: 172.16.238.0/24
 
+
+
+# Internal
+https://macaddress.io/faq/how-to-recognise-a-docker-container-by-its-mac-address
+
+Las direciones MAC usadas por docker empiezan por 02:42.
+El resto de dígitos serán la IP en formato hexadecimal.

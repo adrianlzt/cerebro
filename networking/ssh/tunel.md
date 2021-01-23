@@ -5,6 +5,18 @@ Para mantener los tuneles abiertos: autossh
 Opciones interesantes:
 -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no
 
+Podemos arrancar un tunel una vez conectados usando la secuencia de escape:
+~C
+ssh> help
+Commands:
+      -L[bind_address:]port:host:hostport    Request local forward
+      -R[bind_address:]port:host:hostport    Request remote forward
+      -D[bind_address:]port                  Request dynamic forward
+      -KL[bind_address:]port                 Cancel local forward
+      -KR[bind_address:]port                 Cancel remote forward
+      -KD[bind_address:]port                 Cancel dynamic forward
+
+
 ## Tunel directo##
 # Nos conectamos al remote-host a través del gateway #
 

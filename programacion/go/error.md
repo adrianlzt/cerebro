@@ -140,6 +140,7 @@ func IsRedisError(err error) bool {
 
 
 # Ejemplo de como saber el tipo de un error que no implementa un interfaz específico
+Esto se hace ahora con los nuevos métodos de unwrap/is/etc
 if !strings.HasSuffix(err.Error(), ": use of closed network connection") {
   psl.AddError(err)
 }

@@ -17,4 +17,8 @@ Para ver nuestra zona horaria: cat /etc/timezone
 
 
 # CentOS
-rm -f /etc/localtime; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime 
+rm -f /etc/localtime; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+
+
+# zdump
+ver contenido del /etc/localtime

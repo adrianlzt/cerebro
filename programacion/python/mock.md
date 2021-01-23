@@ -34,7 +34,7 @@ import unittest
 import os
 class TestMock(unittest.TestCase):
 
-  @patch('os.path.exists')
+  @patch('os.path.exists') # tenemos que pasar el classpath completo (aunque tengamos la función importada con from x import y)
   def test_dir(self, mock_path):
     # GIVEN
     mock_path.return_value = True

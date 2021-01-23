@@ -50,3 +50,4 @@ Ponemos una fórmula y vim pone el resultado donde estabamos
 ,fl " Buscar una linea en todos los buffers abiertos
 ,fb " Solo en el buffer current
 ,fg " Buscar con rg y con fzf sobre los resultados
+Alt+Shift+g buscar la palabra sobra la que tengamos en el cursor con rg

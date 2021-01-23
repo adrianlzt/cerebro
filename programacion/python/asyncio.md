@@ -51,23 +51,42 @@ Esperar a que todas las corutinas terminen para proseguir
     print(results)
 
 
-Producer / consumer
+Producer / consumer (creo que un poco viejuno)
 https://asyncio.readthedocs.io/en/latest/producer_consumer.html
+
+
+
+
+Poner varios "async def" a correr (esperar hasta que todos terminen):
+await asyncio.gather(tasksA(), taskB())
+
+También podemos esperar hasta que uno termine, o salte una excepción o todos terminen:
+done, pending = asyncio.wait(aws, *, loop=None, timeout=None, return_when=ALL_COMPLETED)¶
+
+CUIDADO! parece que con FIRST_COMPLETED no nos aseguran solo devolvernos una en done
+Podemos mirar si tenemos algo de lo queremos esperar en pending:
+if ok_join in pending or error_join in pending:
+  await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+
+
 
 
 Para pasarnos datos:
 queue = asyncio.Queue()
+Si queremos esperar a la cola junto con otras tasks:
+q_join = asyncio.create_task(q.join())
+await asyncio.gather(tasksA(), taskB(), q_join)
+  se le pueden pasar tasks o corutinas (que se convertiran a tasks)
+
+
+Mirar ejemplo de workers y queue:
+https://docs.python.org/3/library/asyncio-queue.html#examples
+Creo que es mejor hacer un asyncio.gather de las tasks y el queue.join(), para evitar quedarnos colgados si se genera una excepción y por ello nunca se procesa la cola
 
 
 
-Poner varios "async def" a correr:
-p = asyncio.ensure_future(producer(queue))
-s = asyncio.ensure_future(start_server)
-loop.run_forever()
 
-
-
-# Loops
+# Loops (creo que esto es antiguo)
 loop = asyncio.get_event_loop()
 
 Añadir tareas:
@@ -192,6 +211,8 @@ AbstractEventLoop.run_in_executor() para ejecutar cosas fuera del event loop, en
 # Ejemplos
 https://github.com/python/asyncio/tree/master/examples
 
+Ejemplo de queue + workers
+https://docs.python.org/3.8/library/asyncio-queue.html#example
 
 
 # Debug
@@ -233,7 +254,7 @@ https://docs.python.org/3/library/asyncio-dev.html
 asyncio.ensure_future(create())
 asyncio.ensure_future(write())
 asyncio.ensure_future(close())
-yield from asyncio.sleep(2.0)
+await asyncio.sleep(1)
 
 Llama a create, write y close de manera asíncrona, se van ejecutando en paralelo.
 
@@ -241,7 +262,7 @@ Llama a create, write y close de manera asíncrona, se van ejecutando en paralel
 yield from asyncio.ensure_future(create())
 yield from asyncio.ensure_future(write())
 yield from asyncio.ensure_future(close())
-yield from asyncio.sleep(2.0)
+await asyncio.sleep(1)
 
 Se llama a create, write y close secuencialmente
 
@@ -263,4 +284,3 @@ https://stefan.sofa-rockers.org/2015/04/22/testing-coroutines/
 https://stefan.sofa-rockers.org/2016/03/10/advanced-asyncio-testing/
 
 pip install pytest pytest_asyncio
-

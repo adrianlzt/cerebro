@@ -1,3 +1,14 @@
+Tener una baseline de como funciona normalmente para poder comparar.
+Tiempo de procesamiento de los procesos, logs de debug, etc
+Cuanto pico de NPVS podemos sostener.
+Tiempo de procesado de LLDs
+Ejemplos de "ps"
+
+
+NVPS se miden en la entrada (pollers, trappers, función hc_clone_history_data)
+Otra medida interesante es la cantidad de items que procesan los history syncer, que la podremos sacar con queries a la db.
+
+
 # Logs
 Si queremos buscar algo en los logs típicamente haremos:
 tail -f zabbix_server.log | grep -v -e "became supported" -e "became not supported" -e "is not suitable for value" -e "sending configuration data to proxy" -e "Cannot evaluate expression"
@@ -8,6 +19,10 @@ De esta manera nos quitamos las típicas trazas recurrentes que posiblemtente no
 Contar número de lineas por hora:
 cat zabbix_server.log | grep -e "^\s*[0-9]*:" | awk '{print $1;}' | cut -d ':' -f 2,3 | cut -c 1-11 | uniq -c
 
+Analizar logs debug con zabbix-debug-logs
+Usar versión zabbix modificada para sacar cada log a un fichero
+
+
 
 # Queues
 queue.md
@@ -15,15 +30,34 @@ queue.md
 Agente zabbix configurado como pasivo (sin valor en ServerActive) en su config pero como activo en la config del server?
 El Hostname configurado en la config del agente zabbix no es el mismo que en la config del server? Mayusculas/minúsculas?
 
+
 # Caches
 Mirar graph "Zabbix cache usage".
 La cache "history write" es la que almacena los datos procesados antes de indexarlos en la bbdd.
+No podemos mirarla si no tenemos la métrica (la obtiene internamente el poller)
 
-Items/sec procesados por los history syncers:
-ps -ef | grep history | egrep -o "synced [0-9]* .* sec" | cut -d ' ' -f 2,5 | tr ' ' '/' | xargs echo | tr ' ' '+' | bc
 
 Lag de los datos de la bbdd respecto al tiempo real (Solo cojemos los items activos calculated, que los tenemos a 1m, comprobar con explain que no es muy cara la query):
 select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
+
+
+Obtener el estado de la cache con gdb + python
+
+https://support.zabbix.com/browse/ZBX-17342
+En la 4.0.19 se escupe por el log el estado de la cache cuando se llena
+
+
+# History syncer
+Items/sec procesados por los history syncers:
+Zabbix 3.2:
+while true; do date; ps -ef | grep history | egrep -o "synced [0-9]* .* sec" | cut -d ' ' -f 2,5 | tr ' ' '/' | xargs echo | tr ' ' '+' | bc; sleep 3; done
+
+Zabbix 4.0:
+while true; do date; ps -ef | grep history | egrep -o "synced [0-9]* .* sec" | cut -d ' ' -f 2,7 | tr ' ' '/' | xargs echo | tr ' ' '+' | bc; sleep 3; done
+
+
+Tal vez otros procesos de zabbix bloqueando la cache y ralentizando a los history?
+
 
 
 # Proxies

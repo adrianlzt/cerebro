@@ -51,3 +51,8 @@ select count(*),date from history_log,(select generate_series('2018-11-22 07:30:
 
 Interval a segundos
 EXTRACT(EPOCH FROM interval_value)
+
+
+
+# Parsear fecha
+TO_DATE(date, 'DD/MM/YYYY')

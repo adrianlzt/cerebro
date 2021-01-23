@@ -103,3 +103,13 @@ less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp")) | [
 https://stackoverflow.com/questions/18592173/select-objects-based-on-value-of-variable-in-object-using-jq
 jq '.[] | select(.location=="Stockholm") | .name' json
 
+
+
+# Formatear con tsv (tabs)
+https://ubuntu.com/blog/improving-cli-output-with-jq
+
+Lo podemos usar para mostrar como una tabla un array
+
+➜ curl -s httpbin.org/get | jq -r '.headers | keys | @tsv'
+Accept  Host    User-Agent      X-Amzn-Trace-Id
+

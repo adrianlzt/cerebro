@@ -1,3 +1,7 @@
+https://linuxconfig.org/ffmpeg-audio-format-conversions
+-> wav
+ffmpeg -i audio.aac audio.wav
+
 https://trac.ffmpeg.org/wiki/Encode/AAC
 -> mp4
 ffmpeg -i input.wav -c:a libfdk_aac -b:a 128k output.m4a

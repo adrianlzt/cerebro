@@ -14,3 +14,12 @@ Es una mezcla entre LIKE y regex de POSIX
 
 En los select
 substring('foobar' from 'o.b')     oob
+
+
+Replace/substring con regexp
+SELECT regexp_matches('foobarbequebaz', '(bar)(beque)');
+nos devuelve un array con dos elementos
+
+
+regexp_replace('foobarbaz', 'b(..)', 'X\1Y', 'g')
+                                   fooXarYXazY
