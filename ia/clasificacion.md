@@ -60,7 +60,11 @@ Usando polinomios de más orden podemos conseguir formás más "extrañas" que s
 
 
 # Cost function
+<<<<<<< HEAD
 No podemos usar la cost function de la regresión lineal (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
+=======
+No podemos usar la cost function de la linera regresión (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
+>>>>>>> 691c5575b16c0188a51ee1f55989d518dc4bdf4b
 
 Usamos esta cost functión que si converge:
 J = (1/m) sum_i=0,m(cost(h(x),y))
