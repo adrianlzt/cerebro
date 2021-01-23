@@ -76,6 +76,9 @@ Lo que haremos es añadir un término a nuestra "cost function" para "penalizar"
 Se añade al final de la cost function: lambda*sum_i=1,m (theta^2)
 lambda = regularization parameter
 Por convenio no se penaliza a theta_0
+Excluir theta_0 quiere decir:
+ - que no se suma en el término añadido para calcular la "cost function"
+ - que no se suma el nuevo término a la hora de calcular la derivada parcial para theta_0
 
 Se produce una "lucha" en la cost function, donde el primer término intenta adaptarse lo mejor posible a las muestras mientras que el segundo (el nuevo) término intenta reducir los valores de theta.
 Si aumentamos theta, aumenta el valor de la "cost function", por lo que el global de la función (donde queremos conseguir un mínimo de la "cost function") no quiere subir mucho theta.

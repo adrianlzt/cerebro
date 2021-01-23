@@ -138,6 +138,10 @@ J = (1/m) sum_i=0,m(cost(h(x),y)) + (alpha/2m)*sum_j=1,n(theta_j^2)
 
 Si estamos haciendo los cálculos vectorizados, podemos calcular todo igual y luego restarle el componente de regularización a J(theta_0) y a su derivada parcial.
 
+Excluir theta_0 quiere decir:
+ - que no se suma en el término añadido para calcular la "cost function"
+ - que no se suma el nuevo término a la hora de calcular la derivada parcial para theta_0
+
 
 ## Gradient descent
 Nos queda una función como en regresión lineal, pero aquí nuestra hipótesis es distinta.

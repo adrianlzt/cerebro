@@ -119,6 +119,11 @@ Teoría en regularizacion.md
 Cost function con regularización
 (1/2m)*( sum_i=1_m((h(x_i)-y_i)^2) + lambda * sum_i=1,n(theta_j^2))
 
+Excluir theta_0 quiere decir:
+ - que no se suma en el término añadido para calcular la "cost function"
+ - que no se suma el nuevo término a la hora de calcular la derivada parcial para theta_0
+
+
 ## Gradient descent
 Si ahora escribimos el gradient descent (excepto para theta_0, que se queda sin el nuevo componente):
 theta_i = theta_i - (alpha/m)*(sum_i=1,m((h(x)-y)*x_i) + (lambda*theta_j/m))
