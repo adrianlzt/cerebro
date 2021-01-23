@@ -82,3 +82,9 @@ autorandr -l common
 
 Generalmente partiremos de una de estas tres configs. La retocaremos con comandos xrandr para colocar segun queremos y luego guardaremos la config:
 
+
+
+# Color
+xrandr --output eDP1 --gamma 1:1:.8
+
+Los valores son R:G:B
