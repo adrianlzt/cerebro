@@ -2,9 +2,10 @@
 Ejemplo donde pasamos una función costFunction (que tenemos que tener definida) a "fminunc" para que nos encuentre el valor de los parámetros theta que obtiene el mínimo valor de la función.
 costFunction tendrá un único parámeto, theta. Devolverá el valor del coste y un vector con los gradientes de cada variable (derivadas parciales para cada theta_n)
 
-options = optimset('GradObj', 'on', 'MaxIter', '100'); % le especificamos que algoritmo usar, que le estamos pasando unos valores iniciales y que de 100 vueltas
+options = optimset('GradObj', 'on', 'MaxIter', '100'); % le especificamos que algoritmo usar, que le estamos pasando unos valores iniciales y que de 100 vueltas. 'GradObj' quiere decir que le pasamos una función que retorna el coste y el gradiente.
 initialTheta = zeros(1,2);
-[optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options)
+[optTheta, functionVal, exitFlag] = fminunc(@(t)(costFunction(t, X, y)), initialTheta, options)
+  % fminunc, find minimum unconstrained (sin restricciones en los valores de theta)
 
 En optTheta nos devolverá los parámetros que minimizan la función.
 En functionVal el resultado de costFunction para esos parámetros

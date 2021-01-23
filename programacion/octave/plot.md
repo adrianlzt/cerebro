@@ -43,6 +43,13 @@ A las gráficas donde solo tenemos puntos les llaman "scatter plots"
 Podemos pintarlo también como:
 scatter(1:0.1:5, 1:0.1:5)
 
+Truco para pintar un scatter de una logistic regression:
+pos = find(y==1);
+neg = find(y == 0);
+plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 2, 'MarkerSize', 7);
+plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7);
+  lo que hacemos es quedarnos con los rows de X que tengan un '0' o '1' en su correspondiente row de 'y'
+
 
 ## tamaño
 plot(x,y,'o','MarkerSize',2)

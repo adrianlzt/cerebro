@@ -117,22 +117,22 @@ Teoría en regularizacion.md
 
 
 Cost function con regularización
-(1/2m)*( sum_i=1_m((h(x_i)-y_i)^2) + landa * sum_i=1,n(theta_j^2))
+(1/2m)*( sum_i=1_m((h(x_i)-y_i)^2) + lambda * sum_i=1,n(theta_j^2))
 
 ## Gradient descent
 Si ahora escribimos el gradient descent (excepto para theta_0, que se queda sin el nuevo componente):
-theta_i = theta_i - (alpha/m)*(sum_i=1,m((h(x)-y)*x_i) + (landa*theta_j/m))
+theta_i = theta_i - (alpha/m)*(sum_i=1,m((h(x)-y)*x_i) + (lambda*theta_j/m))
   vuelve a ser el cálculo de la derivada parcial
 
 Podemos reescribir esa función como:
-theta_j = theta_j(1- alpha*landa/m) - (alpha/m) * sum_i=1_m((h(x_i)-y_i)^2)
+theta_j = theta_j(1- alpha*lambda/m) - (alpha/m) * sum_i=1_m((h(x_i)-y_i)^2)
 
-(1- alpha*landa/m) < 1 (si alpha y landa son >0, se da obligatoriamente que todo es <1), normalmente cercano a 1
+(1- alpha*lambda/m) < 1 (si alpha y lambda son >0, se da obligatoriamente que todo es <1), normalmente cercano a 1
 Esto nos ayuda a ver gráficamente que lo que está haciendo es reducir un poco el parámetro theta y luego haciendo el gradient desecent.
 
 
 ## Normal function
-Theta = (X'*X + landa * K)^-1 * X'*y
+Theta = (X'*X + lambda * K)^-1 * X'*y
   k es la matriz identidad pero con k(0,0)=0
 
 

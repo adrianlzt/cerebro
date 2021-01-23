@@ -48,7 +48,7 @@ Esta línea será la que separe que valores (x_1, x_2) se consideran de un grupo
 Esta línea se llama "decision boundary" (que son los valores x que obtienen el valor h(x)=0.5)
 
 
-# Non-linear decision boundaries
+# Non-linear decision boundaries / feature mapping
 Podemos usar funciones "z" más complejas (polinómios de más orden) para definir otros tipos de límites.
 
 Por ejemplo: g(t0 + t1*x1 + t2*x2 + t3*x1^2 + t4*x2*2), para el caso t = [-1, 0, 0, 1, 1] nos dá la fórmula:
@@ -58,13 +58,12 @@ Los valores fuera del círculo serán y=1
 
 Usando polinomios de más orden podemos conseguir formás más "extrañas" que se adapten a nuestro training set.
 
+Esta técnica se llama "feature mapping", mapeamos las features que tenemos a términos del polinomio mayores.
+Puede llevarnos a hacer overfitting
+
 
 # Cost function
-<<<<<<< HEAD
 No podemos usar la cost function de la regresión lineal (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
-=======
-No podemos usar la cost function de la linera regresión (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
->>>>>>> 691c5575b16c0188a51ee1f55989d518dc4bdf4b
 
 Usamos esta cost functión que si converge:
 J = (1/m) sum_i=0,m(cost(h(x),y))
@@ -134,14 +133,17 @@ Esto es, nos quedamos con la hipótesis que nos da un valor mayor y esa nos dir�
 
 
 # Regularización
-Se hace similar a con regresión lienal, añadiendo un término (exluímos theta_0, como se comentó en la parte teórica):
+Se hace similar a con regresión lineal, añadiendo un término (exluímos theta_0, como se comentó en la parte teórica):
 J = (1/m) sum_i=0,m(cost(h(x),y)) + (alpha/2m)*sum_j=1,n(theta_j^2)
+
+Si estamos haciendo los cálculos vectorizados, podemos calcular todo igual y luego restarle el componente de regularización a J(theta_0) y a su derivada parcial.
+
 
 ## Gradient descent
 Nos queda una función como en regresión lineal, pero aquí nuestra hipótesis es distinta.
 
 La derivada para cada término (excluyendo theta_0) nos queda:
 
-(1/m) * sum_i=1,m ( (h(x)^i - y^i) * x_j^i ) + landa*theta_i/m
+(1/m) * sum_i=1,m ( (h(x)^i - y^i) * x_j^i ) + lambda*theta_i/m
 
 Con estas derivadas para calcular el gradiente y la función de coste, ya podemos usar funciones implementadas en distintos lenguajes para calcular el minimo.

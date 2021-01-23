@@ -43,6 +43,12 @@ addpath('/foo/bar')
 Si queremos pasar una función a otra función, pasaremos su puntero como:
 func(@función, foo, bar)
 
+# Funciones anónimas / lambda
+https://octave.org/doc/v4.2.0/Anonymous-Functions.html
+@(t)(costFunction(t, X, y))
+  definimos una función anónima con el parámetro t que llama a otra función.
+  En python sería: lambda x: costFunction(x,X,y)
+
 
 # Multilinea
 Si queremos una función en varias líneas usamos "..."

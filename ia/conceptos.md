@@ -73,14 +73,14 @@ Generalizando esta idea, pequeños valores de theta nos dan una hipótesis más 
 
 Lo que haremos es añadir un término a nuestra "cost function" para "penalizar" (reducir) todos los theta.
 
-Se añade al final de la cost function: landa*sum_i=1,m (theta^2)
-landa = regularization parameter
+Se añade al final de la cost function: lambda*sum_i=1,m (theta^2)
+lambda = regularization parameter
 Por convenio no se penaliza a theta_0
 
 Se produce una "lucha" en la cost function, donde el primer término intenta adaptarse lo mejor posible a las muestras mientras que el segundo (el nuevo) término intenta reducir los valores de theta.
 Si aumentamos theta, aumenta el valor de la "cost function", por lo que el global de la función (donde queremos conseguir un mínimo de la "cost function") no quiere subir mucho theta.
 
-Podemos verlo simulando que ponemos un landa muy muy alto, lo que provocaría que todos los theta_1,...,theta_n serían cercanos a 0, consiguiendo una línea recta (solo el término theta_0)
+Podemos verlo simulando que ponemos un lambda muy muy alto, lo que provocaría que todos los theta_1,...,theta_n serían cercanos a 0, consiguiendo una línea recta (solo el término theta_0)
 
 Detalles para regresión lineal: regresion.md
 Detalles para regresión logística: clasificacion.md
