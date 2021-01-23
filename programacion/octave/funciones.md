@@ -42,3 +42,9 @@ addpath('/foo/bar')
 # Punteros
 Si queremos pasar una función a otra función, pasaremos su puntero como:
 func(@función, foo, bar)
+
+
+# Multilinea
+Si queremos una función en varias líneas usamos "..."
+plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 2, ...
+     'MarkerSize', 7);
