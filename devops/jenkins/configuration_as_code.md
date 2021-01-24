@@ -24,3 +24,9 @@ jenkins:
           - key: SOME_CASC_ENV_VAR
             value: a value configured via JCasC
 
+
+# Docker
+https://www.digitalocean.com/community/tutorials/how-to-automate-jenkins-setup-with-docker-and-jenkins-configuration-as-code
+
+Si lo queremos usar con docker crearemos una imagen custom deshabilitando el install wizard e instalando el plugin de JCasC.
+El resto de la guia cubre aspectos interesantes.
