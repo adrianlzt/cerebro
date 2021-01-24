@@ -169,7 +169,8 @@ https://github.com/containers/libpod/blob/master/RELEASE_NOTES.md#180
 # Systemd
 Si queremos generar una unit para un pod
 
-podman generate systemd nombrePod > mi.unit
+podman generate systemd --name nombrePod > mi.unit
+  --name es para usar el nombre de pod en vez del id
 
 
 

@@ -8,5 +8,10 @@ Si vamos a correr los agentes en docker, usaremos la imagen:
 https://hub.docker.com/r/jenkins/inbound-agent
 
 
-Los agentes tendrán que conectar a: http://localhost:50000
-Usando el secret que hayamos definido
+Para saber a donde conectar el agente iremos a la página del nodo, por ejemplo:
+http://localhost:8080/computer/podman-runner0/
+
+Ahí nos pondrá la url a conectar, ejemplo:
+http://localhost:8080/computer/podman-runner0/jenkins-agent.jnlp
+
+Y la key a usar.

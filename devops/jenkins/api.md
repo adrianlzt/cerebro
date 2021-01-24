@@ -67,8 +67,14 @@ Modificar lo que necesitemos
 Crear job haciendo un:
 curl "http://localhost:8080/createItem?name=pruebaCurl" -H "Content-Type: application/xml" -d @config.xml
 
-Tenemos que desactivar CSRF o primero pedir un crumb:
+Tenemos que desactivar CSRF (no recomendado https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184#issuecomment-589971864 https://twitter.com/danielbeck/status/1214346538618621964) o primero pedir un crumb:
 curl -u admin:admin -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
 
 https://stackoverflow.com/questions/38137760/jenkins-rest-api-create-job
 http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
+
+
+# Ejecutar script de groovy
+https://support.cloudbees.com/hc/en-us/articles/217509228-Execute-Groovy-script-in-Jenkins-remotely
+
+curl -d "script=$(cat /tmp/system-message-example.groovy)" -v --user username:ApiToken https://jenkins.example.com/scriptText

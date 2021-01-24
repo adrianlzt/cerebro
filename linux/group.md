@@ -27,6 +27,7 @@ deluser adrian vboxusers
 Hace falta volver a loguearse para que se apliquen los cambios.
 O ejecutar el comando:
 newgrp NOMBREGRUPO
+  nos abre una nueva shell donde ya tenemos el cambio de grupo aplicado
 
 
 Podemos hacer también:
