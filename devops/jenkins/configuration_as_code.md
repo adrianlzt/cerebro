@@ -5,6 +5,14 @@ Configurar jenkins usando código en vez de complejos scripts en groovy
 No vale para instalar plugins: https://github.com/jenkinsci/configuration-as-code-plugin#installing-plugins
 
 
+Podemos levantar un jenkins, configurarlo a mano y luego obtener el yaml
+http://localhost:8080/configuration-as-code/viewExport
+
+El schema del yaml:
+http://localhost:8080/configuration-as-code/reference
+
+
+
 Verificar fichero de config:
 https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/docs/features/jsonSchema.md
 

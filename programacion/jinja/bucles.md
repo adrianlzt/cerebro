@@ -62,3 +62,21 @@ break
 Tenemos que meter una extensión
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
+
+
+# Repetir n veces
+jenkins:
+  nodes:
+{% for node in range(num_nodes|int) %}
+    - permanent:
+        name: "static-agent{{node}}"
+        remoteFS: "/home/jenkins"
+        launcher:
+          jnlp:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+{% endfor %}
+

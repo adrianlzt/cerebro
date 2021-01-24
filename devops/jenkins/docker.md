@@ -8,6 +8,8 @@ docker run -p 8080:8080 -u $(id -u) -v "${PWD}/data:/var/jenkins_home" jenkins/j
 Tiene que tener permisos, para que el container pueda escribir en él:
 chown 1000 /your/home
 
+mirar jcasc.md para ver como configurarlo automáticamente
+
 # Backup
 Hacer backup del dir /your/home
 
@@ -22,6 +24,9 @@ Tambien la podremos encontrar en: /var/jenkins_home/secrets/initialAdminPassword
 
 Entramos en la interfaz web para terminar la configuración.
 Si le pido que me enseñe los plugins más comunes falla (el JSON que devuelve parece que es muy largo y se corta)
+
+Se copian los plugins del /usr/share/jenkins a /var/home_jenkins
+Si actualizamos la imagen, no se actualizan estos plugins.
 
 
 
