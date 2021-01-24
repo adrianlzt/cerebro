@@ -17,6 +17,9 @@ Formato de la fecha https://www.freedesktop.org/software/systemd/man/systemd.tim
 Thu,Fri 2012-*-1,5 11:12:13
 The above refers to 11:12:13 of the first or fifth day of any month of the year 2012, but only if that day is a Thursday or Friday.
 
+Para ver como funcionan los parámetros de OnCalendar podemos hacer:
+systemd-analyze calendar minutely
+
 minutely, hourly, daily, monthly, weekly, yearly, quarterly, semiannually
 
 Cada 15 minutos:
