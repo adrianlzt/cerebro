@@ -13,3 +13,6 @@ Waits for a condition before continuing.
     delay: 10
     sleep: 5
     timeout: 100
+
+
+mirar uri.md si lo que queremos es ver que una URL esté disponible

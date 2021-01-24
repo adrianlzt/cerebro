@@ -1,5 +1,10 @@
 https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API
 
+La idea es que como usuario nos creemos un token (http://localhost:8080/me/configure) y lo usemos en vez de nuestra password (que de todas no funciona sin pedir un crumb)
+https://medium.com/@rathourarvi/remote-access-to-your-jenkins-using-rest-api-3d0c0bdb48a
+
+
+
 Hacer un build de un job:
 curl -i -X POST  http://jenkins.example.com/job/Blank_Job/buildWithParameters --user $username:$password
 
@@ -78,3 +83,18 @@ http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-lin
 https://support.cloudbees.com/hc/en-us/articles/217509228-Execute-Groovy-script-in-Jenkins-remotely
 
 curl -d "script=$(cat /tmp/system-message-example.groovy)" -v --user username:ApiToken https://jenkins.example.com/scriptText
+
+Si estamos usando ansible, tenemos un job que gestiona todo: https://docs.ansible.com/ansible/latest/collections/community/general/jenkins_script_module.html
+
+Si queremos sacar un valor usar "print", si no, nos pondrá "Result: valor"
+print(jenkins.model.Jenkins.getInstance().getComputer("podman-runner0").getJnlpMac())
+
+
+
+# Llamadas usando crumb
+curl -u admin:admin 'localhost:8080/crumbIssuer/api/json' --cookie-jar cookies
+  tenemos que quedarnos con el crumb y la cookie JSESSIONID, y usar ambas en la petición que queramos hacer a la api
+curl -v -u admin:admin -H "Jenkins-Crumb:74857e42f033ac4ad5ec9fa3659a97f2f322de086c09cd4acd8ea59b96903c6a" localhost:8080/scriptText -d "script=jenkins.model.Jenkins.getInstance().getComputer(\"podman-runner0\").getJnlpMac()" --cookie cookies
+
+
+Si estamos usando ansible, tenemos un job que gestiona todo: https://docs.ansible.com/ansible/latest/collections/community/general/jenkins_script_module.html

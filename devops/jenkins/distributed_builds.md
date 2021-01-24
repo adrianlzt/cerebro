@@ -15,3 +15,5 @@ Ahí nos pondrá la url a conectar, ejemplo:
 http://localhost:8080/computer/podman-runner0/jenkins-agent.jnlp
 
 Y la key a usar.
+Si queremos obtener programáticament esa clave:
+https://support.cloudbees.com/hc/en-us/articles/222520647-How-to-find-JNLP-Node-s-secret-key-remotely-

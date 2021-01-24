@@ -63,5 +63,18 @@ Podemos usar tambien
 {{variable|urlencode()}}
 
 
+# Esperar hasta que una url esté disponible
+- name: Pause play until a URL is reachable from this host
+  uri:
+    url: "http://192.0.2.1/some/test"
+    follow_redirects: none
+    method: GET
+  register: _result
+  until: _result.status == 200
+  retries: 720 # 720 * 5 seconds = 1hour (60*60/5)
+  delay: 5 # Every 5 seconds
+
+
+
 # Proxy
 mirar proxy.md

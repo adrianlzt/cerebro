@@ -65,6 +65,9 @@ app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 
 # Repetir n veces
+Empieza a contar desde 0. CUIDADO porque los loops de ansible cuentan desde 1
+Podemos hacer {{node+1}}
+
 jenkins:
   nodes:
 {% for node in range(num_nodes|int) %}

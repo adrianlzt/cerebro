@@ -113,3 +113,10 @@ testArray[0] = "A"
 
 testArray.pop() -> ultimo elemento
 testArray.remoteAt(0) -> primer elemento
+
+
+# Strings
+## Split
+String[] split(String regex)
+
+"hola pepe".split(" ")
