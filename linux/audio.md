@@ -10,6 +10,10 @@ muestra el default sink y source.
 pactl list sinks
 nos muestra el listado de devices que se puede configurar como salida
 
+Muestra micros (entradas):
+pactl list sources short
+
+
 Modificar volumen de un sink
 pactl set-sink-volume 0 +10%
 
@@ -33,11 +37,16 @@ load-module module-switch-on-connect
 
 
 
+# Modulo para suprimer ruido
+https://github.com/werman/noise-suppression-for-voice
+UI: https://github.com/josh-richardson/cadmus/
+
+
 
 # Retransmitir audio
 https://superuser.com/a/1021823/526882
 
-pactl list | grep "Monitor Source" 
+pactl list | grep "Monitor Source"
 cvlc -vvv pulse://XXXX --sout '#transcode{acodec=mp3,ab=128,channels=2}:standard{access=http,dst=0.0.0.0:8888/pc.mp3}'
 
 Desde otro navegador abrir:
