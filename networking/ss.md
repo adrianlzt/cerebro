@@ -7,6 +7,7 @@ ss utiliza la API netlink para obtener la info de red (parece que es una opción
 Mientras que netstat parsea /proc/net
 https://pcarleton.com/2018/05/31/netstat-vs-ss/
 https://github.com/shirou/gopsutil/issues/695
+En go: https://github.com/raboof/connbeat/blob/master/sockets/tcp_diag/tcp_diag.go
 
 Suele venir con el paquete iproute2
 
