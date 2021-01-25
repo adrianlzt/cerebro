@@ -1,5 +1,5 @@
 http://www.cyberciti.biz/files/ss.html
-http://git.kernel.org/cgit/linux/kernel/git/shemminger/iproute2.git/tree/misc/ss.c
+https://fossies.org/linux/iproute2/misc/ss.c
 
 ss  is  used to dump socket statistics. It allows showing information similar to netstat.  It can display more TCP and state informations than other tools.
 
@@ -7,7 +7,10 @@ ss utiliza la API netlink para obtener la info de red (parece que es una opción
 Mientras que netstat parsea /proc/net
 https://pcarleton.com/2018/05/31/netstat-vs-ss/
 https://github.com/shirou/gopsutil/issues/695
-En go: https://github.com/raboof/connbeat/blob/master/sockets/tcp_diag/tcp_diag.go
+En go: https://github.com/elastic/gosigar/pull/151
+
+Si le pedimos "-p" (información de procesos) si parsea todo el /proc/[0-9]/fd para obtener a que pid pertenece cada inodo
+ función: user_ent_hash_build
 
 Suele venir con el paquete iproute2
 

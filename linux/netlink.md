@@ -1,3 +1,4 @@
+https://man7.org/linux/man-pages/man7/netlink.7.html
 https://medium.com/@mdlayher/linux-netlink-and-go-part-1-netlink-4781aaeeaca8#.fttqra9os
 
 netlink sockets are used to communicate with various kernel subsystems as an RPC system. man 7 netlink for more information.
@@ -8,11 +9,17 @@ libreria python para hablar netlink:
 https://github.com/facebook/gnlpy
 
 golang:
-https://github.com/eleme/netlink
+https://pkg.go.dev/github.com/mdlayher/netlink
+
+https://github.com/elastic/gosigar/pull/151
+  ejemplo de ps, sin obtener el pid
+
+Para obtener info de los sockets de varios protocolos se usa: NETLINK_SOCK_DIAG
+https://man7.org/linux/man-pages/man7/sock_diag.7.html
 
 
 # Netlink
-Creamos un oscket de tipo AF_NETLINK.
+Creamos un socket de tipo AF_NETLINK.
 También tendremo que pasar la familia (con quien nos queremos comunicar). Mirar man 7 netlink
 
 
