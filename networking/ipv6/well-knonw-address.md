@@ -4,7 +4,8 @@
 
 ::1/128: Localhost en IPv6. Equivalente a 127.0.0.1 (IPv4).
 
-fe80::/10: Direcciones de vínculo o enlace local. No son enrutables pero generan una red local efectiva en el rango fe80::/64. La parte de Host se suele calcular a partir de la dirección MAC de la tarjeta.
+fe80::/10: Direcciones de vínculo o enlace local. No son enrutables pero generan una red local efectiva en el rango fe80::/64. La parte de Host se suele calcular a partir de la dirección MAC de la tarjeta. Valen para hablar por red local si no tenemos DHCP, los routers no las enrutan. En IPv4 es 169.254.0.0/16
+
 
 ff02::/16: Direcciones de redes IPv6 Multicast. Equivalentes a las  (224.X) en redes IPv4.
 ff02::2 -> all router multicast
