@@ -88,3 +88,23 @@ Generalmente partiremos de una de estas tres configs. La retocaremos con comando
 xrandr --output eDP1 --gamma 1:1:.8
 
 Los valores son R:G:B
+
+
+
+# Crear pantalla virtual
+remoteHScreen=2560
+remoteVScreen=1600
+refreshRate=60
+existingScreenName="DP1"
+
+params=$(gtf ${remoteHScreen} ${remoteVScreen} ${refreshRate} | grep Modeline | sed 's/^\s\sModeline \".*\"\s*//g')
+
+xrandr --newmode "extraScreen" ${params}
+xrandr --addmode VIRTUAL1 extraScreen
+xrandr --output VIRTUAL1 --left-of ${existingScreenName} --mode extraScreen
+
+
+Borrar la pantalla virtual
+xrandr --output VIRTUAL1 --off
+xrandr --delmode VIRTUAL1
+xrandr --rmmode extraScreen

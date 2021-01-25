@@ -56,6 +56,11 @@ sudo x11vnc -storepasswd 'SILExx10' /etc/x11vnc.pass
 https://wiki.archlinux.org/index.php/Extreme_Multihead#VNC
 https://ogbe.net/blog/moar_monitors.html
 
+Con xrandr también se pueden crear pantalla virtuales (mirar xrandr.md)
+https://github.com/pavlobu/deskreen
+App para simplificar extender el escritorio a otras pantallas
+
+
 1.- Decirle al driver de intel que cree dos conexiones virtuales (con una seria suficiente):
 https://unix.stackexchange.com/a/391519
 $ cat /etc/X11/xorg.conf.d/20-intel-virtualheads.conf
