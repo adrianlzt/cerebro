@@ -26,6 +26,11 @@ De aqui podemos obtener nuestra ip local (buscar LOCAL y mirar las lineas de enc
 https://www.kernel.org/doc/Documentation/networking/proc_net_tcp.txt
 http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
 
+/proc/net/tcp
+/proc/net/tcp6
+
+Los procesos también tienen su directorio net/ que será equivalente a lo de arriba excepto si tienen un namespace de red distinto.
+
 These /proc interfaces provide information about currently active TCP connections, and are implemented by tcp4_seq_show() in net/ipv4/tcp_ipv4.c
 https://github.com/torvalds/linux/blob/v2.6.38/net/ipv4/tcp_ipv4.c#L2459
 La columna rx_queue es el backlog en conexiones LISTEN:
@@ -51,12 +56,21 @@ local_address: ip local en hexadecimal little indian, junto con el puerto
 rem_address: ip remota en hexadecimal little indian, junto con el puerto
 
 Para convertir estas direcciones http://lists.netisland.net/archives/plug/plug-2009-03/msg00016.html:
+Necesita "bc" instalado
 echo "2601A8C0:EDF4" | awk '{t="echo \"ibase=16;" substr($1,7,2)"\" |bc";  t | getline a; close(t); t="echo \"ibase=16;" substr($1,5,2)"\" |bc"; t  | getline b; close(t); t="echo \"ibase=16;" substr($1,3,2)"\" |bc"; t  | getline c; close(t); t="echo \"ibase=16;" substr($1,1,2)"\" |bc"; t  | getline d; close(t); t="echo \"ibase=16;" substr($1,10,4)"\" |bc"; t  | getline e; close(t);printf("%d.%d.%d.%d:%d",a,b,c,d,e)}'
+
+Listeners en IPv4
+cat /proc/net/tcp | grep " 0A " | awk '{print $2;}' | awk '{t="echo \"ibase=16;" substr($1,7,2)"\" |bc";  t | getline a; close(t); t="echo \"ibase=16;" substr($1,5,2)"\" |bc"; t  | getline b; close(t); t="echo \"ibase=16;" substr($1,3,2)"\" |bc"; t  | getline c; close(t); t="echo \"ibase=16;" substr($1,1,2)"\" |bc"; t  | getline d; close(t); t="echo \"ibase=16;" substr($1,10,4)"\" |bc"; t  | getline e; close(t);printf("%d.%d.%d.%d:%d\n",a,b,c,d,e)}'
 
 Para convertir solo el puerto:
 echo "ibase=16; 0016" | bc
 
+Puertos de escucha tcp y tcp6
+for i in $(cat /proc/net/tcp6 /proc/net/tcp | grep " 0A " | awk '{print $2;}' | cut -d ':' -f 2); do echo -n "$i -> "; echo "ibase=16; $i" | bc; done
+
 La columna inode la podemos mapear contra /proc/PID/fd para ver a que proceso pertenece un socket.
+Con fuerza bruta:
+find /proc -type l -path "*/fd/*" -exec ls -l {} \; |& grep -v task | grep socket | grep 50857022
 
 
 Número de conexiones tcp totales:
