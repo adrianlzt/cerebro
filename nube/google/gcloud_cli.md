@@ -41,3 +41,8 @@ Regional cluster vs Zonal cluster
 https://stackoverflow.com/a/57793374
 
 Por defecto, single compute zone, pero puedes hacer que sea multi-zona (misma región) o multiregión
+
+
+Configurar cluster GKE
+https://cloud.google.com/kubernetes-engine/docs/quickstart
+gcloud container clusters get-credentials cluster-name
