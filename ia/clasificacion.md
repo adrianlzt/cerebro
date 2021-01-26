@@ -61,6 +61,13 @@ Usando polinomios de más orden podemos conseguir formás más "extrañas" que s
 Esta técnica se llama "feature mapping", mapeamos las features que tenemos a términos del polinomio mayores.
 Puede llevarnos a hacer overfitting
 
+El problema con este método es que si tenemos muchas features, usar polinómios de segundo/tercer/... grado se vuelve muy costoso.
+Para polinómios de segundo grado crece como O(n^2), por 100 features originales, tendríamos 5000 features tras usar el polinómio de segundo grado
+Para polinómios de tercer grado O(n^3), para 100 features originales, 170k con el polinómio.
+Si intentamos reducir algunos componentes del polinómio solo conseguimos reducir con O(n^x)/x, por lo que no reducimos mucho el coste
+El típico ejemplo es computer vision, donde necesitas muchas features para identificar algo.
+La solución suele ser usar redes neuronales
+
 
 # Cost function
 No podemos usar la cost function de la regresión lineal (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
