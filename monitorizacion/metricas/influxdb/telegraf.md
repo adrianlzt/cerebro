@@ -144,6 +144,13 @@ no dejar pasar metricas con esta tags
 [inputs.disk.tagdrop]
   fstype = [ "vfat" ]
 
+[[outputs.file]]
+files = ["/var/tmp/tmp.EJsRmOCPwx/zabbix"]
+[outputs.file.tagdrop]
+output = ["*"] # no dejamos pasar si tiene la tag output con cualquier valor
+
+
+
 agregar tags:
 [[inputs.cpu]]
   [inputs.cpu.tags]
