@@ -2,6 +2,9 @@ https://severalnines.com/blog/ten-tips-going-production-postgresql
 
 Activar pg_stat_statements para tener más info.
 
+https://news.ycombinator.com/item?id=25915023
+Notas sobre scaling postgres. Resumen, intentar mantener una instancia todo lo que sa posible.
+
 
 # Cache
 https://stackoverflow.com/questions/1216660/see-and-clear-postgres-caches-buffers
