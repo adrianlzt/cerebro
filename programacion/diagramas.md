@@ -4,6 +4,9 @@ simula esquemas hechos a mano
 figuras básicas
 
 
+https://mermaid-js.github.io/mermaid-live-editor/
+
+
 https://miro.com/
 
 
