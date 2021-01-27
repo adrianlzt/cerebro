@@ -56,6 +56,9 @@ telegraf --input-filter logparser config > example.conf
 telegraf --config example.conf -test
   run a single telegraf collection, outputing metrics to stdout
 
+# Output
+Cada métrica se envía a todos los outputs disponibles
+
 # Cache
 Telegraf cachea los outputs en caso de que no pueda escribir.
 Si se llenan los buffers, va descartando las nuevas métricas.
