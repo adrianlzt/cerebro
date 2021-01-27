@@ -31,7 +31,7 @@ import "project.example.com/package"
 https://blog.gopheracademy.com/advent-2016/saga-go-dependency-management/
 
 Mirar:
-dep.md (en principio, la que será oficial)
+dep.md (Gopkg.toml)
 govendor.md
 glock.md
 gdm.md
