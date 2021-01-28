@@ -1,5 +1,7 @@
 Mirar pstree.md
 
+Suele venir en el paquete: procps-ng o procps
+
 Básico:
 ps -ef
 ps aux
