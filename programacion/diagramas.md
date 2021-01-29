@@ -5,6 +5,7 @@ figuras básicas
 
 
 https://mermaid-js.github.io/mermaid-live-editor/
+Colorear un nodo: https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-and-classes
 
 
 https://miro.com/
