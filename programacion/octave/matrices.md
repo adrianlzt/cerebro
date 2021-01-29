@@ -84,6 +84,10 @@ a<3
 
 find(a<3)
   es como un "map", nos devuelve los índices que cumplan esa condición
+  filtrar una serie de valores por una condición
+[a,b]=find(X,Y]
+  siendo X una matriz (n,m) e Y un vector fila (1,m)
+  a nos da la posición (entre 1 y m) de cada columna (m) (mirar help para que quede más claro)
 
 [r,c] = find(A >=7)
   (r[0],c[0]) será la posición del primer elemento que sea >=7
