@@ -10,6 +10,8 @@ A(1) == A(1,1)
 A(1,:) -> la primera fila
 A(:,1) -> la primera columna
 
+A(5:end,1) -> las filas de la 5 a la última de la primera columna
+
 A([1 3],:) -> la primera y tercera fila
 
 A(1, :) = [9 9 9]
