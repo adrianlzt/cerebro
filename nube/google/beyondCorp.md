@@ -21,9 +21,13 @@ https://cloud.google.com/iap?authuser=1
 
 Google Cloud Identity, necesario como fuente de usuarios.
   parece que hay que activar la version "premium" que cuesta 6$/usario*mes
+  Diria que lo han cambiado y ya no es obligatorio
 
 Activar IAP: https://console.cloud.google.com/apis/library/iap.googleapis.com
 Admin: https://console.cloud.google.com/security/iap
+
+https://cloud.google.com/beyondcorp-enterprise?authuser=1
+  la versión premium nos permite que aplicaciones onprem también sean "defendidas" por IAP
 
 
 ## Access Context Manager
