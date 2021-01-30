@@ -6,7 +6,7 @@ Definición de una variable sin valor (se nos preguntará, o tendremos que pasar
 variable "aws_access_key" {}
 
 La usaremos como:
-"${var.aws_access_key}"
+var.aws_access_key
 
 
 Si no definimos la variable nos la preguntará por stdout.
