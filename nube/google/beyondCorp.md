@@ -70,6 +70,8 @@ Pinchar sobre el https balancer y pulsar en añadir usuario, dando el permiso
   Se pueden dar de forma global a los usuarios con IAM: https://console.cloud.google.com/iam-admin/iam
   O de forma específica por recurso (LoadBalancer) en https://console.cloud.google.com/security/iap
 
+Las peticiones a nuestro server llegarán desde las IPs de google, no de los clientes finales, aunque estarán en 'X-Forwarded-For'
+
 
 ## SSH / TCP
 https://cloud.google.com/iap/docs/tcp-forwarding-overview?authuser=1

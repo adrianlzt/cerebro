@@ -100,6 +100,9 @@ The length of null is zero.
 # Filtrar / regex
 less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp")) | [.key, .value.count]'
 
+test negativo (inverso)
+less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp") | not) | [.key, .value.count]'
+
 https://stackoverflow.com/questions/18592173/select-objects-based-on-value-of-variable-in-object-using-jq
 jq '.[] | select(.location=="Stockholm") | .name' json
 
