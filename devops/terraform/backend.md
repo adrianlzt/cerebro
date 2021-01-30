@@ -1,3 +1,11 @@
+https://www.terraform.io/docs/language/state/remote.html
+
+El estado por defecto se guarda en un fichero: terraform.tfstate
+
+
+Podemos almacenar este estado en remoto para poder compartirlo con más gente y poder ejecutar terraforms sin miedo a pisar el trabajo de otro.
+Para eso usaremos un backend
+
 https://www.terraform.io/docs/backends/index.html
 
 Podemos usar backends en linea para mantener un estado compartido.
