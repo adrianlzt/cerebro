@@ -7,6 +7,9 @@ Un esquema típico de una ip pública redirigiendo a un grupo de servidores ser�
 global addr -> global forwarding rule -> target proxy (+cert) -> url map -> backend service -> instance group -> instances
                                                                                     -> health checks
 
+Si falla el healtch check, revisar que hemos dado permiso a los rangos de IPs de loas LB de google para lanzar queries a nuestras VMs.
+
+
 resource "google_compute_global_address" "default" {
   name         = "foo-address"
   ip_version   = "IPV4"
@@ -68,3 +71,60 @@ resource "google_compute_instance_group" "tools_group" {
   zone = "us-east1-b"
 }
 
+
+
+
+# IAP - identity aware proxy
+Necesitaremos que el usuario, o service account, que esté ejecutando esto tenga "IAP Policy Admin"
+Podemos dárselo en:
+https://console.cloud.google.com/iam-admin/iam
+
+
+## Brand
+Creo que es la oauth consent screen
+https://console.cloud.google.com/apis/credentials/consent?authuser=1&folder=&organizationId=&project=fr8tech&supportedpurview=project
+
+resource "google_iap_brand" "project_brand" {
+  support_email     = "support@example.com"
+  application_title = "Cloud IAP protected Application"
+  project           = google_project_service.project_service.project
+}
+
+Si ya exite tendremos que importarlo al tfstate:
+terraform import google_iap_brand.default projects/PROYECTO/brands/ID_NUMERICO_PROYECTO
+
+Luego tendremos que tener el google_iap_brand igual que el importado.
+Podemos ver lo importado con:
+terraform state show google_iap_brand.project_brand
+
+Si no conocemos el ID numérico, podemos hacer un "list" a las brands
+https://cloud.google.com/iap/docs/reference/rest/v1/projects.brands/list?authuser=1&apix_params=%7B%22parent%22%3A%22projects%2FMIPROYECTO%22%7D
+
+
+## OAuth2.0 client
+resource "google_iap_client" "iap_tools_apps" {
+  display_name  = "Tools auth"
+  brand         =  google_iap_brand.default.name
+}
+
+https://console.cloud.google.com/apis/credentials
+Aqui podremos ver el objeto creado
+
+
+## Permisos
+A quien permitimos acceso.
+Ejemplo permitiendo a todo el dominio.
+
+resource "google_iap_web_iam_member" "access_iap_policy" {
+  role      = "roles/iap.httpsResourceAccessor"
+  member    = "domain:example.com"
+}
+
+En la config de IAP veremos en los permisos:
+IAP-secured Web App User:
+  example.com
+
+
+## Revisión
+https://console.cloud.google.com/security/iap
+Mirar que todo diga que está correcto

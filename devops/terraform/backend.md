@@ -10,6 +10,13 @@ Si hemos estado usando un state local, para migrar a un remote, configuraremos e
 terraform init
 Nos preguntará si queremos migrar los datos al backend remoto
 
+## Consultar
+terraform state list
+  mostrar que tenemos en el state
+
+terraform state show google_iap_brand.default
+  mostrar un elemento
+
 
 
 # Backend
