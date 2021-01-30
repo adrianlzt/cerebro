@@ -38,7 +38,7 @@ resource "google_compute_url_map" "default" {
 
 resource "google_compute_backend_service" "tools_backend" {
   name          = "tools-backend-service"
-  health_checks = [google_compute_http_health_check.jenkins_health_check.self_link]
+  health_checks = [google_compute_health_check.jenkins_health_check.self_link]
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
@@ -48,12 +48,15 @@ resource "google_compute_backend_service" "tools_backend" {
   }
 }
 
-resource "google_compute_http_health_check" "jenkins_health_check" {
+resource "google_compute_health_check" "jenkins_health_check" {
   name               = "jenkins-login-health-check"
-  request_path       = "/login"
   check_interval_sec = 10
   timeout_sec        = 1
-  port = 80
+
+  http_health_check {
+    port = 80
+    request_path = "/login"
+  }
 }
 
 resource "google_compute_instance_group" "tools_group" {

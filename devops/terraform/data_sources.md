@@ -2,6 +2,9 @@ https://www.terraform.io/docs/language/data-sources/index.html
 
 Use of data sources allows a Terraform configuration to make use of information defined outside of Terraform, or defined by another separate Terraform configuration.
 
+Cada provider suele tener una sección de "Data sources" con lo que podemos obtener.
+
+
 Ejemplo, creo que obtenemos de un bucket de GCS un template para un fichero
 data "terraform_remote_state" "foo" {
   backend = "gcs"
