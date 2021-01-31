@@ -85,9 +85,14 @@ a<3
 find(a<3)
   es como un "map", nos devuelve los índices que cumplan esa condición
   filtrar una serie de valores por una condición
-[a,b]=find(X,Y]
+[a,b]=find(X == Y)
   siendo X una matriz (n,m) e Y un vector fila (1,m)
   a nos da la posición (entre 1 y m) de cada columna (m) (mirar help para que quede más claro)
+  Ejemplo: [a,b] = find(eye(4,10)' == max(eye(4,10), [], 2)')
+    max(eye(4,10), [], 2) -> vector con el máximo de cada row, lo convertimos a vector fila
+    eye(4,10), simula ser nuestros 4 resultados con sus valores (10), lo cambiamos para que sean 10 filas con 4 columnas (cada resultado en una columna
+    hacemos el find y en "a" se nos queda la posición de cada valor máximo en cada columna
+    Si revertimos las transposiciones, "a" tiene la posición del mayor número para cada fila
 
 [r,c] = find(A >=7)
   (r[0],c[0]) será la posición del primer elemento que sea >=7

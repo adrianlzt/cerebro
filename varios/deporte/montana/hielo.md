@@ -84,3 +84,8 @@ https://www.camptocamp.org/waypoints/106735/fr/ailefroide
 
 ## Cervières
 https://www.camptocamp.org/waypoints/39047/fr/cervieres
+
+
+# Briancon
+Tete de Gramusat
+https://www.ecrinsprestige.com/posts/topo-de-la-face-nord-de-la-tete-de-gramusat
