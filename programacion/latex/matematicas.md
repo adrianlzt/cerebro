@@ -1,3 +1,10 @@
+Lib en JS para TeX de matemáticas
+https://www.mathjax.org/
+Ejemplo: https://gist.github.com/adrianlzt/ba2b668254f46bb9364c0eb1ab04584c
+Podemos ejecutarlo en: https://jsbin.com/fodipoy/edit?html,output
+
+
+
 Método 'en línea':
 $y^{2} = 4p + 7$
 
