@@ -72,15 +72,19 @@ Esto nos da la intuación de que con NN podemos lograr computaciones complejas, 
 
 ## Sintaxis
 x_i^j (x subscript i, superscript j), será el resultado de la neurona i (i=0 es bias unit) en la capa j (j=2 será la input layer)
-theta^j, matriz de los pesos que conectan la capa j con la capa j+1 (conexiones entre las disintas neuronas)
+
+Θ^j, matriz de los pesos que conectan la capa j con la capa j+1 (conexiones entre las disintas neuronas)
 Esta matriz tendrá dimensiones s_(j+1) x (s_j +1) (rows = número de neuronas en la capa j+1, columns=uno + número de neuronas de la capa j, por la bias unit)
 
-Para una red neuronal de 3x3x1, a_1^2 = g(theta_10^1 * x_0 + theta_11^1 * x_1 + theta_12^1 * x_2 + theta_13^1 * x_3)
-  thetha_10^1, posición row=1,column=0 de la matriz theta^1
+a^n serán los valores de activación de las neuronas de la capa n
+a^1 serán los valores de entrada  (x)
+
+Para una red neuronal de 3x3x1, a_1^2 = g(Θ_10^1 * x_0 + Θ_11^1 * x_1 + Θ_12^1 * x_2 + Θ_13^1 * x_3)
+  thetha_10^1, posición row=1,column=0 de la matriz Θ^1
   a_1^2 es la neurona 1 de la layer 2
 
 Podemos reescribirlo como: a_1^2 = g(z_1^2)
-Si queremos poner una layer entera: a^2 = g(z^2) = g(theta^1*a^1)
+Si queremos poner una layer entera: a^2 = g(z^2) = g(Θ^1*a^1)
   faltaría añadir a_0^2=1 (bias unit)
 
 Esta formulación es la implementación vectorizada del "forward propagation", que es como calcular la salida a partir de los valores de entrada.
@@ -103,11 +107,60 @@ Lo usaremos para K>=3 (para K=2 podríamos usar binary, jugando con activo no ac
 Usamos una generalización de la usada en logistic regression.
 Ahora añadimos un sumatorio para contemplar las salidas de todas las units de la output layer, para que la cost function tenga en cuenta que el valor de cada output unit sea lo más cercano a la salida y (la salida conocida en el entrenamiento)
 
-En el término de regularización se suman todos los valores de la matriz theta, sin contar los términos de las bias unit (los THETA_i_0^l, el subscript j=0 son los asociados a las bias unit).
+En el término de regularización se suman todos los valores de la matriz Θ, sin contar los términos de las bias unit (los Θ_i_0^l, el subscript j=0 son los asociados a las bias unit).
 
 https://gist.github.com/adrianlzt/ba2b668254f46bb9364c0eb1ab04584c
 En TeX:
 \begin{gather*} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}_k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}_k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather*}
+
+
+### Backpropagation Algorithm
+Algoritmo para reducir la cost function de NN. El nombre viene de que vamos calculando el error al final de la red y a partir de ese valor vamos moviéndonos hacia el comienzo de la red.
+Para poder usar una función que nos busque el mínimo tenemos que pasarle la cost function (sencilla de calcular) y las derivadas parciales respecto a cada término de la matriz Θ
+
+Definimos δ_j^l como el error del nodo j en la capa l.
+Por ejemplo, para una red L=4, el error de la neurona "j" de salida sería:
+δ_j_4 = a_j^4 - y_j
+  el valor de su activación (hipótesis) menos el valor real del training set
+
+En forma vectorizada:
+δ^4 = a^4 - y
+
+Para esa misma red L=4, los otros valores de δ serían:
+δ^3 = (Θ^3)^T * δ^4 .* g'(z^3)
+δ^2 = (Θ^2)^T * δ^3 .* g'(z^2)
+
+Para δ^n = la matriz Θ^n (matriz de pesos que conecta la capa n con n+1) transpuesta multiplicada por el error de la capa siguiente, product-wise (multiplicando elemento a elemento) por la derivada de la función de activación (g) para los valores z^3.
+
+g'(z^3) = a^3 .* (1-a^3)
+  siendo "1" la matriz de unos
+
+Si ignoramos el término de regularización (alpha=0), matemáticamente se puede demostrar que las derivadas parciales de la cost function son:
+d J(Θ) / d Θ_ij^l = a_j^l * δ_i^(l+1)
+
+
+Implementando el algoritmo para m muestras tendríamos que hacer:
+  inicializar Δ_ij^l = 0 (para todos los valores i,j,l)
+    i=muestra del training set que estamos usando
+    j=número de la neurona
+    l=número de capa
+
+  iterar por el training set: i=1 hasta m
+    seteamos los valores de entrada: a^1 = x^i  (valores de entrada del training set i)
+    hacemos el algoritmo de forward propagation para las distintas capas
+    con el resultado del training set (y^i), calculamos las δ^L = a^L - y^i
+    calculamos las deltas de las capas anteriores
+    vamos acumulando los errores en Δ_ij^l = Δ_ij^l + a_j^l * δ_i^(l+1)
+      en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)^T
+
+  Una vez hemos terminado el loop tenemos:
+    D_ij^l = (1/m) * Δ_ij^l + alpha * Θ_ij^l    cuando j!=0
+    D_ij^l = (1/m) * Δ_ij^l                         cuando j=0 (para las bias unit)
+
+  Y una demostración matemática comleja nos afirma que, las derivadas parciales respecto a Θ_ij^l son esos términos D_ij^l
+  dJ/dΘ_ij^l = D_ij^l
+
+
 
 
 
