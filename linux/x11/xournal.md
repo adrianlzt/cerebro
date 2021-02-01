@@ -20,6 +20,12 @@ pdfjoin /tmp/salida.pdf /tmp/salida.pdf
 genera salida-joined.pdf
 
 
+# Reducir tamaño PDF de imagen
+shrinkpdf in.pdf out.pdf
+shrinkpdf in.pdf out.pdf 200
+  ir jugando con el valor (resolución in DPI) hasta encontrar el tamaño que queremos.
+
+
 # Quitar watermark
 https://superuser.com/questions/448519/how-to-remove-watermark-from-pdf-using-pdftk
 
