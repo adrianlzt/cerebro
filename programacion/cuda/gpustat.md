@@ -1,5 +1,5 @@
 Utilidad tipo "top" para ver el estado de las GPUs
 
-AUR python-gpustat
-
-gpustat -cp
+nvidia-smi --loop=1
+nvtop
+gpustat

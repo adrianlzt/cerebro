@@ -18,3 +18,4 @@ yay -S python-numba
 
 El soporte para pyhon 3.9 debería llegar con la versión 0.53
 https://github.com/numba/numba/milestone/44
+https://github.com/numba/numba/issues/6345#issuecomment-759509837
