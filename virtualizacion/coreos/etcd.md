@@ -179,6 +179,15 @@ Conectar usando certs
 /usr/bin/etcdctl --cert-file /etc/etcd/peer.crt --key-file /etc/etcd/peer.key --ca-file /etc/etcd/ca.crt -C https://`hostname`:2379 ${@}
 
 
+# Configuracion
+## Snapshots y WAL
+Idea similar a postgres.
+
+https://pkg.go.dev/github.com/coreos/etcd/wal
+
+snap son snapshots desde las cuales se puede recuperar un cluster de etcd.
+
+
 
 
 # Monitorización
