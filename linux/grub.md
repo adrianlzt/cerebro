@@ -1,5 +1,5 @@
 # Editor grafico
-grub-customizer
+sudo grub-customizer
 
 
 # Centos
