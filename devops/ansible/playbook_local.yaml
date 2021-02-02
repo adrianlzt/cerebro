@@ -1,3 +1,10 @@
+# http://willthames.github.io/2018/07/01/connection-local-vs-delegate_to-localhost.html
+# local_action vs delegate_to localhost
+#
+# Si no existe "localhost" en el inventario, ansible lo crea:
+# https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html
+#
+#
 # http://docs.ansible.com/playbooks_delegation.html#local-playbooks
 - name: a play that runs entirely on the ansible host
   hosts: localhost
