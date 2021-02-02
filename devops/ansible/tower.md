@@ -233,6 +233,10 @@ group by
   execution_node
   ;
 
+JSON con el resultado de un job (resultado general con todos los hosts, la típica seccion al final)
+select jsonb_pretty(event_data::jsonb) from main_jobevent where job_id=9199 and event = 'playbook_on_stats';
+
+
 
 main_host
 hosts obtenidos de los inventarios
