@@ -38,3 +38,8 @@ https://www.digitalocean.com/community/tutorials/how-to-automate-jenkins-setup-w
 
 Si lo queremos usar con docker crearemos una imagen custom deshabilitando el install wizard e instalando el plugin de JCasC.
 El resto de la guia cubre aspectos interesantes.
+
+
+# Jobs
+Crear Jobs
+https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos/jobs

@@ -16,6 +16,9 @@ http://groovy-lang.org/semantics.html
 http://localhost:8080/pipeline-syntax/
   aquí hay una utilidad para ayudarnos a crear el Jenkinsfile. La cantidad de opciones dependerá de los plugins instalados.
 
+Plugin para convertir freestyle jobs to scripted pipelines: https://plugins.jenkins.io/convert-to-pipeline/
+Última actualización Oct'17, pero parece que funciona más o menos.
+
 Todos los steps que se proveen en todos los plugins de jenkins disponibles
 https://jenkins.io/doc/pipeline/steps
 
@@ -33,7 +36,8 @@ https://plugins.jenkins.io/workflow-aggregator
 
 
 Usaremos un fichero Jenkinsfile en el repositorio (Pipeline script from SCM), que se cargará automáticamente para crear el job tipo Pipeline
-Este job si lo tendremos que crear a mano en Jenkins.
+Este job si lo tendremos que crear a mano en Jenkins o podemos hacer uso de unos plugins que escanean una org/team en github/bitbucket y crean los jobs automáticamente
+https://github.com/jenkinsci/bitbucket-branch-source-plugin/blob/master/docs/USER_GUIDE.adoc
 
 
 # Comentarios
