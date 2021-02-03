@@ -37,7 +37,7 @@ load-module module-switch-on-connect
 
 
 
-# Modulo para suprimer ruido
+# Modulo para suprimer ruido / cadmus
 https://github.com/werman/noise-suppression-for-voice
 UI: https://github.com/josh-richardson/cadmus/
 

@@ -236,6 +236,26 @@ group by
 JSON con el resultado de un job (resultado general con todos los hosts, la típica seccion al final)
 select jsonb_pretty(event_data::jsonb) from main_jobevent where job_id=9199 and event = 'playbook_on_stats';
 
+Tabla con el host y el número de oks que ha tenido:
+
+with data as (
+  select
+    event_data :: jsonb -> 'ok' as hosts
+  from
+    main_jobevent
+  where
+    job_id = 9216
+    and event = 'playbook_on_stats'
+)
+select
+  q.key as host,
+  q.value as ok_count
+from
+  data d
+  join jsonb_each_text(d.hosts) q on true;
+
+
+
 
 
 main_host

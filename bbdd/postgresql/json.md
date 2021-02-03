@@ -64,6 +64,18 @@ insert into checks VALUES('check-tcp-puppet-master','monitorizacion::checks::tcp
 select DISTINCT json_object_keys(juanson) from checks; <- las keys sin duplicar
 jsonb_object_keys para jsonb
 
+# JSON a tabla
+with data as (select event_data::jsonb from main_jobevent)
+select
+  q.key, q.value
+from
+  data d
+  join jsonb_each_text(d.hosts) q on true;
+
+Nos saca el dict de event_data como una tabla con columna keys y values
+
+
+
 
 # WHERE
 notes::jsonb->>'class' = 'db';
