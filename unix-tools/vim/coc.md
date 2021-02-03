@@ -9,7 +9,13 @@ https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 El concepto más potente es el de extensión, que permite autocompletar, añadir comandos, configuraciones, etc.
 
 :CocList extensions
-  para listarlas
+  para listarlas, control+c para salir
+  ? means invalid extension
+  * means extension is activated
+  + means extension is loaded
+  - means extension is disabled
+  Usar el tabulador para activar/desactivar/actualizar/desinstalar/configurar
+  Usar enter para cambiar entre activa y loaded
 
 :CocInstall coc-gocode
   instalar una
@@ -29,6 +35,26 @@ Añadir los LS como:
     }
   }
 }
+
+
+# Coc-sources
+https://github.com/neoclide/coc-sources
+
+## Emoji
+Por defecto ":" en modo insert nos abré el desplegable
+Tengo el plugin desactivado por defecto.
+Para activarlo:
+CocList extensions
+  escribir emoji
+  dar a tab y enable
+  pero luego dejarlo disabled, que es un poco excesivo que salga todo eso cada vez que se ponen ":"
+
+
+
+# Colors
+## Diagnostics
+:h coc-highlights
+
 
 
 # Errores

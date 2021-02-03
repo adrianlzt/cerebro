@@ -31,6 +31,9 @@ C = [A;B]
 p=A(:)
   convierte la matriz en un vector, pone primero la primer columna, luego la segunda, etc
   Si queremos volver a obtener la matriz a partir del vector: A=reshape(p(1,x*y), x, y)
+    x será el número de filas de la matriz que queremos
+    y el número de columnas
+    (1,x*y) le estamos diciendo que queremos coger x*y elementos del vector para formar la matriz
 
 # Vector
 v = [1;2;3]

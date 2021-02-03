@@ -113,6 +113,9 @@ https://gist.github.com/adrianlzt/ba2b668254f46bb9364c0eb1ab04584c
 En TeX:
 \begin{gather*} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}_k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}_k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather*}
 
+A modo intuitivo, para cada muestra de entrenamiento, si descartamos la regularización, podemos pensar que la cost function es la distancia (como en regresión lineal):
+(h(x) - y)^2
+
 
 ### Backpropagation Algorithm
 Algoritmo para reducir la cost function de NN. El nombre viene de que vamos calculando el error al final de la red y a partir de ese valor vamos moviéndonos hacia el comienzo de la red.
@@ -153,15 +156,14 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
     vamos acumulando los errores en Δ_ij^l = Δ_ij^l + a_j^l * δ_i^(l+1)
       en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)^T
 
+  REVISAR: no tengo claro si el subcript "i" se está usando como el número de muestra, porque entonces parece que terminaríamos con una matriz con tantas rows como muestras, pero en realidad D^i tiene tantas filas como la siguiente capa de neuronas y tantas columnas como la anterior capa de neuronas.
+
   Una vez hemos terminado el loop tenemos:
     D_ij^l = (1/m) * Δ_ij^l + alpha * Θ_ij^l    cuando j!=0
-    D_ij^l = (1/m) * Δ_ij^l                         cuando j=0 (para las bias unit)
+    D_ij^l = (1/m) * Δ_ij^l                     cuando j=0 (para las bias unit)
 
   Y una demostración matemática comleja nos afirma que, las derivadas parciales respecto a Θ_ij^l son esos términos D_ij^l
   dJ/dΘ_ij^l = D_ij^l
-
-
-
 
 
 # Convolutional neural network
