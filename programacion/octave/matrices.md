@@ -28,8 +28,9 @@ C = [A,B]
 C = [A;B]
   añade como filas
 
-A(:)
+p=A(:)
   convierte la matriz en un vector, pone primero la primer columna, luego la segunda, etc
+  Si queremos volver a obtener la matriz a partir del vector: A=reshape(p(1,x*y), x, y)
 
 # Vector
 v = [1;2;3]
