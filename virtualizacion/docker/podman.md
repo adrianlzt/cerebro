@@ -314,3 +314,12 @@ https://github.com/containers/libpod/issues/1566
 Arreglado con:
 sysctl -w fs.inotify.max_user_instances=4096
 sysctl -w fs.inotify.max_user_watches=65536
+
+
+
+# Internals
+bbdd donde almacena los datos
+~/.local/share/containers/storage/libpod/bolt_state.db
+
+Podemos leer/editar con boltbrowser, aunque he probado a parar un pod, modificar su command y volver a arrancar y no ha funcionado, pero tal vez no he modificado la parte correcta.
+Parece que aquí hablan del tema: https://github.com/containers/podman/issues/376

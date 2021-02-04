@@ -84,10 +84,10 @@ Para analizar estos datos usaremos la parte de "Data frame analytics"
 Aquí podremos hacer tres tipos de ML:
  - outlier: valores inusuales
      métodos posibles:
-       lof
-       ldof
-       distance_kth_nn
-       distance_knn
+      distance of Kth nearest neighbor
+      distance of K-nearest neighbors
+      local outlier factor (lof)
+      local distance-based outlier factor (ldof).
  - regression: predecir valores
  - classification: predice labels
 
