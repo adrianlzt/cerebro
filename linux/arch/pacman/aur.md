@@ -14,6 +14,9 @@ makepkg -si
     - darle sudo al user
 
 
+# Editar PKGBUILD antes de instalar
+yay --editmenu -S linux-drm-tip-git
+
 # Paquetes AUR
 pacman -Qm
   en realidad, paquetes no sincronizados con la current db, que suele significar que vienen de aur
