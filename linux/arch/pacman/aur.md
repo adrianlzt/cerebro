@@ -17,6 +17,12 @@ makepkg -si
 # Editar PKGBUILD antes de instalar
 yay --editmenu -S linux-drm-tip-git
 
+En ~/.cache/yay/PAQUETE tenemos los ficheros del build que hayamos hecho
+Ahí podríamos hacer modificaciones, meter parches, etc y luego hacer makepkg
+
+
+
+
 # Paquetes AUR
 pacman -Qm
   en realidad, paquetes no sincronizados con la current db, que suele significar que vienen de aur
