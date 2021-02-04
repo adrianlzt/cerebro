@@ -12,3 +12,12 @@ Machine learning:
 
 
   unsupervised learning:
+
+
+
+
+Tipos de métodos para encontrar outliers (sacados de https://www.elastic.co/guide/en/machine-learning/current/dfa-outlier-detection.html)
+distance of Kth nearest neighbor
+distance of K-nearest neighbors
+local outlier factor (lof)
+local distance-based outlier factor (ldof)

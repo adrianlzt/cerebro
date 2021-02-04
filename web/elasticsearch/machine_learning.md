@@ -68,5 +68,32 @@ En la vista "Single metric viewer" tenemos un botón "Forecast".
 
 
 
+# Transformación de datos & Detección de outliers
+https://www.elastic.co/guide/en/elasticsearch/reference/current/transforms.html
+
+La detección es muy dependiente de la calidad de los datos.
+Elastic han creado los "Data transforms" para poder mejorar esos datos para ser tratados por ML.  El dato original se queda sin modificar.
+
+Ejemplo, cambiar una serie temporal y "pivotar" sobre algún valor para generar otro set de datos que pasemos al ML.
+
+En Kibana. Stack management -> Transforms
+
+Continuous mode: si queremos que se sigan realizando las transformaciones según entran los datos (background job)
+
+Para analizar estos datos usaremos la parte de "Data frame analytics"
+Aquí podremos hacer tres tipos de ML:
+ - outlier: valores inusuales
+     métodos posibles:
+       lof
+       ldof
+       distance_kth_nn
+       distance_knn
+ - regression: predecir valores
+ - classification: predice labels
+
+
+
 # Dudas
 No me queda muy claro que es un influencer, como afecta.
+
+El ejemplo de data transforms, se quedan sin timestamps? Y la anomalía es atemporal?
