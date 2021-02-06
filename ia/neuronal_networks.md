@@ -178,6 +178,7 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
 Para comprobar que se ha implementado correctamente el algoritmo de back propagation se puede usar "gradient checking", una aproximación al cálculo del gradiente para comprobar que el valor que estamos cálculando "tiene sentido".
 Este cálculo se hace obteniendo la pendiente de J (cost function) para dos valores muy cercanos (se suele usar +-10⁻⁴).
 Lo haremos para cada valor de θᵢ
+Solo lo haremos cuando estemos comprobando el algoritmos, luego lo borraremos, ya que es muy costoso.
 
 En octave sería:
 epsilon = 1e-4;
@@ -202,6 +203,10 @@ Generalmente asignaremos esos valores en un rango [-ε, ε]
 2. Implementar el algoritmo forward propagation, para obtener h_θ(xⁱ) para cada xⁱ
 3. Implementar el código para calcular la cost function J(Θ)
 4. Implementar el algorimo de back propagation para calcular las derivadas parciales dJ(Θ)/dΘ^l_kj
+   Interar por cada uno de los training samples, haciendo el fwd prop y backprop. Obteniendo las activaciones a^l y los δ^l para las distintas capas, acumulado en los términos Δ (así tendremos las derivadas parciales)
+5. Comprobar con gradient checking que las derivadas parciales del anterior punto están bien
+6. Usar algún método para encontrar el mínimo de J(Θ) (gradient descent u otros)
+   J(Θ) no es convexa, por lo que podría suceder que no encontremos el mínimo global, pero en la práctica los algoritmos encuentran un valor muy bueno.
 
 
 
