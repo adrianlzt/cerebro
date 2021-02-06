@@ -69,6 +69,14 @@ Para XOR,XNOR necesitaremos dos layers con dos neuronas (+bias)
 
 Esto nos da la intuación de que con NN podemos lograr computaciones complejas, ya que al final estamos montando una suerte de circuito lógico.
 
+### Elegir la arquitectura
+El número de units en la input layer será el número de features
+El número de units en la output layer será el número de clases en las que queremos agrupar.
+
+Por defecto se suele usar una única hidden layer. Si añadimos más, normalmente usaremos en todas el mismo número de units.
+En general, cuantas más units tenga la hidden layer, mejor. Suele variar entre el mismo número que la input layer y 4 veces esa cantidad.
+
+
 
 ## Sintaxis
 x_i^j (x subscript i, superscript j), será el resultado de la neurona i (i=0 es bias unit) en la capa j (j=2 será la input layer)
@@ -164,6 +172,37 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
 
   Y una demostración matemática comleja nos afirma que, las derivadas parciales respecto a Θ_ij^l son esos términos D_ij^l
   dJ/dΘ_ij^l = D_ij^l
+
+
+#### Gradient checking
+Para comprobar que se ha implementado correctamente el algoritmo de back propagation se puede usar "gradient checking", una aproximación al cálculo del gradiente para comprobar que el valor que estamos cálculando "tiene sentido".
+Este cálculo se hace obteniendo la pendiente de J (cost function) para dos valores muy cercanos (se suele usar +-10⁻⁴).
+Lo haremos para cada valor de θᵢ
+
+En octave sería:
+epsilon = 1e-4;
+for i = 1:n,
+  thetaPlus = theta;
+  thetaPlus(i) += epsilon;
+  thetaMinus = theta;
+  thetaMinus(i) -= epsilon;
+  gradApprox(i) = (J(thetaPlus) - J(thetaMinus))/(2*epsilon)
+end;
+
+
+#### Random initialization
+Si inicializamos theta con todo valores a 0, cuando se realiza el BP, todos los nodos se actualizan con el mismo valor, por lo que solo conseguimos que la NN se adapte a una única feature.
+Lo que haremos es asignar los valores de Θ de manera random.
+Generalmente asignaremos esos valores en un rango [-ε, ε]
+
+
+
+## Traning
+1. Inicializar Θ aleatóriamente
+2. Implementar el algoritmo forward propagation, para obtener h_θ(xⁱ) para cada xⁱ
+3. Implementar el código para calcular la cost function J(Θ)
+4. Implementar el algorimo de back propagation para calcular las derivadas parciales dJ(Θ)/dΘ^l_kj
+
 
 
 # Convolutional neural network
