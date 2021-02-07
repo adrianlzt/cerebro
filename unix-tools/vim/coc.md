@@ -36,6 +36,14 @@ Añadir los LS como:
   }
 }
 
+## Python
+Muy lento este, mejor pyright
+https://github.com/pappasam/coc-jedi
+:CocInstall coc-jedi
+
+Static checks y code completion
+https://github.com/fannheyward/coc-pyright
+
 
 # Coc-sources
 https://github.com/neoclide/coc-sources
