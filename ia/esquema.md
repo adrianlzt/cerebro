@@ -1,3 +1,7 @@
+https://scikit-learn.org/stable/user_guide.html
+Tienen organizado el índice por supervised/unsupervised y luego todos los modelos que se puede implementar con scikit
+
+
 Machine learning:
   supervised learning:
     regresión (generar una fórmula que "siga" los valores conocidos, para poder estimar resultados para valores desconocidos)
