@@ -84,8 +84,10 @@ x_i^j (x subscript i, superscript j), será el resultado de la neurona i (i=0 es
 Θ^j, matriz de los pesos que conectan la capa j con la capa j+1 (conexiones entre las disintas neuronas)
 Esta matriz tendrá dimensiones s_(j+1) x (s_j +1) (rows = número de neuronas en la capa j+1, columns=uno + número de neuronas de la capa j, por la bias unit)
 
-a^n serán los valores de activación de las neuronas de la capa n
-a^1 serán los valores de entrada  (x)
+aⁿ serán los valores de activación de las neuronas de la capa n
+a¹ serán los valores de entrada (x)
+zⁿ serán los valores de entrada a las units (salidas de la activación anterior multiplicadas por los pesos)
+z² será Θ¹ * a¹ (valores numéricos  negativos y positivos que al pasar por la función sigmoide se convertirán en valores entre 0 y 1. Los valores negativos se convertirán a ~= 0 y los positivos a ~=1)
 
 Para una red neuronal de 3x3x1, a_1^2 = g(Θ_10^1 * x_0 + Θ_11^1 * x_1 + Θ_12^1 * x_2 + Θ_13^1 * x_3)
   thetha_10^1, posición row=1,column=0 de la matriz Θ^1
@@ -162,7 +164,7 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
     con el resultado del training set (y^i), calculamos las δ^L = a^L - y^i
     calculamos las deltas de las capas anteriores
     vamos acumulando los errores en Δ_ij^l = Δ_ij^l + a_j^l * δ_i^(l+1)
-      en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)^T
+      en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)ᵗ
 
   REVISAR: no tengo claro si el subcript "i" se está usando como el número de muestra, porque entonces parece que terminaríamos con una matriz con tantas rows como muestras, pero en realidad D^i tiene tantas filas como la siguiente capa de neuronas y tantas columnas como la anterior capa de neuronas.
 
@@ -171,7 +173,7 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
     D_ij^l = (1/m) * Δ_ij^l                     cuando j=0 (para las bias unit)
 
   Y una demostración matemática comleja nos afirma que, las derivadas parciales respecto a Θ_ij^l son esos términos D_ij^l
-  dJ/dΘ_ij^l = D_ij^l
+  ∂J/∂Θ_ij^l = D_ij^l
 
 
 #### Gradient checking
@@ -195,6 +197,8 @@ end;
 Si inicializamos theta con todo valores a 0, cuando se realiza el BP, todos los nodos se actualizan con el mismo valor, por lo que solo conseguimos que la NN se adapte a una única feature.
 Lo que haremos es asignar los valores de Θ de manera random.
 Generalmente asignaremos esos valores en un rango [-ε, ε]
+
+Ese valor ε lo podemos elegir como: √6/√(Lᵢ + Lₒ), siendo Lᵢ la capa de entrada para el Θ que estemos calculando y Lₒ la capa de salida.
 
 
 
