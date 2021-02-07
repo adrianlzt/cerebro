@@ -161,12 +161,14 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
   iterar por el training set: i=1 hasta m
     seteamos los valores de entrada: a^1 = x^i  (valores de entrada del training set i)
     hacemos el algoritmo de forward propagation para las distintas capas
-    con el resultado del training set (y^i), calculamos las δ^L = a^L - y^i
+    con el resultado del training set (y^i), calculamos las δ de la output layer: δ^L = a^L - y^i
     calculamos las deltas de las capas anteriores
-    vamos acumulando los errores en Δ_ij^l = Δ_ij^l + a_j^l * δ_i^(l+1)
-      en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)ᵗ
-
-  REVISAR: no tengo claro si el subcript "i" se está usando como el número de muestra, porque entonces parece que terminaríamos con una matriz con tantas rows como muestras, pero en realidad D^i tiene tantas filas como la siguiente capa de neuronas y tantas columnas como la anterior capa de neuronas.
+      para una única hidden layer tendríamos: δ² = (Θ²)ᵗ * δ³ .* g'(z²)
+        tenemos que haber quitado δ₀, la de la bias unit
+    vamos acumulando los errores en Δ_ij^l = Δ_ij^l + a_j^l * δᵢ^(l+1)
+      matemáticamente se puede demostrar que así estamos calculando ∂J/∂Θ
+      los subíndices i y j son las posiciones fila/columna de la matriz Θ
+    en forma vectorial: Δ^l = Δ^l + δ^(l+1) * (a^l)ᵗ
 
   Una vez hemos terminado el loop tenemos:
     D_ij^l = (1/m) * Δ_ij^l + alpha * Θ_ij^l    cuando j!=0
@@ -180,7 +182,7 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
 Para comprobar que se ha implementado correctamente el algoritmo de back propagation se puede usar "gradient checking", una aproximación al cálculo del gradiente para comprobar que el valor que estamos cálculando "tiene sentido".
 Este cálculo se hace obteniendo la pendiente de J (cost function) para dos valores muy cercanos (se suele usar +-10⁻⁴).
 Lo haremos para cada valor de θᵢ
-Solo lo haremos cuando estemos comprobando el algoritmos, luego lo borraremos, ya que es muy costoso.
+Solo lo haremos cuando estemos comprobando el algoritmo (lo haremos con una red neuronal pequeña), luego lo borraremos, ya que es muy costoso.
 
 En octave sería:
 epsilon = 1e-4;
