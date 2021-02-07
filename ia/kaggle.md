@@ -1,6 +1,5 @@
 Competiciones de ML para aprender ML.
 Algunas con premios en metálico.
-Se pueden ver la solcuones de la gente?
 
 # Empezar
 Usar las competiciones "Getting started".
@@ -8,6 +7,12 @@ Usar las competiciones "Getting started".
 En particular, mirar estas dos guías:
 https://www.kaggle.com/jlawman/complete-beginner-your-first-titanic-submission
 https://www.kaggle.com/alexisbcook/titanic-tutorial
+
+
+# Soluciones / kernels
+Para problema la gente publica soluciones
+Ejemplo de url para la competición "titanic"
+https://www.kaggle.com/c/titanic/kernels?competitionId=3136&sortBy=voteCount
 
 
 

@@ -31,6 +31,7 @@ excel = pandas.ExcelFile( '/Users/connorjohnson/Downloads/PET_PRI_SPT_S1_W.xls' 
 
 
 
+
 # DataFrame / Matrices / Vectores
 https://pandas.pydata.org/pandas-docs/stable/reference/frame.html
 
@@ -50,7 +51,6 @@ Generar un DF a partir de dos series:
 submission = pd.DataFrame({'PassengerId':test['PassengerId'],'Survived':predictions})
 
 
-
 ## Acceder a columnas
 x["nombre"]
 Nos devuelte un tipo de dato "Series"
@@ -58,6 +58,10 @@ Nos devuelte un tipo de dato "Series"
 x[["Sex", "Survived"]]
 Nos devuelve un DataFrame con únicamente esas dos columnas
 
+
+## Filtrar
+Quedarnos solo con las filas que cumplan el requisito:
+train.loc[train.Columna == "valor"]
 
 ## Quitar columnas
 train = train.drop(['Name','SibSp','Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'],axis=1)
