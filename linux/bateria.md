@@ -54,3 +54,7 @@ Programa para definir unas características agresivas de ahorro de batería
 
 tlp-stat
 mostrar info de distintas configuraciones y estado respecto al sistema
+
+
+# cpufrequtils
+Gestionar frecuencia/voltaje de la CPU
