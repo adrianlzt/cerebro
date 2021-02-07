@@ -1,3 +1,6 @@
+https://robotmoon.com/ssh-tunnels/
+guia gráfica de los túneles
+
 Mirar sshuttle para montar una "vpn" con ssh.
 
 Para mantener los tuneles abiertos: autossh

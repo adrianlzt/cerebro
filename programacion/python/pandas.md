@@ -19,7 +19,12 @@ import pandas as pd
 
 
 # CSV
+Importar:
 train = pd.read_csv('input/train.csv')
+
+Exportar:
+train.to_csv(filename,index=False)
+  si usamos index=True nos añade el número de entrada como primera columna
 
 # Excel
 excel = pandas.ExcelFile( '/Users/connorjohnson/Downloads/PET_PRI_SPT_S1_W.xls' )
@@ -41,11 +46,10 @@ Si imprimimos x lo mostrará como una tabla, con sus cabeceras (si están defini
 Una matriz (1,2 será la primera fila)
 pd.DataFrame([[1,2],[3,4]])
 
-Transpoer una matriz:
-x.T
+Generar un DF a partir de dos series:
+submission = pd.DataFrame({'PassengerId':test['PassengerId'],'Survived':predictions})
 
-Invertir una matriz:
-np.linalg.pinv(A)
+
 
 ## Acceder a columnas
 x["nombre"]
@@ -62,6 +66,15 @@ train = train.drop(['Name','SibSp','Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked
 ## head
 Quedarnos únicamente con las tres primeras filas (ignorando la cabecera, que se respeta)
 x.head(3)
+
+
+## Math
+Transpoer una matriz:
+x.T
+
+Invertir una matriz:
+np.linalg.pinv(A)
+
 
 
 

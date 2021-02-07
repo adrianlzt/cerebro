@@ -4,5 +4,4 @@ dot -Tpng a.dot >out.png
 
 
 Visor gráfico
-paquetE: zgrviewer
-comando: zgrv
+xdot
