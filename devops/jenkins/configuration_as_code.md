@@ -43,3 +43,5 @@ El resto de la guia cubre aspectos interesantes.
 # Jobs
 Crear Jobs
 https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos/jobs
+
+Hace falta el plugin: https://plugins.jenkins.io/job-dsl/
