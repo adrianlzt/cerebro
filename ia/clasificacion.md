@@ -158,3 +158,10 @@ La derivada para cada término (excluyendo theta_0) nos queda:
 (1/m) * sum_i=1,m ( (h(x)^i - y^i) * x_j^i ) + lambda*theta_i/m
 
 Con estas derivadas para calcular el gradiente y la función de coste, ya podemos usar funciones implementadas en distintos lenguajes para calcular el minimo.
+
+
+# Test set error
+Fórmula para comprobar la precisión de nuestro modelo sobre el test test
+
+error=  1 si h(x) >= 0.5 and y=0  or  h(x) < 0.5 and y=1
+        0 en los otros casos

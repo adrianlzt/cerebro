@@ -182,7 +182,7 @@ Implementando el algoritmo para m muestras tendríamos que hacer:
 Para comprobar que se ha implementado correctamente el algoritmo de back propagation se puede usar "gradient checking", una aproximación al cálculo del gradiente para comprobar que el valor que estamos cálculando "tiene sentido".
 Este cálculo se hace obteniendo la pendiente de J (cost function) para dos valores muy cercanos (se suele usar +-10⁻⁴).
 Lo haremos para cada valor de θᵢ
-Solo lo haremos cuando estemos comprobando el algoritmo (lo haremos con una red neuronal pequeña), luego lo borraremos, ya que es muy costoso.
+  Solo lo haremos cuando estemos comprobando el algoritmo (lo haremos con una red neuronal pequeña), luego lo borraremos, ya que es muy costoso.
 
 En octave sería:
 epsilon = 1e-4;

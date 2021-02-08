@@ -142,3 +142,10 @@ Theta = (X'*X + lambda * K)^-1 * X'*y
 
 
 En el caso de que no había invertibilidad (cuando tenemos más features que samples), con la normalización si evitamos este caso, consiguiendo que siempre sea invertible.
+
+
+
+# Test set error
+Fórmula para comprobar la precisión de nuestro modelo sobre el test test
+
+Usaremos la cost function con el test set (suma de las distancias al cuadrado dividido entre 2*número de muestras)

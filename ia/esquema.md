@@ -1,3 +1,5 @@
+Mirar diagnostic.md para saber si hemos elegido bien un algoritmo
+
 https://scikit-learn.org/stable/user_guide.html
 Tienen organizado el índice por supervised/unsupervised y luego todos los modelos que se puede implementar con scikit
 
