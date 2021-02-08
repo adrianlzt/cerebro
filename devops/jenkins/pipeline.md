@@ -40,6 +40,9 @@ Este job si lo tendremos que crear a mano en Jenkins o podemos hacer uso de unos
 https://github.com/jenkinsci/bitbucket-branch-source-plugin/blob/master/docs/USER_GUIDE.adoc
 
 
+Para ir afinando el Jenkinsfile podemo hacer "replay", que nos permite, con los mismos datos de input, lanzar con una versión modificada del jenkinsfile
+
+
 # Comentarios
 // texto
 
@@ -103,6 +106,15 @@ node {
     '''
   }
 }
+
+      withCredentials([file(credentialsId: 'gcp-serviceaccount', variable: 'GOOGLE_APPLICATION_CREDENTIALS'),
+                       file(credentialsId: 'star_hub_com_cert_plus_ca', variable: 'CERT_PLUS_CA'),
+                       file(credentialsId: 'star_hub_com_key', variable: 'CERT_KEY'),
+                       file(credentialsId: 'star_hub_com_cert', variable: 'CERT')]) {
+
+      sshUserPrivateKey(credentialsId: 'ansible_ssh', keyFileVariable: 'ANSIBLE_PRIVATE_KEY_FILE'),
+
+
 
 ## Declarativg
 stage('Push') {
