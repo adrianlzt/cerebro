@@ -53,3 +53,22 @@ Estimate the accuracy by splitting the data, fitting a model and computing the s
 from sklearn.model_selection import cross_val_score
 cross_val_score(clf, train[features], train[target])
 
+
+
+# Plot / dibujar
+Cuando queramos graicos generados directamente por scikit debemos crear a priori una fig con matplotlib
+
+from matplotlib import pyplot as plt
+fig = plt.figure(figsize=(25,20))
+tree.plot_tree(clf,feature_names=features,rounded=True,filled=True,class_names=['Survived','Did not Survive'])
+plt.show()
+
+
+
+## Histograma
+Vale con DataFrame o Serie
+
+from matplotlib import pyplot as plt
+fig = plt.figure(figsize=(25,20))
+df.plot.hist(bins=12, alpha=0.5)
+plt.show()

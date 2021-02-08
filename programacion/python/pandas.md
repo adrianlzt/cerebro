@@ -63,8 +63,21 @@ Nos devuelve un DataFrame con únicamente esas dos columnas
 Quedarnos solo con las filas que cumplan el requisito:
 train.loc[train.Columna == "valor"]
 
-## Quitar columnas
+
+## Limpiar
+### Quitar columnas
 train = train.drop(['Name','SibSp','Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'],axis=1)
+
+### Rellenar huecos
+df['Age'] = df['Age'].fillna(0)
+
+### Comprobar si tiene NANs
+x.hasnans
+
+### Cambiar/añadir valores
+df['Sex_binary'] = df['Sex'].map({'male':1,'female':0})
+
+
 
 
 ## head
@@ -89,6 +102,11 @@ Cambiar valores por otros.
 Ejemplo, tenemos una serie con valores "male" y "female".
 Usamos este cambio que nos devuelve otra serie con 1s y 0s (no modifica el dato original)
 x.map({'male':1,'female':0})
+
+## filter
+df.filter(items=['one', 'three'])
+df.filter(regex='e$', axis=1)
+df.filter(like='bbi', axis=0)
 
 ## values / array
 Si queremos extraer la info de una serie a un array
