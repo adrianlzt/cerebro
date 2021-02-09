@@ -68,3 +68,8 @@ Usar la opcion 1 (Spin up a temporary webserver (standalone))
 
 # Limits
 https://letsencrypt.org/docs/rate-limits/
+
+
+# Certificados solicitados
+https://crt.sh/
+En esa web podemos ver que certificados se han solicitado para determinados dominios.
