@@ -1,8 +1,10 @@
 # Posibles técnicas para mejorar un algoritmo
-- Obtener más training examples
-- Probar con más/menos features
-- Añadir polynomial features (para el caso de linear regression)
-- Incrementar/decrementar λ (learning rate)
+- Obtener más training examples -> fix high variance
+- Probar con más features       -> fix high variance
+- Probar con menos features     -> fix high bias
+- Añadir polynomial features    -> fix high bias
+- Incrementar λ                 -> fix high bias
+- Decrementar λ                 -> fix high variance
 
 
 # Evaluar una hipótesis
@@ -29,6 +31,8 @@ Por ejemplo, una regresión lineal tipo a+bx para una serie de puntos que en rea
 
 Lo reconoceremos por tener un error grande tanto en el traning set como en el CV set.
 
+Añadir más muestras no reducirá el error (mirar learning curve para la explicación).
+
 
 
 # Overfitting / high variance (el modelo varía mucho dependiento los datos que le des)
@@ -37,6 +41,8 @@ Suele darse cuando tenenmos muchas features.
 Esto puede deberse por una función de alto orden cuando tenemos pocas muestras.
 
 Lo reconoceremos por tener un error pequeño en el traning set y un error mucho más grande en el CV set.
+
+Añadir más datos puede ayudar, ya que las gráficas tienden a converger (mirar learning curve para la explicación).
 
 Afecta tanto a regresiones lineales como logísticas.
 
@@ -84,3 +90,27 @@ Usaremos ese θⁿ para calcular el error usando el test set (de nuevo, sin usar
 Gráficamente, si elegimos:
  - λ muy grande no permitimos al modelo adaptarse, por lo que tendremos underfitting (errores tanto para J_train como para J_cv)
  - λ muy pequeña permitimos al modelo adaptarse demasiado, por lo que tendremos overfitting (errores bajos para J_train y altos J_cv)
+
+
+
+
+# Learning curves
+Pintamos una gráfica donde el eje X es el tamaño del training set y en el eje "y" ponemos el error.
+
+Para J_train, con m pequeño, tendremos un error pequeño (es fácil crear un modelo perfecto para pocos valores).
+Según vaya creciendo m iremos teniendo más error.
+
+Para J_cv será al contrario. Con m pequeño, el modelo que se adaptaba perfectamente a el training set se adaptará muy mal al CV, por lo que tendremos un error muy grande.
+Según vaya creciendo m se irá reduciendo ese error.
+
+High bias (underfitting)
+J_train partirá de casi 0, y según aumentemos m irá subiendo hasta llegar a un valor donde se estabilizará.
+J_cv partirá de un error muy grande e irá bajando hasta estabilizarse, en un valor superior, pero muy parecido, a J_train
+Ambos J tendrán un alto error cuando tengamos un número suficiente de muestras, con valores muy parecidos.
+Añadir más muestras no reducirá el error
+
+High variance (overfitting)
+J_train empezará bajo (como siempre), pero esta vez subirá menos, ya que como estamos adataptando el módelo exáctamente el training set, nunca tendremos mucho error.
+J_cv comenzará alto, pero nunca logrará bajar mucho su error.
+La diferencia de errores entre ambas J será alta.
+Añadir más datos puede ayudar, ya que las gráficas tienden a converger. Podremos lograr un error que se encuentre entre ambos valores.

@@ -216,6 +216,16 @@ Ese valor ε lo podemos elegir como: √6/√(Lᵢ + Lₒ), siendo Lᵢ la capa 
 
 
 
+
+## High bias (underfitting) / High variance (overfitting)
+NN con pocos parámetros (pocas hidden units) posiblemente nos llevará a high bias, pero a cambio será computacionalmente barata.
+
+NN con muchos parámetros nos puede llevar a high variance y computacionalmente será más cara. La regularización (λ) nos puede ayudar con el overfitting en este caso.
+
+
+
+
+
 # Convolutional neural network
 Buenas para reconocer imágenes
 https://www.youtube.com/watch?v=FmpDIaiMIeA
