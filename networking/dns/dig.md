@@ -29,6 +29,11 @@ Tipos registros:
 A, AAAA, MX, AXFR, NS, SOA, TXT, PTR, CNAME
 
 
+Hacer una petición recursiva, realizando todo el trabajo, desde ir a los root servers, dominios de primer nivel, etc:
+https://ns1.com/blog/using-dig-trace
+dig +trace www.example.com
+
+
 # Domain history checker
 https://whoisrequest.com/history/
 Nos da cambios en los NS (al menos es lo que veo con la prueba que he hecho)
