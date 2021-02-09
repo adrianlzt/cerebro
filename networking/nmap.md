@@ -3,7 +3,8 @@ zmap para escanear en internet, mucho más rápido
 https://github.com/brandonskerritt/RustScan
 Para detectar rápidamente que puertos están abiertos y luego ya usar nmap para escanear esos puertos.
 
-
+https://github.com/Y000o/Nmap
+  cursillo con ejemplos de uso
 http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/
 
 nmap -p- --min-rate 10000 -oA nmap-alltcp 1.2.3.4
