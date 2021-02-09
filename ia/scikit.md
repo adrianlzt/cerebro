@@ -5,6 +5,18 @@ Accessible to everybody, and reusable in various contexts
 Built on NumPy, SciPy, and matplotlib
 
 
+# Preparar los datos
+
+## Dividir en trainig and test test
+Por defecto nos dividirá en 75/25% y aleatorizados.
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(pd.read_csv('input/train.csv'))
+
+No generaremos el CV set, ya que las funciones de cross validation lo harán automáticamente, entrenando el modelo y testeandolo con diferentes split de training y cv sets.
+
+
+
 # Supervised learning
 
 ## Decision Trees / classification and regression

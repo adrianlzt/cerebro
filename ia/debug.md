@@ -1,10 +1,10 @@
 # Posibles técnicas para mejorar un algoritmo
-- Obtener más training examples -> fix high variance
-- Probar con más features       -> fix high variance
-- Probar con menos features     -> fix high bias
-- Añadir polynomial features    -> fix high bias
-- Incrementar λ                 -> fix high bias
-- Decrementar λ                 -> fix high variance
+- Obtener más training examples -> fix high variance (cuanto más datos más le va a costar crear un modelo que se adapte perfecto, por lo que estará generalizando)
+- Probar con menos features     -> fix high variance (le quitamos datos para que no se pueda reconocer tan bien el traning set)
+- Probar con más features       -> fix high bias
+- Añadir polynomial features    -> fix high bias (tenemos un modelo muy sencillo, forzamos que sea más complejo)
+- Decrementar λ                 -> fix high bias
+- Incrementar λ                 -> fix high variance (no le dejamos adaptarse completamente al trainig set)
 
 
 # Evaluar una hipótesis
@@ -14,6 +14,8 @@ Separar nuestro dataset:
   20% test set
 
 Debemos escoger estos grupos de forma aleatoria, para evitar que haya alguna feature escondida en el ordenamiento.
+Cuidado, no siempre tenemos que aleatorizar los datos.
+En datos que contengan temporalidad, podría no ser el caso (ejemplo: noticias que están ordenadas por fecha de publicación, si aletorizamos, el test set serán noticias de fechas cercanas al training set, pero en la realidad las fechas será nuevas y darán un peor error, tendremos overfitting).
 
 Entrenaremos nuestro sisema con el training set, obteniendo θ para distintos modelos (o distintas parametrizaciones del modelo).
 Luego usaremos el CV para elegir cual de esos modelos tiene un menor error (sobre ese CV set).

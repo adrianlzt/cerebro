@@ -73,8 +73,9 @@ Esto nos da la intuación de que con NN podemos lograr computaciones complejas, 
 El número de units en la input layer será el número de features
 El número de units en la output layer será el número de clases en las que queremos agrupar.
 
-Por defecto se suele usar una única hidden layer. Si añadimos más, normalmente usaremos en todas el mismo número de units.
+Por defecto se suele comenzar con una única hidden layer. Si añadimos más, normalmente usaremos en todas el mismo número de units.
 En general, cuantas más units tenga la hidden layer, mejor. Suele variar entre el mismo número que la input layer y 4 veces esa cantidad.
+Añadir muchas units nos puede llevar a overfitting, mirar la sección de high bias / high variance.
 
 
 
