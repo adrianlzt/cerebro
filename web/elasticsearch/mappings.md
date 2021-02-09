@@ -51,6 +51,11 @@ Arrays? Tal vez nos vienen una string con valores separados por coma y lo querem
 
 Granular, tal vez no es más util romper el campo en varios campos más pequeños? Por ejemplo, una version (6.2.1) en major:6, minor:2, bugfix:1
 
+https://www.elastic.co/guide/en/elasticsearch/reference/7.x/flattened.html
+Aplanar un tipo de dato, por ejemplo si puede contener dentro un número de keys indeterminado que puede hacer crecer mucho el número de fields.
+
+También podemos decidir no indexar cierta parte del doc (incluso no almacenarla).
+
 curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
 El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
 

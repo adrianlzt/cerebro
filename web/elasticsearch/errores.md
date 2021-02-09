@@ -101,3 +101,11 @@ java.lang.OutOfMemoryError: Java heap space
 Se ha quedado sin heap.
 Aumentar memoria?
 Por qué se ha quedado sin heap? Agregación muy grande? muchos shards? Otra razón?
+
+
+
+
+ Limit of total fields [1000] in index [skydive_topology_live_v13] has been exceeded
+ Hemos llegado al límite de campos permitidos por el índice.
+ Podemos aumentar, pero tal vez querremos primero ver porque hemos llegado a ese límite.
+ mirar fields.md
