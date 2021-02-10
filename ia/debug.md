@@ -108,6 +108,12 @@ Según vaya creciendo m iremos teniendo más error.
 Para J_cv será al contrario. Con m pequeño, el modelo que se adaptaba perfectamente a el training set se adaptará muy mal al CV, por lo que tendremos un error muy grande.
 Según vaya creciendo m se irá reduciendo ese error.
 
+Generalmente lo que se hace es aleatorizar varias veces como cogemos los grupos de train y cv, hacemos el cálculo de error y nos quedamos con la media de todos los intentos.
+DUDA: al entrenar para un m determinado, el tamaño del set CV debe ser de m muestras o del tamaño completo si usásemos todas las m?
+Ejemplo, si tenemos m=100, normalmente haríamos trainig=70, cv=30.
+Si estamos calculando la curva para m=10, cogemos trainig=7 y cv=¿? 30 o 3?
+Parece que hay distintas técnicas https://www.coursera.org/learn/machine-learning/discussions/weeks/6/threads/pdrpvNxYEeiPfgrj9kYHeA
+
 High bias (underfitting)
 J_train partirá de casi 0, y según aumentemos m irá subiendo hasta llegar a un valor donde se estabilizará.
 J_cv partirá de un error muy grande e irá bajando hasta estabilizarse, en un valor superior, pero muy parecido, a J_train
