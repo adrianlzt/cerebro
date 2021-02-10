@@ -19,6 +19,11 @@ No generaremos el CV set, ya que las funciones de cross validation lo harán aut
 
 # Supervised learning
 
+## Logistic regression
+
+Dibujar las zonas de decisión.
+https://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic_multinomial.html#sphx-glr-auto-examples-linear-model-plot-logistic-multinomial-py
+
 ## Decision Trees / classification and regression
 https://scikit-learn.org/stable/modules/tree.html
 
@@ -48,7 +53,7 @@ Para cada hoja nos muestra una gráfica con los grupos y probabilidades.
 
 
 
-Predecir valores:
+# Predecir valores:
 predictions = clf.predict(test[["a", "b"]])
 
 
