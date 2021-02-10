@@ -177,7 +177,13 @@ size(A, 1)
   nuḿero de rows
 size(A, 2)
   nuḿero de columnas
+numel(A)
+  número de elementos en la matriz
 
 length(V)
   tamaño del vector
   o el mayor de rows/cols para una matriz
+
+numel(a)
+  number of elements
+  para un array es igual que length

@@ -97,7 +97,10 @@ Gráficamente, si elegimos:
 
 
 # Learning curves
-Pintamos una gráfica donde el eje X es el tamaño del training set y en el eje "y" ponemos el error.
+Creamos una gráfica donde el eje X es el tamaño del training set y en el eje "y" ponemos el error.
+Pintamos los valores de J_train y J_cv.
+Para pintar J_train iremos cogiendo 1 muestra, 2 muestras, 3, etc. Entrenaremos el modelo con ese subset, obteniendo θ y luego calcularemos J_train como el error de ese subset para esa θ.
+J_cv será el error sobre el cross validation set usando la θ del paso anterior, aquí siempre usaremos todas las muestras del cv set.
 
 Para J_train, con m pequeño, tendremos un error pequeño (es fácil crear un modelo perfecto para pocos valores).
 Según vaya creciendo m iremos teniendo más error.
