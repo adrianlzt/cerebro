@@ -63,6 +63,10 @@ Nos devuelve un DataFrame con únicamente esas dos columnas
 Quedarnos solo con las filas que cumplan el requisito:
 train.loc[train.Columna == "valor"]
 
+Esto es una vista, no es una copia de los datos. Si intentamos modificarlo sacará un warning.
+Para obtener una copia:
+train.loc[train.Columna == "valor"].copy()
+
 
 ## Limpiar
 ### Quitar columnas
@@ -112,3 +116,13 @@ df.filter(like='bbi', axis=0)
 Si queremos extraer la info de una serie a un array
 x.values
 Nos devuelve un 'numpy.ndarray'
+
+## Match
+
+### percentil/quantil
+p.quantile(q=0.3)
+
+
+### Media / mediana
+p.mean()
+p.median()
