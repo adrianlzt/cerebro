@@ -5,7 +5,7 @@ Accessible to everybody, and reusable in various contexts
 Built on NumPy, SciPy, and matplotlib
 
 
-# Preparar los datos
+# Preparar los datos / preprocessing
 
 ## Dividir en trainig and test test
 Por defecto nos dividirá en 75/25% y aleatorizados.
@@ -14,6 +14,23 @@ from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(pd.read_csv('input/train.csv'))
 
 No generaremos el CV set, ya que las funciones de cross validation lo harán automáticamente, entrenando el modelo y testeandolo con diferentes split de training y cv sets.
+
+
+## Polynomial features / aumentar complejidad de los parámetros
+https://stackoverflow.com/a/55944716/1407722
+
+Nos sirve para cuando queremos hacer una regresión lineal o logarítmica y aumentar la complejidad de la curva para que se pueda adaptar mejor.
+from sklearn.preprocessing import PolynomialFeatures
+import numpy as np
+poly = PolynomialFeatures(degree = 2, interaction_only=False, include_bias=False)
+poly.fit_transform(np.array([[1,2],[2,3]]))
+>>> array([[1., 2., 1., 2., 4.],
+          [2., 3., 4., 6., 9.]])
+
+En la primera fila tendremos: 1, 2, 1², 1*2, 2²
+Convertirá los valores (x₁, x₂) en (x₁, x₂, x₁², x₁*x₂, x₂²)
+
+
 
 
 
