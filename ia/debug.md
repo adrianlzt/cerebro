@@ -125,3 +125,64 @@ J_train empezará bajo (como siempre), pero esta vez subirá menos, ya que como 
 J_cv comenzará alto, pero nunca logrará bajar mucho su error.
 La diferencia de errores entre ambas J será alta.
 Añadir más datos puede ayudar, ya que las gráficas tienden a converger. Podremos lograr un error que se encuentre entre ambos valores.
+
+
+
+
+# Skewed classes / valores sesgados
+Si tenemos un conjunto de datos muy sesgado, por ejemplo, donde solo el 0.5% de las muestras son "positivas", podríamos tener problemas a la hora de decidir si nuestro algoritmo es bueno.
+Si solo usásemos el porcentaje de acierto/error, un algoritmo que siempre diese "negativo", para el caso anterior, tendría una tasa de acierto del 99.5%
+Para evitar estos problemas se añaden otros valores para medir la calidad del algoritmo.
+
+En estos casos se suele tomar como notación y=1 para la clase rara que queremos detectar.
+
+True positive: predicho 1, real 1
+True negative: predicho 0, real 0
+False positive: predicho 1, real 0
+False negative: predicho 0, real 1
+
+## Precision
+Probabilidad de que una muestra elegida al azar sea relevante.
+Alta precisión, bajos falsos positivos. Solo de dispara si está muy seguro.
+Ejemplo: no decirle a alguien que está enfermo si no esamos muy seguros
+Porcentaje de valores positivos reales sobre el total de predichos positivos.
+true_positives / num_predicted_positives = true_positives / (true_pos + false_pos)
+
+## Recall (sensibilidad, exhaustividad)
+Probabilidad de que una muestra relevante elegida al azar sea elegida.
+Alta sensibilidad, bajos falsos negativos. Se dispara enseguida
+Ejemplo: logramos siempre detectar cuando alguien está enfermo
+De todos los positivos reales, cuando predecimos como positivos.
+num_predicted_positives / num_positives = true_pos / (true_pos + false_neg)
+
+
+## Trade off / compromiso / F₁ score
+Generalmente subir la precisión reduce la sensabilidad y a la inversa.
+En un ejemplo donde intentamos detectar una enfermedad.
+Tener mucha precisión evita decirle a los pacientes que tienen la enfermedad cuando no la tienen.
+Tener mucha sensabilidad, significa avisar siempre que alguien tiene la enfermedad.
+
+Si pintamos una gráfica con recall en abscisas y precision en ordenadas, veremos que la curva puede tener distintas formas.
+
+Para poder comparar diferentes algoritmos usaremos F₁ score.
+No se usa le media de precision (P) y recall (R) porque un valor muy alto de R con uno prácticamente 0 de P nos daría un valor razonablemente bueno, cuando en realidad puede que no esté midiendo nada (siempre devolviendo 0, por ejemplo, mirar ejemplo del comienzo de esta sección)
+
+F₁ score = 2*P*R/(P+R)
+  el valor variaría entre 0 (malo) o 1 (el mejor)
+
+F₁ score, precision y recall siempre debe calcularse en el CV set si estamos eligiendo entre diferentes algortimos, para evitar adaptarnos al set que queremos analizar.
+
+
+
+
+
+# Large data sets
+Bajo ciertas condiciones cuanto más datos usemos para entrenar el algoritmo, mejor resultados dará.
+
+Pero no tiene que ser siempre cierto.
+Una pregunta que debemos hacernos es, dado el input x, podría un humano experto en ese campo predecir y?
+Esto nos puede servir para saber si vamos a poder lograr un algoritmo bueno usando más datos.
+
+Por ejemplo, predecir el precio de una casa a partir de sus metros cuadrados. Por mucha información que tengamos solo de esos datos (tamaño y precio) no mejoraremos el algoritmo.
+
+En el caso de que podamos aprovechar tener un gran data set de muestras, usaremos un algortimo con muchas features (low bias, poca probabilidad de undertfit) y con un training set muy grande (poca probabilidad de overfit). Con esto deberíamos conseguir un J_test pequeño.

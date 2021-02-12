@@ -56,28 +56,5 @@ Mirar debug.md
 
 
 
-# Skewed classes / valores sesgados
-Si tenemos un conjunto de datos muy sesgado, por ejemplo, donde solo el 0.5% de las muestras son "positivas", podríamos tener problemas a la hora de decidir si nuestro algoritmo es bueno.
-Si solo usásemos el porcentaje de acierto/error, un algoritmo que siempre diese "negativo", para el caso anterior, tendría una tasa de acierto del 99.5%
-Para evitar estos problemas se añaden otros valores para medir la calidad del algoritmo.
-
-En estos casos se suele tomar como notación y=1 para la clase rara que queremos detectar.
-
-True positive: predicho 1, real 1
-True negative: predicho 0, real 0
-False positive: predicho 1, real 0
-False negative: predicho 0, real 1
-
-## Precision
-Probabilidad de que una muestra elegida al azar sea relevante.
-Alta precisión, bajos falsos positivos. Solo de dispara si está muy seguro.
-Ejemplo: no decirle a alguien que está enfermo si no esamos muy seguros
-Porcentaje de valores positivos reales sobre el total de predichos positivos.
-true_positives / num_predicted_positives = true_positives / (true_pos + false_pos)
-
-## Recall (sensibilidad, exhaustividad)
-Probabilidad de que una muestra relevante elegida al azar sea elegida.
-Alta sensibilidad, bajos falsos negativos. Se dispara enseguida
-Ejemplo: logramos siempre detectar cuando alguien está enfermo
-De todos los positivos reales, cuando predecimos como positivos.
-num_predicted_positives / num_positives = true_pos / (true_pos + false_neg)
+# Skewed classes / valores sesgados / precision / recall
+mirar debug.md
