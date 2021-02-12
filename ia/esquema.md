@@ -1,10 +1,20 @@
-Mirar diagnostic.md para saber si hemos elegido bien un algoritmo
+Como atacar por primera vez un problema:
+ - empezar con un algoritmo simple que podamos implementar rápidamente. Testearlo con la cross_validation data
+ - pintar learning curves para decidir si necesitamos más datos, más features, etc
+ - análisis de errores: revisar a mano los valores del CV set donde el algoritmo falla. Mirar si podemos encontrar algún patrón donde esté fallando y ver que nueva feature nos podría ayudar a identificarlos
+ - poder iterar rápido con distintas ideas es importante, obteniendo un "score" para poder ir comparando las distintas opciones
 
+En diagnostic.md tenemos las herramientas para analizar un algoritmo.
+
+
+
+
+
+
+# Modelos
 https://scikit-learn.org/stable/user_guide.html
 Tienen organizado el índice por supervised/unsupervised y luego todos los modelos que se puede implementar con scikit
 
-
-Machine learning:
   supervised learning:
     regresión (generar una fórmula que "siga" los valores conocidos, para poder estimar resultados para valores desconocidos)
       reducir la cost function, nos ayudamos de gradient descent o normal equation
