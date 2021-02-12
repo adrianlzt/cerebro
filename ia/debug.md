@@ -156,6 +156,14 @@ De todos los positivos reales, cuando predecimos como positivos.
 num_predicted_positives / num_positives = true_pos / (true_pos + false_neg)
 
 
+## Accuracy / Exactitud
+Este sería el más general.
+El porcentaje de aciertos.
+
+Accuracy = (true positives + true negatives) / (total examples)
+
+
+
 ## Trade off / compromiso / F₁ score
 Generalmente subir la precisión reduce la sensabilidad y a la inversa.
 En un ejemplo donde intentamos detectar una enfermedad.
