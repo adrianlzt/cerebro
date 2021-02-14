@@ -7,6 +7,9 @@ dav://webdav.yandex.ru
 davs://webdav.yandex.ru
   para TLS
 
+## cadaver (cli)
+cadaver https://files.com/
+Abre una cli parecida a ftp: cd, download, etc
 
 # Servidores
 Apache y NginX lo soportan
@@ -19,6 +22,9 @@ podman run --name some-sftpgo -p 8080:8080 -p 8090:8090 --rm -it -u 0 -e SFTPGO_
   por defecto corre con uid=1000, tendremos que montarle dirs con esos permisos para que pueda funcionar
   /srv/sftpgo
   /var/lib/sftpgo
+
+Por defecto viene con un fichero con ciertos valores en /etc/sftpgo/sftpgo.json
+No son exactamente los mismos que tiene por defecto (si no tienen ningún fichero)
 
 Admin interface:
 Acceso con: admin/password
