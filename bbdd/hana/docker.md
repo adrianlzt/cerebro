@@ -24,3 +24,8 @@ store/saplabs/hanaexpress:2.00.045.00.20200121.1 \
 Conectar:
 docker exec -it hana bash
 hdbsql -u SYSTEM -p HXEHana1 -n localhost:39017 -mA
+
+
+
+Conectar si arrancar un hana:
+docker run -it --entrypoint /hana/shared/HXE/exe/linuxx86_64/HDB_2.00.045.00.1575639312_af3aabc5a5cdb94ecbc7c07d0997d0bd4ae0046b/hdbsql store/saplabs/hanaexpress:2.00.045.00.20200121.1store/saplabs/hanaexpress:2.00.045.00.20200121.1 -u USER -p PASSWORD -n "10.1.4.9:30015" -m -A
