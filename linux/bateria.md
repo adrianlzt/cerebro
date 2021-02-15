@@ -60,3 +60,11 @@ mostrar info de distintas configuraciones y estado respecto al sistema
 cpupower-gui
 cpufrequtils
 
+
+# Ahorrar energía
+sudo rfkill block bluetooth
+sudo rfkill block wifi
+Reducir brillo
+
+Quitar CPUs o reducir la frecuencia puede no ser buena idea: https://www.reddit.com/r/linuxquestions/comments/8zjyt5/will_disabling_some_cpu_cores_save_power/
+Parece que estaremos haciendo que las CPUs estén más tiempo activas trabajando más lentamente.
