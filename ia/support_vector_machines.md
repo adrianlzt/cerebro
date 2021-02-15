@@ -36,8 +36,41 @@ Si queremos obtener y=1, querremos que Θᵀx ≥ 1
 Al contrario, para y=0 querremos Θᵀx ≤ -1
 Con ≥ o ≤ 0 debería ser suficiente, pero con SVM queremos ese margen extra de seguridad.
 
-Matemáticamente esto consige que al clasificar grupos, SVM genera un "decision boundary" mejor que la regresión logística.
+Matemáticamente (la resolución del problema de minimización) esto consige que al clasificar grupos, SVM genera un "decision boundary" mejor que la regresión logística.
 SVM "dibujará" una línea que esté lo más separada posible de las muestras.
 Esa separación extra es lo que se llama "margen".
 Como la regresión logística no hace eso (podría pintar su decision boundary muy pegado a las muestras), al SVM se le llama "Large margin classifier".
 La idea, de nuevo, es que se haga una separación entre grupos, que no sea únicamente matemáticamente correcta, si no que se coloque de la forma más útil, como la colocaría un humano.
+Esto sucede si tenemos un C muy grande.
+Puede provocar que algún outlier genere una decision boundary errónea, no ignorando ese valor.
+Pero al usar valores de C no tan grandes, si generará la línea correcta.
+
+La explicación matemática: https://www.coursera.org/learn/machine-learning/lecture/3eNnh/mathematics-behind-large-margin-classification
+Suponiendo que:
+  Θᵀx ≥ 1 si yⁱ=1
+  Θᵀx ≤ -11 si yⁱ=0
+El optimization objetive es de reducir (1/2) Σ_j=0_n Θ²_j
+Que para el caso de dos features (n=2), lo podemos poner como (1/2)(Θ₁²+Θ₂²) = (1/2)(√(Θ₁²+Θ₂²))² = (1/2) ||Θ||² = un medio de la longitud del vector theta al cuadrado
+
+Ahora miramos al significado de Θᵀx
+Usando el significado del inner product (https://elsenaju.eu/Determinant/Inner-product.htm): el resultado es la longitud de la proyección de x sobre Θ multiplicado por la longitud de Θ (||Θ||).
+Usamos pⁱ como la longitud de esa proyección.
+Entonces podemos decir que: Θᵀx = pⁱ * ||Θ|| = Θ₁*x₁ + Θ₂*x₂
+
+Reescribimos nuestro objetivo de minimización:
+minimizar (1/2) ||Θ||²
+suponiendo que:
+  pⁱ * ||Θ|| ≥ 1  si  yⁱ=1
+  pⁱ * ||Θ|| ≤ -1  si  yⁱ=0
+
+Suponiendo Θ₀ (haciendo que la decision boundary pase por el cruze de los ejes)
+Se puede demostrar que Θ será perpendicular a la decision boundary.
+
+Si ahora vemos como distintos valores de las muetras se comportan en nuestro objetivo de minimización podemos ver que:
+ - queremos ||Θ|| pequeño
+ - queremos que pⁱ*||Θ|| ≥ 1 (o ≤ -1, para los casos negativos, pero que al final es buscar lo mismo, ya que la pⁱ se hace negativa al ser valores en el sentido contrario a Θ)
+ - lo que encontramos es que necesitamos que los pⁱ sean grandes, para lograr el ≥ 1 sin tener que incrementar ||Θ||
+
+Lo que conseguimos es que la decision boundary se coloque lo más "lejos" de las muestras para lograr las proyecciónes (pⁱ) lo más grandes posibles.
+
+La suposición de Θ₀ era simplemente para mostrar el ejemplo más sencillo, pero si hacemos Θ₀≠0 lo que conseguimos es poder mover el decisión boundary a cualquier parte (no obligándolo a que pase por el cruce de ejes).
