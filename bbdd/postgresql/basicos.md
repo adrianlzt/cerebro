@@ -58,7 +58,8 @@ Mostrar una fila por cada valor de cada columna
 select * from tabla;
 
 \e
-editar el último statement
+editar el último statement con un editor
+si tenemos comentarios con -- los perderemos, podemos usar /* comentario */
 
 Ayuda:
 \h

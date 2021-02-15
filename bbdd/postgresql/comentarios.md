@@ -19,3 +19,6 @@ Para ver el comentario en una columna:
 
 -- comentario en un .sql o transacción
 /* esto tambien vale */
+/* y esto tambien
+ * vale
+ */
