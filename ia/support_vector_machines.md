@@ -27,4 +27,17 @@ C * Σ_i=1_m(y^i * cost₁(Θ^T * x^i) + (1-y^i) cost₀(Θ^T * x^i)) + (1/2) Σ
 
 En vez de obtener un porcentaje de probabilidad de 1 o 0, la SVM nos da:
 h_θ(x) = {1 si Θ^T*X >= 0
-         {o en el resto de casos
+         {0 en el resto de casos
+
+Si pintamos cost₁ tenemos: una recta negativa que cae hasta x=1,y=0 y desde ahí vale y=0 para el resto de x>=1
+Para cost₀ tenemos: y=0 para x<=1 y luego una recta positiva que sale desde x=-1,y=0
+
+Si queremos obtener y=1, querremos que Θᵀx ≥ 1
+Al contrario, para y=0 querremos Θᵀx ≤ -1
+Con ≥ o ≤ 0 debería ser suficiente, pero con SVM queremos ese margen extra de seguridad.
+
+Matemáticamente esto consige que al clasificar grupos, SVM genera un "decision boundary" mejor que la regresión logística.
+SVM "dibujará" una línea que esté lo más separada posible de las muestras.
+Esa separación extra es lo que se llama "margen".
+Como la regresión logística no hace eso (podría pintar su decision boundary muy pegado a las muestras), al SVM se le llama "Large margin classifier".
+La idea, de nuevo, es que se haga una separación entre grupos, que no sea únicamente matemáticamente correcta, si no que se coloque de la forma más útil, como la colocaría un humano.
