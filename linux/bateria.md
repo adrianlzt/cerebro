@@ -56,5 +56,7 @@ tlp-stat
 mostrar info de distintas configuraciones y estado respecto al sistema
 
 
-# cpufrequtils
-Gestionar frecuencia/voltaje de la CPU
+# Gestionar frecuencia/voltaje de la CPU
+cpupower-gui
+cpufrequtils
+
