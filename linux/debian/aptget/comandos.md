@@ -3,6 +3,7 @@ apt update
 
 Instalar respondiendo a yes a todo:
   apt install -y paquete
+  apt install -y paquete=1.2.3
 
 Si un paquete se muestra como retenido (Held Back en inglés), puede ser porque no solo basta con actualizar el paquete.
 Para forzar su actualización usaremos:
