@@ -25,6 +25,7 @@ Tienen organizado el índice por supervised/unsupervised y luego todos los model
         reducir la cost function, nos ayudamos de gradient descent o normal equation
         regularización para evitar overfitting
       redes neuronales
+      svm: clasificador no lineal
     SVM
 
 

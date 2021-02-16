@@ -74,3 +74,15 @@ Si ahora vemos como distintos valores de las muetras se comportan en nuestro obj
 Lo que conseguimos es que la decision boundary se coloque lo más "lejos" de las muestras para lograr las proyecciónes (pⁱ) lo más grandes posibles.
 
 La suposición de Θ₀ era simplemente para mostrar el ejemplo más sencillo, pero si hacemos Θ₀≠0 lo que conseguimos es poder mover el decisión boundary a cualquier parte (no obligándolo a que pase por el cruce de ejes).
+
+
+
+# Kernel
+Como implementar SVM
+
+En la regresión lineal nuestras features eran polinómios.
+Ahora a esas features les cambiamos la nomenclatura, las llamamos fₙ
+
+Para generar nuestras nuevas features definimos unas "landmarks" (lⁱ), que son puntos en nuestro espacio muestral.
+Cada feature la definimos como la "semejanza" entre las muestras y cada una de las landmarks:
+f₁ = similarity (x,l¹) = exp(-(||x-l¹||²)/2σ²)  siendo (||x-l|| la distancia euclídea entre el punto x y el landmark lⁱ
