@@ -85,4 +85,30 @@ Ahora a esas features les cambiamos la nomenclatura, las llamamos fₙ
 
 Para generar nuestras nuevas features definimos unas "landmarks" (lⁱ), que son puntos en nuestro espacio muestral.
 Cada feature la definimos como la "semejanza" entre las muestras y cada una de las landmarks:
-f₁ = similarity (x,l¹) = exp(-(||x-l¹||²)/2σ²)  siendo (||x-l|| la distancia euclídea entre el punto x y el landmark lⁱ
+f₁ = similarity (x,l¹) = exp(-(||x-l¹||²)/(2σ²))  siendo (||x-l|| la distancia euclídea entre el punto x y el landmark lⁱ: Σ_j=1,m (xⱼ - lⁱⱼ)²
+
+Esta función "similarity" es lo que se llama "kernel".
+En particular, esa elección que hemos hecho se llama "Gaussian kernel".
+Existen distintos kernels.
+La notación que usamos es: k(x,lⁱ)
+
+
+Para ver como responde este kernel a distintos valores de x:
+Si x≃lⁱ, la distancia será ~0: exp(-0²/(2σ²)) ≃ exp(0) ≃ 1
+Si x está lejos de lⁱ: exp(-(large_number)²/(2σ²) ≃ exp (-(large number)) ≃ 0
+
+fₙ será 1 si la muestra x está cerca de la landmark lⁱ, 0 en caso contrario.
+Para cada muestra x, por cada landmark, obtendremos una fₙ
+
+Visto en un plano 2D (si tuvíesemos solo dos features x₁, x₂ y σ=1), si representamos f₁ como la altura (eje z) sobre ese plano, tendríamos una "montaña" justo en el punto del landmark, que llegaría hasta el valor 1, y luego bajaría rápidamente para ser 0 en el resto de puntos:
+https://imagineatness.files.wordpress.com/2011/12/gaussian.png
+https://www.google.com/search?q=exp%28-%28x%5E2%2By%5E2%29%2F2%29
+
+Si reducimos σ² logramos una pendiente más pronunciada. Si lo incrementamos, logramos una pendiente más suave.
+
+Volviendo a nuestra hipótesis, suponemos que tenemos:
+Θ₀ + Θ₁f₁ + Θ₂f₂ + Θ₃f₃ ≥ 0, que predice y=1
+Imaginando que hemos entrenado ya el modelo y terminamos con: Θ₀=-0.5, Θ₁=1, Θ₂=1, Θ₃=0
+Lo que estaríamos haciedo es un clasificador que devolvería y=1 cuando tuviésemos valores cercanos a los landmarks.
+  cuando un punto x estuviese cerca de algún landmark, valdría 1, -0.5 = 0.5 → y=1
+  cuando un punto estuviese lejos de todos los landmarks, valdría 0, -0.5 = -0.5 → y=0
