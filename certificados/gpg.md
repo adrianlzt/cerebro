@@ -28,6 +28,10 @@ Lista todas las claves aceptadas
 gpg -K
 gpg --list-secret-keys
 
+Ver info de un fichero de clave pública:
+gpg --show-keys fichero.key
+
+
 Borrar key publica
 gpg --delete-keys nombre
 
