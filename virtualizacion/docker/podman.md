@@ -303,6 +303,10 @@ https://google.github.io/kafel/ es un lenguaje para definir reglas de seccomp us
 
 
 
+# X
+podman run --net host -it -u 0 -e DISPLAY="$DISPLAY" -v ~/.Xauthority:/root/.Xauthority:Z docker.io/archlinux
+  > pacman -Sy && pacman -Ss xorg-xeyes && xeyes
+
 
 # Errores
 chown: changing ownership of ‘/var/lib/zabbix/.local/share/containers/storage/overlay/l’: Operation not permitted
