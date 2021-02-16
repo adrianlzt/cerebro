@@ -1,3 +1,5 @@
+# TODO Mirar https://medium.com/better-programming/my-ultimate-makefile-for-golang-projects-fcc8ca20c9bb
+
 # This is how we want to name the binary output
 BINARY=check_openstack
 
