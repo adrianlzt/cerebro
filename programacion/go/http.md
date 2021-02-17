@@ -60,6 +60,7 @@ https://gist.github.com/ijt/950790
 
 response,_ := http.Get("http://eth0.me")
 defer response.Body.Close()
+// IMPORTANTE! ioutil deprectaed usar io
 htmlData,_ := ioutil.ReadAll(response.Body)
 fmt.Println(string(htmlData))
 
@@ -68,6 +69,7 @@ client := &http.Client{Timeout: 10*time.Second}
 req,_ := http.NewRequest("GET", "http://eth0.me", nil)
 response,_ := client.Do(req)
 defer response.Body.Close()
+// IMPORTANTE! ioutil deprectaed usar io
 htmlData,_ := ioutil.ReadAll(response.Body)
 fmt.Println(string(htmlData))
 

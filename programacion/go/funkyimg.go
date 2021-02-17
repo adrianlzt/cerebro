@@ -57,6 +57,7 @@ func wait_for_success(jid string, link_chan chan string) {
 
 	for {
 		response, _ := http.Get(check_url)
+		// IMPORTANTE! ioutil deprectaed usar io
 		body, _ := ioutil.ReadAll(response.Body)
 		err := json.Unmarshal(body, &body_json)
 		if err != nil {
@@ -64,8 +65,8 @@ func wait_for_success(jid string, link_chan chan string) {
 		}
 		response.Body.Close()
 		if body_json.Success {
-		  break
-    }
+			break
+		}
 		time.Sleep(100 * time.Millisecond)
 	}
 
@@ -74,18 +75,18 @@ func wait_for_success(jid string, link_chan chan string) {
 }
 
 func main() {
-  if len(os.Args) != 2 {
-    fmt.Printf("Usage: funkyimg image_file")
-    return
-  }
+	if len(os.Args) != 2 {
+		fmt.Printf("Usage: funkyimg image_file")
+		return
+	}
 
-  var file = os.Args[1]
-  if _, err := os.Stat(file); err != nil {
-    log.Fatalf("File '%v' does not exists", file)
-    return
-  }
+	file := os.Args[1]
+	if _, err := os.Stat(file); err != nil {
+		log.Fatalf("File '%v' does not exists", file)
+		return
+	}
 
-  extraParams := map[string]string{}
+	extraParams := map[string]string{}
 	request, err := newfileUploadRequest("http://funkyimg.com/upload/", extraParams, "images", file)
 	if err != nil {
 		log.Fatal(err)
@@ -98,6 +99,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
+	// IMPORTANTE! ioutil deprectaed usar io
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
@@ -125,4 +127,3 @@ func main() {
 		fmt.Printf("Desisto tras 4 seg")
 	}
 }
-

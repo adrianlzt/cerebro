@@ -3,6 +3,10 @@ Nos permite recolectar información de procesos que están ejecutándose
 Sacar su stack, forzar GC, tracear, etc
 
 
+# GODEBUG
+Setting the GODEBUG environment variable to inittrace=1 now causes the runtime to emit a single line to standard error for each package init, summarizing its execution time and memory allocation. This trace can be used to find bottlenecks or regressions in Go startup performance. The GODEBUG documentation describes the format.
+
+
 
 # Delve
 https://github.com/derekparker/delve
@@ -103,6 +107,7 @@ Y en ese momento tenemos el record para hacer debug
 # Trace
 https://blog.gopheracademy.com/advent-2017/go-execution-tracer/
 
+
 ## runtime/trace
 f, _ := os.Create("trace.out")
 defer f.Close()
@@ -133,6 +138,9 @@ func trace() {
 
 Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 
+
+## mostrar el stack trace
+debug.PrintStack()
 
 
 # Numero CPUs

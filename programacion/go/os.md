@@ -1,6 +1,5 @@
 https://golang.org/pkg/os/
 
-mirar tambien ioutil.md
 mirar abajo unix
 
 file, err := os.Open("file.go") // For read access.
@@ -24,6 +23,7 @@ os.Setenv("FOO", "1")
 
 
 # ListDir (aunque es de ioutil)
+// IMPORTANTE! ioutil deprectaed usar io
 files, err := ioutil.ReadDir("./")
 if err != nil {
     log.Fatal(err)

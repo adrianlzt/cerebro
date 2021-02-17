@@ -81,3 +81,10 @@ Autocompletar
 Tab
 Autocompletar snippets
 
+
+
+# COC - Language servers
+gd   go to definition
+gr   go to references (ver donde se usa)
+gy   ir a la definición del tipo de dato (saltar a la definición del struct, por ejemplo, no a donde declaramos la variable)
+gi   implementation

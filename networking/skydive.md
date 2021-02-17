@@ -382,6 +382,14 @@ indices_to_keep
   Si elegimos dos, al rotar, si se necesita crear un tercero, se borrará el más antiguo.
 
 
+Tamaño de los índices.
+Para hacer un cálculo aproximado del tamaño que ocupan las cosas en ES podemos poner:
+1M de documentos -> 1GB
+
+Habrá que dejar un espacio extra para funcionamiento de ES (datos antes de flushearlos, etc)
+
+
+
 ## Datos permanentes
 Teóricamente a partir de esta PR se consigue permanencia en los datos (que si se reinicia el server de skydive no se pierdan los datos).
 Entiendo que usando un etcd externo

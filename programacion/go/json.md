@@ -63,6 +63,7 @@ Si queremos que este identado:
 json.MarshalIndent(data, ", "    ")
 
 Y a un fichero:
+// IMPORTANTE! ioutil deprectaed usar io
 err = ioutil.WriteFile("/tmp/dat1", res2B, 0644)
 if err != nil {
   panic(err)

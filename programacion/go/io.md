@@ -1,5 +1,3 @@
-mirar ioutil.md
-
 Tambien podemos usar bufio.NewScanner (mirar file.md)
 
 # Convertir una string a un elemento que cumpla la interfaz io.Reader
@@ -9,6 +7,7 @@ Cumple la interfaz io.ReadWriter (https://godoc.org/io#ReadWriter)
 
 
 # Convertir un Reader en una string
+// IMPORTANTE! ioutil deprectaed usar io
 ioutil.ReadAll(r io.Reader) ([]byte, error)
 
 bufio.NewReader(r io.Reader)

@@ -1,3 +1,8 @@
+A partir de go 1.16 hay un paquete en la librería estandar para esto
+https://golang.org/pkg/embed/
+
+
+
 https://github.com/markbates/pkger
 
 tool for embedding static files into Go binaries

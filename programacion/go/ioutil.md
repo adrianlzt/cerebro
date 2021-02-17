@@ -1,3 +1,8 @@
+DEPRECATED
+Usar "io" u "os"
+https://pkg.go.dev/io/ioutil
+
+
 https://golang.org/pkg/io/ioutil/
 
 Package ioutil implements some I/O utility functions.

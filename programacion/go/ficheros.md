@@ -2,6 +2,7 @@ https://gobyexample.com/reading-files
 
 
 # Leer
+// IMPORTANTE! ioutil deprectaed usar io
 import "io/ioutil"
 dat, err := ioutil.ReadFile("/tmp/dat")
 dat es []byte
@@ -31,6 +32,7 @@ if err := scanner.Err(); err != nil {
 
 
 Fichero almacenado en un slice por lineas
+// IMPORTANTE! ioutil deprectaed usar io
 mounts, err := ioutil.ReadFile("/proc/mounts")
 mounts_by_line := strings.Split(string(mounts), "\n")
 
@@ -38,6 +40,7 @@ mounts_by_line := strings.Split(string(mounts), "\n")
 https://gobyexample.com/writing-files
 
 d1 := []byte("hello\ngo\n")
+// IMPORTANTE! ioutil deprectaed usar io
 err := ioutil.WriteFile("/tmp/dat1", d1, 0644)
 if err != nil {
   panic(err)
@@ -65,6 +68,7 @@ if _, err = f.WriteString(text); err != nil {
 # Temporal
 https://golang.org/pkg/io/ioutil/#TempFile
 
+	// IMPORTANTE! ioutil deprectaed usar io
 	tmpfile, err := ioutil.TempFile("", "example")
 	if err != nil {
 		log.Fatal(err)

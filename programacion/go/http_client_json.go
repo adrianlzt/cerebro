@@ -42,6 +42,7 @@ func main() {
 	}
 	defer response.Body.Close()
 
+	// IMPORTANTE! ioutil deprectaed usar io
 	htmlData, _ := ioutil.ReadAll(response.Body)
 	var respuesta Respuesta
 	err = json.Unmarshal(htmlData, &respuesta)

@@ -7,12 +7,14 @@
 
 package main
 
-import "fmt"
-import "bytes"
-import "io/ioutil"
-import "log"
-import "time"
-import "golang.org/x/crypto/ssh"
+import (
+	"fmt"
+	"bytes"
+	"io/ioutil"
+	"log"
+	"time"
+	"golang.org/x/crypto/ssh"
+)
 
 func main() {
 	// A public key may be used to authenticate against the remote
@@ -20,6 +22,7 @@ func main() {
 	//
 	// If you have an encrypted private key, the crypto/x509 package
 	// can be used to decrypt it.
+	// IMPORTANTE! ioutil deprectaed usar io
 	key, err := ioutil.ReadFile("/home/adrian/.ssh/id_rsa")
 	if err != nil {
 		log.Fatalf("unable to read private key: %v", err)

@@ -36,6 +36,10 @@ Añadir los LS como:
   }
 }
 
+## Go
+En vez de declarar el LS usar coc-go
+https://github.com/josa42/coc-go
+
 ## Python
 Muy lento este, mejor pyright
 https://github.com/pappasam/coc-jedi
@@ -43,6 +47,9 @@ https://github.com/pappasam/coc-jedi
 
 Static checks y code completion
 https://github.com/fannheyward/coc-pyright
+
+# Snippets
+https://github.com/neoclide/coc-snippets
 
 
 # Coc-sources
