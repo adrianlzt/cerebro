@@ -361,6 +361,26 @@ Lo que hace es enviar un POST al endpoint /_bulk con dos operaciones.
 En la primera crea un nuevo documento en el índice archive con el estado actual del nodo/edge.
 En la segunda operación, selecciona un documento de ES y lo actualiza con los nuevos datos.
 
+## Parametrizacion
+storage.elastcisearch.bulk_maxdelay
+  agrupa las operaciones sobre ES durante los segundos que pongamos.
+  No evita hacer las operaciones (creación, updates), pero conseguir reducir el número de llamadas HTTP
+
+storage.elastcisearch.index_entries_limit
+  para los índices "archive", si superan este número de entradas, se genera uno nuevo
+  Si el límite es 10, cuando se llega a 10, en el próximo rolling, se genera un nuevo índice.
+  skydive_topology_archive_v13-000001
+  skydive_topology_archive_v13-000002
+  etc
+
+  El índice live no rota
+
+  El rolling de índices se ejecuta cada minuto (no es configurable https://github.com/skydive-project/skydive/blob/846fda84d07c50dc46d20688b99ff6e1b5f69449/graffiti/storage/elasticsearch/rollindex.go#L37)
+
+indices_to_keep
+  cuantos índices "archive" deben mantenerse.
+  Si elegimos dos, al rotar, si se necesita crear un tercero, se borrará el más antiguo.
+
 
 ## Datos permanentes
 Teóricamente a partir de esta PR se consigue permanencia en los datos (que si se reinicia el server de skydive no se pierdan los datos).
