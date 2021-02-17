@@ -20,6 +20,9 @@ yay --editmenu -S linux-drm-tip-git
 En ~/.cache/yay/PAQUETE tenemos los ficheros del build que hayamos hecho
 Ahí podríamos hacer modificaciones, meter parches, etc y luego hacer makepkg
 
+También podemos clonarlos el git con el PKGBUILD y hacer
+makepkg
+
 
 
 
