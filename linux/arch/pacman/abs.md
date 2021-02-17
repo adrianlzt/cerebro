@@ -3,16 +3,12 @@ https://www.archlinux.org/packages/
 
 Estos son los ficheros con los que se construyeron los paquetes. Pueden diferir de lo que haya en el svn/git (https://git.archlinux.org/)
 
-pacman -S abs
+pacman -S asp
+  asp: Arch Linux build source file management tool
 
-vi /etc/abs.conf
-Habilitar los repos de testing si los usamos
-
-Tras instalarlo ejecutar:
-abs
-
-Bajará todos los repos en /var/abs
+Bajar fuentes (PKGBUILD, parches, etc):
+asp update linux
+asp export linux
 
 
-# Compilar a mano
-usar yaourt
+mirar makepkg.md

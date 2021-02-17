@@ -84,6 +84,8 @@ Todos los servers de claves GPG están sincronizados
 http://keys.gnupg.net/
 https://pgp.mit.edu/
 Si queremos usar otro server: gpg --keyserver keys.openpgp.org ...
+O cambiarlo en ~/.gnupg/gpg.conf
+Creo que por defecto se usa el server: http://hkps.pool.sks-keyservers.net
 
 La key-id es el nombre que aparece cuando hacemos gpg -k o gpg -K al lado de la longitud de la clave. Ejemplo: "pub   2048R/403E82AF 2019-03-05" -> 403E82AF
 
@@ -96,7 +98,6 @@ gpg --search-keys email@buscado.com
 Bajarnos una key de los servers publicos:
 gpg --recv-keys key-id
 
-Creo que por defecto se usa el server: http://hkps.pool.sks-keyservers.net
 
 
 Revocar una key:

@@ -23,17 +23,10 @@ Ahí podríamos hacer modificaciones, meter parches, etc y luego hacer makepkg
 También podemos clonarlos el git con el PKGBUILD y hacer
 makepkg
 
-
-# makepkg
-Programa para hacer los builds.
-
-makepkg -o
-  baja las fuentes y ejecuta prepare() y pkgver()
-
-Podemos pasar distintos flags para ejecutar makepkg evitando ciertos pasos
-
 Si queremos pasar flags para el build (ejemplo para usar paralelización en el build):
 MAKEFLAGS=-j16 makepkg
+
+mas info en makepkg.md
 
 
 
