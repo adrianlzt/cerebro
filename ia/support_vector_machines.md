@@ -112,3 +112,16 @@ Imaginando que hemos entrenado ya el modelo y terminamos con: Θ₀=-0.5, Θ₁=
 Lo que estaríamos haciedo es un clasificador que devolvería y=1 cuando tuviésemos valores cercanos a los landmarks.
   cuando un punto x estuviese cerca de algún landmark, valdría 1, -0.5 = 0.5 → y=1
   cuando un punto estuviese lejos de todos los landmarks, valdría 0, -0.5 = -0.5 → y=0
+
+
+Posicionar landmarks
+En la práctica lo que haremos es poner una landmark por cada training sample.
+
+Una vez tenemos las landmarks, para una muestra xⁱ calcularemos todas las fₙ=similarity(x,lⁿ)
+Añadiremos también: f₀=1
+Con esto tendremos el vector fⁱ
+
+Como lⁱ se habrá posicionado en el mismo sitio que xⁱ, la feature fᵢ sabremos que es igual a 1.
+
+Para la hipótesis tendremos, que y=1 si Θᵀf ≥ 0
+Θ ∈ Rᵐ⁺¹, el vector Θ será un array de m+ elmentos (m muestras + f₀=1)
