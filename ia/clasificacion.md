@@ -1,3 +1,19 @@
+# Elegir que algoritmo usar
+Siendo
+  n = número de features
+  m = número de muestras
+
+n ≥ m, por ejemplo n=10k, m=10-1k -> logistic regression o SVM sin kernel
+n pequeño (1-1k), m mediano (10,10k) -> SVM gaussian kernel
+n pequeño (1-1k), m grande (>50k) -> añadir más features o logistic/SVM-no-kernel
+
+Las redes neuronales deberían funcionar bien para cualquier de estos casos, pero el tiempo de entrenamiento es peor
+
+SVM puede ejecutase incluso más rápido que logistic regression gracias a las optimizaciones.
+
+
+
+# Teoría para logistic regression
 En este caso queremos organizar los inputs en un número finito de grupos.
 Por ejemplo, en el caso binario de clasificación, podríamos tener el tamaño de un tumor y querer saber si es maligno o benigno.
 

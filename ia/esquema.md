@@ -24,9 +24,8 @@ Tienen organizado el índice por supervised/unsupervised y luego todos los model
         puede ser binaria o multiclase
         reducir la cost function, nos ayudamos de gradient descent o normal equation
         regularización para evitar overfitting
+      SVM: clasificador no lineal
       redes neuronales
-      svm: clasificador no lineal
-    SVM
 
 
   unsupervised learning:

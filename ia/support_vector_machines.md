@@ -125,3 +125,47 @@ Como lⁱ se habrá posicionado en el mismo sitio que xⁱ, la feature fᵢ sabr
 
 Para la hipótesis tendremos, que y=1 si Θᵀf ≥ 0
 Θ ∈ Rᵐ⁺¹, el vector Θ será un array de m+ elmentos (m muestras + f₀=1)
+
+Para obtener Θ minimizaremos la función:
+C * Σᵐᵢ₌₁(yⁱ * cost₁(Θᵀ * fⁱ) + (1-yⁱ) cost₀(Θᵀ * fⁱ)) + (1/2) Σᵐⱼ₌₁ Θ²ⱼ
+
+En las implementaciones reales en vez de usar (1/2) Σᵐⱼ₌₁ Θ²ⱼ, se suele usar Θᵀ*M*Θ, por temas de eficiencia al computar.
+Usar paquetes ya implementados para resolver Θ, es un problema complejo.
+
+
+## Parameters
+C grande (λ pequeño): lower bias, high variance (tienede a overfitting)
+C pequeño (λ grande): higher bias, low variance (tienede a underfitting)
+
+
+σ² grande, fᵢ varían lentamente: higher bias, low variance (tienede a underfitting)
+σ² pequeño, fᵢ varían rápidamente: lower bias, high variance (tienede a overfitting)
+
+
+
+# Utilizando SVM
+Tendremos que especificar el kernel que queremos y el parámetro C.
+
+## Linear kernel
+En caso de no elegir kernel (linear kernel), estaríamos usando Θᵀx≥0 (sin convertir las features a fᵢ)
+Puede ser una opció cuando tenemos muchas features (n grande) y pocas muestras (m pequeño), x ∈ Rⁿ⁺¹
+
+## Gaussian kernel
+Si elegimos usar el gaussian kernel tendremos que también elegir σ²
+Puede ser útil cuando tenemos pocas features (n pequeño y m grande)
+Puede que tengamos que implementar nosotros la función "similarity" para cada xᵢ y lᵢ
+
+Usar feature scaling antes de usar el kernel gaussian, para evitar que ciertos términos con valores muy grandes sean los dominantes al calcular la distancia.
+
+## Otros kernels
+Para que una función "similarity" tiene que satisfacer la condición "teorema de Mercer", para asegurarnos que las optimizaciones funcionan y no diverge.
+
+Polynomial kernel, de forma genérica: (xᵀl+o)ᵖ, no muy usado.
+Otros más raros: string, chi-square, histogram intersection...
+
+
+
+# Multiclass classification
+Los paquetes que usemos puede que ya lo tengan implementado.
+En caso contrario, podremos usar el método de one-vs-all
+Entrenar K SVMs diferentes (siendo K el número de grupos a distinguir) y escoger como resultado y escoger el que tenga mayor (Θⁱ)ᵀx
