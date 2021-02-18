@@ -225,6 +225,8 @@ Seleccionando por nombre (suponiendo que todos nuestros float empiezan por "f_")
 https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-templates.html
 Para definir mappings a priori apuntando a un nombre de índice que aparecerá en un futuro, por ejemplo: logs-*
 
+GET _cat/templates
+
 PUT _template/logs_template
 {
   "index_patterns": "logs-*",
