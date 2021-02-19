@@ -38,6 +38,14 @@ bluetoothctl
 > devices
 > pair 90:03:B7:77:03:7B
 
+Para buscar:
+> scan on
+Para dejar de buscar:
+> scan off
+
+Conectar:
+> connect 80:xx:xx
+
 bluetoothctl devices
   listado de dispositivos encontrados
 

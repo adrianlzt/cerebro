@@ -1,5 +1,15 @@
 PulseAudio
 
+# Admin
+Comprobar si está arrancado (devolverá RC=0)
+pulseaudio --check
+
+Restart:
+systemctl --user restart pulseaudio
+
+
+
+# Varios
 Herramienta
 pavucontrol - gestion grafica del sonido
 pacmd
@@ -36,6 +46,28 @@ Para hacerlo persistente:
 load-module module-switch-on-connect
 
 
+# Bluetooth
+Una vez conectado (mirar linux/bluetooth.md) deberemos ver en "pavucontrol" el dispositivo de entrada y salida.
+
+## HSP / HDF
+Linux tiene mal soporte para HSP/HDF.
+Hay una rama para tener mejor soporte.
+
+En arch/AUR instalar:
+yay -S hsphfpd-git
+yay -S pulseaudio-hsphfpd pulseaudio-equalizer-hsphfpd pulseaudio-bluetooth-hsphfpd
+
+Para poder instalarlo primero tengo que borrar:
+pacrem pulseaudio-bluetooth pulseaudio-alsa gnome-bluetooth blueberry
+
+Tenemos que arrancar primero hsphfpd antes de pulseaudio:
+sc-start hsphfpd
+systemctl --user restart pulseaudio
+
+
+Con los galaxy buds consigo grabar si configuro el input como perfil HFP, pero la calidad es malo (sonido lata), pero se entiende bien.
+
+
 
 # Modulo para suprimer ruido / cadmus
 https://github.com/werman/noise-suppression-for-voice
@@ -52,3 +84,4 @@ ejemplo:
 
 Desde otro navegador abrir:
 http://ip.de.mi.pc:8888/pc.mp3
+
