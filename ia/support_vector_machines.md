@@ -1,3 +1,5 @@
+Ejemplo gráfico SVM con gaussian kernel: https://i.imgur.com/n5zAIJb.png
+
 Matemáticamente se parece a la regresión logística.
 Si pintamos la gráfica de la cost function respecto a z, en vez de la curva logarítmica de la regresión logística, la svm lo parte en dos.
 Una recta de pendiente constante y luego un tramo horizontal (esto para cada una de las gráficas, y=0, y=1).
@@ -136,6 +138,9 @@ Usar paquetes ya implementados para resolver Θ, es un problema complejo.
 ## Parameters
 C grande (λ pequeño): lower bias, high variance (tienede a overfitting)
 C pequeño (λ grande): higher bias, low variance (tienede a underfitting)
+
+Con las pruebas que hecho en los ejercicios de Coursera, definiendo C << 0.1 generaba resultados completamente absurdos.
+Así que parece que C debe variar entre [0.1, 100] (no es seguro)
 
 
 σ² grande, fᵢ varían lentamente: higher bias, low variance (tienede a underfitting)
