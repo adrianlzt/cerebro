@@ -139,13 +139,10 @@ Usar paquetes ya implementados para resolver Θ, es un problema complejo.
 C grande (λ pequeño): lower bias, high variance (tienede a overfitting)
 C pequeño (λ grande): higher bias, low variance (tienede a underfitting)
 
-Con las pruebas que hecho en los ejercicios de Coursera, definiendo C << 0.1 generaba resultados completamente absurdos.
-Así que parece que C debe variar entre [0.1, 100] (no es seguro)
-
-
 σ² grande, fᵢ varían lentamente: higher bias, low variance (tienede a underfitting)
 σ² pequeño, fᵢ varían rápidamente: lower bias, high variance (tienede a overfitting)
 
+Según los ejercicios de coursera, parece que valores razonables para probar con C u σ² es una escala logarítmica entre [0.01, 30]
 
 
 # Utilizando SVM
