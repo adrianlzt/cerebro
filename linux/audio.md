@@ -52,6 +52,7 @@ Una vez conectado (mirar linux/bluetooth.md) deberemos ver en "pavucontrol" el d
 ## HSP / HDF
 Linux tiene mal soporte para HSP/HDF.
 Hay una rama para tener mejor soporte.
+Parece que el desarrollador de estas extensiones y la gente de pulseaudio están peleados de forma irreconciliable: https://github.com/pali/hsphfpd-prototype/issues/11
 
 En arch/AUR instalar:
 yay -S hsphfpd-git
