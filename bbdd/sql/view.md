@@ -13,6 +13,30 @@ WHERE condition;
 
 
 En postgres tenemos las materialized views, que almacenan los datos en el momento de creación.
+https://www.postgresql.org/docs/current/rules-materializedviews.html
+
+CREATE MATERIALIZED VIEW nombre_prueba AS
+select
+  hosts.host,
+  items.key_,
+  triggers.description,
+  events.eventid,
+  to_timestamp(events.clock),
+  acknowledges.message
+from
+  hosts
+  join hosts_groups using(hostid)
+  join groups using(groupid)
+  join items using(hostid)
+  join functions using (itemid)
+  join triggers using(triggerid)
+  join events ON (triggers.triggerid = events.objectid)
+  join acknowledges using(eventid)
+WHERE
+  groups.name like 'technical/prod/control%jobs'
+  AND events.clock > ROUND(EXTRACT(EPOCH FROM (now() - interval '2 min'))) /* solo eventos de los últimos 2 minutos */
+;
+
 
 
 Definición de una vista:
