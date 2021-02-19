@@ -37,6 +37,16 @@ WHERE
   AND events.clock > ROUND(EXTRACT(EPOCH FROM (now() - interval '2 min'))) /* solo eventos de los últimos 2 minutos */
 ;
 
+Refrescar la vista materializada:
+REFRESH MATERIALIZED VIEW mymatview;
+
+Esto volverá a ejecutar la query cambiando el now() al momento del refresh.
+
+Borrarla:
+DROP MATERIALIZED VIEW nombre;
+
+
+Parece que no se puede editar con \ev una vista materializada
 
 
 Definición de una vista:
