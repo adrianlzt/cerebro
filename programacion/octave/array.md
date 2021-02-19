@@ -6,3 +6,7 @@ c{1}
 Buscar una cadena en un array:
 strcmp(vocabList, "zip")
   nos devuelve 0 en cada posición donde no encuentre la palabra y 1 donde la encuentre
+
+Para saber la posición:
+find(strcmp(vocabList, "zip") == 1)
+  array vacio en caso de no encontrar nada
