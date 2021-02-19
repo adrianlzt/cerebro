@@ -2,6 +2,9 @@ https://kubernetes.io/docs/tasks/debug-application-cluster/debug-service/
 
 https://learnk8s.io/troubleshooting-deployments
 
+Kubernetes Failure Stories (k8s.af)
+https://news.ycombinator.com/item?id=26106080
+
 
 # Pod que no despliega por insuficientes recursos
 https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
