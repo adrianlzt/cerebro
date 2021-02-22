@@ -249,3 +249,11 @@ No funciona bien, pero puede ser útil para CGo
 
 
 # Go / ASM / reverse engineering
+
+
+
+
+# Tamaño variables / size
+https://github.com/DmitriyVTitov/size
+
+Hay otra opciones en la librería estandar, pero no "siguen" indirecciones (no vale para calcular el tamaño total de un slice, dict, etc)
