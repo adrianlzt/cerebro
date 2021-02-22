@@ -43,6 +43,15 @@ docker service create --name myservice --mount type=volume,src="{{.Task.Name}}",
 
 
 
+# Acceder a un fichero de otro mount namespace
+Lo hacemos a través de /proc/PID/root/path/al/fichero
+
+Ejemplo:
+➜ docker run --rm -it alpine sleep infinity
+➜ sudo cat /proc/$(pgrep sleep)/root/etc/alpine-release
+3.13.0
+
+
 
 # Montar un volumen en un container arrancado
 https://jpetazzo.github.io/2015/01/13/docker-mount-dynamic-volumes/

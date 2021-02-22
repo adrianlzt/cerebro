@@ -20,7 +20,7 @@ Una idea es como si tuviesemos distintas dimensiones. Y las cosas que están en 
 Un ejemplo fácil es con las redes. Podemos tener un namespace donde tengamos una interfaz configurada con una red, y otro namespace con otra interfaz distinta que esté configurada para una red completamente distinta.
 La interfaz física solo puede vivir en uno de los namespaces.
 
-/proc/[pid]/ns/ 
+/proc/[pid]/ns/
   no se para que puede servir. Siempre aparecen los mismos ficheros
 
 
@@ -32,6 +32,15 @@ El valor PID que puede tener un proceso visto desde el host es distinto que el v
 # Mount
 https://lwn.net/Articles/689856/
 https://stackoverflow.com/a/22889401
+
+Leer un fichero de otro mount NS
+Lo hacemos a través de /proc/PID/root/path/al/fichero
+
+Ejemplo:
+➜ docker run --rm -it alpine sleep infinity
+➜ sudo cat /proc/$(pgrep sleep)/root/etc/alpine-release
+3.13.0
+
 
 
 # Containers from scratch
