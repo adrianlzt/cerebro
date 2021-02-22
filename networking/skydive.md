@@ -570,13 +570,14 @@ type Backend interface {
 ## Version master 237bbd779875fd0d2743a31386c593330956c476 19/2/2021
 
 ### Skydive sin backend
-Al arrancar: 115MB
 
 Tras crear nodos distintos de 200bytes (medidos en el JSON que se envía)
 
 Nodos   |   RSS     | RATE
 10000       26        ~330 nodos/s (en modo DEBUG)
 100000      166       ~300 nodos/s (en modo INFO)
+
+Entre 1.6 y 2.6 KB/nodo
 
 
 # Version v0.27.0_datadope-2
@@ -599,5 +600,16 @@ Nodos   |   RSS     | RATE
 10k         107       67
 
 Está claro que tiene que consumir más memoria porque tiene que crear el nodo server+edge+software
+20k nodos
+10k edges
 
-Dejo corriendo esos mismos 10k nodos a las 17:04
+Dejo corriendo esos mismos 10k nodos de forma repetitiva:
+Durante 30' ha crecido 4MB
+
+
+## Sin backend. Probe proccon (procpeering quitada en código)
+Cuando consume proccon y como afecta
+
+121MB
+Nodos   |   RSS     | RATE
+10k                     
