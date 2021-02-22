@@ -54,6 +54,10 @@ Bug haciendo logging, workaround:
 https://github.com/joblib/joblib/issues/634#issuecomment-367321025
 
 
+## Distibuir carga en varios sistemas
+Podemos hacerlo con el backend "ray"
+
+
 
 # Logging/tracing
 The different functionalities will progressively acquire better logging mechanism to help track what has been ran, and capture I/O easily. In addition, Joblib will provide a few I/O primitives, to easily define logging and display streams, and provide a way of compiling a report. We want to be able to quickly inspect what has been run.

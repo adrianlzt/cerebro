@@ -16,6 +16,18 @@ x_train, x_test, y_train, y_test = train_test_split(pd.read_csv('input/train.csv
 No generaremos el CV set, ya que las funciones de cross validation lo harán automáticamente, entrenando el modelo y testeandolo con diferentes split de training y cv sets.
 
 
+## Normalizar
+https://scikit-learn.org/stable/modules/preprocessing.html#preprocessing-normalization
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html
+
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+MinMaxScaler().fit_transform(v.reshape(-1,1))
+  normaliza todos los valores al rango [0,1]
+
+StandardScaler().fit_transform(v.reshape(-1,1))
+  elimina la media y hace la variancia = 1
+
+
 ## Polynomial features / aumentar complejidad de los parámetros
 https://stackoverflow.com/a/55944716/1407722
 
@@ -78,6 +90,12 @@ Para cada hoja nos muestra una gráfica con los grupos y probabilidades.
 
 ## SVM
 https://scikit-learn.org/stable/modules/svm.html
+https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC
+
+
+### Gaussian kernel / RBF
+Elegir los parámetros C y γ: https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html#sphx-glr-auto-examples-svm-plot-rbf-parameters-py
+Normalizar!
 
 
 
@@ -100,6 +118,22 @@ from sklearn.model_selection import cross_val_score
 cross_val_score(clf, train[features], train[target])
 
 
+# Buscar parámetros óptimos
+https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html#sphx-glr-auto-examples-svm-plot-rbf-parameters-py
+
+Ejemplo para SVM con gaussian kernel, donde buscamos los parámetros C y γ:
+C_range = np.logspace(-2, 10, 13)      # 13 valores desde -2 hasta 10, con escala logarítmica
+gamma_range = np.logspace(-9, 3, 13)   # 13 valores desde -9 hasta 3, con escala logarítmica
+param_grid = dict(gamma=gamma_range, C=C_range)
+cv = StratifiedShuffleSplit(n_splits=5, test_size=0.2, random_state=42)  # Como vamos a dividir los datos entre train y test set (20%). Se crearán 5 grupos distintos
+grid = GridSearchCV(svm.SVC(), param_grid=param_grid, cv=cv)  # Empezamos la búsqueda de parámetros óptimos
+grid.fit(X, y)
+
+print("The best parameters are %s with a score of %0.2f"
+      % (grid.best_params_, grid.best_score_))
+
+
+
 
 # Plot / dibujar
 Cuando queramos graicos generados directamente por scikit debemos crear a priori una fig con matplotlib
@@ -118,3 +152,21 @@ from matplotlib import pyplot as plt
 fig = plt.figure(figsize=(25,20))
 df.plot.hist(bins=12, alpha=0.5)
 plt.show()
+
+
+
+# Paralelizar
+https://medium.com/distributed-computing-with-ray/how-to-speed-up-scikit-learn-model-training-aaf17e2d1e1
+
+Para usar más CPUs
+from joblib import parallel_backend
+with parallel_backend(backend="loky"):
+    grid.fit(X, y)
+
+También podemos aprovechar una red distribuída (varios computadores) con backend="ray"
+
+
+# GPU
+No hay soporte
+https://scikit-learn.org/stable/faq.html#will-you-add-gpu-support
+
