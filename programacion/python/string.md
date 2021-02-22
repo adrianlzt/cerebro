@@ -231,6 +231,10 @@ como antes pero identado a la derecha
 '{:06.2f}'.format(3.141592653589793)
 003.14
 
+>>> f'{314:010d}'
+'0000000314'
+
+
 
 
 ## Comparación ##

@@ -333,6 +333,9 @@ nodes[0].metadata
 
 restclient.noderule_create("create", {"Name": "pruebavm3", "Type": "libvirt"})
 
+res = graffiti.node_create(node_id=node_id, metadata=metadata).repr_json()
+
+
 
 En la respuesta nos devuelve un json con lo que ha creado.
 No nos avisa si alguna de las queries no ha hecho match.
@@ -559,3 +562,18 @@ type Backend interface {
   IsHistorySupported() bool
 }
 
+
+
+
+# Performance
+
+## Version master 237bbd779875fd0d2743a31386c593330956c476 19/2/2021
+
+### Skydive sin backend
+Al arrancar: 115MB
+
+Tras crear nodos distintos de 200bytes (medidos en el JSON que se envía)
+
+Nodos   |   RSS
+1000        131
+10000       
