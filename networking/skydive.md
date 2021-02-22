@@ -574,6 +574,30 @@ Al arrancar: 115MB
 
 Tras crear nodos distintos de 200bytes (medidos en el JSON que se envía)
 
-Nodos   |   RSS
-1000        131
-10000       
+Nodos   |   RSS     | RATE
+10000       26        ~330 nodos/s (en modo DEBUG)
+100000      166       ~300 nodos/s (en modo INFO)
+
+
+# Version v0.27.0_datadope-2
+
+## Sin backend. Probes no configuradas
+Nodos   |   RSS     | RATE
+10k         24        345
+
+## Sin backend. Probes proccon y procpeering
+Nodos con Metadata.TCPConn y TCPListen con una ip:puerto cada uno.
+Nodos   |   RSS     | RATE
+10k         19        380
+
+## Sin backend. Probes proccon y procpeering
+Nodos entrando mediante proccon
+Velocidad cae según inyectamos más nodos.
+Desde unos 300 hasta 67 nodos/s
+
+Nodos   |   RSS     | RATE
+10k         107       67
+
+Está claro que tiene que consumir más memoria porque tiene que crear el nodo server+edge+software
+
+Dejo corriendo esos mismos 10k nodos a las 17:04
