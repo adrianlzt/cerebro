@@ -80,7 +80,7 @@ La suposición de Θ₀ era simplemente para mostrar el ejemplo más sencillo, p
 
 
 # Kernel
-Como implementar SVM
+Los SVM soportan distintas funciones de decisión.
 
 En la regresión lineal nuestras features eran polinómios.
 Ahora a esas features les cambiamos la nomenclatura, las llamamos fₙ
@@ -90,7 +90,7 @@ Cada feature la definimos como la "semejanza" entre las muestras y cada una de l
 f₁ = similarity (x,l¹) = exp(-(||x-l¹||²)/(2σ²))  siendo (||x-l|| la distancia euclídea entre el punto x y el landmark lⁱ: Σ_j=1,m (xⱼ - lⁱⱼ)²
 
 Esta función "similarity" es lo que se llama "kernel".
-En particular, esa elección que hemos hecho se llama "Gaussian kernel".
+En particular, esa elección que hemos hecho se llama "Gaussian kernel", también lo podemos encontrar como RBF, donde cambian 1/(2σ²) por γ
 Existen distintos kernels.
 La notación que usamos es: k(x,lⁱ)
 
@@ -152,8 +152,9 @@ Tendremos que especificar el kernel que queremos y el parámetro C.
 En caso de no elegir kernel (linear kernel), estaríamos usando Θᵀx≥0 (sin convertir las features a fᵢ)
 Puede ser una opció cuando tenemos muchas features (n grande) y pocas muestras (m pequeño), x ∈ Rⁿ⁺¹
 
-## Gaussian kernel
+## Gaussian kernel / RBF (es el que hemos explicado anteriormente)
 Si elegimos usar el gaussian kernel tendremos que también elegir σ²
+También lo podemos encontrar con el nombre RBF, donde cambian 1/(2σ²) por γ
 Puede ser útil cuando tenemos pocas features (n pequeño y m grande)
 Puede que tengamos que implementar nosotros la función "similarity" para cada xᵢ y lᵢ
 

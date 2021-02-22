@@ -30,6 +30,12 @@ poly.fit_transform(np.array([[1,2],[2,3]]))
 En la primera fila tendremos: 1, 2, 1², 1*2, 2²
 Convertirá los valores (x₁, x₂) en (x₁, x₂, x₁², x₁*x₂, x₂²)
 
+Ejemplo cuando tenemos ya X e Y:
+poly = PolynomialFeatures(degree = 2, interaction_only=False, include_bias=False)
+X = poly.fit_transform(X)
+Xtest = poly.fit_transform(Xtest)
+
+
 
 
 
@@ -67,6 +73,12 @@ plt.show()
 
 Una visualización mucho mejor para este caso es https://github.com/parrt/dtreeviz#classification-decision-tree
 Para cada hoja nos muestra una gráfica con los grupos y probabilidades.
+
+
+
+## SVM
+https://scikit-learn.org/stable/modules/svm.html
+
 
 
 
