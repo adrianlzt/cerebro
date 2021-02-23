@@ -245,6 +245,11 @@ Si queremos obtener añadir los links a partir de un filtro:
 http://skydive.network/swagger/
 http://skydive.network/documentation/api#topologyflow-request
 
+Estado de skydive, que probes tiene cargadas, publishers, subscribers, etc
+curl localhost:8082/api/status
+
+
+
 Podemos ver como funciona "skydive client"
 
 node/edge VS noderule/edgerule
@@ -596,7 +601,7 @@ Nodos entrando mediante proccon
 Velocidad cae según inyectamos más nodos.
 Desde unos 300 hasta 67 nodos/s
 
-Nodos   |   RSS     | RATE
+Req     |   RSS     | RATE
 10k         107       67
 
 Está claro que tiene que consumir más memoria porque tiene que crear el nodo server+edge+software
@@ -610,6 +615,38 @@ Durante 30' ha crecido 4MB
 ## Sin backend. Probe proccon (procpeering quitada en código)
 Cuando consume proccon y como afecta
 
-121MB
-Nodos   |   RSS     | RATE
-10k                     
+El rate cae a 200 ya en 10% y a 100 en 30%
+
+Req     |   RSS     | RATE
+10k         79         67
+30k         233        25
+
+10k req generan: 20k nodos y 10k edges
+30k req generan: 60k nodos y 30k edges
+
+
+## Jugando con lo benchmarks de los tests de procpeering
+0.97 KB cada nodo, solo con Metadata Name, Key, TCPConn vacio y TCPListen vacío
+1.1  KB cada edge, con Metadata.RelationType y Destination
+
+1.32 KB cada nodo, solo con Metadata Name, Key, TCPConn vacio y TCPListen con una conex.
+2.47 KB cada nodo con lo anterior más el índice de conex listen
+1.14 KB de índice listen por nodo
+
+1.62 KB cada nodo, solo con Metadata Name, Key, TCPConn con una conex y TCPListen con una conex.
+4.00 KB cada nodo con lo anterior más índices
+2.34 KB de índices (conn y listen)
+
+2.34  KB cada nodo con 10 conex en tcp y 10 en listen, 70 bytes por conex
+10.25 KB cada nodo con lo anterior más índices
+8.00  KB de índices, 20B de índice por conex
+
+
+Cálculo uso de memoria:
+Nnodos * (1 + 0.068 * Nconex/nodo) + Nedges * 1.1
+
+
+
+## Metiendo size.Of en el código del procpeering y graph.
+Start: 134.3 MB RSS y listenIndexer=16 connIndexer=16 GraphNodes=8 GraphEdges=8
+10 MB RSS -> GraphNodes=324936
