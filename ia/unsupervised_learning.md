@@ -30,7 +30,7 @@ Repitiendo este algoritmo cada vez vamos logrando una mejor agrupación hasta qu
 
 
 Este algoritmo tiene como datos de entrada:
- - K: número de clusters
+ - K: número de clusters (siempre menos a m, no tendría mucho sentido lo contrario)
  - training set: x¹, x², ..., xᵐ
 
  xⁱ ∈ |Rⁿ (aqui no se usa lo de x₀=1)
@@ -59,3 +59,60 @@ Puede que tengamos datos sin una clara separación.
 K-means funcionará igualmente.
 Un ejemplo es cuando se hace market segmentation, donde no va a existir una separación clara.
 Lo que se hace es crear K grupos y luego adaptar nuestras políticas a cada uno de esos grupos, según K-means los ha separado.
+
+
+
+### Optimization objective
+Añadimos otra notación μ_cⁱ = que será el centroid para la muestra i
+
+Cost function = Distortion = J(c¹,...,cᵐ,μ₁,...,μₖ) = (1/m) ∑ᵢ₌₁,ₘ ||xⁱ-μ_cⁱ||²
+Queremos minimizar J para los distintos parámetros que tiene.
+
+En el algoritmo que pusimos, es posible demostrar que la parte de asignación al centroid más próximo está consiguiendo minimizar J para c¹,...,cᵐ, manteniendo μ₁,...,μₖ fijos.
+La segunda paso también se puede demostrar que minimiza J con respecto a μ₁,...,μₖ.
+
+Si pintamos la gráfica de J según el número de iteraciones, deberá ser una gráfica siempre decreciente.
+
+
+
+### Inicializar los centroids
+Como generalmente se hace esta asignación es eligiendo de manera random K muestras y poniendo ahí los centroids.
+
+Dependiendo de la inicialización podríamos terminar con valores de J que sean mínimos locales pero no el mínimo global (agrupaciones que satisfacen al algoritmo pero que no son las mejores).
+Para mitigar en lo posible este problema, lo que se suele hacer es ejecutar el algoritmo varias veces haciendo, donde cada una eligirá las muestras donde inicializar los centroids.
+Normalmente haremos esto entre 50 y 1000 veces.
+
+for i=1:100
+  inicializar centroids
+  ejecutar K-means
+  calcular distortion (J)
+
+Elegir el clustering con menor J.
+
+Esta estrategía funcionará para K entre 2 y 10.
+Si tenemos un valor de K muy grande, normalmente una única iteración nos dará un resultado bueno, que no mejoraremos haciendo estas múltiples ejecuciones.
+
+
+
+### Elegir el número de clusters (K) / Elbow method
+Normalmente lo haremos manualmente visualizando los datos. O sabiendo lo que buscamos.
+Algunas veces no será evidente el número de clusters que queremos. Algunas personas pueden decir un número y otras uno distinto.
+
+Lo que podemos usar es graficar J (eje Y) respecto al número de clusters (eje X).
+
+Al pintar esta gráfica deberemos ver según vamos aumentando K se va reduciendo J.
+Debería existir un punto característico donde el ratio de descenso cambia de golpe, este sería el "codo" de la gráfica.
+Este algoritmo sugiere que escojamos ese valor como K.
+
+Pero algunas veces tendremos una curva muy suave donde no estará claro donde está el "codo".
+
+Por lo que este algoritmo puede funcionar, pero no podemos esperar que lo haga siempre.
+
+
+Ejemplo de elegir K cuando sabemos lo que buscamos.
+Por ejemplo tenemos dos features, peso y altura, y queremos hacer unos grupos de tallas de camisetas.
+Elegiremos el valor de K tomando en cuenta que implica para el negocio:
+  - K mayor, camisetas que se ajustan más a cada cliente
+  - K menor, menos costes de producción, camisetas más baratas
+
+Esto lo que quiere mostrar es que seguramente elegir K sea un tradeoff. Otro ejemplo, comprimir una imagen, será un tradeoff entre calidad y tamaño del fichero.
