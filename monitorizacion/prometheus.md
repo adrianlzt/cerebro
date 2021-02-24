@@ -10,7 +10,10 @@ Tambien ofrecen un alertmanager
 
 Para aplicaciones short-lived, existe un pushgateway para que luego prometheus las recoga de alli.
 
-Parece que prometheus esta estandarizando un poco como se deben exponer las métricas.
+Parece que prometheus esta estandarizando un poco como se deben exponer las métricas (mismo formato que OpenTSDB)
+https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels
+https://prometheus.io/docs/instrumenting/writing_exporters/
+
 Luego otros agentes (Telegraf por ejemplo) pueden leer ese formato.
 
 Lo estandar es publicar las métricas en: URL/metrics
