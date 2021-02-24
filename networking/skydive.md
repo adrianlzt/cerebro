@@ -650,3 +650,20 @@ Nnodos * (1 + 0.068 * Nconex/nodo) + Nedges * 1.1
 ## Metiendo size.Of en el código del procpeering y graph.
 Start: 134.3 MB RSS y listenIndexer=16 connIndexer=16 GraphNodes=8 GraphEdges=8
 10 MB RSS -> GraphNodes=324936
+
+
+## Simulando
+50k hosts "estáticos"
+2k hosts "dinámicos" (que reciben métricas de telegraf de conex)
+5 softwares por host dinámico
+4 listener por software
+8 conexiones por software
+
+Sin los nodo estáticos: 380MB de RSS
+Con los nodos estáticos: 515MB de RSS
+
+Al meter los nodos estáticos ha subido mucho el consumo de CPU.
+Ha pasado de prácticamente no consumir (1-2%) a estar constántemente alrededor del 170%.
+Posíblemente ahora cada búsqueda de un host es más costosa.
+
+El rate al que proccon acepta métricas también ha caído mucho, a 3 por segundo aprox.
