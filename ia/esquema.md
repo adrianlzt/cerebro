@@ -31,7 +31,11 @@ Tienen organizado el índice por supervised/unsupervised y luego todos los model
   unsupervised learning:
     clustering:
       k-means
+
+
+  Útiles para los modelos:
     dimensionality reduction
+      PCA
 
 
 
