@@ -109,3 +109,32 @@ Elegiremos el valor de K tomando en cuenta que implica para el negocio:
   - K menor, menos costes de producción, camisetas más baratas
 
 Esto lo que quiere mostrar es que seguramente elegir K sea un tradeoff. Otro ejemplo, comprimir una imagen, será un tradeoff entre calidad y tamaño del fichero.
+
+
+
+## Compresión de una imagen
+Se convierte la imagen a una matriz 3D con: posición X, posición Y, color.
+El color será un número entre 0 y 255 (en caso de una imagen de 24 bits).
+Por ejemplo, el pixel (1,1) tendría los colores (0.8588, 0.7059, 0.4039)
+> A(1,1,1)
+ans = 0.8588
+> A(1,1,2)
+ans = 0.7059
+> A(1,1,3)
+ans = 0.4039
+
+
+Reordenamos la matriz en NumPixels x 3.
+En cada fila tendremos un pixel con sus colores
+Luego aplicaremos K-means sobre esa matriz (por ejemplo, K=16 para comprimir a 16 colores)
+Elegimos los centroids de forma aleatoria sobre algúnos de los píxeles.
+Y luego k-means va iterando.
+Lo que conseguimos es mover los centroids a los colores que consigan representar la imagen de la mejor forma.
+Ahora cada pixel los asignamos al centroid más cercano (cambiamos cada color por uno de los del centroid).
+Reorganizamos los pixels en el formato de imagen y ya tenemos nuestra imagen comprimida.
+
+La imagen original ocupaba 128x128x24 (imagen cuadrada de 128 pixels, con 24 bits de color)
+
+La imagen comprimir 128x128x4 + 16x24 (mismos pixels, pero está vez solo con 16 colores, 4 bits. Y 16x24 son el mapeo de esos 16 colores a los 24 bits que nos dicen el color usado)
+
+Jugando con los centroids elegidos podemos convertir la imagen a escala de grises, b/n, solo colores primarios, etc.
