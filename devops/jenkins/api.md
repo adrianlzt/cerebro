@@ -75,6 +75,8 @@ curl "http://localhost:8080/createItem?name=pruebaCurl" -H "Content-Type: applic
 Tenemos que desactivar CSRF (no recomendado https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184#issuecomment-589971864 https://twitter.com/danielbeck/status/1214346538618621964) o primero pedir un crumb:
 curl -u admin:admin -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
 
+CUIDADO! Parece que ya no funciona lo del crumb, usar user+token
+
 https://stackoverflow.com/questions/38137760/jenkins-rest-api-create-job
 http://www.inanzzz.com/index.php/post/jnrg/running-jenkins-build-via-command-line
 
