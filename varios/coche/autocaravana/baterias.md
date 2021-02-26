@@ -80,7 +80,7 @@ Conectores Fn de Ultracell https://ultracell.co.uk/www.ultracell.co.uk/downloads
 
 
 # Baterias en paralelo
-Dichero por Lulukabaraka, distribuidor de Ultracell en España:
+Dicho por Lulukabaraka, distribuidor de Ultracell en España:
 
 No es un problema colocar las baterías en paralelo.
 Lo que no puedes o no deberías hacer, es colocar en paralelo baterías de distintas edades, ejemplo, una batería de 5 años con una de nueva.
