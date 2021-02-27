@@ -5,3 +5,4 @@ Hay tres tipos de scope para las credentials
 
 
 Por defecto jobs jobs corren en el scope SYSTEM. Podemos instalar el plugin "Authorize project" para que corran como un usuario, de manera que tengan acceso a las credenciales de ese user
+No funciona cambiar ese parámetro con JCASC https://github.com/jenkinsci/authorize-project-plugin/pull/44
