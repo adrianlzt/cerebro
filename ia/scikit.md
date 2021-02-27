@@ -170,3 +170,14 @@ También podemos aprovechar una red distribuída (varios computadores) con backe
 No hay soporte
 https://scikit-learn.org/stable/faq.html#will-you-add-gpu-support
 
+
+
+# Imágenes / scikit-image
+https://scikit-image.org/
+
+## Importar imagen
+Nos da un array de numpy
+
+from skimage import io
+moon = io.imread(filename)
+  usar parámetro as_gray=True si queremos una matriz 2d en vez 3d (rgb + alpha)

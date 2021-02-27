@@ -9,6 +9,9 @@ np.array([[1,2,3],[4,5,6]])
 Dimensiones, nos devuelve una tupla (filas,columnas):
 A.shape
 
+Número total de elementos (si es 2D, filas x columnas)
+A.size
+
 X[0:3,:]
   coger las tres primeras filas
 
@@ -33,3 +36,9 @@ np.linalg.pinv(A)
 
 Matriz identidad (ejemplo 4x4):
 np.identity(4)
+
+
+Flatten / aplanar
+a = np.array([[1,2], [3,4]])
+a.flatten()
+> array([1, 2, 3, 4])
