@@ -42,3 +42,11 @@ Flatten / aplanar
 a = np.array([[1,2], [3,4]])
 a.flatten()
 > array([1, 2, 3, 4])
+
+
+Insertar un row en una matriz (añade más elementos a la matriz)
+np.insert(a, 2, [50, 60, 70], axis=0)
+  inserta ese vector en la tercera posición (2) como fila
+
+np.insert(a, 1, [55, 66], axis=1)
+  inserta ese vector en la segunda posición como vector columna
