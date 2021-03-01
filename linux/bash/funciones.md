@@ -10,3 +10,7 @@ otra () {
 Podemos ponerlas en el .bashrc o escribirlas directamente en la shell
 
 
+El "return" de la función será los echo que saquemos
+
+Para llamarla:
+$(nombre_func)
