@@ -2,6 +2,7 @@ Copiar ficheros entre el host y el container
 
 COPY mejor que ADD
 
+COPY --chmod=755 --chown=foo orig /dest/ino
 
 COPY dir/ /dest/path/
   copia el contenido de dir en /dest/path
