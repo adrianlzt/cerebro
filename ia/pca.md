@@ -14,6 +14,9 @@ Usar regularización en vez de PCA para esto.
 No usar PCA por defecto. Intentar simempre usar los datos "crudos", ya que contienen toda la información. Solo si eso no nos vale, usar PCA.
 
 Ejemplo del efecto de PCA en una imagen: https://slideplayer.com/slide/4923694/16/images/26/PCA+for+image+compression.jpg
+Por ejemplo, para el caso de varias muestras que son caras de gente.
+Lo que está haciendo PCA es generar K patrones de cara distintos y asocia cada cara original a uno o varios patrones.
+Podríamos pensar que estos patrones son: nariz, orejas, ojos, boca, etc. Y para cada cara le va poniendo los patrones necesarios para generar la cara que necesita.
 
 
 
@@ -30,7 +33,7 @@ Pero el procedimiento para conseguir estos valores no es complejo.
 Primero calcularemos la matriz covariante (esa matriz se llama sigma Σ, cuidado que se parece mucho al símbolo de sumatorio ∑)
 
 Σ = (1/m) ∑ᵢ₌₁,ₙ (xⁱ)(xⁱ)ᵀ = (1/m) * Xᵀ * X   (vectorizada)
-Σ ∈ |Rⁿˣⁿ
+Σ ∈ ℝⁿˣⁿ
 
 Ahora calcularemos los "eigenvectors" de la matriz Σ. Esto se hará con una función llamada "singular value decomposition".
 En octave sería:
@@ -38,12 +41,12 @@ En octave sería:
 U otra opción válida para nuestro caso (para la matriz Σ), pero menos estable numéricamente:
 [U,S,V] = eig(Sigma)
 
-U ∈ |Rⁿˣⁿ
+U ∈ ℝⁿˣⁿ
 Esta matriz contendrá los vectores donde queremos realizar la proyección de nuestros datos.
 A cada vector de U le llamaremos u¹,...uⁿ
 Usaremos los primeros k vectores de esa matriz para reducir la dimensionalidad de n a k.
 
-Al coger los primeros k vectores de U generamos otra matriz que llamaremos U_reduce ∈ |Rⁿˣᵏ
+Al coger los primeros k vectores de U generamos otra matriz que llamaremos U_reduce ∈ ℝⁿˣᵏ
 Para convertir cada muestra (x) al nuevo subespacio haremos:
 z = U_reduceᵀ * x
 Las dimensiones serán: k x n * n x 1 -> k x 1
@@ -99,10 +102,10 @@ Con esto, iremos probando diferentes valores de k hasta lograr el porcentaje de 
 
 
 ## Ejemplo usando PCA para acelerar un algoritmo de ML
-Tenemos una imagen de 100x100 pixels y su label ( (x¹,y¹),...(xᵐ,yᵐ) ), esto nos da x∈|R¹⁰⁰⁰⁰
+Tenemos una imagen de 100x100 pixels y su label ( (x¹,y¹),...(xᵐ,yᵐ) ), esto nos da x∈ℝ¹⁰⁰⁰⁰
 
 Lo que hacemos es extraer todos los inputs (x¹,...xᵐ) de nuestras muetras y aplicar PCA.
-Esto nos dará un nuevo conjunto de datos (z¹,...zᵐ), por ejemplo de x∈|R¹⁰⁰⁰
+Esto nos dará un nuevo conjunto de datos (z¹,...zᵐ), por ejemplo de x∈ℝ¹⁰⁰⁰
 
 Luego usaremos un algoritmo de ML que nos dará una hipótesis basada en esos z:
 h_Θ(z)

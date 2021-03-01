@@ -1,0 +1,1 @@
+../programacion/matematicas/distribucion_de_gauss.md

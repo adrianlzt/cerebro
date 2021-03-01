@@ -26,14 +26,14 @@ Este algoritmo tiene como datos de entrada:
  - K: número de clusters (siempre menos a m, no tendría mucho sentido lo contrario)
  - training set: x¹, x², ..., xᵐ
 
- xⁱ ∈ |Rⁿ (aqui no se usa lo de x₀=1)
+ xⁱ ∈ ℝⁿ (aqui no se usa lo de x₀=1)
  n: número de features
  m: número de muestras
  k: será el número de cluster al que nos estamos refiriendo
 
 
 Algoritmo:
-  1. Inicializar los centroids: μ₁, μ₂, ..., μₖ ∈ |Rⁿ
+  1. Inicializar los centroids: μ₁, μ₂, ..., μₖ ∈ ℝⁿ
   Repetir:
     for i=1:m
       cⁱ = índice (entre 1 y K) del centroid más próximo a xⁱ (minₖ||xᵢ-μₖ||²). c²=4 quiere decir que la segunda muestra se ha asignado al cluster 4

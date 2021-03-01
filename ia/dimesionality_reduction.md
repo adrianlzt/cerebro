@@ -10,7 +10,7 @@ Si quitamos una de esas dos features no perdemos información y conseguimos redu
 
 Otro ejemplo sería si tuvíesemos una feature que fuese las habilidades de un piloto y su disfrute pilotando. Seguramente esas dos estén fuertemente correladas, por lo que la podríamos cambiar por algo tal vez tipo la aptitud del piloto.
 
-Si originalmente teníamos x¹ ∈ |R² ahora tendremos z¹ ∈ |R
+Si originalmente teníamos x¹ ∈ ℝ² ahora tendremos z¹ ∈ ℝ
 Habremos reducido su dimensión, antes era (x₁¹, x₂¹) ahora z₁¹.
 Lo hemos logrando proyectando el número sobre una línea.
 
