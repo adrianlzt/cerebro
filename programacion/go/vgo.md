@@ -29,6 +29,9 @@ go mod siempre eligirá la versión mínima necesaria de cada módulo (en el cas
 https://github.com/golang/go/wiki/Modules#version-selection
 Esto se hace para evitar fallos por upgrades automáticos que puedan romper cosas.
 
+A partir de 1.13 está activado por defecto.
+Si queremos forzar su desactivación (build de paquetes que usan sistemas antiguos) GO111MODULE=off go ...
+
 
 # Uso
 cd mi/path
