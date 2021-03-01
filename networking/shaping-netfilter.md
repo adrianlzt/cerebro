@@ -59,6 +59,9 @@ iptables -t mangle -F
 tc qdisc add dev eth0 root netem delay 100ms 10ms
   100+10ms de delay de paquetes salientes
 
+Quitarlo:
+tc qdisc del dev eth0 root netem delay 100ms 10ms
+
 Tambien con TFB (token bucket filter)
 
 ## Delay incoming packets
