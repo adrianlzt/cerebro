@@ -15,3 +15,16 @@ fi
 
 Cadena alfanumerica de 32 caracteres
 cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+
+
+
+Coger un elemento aleatorio de una lista
+function ref { # Random Element From
+  declare -a array=("$@")
+  r=$((RANDOM % ${#array[@]}))
+  printf "%s\n" "${array[$r]}"
+}
+
+$(ref uno dos tres)
+nos dará uno de los tres.
+
