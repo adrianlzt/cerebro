@@ -1,6 +1,11 @@
 Vamos a crear un módelo p(x) que nos de la probabilidad de tener una serie de features.
 Si para p(x_test) < ε, lo marcaremos x_test como anómalo, ya que tiene una probabilidad muy baja de ocurrir.
 
+Este modelo funciona mejor que supervised learning cuando tenemos muchas muestras negativas y unas pocas positivas.
+Si tenemos muchas negativas y positivas mejor usar supervised learning.
+Podemos verlo con que hay muchos tipos de anomalías, por lo que conseguir suficientes muestras anómalas para entrenar el sistema sería complicado.
+También dependerá la elección si consideramos que las futuras anomalías serán parecidas a las que hemos ya recolectado.
+
 El típico ejemplo es detección de fraude. Modelando la actividad de los usuarios, creando el modelo y luego viendo que usuarios tienen baja probabilidad.
 
 También para monitorización de sistemas.
@@ -53,3 +58,25 @@ Prediciremos el valor del CV set y calcuaremos el F₁-score (también podríamo
 Ajustaremos ε para maximizar este F₁-score.
 
 Si queremos saber si añadir/quitar otros parámetros nos ayuda, usaremos este F₁-score con el test set para ver si estamos mejorando o empeorando.
+
+
+
+# Como elegir las features
+Lo mejor es coger features que tengan una distribución gausiana.
+Si no la tienen, el algoritmo puede funcionar, pero no tan bien.
+Podemos ver la distribución con un histograma.
+
+Podemos aplicar transformaciones a los datos para lograr que la distribución se parezca más a una gausiana.
+Por ejemplo:
+  x₁ → log(x₁)
+  x₂ → log(x₂+c)
+  x₃ → x₃^(1/2)
+  x₄ → x₄^(1/3)
+
+
+Otro problema típico es encontrarnos que p(x) tiene valores similares para valores anómalos y normales.
+Lo que podremos hacer es analizar alguno de los casos anómalos y ver que features podríamos añadir con las que consigamos distinguir ese caso de los normales.
+
+Elegir features que varien mucho también será una buena estrategía para poder diferenciar correctamente las muestras.
+
+También podemos crear features combinando otras y usando transformaciones, por ejemplo cpu²/network_traffic
