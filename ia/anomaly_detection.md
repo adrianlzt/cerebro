@@ -1,3 +1,5 @@
+Mirar distribucion_de_gauss.md
+
 Vamos a crear un módelo p(x) que nos de la probabilidad de tener una serie de features.
 Si para p(x_test) < ε, lo marcaremos x_test como anómalo, ya que tiene una probabilidad muy baja de ocurrir.
 
@@ -80,3 +82,38 @@ Lo que podremos hacer es analizar alguno de los casos anómalos y ver que featur
 Elegir features que varien mucho también será una buena estrategía para poder diferenciar correctamente las muestras.
 
 También podemos crear features combinando otras y usando transformaciones, por ejemplo cpu²/network_traffic
+
+
+
+# Problemas al usar múltiples gausianas univarantes
+Con gausianas univariantes podemos tener casos de muestras anómalas (por su distribución en varias variables), pero que para cada variable tenga un valor en el rango "normal".
+Por ejemplo, tenemos un sistema de detección de anomalías que usa la CPU y memoria. Tal vez tenemos un servidor con un uso muy alto de memoria pero muy poca CPU, que representado respecto al resto de muestras se ve como una anomalía. Pero si analizamos p(x) aisladamente para la memoria y para la CPU, los valores entran en rangos normales.
+Para solventar estos problemas usaremos gausianas multivariantes.
+
+
+
+# Algoritmo con gausiana multivariante
+Si ahora tenemos {x¹,x²,...xᵐ} con x ∈ ℝⁿ, para obtener los parámetros haremos:
+μ = (1/m) ∑ᵢ₌₁,ₘ xⁱ
+Σ = (1/m) ∑ᵢ₌₁,ₘ (xⁱ - μ)(xⁱ - μ)ᵀ
+
+
+Cuando tengamos una muestra, calcularemos p(x) con la fórmula de gausiana multivariante y decidiremos si es anómala si la probabilidad es menor a ε
+
+
+## Diferencia entre univariante y multivariante
+La multivariante será equivalente al resultado de las univariantes si los términos fuera de la diagonal de la matriz Σ son cero.
+Lo que nos aporta la multivariante es "rotar" la distribución, que deje de ser simétrica respecto a los ejes x₁,x₂
+
+
+## Cuando usar cada uno
+### Modelo con múltiples univariantes
+- Si tenemos correlaciones, tendremos que crear a mano una feature que las una (ej.: cpu/memoria)
+- Más rápida (escala mejor cuando tenemos muchas features)
+- Funciona bien con pocas muetras
+
+### Modelo multivariante
+- Captura automáticamente correlaciones entre features
+- Más cara de ejecutar
+- Necesita tener más muestras que features (si no Σ no es invertible, así que no podemos usar este modelo). Solo usaremos este modelo si m ≥ 10*n
+- Si se da el caso de que Σ es singular (no invertible), y tenemos m>n, será porque tenemos features redundantes (x₁=x₂ o x₃=x₄+x₅, features linealmente dependientes)

@@ -39,3 +39,11 @@ Valores más pequeños de 1 en la diagonal tendremos formas más estrechas.
 Valores más grandes de 1, tendremos formas más anchas.
 
 Si ahora mantenemos los valores fuera de la diagonal con cero, pero hacemos distintos los valores de la diagonal, rompemos la simetría axial, aunque mantenemos la simetría en el eje x₁ y x₂.
+El parámetro [2,2] (suponiendo que los índices empiezan en 0), definirá la anchura en el eje x₂.
+https://www.mathworks.com/help/examples/stats/win64/ComputeTheMultivariateNormalPdfExample_01.png
+
+Hasta aquí (valores fuera de la diagonal son 0), los resultados de la multivariante o múltiples univariantes (p*p*p) son equivalentes.
+
+Si variamos los valores fuera de la diagonal lo que haremos es girar la forma sobre el plano x₁,x₂
+Valores de la no-diagonal positivos girarán hacia las aguas del reloj. Negativos al contrario.
+Podemos jugar variando los valores en https://www.jgoertler.com/visual-exploration-gaussian-processes/
