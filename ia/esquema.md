@@ -40,6 +40,9 @@ Tienen organizado el índice por supervised/unsupervised y luego todos los model
       PCA
     recommender systems
       pueden usar algoritmos supervisados y unsupervisados
+      supervisados:
+        content-based
+        collaborative filtering
 
 
 
