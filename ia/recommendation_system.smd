@@ -1,0 +1,29 @@
+Tenemos un número de usuarios y algo a lo que dan una puntuación (películas por ejemplo).
+
+Queremos lograr un algoritmo que nos estime la puntuación que daría un usuario a una película que aún no ha visto. De esa manera podremos recomendar películas cuyo hipotética puntuación sea alta a esos usuarios.
+
+# Content-based recommender systems
+Para cada película (siguiendo con el ejemplo de puntuaciones para películas), necesitamos tener unas features asociadas, que caractericen a la película.
+Por ejemplo, podemos dar una puntuación entre 0 y 1 para las características:
+ - romance
+ - acción
+
+Representaremos cada película por un vector de features.
+En este caso añadiremos siempre x₀=1
+
+Usaremos la siguiente  notación:
+n = número de features (sin tener en cuenta x₀)
+nᵤ = número de usuarios
+nₘ = número de películas (movies)
+mʲ = número de películas puntuadas por el usuario j
+
+Lo que haremos es solventar una regresión lineal para cada usuario.
+Usaremos Θʲ ∈ ℝ³ como la parametrización de esa regresión lineal para el usuario j
+La puntuación del usuario j para la película i será: (Θʲ)ᵀ * xⁱ
+
+Para solventar la regresión líneal buscaremos la minimización de la función de coste, donde usaremos regularización para evitar el overfitting.
+
+Como tenemos varios usuarios (Θⁱ), añadiremos un sumatorio más.
+DUDA: parece que se calcula la minimización de todos los usuarios, donde el Θ de un usuario afecta a los otros mediante el término de regularización (se suman todas las Θ.
+
+Podemos usar gradient descent para solventar la minimización de la función de coste (J(Θ))

@@ -34,9 +34,12 @@ Tienen organizado el índice por supervised/unsupervised y luego todos los model
     anomaly detection
 
 
-  Útiles para los modelos:
+
+  Otros:
     dimensionality reduction
       PCA
+    recommender systems
+      pueden usar algoritmos supervisados y unsupervisados
 
 
 
