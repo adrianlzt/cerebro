@@ -54,3 +54,29 @@ Recompilar solo un módulo:
 mvn package -pl :cmdbuild-services-rest-v3
 
 Meter el .jar nuevo en un .war ya existente de cmdbuild
+
+
+
+# SQL
+
+Servidores que tienen varios softwares con el mismo cmdline
+select distinct
+  ser."Code" as Server,
+  array_agg(s."Code") as software
+from
+  "Software" s
+  join "Map_HardwareSoftwareInstance" m1 on m1."IdObj2" = s."Id"
+  join "Server" ser on m1."IdObj1" = ser."Id"
+WHERE
+  (
+    "CmdLine" is not null
+    or "CmdLine" <> ''
+  )
+  and s."Status" = 'A'
+  and ser."Status" = 'A'
+GROUP BY
+  ser."Code",
+  "CmdLine"
+HAVING
+ count(*) > 1
+;
