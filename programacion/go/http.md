@@ -92,9 +92,6 @@ client := &http.Client{ CheckRedirect: func(req *http.Request, via []*http.Reque
     return errors.New("redirection not allowed")
 }}
 
-## JSON
-https://kev.inburke.com/kevin/golang-json-http/
-
 ## Parametros
 https://golang.org/pkg/net/url/#example_Values
 https://play.golang.org/p/s41cuIyM7a
@@ -133,6 +130,14 @@ Definir proxy si lo tenemos (podemos poner proxyUrl a nil y lo ignorara)
 proxyUrl,_ := url.Parse("http://proxy.com:343")
 myClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}}
 
+
+## JSON
+https://kev.inburke.com/kevin/golang-json-http/
+
+u := User{Id: "US123", Balance: 8}
+b := new(bytes.Buffer)
+json.NewEncoder(b).Encode(u)
+res, _ := http.Post("https://httpbin.org/post", "application/json; charset=utf-8", b)
 
 
 ## POST json
