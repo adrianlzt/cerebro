@@ -1,5 +1,5 @@
 Mostrar lenguajes instalados:
-select * from pg_language; 
+select * from pg_language;
 
 Lenguajes disponibles (pero puede que necesitemos instalar algún paquete):
 select * from pg_pltemplate;
@@ -13,8 +13,8 @@ La activación es por cada database
 
 
 # Python dentro de postgres
-https://www.postgresql.org/docs/9.1/static/plpython.html
-https://www.postgresql.org/docs/8.1/static/plpython-database.html
+https://www.postgresql.org/docs/current/plpython.html
+https://www.postgresql.org/docs/current/plpython-database.html
 mirar copiar_entorno.sql
 
 yum install -y postgresql-plpython.x86_64
