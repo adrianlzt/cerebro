@@ -89,6 +89,9 @@ podman ps --ns
 Usar un container con el pid ns de otro container
 --pid container:NOMBREOTROCONTAINER
 
+## Obtener comando que se usó para arrancar
+podman inspect --format "{{.Config.CreateCommand}}" NOMBRECONTAINER | tr -d '[]'
+
 
 # Pod
 Tenemos también el concepto de pods
