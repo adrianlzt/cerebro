@@ -270,7 +270,7 @@ A partir de esta PR si se se pueden crear nodos/edges de skydive mediante la API
 https://github.com/skydive-project/skydive/pull/2139
 
 Donde están los ficheros para gestionar las llamadas API node/edge
-api/server/
+graffiti/api/server
 
 
 ## ETCD
