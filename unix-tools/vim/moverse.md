@@ -21,3 +21,15 @@ fX moverse al caracter antes de X
 
 G final del doc
 gg comienzo del doc
+
+
+
+# Jumps
+Control+o moverse a la última (older) posición del cursor (en otros buffers)
+Control+i moverse a una posición más reciente.
+
+
+
+# Código
+[m moverse al comienzo de un método
+]m moverse al final de un método

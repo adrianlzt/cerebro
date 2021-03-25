@@ -1,7 +1,7 @@
 http://vim.wikia.com/wiki/Search_and_replace
 
-control+a		aumenta el número que primero encuentre en la linea
-control+x		disminuye el numero primero encuentre en la linea
+control+a  aumenta el número que primero encuentre en la linea
+control+x  disminuye el numero primero encuentre en la linea
 
 Borra lineas entre 25 y 30 (incluídas)
 :25,30d
@@ -102,7 +102,7 @@ Convertir a minusculas
 g~<movimiento>
 toggle case
 
-Control+RePag 
+Control+RePag
 toggle case
   nos cambia como cuatro o cinco letras a cada golpe (hacia la derecha)
 
@@ -157,3 +157,7 @@ G final del fichero
 
 Volver a la ultima posicion
 ''
+
+
+q:
+  abrir la lista de los ultimos comandos. Nos permite modificarlos y ejecutarlos

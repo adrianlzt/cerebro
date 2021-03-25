@@ -2,6 +2,9 @@ q<Donde guardar>
 
 Ejemplo: qw
 
+Si queremos hacer un append a la macro 'w':
+qW
+
 Ahora ejecutamos las operaciones que quramos, tanto de comandos como de insercción.
 Al terminar pulsamos de nuevo a 'q'.
 

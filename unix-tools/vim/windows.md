@@ -19,6 +19,8 @@ Control+w q
   cerrar splits
 
 
+,q  cerrar buffer sin cerrar ventana
+
 
 
 
