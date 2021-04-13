@@ -71,3 +71,8 @@ btgatt-client -d 84:0D:8E:3F:0E:7A
 
 Encuentra los services y atributos automáticamente.
 Pero no hace la traducción de UUIDs a que significan (en wireshark si lo puedo ver)
+
+
+
+# bettercap
+Interesante para analizar trazas de bluetooth
