@@ -31,6 +31,10 @@ Otra forma, mediante tunel ssh:
 gcloud compute ssh NombreVM -- -N -L 5601:localhost:5601
 
 
+Copiar fichero
+gcloud compute scp ...
+
+
 
 # GKE
 Listar clusters
