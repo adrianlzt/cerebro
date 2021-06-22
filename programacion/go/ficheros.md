@@ -2,9 +2,8 @@ https://gobyexample.com/reading-files
 
 
 # Leer
-// IMPORTANTE! ioutil deprectaed usar io
-import "io/ioutil"
-dat, err := ioutil.ReadFile("/tmp/dat")
+import "os"
+dat, err := os.ReadFile("/tmp/dat")
 dat es []byte
 
 Si queremos abrir el fichero como un io.Reader
@@ -83,3 +82,8 @@ https://golang.org/pkg/io/ioutil/#TempFile
 	}
 
 Podemos cerrar el fichero y luego leerlo, pero si hacemos el defer lo borramos.
+
+
+
+# Virtualización de FS sobre memoria
+https://github.com/go-git/go-billy

@@ -21,7 +21,7 @@ http://get.docker.io/ubuntu/dists/docker/Release
 La lista de paquetes:
 http://get.docker.io/ubuntu/dists/docker/main/binary-amd64/Packages
 
-Repo 
+Repo
 deb http://dl.bintray.com/adrianlzt/deb /
 equivale a
 http://dl.bintray.com/adrianlzt/deb/
@@ -29,16 +29,22 @@ http://dl.bintray.com/adrianlzt/deb/
 
 Normalmente se usa como
 deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted
-deb http://archive.ubuntu.com/ubuntu/ VERSION 
+deb http://archive.ubuntu.com/ubuntu/ VERSION
 
 
 Para usar el comando add-apt-repository
 En la 12.04: apt-get install python-software-properties
-En la 13.10: apt-get install software-properties-common
+version >= 13.10:
+apt-get install software-properties-common
 
 
 Para usar repos https:
 sudo apt-get install apt-transport-https ca-certificates
+
+
+apt-add-repository "http://10.0.1.170/apt/"
+Meterá al final de /etc/apt/sources.list la línea (siendo "focal" la versión del SO):
+deb http://10.0.1.170/apt/ focal main
 
 
 ## Preferencia ##

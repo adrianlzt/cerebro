@@ -307,3 +307,22 @@ prefix + Ctrl-r - restore
 ## Rofi
 https://rofi-tmux.readthedocs.io/en/latest/usage.html
 Moverse por sesiones o windows con rofi
+
+
+# Comandos para listar sesiones, windows, panes
+Sesiones:
+tmux list-sessions
+
+Solo panes de la window 14:
+tmux list-panes -s -f "#{==:#{window_index},14}"
+
+
+
+# Encontrar en que pane está corriendo un proceso
+Para un PID dado, retorna el comando ejecutándose, la sesión, window y pane de tmux.
+
+export PID=1161102; for s in `tmux list-sessions -F '#{session_name}'` ; do
+  for p in `tmux list-panes -s -F '#{pane_pid}' -t "$s"` ; do
+    pstree -h -p -a -A $p | grep "[,]$PID" && tmux list-panes -s -t "$s" -f "#{==:#{pane_pid},$p}" -F '#{session_name}: #{window_index}.#{pane_index}'
+  done
+done

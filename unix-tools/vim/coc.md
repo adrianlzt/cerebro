@@ -71,6 +71,10 @@ CocList extensions
 :h coc-highlights
 
 
+# Prettier
+https://github.com/neoclide/coc-prettier
+Es el que hace el formateo de código
+
 
 # Errores
 Cuando en la status line vemos "Code: 0" es que estamos teniendo problemas con el LS. Mirar debug

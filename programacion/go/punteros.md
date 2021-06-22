@@ -5,6 +5,9 @@ Un puntero almacena la dirección de memoria de una variable.
 var p *int
   esto es un puntero a una variable de tipo int
 
+Si queremos saber si está inicializado o no:
+p == nil
+
 
 i := 1
 &i  dirección de memoria de i (esta variable será de tipo *int)

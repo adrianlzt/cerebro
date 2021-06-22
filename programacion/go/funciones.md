@@ -1,37 +1,44 @@
-## Funciones ## 
+## Funciones ##
 mirar anonymous_functions.md para func literals o lambda
 
 El tipo de retorno se define al final
 
 Si empiezan por mayúscula se exportan (se pueden llamar desde fuera). Con minúscula son de uso interno.
- 
+
 func add(x int, y int) int {
   return x+y
 }
- 
- 
+
+
 Para llamar a una función de nuestro mismo paquete no hará falta hacer nada:
 add(3,4)
- 
+
 Si varios parámetros comparten el mismo tipo de dato, podemos dejar solo el último:
 func add (x,y int) ...
- 
+
 Se pueden devolver cualquier número de parámetros
 func swap(x, y string) (string, string) {
     return y, x
 }
- 
+
 a, b := swap("hello", "world")
 
 Si solo queremos el primer elemento: a,_ := swap(c,d)
 Si solo queremos el segundo elemento: _,b := swap(c,d)
- 
+
 Se pueden declarar las variables que se van a retornar al construir la función, y ya no tendremos que decirle a return que devolvemos
 func split(sum int) (x, y int) {
     x = sum * 4 / 9
     y = sum - x
     return
 }
+
+
+## Paso de parámetros
+Si pasamos un tipo de dato "simple", estaremos pasando su valor.
+Si queremos pasar su referencia deberemos usar punteros.
+
+Para maps y slices, si pasamos directamente el map/slice, estaremos pasando su referencia.
 
 
 
@@ -70,7 +77,7 @@ Damos un nombre a las variables de retorno, las poblamos y al final llamamos sim
 func MySqrt2(f float64) (ret float64, err error) {
     if (f < 0) {
         //then you can use those variables in code
-        ret = float64(math.NaN()) 
+        ret = float64(math.NaN())
         err = errors.New("I won't be able to do a sqrt of negative number!")
     } else {
         ret = math.Sqrt(f)

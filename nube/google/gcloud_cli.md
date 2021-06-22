@@ -1,5 +1,7 @@
 https://cloud.google.com/sdk/gcloud/reference
 
+Para temas de cloud storage se usa otra cli: gsutil
+
 Para configurarlo:
 gcloud init
 

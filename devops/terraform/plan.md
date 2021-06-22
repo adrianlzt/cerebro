@@ -1,3 +1,10 @@
+# Guardar el plan
+terraform plan -out miplan
+
+Luego lo aplicaremos con
+terraform apply miplan
+
+
 # Filtrar
 Podemos elegir únicamente que queremos desplegar:
 

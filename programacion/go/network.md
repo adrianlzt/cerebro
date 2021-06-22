@@ -15,6 +15,16 @@ SplitHostPort splits a network address of the form "host:port" into host and por
 net.JoinHostPort
 
 
+# Máscaras de red
+Si tenemos un CIDR (192.168.1.0/24) podemos usar ParseCIDR.
+
+Si tenemos una máscara (255.255.255.0) podemos usar:
+myNetwork := net.IPNet{IP:net.ParseIP("10.2.3.99"), Mask: net.IPMask(net.ParseIP("255.255.255.0"))}
+
+Para obtener la base address de la red (10.2.3.0):
+myNetwork.IP.Mask(myNetwork.Mask)
+
+
 
 # Obtener conexiones de una máquina linux
 https://github.com/weaveworks/tcptracer-bpf

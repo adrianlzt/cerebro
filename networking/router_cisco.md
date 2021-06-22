@@ -7,6 +7,7 @@ Obtener la versión del iOS y buscar su command reference
 # Ver version especifica y version del software
 show version
 
+
 # Navegar
 sh -> show
 show ?
@@ -18,6 +19,7 @@ s?
 Tab completa si puede (si no probar "?")
 
 exit para salir al nivel superior
+
 
 
 # Ficheros
@@ -57,11 +59,16 @@ otra linea
 tclquit
 
 
+
+
 # Interfaces
 sh ip interface brief
+  intefaces, nombres, ips, levantadas
+
 sh int summary
   tabla con paquetes enviados, recibidos, tasas de transmision, etc
   limpiar los contadores: clear counters gigabitEthernet 0/2
+
 sh interfaces Vlan 101 ?
 
 Mostrar solo el rate de los ultimos 5 minutos:
@@ -69,8 +76,48 @@ sh int GigabitEthernet 0/0 | i rate
 
 
 
+
 # Configuracion
-Mostrar:
+Config básica de un router:
+https://www.cisco.com/c/en/us/td/docs/routers/access/800M/software/800MSCG/routconf.html
+hostname
+password de acceso
+interfaces
+command-line-access
+rutas estáticas
+rutas dinámicas (RIP, EIGRP)
+
+## Quitar resolución de nombres
+Por defecto, si metemos una palabra no conocida, intentará hacer una resolución DNS.
+Para evitarlo:
+no ip domain-lookup
+
+Si queremos cancelar una
+Control+^
+
+https://community.cisco.com/t5/switching/no-ip-domain-lookup/td-p/2705168
+O mejor, configurar un server DNS:
+ip name-server A.B.C.D
+
+Y desactivar que cuaquier palabra no conocida se intente resolver:
+line con 0
+ transport preferred none
+line aux 0
+ transport preferred none
+line vty 0 15
+ transport preferred none
+
+
+## Entrar en modo configuración
+conf term
+
+Con "exit" salimos una capa.
+Con "end" salimos del "conf" completamente.
+
+En algunos routers primero tendremos que habilitar el modo privilegiado (comando "enable").
+
+
+## Mostrar
 show running-config
 
 Si queremos mostrar toda la config de una sola vez (sin pager): terminal length 0
@@ -78,9 +125,29 @@ Si queremos mostrar toda la config de una sola vez (sin pager): terminal length 
 show running-config interface Vlan 101
 
 
-Para quitar una conf:
+## Para quitar una conf
 no xxxx
 Pondremos lo mismo que hemos escrito pero con un "no" delante.
+
+
+## Configurar una intefaz
+conf term
+interface FastEthernet 0/0
+ip addr 10.0.0.1 255.255.255.0
+no shutdown
+end
+
+Configurar varias interfaces de golpe (típico caso, VLANs en switches):
+interface range eth2/0 - 2
+
+Borrar (poner a default) una interfaz
+conf term
+default interface gi1/1
+
+
+## Comentario
+!
+
 
 
 # grep / ex / in
@@ -113,15 +180,6 @@ show log
 
 Limpiarlo:
 clear log
-
-
-# Configure
-conf t
-  confiurar el router
-  el rest de conf * no se suelen utilizar
-
-# Comentario
-!
 
 
 # exit
@@ -267,17 +325,6 @@ IP packet debugging is on (detailed) for access list 199
 
 
 
-
-https://cway.cisco.com/go/sa/
-Cisco CLI analyzer
-Programa para windows o macos para conectar con los routers y que nos realiza tareas automaticas de análisis
-
-
-Extraer datos a traves de telnet.
-Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
-(echo "USER"; echo 'PASS'; echo "term len 0"; echo "show version"; echo "q"; sleep 3) | telnet 10.0.0.1 > out.txt
-
-
 # DNS
 http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr_dns/configuration/15-mt/dns-15-mt-book/dns-config-dns.html
 Activar servidor dns
@@ -338,6 +385,14 @@ show ip route
 Estaticas
 ip route 10.8.0.0 255.255.255.0 10.0.1.28
 ip route 10.8.0.0 255.255.255.0 GigabitEthernet0/1 10.0.1.28
+
+ip route RED next_hop
+  RED se define con IP+mask
+
+Para añadir rutas a una VRF
+ip route vrf Mgmt 0.0.0.0 0.0.0.0 172.30.6.24
+
+
 
 
 # ACL / CBAC
@@ -511,6 +566,15 @@ sh socket PID detail
 
 
 
+# ping
+ping 10.0.0.1
+  por defecto 5 paquetes
+
+ping 10.0.0.1 repeat 1
+  solo 1 paquete
+
+
+
 # Monitor / tcpdump / capture
 https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/epc/command/epc-cr-book/epc-cr-m1.html
 https://community.cisco.com/t5/routing/ios-packet-capture-help-needed/td-p/1337577
@@ -569,6 +633,10 @@ no monitor capture buffer NOMBREBUFFER
 
 
 # SNMP
+Activar snmp:
+conf term
+  snmp-server community public ro
+
 Chequear si lo estamos exponiendo a internet (bloquear con la ACL de entrada de internet)
 Cambiar la community para que no use la de por defecto (public)
 conf term
@@ -588,6 +656,101 @@ sh ip route
 
 write
   si es correcto, para persistir reinicios
+
+
+
+
+# VLAN: configuración para routers
+https://www.practicalnetworking.net/stand-alone/routing-between-vlans/
+
+A este tipo de conf se le suele llamar Router on a Stick or One-armed Router.
+
+Se usan subinterfaces, mismo puerto físico, pero distinta VLAN.
+interface eth1/1.20
+  encapsulation dot1Q 20
+  ip address 10.0.20.1 255.255.255.0
+
+Se crean añadiendo el sufijo .NN a una interfaz (se suele hacer coincidir con la VID).
+Crear varias subinterfaces incrementa el riesgo de saturación del enlace.
+
+
+
+# LLDP / xDP / CDP
+## CDP
+Activo por defecto
+
+show cdp neighbors
+  nos muestra los dispositivos que tenemos conectados via L2
+
+show cdp neighbors detail
+  para ver todo el detalle
+
+show cdp interfaces
+  podemos ver la configuración de cada interfaz.
+  por defecto, mensajes cada 60"
+
+
+Podemos desactivarlo, por ejemplo si tenemos dispositivos no confiables conectados:
+no cdp
+no cdp [interface]
+  desactivarlo solo para una interfaz
+
+
+## LLDP
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/cether/configuration/15-mt/ce-15-mt-book/ce-lldp-multivend.html
+
+No activo por defecto.
+Parece que no está disponible en los routers (al menos no en un router 7200)
+Si en los switches.
+
+show lldp neighbours
+show lldp
+  info de la configuración
+
+Activar:
+conf term
+lldp run
+  por defecto envía cada 30"
+
+
+
+# Agregación / LACP
+https://www.cisco.com/c/en/us/td/docs/ios/12_2sb/feature/guide/gigeth.html
+
+Agregar varias interfaces en una única virtual.
+Las interfaces que agregemos deben estar "limpias", sin IPs ni VLANs (podemos hacerlo con "default interface XXX")
+
+Crear un port-channel
+conf term
+interface port-channel 1
+exit
+interface Gi0/0
+channel-group 1 mode active
+exit
+interface Gi0/1
+channel-group 1 mode active
+end
+
+Si queremos configurar VLAN, IPs, etc lo haremos sobre la interfaz "port-channel 1".
+
+Tenemos también que configurar los puertos remotos.
+Si no, veremos mensajes avisándonos de que LACP no se activa porque el remoto no lo tiene:
+%EC-5-L3DONTBNDL2: Gi1/0 suspended: LACP currently not enabled on the remote port.
+
+LACP eligirá por que cable enviar el tráfico.
+En caso de fallo de un cable, el tráfico se redirigirá de forma transparente por el otro.
+Ese puerto se pondrá en "passive".
+
+Estado:
+https://www.cisco.com/c/m/en_us/techdoc/dc/reference/cli/n5k/commands/show-lacp.html
+show lacp internal
+show lacp neighbor
+show lacp 1 neighbor
+
+
+# Rollback
+https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/config-mgmt/configuration/15-sy/config-mgmt-15-sy-book/cm-config-rollback-confirmed-change.html
+No probado
 
 
 
@@ -619,3 +782,16 @@ ip dns server
 como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
 
 Como ver el numero de peticiones que esta recibiendo el dns por segundo?
+
+
+
+# cisco cli analyzer
+https://cway.cisco.com/go/sa/
+Cisco CLI analyzer
+Programa para windows o macos para conectar con los routers y que nos realiza tareas automaticas de análisis
+
+
+# Extraer datos a traves de telnet
+Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
+(echo "USER"; echo 'PASS'; echo "term len 0"; echo "show version"; echo "q"; sleep 3) | telnet 10.0.0.1 > out.txt
+

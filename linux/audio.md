@@ -72,7 +72,9 @@ Con los galaxy buds consigo grabar si configuro el input como perfil HFP, pero l
 
 # Modulo para suprimer ruido / cadmus
 https://github.com/werman/noise-suppression-for-voice
-UI: https://github.com/josh-richardson/cadmus/
+UI:
+  https://github.com/josh-richardson/cadmus/
+  https://github.com/lawl/NoiseTorch
 
 
 

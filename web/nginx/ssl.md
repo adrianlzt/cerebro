@@ -3,7 +3,7 @@ https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl
 
 
 
-https://cipherli.st/
+https://syslink.pl/cipherlist/
 Strong Ciphers for Apache, nginx and Lighttpd
 
 

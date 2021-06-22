@@ -1,4 +1,8 @@
 https://hexdocs.pm/phoenix/deployment.html
+mix release:
+  https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/release.ex
+  https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/release.ex
+  https://github.com/elixir-lang/elixir/blob/master/lib/mix/lib/mix/tasks/release.init.ex
 
 # Secrets
 Generalmente se mapearan variables de entorno a variables del código en este fichero:
@@ -49,3 +53,16 @@ Editar config/prod.secret.exs (o config/releases.exs) y descomentar la línea:
 config :my_app, MyApp.Endpoint, server: true
 
 
+Empaquetaremos el directorio _build/prod/rel/NOMBREAPP
+
+Si necesitamos migraciones, tendremos que implementar un poco de código para luego poder ejecutarlas sin necesitar "mix".
+https://hexdocs.pm/phoenix/releases.html#ecto-migrations-and-custom-commands
+_build/prod/rel/my_app/bin/my_app eval "MyApp.Release.migrate"
+
+
+Si queremos modificar la versión, lo haremos en mix.exs
+Si cambiamos la versión, se generará una nueva release en _build/prod/rel/NOMBREAPP/releases
+
+
+# Contenedores
+https://hexdocs.pm/phoenix/releases.html#containers

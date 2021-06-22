@@ -10,3 +10,9 @@ full development environment (go get, go doc, go test, go run...)
 multiarch
 sencillo
 
+
+
+# contras
+Problemas con la gestión de hilos (casi particular intentando cambiar de namespace)
+https://news.ycombinator.com/item?id=14470231
+Parece que se solucionó en 1.16.3

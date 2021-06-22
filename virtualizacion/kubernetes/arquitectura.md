@@ -1,3 +1,28 @@
+# Componentes internos
+
+El punto central sería el apiserver, que expone una API HTTP, cuyo backend es etcd.
+En el master también tenemos el kubelet, controller y el scheduler, que se comunican con el apiserver.
+
+En los workers tenemos los kubelet y kube-proxy que se comunican con el apiserver.
+
+El controller se encarga de mantener el estado del sistema. Es un control loop que va mirando el estado actual y el deseado y aplicando cambios para que sean igual.
+https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/
+
+El scheduler asigna pods a nodos.
+https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/
+
+kube-proxy expone los servicios de los pods hacia fuera
+https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/
+
+
+## Cluster
+En los master (creo que es así por lo que he visto):
+  apiserver: activo-activo
+  controller: activo-pasivo
+  scheduler: activo-pasivo
+
+
+# Tecnología usada
 Al comienzo:
   kubernetes | docker | linux
 

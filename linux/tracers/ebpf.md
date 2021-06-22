@@ -9,9 +9,12 @@ https://jvns.ca/perf-cheat-sheet.pdf
 http://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html
 
 These are coming to Linux in the 4.x series
-redhat7 usa 3.10
+redhat7 usa 3.10, lo mete como tech preview en RHEL7.6 (3.10.0-940.el7)
 fedora26 4.11
 ubuntu 16.04.2 LTS usa 4.8
+
+Soporte de distintas funciones según la versión del kernel:
+https://github.com/iovisor/bcc/blob/master/docs/kernel-versions.md
 
 
 # Comunicación
@@ -36,3 +39,8 @@ https://github.com/weaveworks/tcptracer-bpf
 # Comunicación
 La comunicación entre el kernel space y el user space se puede producir mediante perf_events o "maps" (resúmenes de la utilización).
 Esto consigue ser más eficiente evitando tener que hacer un dump de todos los datos al userspace para después procesarlos.
+
+
+# Debug
+https://www.redhat.com/en/blog/introduction-ebpf-red-hat-enterprise-linux-7
+RHEL-7.6 comes with bpftool which can be used to list and dump eBPF programs loaded in the running kernel

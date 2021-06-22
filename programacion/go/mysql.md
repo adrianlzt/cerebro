@@ -37,7 +37,20 @@ if err != nil {
 
 Pasar un parametro a una query:
 El placeholder para postgresql es "$1" (parece que puede variar entre databases)
+Cambia para cada ddbb: http://go-database-sql.org/prepared.html
 QueryRow("select * from ?", "tabla")
+
+Si queremos meter algo tipo: WHERE foo IN (a,b,c,d), siendo esa lista un slice:
+" IN (?" + strings.Repeat(",?", len(inValues)-1)) + ")"
+
+hosts := []string{"foo", "bar", "foobar", "foo2"}
+hostsIface := make([]interface{}, len(hosts))  // db.Query espera un []interface{}
+for i, v := range hosts {
+  hostsIface[i] = v
+}
+// Ponemos todos los (?,?...) que necesitemos
+q := "select host_name, service_description, metric_name, metric_id FROM metricas_hosts WHERE metric_name = 'traffic.txt_Eth-Trunk5' and host_name" + " IN (?" + strings.Repeat(",?", len(hosts)-1) + ")"
+rows, err := db.Query(q, hostsIface...)
 
 
 

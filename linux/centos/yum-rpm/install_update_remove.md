@@ -21,6 +21,9 @@ Si un repositorio (el fichero almacenado en /etc/yum.repos.d) esta marcado como 
 $ yum --enablerepo repo search...
 
 
+Instalar pasandole el path de un binario
+yum install -y /usr/bin/nc
+
 Reinstalar
 Sustituir un paquete sin tener que borrar las dependencias
 # yum reinstall vim-common

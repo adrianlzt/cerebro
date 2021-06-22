@@ -51,7 +51,7 @@ Arrays? Tal vez nos vienen una string con valores separados por coma y lo querem
 
 Granular, tal vez no es más util romper el campo en varios campos más pequeños? Por ejemplo, una version (6.2.1) en major:6, minor:2, bugfix:1
 
-https://www.elastic.co/guide/en/elasticsearch/reference/7.x/flattened.html
+https://www.elastic.co/guide/en/elasticsearch/reference/7.x/flattened.html, aparece en la 7.3
 Aplanar un tipo de dato, por ejemplo si puede contener dentro un número de keys indeterminado que puede hacer crecer mucho el número de fields.
 
 También podemos decidir no indexar cierta parte del doc (incluso no almacenarla).

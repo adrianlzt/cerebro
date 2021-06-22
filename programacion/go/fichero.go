@@ -3,7 +3,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 )
 
 // Reading files requires checking most calls for errors.
@@ -17,8 +17,7 @@ func check(e error) {
 func main() {
 	// Perhaps the most basic file reading task is
 	// slurping a file's entire contents into memory.
-	// IMPORTANTE! ioutil deprectaed usar io
-	dat, err := ioutil.ReadFile("/tmp/dat")
+	dat, err := os.ReadFile("/tmp/dat")
 	check(err)
 	fmt.Print(string(dat))
 }

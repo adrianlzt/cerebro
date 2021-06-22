@@ -1,5 +1,6 @@
 https://www.kernel.org/doc/Documentation/kprobes.txt
 https://lwn.net/Articles/132196/
+https://nick-black.com/dankwiki/index.php?title=Kprobes
 
 linux-2.6.9
 write probe hooks in kernel module
@@ -10,6 +11,19 @@ Tiene acceso a los valores de los registros de la CPU
 La userspace se llama Uprobe (linux-3.5)
 En kernel están las kprobes, kretprobe (con valor retornado) y las jprobes (estas seguramente desaparezcan)
 
+A kprobe can be inserted on virtually any instruction in the kernel.
+
+Parece que podemos asignar un alias al crear la kprobe:
+r:mynombre funcion
+
+
+# kprobe perf-tool
+http://manpages.ubuntu.com/manpages/xenial/man8/kprobe.8.html
+
+Podemos usar el util "kprobe" (de perf-tools) para hacer pruebas.
+Es un script en bash que gestiona activar, leerl eventos y al terminar desactivarlo.
+Ejemplo viendo conex establecidas ipv4
+sudo kprobe 'p:tcp_v4_connect'
 
 
 # Uprobes
@@ -38,6 +52,8 @@ Los binarios generalmente no están compilados con este soporte (http://www.bren
 Cuando usamos bcc con una kprobe, por ejemplo con trace.py, lo que hace es generar un dir en:
 /sys/kernel/debug/tracing/events/uprobes/NOMBRE
 
+
+
 # A mano
 https://events.linuxfoundation.org/slides/lfcs2010_hiramatsu.pdf
 Obtener eventos de kprobes "a pelo", sin bcc ni otro framework:
@@ -58,4 +74,6 @@ echo 1 > events/kprobes/p_vfs_read_../enable
 cat trace
 
 <Delete Event>
-echo '- p_vfs_read_..' >> kprobe_events
+echo "-:rtcp_v4_connect tcp_v4_connect" >> /sys/kernel/debug/tracing/kprobe_events
+  el formato al hacer cat es, por ejemplo: "p:kprobes/ptcp_close tcp_close"
+  para borrarla tendremos que quitar "p:kprobes/" y poner el prefijo "-:"

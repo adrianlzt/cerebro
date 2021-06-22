@@ -60,9 +60,12 @@ select * from tabla;
 \e
 editar el último statement con un editor
 si tenemos comentarios con -- los perderemos, podemos usar /* comentario */
+si queremos editar un comando anterior al último, quitarle el punto y coma, dar a enter y luego \e.
+Al dar a enter lo metemos en el buffer y el \e lo editará.
 
 Ayuda:
 \h
+\h create table
 
 Salir:
 \q

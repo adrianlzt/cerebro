@@ -92,7 +92,7 @@ doc_values: usado para sorting y otras operaciones que no requieren un inverted 
 
 Cuando se hace un borrado, es "soft", solamente se marca ese documento como borrado y se ignora cuando se hacen las búsquedas.
 
-Un update que hae un overwrite, simplemente se marcará para borrar el viejo y se reutilizará el ID para el nuevo doc.
+Un update que hace un overwrite, simplemente se marcará para borrar el viejo y se reutilizará el ID para el nuevo doc.
 
 Listar segments:
 GET /_cat/segments?v

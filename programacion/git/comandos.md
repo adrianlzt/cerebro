@@ -14,6 +14,7 @@ Restaurar un fichero a un commit                    git checkout <commit> path/t
 Restaurar todo a un commmit                         git checkout <commit>
 Estado                                              git status
 Log del git (o de un fichero)                       git log <fichero>
+Log con núm de cacmbios de los ficheros modificados git log --compact-summary
 Log mostrando los diff de los n ult commits         git log -p -2
 Log de un fichero poniendo los cambios              git log -p -2 <fichero>
 Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla)

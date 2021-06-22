@@ -103,9 +103,17 @@ S -> SYN
 
 
 # Replay un paquete .cap
-http://tcpreplay.synfin.net/
-
+https://tcpreplay.appneta.com/
 pacman -Ss tcpreplay
+
+Parece que esta app está más pensada para que el tráfico recorra routers, switches, firewalls, etc.
+Pero no para servidores y apps finales.
+
+tcpliveplay to replay TCP pcap files directly to servers. Use this utility if you want to test the entire network stack and into the application.
+Tampoco consigo que me funcione, envía un RST tras SYN + SYN/ACK
+
+Mirar gor.md
+
 
 ## Capturar el trafico
 Para guardar el trafico NO usar "-i any". Esto genera unos paquetes raros a nivel 2 que no son compatibles.
@@ -137,5 +145,14 @@ tcpreplay -i INTERFAZ paquete.cap
 Parece que cuando se hace un replay tampoco se lleva bien con "tcpdump -i any"
 
 
-No me funciona como espero. No me está reenviando paquetes UDP.
-Los veo en tcpdump, pero no me llegan al aplicativo.
+## tcpliveplay
+http://tcpreplay.appneta.com/wiki/tcpliveplay
+https://tcpreplay.appneta.com/wiki/tcpliveplay-man.html
+Replays network traffic stored in a pcap file on live networks using new TCP connections
+
+Hace falta meter una regla de iptables para evitar que se envien unos paquetes RST
+sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s <your ip> -d <dst ip> --dport <dst port, example 80 or 23 etc.> -j DROP
+
+tcpliveplay eth0 curl.cap 10.20.20.38 fa:16:3e:67:86:23 random
+  la ip es la de destino
+  la MAC también la de destino

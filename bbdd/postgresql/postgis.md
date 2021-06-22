@@ -32,3 +32,19 @@ En metros
 
 Coordenadas que caigan dentro de un cuadrado (recordar que las coordenadas son lon,lat):
 SELECT name from crags WHERE coordinates && ST_MakeEnvelope(-4,40.9,-3.3,40.4);
+
+
+# Errores
+
+## Input geometry has unknown (0) SRID
+No tiene definido la metadata con el sistema de referencia espacial
+http://postgis.net/docs/manual-2.0/ST_SetSRID.html
+
+Podemos ponerlo a mano con, ejemplo:
+ST_SetSRID(ST_Point(-123.365556, 48.428611),4326)
+
+Podemos buscar el SRID por nombre en https://epsg.io/
+
+Por ejemplo, para UTM 30N buscamos "UTM zone 30N"
+
+Para ese el código ETRS89 es 25830.

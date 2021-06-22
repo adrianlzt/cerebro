@@ -1,6 +1,9 @@
 http://kelcecil.com/golang/2015/10/24/cross-compiling-in-go-1.5.html
 https://coderwall.com/p/pnfwxg/cross-compiling-golang
 
+Ver todas las posibles opciones
+go tool dist list
+
 En un mac generar un binario lixux:
 GOOS=linux GOARCH=amd64 go build -o hello main.go
 
@@ -24,6 +27,7 @@ Siempre poner las dos variables!
 
 
 # Diferentes builds por plataforma
+https://golang.org/cmd/go/#hdr-Build_constraints
 https://dave.cheney.net/2013/10/12/how-to-use-conditional-compilation-with-the-go-build-tool
 
 Podemos definir determinados ficheros que solo se compilarán si goos y/o goarch son los definidos.
@@ -47,3 +51,10 @@ no llamar a los ficheros xxx_not_linux.go, porque entonces le estamos diciendo q
 
 Si queremos usar una función que no existe en un grupo de máquinas, definiremos la misma función en dos ficheros, unix (por ejemplo) y fallback (donde no existe).
 La función retornará vació para el grupo que no funciona.
+
+
+Para conseguir un build específico para linux,amd64 y dummies para el resto de plataformas:
+hello.go -> +build linux,amd64
+hello_linux.go -> +build !amd64
+hello_fallback.go -> +build !linux
+

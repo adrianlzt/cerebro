@@ -36,6 +36,9 @@ nmcli c delete Nombre
 nmcli con mod enp2s0 connection.autoconnect no
   desactivar una interfaz del arranque:
 
+for U in $(nmcli -g UUID connection) ; do nmcli connection modify uuid $U autoconnect no; done
+  desactivar el autoconnect de todas las wifis
+
 
 Servers DNS cogidos por DHCP:
   nmcli dev show | grep DNS
@@ -63,6 +66,10 @@ Ingresar el valor 'dns': 8.8.8.8
 nmcli> set connection.autoconnect no
 nmcli> save
 Conexión 'conex-prueba' (0fae8ee8-01fe-469b-b40f-a9b594e48e39) guardada con éxito.
+
+
+Red manual ipv4 sin dhcp, ipv4 fija:
+nmcli con add con-name manual ifname eno1 type ethernet ip4 192.168.0.100/24 gw4 192.168.0.254
 
 
 # Editar una red existente, cambiando ipv4 fixed por dhcp

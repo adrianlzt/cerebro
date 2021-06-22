@@ -2,11 +2,13 @@ package main
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
 	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
+	// Ejemplo genérico de DSN username:password@protocol(address)/dbname?param=value
 	db, err := sql.Open("mysql", "root@unix(/var/lib/mysql/mysql.sock)/cinder")
 	if err != nil {
 		panic(err.Error()) // Just for example purpose. You should use proper error handling instead of panic
@@ -15,13 +17,13 @@ func main() {
 
 	err = db.Ping()
 	if err != nil {
-	    panic(err.Error()) // proper error handling instead of panic in your app
+		panic(err.Error()) // proper error handling instead of panic in your app
 	}
 
 	// Execute the query
 	rows, err := db.Query("SELECT updated_at,created_at,topic FROM services;")
 	if err != nil {
-	    panic(err.Error()) // proper error handling instead of panic in your app
+		panic(err.Error()) // proper error handling instead of panic in your app
 	}
 
 	var updated_at, created_at, topic []byte

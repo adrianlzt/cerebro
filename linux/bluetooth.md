@@ -61,9 +61,16 @@ bluetoothctl disconnect xx:xx:xx:xx:xx:xx
 
 
 ## bluetoothctl/GATT
+Si con bluetoothctl concectamos a un BLE bin GATT, nos hace un dump de las caracterísitcas/servicios poniendo el nombre de aquellas conocidas
+
+
+
 Obtener atributos
 
 bluetoothctl gatt.list-attributes 84:0D:8E:XX:XX:XX
+
+> read-value 0x10
+> register-notify 0x10
 
 
 # btgatt-client
@@ -71,3 +78,7 @@ btgatt-client -d 84:0D:8E:3F:0E:7A
 
 Encuentra los services y atributos automáticamente.
 Pero no hace la traducción de UUIDs a que significan (en wireshark si lo puedo ver)
+
+
+# python
+usar gattlib

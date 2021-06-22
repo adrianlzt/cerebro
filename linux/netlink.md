@@ -24,3 +24,22 @@ También tendremo que pasar la familia (con quien nos queremos comunicar). Mirar
 
 
 Para el caso de taskstats se usará la familia NETLINK_GENERIC (https://www.kernel.org/doc/Documentation/accounting/taskstats.txt)
+
+
+## Debug
+https://lists.infradead.org/pipermail/libnl/2013-April/000993.html
+https://web.archive.org/web/20160306082603/https://lists.infradead.org/pipermail/libnl/2013-April/000993.html
+
+Si usamos "libnl" parece que podemos usar las variables:
+NLDBG=9 o NLCB=DEBUG
+
+
+Si no es el caso, podemos usar https://github.com/socketpair/nltrace
+git clone https://github.com/socketpair/nltrace.git
+cd nltrace
+make
+
+$ nltrace ss -t
+$ LD_PRELOAD=./preload.so ss -t
+
+Con go no parece funcionar.

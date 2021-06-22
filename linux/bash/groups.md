@@ -14,3 +14,11 @@ almacenar en el fichero .log la fecha y el numero de procesos
 echo init && { false && echo "rename" || true } && echo "set"
 Siempre tendremos "init" y "set".
 "rename" solo funcionará cuando "false" devuelva true (o el comando que pongamos ahi)
+
+
+Ejemplos también en unix-tools/head.md
+
+➜ ps -eo comm,rss  | {head -1 ; grep skydive}
+COMMAND           RSS
+skydive         196940
+

@@ -6,7 +6,10 @@ Si borramos el helm, recordar borrar el pvc. Si no, se reusará y las configs qu
 
 
 # Postgres operator
+Dos diferentes
 https://github.com/zalando/postgres-operator
+https://www.kubegres.io/
+
 
 El chart de helm parece que está desactualizado.
 

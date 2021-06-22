@@ -66,3 +66,11 @@ Rio de Janeiro: 7.455.240
 
 Coordenadas la Alameda
 30T 450.112 4.478.718
+
+
+# ETRS89 / WGS84
+Podemos tener coordenadas UTM basadas en distintos sistemas de referencia.
+
+Comprehensive explanation: ETRS89 is a European system, fixed to the Eurasian plate, where WGS is an international system (ITRS)
+
+Probando con PostGIS con unas coordenadas de Cuenca, la diferencia era de 10^-9 en latitud y 10^-12 en longitud. Por lo que parecen bastante equivalentes, al menos, entiendo, que en España.

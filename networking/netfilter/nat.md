@@ -1,6 +1,6 @@
 http://www.revsys.com/writings/quicktips/nat.html
 
-echo 1 > /proc/sys/net/ipv4/ip_forward
+sysctl -w net.ipv4.ip_forward=1
 
 Para hacerlo permanente:
 /etc/sysctl.conf

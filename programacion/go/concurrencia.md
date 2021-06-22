@@ -175,6 +175,7 @@ var wg sync.WaitGroup
 wg.Add(1)
 go func() {
   // Este esquema lo veo mucho para no tener que pasar el wg a la rutina
+  // Si intento pasar el wg como parámetro govet dará error: copylocks: call of worker copies lock value: sync.WaitGroup contains sync.noCopy
   defer wg.Done()
   rutina()
 }()

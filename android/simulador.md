@@ -1,7 +1,64 @@
+## Genymotion ##
+http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/
+
+Hace falta registrarse en una web.
+Bajamos un programa para gestionar las imágenes de android.
+  Se baja un .bin (bash script)
+  sudo mkdir /opt/genymotion
+  sudo chown adrian /opt/genymotion
+  ./genymotion-2.7.2-linux_x64.bin -d /opt/
+Arrancar con /opt/genymotion/genymotion
+
+Si da este problema:
+"The Genymotion Virtual device could not obtain an IP address.For an unknown reason, VirtualBox DHCP has not assigned an IP address to virtual device. Run the VirtualBox software to check for issues"
+Se arregla así:
+http://stackoverflow.com/questions/18641423/not-able-to-start-genymotion-device
+
+
+## Google Apps (gapps)
+https://docs.genymotion.com/paas/latest/041_Installing_applications.html#from-playstore
+
+https://opengapps.org/
+Chequear (uname -m) si es x86 o x86_64
+
+También hay un botón, pero me dice que el fichero está corrupto.
+Haciendo drag&drop sobre la pantalla me funciona bien. Hay que esperar unas decenas de segundos a que diga que el flasheo ha ido bien y luego reiniciar.
+
+
+## Instalar APK
+Para transferir ficheros drag&drop sobre la pantalla o usar adb
+
+
+Si al instalar una apk (drag&drop) nos dice que tiene codigo ARM, tendremos que instalar Genymotion-ARM-Translation
+https://gist.github.com/wbroek/9321145
+priv-adrianRepo/hack/Genymotion-ARM-Translation_v1.1.zip
+
+
+## ADB
+También podemos conectar por ssh
+
+adb -s 192.168.60.106:5555 shell
+  mirar en ps a donde conecta, habrá un par de adb arrancados
+
+Instalar .zip
+adb shell "/system/bin/flash-archive.sh /sdcard/Download/opengapps.zip"
+
+
+## SSH
+https://docs.genymotion.com/paas/latest/03_Accessing_an_instance/033_Accessing_a_virtual_device_from_SSH.html
+
+
+## Errores
+Mirar logcat
+
+En un caso se estaba quedando sin memoria al abrir una app.
+
+
+
 # Run apps
 http://www.shashlik.io/
 
-yaourt -S shashlik-bin
+yay -S shashlik-bin
 
 Mirar que el .apk esté para x86
 /opt/android-sdk/build-tools/25.0.1/aapt dump badging File.apk | grep native-code
@@ -36,30 +93,3 @@ Arrancar emulador
 android-sdk-linux/tools/emulator
 
 
-## Genymotion ##
-http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/
-
-Hace falta registrarse en una web.
-Bajamos un programa para gestionar las imágenes de android.
-  Se baja un .bin (bash script)
-  sudo mkdir /opt/genymotion
-  sudo chown adrian /opt/genymotion
-  ./genymotion-2.7.2-linux_x64.bin -d /opt/
-Arrancar con /opt/genymotion/genymotion
-
-Si da este problema:
-"The Genymotion Virtual device could not obtain an IP address.For an unknown reason, VirtualBox DHCP has not assigned an IP address to virtual device. Run the VirtualBox software to check for issues"
-Se arregla así:
-http://stackoverflow.com/questions/18641423/not-able-to-start-genymotion-device
-
-
-Instalar Google Apps: https://gist.github.com/wbroek/9321145
-Peta bastante.
-Google+ saca todo el rato mensajes de que se ha parado.
-
-Para transferir ficheros drag&drop sobre la pantalla.
-
-
-Si al instalar una apk (drag&drop) nos dice que tiene codigo ARM, tendremos que instalar Genymotion-ARM-Translation
-https://gist.github.com/wbroek/9321145
-priv-adrianRepo/hack/Genymotion-ARM-Translation_v1.1.zip

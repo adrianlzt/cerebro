@@ -20,8 +20,7 @@ snmpwalk -On -v 1 -c public 10.5.2.4 .1.3.6.1.2.1.25.4.2.1.5
 
 Snmpwalk nos muestra todos los mibs que cuadren (‘navega por los mibs’)
 Snmpget nos muestra solo el que solicitamos.
-Para convertir los MIBS numéricos, a nombres, en debían, instalamos snmp-mibs-downloader, y comentamos la línea “mibs :” en /etc/snmp/snmp.conf
-Directorios donde hay MIBS: /usr/share/mibs/netsnmp  y  /var/lib/mibs
+Para convertir los MIBS numéricos, a nombres, bajar las mibs, mirar en mibs.md
 
 
 Si se pone mal la community la respuesta será (tanto para v1 como v2c):

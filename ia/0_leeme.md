@@ -6,6 +6,9 @@ https://cloud.google.com/training/machinelearning-ai
 
 Mirar time_series.md
 
+mirar machine_learning.md
+mirar esquema.md
+
 
 
 Discusión de si es mejor empezar top-to-bottom o al revés

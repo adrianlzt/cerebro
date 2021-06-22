@@ -13,3 +13,13 @@ Si antes de llegar al defer, objetoPuntero se vuelve nil, tendremos un panic.
 
 
 deferred calls are executed in last-in-first-out (LIFO) order
+
+
+CUIDADO, la interpretación se hace cuando se procesa la línea:
+start := time.Now()
+defer fmt.Printf("tiempo ejecución: %v", time.Since(start))
+Esto nos dará algunos nanosegundos
+
+Para evitarlo podemos hacer:
+defer func() { fmt.Printf("tiempo ejecución: %v", time.Since(start)) }()
+

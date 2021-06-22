@@ -95,6 +95,9 @@ En el rol de ansible lo ponen con espacios en blanco!
 Si queremos ver el running value para cada osd:
 for i in $(ceph osd ls); do echo -n "$i: "; ceph config show osd.$i osd_memory_target; done
 
+En docker:
+for i in $(docker ps | grep -o ceph-osd-[0-9]* | cut -d '-' -f 3); do docker exec ceph-osd-$i ceph config show osd.$i osd_memory_target; done
+
 
 Si no coincide el valor del ceph.conf con el running value, podemos reiniciar el osd.
 

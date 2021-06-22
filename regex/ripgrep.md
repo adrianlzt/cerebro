@@ -14,6 +14,12 @@ rg -uuu es como grep -r -a
 rg -L
   sigue enlaces simbólicos
 
+rg -l
+  solo mostrar ficheros
+
+rg -I
+  no mostrar el nombre de los ficheros donde hay match
+
 
 rg -w git -g '*py'
   buscar "git", como palabra entera, solo en los ficheros py

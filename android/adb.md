@@ -27,13 +27,15 @@ adb pull <remote> [<local>]  - copy file/dir from device
 adb sync [ <directory> ]     - copy host->device only if changed
 adb remount                  - remounts the /system partition on the device read-write
 
-adb install -s /home/adrian/paquete.app
+adb install /home/adrian/paquete.app
 adb install [-l] [-r] [-s] [--algo <algorithm name> --key <hex-encoded key> --iv <hex-encoded iv>] <file>
                                - push this package file to the device and install it
                                  ('-l' means forward-lock the app)
                                  ('-r' means reinstall the app, keeping its data)
                                  ('-s' means install on SD card instead of internal storage)
                                  ('--algo', '--key', and '--iv' mean the file is encrypted already)
+  si falla mirar si tenemos activado: Settings > Additional Settings > Developer Options > Developer options: Check the Install via USB option.
+
 adb uninstall [-k] <package> - remove this app package from the device
                                 '-k' means keep the data and cache directories
 

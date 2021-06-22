@@ -1,3 +1,7 @@
+What Every Programmer Should Know About Memory
+https://akkadia.org/drepper/cpumemory.pdf
+
+
 23/02/2013    https://foro.elchapuzasinformatico.com/memoria-ram-ddr3-ddr4-hbm-/4491-que-diferencia-hay-entre-ram-cl9-cl11.html#post774872
 
 Las memorias RAM van ofrecen 2 datos para el comprador: velocidad y latencia. Latencia indica el tiempo que tarda hasta acceder a la info... y la velocidad... se entiende por sí sola. Ambos parámetros van "como por escalones", siendo mejor cuanto más velocidad y menor latencia. La cuestión importante aqui es saber como comparar dos memorias:

@@ -108,6 +108,12 @@ Limpia ~/.cache/go-build
 
 
 # Errores
+
+## 410 Gone
 Si nos falla con un "410 Gone" al bajar módulos es porque es un repo privado.
 Podemos quitar ese chequeo con:
 GOSUMDB=off
+
+
+## missing go.sum entry for module providing package
+Bug en go1.16

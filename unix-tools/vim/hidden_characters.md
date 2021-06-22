@@ -23,7 +23,7 @@ http://www.alecjacobson.com/weblog/?p=443
 Para ver el listado
 :digraphs
 
-Para escrirlo:
+Para escribirlo:
 control+k MN
 
 Donde MN serán los valores que hemos visto en :digraphs

@@ -167,6 +167,20 @@ GET NOMBREINDICE/_search
 
 
 
+# Clone
+Clonar un índice (que debe estar en RO) a otro nombre.
+https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html
+POST /my-index-000001/_clone/cloned-my-index-000001
+
+Poner índice como RO
+PUT /my_source_index/_settings
+{
+  "settings": {
+    "index.blocks.write": true
+  }
+}
+
+
 # Open/Close
 https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-open-close.html
 Podemos cerrar un índice para reducir el consumo. No prodemos buscar sobre él.

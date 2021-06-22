@@ -6,6 +6,11 @@ En RedHat/CentOS usar
 /etc/pki/tls/certs/Makefile
 
 
+openssl req -batch -new -x509 -days 365 -nodes -out server.pem -keyout server.pem
+  generar cert autofirmado un año
+
+
+Otra forma generando la autoridad:
 openssl genrsa -out self-ssl.key 2048
   generate an SSL private key
   If you want your key to be protected by a password, add the flag '-des3' from the command line

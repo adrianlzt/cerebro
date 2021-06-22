@@ -61,3 +61,9 @@ Desactivar metalinter al guardar
 ,d ir a la definición
 
 ,e generar if err ...
+
+
+# Errores
+go: github.com/gogo/protobuf@v1.3.2: missing go.sum entry; to add it:\n\tgo mod download github.com/gogo/protobuf
+Usando nvim 0.5.0 con gopls instalado localmente, me daba ese error.
+Lo arreglé actualizando esa lib en $HOME/go/src/github.com/gogo/protobuf a esa versión

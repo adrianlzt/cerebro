@@ -81,3 +81,26 @@ El proceso ceph-mon se para con ese mensaje.
 Parece que se debe a que algún file system que usa ceph está muy lleno. /var tal vez?
 Se para si tenemos menos de un 5%
 http://lists.ceph.com/pipermail/ceph-users-ceph.com/2014-August/042372.html
+
+
+
+Error EEXIST: XXX already exists at address
+e0 handle_auth_bad_method hmm, they didn't like 2 result (13) Permission denied
+Un "mon" que no consigue unirse al cluster
+Parar el mon problemático.
+Borrarlo desde otro mon:
+  ceph mon rm MONPROBLEMATICO
+Rearrancar el mon problemático.
+
+
+
+
+https://docs.ceph.com/en/latest/rados/troubleshooting/troubleshooting-pg/#homeless-placement-groups
+Reduced data availability: 5 pgs stale
+Todos los OSD que tenían copias de ese PG se han perdido.
+Para ver en que OSD estaban:
+ceph health detail
+
+pg 7.43 is stuck stale for 8055793.059034, current state stale+active+clean, last acting [0]
+  ese "[0]" indica que estaba en el osd 0
+

@@ -36,5 +36,41 @@ Para ver cuales: snmptranslate -M . .1
 
 
 
-Crear una mib
+Para convertir los MIBS numéricos, a nombres, en debían, instalamos snmp-mibs-downloader, y comentamos la línea “mibs :” en /etc/snmp/snmp.conf
+Por defecto solo baja las mibs "rfc ianarfc iana"
+Si queremos que baje más meterlas en /etc/snmp-mibs-downloader/snmp-mibs-downloader.conf AUTOLOAD=
+Y ejecutar "download-mibs"
+
+Parece que falla con las de cisco.
+Cambiar el fichero /etc/snmp-mibs-downloader/cisco.conf:
+HOST=ftp://ftp.netbsd.org
+ARCHIVE=v2.tar.gz
+ARCHTYPE=tgz
+ARCHDIR=auto/mibs/v2
+DIR=pub/pkgsrc/distfiles/cisco-mibs/
+CONF=ciscolist
+DEST=cisco
+
+
+Directorios donde hay MIBS: /usr/share/mibs/netsnmp /var/lib/mibs /var/lib/snmp/mibs
+
+Analizando donde busca snmptranslate las mibs
+strace -fs 200 -e file snmptranslate .1 |& grep mib | cut -d '"' -f 2 | xargs file | grep -v -e "ASCII text" -e "Par archive"
+/root/.snmp/mibs
+/usr/share/mibs/iana
+/usr/share/mibs/ietf
+/usr/share/mibs/netsnmp
+/usr/share/mibs/site
+/usr/share/snmp/mibs
+/usr/share/snmp/mibs/iana
+/usr/share/snmp/mibs/ietf
+
+/root/.snmp/mibs:/usr/share/mibs/iana:/usr/share/mibs/ietf:/usr/share/mibs/netsnmp:/usr/share/mibs/site:/usr/share/snmp/mibs:/usr/share/snmp/mibs/iana:/usr/share/snmp/mibs/ietf:/var/lib/snmp/mibs/cisco:/var/lib/snmp/mibs/iana:/var/lib/snmp/mibs/ietf
+
+Listado de MIBS
+snmptranslate -Dinit_mib .1.3 2>&1 |grep MIBDIR | cut -d "'" -f 2 | tr ':' ' ' | xargs ls
+
+
+
+# Crear una mib
 https://netbeez.net/blog/snmp/

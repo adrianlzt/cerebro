@@ -28,6 +28,12 @@ muestra el contenido del fichero desde la linea que matchee something hasta el f
   -z: match new lines
   -o: only show matched
 
+Usar grupos para sacar header y grep
+➜ ps -eo comm,rss  | {head -1 ; grep skydive}
+COMMAND           RSS
+skydive         196940
+
+
 
 find /tmp -name "*.txt" -exec grep -Hn cosa {} \;
 Busca en los ficheros que terminen en .txt dentro de /tmp la palabra "cosa".

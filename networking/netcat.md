@@ -13,6 +13,13 @@ El que recibe: nc -l -p 1234 | cat - > fichero
 El que envia: cat fichero | nc ip 1234
 
 
+Parecido pero usando wget en el cliente:
+Servidor:
+{ echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c <FICHERO)\r\n\r\n"; cat FICHERO; } | nc -l 65344
+Cliente:
+wget -O FICHERO http://IP:65344
+
+
 copiar directorios:
 Destination box: nc -l -p 2342 | tar -C /target/dir -xzf -
 Source box: tar -cz /source/dir | nc Target_Box 2342

@@ -4,10 +4,14 @@ Problemas de lentitud de etcd
 May 24 03:40:24 localhost etcd: 2020-05-24 08:40:24.738911 W | etcdserver: read-only range request "key:\"/registry/leases/kube-node-lease/HOSTNAME\" " with result "range_response_count:1 size:297" took too long (313.785859ms) to execute
 
 
+Certificados del cluster:
+kubeadm certs check-expiration
+
+
 Y los de los apiserver. Deberían renovarse solos, pero puede fallar la renovación. Estos deberían renovarse solos o es el del kubelet el que se renueva solo?
 Vigilar también la CA de esos certs
 Si se ha instalado con kubespray
-messages-20200531
+messages
 
 El del kubelet está en /var/lib/kubelet/pki/kubelet.crt
 

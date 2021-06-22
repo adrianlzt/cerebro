@@ -8,6 +8,12 @@ Aplicación para debuggear microservicios distribuidos en pod de manera simultan
 https://github.com/eldadru/ksniff
 Plugin que nos levanta un wireshark local conectado al pod que le digamos
 
+Install:
+kubectl krew install sniff
+
+Use:
+kubectl sniff <POD_NAME>
+
 
 # inspektor gadget
 https://github.com/kinvolk/inspektor-gadget

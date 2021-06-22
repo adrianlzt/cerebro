@@ -151,3 +151,7 @@ dhcp-option=6,8.8.8.8,8.8.4.4
        --all-servers
               By default, when dnsmasq has more than one upstream server available, it will send queries to just one server. Setting this flag forces dnsmasq to send
               all queries to all available servers. The reply from the server which answers first will be returned to the original requester.
+
+
+# Debuggin / logging
+log-queries

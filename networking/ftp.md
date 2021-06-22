@@ -45,3 +45,13 @@ docker run -d -v "$PWD/data:/home/vsftpd" \
 Tenemos que abrir los puertos
 20, 21, 21100-21110
 
+
+## bftpd
+pacman -S bftpd
+systemctl start bftpd
+
+Por defecto usuario anónimo desactivado (ftp).
+Si queremos activarlo comentar ("# ") la línea:
+DENY_LOGIN=
+
+Por defecto se muestra el directorio /srv/ftp

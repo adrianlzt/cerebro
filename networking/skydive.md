@@ -159,6 +159,14 @@ Y que diferencia hay con netlink?
 
 
 
+# Alerts
+http://skydive.network/swagger/#operation/createAlert
+
+Se pueden ejecutar scripts locales o ejecutar webhooks cuando se haga match de una expresión gremlin (puede tener procesado con javascript).
+http://skydive.network/documentation/cli#alerting
+
+
+
 # Graffiti
 https://fosdem.org/2020/schedule/event/graph_graffiti/
 Base de datos de grafos que funciona como backend
@@ -182,13 +190,13 @@ SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client topology import --file graph.j
 
 ## Desarrollo
 
-### Parseo de gremlin
-https://github.com/skydive-project/skydive/blob/master/graffiti/graph/traversal/traversal.go
-
-
 ### Tests funcionales
+make functional TEST_PATTERN=APIPatchNode
 make functional TEST_PATTERN=APIPatchNode$
+  esto hará match de uno que termine con esa cadena exactamente
 
+hace falta tener un elasticsearch escuchando en :9201, en el mismo namespace de red (usa la IP interna de ES para conectar):
+podman run --net host --rm -it -p 9201:9200 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
 
 
 ## Client
@@ -227,17 +235,126 @@ Actualizar un nodo:
 http://skydive.network/documentation/api-gremlin
 Queries para atacar a graffiti.
 
+Definición oficial del lenguaje: https://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps
+
 Mirar como estaba la db de grafos en un momoento del tiempo.
 ./skydive client query "G.At('Thu, 14 May 2020 15:12:04 CEST')"
 
 "Context" es lo mismo que "At".
-A estos dos también se le puede pasar al fecha en unix epoch
+A estos dos también se le puede pasar al fecha en unix epoch.
+También podemos pasarle "NOW".
+Y podemos usarlo para definir un rango: At(NOW, 3600), que sería la última hora.
+En ese caso nos devolverá todos los nodos que estaban en esa hora, aunque se hayan borrado o modificado (obtendremos el previo a la modificación y el modificado).
 
 Obtener los nodos de un type y sus descendientes. Se puede pasar un parámetro a Descendants para decir cuantas veces debe buscar hacia abajo, ejemplo Descendants(4):
 G.V().Has("Type", "VMs").Descendants()
 
+Descendientes usando otro RelationType que no sea ownership, bajando 3 niveles:
+Descendants('RelationType', Within('ownership', 'ownership_shared'), 3)
+
+Descendants internamente hace:
+  para cada nodo del step anterior, obtener sus children (nodos conectados por determinado edge, GetNodeEdges+GetEdgeNodes) y ejecutar de nuevo descendants para esos nodos.
+
+
+Ascendants
+https://github.com/skydive-project/skydive/pull/2373
+
+NextHop('1.2.3.4')
+Step de skydive (no de graffiti) para obtener el siguiente salto IP.
+Usando skydive con la probe netlink, le puedo pedir NextHop a las tarjetas de red.
+Ejemplo de salida
+  "f575fa00-d461-4acb-70f9-1b2811e5c2e1": {
+    "Priority": 0,
+    "IP": "192.168.213.23",
+    "MAC": "5e:94:a8:08:20:e5",
+    "IfIndex": 17
+  }
+
+
 Si queremos obtener añadir los links a partir de un filtro:
 .SubGraph()
+
+Generar varios grafos y unirlos
+G.V().Has('Type', 'netns').As('result1').G.().Has('Type', 'device').As('result2').Select('result1', 'result2')
+
+Caso típico para regenerar un grafo:
+G.V().Has('Type', 'netns').As('result1').G.().Has('Type', 'device').As('result2').Select('result1', 'result2').Dedup().Subgraph()
+
+Camino más corto:
+Entre el nodo elegido y el marcado en el ShortestPathTo
+G.V().Has('Type', 'netns').ShortestPathTo(Metadata('Type', 'host'))
+
+Si queremos que solo pase por ciertos tipos de edges le pasaremos un segundo parámetro:
+G.V().Has('Type', 'netns').ShortestPathTo(Metadata('Type', 'host'), Metadata('RelationType', 'layer2'))
+
+
+Sort(), por defecto ASC
+Sort(DESC, 'Revision'), ordenar de manera descendente por el campo "Revision".
+
+Si usamos G.At() podemos tener varios nodos con el mismo ID.
+Si usamos Dedup() para quedarnos solo con uno, esto no nos asegura quedarnos con el más reciente.
+Para quedarnos con los más recientes podemos hacer:
+G.At(a,b).Sort(DESC,'Revision').Dedup()
+
+
+Steps vistos en el código:
+g
+v
+e
+has
+haskey
+hasnot
+haseither
+out
+in
+outv
+inv
+bothv
+oute
+ine
+bothe
+within
+without
+dedup
+metadata
+shortestpathto
+ne
+nee
+both
+context
+regex
+
+Filtros para valores numéricos:
+lt
+gt
+lte
+gte
+inside
+between
+
+count
+range
+
+limit
+sort
+values
+  extrae solo un campo del Metadata. Ej.: g.V().Has('Name', 'enp0s20f0u2').Values('Metric')
+valuemap
+  como el anterior, pero devuelve la key, 'Metric' por ejemplo, con sus valores, se pueden pedir varios. Ej.: g.V().Has('Name', 'enp0s20f0u2').ValueMap('Metric', 'IPV4')
+keys
+  obtener las keys
+sum
+asc
+desc
+ipv4range
+subgraph
+forever
+now
+as
+select
+true
+false
+
 
 
 
@@ -247,6 +364,11 @@ http://skydive.network/documentation/api#topologyflow-request
 
 Estado de skydive, que probes tiene cargadas, publishers, subscribers, etc
 curl localhost:8082/api/status
+
+Running config:
+curl localhost:8082/api/config/KEY
+Ejemplo:
+curl localhost:8082/api/config/analyzer
 
 
 
@@ -272,6 +394,11 @@ https://github.com/skydive-project/skydive/pull/2139
 Donde están los ficheros para gestionar las llamadas API node/edge
 graffiti/api/server
 
+El server web, mux, se define en graffiti/http/server.go
+Es hub.NewHub quien crea ese server mux.
+  distintas llamadas a api.RegisterXXX van registrando los endpoints
+  Y esos endpoints definen que funciones (handlers) gestionarán las llamadas.
+
 
 ## ETCD
 Usa etcd para gestionar el cluster
@@ -288,6 +415,9 @@ etcd:
 
 
 ### RAW / Topology
+Obtener toda la topología:
+curl 127.0.0.1:8082/api/topology
+
 Lanzar una query gremlin sobre la topología:
 curl 127.0.0.1:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
 
@@ -462,6 +592,8 @@ src/App.tsx y src/Topology.tsx agrupan prácticamente toda la lógica. Dos fiche
 
 src/api/api.ts lib autogenerada por swagger para comunicarnos con la API rest del analyzer
 
+Debug: desde la consola del navegador podemos acceder a todas las funciónes con: window.App.XX
+
 La ui usa componentes de https://material-ui.com/components/
 
 A grandes rasgos se compone de:
@@ -543,9 +675,36 @@ graffiti/api/server/server.go
 
 
 #### Parser gremlin
+TopologyGremlinQuery
+  Parse itera por los steps separador por punto, obteniendo un array de steps (GremlinTraversalStep)
+    parserStep hace validación de los datos y devuelve el GremlinTraversalStep que toque
+      scanIgnoreWhitespace obtener el token (número que representa lo que se ha reconocido: G, At, Dedup, etc)
+        scan
+          Scan
+            scanIdent este reconoce ya los steps de graffiti. Si no encuentra nada busca en las extensiones
+              extension.ScanIdent se llama a las extesiones para ver si reconocen el step y que devuelvan un token que lo represente
+      parseStepParams se parsean los parámetros del step
+      extension.ParseStep en caso de no encontrar un step de graffiti, se llama a esta función de las extensiones, que deberá devolver un GremlinTraversalStep
+  Exec va iterando por el array de steps
+    step.Reduce recibe el step siguiente (GraphTraversalStep) y devuelve GraphTraversalStep
+    step.Exec recibe los valores del anterior step, transforma y devuelve otra serie de valores (GraphTraversalStep)
+
 Aqui es donde se reconocen las distintas funciones:
 graffiti/graph/traversal/traversal_scanner.go
 func (s *GremlinTraversalScanner) scanIdent() (tok Token, lit string) {
+
+Algunos de los steps se implementan en (los de skydive, que no de graffiti):
+gremlin/traversal/
+
+El resto en graffiti/graph/traversal/traversal.go
+Por ejemplo "Out()": func (tv *GraphTraversalV) Out(ctx StepContext, s ...interface{}) *GraphTraversalV {
+
+Si queremos crear un step nuevo en skydive (no en graffiti):
+  - le asignaremos un token en gremlin/traversal/token.go
+  - lo añadiremos en analyzer/server.go y validator/validator.go
+  - crearemos un fichero en gremlin/traversal/NOMBRE.go
+    - implementaremos un traversal.GremlinTraversalExtension (para que el parser pueda reconocer cuando encuentra un la query este nuevo step)
+    - implementaremos traversal.GremlinTraversalStep (la implementación del step en si misma)
 
 
 ### Backend
@@ -571,9 +730,41 @@ type Backend interface {
 }
 
 
+### Graph
+Si queremos buscar nodos/edges nos suele pedir un ElementMatcher.
+Ejemplo:
+softwareNodeFilter := graph.NewElementFilter(filters.NewTermStringFilter(MetadataTypeKey, MetadataTypeSoftware))
+
+Los tipos de filtros que podemos poner:
+https://pkg.go.dev/github.com/skydive-project/skydive/filters
+
+
+### Metadata
+Cada probe puede registrar uno o varios MetadataDecoders.
+Lo que estaremos haciendo es definir que para Metadata.XXX se utilice un decoder específico, en vez de deserializar el JSON "tal cual".
+
+Esta función de graph será la encagada de usar esos metadata decoders y devolvernos un nodo a partir de una secuencia de bytes.
+func (n *Node) UnmarshalJSON(b []byte) error
+
 
 
 # Performance
+
+## skydive_prof
+Podemos compilar skydive con profiling integrado
+WITH_PROF=true make
+
+Una vez arrancado, si queremos obtener datos del profiling le mandaremos señales.
+Escribirá una traza INFO para avisar de que ha recibido la señal y que hace.
+Generará los ficheros en /tmp
+
+Arrancar/parar profiling CPU:
+pkill -USR1 skydive
+
+Hacer profiling de memoria:
+pkill -USR2 skydive
+
+
 
 ## Version master 237bbd779875fd0d2743a31386c593330956c476 19/2/2021
 
@@ -670,3 +861,34 @@ Ha pasado de prácticamente no consumir (1-2%) a estar constántemente alrededor
 Posíblemente ahora cada búsqueda de un host es más costosa.
 
 El rate al que proccon acepta métricas también ha caído mucho, a 3 por segundo aprox.
+
+
+
+# Logging / trazas
+Las trazas usan la librería de logging ZAP
+El formato es:
+2021-04-13T11:26:20.539Z        ERROR   proccon/proccon.go:232 ....
+
+El valor de nivel puede ser:
+Debug -> DEBUG
+Info -> INFO
+Notice -> INFO
+Warning -> WARN
+Error -> ERROR
+Critical -> DPANIC
+Panic -> DPANIC
+Fatal -> DPANIC
+
+
+
+
+# Monitorización / monitoring
+Cosas que me gustaría tener.
+
+Número de gorutinas (para ver si proccon está encolando gorutinas sin poder procesarlas).
+Tiempo de procesado de las peticiones que llegan a proccon.
+Consumo de memoria interno.
+Número de peticiones a ES.
+Tracing del coste de cada petición pasando por las distintas partes.
+Número de nodos y edges.
+Tiempo de procesado de las llamadas a la API.

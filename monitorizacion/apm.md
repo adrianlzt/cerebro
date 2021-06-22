@@ -1,3 +1,11 @@
+Application Performance Monitoring
+
+Obtener métricas de dentro del sistema
+Distintas empresas tienen distintas soluciones.
+Mirar opentelemetry.md
+
+
+# BMC
 http://www.bmc.com/solutions/application-management/
 
 SaaS or on prem, end user to code,

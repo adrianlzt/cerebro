@@ -1,6 +1,7 @@
 DEPRECATED
 Usar "io" u "os"
 https://pkg.go.dev/io/ioutil
+Mapeos version 1.16: https://golang.org/doc/go1.16#ioutil
 
 
 https://golang.org/pkg/io/ioutil/

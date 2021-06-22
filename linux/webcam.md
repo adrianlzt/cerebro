@@ -9,7 +9,9 @@ guvcview
 -d /dev/video1
   para seleccionar otra webcam
 
-Me da problemas al capturar sin el entorno grafico
+Capturar una imagen desde la cli sin X
+guvcview -g none -i captura.jpg -n 1 -a none -e -t 1 -b
+  la crea en $HOME/captura-N.jpg
 
 
 # fswebcamn

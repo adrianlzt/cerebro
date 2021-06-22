@@ -7,6 +7,7 @@ https://www.haproxy.com/documentation/hapee/1-8r1/onepage/#5.1-crt
 El .pem puede ser un concat de certificado, cas y key. También se puede poner el .dh (Diffie-Hellman)
 Si ponemos un directorio, se leeran los ficheros en orden alfabético (excepto '.issuer', '.ocsp' or '.sctl')
 O podemos poner varios crt: crt certificado crt clave
+Si nos da error en los certs, veririficar que están correctamente concatenados, que los headers estén en líneas separadas, con el número adecuado de guiones, etc.
 
 Ejemplo básico:
 frontend www.mysite.com
@@ -38,6 +39,15 @@ frontend wss_prueba
   #use_backend be_tcp_%[req.ssl_sni,map_reg(/etc/haproxy/haproxy.d/tcp_be.map)] if sni sni_passthrough
 
   default_backend default
+
+
+## Chequeo estado backend
+Podemos usar la opción
+option ssl-hello-chk
+Para ver si el backend funciona.
+CUIDADO! según leo aquí https://github.com/kubernetes-sigs/bootkube/issues/960#issuecomment-379332080 el check que se hace es para SSLv3.
+Si el backend es kubernetes apiserver, se quejará por que solo soporta TLS1.2 como mínimo.
+
 
 
 # HTTP2

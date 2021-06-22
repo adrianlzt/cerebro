@@ -11,6 +11,10 @@ Los datos se insertan con peticiones HTTP POST (sin especificar el id). Con PUT 
 Se actualizan con PUT (deberemos especificar el elemento exacto: localhost:9200/vehicles/tv/one)
 Si intentamos crear un documento en un index que no existe, se autogenera. Posiblemente queremos deshabilitar esto en producción.
 
+Nuevo:
+curl -H "content-type: application/json" "localhost:9200/skydive_topology_archive_v13-000001/_doc" -XPOST -d '{"foo": "bar"}'
+
+Antiguo:
 curl -H "Content-Type: application/json" -XPOST "localhost:9200/vehicles/tv/?pretty" -d'
 {
     "color": "green",
@@ -87,8 +91,8 @@ Internamente, lee el doc, crea uno nuevo con los campos leído más los añadido
 curl -XPUT "https://localhost:9100/alt390/internalusers/0?pretty" -d '{"usuario": {"hash": "xxxx"}}'
   creamos el doc
 
-curl -XPOST "https://localhost:9100/alt390/internalusers/0/_update?pretty" -d '{"doc": {"usuario2": {"hash": "222"}}}'
-  lo actualizamos
+curl -H "content-type: application/json" "localhost:9200/skydive_topology_archive_v13-000001/_update/6Ks0yHkBrL9J1d5_deT3" -XPOST -d '{"doc": {"CreatedAt": 1111160470096}}'
+  actualizar un doc
 
 Creo un documento con id=0.
 Luego se añade otro doc al mismo documento. Si usasemos la misma clave en el doc ("usuario"), estaríamos modificando el valor anterior (simple recursive merge, inner merging of objects, replacing core "keys/values" and arrays)

@@ -337,3 +337,10 @@ Si queremos obtenerlo pondremos:
 GET blogs_fixed/_search {
   "_source": [],
   ...
+
+
+Ejemplo usándolo para dividir dos campos (típico cuando tenemos el load1 y por otro lado el número de cpus)
+script":"_value / doc[\"system.n_cpus\"].value"
+Entero:
+{"search_type":"query_then_fetch","ignore_unavailable":true,"index":["telegraf-2021.05.13"]}
+{"size":0,"query":{"bool":{"filter":[{"range":{"@timestamp":{"gte":1620909560720,"lte":1620931160720,"format":"epoch_millis"}}},{"query_string":{"analyze_wildcard":true,"query":"measurement_name: system"}}]}},"aggs":{"3":{"terms":{"field":"tag.host","size":10,"order":{"_key":"desc"},"min_doc_count":0},"aggs":{"2":{"date_histogram":{"interval":"15s","field":"@timestamp","min_doc_count":0,"extended_bounds":{"min":1620909560720,"max":1620931160720},"format":"epoch_millis"},"aggs":{"1":{"avg":{"field":"system.load1","script":"_value / doc[\"system.n_cpus\"].value"}}}}}}}}

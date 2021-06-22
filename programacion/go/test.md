@@ -29,6 +29,7 @@ Usar "assert" como libreria helper para generar los tests (mirar más abajo)
 
 
 Table driven testing
+snippet "testt"
 Para tests repetitivos y parecidos, declarar una estructura con los tests que luego lo recorra un for.
 Ejemplo: https://github.com/kubernetes/klog/blob/master/klogr/klogr_test.go#L13
 
@@ -188,6 +189,8 @@ Si pulsamos sobre el fichero podremos ver que lineas estan cubiertas por los tes
 
 
 ## Assertions
+Otra opción: https://pkg.go.dev/gotest.tools/assert
+
 github.com/stretchr/testify/assert
 https://godoc.org/github.com/stretchr/testify/assert
 assert.Equal(t, 1, 1)
@@ -238,6 +241,15 @@ https://github.com/DATA-DOG/godog
 https://golang.org/pkg/testing/
 https://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
 
+https://go.googlesource.com/proposal/+/master/design/14313-benchmark-format.md
+Utilidades:
+ Benchmany runs Go benchmarks across many git commits.
+   https://pkg.go.dev/github.com/aclements/go-misc/benchmany?utm_source=godoc
+ Benchstat computes and compares statistics about benchmarks.
+   https://pkg.go.dev/golang.org/x/perf/cmd/benchstat
+
+
+
 Meter un test como:
 func BenchmarkHelloWorld(b *testing.B) {
         for i := 0; i < b.N; i++ {
@@ -248,6 +260,10 @@ func BenchmarkHelloWorld(b *testing.B) {
 
 Ejecutar con:
 go test -v --bench . --benchmem
+Si queremos seleccionar que bench ejecutar:
+  -test.bench someregex
+Si no queremos que ejecute ningún test:
+  -run=^$
 
 BenchmarkHelloWorld-8                500           3908505 ns/op         4375424 B/op      74594 allocs/op
 
@@ -289,6 +305,53 @@ func main() {
 
 
 Podemos usarlo para pintar una gráfica (mirar plot.md) para ver la función Big-O que seguimos.
+
+
+Benchmark tipo TDD
+https://blog.golang.org/subtests#TOC_3.
+
+func BenchmarkAppendFloat(b *testing.B) {
+    benchmarks := []struct{
+        name    string
+        float   float64
+        fmt     byte
+        prec    int
+        bitSize int
+    }{
+        {"Decimal", 33909, 'g', -1, 64},
+        {"Float", 339.7784, 'g', -1, 64},
+        {"Exp", -5.09e75, 'g', -1, 64},
+        {"NegExp", -5.11e-95, 'g', -1, 64},
+        {"Big", 123456789123456789123456789, 'g', -1, 64},
+        ...
+    }
+    dst := make([]byte, 30)
+    for _, bm := range benchmarks {
+        b.Run(bm.name, func(b *testing.B) {
+            for i := 0; i < b.N; i++ {
+                AppendFloat(dst[:0], bm.float, bm.fmt, bm.prec, bm.bitSize)
+            }
+        })
+    }
+}
+
+
+Benchmark en paralelo
+https://golang.org/pkg/testing/#B.RunParallel
+
+func BenchmarkTemplateParallel(b *testing.B) {
+    b.RunParallel(func(pb *testing.PB) {
+        for pb.Next() {
+            // Lo que quremos ejecutar
+        }
+    })
+}
+
+
+
+## pprof
+go test -bench=. -benchmem -memprofile memprofile.out -cpuprofile profile.out
+
 
 
 # clean up

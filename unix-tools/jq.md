@@ -116,3 +116,7 @@ Lo podemos usar para mostrar como una tabla un array
 ➜ curl -s httpbin.org/get | jq -r '.headers | keys | @tsv'
 Accept  Host    User-Agent      X-Amzn-Trace-Id
 
+
+# ndjson to json
+Si tenemos un fichero con muchos dict json, si queremos meterlos en un array:
+cat file.json | jq -s

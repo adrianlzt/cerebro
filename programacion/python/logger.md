@@ -164,14 +164,22 @@ record.__dict__
 
 # Niveles
 
-Level	    Numeric value
-FATAL     50 (mejor usar critical: https://stackoverflow.com/questions/31170317/what-is-the-difference-between-logging-fatal-and-logging-critical)
-CRITICAL	50
-ERROR	    40
-WARNING	  30
-INFO	    20
-DEBUG	    10
-NOTSET	  0
+Level    Numeric value
+FATAL      50 (mejor usar critical: https://stackoverflow.com/questions/31170317/what-is-the-difference-between-logging-fatal-and-logging-critical)
+CRITICAL   50
+ERROR      40
+WARNING    30
+INFO       20
+DEBUG      10
+NOTSET      0
+
+Los posibles niveles que se mostrarán por pantalla son:
+CRITICAL
+ERROR
+WARNING
+INFO
+DEBUG
+
 
 logger.debug("...
 logger.warning("...

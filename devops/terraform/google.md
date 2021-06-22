@@ -1,3 +1,10 @@
+# Crear una service account para usar con terraform
+https://cloud.google.com/community/tutorials/managing-gcp-projects-with-terraform
+
+gcloud iam service-accounts create terraform --display-name "Terraform admin account"
+gcloud iam service-accounts keys create creds.json --iam-account terraform@PROYECTO.iam.gserviceaccount.com
+
+
 # Load balancer
 https://github.com/gruntwork-io/terraform-google-load-balancer/blob/master/modules/http-load-balancer/main.tf
 
@@ -131,3 +138,8 @@ IAP-secured Web App User:
 ## Revisión
 https://console.cloud.google.com/security/iap
 Mirar que todo diga que está correcto
+
+
+
+# Permisos a nivel de projecto
+https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam

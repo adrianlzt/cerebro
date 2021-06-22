@@ -5,3 +5,7 @@ Viejo.
 Para poca cantidad de colores.
 
 mirar crear_gif.md
+
+
+Ver detalles:
+identify fichero.gif

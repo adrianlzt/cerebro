@@ -116,3 +116,18 @@ Send-Q
 
 Recv-Q
   Para conexiones establecidas, cantidad de bytes a la espera de ser enviados al cliente (esto lo induzco por como funciona Send-Q)
+
+
+# Namespace
+Podemos ejecutar ss contra otros namespaces de red.
+
+ss va a buscar el id que le pasemos a /var/run/netns/
+Para ver los ns de red que tenemos:
+lsns -t net
+
+En el caso de docker, los ns de red están en otro dir: /var/run/docker/netns
+Para hacer que funcione ss podemos hacer:
+ln -s /var/run/docker/netns /var/run/netns
+
+Ejemplo de ejecución:
+sudo ss -natp -N 843d886185eb

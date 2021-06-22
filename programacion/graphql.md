@@ -65,6 +65,13 @@ type pepe {
 ## Type
 Elemento básico. Como un struct de go
 
+### Arguments
+type Starship {
+  id: ID!
+  name: String!
+  length(unit: LengthUnit = METER): Float
+}
+
 ## Interfaces
 Mismo concepto que en programación. Declaran variables comunes que tendrán las implementaciones
 
@@ -77,10 +84,47 @@ union Subclasses = SubclassDatabase | SubclassOS
 
 No podemos hacer unions de enums (parece). Tendremos que hacerlo de types que dentro usen el enum
 
+## Mutations
+type Mutation{
+  strengthCommand(
+    params: StrengthCommand
+  ): CommandResponse!
+}
+schema{
+  query: Query,
+  mutation: Mutation,
+  subscription: Subscription
+}
+
+El tipo de dato que se puede pasar a Mutations son "inputs"
+Generalmente llevarán el "!" para indicar que es obligatorio.
+Mirar en su sección.
+
 
 ## Input
 Lo usamos para crear cosas o pasar varios parámetros a una función
 Es como pasar un diccionario en vez de una simple variable.
+
+Si un input quiere usar otras estructuras de datos, esas estructuras también deben ser inputs.
+
+input StrengthCommand{
+  command: STRENGTH_COMMAND_TYPE
+  """
+  Value associated with some commands
+  """
+  value: Float
+}
+
+## enum
+Una variable que solo pueda tomar unos valores determinados.
+
+enum SPEED_COMMAND_TYPE{
+  SIMULATE
+  PAUSE
+  RESTART
+  RESET
+  CALIBRATE
+}
 
 
 # Queries
@@ -127,6 +171,13 @@ query Triggers {
 }
 
 
+## Listas / arrays
+{ friends:
+    [ { name: "Luke Skywalker" },
+      { name: "Han Solo" },
+      { name: "R2D2" } ] }
+
+
 ## Parámetros / Query variables
 También podemos pasar variables a las queries.
 
@@ -147,16 +198,39 @@ query ($country_code: String){
 Sería el equivalente al POST/PUT/DELETE de una API REST.
 Para enviar cambios a la API.
 
-Definición en el schema:
-type Mutation{
-  strengthCommand(
-    params: StrengthCommand
-  ): CommandResponse!
+Para la definición en el schema ir a dicha sección.
+
+Para lanzar mutations.
+
+Ejecutamos la mutation "createReview" y retornamos los valores "stars" y "commentary".
+mutation {
+  createReview(episode: "2", review: "muy malo") {
+    stars
+    commentary
+  }
 }
-schema{
-  query: Query,
-  mutation: Mutation,
-  subscription: Subscription
+
+Usando variables:
+mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+  createReview(episode: $ep, review: $review) {
+    stars
+    commentary
+  }
+}
+
+
+Otro ejemplo:
+En el schema está definido como:
+labelCreate(input: LabelCreateInput!): LabelCreatePayload
+
+mutation {
+  labelCreate (input: {title:"pruebaLabel", color: "#abcabc"}) {
+    clientMutationId
+    label {
+      id
+      updatedAt
+    }
+  }
 }
 
 
@@ -189,6 +263,15 @@ subscription {
 }
 
 
+# Código
+https://www.graphql-code-generator.com/
+
+Generador de código para distintos lenguajes
+Typescript
+.net
+java
+etc
+
 
 
 # PostgreSQL
@@ -208,51 +291,4 @@ También para conectar via graphql a una postgres
 
 
 # Golang
-
-https://github.com/graph-gophers/graphql-go
-CORS: https://github.com/graph-gophers/graphql-go/issues/74#issuecomment-289098639
-
-https://github.com/graphql-go/graphql
-
-
-## GQLgen
-https://gqlgen.com/getting-started/
-Nos genera el código a partir de un schema
-go get github.com/99designs/gqlgen
-
-Podemos generar un esquelo de un proyecto:
-go run github.com/99designs/gqlgen init
-
-Modificaremos el schema: graph/schema.graphqls
-
-Y regeneraremos el código (es seguro regenerar, no pisa nuestro código, aunque un commit no vendría mal, por si acaso):
-gqlgen generate
-
-
-Implementaremos las funciones que nos ha generado en:
-graph/schema.resolvers.go
-
-Si necesitamos inyectar cosas a los resolvers, lo haremos en graph/resolver.go (struct que implementa las funciones)
-
-
-CORS: https://github.com/99designs/gqlgen/blob/master/docs/content/recipes/cors.md
-
-
-Ejemplos de implementaciones:
-https://outcrawl.com/go-graphql-realtime-chat
-https://github.com/99designs/gqlgen/blob/412a72fe26b093b08d27e90adf0390ad0ea0a7ea/codegen/testserver/subscription_test.go
-
-Para las subcription usaremos <-ctx.Done() para saber cuando han cerrado la conex
-
-
-
-Tal vez tengamos que modificar algunos modelos para adecuarse a lo que necesitamos. Por ejemplo, definir que un parámetro es una función en vez de un struct:
-https://gqlgen.com/getting-started/#create-the-database-models
-Ejemplo definiendo otro modelo:
-models:
-  Item:
-    model: gitlab.opensolutions.cloud/opensolutions/odiegraphql.Item
-
-
-
-Si el visor gráfico se queda pillado, revisar la consola de errores. Tal vez haya algún fallo en el schema.
+mirar en programacion/go/graphql.md

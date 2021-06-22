@@ -1,3 +1,16 @@
+# NVIM
+https://github.com/hrsh7th/vim-vsnip
+
+Si queremos crear snippets custom, nos pedirá si lo queremos para el lenguaje o global:
+:VsnipOpen
+
+Como crear un snippet: https://github.com/hrsh7th/vim-vsnip#3-create-your-own-snippet
+
+Discusión vs UltiSnips: https://www.reddit.com/r/neovim/comments/i568bs/vimvsnip_a_viable_ultisnips_replacement/
+
+
+
+# Antiguos
 https://github.com/SirVer/ultisnips
 
 Con el tab, debe aparecer en la lista al final "[US]" si tenemos un snippet.

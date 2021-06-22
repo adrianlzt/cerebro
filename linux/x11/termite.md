@@ -1,3 +1,7 @@
+DEPRECATED, usar alacritty
+https://github.com/thestinger/termite#termite-is-obsoleted-by-alacritty
+
+
 https://wiki.archlinux.org/index.php/termite
 
 Terminal simple con un funcionamiento a la hora de seleccionar a vim

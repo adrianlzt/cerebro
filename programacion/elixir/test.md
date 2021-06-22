@@ -14,6 +14,10 @@ Solo ejecutar un test case (podemos ver el fichero y número de línea al ejecut
 No se pueden testear funciones privadas. Discusión: https://stackoverflow.com/questions/20949358/is-there-a-way-to-test-private-functions-in-modules-in-exunit-of-elixir
 
 
+# Coverage
+mix test --cover
+
+
 # Estructura básica
 ExUnit.start()
 

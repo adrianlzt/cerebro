@@ -40,7 +40,10 @@ strace -s 80 ...
 Para mostrar tambien los hilos:
 strace -f
 
+
 # Tiempo
+Nos dice el tiempo en el que comienza la syscall
+
 strace -t
 strace -tt
   microseconds

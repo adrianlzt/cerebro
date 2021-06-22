@@ -3,7 +3,7 @@ En ES hacemos lo contrario, desnormalizar los datos. Docs planos con todos los d
   Mejoras: indexing and searching fast, no necesitamos joins ni locks en tablas.
 
 Algunas veces necesitamos relaciones, tenemos estas opciones (de mejor a peor):
-  Denormalizing: flatten your data (typically the best solution)
+  Denormalizing: flatten your data (typically the best solution) https://www.elastic.co/guide/en/elasticsearch/reference/7.3/flattened.html
     almacenando copias redundantes de los datos en cada doc (_source se comprimer, evita gastar mucho disco)
     Ej.: tweets and users, denormalizing implica en cada tweet meter la info del user
     Hace las lecturas más eficientes

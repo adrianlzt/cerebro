@@ -139,12 +139,32 @@ POST _reindex
   }
 }
 
-Hace falta que el nodo remoto esté configurado para aceptar esta conexión:
+Hace falta que el nodo remoto esté configurado para aceptar esta conexión (necesita reiniciar, por temas de seguridad https://github.com/elastic/elasticsearch/issues/29153):
 reindex.remote.whitelist: "otherhost:9200, another:9200, 127.0.10.*:9200, localhost:*"
 Idea: conectar un nodo coordinate-only al cluster remoto solo para este caso y quitarlo luego. Así evitamos tener que reiniciar nodos del cluster para cambiar la configuración.
 
 Si tenemos muchos datos que mover entre distintos ES, tal vez sea mejor hacer un snapshot y restore en el otro server.
 
+
+Con curl
+
+
+curl "localhost:9200/_reindex" -H "Content-Type: application/json" -d '{
+  "source": {
+    "remote": {
+      "host": "https://172.30.0.1:9200",
+      "username": "elastic",
+      "password": "elastic"
+    },
+    "index": "skydive_topology_live_v13",
+    "query": {
+      "match_all": {}
+    }
+  },
+  "dest": {
+    "index": "prueba"
+  }
+}'
 
 
 
@@ -156,6 +176,30 @@ You should set up the destination index prior to running a _reindex action, incl
 
 
 # Logstash
+
+No probado
+input {
+  elasticsearch {
+    hosts => ["172.3.1.1:9200"]
+    index => "skydive_topology_live_v13"
+    ssl => true
+    ssl_certificate_verification => false
+    user => "elastic"
+    password => "elastic"
+  }
+}
+filter {
+
+}
+output {
+  #stdout { codec => rubydebug }
+  elasticsearch {
+    hosts => ["127.0.0.1:9200"]
+    index => "testlogstash"
+    //index => "%{[es_index]}"
+  }
+}
+
 
 ## Copiando a un nuevo índice
 

@@ -10,5 +10,10 @@ Ejemplo de app (tipico books CRUD)
 https://github.com/mateus-araujo/elixir-phoenix-rest-api
 
 
-## Dashboard
+# Dashboard
 Mucha info de como está corriendo el server
+
+
+# Routing
+Ver las rutas configuradas, viendo que path está asignado a que controller:
+mix phx.routes

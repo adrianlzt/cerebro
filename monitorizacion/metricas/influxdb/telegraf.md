@@ -496,6 +496,13 @@ Plugins de input: inputs.disk inputs.diskio inputs.kernel inputs.mem inputs.proc
 telegraf.stacktrace (con comentarios)
 
 
+## Delve
+dlv debug github.com/influxdata/telegraf/cmd/telegraf
+> break main.main
+> break NOMBREPLUGIN.Gather
+> c
+
+
 
 # Develop
 https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md

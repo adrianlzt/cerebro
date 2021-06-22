@@ -50,6 +50,10 @@ ps -eo pmem,comm,pid,maj_flt,min_flt,rss,vsz --sort -rss | numfmt --header --to=
   VSZ: consumo de memoria virtual (total)
 Para hacernos mejor una idea de la memoria consumida: linux/performance/memoria/smem.md
 
+Para ver un proceso determinado:
+ps -C skydive.pprof -o rss --no-header | numfmt --from-unit=1024 --to=iec
+
+
 Total memoria usada en MB (CUIDADO! esto no tiene en cuenta que varios procesos comparten RSS, mirar smem)
 ps --no-headers -eo rss | awk '{ SUM += $1} END { print SUM/1024 }'
 
@@ -145,6 +149,8 @@ ps eww
 Ver procesador donde está corriendo:
 ps -e opsr,comm,pid
 
+
+# Filtrar
 Procesos de un usuario
 ps -f -U nombre
 

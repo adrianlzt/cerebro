@@ -1,8 +1,28 @@
 https://github.com/hashicorp/golang-lru
-https://godoc.org/golang.org/x/build/internal/lru
+import lru "github.com/hashicorp/golang-lru"
+var gameServerStateLastChange *lru.Cache
+
+lruCache, err := lru.New(120)
+if err != nil {
+  panic(err)
+}
+
+lruCache.Add("key", "value interface")
+https://pkg.go.dev/github.com/hashicorp/golang-lru#Cache
+Get(...)
+
+## Size
+Usando mem pprof en un gotest.
+
+Usando como key y como value int
+1Mi elementos (1048576) 142MB Add + 44MB insertValue
+2Mi elementos (1048576) 291MB Add + 104MB insertValue
 
 
-https://github.com/patrickmn/go-cache
+# https://godoc.org/golang.org/x/build/internal/lru
+
+
+# https://github.com/patrickmn/go-cache
 
 c.Set("foo", "bar", cache.DefaultExpiration)
 foo, found := c.Get("foo")

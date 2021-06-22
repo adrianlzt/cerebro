@@ -24,3 +24,10 @@ En principio pzstd debería comprimir un poco peor.
 
 pzstd consume varios cores
 
+
+# xz
+xz -0 fichero
+  el más rápido
+
+xz -9 fichero
+  el que más comprime

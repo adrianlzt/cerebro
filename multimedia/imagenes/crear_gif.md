@@ -1,11 +1,13 @@
-for f in *.png ; do convert $f $(basename $f .png).gif ; done
-gifsicle --delay=200 --loop *.gif > anim.gif
-
-sudo pacman -S gifsicle
-
-
 Varias imagenes a gif:
 convert output/* output.gif
+convert -loop 0 -delay 100 in1.png in2.png out.gif
+
+
+
+for f in *.png ; do convert $f $(basename $f .png).gif ; done
+gifsicle --delay=200 --loop *.gif > anim.gif
+sudo pacman -S gifsicle
+
 
 
 En Gimp:

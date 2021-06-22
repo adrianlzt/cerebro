@@ -60,5 +60,6 @@ La posibilidad de usar multiples fields es a partir de cierta versión
 
 
 # Secuencias de numeros / seq
+mirar unix-tools/seq.md
 https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation
 seq 1 3

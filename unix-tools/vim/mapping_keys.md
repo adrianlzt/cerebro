@@ -1,3 +1,10 @@
+:help key-map
+
+Con telescope
+LEADERfk
+  listado con todos los keymaps y buscando
+
+
 https://web.archive.org/web/20160718060038/http://www.badassvim.com/how-to-remap-keys-in-vim/
 https://stackoverflow.com/a/3776182
 

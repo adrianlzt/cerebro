@@ -48,6 +48,9 @@ convert -list font
 convert prueba.gif -draw 'text 610,620 "Chamonix"' nueva.gif
   pinta "Chamonix" empezando en esas coordeandas con la fuente Ubuntu
 
+crear una imagen con un texto
+convert -background transparent -fill darkblue -font Ubuntu-Mono-Bold -size 200x100 -gravity center 'caption:Test' out.png
+
 # Modificar/añadir comment
 convert imagen.jpg -set comment "comentario" out.jpg
 identify -verbose out.jpg | grep comment
@@ -77,3 +80,11 @@ convert mandrill_grid.jpg -matte -virtual-pixel black -interpolate Spline -disto
 
 Si queremos ver las ecuaciones que usa:
 convert mandrill_grid.jpg -matte -virtual-pixel black -interpolate Spline -verbose -distort BilinearForward '0,0 100,0   128,0 100,0   128,128 128,128   0,128 0,128' +verbose mandrill_blin.jpg
+
+
+# Animación
+convert -loop 0 -delay 100 in1.png in2.png out.gif
+  -delay es en centisegundos (100 es 1")
+
+También podeos convertir el gif a video:
+convert out.gif out.avi

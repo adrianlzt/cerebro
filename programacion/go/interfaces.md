@@ -154,6 +154,16 @@ func f(x interface{})  vs  func f(x *interface{})
 Creo que también puede ser porque llamámos a un método de de un (x *T) cuando x no está inicializado.
 
 
+## interface{} a una "type interface"
+Podemos convertir un tipo de dato "interface{}" a un "type interface" determinado y luego llamar a los método que tenga esa interfaz definidos.
+https://forum.golangbridge.org/t/how-to-cast-interface-to-a-given-interface/13997/2
+Resumiendo mucho:
+type Incrementor interface {
+  Increment()
+}
+var j interface{} = i
+j.(Incrementor).Increment()
+
 
 
 
@@ -190,3 +200,13 @@ Si ok es false es que no se ha podido convertir x en el formato T
 
 Convertir una interface{} a map (data.Interface() viene de reflect):
 data.Interface().(map[interface{}]interface{})
+
+
+
+
+Convertir una slice de strings a una slice de interfaces (https://stackoverflow.com/a/27689178)
+t := []int{1, 2, 3, 4}
+s := make([]interface{}, len(t))
+for i, v := range t {
+    s[i] = v
+}

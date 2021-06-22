@@ -70,6 +70,11 @@ DETACH DELETE p
 Si ponemos el "DETACH" primero deslinkaremos los nodos y luego los borraremos.
 
 
+## Schema
+CALL db.schema
+
+
+
 # Datos
 Convertir a int
 toInteger()

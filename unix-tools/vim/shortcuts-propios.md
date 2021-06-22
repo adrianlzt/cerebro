@@ -27,6 +27,9 @@ NERDTreeFromBookmark ??
 ,nf
 NERDTreeFind
 
+,tb
+tag bar, barra lateral por donde vamos, funciones, etc
+
 v
 Para abrir el fichero seleccionado en un split vertical
 

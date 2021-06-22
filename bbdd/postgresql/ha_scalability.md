@@ -11,6 +11,9 @@ https://github.com/ClusterLabs/PAF
 https://github.com/citusdata/pg_auto_failover
 https://agroal.github.io/pgagroal/
 
+PolarDB, share-nothing distributed database, basada en postgres
+https://github.com/alibaba/PolarDB-for-PostgreSQL
+
 Los clientes, si usan libq, se pueden configurar para pasarle varios hosts y que conecten al primario (mirar sección libq)
 
 

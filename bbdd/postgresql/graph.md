@@ -15,6 +15,8 @@ Parece que para no mucha recursion postgres funciona suficientemente bien, pero 
 Hay una extensión para montar el lenguage "cyber" sobre postgres
 https://bitnine.net/agensgraph-downloads/
 
+Otra opción: https://github.com/apache/incubator-age
+
 
 
 Según cuentan en el video de 2ndquadrant, postgres va a crear algunas funciones para poder navegar más sencillamente por esquemas tipo grafo.
