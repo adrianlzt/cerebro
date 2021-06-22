@@ -20,3 +20,10 @@ Control+_  comentar línea/líneas
 
 
 # Snippets
+
+
+
+# Navegar
+phaazon/hop.nvim
+saltar a cualquier parte
+control+h

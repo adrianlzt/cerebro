@@ -6,6 +6,10 @@ Se usan para enviar los datos a kapacitor
 # Crear subscripcion
 https://docs.influxdata.com/influxdb/v1.2/query_language/spec/#create-subscription
 CREATE SUBSCRIPTION "sub0" ON "mydb"."autogen" DESTINATIONS ALL 'udp://example.com:9090'
+  "autogen" es la retention_policy
+
+Si queremos usar http en vez de udp:
+'http://host1.example.com:9090'
 
 
 # Mostrar las activas
