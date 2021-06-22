@@ -1,3 +1,13 @@
+# xsv
+Escrita en rust
+
+cat fichero.csv |  xsv table
+
+
+
+# cvskit
+python
+
 http://csvkit.readthedocs.io/en/0.5.0/index.html
 
 pip install cvskit

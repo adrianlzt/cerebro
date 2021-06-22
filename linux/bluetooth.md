@@ -82,3 +82,7 @@ Pero no hace la traducción de UUIDs a que significan (en wireshark si lo puedo 
 
 # python
 usar gattlib
+
+
+# bettercap
+Interesante para analizar trazas de bluetooth

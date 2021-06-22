@@ -30,6 +30,9 @@ is_secure = False
 Listar los perfiles:
 radula profiles
 
+Usar un profile determinado:
+radula -p XXX ...
+
 Listar buckets:
 radula lb
 
