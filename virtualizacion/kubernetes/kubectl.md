@@ -28,6 +28,12 @@ kc = kubectl
 ckc = cambiar de contexto (disable, quitamos el prompt de spaceship zsh)
 nkc = cambiar de namespace
 
+https://github.com/ahmetb/kubectx
+cambiar de contexto
+kubectx
+
+cambiar de namespace
+kubens
 
 
 
@@ -65,6 +71,9 @@ kubectl config set-context demo-adrian --namespace kube-system
 Lo suyo es tener un contexto por cada namespace que usemos.
 Podemos seguir una nomenclatura de contextos tipo:
 nombrecluster-(nombreuser?-)nombrenamespace
+
+Cambiar de contexto (plugin krew ns)
+kubectx
 
 
 
