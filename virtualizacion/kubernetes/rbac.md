@@ -1,3 +1,5 @@
+mirar auth.md
+
 # Who am i
 kubectl krew install whoami
 kc whoami

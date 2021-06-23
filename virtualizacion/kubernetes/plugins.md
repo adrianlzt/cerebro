@@ -16,3 +16,24 @@ kubectl krew install xxx
 
 lista:
 https://github.com/kubernetes-sigs/krew-index/blob/master/plugins.md
+
+Plugins instalados
+kubectl krew list
+
+Actualizar los plugins
+kubectl krew upgrade
+
+
+
+Plugins útiles
+exec-as
+ns
+  cambiar de ctx o ns con kubectx o kubens
+view-secret
+rbac-lookup
+who-can
+whoami
+capture
+  arrancar wireshark escuchando en un pod
+df-pv
+  como df para los volumenes persistentes

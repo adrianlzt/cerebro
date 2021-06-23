@@ -198,6 +198,9 @@ No aparecen con: oc get all
 
 En caso de error hacer un describe al pvc
 
+Con el plugin df-pv de krew podemos ver el uso de los pv:
+kubectl df-pv
+
 
 # Crear un storageclass
 La opción "WaitForFirstConsumer" hará que el PVC no se resuelva en un PV hasta que se cree el pod que lo necesite.
