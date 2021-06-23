@@ -1,3 +1,6 @@
+mirar rbac.md
+
+
 https://github.com/ibuildthecloud/klum
 App para gestionar usuarios
 
@@ -7,7 +10,8 @@ https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 
 Se distinguen entre service accounts (manejadas por Kubernetes) y normal accounts (gestionadas por el admin del cluster).
 
-Las service accounts pertenecen a un namespace y están pensadas para los pods.
+
+Las service accounts pertenecen a un namespace y están pensadas para los pods o llamadas programáticas de otra app.
 
 Para las normal accounts tenemos varios métodos de auth, siendo el más típico certificado X509
 Parece que openshift usa tokens.
@@ -19,8 +23,25 @@ Authorization: roles/bindings para permitir acceso al usuario a distintos objeto
 
 
 # Authentication
+Podemos tener varios authorizers. El primero que cumpla dejará pasar al cluster la petición.
+
+Mainstream authentication modules include
+  client certificates
+  password
+    --basic-auth-file=SOMEFILE en el api server
+    no usar (método legacy mientras se implementan otros mejores)
+    se usa http basic auth
+  plain tokens
+  bootstrap tokens
+    simple bearer token that is meant to be used when creating new clusters or joining new nodes to an existing cluster
+    https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/
+  JWT tokens (used for service accounts)
+
+Generalmente tendremos tokes para las service accounts y certificados para los usuarios.
+
 
 ## Token
+Las service accounts pueden autenticarse usando un token (con el header Authorization: Bearer $TOKEN)
 
 ## Admin
 Podemos copiarnos el fichero /etc/kubernetes/admin.conf a nuestro ~/.kube/config para acceder como admin (mejor mergearlo con lo que ya tengamos)
