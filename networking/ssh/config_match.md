@@ -17,3 +17,9 @@ La idea es chequear si estamos en tal red con un ping al router y otro ping para
 
 En este artículo usa un script para chequear si la IP que contesta es el server ssh que buscamos.
 https://awbmilne.github.io/blog/SSH-Host-Fallback/
+
+Algo parecido al artículo, pero sin script y chequeando contra la lista de known_hosts que ya tenemos
+Lo que hacemos es mirar si la clave que devuelve la IP 1.2.3.4 (que es donde queremos conectar), tiene alguna clave ssh pública que ya conocemos.
+En ese caso damos por hecho que es el server donde queremos conectar.
+Match host arco exec "sh -c 'timeout 0.3 ssh-keyscan 1.2.3.4 2> /dev/null | xargs -I{} grep -e {} %d/.ssh/known_hosts | grep .'"
+  Hostname 1.2.3.4
