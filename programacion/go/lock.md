@@ -6,6 +6,13 @@ https://golang.org/pkg/sync/#RWMutex.Lock
 CUIDADO con hacer un Lock y luego salirse de la función por otro sitio sin hacer el Unlock.
 Intentar siempre que usemos el Lock y defer Unlock seguido.
 
+foo := sync.Mutex{}
+foo.Lock()
+foo.Unlock()
+
+Tambien tenemos RWMutex, que nos permite poner solo locks de read (permitimos muchos lectores, pero solo un escritor)
+
+
 
 # Gestion de locks entre procesos
 https://github.com/nightlyone/lockfile
