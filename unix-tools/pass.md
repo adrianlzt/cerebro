@@ -179,3 +179,11 @@ pass git pull
 # Almacenar ficheros
 pass insert secret-image -m <icon.png
 pass show secret-image >retrieved-image.jpg
+
+# TOTP
+Para meter un código totp, añadir una línea en el fichero de passwords con:
+totp: ASI3HH2D3454DJH
+con el código que nos hayan dado, si no nos lo han dado, estará dentro del QR
+
+Para obtener el código:
+gopass totp foo/bar
