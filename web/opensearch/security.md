@@ -1,7 +1,7 @@
 Todo el tema de configuraciones de seguridad van por defecto a: /usr/share/elasticsearch/plugins/opendistro_security/securityconfig
 
 Si queremos desactivar toda la seguridad:
-opendistro_security.disabled: true
+plugins.security.disabled: true
 
 Si queremos usar kibana con odfe tenemos que quitarle el plugin de security a kibana.
 

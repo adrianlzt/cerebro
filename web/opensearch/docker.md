@@ -6,6 +6,9 @@ https://hub.docker.com/r/opensearchproject/opensearch-dashboards
 docker run -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" opensearch/opensearch
 curl https://localhost:9200 -k -u admin:admin
 
+config:
+-v $PWD/opensearch.yml:/usr/share/opensearch/config/opensearch.yml
+
 # Kibana
 docker run --net host -d --name opendistro-kibana-skydive opensearch/opensearch-dashboards
   suponiendo que tenemos un ES escuchando en 9200

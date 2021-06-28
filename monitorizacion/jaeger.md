@@ -7,7 +7,9 @@ Un jaeger client (una app donde hemos metido el SDK de jaeger) normalmente envia
 Ese jaeger client será el que envie las métricas al collector y aplique las políticas que le obtenga del collector.
 
 ## Colletor
-Recoge trazas de varios agentes y las envía a la DB (o a un kafka)
+Recoge trazas de varios agentes y las envía a la DB (o a un kafka).
+Las DBs posibles son ElasticSearch o Cassandra.
+Pensando en añadir uno nuevo específico para OpenSearch: https://github.com/jaegertracing/jaeger/issues/3044
 
 ## Query / UI
 Lee de la DB y muestra al usuario
