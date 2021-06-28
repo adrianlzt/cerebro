@@ -1,6 +1,21 @@
 https://www.jaegertracing.io/
 https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
 
+# Componentes
+## Agent
+Un jaeger client (una app donde hemos metido el SDK de jaeger) normalmente enviará al jaeger client que tenga en local.
+Ese jaeger client será el que envie las métricas al collector y aplique las políticas que le obtenga del collector.
+
+## Colletor
+Recoge trazas de varios agentes y las envía a la DB (o a un kafka)
+
+## Query / UI
+Lee de la DB y muestra al usuario
+
+## Ingester
+En el caso de usar un kafka intermedio, este componente lee de kafka y envía a la DB.
+
+
 # Docker
 https://hub.docker.com/r/jaegertracing/all-in-one
 
