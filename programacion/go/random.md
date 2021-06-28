@@ -6,3 +6,10 @@ Generar una string de tamaño fijo con letras y numeros
 https://play.golang.org/p/2uTFDGkwxZ
 
 
+
+Generar un bool true/false.
+Si no usamos seed, siempre tendremos la generación de valores en el mismo orden.
+func RandBool() bool {
+    rand.Seed(time.Now().UnixNano())
+    return rand.Intn(2) == 1
+}
