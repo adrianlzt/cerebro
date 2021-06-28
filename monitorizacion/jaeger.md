@@ -18,6 +18,13 @@ Lee de la DB y muestra al usuario
 En el caso de usar un kafka intermedio, este componente lee de kafka y envía a la DB.
 
 
+# Opensearch
+Si queremos usar opensearch tenemos que especificar a mano la versión de ES, si no, detecta version=1 y aplica las templates para ES6.x que no son compatibles
+Failed to create span writer","error":"elastic: Error 400 (Bad Request): Setting index.mapper.dynamic was removed after version 6.0.0
+Para especificar la versión:
+ --env ES_VERSION=7
+
+
 # Docker
 https://hub.docker.com/r/jaegertracing/all-in-one
 
