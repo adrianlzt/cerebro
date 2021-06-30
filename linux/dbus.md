@@ -34,6 +34,10 @@ dbus-send --session --print-reply --type=method_call --dest=orf.freedekstip.Dbug
 ## busctl
 Para inspeccionar que tenemos
 
+## Obtener mensajes
+Ejemplo obteniendo notificaciones:
+dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'"
+
 
 # Signals
 PubSub 1:N
