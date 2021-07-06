@@ -54,6 +54,23 @@ Xtest = poly.fit_transform(Xtest)
 
 # Supervised learning
 
+## Linear regression
+https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+X = np.array([[440], [383], [303], [225], [145], [96], [41]])
+y = np.array([30, 50, 80, 110, 140, 160, 180])
+reg = LinearRegression().fit(X, y)
+
+reg.score(X, y)  # como de buena es la regresión
+reg.coef_  # sería la "a" de y=ax+b
+reg.intercept_  # sería la "b"
+reg.predict(np.array([[225]]))  # estimar "y" a partir de un "x"
+
+
+
 ## Logistic regression
 
 Dibujar las zonas de decisión.
