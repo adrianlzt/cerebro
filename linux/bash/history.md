@@ -18,3 +18,9 @@ Generalmente si escribimos
 No se almacena en el history (pero puede estar quitada esta opcion)
   HISTCONTROL=ignorespace
   Tambien con: HISTCONTROL=ignoreboth (ignorespace and ignoredups)
+
+Mostrar la fecha en el history
+export HISTTIMEFORMAT="%d/%m/%y %T "
+Ejemplo salida:
+  623  07/07/21 11:26:05 history
+  624  07/07/21 11:26:39 history | tail
