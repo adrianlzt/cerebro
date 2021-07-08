@@ -29,3 +29,6 @@ Generate a new key which is compliant with FIPS-140-2, for example ECDSA with cu
 
 Tipos de claves públicas soportadas por un server:
 sshd -T|egrep "pubkeyauthentication|pubkeyacceptedkeytypes" | tr ',' '\n'
+
+Para ver las que está aceptando:
+ps -ef | grep ssh | grep -o 'Pubk[^ ]*'
