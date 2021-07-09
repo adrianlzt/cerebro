@@ -24,6 +24,11 @@ Si queremos filtrar de una forma más extensa mirar ngrep.md
 Capturar todo el tráfico en ficheros, cada uno almacenando 15':
 tcpdump -G 900 -w '%Y-%m-%d_%H:%M:%S.pcap' -W 96
   -W cuantos ficheros en total rotaremos
+  Solo se rotan ficheros cuando hay tráfico
+  No quiere decir que tcpdump solo vaya a estar ejecutándose 96 * 15'
+  Quiere decir, que si recibimos un paquete cada 15', cuando lo haya hecho 96 veces se detendrá
+  CUIDADO parece que en RHEL/Fedora bajo ciertas circunstancias los ficheros pcap al usar esto se escriben con tcpdump, por lo que tal vez no tengamos permisos. Chequear antes de dejar corriendo que es capaz de generar ficheros rotados
+  https://github.com/the-tcpdump-group/tcpdump/issues/448
 
 
 Tipica instruccion para escuchar en todas las interfaces quitando ssh, dns, arp y ntp
