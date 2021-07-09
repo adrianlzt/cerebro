@@ -68,6 +68,12 @@ true
 false
 
 
+# Escapado
+echo '{"hola": "{\"foo\": \"bar\"}"}' | jq .hola -r | jq
+
+echo '{"hola": "{\"foo\": \"{\\\\\"bar\\\\\": 3}\"}"}' | jq .hola -r | jq .foo -r | jq
+
+
 
 # JSON firmados
 jwt.io
