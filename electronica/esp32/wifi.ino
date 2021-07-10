@@ -1,3 +1,5 @@
+// Más funciones https://randomnerdtutorials.com/esp32-useful-wi-fi-functions-arduino/#2
+
 #include <WiFi.h>
 
 const char* ssid = "NOMBRE_RED";
