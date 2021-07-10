@@ -14,6 +14,8 @@ Como configurar el SO para poder conectarla a un pc y acceder via ssh.
 3.- Desmontar la microsd y meterla en la raspizero
 4.- Conectar la raspizero al pc con un cable microusb (puerto USB de la raspizero)
 
+Podemos conectar un teclado con un adaptador OTG
+
 Nos aparecerá un adaptador ethernet nuevo en nuestro pc.
 Para buscar la ip de la raspizero:
 nmap -sP 169.254.10.54/16
