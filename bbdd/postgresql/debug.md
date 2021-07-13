@@ -30,3 +30,5 @@ Debug a bajo nivel (gdb, etc)
 https://wiki.postgresql.org/wiki/Developer_FAQ#How_do_I_look_at_a_query_plan_or_parsed_query.3F
 https://github.com/tvondra/gdbpg
 https://blog.2ndquadrant.com/postgresql-install-debuginfo/
+https://www.highgo.ca/2021/07/09/using-gdb-to-trace-into-a-parallel-worker-spawned-by-postmaster-during-a-large-query/
+  analizando un worker
