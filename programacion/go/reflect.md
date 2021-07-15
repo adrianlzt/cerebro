@@ -44,6 +44,11 @@ timestamp := binary.BigEndian.Uint32(timestampData.Bytes()[0:4]) // Lo convertim
 
 
 ## Iterar por un interface{} que sabemos que implementa un map debajo
+Si queremos chequear si "m" es compatible con "MapRange" (es parecido a lo que chequea internamente MapRange para lanzar un panic)
+if reflect.ValueOf(m).Kind() != reflect.Map {
+	return
+}
+
 iter := reflect.ValueOf(m).MapRange()  // panic si no es un Map
 for iter.Next() {
 	k := iter.Key()
