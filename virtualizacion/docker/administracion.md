@@ -6,6 +6,9 @@ Los datos se guarda en /var/lib/docker
   graph/ son las imágenes
   graph/<imageid>/layer son las filesystem layers
 
+/var/lib/docker/graph/<id>/json para images
+/var/lib/docker/containers/<id>/config.json para containers
+
 Limpiar basura: borrar todos los containers parados
 docker rm $(docker ps -a -q)
 
