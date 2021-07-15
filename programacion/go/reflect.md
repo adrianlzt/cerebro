@@ -43,6 +43,14 @@ timestampData := val.FieldByName("Data") // Cogemos del struct el compo "Data"
 timestamp := binary.BigEndian.Uint32(timestampData.Bytes()[0:4]) // Lo convertimos a un array de bytes y cogemos los 4 primeros para convertirlos en un uint32
 
 
+## Iterar por un interface{} que sabemos que implementa un map debajo
+iter := reflect.ValueOf(m).MapRange()  // panic si no es un Map
+for iter.Next() {
+	k := iter.Key()
+	v := iter.Value()
+	...
+}
+
 
 # Assertions / convertir de tipo
 https://tour.golang.org/methods/15
