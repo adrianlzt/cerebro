@@ -56,6 +56,16 @@ for iter.Next() {
 	...
 }
 
+En el caso de que "m" puese un puntero a un map (&map[xx]yy) podemos hacer:
+mValue := reflect.ValueOf(m)
+
+// If the metadata value is a pointer, resolve it
+if mValue .Kind() == reflect.Ptr {
+	mValue = mValue.Elem()
+}
+
+Ahora en mValue tendremos ya el map
+
 
 # Assertions / convertir de tipo
 https://tour.golang.org/methods/15
