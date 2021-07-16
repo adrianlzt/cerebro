@@ -1,4 +1,7 @@
+MUERTO
 http://xip.io/
+
+Usar nip.io
 
 Sirve para tener dominios que resuelven a una ip interna
 
