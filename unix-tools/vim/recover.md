@@ -10,3 +10,8 @@ Cerrará el swap con el fichero original, copiará el swap a la ventana de traba
 
 Para quedarnos con la ventana de la izquierda (lo que está en disco):
 :RecoveryPluginGet
+
+
+Comandos para el diff: https://stackoverflow.com/a/31686752
+]c  siguiente cambio
+do  traerse cambios de la otra ventana a esta

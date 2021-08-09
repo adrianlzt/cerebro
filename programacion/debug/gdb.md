@@ -7,6 +7,8 @@ https://youtu.be/PorfLSr3DDI 15' mostrando funcionalidades de gdb
 https://blog.0x972.info/index.php
 http://undo.io/resources/blog-articles/category/debugging/ posts con tips y guias sobre usos particulares de gdb
 http://www.brendangregg.com/blog/2016-08-09/gdb-example-ncurses.html  ejemplo usando gdb para encontrar un problema con un programa en python
+https://www.highgo.ca/2021/07/09/using-gdb-to-trace-into-a-parallel-worker-spawned-by-postmaster-during-a-large-query/
+  ejemplo debugeando postgres
 
 Tal vez es mejor idea usar rr
 Permite grabar una sesión y reproducirla varias veces

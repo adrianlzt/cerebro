@@ -1,6 +1,30 @@
 https://www.jaegertracing.io/
 https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
 
+# Componentes
+## Agent
+Un jaeger client (una app donde hemos metido el SDK de jaeger) normalmente enviará al jaeger client que tenga en local.
+Ese jaeger client será el que envie las métricas al collector y aplique las políticas que le obtenga del collector.
+
+## Colletor
+Recoge trazas de varios agentes y las envía a la DB (o a un kafka).
+Las DBs posibles son ElasticSearch o Cassandra.
+Pensando en añadir uno nuevo específico para OpenSearch: https://github.com/jaegertracing/jaeger/issues/3044
+
+## Query / UI
+Lee de la DB y muestra al usuario
+
+## Ingester
+En el caso de usar un kafka intermedio, este componente lee de kafka y envía a la DB.
+
+
+# Opensearch
+Si queremos usar opensearch tenemos que especificar a mano la versión de ES, si no, detecta version=1 y aplica las templates para ES6.x que no son compatibles
+Failed to create span writer","error":"elastic: Error 400 (Bad Request): Setting index.mapper.dynamic was removed after version 6.0.0
+Para especificar la versión:
+ --env ES_VERSION=7
+
+
 # Docker
 https://hub.docker.com/r/jaegertracing/all-in-one
 

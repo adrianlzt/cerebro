@@ -33,6 +33,12 @@ En metros
 Coordenadas que caigan dentro de un cuadrado (recordar que las coordenadas son lon,lat):
 SELECT name from crags WHERE coordinates && ST_MakeEnvelope(-4,40.9,-3.3,40.4);
 
+Mostrar las coordenadas en formato latitud/longitud:
+ST_AsText(xxx)
+
+Si lo queremos al revés:
+ST_AsText(ST_FlipCoordinates(xxx))
+
 
 # Errores
 

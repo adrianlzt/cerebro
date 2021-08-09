@@ -12,6 +12,8 @@ hours, _ := time.ParseDuration("10h")
 # Parsear fecha
 Unix epoch
 tm := time.Unix(epochSecs, epochNanoSecs)
+Si tenemos unix epoch en ms (similar para ns)
+time.Unix(1624531536000/1000, 1624531536000%1000)
 
 time.Now().Unix()
 En formato epoch
@@ -37,6 +39,13 @@ time.Parse("20060102:150405.000", ...)
 
 Otra opcion: %Y-%m-%d %H:%M:%S.%f
 t.Format("2006-01-02 15:04:05.000000000")
+
+
+Formatos estandar (https://pkg.go.dev/time#pkg-constants):
+time.Now().Format(time.RFC3339)
+2021-06-24T12:45:36+02:00
+
+
 
 # Now
 time.Now()

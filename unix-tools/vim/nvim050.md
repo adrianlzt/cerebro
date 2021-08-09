@@ -20,3 +20,15 @@ Control+_  comentar línea/líneas
 
 
 # Snippets
+
+
+
+# Navegar
+phaazon/hop.nvim
+saltar a cualquier parte
+control+h
+
+
+
+# Mejoras
+el autocompletado no me coje palabras cualesqueira de los buffers abiertos. Esto me parece super útil

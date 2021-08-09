@@ -8,6 +8,7 @@ For example, the adder function returns a closure. Each closure is bound to its 
 
 
 
+
 package main
 
 import "fmt"

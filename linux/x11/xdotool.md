@@ -25,9 +25,13 @@ keyup Control_L Tab
 Podemos enviar keystrokes a una ventana determinada.
 Para obtener el id de la ventana:
 xdotool search --name "Pulse Secure"
+  la opción --onlyvisible puede ser útil para no obtener IDs de ventanas ocultas
 
 Para enviar el keystroke a esa ventana:
 xdotool key --window 12345 Enter
+
+Obtener el id de una ventana pinchando sobre ella:
+xdotool selectwindow
 
 
 

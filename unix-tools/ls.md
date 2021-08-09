@@ -43,3 +43,6 @@ ls *
   lo que conseguiremos es un ls de los ficheros de nuestro directorio actual, más un ls de los ficheros de primer nivel
   si no hay ningún fichero: zsh: no matches found: *
   si hay demasiados ficheros (con 60000 aun no lo he conseguido) saltaría: too many files
+
+# ACL
+Si un fichero tienen definido ACL, al hacer 'ls -la' tendrá un '+' al final de la definición de los permisos.

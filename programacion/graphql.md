@@ -122,6 +122,8 @@ input StrengthCommand{
   value: Float
 }
 
+No podemos hacer polimorfismo con los inputs. Se está discutiendo en https://github.com/graphql/graphql-spec/pull/825
+
 ## enum
 Una variable que solo pueda tomar unos valores determinados.
 

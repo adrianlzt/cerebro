@@ -1,3 +1,4 @@
+# pip install paho-mqtt
 import paho.mqtt.client as mqtt
 
 # The callback for when the client receives a CONNACK response from the server.

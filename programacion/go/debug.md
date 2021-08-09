@@ -41,6 +41,9 @@ dlv debug github.com/influxdata/telegraf/cmd/telegraf
 Poner un breakpoint en un fichero determinado:
 b /home/adrian/.gvm/pkgsets/go1.9.2/global/src/github.com/influxdata/telegraf/plugins/aggregators/zabbix_lld/zabbix_ldd.go:54
 
+También se puede poner con un path relativo:
+b plugins/aggregators/zabbix_lld/zabbix_ldd.go:54
+
 Con "help" podemos ver los comandos disponibles
 
 Típicos:

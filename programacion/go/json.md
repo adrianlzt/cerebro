@@ -7,6 +7,12 @@ https://mholt.github.io/json-to-go/
 
 https://github.com/Jeffail/gabs
 libreria para facilitar el acceso a los json
+nos permite acceder usando jsonpath
+
+https://github.com/icza/dyno
+parseo de jsons, haciendo casts con los casos posibles
+Puedo seleccionar un path y me devuelve (o intenta) un tipo nativo de go.
+Puedes insertar también en un path determinado
 
 # Caso simple
 type Test struct {

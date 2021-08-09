@@ -28,6 +28,9 @@ docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --i
 done
 done
 
+Si queremos ignorar certificados TLS
+-e NODE_TLS_REJECT_UNAUTHORIZED=0
+
 
 # Restore
 Crear un mapping a partir de un fichero

@@ -43,6 +43,29 @@ timestampData := val.FieldByName("Data") // Cogemos del struct el compo "Data"
 timestamp := binary.BigEndian.Uint32(timestampData.Bytes()[0:4]) // Lo convertimos a un array de bytes y cogemos los 4 primeros para convertirlos en un uint32
 
 
+## Iterar por un interface{} que sabemos que implementa un map debajo
+Si queremos chequear si "m" es compatible con "MapRange" (es parecido a lo que chequea internamente MapRange para lanzar un panic)
+if reflect.ValueOf(m).Kind() != reflect.Map {
+	return
+}
+
+iter := reflect.ValueOf(m).MapRange()  // panic si no es un Map
+for iter.Next() {
+	k := iter.Key()
+	v := iter.Value()
+	...
+}
+
+En el caso de que "m" puese un puntero a un map (&map[xx]yy) podemos hacer:
+mValue := reflect.ValueOf(m)
+
+// If the metadata value is a pointer, resolve it
+if mValue .Kind() == reflect.Ptr {
+	mValue = mValue.Elem()
+}
+
+Ahora en mValue tendremos ya el map
+
 
 # Assertions / convertir de tipo
 https://tour.golang.org/methods/15

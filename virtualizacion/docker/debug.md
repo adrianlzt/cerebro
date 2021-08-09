@@ -1,3 +1,5 @@
+mirar administracion
+
 # Cambiar a modo debug en caliente
 https://docs.docker.com/engine/admin/#enable-debugging
 https://success.docker.com/KBase/How_do_I_enable_%22debug%22_logging_of_the_Docker_daemon%3F

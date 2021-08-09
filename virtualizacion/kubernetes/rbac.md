@@ -1,3 +1,12 @@
+mirar auth.md
+
+# Who am i
+kubectl krew install whoami
+kc whoami
+
+kc whoami --token asdAsda
+  ver a quien pertenece un token
+
 # Chequear permisos
 Instalar plugins:
 kubectl krew install who-can

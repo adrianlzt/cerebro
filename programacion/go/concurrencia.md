@@ -25,8 +25,13 @@ La evaluación de x,y,z se hace en el thread actual, y la ejecución de f en el 
 Ambos threads comparten el mismo 'address space', por lo que el acceso a memoria debe estar sincronizado.
 
 Ejemplo de como usar gorutinas y canales para crear una serie de "workers" que procesan unos trabajos: https://play.golang.com/p/Xej_bnYnlSr
+Mirar tambien workerpool
 
 No debemos de intentar obtener el id de una gorutine: https://blog.sgmansfield.com/2015/12/goroutine-ids/
+
+Cuidado con "capturar" variables de un loop dentro de un closure
+https://stackoverflow.com/questions/40326723/go-vet-range-variable-captured-by-func-literal-when-using-go-routine-inside-of-f
+El problema puede venir porque estemos pasando el mismo puntero a todas las gorutinas, por lo que estarán usando la misma variable, cuando en realidad quermos pasar una variable determinada en cada vuelta del loop.
 
 
 
@@ -200,6 +205,32 @@ Para crear zonas de exclusión, donde solo una goroutina puede estar en todo mom
 Se usa cuando tenemos que compartir recursos entre goroutinas.
 var mu sync.Mutex
 
+https://golang.org/pkg/sync/#Mutex.Lock
+https://golang.org/pkg/sync/#RWMutex.Lock
+  este último solo bloquea dos escritores, pero permite varios lectores.
+
+CUIDADO con hacer un Lock y luego salirse de la función por otro sitio sin hacer el Unlock.
+Intentar siempre que usemos el Lock y defer Unlock seguido.
+
+foo := sync.Mutex{}
+foo.Lock()
+foo.Unlock()
+
+Tambien tenemos RWMutex, que nos permite poner solo locks de read (permitimos muchos lectores, pero solo un escritor)
+
+
+
+# Gestion de locks entre procesos
+https://github.com/nightlyone/lockfile
+ejemplos/lock.go
+
+
+
+
+Otra lib:
+https://github.com/tgulacsi/go-locking
+
+
 mu.Lock()
 mu.Unlock()
 
@@ -256,10 +287,11 @@ En cuanto una termina (estamos escuchando en el canal), cerramos todo (defers) y
 ## Semáforos
 https://medium.com/@matryer/golang-advent-calendar-day-two-starting-and-stopping-things-with-a-signal-channel-f5048161018
 Usar un canal vacío (struct{}) para señalizar, esperar, etc
+Podemos usarlo para solo permitir a N gorutinas estár ejecutando algo, por ejemplo, peticiones a un server, para no saturarlo.
 
 done := make(chan struct{}, 2)
-<-done
-done <- struct{}{}
+done <- struct{}{} // coger un hueco
+<-done // soltar un "hueco"
 
 
 ## Pipelines

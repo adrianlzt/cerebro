@@ -91,6 +91,13 @@ a[len(a)-1] = nil   // marcamos el último elemento como borrado (para el GC)
 a = a[:len(a)-1]    // reducimos el tamaño del slice en 1
 
 
+## Obtener todos los values como un slice
+m := make([]int, 0, len(d))
+for _, val := range d {
+    m = append(m, val)
+}
+
+
 # Comparar
 https://yourbasic.org/golang/compare-slices/
 

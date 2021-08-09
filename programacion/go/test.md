@@ -20,8 +20,10 @@ go test -v -run NameOfTest
 go test fichero_test.go MAL!
   esto no pilla el package, parece que corre el fichero _test de forma aislada
 
-Mejor usar Goconvey (mirar más abajo) Roto? No me funciona 27/1/2019. Y parece que el desarrollo/mantenimiento se ha abandonado
-Substituo para ver como van las ejecuciones de los test en tiempo real:
+Ejecutar los tests según haya modificaciones:
+fd \.go | entr -c go test -v"
+
+ver como van las ejecuciones de los test en tiempo real en un navegador:
 gotty sh -c "fd \.go | entr -c go test -v"
 
 
@@ -368,3 +370,13 @@ func TestXX(..) {
 # gorutinas
 Si usamos gorutinas y queremos llamar a t.Fatal mejor usar un channel y recuperar los errores luego
 https://github.com/ipfs/go-ipfs/issues/2043#issuecomment-164136026
+
+
+
+# Detectando tests que solo fallan a veces
+https://www.influxdata.com/blog/reproducing-a-flaky-test-in-go/
+
+Dependerá de la razón por la que fallan.
+
+Una posible opción es ejecutar los tests N veces (se detiene si encuentra un error):
+go test -count=100 -failfast -run ...
