@@ -16,7 +16,7 @@ docker run -d --name jaeger \
   -p 14268:14268 \
   -p 14250:14250 \
   -p 9411:9411 \
-  jaegertracing/all-in-one:1.22
+  jaegertracing/all-in-one
 
 
 Significado de los puertos

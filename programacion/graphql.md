@@ -24,6 +24,8 @@ https://www.graphqlbin.com/v2/new
 Podemos probar con alguna de las APIs de graphql públicas:
 https://github.com/APIs-guru/graphql-apis
 
+Ejemplo del schema de gitlab: https://gitlab.com/gitlab-org/gitlab/-/blob/6600d8dbd5e356c4419d6dabc0af4b434165424a/doc/api/graphql/reference/gitlab_schema.graphql
+
 
 
 # Schema
@@ -50,6 +52,10 @@ https://graphql-code-generator.com/
 
 Unstructured data: https://github.com/graphql/graphql-js/issues/32
 Parece que no hay mucha forma de gestionar esto. Meterlo en una string y poco más.
+
+Los nombres de las queries/mutations/subscriptions deben tener el formato: /[_A-Za-z][_0-9A-Za-z]*/
+https://spec.graphql.org/June2018/#Name
+Case sensitive
 
 
 ## Doc
@@ -99,6 +105,7 @@ schema{
 El tipo de dato que se puede pasar a Mutations son "inputs"
 Generalmente llevarán el "!" para indicar que es obligatorio.
 Mirar en su sección.
+
 
 
 ## Input
@@ -233,6 +240,12 @@ mutation {
   }
 }
 
+Podemos enviar varias mutations en la misma petición:
+mutation {
+  topfolder: createFolder(repositoryIdentifier: "<objectStoreSymName>") { name }
+  childfolder: createFolder(repositoryIdentifier: "<repoName>") { name }
+}
+
 
 
 # Subscriptions
@@ -261,6 +274,27 @@ subscription {
     likes
   }
 }
+
+
+# Errores
+Parece que cada librería puede gestionar como se manejan los errores.
+Por lo que he visto en la librería de Apollo y por pruebas con gqlgen (golang), al comenter un error (por ejemplo, poner mal la query), el server te devuelve un
+422 Unprocessable Entity
+Devuelve un JSON con:
+{
+  "errors":[
+    {"message":"Cannot query fie..", "locations": [], "extensions": {"code": "XXX"}},
+  ]
+}
+
+Otro tipo de errores son los que se devuelven en la función de la mutation, cuando la implementamos.
+En este caso el código será 200 OK y el json tendrá, por ejemplo:
+{"errors":[{"message":"mensaje de error","path":["addEvents"]}],"data":null}
+
+La query no devolverá los datos que le hayamos pedido.
+
+Por lo tanto, el cliente deberá chequear si en el json de respuesta existe un campo "errors", que indicará que existe algún error.
+
 
 
 # Código

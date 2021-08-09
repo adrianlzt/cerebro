@@ -1,3 +1,20 @@
+# x2go
+Opción más sencilla: x2go
+nomachine no me levantaba el puerto 4000 y la doc no es clara.
+
+pacman -Ss x2goserver
+sudo x2godbadmin --createdb
+systemctl start x2goserver
+
+Logs:
+journalctl -f | grep x2go
+
+En el cliente
+pacman -Ss x2goclient
+x2goclient
+
+
+# nomachine
 https://www.nomachine.com/
 
 Es como el VNC pero más rápdio
@@ -16,7 +33,8 @@ Si queremos parar el servidor local que ha arrancado la instalación:
 sudo systemctl disable nxserver
 
 Solo cliente:
-/usr/NX/bin/nxplayer.bin
+/usr/NX/bin/nxplayer
+
 
 
 # Ubuntu

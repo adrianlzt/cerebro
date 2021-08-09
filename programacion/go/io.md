@@ -1,6 +1,8 @@
 Tambien podemos usar bufio.NewScanner (mirar file.md)
 
 # Convertir una string a un elemento que cumpla la interfaz io.Reader
+buf := strings.NewReader("cadena")
+Otra opción:
 buf := bytes.NewBufferString("cadena")
 
 Cumple la interfaz io.ReadWriter (https://godoc.org/io#ReadWriter)

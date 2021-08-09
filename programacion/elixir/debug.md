@@ -1,7 +1,7 @@
 https://elixir-lang.org/getting-started/debugging.html
 
 
-IO.puts("el tipico print")
+IO.puts("hola #{foo}")
 
 Ver contenido de cualquier tipo de variable
 IO.inspect(variable)

@@ -2,6 +2,10 @@ http://meldmerge.org/
 
 meld is a visual diff and merge tool targeted at developers. I use to compare config files too.
 
+Para la consola podemos usar: delta
+Outut parecido al de meld (pero sin posibilidad de modificar).
+Podemos usar tambien vim: vim -d foo bar
+
 
 Para patches:
 programacion/parches_diff_patch.md

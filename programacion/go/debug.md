@@ -11,6 +11,7 @@ Setting the GODEBUG environment variable to inittrace=1 now causes the runtime t
 # Delve
 https://github.com/derekparker/delve
 go get -u github.com/derekparker/delve/cmd/dlv
+dlv debug -- -arg1 -arg2
 
 UI: https://github.com/aarzilli/gdlv
   go get -u github.com/aarzilli/gdlv

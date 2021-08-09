@@ -31,7 +31,7 @@ blkid | grep 979
 Otra opción, si usamos docker, y el link apunta a /dev/ceph-...
 pvs | grep ...
 
-Si usamos docker, para ver el mapeo de OSD.id a disco:
+Si usamos docker, para ver el mapeo de OSD.id a disco (nos dara el mapeo de los discos de ese nodo):
 docker run --rm -it -e CEPH_DAEMON=OSD_CEPH_VOLUME_ACTIVATE -e OSD_ID=999 --entrypoint bash --privileged -v /dev:/dev -v /etc/ceph:/etc/ceph -v /var/run/ceph:/var/run/ceph -v /var/run/udev:/var/run/udev -v /run/lvm:/run/lvm -v /var/lib/ceph:/var/lib/ceph ceph/daemon:v4.0.0-stable-4.0-nautilus-centos-7-x86_64 -c 'ceph-volume lvm list | grep -e "osd id" -e "devices"'
 
 

@@ -8,6 +8,12 @@ yaourt -S nvm
 /bin/bash
 nvm install 4.2
 
+nvm ls
+  listar versiones instaladas
+
+nvm ls-remote --lts
+  mirar que versiones lts podemos instalar
+
 nvm use 4.2
 
 nvm use system

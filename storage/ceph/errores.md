@@ -104,3 +104,39 @@ ceph health detail
 pg 7.43 is stuck stale for 8055793.059034, current state stale+active+clean, last acting [0]
   ese "[0]" indica que estaba en el osd 0
 
+
+
+
+mgr[zabbix] Exception when sending: [Errno 2] No such file or directory
+Parece que es por tener configurado el módulo de zabbix pero no instalado el zabbix_sender.
+Tal vez estamos usando contenedores que no lo traen?
+Podemos entrar en el contenedor e instalarlo.
+Mirar zabbix.md
+
+
+
+health HEALTH_ERR 1 pgs inconsistent; 2 scrub errors
+https://ceph.io/en/news/blog/2015/ceph-manually-repair-object/
+$ ceph health detail
+...
+PG_DAMAGED Possible data damage: 1 pg inconsistent
+    pg 8.22 is active+clean+inconsistent, acting [3,49,19]
+
+Intentamos forzar su reparación:
+$ ceph pg repair 8.22
+
+Tras unos segundos volvemos a comprobar si ya está bien:
+$ ceph health detail
+
+En este caso se ha solucionado.
+Mirando el dmesg del osd.3, encontramos que el disco físico sobre el que está montado dió errores:
+[11988619.569166] sd 4:0:1:0: [sds] FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_SENSE
+[11988619.569177] sd 4:0:1:0: [sds] Sense Key : Medium Error [current]
+[11988619.569182] sd 4:0:1:0: [sds] Add. Sense: Unrecovered read error
+[11988619.569188] sd 4:0:1:0: [sds] CDB: Read(10) 28 00 06 ab 0a 00 00 04 00 00
+[11988619.569192] blk_update_request: critical medium error, dev sds, sector 111873376
+
+
+
+
+

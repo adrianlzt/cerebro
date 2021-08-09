@@ -1,5 +1,7 @@
 https://github.com/lavie/runlike
 Obtener el "docker run" de una imagen que ya está corriendo
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike NOMBRE_CONTAINER
+
 
 Usage: docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 

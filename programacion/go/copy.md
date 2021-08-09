@@ -12,3 +12,12 @@ Lo que hacemos es crear una nueva variable *url.URL y asignarle el valor de web1
 
 
 https://play.golang.org/p/aBPtAviOkoO
+
+
+
+
+https://stackoverflow.com/questions/56355212/deep-copying-data-structures-in-golang
+Como regla general, no se puede hacer un "deep copy" en go.
+Hay librerías que lo intentan (https://pkg.go.dev/github.com/getlantern/deepcopy) pero haciendo "apaños", esa en concreto, convirtiendo ida y vuelta a JSON.
+
+Intentar implementar un "Copy()" en la propia librería, que conozca los tipos internos y los copie.

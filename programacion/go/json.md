@@ -31,6 +31,11 @@ type T struct {
 
 omitempty hace que el Marshaling saque campos con valor vacío.
 También podemos omitar un campo del json si ponemos: `json:"-"`
+
+Si usamos omitempty con int y el valor es 0, se omitirá del JSON.
+Para estos casos podemos usar json.Number
+https://play.golang.org/p/YB1n43d_ZnZ
+
 El Unmarshal pillá por defecto también el nombre del field en minúsculas
 
 IMPORTANTE: los fields del struct deben empezar por mayúscula

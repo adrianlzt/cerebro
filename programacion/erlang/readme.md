@@ -11,3 +11,8 @@ Erlang is a programming language used to build massively scalable soft real-time
 OTP
 http://learnyousomeerlang.com/what-is-otp
 The OTP framework is also a set of modules and standards designed to help you build applications. Given most Erlang programmers end up using OTP, most Erlang applications you'll encounter in the wild will tend to follow these standards
+
+
+# Debug
+Print cutre
+erlang:display("xxx")

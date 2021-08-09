@@ -1,5 +1,9 @@
 En principio no es necesario reiniciar (tal vez alguna extensión particular lo requiera)
 
+Listar extensiones y funciones de estas
+\dx+
+
+
 
 https://github.com/omniti-labs/pg_jobmon
 https://pgxn.org/dist/pg_jobmon/ <- versión más nueva que en github (mirar PR)
@@ -68,10 +72,6 @@ pg_track_settings is a small extension that helps you keep track of postgresql s
 mirar las que usa powa.md
 
 esqueleton: https://paquier.xyz/postgresql-2/blackhole-extension/
-
-
-Listar extensiones y funciones de estas
-\dx+
 
 
 # PGXN

@@ -13,12 +13,35 @@ Dockerfile y config por defecto: https://github.com/open-telemetry/opentelemetry
 
 Ejemplo de config
 https://github.com/open-telemetry/opentelemetry-collector/blob/18ddc140dd6ec60489ac61bbc084c26750681198/examples/local/otel-config.yaml
+https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector/18ddc140dd6ec60489ac61bbc084c26750681198/examples/local/otel-config.yaml
+
+Config básica que recibe protocolo OTLP y imprime por pantalla
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    logLevel: debug
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging]
+
+
+Ejemplo de docker-run
+docker run --rm -it --net host -v "$PWD/otel-config.yaml:/etc/otel/config.yaml" otel/opentelemetry-collector:latest
 
 yaml para despliegue en k8s
 https://github.com/open-telemetry/opentelemetry-go/blob/main/example/otel-collector/k8s/otel-collector.yaml
-
-Ejemplo de docker-run
-docker run --rm -it --net host -v "$PWD/collector.config:/etc/otel/config.yaml" otel/opentelemetry-collector:latest
 
 
 # Receivers
@@ -27,6 +50,7 @@ Las diferentes opciones que hay para recibir datos se llaman receivers.
 
 
 # Exporters
+https://opentelemetry.io/docs/collector/configuration/#exporters
 Es a donde enviaremos los datos.
 O en caso de prometheus, como los expondremos.
 
@@ -34,6 +58,16 @@ En caso de no poder conectar a un exporter, el colelctor arrancará correctament
 
 ## Jaeger
 La comunicación se hará por el puerto 14250, usando HTTP/model.proto
+Ejemplo:
+  jaeger:
+    endpoint: "jaeger-all-in-one:14250"
+    insecure: true
+
+## OpenSearch data prepper
+Config para probar:
+  otlp/2:
+    endpoint: "localhost:21890"
+    insecure: true
 
 
 

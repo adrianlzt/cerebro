@@ -11,4 +11,7 @@ git rebase -i HEAD~3
 Nos abrirá el editor con los commits que vamos a mergear
 Los commits que queramos "squashear" cambiamos "pick" por squash
 
+Muchas veces queremos juntar todos los commits seleccionados.
+En ese caso pondremos squash en todos menos en el de la primera linea.
+
 Al terminar no generará un mensaje de commit con todo lo que estamos mergeando, que podremos modificar.

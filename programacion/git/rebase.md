@@ -18,3 +18,8 @@ Podemos tener problemas mergeando, ante los que habrá tres posibilidades:
   Saltarnos ese problema en particular: git rebase --skip
 
   Olvidarnos del rebase: git rebase --abort
+
+
+# rebase interactive
+git rebase -i HEAD~4
+nos permite hacer modificaciones sobre los últimos 4 commits

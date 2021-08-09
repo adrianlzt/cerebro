@@ -12,6 +12,12 @@ mix deps
 Bajarlas:
 mix deps.get
 
+Compilar dependencias:
+mix deps.compile
+
+Compilar una dep en particular:
+mix deps.compile opentelemetry_api
+
 Borrar compilaciones y deps bajadas:
 mix deps.clean
 
@@ -19,3 +25,6 @@ Ver cuales tenemos desactualizadas:
 mix hex.outdated
   Update possible:
     yes, actualización compatible con la versión declarada en mix.lock
+
+Actualizar las deps
+mix deps.update --all

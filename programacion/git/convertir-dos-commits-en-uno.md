@@ -1,5 +1,10 @@
 Hago un pull request de una rama que he creado. Esta rama tiene dos commits, pero me piden que solo tenga uno para aceptar el pull request
 
+# Usando rebase + squash
+git rebase HEAD~2
+  cambiamos los "pick" por "squash"
+
+# Usando reset
 me clono mi codigo
 git clone ...
 

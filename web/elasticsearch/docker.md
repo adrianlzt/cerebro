@@ -10,6 +10,9 @@ docker run -d -p 9200:9200 --name elastic -e "discovery.type=single-node" docker
 docker run -d -p 9200:9200 --name elastic -e ELASTIC_PASSWORD=changeme -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.3.0
   la pass changeme es la que usa por defecto la imagen de kibana para conectar con ES
 
+Si queremos modificar el puerto en donde escucha elasticsearch:
+-e http.port=9201
+
 docker pull docker.elastic.co/elasticsearch/elasticsearch:6.2.2
 docker pull docker.elastic.co/elasticsearch/elasticsearch-platinum:6.2.2
 docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.2
