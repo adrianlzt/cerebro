@@ -147,6 +147,28 @@ interface.type:
 La tabla problem mantiene los problems sin resolver.
 Una vez resueltos podemos usar la tabla event_recovery para matchear los que están resueltos.
 
+-- problemas abiertos (quitando duplicados, con el distinct). No coincide exactamente con el número de la interfaz web por que el web esconde las dependencias
+SELECT DISTINCT
+    p.eventid,
+    h.host,
+    h.name AS hostname,
+    p.name AS problem,
+    (ARRAY['Not classified', 'Information', 'Warning', 'Average', 'High', 'Disaster'])[p.severity+1] AS severity,
+    p.severity AS severitynum
+FROM
+    problem p
+    JOIN functions f ON p.objectid = f.triggerid
+    JOIN triggers t USING (triggerid)
+    JOIN items i USING (itemid)
+    JOIN hosts h USING (hostid)
+WHERE
+    source = 0
+    AND r_eventid IS NULL
+    AND h.status = 0
+    AND i.status = 0
+    AND t.status = 0;
+
+
 -- problemas que estaban abiertos en un momento determinado (y ahora ya están cerrados), para un host determinado
 WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT

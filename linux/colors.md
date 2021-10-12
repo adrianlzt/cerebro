@@ -1,3 +1,17 @@
+Muchas CLIs cuando detectan que van a enviar su salida a un pipe quitan los colores, por ejemplo ls o ansible.
+Si estamos usando tee esto quiere decir que nos quedamos sin colores.
+Lo que podemos hacer es usar unbuffer
+unbuffer ls -l --color=auto | tee output.log
+
+En ubuntu/debian está en el paquete expect-dev
+En RHEL: expect
+
+Otras formas con script
+https://stackoverflow.com/questions/3515208/can-colorized-output-be-captured-via-shell-redirect
+Con "script -c 'CMD' parece que funciona con algunos (ansible) pero no con otros (ls -la)"
+
+
+
 https://github.com/trapd00r/LS_COLORS
 Usar este repo para los colores
 Instalado en arch lscolors-git

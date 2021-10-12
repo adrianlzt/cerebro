@@ -15,7 +15,7 @@ git-filter-repo --help
 https://github.com/newren/git-filter-repo/blob/master/Documentation/git-filter-repo.txt
 
 Hace un análisis de que tenemos en el repo, tamaños, tipos de fichero, etc.
-git filter-repo --analysis
+git filter-repo --analyze
 
 Borrar la palabra "secret":
 git filter-repo --replace-text <(echo 'secret==>foobar')

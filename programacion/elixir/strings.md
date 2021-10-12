@@ -1,3 +1,6 @@
+ Variables junto strings:
+ "#{a} #{b}"
+
 String.split(foo, "\n")
   nos devuelve un array de elementos partidos por "\n"
 

@@ -2,7 +2,9 @@ Hago un pull request de una rama que he creado. Esta rama tiene dos commits, per
 
 # Usando rebase + squash
 git rebase HEAD~2
-  cambiamos los "pick" por "squash"
+  cambiamos los "pick" por "squash", excepto el primero de la lista (que intentaría hacer squash con el anterior, que no lo hemos seleccinado)
+
+Se puede usar para N commits
 
 # Usando reset
 me clono mi codigo

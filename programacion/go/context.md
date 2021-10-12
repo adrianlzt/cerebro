@@ -7,3 +7,12 @@ Muchas veces se suele usar context para parar y limpiar las goroutines. La venta
 
 ctx, cancel := context.WithCancel(context.Background())
 
+
+definir un context nuevo:
+ctx := context.Background()
+
+Mirar si nos han terminado el ctx:
+select {
+case <- ctx.Done():
+    return ctx.Err()
+}

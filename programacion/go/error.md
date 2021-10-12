@@ -172,6 +172,28 @@ if err != nil {
 }
 
 
+# multierror
+https://github.com/hashicorp/go-multierror
+
+Librería para cuando tenemos que devolver un único "error", pero estamos iterando por un slice y podemos generar varios errores.
+
+var result error
+for i := 0; i < 3; i++ {
+	result = multierror.Append(totalErr, fmt.Errorf("error en %d", i))
+}
+fmt.Printf("%v\n", result)
+
+Salida:
+3 errors occurred:
+        * error en 0
+        * error en 1
+        * error en 2
+
+Se puede customizar el output (por ejemplo si queremos una única linea)
+
+Para devolver los errores, si hay, o en caso contrario, nil.
+return result.ErrorOrNil()
+
 
 # invalid flag in #cgo CFLAGS
 https://github.com/golang/go/wiki/InvalidFlag

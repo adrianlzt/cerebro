@@ -1,3 +1,4 @@
-http://jedi.jedidjah.ch/en/latest/
-apt-get install vim-python-jedi
+Usar neovim lsp con https://github.com/palantir/python-language-server
 
+
+Si queremos quitar cosas de pycodestyle mirar tox.ini

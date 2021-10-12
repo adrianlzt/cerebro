@@ -6,13 +6,27 @@ Como configurar el SO para poder conectarla a un pc y acceder via ssh.
 
 
 1.- Flashea Raspbian (os.md)
-2.- Montar la microsd y en la particion boot:
+2.-
+  sudo mount /dev/mmcblk0p2 /mnt/pendrive/
+  sudo mount /dev/mmcblk0p1 /mnt/pendrive/boot
+3.- En la particion boot:
     echo "dtoverlay=dwc2" >> config.txt
     touch ssh
     vi cmdline.txt
     Insert 'modules-load=dwc2,g_ether' after 'rootwait'
-3.- Desmontar la microsd y meterla en la raspizero
-4.- Conectar la raspizero al pc con un cable microusb (puerto USB de la raspizero)
+4.- Desmontar la microsd y meterla en la raspizero
+5.- Conectar la raspizero al pc con un cable microusb (puerto USB de la raspizero)
+
+También podemos meter en la partición boot un fichero para conectar a una wifi
+wpa_supplicant.conf
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+country=ES
+update_config=1
+
+network={
+ ssid="<Name of your wireless LAN>"
+ psk="<Password for your wireless LAN>"
+}
 
 Podemos conectar un teclado con un adaptador OTG
 

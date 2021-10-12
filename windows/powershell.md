@@ -61,6 +61,9 @@ https://docs.microsoft.com/es-es/powershell/wmf/5.0/audit_script
 Control Panel -> View event logs
 ETW, Microsoft-Windows-PowerShell/Operational
 
+# Eventos
+mirar event_log.md
+
 
 # Select-Object
 Nos permite solo quedarnos con alguna parte de los objetos que vienen por el pipe

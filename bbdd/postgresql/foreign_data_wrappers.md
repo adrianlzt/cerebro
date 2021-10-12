@@ -31,6 +31,10 @@ Método usando psql, esscribiendo en local:
 \copy (select name from hosts) TO 'hosts.csv' CSV HEADER;
 
 
+Con psql
+psql -AtF',' -c "$query"
+
+
 
 ## Importar
 CREATE TABLE xxx (...);

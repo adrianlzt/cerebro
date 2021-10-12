@@ -47,3 +47,6 @@ SELECT a,
             ELSE 'other'
        END
     FROM test;
+
+select CASE WHEN (select count(*) from update_cte) = 0 THEN 'no hay cambios' ELSE 'cambios:'||t END AS output from dummy left join update_cte on 1=1
+

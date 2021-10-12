@@ -47,3 +47,18 @@ forwards your port 1234 to another machine's port 22. Very useful for quick NAT 
 
 # SSL
 echo "GET / HTTP/1.0\n\n" | socat openssl:server.es:443 stdio
+
+
+# Meter aplicaciones por un proxy cuando no saben usarlo
+socat TCP4-LISTEN:8000,reuseaddr,fork PROXY:nombre.proxy.com:destino.peticion.com:443,proxyport=8080,proxyauth=USUARIOPROXY:PASSPROXY
+
+Con esta llamada levantamos socat en el puerto 8000.
+Las peticiones que hagamos a localhost:8000 se enviarán en realidad a https://destino.peticion.com:443 usando el proxy nombre.proxy.com con la autorización de proxy USUARIOPROXY:PASSPROXY
+Esto nos vale para conectar una aplicación a un endpoint remoto usando un proxy, cuando la aplicación no sabe configurar el proxy.
+Tendremos que meter en /etc/hosts el destino.peticion.com apuntando a 127.0.0.1
+
+Si hacemos:
+curl https://destino.peticion.com:8000
+Esto lo recogerá socat.
+Socat establecerá una conexión con el proxy, diciendo que quiere conectar a destino.peticion.com:443 (CONNET destino.peticion.com:443).
+Se enviará el GET por TLS y obtendremos la respuesta de destino.peticion.com:443

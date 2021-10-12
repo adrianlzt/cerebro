@@ -3,6 +3,10 @@ https://cloud.google.com/iam
 Gestión de identidades y accesos.
 
 
+# Roles
+Si queremos ver los roles disponibles y que permisos dan cada uno (para ver los permisos pinchar sobre la línea del rol y lo muestra en la tarjeta de la derecha)
+https://console.cloud.google.com/iam-admin/roles
+
 # Dar permisos a usuarios/SA
 https://console.cloud.google.com/iam-admin/iam
 Pulsar sobre ADD

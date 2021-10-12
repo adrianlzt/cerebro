@@ -58,9 +58,11 @@ println new Person().metaClass.methods*.name.sort().unique()
 
 
 # condicionales
+https://docs.groovy-lang.org/latest/html/documentation/core-operators.html
+
 if ( a == 1 && b == 2 ) {
     ...
-} else if (!x) {
+} else if (!x || y) {
     ...
 } else {
     ...

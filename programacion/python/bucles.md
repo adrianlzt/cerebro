@@ -37,6 +37,10 @@ for num in range(0,10):
 2
 
 
+Dict
+for k,v in {"a": 3}.items():
+
+
 # Inline
 squares = [x**2 for x in range(10)]
 
@@ -55,7 +59,7 @@ https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
 
 
 Obtener de un dict solo la clave filtrando por los valores
->>> [k for k,v in cuentas.iteritems() if v == "alias2"]
+>>> [k for k,v in cuentas.items() if v == "alias2"]
 ['alias2']
 
 

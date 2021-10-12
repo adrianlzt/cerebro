@@ -43,7 +43,7 @@ contenido_fichero = args.cert.read()
 for line in args.cert.readlines(): ...
 
 Repetir varias veces un parametro (list, array):
-parser.add_argument('-i','--input',action='append')
+parser.add_argument('-i','--input',action='append', default=[])
  asi podemos poner: -i 1 -i 2
 
 parser.add_argument('-i','--input',action='append',nargs=2)

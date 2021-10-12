@@ -1,3 +1,5 @@
+mirar también objdump.md
+
 https://osandamalith.com/2019/02/11/linux-reverse-engineering-ctfs-for-beginners/
 
 Un binario linkado estaticamente no requiere de ningún otro fichero para funcionar.

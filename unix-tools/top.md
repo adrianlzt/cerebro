@@ -4,6 +4,8 @@ c - mostrar comando entero
 E - memoria general en Megabytes
 e - cambiar unidades de memoria, iterando sobre kb, mb, gb
 
+V - modo forest / process tree
+
 M - ordenar por uso de memoria
 1 - mostrar el uso de todas las CPUs
 c - mostrar el path de los comandos

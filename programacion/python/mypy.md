@@ -21,3 +21,9 @@ class Starship:
 
 def greeting(name: str) -> str:
     return 'Hello ' + name
+
+
+Ejemplo
+from datetime import datetime
+def func(a: int, b: float, c: datetime):
+    ...

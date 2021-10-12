@@ -1,4 +1,10 @@
 mirar auth.md
+mirar clusterrole.md
+
+https://github.com/FairwindsOps/rbac-manager
+A Kubernetes operator that simplifies the management of Role Bindings and Service Accounts.
+
+
 
 # Who am i
 kubectl krew install whoami
@@ -11,11 +17,14 @@ kc whoami --token asdAsda
 Instalar plugins:
 kubectl krew install who-can
 kubectl krew install rbac-lookup
+kubectl krew install rbac-tool
+  varias herramientas para consultar y generar roles
+  https://github.com/alcideio/rbac-tool
 
 
 kubectl who-can VERB (TYPE | TYPE/NAME | NONRESOURCEURL) [flags]
 
-Nos muestra que subject y que ClusterRoleBinding
+Muestra rolebinding y clusterrolebindings que pueden hacer eso
 VERBs: create, get, list, wath, update, patch, delete, deletecollection
 
 Ejemplo:
@@ -26,6 +35,13 @@ kubectl who-can create persistentvolumes
 
 Permisos de un user
 kubectl rbac-lookup USUARIO
+
+
+# Ver que permiso hace falta
+Lo más sencillo es enviar una petición con un usuario sin permisos.
+En el error nos dirá que hace falta
+User "pepe" cannot get resource "persistentvolumes" in API group "" at the cluster scope
+
 
 
 # Asignar permisos

@@ -194,3 +194,44 @@ https://stackoverflow.com/questions/8658043/how-to-mock-an-import
 import sys
 sys.modules['B'] = Mock()
 import A
+
+
+
+# Mock requests
+https://github.com/patrys/httmock
+
+def test_proces_new_event_warning(self):
+    # GIVEN
+    event_id = 12345
+    message = "some message with the alarm"
+    event_tags = {
+        "HOST.HOST": "hostName",
+        "TRIGGER.NAME": "triggerName",
+        "TRIGGER.NSEVERITY": "3",
+    }
+    event_time = datetime.now()
+
+    # Mock la llamada a la API almacenando aqui la peticion
+    self.request_body = None
+    self.request_url = None
+
+    @urlmatch(path=r'.*')
+    def skydive_topology_mock(url, request):
+        self.request_url = request.url
+        self.request_body = request.body
+        return json.dumps({
+          "data": {
+            "event_Add": {
+              "ID": "0701ab3c-9e37-502f-6fc2-eaff69857331"
+            }
+          }
+        })
+
+    # WHEN
+    with HTTMock(skydive_topology_mock):
+        ack_keys = self.client.process_new_event(event_id, message, event_tags, event_time)
+
+    # THEN
+    expected_url = "http://localhost:8080/query"
+    self.assertEqual(expected_url, self.request_url, "wrong graphql url")
+

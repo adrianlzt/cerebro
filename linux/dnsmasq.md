@@ -92,6 +92,12 @@ address=/sro.whatsapp.net/192.168.1.33
 Se pueden registros A:
 address=/double-click.net/127.0.0.1
 
+Se pueden registros AAAA:
+address=/double-click.net/::
+
+Registro MX
+mx-host=mail.sample.com,ini.mail.local,10
+
 Registro A con wildcard
 address=/.pepe.net/127.0.0.1
   xxx.pepe.net resolvera a 127.0.0.1

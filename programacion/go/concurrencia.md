@@ -55,7 +55,7 @@ Recordar crear el canal si hemos definido el canal en un struct
 Una idea potente es que podemos pasar los channels como variables.
 Podemos enviar, por ejemplo, una petición de trabajo a un worker y pasarle en ella el canal donde debe contestar.
 
-Podemos especificar si un canal solo se va a usar como entrada o salida:
+Podemos especificar si un canal solo se va a usar como entrada o salida (solemos usarlos así en los parámetros de las func):
 chan T denotes a bidirectional channel type. Compilers allow both receiving values from and sending values to bidirectional channels.
 chan<- T denotes a send-only channel type. Compilers don't allow receiving values from send-only channels.
 <-chan T denotes a receive-only channel type. Compilers don't allow sending values to receive-only channels.

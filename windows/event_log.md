@@ -22,3 +22,39 @@ In general, the performance impact of adding event instrumentation is negligible
 
 When adding tracing to performance-sensitive code paths, you should measure the overhead with and without tracing to evaluate whether the additional overhead is acceptable. Adding instrumentation will cause the code size to increase, resulting in larger binaries and consequently a bigger memory foot-print, more page-faults and more cache misses. Also, the code path length will increase due to tracing calls being made.
 
+
+# Powershell
+
+## Leer events
+https://letitknow.wordpress.com/2012/09/02/powershell-and-the-applications-and-services-logs/
+Tipos de logs:
+Get-EventLog -list
+  nos mostrará solo los event logs "clásicos", no veremos los que estén en "Applications and Services Logs"
+
+Get-WinEvent
+
+Get-WinEvent Microsoft-Windows-TerminalServices-SessionBroker/Operational
+
+get-winevent -logname "Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational" | Sort-Object TimeCreated -Descending | select -first 2
+
+
+## Crear un event
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/write-eventlog?view=powershell-5.1
+
+Write-EventLog -LogName "System" -Source "Microsoft-Windows-TerminalServices-SessionBroker" -EventID 801 -EntryType Information -Message "evento 801 prueba"
+
+
+Si queremos escribir a logs no "clásicos" usaremos:
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/new-winevent?view=powershell-7.1
+New-WinEvent -ProviderName Microsoft-Windows-PowerShell -Id 45090 -Payload @("Workflow", "Running")
+
+New-WinEvent -ProviderName "Microsoft-Windows-TerminalServices-SessionBroker" -Id 776 -Payload @("foo","bar",1,2,3)
+
+Si nos falla con "WARNING: Provided payload does not match with the template that was defined for event id", será que no estamos pasando el número de parámetros necesarios o el formato de estos es incorrecto.
+
+## Sources
+https://stackoverflow.com/a/56570998
+Obtener toos los sources de los LogName "Application"
+Get-ChildItem HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application
+
+Podemos también ir al visor de eventos y filtrar sobre los Windows logs, y tendremos un desplegable con todos lso sources.

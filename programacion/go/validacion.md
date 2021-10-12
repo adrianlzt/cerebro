@@ -1,3 +1,13 @@
+golangci-lint es un metachecker, agrega en una sola herramienta un montón de linters.
+
+Dentro de los linters de estilo, parece que revive es el mejor hoy en día (sustituye a golint)
+https://github.com/mgechev/revive
+
+
+https://staticcheck.io/
+chequeo de bugs y lint
+
+
 https://github.com/golangci/golangci-lint
 Ejecutar linters sobre el código. Más rápido que otras opciones
 Config general en ~/.golangci.yml

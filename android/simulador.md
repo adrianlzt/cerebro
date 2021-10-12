@@ -1,3 +1,11 @@
+# Waydroid
+https://news.ycombinator.com/item?id=28616985
+https://aur.archlinux.org/packages/waydroid/
+
+Necesita un módulo que parece que no está disponible para el kernel que uso
+Necesita también wayland
+
+
 ## Genymotion ##
 http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/
 
@@ -80,16 +88,21 @@ En emulator_args agregamos:
 
 
 
-## Android emulator ##
+## Android emulator
 http://developer.android.com/sdk/installing/index.html?pkg=tools
 
+Lo más sencillo para usar las UI que viene con android-studio (tools -> AVD manager)
+
+Mostrar devices que podemos crear:
+avdmanager list
+
+Mostrar devices creados:
+avdmanager list avd
+
+Los siguientes comando puede que sean antiguos:
 Bajar un target:
 sudo tools/android sdk
 
-Crear un dispositivo
-tools/android avd
-
+https://developer.android.com/studio/run/emulator-commandline
 Arrancar emulador
 android-sdk-linux/tools/emulator
-
-

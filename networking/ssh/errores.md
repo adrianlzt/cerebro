@@ -6,6 +6,10 @@ ssh -oHostKeyAlgorithms=+ssh-dss user@host
 no matching cipher found. Their offer: ...
 ssh -c 3des-cbc ..
 
+send_pubkey_test: no mutual signature algorithm
+https://confluence.atlassian.com/bitbucketserverkb/ssh-rsa-key-rejected-with-message-no-mutual-signature-algorithm-1026057701.html
+ssh-rsa con SHA1 deprecated en el cliente posiblemente.
+
 
 El servidor no acepta la clave pública.
 Mirar si selinux está activado.

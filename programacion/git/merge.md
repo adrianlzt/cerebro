@@ -1,6 +1,22 @@
 Merge con la actual                         git merge <branch>
-Solucionar merges                           git mergetool
+Solucionar merges                           git mergetool --tool=meld
 
+LOCAL - the head for the file(s) from the current branch on the machine that you are using.
+REMOTE - the head for files(s) from a remote location that you are trying to merge into your LOCAL branch.
+BASE - the common ancestor(s) of LOCAL and REMOTE.
+MERGED - the tag / HEAD object after the merge - this is saved as a new commit.
+
+Si usamos meld tendremos:
+  - izquierda, LOCAL, la rama sobre la que estamos
+  - centro, fichero ascentro común (sin los cambios de ningún lado)
+  - derecha, los cambios de lo que estamos intentando mergear
+
+Tenemos que dejar en el centro el resultado que queremos.
+
+CUIDADO no tengamos ignorados los espacios en blancos. Aquí puede ser determinantes (en python por ejemplo)
+
+Podemos usar la opción del menú: Cambios -> Mezclar todo
+Y luego solucionar las colisiones.
 
 
 Entramos a la rama que queremos mergear, por ejemplo:

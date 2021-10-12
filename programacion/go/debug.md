@@ -175,9 +175,16 @@ hace dump de las corutinas y mata el proceso.
 Tal vez esté en /var/log/messages
 O en el log del programa
 
+Limpiar el stack trace de otras líneas, para que funcione bien el spliteado siguiente.
 
 Si queremos separar cada gorutina en un fichero:
-csplit -n 3 out.txt /goroutine/ '{*}'
+csplit -qn 3 out.txt /goroutine/ '{*}'
+
+Una vez tenemos todas las gorutinas en un directorio, para extraer un histógrama por estado:
+head -1q * | cut -d ' ' -f 3- | cut -d , -f 1 | tr -d '[]:' | sort | uniq -c | sort
+
+Separamos por librerías que hacen match, ejemplo:
+grep -l skydive * | xargs -n10 mv -ft skydive
 
 
 ## Entender output
@@ -187,6 +194,7 @@ https://www.ardanlabs.com/blog/2015/01/stack-traces-in-go.html
 La cabecera "running" nos indica la gorutina que se estaba ejecutando en el momento del panic.
 
 "chan receive", el hilo está esperando, ejemplo "<-ch"
+"chan send", se está intentando enviar a un canal lleno
 
 Si tenemos un tiempo será la duración que llevan en ese estado por estar blocked/sleeping/waiting
 
@@ -205,9 +213,9 @@ Ejemplos de cabeceras:
 
 
 ### Cuerpo
-Se nos muestra la anidación de llamadas (más arriba, la llamada que estaba siendo/iba a ser procesada.
+Se nos muestra la anidación de llamadas (más arriba, la llamada que estaba siendo/iba a ser procesada).
 
-Por cada llamada se nos muestra la función donde estábamos, son sus parámetros y debajo una línea indicando la línea del código fuente.
+Por cada llamada se nos muestra la función donde estábamos, con sus parámetros y debajo una línea indicando la línea del código fuente.
 
 El paso de parámetros dependerá del tipo de dato que estemos pasando.
 

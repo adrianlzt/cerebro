@@ -10,3 +10,10 @@ Sitespeed.io is a complete web performance tool that helps you measure the perfo
 Genera un reporte html
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.example.com
 
+
+
+https://github.com/processone/tsung
+Tsung is a high-performance benchmark framework for various protocols including HTTP, XMPP, LDAP, etc.
+
+https://github.com/giltene/wrk2
+A constant throughput, correct latency recording variant of wrk

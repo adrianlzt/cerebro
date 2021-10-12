@@ -41,6 +41,9 @@ VAR=cosa
 export VAR
 
 
+## Parameter expansion
+https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html
+
 Definir valor por defecto:
 echo "para que nunca salga null la variable: ${variable:-valorDefault}"
 
@@ -60,6 +63,12 @@ Variable en mayusculas:
 
 Variable en minusculas:
 "${y,,}"
+
+Quitar a partir del último caracter hacia el final
+```
+echo ${$(echo 6.6.2_foo-3)%_*}
+6.6.2
+```
 
 
 ${SERVICE/A/B}

@@ -5,6 +5,12 @@ http://jinja.pocoo.org/docs/dev/templates/#expressions
 {% if not foo > 4 %}
 
 
+Inline expression
+{{ 'Update' if files else 'Continue' }}
+{{ value or 'No value' }}
+
+
+
 {% if service %}
 hola service
 {% endif %}

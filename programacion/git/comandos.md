@@ -15,6 +15,7 @@ Restaurar todo a un commmit                         git checkout <commit>
 Estado                                              git status
 Log del git (o de un fichero)                       git log <fichero>
 Log con núm de cacmbios de los ficheros modificados git log --compact-summary
+Log con nombres de los ficheros modificados         git log --name-only
 Log mostrando los diff de los n ult commits         git log -p -2
 Log de un fichero poniendo los cambios              git log -p -2 <fichero>
 Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla)
@@ -53,7 +54,7 @@ Listar ramas locales y remotas                      git branch --all   git br -a
 Borrar rama local                                   git branch -d <branch>
 Borra rama remota                                   git push origin :<branch>
 Movernos de rama o tag                              git checkout <nombre>
-Movernos a rama orphaned                            git checkout --orphan <nombre>    will have no parents / new history totally disconnected 
+Movernos a rama orphaned (vacia)                    git checkout --orphan <nombre>    si queremos borrar los  ficheros que existen: "git rm -rf ."
 Salirnos de un branch forzadamente                  git checkout -f <nombre>
 New branch & move                                   git checkout -b <nombre>
 Coger branch remota                                 git checkout -b blabla origin/blabla

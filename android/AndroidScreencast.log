@@ -4391,4 +4391,127 @@
  [AndroidScreencastApplication.java:55]2021-05-12 12:07:57,836 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Stopping screen capturing.
  [ScreenCaptureRunnable.java:85]2021-05-12 12:07:58,841 [Thread-9]            [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application.
  [AndroidScreencastApplication.java:55]2021-05-12 12:07:58,844 [Thread-9]            [31mWARN [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Application is already stopped.
+ [AndroidScreencastApplication.java:57]2021-09-02 08:03:33,078 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - Starting application
+ [DeviceChooserApplication.java:44]2021-09-02 08:03:33,208 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - 1 device was found by ADB
+ [DeviceChooserApplication.java:53]2021-09-02 08:03:33,244 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - wileyfox-swift_2_plus-73c0d8f4 was chosen
+ [DeviceChooserApplication.java:64]2021-09-02 08:03:33,503 [main]                [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Starting application
+ [AndroidScreencastApplication.java:52]2021-09-02 08:03:33,519 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Starting screen capturing
+ [ScreenCaptureRunnable.java:51]2021-09-02 08:03:33,876 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:34,190 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:34,499 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:34,808 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:35,134 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:35,451 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:35,767 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:36,091 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:36,417 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:36,712 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:37,024 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:37,336 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:37,642 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:37,943 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:38,269 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:38,592 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:38,914 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:39,211 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:39,512 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:39,818 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:40,135 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:40,443 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:40,755 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:41,071 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:41,363 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:41,671 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:41,982 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:42,320 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:42,638 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:42,961 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:43,284 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:43,592 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:43,900 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:44,207 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:44,515 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:44,826 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:45,128 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:45,440 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:45,750 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:46,067 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:46,383 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:46,682 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:46,983 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:47,309 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:47,621 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:47,934 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:48,266 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:48,570 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:48,884 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:49,201 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:49,511 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:49,826 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:50,127 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:50,429 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:50,705 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:50,980 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:51,286 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:51,557 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:51,817 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:52,082 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:52,337 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:52,593 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:52,894 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:53,168 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:53,419 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:53,709 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:54,007 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:54,280 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:54,612 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:54,908 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:55,193 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:55,479 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:55,780 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:56,034 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:56,294 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:56,605 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:56,917 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:57,226 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:57,538 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:57,855 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:58,163 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:58,467 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:58,767 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:59,079 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:59,394 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:03:59,706 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:00,011 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:00,327 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:00,650 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:00,966 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:01,277 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:01,578 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:01,895 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:02,200 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:02,506 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:02,818 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:03,122 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:03,429 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:03,751 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:04,069 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:04,382 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:04,687 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:05,003 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:05,322 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:05,639 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:05,943 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:06,256 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Failed to get device screenshot
+ [ScreenCaptureRunnable.java:58]2021-09-02 08:04:06,391 [Thread-2]            [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application
+ [AndroidScreencastApplication.java:37]2021-09-02 08:04:06,410 [Thread-2]            [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application
+ [AndroidScreencastApplication.java:37]2021-09-02 08:04:37,226 [Android Screencast]  [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - Starting application
+ [DeviceChooserApplication.java:61]2021-09-02 08:04:37,369 [Android Screencast]  [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - 1 device was found by ADB
+ [DeviceChooserApplication.java:70]2021-09-02 08:04:37,391 [Android Screencast]  [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.DeviceChooserApplication - wileyfox-swift_2_plus-73c0d8f4 was chosen
+ [DeviceChooserApplication.java:80]2021-09-02 08:04:37,461 [Android Screencast]  [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Starting application.
+ [AndroidScreencastApplication.java:70]2021-09-02 08:04:37,475 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Starting screen capturing.
+ [ScreenCaptureRunnable.java:68]2021-09-02 08:58:42,501 [AWT-EventQueue-1]    [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application.
+ [AndroidScreencastApplication.java:55]2021-09-02 08:58:42,774 [Screen Capturer]     [34mINFO [0;39m com.github.xsavikx.androidscreencast.api.injector.ScreenCaptureRunnable - Stopping screen capturing.
+ [ScreenCaptureRunnable.java:85]2021-09-02 08:58:43,777 [Thread-9]            [34mINFO [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Stopping application.
+ [AndroidScreencastApplication.java:55]2021-09-02 08:58:43,777 [Thread-9]            [31mWARN [0;39m com.github.xsavikx.androidscreencast.app.AndroidScreencastApplication - Application is already stopped.
  [AndroidScreencastApplication.java:57]

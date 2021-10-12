@@ -15,6 +15,10 @@ Si queremos estadísticas más detalladas consultar la api: v1.24/containers/f89
 docker ps
   containers corriendo
 
+docker ps -f "name=skydive-analyzer"
+  filtrar por nombre
+
+
 docker ps -s
   espacio ocupado por los containers
   tarda un rato en ejecutarse

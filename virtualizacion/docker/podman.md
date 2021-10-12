@@ -63,7 +63,7 @@ rm /run/user/$(id -u)/libpod/pause.pid
 
 
 
-# Uso de disco
+# Uso de disco / storage
 podman system df
 
 

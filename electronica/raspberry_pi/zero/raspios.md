@@ -4,10 +4,16 @@ https://www.raspberrypi.org/documentation/installation/installing-images/README.
 
 Version de Debian para la raspberry
 
-Flashear:
+
+## Flashear
+yay -S rpi-imager
+sudo rpi-imager
+  para la piZero usar la imagen lite
+
+O a mano (la última vez no me funcionó bien):
 lsblk
   para ver donde está montada
-sudo dcfldd bs=4M if=2017-01-11-raspbian-jessie.img of=/dev/sdX
+sudo dd bs=4M if=2017-01-11-raspbian-jessie.img of=/dev/sdX
   puede llevar unos 10/11min
 
 

@@ -12,5 +12,5 @@ iptables -t nat -A NOMBRE ...
 Redirigiendo trafico a una chain:
 iptables -t nat ... -J NOMBRE
 
-Borrar una chain:
+Borrar una chain (tenemos que borrar antes sus referencias):
 iptables -t nat -X NOMBRE

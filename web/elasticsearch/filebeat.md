@@ -65,3 +65,24 @@ Para próximos envios solo hará el RPUSH
 https://www.elastic.co/guide/en/beats/filebeat/current/configuration-autodiscover.html
 
 Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
+
+
+
+# Inputs / Prospectors
+
+## Docker
+- type: container
+  format: docker
+  containers.ids: "*"
+  paths:
+    - '/var/lib/docker/containers/*/*.log'
+  json.message_key: log
+  json.keys_under_root: true
+  json.ignore_decoding_error: true
+  fields_under_root: true
+  ignore_older: 24h
+  tail_files: true
+  fields:
+    fileset.module: container
+  processors:
+    - add_docker_metadata: ~

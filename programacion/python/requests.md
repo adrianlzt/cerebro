@@ -253,3 +253,8 @@ datetime.timedelta(0, 1, 762032)
 
 # Retries
 https://pypi.org/project/retry-requests/
+
+
+# Excepciones
+Generar excepción si tenemos un código 4xx o 5xx
+r.raise_for_status()

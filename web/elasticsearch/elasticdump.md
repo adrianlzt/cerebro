@@ -13,7 +13,7 @@ Intentando hacer un movimiento de un elastic 5.6.5 a un 6.1.2, parecia que lo ha
 
 
 # Hacer un dump a fichero
-docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/name --output=/tmp/name.json --type=data
+docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=http://localhost:9200/NOMBRE_INDICE--output=/tmp/nombre_indice.json --type=data
 
 Filtrar por query:
   --searchBody '{"query":{"term":{"username": "admin"}}}'
@@ -33,6 +33,9 @@ Si queremos ignorar certificados TLS
 
 
 # Restore
+Restaurar datos a un elastic que tenemos en local
+docker run --net=host --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/FICHERO_DUMP_DATA.json --output=http://127.0.0.1:9200/NOMBRE_INDICE --type=data
+
 Crear un mapping a partir de un fichero
 docker run --rm -ti -v "$PWD/:/tmp" taskrabbit/elasticsearch-dump --input=/tmp/communities_mapping.json --output=http://10.0.2.32:30000/communities --type=mapping 
 

@@ -44,3 +44,7 @@ Típicamente para ver un valor del último apply
 # Show
 Si queremos ver el detalle de todos los recursos desplegados usaremos
 terraform show
+terraform show -json
+
+O de uno en concreto:
+terraform state show google_sql_database_instance.prod_postgres

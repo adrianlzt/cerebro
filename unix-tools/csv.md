@@ -3,6 +3,9 @@ Escrita en rust
 
 cat fichero.csv |  xsv table
 
+ cat problems.csv| xsv select host,name,severity | xsv sort
+ ordenar el csv y solo quedarnos con tres columnas
+
 
 
 # cvskit

@@ -21,6 +21,8 @@ Una linea por cada vuelta sin lineas en blanco
 Ejemplo de bucle inline:
 CONNECTSTRING={% for host in groups['db_mgm'] %} {{ hostvars[host][interface].ipv4.address  }}:1186{% if not loop.last %},{% endif %}{% endfor %}
 
+Mirar join.md para cuando tenemos que unir varias cosas y tratar diferente el último elemento.
+
 Primer host de un grupo
 {% for host in groups['db_mgm'] %}{% if loop.first %}{{hostvars[host][interface].ipv4.address}}:1186{% endif %}{% endfor %}
 

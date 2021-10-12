@@ -38,6 +38,12 @@ proc.name="check_logfiles." and fd.type=file and evt.type=open
 Ficheros que toca uwsgi que no se llamen alarmer (que no esté en su path)
 proc.name=uwsgi and fd.type=file and not fd.name contains alarmer
 
+ficheros que dan error al abrir (tal vez no están todas las casuísticas)
+evt.type=openat and evt.arg.fd=ENOENT
+
+ficheros que abiertos correctamente (tal vez no están todas las casuísticas)
+evt.type=openat and not evt.arg.fd=ENOENT
+
 evt.type=write and evt.buffer contains FATAL
   escrituras a disco que contengan la cadena FATAL
 

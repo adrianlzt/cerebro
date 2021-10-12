@@ -1,3 +1,7 @@
+https://github.com/facebookincubator/below
+algo similar a atop pero mejorado
+mirar below.md
+
 https://github.com/DominicBreuker/pspy
 app en go que permite ver que se está ejecutando en el sistema, sin ser root.
 Engancha inotfy en ciertos directorios para pillar lecturas/escrituras de los procesos.

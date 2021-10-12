@@ -161,3 +161,9 @@ Volver a la ultima posicion
 
 q:
   abrir la lista de los ultimos comandos. Nos permite modificarlos y ejecutarlos
+
+
+
+  Pasar una selección visual por un comando externo
+  Control+v para tener la selección visual, y luego (lo de <> lo pone solo)
+  :'<,'>!jq

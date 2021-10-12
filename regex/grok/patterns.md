@@ -1,3 +1,6 @@
+Patterns de logstash:
+https://github.com/logstash-plugins/logstash-patterns-core/blob/master/patterns/ecs-v1/grok-patterns
+
 ## PATTENRS ##
 Para usar los basic patterns, en ubuntu:
 
@@ -19,8 +22,6 @@ match {
   pattern: "La suma da %{NUMBER}. Operacion hecha por %{WORD:nombre}"
   reaction: "%{nombre} suma %{NUMBER}"
 
-
-Patterns de logstash: https://github.com/logstash-plugins/logstash-patterns-core
 
 Apache combined:
 COMBINEDAPACHELOG

@@ -95,7 +95,12 @@ sudo tcpdump -A udp port 69
 Permitir a un no root ejecutar tcpdump:
 http://www.stev.org/post/2012/01/19/Getting-tcpdump-to-run-as-non-root.aspx
 setfacl -m u:adrian:rx /usr/sbin/tcpdump
+  dar permisos de ejecución a un usuario en particular (no necesario si others ya tiene +x)
 setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
+  permitimos al binario leer los paquetes de red, sin verificar el usuario que lo ejecuta
+
+Para quitar la capability:
+setcap -r /usr/sbin/tcpdump
 
 
 Valores de los flags:

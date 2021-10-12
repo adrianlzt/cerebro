@@ -101,6 +101,53 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 
 
 # Open source / Pomerium
+pomerium.md
 https://www.pomerium.com/
 
+Versión OSS con funciones limitadas.
 
+Lista de identity  providers que puede usar:
+https://www.pomerium.com/docs/identity-providers/
+
+
+Config reference:
+https://www.pomerium.com/docs/reference
+
+:443 main web
+127.0.0.1:9901 envoy admin interface
+
+## Rutas
+Las rutas son donde mapeamos dominios públicos a dominios internos.
+Pomerium se pone en medio haciendo el auth.
+
+https://www.pomerium.com/reference/#routes
+Ejemplos:
+https://github.com/pomerium/pomerium/blob/6a69d39ca1dec5c724e520dc4cec8afddf2d83fb/examples/config/route.example.yaml
+
+Config para las políticas:
+https://www.pomerium.com/enterprise/reference/manage.html#pomerium-policy-language
+
+Ejemplo que protege "https://jenkins.pomerium.foo.com"
+Si el user está auth, podrá ver el contenido de http://172.17.0.1:8000
+
+routes:
+  - from: https://jenkins.pomerium.foo.com
+    to: http://172.17.0.1:8000
+    policy:
+      - allow:
+          or:
+            - authenticated_user:
+
+
+## Identity providers
+### Gitlab
+Crear una app en gitlab.
+El callback URL debe ser el mismo que el configurado en pomerium (authenticate_service_url) con /oauth2/callback
+Ejemplo:
+https://authenticate.pomerium.foo.com:5443/oauth2/callback
+
+He tenido que usar la config:
+idp_scopes: openid
+Si ponia "idp_scopes: openid,profile,email" me daba error al hacer oauth sobre gitlab
+Pero parece que de esta manera no tengo el email.
+Podemos ver los datos disponibles con "session details" cuando no me deja entrar.

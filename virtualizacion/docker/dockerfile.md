@@ -172,3 +172,6 @@ docker build --build-arg arg=2.3 .
 Podemos también usar una ARG antes del FROM para poner ahí la versión, ejemplo:
 ARG TAG=slim
 FROM node:$TAG
+
+Con un build multistage, usaba dos ARG para definir las versiones de las dos imágenes usadas.
+Tuve que poner ambos ARG al comienzo del fichero para que me pillase el segundo FROM bien.

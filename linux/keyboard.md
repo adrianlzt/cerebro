@@ -1,5 +1,13 @@
 https://wiki.archlinux.org/index.php/KEYMAP
 
+https://wiki.archlinux.org/title/Xorg_(Espa%C3%B1ol)/Keyboard_configuration_(Espa%C3%B1ol)
+entender como se configura el teclado, de donde vienen las configuraciones, cambiarlas, etc
+
+localectl set-x11-keymap es pc105 '' caps:escape
+  para fijar una configuración. Modifica /etc/X11/xorg.conf.d/00-keyboard.conf
+
+También uso xmodmap ~/.Xmodmap para cambiar algunas teclas (ç es /)
+
 
 http://askubuntu.com/questions/209597/how-do-i-change-keyboards-from-the-command-line
 Consola, teclado a español:
@@ -25,7 +33,7 @@ KeyPress event, serial 36, synthetic NO, window 0x3000001,
 Se ha pulsado (KeyPress) la tecla 107 que tiene la función "Print"
 
 
-Si queremos reorganizar lo haremos como:
+Si queremos reorganizar lo haremos como (xkeycaps, frontend para xmodmap):
 
 xmodmap -e "keycode 75 = Print"
 

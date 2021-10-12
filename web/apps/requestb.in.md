@@ -7,5 +7,7 @@ webhook.site
 
 https://requestb.in/ -> ya no existe
 
+https://beeceptor.com/
+
 
 Si queremos lo contrario (definir la respuesta) mirar mocky.io.md

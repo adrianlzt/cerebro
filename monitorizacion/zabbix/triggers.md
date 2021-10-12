@@ -56,12 +56,13 @@ Si un trigger A depende de un trigger B que está deshabilitado, esta dependenci
 # Severidad
 Distintas severidades actuan teniendo diferentes colores en los dashboards, lanzando diferentes "user medias" y actuando en los triggers.
 
-Not classified
-Information
-Warning
-Average
-High
-Disaster
+0 - not classified
+1 - information
+2 - warning
+3 - average
+4 - high
+5 - disaster
+
 
 
 # Tags

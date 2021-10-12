@@ -1,3 +1,5 @@
+https://www.elastic.co/guide/en/watcher/current/index.html
+
 Parte del X-Pack (de pago)
 Es el elemento de Elastic que se encarga de mirar las trazas almacenadas en ES y lanzar alarmas.
 
@@ -25,7 +27,7 @@ Un Watch constará de tres partes principales:
 
 
 ## Triggers
-https://www.elastic.co/guide/en/x-pack/current/trigger.html
+https://www.elastic.co/guide/en/watcher/current/trigger.html
 Cada cuanto debe lanzarse la búsqueda
 
 Ejemplo de trigger:
@@ -38,7 +40,7 @@ Ejemplo de trigger:
 
 
 ## Inputs
-https://www.elastic.co/guide/en/x-pack/current/input.html
+https://www.elastic.co/guide/en/watcher/current/input.html
 
 Podemos poner un input "simple", datos estáticos que podemos usar, por ejemplo, para rellenar lo que haremos en el actions (por ejemplo el email de alguien al que queremos avisar)
 
@@ -84,7 +86,7 @@ Ejemplo de búsqueda (indice logstash-*, últimos 100m y que encuentre la palabr
 
 
 ## Conditions
-https://www.elastic.co/guide/en/x-pack/current/condition.html
+https://www.elastic.co/guide/en/watcher/current/condition.html
 
 Bajo que condiciones debe saltar la alarma. Por ejemplo, si hay al menos un hit, o si el valor en media es superior a N.
 
@@ -99,7 +101,7 @@ Ejemplo de cuando haya más de un hit:
 
 
 ## Actions
-https://www.elastic.co/guide/en/x-pack/current/actions.html
+https://www.elastic.co/guide/en/watcher/current/actions.html
 
 Las acciones que puede tomar cuando salta un trigger.
 
@@ -116,3 +118,14 @@ Ejemplo de webhook:
       }
     }
   }
+
+
+Si queremos debugear, podemos sacar el contenido del context
+  "actions" : {
+    "log" : {
+      "logging" : {
+        "text" : "ctx={{ctx}}"
+      }
+    }
+  },
+

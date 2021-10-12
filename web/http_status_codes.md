@@ -9,5 +9,7 @@ HTTP status ranges in a nutshell:
 4xx: you fucked up
 5xx: I fucked up
 
+499 CLIENT CLOSED REQUEST
+A non-standard status code introduced by nginx for the case when a client closes the connection while nginx is processing the request.
 
 https://twitter.com/stevelosh/status/372740571749572610

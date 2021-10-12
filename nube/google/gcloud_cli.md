@@ -5,17 +5,37 @@ Para temas de cloud storage se usa otra cli: gsutil
 Para configurarlo:
 gcloud init
 
-
 Ver estado actual:
 gcloud info
-
 
 gcloud organizations list
 gcloud projects list
 
+APIs activas para el proyecto:
+gcloud services list --available
 
 Cmabiar proyecto por defecto:
 gcloud config set project my-project
+
+
+# Configuración de cuenta
+Mostrar las que tenemos configuradas:
+gcloud config configurations list
+
+Crear nueva:
+gcloud config configurations create config-name
+gcloud config set account my-account@example.com
+gcloud config set project my-project-id
+gcloud auth login
+
+
+# Usar una Service account con gcloud
+https://serverfault.com/a/849910
+
+Set CLOUDSDK_CONFIG to some temp directory
+gcloud auth activate-service-account --key-file=...
+... use gcloud to do your work ...
+Remove temp CLOUDSDK_CONFIG directory.
 
 
 # Compute
@@ -35,6 +55,12 @@ gcloud compute ssh NombreVM -- -N -L 5601:localhost:5601
 
 Copiar fichero
 gcloud compute scp ...
+
+Parar VM:
+gcloud compute instances stop tools --zone=us-east1-b
+
+Arrancar VM:
+gcloud compute instances start tools --zone=us-east1-b
 
 
 

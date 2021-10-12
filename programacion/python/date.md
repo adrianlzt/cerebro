@@ -19,6 +19,10 @@ datetime.date(2013, 11, 26)
 >>> date.today().strftime("%Y-%m-%d")
 '2013-11-26'
 
+>>> t.isoformat()
+'2021-08-26T08:06:11'
+
+
 
 # Unix epoch
 
@@ -106,6 +110,8 @@ datetime.datetime(2015, 11, 10, 0, 0)
 
 datetime.datetime.strptime("2008-09-03T20:56:35.450686Z", "%Y-%m-%dT%H:%M:%S.%fZ")
 
+fromisoformato parsea varios tipos de RFC 3339, pero no todos (si pone una Z al final, para denotar UTC, no funciona)
+datetime.fromisoformat("2021-08-26T06:51:55.803+00:00")
 
 date --rfc-3339=seconds
 datetime.datetime.strptime("2018-11-26 16:47:43+01:00", "%Y-%m-%d %H:%M:%S%z")

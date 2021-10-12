@@ -1,4 +1,5 @@
 https://github.com/fatih/vim-go
+https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt
 
 Plugins a utilizar:
 deoplete.nvim
@@ -33,6 +34,9 @@ mirar quien llama a esta función
 Tal vez el "scope" (donde busca las cosas) no está bien definido. Podemos ponerlo a mano
 :GoGuruScope github.com/foo/bar
 si el repo es grande puede ser demasiado costoso
+
+:GoChannelPeers
+ver senders/receivers de un canal
 
 
 Desactivar metalinter al guardar

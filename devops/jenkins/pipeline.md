@@ -148,6 +148,17 @@ node {
     }
 }
 
+https://www.jenkins.io/doc/book/pipeline/syntax/#when
+stage ('foo') {
+    when { buildingTag() }
+    ...
+}
+
+when { anyOf {
+    expression { params.PLATFORM_FILTER == 'all' }
+    expression { params.PLATFORM_FILTER == env.PLATFORM }
+} }
+
 
 ## Declarative
 https://jenkins.io/blog/2017/01/19/converting-conditional-to-pipeline/
@@ -183,6 +194,20 @@ node {
 }
 
 
+# Variables
+foo = 'pepe'
+
+Variable a partir del output de un comando shell:
+foo = sh(
+    returnStdout: true,
+    script: 'date'
+)
+
+Podemos hacer uso de esa variable en un step sh.
+sh "echo ${foo}"
+
+Las variables cruzan stages (se puede definir una variable definida en un stage anterior)
+
 
 
 # Variables de entorno
@@ -201,6 +226,19 @@ pipeline {
 
 Podemos usarlas en cualquier parte como: env.FOO
 O en script sh con ${FOO} (usar comillas dobles para el comando, si no, nos pone ${FOO} tal cual)
+
+
+# sh / bash / shell
+Si usamos
+sh """
+"""
+Lo que pongamos con $, lo resolverá jenkins antes de ejecutarlo en el script. Así podremos pasar variables.
+Pero si queremos usar el símbolo $ en bash, tendremos que escaparlo: \$
+
+También podemos usar
+sh ```
+```
+De esta manera jenkins no resolverá los $
 
 
 
@@ -290,9 +328,38 @@ def call(Map config) {
 }
 
 
+# Parametros del job
+https://stackoverflow.com/questions/53747772/is-it-possible-to-make-a-parameterized-scripted-pipeline-in-jenkins-by-listing-t
+
+Scripted:
+properties([
+  parameters([
+    string(name: 'release_job_number'),
+    booleanParam(name: 'DEPLOY_SHA', defaultValue: false),
+  ])
+])
+
+node () {
+    stage ('foo') {
+        sh """
+        env
+        echo "person is ${params['DEPLOY_SHA']}"
+        echo "person env ${env.DEPLOY_SHA}"
+        echo "person sh env \${DEPLOY_SHA}"
+        """
+    }
+...
+
+Chequear si está vacio (si son string)
+if (params.DEPLOY_SHA != ''){
+    myParam = params.myParam
+}
+
 
 
 # Build de otra job
+https://www.jenkins.io/doc/pipeline/steps/pipeline-build-step/#build-build-a-job
+
 build job: 'downstream-freestyle', parameters: [[$class: 'StringParameterValue', name: 'ParamA', value: paramAValue], [$class: 'StringParameterValue', name: 'ParamB', value: paramBValue]]
 
 build job: 'your-job-name',
@@ -301,12 +368,28 @@ build job: 'your-job-name',
         string(name: 'complex_param', value: 'prefix-' + String.valueOf(BUILD_NUMBER))
     ]
 
+Para definir el nombre:
+    Use a simple name if the job is in the same folder as this upstream Pipeline job
+    You can instead use relative paths like ../sister-folder/downstream
+    Or you can use absolute paths like /top-level-folder/nested-folder/downstream
 
+Si el nombre tiene "/", substituirla por "%2F".
+Una forma sencilla de encontrar el nombre correcto, es usar el JENKINS/pipeline-syntax/
 
 # Peticinones http
 Hay que instalar el plugin HTTP Request
 response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: toJson(body), url: "https://${host}", validResponseCodes: '200'
 
+
+# Linter / chequear sintaxis
+https://stackoverflow.com/a/52567262
+Enviar un post a JENKINS/pipeline-model-converter/validate
+
+Hay plugin para vscode: https://dev.to/nicoavila/how-to-validate-your-jenkinsfile-locally-before-committing-334l
+para vim?
+
+# Probar Jenkinsfile
+Mirar jenkinsfile_runner.md
 
 
 

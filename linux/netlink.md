@@ -43,3 +43,23 @@ $ nltrace ss -t
 $ LD_PRELOAD=./preload.so ss -t
 
 Con go no parece funcionar.
+
+
+## Add routes
+https://olegkutkov.me/2019/08/29/modifying-linux-network-routes-using-netlink/
+
+Es enviar un mensaje especial al socket de netlink.
+Con strace se ve bastante bien la apertura del socket, mensaje enviado, etc.
+Con sysdig no se ve el contenido y ciertos parámetros salen mal.
+
+Con strace vemos (apertura del socket):
+socket(AF_NETLINK, SOCK_RAW|SOCK_CLOEXEC, NETLINK_ROUTE) = 3
+
+Con sysdig:
+socket domain=16(AF_ROUTE) type=524291 proto=08
+
+AF_ROUTE y AF_NETLINK es lo mismo, ambos "16"
+https://github.com/torvalds/linux/blob/b5b65f1398274fd726eca87dbebd39f3e603348a/tools/perf/trace/beauty/include/linux/socket.h#L193
+
+El mensaje para crear la nueva ruta (para distinguirlo podemos usar "nlmsg_type=RTM_NEWROUTE"):
+sendmsg(3, {msg_name={sa_family=AF_NETLINK, nl_pid=0, nl_groups=00000000}, msg_namelen=12, msg_iov=[{iov_base=[{nlmsg_len=44, nlmsg_type=RTM_NEWROUTE, nlmsg_flags=NLM_F_REQUEST|NLM_F_ACK|NLM_F_EXCL|NLM_F_CREATE, nlmsg_seq=1632218764, nlmsg_pid=0}, {rtm_family=AF_INET, rtm_dst_len=32, rtm_src_len=0, rtm_tos=0, rtm_table=RT_TABLE_MAIN, rtm_protocol=RTPROT_BOOT, rtm_scope=RT_SCOPE_LINK, rtm_type=RTN_UNICAST, rtm_flags=0}, [[{nla_len=8, nla_type=RTA_DST}, inet_addr("1.2.3.4")], [{nla_len=8, nla_type=RTA_OIF}, if_nametoindex("wlo1")]]], iov_len=44}], msg_iovlen=1, msg_controllen=0, msg_flags=0}, 0) = 44

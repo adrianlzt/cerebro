@@ -20,6 +20,8 @@ https://trac.ffmpeg.org/wiki/Encode/H.264
 ffmpeg -i input -c:v libx264 -preset veryfast output.mkv
   veryfast tarda algo más que la duración real del video, speed=0.7%
 
+https://write.corbpie.com/ffmpeg-preset-comparison-x264-2019-encode-speed-and-file-size/
+Dependiendo del preset tendremos videos más o menos comprimidos a cambios de más o menos cpu/memoria de procesado. 
 
 
 # Emitir rtp

@@ -39,8 +39,12 @@ https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-
 # gsutil
 Automáticamente coge el service account del nodo en el que estemos.
 
+Mirar gcloud para ver como autenticarnos.
+
 gsutil ls
+gsutil ls -p proyecto
   listar buckets
+
 gsutil ls gs://foobar
   listar contenidos del bucket foobar
 

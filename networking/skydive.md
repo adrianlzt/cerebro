@@ -235,6 +235,14 @@ Actualizar un nodo:
 http://skydive.network/documentation/api-gremlin
 Queries para atacar a graffiti.
 
+Cuando filtramos, por defecto, estamos filtrando sobre los valores de Metadata.
+G.V().Has('foo','arco')
+  esto estará buscando Metadata.foo = arco
+
+Si usamos "@", estaremos atacando a los valores fuera de metadata:
+G.V().Has('@Host','arco')
+  estará buscando el campo "Host" del nodo (fuera de metadata)
+
 Definición oficial del lenguaje: https://tinkerpop.apache.org/docs/current/reference/#graph-traversal-steps
 
 Mirar como estaba la db de grafos en un momoento del tiempo.

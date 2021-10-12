@@ -22,3 +22,7 @@ File.stream!("input") |> Enum.map(fn x -> x end)
 
 Para quitarle los caracteres de cambio de linea
 File.stream!("input") |> Enum.map(&String.trim/1)
+
+
+# ls
+File.ls("/etc")

@@ -1,3 +1,8 @@
+Para xml es sencillo xq (similar a jq):
+Sacar valores de un xml y pretty print
+cat file.xml | xq .
+
+
 https://github.com/ericchiang/pup
 pup
 Una especie de "jq" para html

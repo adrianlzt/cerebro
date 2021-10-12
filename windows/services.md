@@ -6,7 +6,8 @@ Podemos modificar los valores, pero si borramos un "path" completo luego se quej
 
 
 # CLI
-Desde una shell como admin
+## cmd
+Desde una shell (cmd, no powershell) como admin
 
 sc query
   listar services
@@ -16,6 +17,10 @@ sc queryex NAME
 
 sc delete NOMBRE
   borrar service
+
+## powershell
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-7.1
+Get-Service
 
 
 # Errores

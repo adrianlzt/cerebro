@@ -29,3 +29,8 @@ END
 
 # Tipos de datos
 https://www.postgresql.org/docs/current/datatype-numeric.html
+
+
+# Percentil
+Sacar el percentil 90% de una serie de valores.
+select percentile_cont(0.9) within group (order by value) from history_uint where itemid=3405146 and  clock > 1633477208 and clock < 1633678161 ;

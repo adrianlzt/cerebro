@@ -13,6 +13,9 @@ pipenv --python 2.7
 PIPENV_IGNORE_VIRTUALENVS=1 pipenv ...
   ignorar si ya tenemos cargado algún virtualenv y empezar uno de cero
 
+export PIPENV_VENV_IN_PROJECT="enabled"
+  para crear el virtualenv en un directorio .env en el mismo path que Pipfile
+
 Según vayamos instalando con:
 pipenv install
 se irán agregando las dependencias al fichero Pipfile.lock

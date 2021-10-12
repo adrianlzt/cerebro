@@ -52,7 +52,9 @@ GET blogs/_search
 Lanzamos una petición, nos devuelve un id.
 Luego usamos ese id para recuperar los resultados de ese momento preciso.
 
-Para usarlo con python mirar: https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html?highlight=scroll#pagination
+Para usarlo con python mirar:
+https://elasticsearch-py.readthedocs.io/en/v7.15.0/helpers.html?highlight=scroll#elasticsearch.helpers.scan
+https://elasticsearch-dsl.readthedocs.io/en/latest/search_dsl.html?highlight=scroll#pagination
 
 GET logs-2018-03/_search?scroll=30s
 {

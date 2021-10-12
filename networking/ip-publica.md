@@ -1,4 +1,1 @@
-http://ifcfg.co
-http://ip-addr.es/
-http://jsonip.com
-http://eth0.me/
+../web/apps/what_is_my_ip.md

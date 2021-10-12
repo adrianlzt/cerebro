@@ -1,3 +1,7 @@
+https://news.ycombinator.com/item?id=28606962
+https://frame.work/
+portatil 100% reparable, 10/10 en iFixIt
+
 https://kelaptop.com/
 
 

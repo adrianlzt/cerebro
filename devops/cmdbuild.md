@@ -59,14 +59,20 @@ Meter el .jar nuevo en un .war ya existente de cmdbuild
 
 # SQL
 
-Servidores que tienen varios softwares con el mismo cmdline
+## Campos
+https://usermanual.wiki/Document/CMDBuildTechnicalManualENGV240.1276356727/help
+Status, character(1), logical state of the record (A = active, deleted = N, U = updated)
+
+
+## Queries
+
+### Servidores que tienen varios softwares con el mismo cmdline
 select distinct
   ser."Code" as Server,
   array_agg(s."Code") as software
 from
   "Software" s
-  join "Map_HardwareSoftwareInstance" m1 on m1."IdObj2" = s."Id"
-  join "Server" ser on m1."IdObj1" = ser."Id"
+  JOIN "Server" ser ON ser."Id" = s."Hardware"
 WHERE
   (
     "CmdLine" is not null
@@ -79,4 +85,66 @@ GROUP BY
   "CmdLine"
 HAVING
  count(*) > 1
+;
+
+Como la anterior, pero solo quedándonos con las copias antiguas de esas entradas repetidas (se considera antigua si tiene una fecha en CardUpdated más antigua)
+WITH sw_with_dates AS ( /* obtener hosts con software que tenga cmd duplicado) */
+  SELECT
+    DISTINCT ser."Code" AS Server,
+    s."Id" AS id,
+    s."Code" AS swcode,
+    cu."BeginDate" AS date,
+    "CmdLine" AS cmdline
+  FROM
+    "Software" s
+    JOIN "Server" ser ON ser."Id" = s."Hardware"
+    JOIN "CardUpdate" cu ON cu."Code" :: bigint = s."Id"
+  WHERE
+    (
+      "CmdLine" IS NOT NULL
+      OR "CmdLine" <> ''
+    )
+    AND s."Status" = 'A'
+    AND ser."Status" = 'A'
+    AND cu."Status" = 'A'
+  ORDER BY
+    ser."Code"
+),
+group_server_cmdline AS ( /* order cada grupo server-cmdline por su fecha BeginDate de CardUpdate */
+  SELECT
+    Server,
+    id,
+    swcode,
+    date,
+    cmdline,
+    substring(
+      cmdline
+      FROM
+        1 FOR 30
+    ) AS cmdline_cut,
+    row_number() OVER (
+      PARTITION BY cmdline, Server
+      ORDER BY date desc
+    ) AS rownum
+  FROM
+    sw_with_dates
+), sw_dup_old AS (
+SELECT
+   id,swcode,date,Server,cmdline
+FROM
+  group_server_cmdline
+WHERE
+  rownum >= 2 /* solo quedarnos con los más antiguos de cada grupo */
+ORDER BY
+  date
+)
+select
+ gs.id,gs.swcode,gs.date,gs.cmdline_cut
+from
+ group_server_cmdline gs
+ join sw_dup_old sd ON gs.Server = sd.Server AND gs.cmdline = sd.cmdline
+WHERE
+ gs.rownum=1
+ORDER BY
+  date
 ;

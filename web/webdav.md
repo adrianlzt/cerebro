@@ -31,3 +31,22 @@ Acceso con: admin/password
 
 ### K8s / helm
 https://artifacthub.io/packages/helm/sagikazarmark/sftpgo
+
+
+# CalDAV
+Calendaring Extensions to WebDAV
+
+CLI para linux: khal
+Necesita vdirsyncer para CalDAV
+
+vdirsyncer
+config: https://vdirsyncer.pimutils.org/en/stable/tutorial.html
+vdirsyncer discover
+  tras crear la config, para crear los dirs oportunos
+vdirsyncer sync
+  sincronizar entre local y remoto (nos bajamos los eventos/contactos del server y subimos los locales)
+
+Otra cli (ncurses) con soporte para CalDAV
+https://calcurse.org/files/calcurse-caldav.html
+calcurse-caldav --init=keep-remote
+Necesita una config previa

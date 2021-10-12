@@ -61,6 +61,10 @@ systemctl  list-units --type=target
 systemctl cat postfix.service
   mostrar el contenido de la unidad
 
+systemctl show postfix.service
+systemctl show -p Requires,Wants,Requisite,BindsTo,PartOf,Before,After NAME.service
+  mostrar todas las variables posibles, con sus valores definidos para esta unidad (con los de por defecto si no los hemos modificado)
+
 
 # Activar o desactivar
 systemctl disable rsyslog

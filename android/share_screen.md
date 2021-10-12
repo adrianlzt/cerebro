@@ -1,3 +1,5 @@
+mirar androidscreencast.md
+
 Screen cast
 Nos emite la pantalla del movil con formato:
 http://192.168.2.5:6868/screen_stream.mjpeg

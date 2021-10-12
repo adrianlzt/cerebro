@@ -63,6 +63,13 @@ _build/prod/rel/my_app/bin/my_app eval "MyApp.Release.migrate"
 Si queremos modificar la versión, lo haremos en mix.exs
 Si cambiamos la versión, se generará una nueva release en _build/prod/rel/NOMBREAPP/releases
 
+Podemos usar pkg_deb para generar automáticamente un .deb a partir de la release
+
+
+## Version
+Podemos forzar la versión con
+mix release --version A.B.C
+
 
 # Contenedores
 https://hexdocs.pm/phoenix/releases.html#containers

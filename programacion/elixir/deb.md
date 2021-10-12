@@ -1,4 +1,5 @@
 https://github.com/jnylen/pkg_deb
+https://hexdocs.pm/pkg_deb/api-reference.html
 Generar paquetes .deb
 
 Posibilidades de configuración: https://github.com/jnylen/pkg_deb/blob/master/lib/pkg_deb/format/config.ex#L8
@@ -50,7 +51,7 @@ Cambios necesarios:
 +      homepage: "https://yourdomain.com",
 +      base_path: "/opt",
 +      external_dependencies: [],
-+      owner: [user: "youruser", group: "youruser"],
++      owner: [user: "root", group: "root"],
 +      description: "yourdescription
 +"
 +    ]
@@ -65,6 +66,36 @@ parsing file '/var/lib/dpkg/tmp.ci/control' near line 9 package 'books-api':
 end of file during value of field 'Description' (missing final newline)
 
 
+Una vez modificado el mix.exs
 
-Parece que también empaqueta los ficheros con un usuario que no es root.
-Y los ejecutables solo son 755.
+mix deps.get
+mix release
+Generará el RPM en: _build/releases/NOMBRE_0.1.0_amd64.deb
+
+Generalmente querremos generar el rpm de la release de prod:
+MIX_ENV=prod mix release
+
+Info del .deb:
+dpkg -I file.deb
+Contenido:
+dpkg -c file.deb
+
+Nos meterá una unit de systemd
+
+NOTA: los ejecutables solo son 755 (sin g+x).
+Cuidado con intentar ejecutar con un usuario no root.
+Tendremos que prefijar con "bash"
+
+
+# Additional files
+Si queremos meter más ficheros podemos usar
+
+  defp deb_config() do
+    [
+      additional_files: [{"/../../../../priv/","/opt/foo/priv"}],
+
+Esto meterá el directorio "priv/" (a la altura de mix.exs) en /opt/foo/priv (si nuestra app es foo, todo estará en /opt/foo)
+
+Debe existir el directorio: 
+mkdir -p _build/releases/pkg_deb/additional_files
+

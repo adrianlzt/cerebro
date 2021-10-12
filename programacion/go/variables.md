@@ -1,4 +1,6 @@
 ## Variables ##
+mirar iota.md para definir type custom
+
 Las variables tienen que tener un tipo declarado. Lo bueno es que con que lo declares en un sitio, ese tipo se propagará.
 Ejemplo, si una función dice que devuelve un int, podremos hacer directamente:
 n = funcion(parametro)

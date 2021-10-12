@@ -1,3 +1,11 @@
+https://medium.com/swlh/golang-on-android-root-e29ccf3da470
+hacer un build de una app en go para android
+
+GOOS=linux GOARCH=arm go build -o hello main.go
+adb push hello /data/local/tmp/
+adb shell "/data/local/tmp/hello"
+
+
 https://github.com/golang/go/wiki/Mobile#building-and-deploying-to-android
 
 go get -d golang.org/x/mobile/example/basic

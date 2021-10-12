@@ -1,5 +1,7 @@
 https://github.com/dunst-project/dunst/blob/master/docs/dunst.pod
 
+mirar x11/notificaciones.md
+
 Notificador
 Nos pinta las notificaciones pasadas por DBus
 Pemite ejecutar acciones sobre ellas, etc

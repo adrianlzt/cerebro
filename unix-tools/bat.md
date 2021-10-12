@@ -9,3 +9,11 @@ Control+d para terminar
 
 Los colores no son muy compatibles con mi shell fondo blanco.
 El texto normal de Markdown no se ve
+
+
+# Themes
+bat --list-themes
+
+Para light usar theme GitHub
+
+Config ~/.config/bat/config
