@@ -43,3 +43,17 @@ el autocompletado no me coje palabras cualesqueira de los buffers abiertos. Esto
 # Plugins
 https://github.com/wincent/ferret
 reemplazar en varios ficheros
+
+
+# Cazando al plugin lento
+Cambiando el filetype a uno "desconocido" acelera todo.
+Será el tresiteter? El LSP?
+
+Quitando el highligth del treesitter va mucho más rápido:
+:TSDisableAll highlight
+
+Pero incluso cambiando el ft a none, tampoco va del todo fino.
+
+Da igual con o sin tmux
+
+Al abrir el tagbar parece que se ralentiza mucho más

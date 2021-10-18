@@ -16,3 +16,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 :TSPlaygroudToggle
   para ver como está descompoinendo el código
+
+
+:TSModuleInfo
+Por cada lenguage tiene diferentes módulos que pueden, o no, funcionar:
+highlight
+incremental_selection
+indent
+playground
+query_linter

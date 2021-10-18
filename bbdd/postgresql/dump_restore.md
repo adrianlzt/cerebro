@@ -99,6 +99,9 @@ pg_dump -Fc -d prueba -f prueba.custom
   -j=N para meter varios hilos
   -Z=n para seleccionar la compresion
 
+-t para seleccionar tablas
+-T para todas menos las tablas seleccionadas
+
 Si queremos seleccionar la tabla de un schema en partiular:
 schemaName.tableName
 

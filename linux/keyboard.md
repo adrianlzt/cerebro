@@ -7,6 +7,8 @@ localectl set-x11-keymap es pc105 '' caps:escape
   para fijar una configuración. Modifica /etc/X11/xorg.conf.d/00-keyboard.conf
 
 También uso xmodmap ~/.Xmodmap para cambiar algunas teclas (ç es /)
+https://unix.stackexchange.com/a/65600
+Parece que xmodmap está deprecated y ahora se usa xkb tools
 
 
 http://askubuntu.com/questions/209597/how-do-i-change-keyboards-from-the-command-line
@@ -18,7 +20,66 @@ setxkbmap es
 
 
 # Remap
+https://superuser.com/a/350336
+
+/etc/udev/rules.d/00-usb-keyboard.rules
+ATTRS{idVendor}=="045e", ATTRS{idProduct}=="07b9", OWNER="adrian"
+ACTION=="add", RUN+="/home/adrian/bin/usb-keyboard-in-udev"
+
+/home/adrian/bin/usb-keyboard-in-udev
+#!/bin/bash
+/home/adrian/bin/usb-keyboard-in &
+
+/home/adrian/bin/usb-keyboard-in
+#!/bin/bash
+sleep 1
+DISPLAY=":0.0"
+HOME=/home/adrian/
+XAUTHORITY=$HOME/.Xauthority
+export DISPLAY XAUTHORITY HOME
+xkbcomp -I/home/adrian/.xkb /home/adrian/.xkb/keymap/mykbd -i $(xinput list --id-only "LITEON Technology USB Keyboard") :0.0 >& /tmp/usbKeyBoard
+
+setxkbmap -print > ~/.xkb/keymap/mykbd
+
+Añadimos los customswaps
+xkb_keymap {
+	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+	xkb_types     { include "complete"	};
+	xkb_compat    { include "complete"	};
+	xkb_symbols   { include "pc+es+inet(evdev)+capslock(escape)+customswaps(ccedilla_slash)+customswaps(grave_not_dead)"	};
+	xkb_geometry  { include "pc(pc105)"	};
+};
+
+Definimos los customswaps:
+.xkb/symbols/customswaps
+partial modifier_keys
+xkb_symbols "ccedilla_slash" {
+    replace key <BKSL>  { [ slash] };
+};
+xkb_symbols "grave_not_dead" {
+    replace key <AD11>  { [ grave, dead_circumflex, bracketleft, bracketleft ] };
+};
+xkb_symbols "grave_not_dead" {
+    replace key <AD11>  { [ grave, dead_circumflex, bracketleft, bracketleft ] };
+};
+
+
+
+
+
+
 http://askubuntu.com/questions/296155/how-can-i-remap-keyboard-keys
+
+https://unix.stackexchange.com/a/65600
+Parece que XMODMAP ESTÁ DEPRECATED y ahora se usa xkb tools
+
+Parece que lo que se usa es setxkbmap
+
+
+Para conocer los nombres de cada tecla
+xkbprint -label name $DISPLAY - | gv -orientation=seascape -
+
+
 
 xev
 para conocer que teclas estamos pulsando

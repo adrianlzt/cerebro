@@ -156,3 +156,8 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -f some-resources.yaml
 
 # Dry-run
 kc apply --dry-run=server -f replicationcontroller.yaml
+
+
+# exec
+kubectl exec svc/foo
+  ejecutar en uno de los pods que sirven ese service

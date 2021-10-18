@@ -34,6 +34,8 @@ rbac-lookup
 who-can
 whoami
 capture
-  arrancar wireshark escuchando en un pod
+  arrancar sysdig escuchando en un pod
 df-pv
   como df para los volumenes persistentes
+sniff
+  capturar con wireshask, mirar debug.md

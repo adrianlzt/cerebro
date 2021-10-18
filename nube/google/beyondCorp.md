@@ -116,6 +116,10 @@ https://www.pomerium.com/docs/reference
 :443 main web
 127.0.0.1:9901 envoy admin interface
 
+## Insecure
+Podemos usar la opción "insecure_server: true" para no usar TLS.
+Por si tenemos el terminador TLS por encima.
+
 ## Rutas
 Las rutas son donde mapeamos dominios públicos a dominios internos.
 Pomerium se pone en medio haciendo el auth.

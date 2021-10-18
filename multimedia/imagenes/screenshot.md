@@ -1,0 +1,1 @@
+captura_pantalla_editar.md

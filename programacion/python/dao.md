@@ -3,6 +3,7 @@ https://github.com/brunofarina/Simple-DAO-Postgres-Example/blob/master/userDAO.p
 
 
 # psycopg2
+USAR LA v3: https://www.psycopg.org/psycopg3/docs/
 https://www.psycopg.org/docs/
 pip install psycopg2
 pip install psycopg2-binary

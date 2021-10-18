@@ -28,6 +28,8 @@ Para editar la sesión entera en un fichero
 Al guardar, se limpia y reevalua
 F7
 
+Para guardar la sesión en un pastebin público.
+
 Saves the current session to a file (prompts for filename)
 C-s
 

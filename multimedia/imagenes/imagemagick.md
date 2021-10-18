@@ -9,6 +9,11 @@ exiftool fichero.jpg
 Borrar datos exif:
 exiftool -all= file.jpg
 
+Sacar a stdout la imagen:
+COMANDO jpeg:-
+Ejemplo
+import -window NOMBRE_O_ID_VENTANA png:-
+
 
 Resize
 http://www.imagemagick.org/Usage/resize/#resize
@@ -17,6 +22,7 @@ convert -resize "30%" screenshot.png screenshot.th.png
 
 Screenshot:
 import -window root -quality 98 screenshot.png
+
 
 Convertir imágenes a pdf:
 convert imagen1.png imagen2.png libro.pdf

@@ -1,3 +1,5 @@
+UI: arandr
+
 Gestionar varias pantallas.
 Podemos decidir su resolución, donde colocarlas (respecto a otra) y si deben estar apagadas o encendidas:
 
@@ -102,6 +104,16 @@ params=$(gtf ${remoteHScreen} ${remoteVScreen} ${refreshRate} | grep Modeline | 
 xrandr --newmode "extraScreen" ${params}
 xrandr --addmode VIRTUAL1 extraScreen
 xrandr --output VIRTUAL1 --left-of ${existingScreenName} --mode extraScreen
+
+
+Con gtf me ha dado problemas. En la wiki de arch dicen con cvt:
+Creando una pantalla virtual de 4k
+➜ cvt 3480 2160
+Modeline "3480x2160_60.00"  645.25  3480 3768 4144 4808  2160 2163 2173 2237 -hsync +vsync
+➜ xrandr --newmode "3480x2160_60.00"  645.25  3480 3768 4144 4808  2160 2163 2173 2237 -hsync +vsync
+➜ xrandr --addmode VIRTUAL1 3480x2160_60.00
+➜ xrandr --output VIRTUAL1 --left-of ${existingScreenName} --mode 3480x2160_60.00
+
 
 
 Borrar la pantalla virtual

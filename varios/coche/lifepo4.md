@@ -1,3 +1,45 @@
+# Resumen
+Comprar 4 celdas LiFePo4
+
+Conectarlas en serie.
+Agregar un BMS, yo he usado este de Daly: https://es.aliexpress.com/item/4000965709746.html?spm=a2g0s.12269583.0.0.543c3eaaqzd7yG (150A Common port, LiFePo4 4S12V)
+Comprobar bien que conectamos bien los cables.
+Para arrancar el BMS la primera vez tenemos que conectarlo al cargador y hacer un corto entre P- y B- unos pocos segundos.
+
+Configurar el BMS:
+  - V max cell: 3.65
+  - V min cell: 3
+  - V max battery: 14.6
+  - V min battery: 12
+
+Cargar la batería, yo he usado este cargador: https://www.aliexpress.com/snapshot/0.html?orderId=8131625223548981
+
+Una vez está cargada, hay que hacerle el top balacing: https://www.youtube.com/watch?v=x5ABvbbics8
+
+Desconectar el BMS y conectar las celdas en paralelo.
+
+Usar una fuente de alimentación (https://www.amazon.fr/dp/B085S34NNW/ref=pe_27091421_487030221_TE_SCE_dp_3) para conectar las celdas a 3.60v
+
+Esperar hasta que la corriente caiga a 0.1A (puede tardar más de 24h, dependerá del tamaño de las celdas y como de cerca estuvieran todas de su carga total)
+
+Una vez hecho el top balancing vamos a hacer la prueba de carga.
+
+Volver a conectar las céldas en serie y conectar de nuevo el BMS.
+
+Conectar el puerto serie del BMS con el adaptador USB a un PC linux para obtener datos.
+
+Usamos https://github.com/dreadnought/python-daly-bms/blob/main/dalybms/daly_bms.py para extraer los datos.
+
+Conectar una carga a la batería para comprobar cuanta energía acumula.
+
+Podemos usar bombillas de coche como carga, suelen tener una potencia de 55W. Lo bueno es que no hacen ruido, no se calientan mucho y pueden estar encendidas muchas horas.
+
+Una vez hecho el test de carga, volver a cargar la batería y reconfigurar el BMS para poner un limite menor al voltaje máximo (para que trabaje en el ~90-10% del SOC):
+
+3.46V/cell
+
+13.84V/battery
+
 # LiFePo4
 Una datasheet de una batería de 280Ah que podría valer como referencia
 http://www.dcmax.com.tw/LF280(3.2V280Ah).pdf
@@ -24,6 +66,10 @@ Cargar las célculas con un cargador de 12v.
 Cambiarlas a paralelo.
 Cargarlas con un generador de tensión a 3.6V hasta que la corriente caiga a 0.1A o menos.
 
+Tras hacer el top balance y dejarlas una noche separadas, las células tenían una diferencia de hasta 0.1v, siendo la más alta
+la que estaba más cerca del generador y la más baja la más lejana.
+Vuelvo a hacer el top balance conectando el generador cerca de la cécula más lejana.
+
 # Daly BMS
 https://evwhite.pl/wp-content/uploads/2021/01/dalybms_instrukcja.pdf
 
@@ -34,6 +80,10 @@ Una resistencia interna menor a 5mOhm
 
 Como hacer la instalación
 https://www.youtube.com/watch?v=qb1I8WrQvJM
+
+Los 3 cables intermedios pueden estar conectados a uno u otro lado del busbar.
+He visto que hay diferencia de como se configure.
+Por ejemplo, si la célulca 4 (la que tiene el cable negativo) tiene el siguiente cable en el otro lado del busbar, la caída de tensión que verá el BMS para esa célula será mayor.
 
 Al conectar la primera vez el BMS, entre el positivo absoluto y el P- habrá unos 10v (en el battery pack tendremos unos 13v).
 
