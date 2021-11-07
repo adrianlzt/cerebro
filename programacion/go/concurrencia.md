@@ -83,6 +83,13 @@ Si metemos más datos de los que cabe en el buffer:
 fatal error: all goroutines are asleep - deadlock!
 
 
+
+Cerrar un canal
+https://gobyexample.com/closing-channels
+close(c)
+
+Si un canal tiene datos, se pueden seguir leyendo aunque el canal esté cerrado.
+
 Los escritores del canal pueden cerrar el canal para indicar que no van a escribir más. Por lo general no es necesario cerrar los canales.
 El consumidor puede saber el estado del canal con testeando la variable ok:
 v,ok <- ch
@@ -148,12 +155,6 @@ go func() {
 }()
 
 
-# Cerrar un canal
-https://gobyexample.com/closing-channels
-
-close(c)
-
-
 # Timeout
 
   link_chan := make(chan string)
@@ -211,6 +212,8 @@ https://golang.org/pkg/sync/#RWMutex.Lock
 
 CUIDADO con hacer un Lock y luego salirse de la función por otro sitio sin hacer el Unlock.
 Intentar siempre que usemos el Lock y defer Unlock seguido.
+
+CUIDADO! Si pasamos el lock a otra función, pasar el puntero, no pasar el valor, que entonces será un lock distinto.
 
 foo := sync.Mutex{}
 foo.Lock()

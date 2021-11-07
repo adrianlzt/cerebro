@@ -56,7 +56,7 @@ fmt.Println(
 %q  a double-quoted string safely escaped with Go syntax
 %x  base 16, lower-case, two characters per byte
 %X  base 16, upper-case, two characters per byte
-%p  base 16 notation, with leading 0x
+%p  base 16 notation, with leading 0x (para punteros)
 
 The default format for %v is:
 

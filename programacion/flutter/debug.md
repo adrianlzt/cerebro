@@ -9,3 +9,13 @@ https://flutter.dev/docs/testing/code-debugging
 https://api.flutter.dev/flutter/dart-developer/log.html
 import 'dart:developer' as developer;
 developer.log('log me', name: 'my.app.category');
+
+
+Para ver los logs:
+Install:
+flutter pub global activate devtools
+
+Arrancar chrome con las devtools:
+flutter pub global run devtools
+
+La url que poner la vemos al arrancar una app con flutter run

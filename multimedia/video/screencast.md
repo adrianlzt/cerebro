@@ -1,4 +1,9 @@
-http://www.taringa.net/posts/linux/10351589/8-Herramientas-para-relizar-screencast-en-linux.html
+obs-studio
+  facil y potente.
+  permite coger audio micro y sistema.
+  Podemos mezclar captura de pantalla con la webcam
+
+simplescreenrecorder
 
 Kazam
   Programa para grabar screencast
@@ -11,4 +16,3 @@ gtk-recordmydesktop
   Deja grabar todas las pantallas, o seleccionar una ventana
   No me pilla el microfono
 
-simplescreenrecorder

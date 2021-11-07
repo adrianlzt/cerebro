@@ -1,5 +1,7 @@
 Ver montajes loop:
-loosetup -a
+losetup -a
+Para ver si tenemos alguno no usado:
+losetup -f
 
 
 

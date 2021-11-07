@@ -25,6 +25,12 @@ var1,var2,var3 := 2, "hola", true
 Si queremos forzar un tipo de dato
 z := float64(3)
 
+descartar una variable:
+foo,_ := func()
+
+Truco para evitar el error de que una variable no se está usando:
+_ = client
+
 
 Podemos usar una estructura especial dentro del package, pero fuera de las funciones para definir las variables:
 var (

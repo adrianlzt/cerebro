@@ -15,3 +15,10 @@ adb shell dumpsys bluetooth_manager adb bugreport > BUG_REPORT.txt
 
 
 Con logcat podemos ver algunas trazas.
+
+
+# BLE
+App para leer características y valores de dispositivos BLE
+https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en
+	
+nRF Connect for Mobile

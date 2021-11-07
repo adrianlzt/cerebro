@@ -25,8 +25,12 @@ Nosotros programaremos nuestras corutinas (tasks), que correran en el EventLoop 
 
 
 Las corutinas tienen esta forma:
-async def py35_coro():
-    await stuff()
+async def main():
+    await asyncio.sleep(1)
+    print('hello')
+
+asyncio.run(main()) # la ejecutamos con esto
+
 
 
 Que podemos pasar a await()
@@ -44,21 +48,32 @@ Ejecutar varias corutinas en paralelo e ir trabajando con los resultados de las 
         url, wait_time = yield from coroutine
         print('Coroutine for {} is done'.format(url))
 
+
+
+
+# Ejecutar tareas concurrentemente
+https://docs.python.org/3/library/asyncio-task.html#running-tasks-concurrently
+
 Asyncio + gather
 Esperar a que todas las corutinas terminen para proseguir
     coroutines = [get_url(url) for url in ['URL1', 'URL2', 'URL3']]
     results = yield from asyncio.gather(*coroutines)
     print(results)
 
+Poner varios "async def" a correr (esperar hasta que todos terminen).
+Crearemos esas task con asyncio.create_task.
+Lo típico será crear una queue y pasársela por parámetro.
+async def worker(name, queue):
+  while True:
+    x = await queue.get()
 
-Producer / consumer (creo que un poco viejuno)
-https://asyncio.readthedocs.io/en/latest/producer_consumer.html
-
-
-
-
-Poner varios "async def" a correr (esperar hasta que todos terminen):
+queue = asyncio.Queue()
+taskA = asyncio.create_task(worker('worker1', queue)
+queue.put_nowait(añadimos el trabajo)
 await asyncio.gather(tasksA(), taskB())
+
+
+
 
 También podemos esperar hasta que uno termine, o salte una excepción o todos terminen:
 done, pending = asyncio.wait(aws, *, loop=None, timeout=None, return_when=ALL_COMPLETED)¶
@@ -71,17 +86,13 @@ if ok_join in pending or error_join in pending:
 
 
 
-Para pasarnos datos:
-queue = asyncio.Queue()
-Si queremos esperar a la cola junto con otras tasks:
-q_join = asyncio.create_task(q.join())
-await asyncio.gather(tasksA(), taskB(), q_join)
-  se le pueden pasar tasks o corutinas (que se convertiran a tasks)
+Si queremos esperar a la cola junto con otras tasks (sintaxis no probada, creo que es así):
+q = asyncio.Queue()
+taskA = asyncio.create_task(q.join())
+await asyncio.gather(tasksA(), taskB(), q.join)
 
-
-Mirar ejemplo de workers y queue:
-https://docs.python.org/3/library/asyncio-queue.html#examples
 Creo que es mejor hacer un asyncio.gather de las tasks y el queue.join(), para evitar quedarnos colgados si se genera una excepción y por ello nunca se procesa la cola
+La idea es que si solo esperamos al fin de la cola y una corutina ha fallado, la cola nunca se dará por finalizada.
 
 
 

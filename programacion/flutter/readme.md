@@ -60,3 +60,7 @@ Para crear un virtual device parece que se más fácil con android-studio
 
 # Organización
 mirar estructura.md
+
+
+# Despliegue
+mirar cli.md

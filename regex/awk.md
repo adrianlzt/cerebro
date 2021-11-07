@@ -103,6 +103,9 @@ Coger un valor de una columna de un fichero: grep + cut
 awk '/processes/ {print $2}' /proc/stat
   De la linea que tiene "processes" coge la segunda columna
 
+pactl list sinks short | awk -v sink=26 '{ if ($1 == sink) {print $2} }'
+  si la primera columa es "26", imprime la segunda columna
+
 
 Convertir hex a int:
 % echo "82 80 70 80 04" | awk $([[ $(awk --version) = GNU* ]] && echo --non-decimal-data) -F ' ' '

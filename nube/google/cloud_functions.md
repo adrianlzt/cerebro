@@ -17,6 +17,10 @@ Aplicaciones en typescript/javascript que se ejecutan en base a eventos.
 
 Es lento en desplegar, ~2'
 
+Máximo tiempo de ejecución:
+By default, a function times out after 1 minute, but you can extend this period up to 9 minutes.
+
+
 # Triggers
 Tipos de eventos que puedes usarse como disparadores:
 https://firebase.google.com/docs/reference/functions/cloud_functions_.eventcontext#eventtype

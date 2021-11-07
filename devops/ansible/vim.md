@@ -5,7 +5,11 @@ Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 Como decide si es ansible:
 /home/adrian/.config/nvim/bundle/ansible-vim/ftdetect/ansible.vim
 
+# Config
 Snippets autogenerados:
+Para usar con vim-vsnip: https://github.com/bammab/vscode-snippets-for-ansible
+
+Para UltiSnips:
 bundle/ansible-vim/UltiSnips/ansible.snippets
 Por defecto usan el sistema antiguo "key=valor".
 Para usar el nuevo modificar /home/adrian/.config/nvim/bundle/ansible-vim/UltiSnips/generate.sh
@@ -17,9 +21,10 @@ Y volver a ejectuar generate.sh
 
 Tendremos snippets para todos los módulos de ansible
 
+# Uso
 Para crear un playbook dummy:
-En modo inserción: C-x
-playbook
+vi test.yaml
+empezamos a escribir "ansible" y completamos el snippet.
 
 Para que ahora detecte que es ansile:
 :w

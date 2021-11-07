@@ -33,6 +33,18 @@ export FIRESTORE_EMULATOR_HOST="localhost:8080"
 https://firebase.google.com/docs/firestore/quickstart?authuser=0#python
 firebase-admin
 
+Podemos hacer pruebas entrando en la google cloud shell:
+pip3 install firebase_admin
+export GOOGLE_CLOUD_PROJECT=nombre-proyecto
+$ python
+from firebase_admin import messaging, initialize_app, get_app, firestore
+initialize_app()
+get_app()
+db = firestore.client()
+
+Actualizar un doc:
+obj.reference.update({"ack": True})
+
 
 
 # Realtime database

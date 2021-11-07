@@ -19,6 +19,10 @@ Info del sistema (modelo, version, MAC, etc):
 sh system
 
 
+# grep
+sh inter | grep TenG
+
+
 # Logging
 show logging
   ver config
@@ -57,6 +61,9 @@ Line -> usando una password definida en la linea para poder acceder
 configurar user/pass
 aaa authentication login default local
 aaa authentication enable default enable
+
+Para el force10 (la password la pasamos en claro pero luego se guarda encriptada)
+username Dell password PowerConnect privilege 15
 
 
 # SSH
@@ -117,3 +124,7 @@ shutdown
 
 Para activarlo:
 no shutdown
+
+
+# LLDP
+https://www.dell.com/support/kbdoc/fr-fr/000120105/how-to-enable-and-manage-link-layer-discovery-protocol-lldp-on-dell-networking-force10-switches?lang=en

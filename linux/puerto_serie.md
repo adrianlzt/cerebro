@@ -25,3 +25,17 @@ control+a control+x
 
 Si estamos en tmux
 control+a control+a control+x
+
+
+# Simular puerto serie
+https://stackoverflow.com/a/19733677/1407722
+
+socat -d -d pty,raw,echo=0 pty,raw,echo=0
+
+Nos muestra dos puertos abiertos.
+
+Lo que escribamos en uno se verá en el otro y viceversa.
+
+Podemos ver contenido con picocom, aunque para escribir no funciona.
+Si puedo escribir con:
+echo ATXX > /dev/pts/306

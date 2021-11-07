@@ -25,3 +25,7 @@ flutter run -d NAME
 
 Hot reload
 cuando estamos corriendo la app, podemos pulsar "r" para hacer un hot reload, mostrar cambios sin tener que hacer todo el proceso de build de nuevo, tarda menos de un segundo.
+
+
+
+Para ver los logs, mirar devtools.md

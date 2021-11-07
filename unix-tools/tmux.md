@@ -117,6 +117,9 @@ C-b s
 Listar windows:
 C-b w
 
+Buscar una ventana por nombre
+C-b f
+
 Renombrar sesion
 C-b $
 

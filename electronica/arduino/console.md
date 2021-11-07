@@ -12,6 +12,9 @@ Con cuatro decimales:
 Serial.println(speed, 4);
 
 
+Si queremos generar una cadena más compleja mirar print.md
+
+
 
 # Leer
 if(Serial.available()) {

@@ -50,3 +50,8 @@ for {
         }
 }
 
+
+
+# Discard /dev/null
+Si queremos descartar un io.Writer
+io.Discard

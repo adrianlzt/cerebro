@@ -23,8 +23,13 @@ pacmd list-sinks | grep -A 1 index
 
 
 
-Mirar si tenemos bluetooth:
+Mirar si tenemos bluetooth (en mi pc no sale nada, pero si tiene bt):
 lspci | grep -i bluetooth
+
+Para ver herramientas que tenemos mirar bluez-utils
+
+Para ver el dispositivo que tenemos:
+btmgmt info
 
 
 Ralink (Mediatek) RT3290/RT3298LE parece que da problemas
@@ -86,3 +91,10 @@ usar gattlib
 
 # bettercap
 Interesante para analizar trazas de bluetooth
+
+
+# App web
+https://web.dev/bluetooth/
+
+Para conectar con un dispositivo UART via BLE
+https://wiki.makerdiary.com/web-device-cli/

@@ -1,6 +1,8 @@
 Mirar en ../arduino para como usar esta placa con el ide de arduino
 
-Tenemos que cargar el core esp32: https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md
+Cargar en preferencias la url e instalar la board:
+https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
+
 
 
 arduino-cli core install esp32:esp32

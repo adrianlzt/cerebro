@@ -41,6 +41,13 @@ L     long double
 %llu long long unsigned int
 (mirar nota sobre formatos no estandar al comienzo)
 
+bool
+printf("%d\n", false);
+0
+printf("%d\n", true);
+1
+
+
 
 # Alineamiento
 El número ocupará tantos caracteres como especifiquemos, rellenando con espacios en blanco a la izquierda

@@ -9,3 +9,13 @@ inString.toInt()
 
 Double a str:
 char * dtostrf(double number, signed char width, unsigned char prec, char *s)
+
+Int a *char[]
+int num = 1234;
+char cstr[16];
+itoa(num, cstr, 10);
+
+
+std::string
+Algunas libs también usan esta string, que es la de c++ (por debajo creo que es esta de basic_string)
+https://en.cppreference.com/w/cpp/string/basic_string

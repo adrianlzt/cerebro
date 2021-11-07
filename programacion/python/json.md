@@ -47,6 +47,15 @@ with open("fichero.json", "w") as fd:
 
 
 # Serializar
+
+## Serializar una clase custom
+Lo más sencillo, sin nos vale:
+json.dumps(objeto_de_la_clase, default=vars)
+
+Otras opciones:
+https://stackoverflow.com/questions/3768895/how-to-make-a-class-json-serializable
+
+
 ## Serializar datetime.datetime
 TypeError: datetime.datetime(2012, 8, 8, 21, 46, 24, 862000) is not JSON serializable
 

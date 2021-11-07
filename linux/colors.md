@@ -1,3 +1,8 @@
+https://github.com/dylanaraps/pywal
+Generate and change color-schemes on the fly.
+Applies the colors system-wide and on-the-fly in all of your favourite programs.
+
+
 Muchas CLIs cuando detectan que van a enviar su salida a un pipe quitan los colores, por ejemplo ls o ansible.
 Si estamos usando tee esto quiere decir que nos quedamos sin colores.
 Lo que podemos hacer es usar unbuffer

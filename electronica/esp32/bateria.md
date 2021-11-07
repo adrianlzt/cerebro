@@ -17,3 +17,11 @@ Parece que hay que desoldarlo o cortar la pista que lo alimenta
 
 https://forum.sparkfun.com/viewtopic.php?t=48815
 cortando por debajo
+
+
+# Alimentación
+https://techexplorations.com/guides/esp32/begin/power/
+
+Lo más sencillo es conectar un cable al micro USB.
+
+Otra opción es meter 6-7V al pin de 5v y el GND.

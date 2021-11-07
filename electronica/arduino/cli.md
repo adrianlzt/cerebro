@@ -30,6 +30,10 @@ Se instalan en /home/adrian/Arduino/libraries/
 Compilar (dentro del dir del Sketch, el fichero .ino debe llamarse como el directorio):
 arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 .
 
+Opciones para la compilación:
+arduino-cli compile --show-properties --fqbn esp32:esp32:esp32doit-devkit-v1
+
+
 Upload:
 arduino-cli upload --fqbn esp8266:esp8266:nodemcuv2 -p /dev/ttyUSB0 .
 

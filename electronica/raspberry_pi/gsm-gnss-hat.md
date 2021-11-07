@@ -321,6 +321,13 @@ AT+CIPSEND
 AT+CIPCLOSE
   para terminar la conex
 
+Hay llamadas especiales para HTTP, HTTPS, FTP, etc.
+
+El timeout para HTTP por defecto son 120s.
+Podemos subirlo:
+
+AT+HTTPPARA="TIMEOUT",540
+
 ### NTP + EPO
 https://cdn-shop.adafruit.com/product-files/2637/SIM800+Series_NTP_Application+Note_V1.01.pdf
 descripción de los comandos CNTP

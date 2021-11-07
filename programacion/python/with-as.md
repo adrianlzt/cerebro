@@ -10,6 +10,12 @@ class controlled_execution:
 with controlled_execution() as thing:
      some code
 
+En el caso de usarse con asyncio las funciones son
+```
+async def __aenter__(self):
+async def __aexit__(self, exc_type, exc_val, exc_tb):
+```
+
 
 Se suele usar para abrir ficheros:
 with open(mtab_location, 'r') as mtab:

@@ -21,6 +21,7 @@ Instalar dependencias de go:
 :GoDef
 gd
 Ir a la definición de la interfaz, funcion, struct, etc
+Control+t, volver a donde estábamos antes de este salto
 
 
 :GoImpl

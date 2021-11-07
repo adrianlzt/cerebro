@@ -3,6 +3,10 @@ Otro debbuger: https://github.com/rocky/python3-trepan/
 https://github.com/P403n1x87/austin-tui
 Una interfaz "top-like" para austin, que permite debugear en caliente
 
+Saltar de pdb al intérprete con el contexto de variables
+!import code
+code.interact(local=vars())
+
 
 # breakpoint
 https://www.python.org/dev/peps/pep-0553/
