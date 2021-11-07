@@ -115,6 +115,11 @@ Modeline "3480x2160_60.00"  645.25  3480 3768 4144 4808  2160 2163 2173 2237 -hs
 ➜ xrandr --output VIRTUAL1 --left-of ${existingScreenName} --mode 3480x2160_60.00
 
 
+Creando pantalla de 2k:
+xrandr --newmode "2560x1440_60.00" 312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+xrandr --addmode VIRTUAL1 "2560x1440_60.00"
+xrandr --output VIRTUAL1 --left-of $(xrandr | grep "connected prim" | grep DP | cut -d ' ' -f 1) --mode 2560x1440_60.00
+
 
 Borrar la pantalla virtual
 xrandr --output VIRTUAL1 --off
