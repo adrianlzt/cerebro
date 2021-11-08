@@ -28,3 +28,20 @@ Existen ya "services" predefinidos: https://www.bluetooth.com/specifications/gat
 Ejemplos:
   WSP: Weight Scale Profile
   WSS: Weight Scale Service
+
+Existe también el concepto de "handle", que, por lo que entiendo, es como un link a un UUID determinado.
+Por ejemplo, con el termómetro BLE de xiaomi, bluetoothctl nos da:
+service - start: 0x0016, end: 0x0019, type: primary, uuid: 0000180f-0000-1000-8000-00805f9b34fb
+          charac - start: 0x0017, value: 0x0018, props: 0x12, ext_props: 0x0000, uuid: 00002a19-0000-1000-8000-00805f9b34fb
+
+Pues 0x0018 sería el handle para el uuid 00002a19-0000-1000-8000-00805f9b34fb (battery level), que sería un atributo read/notify del servicio 0000180f-0000-1000-8000-00805f9b34fb (battery service)
+
+
+En este caso aquí se expone un service privativo de xiaomi donde dice la temperatura.
+La info que quiero se la pido con un notify a la caracterísitca 226c0000-6476-4566-7562-66734470666d
+En la prop 00002902-0000-1000-8000-00805f9b34fb (handle 0x0010) está la info (devuelve un array de caracteres).
+service - start: 0x000c, end: 0x0015, type: primary, uuid: 226c0000-6476-4566-7562-66734470666d
+          charac - start: 0x000d, value: 0x000e, props: 0x10, ext_props: 0x0000, uuid: 226caa55-6476-4566-7562-66734470666d
+                  descr - handle: 0x000f, uuid: 00002901-0000-1000-8000-00805f9b34fb
+                  descr - handle: 0x0010, uuid: 00002902-0000-1000-8000-00805f9b34fb
+                  descr - handle: 0x0011, uuid: 00002904-0000-1000-8000-00805f9b34fb
