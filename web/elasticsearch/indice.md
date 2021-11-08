@@ -114,7 +114,8 @@ Unas pruebas que he hecho me salían unos 0.08ms el coste por abrir esos índice
 GET _alias/
   ver los alias existentes
 
-POST _aliases
+Este método no conseguía que me funcionase
+PUT _aliases
 {
   "actions": [
     {
@@ -135,6 +136,8 @@ POST _aliases
 Otra forma más simple:
 PUT /{index}/_alias/{name}
 
+Borrar el alias skydive_topology_archive del índie skydive_topology_archive_v13-000001
+curl localhost:9200/skydive_topology_archive_v13-000001/_alias/skydive_topology_archive -XDELETE
 
 # Rollover
 https://www.elastic.co/blog/managing-time-based-indices-efficiently
