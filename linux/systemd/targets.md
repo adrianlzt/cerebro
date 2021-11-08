@@ -25,6 +25,10 @@ systemctl get-default
 Cambiar el default target:
 systemctl set-default name.target
 
+Estado de las units de un target:
+systemctl list-dependencies default.target
+systemctl --user list-dependencies default.target
+
 
 Runlevel   Target Units                            Description
 0          runlevel0.target, poweroff.target       Shut down and power off the system.
