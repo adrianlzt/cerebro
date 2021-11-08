@@ -30,6 +30,9 @@ Ejemplos:
   WSS: Weight Scale Service
 
 Existe también el concepto de "handle", que, por lo que entiendo, es como un link a un UUID determinado.
+"During service and characteristic discovery, each service and characteristic are assigned with handle to identify them in the application code"
+"The attribute handle is simply an identifier used to access an attribute value"
+
 Por ejemplo, con el termómetro BLE de xiaomi, bluetoothctl nos da:
 service - start: 0x0016, end: 0x0019, type: primary, uuid: 0000180f-0000-1000-8000-00805f9b34fb
           charac - start: 0x0017, value: 0x0018, props: 0x12, ext_props: 0x0000, uuid: 00002a19-0000-1000-8000-00805f9b34fb
@@ -45,3 +48,8 @@ service - start: 0x000c, end: 0x0015, type: primary, uuid: 226c0000-6476-4566-75
                   descr - handle: 0x000f, uuid: 00002901-0000-1000-8000-00805f9b34fb
                   descr - handle: 0x0010, uuid: 00002902-0000-1000-8000-00805f9b34fb
                   descr - handle: 0x0011, uuid: 00002904-0000-1000-8000-00805f9b34fb
+
+
+
+Script de python con la lib bleak para obtener servicios, característias y descriptors:
+https://gist.github.com/adrianlzt/92b46d4a86844a0caeda625d49d22a12
