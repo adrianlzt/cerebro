@@ -64,6 +64,7 @@ bluetoothctl pair xx:xx:xx:xx:xx:xx
 bluetoothctl disconnect xx:xx:xx:xx:xx:xx
   desconectar, se mantiene el pairing
 
+# BLE
 
 ## bluetoothctl/GATT
 Si con bluetoothctl concectamos a un BLE bin GATT, nos hace un dump de las caracterísitcas/servicios poniendo el nombre de aquellas conocidas
@@ -78,7 +79,7 @@ bluetoothctl gatt.list-attributes 84:0D:8E:XX:XX:XX
 > register-notify 0x10
 
 
-# btgatt-client
+## btgatt-client
 btgatt-client -d 84:0D:8E:3F:0E:7A
 
 Encuentra los services y atributos automáticamente.
