@@ -31,3 +31,13 @@ i3-agenda
 polybar-scripts-git
 pulseaudio-control
 networkmanager-dmenu-bluetoothfix-git
+
+
+# system tray
+Si queremos mostrar los iconos de apps que meten sus cosas en el "system tray".
+Por ejemplo, flameshot o copyq
+
+Tenemos que activarlo en el module "bar"
+https://github.com/polybar/polybar/wiki/Configuration#bar-settings
+tray-position =
+

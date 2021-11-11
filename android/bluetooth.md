@@ -1,9 +1,19 @@
 https://medium.com/propeller-health-tech-blog/bluetooth-le-packet-capture-on-android-a2109439b2a1
 Estas parecen las instrucciones buenas
 
+O estas:
+https://support.honeywellaidc.com/s/article/How-to-capture-Bluetooth-traffic-from-and-to-an-Android-Device
+
 Activar el snoop de BT en las developer options
 Apagar/enceder el BT
 Hacer lo que queramos con BT
+Apagar el BT
+En Xiaomi/MUIU encontraremos el dump en
+adb pull /sdcard/./MIUI/debug_log/common/com.android.bluetooth/btsnoop_hci.log
+
+En otros móviles parece que lo dejan en /sdcard/
+
+en otros parece que se saca con:
 Ejecutar: adb bugreport nombrefichero.zip
   info: https://developer.android.com/studio/debug/bug-report
 Genera nombrefichero.zip a nuestro pc
