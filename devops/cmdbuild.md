@@ -66,6 +66,9 @@ Status, character(1), logical state of the record (A = active, deleted = N, U = 
 
 ## Queries
 
+Si queremos saber que tabla une dos CIs lo veremos en el módulo de adminstración, yendo a la clase y en la pestaña Domains.
+
+
 ### Servidores que tienen varios softwares con el mismo cmdline
 select distinct
   ser."Code" as Server,

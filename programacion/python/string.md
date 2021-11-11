@@ -221,6 +221,8 @@ titulo               texto
 Si info es un "dict", usar directamente sus valores
 print('{name} works at {status} {company}'.format_map(info))
 
+Si queremos pintar "{" ponemos "{{".
+
 
 {var:60.50}
 Ocupa 60 espacios, pero la cadena muestra como mucho 50

@@ -18,6 +18,8 @@ Elegir iconos de https://fontawesome.com/icons/network-wired?style=solid
 # Colores / themes
 https://github.com/adi1090x/polybar-themes
 
+Instala algunas fuentes en .local/share/fonts
+
 
 # extras
 Rofi : For App launcher, network, power and style menus

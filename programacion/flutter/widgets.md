@@ -63,8 +63,8 @@ En el caso de que sea el padre quien gestione el estado, le pasará ese estado c
 También le puede pasar una función, si el hijo es el que tiene el botón y debe llamar a una función para que modifique el estado.
 
 ## Widgets con parámetros
-class WidParam extends StatelessWidget {
-  WidParam({Key? key, this.foo = 0}) : super(key: key);
+class WithParam extends StatelessWidget {
+  WithParam({Key? key, this.foo = 0}) : super(key: key);
 
   int foo;
 
@@ -75,7 +75,7 @@ class WidParam extends StatelessWidget {
 }
 
 Para llamarlo:
-WidParam(foo: 3),
+WithParam(foo: 3),
 
 
 Pasando una función al hijo:

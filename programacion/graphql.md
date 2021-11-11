@@ -203,6 +203,8 @@ query ($country_code: String){
 
 
 
+
+
 # Mutations
 Sería el equivalente al POST/PUT/DELETE de una API REST.
 Para enviar cambios a la API.
@@ -246,6 +248,27 @@ Podemos enviar varias mutations en la misma petición:
 mutation {
   topfolder: createFolder(repositoryIdentifier: "<objectStoreSymName>") { name }
   childfolder: createFolder(repositoryIdentifier: "<repoName>") { name }
+}
+
+
+También podemos usar ese formato "NOMBRE: funcion" para que la respuesta tenga otro formato:
+{
+  mutation nodeMadrid {
+    x:net_AddDevice(input: {
+      resp:Device {
+        ID
+      }
+}
+
+Devolverá:
+{
+  "data": {
+    "x": {
+      "resp": {
+        "ID": "66aab0eb-8ca5-57ac-65eb-b79b6f232e23"
+      }
+    }
+  }
 }
 
 

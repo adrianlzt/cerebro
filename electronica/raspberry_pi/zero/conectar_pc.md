@@ -10,23 +10,26 @@ Como configurar el SO para poder conectarla a un pc y acceder via ssh.
   sudo mount /dev/mmcblk0p2 /mnt/pendrive/
   sudo mount /dev/mmcblk0p1 /mnt/pendrive/boot
 3.- En la particion boot:
+    esto creo que es para poder conectar la pizero por usb al pc
     echo "dtoverlay=dwc2" >> config.txt
-    touch ssh
     vi cmdline.txt
     Insert 'modules-load=dwc2,g_ether' after 'rootwait'
+
+    touch ssh   # para tener server ssh
+
+    También podemos meter en la partición boot un fichero para conectar a una wifi
+    wpa_supplicant.conf
+    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    country=ES
+    update_config=1
+
+    network={
+     ssid="<Name of your wireless LAN>"
+     psk="<Password for your wireless LAN>"
+    }
 4.- Desmontar la microsd y meterla en la raspizero
 5.- Conectar la raspizero al pc con un cable microusb (puerto USB de la raspizero)
 
-También podemos meter en la partición boot un fichero para conectar a una wifi
-wpa_supplicant.conf
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-country=ES
-update_config=1
-
-network={
- ssid="<Name of your wireless LAN>"
- psk="<Password for your wireless LAN>"
-}
 
 Podemos conectar un teclado con un adaptador OTG
 
