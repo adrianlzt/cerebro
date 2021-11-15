@@ -328,3 +328,16 @@ También para conectar via graphql a una postgres
 
 # Golang
 mirar en programacion/go/graphql.md
+
+
+
+# CLI
+Dentro del cliente de python viene una útil CLI para enviar peticiones.
+aur/python-gql
+https://gql.readthedocs.io/en/latest/gql-cli/intro.html
+
+$ echo 'query { continent(code:"AF") { name } }' | gql-cli https://countries.trevorblades.com
+
+
+Otra opción, nodejs:
+https://github.com/hasura/graphqurl
