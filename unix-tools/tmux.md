@@ -266,9 +266,11 @@ No hay opción de hacer esto más user-friendly: https://github.com/tmux/tmux/is
 prefix + I
     Installs new plugins from GitHub or any other git repository
     Refreshes TMUX environment
+    puede tardar unos segundos en contestar, ser pacientes
 
 prefix + U
     updates plugin(s)
+    puede tardar unos segundos en contestar, ser pacientes
 
 prefix + alt + u
     remove/uninstall plugins not on the plugin list

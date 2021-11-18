@@ -7,4 +7,4 @@ Es un lanzador de aplicaciones que se puede integrar con muchas cosas.
 
 
 # Themes
- /home/adrian/adrianRepo/linux/x11/rofi.md
+ https://github.com/adi1090x/rofi
