@@ -21,14 +21,15 @@ import linecache
 def traceit(frame, event, arg):
     if event == "line":
         lineno = frame.f_lineno
-        filename = frame.f_globals["__file__"]
-        if (filename.endswith(".pyc") or
-            filename.endswith(".pyo")):
+        filename = frame.f_globals.get("__file__")
+        if (filename and (filename.endswith(".pyc") or
+            filename.endswith(".pyo"))):
             filename = filename[:-1]
         name = frame.f_globals["__name__"]
         line = linecache.getline(filename, lineno)
-        print "%s:%s: %s" % (filename, lineno, line.rstrip())
+        print("%s:%s: %s" % (filename, lineno, line.rstrip()))
     return traceit
 
 sys.settrace(traceit)
+
 main()

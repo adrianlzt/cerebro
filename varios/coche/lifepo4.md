@@ -1,3 +1,7 @@
+La prueba de carga que hice sobre mis lifepo
+https://gitlab.com/-/snippets/2188555
+
+
 # Resumen
 Comprar 4 celdas LiFePo4
 
