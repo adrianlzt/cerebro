@@ -5,6 +5,20 @@ https://docs.micropython.org/en/latest/reference/mpremote.html
 Otra herramienta más para hacer lo mismo.
 Nueva de la versión 1.16 https://github.com/micropython/micropython/releases/tag/v1.16
 
+pip install mpremote
+
+Podemos montar el directorio local, nos mete en el repl y ejecutar lo que queramos.
+Pero no parece que recargue el fichero al modificarlo :/
+
+Para ejecutar un programa y ver su stdout
+mpremote run foo.py
+
+repl python
+mpremote repl
+
+Subir ficheros:
+mpremote cp foo.py :
+
 
 # pyboard.py
 https://docs.micropython.org/en/latest/reference/pyboard.py.html
