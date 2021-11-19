@@ -1,9 +1,19 @@
-# pyboard
+Me parece que con pyboard.py me falla mas que con mpfshell.
+
+# mpremote
+https://docs.micropython.org/en/latest/reference/mpremote.html
+Otra herramienta más para hacer lo mismo.
+Nueva de la versión 1.16 https://github.com/micropython/micropython/releases/tag/v1.16
+
+
+# pyboard.py
 https://docs.micropython.org/en/latest/reference/pyboard.py.html
 https://github.com/micropython/micropython/blob/master/tools/pyboard.py
 
 Parece que colisona con otra util del mismo nombre (pyboard) que instala rshell.
 Podemos dejar esta como pyboard.py
+
+Puede conectar por telnet, pero parece que micropython no tiene aún server telnet para esp32 (si para WiPy https://docs.micropython.org/en/latest/wipy/quickref.html?highlight=telnet#telnet-and-ftp-server)
 
 No tiene repl, podemos usar mpfshell para eso.
 
@@ -34,9 +44,16 @@ repl
   para salir Control+]
 
 
+Acceso via websockets (mirar webrepl.md para configurarlo)
+mpfshell -c "open ws:192.168.43.136,PASSWORD"
+
+Si no lo usamos durante un rato nos desconectará.
 
 
-# rshell / pyboard
+
+
+
+# rshell
 https://github.com/dhylands/rshell
 
 yay aur/rshell
