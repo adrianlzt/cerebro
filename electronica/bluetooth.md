@@ -24,14 +24,23 @@ profile:
           properties:
           value:
 
+La característica es la que tendrá la propiedad de poder ser leída, escrita, notify.
+Después podrá tener unos descriptors que nos den informatión sobre que es esa caracterísitca.
+Por ejemplo, en un termómetro, podemos tener un service con dos características.
+Una es para leer el valor, que tendrá un descriptor que al leerlo nos dirá "Temperature".
+Y otra característica para definir la escala (C o F), con un descriptor que nos dice que valores podemos escribir en esa característica.
+
+
+
 Existen ya "services" predefinidos: https://www.bluetooth.com/specifications/gatt/
 Ejemplos:
   WSP: Weight Scale Profile
   WSS: Weight Scale Service
 
+
 Existe también el concepto de "handle", que, por lo que entiendo, es como un link a un UUID determinado.
-"During service and characteristic discovery, each service and characteristic are assigned with handle to identify them in the application code"
-"The attribute handle is simply an identifier used to access an attribute value"
+The attribute handle is a unique 16-bit identifier for each attribute on a particular GATT server
+
 
 Por ejemplo, con el termómetro BLE de xiaomi, bluetoothctl nos da:
 service - start: 0x0016, end: 0x0019, type: primary, uuid: 0000180f-0000-1000-8000-00805f9b34fb
