@@ -24,3 +24,6 @@ def get_devices() -> list[model.Device]:
 
 Diccionarios:
 dict[str, float]
+
+Si devolvemos varias variables, es una tupla:
+def foo() -> tuple[bool, str]:
