@@ -7,6 +7,8 @@ https://github.com/adubkov/py-zabbix/tree/master/tests
 me parece un buen ejemplo de como realizar tests
 
 Mirar pytest.md
+Nos da helpers para hacer los tests.
+Más potente que la lib estandar.
 
 https://pypi.org/project/parameterized/
 para definir una serie de valores y respuesta esperada. Luego ejecutar el mismo test sobre esos valores
