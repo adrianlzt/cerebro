@@ -4,11 +4,16 @@ https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beauti
 
 Start guide: https://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/intro.html#intro
 
-1.- Bajar el firmware de http://www.micropython.org/download#esp8266
+1.- Bajar el firmware de
+http://www.micropython.org/download/esp32/
 
 2.- Flashearlo (pacman -S esptool)
-sudo esptool --port /dev/ttyUSB0 erase_flash
-sudo esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect -fm dio 0 esp8266-*.bin
+Me estaba dando un error al intentar borrar la flash o flashearlo: Failed to connect to ESP32: Wrong boot mode detected (0x13)! The chip needs to be in download mode
+Lo que he hecho es desplegar con arduino-cli un pequeño programa y luego ya me ha dejado.
+
+esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
+
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-VERSION.bin
 
 3.- Acceder a la consola
 mirar mpfshell.md
@@ -41,11 +46,14 @@ wscat -c "ws://192.168.4.1:8266"
 
 
 # Workflow de trabajo
+En boot.py pondremos temas de carga inicial.
+En main.py nuestra app.
+
 Un terminal siempre dentro de mpfshell.
 Editamos código/configuraciones.
 Las subimos con "put xxx" con mpfshell.
-Saltamos a la consola "repl"
-Control+d para darle un reset al nodemcu.
+Saltamos a la consola "repl" (dentro de mpfshell)
+Control+d para darle un reset al nodemcu. (dentro de mpfshell)
 Vemos como funciona.
 Paramos la ejecución con Control+c
 Saltamos al repl de mpfshell con Control+]
