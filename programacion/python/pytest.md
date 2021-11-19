@@ -13,6 +13,7 @@ Un test se considera válido si:
  - no hay excepciónes no manejadas
 
 Los ficheros de test deberán terminar en `_test.py`
+Podemos poner funciones `test_` fuera de ficheros `_test.py`, pero tendremos que especificar ese fichero a pytest para que lo ejecute.
 
 Cada test individual será una función que comience por `test_`
 
@@ -268,6 +269,25 @@ pytest se da cuenta y solo lo "importa" una vez.
 
 
 
+## Monkey-patching
+Nos permite modificar objetos, diccionarios, os.environ.
+
+
+## Mock
+https://github.com/pytest-dev/pytest-mock/
+Se instala a parte.
+
+Nos permite modificar el funcionamiento de librerías.
+El típico caso de simular una respuesta de una db, llamada http, etc.
+
+Ejemplos:
+https://github.com/pluralsight/intro-to-pytest/blob/master/tests/18_the_mocker_fixture.py
+https://github.com/pluralsight/intro-to-pytest/blob/master/tests/19_re_usable_mock_test.py
+
+
+
+
+
 # Test marking
 Podemos añadir marks a los tests para agruparlos.
 Sería como tagearlos.
@@ -302,6 +322,8 @@ En este caso, si no falla, el test será FAILED.
 De esta manera podemos aplicar parametrización directamente sobre los tests.
 Otra opción es parametrización mediante fixtures.
 
+Ejemplos: https://docs.pytest.org/en/latest/example/parametrize.html
+
 @pytest.mark.parametrize("number", [1, 2, 3, 4, 5])
 def test_numbers(number):
 
@@ -310,6 +332,19 @@ def test_dimensions(x, y):
 
 @pytest.mark.parametrize("mode", [1, 2, 3], ids=['foo', 'bar', 'baz'])
 def test_modes(mode):
+
+
+Típico ejemplo de table driven tests (retuerzo un poco la sintaxis para poder meter el nombre del test en la misma línea de los datos):
+
+interfaces_elements = [
+    ("nombre test", {"params": "entrada"}, {"expected": "values"})
+]
+
+
+@pytest.mark.parametrize("params,expected", [(x[1], x[2]) for x in interfaces_elements], ids=[x[0] for x in interfaces_elements])
+def test_parse_interfaces_elements(params, expected):
+    assert params == expected
+
 
 
 
