@@ -74,9 +74,25 @@ Mirar multimedia/video/subtitulos.md
 # Mover
 Desplazar una imagen por la pantalla
 https://superuser.com/questions/727379/how-to-make-left-right-transition-of-overlay-image-ffmpeg
+http://ffmpeg.org/ffmpeg-filters.html#overlay-1
 
 ffmpeg -i 1.ts -i 2.ts -filter_complex "[0:v][1:v]overlay=x='if(lte(-w+(t)*100,w/2),-w+(t)*100,w/2)':y=0[out]" -map '[out]' -y out.mp4
 
+
+ffmpeg -i via1_144627_hr.mp4 -i bar.png -filter_complex "[0:v][1:v]overlay=x='if(lte(-w+(t)*10+1150,1720),-w+(t)*10+1150,1720)':y=1490[out]" -map '[out]' -y out.mp4
+
+El 10 sería la velocidad de anvance.
++1150 es el offset (como de a la derecha empezamos a movernos)
+1720 sería el límite derecho de donde no debe pasar.
+
+"t" es el timepo en segundos
+
+Podemos usar también "n", el número de frame.
+
+ffmpeg -i via1_144627_hr.mp4 -i bar.png -filter_complex "[0:v][1:v]overlay=x='-w+(n)*(496/145)+1150':y=1490[out]" -map '[out]' -y out.mp4
+
+En este caso, sabiendo que el número de frames son 145 y que quiero recorrer la posición desde 1150 hasta 1150+496, con esa fórmula recorro ese espacio en el tiempo del vídeo.
+Quito el condicional porque ya controlo que la posición final esté dentro del vídeo.
 
 
 # Extraer frames
