@@ -55,3 +55,29 @@ ffmpeg -i input.mp4 -vf "transpose=1" output.mp4
 
 # Unir audio + video
 ffmpeg -i alexandermegos_taping.mp4 -i alexandermegos_taping_audio.mp4 -c:v copy -c:a aac output.mp4
+
+
+
+# Añadir un borde al vídeo
+https://stackoverflow.com/questions/46671252/how-to-add-black-borders-to-video
+
+Ejemplo añadiendo un borde de 640px negro solo a la derecha.
+ffmpeg -i via1_144627.mp4 -filter_complex "[0]pad=w=640+iw:h=0+ih:x=0:y=0:color=black" output.mp4
+
+
+
+# Subtítulos
+Mirar multimedia/video/subtitulos.md
+
+
+
+# Mover
+Desplazar una imagen por la pantalla
+https://superuser.com/questions/727379/how-to-make-left-right-transition-of-overlay-image-ffmpeg
+
+ffmpeg -i 1.ts -i 2.ts -filter_complex "[0:v][1:v]overlay=x='if(lte(-w+(t)*100,w/2),-w+(t)*100,w/2)':y=0[out]" -map '[out]' -y out.mp4
+
+
+
+# Extraer frames
+ffmpeg -ss 05:00 -i <input> -t 05:00 filename%05d.png

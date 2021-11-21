@@ -7,3 +7,7 @@ $ ffprobe -v quiet -select_streams v:0  -show_entries stream_tags=creation_time 
 
 Duración del vídeo
 ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ../VID_20211120_111029_adri_primera_via.mp4
+
+Tamaño del video:
+ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 input.mp4
+
