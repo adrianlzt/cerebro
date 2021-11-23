@@ -371,3 +371,8 @@ https://github.com/pluralsight/intro-to-pytest/blob/master/tests/15_advanced_cla
 # Coverage
 pip install pytest-cov
 pytest --cov
+
+Si queremos un reporte en html
+pytest --cov-report html --cov
+
+Lo genera en htmlcov/
