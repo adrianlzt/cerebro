@@ -12,6 +12,9 @@ rfkill list
 Habilitar
 rfkill unblock wifi
 
+Ver el ESSID a donde estamos conectados
+iwgetid -r
+
 Podemos también usar (nos abrirá una consola propia donde con help podemos navegar)
 iwctl
  > device list

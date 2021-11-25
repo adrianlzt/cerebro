@@ -5,6 +5,7 @@ Activo.
 Hace uso de bluez
 Parece que se conecta via dbus
 Tiene pinta de ser la mejor elección.
+Solo cliente.
 
 Ejemplo escaneando devices y conectando al primero que ofrezca UART
 https://github.com/hbldh/bleak/blob/master/examples/uart_service.py
