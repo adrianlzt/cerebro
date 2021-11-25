@@ -27,3 +27,9 @@ dict[str, float]
 
 Si devolvemos varias variables, es una tupla:
 def foo() -> tuple[bool, str]:
+
+
+# dataclasses
+https://docs.python.org/3/library/dataclasses.html
+
+Helpers para crear automáticamente el ``__init__()`` y ``__repr__()``
