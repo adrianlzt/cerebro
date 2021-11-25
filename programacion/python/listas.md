@@ -124,6 +124,8 @@ Listas inmutables.
 Más pequeñas. Menos memoria
 https://docs.python.org/2/library/stdtypes.html#set
 
+Si nos falla por "unhashable type"
+
 Convertir array a set
 set(array)
 
