@@ -1,3 +1,5 @@
+https://docs.python.org/3/howto/logging-cookbook.html
+
 http://word.bitly.com/post/69080588278/logging-locals
 Para crear un handler que nos de más información, por ejemplo las variables locales.
 

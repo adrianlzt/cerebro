@@ -28,6 +28,10 @@ dict[str, float]
 Si devolvemos varias variables, es una tupla:
 def foo() -> tuple[bool, str]:
 
+Devolver uno u otro tipo:
+from typing import Union
+def foo(client_id: str) -> Union[list,bool]
+
 
 # dataclasses
 https://docs.python.org/3/library/dataclasses.html
