@@ -15,6 +15,8 @@ def greeting(name: str) -> str:
 
 def foo(arg: int = 0) -> None:
 
+age: int = 1
+
 greeting.__annotations__
 {'name': <class 'str'>, 'return': <class 'str'>}
 

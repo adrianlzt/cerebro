@@ -30,6 +30,20 @@ Los nombres de los loggers son jerárquicos.
 Si ponemos un nombre "myapp.models.pools", estaremos heredando del root, de myapp y de models.
 
 
+# Logger distinto para cada objecto
+https://towardsdatascience.com/8-advanced-python-logging-features-that-you-shouldnt-miss-a68a5ef1b62d
+Mirar 1. Create user-defined LogRecord attributes using LoggerAdapter
+```
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - [%(levelname)s] - %(app)s - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s",
+)
+logger = logging.getLogger(__name__)
+logger = logging.LoggerAdapter(logger, {"app": "test application"})
+```
+
+Ejemplo completo en ejemplos/logging_object
+
 
 # Formato
 FORMAT = "[%(levelname)8s %(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
@@ -53,6 +67,12 @@ logging.basicConfig(level=logging.DEBUG)
 from cinderclient.v2 import client as cn_client
 cinder = cn_client.Client(auth_url='https://ost-controller-lb-dev.om-d.dsn.inet:35357/v2.0',username='monit_ost',api_key='RWAeL7xXfdxi',project_id='DSM-D',service_type='volume',insecure=True,http_log_debug=True)
 cinder.volumes.list()
+
+
+En python 3.10 añaden un nuevo parámetro a logging.Formater, defaults, para poder añadir campos custom
+https://docs.python.org/3/library/logging.html#logging.Formatter
+logging.Formatter('%(ip)s %(message)s', defaults={"ip": None})
+
 
 # Logger con el nombre de la funcion
 import sys
@@ -143,7 +163,7 @@ logger.removeHandler(logger.handlers[0])
 
 logger.propagate = False
   deshabilitamos pasar los mensajes a los parents
-  típicamente, desactivamos el logging por stdout
+  típicamente, no enviamos la traza al handler definido por basicConfig
 
 
 Ejemplo de override sobre smtp:
