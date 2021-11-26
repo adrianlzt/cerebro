@@ -68,7 +68,7 @@ async def worker(name, queue):
     x = await queue.get()
 
 queue = asyncio.Queue()
-taskA = asyncio.create_task(worker('worker1', queue)
+taskA = asyncio.create_task(worker('worker1', queue))
 queue.put_nowait(añadimos el trabajo)
 await asyncio.gather(tasksA(), taskB())
 
