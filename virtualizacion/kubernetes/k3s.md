@@ -6,6 +6,7 @@ mirar distros.md
 # Install
 En arch
 aur/k3s
+aur/k3s-bin
 
 # Run
 systemctl start k3s

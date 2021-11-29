@@ -54,7 +54,9 @@ haproxy
 
 
 Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080, y las "/bar/*" al service bar puerto 8080
-apiVersion: extensions/v1beta1
+#apiVersion: extensions/v1beta1 # versiones antiguas de k8s
+#kind: Ingress
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
