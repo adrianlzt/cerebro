@@ -1,3 +1,7 @@
+Para almacenar de forma segura secrets de manera que nadie los pueda leer, ni si quiera el creador.
+También útil para almacenar los secrets en repos públicos
+kubeseal.md
+
 # Ver un secret
 https://github.com/elsesiy/kubectl-view-secret
 kubectl krew install view-secret
