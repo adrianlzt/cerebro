@@ -47,6 +47,9 @@ Tres secciones:
   - users
 
 
+Forzar un fichero
+kubectl --kubeconfig=''
+
 kubectl config view
 
 Contexto actual:

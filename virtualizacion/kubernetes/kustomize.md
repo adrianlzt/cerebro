@@ -3,7 +3,7 @@ https://github.com/kubernetes-sigs/kustomize/blob/master/docs/README.md
 
 Es una forma de componer y modificar ficheros YAML.
 La idea es tener una base de YAML y luego otros que hagan pequeñas modificaciones (por ejemplo, por entorno).
-También nos permite crear secrets fácilemente en el YAML.
+También nos permite crear secrets fácilmente en el YAML.
 
 Lo usaremos con:
 kubectl apply -k directorio/
