@@ -11,6 +11,9 @@ kubeclt view-secret <secret> -a/--all
 
 kubectl create secret generic my-secret --from-literal=key1=supersecret
 
+Generar el yaml, si crear el secret en el server:
+kubectl create secret generic elasticsearch --from-literal=password=elastic --dry-run=client -o yaml > out.yaml
+
 # https://kubernetes.io/docs/concepts/configuration/secret/
 #
 apiVersion: v1
