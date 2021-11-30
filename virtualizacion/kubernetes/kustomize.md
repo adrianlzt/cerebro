@@ -8,6 +8,9 @@ También nos permite crear secrets fácilmente en el YAML.
 Lo usaremos con:
 kubectl apply -k directorio/
 
+dry-run
+kc apply -k overlays/development --dry-run=client
+
 O podemos generar el yaml final con:
 kustomize build dir/
 

@@ -78,7 +78,8 @@ Se puede enrutar un pod, un deployment, rc o service:
 kubectl port-forward pods/redis-master-765d459796-258hz 6379:6379
 kubectl port-forward deployment/redis-master 6379:6379
 kubectl port-forward rs/redis-master 6379:6379
-kubectl port-forward svc/redis-master 6379:6379
+kubectl port-forward svc/redis-master 6379:6379 --address='0.0.0.0'
+  para escuchar en todas las IPs en vez de solo en localhost
 
 
 
