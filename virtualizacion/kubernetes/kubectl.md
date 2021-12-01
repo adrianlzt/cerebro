@@ -51,6 +51,8 @@ Forzar un fichero
 kubectl --kubeconfig=''
 
 kubectl config view
+kubectl config view --minify
+  solo ver la config activa
 
 Contexto actual:
 kubectl config current-context
