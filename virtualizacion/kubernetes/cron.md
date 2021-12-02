@@ -5,6 +5,7 @@ https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 kubectl get cronjobs
 
 
+#apiVersion: batch/v1beta1
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -32,3 +33,7 @@ kubectl get jobs --watch
 Los jobs se ejecutarán creando un pod
 
 Solo se mantendrá el pod del último job.
+
+
+Forzar un job a partir de un cronjob:
+kubectl create job --from=cronjob/<name of cronjob> <name of job>

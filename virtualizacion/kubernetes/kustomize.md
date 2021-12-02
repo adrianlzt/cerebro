@@ -9,7 +9,8 @@ Lo usaremos con:
 kubectl apply -k directorio/
 
 dry-run
-kc apply -k overlays/development --dry-run=client
+kc apply -k overlays/development --dry-run=server
+  the request is still processed as typical request: the fields are defaulted, the object is validated, it goes through the validation admission chain, and through the mutating admission chain, and then the final object is returned to the user as it normally would, without being persisted.
 
 O podemos generar el yaml final con:
 kustomize build dir/
