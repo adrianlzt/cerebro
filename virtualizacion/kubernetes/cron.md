@@ -26,6 +26,21 @@ spec:
           restartPolicy: OnFailure
 
 
+Si no queremos que la tarea se vuelva a ejecutar si hay un fallo:
+https://stackoverflow.com/a/51687712
+
+spec:
+  concurrencyPolicy: Forbid  # ESTA OPCION
+  failedJobsHistoryLimit: 1  # ESTA OPCION
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      backoffLimit: 0  # ESTA OPCION
+      template: 
+      ... MORE STUFF ...
+
+
 # Jobs
 Los cronjobs generarán jobs:
 kubectl get jobs --watch
