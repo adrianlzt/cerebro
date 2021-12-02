@@ -1,10 +1,11 @@
 https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/
+https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
 
 
 kubectl get cronjobs
 
 
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: hello
