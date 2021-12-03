@@ -34,9 +34,26 @@ dbus-send --session --print-reply --type=method_call --dest=orf.freedekstip.Dbug
 ## busctl
 Para inspeccionar que tenemos
 
+busctl list
+  nos saca los "peers" del bus, tanto de nuestro usuario como de root
+
 ## Obtener mensajes
+Ejemplo usando busctl para ver mensajes enviados al servicio de time sync
+busctl monitor org.freedesktop.timesync1
+
 Ejemplo obteniendo notificaciones:
 dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'"
+
+## qdbus
+También para obtener info del bus
+
+qdbus
+  sin parámetros, nos dice que servicios están disponibles en el bus
+  busctl list parece más potente
+
+Enviar mensajes:
+qdbus servicename path function parameters
+
 
 
 # Signals
