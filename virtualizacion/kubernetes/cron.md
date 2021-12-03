@@ -11,7 +11,7 @@ kind: CronJob
 metadata:
   name: hello
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "*/1 * * * *"  # app web para configurar este valor https://crontab.guru/
   jobTemplate:
     spec:
       template:
