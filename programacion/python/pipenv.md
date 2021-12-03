@@ -32,6 +32,9 @@ pipenv install -e git+https://github.com/datadope-io/python-protobix.git@feature
 Si está en un subdir:
 pipenv install -e 'git+https://github.com/skydive-project/skydive.git@master#subdirectory=contrib/python/api&egg=skydive-client'
 
+Instalar un directorio local, las modificaciones que hagamos en ese dir afectaran a nuestra app:
+pipenv install --editable ./gsmHat
+
 pipenv sync
 instalamos lo que diga el .lock (en vez de lo que diga el Pipenv)
 
