@@ -92,8 +92,13 @@ address=/sro.whatsapp.net/192.168.1.33
 Se pueden registros A:
 address=/double-click.net/127.0.0.1
 
-Se pueden registros AAAA:
+Se pueden registros AAAA
 address=/double-click.net/::
+Si lo ponemos vacío, como el ejemplo anterior "::", evitaremos que se intente resolver la IPv6 por otro lado tardando mucho,
+Por lo que generalmente pondremos los address como (si no tienen ipv6):
+address=/foo.net/17.2.0.1
+address=/foo.net/::
+
 
 Registro MX
 mx-host=mail.sample.com,ini.mail.local,10
