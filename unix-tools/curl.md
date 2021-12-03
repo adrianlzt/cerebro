@@ -185,3 +185,9 @@ curl https://nexus.cloud/repository/public/file.tgz | tar zx -C test/
 # Errores
 curl: (3) [globbing] bad range in column 90
 Tenemos una url con "[" o "]"? Usar -g
+
+
+nested brace in URL
+Estamos metiendo "{" dentro de otros "{", tal vez en una query de graphql?
+Escapar esos braces
+"\{..."
