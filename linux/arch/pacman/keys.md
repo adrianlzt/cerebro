@@ -15,6 +15,10 @@ No hacer caso a las claves:
 /etc/pacman.conf
 SigLevel = Never
 
+No hacer caso al instalar un paquete local:
+/etc/pacman.conf
+LocalFileSigLevel = Never
+
 
 # Errores
 error: XXXX: signature from "NOMBRE <EMAIL@EMAIL.com>" is unknown trust

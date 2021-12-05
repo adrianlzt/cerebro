@@ -1,5 +1,6 @@
 http://blog.gbaman.info/?p=699
 http://www.recantha.co.uk/blog/?p=15566
+https://desertbot.io/blog/ssh-into-pi-zero-over-usb
 
 Como configurar el SO para poder conectarla a un pc y acceder via ssh.
 

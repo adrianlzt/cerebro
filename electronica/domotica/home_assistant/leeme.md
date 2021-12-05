@@ -11,6 +11,9 @@ Tras arrancarlo dio bastantes errores, lo reinicié y entonces ya levantó la UI
 http://localhost:8123/config/integrations
   no usar 127.0.0.1, problemas CORS
 
+Para instalar la última tuve que modificar el PKGBUILD y cambiar la versión y el commit a la última.
+También tuve que instalar a mano pyyaml==6.0 en el sistema
+
 ## Pip
 pip3 install homeassistant
 

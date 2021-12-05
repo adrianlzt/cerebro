@@ -22,3 +22,7 @@ http://localhost:8123/config/integrations
 Una vez añadido, aparecerá un nuevo botón en el menú: "HACS"
 
 Parece que tarda en arrancar, tiene pinta de que se baja cosas de github para hacer un índice de paquetes o similar.
+
+
+# Uso
+Una vez instalado un componente, tendremos que restear e ir a Configuration / integrations para encontrarlo
