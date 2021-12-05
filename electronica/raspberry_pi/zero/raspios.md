@@ -31,7 +31,13 @@ XBMC media center
 
 # Upgrade
 https://linuxconfig.org/raspbian-gnu-linux-upgrade-from-jessie-to-raspbian-stretch-9
+https://www.tomshardware.com/how-to/upgrade-raspberry-pi-os-to-bullseye-from-buster
 
+apt update
+apt dist-upgrade -y
+rpi-update
+vi /etc/apt/sources.list
+  cambiar la versión de debian a la que toque, por ejemplo s/buster/bullseye/
 
 # Kernel
 ## En la propia raspi

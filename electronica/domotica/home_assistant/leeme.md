@@ -8,7 +8,14 @@ Programa en python para tener una web de control domótico
 pip3 install homeassistant
 
 ## Docker
-docker run -d --name="home-assistant" -v /path/to/your/config:/config -v /etc/localtime:/etc/localtime:ro --net=host homeassistant/home-assistant
+docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -e TZ=MY_TIME_ZONE \
+  -v /PATH_TO_YOUR_CONFIG:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
 
 
 # Run
