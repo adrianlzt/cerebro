@@ -37,6 +37,15 @@ Para inspeccionar que tenemos
 busctl list
   nos saca los "peers" del bus, tanto de nuestro usuario como de root
 
+busctl tree
+  nos muestra los services y sus objectos
+
+busctl introspect org.freedesktop.timesync1 /org/freedesktop/timesync1
+  ver propiedades de un service/object
+
+busctl get-property org.freedesktop.timesync1 /org/freedesktop/timesync1 org.freedesktop.timesync1.Manager NTPMessage
+  obtener una propiedad
+
 ## Obtener mensajes
 Ejemplo usando busctl para ver mensajes enviados al servicio de time sync
 busctl monitor org.freedesktop.timesync1
