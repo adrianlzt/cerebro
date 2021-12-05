@@ -4,6 +4,13 @@ Programa en python para tener una web de control domótico
 
 # Install
 
+## Arch
+pacman -Ss home-assistant
+Tras arrancarlo dio bastantes errores, lo reinicié y entonces ya levantó la UI.
+
+http://localhost:8123/config/integrations
+  no usar 127.0.0.1, problemas CORS
+
 ## Pip
 pip3 install homeassistant
 
