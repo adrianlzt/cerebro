@@ -20,6 +20,19 @@ https://home-assistant.io/developers/creating_components/
 
 Meterlo en ~/.homeassistant/custom_components
 
+Para crear el scaffold, en el dir donde tengamos clonado el repo de home-assistant (o el .zip del tag que usamos), y
+con el venv cargado:
+python3 -m script.scaffold integration
+
+Domain es lo que se pone en el nombre al principio: dominio.app
+Ejemplo: lights.kitchen
+
+github handle es el user de github: @adrianlzt
+
+Nos creara un directorio tipo:
+dominio/components/nombreApp
+
+
 ## Crear un componente webhook
 Siguiendo el ejemplo de alexa
 
@@ -40,6 +53,8 @@ logger:
   logs:
     homeassistant.components.device_tracker: critical
     homeassistant.components.camera: debug
+
+Reiniciar para que pille la config nueva.
 
 
 

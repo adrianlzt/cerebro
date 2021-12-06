@@ -20,6 +20,8 @@ https://www.home-assistant.io/installation/raspberrypi#install-home-assistant-co
 /home/homeassistant/.homeassistant
 user: homeassistant
 
+2021-12-06 19:15:26 ERROR (SyncWorker_6) [homeassistant.components.dhcp] Cannot watch for dhcp packets without a functional packet filter: libpcap is not available. Cannot compile filter !
+Parece que tambien quiere que instalemos
 
 ## Docker
 docker run -d \

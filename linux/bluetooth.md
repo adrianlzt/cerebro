@@ -99,3 +99,11 @@ https://web.dev/bluetooth/
 
 Para conectar con un dispositivo UART via BLE
 https://wiki.makerdiary.com/web-device-cli/
+
+
+# Debug
+bluez-hcidump
+Analyses Bluetooth HCI packets
+
+https://custom-components.github.io/ble_monitor/faq#my-sensor-is-not-in-the-list-of-supported-ones-how-to-request-implementation
+Aqui lo usan para recolectar info de dispositivos BLE y extraer info de ellos.
