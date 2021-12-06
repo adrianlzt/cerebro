@@ -14,8 +14,12 @@ http://localhost:8123/config/integrations
 Para instalar la última tuve que modificar el PKGBUILD y cambiar la versión y el commit a la última.
 También tuve que instalar a mano pyyaml==6.0 en el sistema
 
-## Pip
-pip3 install homeassistant
+## Pip / venv
+https://www.home-assistant.io/installation/raspberrypi#install-home-assistant-core
+/srv/homeassistant
+/home/homeassistant/.homeassistant
+user: homeassistant
+
 
 ## Docker
 docker run -d \
