@@ -66,6 +66,10 @@ bluetoothctl disconnect xx:xx:xx:xx:xx:xx
 
 # BLE
 
+Parece que algunos dispositivos utilizan los mensajes de advertisment (beacons) para enviar información. Mirar ejemplo
+del termómetro de xiaomi en la sección Debug.
+
+
 ## bluetoothctl/GATT
 Si con bluetoothctl concectamos a un BLE bin GATT, nos hace un dump de las caracterísitcas/servicios poniendo el nombre de aquellas conocidas
 
@@ -102,8 +106,28 @@ https://wiki.makerdiary.com/web-device-cli/
 
 
 # Debug
+Explicación de la ingeneria inversa para obtener info de los advertisment de Xiaomi donde envía la temperatura y la humedad
+https://custom-components.github.io/ble_monitor/MiBeacon_protocol
+
+## btmon
+Sustituye a hcidump
+
+btmon --write hcitrace.snoop | tee hcitrace.txt
+
+En otra consola activamos el scan
+bluetootctl
+> scan on
+
+El fichero hcitrace.snoop lo podemos abrir con wireshark
+
+
+
+## hcidump
 bluez-hcidump
 Analyses Bluetooth HCI packets
 
 https://custom-components.github.io/ble_monitor/faq#my-sensor-is-not-in-the-list-of-supported-ones-how-to-request-implementation
 Aqui lo usan para recolectar info de dispositivos BLE y extraer info de ellos.
+
+
+Si ejecutamos "hcidump" veremos los mensajes que recibe nuestro dispositivo bluetooth de otros dispositivos.
