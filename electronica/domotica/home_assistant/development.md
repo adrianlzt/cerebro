@@ -33,6 +33,18 @@ Nos creara un directorio tipo:
 dominio/components/nombreApp
 
 
+
+Para cargar componentes custom, hace falta meterlo en la config.
+Ejemplo de un sensor, copiado de mitemp_bt:
+sensor:
+  - platform: daly_bms
+    mac: "46:64:01:01:00:1C"
+    monitored_conditions:
+      - temperature
+      - battery
+
+
+
 ## Crear un componente webhook
 Siguiendo el ejemplo de alexa
 
