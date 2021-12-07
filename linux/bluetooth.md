@@ -69,6 +69,9 @@ bluetoothctl disconnect xx:xx:xx:xx:xx:xx
 Parece que algunos dispositivos utilizan los mensajes de advertisment (beacons) para enviar información. Mirar ejemplo
 del termómetro de xiaomi en la sección Debug.
 
+Para cada UUID se le asocia un handle.
+Mirar como sacarlos con un script de python en python/bluetooth.md
+
 
 ## bluetoothctl/GATT
 Si con bluetoothctl concectamos a un BLE bin GATT, nos hace un dump de las caracterísitcas/servicios poniendo el nombre de aquellas conocidas
@@ -91,7 +94,7 @@ Pero no hace la traducción de UUIDs a que significan (en wireshark si lo puedo 
 
 
 # python
-usar gattlib
+usar mirar python/bluetooth.md
 
 
 # bettercap

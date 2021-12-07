@@ -1,4 +1,4 @@
-
+# btlewrap
 https://pypi.org/project/btlewrap/
 Lo usan aqui para obtener info de los termómetros de xiaomi https://github.com/ratcashdev/mitemp/blob/master/mitemp_bt/mitemp_bt_poller.py
 
@@ -56,3 +56,20 @@ Python interface to Bluetooth LE on Linux
 
 Parece un poco abandonada
 La lib de python lo que hace es llamar a un programa escrito en c del mismo repo.
+
+No pude usarlo para extraer info de DalyBMS, no me dejaba enviar un "write command" y obtener la respuesta (en wireshark se veía, pero no llegaba al callback).
+Si podía hacer un "REQUEST COMMAND" y obtener respuesta, pero daly contestaba distinto en ese caso.
+
+
+Escaner un device y obtener el mapeo de UUID a handles:
+
+from bluepy.btle import Peripheral
+mac = "26:24:21:21:20:1C"
+peripheral = Peripheral(mac)
+chars = peripheral.getCharacteristics()
+for c in chars:
+    print(f"uuid: {c.uuid}, handle: {c.getHandle()}")
+    #descrs = c.getDescriptors()
+    #for d in descrs:
+    #    print(f"dscriptor: {d.uuid}")
+
