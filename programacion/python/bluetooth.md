@@ -1,3 +1,12 @@
+
+https://pypi.org/project/btlewrap/
+Lo usan aqui para obtener info de los termómetros de xiaomi https://github.com/ratcashdev/mitemp/blob/master/mitemp_bt/mitemp_bt_poller.py
+
+btlewrap recomienda usar https://github.com/IanHarvey/bluepy
+Pero también puede usar bluez
+
+
+
 # bleak
 https://github.com/hbldh/bleak
 
