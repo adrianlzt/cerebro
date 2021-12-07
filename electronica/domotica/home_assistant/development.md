@@ -32,6 +32,7 @@ github handle es el user de github: @adrianlzt
 Nos creara un directorio tipo:
 dominio/components/nombreApp
 
+En el manifest.json meteremos las libs de pypi requeridas, que se instalarán automáticamente.
 
 
 Para cargar componentes custom, hace falta meterlo en la config.
