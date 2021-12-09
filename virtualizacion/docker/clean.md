@@ -11,3 +11,5 @@ docker system prune
 
 docker volume prune
   removes unused volumes only.
+
+docker image prune
