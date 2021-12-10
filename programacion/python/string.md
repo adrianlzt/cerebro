@@ -103,7 +103,7 @@ Meter variables en string estilo C
 container_id = "%s_%s_%s_graph" % (sitename, host, service)
 
 
-# String literals / Python3
+# String literals / Python3 / f-string / fstring
 https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
 Meter variables directamente en una string
 
@@ -114,6 +114,14 @@ apellido: {apellido}"""
 
 Escapar "{" o "}" con dobles:
 a = f"ejemplo {{}}"
+
+Barra ("\") no se puede poner
+https://stackoverflow.com/a/67680321
+Opción:
+chr(92)
+
+O asignarla a una variable y usarla
+
 
 
 f"{nombre:>12}"
