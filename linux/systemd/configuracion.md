@@ -200,3 +200,9 @@ ExecStart=/usr/bin/echo "he arrancado"
 # Working directory
 [Service]
 WorkingDirectory=/home/pi
+
+
+# Environment
+[Service]
+Environment=ETCD_CA_FILE=/path/to/CA.pem
+Environment=ETCD_CERT_FILE=/path/to/server.crt
