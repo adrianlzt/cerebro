@@ -5,6 +5,4 @@ Para mostrar gráficos un poco más avanzados
 Añadir con HACS frontend.
 
 Hace falta añadir a la config
-resources:
-  - url: /local/mini-graph-card-bundle.js?v=0.10.0
-    type: module
+http://127.0.0.1:8123/config/lovelace/resources
