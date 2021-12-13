@@ -331,3 +331,11 @@ export PID=1161102; for s in `tmux list-sessions -F '#{session_name}'` ; do
     pstree -h -p -a -A $p | grep "[,]$PID" && tmux list-panes -s -t "$s" -f "#{==:#{pane_pid},$p}" -F '#{session_name}: #{window_index}.#{pane_index}'
   done
 done
+
+
+# Eviar comandos a tmux (send-keys)
+https://blog.damonkelley.me/2016/09/07/tmux-send-keys/
+tmux send-keys -t SESION:VENTANA.PANE "echo world" Enter
+
+tmux send-keys -t 1 "echo world" Enter
+  enviar al pane 1 de la sesión y ventana activa
