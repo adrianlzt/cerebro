@@ -42,3 +42,17 @@ https://linux.die.net/man/1/wmctrl
 # Touchpad
 Activar click con el touchpad
 synclient TapButton1=1
+
+## Syngesture
+https://github.com/mqudsi/syngesture
+Acciones ante patrones más complicados.
+Por ejemplo, mover cuatro dedos en una dirección.
+
+Config
+~/.config/syngestures.toml
+
+Hace falta configurar el /dev/input del mouse.
+Para saber cual poner, arrancar "evtest" sin parámetros.
+
+Hace falta SUID en el binario evtest (tal vez se quite esta dependencia en el futuro)
+sudo chmod u+s $(which evtest)
