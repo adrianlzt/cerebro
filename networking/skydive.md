@@ -139,6 +139,8 @@ Cuando se produce un evento en glhs1 se llama a GetABLinks
 Cuando se produce un evento en glhs2 se llama a GetBALinks
 No tenemos porque necesitar implementar ambos.
 
+Gestion del tema del linker
+graffiti/graph/linker.go
 
 
 
