@@ -3,6 +3,10 @@ http://www.openssh.com/legacy.html
 Unable to negotiate with 217.160.71.110: no matching host key type found. Their offer: ssh-dss
 ssh -oHostKeyAlgorithms=+ssh-dss user@host
 
+Host nas
+  HostName 192.168.8.109
+  HostKeyAlgorithms=+ssh-dss
+
 no matching cipher found. Their offer: ...
 ssh -c 3des-cbc ..
 

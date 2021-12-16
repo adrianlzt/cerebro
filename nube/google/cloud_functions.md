@@ -120,11 +120,13 @@ https://cloud.google.com/functions/docs/quickstart-python
 https://cloud.google.com/functions/docs/first-python
 
 Ficheros:
-    main.py
+    main.py (obligatorio, debe llamarse main.py)
     requirements.txt (opcional)
+
 
 Deploy (nombre de la función):
 gcloud functions deploy hello_http --runtime python39 --trigger-http --allow-unauthenticated
+  --trigger-http es para poder llamarla con http o https
 
 
 La fecha del context.timestamp es una string con formato: 2021-08-26T06:51:55.803Z
