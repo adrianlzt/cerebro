@@ -29,3 +29,12 @@ cmds = [
   ["./bin/agent"]
 ]
 
+
+
+Ejemplo ejecutando tests para python
+[run]
+watch_all = true
+watch_dirs = [ "$WORKDIR/", ]
+watch_exts = [".py"]
+build_delay = 1500
+cmds = [["pytest", "--cov-report", "html", "--cov"]]

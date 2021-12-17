@@ -15,6 +15,8 @@ def greeting(name: str) -> str:
 
 def foo(arg: int = 0) -> None:
 
+age: int = 1
+
 greeting.__annotations__
 {'name': <class 'str'>, 'return': <class 'str'>}
 
@@ -24,3 +26,16 @@ def get_devices() -> list[model.Device]:
 
 Diccionarios:
 dict[str, float]
+
+Si devolvemos varias variables, es una tupla:
+def foo() -> tuple[bool, str]:
+
+Devolver uno u otro tipo:
+from typing import Union
+def foo(client_id: str) -> Union[list,bool]
+
+
+# dataclasses
+https://docs.python.org/3/library/dataclasses.html
+
+Helpers para crear automáticamente el ``__init__()`` y ``__repr__()``

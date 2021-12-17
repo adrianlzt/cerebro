@@ -1,3 +1,7 @@
+Para almacenar de forma segura secrets de manera que nadie los pueda leer, ni si quiera el creador.
+También útil para almacenar los secrets en repos públicos
+kubeseal.md
+
 # Ver un secret
 https://github.com/elsesiy/kubectl-view-secret
 kubectl krew install view-secret
@@ -6,6 +10,9 @@ kubeclt view-secret <secret> -a/--all
 
 
 kubectl create secret generic my-secret --from-literal=key1=supersecret
+
+Generar el yaml, si crear el secret en el server:
+kubectl create secret generic elasticsearch --from-literal=password=elastic --dry-run=client -o yaml > out.yaml
 
 # https://kubernetes.io/docs/concepts/configuration/secret/
 #

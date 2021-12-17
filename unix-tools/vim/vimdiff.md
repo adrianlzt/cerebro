@@ -6,6 +6,8 @@ git mergetool -t meld
 # Vimdiff
 https://stackoverflow.com/a/31686752
 
+nvim -d foo bar
+
 do - Get changes from other window into the current window.
 
 dp - Put the changes from current window into the other window.

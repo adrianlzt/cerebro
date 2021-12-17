@@ -168,6 +168,14 @@ def test_scoped_fixtures():
     pass
 
 
+## capsys / capturar stdout/stderr
+def test_get_ifaces(capsys):
+    ejecutar_test()                 # IMPORTANTE, el readouterr debe ir después de ejecutar la función que genera el stdout/err
+    captured = capsys.readouterr()
+    assert captured.out == "foo"
+
+
+
 ## Ejecutar una fixture una única vez
 Al configurar el scope="module", esta fixture solo se ejecutará con la ejecución del primer test.
 
@@ -227,6 +235,10 @@ Si no definimos el parámetro "ids", el nombre usado será el mismo valor de "pa
 
 En el fixture podemos hacer cosas más complejas antes de devolver el resultado.
 Tal vez el "param" solo es una parte de un objeto que queremos enviar.
+
+
+Si tenemos varios parámetros y queremos añadir una fixture, la pondremos al final. Ejemplo:
+def test_get_ifaces(config, interfaces, expected, capsys):
 
 
 #### multiple parametrización
@@ -354,3 +366,13 @@ https://github.com/pluralsight/intro-to-pytest/blob/master/tests/14_class_based_
 
 Ejemplo usando fixtures:
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/15_advanced_class_test.py
+
+
+# Coverage
+pip install pytest-cov
+pytest --cov
+
+Si queremos un reporte en html
+pytest --cov-report html --cov
+
+Lo genera en htmlcov/

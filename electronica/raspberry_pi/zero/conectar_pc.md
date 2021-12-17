@@ -1,5 +1,6 @@
 http://blog.gbaman.info/?p=699
 http://www.recantha.co.uk/blog/?p=15566
+https://desertbot.io/blog/ssh-into-pi-zero-over-usb
 
 Como configurar el SO para poder conectarla a un pc y acceder via ssh.
 
@@ -33,7 +34,12 @@ Como configurar el SO para poder conectarla a un pc y acceder via ssh.
 
 Podemos conectar un teclado con un adaptador OTG
 
-Nos aparecerá un adaptador ethernet nuevo en nuestro pc.
+Nos aparecerá un adaptador ethernet nuevo en nuestro pc (ejemplo enp0s20f0u2)
+Mirar en el dmesg por un mensaje tipo:
+cdc_ether 1-2:1.0 usb0: register 'cdc_ether' at usb-0000:00:14.0-2, CDC Ethernet Device, ba:fa:8b:53:ec:5c
+
+PROBLEMA, me dice que la interfaz no está lista, NO_CARRIER, y no veo a la raspi.
+
 Para buscar la ip de la raspizero:
 nmap -sP 169.254.10.54/16
 

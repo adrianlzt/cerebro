@@ -64,22 +64,25 @@ lista.sort(key=lambda x: x[2], reverse=True)
 [1, 4, 7]
 
 Generar teniendo start, step y numero de elementos:
+```
 range(start,start+step*n_elements,step)
+```
 
 Generar n elementos de step en step hasta llegar a stop (stop no será parte del array)
+```
 range(stop-n*step,stop,step)
+```
 
 Si queremos que stop sea parte del array:
+```
 range(stop-(n-1)*step,stop+1,step)
+```
 
 # Condicional
 lista = []
 if not lista:
  print "lista vacia"
 
-
-
-Generar lista: emails = [u.email for u in mailUsers]
 
 
 http://docs.python.org/2/tutorial/datastructures.html#functional-programming-tools
@@ -96,7 +99,9 @@ Mirar lambda para ver como meter inline esas func.
 [5, 7, 11, 13, 17, 19, 23]
 
 
-# list comprehension #
+# list comprehension
+https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
+
 [f for f in milista if metodo(f)]
 [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
 [str(round(pi, i)) for i in range(1, 6)]
@@ -106,10 +111,20 @@ Mirar lambda para ver como meter inline esas func.
 Me devuelve los elementos de mi lista que cumplan metodo(f)
 
 
+Generar lista: emails = [u.email for u in mailUsers]
+
+
+>>> variable=[{'name':123},{'name':000,'pepe':2}]
+>>> [x['name'] for x in variable]
+[123, 0]
+
+
 ## Sets
 Listas inmutables.
 Más pequeñas. Menos memoria
 https://docs.python.org/2/library/stdtypes.html#set
+
+Si nos falla por "unhashable type"
 
 Convertir array a set
 set(array)
@@ -201,14 +216,6 @@ any(d['site'] == 'Superuser' for d in data)
 >>> a.extend(b)
 >>> a
 [1, 2, 3, 4, 9, 9]
-
-
-# List comprehensions
-https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
-
->>> variable=[{'name':123},{'name':000,'pepe':2}]
->>> [x['name'] for x in variable]
-[123, 0]
 
 
 

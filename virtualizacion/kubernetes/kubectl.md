@@ -47,7 +47,12 @@ Tres secciones:
   - users
 
 
+Forzar un fichero
+kubectl --kubeconfig=''
+
 kubectl config view
+kubectl config view --minify
+  solo ver la config activa
 
 Contexto actual:
 kubectl config current-context
@@ -156,6 +161,9 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -f some-resources.yaml
 
 # Dry-run
 kc apply --dry-run=server -f replicationcontroller.yaml
+
+  server = the request is still processed as typical request: the fields are defaulted, the object is validated, it goes through the validation admission chain, and through the mutating admission chain, and then the final object is returned to the user as it normally would, without being persisted.
+
 
 
 # exec

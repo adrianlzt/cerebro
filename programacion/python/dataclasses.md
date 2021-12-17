@@ -13,3 +13,7 @@ class InventoryItem:
 
     def total_cost(self) -> float:
         return self.unit_price * self.quantity_on_hand
+
+
+Si queremos definir una lista por defecto vacía:
+ips: list[str] = field(default_factory=list)

@@ -130,6 +130,14 @@ hace man de la palabra que tengmos en el cursor
 !comando
 Ejecuta el comando externo (execute external command)
 
+r!comando
+ejecuta el comando e inserta en el documento el output
+
+Si queremos pasar un contenido del fichero a un comando externo y luego sustituir lo seleccionado con ese output:
+control+v, seleccionar líneas y luego
+: ! comando
+  lo veremos como  :'<,'> ! sort   vim estará poniendo el ":'<,'> " para indicar que se actua sobre líneas seleccionadas
+
 :set filetype?
 :se ft
 Nos dice que filetype tiene definido actualmente

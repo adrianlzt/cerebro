@@ -30,7 +30,7 @@ Otras opciones
 -v, --verbose               increase verbosity
   muestra todos los ficheros que se van copiando
 -z			compress
---exclude=PATTERN       exclude files matching PATTERN
+--exclude=PATTERN       exclude files matching PATTERN / ignorar / skip
 --exclude-from=FILE     read exclude patterns from FILE
 --include=PATTERN       don't exclude files matching PATTERN
 --include-from=FILE     read include patterns from FILE

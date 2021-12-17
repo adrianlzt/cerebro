@@ -4,11 +4,34 @@ Programa en python para tener una web de control domótico
 
 # Install
 
-## Pip
-pip3 install homeassistant
+## Arch
+pacman -Ss home-assistant
+Tras arrancarlo dio bastantes errores, lo reinicié y entonces ya levantó la UI.
+
+http://localhost:8123/config/integrations
+  no usar 127.0.0.1, problemas CORS
+
+Para instalar la última tuve que modificar el PKGBUILD y cambiar la versión y el commit a la última.
+También tuve que instalar a mano pyyaml==6.0 en el sistema
+
+## Pip / venv
+https://www.home-assistant.io/installation/raspberrypi#install-home-assistant-core
+/srv/homeassistant
+/home/homeassistant/.homeassistant
+user: homeassistant
+
+2021-12-06 19:15:26 ERROR (SyncWorker_6) [homeassistant.components.dhcp] Cannot watch for dhcp packets without a functional packet filter: libpcap is not available. Cannot compile filter !
+Parece que tambien quiere que instalemos
 
 ## Docker
-docker run -d --name="home-assistant" -v /path/to/your/config:/config -v /etc/localtime:/etc/localtime:ro --net=host homeassistant/home-assistant
+docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -e TZ=MY_TIME_ZONE \
+  -v /PATH_TO_YOUR_CONFIG:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
 
 
 # Run

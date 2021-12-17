@@ -15,6 +15,13 @@ makepkg -si
 
 
 # Editar PKGBUILD antes de instalar
+yay -G paquete
+cd paquete/trunk
+vi PKGBUILD
+makepkg -si
+
+
+Otra opción (no me ha funcionado la última vez que probé con un paquete ya instalado)
 yay --editmenu -S linux-drm-tip-git
 
 En ~/.cache/yay/PAQUETE tenemos los ficheros del build que hayamos hecho

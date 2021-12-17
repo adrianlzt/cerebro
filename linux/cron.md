@@ -1,4 +1,6 @@
 http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
+https://crontab.guru/
+  app web para ayudarnos a generar el "código" para cada cuanto debe lanzarse
 
 Para systemd tenemos un susituto:
 Mirar linux/systemd/timer_example.systemd

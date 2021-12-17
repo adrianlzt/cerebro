@@ -3,10 +3,14 @@ https://github.com/kubernetes-sigs/kustomize/blob/master/docs/README.md
 
 Es una forma de componer y modificar ficheros YAML.
 La idea es tener una base de YAML y luego otros que hagan pequeñas modificaciones (por ejemplo, por entorno).
-También nos permite crear secrets fácilemente en el YAML.
+También nos permite crear secrets fácilmente en el YAML.
 
 Lo usaremos con:
 kubectl apply -k directorio/
+
+dry-run
+kc apply -k overlays/development --dry-run=server
+  the request is still processed as typical request: the fields are defaulted, the object is validated, it goes through the validation admission chain, and through the mutating admission chain, and then the final object is returned to the user as it normally would, without being persisted.
 
 O podemos generar el yaml final con:
 kustomize build dir/

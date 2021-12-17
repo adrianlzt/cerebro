@@ -115,7 +115,8 @@ GET _alias/
   ver los alias existentes
 
 Este método no conseguía que me funcionase
-PUT _aliases
+```
+POST _aliases
 {
   "actions": [
     {
@@ -132,6 +133,7 @@ PUT _aliases
     }
   ]
 }
+```
 
 Otra forma más simple:
 PUT /{index}/_alias/{name}

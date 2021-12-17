@@ -32,10 +32,25 @@ Y otra característica para definir la escala (C o F), con un descriptor que nos
 
 
 
+
 Existen ya "services" predefinidos: https://www.bluetooth.com/specifications/gatt/
 Ejemplos:
   WSP: Weight Scale Profile
   WSS: Weight Scale Service
+
+Listado de los UUID para cada servicio:
+https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf
+
+Tenemos que tener tanto el UUID del servicio como de las características.
+Ejemplo para hearth rate monitor:
+https://docs.micropython.org/en/latest/library/bluetooth.html#bluetooth.BLE.gatts_register_services
+```
+HR_UUID = bluetooth.UUID(0x180D)
+HR_CHAR = (bluetooth.UUID(0x2A37), bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,)
+HR_SERVICE = (HR_UUID, (HR_CHAR,),)
+SERVICES = (HR_SERVICE, UART_SERVICE,)
+( (hr,), (tx, rx,), ) = bt.gatts_register_services(SERVICES)
+```
 
 
 Existe también el concepto de "handle", que, por lo que entiendo, es como un link a un UUID determinado.

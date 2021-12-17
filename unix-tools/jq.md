@@ -97,7 +97,8 @@ The length of an object is the number of key-value pairs.
 The length of null is zero.
 
 
-# Filtrar / regex
+# Filtrar / filter / regex
+Para quedarnos con los resultados, pero fuera del array:
 less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp")) | [.key, .value.count]'
 
 test negativo (inverso)
@@ -105,6 +106,9 @@ less hosts.json | jq '.big | to_entries[] | select (.key | test("es.wcorp") | no
 
 https://stackoverflow.com/questions/18592173/select-objects-based-on-value-of-variable-in-object-using-jq
 jq '.[] | select(.location=="Stockholm") | .name' json
+
+Si queremos mantener la estructura del array:
+cat foo.json | jq '.[0].Edges | map(select(.Metadata.RelationType=="pseudowire")) | length'
 
 
 

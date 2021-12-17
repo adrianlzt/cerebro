@@ -137,6 +137,14 @@ enum SPEED_COMMAND_TYPE{
 
 
 # Queries
+https://graphql.org/learn/serving-over-http/#get-request
+Normalmente se envían con POST, pero también podemos usar GET
+curl "https://graphql.foo.com/query?query=\{version\}"
+Equivalente a
+query {
+  version
+}
+
 query NombreQuery {
   funcionQuePodemosLanzar (param1:2, param2:{some:more, complex:param}) {
     alias1:param1

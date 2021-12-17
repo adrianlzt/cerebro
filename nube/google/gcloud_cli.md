@@ -63,6 +63,10 @@ Arrancar VM:
 gcloud compute instances start tools --zone=us-east1-b
 
 
+Obtener IPs públicas
+gcloud compute addresses list
+
+
 
 # GKE
 Listar clusters
