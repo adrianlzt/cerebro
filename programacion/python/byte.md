@@ -34,6 +34,9 @@ bytearray(b'AB\xa5')
 >>> bytes(l)
 'AB\xa5'
 
+Para pintar en formato hex (aabbccdd)
+print(l.hex())
+
 
 
 
