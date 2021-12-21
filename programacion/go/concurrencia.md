@@ -129,9 +129,11 @@ func SearchParallel(query string) ([]Result, error) {
 
 
 Funciones que retornan un canal:
+```
 func (c *RedisClient) Messages() <-chan []byte {
   return c.messages  // esto es un chan []byte
 }
+```
 
 
 
@@ -220,6 +222,8 @@ foo.Lock()
 foo.Unlock()
 
 Tambien tenemos RWMutex, que nos permite poner solo locks de read (permitimos muchos lectores, pero solo un escritor)
+
+Mutex.TryLock, para intentar coger un lock si no está ocupado
 
 
 

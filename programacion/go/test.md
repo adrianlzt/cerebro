@@ -380,3 +380,8 @@ Dependerá de la razón por la que fallan.
 
 Una posible opción es ejecutar los tests N veces (se detiene si encuentra un error):
 go test -count=100 -failfast -run ...
+
+
+# fuzz
+https://go.dev/doc/fuzz
+https://go.dev/blog/fuzz-beta
