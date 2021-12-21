@@ -1,6 +1,6 @@
 https://github.com/google/gops
 Nos permite recolectar información de procesos que están ejecutándose
-Sacar su stack, forzar GC, tracear, etc
+Sacar su stack (mirar PrintStack), forzar GC, tracear, etc
 
 
 # GODEBUG
@@ -144,6 +144,7 @@ Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 
 
 ## mostrar el stack trace
+import "runtime/debug"
 debug.PrintStack()
 
 
@@ -168,6 +169,8 @@ Package debug contains facilities for programs to debug themselves while they ar
 
 
 # Stack trace
+Para mostrar en código, mirar PrintStack
+
 kill -ABRT xxx
 hace dump de las corutinas y mata el proceso.
 Útil para cuando se nos está quedando pillado el proceso
