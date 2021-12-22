@@ -193,6 +193,10 @@ SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client topology import --file graph.j
 
 ## Desarrollo
 
+### Poner modo debug en los tests
+logging.InitLogging("", false, []*logging.LoggerConfig{logging.NewLoggerConfig(logging.NewStdioBackend(os.Stderr), "DEBUG", "")})
+
+
 ### Tests funcionales
 make functional TEST_PATTERN=APIPatchNode
 make functional TEST_PATTERN=APIPatchNode$
