@@ -142,6 +142,7 @@ No tenemos porque necesitar implementar ambos.
 Gestion del tema del linker
 graffiti/graph/linker.go
 
+Parece que si el hasher no retorna resultados en el map, no se llama a GetABLinks.
 
 
 #### blockdev
