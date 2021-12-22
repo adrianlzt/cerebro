@@ -757,6 +757,12 @@ Esta función de graph será la encagada de usar esos metadata decoders y devolv
 func (n *Node) UnmarshalJSON(b []byte) error
 
 
+#### UpdateMetadata
+Solo podemos modificar valores que sean punteros.
+Si intentamos modificar un valor "normal", como se nos habrá pasado por referencia una copia, no estaremos haciendo nada.
+O tendremos que acceder directamente al nodo (si tenemos la variable del nodo en el scope)
+
+
 
 # Performance
 
