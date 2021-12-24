@@ -6,6 +6,10 @@ yay lesspipe
 Nos colorea ficheros.
 Nos permite abrir un montón de ficheros distintos (llama por debajo a distintos programas)
 
+lesspipe tiene un bug que asume esquema de colores light.
+Arreglado aqui: https://github.com/wofr06/lesspipe/issues/67
+Por ahora puesto a fuego en ~/bin/lesspipe.sh
+
 
 
 

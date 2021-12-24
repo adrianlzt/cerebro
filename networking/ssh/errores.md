@@ -13,6 +13,9 @@ ssh -c 3des-cbc ..
 send_pubkey_test: no mutual signature algorithm
 https://confluence.atlassian.com/bitbucketserverkb/ssh-rsa-key-rejected-with-message-no-mutual-signature-algorithm-1026057701.html
 ssh-rsa con SHA1 deprecated en el cliente posiblemente.
+En el ssh config de ese host meter:
+PubkeyAcceptedKeyTypes +ssh-rsa
+
 
 
 El servidor no acepta la clave pública.
