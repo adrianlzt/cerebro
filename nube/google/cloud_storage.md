@@ -40,6 +40,8 @@ https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-
 Automáticamente coge el service account del nodo en el que estemos.
 
 Mirar gcloud para ver como autenticarnos.
+Si queremos usar una SA en particular:
+gcloud auth activate-service-account --key-file xxxx.json
 
 gsutil ls
 gsutil ls -p proyecto
