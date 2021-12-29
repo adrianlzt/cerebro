@@ -15,6 +15,18 @@ action:
 
 
 # Con template
+No hacer nada en un condicional: homeassistant.none
+
+  action:
+    - service_template: >
+        {% if is_state('alarm_control_panel.home_alarm', 'disarmed') %}
+          alarm_control_panel.alarm_arm_away
+        {% else %}
+          alarm_control_panel.alarm_disarm
+        {% endif %}
+      entity_id: alarm_control_panel.home_alarm
+      data:
+        code: '1234'
 
   action:
     service_template: >
