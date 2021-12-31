@@ -53,7 +53,8 @@ ble_43_14_b2_2d_72_9b:
 
 Veremos una nueva entity device_tracker.ble_43_14_b2_2d_72_9b que tendrá un state "home" o "not_home"
 
-Con o sin el track_new_devices puesto o no me saltan errores cada rato:
+Se pega con https://github.com/custom-components/ble_monitor
+El ble_monitor también se puede usar para trackear, por lo que no necesitamos este.
 BLE adapter requires reset after a scan as root- call adapter.reset()
 
 Si le doy un "hciconfig hci0 reset" deja de salir, pero vuelve al minuto o dos.
