@@ -73,6 +73,11 @@ Para cada UUID se le asocia un handle.
 Mirar como sacarlos con un script de python en python/bluetooth.md
 
 
+## beacon
+Estructura de distintos mensajes beacon de distintos fabricantes
+https://ukbaz.github.io/howto/beacon_scan_cmd_line.html
+
+
 ## bluetoothctl/GATT
 Si con bluetoothctl concectamos a un BLE bin GATT, nos hace un dump de las caracterísitcas/servicios poniendo el nombre de aquellas conocidas
 
