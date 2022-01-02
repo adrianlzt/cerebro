@@ -19,6 +19,9 @@ Solo cliente.
 Ejemplo escaneando devices y conectando al primero que ofrezca UART
 https://github.com/hbldh/bleak/blob/master/examples/uart_service.py
 
+Ejemplo que envia un comando a un device determinado y espera por la respuesta (UART)
+https://gist.github.com/cac897b1653a2235a98024036c17afa8
+
 
 
 # pybluez
