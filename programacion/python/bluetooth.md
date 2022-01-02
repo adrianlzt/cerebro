@@ -22,6 +22,20 @@ https://github.com/hbldh/bleak/blob/master/examples/uart_service.py
 Ejemplo que envia un comando a un device determinado y espera por la respuesta (UART)
 https://gist.github.com/cac897b1653a2235a98024036c17afa8
 
+device por mac
+device = await BleakScanner.find_device_by_address(BLE_ADDRESS, timeout=20.0)
+
+Reintentar los errores de DBus
+    for _ in range(5):
+        try:
+            asyncio.run(uart_terminal())
+        except BleakDBusError:
+            print("DBus error, retrying...")
+            sleep(0.2)
+            continue
+
+
+
 
 
 # pybluez
