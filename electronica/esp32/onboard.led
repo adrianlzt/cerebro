@@ -1,0 +1,7 @@
+En el GPIO2 está el led azul de la placa
+
+Con micropython:
+import machine
+pin = machine.Pin(2, machine.Pin.OUT)
+pin.on() # apagar el led (pin voltaje a 3.3v)
+pin.off() # encender el led

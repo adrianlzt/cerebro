@@ -40,6 +40,10 @@ Ejemplos:
 
 Listado de los UUID para cada servicio:
 https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf
+Listado de asignaciones para compañías y luego ("GATT Characteristic and Object Type") para servicios.
+
+Cada servicio tiene un XML definiendo que debe implementar.
+Por ejemplo, el de Alarm Notification Service: https://www.bluetooth.com/wp-content/uploads/Sitecore-Media-Library/Gatt/Xml/Services/org.bluetooth.service.alert_notification.xml
 
 Tenemos que tener tanto el UUID del servicio como de las características.
 Ejemplo para hearth rate monitor:

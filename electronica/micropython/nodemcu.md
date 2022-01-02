@@ -1,3 +1,5 @@
+NodeMCU hacía placas de 8266 y ahora de esp32
+
 http://www.micropython.org/
 
 https://www.kickstarter.com/projects/214379695/micropython-on-the-esp8266-beautifully-easy-iot
@@ -21,10 +23,12 @@ mirar mpfshell.md
 sudo picocom -b 115200 /dev/ttyUSB0
 
 Encender el led y apagarlo:
-> import machine
-> pin = machine.Pin(2, machine.Pin.OUT)
-> pin.on() # apagar el led (pin voltaje a 3.3v)
-> pin.off() # encender el led
+```
+import machine
+pin = machine.Pin(2, machine.Pin.OUT)
+pin.on() # apagar el led (pin voltaje a 3.3v)
+pin.off() # encender el led
+```
 
 
 4.- Activar el web repl
