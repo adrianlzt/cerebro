@@ -282,12 +282,14 @@ pytest se da cuenta y solo lo "importa" una vez.
 
 
 ## Monkey-patching
+https://docs.pytest.org/en/6.2.x/monkeypatch.html
 Nos permite modificar objetos, diccionarios, os.environ.
 
 
 ## Mock
 https://github.com/pytest-dev/pytest-mock/
 Se instala a parte.
+pip install pytest-mock
 
 Nos permite modificar el funcionamiento de librerías.
 El típico caso de simular una respuesta de una db, llamada http, etc.
@@ -295,6 +297,7 @@ El típico caso de simular una respuesta de una db, llamada http, etc.
 Ejemplos:
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/18_the_mocker_fixture.py
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/19_re_usable_mock_test.py
+
 
 
 
