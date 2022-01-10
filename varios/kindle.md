@@ -19,3 +19,24 @@ https://www.mobileread.com/forums/showthread.php?t=88004
 Tras hacer el jailbreak, podemos meter usbNetwork para tener acceso por ssh.
 
 También podemos instalar python
+
+## Mostrar una imagen o texto / eips
+https://wiki.mobileread.com/wiki/Eips
+
+Primero limpiamos la pantalla:
+eips -c
+
+Luego mostramos una imagen:
+eips -g tux.png
+
+## App cron mostrar imagen
+Ejemplo que ejecuta un script cada x con cron
+https://matthealy.com/kindle#build-your-own
+
+
+## Internals
+https://wiki.mobileread.com/wiki/Kindle_Touch_Hacking#Architecture
+
+lipc-set-prop com.lab126.powerd preventScreenSaver 1
+
+
