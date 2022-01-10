@@ -8,4 +8,7 @@ bajar el path
   adb pull /data/app/com.example.someapp-2.apk
 
 
+apktool d file.apk
+
+O peor forma:
 unzip file.apk

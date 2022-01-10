@@ -8,6 +8,11 @@ El servidor envía mensajes de "advertisment". Un cliente encuentra al server y 
 
 También se pueden establecer conexiones broadcast o mesh.
 
+
+## DFU
+Device Firmware Update (DFU) Service is a GATT-based service that can be used for performing firmware updates over BLE
+
+
 ## GATT (Generic Attributes)
 Es el formato de datos con el que dos dispositivos BLE se comunican.
 El protocolo es el "Bluetooth attribute protocol" (mirar captura echa con un android xiaomi bluetooth_attribute_protocol.pcap, filtrar con "btatt")
