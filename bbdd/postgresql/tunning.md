@@ -90,7 +90,7 @@ Si tiene una cache battery-backuped conseguiremos fsync inmediatos que será lo 
 
 
 
-# seq_page_cost / random_page_cost
+#_ seq_page_cost / random_page_cost
 Por defecto 1 / 4
 Para disco ssd poner random_page_cost 1.5 o 2.
 Si los datos siempre están en memoria poner random_page_cost=1
