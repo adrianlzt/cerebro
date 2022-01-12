@@ -7,6 +7,7 @@ gcloud iam service-accounts keys create creds.json --iam-account terraform@PROYE
 
 # Permisos a nivel de projecto
 https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
+Para dar un determinado permiso a una SA, usuario, etc
 
 
 
