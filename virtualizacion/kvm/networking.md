@@ -79,11 +79,15 @@ ip link set enp1s0 master br0
 Ver las interfaces conectadas a br0
 ip link show master br0
 
+CUIDADO! Al hacer esto me quedé sin acceso a la máquina.
+
 
 
 sudo qemu-system-x86_64 -enable-kvm -name adri1 -cdrom /home/adrian/Descargas/Core-current.iso -netdev bridge,id=hn0 -device virtio-net-pci,netdev=hn0,id=nic1,mac=32:22:33:44:55:66
 sudo qemu-system-x86_64 -enable-kvm -name adri2 -cdrom /home/adrian/Descargas/Core-current.iso -netdev bridge,id=hn0 -device virtio-net-pci,netdev=hn0,id=nic1,mac=32:22:33:44:55:67
 Se hacen ping, y tambien al bridge si le damos ip, pero no se si por el cutre-linux o por otra cosa, no consigo establecer ningún tipo de conex tcp.
+
+
 
 # VDE
 Desd el 2011 sin desarrollo
