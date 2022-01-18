@@ -36,6 +36,10 @@ array.toString()
 # Eliminar elemento
 http://stackoverflow.com/questions/5767325/how-to-remove-a-particular-element-from-an-array-in-javascript
 
+Con filter:
+foo_objects = foo_objects.filter(obj => obj !== foo_object);
+
+
 slice -> no modifica el array original (start,end), el elemento que hay en end no lo coge. slice(1,1) => []
 splice -> modifica el array original. Coge a partir de una posición, un número de elementos
 
