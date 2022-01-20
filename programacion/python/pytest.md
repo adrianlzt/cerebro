@@ -298,6 +298,17 @@ Ejemplos:
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/18_the_mocker_fixture.py
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/19_re_usable_mock_test.py
 
+# Ejemplo mockeando la llamada a netimporter.skydive._send_mutation
+def test_add_physical_iface(mocker):
+    mock_graphql_service = mocker.patch("netimporter.skydive._send_mutation", autospec=True)
+    mock_graphql_service.return_value = {'mutation1': {'entity': {'ID': 'c8b89dc9-9c46-54e7-4729-f231ce56e27a', 'NodeCreated': True, 'NodeUpdated': False}}}
+    call_that_will_be_mocked()
+
+
+# Ejemplo mockeando unas llamadas a un objeto
+https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.mock_calls
+
+
 
 
 

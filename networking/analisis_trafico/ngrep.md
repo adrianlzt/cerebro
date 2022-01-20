@@ -49,6 +49,9 @@ No mostrar los # por cada paquete matcheado
 Mostrar fecha
 -t
 
+Si queremos poner un comando con un pipe después (por ejemplo: ngrep asd | grep xx) tendremos que activar el line buffer (si no esperará a tener 4096 bytes para pasarlo)
+-l
+
 dst HOST
 src HOST
 host HOST
