@@ -18,6 +18,15 @@ Control+w h,j,k,l
 Control+w q
   cerrar splits
 
+ZZ
+ cerrar el split seleccionado
+
+Zz
+ zoom sobre el split
+
+Zo
+  restaurar zoom (todas igual
+
 
 ,q  cerrar buffer sin cerrar ventana
 
