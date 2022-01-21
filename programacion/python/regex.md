@@ -65,3 +65,41 @@ El punto (.) no matchea las newlines. Si queremos que lo haga tendremos que pone
 re.MULTILINE|re.DOTALL
 
 Si no, tendremos que pasar especificamente los newlines (cuidado con que nos pasen \n, \r o \r\n
+
+
+# Verbose / regex con comentarios
+```
+a = re.compile(r"""\d +  # the integral part
+                   \.    # the decimal point
+                   \d *  # some fractional digits""", re.X)
+```
+
+# Debug
+Display debug information about compiled expression
+```
+>>> re.match(r'[a-z]\s[0-9]', "a 9", flags=re.DEBUG)
+IN
+  RANGE (97, 122)
+IN
+  CATEGORY CATEGORY_SPACE
+IN
+  RANGE (48, 57)
+
+ 0. INFO 8 0b100 3 3 (to 9)
+      in
+ 5.     RANGE 0x61 0x7a ('a'-'z')
+ 8.     FAILURE
+ 9: IN 5 (to 15)
+11.   RANGE 0x61 0x7a ('a'-'z')
+14.   FAILURE
+15: IN 4 (to 20)
+17.   CATEGORY UNI_SPACE
+19.   FAILURE
+20: IN 5 (to 26)
+22.   RANGE 0x30 0x39 ('0'-'9')
+25.   FAILURE
+26: SUCCESS
+<re.Match object; span=(0, 3), match='a 9'>
+```
+
+
