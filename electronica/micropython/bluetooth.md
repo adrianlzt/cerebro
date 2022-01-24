@@ -58,4 +58,5 @@ https://github.com/micropython/micropython/issues/6601
 
 ## OSError: -18
 https://github.com/micropython/micropython/issues/7130
+https://github.com/micropython/micropython/issues/5232
 Parece que viene de intentar enviar un advertising payload de más de 31 bytes
