@@ -2,6 +2,8 @@ https://kubernetes.io/docs/concepts/cluster-administration/networking
 https://medium.com/google-cloud/understanding-kubernetes-networking-pods-7117dd28727
 https://medium.com/@maniankara/kubernetes-tcp-load-balancer-service-on-premise-non-cloud-f85c9fd8f43c
 
+Para monitorizarlas y sacar métricas mirar monitorizar.md
+
 Tres tipos de redes:
 
  - intra pod: comunicación de los containers de un mismo pod entre si usando localhost
