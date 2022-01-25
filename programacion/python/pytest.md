@@ -296,6 +296,14 @@ Ejemplos:
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/18_the_mocker_fixture.py
 https://github.com/pluralsight/intro-to-pytest/blob/master/tests/19_re_usable_mock_test.py
 
+Ejemplos en Documentos/datadope/repos/singularity-elastic-ml-history
+
+Ejemplo parcheando un objeto que es un requests.session y comprobando que se han realizado llamadas contra él:
+```
+mock_es_post = mocker.patch.object(main, "es_skydive", return_value=[])
+expected_call = [mock.call.post('http://localhost:8882/skydive_topology_archive/_doc')]
+assert mock_es_post.mock_calls == expected_call
+```
 
 
 
