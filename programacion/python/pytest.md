@@ -309,6 +309,18 @@ def test_add_physical_iface(mocker):
 https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.mock_calls
 
 
+En este ejemplo tenemos una clase Main instanciada en main que inicializa un self.skydive_client, que es llamado como self.skydive_client.lookup.
+Lo que estamos haciendo es recoger el parámetro con el que se llama y modificando la respuesta.
+
+mock_skydive = mocker.patch.object(main.skydive_client, "lookup")
+def side_effect(query):
+    breakpoint()
+    return [ { "Node": "foo" } ]
+
+mock_skydive.side_effect = side_effect
+
+
+
 
 
 
