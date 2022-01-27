@@ -1,5 +1,7 @@
 # btlewrap
 https://pypi.org/project/btlewrap/
+Bluetooth LowEnergy wrapper for different python backends. This gives you a nice API so that you can use different Bluetooth implementations on different platforms.
+
 Lo usan aqui para obtener info de los termómetros de xiaomi https://github.com/ratcashdev/mitemp/blob/master/mitemp_bt/mitemp_bt_poller.py
 
 btlewrap recomienda usar https://github.com/IanHarvey/bluepy
