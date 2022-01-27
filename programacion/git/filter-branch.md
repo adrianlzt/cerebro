@@ -75,3 +75,7 @@ Comprobar que hemos borrado todo lo necesario (haciendo un git checkout sha encu
 Para terminar pusheamos los cambios
 git push origin --all --force
 git push origin --tags --force
+
+
+git filter-branch --tree-filter "find . -name 'Mifichero' -exec sed -i -e 's,texto1,texto2,g' {} \;"
+cambiar texto1 por texto2 en el fichero Mifichero en todo el histórico de una rama concreta.
