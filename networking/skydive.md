@@ -566,6 +566,12 @@ A partir de este cambio lo que se hace es, tras arrancar:
  - Obtener los "edges" que no estén archivados ni tengan Origin: analyzer\..*
 
 
+## At step
+Si solicitamos datos históricos y estamos usando ES como backend, hará una query compleja para obtener los nodos que existiesen en ese momento.
+La query se lanza sobre todos los índices (live + archives).
+Del índice live solo se cogerán nodos si el UpdatedAt es inferior a la fecha solicitada.
+
+
 
 # Graffiti UI
 https://github.com/skydive-project/graffiti-ui
