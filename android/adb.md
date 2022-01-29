@@ -66,3 +66,14 @@ adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>
 
 # Llamar / dial
 adb shell am start -a android.intent.action.CALL -d tel:+CCXXXXXXXXXX
+
+
+# Recovery
+arrancar en recovery
+adb reboot recovery
+
+
+Otros modos de boot:
+adb reboot fastboot
+adb reboot bootloader
+
