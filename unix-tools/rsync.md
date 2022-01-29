@@ -140,3 +140,7 @@ rsync -av --link-dest=$PWD/backup1 datos/ backup2
 Hacer un primer rsync
 Luego ir ejecutando rsync seguidos, y cuando estos rsync tarden muy poco, hacer una pequeña parada de la app, hacer otro rsync y reiniciar la app.
 De esta manera tendremos un backup consistente.
+
+
+# No hacer overwrite de ficheros en destino
+--ignore-existing
