@@ -5,3 +5,7 @@ https://es.aliexpress.com/item/4001106636739.html
 Otro por 100€
 https://www.aliexpress.com/snapshot/0.html?orderId=8126014286858981
 Imagen con las intrucciones, en chino, con notas mias: encoder_lineal_aliexpress.jpg
+
+cable marrón: positivo
+cable azul: negativo
+cable negro: señal
