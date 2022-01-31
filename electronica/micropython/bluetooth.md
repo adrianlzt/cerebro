@@ -9,6 +9,8 @@ Cuando un cliente quiere leer o subscribirse (notification o indication), no rec
 Para que el clienta pueda leer, tenemos que haber escrito previamente en ese hanler:
     self._ble.gatts_write(self._handle, struct.pack("<h", int(temp_deg_c * 100)))
 
+Similar para notify, tenemos que enviar cosas a notify para que le lleguen al cliente, pero no veremos mensajes de que alguien se ha suscrito.
+
 
 # Simulando un sensor xiaomi
 Para usarlo con home assistant ble monitor
