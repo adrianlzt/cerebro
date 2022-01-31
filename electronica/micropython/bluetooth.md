@@ -4,6 +4,12 @@ https://github.com/2black0/MicroPython-ESP32-BLE/blob/main/main.py
 Ese ejemplo más simplificado
 https://gist.github.com/adrianlzt/0ae7bc2ab9ef4de332d5be86f88456ef
 
+
+Cuando un cliente quiere leer o subscribirse (notification o indication), no recibimos ningún mensaje en la función irq().
+Para que el clienta pueda leer, tenemos que haber escrito previamente en ese hanler:
+    self._ble.gatts_write(self._handle, struct.pack("<h", int(temp_deg_c * 100)))
+
+
 # Simulando un sensor xiaomi
 Para usarlo con home assistant ble monitor
 
