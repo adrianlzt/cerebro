@@ -19,3 +19,21 @@ Los 11.5 primeros cm son ciegos (devuelven el valor máximo, 4095).
 
 Al realizar medidas en el rango 50-150cm tiene un error de +-2cm
 
+
+def read_position(self):
+    """Devuelve la posición del encoder en m
+
+    Al medir la variación del voltaje según la posición obtenemos la recta:
+    y = -0,000463 * V + 1,7541
+    y = mx + n
+
+    Los 11.5 primeros cm son ciegos (devuelven el valor máximo, 4095).
+
+    Al realizar medidas en el rango 50-150cm tiene un error de +-2cm
+    """
+    raw = self.encoder_adc.read()
+    m = -0.000463
+    n = 1.7541
+    blind_zone = 11.5
+    return m * raw + n + blind_zone
+
