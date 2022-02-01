@@ -11,7 +11,24 @@ Usando los pines pogo, conectando un cargador de 3A al PWR-IN, no veo el modem c
 Igual conectando el cargador al USB-IN.
 
 
-# Linux
+# Raspberry debian
+apt install -y libqmi-utils
+wget https://github.com/adrianlzt/qmi_setup/blob/master/qmi_setup.sh
+echo -e "APN=orange\nAPN_USER=orange\nAPN_PASS=orange\nIP_TYPE=4" > /etc/qmi-network.conf
+sudo qmicli -d /dev/cdc-wdm0 -E raw-ip
+bash qmi_setup.sh start
+
+Le da prioridad a la salida por wwan0 antes que wlan.
+```
+ROUTE=$(ip route | grep "default.*wwan")
+ip route del $ROUTE
+ip route add $ROUTE metric 500
+```
+
+
+
+
+# Arch
 Al conectarlo vemos que aparece en el dmesg una nueva interfaz
 usb 1-2.1: new high-speed USB device number 66 using xhci_hcd
 usb 1-2.1: New USB device found, idVendor=1e0e, idProduct=9001, bcdDevice= 3.18
@@ -63,6 +80,9 @@ Veremos la tarjeta como un modem, configurando la IP pública directamente en nu
 
 Script que hace la conex:
 https://github.com/penguin2716/qmi_setup/blob/master/qmi_setup.sh
+
+Modificación del script para usar con raspi zero
+https://github.com/adrianlzt/qmi_setup/blob/master/qmi_setup.sh
 
 Conex paso a paso:
 https://forum.sierrawireless.com/t/registration-denied-error-on-em7565/18669
@@ -165,6 +185,7 @@ udhcpc: broadcasting select for 10.142.16.148, server 10.142.16.149
 udhcpc: lease of 10.142.16.148 obtained from 10.142.16.149, lease time 7200
 
 En realidad no se si me sirve de algo ejecutar este udhcpc, o me vale con mirar la config con el wds-get-current-settings.
+En raspberry usando el paquete udhcpc (no "busybox udhcpc"), si me ha funcionado.
 
 Pero no me configura la interfaz
 Configurándola a mano
@@ -180,6 +201,7 @@ curl eth0.me
 
 
 Si me está fallando, mirar que --wds-get-packet-service-status sigue connected.
+sudo qmicli -d /dev/cdc-wdm0  --wds-get-packet-service-status
 
 
 Para ver la config IP del modem (será la misma IP que coja el dhclient)
