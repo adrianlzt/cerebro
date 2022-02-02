@@ -6,6 +6,11 @@ La OV2640 tiene 160º en vez de los 74º de la cámara estandar.
 
 Librerías para interactuar con la cámara: https://github.com/espressif/esp32-camera
 
+## ESPHome
+Podemos usar ESPHome para crear un firmware para usar com HomeAssistant.
+https://esphome.io/components/esp32_camera.html#configuration-for-ai-thinker-camera
+
+
 ## Otros modelos
 https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
 
@@ -44,4 +49,14 @@ https://tropratik.fr/programmer-esp32-cam-avec-arduino
 ### Flash
 Tiene un pequeño led que se puede usar como flash si no usamos la tarjeta microsd.
 Mirar https://projetsdiy.fr/esp32-cam-aithinker-flash-firmware-test/
-Utiliser la LED Flash dans vos projets
+    Utiliser la LED Flash dans vos projets
+
+
+### Consumo de energía
+https://www.waveshare.com/esp32-cam.htm#:~:text=Deep%2DSleep%3A%20as%20low%20as,low%20as%206.7mA%405V
+
+Flash off: 180mA@5V
+Flash on and brightness max: 310mA@5V
+Deep-Sleep: as low as 6mA@5V
+Modern-Sleep: as low as 20mA@5V
+Light-Sleep: as low as 6.7mA@5V

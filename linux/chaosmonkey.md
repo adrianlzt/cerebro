@@ -1,5 +1,9 @@
 https://github.com/dastergon/awesome-chaos-engineering
 
+# Chaos mesh
+A Powerful Chaos Engineering Platform for Kubernetes
+https://chaos-mesh.org/
+
 # Chaosmonkey
 Script para "liarla" en tu entorno para ver que está bien montado y resistente.
 Tools for keeping your cloud operating in top form. Chaos Monkey is a resiliency tool that helps applications tolerate random instance failures.
