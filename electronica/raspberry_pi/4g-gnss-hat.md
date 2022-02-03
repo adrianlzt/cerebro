@@ -53,6 +53,20 @@ $
 
 
 # Raspberry debian
+
+## ModemManager
+Esta parece la mejor forma de configurar la interfaz de forma estable.
+ModemManager trabaja junto NetworkManager
+
+mirar en linux/NetworkManager/ModemManager.md
+
+Tambien nos permite obtener las coordenadas GPS, fecha, SMS, llamadas, y en general todo lo que podamos necesitar sacar el modem.
+
+
+
+## QMI
+Esto esta bien para hacer pruebas y comprobar que funciona.
+
 apt install -y libqmi-utils
 wget https://github.com/adrianlzt/qmi_setup/blob/master/qmi_setup.sh
 echo -e "APN=orange\nAPN_USER=orange\nAPN_PASS=orange\nIP_TYPE=4" > /etc/qmi-network.conf

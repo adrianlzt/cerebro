@@ -55,6 +55,12 @@ nmcli con modify DHCP connection.autoconnect-priority 0
   cambiar la prioridad de la conex "DHCP" a 0
   cuanto mayor es el número, más prioridad (por defecto 0)
 
+Estado de las conex sin cables (WLAN, WWAN):
+nmcli radio
+
+Activar/desactivar alguna "radio":
+nmcli r wwan on
+
 
 # Crear una nueva red a mano
 nmcli c edit type ethernet con-name "conex-prueba"
@@ -70,6 +76,19 @@ Conexión 'conex-prueba' (0fae8ee8-01fe-469b-b40f-a9b594e48e39) guardada con éx
 
 Red manual ipv4 sin dhcp, ipv4 fija:
 nmcli con add con-name manual ifname eno1 type ethernet ip4 192.168.0.100/24 gw4 192.168.0.254
+
+Crear una conex para un modem:
+```
+nmcli connection edit con-name 'orange' type gsm
+set gsm.username orange
+set gsm.password orange
+set gsm.apn orange
+set ipv6.method disabled
+set connection.autoconnect yes
+save
+```
+
+nmcli c up orange
 
 
 # Editar una red existente, cambiando ipv4 fixed por dhcp
