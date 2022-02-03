@@ -63,6 +63,24 @@ mirar en linux/NetworkManager/ModemManager.md
 Tambien nos permite obtener las coordenadas GPS, fecha, SMS, llamadas, y en general todo lo que podamos necesitar sacar el modem.
 
 
+## gpsd
+Mirar en que ttyUSB expone el gps
+mmcli -m 0 -K | grep modem.generic.ports | grep gps
+
+Creo que tengo que activar el gps con mmcli (o algún otro método).
+Creo que vale con:
+mmcli -m 0 --location-enable-gps-unmanaged
+
+Y luego añadir la interfaz:
+systemctl start gpsdctl@ttyUSB1
+
+Aqui sugieren dev rules para añadir las cosas automáticamente.
+https://forum.sierrawireless.com/t/mc7455-use-gps-at-same-time-as-modemmanager/14910/2
+
+Para comprobar que funciona:
+gpsmon
+Debemos ver las coordenadas y los datos NMEA debajo.
+
 
 ## QMI
 Esto esta bien para hacer pruebas y comprobar que funciona.
