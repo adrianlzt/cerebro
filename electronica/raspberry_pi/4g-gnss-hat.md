@@ -233,7 +233,7 @@ timed out
 Pero vuelve a dar el timeout.
 
 
-Con udhcpc (busybox) si funciona
+Con udhcpc (busybox) si funciona (con el udhcpc instalado directamente en debian si funciona bien, coge la ip y la configura en la interfaz, con el de busybox solo muestra la info pero no configura la interfaz)
 sudo busybox udhcpc -f -i wwp0s20f0u2u1i5
 udhcpc: broadcasting discover
 udhcpc: broadcasting select for 10.142.16.148, server 10.142.16.149
