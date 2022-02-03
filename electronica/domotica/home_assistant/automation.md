@@ -17,3 +17,21 @@ Para recargar los automation no hace falta reiniciar, con reload es suficiente.
 
 Los automation se muestran en el home, si no queremos:
 hide_entity: True
+
+
+# Trigger
+https://www.home-assistant.io/docs/automation/trigger/
+
+## time
+- alias: 'Notify location'
+  trigger:
+    - platform: time_pattern
+      minutes: 15
+  condition: []
+  action:
+    - service: homeassistant.set_location
+      data_template:
+        latitude: '{{ states.sensor.gps.attributes.latitude }}'
+        longitude: '{{ states.sensor.gps.attributes.longitude }}'
+
+

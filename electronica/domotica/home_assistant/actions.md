@@ -13,6 +13,7 @@ action:
     entity_id: yyy
 
 
+Para llamar a una API externa mirar rest_command.md
 
 # Con template
 No hacer nada en un condicional: homeassistant.none
