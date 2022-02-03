@@ -4,10 +4,16 @@ Descripción de como funciona usb y ejemplo de reverse-engineering de un disposi
 http://www.beyondlogic.org/usbnutshell
 Descripción completa del protocolo usb.
 
+# OTG
+OTG adapter has the “ID” signal pin connected to the GND pin internally.
+Es el pin 4 de un conector microUSB.
+Parece que los cables OTG simplemente hacen esa conexión y conviertens un conector micro en uno A.
+
 
 # Linux
 lsusb
   list usb devices
+lsusb --tree
 
 Permitir a un grupo de usuario acceso a los dispositivos usb
 /lib/udev/rules.d/99-usbcar.rules

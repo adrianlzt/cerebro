@@ -1,14 +1,55 @@
 https://www.waveshare.com/sim7600g-h-4g-hat-b.htm
 https://www.waveshare.com/wiki/SIM7600G-H_4G_HAT_(B)
 
-Lo conectamos a raspi usando los pin pogo.
-
 Explicación de las opciones para configurar el modem 4G con una raspi
 https://www.jeffgeerling.com/blog/2022/using-4g-lte-wireless-modems-on-raspberry-pi
 
 
-Usando los pines pogo, conectando un cargador de 3A al PWR-IN, no veo el modem con lsusb.
-Igual conectando el cargador al USB-IN.
+# Conexión con pines POGO
+Lo conectamos a raspi usando los pin pogo.
+
+Al conectarlo de esta manera la raspberry debe estar funcionando en modo host.
+Al final lo que hacen los pines es simular que hemos conectado un dispositivo usb.
+
+Generalmente este tipo de conexiones (conectar un dispositivo "slave") se hacen usando un cable OTG, que internamente
+pone uno de los pines del conector microUSB a GND (el pin ID).
+
+Pero si no tenemos este cable (como es el caso al usar los conectores pogo), tenemos que decirle a la raspi que use USB modo host.
+
+Creo que este es el modo por defecto, pero tal vez lo hemos quitado para que se muestre como una tarjeta ethernet al conectarla a un pc.
+
+Aqui lo explican con más detalle: https://www.uugear.com/doc/Zero4U_UserManual.pdf
+Troubleshooting: USB Hub Not Recognized
+
+En una raspi zero w2 con debian 11 me ha funcionado teniendo en los ficheros:
+
+```
+$ cat /boot/cmdline.txt
+console=serial0,115200 console=tty1 root=PARTUUID=3c6a7710-02 rootfstype=ext4 fsck.repair=yes rootwait
+
+$ tail -n 11 /boot/config.txt
+[cm4]
+# Enable host mode on the 2711 built-in XHCI USB controller.
+# This line should be removed if the legacy DWC2 controller is required
+# (e.g. for USB device mode) or if USB support is not required.
+otg_mode=0
+
+[all]
+
+[pi4]
+# Run as fast as firmware / board allows
+arm_boost=1
+```
+
+La clave es no cargar el overlay dwc2
+
+```
+$ lsmod | grep dwc2
+$
+```
+
+
+
 
 
 # Raspberry debian
