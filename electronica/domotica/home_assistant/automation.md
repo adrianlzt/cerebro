@@ -22,11 +22,13 @@ hide_entity: True
 # Trigger
 https://www.home-assistant.io/docs/automation/trigger/
 
+Podemos ver sus disparos en el logbook
+
 ## time
 - alias: 'Notify location'
   trigger:
     - platform: time_pattern
-      minutes: 15
+      minutes: 15  # esto es como en cron, cada hora a los 15'. Podemos usar "/5" para 'cada 5 minutos'
   condition: []
   action:
     - service: homeassistant.set_location
@@ -51,3 +53,5 @@ https://www.home-assistant.io/docs/automation/trigger/
 
     condition: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
 
+Si queremos un atributo de un estado:
+{{ is_state_attr('sensor.gps', 'mode', 3) }}
