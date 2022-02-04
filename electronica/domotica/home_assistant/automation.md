@@ -35,3 +35,19 @@ https://www.home-assistant.io/docs/automation/trigger/
         longitude: '{{ states.sensor.gps.attributes.longitude }}'
 
 
+
+# Conditions
+    condition:
+      - condition: or
+        conditions:
+          - condition: numeric_state
+            entity_id: sun.sun
+            attribute: elevation
+            below: 4
+          - condition: numeric_state
+            entity_id: sensor.office_lux_sensor
+            below: 10
+
+
+    condition: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
+

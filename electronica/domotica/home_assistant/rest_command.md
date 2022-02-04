@@ -1,5 +1,8 @@
 https://www.home-assistant.io/integrations/rest_command/
 
+Si queremos obtener datos de una llamada HTTP mirar sensor platform=rest
+
+
 # Example configuration.yaml entry
 rest_command:
   my_request:
