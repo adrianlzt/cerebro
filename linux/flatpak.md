@@ -1,5 +1,7 @@
 https://developer.fedoraproject.org/deployment/flatpak/about.html
 
+CUIDADO! Al instalarlo en linux comenzarón a fallar otros programas, como meld
+
 Sistema de distribución de paquetes genérico para linux.
 Apps empaquetadas en contenedores.
 
