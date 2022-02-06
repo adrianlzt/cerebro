@@ -12,6 +12,10 @@ iw dev wlan0 interface add ap0 type __ap
 Para hacer esto persistente, meterlo en:
 /etc/udev/rules.d/70-persistent-net.rules
 
+SUBSYSTEM=="ieee80211", ACTION=="add|change", ATTR{macaddress}=="${MAC_ADDRESS}", KERNEL=="phy0",
+  RUN+="/sbin/iw phy phy0 interface add ap0 type __ap",
+
+
 
 iw dev
 ver los devices conectado al device. Ahora veremos la wlan0 y ap0
