@@ -10,6 +10,9 @@ pip install mpremote
 Podemos montar el directorio local, nos mete en el repl y ejecutar lo que queramos.
 Pero no parece que recargue el fichero al modificarlo :/
 
+Dispositivos disponibles (CP2102 será el esp32):
+mpremote connect list
+
 Para ejecutar un programa y ver su stdout
 mpremote run foo.py
 
@@ -18,6 +21,10 @@ mpremote repl
 
 Subir ficheros:
 mpremote cp foo.py :
+
+Mostrar ficheros en el device ttyUSB1 (puede que el ttyUSB0 tengra otro dispositivo USB)
+mpremote connect /dev/ttyUSB1 fs ls
+
 
 
 # pyboard.py
