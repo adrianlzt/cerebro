@@ -60,3 +60,8 @@ https://esphome.io/guides/creators.html
 esp32_improv:
   authorizer: none
 ```
+
+
+# Protocolo
+TCP + protobuffers
+https://github.com/esphome/aioesphomeapi
