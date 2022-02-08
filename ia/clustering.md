@@ -1,3 +1,14 @@
+https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68
+    K-means
+    Mean-shift
+    DBSCAN
+    EM-GMM
+    Agglomerative Hierarchical Clustering
+
+Tabla comparativa
+https://scikit-learn.org/stable/modules/clustering.html#clustering
+
+
 Agrupar datos sin categorizar (sin "y")
 
 Ejemplos de clustering:
