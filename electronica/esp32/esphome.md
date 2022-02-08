@@ -7,6 +7,10 @@ Podemos instalarlo con AUR/esphome
 O usar la imagen de docker: esphome/esphome
 
 
+Ahora una web pública que podemos usar para flashear los devices desde 0
+https://web.esphome.io/
+
+
 Crear config:
 esphome wizard NOMBREFICHERO.yaml
 
