@@ -1,5 +1,10 @@
 https://www.youtube.com/c/DeepFindr/videos
 https://distill.pub/2021/gnn-intro/
+https://arxiv.org/abs/1812.08434
+    Graph Neural Networks: A Review of Methods and Applications
+https://www.cs.mcgill.ca/~wlh/grl_book/
+
+Para programar GNNs: https://pytorch-geometric.readthedocs.io/en/latest/
 
 Podemos resolver problemas usando el grafo a distintos niveles:
  - grafo completo (compara grafos entre sí)

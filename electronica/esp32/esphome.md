@@ -62,6 +62,13 @@ esp32_improv:
 ```
 
 
+# CLI
+esphome compile fichero.conf.yaml
+
+Instala la cosas en ~/.platformio/
+
+
+
 # Protocolo
 TCP + protobuffers
 https://github.com/esphome/aioesphomeapi
