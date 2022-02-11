@@ -53,7 +53,6 @@ Xtest = poly.fit_transform(Xtest)
 
 
 
-
 # Supervised learning
 
 ## Linear regression
