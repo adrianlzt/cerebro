@@ -2,6 +2,17 @@ http://substack.net/wireless_from_the_command_line_in_linux
 
 mirar NetworkManager/nmcli.md
 
+
+AP-STA mode, cuando una wifi es access point y client (station).
+https://docs.raspap.com/ap-sta/
+iw list
+Para entender la salida: https://unix.stackexchange.com/a/401467/145035
+{ managed } <= 1, #{ AP } <= 1, #{ P2P-client } <= 1, #{ P2P-device } <= 1, total <= 4, #channels <= 1
+En este ejemplo, si entiendo bien, es que podemos tener 4 interfaces en ese adaptador, de las cuales podemos tener una
+managed, un AP, un P2P-client y un P2P-device.
+Mirar NetworkManager/wifi_ap_sta.md
+
+
 wavemon
 ncurses para ver el estado de la wifi y la lista de redes
 

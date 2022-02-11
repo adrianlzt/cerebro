@@ -93,3 +93,7 @@ http://ip.de.mi.pc:8888/pc.mp3
 # Problemas audio
 En un chip intel, no tenía micro y fallaba el audio.
 Arreglado instalando el paquete: sof-firmware
+
+
+# Sox
+para editar audio

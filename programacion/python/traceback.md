@@ -12,3 +12,10 @@ finally:
 
 otra forma:
 logger.exception(ex)
+
+
+
+Sin tener ninguna excepción:
+import traceback
+tb = traceback.extract_stack()
+print(tb)

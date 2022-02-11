@@ -1,3 +1,6 @@
+https://link.springer.com/referencework/10.1007/978-1-4899-7687-1
+Encyclopedia of Machine Learning and Data Mining (2017)
+
 https://news.ycombinator.com/item?id=15919115
 traspas donde se hace un resumen de que tipo de ML existe, como funciona, como se puede usar y hacia donde va
 

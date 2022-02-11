@@ -135,6 +135,9 @@ SET seq_page_cost to off;
 SHOW seq_page_cost;
 
 
+En un caso con CMDBuild, desactivando el enable_nestloop conseguimos mejoras de 20s a 0.6s.
+Al final el resultado "bueno" fue forzar recolectar las estadísticas, ejecutando "ANALYZE".
+
 
 
 # Coste
@@ -184,7 +187,9 @@ Número de valores distintos, factor de escalado.
 
 
 Costes:
+```
 select name,short_desc,setting from pg_settings where name like '%_cost';
+```
 
 Tuplas y páginas por tablas e índices:
 SELECT relname, relkind, reltuples, relpages FROM pg_class;
@@ -192,6 +197,11 @@ SELECT relname, relkind, reltuples, relpages FROM pg_class;
 Estadísticas (https://www.postgresql.org/docs/current/view-pg-stats.html):
 select * from pg_stats;
   n_distinct número de distintos valores estimados para una columna. -1 indica que el valor debe ser igual al número de rows
+
+Número de filas en una tabla:
+SELECT relname, relkind, reltuples, relpages
+FROM pg_class
+WHERE relname LIKE 'tenk1%';
 
 Cuando se generaron las últimas estadísticas:
 select relname,last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables;
@@ -206,6 +216,12 @@ ALTER TABLE myTable ALTER COLUMN myCol SET STATISTICS n;
 Modificar a mano una estadística, para forzar algún plan determinado, si sabemos que no es correcto:
 ALTER TABLE myTable ALTER COLUMN myCol SET (n_distinct = 1);
 
+
+Si queremos generar de nuevo las estadísticas (se puede elegir una única tabla y/o columna):
+ANALYZE VERBOSE;
+
+
+autovacuum es el encargado de ejecutar los autoanalyze
 
 
 # Correlated columns

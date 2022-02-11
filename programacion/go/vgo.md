@@ -33,6 +33,10 @@ A partir de 1.13 está activado por defecto.
 Si queremos forzar su desactivación (build de paquetes que usan sistemas antiguos) GO111MODULE=off go ...
 
 
+Si queremos instalar un binario fuera del contexto de un módulo
+go install foo/bar@latest
+
+
 # Uso
 cd mi/path
 
@@ -105,6 +109,11 @@ O podemos crear un nuevo directorio con su propio go.mod
 go clean -cache
 
 Limpia ~/.cache/go-build
+
+
+# Multimodule workspace / go.work
+https://go.googlesource.com/proposal/+/master/design/45713-workspace.md
+
 
 
 # Errores

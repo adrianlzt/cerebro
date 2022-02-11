@@ -66,3 +66,27 @@ adb shell "echo $'<!DOCTYPE html><html><head><title>My Apps</title></head><body>
 
 # Llamar / dial
 adb shell am start -a android.intent.action.CALL -d tel:+CCXXXXXXXXXX
+
+
+# Recovery
+arrancar en recovery
+adb reboot recovery
+
+
+Otros modos de boot:
+adb reboot fastboot
+adb reboot bootloader
+
+
+# Instalar .zip
+adb reboot sideload
+adb sideload open_gapps-arm64-10.0-pico-20220126.zip
+
+# root
+adb root
+
+Tenemos que permitirlo en las opciones de developer, buscar por "adb".
+
+Ahora cuando hagamos
+adb shell
+ya seremos root

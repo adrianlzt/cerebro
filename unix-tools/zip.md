@@ -5,3 +5,5 @@ zip -r fichero_nuevo.zip directorio/
 
 # Mostrar contenido
 zip -sf *.zip
+
+unzip -lf x.zip

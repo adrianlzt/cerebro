@@ -19,11 +19,13 @@ PGPASSWORD=yourpass psql ...
 
 Pasando la pass en un fichero:
 https://www.postgresql.org/docs/current/libpq-pgpass.html
+https://tableplus.com/blog/2019/09/how-to-use-pgpass-in-postgresql.html
 ~/.pgpass
 Formato
 hostname:port:database:username:password
 
 Si en hostname ponemos localhost, esa línea se usará tambien para conex via sockeg
+Se pueden usar asteriscos
 
 
 Ejecutar comandos desde la línea de comandos:

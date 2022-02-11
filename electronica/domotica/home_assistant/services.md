@@ -14,3 +14,12 @@ Ejemplos:
 
 Podemos también crear un service dentro de una custom integration
 https://developers.home-assistant.io/docs/dev_101_services
+
+
+Llamar en un automation:
+  action:
+    - service: alarm_control_panel.alarm_disarm
+      target:
+        entity_id: alarm_control_panel.home_alarm
+      data:
+        code: '1234'

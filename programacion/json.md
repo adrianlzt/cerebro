@@ -7,6 +7,7 @@ jsonnet (mirar ejemplos de libs de grafana grafananet)
 Comparador:
 http://tlrobinson.net/projects/javascript-fun/jsondiff
 http://json-diff.com/
+jdiff file1.json file2.json
 
 
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.

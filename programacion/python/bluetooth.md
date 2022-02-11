@@ -1,5 +1,7 @@
 # btlewrap
 https://pypi.org/project/btlewrap/
+Bluetooth LowEnergy wrapper for different python backends. This gives you a nice API so that you can use different Bluetooth implementations on different platforms.
+
 Lo usan aqui para obtener info de los termómetros de xiaomi https://github.com/ratcashdev/mitemp/blob/master/mitemp_bt/mitemp_bt_poller.py
 
 btlewrap recomienda usar https://github.com/IanHarvey/bluepy
@@ -18,6 +20,23 @@ Solo cliente.
 
 Ejemplo escaneando devices y conectando al primero que ofrezca UART
 https://github.com/hbldh/bleak/blob/master/examples/uart_service.py
+
+Ejemplo que envia un comando a un device determinado y espera por la respuesta (UART)
+https://gist.github.com/cac897b1653a2235a98024036c17afa8
+
+device por mac
+device = await BleakScanner.find_device_by_address(BLE_ADDRESS, timeout=20.0)
+
+Reintentar los errores de DBus
+    for _ in range(5):
+        try:
+            asyncio.run(uart_terminal())
+        except BleakDBusError:
+            print("DBus error, retrying...")
+            sleep(0.2)
+            continue
+
+
 
 
 

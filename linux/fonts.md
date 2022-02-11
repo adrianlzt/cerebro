@@ -37,3 +37,9 @@ nos muetras las fuentes instaladas, sus opciones y un render de como queda
 
 La fuente que se elige es la que se encuente antes en este fichero y esté instalada:
 /etc/fonts/conf.avail/60-latin.conf
+
+
+# DMG
+Si queremos cargar una fuente de mac, vendrá en un formato .dmg
+Usaremos varias vecez "7z x" para descomprimir los distintos ficheros.
+https://securitronlinux.com/debian-testing/install-mac-osx-fonts-on-linux-easily/

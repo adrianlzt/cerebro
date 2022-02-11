@@ -24,3 +24,8 @@ template:
           {% endif %}
           {{ lpg_density }}
 ```
+
+
+# Date
+Unix epoch en segundos
+{{ int(as_timestamp(now())) }}

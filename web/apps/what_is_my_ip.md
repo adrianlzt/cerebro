@@ -9,5 +9,10 @@ curl --http0.9 ipv4.cat
 
 http://ifcfg.co
 http://ip-addr.es/
-http://jsonip.com
 http://eth0.me/
+
+
+# IPv6
+https://jsonip.com/
+
+curl -s6 https://jsonip.com | jq -r '.ip'

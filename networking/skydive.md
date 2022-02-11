@@ -142,6 +142,7 @@ No tenemos porque necesitar implementar ambos.
 Gestion del tema del linker
 graffiti/graph/linker.go
 
+Parece que si el hasher no retorna resultados en el map, no se llama a GetABLinks.
 
 
 #### blockdev
@@ -191,6 +192,10 @@ SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client topology import --file graph.j
 
 
 ## Desarrollo
+
+### Poner modo debug en los tests
+logging.InitLogging("", false, []*logging.LoggerConfig{logging.NewLoggerConfig(logging.NewStdioBackend(os.Stderr), "DEBUG", "")})
+
 
 ### Tests funcionales
 make functional TEST_PATTERN=APIPatchNode
@@ -561,6 +566,12 @@ A partir de este cambio lo que se hace es, tras arrancar:
  - Obtener los "edges" que no estén archivados ni tengan Origin: analyzer\..*
 
 
+## At step
+Si solicitamos datos históricos y estamos usando ES como backend, hará una query compleja para obtener los nodos que existiesen en ese momento.
+La query se lanza sobre todos los índices (live + archives).
+Del índice live solo se cogerán nodos si el UpdatedAt es inferior a la fecha solicitada.
+
+
 
 # Graffiti UI
 https://github.com/skydive-project/graffiti-ui
@@ -755,6 +766,12 @@ Lo que estaremos haciendo es definir que para Metadata.XXX se utilice un decoder
 
 Esta función de graph será la encagada de usar esos metadata decoders y devolvernos un nodo a partir de una secuencia de bytes.
 func (n *Node) UnmarshalJSON(b []byte) error
+
+
+#### UpdateMetadata
+Solo podemos modificar valores que sean punteros.
+Si intentamos modificar un valor "normal", como se nos habrá pasado por referencia una copia, no estaremos haciendo nada.
+O tendremos que acceder directamente al nodo (si tenemos la variable del nodo en el scope)
 
 
 

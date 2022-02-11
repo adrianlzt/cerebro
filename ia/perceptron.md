@@ -12,6 +12,8 @@ El output será el input de otras neuronas.
 
 
 # Funciones de activación
+https://i.imgur.com/JsCGJyB.png
+https://medium.com/the-theory-of-everything/understanding-activation-functions-in-neural-networks-9491262884e0
 https://docs.google.com/presentation/d/1uYSM7hR8H6aNv6hGkzfS05ojQiuVOgnq5ASLpGy8IGk/edit
 
 ## Sigmoid

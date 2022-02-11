@@ -8,6 +8,11 @@ El servidor envía mensajes de "advertisment". Un cliente encuentra al server y 
 
 También se pueden establecer conexiones broadcast o mesh.
 
+
+## DFU
+Device Firmware Update (DFU) Service is a GATT-based service that can be used for performing firmware updates over BLE
+
+
 ## GATT (Generic Attributes)
 Es el formato de datos con el que dos dispositivos BLE se comunican.
 El protocolo es el "Bluetooth attribute protocol" (mirar captura echa con un android xiaomi bluetooth_attribute_protocol.pcap, filtrar con "btatt")
@@ -40,6 +45,10 @@ Ejemplos:
 
 Listado de los UUID para cada servicio:
 https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf
+Listado de asignaciones para compañías y luego ("GATT Characteristic and Object Type") para servicios.
+
+Cada servicio tiene un XML definiendo que debe implementar.
+Por ejemplo, el de Alarm Notification Service: https://www.bluetooth.com/wp-content/uploads/Sitecore-Media-Library/Gatt/Xml/Services/org.bluetooth.service.alert_notification.xml
 
 Tenemos que tener tanto el UUID del servicio como de las características.
 Ejemplo para hearth rate monitor:

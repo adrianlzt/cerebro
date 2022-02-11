@@ -2,6 +2,8 @@
 En el directorio donde esté la conf:
 hass --script check_config
 
+sudo -u homeassistant /srv/homeassistant/bin/hass --script check_config
+
 
 Parece que para la mayoría de las cosas hace falta darle un restart.
 

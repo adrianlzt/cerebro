@@ -10,8 +10,10 @@ Esta biene con wifi y bluetooth
 Para configurarla
 https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
+## A mano
+iwlist wlan0 scan
 
-# Varias WIFIs
+## Varias WIFIs
 /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1

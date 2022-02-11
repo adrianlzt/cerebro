@@ -11,3 +11,7 @@ conn, err := net.Dial("tcp", "127.0.0.1:9000")
 conn.Write([]byte("hola"))
 buf := make([]byte, 100)
 conn.Read(buf)
+
+
+# IP
+netip.Addr menos memoria que net.IP

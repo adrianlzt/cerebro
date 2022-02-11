@@ -40,3 +40,8 @@ Usar el módulo password para generar una cadena aleatoría.
 
 Otras soluciones más feas (https://stackoverflow.com/questions/30516011/ansible-random-uuid-generation/59087555#59087555):
 {{ (999999999999999999999 | random | string + (lookup('pipe', 'date +%s%N'))) | to_uuid() }}
+
+
+# Esconder passwords del output
+- shell: whatever
+  no_log: true

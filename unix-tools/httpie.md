@@ -10,7 +10,8 @@ http [flags] [METHOD] URL [ITEM [ITEM]]
 # Ejemplos
 https://httpie.org/doc
 
-http POST httpbin.org/post mensaje=hola
+http POST httpbin.org/post mensaje=hola foo=bar
+  esto envia un POST application/JSON con {"mensaje": "hola", "foo": "bar"}
 http PUT example.org X-API-Token:123 name=John
 http -f POST example.org hello=World
 http -v example.org

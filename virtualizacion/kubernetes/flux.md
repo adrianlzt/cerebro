@@ -117,6 +117,8 @@ https://docs.fluxcd.io/en/1.18.0/references/fluxctl.html#image-tag-filtering
 Ejemplo para que solo actualice a tags tipo A.B.C (en la doc dice que "--tag-all='semver:*'" hace eso, pero en una prueba que hice me pillo una tag tipo NNN):
 --tag-all='regexp:^([0-9]+\.[0-9]+\.[0-9]+)' --automate
 
+"tag-all" creará una anotation "fluxcd.io/tag.XXX" por cada container.
+
 
 
 ## Borrado

@@ -1,3 +1,14 @@
+https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68
+    K-means
+    Mean-shift
+    DBSCAN
+    EM-GMM
+    Agglomerative Hierarchical Clustering
+
+Tabla comparativa
+https://scikit-learn.org/stable/modules/clustering.html#clustering
+
+
 Agrupar datos sin categorizar (sin "y")
 
 Ejemplos de clustering:
@@ -9,6 +20,11 @@ Ejemplos de clustering:
 
 # K-Means
 El algoritmo de clustering más popular.
+
+Parece que no funciona bien con datos con mucha dimensionalidad: the course of dimensionality
+    https://stats.stackexchange.com/questions/169156/explain-curse-of-dimensionality-to-a-child
+    https://en.wikipedia.org/wiki/Curse_of_dimensionality
+    https://youtu.be/0m5GNDo-CFM?t=63
 
 Tenemos que decir cuantos clusters queremos.
 Inicializaremos el algoritmo definiendo en nuestro espacio muestral N "centroids", tantos como número de clusters queramos.

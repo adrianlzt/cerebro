@@ -282,12 +282,14 @@ pytest se da cuenta y solo lo "importa" una vez.
 
 
 ## Monkey-patching
+https://docs.pytest.org/en/6.2.x/monkeypatch.html
 Nos permite modificar objetos, diccionarios, os.environ.
 
 
 ## Mock
 https://github.com/pytest-dev/pytest-mock/
 Se instala a parte.
+pip install pytest-mock
 
 Nos permite modificar el funcionamiento de librerías.
 El típico caso de simular una respuesta de una db, llamada http, etc.
@@ -304,6 +306,30 @@ mock_es_post = mocker.patch.object(main, "es_skydive", return_value=[])
 expected_call = [mock.call.post('http://localhost:8882/skydive_topology_archive/_doc')]
 assert mock_es_post.mock_calls == expected_call
 ```
+
+
+# Ejemplo mockeando la llamada a netimporter.skydive._send_mutation
+def test_add_physical_iface(mocker):
+    mock_graphql_service = mocker.patch("netimporter.skydive._send_mutation", autospec=True)
+    mock_graphql_service.return_value = {'mutation1': {'entity': {'ID': 'c8b89dc9-9c46-54e7-4729-f231ce56e27a', 'NodeCreated': True, 'NodeUpdated': False}}}
+    call_that_will_be_mocked()
+
+
+# Ejemplo mockeando unas llamadas a un objeto
+https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.mock_calls
+
+
+En este ejemplo tenemos una clase Main instanciada en main que inicializa un self.skydive_client, que es llamado como self.skydive_client.lookup.
+Lo que estamos haciendo es recoger el parámetro con el que se llama y modificando la respuesta.
+
+mock_skydive = mocker.patch.object(main.skydive_client, "lookup")
+def side_effect(query):
+    breakpoint()
+    return [ { "Node": "foo" } ]
+
+mock_skydive.side_effect = side_effect
+
+
 
 
 

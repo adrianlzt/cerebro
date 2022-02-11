@@ -22,6 +22,9 @@ Si una variable se conocerá al crear la máquina (por ejemplo, ip de una VM), p
 Para saber que hacer consultará los providers para conocer el estado actual.
 Si queremos asegurarnos que ejecutamos el plan tal y como lo mostramos, podemos almacenarlo con -out y luego aplicarlo (si no, podría suceder que cuando vayamos a ejecutar el apply el estado haya cambiado)
 
+Podemos usar "-target=resource" para especificar solo tocar ciertos recursos.
+Lo marcan como uso excepcional.
+
 
 
 # Apply
