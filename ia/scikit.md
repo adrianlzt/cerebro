@@ -135,6 +135,10 @@ Estimate the accuracy by splitting the data, fitting a model and computing the s
 from sklearn.model_selection import cross_val_score
 cross_val_score(clf, train[features], train[target])
 
+## metrics
+https://scikit-learn.org/stable/modules/model_evaluation.html
+Distintas métricas para saber como está funcionando nuestro modelo.
+
 
 # Buscar parámetros óptimos
 https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html#sphx-glr-auto-examples-svm-plot-rbf-parameters-py
