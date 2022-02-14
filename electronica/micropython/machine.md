@@ -2,8 +2,9 @@ http://docs.micropython.org/en/latest/esp8266/esp8266/tutorial/pins.html
 
 import machine
 
-# Reboot
-machine.reboot()
+# Reset
+machine.reset()
+machine.soft_reset(
 
 # Pinnes (GPIO)
 

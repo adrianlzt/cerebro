@@ -12,7 +12,7 @@ El tema de como gestiono el echo no está muy conseguido, así que se ve tanto l
 el echo que me devuelve más la respuesta.
 
 Ejemplo de ejecución:
-    python webrepl_cli.py ws://10.42.0.205:8266 MIPASS
+    python webrepl_shell.py ws://10.42.0.205:8266 MIPASS
 
 Para cerrar la conex poner "exit"
 """
