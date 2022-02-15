@@ -30,3 +30,14 @@ Activar el "report unknown" a "Other" (o una marca determinada si está en la li
 ## Simular device
 Ejemplo de un device Xiaomi, con explicación de los datos para que funcione el ble_parser.parse_data()
 https://gist.github.com/adrianlzt/49f8f5c563e97e516b6f4c8d8368d39e
+
+
+## Borrar devices
+https://custom-components.github.io/ble_monitor/faq#how-to-remove-devices-and-sensors
+
+Primer borrar las entities
+http://hass:8123/config/entities
+
+Llamar al siguiente servicio para borrar los devices sin entities:
+http://hass:8123/developer-tools/service
+ble_monitor.cleanup_entries
