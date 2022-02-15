@@ -4,7 +4,7 @@ import machine
 
 # Reset
 machine.reset()
-machine.soft_reset(
+machine.soft_reset()
 
 # Pinnes (GPIO)
 
