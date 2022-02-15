@@ -50,3 +50,28 @@ np.insert(a, 2, [50, 60, 70], axis=0)
 
 np.insert(a, 1, [55, 66], axis=1)
   inserta ese vector en la segunda posición como vector columna
+
+
+Sumar columnas (m,n) -> (n,1) (nos da un escalar por cada columna)
+A.sum(axis=0)
+
+Sumar filas (m,n) -> (m,1) (nos da un escalar por cada fila)
+A.sum(axis=1)
+
+
+
+Cambiar filas por columnas o viceversa.
+Ejemplo cambiando una matriz (1,4) por (4,1)
+np.array([1,2,3,4]).reshape(4,1)
+
+
+# Broadcasting
+
+Esto lo hace es convertir el escalar en una matriz del mismo tamaño que el primer elemento y sumar ese "10" a cada uno de los elementos.
+np.array([1,2,3,4]) + 10
+
+De forma similar, si tenemos una matriz (m,n) y sumanos una matriz (1,n), la segunda matriz se convertirá en una matriz (m,n), copiando la fila m veces.
+
+Similar si tenemos (m,n) + (m,1), la segunda matriz se convertirá en (m,n), copiando la columna n veces).
+
+Esto mismo sucede con el resto de operadores (suma, resta, multiplicación, división).
