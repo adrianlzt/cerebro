@@ -14,6 +14,25 @@ dataset = ICEWS18(root='/tmp/ICEWS18')
 
 En ese directorio nos mete los ficheros con los datos del dataset.
 
+Cuantos grafos tiene el dataset:
+len(dataset)
+
+Cuantas características tiene cada nodo:
+dataset.num_features
+
+Cuantas clases (grupos) existen.
+Sería el resultado esperado del grafo.
+Si es un grafo que queremos agrupar en comunidades, las clases serían esas comunidades donde vamos a agrupar a cada nodo.
+El trabajo que tendríamos que hacer es usar la info de nodos y edges para terminar sacando esa clase por cada nodo.
+En el grafo.y tendremos a que clase pertenece cada nodo.
+
+Tambien podemos gener "train_mask", para partir de una información para comenzar. Esa máscara nos dirá para que nodos conocemos su clase.
+
+Para acceder a cada uno de los grafos:
+g0 = dataset[0]
+g1 = dataset[1]
+...
+
 
 # Uso
 Si queremos usar los ejemplos que vienen, asegurarnos que estamos en el tag de la misma versión que tenemos instalada.
@@ -44,6 +63,10 @@ edge_index = torch.tensor([[0, 1],
                            [2, 1]], dtype=torch.long)
 data = Data(x=x, edge_index=edge_index.t().contiguous())
 
+Este formato de describir los edges se llama COO (coordinate format).
+En contraposición tendríamos la matriz de adjacencia, donde estarían representados todos los nodos respecto a todos los nodos.
+El formato COO solo se queda con los nodos que tienen relación, la matriz representa todo (almacena cosas como "nodoA con nodoB no tiene relación" que en el COO no estará presente).
+
 
 ## Acceso a los valores del grafo
 https://pytorch-geometric.readthedocs.io/en/latest/modules/data.html#torch_geometric.data.Data
@@ -57,3 +80,25 @@ Número de edges y como están definidos.
 data.num_edges
 data['edge_index']
 
+Ver los primeros 10 edges:
+data.edge_index.t()[0:10]
+
+
+
+Para saber si tenemos nodos sin conectar:
+data.has_isolated_nodes()
+
+Para saber si tenemos nodos con edges a si mismos:
+data.has_self_loops()
+
+Para saber si todos los edges entre A->B tienen también entre B->A (es decir, que todos los edges son sin sentido, porque tienen ambos sentidos).
+"Importantly, PyG does not distinguish between directed and undirected graphs, and treats undirected graphs as a special case of directed graphs in which reverse edges exist for every entry in edge_index"
+data.is_undirected()
+
+
+# Visualización / networkx
+Podemos usar la lib networkx para visualizar los grafos que tengamos en geometric.
+
+from torch_geometric.utils import to_networkx
+G = to_networkx(data, to_undirected=True)
+visualize_graph(G, color=data.y)
