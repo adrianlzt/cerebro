@@ -6,6 +6,10 @@ Built on NumPy, SciPy, and matplotlib
 
 pip install scikit-learn
 
+En conda:
+https://intel.github.io/scikit-learn-intelex
+conda install scikit-learn scikit-learn-intelex
+
 
 # Preparar los datos / preprocessing
 
