@@ -52,6 +52,9 @@ submission = pd.DataFrame({'PassengerId':test['PassengerId'],'Survived':predicti
 
 
 ## Acceder a columnas
+Lista de columnas:
+x.columns
+
 x["nombre"]
 Nos devuelte un tipo de dato "Series"
 
