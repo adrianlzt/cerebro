@@ -12,4 +12,3 @@ with open("fichero.csv", 'r') as f:
 Formato de fichero.csv
 hostOrig;hostDest;distance
 elasticdata001;elasticdata002;1
-

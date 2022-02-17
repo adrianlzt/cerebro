@@ -22,5 +22,8 @@ conda install flake8
 Instalar de otro repo (channel):
 conda install -c conda-forge ogb
 
+Si el paquete no está en los repos de conda, podemos usar pip. Pero lo recomendable es usar siempre que se pueda conda.
+https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#using-pip-in-an-environment
+
 Ver paquetes instalados
 conda list

@@ -96,9 +96,46 @@ Para saber si todos los edges entre A->B tienen también entre B->A (es decir, q
 data.is_undirected()
 
 
+# Grafo heterogéneo
+https://pytorch-geometric.readthedocs.io/en/latest/notes/heterogeneous.html
+
+Grafo con distintos tipos de nodos y edges.
+
+Obtener los 10 primeros edges para un tipo de edge determinado:
+data['author', 'affiliated_with', 'institution']['edge_index'].t()[0:10]
+
+Estos edges tendrán valores numéricos apuntando al, por ejemplo, autor número 100 en la lista de autores.
+Es decir, el id de los nodos es individual para cada grupo de nodos.
+
+
+
+
 # Visualización / networkx
 Podemos usar la lib networkx para visualizar los grafos que tengamos en geometric.
 
 from torch_geometric.utils import to_networkx
+import networkx as nx
+import matplotlib.pyplot as plt
+
+
+def visualize_graph(G, color):
+    plt.figure(figsize=(7,7))
+    plt.xticks([])
+    plt.yticks([])
+    nx.draw_networkx(G, pos=nx.spring_layout(G, seed=42), with_labels=False,
+                     node_color=color, cmap="Set2")
+    plt.show()
+
+
+def visualize_embedding(h, color, epoch=None, loss=None):
+    plt.figure(figsize=(7,7))
+    plt.xticks([])
+    plt.yticks([])
+    h = h.detach().cpu().numpy()
+    plt.scatter(h[:, 0], h[:, 1], s=140, c=color, cmap="Set2")
+    if epoch is not None and loss is not None:
+        plt.xlabel(f'Epoch: {epoch}, Loss: {loss.item():.4f}', fontsize=16)
+    plt.show()
+
 G = to_networkx(data, to_undirected=True)
 visualize_graph(G, color=data.y)
