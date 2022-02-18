@@ -84,6 +84,9 @@ x.hasnans
 ### Cambiar/añadir valores
 df['Sex_binary'] = df['Sex'].map({'male':1,'female':0})
 
+### lista de valores únicos
+x["host"].unique()
+
 
 
 

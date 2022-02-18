@@ -37,6 +37,15 @@ np.linalg.pinv(A)
 Matriz identidad (ejemplo 4x4):
 np.identity(4)
 
+Matriz de ceros
+np.zeros((2,3))
+
+Matriz vacía donde definimos el número de columnas y el tipo de dato:
+np.empty((0, 4), int)
+
+Hacer append de rows a esa matriz vacía (no modifica, retorna la matriz modificada):
+np.append(empty_array, np.array([[11, 21, 31, 41]]), axis=0)
+
 
 Flatten / aplanar
 a = np.array([[1,2], [3,4]])
