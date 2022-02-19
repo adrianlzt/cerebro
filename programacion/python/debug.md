@@ -7,6 +7,10 @@ Saltar de pdb al intérprete con el contexto de variables
 !import code
 code.interact(local=vars())
 
+si queremos saltar en una parte del código a un interprete bpython
+import bpython; bpython.embed(locals_=locals())
+
+
 
 # breakpoint
 https://www.python.org/dev/peps/pep-0553/
