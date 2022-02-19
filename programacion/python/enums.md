@@ -20,6 +20,6 @@ class Color(Enum):
 
 
 También podemos hacer:
-Color["RED"].
+Color["RED"]
 
 Saltará excepción KeyError si no existe.

@@ -8,7 +8,11 @@ pip install scikit-learn
 
 En conda:
 https://intel.github.io/scikit-learn-intelex
-conda install scikit-learn scikit-learn-intelex
+conda install scikit-learn
+
+Speed up
+conda install scikit-learn-intelex
+python -m sklearnex my_application.py
 
 
 # Preparar los datos / preprocessing
