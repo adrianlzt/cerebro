@@ -13,11 +13,10 @@ Pongo el video que quiero procesar en data/nerf/nombreCarpeta
 Miramos la duración del video con ffprobe.
 Cogemos un valor de --video_fps para sacar unos 50-150 fotogramas (por ejemplo, 10 fps para un video de 5")
 Ejecuto con:
-python scripts/colmap2nerf.py --video_in data/nerf/nombreCarpeta/VID_XXX.mp4 --video_fps 10 --run_colmap --aabb_scale 16
+python scripts/colmap2nerf.py --video_in data/nerf/nombreCarpeta/VID_XXX.mp4 --video_fps 10 --run_colmap --aabb_scale 16 --out data/nerf/nombreCarpeta/transforms.json
 
-Nos crea en PWD el fichero transforms.json, que moveremos a data/nerf/nombreCarpeta
 En data/nerf/nombreCarpeta/images tendremos las imágenes que habrá extraído del vídeo.
 
 Ejecutamos con:
-./build/testbed --scene data/nerf/nombreCarpeta
+./build/testbed --scene data/nerf/nombreCarpeta/transforms.json
 
