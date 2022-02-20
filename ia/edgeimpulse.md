@@ -13,3 +13,6 @@ Luego nos da una web en el móvil donde podemos usar la cámara para tagear imá
 Classification
 Anomaly detection
 Regression
+
+Reconocimiento de voz (audio classification)
+Reconocimiento de imágenes (image classification)
