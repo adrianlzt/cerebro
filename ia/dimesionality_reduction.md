@@ -36,3 +36,9 @@ Conseguir reducir la dimensionalidad a 2D o 3D nos permite visualizar los datos.
 # Principal component analysis (PCA)
 Algoritmo para lograr reducir la dimensionalidad.
 pca.md
+
+
+
+# UMAP - Uniform Manifold Approximation and Projection for Dimension Reduction
+https://umap-learn.readthedocs.io/en/latest/
+Usado por EdgeImpulse para reducir la dimensionalidad (https://docs.edgeimpulse.com/docs/faq)
