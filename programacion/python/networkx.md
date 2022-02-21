@@ -22,3 +22,8 @@ Ejemplo de draw
                      node_color=color, cmap="Paired",
                      edge_color=edge_color, edge_cmap=plt.cm.Set3_r)
 
+
+# Visualización
+Para una visualización mejor, en vez de usar matplotlib, podemos exportar al formato gexf y abrirlo con gephi.
+
+nx.write_gexf(G,"out.gexf")
