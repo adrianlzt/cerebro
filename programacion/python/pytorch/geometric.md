@@ -100,6 +100,7 @@ data.is_undirected()
 https://pytorch-geometric.readthedocs.io/en/latest/notes/heterogeneous.html
 
 Grafo con distintos tipos de nodos y edges.
+Habrá que hacer adaptaciones para poder aplicar GNN.
 
 Obtener los 10 primeros edges para un tipo de edge determinado:
 data['author', 'affiliated_with', 'institution']['edge_index'].t()[0:10]
@@ -110,7 +111,12 @@ Es decir, el id de los nodos es individual para cada grupo de nodos.
 
 
 
-# Visualización / networkx
+# networkx
+## Convertir desde/hacia
+utils.to_networkx()
+utils.from_networkx()
+
+## Visualización 
 Podemos usar la lib networkx para visualizar los grafos que tengamos en geometric.
 
 from torch_geometric.utils import to_networkx
