@@ -5,7 +5,7 @@ Una interfaz "top-like" para austin, que permite debugear en caliente
 
 Saltar de pdb al intérprete con el contexto de variables
 !import code
-code.interact(local=vars())
+code.interact(local=locals())
 
 si queremos saltar en una parte del código a un interprete bpython
 import bpython; bpython.embed(locals_=locals())
