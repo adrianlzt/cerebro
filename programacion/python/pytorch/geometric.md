@@ -51,6 +51,7 @@ En este caso tenemos los edges (creamos los dos sentidos para hacer un grafo und
  2 -> 1
 
 NOTA: para x usar dtype=torch.float, si no definimos y pilla "long" fallara con "RuntimeError: expected scalar type Long but found Float"
+Para los edges podemos usar int8 o long.
 
 x = torch.tensor([[-1], [0], [1]], dtype=torch.float)
 edge_index = torch.tensor([[0, 1, 1, 2],
