@@ -31,3 +31,5 @@ xz -0 fichero
 
 xz -9 fichero
   el que más comprime
+
+unxz fichero.xz
