@@ -1,5 +1,22 @@
 https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-api-reference.html
 
+Painless lab en kibana, en developer tools.
+
+Si queremos meter datos, meter en Parameters algo tipo:
+{
+  "ctx": {
+    "payload": {
+      "hits": {
+        "hits": []
+      }
+    }
+  }
+}
+
+Y para acceder a esos valores:
+params.ctx.payload...
+
+
 # Math
 Para usar math de java tendremos que ponerlo primero:
 
