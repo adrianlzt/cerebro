@@ -108,6 +108,9 @@ podman pod create --name mypod
   los "--publish/-p" deberemos hacerlos aqui
 podman run --pod NOMBRE ...
 
+# Ejecutar comando en un pod usando systemd
+systemd-run --scope --user podman container exec -it quizzical_newton bash
+
 
 # Generar manifest de k8s a partir de un pod
 podman generate kube POD/container -s -f out.yaml
