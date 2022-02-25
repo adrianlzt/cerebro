@@ -9,6 +9,11 @@ conda env create -f environment.yml
 Crear un entorno desde 0 (lo mete en ~/.conda/envs/NOMBRE):
 conda create -n NOMBRE
 
+conda create python=3.6 --name orange3
+
+Añadir repo
+conda config --add channels conda-forge
+
 Activar un venv
 conda activate nerf
 
@@ -18,6 +23,9 @@ conda create -n myenv python=3.6
 
 Install package with:
 conda install flake8
+
+Actualizar un paquete:
+conda update XXX
 
 Instalar de otro repo (channel):
 conda install -c conda-forge ogb
