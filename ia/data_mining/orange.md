@@ -58,3 +58,9 @@ Mirar bbdd/postgresql/docker.md para como meterla en un contenedor docker.
 Para usarlo, crear un "SQL Table", para conectar con una db y elegir una tabla o query.
 Luego conectarle un "Data table" para extraer los datos.
 Conectar la data table con un "cablecito" (pinchar en el lateral del icono) al sql table.
+
+
+# Widges
+
+## Data - Edit domain
+Para forzar a cambiar el dominio de una variable, por ejemplo, pasarla de tipo category a tipo time o value.
