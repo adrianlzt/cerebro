@@ -15,6 +15,12 @@ A.size
 X[0:3,:]
   coger las tres primeras filas
 
+X[[0,2],:]
+X[[True,False,True],:]
+  coger la fila primera y tercera
+
+
+
 X[X[:,2]<25,:]
   filtrar en la matriz, solo quedarnos con las filas cuya tercera columna (el índice empieza en 0) sea menor de 25
   mirar filtrar.md
