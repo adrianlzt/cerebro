@@ -11,6 +11,8 @@ lista.pop() # saca y retorna el ultimo elemento de la lista
 lista.pop(0) # saca y retorna el primer elemento de la lista (si vamos a trabajar con los primeros elementos mirar deque.md)
 del a[0], borra el elemento, no retorna el valor (como hace pop)
 del a[:4] borra un trozo del array
+operator.itemgetter(0,2,3)("hola")
+  obtener la posición 0 2 y 3 de una lista
 a.remove("b") borra el elemento "b" de la lista
 len(lista) #Longitud de la lista
 list.index(elemento) #Nos dice la posicion de la primera aparicion de 'elemento'
