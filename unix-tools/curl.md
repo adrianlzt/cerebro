@@ -1,5 +1,10 @@
 Mejor usar httpie.md
 
+Convertir curl a python/go/etc
+https://curlconverter.com/
+https://mholt.github.io/curl-to-go/
+
+
 http://curl.haxx.se/docs/httpscripting.html
 
 Hacer una petición GET a /:
