@@ -74,7 +74,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter([1,2,3],[0,2,6],[1,2,3])
+ax.scatter([1,2,3],[0,2,6],[1,2,3]) # si no se define, se eligirá automáticamente
 fig.show()
 
 Otra forma de generar subplots:

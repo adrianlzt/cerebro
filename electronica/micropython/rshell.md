@@ -68,6 +68,12 @@ repl
 Acceso via websockets (mirar webrepl.md para configurarlo)
 mpfshell -c "open ws:192.168.43.136,PASSWORD"
 
+Necesita:
+pip install websocket-client==0.35.0
+
+11/02/2022, no consigo conectar. Veo que llega el GET, pero parece que no hace más.
+El webrepl de micropython si funciona.
+
 Si no lo usamos durante un rato nos desconectará.
 
 

@@ -6,6 +6,14 @@ Built on NumPy, SciPy, and matplotlib
 
 pip install scikit-learn
 
+En conda:
+https://intel.github.io/scikit-learn-intelex
+conda install scikit-learn
+
+Speed up
+conda install scikit-learn-intelex
+python -m sklearnex my_application.py
+
 
 # Preparar los datos / preprocessing
 
@@ -48,7 +56,6 @@ Ejemplo cuando tenemos ya X e Y:
 poly = PolynomialFeatures(degree = 2, interaction_only=False, include_bias=False)
 X = poly.fit_transform(X)
 Xtest = poly.fit_transform(Xtest)
-
 
 
 
@@ -135,6 +142,10 @@ https://scikit-learn.org/stable/modules/cross_validation.html
 Estimate the accuracy by splitting the data, fitting a model and computing the score 5 consecutive times:
 from sklearn.model_selection import cross_val_score
 cross_val_score(clf, train[features], train[target])
+
+## metrics
+https://scikit-learn.org/stable/modules/model_evaluation.html
+Distintas métricas para saber como está funcionando nuestro modelo.
 
 
 # Buscar parámetros óptimos

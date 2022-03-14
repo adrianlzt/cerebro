@@ -436,6 +436,8 @@ curl 127.0.0.1:8082/api/topology
 Lanzar una query gremlin sobre la topología:
 curl 127.0.0.1:8082/api/topology -H "Accept: application/json" -H "Content-Type: application/json" -d '{"GremlinQuery": "G.V().Has(\"Name\", \"TOR3\")"}' | jq
 
+http 127.0.0.1:8082 GremlinQuery="G.V().Limit(1)"
+
 Crear noderule:
 curl 127.0.0.1:8082/api/noderule -H "Content-Type: application/json" -d '{"Name":"jRule","Description":"directora","Metadata":{"Foo":"bar","Name":"Jaria","Type":"people"},"Action":"create","Query":"","UUID":""}'
 

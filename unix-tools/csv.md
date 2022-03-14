@@ -30,3 +30,6 @@ cvscut -c nombrecol,nombrecol2bis fichero.csv
 
 csvstat foo.csv
 analiza cada una de las columnas y nos da el tipo de dato, distribución, si contiene nulls, etc
+
+Definir delimitador:
+-d ","

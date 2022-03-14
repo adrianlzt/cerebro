@@ -52,6 +52,9 @@ submission = pd.DataFrame({'PassengerId':test['PassengerId'],'Survived':predicti
 
 
 ## Acceder a columnas
+Lista de columnas:
+x.columns
+
 x["nombre"]
 Nos devuelte un tipo de dato "Series"
 
@@ -80,6 +83,9 @@ x.hasnans
 
 ### Cambiar/añadir valores
 df['Sex_binary'] = df['Sex'].map({'male':1,'female':0})
+
+### lista de valores únicos
+x["host"].unique()
 
 
 

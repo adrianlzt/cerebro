@@ -74,6 +74,11 @@ mirar las que usa powa.md
 esqueleton: https://paquier.xyz/postgresql-2/blackhole-extension/
 
 
+# quantile
+https://pgxn.org/dist/quantile
+Aggregate for computing various quantiles (median, quartiles etc.) efficiently.
+
+
 # PGXN
 Extensions distribution and mirroring, easy downloading and installation, documentation and metadata, and searching and reporting
 

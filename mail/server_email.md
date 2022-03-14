@@ -11,6 +11,8 @@ Outbound is - internal postfix -> VPS postfix
 
 # Comprobación estado general
 https://mxtoolbox.com/SuperTool.aspx
+https://www.mail-tester.com/
+  enviamos un email y nos da una puntuación.
 
 
 # Seguridad / autenticación

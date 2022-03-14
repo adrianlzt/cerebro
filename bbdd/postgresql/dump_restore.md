@@ -99,10 +99,10 @@ pg_dump -Fc -d prueba -f prueba.custom
   -j=N para meter varios hilos
   -Z=n para seleccionar la compresion
 
--t para seleccionar tablas
+-t para seleccionar tablas (múltiples veces para varias tablas)
 -T para todas menos las tablas seleccionadas
 
-Si queremos seleccionar la tabla de un schema en partiular:
+Si queremos seleccionar la tabla de un schema en particular:
 schemaName.tableName
 
 Ver contenido del dump (los schemas, no los datos):
@@ -128,6 +128,14 @@ Podemos quitar -1 y usar -jN para paralelizar (no compatible con -1)
 Mejorar performance con fsync=off en el file system? (https://www.hagander.net/talks/Backup%20strategies.pdf)
 
 Meter -j va a consumir mucha memoria. Va a usar muchas veces la maintenance_working_mem para crear los índices.
+
+
+Si tenemos problema con el backup, queremos reordenar como se importan los datos, no importar ciertas cosas, etc:
+pg_restore -l db.dump > db.list
+modificar db.list (";" es comentario)
+
+Ahora hacer el pg_restore, con todos los params que queramos y pasando ese -L:
+pg_restore -L db.list ...
 
 
 ## Formato SQL plano

@@ -19,6 +19,12 @@ sqlite3 bd.sqlite3
 .dbinfo info sobre la databsae
 .databases para mostrar las que tenemos abiertas y como (fichero, tcp, etc)
 
+Mostrar headers:
+.header on
+
+Modo columna (en vez de usar "|" como separadores, mostrar como psql):
+.mode column
+
 Si no tenemos los helpers ".*" podemos navegar por:
 SELECT * FROM sqlite_master WHERE type='table';
 

@@ -23,6 +23,13 @@ docker run -it --rm --link some-postgres:postgres -v "$PWD:/dump" postgres pg_re
 docker run -it --rm --link guacamole-postgres:postgres -v "$PWD:/dump" postgres psql -h postgres -U postgres -d guacamole_db -f /dump/initdb.sql
 
 
+## Instalar extensiones
+Ejemplo para instalar la extensión quantile:
+apt update
+apt install pgxnclient make postgresql-server-dev-14
+pgxn install quantile
+su postgres -c "pgxn load -d zabbix quantile"
+
 
 # PostGIS
 https://hub.docker.com/r/mdillon/postgis/

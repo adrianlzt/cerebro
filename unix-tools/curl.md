@@ -191,3 +191,26 @@ nested brace in URL
 Estamos metiendo "{" dentro de otros "{", tal vez en una query de graphql?
 Escapar esos braces
 "\{..."
+
+
+# SMTP
+curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt \
+receiver@example.com --upload-file email.txt
+
+curl --ssl-reqd smtp://mail.example.com --mail-from myself@example.com \
+     --mail-rcpt receiver@example.com --upload-file email.txt \
+     --user 'user@your-account.com:your-account-password'
+
+
+Enviando a gmail:
+curl --ssl-reqd smtp://alt2.aspmx.l.google.com. --mail-from foo@bar.com --mail-rcpt someuser@gmail.com --upload-file email.txt -vk
+
+email.txt
+From: Foo Bar <foo@bar.com>
+To: Foo <someuser@gmail.com>
+Subject: Nueva factura
+Date: Wed Feb 16 10:35:43 CET 2022
+
+Por favor, encuentre adjunta la última factura.
+
+Que tenga un buen día.

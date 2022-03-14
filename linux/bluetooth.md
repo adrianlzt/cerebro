@@ -90,6 +90,16 @@ bluetoothctl gatt.list-attributes 84:0D:8E:XX:XX:XX
 > read-value 0x10
 > register-notify 0x10
 
+## gatttool
+Escribir un mensaje (hex) en un handle determinado.
+gatttool -b 2C:11:05:11:62:AE --char-write-req --handle=0x0018 --value=6c65642c6f6e
+
+Si se ejecuta bien nos da un RC=0 y un texto "Characteristic value was written successfully"
+
+Para saber que handle:
+gatttool -b 2C:11:05:11:62:AE --characteristics
+
+
 
 ## btgatt-client
 btgatt-client -d 84:0D:8E:3F:0E:7A

@@ -21,6 +21,9 @@ http example.org/file > file
 http --download example.org/file
 http localhost:8000 Host:example.com
 
+--body
+si solo queremos obtener el body, sin ver las cabeceras.
+
 
 http --session=logged-in -a username:password httpbin.org/get API-Key:123
 http --session=logged-in httpbin.org/headers

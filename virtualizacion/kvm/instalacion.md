@@ -10,6 +10,14 @@ adduser adrian kvm //'newgrp kvm' para que haga efecto el nuevo grupo
 
 El resto de cosas se hace con el interfaz gráfico de manera sencilla virt-manager
 
+# CentOS
+yum install qemu-kvm bridge-utils virt-manager libvirt-daemon-driver-qemu libvirt-client
+
+Si no tenemos X11, quitar virt-manager.
+Podemos instalarlo locamente y conectar remotamente (via ssh).
+
+systemctl start libvirtd
+
 
 # Arch
 https://wiki.archlinux.org/index.php/KVM

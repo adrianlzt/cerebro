@@ -11,8 +11,15 @@ Color.GREEN
 Si queremos usar el valor: Color.GREEN.value
 
 
-Valores automáticos:
+Valores automáticos (empiezan en 1):
+from enum import Enum, auto
 class Color(Enum):
     RED = auto()
     BLUE = auto()
-    GREEN = auto(
+    GREEN = auto()
+
+
+También podemos hacer:
+Color["RED"]
+
+Saltará excepción KeyError si no existe.

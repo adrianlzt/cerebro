@@ -10,6 +10,14 @@ Borrar lineas con un pattern
 http://vim.wikia.com/wiki/Delete_all_lines_containing_a_pattern
 :g/profile/d
 
+Borrar lineas que hacen match de ese pattern y almacenarnlas en el registro "a" (al ponerlo en mayúsculas hace append).
+:g/PATTERN/d A
+
+Borrar el registro:
+:let @a=""
+qaq
+
+
 Borrar newline al final de linea:
 :%s/\n/
 

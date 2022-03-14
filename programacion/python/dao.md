@@ -44,6 +44,8 @@ cur.close()
 conn.close()
 
 Gestionar cerrado de conex y/o cursor:
+DSN = "DSN = "host=localhost user=postgres password=zabbix dbname=zabbix"
+SQL = "select 1"
 with psycopg2.connect(DSN) as conn:
     with conn.cursor() as curs:
         curs.execute(SQL)

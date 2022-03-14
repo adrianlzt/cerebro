@@ -26,6 +26,10 @@ Parece que no funciona bien con datos con mucha dimensionalidad: the course of d
     https://en.wikipedia.org/wiki/Curse_of_dimensionality
     https://youtu.be/0m5GNDo-CFM?t=63
 
+Solo hace clusters circulares https://prutor.ai/dbscan-clustering-in-ml-density-based-clustering/
+
+Necesitamos definir K, aunque puede estimarse usando el método del codo (mirar más adelante).
+
 Tenemos que decir cuantos clusters queremos.
 Inicializaremos el algoritmo definiendo en nuestro espacio muestral N "centroids", tantos como número de clusters queramos.
 Estos centroids se colocarán de forma aleatoria.
