@@ -4,12 +4,18 @@ https://arxiv.org/abs/1812.08434
     Graph Neural Networks: A Review of Methods and Applications
 https://www.cs.mcgill.ca/~wlh/grl_book/
 
+https://rish16.notion.site/Graph-Neural-Networks-for-Novice-Math-Fanatics-c51b922a595b4efd8647788475461d57
+  Graph Neural Networks for Novice Math Fanatics
+  No me parece una explicación muy correcta, pero para tomar nociones un poco más avanzadas creo que está bien.
+  Al final tiene links a papers interesantes
+
 Para programar GNNs: https://pytorch-geometric.readthedocs.io/en/latest/
 
 Podemos resolver problemas usando el grafo a distintos niveles:
  - grafo completo (compara grafos entre sí)
  - node (predecir rol de un nodo en un grafo)
  - edge (predecir posibles conexiones entre nodos)
+ - generar embeddings de los nodos (obtener unos vectores de cada nodo que han "aprendido" de sus vecinos)
 
 
 Nomenclatura:
