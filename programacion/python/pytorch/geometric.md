@@ -1,3 +1,5 @@
+Ejemplo para hacer link prediction: https://github.com/Orbifold/pyg-link-prediction
+
 # Install
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html
 

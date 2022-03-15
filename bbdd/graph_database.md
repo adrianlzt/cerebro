@@ -5,6 +5,10 @@ Imagine there is a people table, and a children table mapping each person_id to 
 El grupo que define SQL está creando un lenguaje estandar para graph databaes:
 GQL
 
+https://neo4j.com/product/graph-data-science/
+ML sobre neo4j
+node classifications, edge predictions, community detection and more
+
 
 Neo4j
 The Graph Foundation for Internet-scale Applications

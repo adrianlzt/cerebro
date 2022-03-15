@@ -17,6 +17,10 @@ Podemos resolver problemas usando el grafo a distintos niveles:
  - edge (predecir posibles conexiones entre nodos)
  - generar embeddings de los nodos (obtener unos vectores de cada nodo que han "aprendido" de sus vecinos)
 
+  - node classifications
+  - edge predictions
+  - community detection
+
 
 Nomenclatura:
   - embedding: el contenido de información del nodo o edge
