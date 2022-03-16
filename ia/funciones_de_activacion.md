@@ -24,6 +24,10 @@ No recomendad como función de activación de hidden layers
 f(x) = max(0,x)
 Rango entre 0 e infinito.
 La mejor función para usar por defecto.
+Es como un codo. 0 en x<0, y lineal para >0
+
+https://www.deeplearningbook.org/contents/mlp.html
+pag. 189
 
 
 
