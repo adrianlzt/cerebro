@@ -7,7 +7,11 @@ G = nx.Graph()
 Un nodo puede ser cualquier cosa hasheable
 ```
 G.add_node(("1623432", "hardk disk / almost full"))
+G.add_node('abc', dob=1185, pob='usa', dayob='monday')
 ```
+
+Acceder:
+G.node['abc']['dob']
 
 Si añadimos edges y los nodos no existen, se añadirán automáticamente
 Los edges pueden tener parámetros
