@@ -27,3 +27,21 @@ Ejemplo de draw
 Para una visualización mejor, en vez de usar matplotlib, podemos exportar al formato gexf y abrirlo con gephi.
 
 nx.write_gexf(G,"out.gexf")
+
+
+# Navegar
+
+## neighbors
+Obtener los nodos hijos conectados.
+
+for n in G.neighbors(source):
+    print(G.nodes[n])
+
+## predecessors
+Obtener los parents:
+
+## edge
+Obtener el edge entre dos nodos (tenemos que poner el orden correcto si es una directed graph).
+G.get_edge_data('a','b')
+G.predecessors(source)
+
