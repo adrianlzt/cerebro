@@ -14,6 +14,12 @@ makepkg -si
     - darle sudo al user
 
 
+Actualizar todos los paquetes de AUR ignorando errores:
+yay -Quq --aur | xargs -n 1 yay -S --noconfirm
+
+Para ver lo que no se pudieron instalar (instalación pendientes)
+yay -Quq --aur
+
 # Editar PKGBUILD antes de instalar
 yay -G paquete
 cd paquete/trunk
