@@ -1,3 +1,8 @@
+Opciones:
+ zerotier
+ tailscale
+
+# Zerotier
 Crear una VPN entre distintos dispositivos conectados a internet.
 ZeroTier hace de servidor.
 
