@@ -100,6 +100,31 @@ Para saber si todos los edges entre A->B tienen también entre B->A (es decir, q
 data.is_undirected()
 
 
+
+# Data
+## Generar un Data manualmente
+```
+# Generamos un grafo de 5 servidores y un evento por cada servidor.
+# Los servidores están conectados todos con todos.
+# Los eventos están conectados todos con todos.
+data = Data()
+# Creamos 10 nodos, 5 tipo server y 5 tipo evento
+data.x = torch.tensor([[1,0] for _ in range(0,5)] + [[0,1] for _ in range(0,5)]).float()
+data.num_features = data.x.size()[1]
+
+# Conectar los servers todos con todos (undirected, conecto 1->0 y 0->1)
+s1 = torch.cat([torch.ones(4, dtype=torch.int)*i for i in range(0,5)])
+s2 = torch.cat([torch.tensor([i for i in range(0,5) if i!=j]) for j in range(0,5)])
+
+# Conectar los eventos todos con todos (undirected, conecto 1->0 y 0->1), cambiar a solo conex server->event
+e1 = torch.cat([torch.ones(4, dtype=torch.int)*i+5 for i in range(0,5)])
+e2 = torch.cat([torch.tensor([i+5 for i in range(0,5) if i!=j]) for j in range(0,5)])
+
+edges = torch.stack([torch.cat((s1,e1)), torch.cat((s2,e2))])
+data.edge_index = edges
+```
+
+
 # Utils
 
 ## negative_sampling
