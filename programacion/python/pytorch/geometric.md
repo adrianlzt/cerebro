@@ -100,6 +100,20 @@ Para saber si todos los edges entre A->B tienen también entre B->A (es decir, q
 data.is_undirected()
 
 
+# Utils
+
+## negative_sampling
+https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html?highlight=negative_sampling#torch_geometric.utils.negative_sampling
+
+Nos devuelve edges entre nodos que no tienen ya un edge.
+Se usa para entrenar la red diciendo que edges son 1 (existen) y cuales no existen.
+Por defecto nos devuelve el mismo número de muestras negativas que de positivas.
+
+Si ponemos un número de muestras negativas muy alto, tendremos todos los posibles edges.
+Por ejemplo, aquí generamos todos los posibles edges entre 3 nodos:
+negative_sampling(edge_index=torch.tensor([[0],[0]]), num_nodes=3, num_neg_samples=100)
+
+
 # Grafo heterogéneo
 https://pytorch-geometric.readthedocs.io/en/latest/notes/heterogeneous.html
 
