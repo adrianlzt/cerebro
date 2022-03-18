@@ -22,3 +22,7 @@ Cambiar de orden los elementos de una matriz
 
 tensor([[100,   1],
         [200,   2]])
+
+
+Comparar dos tensores
+torch.equal(data.edge_index[0], neg_edge_index[0]):
