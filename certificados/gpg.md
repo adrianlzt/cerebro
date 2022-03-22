@@ -71,6 +71,9 @@ gpg -d fichero.gpg > /dev/null
 ## Ver fingerprint (contenido) de una clave
 gpg --with-fingerprint ABCDEFG123456789
 
+Con esto podemos ver datos de una clave pública sin importarla (email, fecha, etc)
+gpg --with-colons --import-options show-only --import
+
 ## Importar una clave
 gpg --import fichero.key
 gpg --import private.key
