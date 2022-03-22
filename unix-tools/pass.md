@@ -13,7 +13,6 @@ gpg -K
 
 Config en ~/.config/gopass
 
-Activar debug: GOPASS_DEBUG=true gopass ...
 
 Activar autocompletado bash: source <(gopass completion bash)
 echo "gopass foo/bar/test " >> .bashrc
@@ -53,7 +52,7 @@ almacenar binarios (usar cat, no probado aun):
    Si falla con ciertas claves, ejecutar: gopass fsck
    gopass sync
 
-   Para chequear: gpg -d algunfichero.gpg
+   Para chequear: gpg -d algunfichero.gpg > /dev/null
    Nos deberá decir las claves con las que está encriptado.
 
    Quitar user (tenemos que considerar comprometidas todas las passwords hasta la fecha):
@@ -194,3 +193,21 @@ con el código que nos hayan dado, si no nos lo han dado, estará dentro del QR
 
 Para obtener el código:
 gopass totp foo/bar
+
+
+# Debug
+https://github.com/gopasspw/gopass/blob/master/docs/config.md
+
+GOPASS_DEBUG=true gopass ...
+
+GOPASS_DEBUG	bool	Set to any non-empty value to enable verbose debug output
+GOPASS_DEBUG_LOG	string	Set to a filename to enable debug logging
+GOPASS_DEBUG_LOG_SECRETS	bool	Set to any non-empty value to enable logging of credentials
+GOPASS_DEBUG_FUNCS	string	Comma separated filter for console debug output (functions)
+GOPASS_DEBUG_FILES	string	Comma separated filter for console debug output (files)
+
+
+# Funcionamiento interno
+
+Interfaz que han de cumplir los backends de criptografía
+https://github.com/gopasspw/gopass/blob/c4b54ad310571f38362d208e35d5d8da3121f9e0/internal/backend/crypto.go#L46
