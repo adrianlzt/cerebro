@@ -65,6 +65,9 @@ Podemos poner -o file, para enviar la encriptación a un fichero
 gpg -r adrianlzt@gmail.com -o fichero.tar.gpg -e fichero.tar
 gpg -o fichero.tar -d fichero.tar.gpg
 
+Ver por quien está firmado un fichero:
+gpg -d fichero.gpg > /dev/null
+
 ## Ver fingerprint (contenido) de una clave
 gpg --with-fingerprint ABCDEFG123456789
 
