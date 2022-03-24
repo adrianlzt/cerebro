@@ -20,6 +20,9 @@ Lo suyo es tener protegida por pass el juego de llaves. El SO nos pedirá esta c
 Cada cierto tiempo puede que se cierre el agente y nos solicite la clave de nuevo
 
 # GPG
+Generar una clave
+gpg --gen-key
+
 Mostrar mis claves
 gpg -k
 gpg --list-public-keys
