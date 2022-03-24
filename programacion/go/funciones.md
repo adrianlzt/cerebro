@@ -1,5 +1,5 @@
 ## Funciones ##
-mirar anonymous_functions.md para func literals o lambda
+mirar anonymous_functions.md para func literals o lambda o closures
 
 El tipo de retorno se define al final
 
