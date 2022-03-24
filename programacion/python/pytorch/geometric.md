@@ -125,6 +125,38 @@ data.edge_index = edges
 ```
 
 
+# GNN
+Ejemplo de una GNN con dos capas GCN y un decoder que busca el cosine diference entre los dos nodos de un edge
+```
+class Net(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels):
+        super().__init__()
+        self.conv1 = GCNConv(in_channels, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, out_channels)
+
+    def encode(self, x, edge_index):
+        x = self.conv1(x, edge_index).relu()
+        return self.conv2(x, edge_index)
+
+    def decode(self, z, edge_label_index):
+        return (z[edge_label_index[0]] * z[edge_label_index[1]]).sum(dim = -1)
+```
+
+Codificando 6 nodos (2 features) que están unidos (E.t() nos muestra mejor los edges):
+  - (0,1), el primero con el segundo
+  - (3,2), el cuarto con el tercero
+```
+X = torch.tensor([[0,1], [1,0], [0,1], [1,0], [0,1], [1,0]], dtype=torch.float)
+E = torch.tensor([[0,3], [1,2]])
+model.encode(X,E)
+```
+
+El MP (message passing) solo funciona en el sentido del edge.
+Es decir, en la conex 0->1, habrá MP desde 0 hacia 1, pero no al revés.
+
+Si queremos MP en ambos sentidos (grafo unidireccional), crear ambos (0,1)+(1,0)
+
+
 # Utils
 
 ## negative_sampling
