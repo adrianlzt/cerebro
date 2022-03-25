@@ -1,4 +1,11 @@
-edgeimpulse.com
+# https://www.grid.ai/
+Scale your machine learning code to hundreds of GPUs and model configurations without needing to change a single line of machine learning code
+
+# https://wandb.ai/site
+Build better models faster with experiment tracking, dataset versioning, and model management
+
+
+# edgeimpulse.com
 
 Nos ayuda a generar modelos ML.
 Tanto a recolectar la info (con el pc, móvil o endpoint API).
