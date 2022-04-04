@@ -1,5 +1,7 @@
 Otro debbuger: https://github.com/rocky/python3-trepan/
 
+mirar también py_inject.md, para inyectar código
+
 https://github.com/P403n1x87/austin-tui
 Una interfaz "top-like" para austin, que permite debugear en caliente
 
