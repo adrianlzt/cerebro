@@ -20,3 +20,10 @@ Si tenemos 24 nodos de partida, usamos length 2 y number_of_walks=1, tendremos 4
 
 Si aumentamos en 1 el length, tendremos 96 (48 positivos y 48 negativos).
 De la misma manera, si aumentamos el number_of_walks en 1 (con length=2), también tendremos 96.
+
+
+Notas:
+
+Un camino con length=3 puede tener el nodo origen y destino iguales.
+
+Un nodo negativo puede ser que sea una conexión válida, solo que se ha generado random y ha coincidico que si es un camino válido.

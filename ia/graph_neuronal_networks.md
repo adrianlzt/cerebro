@@ -59,3 +59,11 @@ update:
  - max
  - neuronal network
  - recurrent NN
+
+
+
+# Link prediction / predicción de links
+Ejemplo con pytorch: https://github.com/Orbifold/pyg-link-prediction.git
+
+La noción que saco de mirar ese repo es que cada nodo se combierte en vector que representa ese nodo e información de los vecinos.
+Luego para hacer predicciones de links se buscan nodos que estén cerca (en ese espacio dimensional del vector), pero que aún no tengan un edge.
