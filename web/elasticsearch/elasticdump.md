@@ -19,6 +19,9 @@ Filtrar por query:
   --searchBody '{"query":{"term":{"username": "admin"}}}'
   --searchBody '{"query": {"range" : { "timestamp" : { "gt" : "now-1h" } }}}'
 
+Batchs más grandes:
+--limit 500
+
 
 Varios indices con sus mappings:
 
