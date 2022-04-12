@@ -1,5 +1,8 @@
 https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/
 
+Ejemplo de CRD para pedir pizzas: https://ops.tips/notes/kubernetes-pizza/
+https://crossplane.io/ parece una capa por encima de CRD para poder conectar con databases, APIs, etc
+
 Nos permiten almacenar datos en el cluster de kubernetes.
 Lo usaremos típicamente con un controller que estará escuchando cambios en ese "resource" (un "pod" o un "service" son resources) y actuará.
 
