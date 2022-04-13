@@ -33,6 +33,7 @@ Activarlo hace los commits más lentos, porque espera a que se guarde en los sta
 La aplicación puede ser aware de estos posibles fallos y saber gestionarlos, para evitar tener que activar synchronous_commit (aunque parece complicado poder programar esto)
 Parece que este parámetro es complejo, afectan varias cosas. Si tenemos una conex, podemos tener mucho slowdown, pero si tenemos muchas conex en paralelas, puede ser seguro ponerlo.
 
+Mover un nodo replica a master:
 pg_promote()
   standby -> master (pg12)
 
