@@ -33,6 +33,11 @@ https://postgresqlco.nf/en/doc/param/archive_cleanup_command/?category=write-ahe
       pros: tiempo de crash recovery reducido
 
 
+Como postgres decide cuantos wal mantener:
+The number of WAL segment files in pg_wal directory depends on min_wal_size, max_wal_size and the amount of WAL generated in previous checkpoint cycles. When old log segment files are no longer needed, they are removed or recycled (that is, renamed to become future segments in the numbered sequence). If, due to a short-term peak of log output rate, max_wal_size is exceeded, the unneeded segment files will be removed until the system gets back under this limit. Below that limit, the system recycles enough WAL files to cover the estimated need until the next checkpoint, and removes the rest. The estimate is based on a moving average of the number of WAL files used in previous checkpoint cycles. The moving average is increased immediately if the actual usage exceeds the estimate, so it accommodates peak usage rather than average usage to some extent. min_wal_size puts a minimum on the amount of WAL files recycled for future usage; that much WAL is always recycled for future use, even if the system is idle and the WAL usage estimate suggests that little WAL is needed.
+
+Al final solo vamos a tener los wal que defina min_wal_size, a partir de ese valor, postgres puede decidir borrarlos, así que no podemos suponer que vayamos a tener más de eso.
+
 
 # pg_resetwal
 reset the write-ahead log and other control information of a PostgreSQL database cluster
