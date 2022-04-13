@@ -64,19 +64,31 @@ Podemos forzar el pausado de replication pg_wal_replay_pause(), pg_wal_replay_re
 
 
 Chequear estados:
-pg_is_in_backup()
-pg_is_in_recovery()
-pg_is_wal_replay_paused()
+
+select pg_is_in_backup()
+  True if an on-line exclusive backup is still in progress.
+
+select pg_is_in_recovery();
+  True if recovery is still in progress
+
+select pg_is_wal_replay_paused();
+  True if recovery is paused.
 
 
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recibe en memoria, escribe a disco, flush and replay changes)
-  pg_current_wal_insert_lsn() -> wal en memoria
-  pg_current_wal_lsn() -> wal escrito en disco
-  pg_current_waL_flush_lsn() -> wal flushed al disco
-  Podemos usar pg_wal_lsn_diff() para comparar lsn
-  select * from pg_stat_replication;
+select pg_current_wal_insert_lsn();
+  wal en memoria
+select pg_current_wal_lsn()
+  wal escrito en disco
+select pg_current_waL_flush_lsn()
+  wal flushed al disco
+
+Podemos usar pg_wal_lsn_diff() para comparar lsn
+select pg_wal_lsn_diff('12D71/A2D142B8', '11EF2/8F000000');
+
+select * from pg_stat_replication;
     solo muestra clientes actualmente conectados
     sent_lsn -> el último enviado al slave
     write_lsn -> wal escrito por el slave
@@ -165,6 +177,7 @@ La diferencias más importantes contra el physical replication:
 
 
 # Estado de los replication slots
+https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
 https://www.postgresql.org/docs/current/view-pg-replication-slots.html
 select * from pg_replication_slots;
   solo vemos entradas si hay cosas conectadas
