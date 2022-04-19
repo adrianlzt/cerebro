@@ -40,6 +40,10 @@ Al final solo vamos a tener los wal que defina min_wal_size, a partir de ese val
 
 También mirar wal_keep_segments/wal_keep_size, que fuerza a tener un determinado número (mirar su sección más abajo).
 
+Como estimar cuantos WAL queremos:
+https://www.2ndquadrant.com/en/blog/basics-of-tuning-checkpoints/
+"Now we need to estimate how much WAL..."
+
 
 # pg_resetwal
 reset the write-ahead log and other control information of a PostgreSQL database cluster
@@ -83,9 +87,11 @@ Generalmente queremos que salten los scheduled
 
 checkpoint está limitado para no hacer grandes picos de carga, se reparte durante un periodo de tiempo más largo.
 checkpoint_completion_target, le dice que vaya a una velocidad suficiente para tardar el porcentaje definido del checkpoint_timeout.
+Por lo tanto el checkpoint tardará un porcentaje del tiempo medio que suele utilizar. No se considerará completado hasta que haya terminado (no se actualizará checkpoints_timed/checkpoints_req).
 
 checkpoint;
 Podemos forzar la ejecucción con ese comado. En este caso irá todo lo rápido que pueda.
+No se recomienda en un funcionamiento normal, va a saturar el SO con escrituras a disco.
 
 Si tenemos un checkpoint muy corto estaremos saturando el disco.
 Si tenemos uno muy largo, si se llena el shared buffer, estaremos obligando al "backend process" a guardar datos a disco para hacer hueco, no ayudará a limpiar wal files.
@@ -96,8 +102,8 @@ El número de páginas que se van a flushear es un cálculo basado en dos parame
 
 Después de un checkpoint el wal crece más para poder recuperarse de una escritura parcial de un bloque (8kB de bloque de postgres VS 4kB de linux)
 
-Obtener tiempo entre checkpoints.
-Esto nos da la media desde el último reset. Más interesante llevarse los distintos números y poder obtener ese valor en distintos periodos.
+Obtener tiempo entre checkpoints (estimación).
+Esto nos da la media desde el último reset. Más interesante llevarse los distintos números (select checkpoints_timed,checkpoints_req from pg_stat_bgwriter;) y poder obtener ese valor en distintos periodos.
 SELECT
     (checkpoints_timed+checkpoints_req) AS total_checkpoints,
     CASE checkpoints_timed + checkpoints_req
@@ -105,6 +111,21 @@ SELECT
         ELSE EXTRACT(EPOCH FROM (NOW() - stats_reset)) / (checkpoints_timed + checkpoints_req) / 60
     END as minutes_between_checkpoints
 FROM pg_stat_bgwriter;
+
+Ejemplo de salida:
+ total_checkpoints | minutes_between_checkpoints
+-------------------+-----------------------------
+                37 |            27.7296053148649
+
+
+Para sacar último checkpoint:
+/usr/pgsql-11/bin/pg_controldata -D /var/lib/pgsql/11/data/ | grep "latest checkpoint:"
+Parece que no hay una forma con SQL: https://www.postgresql.org/message-id/flat/1279653778.28450.4.camel%40localhost
+Esa fecha será cuando empezó el checkpoint.
+Si tenemos 30' de tiempo entre checkpoints, por ejemplo, podríamos ver que el último checkpoint ha sido a las 11:30 (que lo habrá hecho entre las 11:30 y las 11:59).
+Sobre las 12:30 veremos que se actualizará y pondra el último a las 12:00.
+
+
 
 Mirar monitoring.md pg_stat_bgwriter para ver si los checkpoints llegan tarde y los shared_buffers están saturados.
 

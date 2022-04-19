@@ -39,7 +39,13 @@ In standby server
     -P, --progress         show progress information
     -v, --verbose          output verbose messages
 
+ El pg_basebackup no empezará hasta que el master haga un checkpoint.
+
  pg_ctl -D data start
+
+
+Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
+https://dba.stackexchange.com/a/259892
 
 
 Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
