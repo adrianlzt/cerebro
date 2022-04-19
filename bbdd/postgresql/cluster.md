@@ -85,7 +85,7 @@ max_replication_slots
   Mirar monitoring.md para evitar llenar el disco
   https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
 
-Conf slave, in recovery.conf:
+Conf slave, in recovery.conf (fichero eliminado en postgres 12):
 standby_mode = on
 primary_conninfo = "host=nodeMaster"
 application_name = "xxx"  # nombres para distinguir varios stand-bys, típicamente hostname
