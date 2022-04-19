@@ -52,12 +52,19 @@ In standby server
  En el server master veremos un proceso preparado para enviar el backup, ejemplo:
  postgres: data: walsender replication 172.3.17.13(54370) sending backup "pg_basebackup base backup"
 
+ Tambien podemos ver el proceso desde SQL
+ select * from pg_stat_activity where application_name='pg_basebackup';
+
  Si vemos que se queda indefinidamente en "waiting for checkpoint to complete" mirar mensajes de error en el master.
  Si vemos "ERROR:  base backup could not send data, aborting backup" tendremos que volver a intentar lanzar el comando.
 
  Esto tal vez se debe a una pérdida de conectividad entre la replica y el primario. Podría ser algún elemento de red que cierre la conexión por llevar mucho tiempo
  sin tráfico (ya que la replica pide el backup, el primario dice que OK y no vuelve a enviar nada hasta que no pase el checkout).
  Una posible solución sería ejecutar pg_basebackup en los últimos minutos antes de que salte el checkpoint.
+
+ No conseguí que se arrancase si usar "-c fast".
+ Lo que hice fue ejecutarlo después de un checkpoint, para saber que no iba a tener mucho impacto.
+
 
 
  pg_ctl -D data start
