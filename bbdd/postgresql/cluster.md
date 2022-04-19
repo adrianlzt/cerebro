@@ -39,7 +39,26 @@ In standby server
     -P, --progress         show progress information
     -v, --verbose          output verbose messages
 
+ Si queremos pasar la password
+ echo 12.3.17.16:5432:*:replication:MIPASSWORD > .pgpass
+ chmod 400 .pgpass
+ PGPASSFILE=.pgpass pg_basebackup -D data -PRv -h 12.3.17.16 -U replication
+
+
  El pg_basebackup no empezará hasta que el master haga un checkpoint.
+ Mirar en wal.md la query para ver el tiempo entre checkpoints y el último checkpoint realizado.
+ No se debe ejecutar CHECKPOINT a mano, ya que le estaremos pidiendo que lo haga lo más rápido posible, colapsando los discos posiblemente.
+
+ En el server master veremos un proceso preparado para enviar el backup, ejemplo:
+ postgres: data: walsender replication 172.3.17.13(54370) sending backup "pg_basebackup base backup"
+
+ Si vemos que se queda indefinidamente en "waiting for checkpoint to complete" mirar mensajes de error en el master.
+ Si vemos "ERROR:  base backup could not send data, aborting backup" tendremos que volver a intentar lanzar el comando.
+
+ Esto tal vez se debe a una pérdida de conectividad entre la replica y el primario. Podría ser algún elemento de red que cierre la conexión por llevar mucho tiempo
+ sin tráfico (ya que la replica pide el backup, el primario dice que OK y no vuelve a enviar nada hasta que no pase el checkout).
+ Una posible solución sería ejecutar pg_basebackup en los últimos minutos antes de que salte el checkpoint.
+
 
  pg_ctl -D data start
 
