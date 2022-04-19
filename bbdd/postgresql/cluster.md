@@ -70,6 +70,10 @@ In standby server
  pg_ctl -D data start
 
 
+Comprobar en el master que vemos la replica conectada:
+select * from pg_stat_replication;
+
+
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
 https://dba.stackexchange.com/a/259892
 
@@ -102,7 +106,7 @@ Podemos forzar el pausado de replication pg_wal_replay_pause(), pg_wal_replay_re
 
 Chequear estados:
 
-select pg_is_in_backup()
+select pg_is_in_backup();
   True if an on-line exclusive backup is still in progress.
 
 select pg_is_in_recovery();

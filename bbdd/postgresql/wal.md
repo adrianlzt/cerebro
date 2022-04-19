@@ -135,7 +135,7 @@ https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 
 
 # Datos sobre el wal
-select pg_current_wal_lsn()
+select pg_current_wal_lsn();
 select pg_walfile_name(pg_current_wal_lsn());
   ver en que wal estamos
 
