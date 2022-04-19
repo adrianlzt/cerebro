@@ -38,6 +38,8 @@ The number of WAL segment files in pg_wal directory depends on min_wal_size, max
 
 Al final solo vamos a tener los wal que defina min_wal_size, a partir de ese valor, postgres puede decidir borrarlos, así que no podemos suponer que vayamos a tener más de eso.
 
+También mirar wal_keep_segments/wal_keep_size, que fuerza a tener un determinado número (mirar su sección más abajo).
+
 
 # pg_resetwal
 reset the write-ahead log and other control information of a PostgreSQL database cluster

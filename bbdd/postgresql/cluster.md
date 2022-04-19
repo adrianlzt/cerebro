@@ -33,7 +33,12 @@ In master server
  initdb -D data
  pg_ctl -D data start
 In standby server
- pg_basebackup -D data -R -h <master's ip>
+ pg_basebackup -D data -PRv -U <user> -h <master's ip>
+    -R, --write-recovery-conf
+                           write recovery.conf for replication
+    -P, --progress         show progress information
+    -v, --verbose          output verbose messages
+
  pg_ctl -D data start
 
 
