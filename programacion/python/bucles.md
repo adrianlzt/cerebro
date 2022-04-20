@@ -81,6 +81,11 @@ combinaciones = product("TF", repeat=4)
 
 Posibles combinaciones de 4 elementos con "T" y "F" (lista con 2^4 elementos)
 
+Combinaciones sin repetición:
+>>> list(itertools.combinations([1,2,3,4], 2))
+[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+
+
 
 # Group by
 Podemos agrupar arrays por una clave.
