@@ -85,7 +85,9 @@ El típico ejemplo es computer vision, donde necesitas muchas features para iden
 La solución suele ser usar redes neuronales
 
 
-# Cost function
+# Cost function / loss function / criterion
+Calcular el "error" que tenemos entre nuestro modelo y lo real.
+
 No podemos usar la cost function de la regresión lineal (mean squared error), ya que no converge, tendría múltiples mínimos (no es una función convexa).
 
 Usamos esta cost functión que si converge:
@@ -100,6 +102,8 @@ cost(h(x),y) = -y*log(h(x)) - (1-y)*log(1-h(x))
 
 NOTA: está limitando todo el tiempo a que h(x) varie entre 0 y 1, pero creo que no ha explicado por qué
 https://www.coursera.org/learn/machine-learning/lecture/1XG8G/cost-function
+
+Una típica torch.nn.BCEWithLogitsLoss()
 
 
 # Feature scaling
@@ -123,6 +127,10 @@ Es la misma ecuación para linear regresión, lo que cambia es la definición de
 Conjugate gradient
 BFGS
 LBFGS
+Adam (bastante típico)
+Adagrap
+Momentum
+RMSprop
 
 Ventajas:
  - no tenemos que elegir alpha manualmente

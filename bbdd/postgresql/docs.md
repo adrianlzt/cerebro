@@ -1,4 +1,5 @@
 https://pgexercises.com/
+https://pgpedia.info/index.html
 
 https://tapoueh.org/tags/yesql/
 https://www.highgo.ca/blog/

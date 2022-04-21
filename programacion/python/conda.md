@@ -24,6 +24,8 @@ conda create -n myenv python=3.6
 Install package with:
 conda install flake8
 
+conda install --file requirements.txt
+
 Actualizar un paquete:
 conda update XXX
 

@@ -20,6 +20,9 @@ Lo suyo es tener protegida por pass el juego de llaves. El SO nos pedirá esta c
 Cada cierto tiempo puede que se cierre el agente y nos solicite la clave de nuevo
 
 # GPG
+Generar una clave
+gpg --gen-key
+
 Mostrar mis claves
 gpg -k
 gpg --list-public-keys
@@ -65,8 +68,14 @@ Podemos poner -o file, para enviar la encriptación a un fichero
 gpg -r adrianlzt@gmail.com -o fichero.tar.gpg -e fichero.tar
 gpg -o fichero.tar -d fichero.tar.gpg
 
+Ver por quien está firmado un fichero:
+gpg -d fichero.gpg > /dev/null
+
 ## Ver fingerprint (contenido) de una clave
 gpg --with-fingerprint ABCDEFG123456789
+
+Con esto podemos ver datos de una clave pública sin importarla (email y otros datos en formato raw)
+gpg --with-colons --import-options show-only --import foo.key
 
 ## Importar una clave
 gpg --import fichero.key

@@ -7,7 +7,11 @@ G = nx.Graph()
 Un nodo puede ser cualquier cosa hasheable
 ```
 G.add_node(("1623432", "hardk disk / almost full"))
+G.add_node('abc', dob=1185, pob='usa', dayob='monday')
 ```
+
+Acceder:
+G.node['abc']['dob']
 
 Si añadimos edges y los nodos no existen, se añadirán automáticamente
 Los edges pueden tener parámetros
@@ -27,3 +31,21 @@ Ejemplo de draw
 Para una visualización mejor, en vez de usar matplotlib, podemos exportar al formato gexf y abrirlo con gephi.
 
 nx.write_gexf(G,"out.gexf")
+
+
+# Navegar
+
+## neighbors
+Obtener los nodos hijos conectados.
+
+for n in G.neighbors(source):
+    print(G.nodes[n])
+
+## predecessors
+Obtener los parents:
+
+## edge
+Obtener el edge entre dos nodos (tenemos que poner el orden correcto si es una directed graph).
+G.get_edge_data('a','b')
+G.predecessors(source)
+

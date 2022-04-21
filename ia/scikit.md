@@ -211,3 +211,9 @@ Nos da un array de numpy
 from skimage import io
 moon = io.imread(filename)
   usar parámetro as_gray=True si queremos una matriz 2d en vez 3d (rgb + alpha)
+
+
+
+# manifold / MDS
+Representar un conjunto de distancias entre puntos en un plano 2d o 3d.
+https://gist.github.com/dc78fcd9a9e791e8f1e4abe4ac23afd5

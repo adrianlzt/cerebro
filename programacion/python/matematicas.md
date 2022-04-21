@@ -57,3 +57,8 @@ a = float("NaN")
 # Ceil, siguiente numero entero
 from math import ceil
 ceil(3.2) # Da 4.0
+
+
+
+# Multiplicación de matrices
+m1 @ m2

@@ -111,6 +111,12 @@ Si queremos mantener la estructura del array:
 cat foo.json | jq '.[0].Edges | map(select(.Metadata.RelationType=="pseudowire")) | length'
 
 
+# sort
+sort_by(.first_name) | .[]'
+
+Ejemplos:
+echo '[{"a":1}, {"a":3}, {"a":2}]' | jq 'sort_by(.a) | .'
+echo '[{"metadata":{"a":1}}, {"metadata":{"a":3}}, {"metadata":{"a":2}}]' | jq 'sort_by(.metadata.a) | .'
 
 # Formatear con tsv (tabs)
 https://ubuntu.com/blog/improving-cli-output-with-jq

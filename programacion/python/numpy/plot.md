@@ -1,6 +1,8 @@
 https://matplotlib.org/tutorials/introductory/pyplot.html
 https://www.tutorialspoint.com/numpy/numpy_matplotlib.htm
 
+Creo que plt.show() si bloquea, pero si usamos una figure (fig.show()) no bloquea
+
 # Pintar línea
 import matplotlib.pyplot as plt
 plt.plot([1, 2, 3, 4])

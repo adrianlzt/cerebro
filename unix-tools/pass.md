@@ -1,68 +1,74 @@
 https://www.passwordstore.org
 Usar version go: https://github.com/gopasspw/gopass
-  https://github.com/gopasspw/gopass/blob/master/docs/features.md
-  lo único malo es que no soporta extensiones
-  se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
-  hace automáticamente push al hacer modificaciones (origin y al otro remote via hook)
+https://github.com/gopasspw/gopass/blob/master/docs/features.md
+lo único malo es que no soporta extensiones
+se puede usar con Summon (https://cyberark.github.io/summon/). Esto permite hacer cosas tipo: summon mi-comando (y que mi-comando tenga unas variables de entorno con passwords sacadas de pass)
+hace automáticamente push al hacer modificaciones (origin y al otro remote via hook)
 
-  Inicio, si ejecutamos "gopass" y no tenemos nada, nos creará las claves y nos preguntará para poder inicializar nuestro entorno.
-  Me falla al generar las claves si no existen, mejor crearlas antes:
-  gpg --gen-key
-  Al terminar, para ver mis claves:
-  gpg -K
+Inicio, si ejecutamos "gopass" y no tenemos nada, nos creará las claves y nos preguntará para poder inicializar nuestro entorno.
+Me falla al generar las claves si no existen, mejor crearlas antes:
+gpg --gen-key
+Al terminar, para ver mis claves:
+gpg -K
 
-  Config en ~/.config/gopass
-
-  Activar debug: GOPASS_DEBUG=true gopass ...
-
-  Activar autocompletado bash: source <(gopass completion bash)
-  echo "gopass datadope/carrefour/test " >> .bashrc
-
-  pass insert -m foo/bar
-    editar un nuevo fichero con varias lineas
-
-  echo "clave" | pass insert some/new/file
-
-  Insertar "foo: bar" en el fichero
-  pass insert some/path foo
-  > bar
-  echo -n "bar" | pass insert some/path foo
-
-  almacenar binarios:
-  Nueva forma: https://github.com/gopasspw/gopass/blob/master/docs/features.md#support-for-binary-content
-    gopass fscopy foo.com.crt foo/certs/foo.com.crt
-  Forma antigua:
-    gopass binary cp fichero algun/sitio
-    gopass binary cp algun/sitio fichero
-
-  Multiples stores https://github.com/gopasspw/gopass/blob/master/docs/features.md#multiple-stores
-    Crear una nueva store:
-    gopass init --store mount-point --path /path/to/store
-
-    Montarla:
-    gopass mounts add mount-point /path/to/store
-
-    Desmontarla
-    pass mounts remove mount-point
-
-    Si aparece un nuevo usuario, hay que reencritpar los ficheros con su clave pública.
-    gopass recipients add email@nuevo.user
-    Si falla con ciertas claves, ejecutar: gopass fsck
-    gopass sync
-
-    Para chequear: gpg -d algunfichero.gpg
-    Nos deberá decir las claves con las que está encriptado.
-
-    Quitar user (tenemos que considerar comprometidas todas las passwords hasta la fecha):
-    pass recipients remove ad@ad.com
+Config en ~/.config/gopass
 
 
-  API JSON: https://github.com/gopasspw/gopass/blob/master/docs/jsonapi.md
-    echo '+\0\0\0{"type":"query", "query": "test123456789"}'| gopass jsonapi listen
-    Hace falta pasarle como cabecera la longitud de los datos: Each JSON-UTF8 encoded message is prefixed with a 32-bit integer specifying the length of the message.
-    Complicado con la consola. Usar este helper: https://github.com/gopasspw/gopassbridge/tree/master/test-client
-    echo '{"type":"getData", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
-    echo '{"type":"getLogin", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
+Activar autocompletado bash: source <(gopass completion bash)
+echo "gopass foo/bar/test " >> .bashrc
+
+pass insert -m foo/bar
+  editar un nuevo fichero con varias lineas
+
+echo "clave" | pass insert some/new/file
+
+Insertar "foo: bar" en el fichero
+pass insert some/path foo
+> bar
+echo -n "bar" | pass insert some/path foo
+
+https://github.com/gopasspw/gopass/blob/master/docs/commands/cat.md
+A partir de 1.14 podemos usar "gopass cat" para meter un stream y que lo codifique en base64. También cat para sacarlo.
+echo "234" | gopass cat test/new
+gopass cat test/new
+
+
+almacenar binarios (usar cat, no probado aun):
+ Nueva forma: https://github.com/gopasspw/gopass/blob/master/docs/features.md#support-for-binary-content
+   gopass fscopy foo.com.crt foo/certs/foo.com.crt
+
+ Multiples stores https://github.com/gopasspw/gopass/blob/master/docs/features.md#multiple-stores
+   Crear una nueva store:
+   gopass init --store mount-point --path /path/to/store
+
+   Montarla:
+   gopass mounts add mount-point /path/to/store
+
+   Desmontarla
+   pass mounts remove mount-point
+
+   Si aparece un nuevo usuario, hay que reencritpar los ficheros con su clave pública.
+   gopass recipients add email@nuevo.user
+   Si falla con ciertas claves, ejecutar: gopass fsck
+   gopass sync
+
+   Para chequear: gpg -d algunfichero.gpg > /dev/null
+   Nos deberá decir las claves con las que está encriptado.
+
+   Quitar user (tenemos que considerar comprometidas todas las passwords hasta la fecha):
+   pass recipients remove ad@ad.com
+
+
+https://github.com/gopasspw/gopass/blob/master/docs/commands/process.md
+Templates de go ejecutadas por gopass que sustituyen credenciales almacenadas
+
+
+ API JSON: https://github.com/gopasspw/gopass/blob/master/docs/jsonapi.md
+   echo '+\0\0\0{"type":"query", "query": "test123456789"}'| gopass jsonapi listen
+   Hace falta pasarle como cabecera la longitud de los datos: Each JSON-UTF8 encoded message is prefixed with a 32-bit integer specifying the length of the message.
+   Complicado con la consola. Usar este helper: https://github.com/gopasspw/gopassbridge/tree/master/test-client
+   echo '{"type":"getData", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
+   echo '{"type":"getLogin", "entry": "entrada/foo"}' | ./test-client  | gopass jsonapi listen
 
 App para gestionar un almacen de clave estilo keepass pero mediante consola.
 
@@ -187,3 +193,21 @@ con el código que nos hayan dado, si no nos lo han dado, estará dentro del QR
 
 Para obtener el código:
 gopass totp foo/bar
+
+
+# Debug
+https://github.com/gopasspw/gopass/blob/master/docs/config.md
+
+GOPASS_DEBUG=true gopass ...
+
+GOPASS_DEBUG	bool	Set to any non-empty value to enable verbose debug output
+GOPASS_DEBUG_LOG	string	Set to a filename to enable debug logging
+GOPASS_DEBUG_LOG_SECRETS	bool	Set to any non-empty value to enable logging of credentials
+GOPASS_DEBUG_FUNCS	string	Comma separated filter for console debug output (functions)
+GOPASS_DEBUG_FILES	string	Comma separated filter for console debug output (files)
+
+
+# Funcionamiento interno
+
+Interfaz que han de cumplir los backends de criptografía
+https://github.com/gopasspw/gopass/blob/c4b54ad310571f38362d208e35d5d8da3121f9e0/internal/backend/crypto.go#L46

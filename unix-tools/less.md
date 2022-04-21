@@ -10,7 +10,10 @@ lesspipe tiene un bug que asume esquema de colores light.
 Arreglado aqui: https://github.com/wofr06/lesspipe/issues/67
 Por ahora puesto a fuego en ~/bin/lesspipe.sh
 
+Crea /etc/profile.d/lesspipe.sh que mete la venv
+LESSOPEN=|/usr/bin/lesspipe.sh %s
 
+En ~/.lessfilter tengo un filtro custom para no formatear los ficheros .md
 
 
 # less file1 file2 file3

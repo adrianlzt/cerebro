@@ -6,6 +6,9 @@ np.array([1,2,3])
 Matriz:
 np.array([[1,2,3],[4,5,6]])
 
+Obtener el índice de un array en la matriz
+print(np.where(arr == [1,2,3]))
+
 Dimensiones, nos devuelve una tupla (filas,columnas):
 A.shape
 

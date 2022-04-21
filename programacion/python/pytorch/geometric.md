@@ -1,3 +1,5 @@
+Ejemplo para hacer link prediction: https://github.com/Orbifold/pyg-link-prediction
+
 # Install
 https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html
 
@@ -96,6 +98,77 @@ data.has_self_loops()
 Para saber si todos los edges entre A->B tienen también entre B->A (es decir, que todos los edges son sin sentido, porque tienen ambos sentidos).
 "Importantly, PyG does not distinguish between directed and undirected graphs, and treats undirected graphs as a special case of directed graphs in which reverse edges exist for every entry in edge_index"
 data.is_undirected()
+
+
+
+# Data
+## Generar un Data manualmente
+```
+# Generamos un grafo de 5 servidores y un evento por cada servidor.
+# Los servidores están conectados todos con todos.
+# Los eventos están conectados todos con todos.
+data = Data()
+# Creamos 10 nodos, 5 tipo server y 5 tipo evento
+data.x = torch.tensor([[1,0] for _ in range(0,5)] + [[0,1] for _ in range(0,5)]).float()
+data.num_features = data.x.size()[1]
+
+# Conectar los servers todos con todos (undirected, conecto 1->0 y 0->1)
+s1 = torch.cat([torch.ones(4, dtype=torch.int)*i for i in range(0,5)])
+s2 = torch.cat([torch.tensor([i for i in range(0,5) if i!=j]) for j in range(0,5)])
+
+# Conectar los eventos todos con todos (undirected, conecto 1->0 y 0->1), cambiar a solo conex server->event
+e1 = torch.cat([torch.ones(4, dtype=torch.int)*i+5 for i in range(0,5)])
+e2 = torch.cat([torch.tensor([i+5 for i in range(0,5) if i!=j]) for j in range(0,5)])
+
+edges = torch.stack([torch.cat((s1,e1)), torch.cat((s2,e2))])
+data.edge_index = edges
+```
+
+
+# GNN
+Ejemplo de una GNN con dos capas GCN y un decoder que busca el cosine diference entre los dos nodos de un edge
+```
+class Net(torch.nn.Module):
+    def __init__(self, in_channels, hidden_channels, out_channels):
+        super().__init__()
+        self.conv1 = GCNConv(in_channels, hidden_channels)
+        self.conv2 = GCNConv(hidden_channels, out_channels)
+
+    def encode(self, x, edge_index):
+        x = self.conv1(x, edge_index).relu()
+        return self.conv2(x, edge_index)
+
+    def decode(self, z, edge_label_index):
+        return (z[edge_label_index[0]] * z[edge_label_index[1]]).sum(dim = -1)
+```
+
+Codificando 6 nodos (2 features) que están unidos (E.t() nos muestra mejor los edges):
+  - (0,1), el primero con el segundo
+  - (3,2), el cuarto con el tercero
+```
+X = torch.tensor([[0,1], [1,0], [0,1], [1,0], [0,1], [1,0]], dtype=torch.float)
+E = torch.tensor([[0,3], [1,2]])
+model.encode(X,E)
+```
+
+El MP (message passing) solo funciona en el sentido del edge.
+Es decir, en la conex 0->1, habrá MP desde 0 hacia 1, pero no al revés.
+
+Si queremos MP en ambos sentidos (grafo unidireccional), crear ambos (0,1)+(1,0)
+
+
+# Utils
+
+## negative_sampling
+https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html?highlight=negative_sampling#torch_geometric.utils.negative_sampling
+
+Nos devuelve edges entre nodos que no tienen ya un edge.
+Se usa para entrenar la red diciendo que edges son 1 (existen) y cuales no existen.
+Por defecto nos devuelve el mismo número de muestras negativas que de positivas.
+
+Si ponemos un número de muestras negativas muy alto, tendremos todos los posibles edges.
+Por ejemplo, aquí generamos todos los posibles edges entre 3 nodos:
+negative_sampling(edge_index=torch.tensor([[0],[0]]), num_nodes=3, num_neg_samples=100)
 
 
 # Grafo heterogéneo

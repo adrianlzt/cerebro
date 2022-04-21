@@ -38,6 +38,14 @@ Merge (https://www.python.org/dev/peps/pep-0584/), python2.9
 dictA | dictB
 dictC =| dictD
 
+Unir dos diccionarios en uno solo retornando ese diccionario de vuelta
+```
+a = {"a": 1, "b": 2, "c": 3}
+b = {"e": 1, "2": 2, "d": 3}
+c = {**a, **b}
+```
+
+
 
 
 Loop sobre el diccionario

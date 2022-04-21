@@ -44,3 +44,9 @@ F2
 
 Editar config de bpython
 F3
+
+
+# Saltar a la consola de bpython desde un programa
+```
+import bpython; bpython.embed({**globals(), **locals()})
+```

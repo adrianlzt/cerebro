@@ -2,7 +2,7 @@ mirar validacion.md para ver herramientas que comprueban el buen estilo
 
 
 pip-0008
-https://www.python.org/dev/peps/pep-0008/
+https://peps.python.org/pep-0008/
 
 # Constantes
 https://www.python.org/dev/peps/pep-0008/#constants

@@ -6,6 +6,8 @@ RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 # # we don't need and apt cache in a container
 RUN echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
 
+# Para evitar que fallen paquetes que quieren preguntar cosas en la instalación (usando ARG en vez de ENV para evitar que la variable se quede en el contendor, así solo estará en el build)
+ARG DEBIAN_FRONTEND=noninteractive
 
 INSTALL_PKGS="fluentd-${FLUENTD_VERSION} \
               bc \

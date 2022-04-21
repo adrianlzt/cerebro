@@ -36,3 +36,10 @@ ffplay http://127.0.0.1:8081/video
 
 Con RTSP
 ffplay rtsp://127.0.0.1:8554/video
+
+
+# Fake stream webcam
+sudo modprobe v4l2loopback card_label="My Fake Webcam" exclusive_caps=1
+v4l2-ctl --list-devices
+TODO
+https://www.linuxfordevices.com/tutorials/linux/fake-webcam-streams

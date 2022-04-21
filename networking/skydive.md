@@ -507,6 +507,13 @@ restclient.edgerule_create(
 
 
 
+# Backup / restore
+Extraer topología:
+curl localhost:8082/api/topology > skydive_topology.json
+
+Script python para cargarlo en un skydive:
+https://gist.github.com/adrianlzt/4f65cca1e4a044aaf4f68b1f315d9174
+
 
 # Elastic backend
 Los nodos los crea en el índice skydive_topology_live_v12 (alias skydive_topology_live).

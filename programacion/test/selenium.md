@@ -24,6 +24,8 @@ Plugin para firefox que nos permite generar codigo que nos sirva como base para 
 # Docker
 https://github.com/SeleniumHQ/docker-selenium/wiki/Getting-Started-with-Hub-and-Nodes
 
+helm: https://github.com/SeleniumHQ/docker-selenium/tree/trunk/chart/selenium-grid
+
 Arrancamos un "hub" (como el nodo master):
 docker run -p 4444:4444 --name selenium-hub selenium/hub
   interfaz web donde podemos ver los clientes conectados y la config del hub: http://localhost:4444/grid/console

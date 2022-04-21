@@ -16,7 +16,6 @@ https://news.ycombinator.com/item?id=21924298
 
 Buscar que frameworks se utilizan actualmente.
 pytorch / tensorflow
-Usar tensorflow (es el que se usa en LoudML)
 
 Jugar con alguno de ellos intentando resolver algún problema de Kaggle.
 Esto será un poco a ciegas, solo para intentar ir entediendo como se usan y que intentamos resolver.
