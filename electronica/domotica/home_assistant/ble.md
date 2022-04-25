@@ -31,6 +31,15 @@ Activar el "report unknown" a "Other" (o una marca determinada si está en la li
 Ejemplo de un device Xiaomi, con explicación de los datos para que funcione el ble_parser.parse_data()
 https://gist.github.com/adrianlzt/49f8f5c563e97e516b6f4c8d8368d39e
 
+### Entender el parseo
+```
+__init__.py: process_hci_events()
+  sensor_msg, tracker_msg = self.ble_parser.parse_data(data)
+    ble_parser/__init__.py: parse_data # hace verificaciones de tamaños, etc y termina llamando al parser_TECNOLOGIA (por ejemplo ble_parser/xiaomi.py)
+
+  crea los sensores según lo especificado en el const.py:MEASUREMENT_DICT
+```
+
 
 ## Borrar devices
 https://custom-components.github.io/ble_monitor/faq#how-to-remove-devices-and-sensors
