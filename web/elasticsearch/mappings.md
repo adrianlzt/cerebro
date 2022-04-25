@@ -56,6 +56,17 @@ Aplanar un tipo de dato, por ejemplo si puede contener dentro un número de keys
 
 También podemos decidir no indexar cierta parte del doc (incluso no almacenarla).
 
+PUT /my-index-000001
+{
+  "mappings": {
+    "properties": {
+      "age":    { "type": "integer" },  
+      "email":  { "type": "keyword"  }, 
+      "name":   { "type": "text"  }     
+    }
+  }
+}
+
 curl localhost:9200/test/test -XPUT -d '{"mappings": {"test":{"properties": {"name":{"type":"text"},"@timestamp":{"type":"date"}}}}}'
 El formato por defecto de fecha es tipo: 2017-10-25T09:48:05.419953Z
 
