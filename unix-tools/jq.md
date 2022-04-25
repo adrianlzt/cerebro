@@ -110,6 +110,10 @@ jq '.[] | select(.location=="Stockholm") | .name' json
 Si queremos mantener la estructura del array:
 cat foo.json | jq '.[0].Edges | map(select(.Metadata.RelationType=="pseudowire")) | length'
 
+# Añadir un campo / append
+hosts.json es un ndjson, para cada elemento, creamos un nuevo campo "status" con el valor del campo ctime.
+cat hosts.json| jq '. + { "status": .ctime }'
+
 
 # sort
 sort_by(.first_name) | .[]'
@@ -130,3 +134,15 @@ Accept  Host    User-Agent      X-Amzn-Trace-Id
 # ndjson to json
 Si tenemos un fichero con muchos dict json, si queremos meterlos en un array:
 cat file.json | jq -s
+
+
+# Fechas / dates
+https://stedolan.github.io/jq/manual/#Dates
+
+Añadir un nuevo campo modificando un unix epoch a un formato legible en UTC (no se puede sacar en otro formato que no sea UTC, según la doc)
+cat hosts.json| jq '. + { "status": .ctime | strftime("%Y-%m-%d %H:%M:%S UTC") }'
+
+
+# Single line
+Convertir los elementos de un array a una línea por elemento
+cat hosts.json | jq -c '.[]'
