@@ -90,7 +90,7 @@ Para un grado 6, el polinomio generado seria:
 intercept = poly_reg.steps[1][1].intercept_
 coef = poly_reg.steps[1][1].coef_
 
- y = x**6*coef[5] + x**5*coef[4] + x**4*coef[3] + x**3*coef[2] + x**2*coef[1] + x*coef[0] + intercept
+y = x**6*coef[5] + x**5*coef[4] + x**4*coef[3] + x**3*coef[2] + x**2*coef[1] + x*coef[0] + intercept
 ```
 
 
