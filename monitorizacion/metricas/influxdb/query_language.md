@@ -53,6 +53,9 @@ SHOW TAG KEYS
 SHOW TAG VALUES WITH KEY = "environment"
   obtiene todos los posibles valores de la columna environment
 
+Si queremos ver que tags hay en un measurement lo más sencillo:
+select * from table limit 1;
+
 
 
 
