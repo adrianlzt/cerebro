@@ -11,6 +11,13 @@ El mgr puede tener varios módulos de monitorización: influx, prometheus, zabbi
 ## Listado de móulos activos/inactivos
 ceph mgr module ls
 
+Opciones de configuración de esos módulos:
+ceph config ls
+Ejemplo modificación:
+ceph config-key set config/mgr/mgr/dashboard/server_addr 10.0.2.210
+ceph zabbix config-set zabbix_host SERVERZABBIX
+
+
 ## Activar/desactivar, en el cluster
 ceph mgr module enable XXX
 
@@ -23,6 +30,18 @@ http://docs.ceph.com/docs/master/mgr/dashboard/
 El módulo dashboard nos expone un servidor web con una intefaz donde, gráficamente, nos muestra un resumen del cluster
 Se expondrá en http://host:7000
 ceph mgr module enable dashboard
+Modificar la IP, por si está apuntando a localhost
+ceph config-key set config/mgr/mgr/dashboard/server_addr 10.0.2.20
+Recargar para que tenga efecto:
+ceph mgr module disable dashboard
+ceph mgr module enable dashboard
+
+Más info: https://access.redhat.com/solutions/5215611
+
+Solo el nodo manager activo mostrará el dashboard, el resto harán redirecciones.
+Tal vez poner en el server_addr la ip de dominio que llegue a un balanceador y ese sepa a donde redirigir?
+Para eso tendrá que descartar los redirect.
+Parece que en versiones modernas se puede especificar que no haga redirect: https://people.redhat.com/bhubbard/nature/default/mgr/dashboard/
 
 ## RESTful
 http://docs.ceph.com/docs/master/mgr/restful/
