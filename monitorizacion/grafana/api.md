@@ -1,6 +1,9 @@
 http://docs.grafana.org/reference/http_api/
 https://github.com/grafana/grafana/blob/6da3af5e894439653687a8218f665983b97458d6/pkg/api/api.go
 
+Ejemplo cutrecillo que hice para meter un row con un panel con muchos targets
+https://gitlab.opensolutions.cloud/snippets/110
+
 # Login
 Se puede usar http auth basic, pero mejor crear una API key desde la interfaz web.
 Por defecto estaremos en una orga y los cambios aplicaran a esa orga. Mirar en la sección de orgas para ver como cambiar de una a otra
