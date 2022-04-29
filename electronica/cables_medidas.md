@@ -1,8 +1,11 @@
-Parece que no hay un estandar en cuanta corriente soporta cada AWG.
-Para el 18AWG he visto, 9.5, 5 y 2.5
+10AWG, para 60ºC
+30A
+
+https://en.wikipedia.org/wiki/American_wire_gauge
 
 https://www.sab-cable.eu/cables-confection-technique-de-thermometrie/donnees-techniques/cables/assemblage-americain-du-cable.html
 
+Para 30ºC (multiplicar por 0.58 para 60ºC)
 AWG  Section de Câble mm²   Densité de courant Ampère
 24   0,21                   3,5 A
 22   0,33                   5,0 A
