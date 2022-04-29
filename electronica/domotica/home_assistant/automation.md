@@ -55,3 +55,19 @@ Podemos ver sus disparos en el logbook
 
 Si queremos un atributo de un estado:
 {{ is_state_attr('sensor.gps', 'mode', 3) }}
+
+
+# Debounce
+Ejemplo de como evitar lanzar un comando no muchas veces seguidas.
+condition:
+    condition: template
+    value_template: "{{ (as_timestamp(now()) - as_timestamp(state_attr('automation.doorbell_alert', 'last_triggered') | default(0)) | int > 5)}}"
+
+
+O con timers, activando un timer para que haga una acción. Lo tengo puesto, pero no muy probado
+  action:
+    # Usamos timers para gestionar que el botón nos envía multiples veces cada evento
+    - service: timer.start
+      data:
+        entity_id: "{{ 'timer.alarm_arm' if is_state('alarm_control_panel.home_alarm', 'disarmed') else 'timer.alarm_disarm' }}"
+

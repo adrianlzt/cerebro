@@ -15,6 +15,18 @@ action:
 
 Para llamar a una API externa mirar rest_command.md
 
+
+Para hacer pruebas enviando las trazas al syslog (journal)
+service: system_log.write
+data:
+  logger: mycomp.myprueba
+  message: "enviar mensaje al log"
+
+Veremos una traza tipo:
+Apr 29 19:02:42 raspikorea hass[9346]: 2022-04-29 19:02:42 ERROR (MainThread) [mycomp.myprueba] enviar mensaje al log
+
+
+
 # Con template
 No hacer nada en un condicional: homeassistant.none
 
