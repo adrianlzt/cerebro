@@ -10,6 +10,9 @@ ceph health detail
   que POOLs se están llenando (ceph df)
   si algún mon no está conectado al cluster (chequear procesos ceph-mon que estén arrancados)
 
+Estado de uso de storage
+ceph df
+
 Estado global del cluster:
 ceph status
 
