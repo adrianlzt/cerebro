@@ -17,7 +17,7 @@ is_binary() {
 }
 
 is_key() {
-  egrep "PRIVATE KEY-----$" "$FILE" >& /dev/null
+  egrep "PRIVATE KEY-----" "$FILE" >& /dev/null
   if [[ $? -eq 0 ]]; then
     return $TRUE
   fi
