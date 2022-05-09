@@ -28,12 +28,11 @@ Volver a aceptar pods:
 kubectl uncordon $NODENAME
 
 
+# Añadir un nodo
+Desde un nodo master
+kubeadm token create --print-join-command
 
-# Nodo master a worker
-Parece que la solución es sacarlo del cluster y volverlo a meter como nodo.
-Kubespray tiene un playbook, remove-node.yml, para eliminar nodos.
-
-Probé a quitarle la label de master y reiniciar, pero no funciona.
+Nos dará un comando "kubeadm join ..." para ejecutar en el nodo que queramos añadir.
 
 
 # Quitar un nodo
