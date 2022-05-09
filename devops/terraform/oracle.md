@@ -14,3 +14,7 @@ Para poder crear recursos primero necesitamos un compartment donde meterlos.
 
 # VMs / oci_core_instance
 https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_instance
+
+
+Para obtener los OCID de las imágenes:
+oci compute  image list --compartment-id XXXX
