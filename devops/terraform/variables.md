@@ -78,8 +78,10 @@ aws_instance.example.0.public_ip
 # Maps
 https://www.terraform.io/intro/getting-started/variables.html#maps
 
+Todos los tipos de los datos de un map deben ser del mismo tipo
+
 variable "amis" {
-  type = "map"
+  type = map(string)
   default = {
     "us-east-1" = "ami-b374d5a5"
     "us-west-2" = "ami-4b32be2b"
