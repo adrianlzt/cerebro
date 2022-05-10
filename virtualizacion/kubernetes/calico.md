@@ -27,7 +27,7 @@ spec:
   etcdCertFile: "admin-nodeA.pem"
   etcdCACertFile: "ca.pem"
 
-calicoctl get -c calico.yaml nodes
+calicoctl get -c calico.yaml nodes -o wide
 
 
 Para datastore kubernetes:
@@ -75,6 +75,8 @@ calicoctl delete -c calico.yaml node HOSTNAME
 Problemas conexión.
   tenemos conex entre pods? Probar ping y luego algo tcp (curl a algún servicio http por ejemplo)
   de pods a services? (misma prueba que arriba)
+
+Tal vez un nodo está intentando conectar por una subnet a otro nodo pero la respuesta intenta ir por otra subnet?
 
 
 
