@@ -36,6 +36,13 @@ Estos certs les autorizarán como pertenecientes al grupo system:nodes con el us
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/
 Es la comunicación de los nodos que forman kubernetes con el apiserver, usando TLS tanto en cliente como en servidor.
 
+Usa un fichero similar al que usamos en .kube/config para usar kubectl.
+Solo que los certificados apuntan a unos ficheros que se van rotando para renovar los certs automáticamente.
+
+
+Si ha caducado el cert de un kubelet, podemos regenerarlo siguiendo estos pasos:
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
+
 
 ## Service accounts
 Debemos crear 4 service accounts (que son en realidad certificados) para:
