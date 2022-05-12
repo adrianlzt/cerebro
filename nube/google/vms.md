@@ -1,9 +1,17 @@
 # Aumentar tamaño disco
 https://cloud.google.com/compute/docs/disks/add-persistent-disk?authuser=1#resize_partitions
 
+# Formas de acceder con ssh
+https://cloud.google.com/compute/docs/instances/access-overview#project-wide
+
 # Añadir keys con terraform
 metadata = {
   ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
+}
+
+Otro ejemplo:
+metadata = {
+  ssh-keys = "${var.gce_ssh_user}:${file(var.key_pair["public_key_path"])}"
 }
 
 
