@@ -1,3 +1,14 @@
+# Módulos de alto nivel
+https://github.com/terraform-google-modules
+
+
+Ejemplo, un módulo que hace NAT para salir a internet para las VMs sin IP púlica.
+https://github.com/terraform-google-modules/terraform-google-cloud-nat
+
+Para crear una instancia:
+https://github.com/terraform-google-modules/terraform-google-vm
+
+
 # Crear una service account para usar con terraform
 https://cloud.google.com/community/tutorials/managing-gcp-projects-with-terraform
 
