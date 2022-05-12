@@ -166,3 +166,10 @@ dhcp-option=6,8.8.8.8,8.8.4.4
 
 # Debuggin / logging
 log-queries
+
+
+# Round robin
+https://forums.raspberrypi.com/viewtopic.php?p=1887952&sid=aa9acf9845773699974c63fea0cd917a#p1887952
+
+Usar un fichero de "hosts" fuera con formato:
+IP wN dominio.com
