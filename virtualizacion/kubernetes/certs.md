@@ -31,6 +31,17 @@ Firma: apiserver, apiserver-kubelet-client y front-proxy
 Cada nodo tiene un kubelet que debe tener su propio cert de cliente ante la API.
 Estos certs les autorizarán como pertenecientes al grupo system:nodes con el usuario system:node:NOMBRE
 
+Comprobar a mano caducidad certs
+find /etc/kubernetes/pki/ -type f -name "*.crt" -print | egrep -v 'ca.crt$' | xargs -L 1 -t  -i bash -c 'openssl x509  -noout -text -in {}|grep After'
+
+### Regenerar certs master
+https://stackoverflow.com/a/57308826
+
+kubeadm init phase certs all --config /etc/kubernetes/kubeadm-config.yaml
+
+Si no tenemos fichero de kubeadm tendremos que pasar los distintos parámetros.
+
+
 
 ### Kubelets
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/
