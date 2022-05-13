@@ -23,6 +23,10 @@ Para dar un determinado permiso a una SA, usuario, etc
 
 
 # Load balancer
+Usar este módulo oficial de google que simplifica la config
+GoogleCloudPlatform/lb-http/google
+
+
 https://github.com/gruntwork-io/terraform-google-load-balancer/blob/master/modules/http-load-balancer/main.tf
 
 Se compone de varias primitivas.
