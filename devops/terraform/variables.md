@@ -69,6 +69,8 @@ Si tenemos una variable con muchos elementos por que se ha generado con un count
 Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)
 aws_instance.example.0.public_ip
 
+Generar una lista a partir de un map (generado con for each):
+instances = [for d in google_compute_instance.host: d.id]
 
 ## concat
 > concat(["a", ""], ["b", "c"])
