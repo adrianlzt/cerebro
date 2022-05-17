@@ -1,3 +1,7 @@
+Usar este módulo que simplifica mucho crear los LB
+https://registry.terraform.io/modules/GoogleCloudPlatform/lb-http/google/latest
+
+
 En verdad no existe el concepto load balancer, si no una suma de "primitivas" que lo conforman.
 https://github.com/gruntwork-io/terraform-google-load-balancer/blob/master/modules/http-load-balancer/core-concepts.md#https-load-balancer-terminology
 
