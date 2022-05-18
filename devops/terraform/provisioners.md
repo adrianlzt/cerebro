@@ -7,3 +7,8 @@ file
 local-exec
 remote-exec
 null_resource
+ansible
+
+
+No se puede ejecutar una vez se ha creado la máquina.
+Hay alguna ñapa: https://github.com/hashicorp/terraform/issues/745
