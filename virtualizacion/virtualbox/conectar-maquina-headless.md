@@ -1,3 +1,6 @@
+Si queremos buscar el nombre de una vm:
+VBoxManage list vms
+
 vboxheadless -s nombre
 vboxmanage showvminfo testPace-nodo1 | grep VRDE  <--- apuntar el numero de puerto
 rdesktop -N localhost:3389

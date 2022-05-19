@@ -1,5 +1,8 @@
 https://www.virtualbox.org/manual/ch08.html
 
+VBoxManage list vms
+
+
 https://www.perkin.org.uk/posts/create-virtualbox-vm-from-the-command-line.html
 
 Crear una VM con un HDD y montarle una iso como DVD
