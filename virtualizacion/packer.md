@@ -16,6 +16,25 @@ Se pueden definir builders y provisioners.
 packer hcl2_upgrade -with-annotations build.json
 
 
+# Provisioner
+
+## shell
+    provisioner "shell" {
+      inline = ["sudo yum install -y python3"]
+    }
+
+## ansible
+  provisioner "ansible" {
+    playbook_file          = "awx_postgres.yml"
+    extra_arguments        = [
+      "--extra-vars", "include_roles=postgresql",
+      "--extra-vars", "entorno=poc",
+      "--extra-vars", "ansible_python_interpreter=/usr/bin/python3",
+      "--vault-password-file", "vault_pass.txt",
+    ]
+  }
+
+
 # Vagrant
 
 ## Customizar la VM
