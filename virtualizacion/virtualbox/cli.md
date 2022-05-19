@@ -35,3 +35,5 @@ VBoxManage snapshot $VM restore <name of snapshot>
 
 Borrar maquina:
 VBoxManage unregistervm <uuid|vmname> [--delete]
+
+Si no nos deja borrarla por estar "locked", matar el proceso VBoxHeadless donde esté corriendo.
