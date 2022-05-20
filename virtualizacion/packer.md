@@ -35,9 +35,14 @@ packer hcl2_upgrade -with-annotations build.json
   }
 
 
-# Vagrant
+# Builders
 
-## Customizar la VM
+## OpenStack
+https://www.packer.io/plugins/builders/openstack
+
+## Vagrant
+
+### Customizar la VM
 https://github.com/hashicorp/packer/issues/8239
 
 Template (en los tests, no se donde está la oficial): https://github.com/hashicorp/packer-plugin-vagrant/blob/e3b4ec6848cd391c93f93041d354960565c299e8/builder/vagrant/step_create_vagrantfile.go#L25
@@ -72,6 +77,14 @@ Vagrant.configure("2") do |config|
                 config.vm.synced_folder ".", "/vagrant", disabled: true
   {{- end}}
 end
+
+
+
+# cloud-init
+https://stackoverflow.com/questions/57564641/openstack-packer-cloud-init
+
+Instalar el paquete, pararlo y borrar los ficheros.
+
 
 
 # Debug
