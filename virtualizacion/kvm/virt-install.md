@@ -5,6 +5,7 @@ qemu-img create -f qcow2 disk.qcow2 20000
 
 Crear maquina NOMBRE con 1GB de ram, un cd montado y apuntado al dico (full path):
 wget http://ftp.rediris.es/mirror/archlinux/iso/2022.05.01/archlinux-2022.05.01-x86_64.iso
+sc-start libvirtd
 sudo virt-install -r 1024 -n arch -f disk.qcow2 --cdrom archlinux-2022.05.01-x86_64.iso --graphics=vnc
 
 Conectar por VNC al puerto 5900
