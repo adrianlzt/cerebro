@@ -24,3 +24,6 @@ sudo virt-install --virt-type=kvm --name=esxi1 \
 
 La password que nos pide tendrá que tener varios números algún caracter no alfanumérico.
 CUIDADO con que caracteres pongamos, no vayamos a estar escribiendo con un teclado en otro idioma y luego no sepamos la password.
+
+
+Tuve que añadir un segundo disco, usando virt-manager, para poder crear un datastore desde la UI de ESXi.
