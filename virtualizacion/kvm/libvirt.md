@@ -43,6 +43,11 @@ reset <domain>
 
 reboot <domain>
 
+destroy DOMAIN
+  pararlo
+
+undefine DOMAIN
+  borrarlo
 
 
 # Permitir a otros usuarios ejecutar virsh:

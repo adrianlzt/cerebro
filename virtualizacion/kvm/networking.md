@@ -15,6 +15,25 @@ Red virtual 'default': NAT
 En una máquina tuve problemas porque había una interfaz virbr0 con la misma ip que la segunda interfaz. La desconfigure y borre su ruta y funcionó la conexión host VM.
 
 
+Para crear una red hice:
+sudo systemctl start libvirtd
+virsh net-define default.xml
+sudo virsh net-start default
+
+El fichero default.xml (https://libvirt.org/formatnetwork.html#nat-based-network):
+<network>
+  <name>default</name>
+  <bridge name="virbr0"/>
+  <forward mode="nat"/>
+  <ip address="192.168.122.1" netmask="255.255.255.0">
+    <dhcp>
+      <range start="192.168.122.2" end="192.168.122.254"/>
+    </dhcp>
+  </ip>
+</network>
+
+
+
 # MAC
 Siempre empezar por un numero impar (To qualify as a unicast address the first byte must be even)
 
