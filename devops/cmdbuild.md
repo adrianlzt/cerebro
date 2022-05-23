@@ -1,5 +1,18 @@
 CMDB opensource
 
+
+# cmbuild.sh
+Script para gestionar muchas cosas de CMDBuild:
+
+/usr/local/tomcat/webapps/cmdbuild# ./cmdbuild.sh -help
+
+Opciones de configuración:
+./cmdbuild.sh restws -help
+
+./cmdbuild.sh restws -username admin -password admin config org.cmdbuild.ui.uiServiceBaseUrl
+
+
+
 # Desarrollo
 Código en un .tar.gz en sourceforge
 
