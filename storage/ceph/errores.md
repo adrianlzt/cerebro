@@ -140,3 +140,17 @@ Mirando el dmesg del osd.3, encontramos que el disco físico sobre el que está 
 
 
 
+
+Usando ceph montado sobre docker, tras un reinicio, todos los contenedores de ceph, los OSDs, intentan hacer chown sobre /var/lib/ceph, provocando mucho IO y no permitiendo arrancar a los OSD
+27195 ?        Ss     0:00      \_ /bin/bash /opt/ceph-container/bin/entrypoint.sh
+28102 ?        S      0:51      |   \_ find -L /var/lib/ceph/ -mindepth 1 -maxdepth 3 -exec chown ceph. {} ;
+
+issue sobre el tema: https://github.com/ceph/ceph-container/issues/1536
+Parece que el problema es que se vuelve "loco" creando directorios temporales, tipo
+/var/lib/ceph/tmp/tmp.fj23FZWD5R
+
+Workaround. Parar todos los contenedores de ceph.
+Borrar /var/lib/ceph/tmp/
+Crear el directorio de nuevo con los permisos y usuarios adecuados.
+rm -fr /var/lib/ceph/tmp/
+mkdir tmp; chown 167.167 tmp
