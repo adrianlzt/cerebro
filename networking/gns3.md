@@ -62,9 +62,6 @@ Podemos ver sus puertos en la ventana "Topology summary"
 
 
 
-### Conectar a internet
-https://docs.gns3.com/docs/using-gns3/advanced/connect-gns3-internet/
-
 
 ### Añadir interfaces
 Editar el router (right click), ir a Slots y añadir una del tipo que necesitemos.
@@ -127,6 +124,11 @@ Ejemplo:
 Tuve que reiniciar el server y la gui.
 
 
+## Version distinta del server y GUI
+Variaban en el minor (a.b.31 vs a.b.32) y no fucionaba.
+Cambiando a mano el version.py del server parece que evita ese chequeo y la gui comunica correctamente.
+
+
 ## C7200 'Ghost': generic_nvram_extract_config: Unknown error
 ### Poner la misma zona horaria en el gns server y gui
 ln -fs /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -139,6 +141,7 @@ dpkg --add-architecture i386
 apt update
 apt install dynamips:i386
 No me ha funcionado
+
 
 ## El GUI no abre la consola a los routers
 Mirando el stdout del gui:
@@ -153,6 +156,8 @@ O conectar desde la terminal del server remoto.
 
 Si al conectar por ssh nos sale "200-At least a module and a command must be specified" es que estamos conectando al propio dynamips, no al router.
 Podemos ver los puertos de los routers en la GUI, a la derecha.
+
+
 
 
 # Dynamips
@@ -190,6 +195,7 @@ También podemos conectar contendores docker.
 # Conectar GNS3 a una red externa
 https://www.b-ehlers.de/blog/posts/2017-07-11-gns3-cloud-linux/
 https://docs.gns3.com/docs/using-gns3/advanced/connect-gns3-internet/
+
 
 ## conex ethernet directa
 Con GNS3 montado sobre una VM de OST no consigo que el qemu coja IP.
