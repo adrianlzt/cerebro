@@ -91,3 +91,14 @@ Instalar el paquete, pararlo y borrar los ficheros.
 Parar en cada step
 
 packer build -debug build.pkr.hcl
+
+
+## Acceder a la vm tras un build fallido
+Meter este provisioner para obtener la clave privada ssh
+  provisioner "shell-local" {
+    inline = ["echo '${build.SSHPrivateKey}'", "echo '${build.SSHPrivateKey}' > /tmp/packer-aws.pem"]
+  }
+
+No destruir la VM si hay un fallo:
+packer build -on-error=abort ost.pkr.hcl
+Si queremos obtener la ssh priv key que usa, 
