@@ -73,6 +73,13 @@ execute
   ejecuta el modulo de ansible que previamente hemos extraido con explode
   usa subprocess para llamar a python y al modulo de ansible
 
+python /home/centos/.ansible/tmp/ansible-tmp-1653945205.1161072-2702643-215610572871479/AnsiballZ_credential_type.py execute
+Esto ejecutará el código "exploded" con las args que estén en ese dir.
+Podemos probar a modificar el código exploded o meter breakpoints.
+Parece que no funciona con "breakpoint()" ni epdb.set_trace()
+
+
+ANTIGUO
 Para ejecutar directamente el modulo de ansible
 cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py
