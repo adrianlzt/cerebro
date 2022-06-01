@@ -1,10 +1,40 @@
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html
 http://docs.ansible.com/ansible/latest/playbooks_debugger.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html#resolving-errors-in-the-debugger
+
 - hosts: test
   strategy: debug
 
 Si falla algo se para y nos arranca el debugger de python en ese punto
 Nos da un debugger muy limitado
+
+> p locals().keys()
+dict_keys(['task', 'task_vars', 'host', 'play_context', 'result'])
+
+Variables disponibles:
+p locals()['task_vars'].keys()
+
+Parámetros que puede tener la task:
+p dir(locals()['task'])
+p result._task_fields
+
+Parámetros del play donde está esta task:
+p dir(locals()['play_context'])
+
+Parámetros del host:
+p dir(locals()['host'])
+
+Argumentos de la task:
+p task.args
+
+Modificar los argumentos:
+task.args['data'] = '{{ var1 }}'
+
+Resultado de la task:
+p result._result
+
+Rejecutar la task (avanzará si no hay fallo)
+redo
 
 
 
