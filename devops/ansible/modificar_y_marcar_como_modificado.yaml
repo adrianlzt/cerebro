@@ -1,0 +1,28 @@
+#
+# Ejemplo de unas tareas que realizan una acción si no ha sido previamente ejecutada, usando
+# un fichero como flag
+#
+- name: Check the file indicating if the default admin password has been changed
+  file:
+    path: "{{ grafana_modified_password_flag }}"
+  ignore_errors: true
+  register: password_flag
+
+- name: Update admin password
+  when: password_flag.state == "absent"
+  block:
+  - name: Modify the admin password
+    uri:
+      url: "{{grafana.service.options.server.protocol}}://localhost:{{grafana.service.options.server.http_port}}/api/admin/users/1/password"
+      method: PUT
+      user: admin
+      password: admin
+      force_basic_auth: yes
+      status_code: 200
+      body_format: json
+      body: '{"password": "{{grafana_admin_password}}"}'
+
+  - name: Create the file indicating if the default admin password has been changed
+    file:
+      path: "{{ grafana_modified_password_flag }}"
+      state: touch
