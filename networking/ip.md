@@ -89,6 +89,9 @@ ip n flush 10.95.168.220 dev eth0
 
 
 Definir IP / Agregar ip alias:
+ip a a 10.0.2.16/24 dev enp5s0f1 label enp5s0f1:1
+
+Otro ejemplo:
 ip addr add 192.168.198.228/32 dev eth1
 ip addr add 192.168.0.1/255.255.255.0 dev eth1
 ip addr add 192.168.56.151/24 broadcast 192.168.56.255 dev eth0 label eth0:1
