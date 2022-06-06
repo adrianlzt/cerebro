@@ -99,6 +99,11 @@ vault kv list nombrePath
 vault kv put some/path foo=bar foo2=bar2
 
 
+Si queremos usar el motor kv debemos activarlo, por ejemplo, lo activamos en el path secret/
+vault secrets enable -path=secret kv
+Si no definimos el -path, lo pone en kv/
+
+
 # Docker
 VERSION=0.11.5
 docker run --restart=unless-stopped \
