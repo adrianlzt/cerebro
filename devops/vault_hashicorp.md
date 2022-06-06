@@ -129,8 +129,19 @@ Otra en React: https://github.com/djenriquez/vault-ui
 Otra: https://github.com/nyxcharon/vault-ui
 
 
+# API
+curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
+
+
 
 # Ansible
 https://docs.ansible.com/ansible/devel/plugins/lookup/hashi_vault.html
 
 Otro módulo no oficial con ciertas mejoras: https://github.com/jhaals/ansible-vault
+
+
+# Debug
+https://www.vaultproject.io/docs/commands/debug
+
+vault debug
+  lo arrancamos, hacemos interacciones y lo paramos. Nos genera un .tgz con ficheros con datos (pero no veo las llamadas de clientes)
