@@ -1,3 +1,8 @@
+https://untools.co/
+Diferentes modelos mentales que podemos usar para resolver problemas.
+
+
+
 https://excalidraw.com/
 gratis
 simula esquemas hechos a mano
