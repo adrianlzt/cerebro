@@ -13,7 +13,7 @@ Si borramos el helm, recordar borrar el pvc. Si no, se reusará y las configs qu
 
 
 # Postgres operator
-Dos diferentes
+https://cloudnative-pg.io/
 https://github.com/zalando/postgres-operator
 https://www.kubegres.io/
 
