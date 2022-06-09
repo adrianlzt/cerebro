@@ -10,12 +10,9 @@ Listado de certificados que se usan:
   - scheduler, tipo client
   - service-account (sa), key-pair, para firmar service account tokens, más info https://kubernetes.io/docs/admin/service-accounts-admin/
 
-  proxy?
-
-Client certificates for the API server to talk to the kubelets
+proxy?
+Client certificates for the API server to talk to the kubelets (para que al api server pueda recoger métricas, logs y ejecutar comandos en los kubelets)
 Client certificate for the API server to talk to etcd
-Client certificate/kubeconfig for the controller manager to talk to the API server
-Client certificate/kubeconfig for the scheduler to talk to the API server.
 Client and server certificates for the front-proxy (only if you run kube-proxy to support an extension API server)
 
 Los certs, si instalamos con kubeadm o ansible, están en /etc/kubernetes/ssl
