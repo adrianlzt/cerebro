@@ -24,7 +24,7 @@ etcdctl --cert-file /etc/ssl/etcd/ssl/admin-$(hostname).pem --key-file /etc/ssl/
 
 
 Con etcdV3
-ETCDCTL_API=3 etcdctl --endpoints=https://10.0.2.14:2379 --cacert=/etc/ssl/etcd/ssl/ca.pem --cert=/etc/ssl/etcd/ssl/member-$(hostname).pem --key=/etc/ssl/etcd/ssl/member-$(hostname)-key.pem member list
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/ssl/etcd/ssl/ca.pem --cert=/etc/ssl/etcd/ssl/member-$(hostname).pem --key=/etc/ssl/etcd/ssl/member-$(hostname)-key.pem member list
 ETCDCTL_API=3 etcdctl --endpoints=https://10.0.2.14:2379 --cacert=/etc/ssl/etcd/ssl/ca.pem --cert=/etc/ssl/etcd/ssl/member-$(hostname).pem --key=/etc/ssl/etcd/ssl/member-$(hostname)-key.pem get --prefix --keys-only /
 
 

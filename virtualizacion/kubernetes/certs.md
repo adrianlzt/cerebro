@@ -2,9 +2,16 @@
 https://kubernetes.io/docs/setup/best-practices/certificates/
 https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md
 
-Client certificates for the kubelet to authenticate to the API server <- estos creo que son los que se renuevan solos. Estan tanto en los masters como los workers
-Server certificate for the API server endpoint <- el endpoint web https que exponen los masters
-Client certificates for administrators of the cluster to authenticate to the API server
+Listado de certificados que se usan:
+  - kubelet, tipo client, usados por masters y workers para conectar al api server
+  - API server endpoint, tipo servidor, el endpoint web https que exponen los masters
+  - admin, tipo client, el administrador del cluster para hablar con el api server
+  - controller manager, tipo client
+  - scheduler, tipo client
+  - service-account (sa), key-pair, para firmar service account tokens, más info https://kubernetes.io/docs/admin/service-accounts-admin/
+
+  proxy?
+
 Client certificates for the API server to talk to the kubelets
 Client certificate for the API server to talk to etcd
 Client certificate/kubeconfig for the controller manager to talk to the API server
