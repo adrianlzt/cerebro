@@ -71,3 +71,14 @@ rm -rf \
 Podemos borrar tambien los /etc/ssl/etcd/ssl/member*, MENOS el del propio host
 
 
+
+
+# Cambiar ip internal de un nodo worker
+Modificarla en /etc/kubernetes/kubelet.env
+kubeadm reset
+systemctl restart kubelet
+Obtener el comando de join en un master y ejecutarlo:
+kubeadm join...
+
+En los logs se quejaba de un error con cálico, una conf que no estaba.
+Tuve que copiar de un worker que funcionaba el fichero /etc/cni/net.d/10-calico.conflist, modificando el hostname.
