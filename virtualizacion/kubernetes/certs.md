@@ -45,6 +45,9 @@ kubeadm init phase certs all --config /etc/kubernetes/kubeadm-config.yaml
 
 Si no tenemos fichero de kubeadm tendremos que pasar los distintos parámetros.
 
+Para generar los certs del schedule y controller-manager en v1.14 mirar
+https://docs.wire.com/how-to/administrate/kubernetes/certificate-renewal/scenario-1_k8s-v1.14-kubespray.html
+
 
 
 ### Kubelets
