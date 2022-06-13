@@ -216,3 +216,8 @@ Los grupos adm y wheel tienen permisos de lectura sobre /var/log/journal/ y /run
 En caso de no tenerlo podemos ponerlo asi:
   setfacl -Rnm g:wheel:rx,d:g:wheel:rx,g:adm:rx,d:g:adm:rx /var/log/journal/
 
+
+
+# Leer de un directorio no estandar
+Por ejemplo, si nos queremos traer los ficheros binarios de un disco de un OS que no funciona y queremos ver los logs.
+journalctl -D path/journal -n 10
