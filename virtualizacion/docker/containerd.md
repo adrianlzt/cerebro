@@ -4,6 +4,10 @@ Container runtime que gestiona todo el ciclo de vida: imágenes, ejecucción, su
 Usar runC para correr los containers
 
 
+Parece que otra cli que se usa para manejar containerd es (visto en una instalación de k8s con kubespray):
+nerdctl
+
+
 # CLI
 sudo ctr --address unix:///var/run/docker/libcontainerd/docker-containerd.sock containers
 
