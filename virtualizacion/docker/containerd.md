@@ -6,6 +6,9 @@ Usar runC para correr los containers
 
 Parece que otra cli que se usa para manejar containerd es (visto en una instalación de k8s con kubespray):
 nerdctl
+Compatible con docker
+
+La cli oficil de containerd es crictl
 
 
 # CLI

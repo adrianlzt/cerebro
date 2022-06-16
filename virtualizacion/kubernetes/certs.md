@@ -1,3 +1,5 @@
+Mirar kubeadm.md
+
 # Uso de los certificados dentro de kubernetes
 https://kubernetes.io/docs/setup/best-practices/certificates/
 https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md
