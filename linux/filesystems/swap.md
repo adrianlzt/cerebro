@@ -32,6 +32,15 @@ swapon /swapfile
 /etc/fstab
 /swapfile none swap defaults 0 0
 
+
+# Borrar swap siendo un volumen LVS
+Quitarlo de /etc/default/grub (buscar swap).
+grub2-mkconfig
+
+O si usamos UEFI, usar grubby para quitar ese parámetro.
+
+Si no lo hacemos, arrancará en el dracut por que no encontrará el volumen LVM.
+
 # Errores
 "Invalid argument" should be read as "Your filesystem do not support swap file"
   con xfs era que fallocate creaba mal el fichero.
