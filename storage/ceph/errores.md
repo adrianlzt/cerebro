@@ -154,3 +154,11 @@ Borrar /var/lib/ceph/tmp/
 Crear el directorio de nuevo con los permisos y usuarios adecuados.
 rm -fr /var/lib/ceph/tmp/
 mkdir tmp; chown 167.167 tmp
+
+
+
+No se puede desplegar porque los discos detectan que tienen la "BlueStore label".
+https://github.com/ceph/ceph/blob/b76b6ea16899861d6c266797b3c11d9f68f924d7/src/ceph-volume/ceph_volume/util/disk.py#L823
+
+Para borrar esa cabecera:
+dd if=/dev/zero of=/dev/sdX bs=1M count=100
