@@ -49,3 +49,20 @@ Si tenemos algun LB deberemos ver algo tipo:
 
 Solo uno de los speakers remitirá la ruta a los peers.
 
+
+# Diferentes pools
+Podemos tener diferentes pools de IP que MetalLB puede ofrecer.
+https://metallb.universe.tf/configuration/#controlling-automatic-address-allocation
+
+Nombraremos a esos pools de distintas maneras, normalmente haciendo uno el de selección automática (default).
+
+Si queremos que un Service LoadBalancer use un pool específico deberemos usar una annotation:
+https://metallb.universe.tf/usage/#requesting-specific-ips
+
+Ejemplo:
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips
