@@ -87,3 +87,10 @@ tolerations:
 - key: "node-role.kubernetes.io/master"
   operator: "Equal"
   effect: "NoSchedule"
+
+Plantilla para meter tolerations:
+tolerations:
+  - key: "NOMBRE_KEY"
+    operator: "Equal|Exists"
+    value: "VALOR_KEY"
+    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"

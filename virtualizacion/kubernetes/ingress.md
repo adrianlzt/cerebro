@@ -156,6 +156,9 @@ Annotations y config maps (CUIDADO este es el ingress de nginx INC, no el de kub
 https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/configmap-and-annotations.md
 
 
+# Exponer servicios TCP o UDP
+https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md
+
 
 # Internals
 https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
