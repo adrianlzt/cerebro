@@ -216,6 +216,8 @@ object network user-subnet
 Ver estado:
 show xlate
 
+
+
 # ACLs / listas de control de acceso
 https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
 https://www.cisco.com/c/es_mx/support/docs/ip/access-lists/26448-ACLsamples.pdf
@@ -292,6 +294,11 @@ CUIDADO! no borrar una ACL sin antes quitarla de las interfaces, bloquearemos to
 no ip access-list extended Block-DNS-From-The-Internet
 
 
+
+## ACL en ASA
+ACLs on the ASA allow you to override the default security behavior which is as follows:
+    Traffic that goes from a lower security interface is denied when it goes to a higher security interface.
+    Traffic that goes from a higher security interface is allowed when it goes to a lower security interface.
 
 
 
