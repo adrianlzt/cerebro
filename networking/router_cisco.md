@@ -412,6 +412,10 @@ Para añadir rutas a una VRF
 ip route vrf Mgmt 0.0.0.0 0.0.0.0 172.30.6.24
 
 
+## Rutas cisco ASA
+show route
+show run route
+
 
 
 # ACL / CBAC
@@ -650,6 +654,25 @@ no monitor capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
 no monitor capture buffer NOMBREBUFFER
 
 
+## Cisco ASA
+https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-generation-firewalls/118097-configure-asa-00.html
+
+Capturar tráfico desde una IP externa hacia cualquier sitio:
+capture NOMBRE match ip 91.168.208.224 255.255.255.255 any
+
+Para desactivarlo
+no capture NOMBRE match ip 91.168.208.224 255.255.255.255 any
+
+
+Ver que capturas tenemos:
+show capture
+
+Detalle:
+show capture NOMBRE
+
+
+
+
 
 # SNMP
 Activar snmp:
@@ -761,25 +784,6 @@ En caso de fallo de un cable, el tráfico se redirigirá de forma transparente p
 Ese puerto se pondrá en "passive".
 
 Estado:
-https://www.cisco.com/c/m/en_us/techdoc/dc/reference/cli/n5k/commands/show-lacp.html
-show lacp internal
-show lacp neighbor
-show lacp 1 neighbor
-
-
-# Rollback
-https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/config-mgmt/configuration/15-sy/config-mgmt-15-sy-book/cm-config-rollback-confirmed-change.html
-No probado
-
-
-
-
-# Errores
-Puerto flapeando? mirar show log
-
-Muchos NAT montados? Tal vez demasiados procesos de NAT?
-
-DNS server cargando la CPU
 https://www.reddit.com/r/Cisco/comments/3dxo3w/cisco_1941_dns_causing_high_cpu_usage/
 Acceso externo?
 
