@@ -52,8 +52,30 @@ Este parece que envia directamente a los pods en vez de al service, por performa
 haproxy
 
 
+Ejemplo básico de la doc:
+``````
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+``````
 
 Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080, y las "/bar/*" al service bar puerto 8080
+
 #apiVersion: extensions/v1beta1 # versiones antiguas de k8s
 #kind: Ingress
 apiVersion: networking.k8s.io/v1
