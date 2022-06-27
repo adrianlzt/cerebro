@@ -203,6 +203,18 @@ Testear que funciona
 write
 
 
+## NAT en cisco ASA
+https://www.packetswitch.co.uk/cisco-asa-nat-example/
+https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
+
+Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
+
+object network user-subnet
+ subnet 10.10.60.0 255.255.255.0
+ nat (USERS,OUTSIDE) dynamic interface
+
+Ver estado:
+show xlate
 
 # ACLs / listas de control de acceso
 https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
@@ -795,3 +807,9 @@ Programa para windows o macos para conectar con los routers y que nos realiza ta
 Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
 (echo "USER"; echo 'PASS'; echo "term len 0"; echo "show version"; echo "q"; sleep 3) | telnet 10.0.0.1 > out.txt
 
+
+
+
+# Upgrade firmware
+## Cisco ASA firewall
+https://www.cisco.com/c/en/us/td/docs/security/asa/upgrade/asa-upgrade/asa-appliance-asav.html#ID-2152-00000110
