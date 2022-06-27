@@ -1,3 +1,15 @@
+https://news.ycombinator.com/item?id=31824030
+Sobre como leer .csv
+
+# visidata
+vd fichero.csv
+
+Mas info visidata.md
+
+
+# Usar el cliente de clickhouse para analizar csv con SQL
+clickhouse local -q "SELECT COUNT(*) FROM file('COVID_01-01-2021.csv', 'CSVWithNames')"
+
 # xsv
 Escrita en rust
 
