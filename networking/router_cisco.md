@@ -207,7 +207,7 @@ write
 https://www.packetswitch.co.uk/cisco-asa-nat-example/
 https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
 
-Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
+### Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
 
 object network user-subnet
  subnet 10.10.60.0 255.255.255.0
@@ -215,6 +215,21 @@ object network user-subnet
 
 Ver estado:
 show xlate
+
+### NAT one-to-one.
+Mapear la IP pública 6.11.34.134 puerto 80 a la IP interna 10.0.0.138 puerto 32080
+
+object network k8s-ingress-public-external-ip
+ host 6.11.34.134
+!
+object network k8s-ingress-public
+ host 10.0.0.138
+ nat (inside,outside) static k8s-ingress-public-external-ip service tcp 32080 www
+!
+access-list outside_acl_k8s_ingress_public extended permit tcp any object k8s-ingress-public eq 32080
+!
+access-group outside_acl_k8s_ingress_public in interface outside
+
 
 
 
@@ -658,10 +673,10 @@ no monitor capture buffer NOMBREBUFFER
 https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-generation-firewalls/118097-configure-asa-00.html
 
 Capturar tráfico desde una IP externa hacia cualquier sitio:
-capture NOMBRE match ip 91.168.208.224 255.255.255.255 any
+capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
 
 Para desactivarlo
-no capture NOMBRE match ip 91.168.208.224 255.255.255.255 any
+no capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
 
 
 Ver que capturas tenemos:
