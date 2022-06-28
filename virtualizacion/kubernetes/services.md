@@ -21,6 +21,7 @@ https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
 Crea automaticamente un ClusterIP
 Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
+Tendremos que usar la IP registrada del nodo (la que vemos con kubectl get nodes -o wide).
 
 Útil si tenemos nuestros propios LBs (una IP externa nuestra la balancearíamos sobre ese puerto de todos los nodos)
 Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
