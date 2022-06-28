@@ -227,9 +227,14 @@ object network k8s-ingress-public
  nat (inside,outside) static k8s-ingress-public-external-ip service tcp 32080 www
 !
 access-list outside_acl_k8s_ingress_public extended permit tcp any object k8s-ingress-public eq 32080
-!
+! Esto permite introducir tráfico desde cualquier sitio hacia el objeto k8s-ingress-public al puerto 32080. Si quitamos el "eq 32080" será a todos los puertos
 access-group outside_acl_k8s_ingress_public in interface outside
+! aplicar esa access list a la entrada de tráfico de la interfaz outside
 
+
+Si queremos comprobar si todo el flujo está permitido:
+packet-tracer input OUTSIDE tcp 1.1.1.1 30000 6.11.34.134 http
+  Comprobamos que la ip 1.1.1.1 usando el puerto 30000 puede atacar a la ip 6.11.34.134 (se entiende que una nuestra) al puerto http (80)
 
 
 
