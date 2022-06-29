@@ -84,7 +84,7 @@ En otra terminal (en el mismo dir):
  modificamos el .py para meterle el set_trace() de la siguiente manera:
    import pdb
    mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
-   pdb.set_trace=mydbp.set_trace
+   pdb.set_trace=mypdb.set_trace
    pdb.set_trace()
 
  arrancamos el programa que necesita stdin:
