@@ -27,7 +27,7 @@ Lo mejor es tener los etcd sobre SSD
 https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/hardware.md#disks
 
 
-# Despliegue
+## Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
 pipenv install -r requirements.txt
@@ -230,6 +230,10 @@ ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 
 ## Quitar un nodo
 mirar admin.md
+
+
+## Addons
+Para desplegar usa roles que crean los .yaml en /etc/kubernetes/addons/ y los aplica con kubectl
 
 
 
