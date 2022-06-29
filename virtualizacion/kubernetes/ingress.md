@@ -162,3 +162,14 @@ https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-t
 
 # Internals
 https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
+
+
+# Conectar a un backend mediante protocolo https obligatoriamente
+Nos puede servir si el backend hace una redirección a https siempre que vayamos por http.
+Es el caso de argocd, se deshace el TLS en el ingress y envía la comunicación por http.
+Argo, al ver la comunicación por http, nos reenvia al https y hace un círculo de redirecciones.
+
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+
+Con este parámetro le decimos al ingress que la ruta desde nginx a argo la haga vía https.
