@@ -1,3 +1,5 @@
+https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec
+
 https://kubernetes.io/docs/concepts/services-networking/ingress/
 https://medium.com/@cashisclay/kubernetes-ingress-82aa960f658e
 Mirar network para discusión ingress vs Service
@@ -102,6 +104,33 @@ spec:
           serviceName: bar
           servicePort: 8080
 
+
+
+Ejemplo haciendo un rewrite para uno solo de los paths.
+Las peticiones que hagan los clientes a foo.bar/img/XX se reescriben como foo.bar/app/XX.
+Ese nuevo path "/app" es matcheado por una de las reglas del ingress que la reenvia al svc adecuado.
+
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: rewrite ^(/img)(.*) /app$2 last;
+
+  rules:
+  - host: usync.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              name: http
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: ceph-obj
+            port:
+              number: 8081
 
 
 Ejemplo del ingress de NGINX:
