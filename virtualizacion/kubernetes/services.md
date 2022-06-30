@@ -99,6 +99,18 @@ Ejemplo, una app que ataca a mi-redis.prod.svc.CLUSTER
 Creamos un ExternalName que asocie mi-redis del proyecto prod a redis.externo.com
 Cuando la app ataque a mi-redis.prod.svc.CLUSTER se le devolverá un CNAME redis.externo.com
 
+Típico caso, queremos que un ingress del namespace A llegue a un service del namespace B.
+Crearemos en el NS B un service ExternalName apuntando al NS A:
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-service
+spec:
+  type: ExternalName
+  externalName: test-service.namespacename.svc.cluster.local
+
+https://stackoverflow.com/a/59845018
+
 
 
 

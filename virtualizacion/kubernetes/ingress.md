@@ -173,3 +173,8 @@ Argo, al ver la comunicación por http, nos reenvia al https y hace un círculo 
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 
 Con este parámetro le decimos al ingress que la ruta desde nginx a argo la haga vía https.
+
+
+
+# Atacar a un service de otro namespace
+Mirar ExternalName en service.md
