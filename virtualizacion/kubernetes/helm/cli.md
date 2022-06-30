@@ -3,6 +3,9 @@ helm search hub foo
   no nos dice en que repo está para poder añadirlo, entrar en la web para mirarlo
 helm search repo foo
   buscar charts en el repo publico
+helm search hub foo
+  no es muy útil, ya que tenemos que entrar a la web para coger el nombre del repo
+  https://stackoverflow.com/questions/60994725/k8s-how-to-install-charts-from-the-helm-hub
 
 Parece que como funciona el "hub" es un poco raro:
 https://stackoverflow.com/questions/60994725/k8s-how-to-install-charts-from-the-helm-hub
@@ -14,6 +17,9 @@ https://artifacthub.io/
 helm pull xxx
   es "fetch" en v2.x
   bajarnos el .tgz de un chart, en el current dir que estemos
+
+helm pull redis/redis --version 0.1.1 --untar
+
 
 helm template nombre chart > file.yml
   renderizar como va a quedar un chart
