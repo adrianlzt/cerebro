@@ -20,6 +20,50 @@ En el directorio tendremos un fichero
 kustomization.yaml
 
 
+# Organización de ficheros
+
+Otras opciones:
+  Sin división de directorios en los distintos overlays:
+  https://www.reddit.com/r/kubernetes/comments/sd50hk/kustomize_with_multiple_deployments_how_to_keep/
+
+  Formato ArgoCD autopilot, con los overlays dentro de cada app:
+https://www.reddit.com/r/kubernetes/comments/sd50hk/kustomize_with_multiple_deployments_how_to_keep/hub3nop/?utm_source=reddit&utm_medium=web2x&context=3
+
+repo/
+  base/
+    kustomization.yml
+    app1/
+      deployment.yaml
+      ingress.yaml
+      kustomization.yml
+    app2/
+    app1/
+      deployment.yaml
+      role.yaml
+      rolebinding.yaml
+      pvc.yaml
+      kustomization.yml
+  overlays/
+    development/
+      kustomization.yml
+      patches/
+      resources/
+      sealed-secrets/ (kubeseal)
+    staging/
+    production/
+
+
+El kustomization.yaml de las base/apps será tipo:
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yml
+  - ingress.yml
+```
+
+
 # Transformers
 https://github.com/kubernetes-sigs/kustomize/blob/master/docs/fields.md#transformers
 Para modificar los yaml base de alguna manera
