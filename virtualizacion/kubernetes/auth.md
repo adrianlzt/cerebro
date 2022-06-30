@@ -1,10 +1,40 @@
 mirar rbac.md
 
-
+# Klum
 https://github.com/ibuildthecloud/klum
-App para gestionar usuarios
+
+Operator para gestionar usuarios.
+Solo tenemos que definir un objeto con el usuario y los permisos y nos permite descargar el kubecfg.
+
+Install:
+kubectl apply -f https://raw.githubusercontent.com/ibuildthecloud/klum/master/deploy.yaml
+
+Crear usuario
+cat <<EOF | kubectl apply -f -
+kind: User
+apiVersion: klum.cattle.io/v1alpha1
+metadata:
+  name: darren
+EOF
+
+Si no especificamos roles, por defecto el usuario será cluster-admin.
+
+Podemos dar, por ejemplo, rol de admin por namespace.
+
+Bajar fichero de config:
+kubectl get kubeconfig darren -o json | jq .spec > kubeconfig
+kubectl --kubeconfig=kubeconfig get all
 
 
+Parar desactivar el usuario:
+``````
+spec:
+  enabled: false
+``````
+
+
+
+# Teoria
 https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/
 https://kubernetes.io/docs/reference/access-authn-authz/authentication/
 
