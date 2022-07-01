@@ -37,6 +37,7 @@ sed -e '/pattern/{n;N;N;N;N;d}' file.txt
 
 # Agregar un par de líneas tras una linea que tiene 'main'
 sed /etc/puppet/puppet.conf -i -e"/main/a storeconfigs = true\nstoreconfigs_backend = puppetdb"
+  el tema es poner "/EXPRESION/a   y aqui el texto a añadir"
 
 
 Para trabajar con el espacio en blaco -> \s
