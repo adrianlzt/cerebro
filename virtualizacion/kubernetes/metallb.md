@@ -6,6 +6,12 @@ Dos opciones.
 La primera es que los nodos contesten por ARP a las IPs que se expogan como LoadBalancer.
 Problema: single-node bottlenecking, and potentially slow failover
 
+Contestará al ARP el nodo que tenga el pod corriendo.
+
+Si un nodo tiene varias interfaces y todas pueden conectar al ARP, todas contestarán al comienzo y luego se quedará una única contestando.
+
+Jugar con arpping para troubleshooting.
+
 
 # BGP
 Los nodos exportan las IPs de los LoadBalancers con el protocolo BGP a los routers.
