@@ -10,6 +10,8 @@ Contestará al ARP el nodo que tenga el pod corriendo.
 
 Si un nodo tiene varias interfaces y todas pueden conectar al ARP, todas contestarán al comienzo y luego se quedará una única contestando.
 
+No parece que se pueda filtrar con arptable. Arptable filtra si nos solicitan una IP configurada, pero parece que no funciona si nos piden una que esté contestando metallb.
+
 Jugar con arpping para troubleshooting.
 
 

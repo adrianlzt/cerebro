@@ -8,7 +8,11 @@ Como iptables pero para tráfico arp
 Bloquear todo el trafico entrante proveniente de la MAC 00:50:56:a2:4f:4f
 arptables -A INPUT -z 00:50:56:a2:4f:4f -j DROP
 
-Bloquear las peticiones de una interfaz hacia una IP determinada (no me ha funcionado):
+En iptables veremos el paquete de entrada pero no la respuesta.
+Podemos usar "-e" en iptables para ver las MAC.
+
+
+Bloquear las peticiones de una interfaz hacia una IP determinada:
 arptables -A INPUT -i enp1s0 -d 10.0.20.0/24 -j DROP
 
 
