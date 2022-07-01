@@ -43,6 +43,9 @@ No traducir hosts y puertos (los puertos los sigue traduciendo)
 Mostrar más información (TCP/UDP, flafs, checksum, etc)
 # tcpdump -v ...
 
+Mostrar las direcciones mac
+tcpdump -e
+
 Muestra el tráfico en ASCII
 # tcpdump -A port 80
 
