@@ -1,3 +1,8 @@
+mirar:
+gitflow.md
+trunk_based.md
+
+
 touch README.md
 git init
 git add README.md

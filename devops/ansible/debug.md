@@ -1,10 +1,40 @@
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html
 http://docs.ansible.com/ansible/latest/playbooks_debugger.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html#resolving-errors-in-the-debugger
+
 - hosts: test
   strategy: debug
 
 Si falla algo se para y nos arranca el debugger de python en ese punto
 Nos da un debugger muy limitado
+
+> p locals().keys()
+dict_keys(['task', 'task_vars', 'host', 'play_context', 'result'])
+
+Variables disponibles:
+p locals()['task_vars'].keys()
+
+Parámetros que puede tener la task:
+p dir(locals()['task'])
+p result._task_fields
+
+Parámetros del play donde está esta task:
+p dir(locals()['play_context'])
+
+Parámetros del host:
+p dir(locals()['host'])
+
+Argumentos de la task:
+p task.args
+
+Modificar los argumentos:
+task.args['data'] = '{{ var1 }}'
+
+Resultado de la task:
+p result._result
+
+Rejecutar la task (avanzará si no hay fallo)
+redo
 
 
 
@@ -73,6 +103,13 @@ execute
   ejecuta el modulo de ansible que previamente hemos extraido con explode
   usa subprocess para llamar a python y al modulo de ansible
 
+python /home/centos/.ansible/tmp/ansible-tmp-1653945205.1161072-2702643-215610572871479/AnsiballZ_credential_type.py execute
+Esto ejecutará el código "exploded" con las args que estén en ese dir.
+Podemos probar a modificar el código exploded o meter breakpoints.
+Parece que no funciona con "breakpoint()" ni epdb.set_trace()
+
+
+ANTIGUO
 Para ejecutar directamente el modulo de ansible
 cd debug_dir
 cat args | PYTHONPATH=. python ansible_module_*.py

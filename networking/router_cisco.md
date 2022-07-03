@@ -203,6 +203,40 @@ Testear que funciona
 write
 
 
+## NAT en cisco ASA
+https://www.packetswitch.co.uk/cisco-asa-nat-example/
+https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
+
+### Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
+
+object network user-subnet
+ subnet 10.10.60.0 255.255.255.0
+ nat (USERS,OUTSIDE) dynamic interface
+
+Ver estado:
+show xlate
+
+### NAT one-to-one.
+Mapear la IP pública 6.11.34.134 puerto 80 a la IP interna 10.0.0.138 puerto 32080
+
+object network k8s-ingress-public-external-ip
+ host 6.11.34.134
+!
+object network k8s-ingress-public
+ host 10.0.0.138
+ nat (inside,outside) static k8s-ingress-public-external-ip service tcp 32080 www
+!
+access-list outside_acl_k8s_ingress_public extended permit tcp any object k8s-ingress-public eq 32080
+! Esto permite introducir tráfico desde cualquier sitio hacia el objeto k8s-ingress-public al puerto 32080. Si quitamos el "eq 32080" será a todos los puertos
+access-group outside_acl_k8s_ingress_public in interface outside
+! aplicar esa access list a la entrada de tráfico de la interfaz outside
+
+
+Si queremos comprobar si todo el flujo está permitido:
+packet-tracer input OUTSIDE tcp 1.1.1.1 30000 6.11.34.134 http
+  Comprobamos que la ip 1.1.1.1 usando el puerto 30000 puede atacar a la ip 6.11.34.134 (se entiende que una nuestra) al puerto http (80)
+
+
 
 # ACLs / listas de control de acceso
 https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html
@@ -280,6 +314,11 @@ CUIDADO! no borrar una ACL sin antes quitarla de las interfaces, bloquearemos to
 no ip access-list extended Block-DNS-From-The-Internet
 
 
+
+## ACL en ASA
+ACLs on the ASA allow you to override the default security behavior which is as follows:
+    Traffic that goes from a lower security interface is denied when it goes to a higher security interface.
+    Traffic that goes from a higher security interface is allowed when it goes to a lower security interface.
 
 
 
@@ -392,6 +431,10 @@ ip route RED next_hop
 Para añadir rutas a una VRF
 ip route vrf Mgmt 0.0.0.0 0.0.0.0 172.30.6.24
 
+
+## Rutas cisco ASA
+show route
+show run route
 
 
 
@@ -631,6 +674,25 @@ no monitor capture point ip cef NOMBREPUNTO GigabitEthernet 0/0 both
 no monitor capture buffer NOMBREBUFFER
 
 
+## Cisco ASA
+https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-generation-firewalls/118097-configure-asa-00.html
+
+Capturar tráfico desde una IP externa hacia cualquier sitio:
+capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
+
+Para desactivarlo
+no capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
+
+
+Ver que capturas tenemos:
+show capture
+
+Detalle:
+show capture NOMBRE
+
+
+
+
 
 # SNMP
 Activar snmp:
@@ -742,25 +804,6 @@ En caso de fallo de un cable, el tráfico se redirigirá de forma transparente p
 Ese puerto se pondrá en "passive".
 
 Estado:
-https://www.cisco.com/c/m/en_us/techdoc/dc/reference/cli/n5k/commands/show-lacp.html
-show lacp internal
-show lacp neighbor
-show lacp 1 neighbor
-
-
-# Rollback
-https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/config-mgmt/configuration/15-sy/config-mgmt-15-sy-book/cm-config-rollback-confirmed-change.html
-No probado
-
-
-
-
-# Errores
-Puerto flapeando? mirar show log
-
-Muchos NAT montados? Tal vez demasiados procesos de NAT?
-
-DNS server cargando la CPU
 https://www.reddit.com/r/Cisco/comments/3dxo3w/cisco_1941_dns_causing_high_cpu_usage/
 Acceso externo?
 
@@ -795,3 +838,9 @@ Programa para windows o macos para conectar con los routers y que nos realiza ta
 Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
 (echo "USER"; echo 'PASS'; echo "term len 0"; echo "show version"; echo "q"; sleep 3) | telnet 10.0.0.1 > out.txt
 
+
+
+
+# Upgrade firmware
+## Cisco ASA firewall
+https://www.cisco.com/c/en/us/td/docs/security/asa/upgrade/asa-upgrade/asa-appliance-asav.html#ID-2152-00000110

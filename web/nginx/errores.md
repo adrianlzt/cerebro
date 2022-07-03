@@ -32,3 +32,9 @@ los caches que almacenan las respuestas de los upstream (proxy_pass, fastcgi_pas
 Podemos mirar el tráfico entre estos dos (tcpdump/socat) o aumentar el tamaño de los buffers
 https://ma.ttias.be/nginx-proxy-upstream-sent-big-header-reading-response-header-upstream/
   diferentes parametros para fastcgi
+
+
+
+Error al definir un proxy inverso:
+connect() to 127.0.0.1:8123 failed (13: Permission denied) while connecting to upstream
+Culpable selinux, desactivarlo o configurarlo.

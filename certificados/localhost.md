@@ -4,6 +4,10 @@ Aplicación para crear certificados https para nuestro localhost
 
 yay mkcert
 
+Con podman:
+podman run --rm -v "$PWD:/mnt" -w /mnt docker.io/goodeggs/mkcert "nombre.com"
+
+
 mkcert -install
   genera CA en ~/.local/share/mkcert
   la instala en el SO y en firefox/chrome

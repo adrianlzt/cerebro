@@ -44,6 +44,8 @@ ${openstack_compute_instance_v2.vms.*.network}
 
 
 # Splash / multiples variables
+```
 output "public_ips" {
   value = ["${aws_instance.example.*.public_ip}"]
 }
+```

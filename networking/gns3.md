@@ -62,9 +62,6 @@ Podemos ver sus puertos en la ventana "Topology summary"
 
 
 
-### Conectar a internet
-https://docs.gns3.com/docs/using-gns3/advanced/connect-gns3-internet/
-
 
 ### Añadir interfaces
 Editar el router (right click), ir a Slots y añadir una del tipo que necesitemos.
@@ -87,6 +84,7 @@ Donde poder bajarlas:
 http://tfr.org/cisco-ios/
 https://www.reddit.com/r/opendirectories/comments/7rmbi3/lots_of_cisco_ios_firmware_images_for_gns3_etc/
 https://gist.github.com/takyon12/ec938f7dbd4d32d2ba3e
+https://t.me/s/cisco_collection
 
 Por ejemplo para correr el router cisco 7200 usaremos la imagen
 http://tfr.org/cisco-ios/7200/c7200-adventerprisek9-mz.124-24.T5.bin
@@ -127,6 +125,11 @@ Ejemplo:
 Tuve que reiniciar el server y la gui.
 
 
+## Version distinta del server y GUI
+Variaban en el minor (a.b.31 vs a.b.32) y no fucionaba.
+Cambiando a mano el version.py del server parece que evita ese chequeo y la gui comunica correctamente.
+
+
 ## C7200 'Ghost': generic_nvram_extract_config: Unknown error
 ### Poner la misma zona horaria en el gns server y gui
 ln -fs /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -139,6 +142,7 @@ dpkg --add-architecture i386
 apt update
 apt install dynamips:i386
 No me ha funcionado
+
 
 ## El GUI no abre la consola a los routers
 Mirando el stdout del gui:
@@ -155,6 +159,10 @@ Si al conectar por ssh nos sale "200-At least a module and a command must be spe
 Podemos ver los puertos de los routers en la GUI, a la derecha.
 
 
+
+
+
+
 # Dynamips
 Simulador de routers cisco
 Para levantar una imagen
@@ -162,10 +170,48 @@ dynamics fichero.image
 
 Al terminar nos dejará en la consola del router
 
+## Conectar elementos de red
+
+### Conectar dos routers usando unix sockets
+dynamips ios.image -p 1:PA-FE-TX -s 1:0:unix:/tmp/remote:/tmp/local
+dynamips ios.image -p 1:PA-FE-TX -s 1:0:unix:/tmp/local:/tmp/remote
+En cada router tendremos que configurar la interfaz FastEthernet1/0
+
+Ejemplo:
+Router#conf term
+Router(config)#interface FastEthernet 1/0
+Router(config-if)#ip addr 10.0.1.2 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#write
+
+
+### Usar un virtual bridge para unir 3 routers
+
+Arrancamos un device que va a hacer de bridge (parece que vale cualquier imagen):
+dynamips /home/adrian/GNS3/images/c7200-adventerprisek9-mz.124-24.T5.image -b virtual_bridge.conf
+
+El fichero de conf:
+# Connection to instance "I0"
+I0:udp:10000:127.0.0.1:10001
+# Connection to instance "I1"
+I1:udp:10002:127.0.0.1:10003
+# Connection to instance "I2"
+I2:udp:10004:127.0.0.1:10005
+
+
+Luego levantamos cada uno de los routers.
+En esa conf lo que leemos es que hay tres conexiones listas, escuchando en los puerto 10000, 100002 y 10004, y esperando que el dispositivo que conecte enté en el otro puerto que se pone.
+
+Por lo tanto para levantar el primer router haremos (esto es, levantamos un router que escucha en 100001 y se coneta a 10000):
+dynamips /home/adrian/GNS3/images/c7200-adventerprisek9-mz.124-24.T5.image -p 1:PA-FE-TX -s 1:0:udp:10001:127.0.0.1:10000
+
+
 ## Opciones de dynamips dentro de la consola del router
 Control+AltGr+]
 q: quit
 c: write config to ios_cfg.txt
+
 
 
 # Guests
@@ -190,6 +236,7 @@ También podemos conectar contendores docker.
 # Conectar GNS3 a una red externa
 https://www.b-ehlers.de/blog/posts/2017-07-11-gns3-cloud-linux/
 https://docs.gns3.com/docs/using-gns3/advanced/connect-gns3-internet/
+
 
 ## conex ethernet directa
 Con GNS3 montado sobre una VM de OST no consigo que el qemu coja IP.
@@ -220,4 +267,3 @@ vi /etc/sysctl.conf
 iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE
 iptables -A FORWARD -i ens3 -o virbr0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 iptables -A FORWARD -i virbr0 -o ens3 -j ACCEPT
-

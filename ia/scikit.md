@@ -61,6 +61,7 @@ Xtest = poly.fit_transform(Xtest)
 
 
 
+
 # Supervised learning
 
 ## Linear regression
@@ -79,11 +80,25 @@ reg.intercept_  # sería la "b"
 reg.predict(np.array([[225]]))  # estimar "y" a partir de un "x"
 
 
+### Polynomial regression
+```
+poly_reg=make_pipeline(PolynomialFeatures(4, include_bias=False),LinearRegression())
+poly_reg.fit(X,y)
+score = poly_reg.score(X, y)
+
+Para un grado 6, el polinomio generado seria:
+intercept = poly_reg.steps[1][1].intercept_
+coef = poly_reg.steps[1][1].coef_
+
+y = x**6*coef[5] + x**5*coef[4] + x**4*coef[3] + x**3*coef[2] + x**2*coef[1] + x*coef[0] + intercept
+```
+
 
 ## Logistic regression
 
 Dibujar las zonas de decisión.
 https://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic_multinomial.html#sphx-glr-auto-examples-linear-model-plot-logistic-multinomial-py
+
 
 ## Decision Trees / classification and regression
 https://scikit-learn.org/stable/modules/tree.html

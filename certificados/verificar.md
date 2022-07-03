@@ -30,3 +30,7 @@ https://www.sslshopper.com/certificate-key-matcher.html
 diff <(openssl x509 -noout -modulus -in *.crt) <(openssl rsa -noout -modulus -in *.key); echo $?
 
 Si devuelve 0, sin otros errores, es que el crt corresponde a la key
+
+
+# Verificar si una clave está bien
+openssl rsa -in *.key -check

@@ -6,6 +6,14 @@ Dos opciones.
 La primera es que los nodos contesten por ARP a las IPs que se expogan como LoadBalancer.
 Problema: single-node bottlenecking, and potentially slow failover
 
+Contestará al ARP el nodo que tenga el pod corriendo.
+
+Si un nodo tiene varias interfaces y todas pueden conectar al ARP, todas contestarán al comienzo y luego se quedará una única contestando.
+
+No parece que se pueda filtrar con arptable. Arptable filtra si nos solicitan una IP configurada, pero parece que no funciona si nos piden una que esté contestando metallb.
+
+Jugar con arpping para troubleshooting.
+
 
 # BGP
 Los nodos exportan las IPs de los LoadBalancers con el protocolo BGP a los routers.
@@ -49,3 +57,20 @@ Si tenemos algun LB deberemos ver algo tipo:
 
 Solo uno de los speakers remitirá la ruta a los peers.
 
+
+# Diferentes pools
+Podemos tener diferentes pools de IP que MetalLB puede ofrecer.
+https://metallb.universe.tf/configuration/#controlling-automatic-address-allocation
+
+Nombraremos a esos pools de distintas maneras, normalmente haciendo uno el de selección automática (default).
+
+Si queremos que un Service LoadBalancer use un pool específico deberemos usar una annotation:
+https://metallb.universe.tf/usage/#requesting-specific-ips
+
+Ejemplo:
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips

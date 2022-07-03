@@ -37,3 +37,8 @@ CLI: https://github.com/ogarcia/FileTeaSend
 filetea fichero
   nos da una URL. Mientras tengamos el programa corriendo estaremos compartiendo el fichero
 yaourt fileteasend-git (roto por ahora)
+
+
+landrop
+necesita cliente
+https://www.redeszone.net/tutoriales/redes-cable/enviar-archivos-landrop-red/

@@ -67,3 +67,9 @@ http://www.bonusbits.com/main/HowTo:Setup_CentOS_LXC_Container_on_Ubuntu
 http://www.bonusbits.com/main/HowTo:Create_Vagrant_CentOS_LXC_Box_on_Ubuntu
 
 No probado
+
+
+# Exportar una box a formato qcow2
+tar zxvf imagen.box
+VBoxManage clonehd --format RAW box-disk001.vmdk appliance.img
+qemu-img convert appliance.img -O qcow2 appliance.img ./appliance.qcow2

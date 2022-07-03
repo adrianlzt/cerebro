@@ -1,3 +1,8 @@
+Affinity: reglas que atraen a pods a ciertos nodos
+Taints: reglas que repelen a los pods de ciertos nodos
+Tolerations: permiten a ciertos pods ejecutarse en nodos de donde han sido repelidos por taints.
+
+
 Assigning Pods to Nodes
 https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 
@@ -47,12 +52,28 @@ spec:
 https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
 
 taint es lo contrario a affinity. Se rechaza a los pods.
-
 Las "tolerations" se pueden especificar en un pod para poder ser desplegado en un nodo a pesar de tener un taint que hace match.
+
+Poner un taint a un nodo:
+kubectl taint nodes node1 key1=value1:NoSchedule
+
+Quitar ese taint:
+kubectl taint nodes node1 key1=value1:NoSchedule-
+
+Formato:
+kubectl taint NODE NAME KEY_1=VAL_1:TAINT_EFFECT_1 ... KEY_N=VAL_N:TAINT_EFFECT_N
+
+The effect must be NoSchedule, PreferNoSchedule or NoExecute.
+
 
 
 Taint configurado por kubespray para los servidores que son "master" pero no "nodes".
 node-role.kubernetes.io/master:NoSchedule
+
+En formato YAML
+taints:
+- effect: NoSchedule
+  key: node-role.kubernetes.io/master
 
 Ciertos pods del namespace kube-system se desplegarán de todas maneras:
   calico (red)
@@ -67,3 +88,9 @@ tolerations:
   operator: "Equal"
   effect: "NoSchedule"
 
+Plantilla para meter tolerations:
+tolerations:
+  - key: "NOMBRE_KEY"
+    operator: "Equal|Exists"
+    value: "VALOR_KEY"
+    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"

@@ -1,5 +1,7 @@
 pip install python-openstackclient
 
+Cargar el fichero rc que bajamos desde el dashboard para autenticarnos
+
 Si falla, mirar razón con:
 openstack --debug --help
 

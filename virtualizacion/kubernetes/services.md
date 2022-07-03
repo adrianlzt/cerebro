@@ -21,6 +21,7 @@ https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
 Crea automaticamente un ClusterIP
 Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
+Tendremos que usar la IP registrada del nodo (la que vemos con kubectl get nodes -o wide).
 
 Útil si tenemos nuestros propios LBs (una IP externa nuestra la balancearíamos sobre ese puerto de todos los nodos)
 Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
@@ -97,6 +98,18 @@ Lo utilizaremos cuando queremos que una app de kubernetes necesite usar un servi
 Ejemplo, una app que ataca a mi-redis.prod.svc.CLUSTER
 Creamos un ExternalName que asocie mi-redis del proyecto prod a redis.externo.com
 Cuando la app ataque a mi-redis.prod.svc.CLUSTER se le devolverá un CNAME redis.externo.com
+
+Típico caso, queremos que un ingress del namespace A llegue a un service del namespace B.
+Crearemos en el NS B un service ExternalName apuntando al NS A:
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-service
+spec:
+  type: ExternalName
+  externalName: test-service.namespacename.svc.cluster.local
+
+https://stackoverflow.com/a/59845018
 
 
 

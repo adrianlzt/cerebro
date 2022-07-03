@@ -1,14 +1,20 @@
+Mirar kubeadm.md
+
 # Uso de los certificados dentro de kubernetes
 https://kubernetes.io/docs/setup/best-practices/certificates/
 https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md
 
-Client certificates for the kubelet to authenticate to the API server <- estos creo que son los que se renuevan solos. Estan tanto en los masters como los workers
-Server certificate for the API server endpoint <- el endpoint web https que exponen los masters
-Client certificates for administrators of the cluster to authenticate to the API server
-Client certificates for the API server to talk to the kubelets
+Listado de certificados que se usan:
+  - kubelet, tipo client, usados por masters y workers para conectar al api server
+  - API server endpoint, tipo servidor, el endpoint web https que exponen los masters
+  - admin, tipo client, el administrador del cluster para hablar con el api server
+  - controller manager, tipo client
+  - scheduler, tipo client
+  - service-account (sa), key-pair, para firmar service account tokens, más info https://kubernetes.io/docs/admin/service-accounts-admin/
+
+proxy?
+Client certificates for the API server to talk to the kubelets (para que al api server pueda recoger métricas, logs y ejecutar comandos en los kubelets)
 Client certificate for the API server to talk to etcd
-Client certificate/kubeconfig for the controller manager to talk to the API server
-Client certificate/kubeconfig for the scheduler to talk to the API server.
 Client and server certificates for the front-proxy (only if you run kube-proxy to support an extension API server)
 
 Los certs, si instalamos con kubeadm o ansible, están en /etc/kubernetes/ssl
@@ -31,10 +37,31 @@ Firma: apiserver, apiserver-kubelet-client y front-proxy
 Cada nodo tiene un kubelet que debe tener su propio cert de cliente ante la API.
 Estos certs les autorizarán como pertenecientes al grupo system:nodes con el usuario system:node:NOMBRE
 
+Comprobar a mano caducidad certs
+find /etc/kubernetes/pki/ -type f -name "*.crt" -print | egrep -v 'ca.crt$' | xargs -L 1 -t  -i bash -c 'openssl x509  -noout -text -in {}|grep After'
+
+### Regenerar certs master
+https://stackoverflow.com/a/57308826
+
+kubeadm init phase certs all --config /etc/kubernetes/kubeadm-config.yaml
+
+Si no tenemos fichero de kubeadm tendremos que pasar los distintos parámetros.
+
+Para generar los certs del schedule y controller-manager en v1.14 mirar
+https://docs.wire.com/how-to/administrate/kubernetes/certificate-renewal/scenario-1_k8s-v1.14-kubespray.html
+
+
 
 ### Kubelets
 https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/
 Es la comunicación de los nodos que forman kubernetes con el apiserver, usando TLS tanto en cliente como en servidor.
+
+Usa un fichero similar al que usamos en .kube/config para usar kubectl.
+Solo que los certificados apuntan a unos ficheros que se van rotando para renovar los certs automáticamente.
+
+
+Si ha caducado el cert de un kubelet, podemos regenerarlo siguiendo estos pasos:
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert
 
 
 ## Service accounts

@@ -1,6 +1,13 @@
+# kubeadm
+Es quien gestiona la instalación del cluster, pero no instalar el container runtime, ni el network plugin.
+
+
+
 # https://github.com/weaveworks/wksctl
 No lo he probado
 GitOps para instalar kubernetes
+Parece en desuso desde mayo 2021
+
 
 # Kubespray
 https://kubespray.io/
@@ -20,7 +27,7 @@ Lo mejor es tener los etcd sobre SSD
 https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/hardware.md#disks
 
 
-# Despliegue
+## Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
 pipenv install -r requirements.txt
@@ -30,8 +37,11 @@ declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
 CONFIG_FILE=inventory/mycluster/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
   automáticamente asignará nombre "nodeN"
 
+inventario:
+  kube_control_plane -> nodos "master"
+  kube_node -> nodos "workers"
 
-tunear:
+tunear, leer todos los params de config y adaptar:
 inventory/mycluster/group_vars/all/all.yml
   - explicación variables: https://github.com/kubernetes-sigs/kubespray/blob/v2.10.0/docs/vars.md
   - como hacer el ha (mirar siguientes líneas)
@@ -220,6 +230,10 @@ ansible-playbook -i inventory/mycluster/hosts.yml scale.yml
 
 ## Quitar un nodo
 mirar admin.md
+
+
+## Addons
+Para desplegar usa roles que crean los .yaml en /etc/kubernetes/addons/ y los aplica con kubectl
 
 
 

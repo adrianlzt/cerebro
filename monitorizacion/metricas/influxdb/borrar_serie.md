@@ -1,1 +1,1 @@
-query_lenguage.md
+query_language.md

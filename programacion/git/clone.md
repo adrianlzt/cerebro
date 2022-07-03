@@ -10,3 +10,8 @@ Bajar una copia de los ficheros, sin historial y sin otras ramas
 
 Usando otra clave ssh (generalmente la mejor aproximación es meterla en el ssh agent):
 GIT_SSH_COMMAND='ssh -i ~/.ssh/foobar -o IdentitiesOnly=yes' git clone git@bitbucket.org:foo/bar.git
+
+
+
+Ignorar TLS
+git -c http.sslVerify=false clone https://example.com/path/to/git

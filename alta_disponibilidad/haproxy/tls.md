@@ -8,6 +8,9 @@ El .pem puede ser un concat de certificado, cas y key. También se puede poner e
 Si ponemos un directorio, se leeran los ficheros en orden alfabético (excepto '.issuer', '.ocsp' or '.sctl')
 O podemos poner varios crt: crt certificado crt clave
 Si nos da error en los certs, veririficar que están correctamente concatenados, que los headers estén en líneas separadas, con el número adecuado de guiones, etc.
+Verificar la key con:
+openssl rsa -in *.key -check
+
 
 Ejemplo básico:
 frontend www.mysite.com

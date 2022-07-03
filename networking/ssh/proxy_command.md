@@ -2,6 +2,8 @@ https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#Passing_Th
 A partir de openSSH 7.3 existe una opción para especificar a traves de que servidor queremos saltar:
 ssh -J user1@jumphost1.example.org:22 fred@192.168.5.38
 
+Lo malo del -J es que no podemos pasar una clave específica al jump host. Con ProxyCommand si podemos.
+
 Host server2
         HostName 192.168.5.38
         ProxyJump user1@jumphost1.example.org:22

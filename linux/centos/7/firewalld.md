@@ -123,6 +123,9 @@ firewall-cmd --add-port=45/tcp
 firewall-cmd --add-port=50-55/tcp
 firewall-cmd --add-port=50/tcp --add-port=60/tcp
 
+Creo que hace falta recargar para coger la conf:
+firewall-cmd --reload
+
 
 ## Services
 Ficheros XML que asocian un nombre a una serie de puertos

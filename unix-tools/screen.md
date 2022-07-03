@@ -97,3 +97,11 @@ screen -t syslog 1 tail -F /var/log/syslog
 Save the above to a file, say "fancy.screenrc". Then start screen with:
 Code:
 screen -c fancy.screenrc
+
+
+# Compartir con distintos usuarios
+https://unix.stackexchange.com/a/163878
+
+Si vemos este error
+"chmod /dev/pts/2: Operation not permitted"
+Es que estamos accediendo seguramente con "sudo -u X" en vez de con ssh.

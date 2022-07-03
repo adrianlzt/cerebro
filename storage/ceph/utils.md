@@ -73,6 +73,16 @@ rclone config
   wizard para configurarlo
 
 Config en ~/.config/rclone/rclone.conf
+Ejemplo:
+[test]
+type = s3
+provider = Ceph
+env_auth = false
+access_key_id = REDACTED
+secret_access_key = REDACTED
+endpoint = corp.us
+acl = public-read
+``````
 Podemos definir ahí el endpoint de ceph a mano con http://1.2.3.4:8080 si no queremos usar tls
 
 Directorios/buckets en un remote:

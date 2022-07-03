@@ -69,6 +69,8 @@ Si tenemos una variable con muchos elementos por que se ha generado con un count
 Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)
 aws_instance.example.0.public_ip
 
+Generar una lista a partir de un map (generado con for each):
+instances = [for d in google_compute_instance.host: d.id]
 
 ## concat
 > concat(["a", ""], ["b", "c"])
@@ -78,8 +80,10 @@ aws_instance.example.0.public_ip
 # Maps
 https://www.terraform.io/intro/getting-started/variables.html#maps
 
+Todos los tipos de los datos de un map deben ser del mismo tipo
+
 variable "amis" {
-  type = "map"
+  type = map(string)
   default = {
     "us-east-1" = "ami-b374d5a5"
     "us-west-2" = "ami-4b32be2b"

@@ -159,3 +159,7 @@ setxkbmap -option caps:escape
 systemd-cat xmodmap ~/.Xmodmap
 
 
+
+
+
+# Desactivar teclado laptop cuando está un USB conectado

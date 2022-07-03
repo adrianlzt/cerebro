@@ -1,3 +1,5 @@
+https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/#IngressSpec
+
 https://kubernetes.io/docs/concepts/services-networking/ingress/
 https://medium.com/@cashisclay/kubernetes-ingress-82aa960f658e
 Mirar network para discusión ingress vs Service
@@ -52,8 +54,30 @@ Este parece que envia directamente a los pods en vez de al service, por performa
 haproxy
 
 
+Ejemplo básico de la doc:
+``````
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: test
+            port:
+              number: 80
+``````
 
 Ejemplo solicitando al ingress controller que las peticiones que reciba con "Host: foo.mydomain.com" las envie al Service "foo", puerto 8080, y las "/bar/*" al service bar puerto 8080
+
 #apiVersion: extensions/v1beta1 # versiones antiguas de k8s
 #kind: Ingress
 apiVersion: networking.k8s.io/v1
@@ -80,6 +104,33 @@ spec:
           serviceName: bar
           servicePort: 8080
 
+
+
+Ejemplo haciendo un rewrite para uno solo de los paths.
+Las peticiones que hagan los clientes a foo.bar/img/XX se reescriben como foo.bar/app/XX.
+Ese nuevo path "/app" es matcheado por una de las reglas del ingress que la reenvia al svc adecuado.
+
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: rewrite ^(/img)(.*) /app$2 last;
+
+  rules:
+  - host: usync.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              name: http
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: ceph-obj
+            port:
+              number: 8081
 
 
 Ejemplo del ingress de NGINX:
@@ -134,6 +185,25 @@ Annotations y config maps (CUIDADO este es el ingress de nginx INC, no el de kub
 https://github.com/nginxinc/kubernetes-ingress/blob/master/docs/configmap-and-annotations.md
 
 
+# Exponer servicios TCP o UDP
+https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md
+
 
 # Internals
 https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
+
+
+# Conectar a un backend mediante protocolo https obligatoriamente
+Nos puede servir si el backend hace una redirección a https siempre que vayamos por http.
+Es el caso de argocd, se deshace el TLS en el ingress y envía la comunicación por http.
+Argo, al ver la comunicación por http, nos reenvia al https y hace un círculo de redirecciones.
+
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+
+Con este parámetro le decimos al ingress que la ruta desde nginx a argo la haga vía https.
+
+
+
+# Atacar a un service de otro namespace
+Mirar ExternalName en service.md

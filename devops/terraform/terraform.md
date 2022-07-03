@@ -51,3 +51,12 @@ terraform show -json
 
 O de uno en concreto:
 terraform state show google_sql_database_instance.prod_postgres
+
+
+# List
+Listar todos los recursos
+terraform state list
+
+
+# Borrar un recurso del estado
+terraform state rm recurso.name

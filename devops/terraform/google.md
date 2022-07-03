@@ -1,3 +1,14 @@
+# Módulos de alto nivel
+https://github.com/terraform-google-modules
+
+
+Ejemplo, un módulo que hace NAT para salir a internet para las VMs sin IP púlica.
+https://github.com/terraform-google-modules/terraform-google-cloud-nat
+
+Para crear una instancia:
+https://github.com/terraform-google-modules/terraform-google-vm
+
+
 # Crear una service account para usar con terraform
 https://cloud.google.com/community/tutorials/managing-gcp-projects-with-terraform
 
@@ -12,6 +23,10 @@ Para dar un determinado permiso a una SA, usuario, etc
 
 
 # Load balancer
+Usar este módulo oficial de google que simplifica la config
+GoogleCloudPlatform/lb-http/google
+
+
 https://github.com/gruntwork-io/terraform-google-load-balancer/blob/master/modules/http-load-balancer/main.tf
 
 Se compone de varias primitivas.

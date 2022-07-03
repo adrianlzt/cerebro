@@ -144,3 +144,10 @@ De esta manera tendremos un backup consistente.
 
 # No hacer overwrite de ficheros en destino
 --ignore-existing
+
+
+# Leer ficheros con sudo
+Usar "sudo rsync" (teniendo en cuenta que tenga NOPASSWD) para que pueda leer ficheros que el user ssh no puede.
+
+rsync --rsync-path="sudo rsync" -aP MAQUINA:/datos/ .
+

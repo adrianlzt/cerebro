@@ -1,4 +1,6 @@
-kubectl run --generator=run-pod/v1 --rm -it -t alpine --image=alpine
+ /home/adrian/adrianRepo/virtualizacion/kubernetes/shell.md
+kubectl run --rm -it -t alpine --image=alpine
+
 
 
 # Deployment alpine
