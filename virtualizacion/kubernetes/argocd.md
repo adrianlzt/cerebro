@@ -18,3 +18,9 @@ https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application
 
 # GitOps CI/CD con helm
 https://mixi-developers.mixi.co.jp/argocd-with-helm-fee954d1003c
+
+Tener una CI para los helm chart.
+Luego tener un repo donde almacenamos 3 cosas:
+  - yaml para crear la ArgoCD application (para poder crearla con un kubectl apply)
+  - Chart.yaml con una dependencia del chart que queremos desplegar
+  - fichero de valores para parametrizar ese chart
