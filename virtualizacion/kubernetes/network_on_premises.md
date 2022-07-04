@@ -8,7 +8,7 @@ NO FUNCIONA.
 El paquete IP llega hasta el nodo que almacena el pod, pero no se lo entrega. Alguna política de seguridad?
 
 
-Si queremos tener LoadBalancer podemos usar MetalLB.
+Si queremos tener LoadBalancer podemos usar MetalLB o kube-vip.
 Un problema es que metallb también usa BGP (puede usar ARP pero no escala bien).
 Una solución es elegir un subgrupo de los nodos de cluster para que exporten el BPG de calico y el resto el BGP de metallb.
 Si usamos MetalLB con IPs de la misma subred donde están los hosts creo que no debería funcionar, porque intentarán conectar directamente.

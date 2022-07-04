@@ -35,7 +35,7 @@ Service/NodePort, abre en todos los nodos del cluster un puerto (30000–32767 p
 Service/LoadBalancer, le pedimos a la cloud donde estemos que nos cree un LoadBalancer (fuera de kubernetes), que apuntará al NodePort que se creará automáticamente.
 Ingress: tener desplegado en el cluster un proxy inverso (por ejemplo nginx), que recogerá las reglas que vayamos pasando al crear objetos "Ingress" (no se mete en como le llega el tráfico al ingress)
 
-LoadBalancer: para una opción válida para on-premises/metal mirar metallb.md
+LoadBalancer: para una opción válida para on-premises/metal mirar metallb.md o kube-vip.md
 Mirar network_on_premises.md para una discusión más completa sobre networking en despliegues sobre metal directamete.
 
 
