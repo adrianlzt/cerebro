@@ -103,8 +103,9 @@ kubectl api-resources
 
 nos devuelve muchos de los recursos, pero no todos, que tengamos configurados en nuestro NS
 kubectl get all
-kubectl api-resources --verbs=list -o name | tr '\n' ',' | sed "s/,$//" | xargs kubectl get -o name --all-namespaces
-  este primero saca la lista de todo lo que ofrece el cluster y luego pide todas las instancias de cada resource
+
+Obtener todos los recursos de un namespace (sin events)
+kubectl api-resources --verbs=list --namespaced -o name | grep -v events | xargs -n 1 kubectl get --show-kind --ignore-not-found
 
 
 Devolver ciertos recursos
