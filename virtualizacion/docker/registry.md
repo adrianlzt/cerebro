@@ -1,3 +1,6 @@
+# artifacthub como repo de imágenes
+https://github.com/artifacthub/hub
+
 # Usar un repo externo
 docker login http://reg.externo.com
 

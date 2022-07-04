@@ -14,3 +14,7 @@ Por ejemplo, podemos tener una label "environment" y decirle a argo que solo des
 Usar un fichero yaml para definir la aplicación que queremos desplegear.
 Deberemos crearla en el namespace de argocd.
 https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+
+
+# GitOps CI/CD con helm
+https://mixi-developers.mixi.co.jp/argocd-with-helm-fee954d1003c
