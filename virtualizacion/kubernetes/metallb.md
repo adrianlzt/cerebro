@@ -1,4 +1,5 @@
 https://metallb.universe.tf/
+mirar tambien kube-vip.md
 
 Dos opciones.
 

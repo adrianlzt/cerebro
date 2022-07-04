@@ -235,6 +235,9 @@ mirar admin.md
 ## Addons
 Para desplegar usa roles que crean los .yaml en /etc/kubernetes/addons/ y los aplica con kubectl
 
+### Uninstall addons
+Ir al directorio adecuado y borrarlo con kubectl delete -f *
+
 
 
 ## Errores / troubleshooting
