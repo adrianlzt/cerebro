@@ -9,3 +9,8 @@ Luego creamos un project, donde seleccionaremos un repositorio y un destination 
 Podemos usar las "labels" para seleccionar solo ciertos recursos.
 Por ejemplo, podemos tener una label "environment" y decirle a argo que solo despliegue en este proyecto los recursos de la label "environment=dev".
 
+
+# Desplegar applications como CRDs
+Usar un fichero yaml para definir la aplicación que queremos desplegear.
+Deberemos crearla en el namespace de argocd.
+https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
