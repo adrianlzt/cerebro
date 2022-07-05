@@ -5,8 +5,8 @@ También podemos usar esta herramienta: http://www.bolet.org/TestSSLServer/
 yaourt -S aur/testsslserver
 /usr/bin/TestSSLServer www1.agenciatributaria.gob.es
 
-Chequear si el certificado (cert.cer) esta firmado por myca.pem (CApath a /dev/null para que no use la del sistema)
-openssl verify -CApath /dev/null -CAfile myca.pem /tmp/cert.cer
+Chequear si el certificado (cert.cer) esta firmado por myca.pem (CApath a /dev para que no use la del sistema)
+openssl verify -CApath /dev -CAfile myca.pem /tmp/cert.cer
 
 Comprobar el certificado de una web:
 gnutls-cli google.es
