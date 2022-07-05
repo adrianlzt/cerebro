@@ -109,6 +109,10 @@ req.Header.Add("If-None-Match", `W/"wyzzy"`)
 w.Header().Add("Content-Type", "application/json")
 
 
+## Server con TLS
+https://gist.github.com/denji/12b3a568f092ab951456
+
+
 ## TLS/SSL sin chequear
 http://stackoverflow.com/questions/12122159/golang-how-to-do-a-https-request-with-bad-certificate
 
