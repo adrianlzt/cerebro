@@ -32,3 +32,9 @@ eBPF program using kprobes to trace TCP events without run-time compilation depe
 
 https://github.com/weaveworks/procspy
 Go methods to list TCP connections and the owning processes.
+
+
+
+# Escuchar todas las conex tcp/udp
+Ejemplo tonto donde se cierra un programa si se detectan intentos de conex TCP en puertos no esperados
+https://gist.github.com/adrianlzt/69b25104529684f9eaf7c33462deedac
