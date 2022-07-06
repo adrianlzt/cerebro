@@ -24,3 +24,9 @@ Luego tener un repo donde almacenamos 3 cosas:
   - yaml para crear la ArgoCD application (para poder crearla con un kubectl apply)
   - Chart.yaml con una dependencia del chart que queremos desplegar
   - fichero de valores para parametrizar ese chart
+
+
+
+# Notificaciones
+ https://argocd-notifications.readthedocs.io/en/stable/
+ Instalar con helm

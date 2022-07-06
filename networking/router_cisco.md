@@ -705,6 +705,13 @@ conf term
   snmp-server community otronombre ro
   no snmp-server community public
 
+## ASA
+https://www.networkstraining.com/how-to-configure-snmp-on-cisco-asa-5500-firewall/
+
+snmp-server enable
+snmp-server host inside 10.1.1.100 community somesecretword
+snmp-server community somesecretword
+
 
 # BGP
 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/unicast/6_x/cisco_n6k_layer3_ucast_cfg_rel_602_N2_1/l3_bgp.html
