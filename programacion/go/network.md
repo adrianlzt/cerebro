@@ -1,4 +1,5 @@
 # Calcular numero de IPs libres en una red
+```
 cidr := "62.76.47.12/24"
 _, net, err := net.ParseCIDR(cidr)
 if err != nil {
@@ -7,6 +8,7 @@ if err != nil {
 ones, bits := net.Mask.Size()
 freeIPs := math.Pow(2, float64(bits)-float64(ones))-2
 fmt.Println("numero de ips libres:", freeIPs)
+```
 
 
 SplitHostPort
@@ -38,3 +40,24 @@ Go methods to list TCP connections and the owning processes.
 # Escuchar todas las conex tcp/udp
 Ejemplo tonto donde se cierra un programa si se detectan intentos de conex TCP en puertos no esperados
 https://gist.github.com/adrianlzt/69b25104529684f9eaf7c33462deedac
+Extraído del proyecto de portguard.md
+
+Lo básico es:
+```
+serverIp := net.ParseIP("0.0.0.0").To4()
+conn, err := net.ListenIP("ip4:tcp", &net.IPAddr{IP: serverIp})
+if err != nil {
+        fmt.Printf("ListenIP: %v", err.Error())
+}
+
+b := make([]byte, 1024)
+for {
+        numRead, remoteAddr, err := conn.ReadFromIP(b)
+        if err != nil {
+                fmt.Printf("read from ip:%s", err.Error())
+                continue
+        }
+
+        // En b[:numRead] tendremos los datos del paquete
+}
+```
