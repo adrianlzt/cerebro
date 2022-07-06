@@ -1,6 +1,8 @@
 https://operatorhub.io/
 Tienda de operators.
 
+Mirar olm.md
+
 https://enterprisersproject.com/article/2019/2/kubernetes-operators-plain-english
 https://developers.redhat.com/blog/2018/12/18/kubernetes-operators-in-depth?intcmp=701f2000000tjyaAAA
 

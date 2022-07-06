@@ -30,3 +30,9 @@ Luego tener un repo donde almacenamos 3 cosas:
 # Notificaciones
  https://argocd-notifications.readthedocs.io/en/stable/
  Instalar con helm
+
+ 
+# Autodeploy de aplicaciones
+https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/
+
+Con esto podemos tener un repo donde simplemente creando directorios con yaml, kustomize o helm se crearán y desplegarán las aplicaciones solas.
