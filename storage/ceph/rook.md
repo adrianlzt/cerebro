@@ -26,6 +26,10 @@ Luego usamos helm de nuevo para desplegar un cluster usando el operator.
 Aquí especificamos que máquinas/discos usar y que queremos hacer con ellos.
 
 
+# Conectar externamente
+https://www.adaltas.com/en/2020/04/16/expose-ceph-from-rook-kubernetes/
+
+
 
 # Antiguo
 
