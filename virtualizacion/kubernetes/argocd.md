@@ -34,5 +34,6 @@ Luego tener un repo donde almacenamos 3 cosas:
  
 # Autodeploy de aplicaciones
 https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/
+https://github.com/argoproj/applicationset/blob/master/examples/git-generator-directory/git-directories-example.yaml
 
 Con esto podemos tener un repo donde simplemente creando directorios con yaml, kustomize o helm se crearán y desplegarán las aplicaciones solas.
