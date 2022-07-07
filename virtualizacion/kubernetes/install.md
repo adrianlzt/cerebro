@@ -26,6 +26,8 @@ Keeping stable etcd clusters is critical to the stability of Kubernetes clusters
 Lo mejor es tener los etcd sobre SSD
 https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/hardware.md#disks
 
+Las ejecuciones de los playbook las guarda en "ARA".
+
 
 ## Despliegue
 git clone https://github.com/kubernetes-incubator/kubespray.git
