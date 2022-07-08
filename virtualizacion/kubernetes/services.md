@@ -15,6 +15,10 @@ mirar kube-proxy.md
 Por defecto, crea una VIP alcanzable internamente dentro del cluster
 La VIP llevará el tráfico a los POD con cierta label.
 
+Podemos asignarle una IP externa a mano:
+kubectl patch svc nginx-service -p '{"spec":{"externalIPs":["192.168.2.61"]}}'
+Pero parece que solo funciona en los nodos del cluster.
+
 
 ## NodePort
 https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
