@@ -30,6 +30,10 @@ DROP USER does not automatically close any open user sessions. Rather, in the ev
 Cambiar contraseña:
 mysql> SET PASSWORD FOR 'bugs'@'localhost' = PASSWORD("la pass");
 
+Modificar tabla mysql.users:
+update mysql.user set host="%" where user="datadope";
+flush privileges;
+
 mysqladmin -u root -p'oldpassword' password newpass
 
 
