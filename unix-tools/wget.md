@@ -4,6 +4,7 @@ wget -r -k -p -np http://wikis.inet/index.php/SISTEMAS
 	-k cambiar links para que funcione en local
 	-p bajar los requisitos de la web para que se vea bien
 	-np no subir por el path
+    -nd no crear directorios
 
 
 Hacer copia de un mediawiki

@@ -18,6 +18,7 @@ La VIP llevará el tráfico a los POD con cierta label.
 Podemos asignarle una IP externa a mano:
 kubectl patch svc nginx-service -p '{"spec":{"externalIPs":["192.168.2.61"]}}'
 Pero parece que solo funciona en los nodos del cluster.
+O si tenemos un LoadBalancer que se encarge de esto (creo)
 
 
 ## NodePort
