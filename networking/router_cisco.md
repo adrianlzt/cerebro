@@ -59,6 +59,11 @@ otra linea
 tclquit
 
 
+# Dump copy export configuration
+## asa
+https://console.kim.sg/backup-cisco-running-config-via-ssh/
+copy running-config scp:\\192.168.1.2
+
 
 
 # Interfaces
