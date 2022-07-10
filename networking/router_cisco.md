@@ -856,3 +856,23 @@ Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
 # Upgrade firmware
 ## Cisco ASA firewall
 https://www.cisco.com/c/en/us/td/docs/security/asa/upgrade/asa-upgrade/asa-appliance-asav.html#ID-2152-00000110
+
+Copiar la imagen:
+copy ftp://jcrichton:aeryn@10.1.1.1/asa-9-12-1-smp-k8.bin disk0:/asa-9-12-1-smp-k8.bin
+
+Acceder a la config:
+configure terminal
+
+Ver que está corriendo actualmente:
+show running-config boot system
+
+Desactivarlo:
+no boot system disk0:/cdisk.bin
+no boot system disk0:/asa931-smp-k8.bin
+
+Configurar el nuevo firmware:
+boot system disk0:/asa-9-12-1-smp-k8.bin
+
+Guardar y recargar:
+write
+reload
