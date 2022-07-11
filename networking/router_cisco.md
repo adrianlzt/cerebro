@@ -785,7 +785,7 @@ conf term
 https://www.networkstraining.com/how-to-configure-snmp-on-cisco-asa-5500-firewall/
 
 snmp-server enable
-snmp-server host inside 10.1.1.100 community somesecretword
+snmp-server host inside 10.1.1.100 community somesecretword version 2c
 snmp-server community somesecretword
 
 
