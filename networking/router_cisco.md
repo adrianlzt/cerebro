@@ -587,6 +587,19 @@ ip ssh rsa keypair-name nombre
 Error: "Unable to negotiate with 10.0.2.51 port 22: no matching cipher found. Their offer: aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc"
 ssh -c 3des-cbc IP
 
+### Cisco ASA
+https://calinradoni.github.io/pages/210406-ciscoasa-ssh-access-pk.html
+username sshUser password password_for_sshUser privilege 15
+username sshUser attributes
+ssh authentication publickey BASE64-ENCODED-PUBLIC-KEY
+exit
+
+Si falla porque el base64 es muy largo, pegar el contenido de:
+ssh-keygen -e -f ~/keys/asaAccessKey.pub
+en:
+ssh authentication pkf
+
+
 
 
 ## SSH client
@@ -738,7 +751,7 @@ neighbor 192.0.2.10 remote-as 65211
 neighbor 192.0.2.11 remote-as 65211
 end
 
-Estado:
+Estado (que IPs serán enrutadas porque nodos):
 show bgp
 
 
