@@ -731,6 +731,15 @@ sh ip route
 write
   si es correcto, para persistir reinicios
 
+## Cisco ASA
+router bgp 65111
+address-family ipv4
+neighbor 192.0.2.10 remote-as 65211
+neighbor 192.0.2.11 remote-as 65211
+end
+
+Estado:
+show bgp
 
 
 

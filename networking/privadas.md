@@ -3,3 +3,7 @@
 192.168.0.0 - 192.168.255.255     192.168.0.0/16 (255.255.0.0)
 
 127.0.0.1/8
+
+
+https://en.wikipedia.org/wiki/IPv4#Special-use_addresses
+192.0.2.0/24  Documentation
