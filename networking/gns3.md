@@ -85,6 +85,7 @@ http://tfr.org/cisco-ios/
 https://www.reddit.com/r/opendirectories/comments/7rmbi3/lots_of_cisco_ios_firmware_images_for_gns3_etc/
 https://gist.github.com/takyon12/ec938f7dbd4d32d2ba3e
 https://t.me/s/cisco_collection
+Ciso ASA: https://commonerrors.blogspot.com/2019/05/asa-97-qcow2-download-vm-image-for-gns3.html
 
 Por ejemplo para correr el router cisco 7200 usaremos la imagen
 http://tfr.org/cisco-ios/7200/c7200-adventerprisek9-mz.124-24.T5.bin
