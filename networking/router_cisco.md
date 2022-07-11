@@ -634,6 +634,9 @@ ping 10.0.0.1
 ping 10.0.0.1 repeat 1
   solo 1 paquete
 
+Hacer una especie de curl, enviar paquetes SYN a 192.0.2.24:80 simulando ser 91.18.8.24 (usando los puertos 30000-30004)
+ping tcp 192.0.2.24 80 source 91.18.8.24 30000
+
 
 
 # Monitor / tcpdump / capture
@@ -753,6 +756,9 @@ end
 
 Estado (que IPs serán enrutadas porque nodos):
 show bgp
+show bgp summ
+sh route bgp
+
 
 
 
