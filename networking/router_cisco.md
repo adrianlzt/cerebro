@@ -331,6 +331,8 @@ Esa aplicación se hace con access-group.
 Para ver los access-groups configurados en la config run:
 sh run access-group
 
+Luego para ver el detalle de una ACL:
+show access-list NOMBRE
 
 Por defecto todas las ACLs terminan en deny, por lo que si un tráfico no matchea un ACL, será denegeado.
 
@@ -345,7 +347,17 @@ Para permitirlo:
 same-security-traffic permit inter-interface
 same-security-traffic permit intra-interface
 
-### Entiendo packet-tracer
+### packet-tracer
+
+Tendremos que comprobar el tráfico en todas las interfaces. Tanto cuando el paquete entra como cuando sale, poniendo
+las interfaces por las que pase.
+Ejemplo, si tenemos INSIDE y OUTSIDE, para ver si un tráfico externo entra haremos:
+
+packet-tracer input OUTSIDE tcp 1.1.1.1 30000 NUESTRA.IP.INTERNA http
+
+Y para ver si sale:
+packet-tracer input INSIDE tcp NUESTRA.IP.INTERNA 80 1.1.1.1 30000
+
 
 Type: ACCESS-LIST
 Subtype: log
