@@ -325,6 +325,25 @@ ACLs on the ASA allow you to override the default security behavior which is as 
     Traffic that goes from a lower security interface is denied when it goes to a higher security interface.
     Traffic that goes from a higher security interface is allowed when it goes to a lower security interface.
 
+Tenemos que crear ACLs y esas ACLs aplicarlas a las interfaces, en sentido entrante o saliente.
+Esa aplicación se hace con access-group.
+
+Para ver los access-groups configurados en la config run:
+sh run access-group
+
+
+Por defecto todas las ACLs terminan en deny, por lo que si un tráfico no matchea un ACL, será denegeado.
+
+Usando el "packet-tracer", si vemos la regla "Implicit Rule" es que está haciendo ese drop by default.
+
+Ejemplo de packet-tracer. Comprobamos si en la interface INSIDE la ip 10.0.0.1 con el pueto 43512 puede comunicarse con 10.5.0.50:80
+packet-tracer input INSIDE tcp 10.0.0.1 43512 10.5.0.50 http
+
+
+Por defecto también está capado el tráfico inter-interface, si tienen el mismo security-level y intra-interface:
+Para permitirlo:
+same-security-traffic permit inter-interface
+same-security-traffic permit intra-interface
 
 
 # Debug
