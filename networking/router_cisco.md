@@ -345,6 +345,30 @@ Para permitirlo:
 same-security-traffic permit inter-interface
 same-security-traffic permit intra-interface
 
+### Entiendo packet-tracer
+
+Type: ACCESS-LIST
+Subtype: log
+Result: ALLOW
+Config:
+access-group outside_public in interface OUTSIDE
+access-list outside_public extended permit tcp any host 1.2.4.5
+Additional Information:
+ Forward Flow based lookup yields rule:
+ in  id=0x7f3dd370d2f0, priority=13, domain=permit, deny=false
+        hits=10, user_data=0x7f3e2182b100, cs_id=0x0, use_real_addr, flags=0x0, protocol=6
+        src ip/id=0.0.0.0, mask=0.0.0.0, port=0, tag=any
+        dst ip/id=1.2.4.5, mask=255.255.255.255, port=0, tag=any, dscp=0x0
+        input_ifc=OUTSIDE, output_ifc=any
+
+Tenemos un tráfico desde cualquier sitio que quiere entrar a 1.2.4.5.
+Ese tráfico está entrando por la interfaz OUTSIDE (input_ifc=OUTSIDE).
+Como es input e interfaz OUTSIDE, la ACL mira el access-group para "in interface OUTSIDE".
+Ahí encuentra un match "tcp any host 1.2.4.5", el paquete tcp viene de cualquier sitio (tcp any) y se dirige a la ip 1.2.4.5.
+Como está a "permit", el result es ALLOW.
+
+
+
 
 # Debug
 http://www.techrepublic.com/blog/data-center/troubleshoot-cisco-routers-and-switches-using-the-debug-commands/
