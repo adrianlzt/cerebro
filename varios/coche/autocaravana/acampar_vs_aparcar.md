@@ -3,3 +3,7 @@ Si estamos sobre las ruedas (calzas valen), sin nada fuera y no ocupamos más es
 
 Lo que dice la DGT de forma resumida y la ley para Asturias
 https://lafurgoteta.com/legislacion-asturiana-sobre-autocaravanas/
+
+
+En Francia, similar, la autocaravana es legalmente un coche.
+https://www.ccc-iledefrance.com/Medias/droit-accueil-stationnement-2012%5b1%5d.pdf
