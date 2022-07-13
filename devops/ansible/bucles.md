@@ -1,4 +1,4 @@
-http://docs.ansible.com/playbooks_loops.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html
 
 Lo nuevo es usar "loop".
 with_XXX es el formato antiguo (anque with_lines sigue siendo válido)
@@ -18,6 +18,10 @@ No se puede usar {{item}} en el name
   loop:
     - { name: 'testuser1', groups: 'wheel' }
     - { name: 'testuser2', groups: 'root' }
+
+Definir el nombre de la variable "item":
+loop_control:
+    loop_var: outer_item
 
 # copy each file over that matches the given pattern
 - copy: src={{ item }} dest=/etc/fooapp/ owner=root mode=600
