@@ -1,3 +1,6 @@
+mirar expresiones_regulares.md para hacer joins de grupos, etc
+
+
 Por defecto: /etc/ansible/hosts
 http://docs.ansible.com/intro_inventory.html#group-variables
 
