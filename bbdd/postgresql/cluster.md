@@ -33,7 +33,7 @@ In master server
  initdb -D data
  pg_ctl -D data start
 In standby server
- pg_basebackup -D data -PRv -U <user> -h <master's ip>
+sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
     -R, --write-recovery-conf
                            write recovery.conf for replication
     -P, --progress         show progress information
