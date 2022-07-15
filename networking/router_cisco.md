@@ -940,6 +940,8 @@ Enviamos la secuencia de comandos a telnet y almacenamos la salida en un fichero
 ## Cisco ASA firewall
 https://www.cisco.com/c/en/us/td/docs/security/asa/upgrade/asa-upgrade/asa-appliance-asav.html#ID-2152-00000110
 
+Firmware: https://mega.nz/fm/SBszyKaR
+
 Copiar la imagen:
 copy ftp://jcrichton:aeryn@10.1.1.1/asa-9-12-1-smp-k8.bin disk0:/asa-9-12-1-smp-k8.bin
 
