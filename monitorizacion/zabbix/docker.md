@@ -13,7 +13,7 @@ docker run --name some-zabbix-agent --link zabbix-server-pgsql:zabbix-server --p
 
 
 # Server
-All-in-one (appliance)
+All-in-one (appliance) DEPRECATED
 docker run --name some-zabbix-appliance -p 80:80 -p 10051:10051 -d zabbix/zabbix-appliance:tag
 
 
