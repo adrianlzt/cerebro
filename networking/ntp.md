@@ -10,7 +10,13 @@ timedatectl set-ntp true
 # Chrony
 Sustituto moderno de ntp
 
-Comprobar como vamos de desfasados
+Comprobar que tenemos "sources" (servidores NTP a los que podemos conectar):
+chronyc activity
+
+Comprobar que estamos conectados y funcionando (Reach=377)
+chronyc sources
+
+Comprobar como vamos de desfasados (solo funciona si tenemos sources funcionando)
 chronyc tracking
 
 
