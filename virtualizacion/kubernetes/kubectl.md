@@ -170,3 +170,8 @@ kc apply --dry-run=server -f replicationcontroller.yaml
 # exec
 kubectl exec svc/foo
   ejecutar en uno de los pods que sirven ese service
+
+
+# logs
+Ver de varios pods al mismo tiempo
+kubectl logs -n 40 -f -l app=foo
