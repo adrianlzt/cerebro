@@ -7,7 +7,8 @@ Usar con el player mpv
 
 Visor web sin publicidad
 https://redirect.invidious.io/
-Una que funciona: https://invidious.kavin.rocks/
+Una que funciona:
+https://invidious.osi.kr/feed/popular
 
 Para android: NewPipe
 
