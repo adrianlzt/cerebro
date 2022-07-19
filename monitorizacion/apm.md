@@ -5,6 +5,11 @@ Distintas empresas tienen distintas soluciones.
 Mirar opentelemetry.md
 
 
+https://openapm.io/landscape
+Todas las opciones de librerías, servers, agentes, SaaS, etc alrededor de hacer APM
+Al seleccionar una muestra compatibilidades.
+
+
 # BMC
 http://www.bmc.com/solutions/application-management/
 
