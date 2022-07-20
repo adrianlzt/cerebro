@@ -40,6 +40,10 @@ Podemos poner
     - ../templates/*
     - ../templates/.*
 
+CUDIADO, no pilla necesariamente en orden alfabético.
+Para que se asi (https://stackoverflow.com/q/59162054)
+loop: "{{ query('fileglob', \"<ansible directory>/testing/files/*\")|sort }}"
+
 
 # Chequea un comando hasta que devuelve la cadena que queremos
 # Si al quinto intento falla, falla la task
