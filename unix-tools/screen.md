@@ -12,6 +12,9 @@ screen -S <nombre>
 Renombrar sesión:
 C-a :sessionname NombreSesion
 
+Renombrar ventana:
+C-a A
+
 Recupera una sesión
 screen -r
 
@@ -58,6 +61,9 @@ C-a :  //meter comandos screen
 C-a M  //Avisar de cambios en esa window (comando para activar y desactivar)
 C-a _  //Avisarme si tras 30 segundos no hay actividad en la ventana
 
+C-s // freeze
+C-Q // unfreeze
+
 #########
 Con el .screenrc tuneado:
 
@@ -101,6 +107,17 @@ screen -c fancy.screenrc
 
 # Compartir con distintos usuarios
 https://unix.stackexchange.com/a/163878
+
+control+a
+:multiuser on
+
+control+a
+:acladd USER
+
+
+El otro user:
+screen -x youruser/multisession
+
 
 Si vemos este error
 "chmod /dev/pts/2: Operation not permitted"
