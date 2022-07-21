@@ -195,3 +195,14 @@ Nos quedamos con los dicts que tengan la key "cluster" definida, y obtenmos la l
     - paths:
         - "../vars/"
 
+
+# Tener el índice de la iteración por la que vamos
+- name: Count our fruit
+  ansible.builtin.debug:
+    msg: "{{ item }} with index {{ my_idx }}"
+  loop:
+    - apple
+    - banana
+    - pear
+  loop_control:
+    index_var: my_idx
