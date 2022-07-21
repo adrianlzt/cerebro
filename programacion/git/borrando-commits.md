@@ -10,6 +10,9 @@ Si no espeficicamos --hard, se usa:
 --mixed
 Resets the index but not the working tree (i.e., the changed files are preserved but not marked for commit) and reports what has not been updated. This is the default action.
 
+Borrar el primer commit:
+git update-ref -d HEAD
+
 
 Para subir el cambio a un repo remoto tendremos que forzarlo (-f)
 git push origin -f)

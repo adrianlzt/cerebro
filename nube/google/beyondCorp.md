@@ -100,7 +100,11 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 
 
 
-# Open source / Pomerium
+# Open source
+https://zero.pritunl.com/
+https://github.com/ory/oathkeeper
+
+## Pomerium
 pomerium.md
 https://www.pomerium.com/
 
@@ -116,7 +120,7 @@ https://www.pomerium.com/docs/reference
 :443 main web
 127.0.0.1:9901 envoy admin interface
 
-## Insecure
+### Insecure
 Podemos usar la opción "insecure_server: true" para no usar TLS.
 Por si tenemos el terminador TLS por encima.
 
@@ -143,8 +147,8 @@ routes:
             - authenticated_user:
 
 
-## Identity providers
-### Gitlab
+### Identity providers
+#### Gitlab
 Crear una app en gitlab.
 El callback URL debe ser el mismo que el configurado en pomerium (authenticate_service_url) con /oauth2/callback
 Ejemplo:
