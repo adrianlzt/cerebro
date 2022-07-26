@@ -6,6 +6,9 @@ https://github.com/jberkus/annotated.conf/blob/master/guc_tutorial_10.pdf
   GUCS: grand unified configuration settings
   traspa con los 19 típicos que querremos tunear
 
+https://ottertune.com/postgresql/
+  empresa que dicen usar AI para tunear la DB. De pago, pero parece que una instancia gratis
+
 Mirar "Function optimization" en funciones.md
 
 Mirar explain.md
