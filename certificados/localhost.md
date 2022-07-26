@@ -5,7 +5,9 @@ Aplicación para crear certificados https para nuestro localhost
 yay mkcert
 
 Con podman:
-podman run --rm -v "$PWD:/mnt" -w /mnt docker.io/goodeggs/mkcert "nombre.com"
+mkdir ca; podman run --rm -v "$PWD/ca:/root/.local/share/mkcert" -v "$PWD:/mnt" -w /mnt docker.io/goodeggs/mkcert redis
+
+En ca/ tendremos la CA y luego el cert en redis.pem y la key en redis-key.pem
 
 
 mkcert -install
