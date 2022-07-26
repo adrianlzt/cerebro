@@ -51,7 +51,7 @@ ip a a 10.226.56.208/27 dev wwan0
 ip link set wwan0 up
   si no está up la intefaz
 
-Probar conex (sin necesidad de meter un routing)
+Probar conex (sin necesidad de meter un routing). No intentar contra el gateway, no contesta.
 ping -I wwan0 1.1.1.1
 
 
