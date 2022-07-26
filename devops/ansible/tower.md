@@ -271,8 +271,16 @@ select name from main_host where variables like '%RED HAT ENTERPRISE LINUX SERVE
 # Debug
 Si queremos capturar lo que está ejecutando awx, entraremos en el container task y:
 cd /tmp
-while true; do  cp -fr awx* AWX/; sleep 0.5; done
+while true; do ps -ef f | grep [a]nsible-play; cp -fr awx* AWX/; sleep 0.5; done
 Al terminar deberemos tener uno o varios directorios en /tmp/AWX
+
+Para poder ejecutarlo amano:
+ - copiar el directorio awx_XXXX a /tmp
+ - movernos al directorio del proyecto /var/lib/awx/projects/XXXX
+ - ejecutar el playbook (lo veremos con el ps), ejemplo: /usr/bin/python3.6 /usr/bin/ansible-playbook -u centos --ask-vault-pass -l demo-1 -vvvv -e @/tmp/awx_92_q4asqt0d/tmp_y91bk1s -i /tmp/awx_92_q4asqt0d/tmpl6lgvg42 -e @/tmp/awx_92_q4asqt0d/env/extravars 21-precheck.yml
+
+Para conseguir que me funcione el inventario, lo cambio de ser un ejecutable python a dejar el json únicamente.
+
 
 ## worker
 Si queremos ver que están haciendo los run_dispatchers
@@ -410,7 +418,7 @@ Mirar como se implementa search y tambien quien decide como se debe formular la 
   como formar la query tiene que ser el javascript
 
 
-/home/adrian/Documentos/opensolutions/carrefour/cmdb/awx/awx/ui/client/src/shared/smart-search/smart-search.controller.js 200
+cmdb/awx/awx/ui/client/src/shared/smart-search/smart-search.controller.js 200
 aqui se distingue si estamos buscando por "ansible_facts" o por otra cosa
 La diferencia es que la función qs.encodeParam( para ansible es "searchTerm: true" y para el resto "relatedSearchTerm: true"
 Pero probando la UI no parece entrar ahi.
