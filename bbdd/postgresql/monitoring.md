@@ -8,6 +8,14 @@ Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace
 https://github.com/dalibo/pg_activity
 herramienta tipo top
 
+https://github.com/coroot/coroot-pg-agent
+Exporter para prometheus
+Puede ser interesante ver que métricas extraen. Se venden como que extraen mejores métricas que el exporter típico y que saben responder a cosas como:
+    A CPU-intensive query is affecting other queries
+    A server has reached its max_connections limit because most of the connections are stuck in the idle in transaction state
+    An I/O-intensive query is affecting other queries
+    A query is blocking other queries by holding an exclusive lock
+
 Capturar tráfico y decodificar el wire protocol para saber que está haciendo:
 https://www.cncf.io/blog/2020/08/13/envoy-1-15-introduces-a-new-postgres-extension-with-monitoring-support/
 https://www.elastic.co/guide/en/beats/packetbeat/current/packetbeat-pgsql-options.html
