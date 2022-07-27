@@ -8,6 +8,10 @@ Equality: == and !=
 Numerical comparison: >, <, >=, <=
 Boolean logic: &&, ||, unary !
 
+Si queremos usar el default value de un módulo al que llamamos:
+image = foo == 1 ? null : "mi valor"
+Pero la variable "image" tendrá que estar definida con "nullable = false"
+
 
 
 Crear un recurso segun si una variable esta a 1 o 0:
