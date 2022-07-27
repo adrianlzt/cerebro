@@ -56,6 +56,14 @@ Podemos ver sus disparos en el logbook
 Si queremos un atributo de un estado:
 {{ is_state_attr('sensor.gps', 'mode', 3) }}
 
+Usando un template como condición:
+conditions:
+- "{{ not is_state('sensor.esp32_alarm_led_state', '') }}"
+
+Comprobar si tenemos valor en un attribute de un sensor:
+{{ state_attr('sensor.gps', 'latitude') != "null" }}
+
+
 
 # Debounce
 Ejemplo de como evitar lanzar un comando no muchas veces seguidas.

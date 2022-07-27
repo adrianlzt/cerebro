@@ -4,11 +4,9 @@ hass --script check_config
 
 sudo -u homeassistant /srv/homeassistant/bin/hass --script check_config
 
-
 Parece que para la mayoría de las cosas hace falta darle un restart.
 
 En ciertas ocasiones vale con reload_core_config, por ejemplo para homeassistant.customize
-
 
 Llamar a los ficheros .yaml
 
