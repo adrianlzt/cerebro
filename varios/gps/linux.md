@@ -28,7 +28,7 @@ WantedBy=multi-user.target
 
 
 Ver con una cli si tenemos datos
-cgpsd
+cgps
 
 
 # Ejecutar

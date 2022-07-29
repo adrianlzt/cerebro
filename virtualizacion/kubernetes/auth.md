@@ -1,5 +1,10 @@
 mirar rbac.md
 
+https://www.paralus.io/
+Enables controlled, audited access to Kubernetes infrastructure.
+Acceder usando cuentas de google, github, gitlab, etc
+
+
 # Klum
 https://github.com/ibuildthecloud/klum
 
