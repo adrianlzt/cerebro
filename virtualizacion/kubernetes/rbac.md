@@ -59,3 +59,5 @@ Miramos que permiso se le está asignando: roleRef.name
 Ver que hace ese role
 kc get clusterrole system:persistent-volume-provisioner -o yaml
 
+
+Ejemplo de clusterrole en ejemplos/clusterrole.yaml

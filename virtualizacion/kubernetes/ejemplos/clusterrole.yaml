@@ -1,0 +1,14 @@
+# Permite leer en todos los NS el secret "dockerconfig"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: argocd-image-updater
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - secrets
+  resourcesNames:
+  - dockerconfig
+  verbs:
+  - get
