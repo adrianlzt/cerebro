@@ -28,8 +28,8 @@ Luego tener un repo donde almacenamos 3 cosas:
 
 
 # Notificaciones
- https://argocd-notifications.readthedocs.io/en/stable/
- Instalar con helm
+https://argocd-notifications.readthedocs.io/en/stable/
+Instalar con helm
 
  
 # Autodeploy de aplicaciones
@@ -37,3 +37,12 @@ https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/
 https://github.com/argoproj/applicationset/blob/master/examples/git-generator-directory/git-directories-example.yaml
 
 Con esto podemos tener un repo donde simplemente creando directorios con yaml, kustomize o helm se crearán y desplegarán las aplicaciones solas.
+
+
+
+# Actualizar imágenes automáticamente
+https://argocd-image-updater.readthedocs.io/en/stable/
+
+## Testing
+https://argocd-image-updater.readthedocs.io/en/stable/install/testing/
+Podemos entrar dentro del pod que levanta y usar la cli argocd-image-updater para hacer pruebas antes de tagear el deployment.
