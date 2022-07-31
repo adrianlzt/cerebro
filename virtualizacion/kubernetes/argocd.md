@@ -46,3 +46,45 @@ https://argocd-image-updater.readthedocs.io/en/stable/
 ## Testing
 https://argocd-image-updater.readthedocs.io/en/stable/install/testing/
 Podemos entrar dentro del pod que levanta y usar la cli argocd-image-updater para hacer pruebas antes de tagear el deployment.
+
+## Configuración
+Ejemplo de una application de ArgoCD donde hemos configurado las annotations para actualizar dos imágenes distintas de un mismo helm usando en ambas las tags que matcheen una regex:
+```
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: api=registry:5000/api, app=registry:5000/app
+    argocd-image-updater.argoproj.io/write-back-method: git
+
+    argocd-image-updater.argoproj.io/api.allow-tags: regexp:^[0-9]*$
+    argocd-image-updater.argoproj.io/api.pull-secret: pullsecret:dockerconfigjson
+    argocd-image-updater.argoproj.io/api.helm.image-name: not.used
+    argocd-image-updater.argoproj.io/api.helm.image-tag: global.apiVersion
+
+    argocd-image-updater.argoproj.io/app.allow-tags: regexp:^[0-9]*$
+    argocd-image-updater.argoproj.io/app.pull-secret: pullsecret:dockerconfigjson
+    argocd-image-updater.argoproj.io/app.helm.image-name: not.used
+    argocd-image-updater.argoproj.io/app.helm.image-tag: global.appVersion
+```
+
+El image-updater mirará cada 2' haber si hay imágenes nuevas.
+Si las hay, pusheará un nuevo commit al repo modificando/creando el fichero ".argocd-source-NOMBREAPP.yaml"
+
+En este ejemplo el contenido es (en ese caso no queremos que se setee el nombre de imagen):
+```
+helm:
+  parameters:
+  - name: not.used
+    value: registry:5000/usync/usync-app
+    forcestring: true
+  - name: global.apiVersion
+    value: "792"
+    forcestring: true
+  - name: global.appVersion
+    value: "1853"
+    forcestring: true```
+
+Este contenido lo leerá automáticamente la app argocd y por lo tanto seteará esos parámetros del helm para que se desplieguen esas imágenes.

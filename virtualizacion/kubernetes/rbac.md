@@ -60,4 +60,5 @@ Ver que hace ese role
 kc get clusterrole system:persistent-volume-provisioner -o yaml
 
 
-Ejemplo de clusterrole en ejemplos/clusterrole.yaml
+Ejemplo de ClusterRole en ejemplos/ClusterRole.yaml
+Ejemplo de ClusterRoleBinding en ejemplos/ClusterRoleBinding.yaml
