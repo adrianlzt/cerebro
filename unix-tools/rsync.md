@@ -25,7 +25,8 @@ rsync --info=progress2 -a Origen Destion
 --numeric-ids           don't map uid/gid values by user/group name
 
 Otras opciones
--P, --progress              show progress during transfer
+--info=progress2            show global progress during transfer
+-P                          show progress during transfer (para cada fichero transferido)
   mucho output
 -v, --verbose               increase verbosity
   muestra todos los ficheros que se van copiando

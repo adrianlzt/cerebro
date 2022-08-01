@@ -7,7 +7,15 @@ Assigning Pods to Nodes
 https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
 
 # nodeSelector
-
+https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/
+```
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disktype: ssd```
 
 # affinity
 Similar a nodeSelector
