@@ -2,6 +2,22 @@ https://openvpn.net/
 
 # Docker
 https://hub.docker.com/r/kylemanna/openvpn/
+
+Generar una VPN que no nos mete default route (-d), ni DNS (-D) y natea (-N) para poder acceder a la red 10.10.166.0/24
+mkdir -p data
+docker run -v $PWD/data:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://vpn.MI.DOMINIO -p "route 10.16.166.0 255.255.255.0" -D -d -N
+docker run -v $PWD/data:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki nopass
+USER=adrian
+docker run -v $PWD/data:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full $USER nopass
+docker run -v $PWD/data:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ${USER} > ${USER}.ovpn
+docker run --name openvpn -v $PWD/data:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+
+Crea un usuario adrian.ovpn
+Para conectar:
+sudo openvpn --config adrian.ovpn
+
+
+ANTIGUO:
 init:
 $OVPN_DATA=openvpn_data
 docker volume create --name $OVPN_DATA
