@@ -28,6 +28,7 @@ Important
 DROP USER does not automatically close any open user sessions. Rather, in the event that a user with an open session is dropped, the statement does not take effect until that user's session is closed. Once the session is closed, the user is dropped, and that user's next attempt to log in will fail. This is by design.
 
 Cambiar contraseña:
+mysql> ALTER USER user IDENTIFIED BY 'auth_string';
 mysql> SET PASSWORD FOR 'bugs'@'localhost' = PASSWORD("la pass");
 
 Modificar tabla mysql.users:
