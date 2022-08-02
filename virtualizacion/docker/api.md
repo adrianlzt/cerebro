@@ -28,6 +28,10 @@ DOCKER_API_VERSION=1.24 DOCKER_HOST=docker:4243 DOCKER_TLS_VERIFY=true docker
 
 
 # Python
+https://docker-py.readthedocs.io/en/stable/
+pip install docker
+
+
 Lib para python
 https://github.com/dotcloud/docker-py
 
