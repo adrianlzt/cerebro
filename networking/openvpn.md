@@ -12,6 +12,9 @@ docker run -v $PWD/data:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-cl
 docker run -v $PWD/data:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ${USER} > ${USER}.ovpn
 docker run --name openvpn -v $PWD/data:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
 
+Para ver los users que ya hemos creado:
+ovpn_listclients
+
 Crea un usuario adrian.ovpn
 Para conectar:
 sudo openvpn --config adrian.ovpn
