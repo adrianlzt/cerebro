@@ -62,3 +62,9 @@ dependencies:
 - name: nginx
   version: "1.2.3"
   repository: "file://../dependency_chart/nginx"
+- condition: mariadb.enabled
+  name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.x.x
+
+En el último ejemplo tenemos una dependencia con un condicional
