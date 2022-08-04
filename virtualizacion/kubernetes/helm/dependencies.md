@@ -51,6 +51,7 @@ Que nuestro chart dependa de otros charts.
 Al ejecutar la instalación, esos charts serán metidos en charts/
 
 Chart.yaml
+spec del fichero: https://helm.sh/docs/topics/charts/#the-chartyaml-file
 ```
 dependencies:
 - name: nginx
@@ -66,5 +67,11 @@ dependencies:
   name: mariadb
   repository: https://charts.bitnami.com/bitnami
   version: 11.x.x
+- name: nginx
+  version: "1.2.3"
+  repository: "file://../dependency_chart/nginx"
+  alias: second_nginx
 
-En el último ejemplo tenemos una dependencia con un condicional
+
+En el penúltimo ejemplo tenemos una dependencia con un condicional
+En el último por si queremos tener un segundo chart del mismo tipo.
