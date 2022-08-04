@@ -34,34 +34,3 @@ El formato de métricas no usa json por que era muy lento.
 
 # Discovery
 En kubernetes parace que lo que hace es obtener una lista de todos los services y preguntar a ver si tienen un endppoint /metrics
-
-
-
-# Dudas
-para la cpu, el exporter es un contador?
-interesante para no perderse picos de cpu?
-
-
-
-# Query
-
-## query_range
-query_range?query=fuerza_peso&start=1584950052&end=1584950062&step=0.5
-Nos devuelve un punto cada 500ms entre esas unix epoch.
-Aunque tengamos más o menos resolución, nos devolverá un punto cada 500ms.
-Si tenemos menos puntos, habrá huecos.
-En victoria podemos pasarle la función keep_last_value para rellenar los huecos.
-
-
-## Raw
-Nos devuelve todos lo puntos del último minuto de la serie "fuerza_peso"
-curl '127.0.0.1:8428/api/v1/query?query=fuerza_peso[1m]' | python -m json.tool
-
-
-
-
-# Grafana
-Dashboard ya hecho para monitorizar kubernetes con métricas prometheus
-https://grafana.com/grafana/dashboards/315
-
-En nuestro grafana, dar a importar dashboard y poner el id: 315
