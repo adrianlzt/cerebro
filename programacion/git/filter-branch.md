@@ -4,15 +4,25 @@ El problema es que esos rpms pesan mucho y se bajan cada vez que se hace un git 
 Buscamos donde se encontraba el directorio que contenía los rpms (buscando por las ramas hasta encontrar uno donde aún estaban)
 localrepo/
 
+En gitlab >=11.6 hay una opción para pasarle una lista de commits a borrar:
+https://docs.gitlab.com/ee/user/project/repository/reducing_the_repo_size_using_git.html#repository-cleanup
+
+En gitlab también parece que si hacemos un fork esos commits dereferenciados ya no se llevan al nuevo fork.
+Podmeos hacer un fork, derefenciarlo.
+Mover el repo original a otro nombre (o borrarlo).
+Forkear del fork de nuevo a la organzación origen y derefenciarlo.
+De esta manera tendremos el mismo repo pero con ese commit quitado.
+
 
 # git-filter-repo
 https://github.com/newren/git-filter-repo
+https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html
 
 En Arch: pacman -Ss git-filter-repo
 
 Mirar ejemplos con:
 git-filter-repo --help
-https://github.com/newren/git-filter-repo/blob/master/Documentation/git-filter-repo.txt
+https://github.com/newren/git-filter-repo#how-do-i-use-it
 
 Hace un análisis de que tenemos en el repo, tamaños, tipos de fichero, etc.
 git filter-repo --analyze
