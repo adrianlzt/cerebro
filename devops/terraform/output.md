@@ -49,3 +49,8 @@ output "public_ips" {
   value = ["${aws_instance.example.*.public_ip}"]
 }
 ```
+
+# Output condicional
+output "vue_queue" {
+    value = var.vue_enabled ? aws_sqs_queue.vue_queue.id : null
+}
