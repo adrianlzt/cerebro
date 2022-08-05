@@ -1,4 +1,9 @@
 # Redirección de tráfico
+## UDP
+Abre el puerto 53/udp y lo reenvia a 169.254.169.254 (podemos poner varios y balancea).
+docker run -d --net host -e BACKENDS=169.254.169.254 instantlinux/udp-nginx-proxy
+
+## TCP
 https://gist.github.com/adrianlzt/7a8cc77c76d88179f5e30a28da87176b
 
 
