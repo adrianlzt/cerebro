@@ -30,6 +30,10 @@ Aquí especificamos que máquinas/discos usar y que queremos hacer con ellos.
 https://www.adaltas.com/en/2020/04/16/expose-ceph-from-rook-kubernetes/
 
 
+# Eliminar un OSD
+https://rathpc.github.io/rook.github.io/docs/rook/v1.4/ceph-osd-mgmt.html#remove-an-osd
+
+
 
 # Antiguo
 
