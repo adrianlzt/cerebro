@@ -159,6 +159,40 @@ kubectl get pods -o=jsonpath='{.items[0]}'
 Me parece más sencillo usar "-o json" y luego jq
 
 
+## Go template
+https://kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/#list-container-images-using-a-go-template-instead-of-jsonpath
+
+kubectl get pods --all-namespaces -o go-template --template="{{range .items}}{{range .spec.containers}}{{.image}} {{end}}{{end}}"
+
+kubectl get secret my-secret -o go-template='{{range $k,$v := .data}}{{"### "}}{{$k}}{{"\n"}}{{$v|base64decode}}{{"\n\n"}}{{end}}'
+
+### go template file
+https://cloud.redhat.com/blog/customizing-oc-output-with-go-templates
+
+$ cat podlist.gotemplate 
+{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}
+$ oc get pods -o go-template-file=podlist.gotemplate
+
+Otro ejemplo:
+``````
+{{range .items}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: {{.metadata.name}}
+spec:
+ clusterIP: None
+ externalIPs:
+ {{- range .status.addresses }}
+ {{- if eq .type "InternalIP" }}
+ - {{.address}}
+ {{- end }}
+ {{- end }}
+ type: ClusterIP
+{{- end }}
+``````
+
 
 
 # diff

@@ -100,3 +100,7 @@ Si queremos acceder a una variable "global" (definida fuera del range): $.FOO
 # Elemento de un slice
 index .spec.ports 0
 sería algo así como spec.ports[0]
+
+
+# Eliminar espacios en blanco / newlines
+{{- end}}
