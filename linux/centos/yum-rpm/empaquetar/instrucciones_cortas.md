@@ -16,7 +16,7 @@ Podemos definir macros del sistema (/etc/rpm/macros.dist)
 Hacer un paquete desde fuentes:
 vi SPECS/paquete.spec
 chown makerpm:makerpm SPECS/paquete.spec
-cp paquete.tar.gz /home/makerpm/rpmbuild/SOURCES/
+spectool -g -R SPECS/*.spec
 rpmbuild -ba SPECS/icinga.spec
 
 Paquete creado en RPMS/$architecture/

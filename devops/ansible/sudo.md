@@ -61,6 +61,15 @@ También podemos hacerlo con ansible_ssh_pass
 
 
 # Definir ficheros en sudoers.d/
+https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
+- name: >-
+    Allow the monitoring group to run sudo /usr/local/bin/gather-app-metrics
+    without requiring a password
+  community.general.sudoers:
+    name: monitor-app
+    group: monitoring
+    commands: /usr/local/bin/gather-app-metrics
+
 - name: allow zabbix to execute commands on zbxalerter
   copy:
     src: zbxalerter_podman.sudo
