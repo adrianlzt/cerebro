@@ -1,3 +1,17 @@
+https://wiki.debian.org/resolv.conf
+El problema es que varios demonios pueden querer modificar ese fichero.
+
+# dhclient
+Si queremos que dhclient no lo modifique podemos hacer:
+``````
+echo 'make_resolv_conf() { :; }' > /etc/dhcp/dhclient-enter-hooks.d/leave_my_resolv_conf_alone
+chmod 755 /etc/dhcp/dhclient-enter-hooks.d/leave_my_resolv_conf_alone
+``````
+Este es el script que modifica el fichero:
+https://github.com/isc-projects/dhcp/blob/31e68e5e3b863a4859562e0bb808888d74af7497/client/scripts/linux#L37
+
+
+# resolvconf
 Si editamos el fichero
 /etc/resolvconf.conf
 el fichero /etc/resolv.conf siempre tendrá la configuración que digamos en este fichero.
@@ -16,6 +30,12 @@ search_domains="casa.lan otro.domain"
 
 tras modificar el resolvconf.conf
 resolvconf -u
+
+
+# openresolv
+https://roy.marples.name/projects/openresolv/
+Es otra opción, disponible para centos7
+https://serverfault.com/a/906578
 
 
 
