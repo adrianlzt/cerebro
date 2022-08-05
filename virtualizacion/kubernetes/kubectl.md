@@ -148,12 +148,17 @@ Esto nos saca que llamada HTTP se hace
 
 
 
-# JSON / output
+# Output
+https://kubernetes.io/docs/reference/kubectl/#formatting-output
+
+## JSONpath
 https://kubernetes.io/docs/reference/kubectl/jsonpath/
 kubectl get XX -o json
 kubectl get pods -o=jsonpath='{.items[0]}'
 
 Me parece más sencillo usar "-o json" y luego jq
+
+
 
 
 # diff
