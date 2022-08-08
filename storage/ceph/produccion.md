@@ -1,3 +1,10 @@
+https://www.redhat.com/en/resources/red-hat-ceph-storage-hardware-selection-guide
+https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/red_hat_ceph_storage_hardware_selection_guide/index
+
+https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/red_hat_ceph_storage_hardware_selection_guide/hardware-selection-general-principles
+Use Identical Hardware: create pools and define CRUSH hierarchies such that the OSD hardware within the pool is identical.
+
+
 http://docs.ceph.com/docs/master/rados/operations/placement-groups#set-the-number-of-placement-groups
 
 Debemos modificar el número de placement groups, el de por defecto, 60, no es ideal.
