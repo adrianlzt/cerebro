@@ -51,4 +51,14 @@ Ironic es un pod con los contenedores:
  - ironic-inspector
  - ironic-httpd
 
-El pod de ironic está levantado con --net=host
+Tiene un pod tipo init que se baja:
+https://images.rdoproject.org/centos9/master/rdo_trunk/current-tripleo//ironic-python-agent.tar
+
+El pod de ironic está levantado con hostNetwork=true
+
+Hay con volumen ironic-data-volume tipo emptyDir. Tal vez tenga que ser un PVC si queremos mantener los datos?
+
+Editar cm del inspector y meter:
+PROVISIONING_IP: ""
+
+El script espera que esté definida la variable (aunque sea vacía).
