@@ -60,5 +60,13 @@ Hay con volumen ironic-data-volume tipo emptyDir. Tal vez tenga que ser un PVC s
 
 Editar cm del inspector y meter:
 PROVISIONING_IP: ""
+IRONIC_IP: ""
 
 El script espera que esté definida la variable (aunque sea vacía).
+
+
+{"level":"info","ts":1660041450.4141388,"logger":"provisioner.ironic","msg":"error caught while checking endpoint","host":"baremetal-operator-system~colo02ap",
+"endpoint":"http://172.22.0.2:6385/v1/","error":"Get \"http://172.22.0.2:6385/v1\": dial tcp 172.22.0.2:6385: i/o timeout"}
+
+Hace falta crear Services y modificar el config map para que apunte a los services, en vez de a las IPs a fuego.
+Se puede modificar en config/default/ironic.env y ironic-deployment/default/ironic_bmo_configmap.env para luego reejecutar el deploy
