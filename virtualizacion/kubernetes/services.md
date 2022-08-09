@@ -1,4 +1,5 @@
 https://kubernetes.io/docs/concepts/services-networking/service/
+https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core
 
 Es la abstracción por encima de los PODs para que otros PODs puedan usar a los primeros.
 Ejemplo, un backend que es accedido por un frontend.
