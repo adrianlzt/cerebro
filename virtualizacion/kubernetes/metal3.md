@@ -58,7 +58,7 @@ El pod de ironic está levantado con hostNetwork=true
 
 Hay con volumen ironic-data-volume tipo emptyDir. Tal vez tenga que ser un PVC si queremos mantener los datos?
 
-Editar cm del inspector y meter:
+Editar cm del inspector y meter (metidas mejor en config/default/ironic.env y ironic-deployment/default/ironic_bmo_configmap.env)
 PROVISIONING_IP: ""
 IRONIC_IP: ""
 
@@ -70,3 +70,10 @@ El script espera que esté definida la variable (aunque sea vacía).
 
 Hace falta crear Services y modificar el config map para que apunte a los services, en vez de a las IPs a fuego.
 Se puede modificar en config/default/ironic.env y ironic-deployment/default/ironic_bmo_configmap.env para luego reejecutar el deploy
+
+
+
+
+{"level":"info","ts":1660057518.6517978,"logger":"provisioner.ironic","msg":"current provision state","host":"baremetal-operator-system~colo02ap","lastError":"Failed to inspect hardware. Reason: unable to start inspection: Validation of image href http://ironic-httpd:6180/images/ironic-python-agent.kernel failed, reason: HTTPConnectionPool(host='ironic-httpd', port=6180): Max retries exceeded with url: /images/ironic-python-agent.kernel (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0142250b80>: Failed to establish a new connection: [Errno -2] Name or service not known'))","current":"inspect failed","target":"manageable"}
+
+{"level":"info","ts":1660057518.6907141,"logger":"controllers.BareMetalHost","msg":"publishing event","baremetalhost":"baremetal-operator-system/colo02ap","reason":"InspectionError","message":"Failed to inspect hardware. Reason: unable to start inspection: Validation of image href http://ironic-httpd:6180/images/ironic-python-agent.kernel failed, reason: HTTPConnectionPool(host='ironic-httpd', port=6180): Max retries exceeded with url: /images/ironic-python-agent.kernel (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0142250b80>: Failed to establish a new connection: [Errno -2] Name or service not known'))"}
