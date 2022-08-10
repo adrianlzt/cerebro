@@ -20,6 +20,12 @@ swapon /dev/sda2
 
 
 # Fichero
+Parece que las ubuntu (tambien otras distros?) usan esto para configurar el fichero de swap
+https://manpages.ubuntu.com/manpages/xenial/man8/dphys-swapfile.8.html
+Tiene su unit de systemd
+dphys-swapfile.service
+
+
 http://www.faqs.org/docs/linux_admin/x1762.html
 
 dd if=/dev/zero of=/swapfile bs=1M count=4096
