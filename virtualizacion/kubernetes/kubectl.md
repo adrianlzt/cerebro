@@ -214,3 +214,13 @@ kubectl exec svc/foo
 # logs
 Ver de varios pods al mismo tiempo
 kubectl logs -n 40 -f -l app=foo
+
+
+# short names
+https://blog.heptio.com/kubectl-resource-short-names-heptioprotip-c8eff9fb7202
+
+po -> pod
+ing -> ingresses
+ns -> namespace
+deploy -> deployments
+etc
