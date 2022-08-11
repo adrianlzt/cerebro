@@ -7,6 +7,7 @@ https://www.schneier.com/blog/archives/2016/08/frequent_passwo.html
 
 Lib para chequear que la password es buena:
 https://blogs.dropbox.com/tech/2012/04/zxcvbn-realistic-password-strength-estimation/
+https://github.com/dropbox/zxcvbn
 
 Passwords ya hackeadas públicas:
 https://haveibeenpwned.com/Passwords
