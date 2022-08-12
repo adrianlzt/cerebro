@@ -79,3 +79,6 @@ Se puede modificar en config/default/ironic.env y ironic-deployment/default/iron
 {"level":"info","ts":1660057518.6907141,"logger":"controllers.BareMetalHost","msg":"publishing event","baremetalhost":"baremetal-operator-system/colo02ap","reason":"InspectionError","message":"Failed to inspect hardware. Reason: unable to start inspection: Validation of image href http://ironic-httpd:6180/images/ironic-python-agent.kernel failed, reason: HTTPConnectionPool(host='ironic-httpd', port=6180): Max retries exceeded with url: /images/ironic-python-agent.kernel (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f0142250b80>: Failed to establish a new connection: [Errno -2] Name or service not known'))"}
 
 Hace falta poner el svc con el NS, porque lo va a resolver las DNS del host donde corre ironic (no el namespace de red de un pod)
+
+
+Forzarlo a un nodo, o a un grupo de nodos que tengan el mismo nombre de interfaz, para que no de problemas con eso.
