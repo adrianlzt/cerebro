@@ -92,6 +92,9 @@ sudo tcpdump -A udp port 69
 -Q in/out/inout
 -P in/out/inout (versiones viejas)
 
+# Filtrar por hardware address (MAC)
+tcpdump ether host e8:2a:ea:44:55:66
+
 
 
 
