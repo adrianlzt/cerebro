@@ -52,7 +52,14 @@ Ironic es un pod con los contenedores:
  - ironic-httpd
 
 Tiene un pod tipo init que se baja:
-https://images.rdoproject.org/centos9/master/rdo_trunk/current-tripleo//ironic-python-agent.tar
+https://images.rdoproject.org/centos9/master/rdo_trunk/current-tripleo/ironic-python-agent.tar
+Contiene:
+- ironic-python-agent.initramfs (fichero gzip + cpio con el contenido de la imagen centos stream release 9, a fecha agosto 2022)
+- ironic-python-agent.kernel
+
+Si queremos hacer una imagen custom: https://docs.openstack.org/ironic-python-agent/latest/install/index.html#image-builders
+Y para cargar esa?
+
 
 El pod de ironic está levantado con hostNetwork=true
 
@@ -82,3 +89,34 @@ Hace falta poner el svc con el NS, porque lo va a resolver las DNS del host dond
 
 
 Forzarlo a un nodo, o a un grupo de nodos que tengan el mismo nombre de interfaz, para que no de problemas con eso.
+
+
+
+Preparar un nodo.
+Debemos crear un BareMetalHost con la dirección de su BMO y credenciales. Ejemplo con IPMI:
+```
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: nombreNodo
+spec:
+  online: true
+  bootMACAddress: 00:35:30:2a:ad:48
+  bmc:
+    address: ipmi://10.0.1.2:623
+    credentialsName: ipmi-secret
+```
+
+El operador encontrará el CRD y empezará a escanerlo con el ironic-inspector.
+Cuando termine el state del nodo estará en available y en el status tendremos información del nodo (de su hardware).
+Ejemplo en https://metal3.io/try-it.html (buscar "kubectl get baremetalhost -n metal3 -o yaml node-0")
+
+
+Para provisionar una máquina creaermos un CRD Metal3Machine.
+Me recuerda al esquema PV/PVC, donde los PVs serían los BareMetalHost y los PVC los Metal3Machine.
+
+No tengo claro si hace falta el Metal3Machine o si se puede poner la imagen directamente en el BareMetalHost.
+El host en modo available había arrancado un centos9, pero no había nada de status. Sería la imagen del ironic-python-agent?
+
+Parece que con pasar la imagen en el BareMetalHost es suficiente, pero tenemos que especificar el disco. De donde sacar esa info?
+Creo que debería estar en el status, pero si la imagen de ironic-python-agent no soporta la controladora, no lo veremos.
