@@ -14,51 +14,75 @@ Desplegar:
 IRONIC_HOST_IP=10.0.20.99 tools/deploy.sh -b -i -n
 
 Recursos que crea:
-namespace/baremetal-operator-system configured
+namespace/baremetal-operator-system
+
 customresourcedefinition.apiextensions.k8s.io/baremetalhosts.metal3.io 
 customresourcedefinition.apiextensions.k8s.io/bmceventsubscriptions.metal3.io 
 customresourcedefinition.apiextensions.k8s.io/firmwareschemas.metal3.io 
 customresourcedefinition.apiextensions.k8s.io/hardwaredata.metal3.io 
 customresourcedefinition.apiextensions.k8s.io/hostfirmwaresettings.metal3.io 
 customresourcedefinition.apiextensions.k8s.io/preprovisioningimages.metal3.io 
+
 serviceaccount/baremetal-operator-controller-manager 
 role.rbac.authorization.k8s.io/baremetal-operator-leader-election-role 
+clusterrolebinding.rbac.authorization.k8s.io/baremetal-operator-manager-rolebinding 
+clusterrolebinding.rbac.authorization.k8s.io/baremetal-operator-proxy-rolebinding 
+rolebinding.rbac.authorization.k8s.io/baremetal-operator-leader-election-rolebinding 
 clusterrole.rbac.authorization.k8s.io/baremetal-operator-manager-role 
 clusterrole.rbac.authorization.k8s.io/baremetal-operator-metrics-reader 
 clusterrole.rbac.authorization.k8s.io/baremetal-operator-proxy-role 
-rolebinding.rbac.authorization.k8s.io/baremetal-operator-leader-election-rolebinding 
-clusterrolebinding.rbac.authorization.k8s.io/baremetal-operator-manager-rolebinding 
-clusterrolebinding.rbac.authorization.k8s.io/baremetal-operator-proxy-rolebinding 
-configmap/baremetal-operator-ironic 
-configmap/baremetal-operator-manager-config 
-service/baremetal-operator-controller-manager-metrics-service 
-service/baremetal-operator-webhook-service 
-deployment.apps/baremetal-operator-controller-manager 
+
 certificate.cert-manager.io/baremetal-operator-serving-cert 
 issuer.cert-manager.io/baremetal-operator-selfsigned-issuer 
 validatingwebhookconfiguration.admissionregistration.k8s.io/baremetal-operator-validating-webhook-configuration 
-configmap/baremetal-operator-ironic-bmo-configmap-kd6855f44h 
+
 secret/baremetal-operator-mariadb-password-ftkgc8tmkc 
+
+configmap/baremetal-operator-ironic 
+configmap/baremetal-operator-manager-config 
+configmap/baremetal-operator-ironic-bmo-configmap-kd6855f44h 
+
+service/baremetal-operator-controller-manager-metrics-service 
+service/baremetal-operator-webhook-service 
+
+deployment.apps/baremetal-operator-controller-manager 
 deployment.apps/baremetal-operator-ironic 
 
 
 Levanta un poc con el controller del operator y otro con ironic.
 Ironic es un pod con los contenedores:
- - dnsmasq
+ - dnsmasq (provee dhcp, tftp, etc)
  - mariadb
  - ironic
- - ironic-log-watch
- - ironic-inspector
- - ironic-httpd
+ - ironic-log-watch (recibe los logs cuando tenemos el agente IPA arrancado en los hosts)
+ - ironic-inspector (ejecuta los comandos ipmitool...)
+ - ironic-httpd (sirve las imágenes)
 
-Tiene un pod tipo init que se baja:
+Tiene un pod tipo init (imagen quay.io/metal3-io/ironic-ipa-downloader) que se baja:
 https://images.rdoproject.org/centos9/master/rdo_trunk/current-tripleo/ironic-python-agent.tar
 Contiene:
 - ironic-python-agent.initramfs (fichero gzip + cpio con el contenido de la imagen centos stream release 9, a fecha agosto 2022)
 - ironic-python-agent.kernel
+Copia esas imágenes al volumen compartido.
+
+Esas imágenes las sirve ironic-httpd desde ese volumen compartido (/shared/html/images)
 
 Si queremos hacer una imagen custom: https://docs.openstack.org/ironic-python-agent/latest/install/index.html#image-builders
-Y para cargar esa?
+Aquí hay imágenes IPA para centos7/8/9: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/
+Parece que tenemos que meter en un tar la imagen initramfs y kernel.
+Subiremos esa imagen al ironic-httpd:/shared/html/images
+
+Parece que quien usa las variables de entorno donde se define la imagen de initramfs y kernel es el operator (controller):
+https://github.com/metal3-io/baremetal-operator/blob/05d12b6768a9989a9a4e61dad6cd1f9e84a6e078/pkg/provisioner/ironic/factory.go#L64
+Las carga del configmap baremetal-operator-ironic
+baremetal-operator-ironic
+
+Modificaremos las variables:
+DEPLOY_KERNEL_URL: http://ironic-httpd.baremetal-operator-system:6180/images/ironic-python-agent-centos7/ironic-python-agent.kernel
+DEPLOY_RAMDISK_URL: http://ironic-httpd.baremetal-operator-system:6180/images/ironic-python-agent-centos7/ironic-python-agent.initramfs
+Y reiniciaremos el operator (controller).
+
+Esas variables también se definen en el CM que usa ironic, pero no se si se usan en algún lado. Por ahora solo modificando en el controller.
 
 
 El pod de ironic está levantado con hostNetwork=true
@@ -106,6 +130,8 @@ spec:
     address: ipmi://10.0.1.2:623
     credentialsName: ipmi-secret
 ```
+
+Parece que cada BareMetalHost tiene que tener su propio secret/ipmi-secret. O tal vez fue porque le pillo borrando el otro BareMetalHost?
 
 El operador encontrará el CRD y empezará a escanerlo con el ironic-inspector.
 Cuando termine el state del nodo estará en available y en el status tendremos información del nodo (de su hardware).
