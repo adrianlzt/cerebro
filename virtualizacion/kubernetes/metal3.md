@@ -54,7 +54,7 @@ Ironic es un pod con los contenedores:
  - dnsmasq (provee dhcp, tftp, etc)
  - mariadb
  - ironic
- - ironic-log-watch (recibe los logs cuando tenemos el agente IPA arrancado en los hosts)
+ - ironic-log-watch (recibe los logs cuando tenemos el agente IPA, ironic-python-agent, arrancado en los hosts)
  - ironic-inspector (ejecuta los comandos ipmitool...)
  - ironic-httpd (sirve las imágenes)
 
@@ -65,12 +65,17 @@ Contiene:
 - ironic-python-agent.kernel
 Copia esas imágenes al volumen compartido.
 
+Para ver extraer el contenido del initramfs: cat ironic-python-agent.initramfs | gunzip| cpio -idv
+
 Esas imágenes las sirve ironic-httpd desde ese volumen compartido (/shared/html/images)
 
 Si queremos hacer una imagen custom: https://docs.openstack.org/ironic-python-agent/latest/install/index.html#image-builders
 Aquí hay imágenes IPA para centos7/8/9: https://tarballs.opendev.org/openstack/ironic-python-agent/dib/files/
 Parece que tenemos que meter en un tar la imagen initramfs y kernel.
 Subiremos esa imagen al ironic-httpd:/shared/html/images
+
+La imagen tiene el rescue mode, por lo que lo podemos usar para cambiar la pass de root.
+O construir una imagen a la que se le pueda pasar una clave ssh o crear un usuario: https://docs.openstack.org/ironic-python-agent-builder/latest/admin/dib.html
 
 Parece que quien usa las variables de entorno donde se define la imagen de initramfs y kernel es el operator (controller):
 https://github.com/metal3-io/baremetal-operator/blob/05d12b6768a9989a9a4e61dad6cd1f9e84a6e078/pkg/provisioner/ironic/factory.go#L64
@@ -133,9 +138,13 @@ spec:
 
 Parece que cada BareMetalHost tiene que tener su propio secret/ipmi-secret. O tal vez fue porque le pillo borrando el otro BareMetalHost?
 
-El operador encontrará el CRD y empezará a escanerlo con el ironic-inspector.
+El operador encontrará el CRD y empezará a escanerlo (status=inspecting) con el ironic-inspector (me tardó 10min en un nodo).
 Cuando termine el state del nodo estará en available y en el status tendremos información del nodo (de su hardware).
 Ejemplo en https://metal3.io/try-it.html (buscar "kubectl get baremetalhost -n metal3 -o yaml node-0")
+Podemos ver en la consola de la BMC como carga el IPA usando network boot.
+
+Podemos ver los logs del logwatch para ver cuando el IPA envía la info:
+kc logs --tail 40 deployments/baremetal-operator-ironic -c ironic-log-watch
 
 
 Para provisionar una máquina creaermos un CRD Metal3Machine.
