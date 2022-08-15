@@ -109,6 +109,8 @@ DEPLOY_KERNEL_URL: http://ironic-httpd.baremetal-operator-system:6180/images/iro
 DEPLOY_RAMDISK_URL: http://ironic-httpd.baremetal-operator-system:6180/images/ironic-python-agent-centos7/ironic-python-agent.initramfs
 Y reiniciaremos el operator (controller).
 Creo que me estuvo funcionando, pero luego de algunos cambios dejo de funciónar. Opté por quitar el enlace simbólico original para apuntar a las creadas por mi.
+Tal vez por no definir la bootMACAddress.
+Otra ejecución me ha funcionado sin definir el bootMACAddress.
 
 Esas variables también se definen en el CM que usa ironic, pero no se si se usan en algún lado. Por ahora solo modificando en el controller.
 
