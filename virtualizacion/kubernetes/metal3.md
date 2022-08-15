@@ -74,6 +74,8 @@ Aquí hay imágenes IPA para centos7/8/9: https://tarballs.opendev.org/openstack
 Parece que tenemos que meter en un tar la imagen initramfs y kernel.
 Subiremos esa imagen al ironic-httpd:/shared/html/images
 
+Si queremos hacer una imagen custom: pip install ironic-python-agent-builder
+
 La imagen tiene el rescue mode, por lo que lo podemos usar para cambiar la pass de root.
 O construir una imagen a la que se le pueda pasar una clave ssh o crear un usuario: https://docs.openstack.org/ironic-python-agent-builder/latest/admin/dib.html
 
