@@ -94,7 +94,9 @@ ironic-python-agent-builder --elements-path=elements --element=devuser -o debian
 
 El "element" foobar es un directorio en elements/ donde podemos cargar un script para ejecutar lo que queramos.
 
-El acceos externo es útil si el provisioner no funciona.
+El acceso externo es útil si el provisioner no funciona.
+
+Parece que el element externo que le meto, aunque veo el binario instalado, luego no lo veo en la imagen cargada. Raro
 
 
 
