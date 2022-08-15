@@ -79,6 +79,26 @@ Si queremos hacer una imagen custom: pip install ironic-python-agent-builder
 La imagen tiene el rescue mode, por lo que lo podemos usar para cambiar la pass de root.
 O construir una imagen a la que se le pueda pasar una clave ssh o crear un usuario: https://docs.openstack.org/ironic-python-agent-builder/latest/admin/dib.html
 
+Construir una imagen con un user para acceder por ssh (con clave ssh y key):
+``````
+export DIB_DEV_USER_USERNAME=nombreuser
+export DIB_DEV_USER_PWDLESS_SUDO=yes
+export DIB_DEV_USER_AUTHORIZED_KEYS=ssh-key-ipa.pub
+export DIB_DEV_USER_PASSWORD=mipassword
+export DIB_REPOREF_ironic_python_agent=origin/stable/yoga
+export DIB_REPOREF_requirements=origin/stable/yoga
+ironic-python-agent-builder --elements-path=elements --element=devuser -o debian-ipa --release bullseye debian
+#ironic-python-agent-builder --elements-path=elements -o centos7-ipa --release 7 centos
+#ironic-python-agent-builder --elements-path=elements --element=devuser --element=foobar -o centos8-ipa --release 8-stream centos
+``````
+
+El "element" foobar es un directorio en elements/ donde podemos cargar un script para ejecutar lo que queramos.
+
+El acceos externo es útil si el provisioner no funciona.
+
+
+
+
 Parece que quien usa las variables de entorno donde se define la imagen de initramfs y kernel es el operator (controller):
 https://github.com/metal3-io/baremetal-operator/blob/05d12b6768a9989a9a4e61dad6cd1f9e84a6e078/pkg/provisioner/ironic/factory.go#L64
 Las carga del configmap baremetal-operator-ironic
@@ -88,9 +108,24 @@ Modificaremos las variables:
 DEPLOY_KERNEL_URL: http://ironic-httpd.baremetal-operator-system:6180/images/ironic-python-agent-centos7/ironic-python-agent.kernel
 DEPLOY_RAMDISK_URL: http://ironic-httpd.baremetal-operator-system:6180/images/ironic-python-agent-centos7/ironic-python-agent.initramfs
 Y reiniciaremos el operator (controller).
+Creo que me estuvo funcionando, pero luego de algunos cambios dejo de funciónar. Opté por quitar el enlace simbólico original para apuntar a las creadas por mi.
 
 Esas variables también se definen en el CM que usa ironic, pero no se si se usan en algún lado. Por ahora solo modificando en el controller.
 
+
+Cuando arranca la imagen IPA expone un endpoint https en el puerto :9999 donde se puede consultar su estado.
+Parece que no levanta el puerto hasta que ha terminado de escanear todo (necesita "pip install hardware")
+Ejemplo:
+```
+# curl -sk https://localhost:9999/status | python3 -m json.tool
+{
+    "started_at": 1660573317.415543,
+    "version": "8.5.1.dev9"
+}```
+
+
+Si queremos ver si ha habido problemas:
+journalctl -n 1000 -u ironic-python-agent.service | grep -v -e DEBUG -e heartbe
 
 El pod de ironic está levantado con hostNetwork=true
 
@@ -132,7 +167,7 @@ metadata:
   name: nombreNodo
 spec:
   online: true
-  bootMACAddress: 00:35:30:2a:ad:48
+  bootMACAddress: 00:35:30:2a:ad:48 # la MAC de la interfaz que arranca PXE, creo que no obligatorio, al menos para IPMI
   bmc:
     address: ipmi://10.0.1.2:623
     credentialsName: ipmi-secret
