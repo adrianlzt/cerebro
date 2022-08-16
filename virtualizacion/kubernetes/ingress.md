@@ -207,3 +207,7 @@ Con este parámetro le decimos al ingress que la ruta desde nginx a argo la haga
 
 # Atacar a un service de otro namespace
 Mirar ExternalName en service.md
+
+
+# Basic auth
+https://kubernetes.github.io/ingress-nginx/examples/auth/basic/
