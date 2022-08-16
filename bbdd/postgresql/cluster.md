@@ -5,6 +5,7 @@ mirar monitoring.md
 https://repmgr.org/
 Usar repmgr.md para gestionar replication
 
+patroni
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 
 physical replication es "sencillo".

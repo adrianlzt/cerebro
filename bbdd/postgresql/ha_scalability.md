@@ -1,14 +1,23 @@
 mirar:
+cluster.md
 pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
+
 https://agroal.github.io/pgagroal/
   de RedHat
+
 odyssey (https://github.com/yandex/odyssey)
+
 repmgr
   con el autofailover nos permite hacer promote de un master en caso de que el master casque
+
 https://github.com/ClusterLabs/PAF
   High-Availibility for Postgres, based on industry references Pacemaker and Corosync.
+  abandonado (última release 2020)
+
 https://github.com/citusdata/pg_auto_failover
+mirar pg_auto_failover.md
+
 https://agroal.github.io/pgagroal/
 
 PolarDB, share-nothing distributed database, basada en postgres
