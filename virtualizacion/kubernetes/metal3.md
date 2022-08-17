@@ -196,3 +196,9 @@ El host en modo available había arrancado un centos9, pero no había nada de st
 
 Parece que con pasar la imagen en el BareMetalHost es suficiente, pero tenemos que especificar el disco. De donde sacar esa info?
 Creo que debería estar en el status, pero si la imagen de ironic-python-agent no soporta la controladora, no lo veremos.
+
+
+
+In Metal3, the image deployment is performed by the Ironic Python Agent (IPA) image running on the target host. In order to deploy an image, Ironic will first boot the target node with an IPA image over iPXE. IPA will run in memory.
+
+Once IPA runs on the target node, Ironic will instruct it to download the target image. In Metal3, we use HTTP(S) for the download of the image. IPA will download the image and, depending on the format of the image, prepare it to write it on the disk.
