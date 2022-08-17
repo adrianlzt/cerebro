@@ -143,11 +143,11 @@ Los nombres de LISTA_NODOS deben matchear con lo que pasemos en "etcd -name XXX"
 
 IP="poner_la_ip_de_cada_maquina"
 LISTA_NODOS="etcd_HOSTNAME1=http://IPNODO1:2380,etcd_HOSTNAME2=http://IPNODO2:2380,etcd_HOSTNAME3=http://IPNODO3:2380"
-docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 -p 2380:2380 -p 2379:2379 \
- --name "etcd_$(hostname)" quay.io/coreos/etcd \
+docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 2380:2380 -p 2379:2379 \
+ --name etcd quay.io/coreos/etcd \
  etcd -name "etcd_$(hostname)" \
- -advertise-client-urls http://${IP}:2379,http://${IP}:4001 \
- -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
+ -advertise-client-urls http://${IP}:2379 \
+ -listen-client-urls http://0.0.0.0:2379 \
  -initial-advertise-peer-urls http://${IP}:2380 \
  -listen-peer-urls http://0.0.0.0:2380 \
  -initial-cluster-token etcd-cluster-1 \
@@ -158,7 +158,7 @@ docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/c
 Comprobar:
 docker run -it --rm quay.io/coreos/etcd etcdctl -w table --cluster endpoint health
 
-Deberán salirnos los endpoints con health a true (en este caso dos, el 2379 y el 4001)
+Deberán salirnos los endpoints con health a true
 
 Para los clientes el puerto es el 2379
 

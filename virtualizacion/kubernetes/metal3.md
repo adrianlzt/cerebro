@@ -232,3 +232,9 @@ etes a snapshot\n  '-l' lists all snapshots in the given image\n\nParameters to 
  or sector allocation\n\nSupported formats: vvfat vpc vmdk vhdx vdi ssh sheepdog rbd raw host_cdrom host_floppy host_device file qed qcow2 qcow parallels nbd iscsi gluster dmg tftp ftps ftp https http cloop bochs
  blkverify blkdebug\n"
 Aug 17 15:26:05 localhost.localdomain ironic-python-agent[1340]: 2022-08-17 15:26:05.782 1340 ERROR root Stderr: "convert: invalid option -- 'W'\n"
+
+
+
+
+Dos tipos de imágenes, la que se levanta con el IPA y la que se instala.
+https://docs.openstack.org/ironic/latest/user/creating-images.html
