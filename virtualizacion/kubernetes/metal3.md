@@ -207,3 +207,28 @@ Once IPA runs on the target node, Ironic will instruct it to download the target
 
 
 Problemas, el IPA desplegado coge un DNS que no existe. Apuntar a algún sitio del que pueda bajar la imagen.
+
+
+
+Problema con versión vieja de qemu
+Aug 17 15:26:05 localhost.localdomain ironic-python-agent[1340]: 2022-08-17 15:26:05.782 1340 ERROR root Stdout: "qemu-img version 1.5.3, Copyright (c) 2004-2008 Fabrice Bellard\nusage: qemu-img command [command
+options]\nQEMU disk image utility\n\nCommand syntax:\n  check [-q] [-f fmt] [--output=ofmt] [-r [leaks | all]] [-T src_cache] filename\n  create [-q] [-f fmt] [-o options] filename [size]\n  commit [-q] [-f fmt]
+[-t cache] filename\n  compare [-f fmt] [-F fmt] [-T src_cache] [-p] [-q] [-s] filename1 filename2\n  convert [-c] [-p] [-q] [-n] [-f fmt] [-t cache] [-T src_cache] [-O output_fmt] [-o options] [-s snapshot_name]
+ [-S sparse_size] filename [filename2 [...]] output_filename\n  info [-f fmt] [--output=ofmt] [--backing-chain] filename\n  map [-f fmt] [--output=ofmt] filename\n  snapshot [-q] [-l | -a snapshot | -c snapshot |
+ -d snapshot] filename\n  rebase [-q] [-f fmt] [-t cache] [-T src_cache] [-p] [-u] -b backing_file [-F backing_fmt] filename\n  resize [-q] filename [+ | -]size\n  amend [-q] [-f fmt] [-t cache] -o options filena
+me\n\nCommand parameters:\n  'filename' is a disk image filename\n  'fmt' is the disk image format. It is guessed automatically in most cases\n  'cache' is the cache mode used to write the output disk image, the
+valid\n    options are: 'none', 'writeback' (default, except for convert), 'writethrough',\n    'directsync' and 'unsafe' (default for convert)\n  'src_cache' is the cache mode used to read input disk images, the
+ valid\n    options are the same as for the 'cache' option\n  'size' is the disk image size in bytes. Optional suffixes\n    'k' or 'K' (kilobyte, 1024), 'M' (megabyte, 1024k), 'G' (gigabyte, 1024M),\n    'T' (te
+rabyte, 1024G), 'P' (petabyte, 1024T) and 'E' (exabyte, 1024P)  are\n    supported. 'b' is ignored.\n  'output_filename' is the destination disk image filename\n  'output_fmt' is the destination format\n  'option
+s' is a comma separated list of format specific options in a\n    name=value format. Use -o ? for an overview of the options supported by the\n    used format\n  '-c' indicates that target image must be compresse
+d (qcow format only)\n  '-u' enables unsafe rebasing. It is assumed that old and new backing file\n       match exactly. The image doesn't need a working backing file before\n       rebasing in this case (useful
+for renaming the backing file)\n  '-h' with or without a command shows this help and lists the supported formats\n  '-p' show progress of command (only certain commands)\n  '-q' use Quiet mode - do not print any
+output (except errors)\n  '-S' indicates the consecutive number of bytes (defaults to 4k) that must\n       contain only zeros for qemu-img to create a sparse image during\n       conversion. If the number of byt
+es is 0, the source will not be scanned for\n       unallocated or zero sectors, and the destination image will always be\n       fully allocated\n  '--output' takes the format in which the output must be done (h
+uman or json)\n  '-n' skips the target volume creation (useful if the volume is created\n       prior to running qemu-img)\n\nParameters to check subcommand:\n  '-r' tries to repair any inconsistencies that are f
+ound during the check.\n       '-r leaks' repairs only cluster leaks, whereas '-r all' fixes all\n       kinds of errors, with a higher risk of choosing the wrong fix or\n       hiding corruption that has already
+ occurred.\n\nParameters to snapshot subcommand:\n  'snapshot' is the name of the snapshot to create, apply or delete\n  '-a' applies a snapshot (revert disk to saved state)\n  '-c' creates a snapshot\n  '-d' del
+etes a snapshot\n  '-l' lists all snapshots in the given image\n\nParameters to compare subcommand:\n  '-f' first image format\n  '-F' second image format\n  '-s' run in Strict mode - fail on different image size
+ or sector allocation\n\nSupported formats: vvfat vpc vmdk vhdx vdi ssh sheepdog rbd raw host_cdrom host_floppy host_device file qed qcow2 qcow parallels nbd iscsi gluster dmg tftp ftps ftp https http cloop bochs
+ blkverify blkdebug\n"
+Aug 17 15:26:05 localhost.localdomain ironic-python-agent[1340]: 2022-08-17 15:26:05.782 1340 ERROR root Stderr: "convert: invalid option -- 'W'\n"
