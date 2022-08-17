@@ -2,9 +2,17 @@ https://docusaurus.io/showcase
 
 Server para montar una página web de documentación sencilla y bonita.
 
+Podemos usar markdown para cosas sencillas o usar react si queremos cosas más elaboradas.
+
+# Contenido
+
+## Pages
+Páginas simples.
+
+Crear un markdown en src/pages/
 
 
-# Usando docker
+# Deploy usando docker
 npx create-docusaurus@latest my-website classic
 
 docker run -d --name=docusaurus \
