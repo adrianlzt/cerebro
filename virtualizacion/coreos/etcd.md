@@ -156,7 +156,9 @@ docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/c
 
 
 Comprobar:
-docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
+docker run -it --rm quay.io/coreos/etcd etcdctl -w table --cluster endpoint health
+
+Deberán salirnos los endpoints con health a true (en este caso dos, el 2379 y el 4001)
 
 Para los clientes el puerto es el 2379
 
