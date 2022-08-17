@@ -202,3 +202,8 @@ Creo que debería estar en el status, pero si la imagen de ironic-python-agent n
 In Metal3, the image deployment is performed by the Ironic Python Agent (IPA) image running on the target host. In order to deploy an image, Ironic will first boot the target node with an IPA image over iPXE. IPA will run in memory.
 
 Once IPA runs on the target node, Ironic will instruct it to download the target image. In Metal3, we use HTTP(S) for the download of the image. IPA will download the image and, depending on the format of the image, prepare it to write it on the disk.
+
+
+
+
+Problemas, el IPA desplegado coge un DNS que no existe. Apuntar a algún sitio del que pueda bajar la imagen.
