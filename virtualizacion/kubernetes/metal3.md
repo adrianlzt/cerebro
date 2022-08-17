@@ -171,7 +171,7 @@ metadata:
   name: nombreNodo
 spec:
   online: true
-  bootMACAddress: 00:35:30:2a:ad:48 # la MAC de la interfaz que arranca PXE, creo que no obligatorio, al menos para IPMI
+  bootMACAddress: 00:35:30:2a:ad:48 # la MAC de la interfaz que arranca PXE
   bmc:
     address: ipmi://10.0.1.2:623
     credentialsName: ipmi-secret
