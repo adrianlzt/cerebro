@@ -1,6 +1,6 @@
 http://www.repmgr.org/
 
-repmgr is a set of open source tools that helps DBAs and System administrators manage a cluster of PostgreSQL databases..
+repmgr is a set of open source tools that helps DBAs and System administrators manage a cluster of PostgreSQL databases.
 
 By taking advantage of the Hot Standby capability introduced in PostgreSQL 9, repmgr greatly simplifies the process of setting up and managing database with high availability and scalability requirements.
 
@@ -53,4 +53,3 @@ repmgr daemon stop
 Chequea periódicamente el estado de los nodos y en caso de que no conteste, hará el promote de un nodo y follow al resto.
 
 failover=automatic
-
