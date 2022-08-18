@@ -1,6 +1,8 @@
 Generador de JSONs: http://beta.json-generator.com/
 Se le puede pasar un template
 
+Visor de relaciones definidas en JSON: https://jsonvisio.com/
+
 Pseudocódigo para definir funciones y pseudoprogramación para generar json
 jsonnet (mirar ejemplos de libs de grafana grafananet)
 

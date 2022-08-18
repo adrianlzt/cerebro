@@ -156,7 +156,8 @@ docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/c
 
 
 Comprobar:
-docker run -it --rm quay.io/coreos/etcd etcdctl -w table --cluster endpoint health
+docker run -it --rm quay.io/coreos/etcd etcdctl -w table endpoint health --cluster
+podman exec -it etcd etcdctl -w table endpoint health --cluster
 
 Deberán salirnos los endpoints con health a true
 
