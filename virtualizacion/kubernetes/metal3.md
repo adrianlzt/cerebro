@@ -244,6 +244,12 @@ https://docs.openstack.org/ironic/latest/user/creating-images.html
 Link imagen ubuntu: https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 
 
+https://docs.openstack.org/ironic/latest/admin/raid.html
+Images utilizing LVM for their root filesystem are not supported. Patches are welcome to explicitly support such functionality.
+
+
+
+
 # ConfigDrive / cloud-init / userData / networkData
 https://docs.openstack.org/ironic/pike/install/configdrive.html
 
@@ -281,3 +287,4 @@ spec:
     name: networkData-nodeXX
     namespace: baremetal-operator-system
 `````
+
