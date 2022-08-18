@@ -30,10 +30,12 @@ Una idea de como particionar para un server:
 LVM vg00 /dev/sda3
 
 vg00/lvol1 / 15GB (XFS)
-vg00/lvol2 /var 40GB (XFS)
-vg00/lvol3 /var/log 6GB (XFS)
-vg00/lvol4 /tmp 4G (XFS)
-vg00/lvol5 /home 1GB (XFS)
-vg00/lvol6 swap 0.5*RAM
+vg00/lvol2 /var 10GB (XFS)
+vg00/lvol3 /var/lib/containers 30GB (XFS) # si usamos podman
+vg00/lvol4 /var/log 6GB (XFS)
+vg00/lvol5 /tmp 4G (XFS)
+vg00/lvol6 /home 1GB (XFS)
+vg00/lvol7 swap 0.5*RAM
+
 
 Deberían quedar unos 25GB libres
