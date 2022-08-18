@@ -79,6 +79,23 @@ https://pgxn.org/dist/quantile
 Aggregate for computing various quantiles (median, quartiles etc.) efficiently.
 
 
+# pg_auth_mon
+https://github.com/RafiaSabih/pg_auth_mon
+PostgreSQL extension to store authentication attempts
+ - when has a user successfully logged in for the last time ?
+ - has a user genuinely mistyped their password or has their username been compromised?
+ - is there any particular time when a malicious role is active?
+
+
+# logerrors
+https://github.com/munakoiso/logerrors
+Extension for PostgreSQL for collecting statistics about messages in logfile.
+
+
+
+
+
+
 # PGXN
 Extensions distribution and mirroring, easy downloading and installation, documentation and metadata, and searching and reporting
 
