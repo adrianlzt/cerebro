@@ -164,6 +164,14 @@ Deberán salirnos los endpoints con health a true
 Para los clientes el puerto es el 2379
 
 
+## Discovery
+https://etcd.io/docs/v3.5/op-guide/clustering/
+
+En vez de poner las IPs directamente se pueden usar distintos métodos para hacer discovery.
+
+Podemos usar un cluster etcd ya montado o usar registros SRV DNS.
+
+
 
 # BackUp / Disaster recovery
 https://coreos.com/etcd/docs/latest/v2/admin_guide.html#disaster-recovery

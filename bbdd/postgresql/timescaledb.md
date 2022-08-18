@@ -35,3 +35,5 @@ GROUP BY bucket;
 # Docker
 podman run --rm -it -p 5431:5432 timescale/timescaledb:latest-pg11
 psql -p 5431 -h 127.0.0.1 -U postgres
+
+podman pull docker.io/timescale/timescaledb-ha:pg14.5-ts2.7.2-patroni-static-primary-latest
