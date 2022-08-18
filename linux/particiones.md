@@ -23,8 +23,8 @@ mkfs.fat -F32
 
 Una idea de como particionar para un server:
 /dev/sda: 100GiB (XFS)
-/dev/sda1 /boot 500MiB (fat32)
-/dev/sda2 /boot/efi 500MiB (XFS)
+/dev/sda1 /boot 500MiB (ext4)
+/dev/sda2 /boot/efi 500MiB (fat23)
 /dev/sda3 resto 99GiB (LVM)
 
 LVM vg00 /dev/sda3

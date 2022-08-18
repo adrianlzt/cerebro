@@ -238,3 +238,46 @@ Aug 17 15:26:05 localhost.localdomain ironic-python-agent[1340]: 2022-08-17 15:2
 
 Dos tipos de imágenes, la que se levanta con el IPA y la que se instala.
 https://docs.openstack.org/ironic/latest/user/creating-images.html
+
+
+
+Link imagen ubuntu: https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+
+
+# ConfigDrive / cloud-init / userData / networkData
+https://docs.openstack.org/ironic/pike/install/configdrive.html
+
+Cuando cargamos una imagen podemos pasar configuración via "userData" (cloud-init) y networkData:
+https://specs.openstack.org/openstack/nova-specs/specs/liberty/implemented/metadata-service-network-info.html
+https://docs.openstack.org/ironic/latest/admin/dhcp-less.html
+
+Ambas configuraciones las deberemos pasar como secrets.
+
+Una vez en la máquina podemos ver el contenido de ese config drive con:
+mount /dev/disk/by-label/config-2 /mnt
+cat /mnt/openstack/latest/user_data
+
+
+Ejemplo de userData:
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: userdata-colo00ap
+stringData:
+  userData: |
+   #!/bin/bash
+   useradd -s /bin/bash -d /home/pepe/ -m -G sudo --password XXX pepe
+type: Opaque
+`````
+
+Pasando la config al baremetalhost:
+```
+spec:
+  userData:
+    name: userdata
+    namespace: baremetal-operator-system
+  networkData:
+    name: networkData-nodeXX
+    namespace: baremetal-operator-system
+`````
