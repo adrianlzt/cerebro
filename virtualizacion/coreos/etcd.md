@@ -76,7 +76,7 @@ docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http:
 
 # API
 
-Parece que la v3 no soporta JSON, es gRPC.
+Parece que la v3 es gRPC, pero tiene una pasarela para poder hablar JSON (https://etcd.io/docs/v3.5/dev-guide/api_grpc_gateway/)
 v2 si soporta JSON
 
 Ejemplos:
@@ -198,6 +198,27 @@ https://pkg.go.dev/github.com/coreos/etcd/wal
 
 snap son snapshots desde las cuales se puede recuperar un cluster de etcd.
 
+
+
+# Leases
+Podemos pedir un lease a etcd.
+Este lease nos permite asociar keys que solo sobreviven durante un tiempo determinado.
+
+Se usa para insertar valores que duren durante un tiempo, que podemos ir renovando.
+Útil para mantener un lock mientras cierta app esté viva.
+
+
+Crear un lease:
+etcdctl lease grant 500
+
+Asociar una key a un lease (usaremos el ID que nos ha devuelto el anterior comando):
+etcdctl put zoo1 val1 --lease=694d5765fc71500b
+
+Ver los leases activos:
+etcdctl lease list
+
+Para un lease determinado, ver su TTL y keys asociadas:
+etcdctl lease timetolive --keys 695682b0c0573e40
 
 
 

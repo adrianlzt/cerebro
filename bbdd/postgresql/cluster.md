@@ -7,6 +7,7 @@ Usar repmgr.md para gestionar replication
 
 patroni
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
+https://github.com/zalando/spilo
 
 physical replication es "sencillo".
 logical replication es un poco más complejo (gestión de conflictos)
@@ -112,6 +113,8 @@ select pg_is_in_backup();
 
 select pg_is_in_recovery();
   True if recovery is still in progress
+  True también si estamos en una réplica, false en master.
+  Nos vale para distinguir master de replica.
 
 select pg_is_wal_replay_paused();
   True if recovery is paused.
