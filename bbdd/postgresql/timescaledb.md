@@ -26,6 +26,11 @@ https://docs.timescale.com/timescaledb/latest/how-to-guides/replication-and-ha/a
 Recomiendan patroni.
 
 
+# Tune
+En el contenedor viene un script ya que hace un autotune básico a partir de la memoria y número de CPUs
+timescaledb-tune
+
+
 
 # Query
 SELECT time_bucket('1 day', time_dimension_column_name) bucket, avg(column_name), stddev(column_name)
@@ -37,3 +42,14 @@ podman run --rm -it -p 5431:5432 timescale/timescaledb:latest-pg11
 psql -p 5431 -h 127.0.0.1 -U postgres
 
 podman pull docker.io/timescale/timescaledb-ha:pg14.5-ts2.7.2-patroni-static-primary-latest
+
+Esto es si queremos usar patroni.
+El timescaledb_entrypoint ejecuta patroni con la config que le pasemos (esperada en /var/lib/postgresql/postgres.yml).
+
+podman run -d --net host \
+  --name postgres \
+  --entrypoint /timescaledb_entrypoint.sh \
+  -v /var/lib/postgres:/home/postgres \
+  -e TS_TELEMETRY=off \
+  docker.io/timescale/timescaledb-ha:pg14.5-ts2.7.2-patroni-static-primary-latest
+

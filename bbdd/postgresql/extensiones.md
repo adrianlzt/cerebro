@@ -3,6 +3,9 @@ En principio no es necesario reiniciar (tal vez alguna extensión particular lo 
 Listar extensiones y funciones de estas
 \dx+
 
+Si queremos instalar una extensión en todas las database que creemos, la instalaremos en la db "template1".
+No aplicará a las DBs ya existentes.
+
 
 
 https://github.com/omniti-labs/pg_jobmon
