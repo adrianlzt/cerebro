@@ -68,6 +68,10 @@ etcdctl cluster-health
 --debug para ver que está lanzando (al final son peticiones HTTP, en la v2)
 
 
+Borrar todas las keys
+podman exec -it etcd etcdctl get --keys-only --prefix / | grep -o "[a-z/]*" | xargs -n 1 podman exec -it etcd etcdctl del
+
+
 
 ## con docker
 docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
