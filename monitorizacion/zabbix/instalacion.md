@@ -37,32 +37,32 @@ Hace falta que php tenga la extensión de postgres compilado contra una versión
 
 Para zabbix-web 6.0, parche mejorado:
 ```
---- db.inc.php.orig     2022-08-19 16:17:34.861338902 +0200
-+++ db.inc.php  2022-08-22 13:29:05.087822172 +0200
+--- db.inc.php.orig	2022-08-19 16:17:34.861338902 +0200
++++ db.inc.php	2022-08-22 13:50:16.809332144 +0200
 @@ -65,7 +65,23 @@
-                );
-        }
-
-+    // Modificado para poder conectar a varias instancias de postgres y que utilice la activa.
+ 		);
+ 	}
+ 
++    // Modificado para poder conectar a varias instancias de postgres y que utilice la activa [@adrian/Datadope]
 +    // En $DB['USER'] pondremos la lista de IPs y puertos separados por comas. Ejemplo: 192.168.0.10:5432,192.168.0.99:5432
 +
 +    // Necesitamos esta función para que setee el dbname y schema correctamente. Se usa para verificar la versión.
-        $DB['DB'] = $db->connect($DB['SERVER'], $DB['PORT'], $DB['USER'], $DB['PASSWORD'], $DB['DATABASE'], $DB['SCHEMA']);
+ 	$DB['DB'] = $db->connect($DB['SERVER'], $DB['PORT'], $DB['USER'], $DB['PASSWORD'], $DB['DATABASE'], $DB['SCHEMA']);
 +    // La conexión no se podrá producir, porque en SERVER tendremos dos hosts separados por comas.
 +    // Esto provocará que se setee la variable db->error, que provocará la finalización de esta función.
 +    // Para evitarlo limpiamos ese error.
 +    $db->setError('');
 +
-+    $pg_connection_string = 'postgresql://'.$DB['USER'].'@'.$DB['SERVER'].'/'.$DB['DATABASE'].'?target_session_attrs=read-write';
-+       $DB['DB'] = pg_connect($pg_connection_string);
++    $pg_connection_string = 'postgresql://'.$DB['USER'].':'.$DB['PASSWORD'].'@'.$DB['SERVER'].'/'.$DB['DATABASE'].'?target_session_attrs=read-write';
++	$DB['DB'] = pg_connect($pg_connection_string);
 +    // En caso de no poder conectar, mostraremos el error en la interfaz web.
 +    if (!$DB['DB']) {
-+               $error = error_get_last()['message'];
++		$error = error_get_last()['message'];
 +        return false;
 +    }
-
-        if ($DB['DB']) {
-                $db->init();```
+ 
+ 	if ($DB['DB']) {
+ 		$db->init();
 ```
 
 Si usamos la imagen de zabbix-web para docker también necesitaremos modificar el entrypoint:

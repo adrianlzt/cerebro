@@ -3,3 +3,9 @@ https://blog.zabbix.com/build-zabbix-server-ha-cluster-in-10-minutes-by-kaspars-
 
 Para Zabbix-web se soporta desde 5.2, podemos arrancar todos los zabbix-web que queramos.
 Para zabbix-server desde 6.0, servers activo-pasivo usando la DB como coordinación.
+
+Mirar ha_postgres.md para ver como configurar zabbix-web y zabbix-server para que puedan usar una postgres con primaria y réplica.
+
+# Zabbix-web
+Cada server web es independiente, por lo que las cookies son diferentes.
+Si ponemos un LB por delante tendrá que tener sticky session (no estoy 100%, no probado).
