@@ -134,6 +134,12 @@ podman mount
   en rootless no funciona
 
 
+# Default mounts
+https://podman.io/getting-started/installation#mountsconf
+
+Podemos definir en un fichero de config mounts que se harán sobre todos los contenedores que levantemos.
+Por ejemplo, para pasar credenciales.
+
 
 # Live migration
 Permite parar un container en su estado actual, reiniciar y seguir desde donde estaba?
