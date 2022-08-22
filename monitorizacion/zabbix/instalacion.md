@@ -13,12 +13,11 @@ DBName=postgresql://postgres@192.168.32.4,192.168.32.3/zabbix?target_session_att
 
 Web (no funciona, mirar parcheo):
 $DB['TYPE']     = 'POSTGRESQL';
-$DB['SERVER']   = '';
-//$DB['PORT']     = '5432';
-//$DB['DATABASE'] = 'zabbix';
-$DB['DATABASE'] = 'postgresql://postgres@192.168.32.4,192.168.32.3/zabbix?target_session_attrs=read-write';
-//$DB['USER']     = 'postgres';
-//$DB['PASSWORD'] = 'zabbix';
+$DB['SERVER'] = '192.168.32.4:5432,192.168.32.3:5432'
+$DB['PORT']     = '5432';
+$DB['DATABASE'] = 'zabbix';
+$DB['USER']     = 'postgres';
+$DB['PASSWORD'] = 'zabbix';
 
 Parece que esto no vale y tengo que parchear el web.
 
@@ -36,20 +35,52 @@ Creo que este parche es de la 3.2
 
 Hace falta que php tenga la extensión de postgres compilado contra una versión >=10. Mirar con phpinfo
 
-Para zabbix-web 6.0:
+Para zabbix-web 6.0, parche mejorado:
 ```
 --- db.inc.php.orig     2022-08-19 16:17:34.861338902 +0200
-+++ db.inc.php  2022-08-19 16:54:44.290851719 +0200
-@@ -65,7 +65,9 @@
++++ db.inc.php  2022-08-22 13:29:05.087822172 +0200
+@@ -65,7 +65,23 @@
                 );
         }
 
-+    $pg_connection_string = 'postgresql://postgres@127.0.0.1:5432,127.0.0.1:5433/zabbix?target_session_attrs=read-write';
++    // Modificado para poder conectar a varias instancias de postgres y que utilice la activa.
++    // En $DB['USER'] pondremos la lista de IPs y puertos separados por comas. Ejemplo: 192.168.0.10:5432,192.168.0.99:5432
++
++    // Necesitamos esta función para que setee el dbname y schema correctamente. Se usa para verificar la versión.
         $DB['DB'] = $db->connect($DB['SERVER'], $DB['PORT'], $DB['USER'], $DB['PASSWORD'], $DB['DATABASE'], $DB['SCHEMA']);
-+       $DB['DB'] = @pg_connect($pg_connection_string);
++    // La conexión no se podrá producir, porque en SERVER tendremos dos hosts separados por comas.
++    // Esto provocará que se setee la variable db->error, que provocará la finalización de esta función.
++    // Para evitarlo limpiamos ese error.
++    $db->setError('');
++
++    $pg_connection_string = 'postgresql://'.$DB['USER'].'@'.$DB['SERVER'].'/'.$DB['DATABASE'].'?target_session_attrs=read-write';
++       $DB['DB'] = pg_connect($pg_connection_string);
++    // En caso de no poder conectar, mostraremos el error en la interfaz web.
++    if (!$DB['DB']) {
++               $error = error_get_last()['message'];
++        return false;
++    }
 
         if ($DB['DB']) {
-                $db->init();
+                $db->init();```
+```
+
+Si usamos la imagen de zabbix-web para docker también necesitaremos modificar el entrypoint:
+```
+--- docker-entrypoint.sh.orig   2022-08-15 20:05:31.000000000 +0200
++++ docker-entrypoint.sh        2022-08-22 08:37:31.563777026 +0200
+@@ -104,7 +104,9 @@
+         export PGSSLKEY=${ZBX_DBTLSKEYFILE}
+     fi
+
+-    while [ ! "$(psql --host ${DB_SERVER_HOST} --port ${DB_SERVER_PORT} --username ${DB_SERVER_ZBX_USER} --dbname ${DB_SERVER_DBNAME} --list --quiet 2>/dev/nu
+ll)" ]; do
++    # Modificado para poder conectar a varias instancias de postgres y que utilice la activa [@adrian/Datadope]
++    pg_connection_string="postgresql://${DB_SERVER_ZBX_USER}@${DB_SERVER_HOST}/${DB_SERVER_DBNAME}?target_session_attrs=read-write"
++    while [ ! "$(psql --dbname "${pg_connection_string}" --list --quiet 2>/dev/null)" ]; do
+         echo "**** PostgreSQL server is not available. Waiting $WAIT_TIMEOUT seconds..."
+         sleep $WAIT_TIMEOUT
+     done
 ```
 
 
