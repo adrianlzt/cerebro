@@ -7,5 +7,8 @@ Para zabbix-server desde 6.0, servers activo-pasivo usando la DB como coordinaci
 Mirar ha_postgres.md para ver como configurar zabbix-web y zabbix-server para que puedan usar una postgres con primaria y réplica.
 
 # Zabbix-web
-Cada server web es independiente, por lo que las cookies son diferentes.
+Cada server web es independiente (activo-activo), por lo que las cookies son diferentes.
 Si ponemos un LB por delante tendrá que tener sticky session (no estoy 100%, no probado).
+
+# Zabbix-server
+Desde la versión 6.0, activo-pasivo.
