@@ -198,3 +198,12 @@ select * from pg_stat_replication;
 
 Ultima transaccion sincronizada
 select pg_last_xact_replay_timestamp();
+
+
+# Comprobar si es primario
+Podemos intentar establecer una conex de escritura para ver si estamos en un primario (si falla podría ser un primario con escrituras desactivadas tambié).
+``````
+psql -d "postgresql://postgres@localhost/zabbix?target_session_attrs=read-write"
+``````
+
+Tambíen podemos ver pg_stat_replication y ver tenemos una réplica conectada (entonces seremos el primario).
