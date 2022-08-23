@@ -12,3 +12,10 @@ Si ponemos un LB por delante tendrá que tener sticky session (no estoy 100%, no
 
 # Zabbix-server
 Desde la versión 6.0, activo-pasivo.
+
+Para activar el HA debemos confiurar estos dos parámetros:
+HANodeName=nombreServer
+NodeAddress=ipserver:10051
+
+HANodeName será el nombre que usemos en los proxies/agentes para referirnos al server.
+NodeAddress es donde conectará el frontend.
