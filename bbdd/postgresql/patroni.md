@@ -44,6 +44,11 @@ https://patroni.readthedocs.io/en/latest/rest_api.html
 Podemos consultar quien es el master, replica, health, recargar, etc
 
 
+# patronictl
+Ver el estado del cluster y sus miembros:
+patronictl -c /etc/patroni.yml list NOMBRECLUSTER
+
+
 # etcd
 Almacena la información en /service/$CLUSTER_NAME
 
@@ -56,6 +61,7 @@ Si el cluster ya se consiguió inicializar existirá una key /service/$CLUSTER_N
 Si existe esa clave y hemos borrado ambos nodos del cluster de postgres, el cluster no podrá arrancar.
 Tendremos que borrar esa key (etcdctl del /service/batman/initialize) o, mejor, sacar el cluster del DCS:
 patronictl -c postgres.yml remove $CLUSTER_NAME
+
 
 
 # vip-manager
