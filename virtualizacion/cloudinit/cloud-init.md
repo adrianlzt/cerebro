@@ -26,6 +26,13 @@ Una de las maneras de pasar valores a cloud-init es pasar un cloud-config-url en
 Cloud-init al arrancar hará un GET de esa url y lo ejecutará.
 Asi se hace en MAAS (devops/maas/internals.md)
 
+También se puede dejar una partición con un label específico donde estará almacenada la info.
+ConfigDrive https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html
+
+Todas las opciones (datasources) disponibles
+https://cloudinit.readthedocs.io/en/latest/topics/datasources.html
+
+
 Tipicos endpoints
 http://169.254.169.254/metadata/2012-03-01/meta-data/instance-id
 http://169.254.169.254/metadata/2012-03-01/meta-data/local-hostname
@@ -49,3 +56,7 @@ Y los ficheros de log:
 /var/log/cloud-init.log
 /var/log/cloud-init-output.log
 
+
+# Reejecutar
+cloud-init clean
+cloud-init -d init
