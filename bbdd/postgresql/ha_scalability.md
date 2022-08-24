@@ -1,7 +1,12 @@
+Para tener auto-promote parece que lo mejor es patroni.
+Si queremos tener una VIP podamos usar vip-manager (mirar patroni.md)
+
 mirar:
 cluster.md
 pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
+
+cybertec recomienda patroni sobre pgpool (para HA): https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
 
 https://agroal.github.io/pgagroal/
   de RedHat
@@ -17,8 +22,6 @@ https://github.com/ClusterLabs/PAF
 
 https://github.com/citusdata/pg_auto_failover
 mirar pg_auto_failover.md
-
-https://agroal.github.io/pgagroal/
 
 PolarDB, share-nothing distributed database, basada en postgres
 https://github.com/alibaba/PolarDB-for-PostgreSQL

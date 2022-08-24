@@ -75,6 +75,9 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
 Comprobar en el master que vemos la replica conectada:
 select * from pg_stat_replication;
 
+Comprobar si somos un primario o replica (off para el primario, on para replica):
+show in_hot_standby;
+
 
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
 https://dba.stackexchange.com/a/259892

@@ -1,8 +1,13 @@
 https://patroni.readthedocs.io/en/latest/
 https://github.com/zalando/patroni
 https://github.com/zalando/spilo
+https://www.cybertec-postgresql.com/en/patroni-setting-up-a-highly-available-postgresql-cluster/
+https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 https://www.slideshare.net/ZalandoTech/high-availability-postgresql-with-zalando-patroni
+
+Se encarga de hacer el auto-promote de una instancia replica en caso de que caiga la primaria.
+Podemos configurar una VIP usando https://github.com/cybertec-postgresql/vip-manager (mirar más abajo)
 
 Timescale es el que recomienda.
 Viene preinstalado en su imagen "-ha".
@@ -51,3 +56,26 @@ Si el cluster ya se consiguió inicializar existirá una key /service/$CLUSTER_N
 Si existe esa clave y hemos borrado ambos nodos del cluster de postgres, el cluster no podrá arrancar.
 Tendremos que borrar esa key (etcdctl del /service/batman/initialize) o, mejor, sacar el cluster del DCS:
 patronictl -c postgres.yml remove $CLUSTER_NAME
+
+
+# vip-manager
+https://www.cybertec-postgresql.com/en/postgresql-clustering-vip-manager/
+https://github.com/cybertec-postgresql/vip-manager
+
+Pequeño programa en go que se encarga de setear una VIP en el nodo activo.
+Se dedica a pollear la key de etcd para ver quien es el master y añadir (o quitar) esa VIP según sea necesario.
+Tiene que estar corriendo en todos los nodos.
+
+## Instalación
+https://github.com/cybertec-postgresql/vip-manager/releases/
+En las releases de github dejan un .rpm y .deb
+
+## Config
+Por defecto se mete en y es donde la busca la unit de systemd:
+/etc/default/vip-manager.yml
+
+Tendremos que modificar:
+  - trigger-key: el "namespace" usado en patroni (el nombre donde encontrar la clave, por ejemplo /service/NAMESPACE/leader)
+  - trigger-value: el nombre de host usado en patroni (el que se seteará en la key "leader", patroni.yaml key "name")
+  - ip / netmask / interface: la VIP a usar, su netmask y la interfac donde configurarla
+  - los endpoints de etcd (y credenciales en caso de ser necesario, o comentarlos si no lo usamos; lo mismo con los certs de etcd)
