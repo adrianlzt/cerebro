@@ -76,7 +76,12 @@ Al añadir cambios, si queremos que sean permanentes meteremos:
 firewall-cmd --list-all
   muestra zonas activas y que tienen configuradas.
 
+
+
 ## Zonas
+La zona por defecto hará lo que diga su "target" (ACCEPT/DROP/default).
+default es: REJECT + allow ICMP + if ingress zone is default, forwardings will follow egress zone target + zone drifting may be applied depending on global setting
+
 Por defecto todas las interfaces están unidas a la default zone
 firewall-cmd --get-default-zone
 
@@ -132,11 +137,13 @@ Creo que hace falta recargar para coger la conf:
 firewall-cmd --reload
 
 
-## Filtrar por IPs
+## Filtrar por IPs y puertos
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source
 
 Podemos asignar ips o subnets a zonas específicas, por ejemplo, podemos asignar una IP a la zona trusted, para que pueda acceder sin restricciones:
 firewall-cmd --zone=trusted --add-source=192.168.2.15
+firewall-cmd --runtime-to-permanent
+Tambien podemos añadir "permanent" al primer comando.
 
 
 ## Services
