@@ -81,6 +81,9 @@ firewall-cmd --list-all
 ## Zonas
 La zona por defecto hará lo que diga su "target" (ACCEPT/DROP/default).
 default es: REJECT + allow ICMP + if ingress zone is default, forwardings will follow egress zone target + zone drifting may be applied depending on global setting
+Para modificarlo:
+firewall-cmd --permanent --zone=YOUR_ZONE_HERE --set-target=ACCEPT
+firewall-cmd --reload
 
 Por defecto todas las interfaces están unidas a la default zone
 firewall-cmd --get-default-zone
