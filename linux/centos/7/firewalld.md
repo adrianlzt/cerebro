@@ -2,8 +2,13 @@ http://www.certdepot.net/rhel7-get-started-firewalld/
 https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
 
-Ver que tenemos:
-firewall-cmd --list-all
+Ver que tenemos en runtime (obtiene las zonas activas y saca su resultado):
+firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={}
+
+Ver que tenemos permanente:
+firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={} --permanent
+
+
 
 Abrir el firewall sin restricción:
 firewall-cmd --set-default-zone=trusted
@@ -11,7 +16,7 @@ firewall-cmd --set-default-zone=trusted
 
 firewalld.noarch : A firewall daemon with D-BUS interface providing a dynamic firewall
 
-Integra iptables, iptables6 y eftables
+Integra iptables, iptables6, eftables y nftables.
 Conf en XML
 Pre-defined templates
 
@@ -125,6 +130,13 @@ firewall-cmd --add-port=50/tcp --add-port=60/tcp
 
 Creo que hace falta recargar para coger la conf:
 firewall-cmd --reload
+
+
+## Filtrar por IPs
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source
+
+Podemos asignar ips o subnets a zonas específicas, por ejemplo, podemos asignar una IP a la zona trusted, para que pueda acceder sin restricciones:
+firewall-cmd --zone=trusted --add-source=192.168.2.15
 
 
 ## Services
