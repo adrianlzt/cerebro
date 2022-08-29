@@ -28,6 +28,7 @@ Asi se hace en MAAS (devops/maas/internals.md)
 
 También se puede dejar una partición con un label específico donde estará almacenada la info.
 ConfigDrive https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html
+Más abajo ejemplo de hacer un .iso para ConfigDrive
 
 Todas las opciones (datasources) disponibles
 https://cloudinit.readthedocs.io/en/latest/topics/datasources.html
@@ -58,5 +59,49 @@ Y los ficheros de log:
 
 
 # Reejecutar
+Por el orden y comandos vistos en las units de systemd
+
 cloud-init clean
 cloud-init -d init
+cloud-init -d modules --mode=config
+cloud-init -d modules --mode=final
+
+
+
+# Config
+Ficheros de config:
+/etc/cloud/
+/run/cloud-init/cloud.cfg
+
+# Logs
+/var/log/cloud-init-output.log
+/var/log/cloud-init.log
+
+# System units
+cloud-init-local.service
+cloud-init.service (after cloud-init-local)
+cloud-config.service (after cloud-config.target)
+cloud-final.service (after cloud-config.service)
+
+
+# ConfigDrive .iso
+https://blog.condi.me/qemu-config-drive/
+
+
+cat <<EOF > user-data
+#!
+touch /tmp/cloud.user-data
+EOF
+
+cat <<EOF > meta-data
+instance-id: id-12345
+local-hostname: cloudy
+EOF
+
+truncate -s 2M cloudconfig.img
+/usr/sbin/mkfs.vfat -n cidata cloudconfig.img
+mcopy -oi cloudconfig.img user-data meta-data ::
+
+Añadir el disco como Almacenamiento tipo VirtIO:
+-drive file=cloudconfig.img,if=virtio,format=raw
+

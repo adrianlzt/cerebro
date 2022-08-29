@@ -1,7 +1,13 @@
 Generador de JSONs: http://beta.json-generator.com/
 Se le puede pasar un template
 
-Visor de relaciones definidas en JSON: https://jsonvisio.com/
+Visor web de relaciones definidas en JSON: https://jsonvisio.com/
+Otro isor, este va mostrando columnas con los datos que vamos seleccionando: https://jsonhero.io/
+
+Visualizar json en la consola (dos opciones):
+fx fichero.json
+jless fichero.json
+Por defecto nos muestra todo colapsado. Con las flechas podemos ir navegando
 
 Pseudocódigo para definir funciones y pseudoprogramación para generar json
 jsonnet (mirar ejemplos de libs de grafana grafananet)
