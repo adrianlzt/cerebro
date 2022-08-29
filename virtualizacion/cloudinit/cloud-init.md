@@ -84,8 +84,11 @@ cloud-config.service (after cloud-config.target)
 cloud-final.service (after cloud-config.service)
 
 
-# ConfigDrive .iso
+# NoCloud .iso
+https://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html
 https://blog.condi.me/qemu-config-drive/
+
+Disco con label "cidata".
 
 
 cat <<EOF > user-data
