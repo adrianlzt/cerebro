@@ -1,4 +1,4 @@
-Para enviar emails: mailx
+Para enviar emails: mailx, parece que s-nail lo está sustituyendo.
 
 echo "mensaje" | mail -s "subject" pepe@dest.com
 
