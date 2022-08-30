@@ -43,11 +43,21 @@ https://patroni.readthedocs.io/en/latest/rest_api.html
 
 Podemos consultar quien es el master, replica, health, recargar, etc
 
+## Modificar configuración
+https://github.com/zalando/patroni/blob/master/docs/rest_api.rst#config-endpoint
+
+curl -s -XPATCH -d \
+        '{"loop_wait":5,"ttl":20,"postgresql":{"parameters":{"max_connections":"101"}}}' \
+        http://localhost:8008/config | jq .
+
 
 # patronictl
 Ver el estado del cluster y sus miembros:
 patronictl -c /etc/patroni.yml list NOMBRECLUSTER
 
+## restart
+Supuestamente patronictl restart reinicia los postgres, pero no me funciona.
+Se hace la llamada a la API, se para pero no arranca (al menos con la imagen de timescaledb-ha para docker).
 
 # etcd
 Almacena la información en /service/$CLUSTER_NAME
