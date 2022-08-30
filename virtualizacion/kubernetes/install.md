@@ -1,3 +1,8 @@
+# cluster-api
+https://github.com/kubernetes-sigs/cluster-api
+Usar esto con metal3 para desplegar sobre baremetal?
+https://slides.com/fmuyassarov/code-block-2-0-line-numbers-highlights-79ef39?token=S_YcL_73#/8
+
 # kubeadm
 Es quien gestiona la instalación del cluster, pero no instalar el container runtime, ni el network plugin.
 

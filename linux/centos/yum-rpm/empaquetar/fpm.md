@@ -1,3 +1,8 @@
+https://github.com/goreleaser/nfpm
+Un fpm más sencillo (binario en go) para hacer .rpm, .deb y .apk
+
+
+
 https://github.com/jordansissel/fpm#readme
 https://github.com/jordansissel/fpm/wiki
 

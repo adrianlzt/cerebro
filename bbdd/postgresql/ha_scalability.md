@@ -1,15 +1,27 @@
+Para tener auto-promote parece que lo mejor es patroni.
+Si queremos tener una VIP podamos usar vip-manager (mirar patroni.md)
+
 mirar:
+cluster.md
 pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
+
+cybertec recomienda patroni sobre pgpool (para HA): https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
+
 https://agroal.github.io/pgagroal/
   de RedHat
+
 odyssey (https://github.com/yandex/odyssey)
+
 repmgr
   con el autofailover nos permite hacer promote de un master en caso de que el master casque
+
 https://github.com/ClusterLabs/PAF
   High-Availibility for Postgres, based on industry references Pacemaker and Corosync.
+  abandonado (última release 2020)
+
 https://github.com/citusdata/pg_auto_failover
-https://agroal.github.io/pgagroal/
+mirar pg_auto_failover.md
 
 PolarDB, share-nothing distributed database, basada en postgres
 https://github.com/alibaba/PolarDB-for-PostgreSQL
@@ -189,3 +201,12 @@ select * from pg_stat_replication;
 
 Ultima transaccion sincronizada
 select pg_last_xact_replay_timestamp();
+
+
+# Comprobar si es primario
+Podemos intentar establecer una conex de escritura para ver si estamos en un primario (si falla podría ser un primario con escrituras desactivadas tambié).
+``````
+psql -d "postgresql://postgres@localhost/zabbix?target_session_attrs=read-write"
+``````
+
+Tambíen podemos ver pg_stat_replication y ver tenemos una réplica conectada (entonces seremos el primario).

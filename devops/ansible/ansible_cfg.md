@@ -1,6 +1,8 @@
 Como lo configuran en kubespray
 https://github.com/kubernetes-sigs/kubespray/blob/master/ansible.cfg
 
+Mirar ara.md si queremos guardar las ejecuciones
+
 
 Opciones útiles:
 

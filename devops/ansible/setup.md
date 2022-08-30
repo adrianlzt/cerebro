@@ -198,3 +198,15 @@ https://github.com/python/cpython/blob/2.7/Lib/platform.py#L1154:5
 
 # Cache
 mirar cache.md
+
+
+
+# Obtener facts de hosts que no están en la list del playbook
+https://gist.github.com/aliusmiles/e32a7296dda81438e56fff01d95d669b
+```
+- name: gather facts from group1
+  setup:
+  delegate_to: "{{ item }}"
+  delegate_facts: True
+  with_items: "{{ groups['group1'] }}"
+```

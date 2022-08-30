@@ -11,7 +11,11 @@ Para crear un readme con todos sus puntos
 https://readme.so/es/editor
 
 
+
+
 # Para crear webs de documentacion
+https://docusaurus.io/docs
+  mirar web/docusaurus.md
 http://www.mkdocs.org/
 http://squidfunk.github.io/mkdocs-material/
 

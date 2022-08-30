@@ -3,6 +3,9 @@ En principio no es necesario reiniciar (tal vez alguna extensión particular lo 
 Listar extensiones y funciones de estas
 \dx+
 
+Si queremos instalar una extensión en todas las database que creemos, la instalaremos en la db "template1".
+No aplicará a las DBs ya existentes.
+
 
 
 https://github.com/omniti-labs/pg_jobmon
@@ -77,6 +80,23 @@ esqueleton: https://paquier.xyz/postgresql-2/blackhole-extension/
 # quantile
 https://pgxn.org/dist/quantile
 Aggregate for computing various quantiles (median, quartiles etc.) efficiently.
+
+
+# pg_auth_mon
+https://github.com/RafiaSabih/pg_auth_mon
+PostgreSQL extension to store authentication attempts
+ - when has a user successfully logged in for the last time ?
+ - has a user genuinely mistyped their password or has their username been compromised?
+ - is there any particular time when a malicious role is active?
+
+
+# logerrors
+https://github.com/munakoiso/logerrors
+Extension for PostgreSQL for collecting statistics about messages in logfile.
+
+
+
+
 
 
 # PGXN

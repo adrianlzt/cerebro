@@ -5,7 +5,9 @@ mirar monitoring.md
 https://repmgr.org/
 Usar repmgr.md para gestionar replication
 
+patroni
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
+https://github.com/zalando/spilo
 
 physical replication es "sencillo".
 logical replication es un poco más complejo (gestión de conflictos)
@@ -73,6 +75,9 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
 Comprobar en el master que vemos la replica conectada:
 select * from pg_stat_replication;
 
+Comprobar si somos un primario o replica (off para el primario, on para replica):
+show in_hot_standby;
+
 
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
 https://dba.stackexchange.com/a/259892
@@ -111,6 +116,8 @@ select pg_is_in_backup();
 
 select pg_is_in_recovery();
   True if recovery is still in progress
+  True también si estamos en una réplica, false en master.
+  Nos vale para distinguir master de replica.
 
 select pg_is_wal_replay_paused();
   True if recovery is paused.

@@ -396,10 +396,19 @@ Lenguaje: python
 
 # pgbackrest
 https://pgbackrest.org/
-Empresa: 
+Empresa: The PostgreSQL Global Development Group, CrunchyData
 Lenguaje: c
 
 Check nagios para monitorizar https://labs.dalibo.com/check_pgbackrest
+
+Full backup: todos los ficheros para poder realizar un restore.
+Differential backup: solo se almacenan las diferencias respecto a un full backup.
+Incremental backup: solo se almacenan las diferencias respecto al último backup (full o diff)
+
+## Config
+/etc/pgbackrest/pgbackrest.conf
+https://pgbackrest.org/user-guide-rhel.html#quickstart/configure-stanza
+
 
 
 # omnipitr

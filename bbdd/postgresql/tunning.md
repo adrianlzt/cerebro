@@ -1,3 +1,5 @@
+https://postgresqlco.nf/
+  podemos subir un fichero, editarlo con la ayuda de la app y nos ayuda a tunearlo
 https://pgtune.leopard.in.ua/#/
 https://github.com/jfcoz/postgresqltuner
 https://postgresqlco.nf/en/doc/param/

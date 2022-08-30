@@ -6,6 +6,11 @@ Mejor que pgpool, pero no permite enviar escrituras a una instancia distinta (es
 Conoce el protocolo, dentro de una conex, entiende las transaciones y puede balancearlas. En haproxy deberíamos forzar que una conex entera fuera balanceada.
 Single thread, pero es ligero y puede manejar muchas conexiones con una sola cpu (curso)
 
+No sirve como LB por delante de un primario-replica y que cambie automáticamente.
+De la doc oficial "A comma-separated list of host names or addresses can be specified. In that case, connections are made in a round-robin manner."
+Aquí lo hacen usando repmgr ejecutando un script que reconfigura pgbouncer:
+http://arumel.com/es/failover-auto-pgbouncer-repmgr-postgresql-13-parte-1/
+
 Podemos instalarlo en la máquina de aplicación o en la misma database.
 
 helm: https://github.com/cradlepoint/kubernetes-helm-chart-pgbouncer
@@ -33,7 +38,12 @@ Una funcionalidad interesante:
 Podemos parar la base de datos detras de pgbouncer, hacer tareas administrativas, y volver a conectarla, y los clientes de postgres no notarán nada. (la parada debe ser corta, por supuesto)
 
 
+Los usuarios conectarán contra pgbouncer (por defecto 127.0.0.1:6432) usando las credenciales definida en pgbouncer (/etc/pgbouncer/userlist.txt).
+En la config de pgbouncer ("databases") tendremos que definir como conectar a los endpoints reales.
+
+
 # Config
+/etc/pgbouncer/pgbouncer.ini
 
 max_client_conn = Maximum number of client connections allowed
 default_pool_size = How many server connections to allow per user/database pair
@@ -48,6 +58,9 @@ Mapping de databases virtuales a reales
 [databases]
 myfooddb = host=myprimary dbname=myfooddb
 myfooddb_ro = host=mystandby dbname=myfooddb
+
+Podemos poner una db de fallback, donde irán todas las conex que no sabe donde enviar:
+* = host=172.16.0.250
 
 
 # Admin / monitoring

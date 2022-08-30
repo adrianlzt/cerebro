@@ -108,9 +108,10 @@ Shared memory size for storing host, item and trigger data
 La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 hosts).
 
 Para 11k hosts, 1.5M items, 500k triggers -> ~1GB
-El trigger por defecto salta cuando estamos al 25% de capacidad disponible.
+El trigger por defecto salta cuando estamos al 25% de capacidad disponible (hayamos usado el 75%).
 
 Aproximación burda: 1GB / 11k+1.5M+500k = 0.5kB/elemento
+Validad también con un Zabbix 4
 
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.

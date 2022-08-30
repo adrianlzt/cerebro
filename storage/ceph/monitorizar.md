@@ -10,6 +10,13 @@ ceph health detail
   que POOLs se están llenando (ceph df)
   si algún mon no está conectado al cluster (chequear procesos ceph-mon que estén arrancados)
 
+Si queremos ver todos los mensajes de crash:
+ceph crash ls
+
+Si queremos borrarlos (borrar los más antiguos de N dias):
+ceph crash prune <dias>
+
+
 Estado de uso de storage
 ceph df
 

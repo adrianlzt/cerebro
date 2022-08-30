@@ -3,6 +3,11 @@ To Be used for Alerting, Troubleshooting, Trend Analyses
 
 Viene del libro: Monitoring Distributed Systems from SRE Book
 
+https://www.infoq.com/articles/monitoring-SRE-golden-signals/
+Ejemplos de golden signals para balanceadores, so, bbdd, web y alguna cosa mas
+
+
+
 
 Es como RED + saturation
 

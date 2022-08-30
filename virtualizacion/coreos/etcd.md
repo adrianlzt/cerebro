@@ -68,6 +68,10 @@ etcdctl cluster-health
 --debug para ver que está lanzando (al final son peticiones HTTP, en la v2)
 
 
+Borrar todas las keys
+podman exec -it etcd etcdctl get --keys-only --prefix / | grep -o "[a-z/]*" | xargs -n 1 podman exec -it etcd etcdctl del
+
+
 
 ## con docker
 docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
@@ -76,7 +80,7 @@ docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http:
 
 # API
 
-Parece que la v3 no soporta JSON, es gRPC.
+Parece que la v3 es gRPC, pero tiene una pasarela para poder hablar JSON (https://etcd.io/docs/v3.5/dev-guide/api_grpc_gateway/)
 v2 si soporta JSON
 
 Ejemplos:
@@ -143,11 +147,11 @@ Los nombres de LISTA_NODOS deben matchear con lo que pasemos en "etcd -name XXX"
 
 IP="poner_la_ip_de_cada_maquina"
 LISTA_NODOS="etcd_HOSTNAME1=http://IPNODO1:2380,etcd_HOSTNAME2=http://IPNODO2:2380,etcd_HOSTNAME3=http://IPNODO3:2380"
-docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 4001:4001 -p 2380:2380 -p 2379:2379 \
- --name "etcd_$(hostname)" quay.io/coreos/etcd \
+docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 2380:2380 -p 2379:2379 \
+ --name etcd quay.io/coreos/etcd \
  etcd -name "etcd_$(hostname)" \
- -advertise-client-urls http://${IP}:2379,http://${IP}:4001 \
- -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
+ -advertise-client-urls http://${IP}:2379 \
+ -listen-client-urls http://0.0.0.0:2379 \
  -initial-advertise-peer-urls http://${IP}:2380 \
  -listen-peer-urls http://0.0.0.0:2380 \
  -initial-cluster-token etcd-cluster-1 \
@@ -156,9 +160,20 @@ docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/c
 
 
 Comprobar:
-docker run -it --rm quay.io/coreos/etcd etcdctl -C http://172.16.1.28:2379,http://172.16.1.29:2379,http://172.16.1.30:2379 member list
+docker run -it --rm quay.io/coreos/etcd etcdctl -w table endpoint health --cluster
+podman exec -it etcd etcdctl -w table endpoint health --cluster
+
+Deberán salirnos los endpoints con health a true
 
 Para los clientes el puerto es el 2379
+
+
+## Discovery
+https://etcd.io/docs/v3.5/op-guide/clustering/
+
+En vez de poner las IPs directamente se pueden usar distintos métodos para hacer discovery.
+
+Podemos usar un cluster etcd ya montado o usar registros SRV DNS.
 
 
 
@@ -187,6 +202,27 @@ https://pkg.go.dev/github.com/coreos/etcd/wal
 
 snap son snapshots desde las cuales se puede recuperar un cluster de etcd.
 
+
+
+# Leases
+Podemos pedir un lease a etcd.
+Este lease nos permite asociar keys que solo sobreviven durante un tiempo determinado.
+
+Se usa para insertar valores que duren durante un tiempo, que podemos ir renovando.
+Útil para mantener un lock mientras cierta app esté viva.
+
+
+Crear un lease:
+etcdctl lease grant 500
+
+Asociar una key a un lease (usaremos el ID que nos ha devuelto el anterior comando):
+etcdctl put zoo1 val1 --lease=694d5765fc71500b
+
+Ver los leases activos:
+etcdctl lease list
+
+Para un lease determinado, ver su TTL y keys asociadas:
+etcdctl lease timetolive --keys 695682b0c0573e40
 
 
 
