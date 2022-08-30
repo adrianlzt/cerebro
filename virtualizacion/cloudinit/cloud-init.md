@@ -108,3 +108,18 @@ mcopy -oi cloudconfig.img user-data meta-data ::
 Añadir el disco como Almacenamiento tipo VirtIO:
 -drive file=cloudconfig.img,if=virtio,format=raw
 
+
+# ConfigDrive
+mkdir openstack/{2012-08-10,latest}
+
+echo '{"local-hostname": "nombreHost", "local_hostname": "nombreHost", "metal3-name": "nombreHost", "metal3-namespace": "baremetal-operator-system", "name": "nombreHost", "uuid": "a9197aee-faf1-48bb-946d-7a886e38c560"}' > meta_data.json
+
+cat <<EOF > user-data
+#!
+touch /tmp/cloud.user-data
+EOF
+
+cp meta_data.json openstack/{2012-08-10,latest}/
+cp user_data openstack/{2012-08-10,latest}/
+
+sudo mcopy -oi configdrive.img -s openstack ::

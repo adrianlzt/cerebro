@@ -1,6 +1,16 @@
 http://linuxcommand.org/man_pages/losetup8.html
 
-Montar una imagen .dd
+Montar una imagen .dd / raw
+
+sudo losetup -f -P disk.img
+
+Ver los devices
+losetup -l
+
+Montar:
+mount /dev/loop0 /mnt
+
+
 
 sudo losetup /dev/loop4 imagen.dd -o $((2048*512))
   2048 es el primer bloque de la partición, nos lo dice fdisk -l

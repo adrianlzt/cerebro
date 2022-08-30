@@ -12,6 +12,8 @@ Luego tenemos otro más modernos con rodamientos externos, sin rosca, etc
 Como quitar y montar un pedalier y biela.
 http://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank
 
+Video explicativo de como se quita el pedalier, viendo que hace el "crack extractor"
+
 Mi bici de carretera tiene un crank de tres piezas
 http://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank
 Necesitaremos un extractor de viela (https://www.avantiplus.co.nz/images/products/OUDT0N820_zoom.jpg) y una llame de 8mm allen.
