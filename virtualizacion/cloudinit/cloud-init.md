@@ -119,7 +119,35 @@ cat <<EOF > user-data
 touch /tmp/cloud.user-data
 EOF
 
+CAT <<EOF > network_data.json
+{
+    "links": [
+        {
+            "id": "port-92750f6c-60a9-4897-9cd1-090c5f361e18",
+            "type": "phy",
+            "ethernet_mac_address": "52:52:00:ce:10:93"
+        }
+    ],
+    "networks": [
+        {
+            "id": "network0",
+            "type": "ipv4",
+            "link": "port-92750f6c-60a9-4897-9cd1-090c5f361e18",
+            "ip_address": "192.168.122.61",
+            "netmask": "255.255.255.0",
+            "network_id": "network0",
+            "routes": []
+        }
+    ],
+    "services": []
+}
+EOF
+
 cp meta_data.json openstack/{2012-08-10,latest}/
+cp network_data.json openstack/{2012-08-10,latest}/
 cp user_data openstack/{2012-08-10,latest}/
+
+sudo truncate -s 2M configdrive.img
+sudo mkfs.vfat -n config-2 configdrive.img
 
 sudo mcopy -oi configdrive.img -s openstack ::
