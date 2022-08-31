@@ -1,4 +1,5 @@
 https://patroni.readthedocs.io/en/latest/
+https://github.com/patroni-training/2019
 https://github.com/zalando/patroni
 https://github.com/zalando/spilo
 https://www.cybertec-postgresql.com/en/patroni-setting-up-a-highly-available-postgresql-cluster/
