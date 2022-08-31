@@ -51,3 +51,10 @@ Lo creará en:
 
 Por defecto se intenta hacer un incremental backup, pero si no existe ningún full, hará un full.
 Si queremos forzar un full: --type=full
+
+El backup se tiene que realizar localmente en el nodo primario o, usando ssh, configurando el primario y la/las réplicas.
+
+
+# Debug
+--log-level-console=detail
+--log-level-console=debug
