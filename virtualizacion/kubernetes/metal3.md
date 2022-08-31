@@ -288,3 +288,31 @@ spec:
     namespace: baremetal-operator-system
 `````
 
+
+
+# Ironic-agent
+https://docs.openstack.org/ironic-python-agent/latest/admin/how_it_works.html
+
+Al arrancar IPA obtiene su ID del conductor via API (v1/lookup).
+Luego (o antes?) inspecciona el hardware y envía el resultado al inspector via API (v1/continue).
+
+
+El contenido de configDrive lo genera ironic (inspector? conductor?) y parece que se lo pasa aquí (log de ipa):
+POST /v1/commands/?wait=true&agent_token=eMf0owdEPEd7bR366q3QhKQgF1iq0qVQGn1B0psbUq4
+Executing command: deploy.get_deploy_steps with args
+
+Dentro de ese POST hay un JSON tipo {"name": COMANDO, "params": {...}}
+Eso ejecutará alguna de las funciones decoradas con: @base.sync_command('NOMBRE_COMANDO')
+
+Ironic-conductor es el encargado de generar el configdrive. Log:
+2022-08-31 05:18:31.227 1 DEBUG ironic.conductor.utils [None req-f42cb6e5-dbd0-473c-b6b4-7644d38ed674 - - - - - -] Building a configdrive for node e3e8d77e-36cb-4c62-861f-322ca50bc71f build_configdrive /usr/lib/python3.9/site-packages/ironic/conductor/utils.py:1044
+
+En el pod de ironic, podemos ver el estado de un nodo con (el id lo podemos sacar del status.provisioning.ID del baremetalhost):
+curl localhost:6385/v1/nodes/47e80144-1929-46be-aeb5-a41217c012ff | python3 -m json.tool
+
+
+Conectar a la mariadb que usa ironic:
+kc exec -it   baremetal-operator-ironic-76c9598848-sz27v -c mariadb -- mysql -u ironic -pchangeme ironic
+
+Info de un nodo:
+select * from nodes where uuid = '47e80144-1929-46be-aeb5-a41217c012ff';

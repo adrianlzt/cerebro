@@ -7,3 +7,10 @@ Nos permite crear imágenes para distintas distribuciones (ubuntu, centos, fedor
 
 
 Ejemplo en diskimage-builder.image.sh
+
+
+Debug:
+https://docs.nvidia.com/networking/pages/releaseview.action?pageId=39259372#Howto:CreateOpenStackCloudImagewithNVIDIAGPUandNetworkDrivers.-BasicDIBImageBuildTroubleshooting
+
+export break=after-error
+disk-image-create -x
