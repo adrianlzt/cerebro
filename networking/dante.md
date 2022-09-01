@@ -1,9 +1,6 @@
 https://www.inet.no/dante/index.html
 https://www.inet.no/dante/doc/latest/config/socks.html
 
-Downloads
-https://www.inet.no/dante/sslfiles/binaries.html
-
 Dante funciona modificando el LD_PRELOAD (https://www.inet.no/dante/doc/faq.html#socksify_system) de manera que las syscalls connect, bind y udpassociate ejecutan unas llamadas modificadas que meten el tráfico en un proxy. Más información en su [https://www.inet.no/dante/doc/latest/config/socks.html web].
 Otras opciones para modificar syscall, mirar en linux/syscall.md
 http://www.alfonsobeato.net/c/modifying-system-call-arguments-with-ptrace/
@@ -28,6 +25,9 @@ Dante/socksify también puede usar un proxy http, en vez de socks.
 Probado con Squid.
 
 
+Downloads
+https://www.inet.no/dante/sslfiles/binaries.html
+
 
 # Simple, sin dante server
 pacman -S dante
@@ -45,7 +45,16 @@ route {
 socksify curl eth0.me
   deberiamos ver la ip de maquinasalto
 
-# RPM
+# Build
+## Almalinux9
+dnf install -y gcc
+curl -O https://www.inet.no/dante/files/dante-1.4.3.tar.gz
+tar zxvf dante-1.4.3.tar.gz
+cd dante-1.4.3
+./configure
+make
+
+## RPM
 El .tar.gz viene con el .spec para gener un rpm
 
 Debajo de la línea de BuildRoot meter las dependencias:
@@ -63,6 +72,7 @@ dante-debuginfo-1.4.1-1.el6.x86_64.rpm
 # Cliente
 
 cat /etc/socks.conf
+``````
 # $Id: socks-simple.conf,v 1.13 2012/06/01 19:59:26 karls Exp $
 #
 # A simple sample socks.conf for users with a local DNS server.
@@ -85,6 +95,7 @@ route {
 }
 
 # Con esta regla enviamos todo el trafico al puerto 443 del servidor 5.77.22.9 donde habrá un servidor dante
+``````
 
 
 # Server
