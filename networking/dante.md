@@ -1,6 +1,9 @@
 https://www.inet.no/dante/index.html
 https://www.inet.no/dante/doc/latest/config/socks.html
 
+Downloads
+https://www.inet.no/dante/sslfiles/binaries.html
+
 Dante funciona modificando el LD_PRELOAD (https://www.inet.no/dante/doc/faq.html#socksify_system) de manera que las syscalls connect, bind y udpassociate ejecutan unas llamadas modificadas que meten el tráfico en un proxy. Más información en su [https://www.inet.no/dante/doc/latest/config/socks.html web].
 Otras opciones para modificar syscall, mirar en linux/syscall.md
 http://www.alfonsobeato.net/c/modifying-system-call-arguments-with-ptrace/
@@ -16,11 +19,15 @@ Aunque en strace veamos que se llama a openat, al final la función que debemos 
 Otra lib donde fakean muchas syscall: https://github.com/mikix/deb2snap/blob/master/src/preload.c
 
 
-
 Otra opcion: tsocks.md (deprecated)
 Tambíen torsocks, aunque orientado a la red tor.
 
 Algunos programas, por ejemplo openvpn, escapan de socksify. No sabemos muy bien como. Por un fork? Creo que por trafico UDP.
+
+Dante/socksify también puede usar un proxy http, en vez de socks.
+Probado con Squid.
+
+
 
 # Simple, sin dante server
 pacman -S dante
