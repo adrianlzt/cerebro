@@ -1,4 +1,4 @@
-http://docs.ansible.com/playbooks_conditionals.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html
 
 - name: template the file /foo.txt
   template: src=foo.j2 dest=/foo.txt owner=root group=wheel mode=0644
