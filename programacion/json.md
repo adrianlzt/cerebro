@@ -107,9 +107,16 @@ https://goessner.net/articles/JsonPath/index.html#e2
 
 Online evaluator:
 https://jsonpath.com/
+https://www.jsonquerytool.com/sample/jsonpathlastinarray
+  este último nos permite encadenar varias jsonpath expressions
 
 Filtrar por una cadena de texto:
 .events[0].attributes[?(@.name=='screen_name')].value
+
+Contar elementos:
+.events.length()
+
+Si queremos filtrar y luego obtener un elemento tendremos que usar dos expresiones distitnas.
 
 
 # JSON patch
