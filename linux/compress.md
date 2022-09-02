@@ -32,4 +32,7 @@ xz -0 fichero
 xz -9 fichero
   el que más comprime
 
+xz -9 -T 0 fichero
+  usar todas las CPUs. O cambiar 0 por el número de CPUs que queramos usar.
+
 unxz fichero.xz
