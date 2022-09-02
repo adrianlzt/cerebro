@@ -54,6 +54,28 @@ Si queremos forzar un full: --type=full
 
 El backup se tiene que realizar localmente en el nodo primario o, usando ssh, configurando el primario y la/las réplicas.
 
+## Standby
+https://pgbackrest.org/user-guide-rhel.html#standby-backup
+Como usar, mayormente, un nodo standy/replica para obtener los fichero de backup.
+
+## HA
+https://community.pivotal.io/s/article/How-to-setup-pgbackrest-on-a-cluster-using-pg-auto-failover?language=en_US
+Si tenemos un sistema con HA podemos hacer.
+Tendremos un host donde se realizarán los backups (que podría ser uno de los nodos del cluster).
+Los postgres tendrán configurado pgbackrest para archivar los WAL al "repo" de ese nodo que hace los backups.
+El nodo que sea activo usará "achive_command" con pgbackrest para copiar por ssh los WAL al nodo que hace los backups (deberemos configurar claves ssh).
+
+El nodo que hace los backups usará otra config de pgbackrest donde apuntará a los dos hosts de postgres. Cuando haga el backup se conectará por ssh para obtener los ficheros.
+
+Podemos conbigurar "backup-standby=y" para que use mayormente el nodo replica para bajarse los datos, descargando al primario.
+
+
+# Monitorización
+pgbackrest info
+pgbackrest --output=json info
+
+https://pgbackrest.org/user-guide-rhel.html#monitor
+Aquí nos explica como crear una función que ejecute ese comando por si queremos hacer queries que respondan el resultado del comando.
 
 # Debug
 --log-level-console=detail

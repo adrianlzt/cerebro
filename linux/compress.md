@@ -26,6 +26,8 @@ pzstd consume varios cores
 
 
 # xz
+Borra el fichero original y nos deja el .xz
+
 xz -0 fichero
   el más rápido
 
