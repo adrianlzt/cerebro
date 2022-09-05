@@ -103,6 +103,8 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 # Open source
 https://zero.pritunl.com/
 https://github.com/ory/oathkeeper
+https://github.com/vouch/vouch-proxy
+  An SSO and OAuth / OIDC login solution for Nginx using the auth_request module
 
 ## Pomerium
 pomerium.md
