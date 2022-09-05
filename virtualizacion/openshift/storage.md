@@ -9,6 +9,8 @@ Se utiliza la solución de Kubernetes: persistent volume (PV) framework.
 
 Cuando se necesita un storage persistente se hace un persistent volume claims (PVCs), que es agnóstico a la tecnología que haya por debajo.
 
+Otra opción son los "Volume Claims" integrados en los sts (statefulset.apps). En este caso no veremos recursos "pvc", si no que ese "pvc" va integrado en el "spec" del "sts".
+
 Los drivers son los que existen en el código https://kubernetes.io/docs/concepts/storage/volumes
 Se puede extender con "flex", que es una interfaz que debe cumplir un binario: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-storage/flexvolume.md
 
