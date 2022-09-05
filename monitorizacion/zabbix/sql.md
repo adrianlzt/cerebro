@@ -255,8 +255,8 @@ MAL! tenemos que al menos coger solo los triggers enabled y los objectid que hag
 select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
 
 -- alertas que no han sido enviadas por un error (zabbix 6)
-select hosts.name, items.key_, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join triggers on triggers.triggerid=events.objectid join functions using (triggerid) join items using (itemid) join hosts using (hostid) where alerts.status=2;
-
+select to_timestamp(alerts.clock) as date, hosts.name, items.key_, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join tri
+ggers on triggers.triggerid=events.objectid join functions using (triggerid) join items using (itemid) join hosts using (hostid) where alerts.status=2 order by alerts.clock desc;
 
 
 # Trigger - functions - items - hosts
