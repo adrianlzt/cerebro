@@ -254,6 +254,9 @@ MAL! tenemos que al menos coger solo los triggers enabled y los objectid que hag
 -- alertas pendientes de enviar agrupadas por media type
 select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
 
+-- alertas que no han sido enviadas por un error (zabbix 6)
+select hosts.name, items.key_, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join triggers on triggers.triggerid=events.objectid join functions using (triggerid) join items using (itemid) join hosts using (hostid) where alerts.status=2;
+
 
 
 # Trigger - functions - items - hosts
@@ -329,6 +332,8 @@ select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' 
 
 Items not supported (si metemos "and items.flags=1" solo veremos los items LLD fallando):
 select hosts.host,items.name from hosts,items where items.hostid=hosts.hostid and state=1;
+Para Zabbix 6.0 (excluyendo items/hosts no enabled):
+select hosts.host,items.itemid,items.name,error from hosts join items using (hostid) join item_rtdata using (itemid) where state=1 and items.status=0 and hosts.status=0;
 
 Triggers not supported:
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and triggers.state=1

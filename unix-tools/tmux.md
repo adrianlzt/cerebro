@@ -225,6 +225,8 @@ Para pegar, presionar Shift más el botón del medio del ratón.
 
 # Buscar
 Ponernos en modo copy y pulsar "/"
+Con copycat:
+C-a /
 
 
 # Copiar (hay dos modos, emacs o vi, con list-keys podemos ver las teclas para cada modo. Creo que se cambia con "setw -g mode-keys vi")
