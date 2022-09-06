@@ -63,6 +63,7 @@ Status
 1 - disabled
 3 - template (para la tabla hosts)
 5 - proxy
+6 - proxy pasivo (al menos en zabbix 6)
 
 alert - status
 0 - not sent
@@ -634,6 +635,9 @@ Ejemplo de query buscando un update (action=1) de un host (resourcetype=4)
 select *,to_timestamp(clock) as fecha from auditlog join auditlog_details using (auditid) where action=1 and resourcetype=4 and resourcename like '%zbxalerter' limit 10;
 
 
+# Zabbix-proxy
+Last seen (last access) de los proxies:
+SELECT h.hostid,h.host,to_timestamp(h.lastaccess) FROM hosts h WHERE h.status IN (5,6);
 
 
 
