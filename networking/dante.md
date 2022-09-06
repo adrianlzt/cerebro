@@ -33,6 +33,7 @@ https://www.inet.no/dante/sslfiles/binaries.html
 pacman -S dante
 ssh -D 1080 user@maquinasalto
 vi /etc/socks.conf
+``````
 # First route to go direct (no socks server) for telefonica network (dns, etc.)
 route { from: 0.0.0.0/0 to: 10.0.0.0/8 via: direct }
 
@@ -41,9 +42,22 @@ route {
         from: 0.0.0.0/0   to: 0.0.0.0/0   via: 127.0.0.1 port = 1080
         proxyprotocol: socks_v5         # server supports socks v5.
 }  
+``````
 
 socksify curl eth0.me
   deberiamos ver la ip de maquinasalto
+
+
+# Configuración a nivel global de SO
+CUIDADO! Afecta a todo el sistema. Si la lib no está disponible en el arranque del sistema puede que no arranque.
+Mirar el "Caveats" de tsocks: https://linux.die.net/man/8/tsocks#Caveats:~:text=redirect%20standard%20error.-,Caveats,-tsocks%20will%20not
+Probar a reiniciar para comprobar que no se rompe nada en el arranque.
+
+MUCHO OJO también a tener una configuración errónea. En ese caso, cualquier comando del SO fallará al ejecutarse.
+Para desactivar el ld.so.preload en caso de error:
+echo "" > /etc/ld.so.preload
+
+echo /usr/local/lib/libdsocks.so > /etc/ld.so.preload
 
 # Build
 ## Almalinux9
@@ -111,7 +125,7 @@ socks block { from: 0.0.0.0/0 to: lo log: connect }
 socks pass { from: 0.0.0.0/0 to: 0.0.0.0/0 }
 
 
-# Debug
+# Debug / client logging
 https://www.inet.no/dante/doc/faq.html#bugs
 $ head /etc/socks.conf  
 logoutput: /tmp/dante.log
