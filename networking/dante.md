@@ -59,6 +59,10 @@ echo "" > /etc/ld.so.preload
 
 echo /usr/local/lib/libdsocks.so > /etc/ld.so.preload
 
+OJO con configurar un fichero de log sin permisos de escritura globales e intentar usar socksify con otro usuario.
+El usuario que ejecute el programa será quien necesite permisos para socksify
+
+
 # Build
 ## Almalinux9
 dnf install -y gcc
