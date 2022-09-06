@@ -1,4 +1,4 @@
-https://envoyproxy.github.io/envoy/
+https://www.envoyproxy.io/
 
 Proxy diseñado para ser usado como sidecar en pods de kubernetes.
 
@@ -11,3 +11,7 @@ Health checks
 Staged rollouts with %-based traffic split
 Fault injection
 Rich metrics
+
+
+# Interfaz admin
+Suele estar en el puerto 9901
