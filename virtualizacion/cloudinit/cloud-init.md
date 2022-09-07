@@ -67,11 +67,19 @@ cloud-init -d modules --mode=config
 cloud-init -d modules --mode=final
 
 
+Si hacemos el clean y reiniciamos será como si la máquina arrancase por primera vez
+
+
 
 # Config
 Ficheros de config:
 /etc/cloud/
 /run/cloud-init/cloud.cfg
+
+
+ssh_pwauth:   1
+Si tenemos esta config, cloud-init quitará la opción de poder logear por ssh con contraseña.
+Lo cambiará al arrancar la máquina.
 
 # Logs
 /var/log/cloud-init-output.log
