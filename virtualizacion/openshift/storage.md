@@ -325,6 +325,18 @@ spec:
           name: task-volume
 
 
+## Deployments
+En los deployments tendremos que configurar que los pods se borren antes de crearse los nuevos, si no, los viejos bloquean el acceso al nuevo y no se puede lenvatar:
+```
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oxidized
+  strategy:
+    type: Recreate
+```
+
 
 # Modos
 Tabla con que modos soporta cada plugin: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
