@@ -474,6 +474,21 @@ SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relat
 Templates que se están usando por algún host al menos:
 select hostid,host from hosts where status = 3 and hostid IN (select ht.templateid from hosts_templates ht, hosts h where ht.hostid = h.hostid and h.status != 3 and flags=0);
 
+Items sin template asociada:
+SELECT
+   hosts.name,
+   items.key_
+FROM
+   hosts
+JOIN
+   items USING (hostid)
+WHERE
+   hosts.status = 0
+   AND items.templateid IS NULL
+   AND items.status = 0
+   AND items.flags <> 4;
+
+
 Templates que pertenecen a un grupo:
 select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
 
