@@ -37,8 +37,18 @@ https://blog.zabbix.com/how-to-setup-redundant-zabbix-proxies-without-complex-cl
 
 Si usamos autoregister, podemos configurar los agentes para tener dos ServerActive.
 En caso de caída de un proxy, tras dos minutos, el agente conectará contra el otro proxy, lanzará de nuevo el autoregister y se cambiará de proxy.
+Parece que esta config no es válida, porque el agente se anda cambiando de proxy sin ser necesario:
+More than one Zabbix proxy should not be specified from each Zabbix server/cluster.
+
 
 Tendremos que esperar a que ese cambio de config se propage al server y de ahí al nuevo proxy.
 Mientras tanto esos datos se perderán.
 
 Podemos mirar la opción de EnablePersistentBuffer (en los agentes) para ver si conseguimos evitar esa pérdida.
+En el caso de caída de proxy pero sin cambio, ese persistence buffer si funciona.
+
+
+## Opciones posibles
+1. Ambos proxies con el mismo nombre y una VIP o un LB
+2. La opción del blog (script en python)
+3. trigger en postgres similar al script?
