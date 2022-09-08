@@ -33,9 +33,9 @@ global_defs {
 vrrp_script chk_haproxy {
     script "/bin/pidof haproxy"
     interval 2
-    weight 2
-    rise 20 # cuantos puntos de prioridad sumará si el check funciona
-    fall 20 # cuantos puntos perderá si el check falla
+    weight 20 # cuantos puntos de prioridad sumará/perderá si el check funciona o no. Se puede invertir con "reverse"
+    rise 2 # cuantos intentos buenos para considerar bueno el check
+    fall 2 # cuantos intentos malos para considerar bueno el check
     # Los puntos de priority +- este cambio deben ser suficientes para que el segundo nodo se ponga como master
 }
 

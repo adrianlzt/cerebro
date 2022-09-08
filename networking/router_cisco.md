@@ -982,3 +982,15 @@ Como ver el numero de peticiones que esta recibiendo el dns por segundo?
 
 
 
+# Cisco ASA ASDM
+Interfaz web para configurar y administrar el ASA.
+
+Activar (solo permitir acceso de esa red):
+ASA(config)#aaa authentication http console LOCAL
+ASA(config)#http server enable
+ASA(config)#http 10.0.1.0 255.255.255.0 INSIDE
+
+Necesitaremos también tener un usuario, posiblemente ya creado.
+
+Accedemos por https:
+https://10.0.1.1
