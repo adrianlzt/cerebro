@@ -994,3 +994,11 @@ Necesitaremos también tener un usuario, posiblemente ya creado.
 
 Accedemos por https:
 https://10.0.1.1
+
+Nos bajará un .jnlp
+Application Error: Cannot grant permissions to unsigned jars
+Mirar:
+https://techblog.jeppson.org/2018/01/fix-icedtea-cannot-grant-permissions-unsigned-jars-error/
+https://unix.stackexchange.com/questions/143805/running-unsigned-javaws-code
+
+javaws -nosecurity https://10.0.2.1/admin/public/asdm.jnlp
