@@ -21,13 +21,22 @@ Con ansible: http://everythingshouldbevirtual.com/ansible-keepalived
 En la configuración, podemos poner los dos a MASTER y entre ellos eligirán cual se pone en modo BACKUP
 
 
+adduser -s /sbin/nologin -M -r -d / keepalived_script
+
 Ejemplo de config:
+global_defs {
+  script_security
+  script_user keepalived_script # que user ejecutará los scripts de chequeo
+  max_auto_priority 80 # por si hace falta el proceso de keepalived se suba la preferencia del scheduling en caso de saturación, hasta cuanto puede subir
+}
+
 vrrp_script chk_haproxy {
     script "/bin/pidof haproxy"
     interval 2
     weight 2
-    rise 2
-    fall 2
+    rise 20 # cuantos puntos de prioridad sumará si el check funciona
+    fall 20 # cuantos puntos perderá si el check falla
+    # Los puntos de priority +- este cambio deben ser suficientes para que el segundo nodo se ponga como master
 }
 
 vrrp_instance nombre {

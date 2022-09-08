@@ -10,7 +10,7 @@ mkdir ca; docker run --rm -v "$PWD/ca:/root/.local/share/mkcert" -v "$PWD:/mnt" 
 En ca/ tendremos la CA y luego el cert en redis.pem y la key en redis-key.pem
 
 Si queremos un dhparam
-openssl dhparam -out dhparams.pem 4096
+openssl dhparam -out dhparam.pem 4096
 
 
 mkcert -install
