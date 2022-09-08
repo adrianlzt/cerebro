@@ -40,12 +40,15 @@ vrrp_instance nombre {
     track_interface {
         enp2s0
     }
+    # una o varias IPs
     virtual_ipaddress {
         10.0.2.55/24
     }
+    # no es obligatorio
     track_script {
         chk_haproxy
     }
+    # allows the lower priority # machine to maintain the master role, even when a higher priority machine comes back online
     nopreempt
 }
 
