@@ -423,6 +423,11 @@ IP packet debugging is on (detailed) for access list 199
 
 
 
+## Troubleshooting cisco asa
+https://www.ciscolive.com/c/dam/r/ciscolive/us/docs/2018/pdf/BRKSEC-3020.pdf
+
+
+
 
 # DNS
 http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr_dns/configuration/15-mt/dns-15-mt-book/dns-config-dns.html
@@ -669,6 +674,10 @@ sh tcp brief all | in LISTEN
 
 sh tcp
   conex establecidas
+show local-host
+  en ASA
+show local-host
+  en ASA
 
 sh tcp brief numeric
   salida tipo netstat
@@ -754,7 +763,7 @@ no monitor capture buffer NOMBREBUFFER
 https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-generation-firewalls/118097-configure-asa-00.html
 
 Capturar tráfico desde una IP externa hacia cualquier sitio:
-capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
+capture NOMBRE interface outside match ip 9.18.208.224 255.255.255.255 any
 
 Para desactivarlo
 no capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
@@ -916,13 +925,6 @@ ip dns server
 
 
 
-# Dudas
-como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
-
-Como ver el numero de peticiones que esta recibiendo el dns por segundo?
-
-
-
 # cisco cli analyzer
 https://cway.cisco.com/go/sa/
 Cisco CLI analyzer
@@ -961,3 +963,22 @@ boot system disk0:/asa-9-12-1-smp-k8.bin
 Guardar y recargar:
 write
 reload
+
+
+
+# Cisco ASA ASP / accelerated security path
+Paquetes que pueden ser descartados por distintas razones. En la web explican cada razón
+
+https://www.cisco.com/c/en/us/td/docs/security/asa/asa-cli-reference/show_asp_drop_command_usage/show-asp-drop-command-usage.html
+
+show asp drop
+
+Para limpiar la tabla:
+clear asp drop
+# Dudas
+como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
+
+Como ver el numero de peticiones que esta recibiendo el dns por segundo?
+
+
+
