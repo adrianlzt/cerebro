@@ -997,12 +997,21 @@ https://10.0.1.1
 
 Lo he conseguido ejecutar en un windows 10 con jre7, ASDM 7.5(2)153
 
-Nos bajará un .jnlp
+Usando esta idea https://community.cisco.com/t5/network-security/asdm-on-ubuntu/m-p/4007044/highlight/true#M145740 (llevarnos el código java a linux) me falla con:
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+Necesito importar el cert, lo cogemos de https://10.0.1.1
+https://stackoverflow.com/questions/21076179/pkix-path-building-failed-and-unable-to-find-valid-certification-path-to-requ
+Nada, ni con ese cert ni con el que se generó la primera vez al ejecutar asdm en windows.
+Tal vez metiendo nosotros un cert en el dispositivo que esté aceptado por la ca del keytool de java funcionase.
+
 Application Error: Cannot grant permissions to unsigned jars
 Mirar:
 https://techblog.jeppson.org/2018/01/fix-icedtea-cannot-grant-permissions-unsigned-jars-error/
 https://unix.stackexchange.com/questions/143805/running-unsigned-javaws-code
 
+Con esto falla algo de java, parece porque usa la versión de 64bits?
+https://web.archive.org/web/20220808182716/https://noobient.com/2019/09/26/cisco-asdm-on-64-bit-ubuntu-18-04/
+Pero seguramente me lleve al primera de los certificados de arriba
 javaws -nosecurity https://10.0.2.1/admin/public/asdm.jnlp
 
 
