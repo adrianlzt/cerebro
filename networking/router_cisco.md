@@ -965,6 +965,11 @@ write
 reload
 
 
+# Reiniciar / reboot
+enable
+reload
+
+
 
 # Cisco ASA ASP / accelerated security path
 Paquetes que pueden ser descartados por distintas razones. En la web explican cada razón
@@ -1028,3 +1033,9 @@ show flash | include asdm-645.bin
 # Cisco asa thread detection
 https://www.cisco.com/c/en/us/td/docs/security/asa/asa96/configuration/firewall/asa-96-firewall-config/conns-threat.html
 show threat-detection rate
+
+
+# Cisco ASA initial config
+https://www.routerfreak.com/basic-configuration-tutorial-cisco-asa-5505-firewall/
+
+Configurar interfaces.

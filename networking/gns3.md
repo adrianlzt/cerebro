@@ -12,6 +12,8 @@ Ansible: https://galaxy.ansible.com/davidban77/gns3
 En arch, con AUR:
 yay gns3-server gns3-gui
 
+Ahora me falla el gui, instalado en el virtualenv gns3 (gui y server)
+
 En ubuntu:
 sudo add-apt-repository ppa:gns3/ppa
 sudo apt update
@@ -86,6 +88,7 @@ https://www.reddit.com/r/opendirectories/comments/7rmbi3/lots_of_cisco_ios_firmw
 https://gist.github.com/takyon12/ec938f7dbd4d32d2ba3e
 https://t.me/s/cisco_collection
 Ciso ASA: https://commonerrors.blogspot.com/2019/05/asa-97-qcow2-download-vm-image-for-gns3.html
+  password vacia para enable
 
 Por ejemplo para correr el router cisco 7200 usaremos la imagen
 http://tfr.org/cisco-ios/7200/c7200-adventerprisek9-mz.124-24.T5.bin
@@ -220,6 +223,8 @@ Por defecto podemos crear una especie de PCs simplificados a los que podemos con
 Pero son muy básicos.
 
 Podemos también conectar otros sitemas (linux/windows/dockers).
+File > New Template. Actualizar, ir a guests y seleccionar el que queremos.
+
 
 Por ejemplo podemos conectar una Debian10 que se levantará con QEMU.
 https://docs-v1.gns3.com/appliances/debian10-min.html
