@@ -13,6 +13,8 @@ No se puede usar {{item}} en el name
      - nano
      - mlocate
 
+O con una variable: loop: "{{ somelist }}"
+
 - name: add several users
   user: name={{ item.name }} state=present groups={{ item.groups }}
   loop:
@@ -206,3 +208,18 @@ Nos quedamos con los dicts que tengan la key "cluster" definida, y obtenmos la l
     - pear
   loop_control:
     index_var: my_idx
+
+
+# nested / doble loop
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#iterating-over-nested-lists
+
+- name: Give users access to multiple databases
+  community.mysql.mysql_user:
+    name: "{{ item[0] }}"
+    priv: "{{ item[1] }}.*:ALL"
+    append_privs: yes
+    password: "foo"
+  loop: "{{ ['alice', 'bob'] | product(['clientdb', 'employeedb', 'providerdb']) | list }}"
+
+En item.0 (o item[0]) tendremos a "alice" y "bob", en item.1 a "clientdb" y el resto de dbs.
+Hemos hecha una multiplicación de una lista por la otra.
