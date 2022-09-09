@@ -995,6 +995,8 @@ Necesitaremos también tener un usuario, posiblemente ya creado.
 Accedemos por https:
 https://10.0.1.1
 
+Lo he conseguido ejecutar en un windows 10 con jre7, ASDM 7.5(2)153
+
 Nos bajará un .jnlp
 Application Error: Cannot grant permissions to unsigned jars
 Mirar:
@@ -1002,3 +1004,13 @@ https://techblog.jeppson.org/2018/01/fix-icedtea-cannot-grant-permissions-unsign
 https://unix.stackexchange.com/questions/143805/running-unsigned-javaws-code
 
 javaws -nosecurity https://10.0.2.1/admin/public/asdm.jnlp
+
+
+## Actualiar ASDM
+http://notthenetwork.me/blog/2012/04/02/how-to-upgrading-the-software-and-asdm-images-on-a-cisco-asa/
+
+Ver versión funcionando
+show asdm image
+
+Ver versiones disponibles:
+show flash | include asdm-645.bin
