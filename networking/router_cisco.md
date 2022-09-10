@@ -342,7 +342,7 @@ Ejemplo de packet-tracer. Comprobamos si en la interface INSIDE la ip 10.0.0.1 c
 packet-tracer input INSIDE tcp 10.0.0.1 43512 10.5.0.50 http
 
 
-Por defecto también está capado el tráfico inter-interface, si tienen el mismo security-level y intra-interface:
+Por defecto también está capado el tráfico inter-interface e intra-interface (solo si tienen el mismo security-level):
 Para permitirlo:
 same-security-traffic permit inter-interface
 same-security-traffic permit intra-interface
