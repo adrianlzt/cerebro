@@ -212,6 +212,9 @@ write
 https://www.packetswitch.co.uk/cisco-asa-nat-example/
 https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
 
+https://www.cisco.com/c/en/us/support/docs/security/adaptive-security-appliance-asa-software/116154-qanda-ASA-00.html
+Si configuramos un NAT en ASA, él contestará a las peticiones ARP para la IP que hayamos configurado.
+
 ### Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
 
 object network user-subnet
