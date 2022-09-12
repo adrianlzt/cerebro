@@ -12,7 +12,7 @@ https://github.com/saravana815/dhtest
 Mirar python.md
 
 Bajar:
-wget https://github.com/saravana815/dhtest/archive/master.zip
+curl -LO https://github.com/saravana815/dhtest/archive/master.zip
 
 unzip master.zip
 cd dhtest-master/
