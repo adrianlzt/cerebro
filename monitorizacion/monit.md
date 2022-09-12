@@ -15,3 +15,14 @@ Memory and Disk space. A minimum of 1 megabytes RAM are required and around 500K
 Ejemplos de config
 https://help.clouding.io/hc/es/articles/360010216759-Monitorizar-mi-servidor-Centos-con-Monit
 https://mmonit.com/wiki/Monit/ConfigurationExamples
+
+
+# Install
+Algunas distros traen empaquetado.
+Si no, bajar el .tgz para la arquitectura que necesitemos.
+
+En una oracle linux también he tenido que instalar libnsl.x86_64
+
+
+# Ejecutar
+bin/monit -c conf/monitrc start all
