@@ -743,6 +743,7 @@ monitor capture buffer NOMBREBUFFER export ...
 monitor capture buffer NOMBREBUFFER export tftp://10.0.1.7/picorouter1.pcap
   no se puede cambiar el puerto (fallara si intentamos hacer tftp://a.b.c.d:nn/)
   server tftp con docker: docker run -v "/tmp/tftp:/var/tftpboot" --rm -it --net host pghalliday/tftp --secure /var/tftpboot -L -c
+  En /tmp/tftp tendremos que crear un fichero con el mismo nombre que usemos en el export (picorouter1.pcap) con permisos 777.
   no funciona? configurar la interfaz de salida de tftp (mirar que la interfaz que ponemos sea la que debe usarse para conectar con la ip del tftp):
     conf term
     ip tftp source-interface gigabitEthernet 0/1
