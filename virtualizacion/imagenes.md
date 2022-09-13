@@ -1,3 +1,7 @@
+https://docs.openstack.org/glance/latest/user/formats.html
+image format vs container format
+
+
 http://uec-images.ubuntu.com/
 http://www.vagrantbox.es/ https://github.com/garethr/vagrantboxes-heroku/pulls
 
