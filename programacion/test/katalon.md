@@ -1,4 +1,5 @@
 Si queremos comprobar la performance: monitorizacion/webpage_monitor.md
+Mirar synthetic_monitoring.md
 
 
 Mirar tamibén como alternativa https://www.cypress.io/

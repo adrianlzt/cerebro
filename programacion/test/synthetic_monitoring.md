@@ -1,0 +1,1 @@
+../../monitorizacion/synthetic_monitoring.md

@@ -1,3 +1,6 @@
+mirar k6.md
+
+
 https://developers.google.com/web/
 Mirar chrome extension Lighthouse
 Bug si la web no carga nada durante los primeros segundos (NO_FCP): https://github.com/GoogleChrome/lighthouse/issues/6154
