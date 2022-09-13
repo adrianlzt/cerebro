@@ -1,6 +1,9 @@
 http://stedolan.github.io/jq/
 Otra opción: jp (https://github.com/jmespath/jp)
 
+https://docs.gitlab.com/ee/administration/logs/log_parsing.html#what-is-jq
+Ejemplos de usos para filtrar en ficheros ndjson
+
 faq: otra opción que vale para bson,json, toml, xml, yaml: https://github.com/jzelinskie/faq/blob/master/README.md
 para xml: xq
 
@@ -131,7 +134,13 @@ Lo podemos usar para mostrar como una tabla un array
 Accept  Host    User-Agent      X-Amzn-Trace-Id
 
 
-# ndjson to json
+# ndjson (new line json) / json lines
+https://jsonlines.org/
+
+tail -f fichero | jq .
+tail -f fichero | grep --line-buffered -v -e "foo" | jq .
+
+## ndjson to json
 Si tenemos un fichero con muchos dict json, si queremos meterlos en un array:
 cat file.json | jq -s
 
