@@ -1,4 +1,4 @@
-https://everything.curl.dev/usingcurl/reademail
+https://everything.curl.dev/
 
 Mejor usar httpie.md
 
@@ -221,3 +221,9 @@ Date: Wed Feb 16 10:35:43 CET 2022
 Por favor, encuentre adjunta la última factura.
 
 Que tenga un buen día.
+
+
+# POP3
+https://everything.curl.dev/usingcurl/reademail
+
+curl -u user@mail.com:secretpassword -v pop3s://mail.server.com/

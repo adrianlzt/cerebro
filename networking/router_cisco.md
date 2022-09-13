@@ -351,6 +351,11 @@ Usando el "packet-tracer", si vemos la regla "Implicit Rule" es que está hacien
 Ejemplo de packet-tracer. Comprobamos si en la interface INSIDE la ip 10.0.0.1 con el pueto 43512 puede comunicarse con 10.5.0.50:80
 packet-tracer input INSIDE tcp 10.0.0.1 43512 10.5.0.50 http
 
+Abrir todo IP en todas las interfaces, tanto entrada como salida:
+access-list global_access extended permit ip any any 
+access-group global_access global
+
+
 
 Por defecto también está capado el tráfico inter-interface e intra-interface (solo si tienen el mismo security-level):
 Para permitirlo:
