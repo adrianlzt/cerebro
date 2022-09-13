@@ -1,3 +1,5 @@
+https://everything.curl.dev/usingcurl/reademail
+
 Mejor usar httpie.md
 
 Convertir curl a python/go/etc

@@ -215,6 +215,7 @@ https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
 https://www.cisco.com/c/en/us/support/docs/security/adaptive-security-appliance-asa-software/116154-qanda-ASA-00.html
 Si configuramos un NAT en ASA, él contestará a las peticiones ARP para la IP que hayamos configurado.
 
+
 ### Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
 
 object network user-subnet
@@ -225,6 +226,12 @@ Ver estado:
 show xlate
 
 ### NAT one-to-one.
+Mapear la IP pública 44.33.22.11 a la IP interna 10.0.2.10, todos los puertos:
+object network nat-from-44.33.22.11-to-10.0.2.10
+ host 10.0.2.10
+ nat (INSIDE,OUTSIDE) static 44.33.22.11
+
+
 Mapear la IP pública 6.11.34.134 puerto 80 a la IP interna 10.0.0.138 puerto 32080
 
 object network k8s-ingress-public-external-ip
@@ -504,6 +511,9 @@ ip route vrf Mgmt 0.0.0.0 0.0.0.0 172.30.6.24
 show route
 show run route
 
+Default route:
+route OUTSIDE 0.0.0.0 0.0.0.0 26.21.24.29 1
+
 
 
 # ACL / CBAC
@@ -768,6 +778,9 @@ https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-gener
 
 Capturar tráfico desde una IP externa hacia cualquier sitio:
 capture NOMBRE interface outside match ip 9.18.208.224 255.255.255.255 any
+
+Capturar tráfico arp:
+capture trafico-arp interface ouTSIDE ethernet-type arp
 
 Para desactivarlo
 no capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
