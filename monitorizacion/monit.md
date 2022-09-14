@@ -17,6 +17,47 @@ https://help.clouding.io/hc/es/articles/360010216759-Monitorizar-mi-servidor-Cen
 https://mmonit.com/wiki/Monit/ConfigurationExamples
 
 
+## Config mínima
+Con esto monitoriza cpu, load, mem, swap, uptime, file descriptors.
+
+```
+set daemon  30              # check services at 30 seconds intervals
+set log syslog
+set httpd port 2812 and
+    allow admin:monit
+```
+
+## Check host remoto
+```
+check host myserver with address 192.168.1.1
+  if failed ping then alert
+  if failed port 3306 protocol mysql with timeout 15 seconds then alert
+  if failed port 80 protocol http
+     and request /some/path with content = "a string"
+  then alert
+```
+
+Con notificación vía script cada x ciclos y evitando notificar al primer fallo:
+```
+check host koreapi with address 192.168.0.182
+  if failed ping then alert
+  if failed port 8123 protocol http
+     and request / with content = "<title>Home Assistant</title>"
+     for 3 times within 5 cycles
+  then exec "/home/opc/pushbullet.py --token REDACTED"
+      repeat every 5 cycles
+```
+
+## Notificaciones
+Por defecto notifica por email.
+
+Si queremos otro tipo de monit podemos hacer:
+... if status != 0 then exec /path/to/script.sh
+
+Script para pushbullet
+https://gist.github.com/1a0a7c92fb0cb17455307908f5632fe3
+
+
 # Install
 Algunas distros traen empaquetado.
 Si no, bajar el .tgz para la arquitectura que necesitemos.
