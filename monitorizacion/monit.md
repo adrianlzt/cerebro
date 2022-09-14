@@ -25,4 +25,5 @@ En una oracle linux también he tenido que instalar libnsl.x86_64
 
 
 # Ejecutar
-bin/monit -c conf/monitrc start all
+Systemd unit
+https://mmonit.com/wiki/Monit/Systemd
