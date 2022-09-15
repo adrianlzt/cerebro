@@ -243,6 +243,8 @@ También podemos conectar contendores docker.
 https://www.b-ehlers.de/blog/posts/2017-07-11-gns3-cloud-linux/
 https://docs.gns3.com/docs/using-gns3/advanced/connect-gns3-internet/
 
+Poner una nube tipo "NAT" y conectarla con un cable al nodo que queremos que tenga salida a internet.
+
 
 ## conex ethernet directa
 Con GNS3 montado sobre una VM de OST no consigo que el qemu coja IP.
