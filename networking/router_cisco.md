@@ -812,6 +812,31 @@ conf term
   snmp-server community otronombre ro
   no snmp-server community public
 
+## V3
+snmp-server view ViewDefault iso included
+snmp-server group GrpMonitoring v3 priv read ViewDefault
+snmp-server user UserJustMe GrpMonitoring v3 auth sha AuthPass1 priv aes 128 PrivPass2
+
+Ejemplo de query:
+snmpget -v 3 -l authPriv -a SHA -u UserJustMe -A AuthPass1 -x AES -X PrivPass2 192.168.0.1 sysName.0
+
+
+Si queremos noAuthNoPriv:
+snmp-server group groupnoauth v3 noauth
+snmp-server user SinNada groupnoauth v3 
+
+snmpget -v 3 -l noAuthNoPriv -u SinNada 192.168.0.1 sysName.0
+
+
+Si queremos authNoPriv:
+snmp-server user UserAuth groupauth v3 auth md5
+snmp-server user UserAuth groupauth v3 auth md5 password
+
+snmpget -v 3 -l authNoPriv -u UserAuth -A password 192.168.0.1 sysName.0
+
+
+
+
 ## ASA
 https://www.networkstraining.com/how-to-configure-snmp-on-cisco-asa-5500-firewall/
 
@@ -819,6 +844,10 @@ snmp-server enable
 snmp-server host inside 10.1.1.100 community somesecretword version 2c
 snmp-server community somesecretword
 
+### V3
+snmp-server group GrpMonitoring v3 priv
+snmp-server user UserJustMe GrpMonitoring v3 auth sha AuthPass1 priv aes 128 PrivPass2
+snmp-server host mgmt 10.1.1.161 version 3 UserJustMe
 
 # BGP
 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/unicast/6_x/cisco_n6k_layer3_ucast_cfg_rel_602_N2_1/l3_bgp.html
