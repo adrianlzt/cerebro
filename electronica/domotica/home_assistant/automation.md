@@ -20,9 +20,20 @@ hide_entity: True
 
 
 # Trigger
+Listados de triggers posibles:
 https://www.home-assistant.io/docs/automation/trigger/
 
 Podemos ver sus disparos en el logbook
+
+## state
+Activar con el cambio de estado de una entity.
+Podemos poner filtros para decidir cuando salta (from, to, not_from, not_to)
+
+Ejemplo:
+  trigger:
+    - platform: state
+      entity_id: sensor.gps
+      not_to: "3D Fix"
 
 ## time
 - alias: 'Notify location'
