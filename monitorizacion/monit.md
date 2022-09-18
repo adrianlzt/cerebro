@@ -40,12 +40,12 @@ check host myserver with address 192.168.1.1
 Con notificación vía script cada x ciclos y evitando notificar al primer fallo:
 ```
 check host koreapi with address 192.168.0.182
-  if failed ping then alert
   if failed port 8123 protocol http
      and request / with content = "<title>Home Assistant</title>"
      for 3 times within 5 cycles
   then exec "/home/opc/pushbullet.py --token REDACTED"
       repeat every 5 cycles
+  else exec "/home/opc/pushbullet.py --token REDACTED"
 ```
 
 ## Notificaciones
