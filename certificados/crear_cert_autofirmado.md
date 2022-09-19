@@ -1,4 +1,6 @@
 mirar mkcert.md
+mirar cfssl.md
+https://easy-rsa.readthedocs.io/en/latest/
 
 http://www.cyberciti.biz/faq/nginx-self-signed-certificate-tutorial-on-centos-redhat-linux/
 
