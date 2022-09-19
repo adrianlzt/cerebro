@@ -8,8 +8,11 @@ En RedHat/CentOS usar
 /etc/pki/tls/certs/Makefile
 
 
-openssl req -batch -new -x509 -days 365 -nodes -out server.pem -keyout server.pem
+openssl req -batch -new -x509 -days 365 -nodes -out server.pem -keyout server.key
   generar cert autofirmado un año
+
+Probarlo:
+python3 -m http.server 8080 &  ncat -l 8443 --sh-exec "ncat 127.0.0.1 8080" --keep-open --ssl --ssl-cert server.pem --ssl-key server.key
 
 
 Otra forma generando la autoridad:
