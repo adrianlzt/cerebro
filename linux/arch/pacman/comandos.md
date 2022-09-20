@@ -44,6 +44,9 @@ pacman -Ql <nombre>
 A que paquete pertenece un fichero
 pacman -Qo <fichero>
 
+Listar paquetes por tamaño:
+expac "%n %m" -l'\n' -Q $(pacman -Qq) | sort -rhk 2 | less
+
 Borrar paquete y dependencias no utilizadas:
 pacman -R paquete
   -s: borrar tambien dependencias que se queden sin uso
