@@ -74,6 +74,16 @@ Tendremos que borrar esa key (etcdctl del /service/batman/initialize) o, mejor, 
 patronictl -c postgres.yml remove $CLUSTER_NAME
 
 
+## following a different leader because i am not the healthiest node
+Tras una caida del cluster, intento arrancar el que era el follower, pero no me deja, porque está en modo replica y patroni no lo acepta como válido porque no es capaz de arrancar.
+Pero no puede arrancar porque no puede conectar con el primario (está caído).
+
+https://github.com/zalando/patroni/issues/594#issuecomment-355855640
+pausar patroni
+borrar /var/lib/postgresql/data/standby.signal
+resume patroni
+
+
 
 # vip-manager
 https://www.cybertec-postgresql.com/en/postgresql-clustering-vip-manager/
