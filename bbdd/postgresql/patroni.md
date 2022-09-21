@@ -65,6 +65,13 @@ Almacena la información en /service/$CLUSTER_NAME
 
 
 
+# Troubleshooting
+
+## Reiniciar nodo
+En un nodo replica, podemos parar patroni, borrar el contenido de PGDATA y arrancar de nuevo patroni.
+En este caso empezará haciendo un basebackup.
+
+
 # Errores
 
 ## waiting for leader to bootstrap
@@ -78,10 +85,8 @@ patronictl -c postgres.yml remove $CLUSTER_NAME
 Tras una caida del cluster, intento arrancar el que era el follower, pero no me deja, porque está en modo replica y patroni no lo acepta como válido porque no es capaz de arrancar.
 Pero no puede arrancar porque no puede conectar con el primario (está caído).
 
-https://github.com/zalando/patroni/issues/594#issuecomment-355855640
-pausar patroni
-borrar /var/lib/postgresql/data/standby.signal
-resume patroni
+Al final arranqué el nodo que paró más tarde y fue bien.
+
 
 
 

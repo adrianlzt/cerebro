@@ -46,6 +46,9 @@ find . -mtime +30 -exec rm -fr {} +
 Buscar ficheros modificados hace menos de 5 minutos
 find . -mmin -5
 
+Ficheros más viejos que uno:
+find . ! -newer ficheroreferencia
+
 Orden de todos los ficheros en este directorio y subdirectorios:
 ls -lart $(find . -type f)
 
