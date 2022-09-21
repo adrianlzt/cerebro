@@ -22,11 +22,12 @@ Para desactivarlo (no sobrevive a un reinicio)
 setenforce 0
 
 Para desactivarlo permanentemente
+En version >=7:
+/etc/selinux/config
+
+Centos 6:
 /etc/sysconfig/selinux:
 SELINUX=permissive
-
-En version 7:
-/etc/selinux/config
 
 
 Activarlo:
