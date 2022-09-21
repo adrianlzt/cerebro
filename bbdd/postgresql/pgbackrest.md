@@ -2,7 +2,7 @@ Check nagios para monitorizar https://labs.dalibo.com/check_pgbackrest
 
 Full backup: todos los ficheros para poder realizar un restore.
 Differential backup: solo se almacenan las diferencias respecto a un full backup.
-Incremental backup: solo se almacenan las diferencias respecto al último backup (full o diff)
+Incremental backup: solo se almacenan las diferencias respecto al último backup (full o diff) (ese directorio no es completo, le hace falta el full para poder funcionar)
 
 La idea es un servidor que hace backups de muchos otros nodos/clusters de postgres.
 Por cada uno creamos un "stanza".
