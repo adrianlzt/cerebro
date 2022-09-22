@@ -5,3 +5,6 @@ C++
 
 https://tech.olx.com/monitoring-as-a-service-a-modular-system-for-microservice-architecture-e53bcc144879?__s=trqwhcsp36pvqhgtigfv
 Cuentan que han sustituido Graphite por esta base de datos
+
+
+Mirar unix-tools/csv.md para usar el cliente de clickhouse para analizar .csv con one liners.
