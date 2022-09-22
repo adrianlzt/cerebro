@@ -48,6 +48,9 @@ when you have some Zabbix server downtime, proxies are accumulating data, and wh
 https://support.zabbix.com/browse/ZBXNEXT-4920
 
 
+# Almacenamiento de datos
+Almacena datos en la tabla, de postgres, proxy_history
+
 
 # Internals
 Info que envia el proxy al server tras recibir un trap:
