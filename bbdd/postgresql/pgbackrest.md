@@ -1,5 +1,3 @@
-Check nagios para monitorizar https://labs.dalibo.com/check_pgbackrest
-
 Full backup: todos los ficheros para poder realizar un restore.
 Differential backup: solo se almacenan las diferencias respecto a un full backup.
 Incremental backup: solo se almacenan las diferencias respecto al último backup (full o diff) (ese directorio no es completo, le hace falta el full para poder funcionar)
@@ -9,6 +7,9 @@ Por cada uno creamos un "stanza".
 
 # Config
 Todas las opciones de config: https://pgbackrest.org/configuration.html
+Config real explicada en https://pgstef.github.io/2019/03/26/pgbackrest_archiving_tricks.html
+
+Config para usar con patroni: https://pgstef.github.io/2022/07/12/patroni_and_pgbackrest_combined.html
 
 /etc/pgbackrest/pgbackrest.conf
 También puede ser el fichero definido en la variable de entorno PGBACKREST_CONFIG
@@ -76,6 +77,10 @@ pgbackrest --output=json info
 
 https://pgbackrest.org/user-guide-rhel.html#monitor
 Aquí nos explica como crear una función que ejecute ese comando por si queremos hacer queries que respondan el resultado del comando.
+
+Check nagios para monitorizar https://labs.dalibo.com/check_pgbackrest
+pgBackRest doesn’t check that all the needed WAL segments are still present. check_pgbackrest is clearly built for that
+
 
 # Debug
 --log-level-console=detail
