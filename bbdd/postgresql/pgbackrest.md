@@ -11,6 +11,8 @@ Config real explicada en https://pgstef.github.io/2019/03/26/pgbackrest_archivin
 
 Config para usar con patroni: https://pgstef.github.io/2022/07/12/patroni_and_pgbackrest_combined.html
 
+Si tenemos muchos wal, usar async archive: https://pgbackrest.org/user-guide.html#async-archiving
+
 /etc/pgbackrest/pgbackrest.conf
 También puede ser el fichero definido en la variable de entorno PGBACKREST_CONFIG
 https://pgbackrest.org/user-guide-rhel.html#quickstart/configure-stanza
