@@ -13,6 +13,10 @@ Config para usar con patroni: https://pgstef.github.io/2022/07/12/patroni_and_pg
 
 Si tenemos muchos wal, usar async archive: https://pgbackrest.org/user-guide.html#async-archiving
 
+Parece que no se puede hacer archive en el nodo standby, de la doc oficial:
+To get a complete series of WAL files in the archive, you must ensure that all WAL is archived, before it reaches the standby
+
+
 /etc/pgbackrest/pgbackrest.conf
 También puede ser el fichero definido en la variable de entorno PGBACKREST_CONFIG
 https://pgbackrest.org/user-guide-rhel.html#quickstart/configure-stanza
