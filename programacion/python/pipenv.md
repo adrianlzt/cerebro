@@ -22,6 +22,9 @@ se irán agregando las dependencias al fichero Pipfile.lock
 Ejemplo:
   pipenv install ansible==2.4.2
 
+pipenv --site-packages shell
+  usar paquetes del sistema
+
 pipenv install --system
   instalar los paquetes en el python del sistema
   nos vale si queremos usar pipenv en docker
