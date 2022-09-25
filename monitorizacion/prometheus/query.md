@@ -1,3 +1,6 @@
+https://prometheus.io/docs/prometheus/latest/querying/basics/
+
+
 # query_range
 query_range?query=fuerza_peso&start=1584950052&end=1584950062&step=0.5
 Nos devuelve un punto cada 500ms entre esas unix epoch.
