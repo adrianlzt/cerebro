@@ -1,3 +1,12 @@
+# metrics-server
+https://www.metricfire.com/blog/how-to-monitor-your-kubernetes-metrics-server/#strongKubernetes-metrics-server-requirementsstrong
+
+kubectl get --raw /apis/metrics.k8s.io/v1beta1/pods
+
+curl -s -k -H "Authorization: Bearer XXX" https://kubernetes.default.svc/apis/metrics.k8s.io/v1beta1/namespaces/SOMENAMESPACE/pods
+
+
+
 # Kube-metrics
 https://github.com/kubernetes/kube-state-metrics
 Expone métricas del funcionamiento del cluster en formato prometheus en /metrics

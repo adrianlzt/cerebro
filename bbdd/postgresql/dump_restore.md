@@ -8,6 +8,7 @@ Opciones de apps para gestionar los backups (secciones de cada uno al final del 
   pgbackrest (https://pgbackrest.org/)
   https://github.com/aiven/pghoard Usado por el SaaS Aiven. Script en python llevándose los wal. Parece un poco como barman
   http://dalibo.github.io/pitrery/ PITR made simple (Shell script)
+  https://pgmoneta.github.io/ redhat
 
 
 Idea, hacer un base backup al comienzo, llevarnos los WAL con pg_receivewal y de vez en cuando arrancar un postgres para generar otro basebackup a partir del inicial más los WAL.
