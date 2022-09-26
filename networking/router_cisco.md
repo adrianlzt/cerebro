@@ -441,6 +441,32 @@ IP packet debugging is on (detailed) for access list 199
 ## Troubleshooting cisco asa
 https://www.ciscolive.com/c/dam/r/ciscolive/us/docs/2018/pdf/BRKSEC-3020.pdf
 
+### Console
+Puerto 14:
+https://www.cisco.com/c/en/us/td/docs/security/asa/hw/maintenance/5585guide/5585Xhw/overview.html
+
+Config serial:
+Set up the terminal as follows: 9600 baud (default), 8 data bits, no parity, 1 stop bits, and Flow Control (FC) = Hardware.
+
+
+Config para putty:
+    Serial Line to Connect to:   COM?
+    Speed (Baud):  9600
+    Data Bits: 8
+    Stop Bits: 1
+    Parity: None
+    Flow Control: None
+
+### factory reset
+http://www.mokonamodoki.com/how-to-factory-reset-a-cisco-asa-5512-x-ips
+
+### ROMMON
+Parece como la "bios" del router.
+Es una shell limitada.
+
+Algunos comandos útiles:
+https://community.spiceworks.com/topic/1955017-asa-5512-x-won-t-boot#entry-6532861
+
 
 
 
@@ -621,6 +647,9 @@ Podemos ver la configuración de estas reglas de acceso con:
 sh access-lists
 
 Con el comando "sh line" podemos ver las listas de acceso que se aplica a cada linea (AccO = access list output, AccI, access list input)
+
+## Desactivar acceso por puerto serie
+https://community.cisco.com/t5/network-security/disable-console-port/td-p/1434927
 
 
 
