@@ -265,11 +265,16 @@ select hosts.host,items.key_,triggers.description from triggers join functions U
 
 
 # Queries varias
-Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
+Número de items en la tabla history agrupados por buckets de 1', filtrado entre unos timestamps:
+
 select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
 Otra forma de lanzar la query. Haciendo uso del indice? (por no convertir el "clock" en el where?). Nos saca "count, date_from y date_to"
