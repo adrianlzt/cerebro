@@ -30,3 +30,11 @@ kill
 vim **
 vim xx**
   fichero en pwd (que hagan match a 'xx')
+
+
+Para mostrar el contenido en el mismo orden que nos lo hayan pasado:
+--tac --no-sort
+
+
+Para mostrar una ventana de preview, típicamente con el contenido del fichero seleccionado:
+fzf --preview='head -$LINES {}'
