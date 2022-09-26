@@ -448,6 +448,18 @@ https://www.cisco.com/c/en/us/td/docs/security/asa/hw/maintenance/5585guide/5585
 Config serial:
 Set up the terminal as follows: 9600 baud (default), 8 data bits, no parity, 1 stop bits, and Flow Control (FC) = Hardware.
 
+Podemos conectar el puerto serie a otro pc/server que tenga puerto serie.
+Si no, usaremos un conversor puerto serie - USB.
+
+Con Linux (puerto serie):
+screen /dev/ttyS0 9600
+
+Si es con USB será tipo:
+``````
+ls -ltr /dev/*ACM*
+screen /dev/ttyACM0 9600
+``````
+
 
 Config para putty:
     Serial Line to Connect to:   COM?
@@ -1034,10 +1046,12 @@ Ver que está corriendo actualmente:
 show running-config boot system
 
 Desactivarlo:
+conf term
 no boot system disk0:/cdisk.bin
 no boot system disk0:/asa931-smp-k8.bin
 
 Configurar el nuevo firmware:
+conf term
 boot system disk0:/asa-9-12-1-smp-k8.bin
 
 Guardar y recargar:
