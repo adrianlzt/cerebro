@@ -29,6 +29,9 @@ cd
 pwd
 mkdir
 more
+copy
+  no hay mv, haremos copy + delete
+delete
 dir
   mostrar contenido directorio
 
@@ -678,6 +681,9 @@ Generar las keys con:
 crypto key generate rsa usage-keys label router-key
   How many bits in the modulus [512]: 1024
 
+En asa parece que es:
+crypto key generate rsa modulus 2048
+
 
 ## Meter pub keys para acceder
 https://nsrc.org/workshops/2016/apricot2016/raw-attachment/wiki/Track5Wireless/cisco-ssh-auth.htm
@@ -1058,10 +1064,49 @@ Guardar y recargar:
 write
 reload
 
+Tras esto tendremos el router sin configuración (creo que no, que era por tener mal el config-register).
+Por como funciona el boot de cisco, si reiniciamos de nuevo arrancará el firmware que antes encuentre por orden alfabético.
+Así que lo más seguro es mover el antiguo firmware para que no arranque de él a otro directorio:
+mkdir old_firmware/
+copy asa917-smp-k8.bin old_firmware/asa917-smp-k8.bin
+delete asa917-smp-k8.bin
+
+Y volver a meter la config el firmware a cargar:
+conf term
+boot system disk0:/asa-9-12-1-smp-k8.bin
+
+Chequear que solo tenemos los dos ficheros (firmware y asdm) que queremos:
+dir *.bin
+
+Comprobar que el config-register está bien seteado (0x1 suele ser el de por defecto):
+show version | include register
+
+
+# Boot
+https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/cisco-ios-boot-system-image
+
+Aqui se almacena, en binario, una serie de parámetros para ver como arrancar.
+Por ejemplo, se puede modificar si queremos modificar la velocidad de la terminal serie o recuperar la password.
+
+https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/configuration-register-cisco-ios
+
+## ASA
+https://www.cisco.com/c/en/us/td/docs/security/asa/asa912/configuration/general/asa-912-general-config/admin-trouble.html
+0x41 es para recuperar la password.
+
+Si queremos dejarlo por defecto:
+conf term
+no config-register
+show version | include register
+
+Si vemos la línea:
+Ignoring startup configuration as instructed by configuration register
+Es que la config está puesta para saltarse la configuración de arranque, por lo que no estamos cargando la config.
 
 # Reiniciar / reboot
 enable
 reload
+
 
 
 
