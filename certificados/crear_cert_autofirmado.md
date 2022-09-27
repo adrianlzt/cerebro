@@ -2,6 +2,10 @@ mirar mkcert.md
 mirar cfssl.md
 https://easy-rsa.readthedocs.io/en/latest/
 
+https://github.com/minio/certgen
+certgen is a simple tool to generate self-signed certificates, and provides SAN certificates with DNS and IP entries.
+certgen-linux-amd64 --host localhost,172.30.110.145,127.0.0.1
+
 http://www.cyberciti.biz/faq/nginx-self-signed-certificate-tutorial-on-centos-redhat-linux/
 
 En RedHat/CentOS usar

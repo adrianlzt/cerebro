@@ -46,6 +46,24 @@ Comprobamos que todo está configurado correctamente (comprueba parámetros de p
 Mirar los logs de postgres mientras lo ejecutamos por si saliese algún error:
 sudo -u postgres pgbackrest --config /etc/pgbackrest/pgbackrest.conf --stanza zabbix --log-level-console=info check
 
+## s3
+https://bun.uptrace.dev/postgres/pgbackrest-s3-backups.html#installation
+
+Almacenar los backups y WAL en s3. Podemos usar minio.
+https://pgstef.github.io/2019/07/19/pgbackrest_s3_configuration.html
+
+[global]
+repo1-path=/
+repo1-type=s3
+repo1-s3-endpoint=172.30.10.15:9000
+repo1-s3-bucket=pgbackrest
+repo1-s3-verify-tls=n
+repo1-s3-key=dWIOKckUJv
+repo1-s3-key-secret=ip1gS8tG16FvGWs7Q
+repo1-s3-region=eu-west-3
+repo1-s3-uri-style=path
+
+
 
 # Backup
 Los ficheros WAL los estará copiando postgres con el archive_command a /var/lib/pgbackrest/archive/STANZA/VERSION-POSTGRES/

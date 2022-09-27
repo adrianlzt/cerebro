@@ -176,6 +176,9 @@ En vez de poner las IPs directamente se pueden usar distintos métodos para hace
 Podemos usar un cluster etcd ya montado o usar registros SRV DNS.
 
 
+## Add node to existing etcd cluster
+--initial-cluster-state existing
+
 
 # BackUp / Disaster recovery
 https://coreos.com/etcd/docs/latest/v2/admin_guide.html#disaster-recovery
