@@ -64,6 +64,10 @@ vrrp_instance nombre {
 
 Si configuramos uno como MASTER y otro como BACKUP, la priority del MASTER deberá ser mayor.
 
+Si configuramos los dos sin estado (por defecto es BACKUP) con la misma prioridad, el que tenga el track_script OK será el que tenga la VIP.
+En caso de que los dos tengan script a OK (empate) gana uno de los dos.
+Si uno sube de prioridad y empatan, se queda el que ya tenía la VIP.
+
 
 # Configuraciones segun id/hostname
 Podemos poner en la config secciones que solo serán interpretadas si el id (puesto con la opción "-i", o por defecto el hostname) matchea el "@xxx":
