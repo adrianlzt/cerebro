@@ -58,7 +58,7 @@ Util cuando un pc no tenemos acceso ssh desde el exterior hacia la máquina
 Ejemplo con systemd: tunel-ssh-inverso.service
 http://blog.kylemanna.com/linux/2014/02/20/ssh-reverse-tunnel-on-linux-with-systemd/
 
--f: go to backgroound
+-f: go to background
 -R: tunel inverso
 -N: no ejecutar comandos, solo forward puertos
 -T: disable pseudo-terminal allocation

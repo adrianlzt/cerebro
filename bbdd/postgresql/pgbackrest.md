@@ -64,6 +64,28 @@ repo1-s3-region=eu-west-3
 repo1-s3-uri-style=path
 
 
+Solo guardar los WAL desde el ultimo backup diff
+repo1-retention-archive-type=diff
+repo1-retention-archive=1
+
+Para evitar un warning al hacer el backup. Solo se mantendrán los diff backups correspondientes a los basebackup que tengamos
+repo1-retention-diff=9999999
+
+Guardar un full backup de, al menos, los ultimos 7 dias
+repo1-retention-full-type=time
+repo1-retention-full=7
+
+Obtener del nodo standby todo lo posible al hacer el backup, para descargar al primario
+backup-standby=y
+
+Si va muy lento el backup, podemos poner más procesos.
+CUIDADO con esto si estamos haciendo el backup en la primaria!
+process-max=4
+
+
+Va despacio? Mirar comentarios aquí:
+https://www.postgresql.org/message-id/20191011125053.GF6962%40tamriel.snowman.net
+
 
 # Backup
 Los ficheros WAL los estará copiando postgres con el archive_command a /var/lib/pgbackrest/archive/STANZA/VERSION-POSTGRES/

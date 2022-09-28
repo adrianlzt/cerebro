@@ -190,6 +190,8 @@ C-b }
 Rotar por distintas organizaciones de ventanas
 C-b space
 
+Volver al layout que teníamos antes (por si le hemos dado por error a C-b space)
+:select-layout -o
 
 
 # Uso
