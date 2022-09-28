@@ -97,3 +97,7 @@ chainloader +1
 boot
 
 Pero me decia que no era un disk bootable.
+
+
+# Rescue
+https://phoenixnap.com/kb/grub-rescue
