@@ -104,6 +104,13 @@ Note: authentication was removed from the VRRPv2 specification by RFC3768 in 200
 Use of this option is non-compliant and can cause problems
 
 
+# Debug
+https://access.redhat.com/solutions/3220521
+Arrancar en foreground en modo debug
+keepalived -nldD
+
+
+
 # Errores
 daemon is already running
 Mirar si hay un .pid en /var/run/keepalived
