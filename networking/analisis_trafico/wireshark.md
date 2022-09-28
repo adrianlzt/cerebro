@@ -2,6 +2,9 @@ cloudshark -> analisis online
 30 day free trial
 ~/priv-adrianRepo/networking/analisis_trafico/MASTERING_WIRESHARK.pdf
 
+Referencia con todos los filtros
+https://www.wireshark.org/docs/dfref/#section_t
+
 https://github.com/gcla/termshark wireshark con ncurses
 
 Permitir a un no-root capturar
