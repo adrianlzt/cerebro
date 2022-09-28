@@ -47,6 +47,11 @@ setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
 Para quitar la capability:
 setcap -r /usr/sbin/tcpdump
 
+## Merge
+https://www.wireshark.org/docs/wsug_html_chunked/ChIOMergeSection.html
+Ver dos capturas al mismo tiempo.
+Útil si hemos capturado en origen y destino.
+
 
 ## Mate ##
 http://wiki.wireshark.org/Mate
