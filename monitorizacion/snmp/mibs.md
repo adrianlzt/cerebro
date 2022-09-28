@@ -35,6 +35,10 @@ Si no ponemos "-m all" solo se cargan ciertas MIBS.
 Para ver cuales: snmptranslate -M . .1
 
 
+Leer un fichero MIB:
+snmptranslate -Tz -m ./Sentry3.mib
+
+
 
 Para convertir los MIBS numéricos, a nombres, en debían, instalamos snmp-mibs-downloader, y comentamos la línea “mibs :” en /etc/snmp/snmp.conf
 Por defecto solo baja las mibs "rfc ianarfc iana"
