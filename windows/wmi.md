@@ -1,5 +1,7 @@
 https://docs.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page
 
+Se pueden escribir SQL
+
 Consola:
 wmic
 
@@ -23,3 +25,7 @@ wmic /namespace:\\root\wmi PATH MSAcpi_ThermalZoneTemperature
 
 Parece que la gente instala apps especificas para obtener esos valores
 https://superuser.com/questions/395434/how-can-i-check-the-temperature-of-my-cpu-in-windows
+
+
+# WQL (SQL for WMI)
+https://learn.microsoft.com/en-us/windows/win32/wmisdk/wql-sql-for-wmi
