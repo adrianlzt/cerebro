@@ -84,6 +84,10 @@ curl -Ns http://www.climagic\.org/uxmas/[1-12]
 A través de proxy
 curl --proxy http://proxy.com:6666 http://www.google.es
 
+Si el proxy usa https con un cert inválido, podemos ignorarlo con:
+--proxy-insecure
+
+
 --socks5 <host[:port]>
 
 Para resolver dns por el proxy:
