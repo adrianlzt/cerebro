@@ -35,5 +35,9 @@ http://wiki.squid-cache.org/SquidFaq/SquidAcl
 Con las ACL y http_access filtramos quien puede acceder al proxy, a usar CONNECT (para https) o a métricas de squid.
 
 
+## TLS
+Que squid use https en vez de http.
+
+
 # Monitoring
 http://www.squid-cache.org/Misc/monitor.html
