@@ -211,6 +211,7 @@ Testear que funciona
 write
 
 
+
 ## NAT en cisco ASA
 https://www.packetswitch.co.uk/cisco-asa-nat-example/
 https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
@@ -235,8 +236,18 @@ object network nat-from-44.33.22.11-to-10.0.2.10
  nat (INSIDE,OUTSIDE) static 44.33.22.11
 
 
-Mapear la IP pública 6.11.34.134 puerto 80 a la IP interna 10.0.0.138 puerto 32080
+### PAT
+Mapear la IP pública 6.11.34.134 puerto 80 y 443 a la IP interna 10.0.0.52 puertos 80 y 443.
 
+object service tcp-80
+  service tcp source eq 80
+object service tcp-443
+  service tcp source eq 443
+nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-80 tcp-80
+nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-443 tcp-443
+
+
+Otra forma, para solo meter un puerto (80 -> 32080):
 object network k8s-ingress-public-external-ip
  host 6.11.34.134
 !
@@ -253,6 +264,21 @@ access-group outside_acl_k8s_ingress_public in interface outside
 Si queremos comprobar si todo el flujo está permitido:
 packet-tracer input OUTSIDE tcp 1.1.1.1 30000 6.11.34.134 http
   Comprobamos que la ip 1.1.1.1 usando el puerto 30000 puede atacar a la ip 6.11.34.134 (se entiende que una nuestra) al puerto http (80)
+
+
+#### Hairpin
+Si usamos NAT one-to-one no podremos acceder desde los servidores internos a las IPs "públicas" (las externas).
+Para esto necesitamos configurar hairpin.
+CUIDADO con el tráfico asimetrico (va por el ASA y vuelve directamente).
+
+https://www.cyrio.co.uk/tips/cisco/asa-hairpinning/
+Si tenemos un one-to-one NAT entre la ip externa 50.1.2.21 enrutando a 10.1.0.21, meteremos esta config:
+same-security-traffic permit intra-interface
+nat (inside,inside) 1 source dynamic any interface destination static 50.1.2.21 10.1.0.21
+
+Necesitamos también usar tcp_bypass para permitir el tráfico asimétrico
+http://blog.packetflow.io/2014/03/asa-hairpinning-and-tcp-state-bypass.html?m=1
+
 
 
 
