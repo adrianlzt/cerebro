@@ -34,6 +34,9 @@ Visto en
 https://www.elastic.co/guide/en/elasticsearch/reference/5.4/painless-api-reference.html#painless-api-reference-Pattern
 https://github.com/elastic/elasticsearch/issues/26338
 
+# JSON parse
+https://www.elastic.co/guide/en/elasticsearch/painless/current/painless-ingest.html#_json_parsing
+
 
 # Debug
 Supuestamente con:
