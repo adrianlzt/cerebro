@@ -111,6 +111,11 @@ kubectl api-resources --verbs=list --namespaced -o name | grep -v events | xargs
 Devolver ciertos recursos
 kubectl get po,deploy
 
+Filtrar por label
+kc get po -l foo=bar
+kc get po -l foo=bar,and=thislabelalso
+kc get po -l this=label -l orthis=label
+
 
 # Servicios
 Listar
