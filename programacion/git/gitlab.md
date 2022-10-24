@@ -89,3 +89,9 @@ En el caso de ip bloqueada la deberemos limpiar del redis
 redis-cli del cache:gitlab:rack::attack:allow2ban:ban:172.22.0.6
 
 Podemos ver los bloqueos en /var/log/gitlab/gitlab/production.log
+
+
+# CI/CD
+https://docs.gitlab.com/ee/ci/quick_start/
+
+Examples: https://docs.gitlab.com/ee/ci/examples/
