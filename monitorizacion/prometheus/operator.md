@@ -13,6 +13,29 @@ PrometheusRule: defines a desired set of Prometheus alerting and/or recording ru
 AlertmanagerConfig: declaratively specifies subsections of the Alertmanager configuration
 
 
+# PrometheusRule
+Para definir alarmas
+
+Ejemplo del ingress de nginx:
+```
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ingress-nginx-public-controller
+spec:
+  groups:
+  - name: ingress-nginx
+    rules:
+    - alert: NGINXTooMany400s
+      annotations:
+        description: Too many 4XXs
+        summary: More than 5% of all requests returned 4XX, this requires your attention
+      expr: 100 * ( sum( nginx_ingress_controller_requests{status=~"4.+"} ) / sum(nginx_ingress_controller_requests)
+        ) > 5
+      for: 1m
+      labels:
+        severity: warning
+```
 
 # ServiceMonitor
 Ejemplo sencillo:
