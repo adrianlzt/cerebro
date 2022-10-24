@@ -26,6 +26,7 @@ Servidor docker:
 docker run -p 69:69/udp -v "$PWD/:/var/tftpboot" --rm -it pghalliday/tftp
   no se porque pero no expone el puerto en 127.0.0.1
   usar otra de las IPs del docker host
+  Si queremos que puedan escribir, poner "-c" en los argumentos
 
 docker run -v "$PWD/:/var/tftpboot" --rm -it --net host pghalliday/tftp --secure /var/tftpboot -L --address 0.0.0.0:6969 -R 10000:10005 -c
   cambiamos el puerto al 6969 (por si estuviese ocupado el 69 y por si no tenemos privilegios para usarlo)
