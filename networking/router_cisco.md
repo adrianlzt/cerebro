@@ -239,12 +239,20 @@ object network nat-from-44.33.22.11-to-10.0.2.10
 ### PAT
 Mapear la IP pública 6.11.34.134 puerto 80 y 443 a la IP interna 10.0.0.52 puertos 80 y 443.
 
+object network host-6.11.34.135
+  host 6.11.34.135
+object network host-10.0.0.52
+  host 10.0.0.52
 object service tcp-80
   service tcp source eq 80
 object service tcp-443
   service tcp source eq 443
 nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-80 tcp-80
 nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-443 tcp-443
+
+Esto mapea el segundo puerto al primero.
+Esto por ejemplo mapearía el público 8080 al interno 80.
+... service tcp-80 tcp-8080
 
 
 Otra forma, para solo meter un puerto (80 -> 32080):
