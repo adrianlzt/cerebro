@@ -173,5 +173,7 @@ Podemos también usar una ARG antes del FROM para poner ahí la versión, ejempl
 ARG TAG=slim
 FROM node:$TAG
 
+Las TAG de antes del FROM no se pueden usar después del FROM.
+
 Con un build multistage, usaba dos ARG para definir las versiones de las dos imágenes usadas.
 Tuve que poner ambos ARG al comienzo del fichero para que me pillase el segundo FROM bien.
