@@ -95,3 +95,8 @@ Podemos ver los bloqueos en /var/log/gitlab/gitlab/production.log
 https://docs.gitlab.com/ee/ci/quick_start/
 
 Examples: https://docs.gitlab.com/ee/ci/examples/
+
+
+# Upgrade
+Con esta herramienta nos dice por las versiones que tenemos que ir saltando para subir entre majors.
+https://gitlab-com.gitlab.io/support/toolbox/upgrade-path/
