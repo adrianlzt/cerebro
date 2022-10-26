@@ -98,7 +98,9 @@ Podemos ver los bloqueos en /var/log/gitlab/gitlab/production.log
 # CI/CD
 https://docs.gitlab.com/ee/ci/quick_start/
 
-Examples: https://docs.gitlab.com/ee/ci/examples/
+Examples:
+https://docs.gitlab.com/ee/ci/examples/
+https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates
 
 
 # Upgrade
