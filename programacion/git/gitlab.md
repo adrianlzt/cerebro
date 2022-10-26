@@ -102,6 +102,25 @@ Examples:
 https://docs.gitlab.com/ee/ci/examples/
 https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates
 
+## Auto DevOps
+Si activamos AutoDevOps, a todos los proyectos se le aplica este .gitlab-ci.yml (en caso de no tener uno custom).
+https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
+
+Este fichero chequea si existen ciertos ficheros y entonces considera que hace "match" y se ejecuta.
+
+Parece que no nos dejan modificar el fichero de forma global (https://gitlab.com/gitlab-org/gitlab/-/issues/20169)
+En el despliegue con docker está en:
+/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
+
+Podemos modificarlo para setear nuestros propios valores.
+
+## .gitlab-ci.yml
+
+### workflow
+Suelen ser unos condicionales que deciden de forma global si se va a ejecutar la pipeline.
+Típicamente chequeamos si estamos en una tag, mr, branch, etc.
+https://docs.gitlab.com/ee/ci/yaml/workflow.html
+
 
 # Upgrade
 Con esta herramienta nos dice por las versiones que tenemos que ir saltando para subir entre majors.
