@@ -35,3 +35,8 @@ https://github.com/lin-shuyu/VAE-LSTM-for-anomaly-detection
 
 Deep Learning Library: pydbm
 https://github.com/accel-brain/accel-brain-code/tree/master/Deep-Learning-by-means-of-Design-Pattern
+
+
+Ejemplo usando lightgbm
+Se hace el feature engineering a mano, para que el modelo pueda entender una fecha (minuto, hora, dia de la semana, día del año, mes, etc)
+https://colab.research.google.com/drive/1o0AQprexGVyNzsa1ICeRmBjbwCF1eb_R#scrollTo=auXzdp2Gwys5
