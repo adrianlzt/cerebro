@@ -29,6 +29,10 @@ otra opcion:
 docker exec -it gitlab gitlab-ctl reconfigure
 
 
+## Postgres
+Si queremos acceder a la db postgres
+su -c "/opt/gitlab/embedded/bin/psql -h /var/opt/gitlab/postgresql -U gitlab gitlabhq_production" git
+
 
 
 # TLS
