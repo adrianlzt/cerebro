@@ -19,6 +19,12 @@ https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application
 https://rtfm.co.ua/en/argocd-users-access-and-rbac/
 Se hace editando el CM argocd-cm
 
+Para cambiar la password:
+argocd account update-password --account readonly
+
+Podemos integrarnos con proveedores de acceso:
+https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/
+Ejemplo para gitlab: https://github.com/argoproj/argo-cd/issues/9034#issuecomment-1219753395
 
 
 # GitOps CI/CD con helm
