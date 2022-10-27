@@ -114,6 +114,13 @@ En el despliegue con docker está en:
 
 Podemos modificarlo para setear nuestros propios valores.
 
+Una idea es poner en ese fichero únicamente un include y así gestionamos todo nuestro auto devops custom en un repo.
+EL PROBLEMA es que este repo tiene que ser público.
+include:
+  - project: 'cicd/auto-devops'
+    file: 'main.yml'
+
+
 ## .gitlab-ci.yml
 https://docs.gitlab.com/ee/ci/yaml/
 
