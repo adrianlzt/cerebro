@@ -10,6 +10,7 @@ https://github.com/kubernetes/git-sync/tree/master/demo/config
 k8s.gcr.io/git-sync/git-sync
 mirar la última versión en https://github.com/kubernetes/git-sync/releases
 
+Los parámetros se pueden poner como variables de entorno o parámetros
 
 Ejemplos de variables de entorno:
 - name: GIT_SYNC_ONE_TIME

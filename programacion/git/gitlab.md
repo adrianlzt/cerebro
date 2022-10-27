@@ -120,6 +120,9 @@ include:
   - project: 'cicd/auto-devops'
     file: 'main.yml'
 
+Otra opción es exponer un repo nuestro internamente (usando un contenedor git-sync + python http.server) y apuntar con un include external a esa url http.
+Tendremos que permitir en gitlab el acceso a las ips internas (settings - network - Outbound requests - Local IP addresses and domain names that hooks and services may access)
+
 
 ## .gitlab-ci.yml
 https://docs.gitlab.com/ee/ci/yaml/
