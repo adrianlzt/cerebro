@@ -33,6 +33,31 @@ docker exec -it gitlab gitlab-ctl reconfigure
 Si queremos acceder a la db postgres
 su -c "/opt/gitlab/embedded/bin/psql -h /var/opt/gitlab/postgresql -U gitlab gitlabhq_production" git
 
+## Redis
+redis-cli -s /var/opt/gitlab/redis/redis.socket
+
+Han desactivado el comando keys
+https://docs.gitlab.com/omnibus/settings/redis.html#renamed-commands
+
+
+# Admin
+Si usamos la version de docker (y supongo que otras) viene un comando para hacer tareas administrativas.
+
+Ver procesos
+gitlab-ctl status
+
+Reiniciar un proceso:
+gitlab-ctl restart puma
+
+
+## Arquitectura
+https://docs.gitlab.com/ee/development/architecture.html#simplified-component-overview
+
+puma: el server web que corre el rails de gitlab
+sidekiq: ejecutor de jobs (por ejemplo, los jobs de ci/cd)
+workhorse: para descargar tareas de puma, proxy inverso
+redis: sesiones, jobs queue, cache
+
 
 
 # TLS
@@ -106,6 +131,17 @@ https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates
 Si activamos AutoDevOps, a todos los proyectos se le aplica este .gitlab-ci.yml (en caso de no tener uno custom).
 https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
 
+El código ruby donde se hace un include template de ese fichero (podemos modificarlo si queremos que haga otra cosa):
+gitlab/ci/project_config/auto_devops.rb
+Lo que hace es simular que tenemos un fichero .gitlab-ci.yml con el contenido:
+```
+include:
+  template: Auto-DevOps.gitlab-ci.yml
+```
+El problema es de esto es que usar "template" quita mucha funcionalidad.
+No podemos usar includes de proyectos (tiene que tirar de un proyecto abierto o una URL pública).
+
+
 Este fichero chequea si existen ciertos ficheros y entonces considera que hace "match" y se ejecuta.
 
 Parece que no nos dejan modificar el fichero de forma global (https://gitlab.com/gitlab-org/gitlab/-/issues/20169)
@@ -143,6 +179,15 @@ https://docs.gitlab.com/ee/ci/yaml/workflow.html
 
 Parece que para hacer include de otros ficheros tengo que usar template y que el fichero termine en .gitlab-ci.yml
 Al menos eso me pasa al modificar el Auto-DevOps.gitlab-ci.yml
+
+
+BUG! https://gitlab.com/gitlab-org/gitlab/-/issues/370005
+No podemos usar "exists" en un proyecto que importamos en una pipeline.
+Esta feature es muy interesante para poder tener una serie de jobs generales y aplicarlas según existan ciertos ficheros. Esas jobs solo se incluirán si hace match de tal fichero.
+Workaround, poner las rules sobre las jobs en vez de el include.
+
+Lo que si se puede (todo local)
+https://gitlab.com/gitlab-de/playground/conditional-includes-with-exists/-/blob/main/.gitlab-ci.yml
 
 
 # Upgrade
