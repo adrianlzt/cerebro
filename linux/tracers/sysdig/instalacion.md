@@ -1,3 +1,5 @@
+https://docs.sysdig.com/en/docs/installation/sysdig-agent/agent-installation/agent-install-manual-linux-installation/#centos-rhel-fedora-amazon-ami-amazon-linux-2
+
 Necesita compilar un módulo para el kernel y cargarlo (se necesitan las fuentes del kernel que estemos corriendo)
 
 Instalación automatica:
@@ -24,6 +26,7 @@ sudo pacman -S sysdig
 # CentOS
 Instalacion manual centos:
 rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public
+  no me funciona, quitar el gpgcheck del .repo
 curl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo
 
 Hace falta epel
