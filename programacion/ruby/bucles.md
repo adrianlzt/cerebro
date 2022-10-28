@@ -43,3 +43,12 @@ Bucles con número de vuelta
 end
 
 El index estamos diciendo que empieze en 1, pero si queremos luego coger de otro array[i] tiene que empezar en 0
+
+
+# while
+i = 0
+while i < 5
+   puts i
+   i += 1
+   break if i == 2
+end

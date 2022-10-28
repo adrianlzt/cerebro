@@ -28,6 +28,11 @@ docker restart gitlab
 otra opcion:
 docker exec -it gitlab gitlab-ctl reconfigure
 
+### LDAP
+
+Verificar que users de LDAP tienen acceso
+gitlab-rake gitlab:ldap:check RAILS_ENV=production
+
 
 ## Postgres
 Si queremos acceder a la db postgres
