@@ -168,6 +168,10 @@ Tendremos que permitir en gitlab el acceso a las ips internas (settings - networ
 ## .gitlab-ci.yml
 https://docs.gitlab.com/ee/ci/yaml/
 
+Colección de contenedores para automatizar tareas de linting, etc
+https://gitlab.com/pipeline-components
+
+
 ### workflow
 Suelen ser unos condicionales que deciden de forma global si se va a ejecutar la pipeline.
 Típicamente chequeamos si estamos en una tag, mr, branch, etc.
