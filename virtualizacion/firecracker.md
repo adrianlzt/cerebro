@@ -16,6 +16,10 @@ firectl --kernel=hello-vmlinux.bin --root-drive=hello-rootfs.ext4
 user root pass root
 No tendrá internet
 
+Para tener red tendremos que crear un dispositivo tap y hacer NAT con iptables.
+https://kruzenshtern.org/firecracker-network-setup/
+
+
 # containerd
 https://github.com/firecracker-microvm/firecracker-containerd
 Para si queremos correr contenedores dentro de un firecracker
