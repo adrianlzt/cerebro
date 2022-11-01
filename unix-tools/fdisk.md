@@ -1,3 +1,7 @@
+Si queremos ver los dispositivos tal vez mejor:
+lsblk -f
+
+
 fdisk -H 224 -S 56 DEVICE
 
 Garantiza alineamiento (cilindros de 224*56=12544) sectores multiplos de 128k para SSD y 4k para SATA
