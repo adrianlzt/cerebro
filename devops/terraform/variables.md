@@ -14,6 +14,11 @@ Si no definimos la variable nos la preguntará por stdout.
 La podemos pasar como parametro:
 terraform apply -var "ost_pass=1234"
 
+Si queremos pasar una lista
+``````
+-var='image_id_list=["ami-abc123","ami-def456"]'
+``````
+
 O con un fichero:
 terraform.tfvars *.auto.tfvars (estos se cogerán automáticamente)
 
