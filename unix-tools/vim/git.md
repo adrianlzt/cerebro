@@ -1,5 +1,6 @@
 # vim-gitgutter
 Mostrar las líneas modificadas y gestionar los cambios pendientes
+https://github.com/lewis6991/gitsigns.nvim
 
 F10             activar/desactivar columna y colores con cambios
 ]c              siguiente cambio

@@ -7,3 +7,7 @@ git describe --tags
 
 Último tag de esta rama
 git describe --tags --abbrev=0
+
+Buscar en que tags está un commit:
+git tag --contains=74779c1a0e1d95986bede9d7d87862c5b5c8e7d6
+

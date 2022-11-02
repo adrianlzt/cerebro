@@ -55,6 +55,17 @@ buscará un fichero Pipenv en este dir o superiores.
 para borrar el virtualenv
 pipenv --rm
 
+# Scripts
+https://pipenv.pypa.io/en/latest/advanced/#custom-script-shortcuts
+```
+[scripts]
+echospam = "echo I am really a very silly example"
+```
+
+Para luego usarlo con
+pipenv run echospam
+
+Si pasámos parámetros se pasarán a lo que ejecutemos en "script"
 
 # Limitaciones
 La principal que encuentro respecto a virtualenvwrapper, es que para activar un virtualenv tenemos que estar en el directorio donde creamos el venv o en un subdirectorio.
