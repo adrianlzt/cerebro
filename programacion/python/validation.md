@@ -19,6 +19,7 @@ flake8 --ignore=E501
 pylint
 pydocstyle
 
+
 pip install flake8 pylint pydocstyle
 
 Ejemplo de como usarlos: https://home-assistant.io/developers/development_testing/
@@ -33,6 +34,14 @@ pydocstyle, para meter configs, generar un fichero tox.ini y meter, ejemplo:
 count = False
 ignore = E226,E302,E41
 max-line-length = 160
+
+Si queremos ignorar un fichero entero en flake8, poner al comienzo:
+```
+# flake8: noqa
+```
+
+Otras formas de ignorar errores:
+https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html
 
 
 py3status usa
