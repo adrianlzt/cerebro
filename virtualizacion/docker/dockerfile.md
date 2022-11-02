@@ -177,3 +177,12 @@ Las TAG de antes del FROM no se pueden usar después del FROM.
 
 Con un build multistage, usaba dos ARG para definir las versiones de las dos imágenes usadas.
 Tuve que poner ambos ARG al comienzo del fichero para que me pillase el segundo FROM bien.
+
+
+
+# BuildKit
+https://docs.docker.com/build/buildkit/#getting-started
+DOCKER_BUILDKIT=1 docker build ...
+
+## Usar claves ssh locales
+RUN --mount=type=ssh git -v clone ssh://git@g...
