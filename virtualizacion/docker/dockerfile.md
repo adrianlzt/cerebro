@@ -180,9 +180,18 @@ Tuve que poner ambos ARG al comienzo del fichero para que me pillase el segundo 
 
 
 
+
 # BuildKit
 https://docs.docker.com/build/buildkit/#getting-started
 DOCKER_BUILDKIT=1 docker build ...
 
+
 ## Usar claves ssh locales
+https://vsupalov.com/better-docker-private-git-ssh/
+
 RUN --mount=type=ssh git -v clone ssh://git@g...
+DOCKER_BUILDKIT=1 docker build --ssh default ...
+
+
+## Secrets (ficheros que se montan en RUN)
+https://vsupalov.com/better-docker-build-secrets/

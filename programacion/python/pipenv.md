@@ -18,6 +18,9 @@ PIPENV_IGNORE_VIRTUALENVS=1 pipenv ...
 export PIPENV_VENV_IN_PROJECT="enabled"
   para crear el virtualenv en un directorio .env en el mismo path que Pipfile
 
+PIPENV_PIPFILE=/autodoc/Pipfile pipenv
+  para forzar donde está el Pipfile, o como se llama el fichero
+
 Según vayamos instalando con:
 pipenv install
 se irán agregando las dependencias al fichero Pipfile.lock
