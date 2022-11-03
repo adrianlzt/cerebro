@@ -18,7 +18,8 @@ Log con núm de cacmbios de los ficheros modificados git log --compact-summary
 Log con nombres de los ficheros modificados         git log --name-only
 Log mostrando los diff de los n ult commits         git log -p -2
 Log de un fichero poniendo los cambios              git log -p -2 <fichero>
-Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla)
+Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla, sería "(]" en notación matemática. xxx < yyy)
+Log entre commits afectando a un fichero            git log xxxx..yyyy -- FICHERO
 Log de un fichero borrado                           git log --all --full-history -- FICHERO
 Log en JSON                                         https://gist.github.com/varemenos/e95c2e098e657c7688fd
                                                     https://gist.github.com/adrianlzt/b12c47715c2f68501e8e6cac098af77c
