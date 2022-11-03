@@ -1,11 +1,10 @@
-# CI/CD
 https://docs.gitlab.com/ee/ci/quick_start/
 
 Examples:
 https://docs.gitlab.com/ee/ci/examples/
 https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates
 
-## Auto DevOps
+# Auto DevOps
 Si activamos AutoDevOps, a todos los proyectos se le aplica este .gitlab-ci.yml (en caso de no tener uno custom).
 https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
 
@@ -38,8 +37,21 @@ Otra opción es exponer un repo nuestro internamente (usando un contenedor git-s
 Tendremos que permitir en gitlab el acceso a las ips internas (settings - network - Outbound requests - Local IP addresses and domain names that hooks and services may access)
 
 
+# Skip pipeline
+https://docs.gitlab.com/ee/ci/pipelines/#skip-a-pipeline
+git push -o ci.skip
+
+No vale para pipelines de merge request
+
+## MR
+Para las MR podemos usar labels, que tendremos disponible en una variable, ejemplo:
+CI_MERGE_REQUEST_LABELS=foo-bar,skip-ansible-lint
 
 
-## Debug
+# Debug
 Podemos entrar en la shell de un runner mientras está ejecutando una tarea
 https://docs.gitlab.com/ee/ci/interactive_web_terminal/
+
+Pero no para los shared runners. Issue: https://gitlab.com/gitlab-org/gitlab/-/issues/24674
+
+Podemos hacer un docker exec en la máquina donde esté el runner.

@@ -30,3 +30,37 @@ Workaround, poner las rules sobre las jobs en vez de el include.
 
 Lo que si se puede (todo local)
 https://gitlab.com/gitlab-de/playground/conditional-includes-with-exists/-/blob/main/.gitlab-ci.yml
+
+
+
+# rules / condicionales
+https://docs.gitlab.com/ee/ci/yaml/#rules
+De forma general, si tenemos varias reglas, si una hace match, se ejecuta el job.
+
+Podemos usar "when: never" para que si hace match no se ejecute.
+  rules:
+    - if: $CONTAINER_SCANNING_DISABLED
+      when: never
+    - if: $CI_MERGE_REQUEST_IID && $GITLAB_FEATURES =~ /\bcontainer_scanning\b/
+    - if: $CI_COMMIT_TAG && $GITLAB_FEATURES =~ /\bcontainer_scanning\b/
+    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_REF_PROTECTED == 'true' && $GITLAB_FEATURES =~ /\bcontainer_scanning\b/
+
+Poner "and" en un condicional "if"
+    - if: $CI_MERGE_REQUEST_LABELS =~ 'skip-ansible-lint' && $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+Ejecutar si no es una MR y si el commit no empieza por "Merge branch"
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      when: never
+    - if: '$CI_COMMIT_TITLE =~ /^Merge branch/'
+      when: never
+    - when: always
+
+
+Mezclar "if" con "exists" (que exista un fichero en el repo)
+    - if: $CI_MERGE_REQUEST_LABELS =~ 'skip-ansible-lint' && $CI_PIPELINE_SOURCE == 'merge_request_event'
+      exists:
+        - meta/main.yml
+
+
+Comprobar si es una MR
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
