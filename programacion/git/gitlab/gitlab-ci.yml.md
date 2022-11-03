@@ -84,4 +84,6 @@ Por defecto tiene configurado:
 set -eo pipefail
 
 Esto hace que si un comando en una pipe de bash falla, todo el job falle en ese punto.
+
+Parece que no se puede desactivar.
 https://forum.gitlab.com/t/does-the-ci-runner-have-something-against-pipes-gitlab-com/29434/5
