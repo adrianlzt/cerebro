@@ -77,3 +77,11 @@ Mezclar "if" con "exists" (que exista un fichero en el repo)
 
 Comprobar si es una MR
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+
+# scripts
+Por defecto tiene configurado:
+set -eo pipefail
+
+Esto hace que si un comando en una pipe de bash falla, todo el job falle en ese punto.
+https://forum.gitlab.com/t/does-the-ci-runner-have-something-against-pipes-gitlab-com/29434/5
