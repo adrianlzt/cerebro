@@ -56,6 +56,19 @@ Ejecutar si no es una MR y si el commit no empieza por "Merge branch"
     - when: always
 
 
+# allow-failure
+https://docs.gitlab.com/ee/ci/yaml/#allow_failure
+
+Por defecto, si un job falla en una pipeline, esta se para.
+
+Podemos usar:
+```
+allow_failure: true
+```
+
+Para permitir que continuen las tareas.
+Si la tarea con ese tag falla, se pondrá en naranja.
+
 Mezclar "if" con "exists" (que exista un fichero en el repo)
     - if: $CI_MERGE_REQUEST_LABELS =~ 'skip-ansible-lint' && $CI_PIPELINE_SOURCE == 'merge_request_event'
       exists:
