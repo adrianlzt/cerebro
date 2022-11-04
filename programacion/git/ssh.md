@@ -13,7 +13,7 @@ Mirar debug.md si tenemos problemas.
 
 
 Forzar una key determinada:
-GIT_SSH_COMMAND='ssh -i key' git clone ssh://g...
+SSH_AUTH_SOCK="" GIT_SSH_COMMAND='ssh -i key' git clone ssh://g...
 
 
 Añadir un remote con puerto distinto de 22
