@@ -1,3 +1,10 @@
+http://www.circitor.fr/
+  esta funciona bien
+
+http://oidref.com/
+  la navegación de esta muy bien, pero con un fortinet no me listaba justo la tabla que necesitaba (1.3.6.1.4.1.12356.101.3.2.1.1.5)
+  aquí si se ven: http://www.circitor.fr/Mibs/Html/F/FORTINET-FORTIGATE-MIB.php#fgVdEntCpuUsage
+
 http://www.oid-info.com/
 http://www.net-snmp.org/wiki/index.php/TUT:Using_and_loading_MIBS
 
