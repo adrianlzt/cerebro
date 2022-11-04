@@ -43,6 +43,16 @@ git push -o ci.skip
 
 No vale para pipelines de merge request
 
+Tambien podemos poner en el commit:
+```
+[skip ci]
+```
+Eso creará la pipeline, pero la skipeará.
+Parece que eso va antes del chequeo de workflow.
+
+Expresión regular para hacer match del "skip ci":
+https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/pipeline/chain/skip.rb#L10
+
 ## MR
 Para las MR podemos usar labels, que tendremos disponible en una variable, ejemplo:
 CI_MERGE_REQUEST_LABELS=foo-bar,skip-ansible-lint
