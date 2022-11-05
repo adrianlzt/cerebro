@@ -185,6 +185,10 @@ Tuve que poner ambos ARG al comienzo del fichero para que me pillase el segundo 
 https://docs.docker.com/build/buildkit/#getting-started
 DOCKER_BUILDKIT=1 docker build ...
 
+También podemos usar buildx:
+sudo pacman -S docker-buildx
+docker buildx build ...
+
 
 ## Usar claves ssh locales
 https://vsupalov.com/better-docker-private-git-ssh/
