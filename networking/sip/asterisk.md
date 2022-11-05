@@ -1,5 +1,12 @@
 Como el apache de las llamadas.
 
+Si queremos una UI (php): freepbx
+
+Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamadas):
+Acrobits Softphone (6.5€, android / ios)
+linphone (android, también tiene appimage para linux)
+
+
 Hello world:
 https://wiki.asterisk.org/wiki/display/AST/Hello+World
 
@@ -117,8 +124,21 @@ asterisk -rvvvvv
 
 Por aquí podemos ver los mensajes de error.
 
+## ayuda
+core show help ...
+
 ## restart
 core restart now
 
-## reload dialplan
+## dialplan
+dialplan show
 dialplan reload
+
+
+
+## mostrar usuarios (pjsip)
+pjsip show aors
+Si están conectados mostrarán un "contact"
+
+Mostrar solo usuarios conectados:
+pjsip show contacts
