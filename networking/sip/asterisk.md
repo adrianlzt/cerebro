@@ -4,9 +4,10 @@ Si queremos una UI (php): freepbx
 
 Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamadas):
 Acrobits Softphone (6.5€, android / ios)
-zoiper para linux (con linphone me da problemas)
-linphone (android, también tiene appimage para linux)
-
+zoiper para linux
+  quitar STUN en la config de la cuenta
+linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
+jami, no me conecta, no he mirado mucho
 
 Hello world:
 https://wiki.asterisk.org/wiki/display/AST/Hello+World
