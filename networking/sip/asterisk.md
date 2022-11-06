@@ -138,6 +138,9 @@ https://www.redhat.com/sysadmin/asterisk-dialplan
 https://wiki.asterisk.org/wiki/display/AST/Dialplan
 Lenguage de scripting para decirle a asterisk que debe hacer.
 
+Podemos escribir el dialplan en LUA
+https://wiki.asterisk.org/wiki/display/AST/Lua+Dialplan+Configuration
+
 Mostrar lo que tenemos cargado:
 dialplan show
 
@@ -172,6 +175,10 @@ exten => pepe,1,Dial(PJSIP/pepe)
 exten => pepe,n,Hangup
 ```
 
+Podemos llamar a varias extensiones al mismo tiempo y el que primero coja se queda la llamada:
+Dial(foo/bar&foo/bar2&foo/bar3)
+
+
 ### Application
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Application_Page
 Llamar a varias personas al mismo tiempo.
@@ -180,6 +187,10 @@ Al llamar a "pepe" estaremos llamando a la vez a pepe_casa y pepe_movil.
 exten => pepe,1,Page(PJSIP/pepe_casa&PJSIP/pepe_movil)
 exten => pepe,n,Hangup
 ```
+
+CUIDADO! Si usamos "Page", el que llama verá que la llamada se coje automáticamente, pero tal vez no hay nadie para contestar.
+Usar Dial si lo que queremos es que coja alguien de una lista
+
 
 ### pattern matching / regex
 https://wiki.asterisk.org/wiki/display/AST/Pattern+Matching
@@ -302,6 +313,13 @@ https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Function_PERIODIC_HOOK
 Execute a periodic dialplan hook into the audio of a call.
 For example, you could use this function to enable playing a periodic beep sound in a call.
 
+
+# Hints
+https://wiki.asterisk.org/wiki/display/AST/Extension+State+and+Hints
+
+Para conocer el estado de una extensión.
+
+core show hints
 
 # Troubleshooting
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
