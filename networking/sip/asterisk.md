@@ -1,5 +1,8 @@
 Como el apache de las llamadas.
 
+Artículos que parten desde explicar voip, instalar asterisk, configurarlo, etc
+https://www.redhat.com/sysadmin/topics/voip
+
 Si queremos una UI (php): freepbx
 
 Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamadas):
@@ -130,11 +133,22 @@ En pjsip.conf tendremos que crear el transport que hayamos usado aqui.
 
 
 ## Dialplan / Extensiones
+https://www.redhat.com/sysadmin/asterisk-dialplan
+
 https://wiki.asterisk.org/wiki/display/AST/Dialplan
 Lenguage de scripting para decirle a asterisk que debe hacer.
 
+Mostrar lo que tenemos cargado:
+dialplan show
+
 Si solo modificamos el dialplan, podemos recargarlo con
 dialplan reload
+
+Conceptos:
+Contexts: las distinta secciones en las que se divide el dialplan. Contienen una o más extensiónes
+Extensions: conjunto de pasos que se ejecutan al llamar a un sitio
+Priorities: los distintos pasos de una extensión, ordenan como se ejecutaran los pasos
+Applications: que hacer en las pasos, por ejemplo, llamar, reproducir un sonido, etc
 
 Para crear un "número de teléfono" al que podemos llamar y que nos diga "hello world"
 ```
@@ -205,6 +219,8 @@ adapter=blue                    ; adapter to use
 group=1                         ; this phone is in channel group 1
 ```
 
+Vemos que en el context ponemos "incoming-mobile", este será el contexto donde tendremos que definir que hacer con las llamadas entrantes.
+
 
 Configurar el dialplan para enviar todas las llamadas al SIP por el móvil:
 ```
@@ -225,6 +241,17 @@ Por lo que si llamamos al:
 90034634231223
 El móvil llamará al:
 0034634231223
+
+
+Configurar que hacer con las llamadas entrantes:
+```
+[incoming-mobile]
+exten => s,1,Noop(Accepting mobile call from ${DID})
+exten => s,n,Page(PJSIP/pepe&PJSIP/maria)
+```
+
+Definimos la extensión "s" (start extension), que es donde llegan las llamadas analógicas.
+Creamos una "llamada grupal" hacia pepe y maria. Es decir, todas las llamadas entrantes las reciben pepe y maria, y pueden contestarlas y hablar al mismo tiempo.
 
 
 
@@ -249,18 +276,31 @@ dialplan reload
 
 
 
-## mostrar usuarios (pjsip)
+## mostrar datos pjsip
+pjsip show endpoints
 pjsip show aors
-Si están conectados mostrarán un "contact"
-
-Mostrar solo usuarios conectados:
+  aquí veremos que se asocia a un endpoint un contact donde tendremos la IP donde contactar con ese usuario
 pjsip show contacts
+pjsip show auths
 
 
 # ARI / API REST
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+20+ARI
 
 Tenemos que crear un usuario en ari.conf para poder usarlo.
+
+
+# Call parking
+https://wiki.asterisk.org/wiki/display/AST/Call+Parking
+
+Nos permite poner una llamada "on hold" y cogerla en otro softphone.
+
+
+# Periodic hook
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Function_PERIODIC_HOOK
+
+Execute a periodic dialplan hook into the audio of a call.
+For example, you could use this function to enable playing a periodic beep sound in a call.
 
 
 # Troubleshooting
@@ -274,3 +314,9 @@ pjsip set logger on
 Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
 Veremos el error:
 res_pjsip_registrar.c:769 register_aor_core: Registration attempt from endpoint 'pepe' (192.168.1.82:56948) to AOR 'pepe' will exceed max contacts of 1
+
+Encontrar el contacto en la db:
+database show
+
+Borrarlo:
+database del registrar/contact 101;@949152fdbe7da2c56519bf9b4985c047
