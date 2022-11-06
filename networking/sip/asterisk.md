@@ -8,6 +8,7 @@ zoiper para linux
   quitar STUN en la config de la cuenta
 linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
 jami, no me conecta, no he mirado mucho
+blink, linux windows mac: https://icanblink.com/
 
 Hello world:
 https://wiki.asterisk.org/wiki/display/AST/Hello+World
@@ -23,9 +24,11 @@ Podemos usar "pjsip reload" para recargar la config de pjsip.
 Transport es el protocolo que tendremos para que se comunique pjsip.
 Podría ser udp, tcp, tls, etc.
 
+https://wiki.asterisk.org/wiki/display/AST/PJSIP+Transport+Selection#:~:text=Best%20Configuration%20Strategies-,IPv4%20Only%20(Single%20Interface),-Configure%20a%20wildcard
+
 Para escuchar en el puerto UDP/5060 pondremos
 ```
-[transport-udp]
+[udp]
 type=transport
 protocol=udp
 bind=0.0.0.0
@@ -100,25 +103,30 @@ The name of the AOR section must match the user portion of the SIP URI in the "T
 
 ## Wizard
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+19+Configuration_res_pjsip_config_wizard
+https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Wizard
 
-Nos permite crear un endpoint, auth, AOR y dialplan en un solo objeto:
+Nos permite crear un endpoint, auth, AOR y dialplan en un solo objeto.
+Si lo juntamos con templates, simplificamos la creación
+https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Wizard#:~:text=were%20created%20discretely.-,Full%20Examples%3A,-Phones%3A
 ```
-[pepe]
+[user_defaults](!)
 type = wizard
 accepts_auth = yes
 accepts_registrations = yes
 aor/max_contacts = 1
-has_phoneprov = yes
-transport = ipv4
+transport = udp
 has_hint = yes
+endpoint/allow = ulaw
+endpoint/context = default
+
+[pepe](user_defaults)
 hint_exten = 1000
 inbound_auth/username = pepe
 inbound_auth/password = foobar123
-endpoint/allow = ulaw
-endpoint/context = default
-;phoneprov/MAC = 001122aa4455
-;phoneprov/PROFILE = profile1
 ```
+
+En ednpoints.conf tendremos que al menos crear el context default.
+En pjsip.conf tendremos que crear el transport que hayamos usado aqui.
 
 
 ## Dialplan / Extensiones
@@ -168,11 +176,20 @@ En este caso le estamos diciendo que queremos hacer match de las extensiones (n�
 exten => _9X.
 Este sería cualquier número que empiece por 9 y tenga cualquier número de dígitos
 
-## chan_mobile
+
+
+## chan_mobile / bluetooth
 Conectando un móvil para sacar llamadas (chan_mobile)
 https://jtanx.github.io/2016/02/24/using-asterisk-to-route-calls-through-mobile/
 
 https://wiki.asterisk.org/wiki/display/AST/Using+chan_mobile
+
+Si queremos ver los móviles disponibles:
+mobile search
+El campo "port" que ponga aquí deberá coincidir con el definido en el fichero de conf chan_mobile.conf
+
+
+mobile show devices
 
 Ejemplo configurando chan_mobile con la MAC del host y la MAC del móvil a usar:
 ```
@@ -240,9 +257,20 @@ Mostrar solo usuarios conectados:
 pjsip show contacts
 
 
+# ARI / API REST
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+20+ARI
+
+Tenemos que crear un usuario en ari.conf para poder usarlo.
+
+
 # Troubleshooting
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
 
 core set verbose 4
 core set debug 4
 pjsip set logger on
+
+## Borrar contactos asociados a un AOR
+Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
+Veremos el error:
+res_pjsip_registrar.c:769 register_aor_core: Registration attempt from endpoint 'pepe' (192.168.1.82:56948) to AOR 'pepe' will exceed max contacts of 1
