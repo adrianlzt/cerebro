@@ -4,6 +4,7 @@ Si queremos una UI (php): freepbx
 
 Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamadas):
 Acrobits Softphone (6.5€, android / ios)
+zoiper para linux (con linphone me da problemas)
 linphone (android, también tiene appimage para linux)
 
 
