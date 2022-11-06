@@ -44,6 +44,32 @@ type=aor
 max_contacts=1
 ```
 
+Otro ejemplo, usando palabras en vez de números, para que sea más descriptivo:
+```
+[pepe]
+type=endpoint
+context=from-internal
+disallow=all
+allow=ulaw
+auth=pepe_auth
+aors=pepe
+
+[pepe_auth]
+type=auth
+auth_type=userpass
+username=pepe
+password=foobar
+
+[pepe]
+type=aor
+max_contacts=1
+```
+
+## AOR
+https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Sections+and+Relationships#:~:text=EXAMPLE%20BASIC%20CONFIGURATION-,AOR,-(provided%20by%20module
+
+A primary feature of AOR objects (Address of Record) is to tell Asterisk where an endpoint can be contacted. Without an associated AOR section, an endpoint cannot be contacted
+
 ## Dialplan / Extensiones
 https://wiki.asterisk.org/wiki/display/AST/Dialplan
 Lenguage de scripting para decirle a asterisk que debe hacer.
@@ -67,6 +93,20 @@ El número será el teléfono a donde llamamos.
 Priority, el orden de ejecución (por si tenemos varios exten con el mismo número)
 Y luego es la aplicación que ejecutar y sus parámetros.
 
+Llamar usando un nombre
+```
+exten => pepe,1,Dial(PJSIP/pepe)
+exten => pepe,n,Hangup
+```
+
+### Application
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Application_Page
+Llamar a varias personas al mismo tiempo.
+Al llamar a "pepe" estaremos llamando a la vez a pepe_casa y pepe_movil.
+```
+exten => pepe,1,Page(PJSIP/pepe_casa&PJSIP/pepe_movil)
+exten => pepe,n,Hangup
+```
 
 ### pattern matching / regex
 https://wiki.asterisk.org/wiki/display/AST/Pattern+Matching
