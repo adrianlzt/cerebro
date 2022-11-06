@@ -13,7 +13,15 @@ Hello world:
 https://wiki.asterisk.org/wiki/display/AST/Hello+World
 
 # Configuración
+Relaciones entre los distintos tipos de objeto de configuración
+https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Sections+and+Relationships#PJSIPConfigurationSectionsandRelationships-RelationshipsofConfigurationObjectsinpjsip.conf
+
 Usaremos pjsip (sip está deprecated).
+Podemos usar "pjsip reload" para recargar la config de pjsip.
+
+## Transport
+Transport es el protocolo que tendremos para que se comunique pjsip.
+Podría ser udp, tcp, tls, etc.
 
 Para escuchar en el puerto UDP/5060 pondremos
 ```
@@ -22,6 +30,18 @@ type=transport
 protocol=udp
 bind=0.0.0.0
 ```
+
+pjsip show transports
+
+Una vez tenemos el transport, tenemos que crear una config para cada teléfono que queremos conectar.
+Para cada teléfono tendremos que configurar endpoint, auth y AOR.
+
+En realidad es más sencillo usar pjsip_config_wizard, que incluye todo en un solo objeto.
+Mirar después de la explicación de cada una de las partes.
+
+
+## Endpoints
+Podemos verlo como las entidades a las que queremos conectar. En este objeto se enlazarán otras partes de la configuración.
 
 Para crear un usuario "6001" con usuario=6001 y password=6001:
 ```
@@ -65,10 +85,41 @@ type=aor
 max_contacts=1
 ```
 
+## Auth
+Es donde se almacena como se identifica la entity.
+Desde el endpoint debemos apuntar al auth que queremos usar.
+
 ## AOR
 https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Sections+and+Relationships#:~:text=EXAMPLE%20BASIC%20CONFIGURATION-,AOR,-(provided%20by%20module
 
+Donde podemos contactar a tal identity. Por ejemplo, un endpoint apunta a un AOR y en ese AOR se dice que para contactar tenemos que ir a la IP 1.2.3.4.
+
 A primary feature of AOR objects (Address of Record) is to tell Asterisk where an endpoint can be contacted. Without an associated AOR section, an endpoint cannot be contacted
+
+The name of the AOR section must match the user portion of the SIP URI in the "To:" header of the inbound SIP registration. That will usually be the "user name" set in your hard or soft phones configuration.
+
+## Wizard
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+19+Configuration_res_pjsip_config_wizard
+
+Nos permite crear un endpoint, auth, AOR y dialplan en un solo objeto:
+```
+[pepe]
+type = wizard
+accepts_auth = yes
+accepts_registrations = yes
+aor/max_contacts = 1
+has_phoneprov = yes
+transport = ipv4
+has_hint = yes
+hint_exten = 1000
+inbound_auth/username = pepe
+inbound_auth/password = foobar123
+endpoint/allow = ulaw
+endpoint/context = default
+;phoneprov/MAC = 001122aa4455
+;phoneprov/PROFILE = profile1
+```
+
 
 ## Dialplan / Extensiones
 https://wiki.asterisk.org/wiki/display/AST/Dialplan
@@ -172,6 +223,9 @@ core show help ...
 ## restart
 core restart now
 
+## pjsip
+pjsip reload
+
 ## dialplan
 dialplan show
 dialplan reload
@@ -184,3 +238,11 @@ Si están conectados mostrarán un "contact"
 
 Mostrar solo usuarios conectados:
 pjsip show contacts
+
+
+# Troubleshooting
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
+
+core set verbose 4
+core set debug 4
+pjsip set logger on
