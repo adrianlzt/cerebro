@@ -36,6 +36,8 @@ Script python que abre una serie de menus en la consola para generar los commits
 https://pypi.org/project/conventional-commit/
 
 
+Integraciones con nvim: https://scribe.bus-hit.me/neovim-for-beginners-conventional-commits-f7f152ad1b78
+
 CLI para verificar el formato, con hooks o con CI (node.js)
 https://github.com/conventional-changelog/commitlint
 https://commitlint.js.org/#/guides-ci-setup
