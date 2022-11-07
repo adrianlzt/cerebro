@@ -14,6 +14,10 @@ scenario: podemos tener varios por rol. Es cada test suite que queremos
 platforms: los distintos SOs donde queremos probar
 driver: que servicio usamos para crear la máquina donde probar (docker, podman, ost, etc)
 
+Flujo típico (lo que hace molecule test):
+dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+
+
 # Install
 ```
 pip install ansible molecule "molecule[podman]" "molecule[docker]" "molecule[lint]"
@@ -71,8 +75,21 @@ Ejecutará el rol dos veces para ver que tenemos idempotencia
 ## verify
 Ejecuta el playbook de verify para comprobar que se cumplen los tests que hayamos definido
 
+## destroy
+Borrar las VMs/containers.
+Tendremos que ejecutarlo si queremos cambiar de provisioner
 
-# Openstack
+# Drivers
+
+## Docker
+A partir de la imagen base que le pasamos, construye una nueva para ser compatible.
+Usa este dockerfile: https://github.com/ansible-community/molecule-docker/blob/c2c6dbef50dd4fe2c1e6d27aa386156d66f49ffb/src/molecule_docker/playbooks/Dockerfile.j2
+
+Se pueden customizar las imágenes base con Dockerfiles que dejemos en el scenario
+https://molecule.readthedocs.io/en/latest/examples.html#customizing-the-docker-image-used-by-a-scenario-platform
+
+
+## Openstack
 pipenv install molecule molecule-openstack ansible openstacksdk
 molecule init role datadope.pruebas_test_role
 

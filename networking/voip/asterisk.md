@@ -12,6 +12,7 @@ zoiper para linux
 linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
 jami, no me conecta, no he mirado mucho
 blink, linux windows mac: https://icanblink.com/
+  el mejor que he visto para linux y opensource
 
 Hello world:
 https://wiki.asterisk.org/wiki/display/AST/Hello+World
@@ -327,6 +328,7 @@ https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
 core set verbose 4
 core set debug 4
 pjsip set logger on
+  trazas de señalizacioń (semejantes a HTTP)
 
 ## Borrar contactos asociados a un AOR
 Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
