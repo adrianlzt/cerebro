@@ -41,6 +41,9 @@ jsonb_pretty(data#>'{software,0}')
 tabla#>>'{1}'
 Primer elemento
 
+Convertir un array en rows:
+jsonb_array_elements(data -> 'software')
+
 
 Tipo de dato:
 jsonb_typeof(data->'software')
