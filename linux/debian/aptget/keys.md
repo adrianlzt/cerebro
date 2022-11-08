@@ -23,3 +23,5 @@ apt-key del A88D21E9
 Desactivar:
 /etc/apt/apt.conf.d/99unauth 
 APT::Get::AllowUnauthenticated 1;
+
+https://askubuntu.com/questions/74345/how-do-i-bypass-ignore-the-gpg-signature-checks-of-apt
