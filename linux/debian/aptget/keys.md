@@ -3,11 +3,11 @@ apt-key list
 
 Meter una clave
 apt-key add fichero.gpg
- 
+
   El fichero .gpg deberá ser del tipo:
   -----BEGIN PGP PUBLIC KEY BLOCK-----
   Version: GnuPG v1.4.14 (GNU/Linux)
-  
+
   mQENBFIOqEUBCAD...
   ....
   -----END PGP PUBLIC KEY BLOCK-----
@@ -21,7 +21,15 @@ apt-key del A88D21E9
 
 
 Desactivar:
-/etc/apt/apt.conf.d/99unauth 
+/etc/apt/apt.conf.d/99unauth
 APT::Get::AllowUnauthenticated 1;
 
+Ignorar para un repo:
+```
+deb [trusted=true] https://repo...
+```
+
 https://askubuntu.com/questions/74345/how-do-i-bypass-ignore-the-gpg-signature-checks-of-apt
+
+No verificar el certificado TLS del repo
+echo "Acquire { https::Verify-Peer false }" > /etc/apt/apt.conf.d/99verify-peer.conf

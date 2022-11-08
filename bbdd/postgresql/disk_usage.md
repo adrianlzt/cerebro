@@ -19,4 +19,4 @@ SELECT *, pg_size_pretty(total_bytes) AS total
           LEFT JOIN pg_namespace n ON n.oid = c.relnamespace
           WHERE relkind = 'r'
   ) a
-) a;
+) a order by total_bytes desc; 
