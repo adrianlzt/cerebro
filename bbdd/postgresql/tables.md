@@ -61,7 +61,15 @@ alter table main_host alter column variables type jsonb USING variables::jsonb;
 Modificar un int a bool:
 ALTER TABLE exec ALTER COLUMN exec_on_success TYPE bool USING exec_on_success::int::bool;
 
+Modificar el owner:
+ALTER TABLE foo OWNER TO bar;
 
+Sobre muchas tablas (crea una lista de "ALTER TABLE..." y lo ejecuta con psql):
+psql -U postgres -d postgres -c "SELECT 'ALTER TABLE ' || schemaname || '.' || tablename || ' OWNER TO bar;' FROM pg_tables WHERE tablename LIKE 'history%';" | psql -U postgres -d postgres
+
+Mover todo lo que pertenezca a un usuario a otro:
+reassign owned by foo TO bar;
+ 
 ## Renombrar
 ALTER TABLE table_name RENAME TO new_table_name;
 

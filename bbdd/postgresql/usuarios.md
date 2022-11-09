@@ -195,6 +195,9 @@ grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
 GRANT SELECT ON partman.part_config TO zabbix_odbc;
 
 
+Mover todo lo que pertenezca a un usuario a otro:
+reassign owned by foo TO bar;
+
 ### Privilegios por defecto
 Cuando un usuario crea tablas las crea siendo su dueño.
 Podemos configurar el usuario para que cuando cree tablas de permisos a otros roles, a parte de a si mismo.
