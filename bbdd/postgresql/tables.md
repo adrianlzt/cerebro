@@ -67,6 +67,14 @@ ALTER TABLE foo OWNER TO bar;
 Sobre muchas tablas (crea una lista de "ALTER TABLE..." y lo ejecuta con psql):
 psql -U postgres -d postgres -c "SELECT 'ALTER TABLE ' || schemaname || '.' || tablename || ' OWNER TO bar;' FROM pg_tables WHERE tablename LIKE 'history%';" | psql -U postgres -d postgres
 
+Se podría hacer internamente con algo tipo:
+BEGIN;
+SELECT 'CREATE TABLE a' || id || ' (id int);'
+       FROM generate_series(1, 20000) AS id;
+ 
+\gexec
+
+
 Mover todo lo que pertenezca a un usuario a otro:
 reassign owned by foo TO bar;
  
