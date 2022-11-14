@@ -19,5 +19,12 @@ exclude_paths:
   - .github/
 ```
 
+Ignorar ciertas líneas, por ejemplo, del meta/main.yml
+```
+  license: license (GPL-2.0-or-later, MIT, etc) # noqa meta-incorrect
+  platforms: [] # noqa meta-no-info
+```
+
+
 Ejemplos de exclude
 https://opendev.org/openstack/bifrost/src/branch/master/.ansible-lint
