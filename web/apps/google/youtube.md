@@ -13,6 +13,9 @@ https://invidious.osi.kr/feed/popular
 Para android: NewPipe
 
 
+Bajar videos CLI:
+yt-dlp
+
 
 # Subir videos CLI
 https://github.com/porjo/youtubeuploader
