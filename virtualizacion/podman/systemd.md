@@ -7,3 +7,7 @@ Si queremos generar una unit para un pod
 
 podman generate systemd --name nombrePod > mi.unit
   --name es para usar el nombre de pod en vez del id
+
+
+# Ejecutar contenedor que tiene systemd
+podman run --rm -it --tmpfs /run --tmpfs /tmp -v /sys/fs/cgroup:/sys/fs/cgroup:ro --cap-add SYS_ADMIN docker.io/almalinux/9-init:9.0-20221001
