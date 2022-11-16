@@ -20,7 +20,7 @@ dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempoten
 
 # Install
 ```
-pip install ansible molecule "molecule[podman]" "molecule[docker]" "molecule[lint]"
+pip install ansible molecule "molecule[podman]" "molecule[docker]"
 ```
 
 # Crear rol con molecule integrado
