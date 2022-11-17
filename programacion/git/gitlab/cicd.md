@@ -58,6 +58,15 @@ Para las MR podemos usar labels, que tendremos disponible en una variable, ejemp
 CI_MERGE_REQUEST_LABELS=foo-bar,skip-ansible-lint
 
 
+# Runners
+## podman
+https://docs.gitlab.com/runner/executors/docker.html#use-podman-to-run-docker-commands
+
+Parece que con hacer
+systemctl enable --now podman.socket
+
+Y montarle al contenedor docker de gitlab /run/podman/podman.sock como /var/run/docker.sock ya funciona.
+
 # Debug
 Podemos entrar en la shell de un runner mientras está ejecutando una tarea
 https://docs.gitlab.com/ee/ci/interactive_web_terminal/
