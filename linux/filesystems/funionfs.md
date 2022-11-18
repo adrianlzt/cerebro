@@ -1,3 +1,7 @@
+deprecated?
+usar fuse-overlayfs?
+
+
 http://funionfs.apiou.org
 
 Union file system.
