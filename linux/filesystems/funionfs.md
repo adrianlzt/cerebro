@@ -1,5 +1,5 @@
-deprecated?
-usar fuse-overlayfs?
+deprecated
+Mirar overlayfs
 
 
 http://funionfs.apiou.org
