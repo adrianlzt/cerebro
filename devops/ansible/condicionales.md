@@ -51,6 +51,12 @@ Ya no se puede hacer (fallará si no esta definida):
 {% if variable %}
 
 
+Si una variable de un rol no está definida, valdrá None.
+En ese caso podemos hacer el default con:
+task:
+  foo: "{{bar or 123}}"
+
+
 
 
 Ejecutar tareas dependiendo de el valor del último task:
