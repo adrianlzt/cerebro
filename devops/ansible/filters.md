@@ -105,3 +105,8 @@ Para poder usar comillas sin problemas:
     query: "[?type=='JBoss Application Server']"
 
 
+De una lista de dict, filtrar por el valor de un campo:
+```
+msg: "{{ data['server']['facts']['bindings'] | json_query(\"[?class=='http'].port\") }}"
+```
+
