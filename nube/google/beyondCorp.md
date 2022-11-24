@@ -94,6 +94,17 @@ Para crear un tunel TCP:
 gcloud compute start-iap-tunnel INSTANCE_NAME INSTANCE_PORT
 
 
+Para que un usuario pueda acceder usando el tunel iap a una VM sin usar el login del SO necesita los permisos:
+iap.tunnelInstances.accessViaIAP
+compute.instances.get
+compute.instances.list
+compute.projects.get
+compute.instances.setMetadata
+compute.projects.setCommonInstanceMetadata
+compute.globalOperations.get
+
+
+
 
 
 ## OnPrem services
