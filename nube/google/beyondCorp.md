@@ -87,6 +87,9 @@ Los usuarios tienen que tener los permisos:
 gcloud compute ssh INSTANCE_NAME
   usará la ip pública si existe, si no, tunel IAP
 
+Si la instancia tiene IP pública, pero el acceso por el puerto 22 bloqueado, entraremos con:
+gcloud compute ssh INSTANCE_NAME --tunnel-through-iap
+
 Para crear un tunel TCP:
 gcloud compute start-iap-tunnel INSTANCE_NAME INSTANCE_PORT
 
