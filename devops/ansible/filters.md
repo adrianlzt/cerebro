@@ -108,5 +108,12 @@ Para poder usar comillas sin problemas:
 De una lista de dict, filtrar por el valor de un campo:
 ```
 msg: "{{ data['server']['facts']['bindings'] | json_query(\"[?class=='http'].port\") }}"
+
+En files tenemos un array de dicts, filtramos por dos campos y nos quedamos con los otros dos unidos por "/"
+log_file: "{{  data['server']['facts']['files'] | json_query(\"[?type=='log' && subtype=='logging config'] | [0] | join('/',[path,name]) \") }}"
+
+Parecido, pero sin que falle si no hace match el type&subtype
+log_file: "{{  data['server']['facts']['files'] | json_query(\"[?type=='log' && subtype=='logging config'].join('/',[path,name]) | [0] \") }}"
+
 ```
 
