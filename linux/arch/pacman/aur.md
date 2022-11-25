@@ -5,8 +5,14 @@ Funciona como pkgsrc, te baja el código y un script PKGBUILD define las instruc
 
 Usar con yay
 Instalar:
-git clone https://aur.archlinux.org/yay.git
-cd yay
+curl -LO https://github.com/Jguer/yay/releases/download/v11.3.1/yay_11.3.1_x86_64.tar.gz
+tar zxvf yay_11.3.1_x86_64.tar.gz
+cp yay_11.3.1_x86_64/yay /usr/local/bin/
+
+
+Compilando:
+git clone https://aur.archlinux.org/yay.git && \
+cd yay && \
 makepkg -si
   Para poder ejecutar el makepkg necesitamos:
     - hacerlo con un user que no sea root
