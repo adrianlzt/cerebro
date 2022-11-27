@@ -1,6 +1,9 @@
 Mejor: bokeh.md
 Mirar plotly.md
 
+Conseguir un resultado más bonito en las figuras:
+https://twitter.com/RayleighLord/status/1596812898071764992
+
 
 http://matplotlib.org/
 
