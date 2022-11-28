@@ -1,5 +1,7 @@
 http://docs.ansible.com/fetch_module.html
 
+Para obtener ficheros del remoto.
+
 
 - name: copy to our computer the mongo backup
   fetch: src=/tmp/cyclops-backup.bson.tgz dest=backup/ fail_on_missing=yes flat=yes
