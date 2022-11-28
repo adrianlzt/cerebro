@@ -12,6 +12,9 @@ https://cloud.google.com/compute/docs/instances/access-overview#project-wide
 ## OS login
 https://cloud.google.com/compute/docs/oslogin
 
+Como saber si está activado (parece que no viene por defecto)
+https://cloud.google.com/compute/docs/troubleshooting/troubleshoot-os-login#checking_if_os_login_is_enabled
+
 
 # Añadir keys con terraform
 metadata = {
