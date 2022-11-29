@@ -95,3 +95,55 @@ En hgs2 tendremos:
  - __dos__pepe
  - __uno__maria
  - __dos__maria
+
+
+# Generar una lista con campos extra y la propia lista a partir de una lista de diccionarios
+- name: Test
+  hosts: localhost
+  gather_facts: false
+  vars:
+    facts:
+      - bindings: [1, 2, 3]
+        name: jboss1
+        instance_key: "8080"
+      - bindings: [9, 8]
+        name: jboss2
+        instance_key: "8443"
+  tasks:
+    - name: Fact
+      ansible.builtin.set_fact:
+        out: '{{ out | default([]) + [{"code": item.name+"_"+item.instance_key, "facts": item}] }}'
+      loop: "{{ facts }}"
+
+    - name: Out
+      ansible.builtin.debug:
+        var: out
+
+
+Output:
+    "out": [
+        {
+            "code": "jboss1_8080",
+            "facts": {
+                "bindings": [
+                    1,
+                    2,
+                    3
+                ],
+                "instance_key": "8080",
+                "name": "jboss1"
+            }
+        },
+        {
+            "code": "jboss2_8443",
+            "facts": {
+                "bindings": [
+                    9,
+                    8
+                ],
+                "instance_key": "8443",
+                "name": "jboss2"
+            }
+        }
+    ]
+
