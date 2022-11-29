@@ -49,6 +49,11 @@ Si queremos que lo soporte tendremos que meter la libreria jboss-cli-client.jar 
 ## JBoss
 Desplegar el jolokia-war-unsecured.war desde la interfaz de web management.
 
+También podemos dejar el .war en /opt/wildfly/standalone/deployments
+wildfly escanear este dir y nos dejará un fichero con el nombre del war ".estado", donde iremos viendo que ha pasado con el despliegue:
+ - isdeploying
+ - failed
+
 Probar:
 http://localhost:8080/jolokia-war-unsecured-1.6.0/read/java.lang:type=Memory/HeapMemoryUsage
 

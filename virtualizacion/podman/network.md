@@ -8,6 +8,14 @@ Me da algunos problemas, algunas veces pierdo el acceso a los puertos expuestos.
 Si queremos comunicarnos entre pods rootless, tendremos que exponer los puertos en el host y atacar a la ip del host.
 
 
+## Acceder a puertos
+Si hemos levantado el contenedor sin puertos pero queremos acceder a ellos, podemos usar nsenter.
+
+Por ejemplo, para levantar un firefox en el namespace de red del contendor:
+sudo nsenter -t 1144792 -n bash
+sudo -u adrian firefox
+
+
 ## Backend
 Soporta dos backend network: cni y netavark (>=v4.0)
 Para chequear cual estamos usando:
