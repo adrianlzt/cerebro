@@ -2,5 +2,5 @@
 # Otros nombres para test o desarrollo suelen ser:
 # requirements-dev.txt
 # requirements-test.txt
-certifi==2017.7.27.1
+certifi==2022.12.7
 chardet==3.0.4
