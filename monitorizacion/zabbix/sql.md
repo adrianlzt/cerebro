@@ -856,3 +856,7 @@ Itemids que están en history_uint pero no en items-int (MUY COSTOSA!):
 select distinct b.itemid from (select itemid from items where value_type=3) a full outer join history_uint b ON a.itemid=b.itemid WHERE a.itemid IS NULL;
 
 Si no ponemos distinct, tendremos el número total de entradas sin asociación con la tabla items
+
+
+lastclock de un item (en cualquier history). Posiblemente muy costosa. Tal vez podríamos meter filtrado por tiempo.
+select host,key_,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key_) limit 3;

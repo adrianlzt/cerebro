@@ -18,6 +18,11 @@ Consideraciones sobre la organización con subcharts:
  - A parent chart can override values for subcharts.
  - Helm has a concept of global values that can be accessed by all charts.
 
+Parece que no se pueden pasar variables puestas en el parent a los child
+https://github.com/helm/helm/issues/6699
+
+Una posible alternativa, usar https://github.com/helmfile/helmfile
+
 ## Values
 ``{{ .Values.foo }}`` en un subchart se referirá al values.yaml de ese subchart.
 

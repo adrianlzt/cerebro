@@ -124,3 +124,34 @@ for host_addr in nm.all_hosts():
         print("ssh")
   except Exception as ex:
     print(f"Exception host {host_addr}: {ex}")
+
+
+
+# Plugins
+https://nmap.org/book/man-nse.html
+
+Categorías:
+auth, broadcast, default. discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, vuln
+
+
+Viene con muchos instalados por defecto:
+/usr/share/nmap/scripts/
+
+## Plugins por defecto
+
+Buscar subdominios de uso común:
+nmap -p 80 --script dns-brute.nse foo.bar
+
+Buscar otros dominios con la misma ip:
+nmap -p 80 --script dns-brute.nse subastas.es
+
+Traceroute + geolocation
+sudo nmap --traceroute --script traceroute-geolocation.nse -p 80 hackertarget.com
+
+
+## NSE
+https://www.ncsc.gov.uk/blog-post/introducing-scanning-made-easy
+Help system owners and administrators find systems with specific vulnerabilities.
+
+https://github.com/nccgroup/nmap-nse-vulnerability-scripts
+Por ahora, dic 2022, solo tienen un script.

@@ -16,6 +16,10 @@ docker run --name some-zabbix-agent --link zabbix-server-pgsql:zabbix-server --p
 All-in-one (appliance) DEPRECATED
 docker run --name some-zabbix-appliance -p 80:80 -p 10051:10051 -d zabbix/zabbix-appliance:tag
 
+Hay un bug (intenta usar /usr/libexec/resolveip para inicializar mysql, que no existe)
+podman run --rm -it -P --entrypoint /sbin/tini docker.io/zabbix/zabbix-appliance:centos-4.0.18 -- bash -c ln -s /usr/bin/resolveip /usr/libexec/resolveip && /usr/bin/docker-entrypoint.sh
+
+
 
 docker run --name zabbix-postgres -e POSTGRES_PASSWORD=postgres -d postgres
   postgres bbdd server

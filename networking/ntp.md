@@ -25,6 +25,8 @@ Por defecto chrony va corrigiendo el tiempo modificando ligeramente la velocidad
 Podemos poner esta configuración para hacer un salto grande en los tres primeros updates si el desfase es de mas de 1s
 makestep 1.0 3
 
+Si reiniciamos el servicio de chronyd se cambia la hora brúscamente.
+
 
 
 # NTP

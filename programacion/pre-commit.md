@@ -18,6 +18,8 @@ Y en ~/.gitconfig tendremos que tener:
     hooksPath = ~/.git_hooks
 ```
 
+Hooks interesantes:
+https://gruntwork.io/repos/v0.1.10/pre-commit
 
 
 Ejemplos pygrep:

@@ -52,9 +52,13 @@ Ya no se puede hacer (fallará si no esta definida):
 
 
 Si una variable de un rol no está definida, valdrá None.
+O en el vars de un playbook, o cualquier otro lado
 En ese caso podemos hacer el default con:
 task:
   foo: "{{bar or 123}}"
+
+Para chequear:
+when: foo == None
 
 
 

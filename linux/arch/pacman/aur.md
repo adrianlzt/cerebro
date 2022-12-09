@@ -7,7 +7,7 @@ Usar con yay
 Instalar:
 curl -LO https://github.com/Jguer/yay/releases/download/v11.3.1/yay_11.3.1_x86_64.tar.gz
 tar zxvf yay_11.3.1_x86_64.tar.gz
-cp yay_11.3.1_x86_64/yay /usr/local/bin/
+sudo cp yay_11.3.1_x86_64/yay /usr/local/bin/
 
 
 Compilando:

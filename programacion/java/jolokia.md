@@ -4,6 +4,11 @@ Expone JMX a través de HTTP+JSON
 
 Creo que se tiene que desplegar junto con el .war que estemos ejecutando, como una libreria añadida.
 
+# Agent mode
+Con jolokia 1.7 y wildfly 20 me funciona dejando el .war en el dir de deployments.
+Con la versión 27 no funciona.
+{"WFLYCTL0080: Failed services" => {"jboss.deployment.unit.\"jolokia-jboss-war-unsecured-1.7.1.war\".undertow-deployment.UndertowDeploymentInfoService" => "Failed to start service Caused by: java.lang.NoClassDefFoundError: Failed to link org/jolokia/http/AgentServlet (Module \"deployment.jolokia-jboss-war-unsecured-1.7.1.war\" from Service Module Loader): javax/servlet/http/HttpServlet"}}
+
 # Proxy mode
 https://jolokia.org/features/proxy.html
 https://github.com/rhuss/jolokia/blob/master/agent/jsr160/src/main/java/org/jolokia/jsr160/Jsr160RequestDispatcher.java
@@ -79,6 +84,10 @@ Buscar MBeans:
 
 Listar todas las MBeans:
 {"type":"LIST", "mbean":"*"}
+
+
+Curl para pedir valores usando el proxy con auth
+curl -u jo:jo localhost:8080/jolokia/read -H "Content-type: application/json" -d '[{"type":"read","mbean":"java.lang:type=Runtime","attribute":"Uptime","target":{"url":"service:jmx:remote+http://0.0.0.0:8230","user":"jo","password":"jo"}}]'
 
 
 ## Jboss

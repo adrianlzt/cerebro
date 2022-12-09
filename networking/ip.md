@@ -60,6 +60,9 @@ ip r
     mostrar rutas
       ip route list table hof
 
+Ver estadísticas paquetes (sent, dropped, etc)
+ip -s link show
+
 
 
 Ver cache de ip-mac

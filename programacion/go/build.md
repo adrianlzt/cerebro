@@ -1,3 +1,5 @@
+Mirar bra.md para hacer builds automáticos mientras desarrollamos.
+
 # Tener un build.go que gestione todo los pasos
 Ejemplo: https://github.com/grafana/grafana/blob/master/build.go
 

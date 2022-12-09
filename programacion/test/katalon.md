@@ -1,6 +1,7 @@
 Si queremos comprobar la performance: monitorizacion/webpage_monitor.md
 Mirar synthetic_monitoring.md
 
+Mirar playwright.md
 
 Mirar tamibén como alternativa https://www.cypress.io/
 Que es lo que usa Grafana para hacer los tests a su app

@@ -3,6 +3,7 @@ helm create <chart name>
 
 
 # Universal charts
+https://github.com/cloudposse/charts/tree/master/incubator/monochart
 https://github.com/DevOps-Nirvana/Universal-Kubernetes-Helm-Charts
 
 Plantillas para crear distintos tipos de recursos.
