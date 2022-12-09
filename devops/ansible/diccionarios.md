@@ -10,6 +10,9 @@ hash_behaviour=merge
 
 
 
+Podemos usar include_vars con merge.
+
+
 Si tenemos un diccionario de valores definido dos veces, se mergea el diccionario.
 Si un valor está repetido, se guarda el que tiene más preferencia.
 
