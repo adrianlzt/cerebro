@@ -1,4 +1,4 @@
-https://www.postgresql.org/docs/12/user-manag.html
+https://www.postgresql.org/docs/current/user-manag.html
 
 Los usuarios y los grupos son roles.
 Los roles pueden agruparse jerárquicamente (un rol contienen otros roles)
@@ -20,6 +20,9 @@ Y asignar esos roles con permisos a los usuarios/aplicaciones.
 Por defecto, los roles tendrán acceso al schema "public" en todas las db.
 Podemos modificar los privileges por defecto:
 ALTER DEFAULT PRIVILEGES ...
+
+Los usuarios podrán ver todo el catalog, es decir, todas las dbs, schemas, tablas, etc.
+Pero no consultar los datos.
 
 
 Ownership: cuando creas un objeto (ej.: tabla), te pertenece, tienes todos los permisos sobre él.
@@ -108,6 +111,9 @@ grant read_only_user to intdevteam;
 https://www.postgresql.org/docs/current/sql-grant.html
 https://www.postgresql.org/docs/current/functions-info.html#FUNCTIONS-INFO-ACCESS-TABLE
   comprobar si un usuario tiene determinados permisos, ejemplo has_any_column_privilege(user, table, privilege)
+
+A partir de v14, tenemos dos roles creados por defecto, que podemos asignar a los usuarios:
+pg_read_all_data / pg_write_all_data
 
 
 Como se chequean los permisos:
@@ -310,4 +316,3 @@ REVOKE ALL ON DATABASE db_name FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 
 Los roles que creemos tendrán que tener los permisos CONNECT a la db y USAGE sobre el schema public.
-
