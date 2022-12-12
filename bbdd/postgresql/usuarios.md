@@ -184,6 +184,8 @@ GRANT SELECT ON nombreTabla to user;
 Permiso para leer de todas las tablas del schema public:
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
 
+NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
+
 
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
@@ -216,6 +218,10 @@ ALTER DEFAULT PRIVILEGES
 FOR USER foo
 IN SCHEMA schema_name
 GRANT SELECT ON TABLES TO bar;
+
+Otra forma:
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO Read_Only_User;
+
 
 
 ## Borrar usuarios ##
