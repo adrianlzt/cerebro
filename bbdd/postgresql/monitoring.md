@@ -149,14 +149,23 @@ La gráfica puede tener picos por que los envíos pueden ir a golpes y porque lo
 
 Cuidado, si los slaves no flushean los wal, el master los mantendrá llenando su disco.
 Número de WALs en disco (hace falta permiso especial para esta función):
+select count(*) from pg_ls_waldir();
+Para dar permisos a otros usuarios no superadmin:
+grant pg_monitor to "usuario";
+
+
+Antiguo:
 SELECT COUNT(*) FROM pg_ls_dir('pg_wal') WHERE pg_ls_dir ~ '^[0-9A-F]{24}';
   SELECT COUNT(*) FROM pg_ls_dir('pg_xlog') WHERE pg_ls_dir ~ '^[0-9A-F]{24}'; -- antiguo, postgres <=9.6 creo
+
 
 Si usamos replication slots y el cliente se desconecta, estaremos llenando el disco con los wal hasta que reconecte.
 La solución es monitorizar ese número de arriba o el espacio en disco
 https://info.crunchydata.com/blog/wheres-my-replica-troubleshooting-streaming-replication-synchronization-in-postgresql
 Si hemos perdido el cliente y se nos está llenando, tal vez la solución es borrar el replication slot. Mirar en replication.md
 
+Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
+https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
 
 Monitorizar conflictos, mirar ha_scalability.md
 

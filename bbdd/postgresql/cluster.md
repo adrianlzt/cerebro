@@ -74,6 +74,8 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
 
 Comprobar en el master que vemos la replica conectada:
 select * from pg_stat_replication;
+select * from  pg_replication_slots;
+  si estamos usando slots
 
 Comprobar si somos un primario o replica (off para el primario, on para replica):
 show in_hot_standby;
@@ -144,6 +146,7 @@ select pg_current_waL_flush_lsn()
 
 Podemos usar pg_wal_lsn_diff() para comparar lsn
 select pg_wal_lsn_diff('12D71/A2D142B8', '11EF2/8F000000');
+Calculates the difference in bytes (lsn1 - lsn2) between two write-ahead log locations. This can be used with pg_stat_replication or some of the functions shown in Table 9.89 to get the replication lag.
 
 select * from pg_stat_replication;
     solo muestra clientes actualmente conectados
