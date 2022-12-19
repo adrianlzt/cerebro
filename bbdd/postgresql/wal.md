@@ -158,6 +158,7 @@ https://postgresqlco.nf/doc/en/param/wal_keep_segments/
 Si tenemos "wal_keep_segments" estamos forzando a la bbdd a dejar ese número de ficheros de wal, por si una replica se tuviese que conectar.
 Por defecto está a 0, que quiere decir que no guardamos ninguno extra
 Si usamos replicación, podemos poner >0 para conseguir que si se pierde la replicación, darle un tiempo a la réplica a que conecte.
+Es para cuando no usamos replication slots.
 
 En PG13 ahora se llama wal_keep_size
 
@@ -176,7 +177,7 @@ Podemos reducir el uso de disco, a cambio de usar más CPU, activando wal_compre
 
 
 # Llenado directorio wal
-https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+https://web.archive.org/web/20190709143733/https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
 Posibles causas:
   - archive command no funcion
   - replication slot sin cliente conectado
@@ -184,3 +185,5 @@ Posibles causas:
     Parece que la única solución es monitorizar que no se llene el disco: https://info.crunchydata.com/blog/wheres-my-replica-troubleshooting-streaming-replication-synchronization-in-postgresql
     Mirar en monitoring.md
 
+Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
+https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
