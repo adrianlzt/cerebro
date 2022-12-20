@@ -12,3 +12,4 @@ x-trace.md (antiguo)
 dapper.md
 jaeger.md (go)
 
+tempo.md, el backend de grafana.

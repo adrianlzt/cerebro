@@ -8,6 +8,15 @@ DELETE FROM
 WHERE
   id IN (SELECT id FROM table WHERE key = 'needle' LIMIT 10000);
 
+https://stackoverflow.com/a/5171473
+Borrar 1M de campos, sin tener que saber ningún id:
+DELETE FROM history_default
+WHERE ctid IN (
+    SELECT ctid
+    FROM history_default
+    LIMIT 10000000
+);
+
 
 Con CTEs:
 

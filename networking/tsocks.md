@@ -1,3 +1,5 @@
+DEPRECATED mirar socksify.md
+
 http://alexborisov.org/tunnel-your-apps-via-ssh-with-tsocks/
 
 pacman -S tsocks

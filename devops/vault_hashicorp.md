@@ -104,6 +104,10 @@ vault secrets enable -path=secret kv
 Si no definimos el -path, lo pone en kv/
 
 
+En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
+https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after
+
+
 # Docker
 VERSION=0.11.5
 docker run --restart=unless-stopped \

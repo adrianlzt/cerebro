@@ -135,8 +135,11 @@ environment
 playbook_dir
 inventory_dir
 
+# Variables con valores de cosas internas
+https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
+
 # Magic variables
-http://docs.ansible.com/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#information-about-ansible-magic-variables
 
 ## inventory_hostname
 nombre del host en el inventario

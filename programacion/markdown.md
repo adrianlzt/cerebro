@@ -10,6 +10,9 @@ https://stackedit.io/editor
 grip fichero.md
   monta un server en localhost:5000 mostrando el fichero
 
+markdown_py -f README.html -x tables README.md
+  app python para convertir markdown a html/xhtml. Tendremos que cargar extensiones para algunas cosas (-x)
+
 https://remarkjs.com/
   presentación de slides en markdown
 

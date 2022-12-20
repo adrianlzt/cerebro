@@ -63,6 +63,7 @@ Status
 1 - disabled
 3 - template (para la tabla hosts)
 5 - proxy
+6 - proxy pasivo (al menos en zabbix 6)
 
 alert - status
 0 - not sent
@@ -71,7 +72,7 @@ alert - status
 
 hosts - Flags
 0 - normal host
-2 - algo raro interno para discover de VMs? como un template de host descubierto? host prototype?
+2 - host prototype
 4 - nodo discovered
 
 State (items y triggers)
@@ -254,6 +255,9 @@ MAL! tenemos que al menos coger solo los triggers enabled y los objectid que hag
 -- alertas pendientes de enviar agrupadas por media type
 select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
 
+-- alertas que no han sido enviadas por un error (zabbix 6)
+select to_timestamp(alerts.clock) as date, hosts.name, items.key_, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join tri
+ggers on triggers.triggerid=events.objectid join functions using (triggerid) join items using (itemid) join hosts using (hostid) where alerts.status=2 order by alerts.clock desc;
 
 
 # Trigger - functions - items - hosts
@@ -261,11 +265,16 @@ select hosts.host,items.key_,triggers.description from triggers join functions U
 
 
 # Queries varias
-Número de items en la tabla history agrupados por buckets de 10', filtrado entre unos timestamps:
+Número de items en la tabla history agrupados por buckets de 1', filtrado entre unos timestamps:
+
 select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+
 select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
 Otra forma de lanzar la query. Haciendo uso del indice? (por no convertir el "clock" en el where?). Nos saca "count, date_from y date_to"
@@ -329,6 +338,8 @@ select items.name,hosts.hostid from hosts,items where hosts.name='SOMEHOSTNAME' 
 
 Items not supported (si metemos "and items.flags=1" solo veremos los items LLD fallando):
 select hosts.host,items.name from hosts,items where items.hostid=hosts.hostid and state=1;
+Para Zabbix 6.0 (excluyendo items/hosts no enabled):
+select hosts.host,items.itemid,items.name,error from hosts join items using (hostid) join item_rtdata using (itemid) where state=1 and items.status=0 and hosts.status=0;
 
 Triggers not supported:
 select hosts.name,triggers.description from functions,triggers,items,hosts where functions.triggerid=triggers.triggerid and functions.itemid=items.itemid and items.hostid=hosts.hostid and triggers.state=1
@@ -467,6 +478,21 @@ SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relat
 
 Templates que se están usando por algún host al menos:
 select hostid,host from hosts where status = 3 and hostid IN (select ht.templateid from hosts_templates ht, hosts h where ht.hostid = h.hostid and h.status != 3 and flags=0);
+
+Items sin template asociada:
+SELECT
+   hosts.name,
+   items.key_
+FROM
+   hosts
+JOIN
+   items USING (hostid)
+WHERE
+   hosts.status = 0
+   AND items.templateid IS NULL
+   AND items.status = 0
+   AND items.flags <> 4;
+
 
 Templates que pertenecen a un grupo:
 select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
@@ -629,6 +655,9 @@ Ejemplo de query buscando un update (action=1) de un host (resourcetype=4)
 select *,to_timestamp(clock) as fecha from auditlog join auditlog_details using (auditid) where action=1 and resourcetype=4 and resourcename like '%zbxalerter' limit 10;
 
 
+# Zabbix-proxy
+Last seen (last access) de los proxies:
+SELECT h.hostid,h.host,to_timestamp(h.lastaccess) FROM hosts h WHERE h.status IN (5,6);
 
 
 
@@ -827,3 +856,7 @@ Itemids que están en history_uint pero no en items-int (MUY COSTOSA!):
 select distinct b.itemid from (select itemid from items where value_type=3) a full outer join history_uint b ON a.itemid=b.itemid WHERE a.itemid IS NULL;
 
 Si no ponemos distinct, tendremos el número total de entradas sin asociación con la tabla items
+
+
+lastclock de un item (en cualquier history). Posiblemente muy costosa. Tal vez podríamos meter filtrado por tiempo.
+select host,key_,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key_) limit 3;

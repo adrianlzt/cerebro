@@ -87,8 +87,22 @@ Los usuarios tienen que tener los permisos:
 gcloud compute ssh INSTANCE_NAME
   usará la ip pública si existe, si no, tunel IAP
 
+Si la instancia tiene IP pública, pero el acceso por el puerto 22 bloqueado, entraremos con:
+gcloud compute ssh INSTANCE_NAME --tunnel-through-iap
+
 Para crear un tunel TCP:
 gcloud compute start-iap-tunnel INSTANCE_NAME INSTANCE_PORT
+
+
+Para que un usuario pueda acceder usando el tunel iap a una VM sin usar el login del SO necesita los permisos:
+iap.tunnelInstances.accessViaIAP
+compute.instances.get
+compute.instances.list
+compute.projects.get
+compute.instances.setMetadata
+compute.projects.setCommonInstanceMetadata
+compute.globalOperations.get
+
 
 
 
@@ -103,6 +117,8 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 # Open source
 https://zero.pritunl.com/
 https://github.com/ory/oathkeeper
+https://github.com/vouch/vouch-proxy
+  An SSO and OAuth / OIDC login solution for Nginx using the auth_request module
 
 ## Pomerium
 pomerium.md

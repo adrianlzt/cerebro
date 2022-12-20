@@ -2,6 +2,9 @@ cloudshark -> analisis online
 30 day free trial
 ~/priv-adrianRepo/networking/analisis_trafico/MASTERING_WIRESHARK.pdf
 
+Referencia con todos los filtros
+https://www.wireshark.org/docs/dfref/#section_t
+
 https://github.com/gcla/termshark wireshark con ncurses
 
 Permitir a un no-root capturar
@@ -43,6 +46,11 @@ setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
 
 Para quitar la capability:
 setcap -r /usr/sbin/tcpdump
+
+## Merge
+https://www.wireshark.org/docs/wsug_html_chunked/ChIOMergeSection.html
+Ver dos capturas al mismo tiempo.
+Útil si hemos capturado en origen y destino.
 
 
 ## Mate ##

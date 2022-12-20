@@ -72,3 +72,6 @@ foo:
     de donde tenemos la
     key donde metemos
         las cosas
+
+# Lint
+https://yamllint.readthedocs.io/

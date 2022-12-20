@@ -14,3 +14,10 @@ ping -I eth3 google.es
 
 # https://github.com/orf/gping
 gráfico ncurses con los valores del ping a lo largo del tiempo, pudiendo comparar varios hosts simultáneamnete
+
+
+# fping
+más potente
+
+Ejemplo enviando 100 paquetes ICMP, uno cada 10ms:
+fping -p 10 -c 100 67.21.4.37

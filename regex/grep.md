@@ -28,7 +28,7 @@ muestra el contenido del fichero desde la linea que matchee something hasta el f
   -z: match new lines
   -o: only show matched
 
-Usar grupos para sacar header y grep
+Reenviar el pipe a dos comandos (funciona por que el head solo consume la primera línea y deja el resto para grep):
 ➜ ps -eo comm,rss  | {head -1 ; grep skydive}
 COMMAND           RSS
 skydive         196940

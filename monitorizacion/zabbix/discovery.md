@@ -150,6 +150,13 @@ UserParameter=custom.vfs.dev.read.ops[*],awk '{print $$1}' /sys/class/block/$1/s
 
 
 
+# Host prototpye
+También podemos generar hosts a partir de LLDs.
+
+Si queremos meter esos hosts en unos grupos determinados tenemos que usar un hack si queremos usar user macros:
+https://support.zabbix.com/browse/ZBXNEXT-3646
+
+
 # Internal
 En procesos_internos.md hay detalle de como se procesan los datos
 

@@ -1,0 +1,1 @@
+https://releases.openstack.org/

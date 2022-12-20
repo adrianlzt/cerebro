@@ -8,6 +8,8 @@ Emitimos nuestro terminal, via tmux, a tmate.io.
 La gente que quiera verlo se conecta via ssh.
 Por defecto los clientes pueden escribir.
 
+Quien arranca tmate se conecta por ssh a ssh.tmate.io
+
 Al arrancar tmate nos pone una línea que deberan usar los clientes estilo:
 ssh 2HbKwmSfXqwFrJAdFAKEiY7dw@am1.tmate.io
 

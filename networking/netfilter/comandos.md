@@ -1,7 +1,8 @@
 Listar:
 iptables -S
 iptables -L
-iptables -L -v  -> mostrar numero de paquetes procesados en cada regla
+iptables -L -v  -> mostrar numero de paquetes procesados en cada chain
+iptables -L CHAIN -v  -> mostrar numero de paquetes procesados para la chain CHAIN
 iptables -t nat -S
 iptables -t mangle -L
 iptables -t filter -L INPUT --line-numbers

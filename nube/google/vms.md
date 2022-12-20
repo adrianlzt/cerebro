@@ -4,6 +4,22 @@ https://cloud.google.com/compute/docs/disks/add-persistent-disk?authuser=1#resiz
 # Formas de acceder con ssh
 https://cloud.google.com/compute/docs/instances/access-overview#project-wide
 
+- OS Login (recomendado)
+- ssh keys in metadata
+- temporary access
+- using service accounts to grant access to applications
+
+## OS login
+https://cloud.google.com/compute/docs/oslogin
+
+Como saber si está activado (parece que no viene por defecto)
+https://cloud.google.com/compute/docs/troubleshooting/troubleshoot-os-login#checking_if_os_login_is_enabled
+
+
+## SSH keys in metadata
+Si hacemos "gcloud compute ssh", se intentará modificar el metadata del proyecto o instancia para añadir nuestra clave ssh y permitirnos el acceso.
+
+
 # Añadir keys con terraform
 metadata = {
   ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"

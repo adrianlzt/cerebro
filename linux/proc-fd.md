@@ -19,6 +19,10 @@ Lo probé con un programa y se cerro de golpe
 Si queremos leer el stdout del programa:
 cat /proc/PID/fd/1
 Se mantendrá el cat abierto mostrándonos la salida estandar.
+Funciona si es una redirección a un fichero. Si es a una tty no funcionará.
+https://unix.stackexchange.com/a/275826
+Podemos usar strace -e write, pero es un poco bestia.
+O sysdig.
 
 Parece que también puedo ver el stdin con
 cat /proc/PID/fd/0

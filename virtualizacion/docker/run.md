@@ -1,3 +1,4 @@
+NO USAR. Mejor la opción con inspect (pone cambios de lineas y no necesitamos un contenedor)
 https://github.com/lavie/runlike
 Obtener el "docker run" de una imagen que ya está corriendo
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike NOMBRE_CONTAINER

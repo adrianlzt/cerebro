@@ -60,6 +60,11 @@ SELECT t.alert_text || c.alert_text AS alert_status
 FROM jobmon.check_job_status() c
 JOIN jobmon.job_status_text t ON c.alert_code = t.alert_code;
 
+Si queremos ver el mensaje de error, ponemos un jobid en esta función:
+select * from jobmon.show_detail(109296) where status <> 'OK';
+
+Ejemplo, en el campo message: "ERROR: must be owner of table trends_uint_p2020_10_13"
+
 
 
 

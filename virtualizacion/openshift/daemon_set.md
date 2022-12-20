@@ -33,6 +33,14 @@ $host.$service.$namespace.cluster.local
 De esta manera podriamos atacar a un pod de un daemon set que este en un host específico.
 
 
+# Pods misscheduled
+https://blog.florentdelannoy.com/blog/2020/kube-daemonset-misscheduled/
+
+Al hacer un kubectl get daemonset vemos numberMisscheduled con valor > 0
+
+Es porque algún pod se desplegó en un nodo y a posteriori pusimos taints a ese nodo, que el pod no cumple.
+Borrarlo a mano.
+
 
 # Red
 Podemos hacer que los pod de un daemonSet expongan sus puertos directamente sobre la red del host con

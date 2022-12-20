@@ -1,0 +1,2 @@
+Usar:
+control+c

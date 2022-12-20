@@ -1,4 +1,5 @@
 mirar web/rod.md para una librería en go para manejar Chrome
+mirar playwright para controlar con python
 
 
 mirar katalon.md para una interfaz para crear los tests.

@@ -26,3 +26,11 @@ rg -w git -g '*py'
 
 rg -g '!vendor' dbus
   buscar "dbus" excepto en el dir vendor
+
+--sort modified
+  mostrar más abajo los ficheros más nuevos
+
+Multilinea:
+https://til.hashrocket.com/posts/9zneks2cbv-multiline-matches-with-ripgrep-rg
+
+echo 'apple\norange\nbanana\nkiwi' | rg --multiline --multiline-dotall 'orange.*kiwi'

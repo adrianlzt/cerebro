@@ -190,6 +190,8 @@ C-b }
 Rotar por distintas organizaciones de ventanas
 C-b space
 
+Volver al layout que teníamos antes (por si le hemos dado por error a C-b space)
+:select-layout -o
 
 
 # Uso
@@ -225,6 +227,8 @@ Para pegar, presionar Shift más el botón del medio del ratón.
 
 # Buscar
 Ponernos en modo copy y pulsar "/"
+Con copycat:
+C-a /
 
 
 # Copiar (hay dos modos, emacs o vi, con list-keys podemos ver las teclas para cada modo. Creo que se cambia con "setw -g mode-keys vi")

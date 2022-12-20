@@ -21,3 +21,10 @@ HTTP basic auth
 # RAW
 Obtener el resultado de llamada a la api en crudo
 Mirar kubectl
+
+
+# curl
+https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/#without-kubectl-proxy
+
+También podemos usar algún token que tenga el pod montado:
+/var/run/secrets/kubernetes.io/serviceaccount/token

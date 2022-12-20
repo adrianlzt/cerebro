@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oxidized
+  labels:
+    app: oxidized
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oxidized
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oxidized
+    spec:
+      containers:
+      - name: oxidized
+        image: oxidized/oxidized:latest
+        env:
+        - name: OXIDIZED_LOGS
+          value: /var/log/oxidized
+        - name: OXIDIZED_HOME
+          value: /etc/oxidized
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config
+          mountPath: /etc/oxidized
+        - name: output-git
+          mountPath: /var/lib/oxidized
+      volumes:
+      - name: config
+        configMap:
+          name: config
+      - name: output-git
+        persistentVolumeClaim:
+         claimName: output-git
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: output-git
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

@@ -32,11 +32,8 @@ Veremos que habrá descubierto el dispositivo.
 Tendremos que aceptarlo dando a Configure -> Submit
 
 
-# Conexión con los devices
-Over-The-Air Updates:
-  Address: esp32-cam.local:3232
-API Server:
-  Address: esp32-cam.local:6053
+Instala la cosas en ~/.platformio/
+
 
 
 # Borrar device descubierto
@@ -48,6 +45,7 @@ Podemos añadirla luego a mano con Add -> ESPHome y metiendo la IP
 docker run --rm --net=host -v "${PWD}":/config -it esphome/esphome
 
 Nos levanta una interfaz web donde podemos crear configuraciones, realizar actualizaciones por wifi (OTA), ver los logs, editar la config, crear dispositivos, etc.
+http://0.0.0.0:6052
 
 
 # Sharing devices / BT conf
@@ -63,12 +61,22 @@ esp32_improv:
 
 
 # CLI
+Compilar un firmware a partir de un fichero de configuración:
 esphome compile fichero.conf.yaml
 
-Instala la cosas en ~/.platformio/
+Subirlo (busca el device en DNS nombre.local):
+esphome upload fichero.conf.yaml
+
+
 
 
 
 # Protocolo
 TCP + protobuffers
 https://github.com/esphome/aioesphomeapi
+
+## Conexión con los devices
+Over-The-Air Updates:
+  Address: esp32-cam.local:3232
+API Server:
+  Address: esp32-cam.local:6053

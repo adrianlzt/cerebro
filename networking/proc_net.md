@@ -31,6 +31,8 @@ http://www.onlamp.com/pub/a/linux/2000/11/16/LinuxAdmin.html
 
 Los procesos también tienen su directorio net/ que será equivalente a lo de arriba excepto si tienen un namespace de red distinto.
 
+Si tiene un listener * en tcp6, no veremos nada en "tcp", pero si estará escuchando en ipv4.
+
 These /proc interfaces provide information about currently active TCP connections, and are implemented by tcp4_seq_show() in net/ipv4/tcp_ipv4.c
 https://github.com/torvalds/linux/blob/v2.6.38/net/ipv4/tcp_ipv4.c#L2459
 La columna rx_queue es el backlog en conexiones LISTEN:

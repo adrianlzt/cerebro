@@ -3,6 +3,9 @@ https://raw.githubusercontent.com/sogko/graphql-shorthand-notation-cheat-sheet/m
   cheatsheet
 https://relay.dev/graphql/connections.htm
   pagination best practices
+https://news.ycombinator.com/item?id=32366759
+  problemas graphql
+    como limitar ataques DOS
 
 Es un lenguaje para accede a los datos de tu api.
 Le pasamos los datos que queremos obtener con una especie de json.

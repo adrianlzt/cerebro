@@ -1,4 +1,4 @@
-http://docs.ansible.com/playbooks_conditionals.html
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html
 
 - name: template the file /foo.txt
   template: src=foo.j2 dest=/foo.txt owner=root group=wheel mode=0644
@@ -49,6 +49,16 @@ Ansible 2.0
 
 Ya no se puede hacer (fallará si no esta definida):
 {% if variable %}
+
+
+Si una variable de un rol no está definida, valdrá None.
+O en el vars de un playbook, o cualquier otro lado
+En ese caso podemos hacer el default con:
+task:
+  foo: "{{bar or 123}}"
+
+Para chequear:
+when: foo == None
 
 
 

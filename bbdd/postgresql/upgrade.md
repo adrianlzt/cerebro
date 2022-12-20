@@ -51,11 +51,11 @@ Al ejecutar pg_upgrade este arrancará los dos servidores (viejo y nuevo) para h
 
 
 # pg_dumpall
-pg_dumpall -f NOMBREDB_(date +%Y%m%d).sql -h HOST -U USUARIO -l NOMBREDB
+pg_dumpall -f full_dump_(date +%Y%m%d).sql -h HOST -U USUARIO
   el fichero .sql se va generando en bloques de 2GB
   el .sql contendrá las instrucciones para crear la database
 
 Paramos la vieja postgres
 Arrancamos la nueva postgres
 
-psql -f NOMBREDB_(date +%Y%m%d).sql -h HOST -U USUARIO
+psql -f full_dump_(date +%Y%m%d).sql -h HOST -U USUARIO

@@ -1,4 +1,4 @@
-https://www.postgresql.org/docs/12/user-manag.html
+https://www.postgresql.org/docs/current/user-manag.html
 
 Los usuarios y los grupos son roles.
 Los roles pueden agruparse jerárquicamente (un rol contienen otros roles)
@@ -20,6 +20,9 @@ Y asignar esos roles con permisos a los usuarios/aplicaciones.
 Por defecto, los roles tendrán acceso al schema "public" en todas las db.
 Podemos modificar los privileges por defecto:
 ALTER DEFAULT PRIVILEGES ...
+
+Los usuarios podrán ver todo el catalog, es decir, todas las dbs, schemas, tablas, etc.
+Pero no consultar los datos.
 
 
 Ownership: cuando creas un objeto (ej.: tabla), te pertenece, tienes todos los permisos sobre él.
@@ -109,6 +112,9 @@ https://www.postgresql.org/docs/current/sql-grant.html
 https://www.postgresql.org/docs/current/functions-info.html#FUNCTIONS-INFO-ACCESS-TABLE
   comprobar si un usuario tiene determinados permisos, ejemplo has_any_column_privilege(user, table, privilege)
 
+A partir de v14, tenemos dos roles creados por defecto, que podemos asignar a los usuarios:
+pg_read_all_data / pg_write_all_data
+
 
 Como se chequean los permisos:
 Antes de nada, no podemos conectar si no tenemos CONNECT
@@ -178,6 +184,8 @@ GRANT SELECT ON nombreTabla to user;
 Permiso para leer de todas las tablas del schema public:
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
 
+NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
+
 
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
@@ -195,6 +203,9 @@ grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
 GRANT SELECT ON partman.part_config TO zabbix_odbc;
 
 
+Mover todo lo que pertenezca a un usuario a otro:
+reassign owned by foo TO bar;
+
 ### Privilegios por defecto
 Cuando un usuario crea tablas las crea siendo su dueño.
 Podemos configurar el usuario para que cuando cree tablas de permisos a otros roles, a parte de a si mismo.
@@ -207,6 +218,10 @@ ALTER DEFAULT PRIVILEGES
 FOR USER foo
 IN SCHEMA schema_name
 GRANT SELECT ON TABLES TO bar;
+
+Otra forma:
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO Read_Only_User;
+
 
 
 ## Borrar usuarios ##
@@ -307,4 +322,3 @@ REVOKE ALL ON DATABASE db_name FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 
 Los roles que creemos tendrán que tener los permisos CONNECT a la db y USAGE sobre el schema public.
-

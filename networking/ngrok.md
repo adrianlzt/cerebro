@@ -17,6 +17,9 @@ Usar docker para levantar varios ngrok:
 docker run --rm -d --net=host m2i3/ngrok ngrok http 8080
     docker run --rm -e "HTTP_PORT=8080" m2i3/ngrok -> antiguo?
 
+Tunel público usando un tunel ssh (ngrok sin la app):
+ssh -R 80:localhost:80 tunnel.us.ngrok.com http
+
 Obtener public addr:
 curl -s localhost:4040/api/tunnels | jq '.tunnels[1].public_url'
   el [0] es el http, el [1] el https

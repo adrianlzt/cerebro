@@ -104,3 +104,7 @@ sería algo así como spec.ports[0]
 
 # Eliminar espacios en blanco / newlines
 {{- end}}
+
+
+# Mostrar todas las variables disponibles
+{{ printf "%+v" . }}

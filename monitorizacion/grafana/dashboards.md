@@ -1,3 +1,7 @@
+Ejemplos de dashboards
+https://grafana.com/grafana/dashboards/
+
+
 Se puede configurar grafana para que lea automáticamente de un directorio donde podemos subir definiciones de dashboards en json:
 
 [dashboards.json]

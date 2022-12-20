@@ -27,3 +27,5 @@ CUIDADO con que caracteres pongamos, no vayamos a estar escribiendo con un tecla
 
 
 Tuve que añadir un segundo disco, usando virt-manager, para poder crear un datastore desde la UI de ESXi.
+
+Parece que no funciona porque no detecta una interfaz de red válida.

@@ -4,3 +4,8 @@ docker run -it mcr.microsoft.com/mssql-tools /opt/mssql-tools/bin/sqlcmd
 
 
 /opt/mssql-tools/bin/sqlcmd -S nombreServer,puerto -P contraseña -U usuario -Q "select 1"
+
+Poner "-C" para aceptar ignorar validaciones de certificado.
+
+
+Si falla la conex, mirar los logs de mssql.

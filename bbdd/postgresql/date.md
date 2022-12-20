@@ -7,6 +7,9 @@ SELECT ROUND(EXTRACT(EPOCH FROM now()));
 Unix epoch a timestamp:
 select to_timestamp(1250028000);
 
+Si queremos cambiar el timezone para la sessión:
+set timezone to 'Europe/Madrid';
+
 Filtrar por tiempo:
 where created_at > (now() - INTERVAL '1 HOUR');
 

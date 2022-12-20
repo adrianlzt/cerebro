@@ -11,6 +11,8 @@ JBoss EAP 6.4.0.GA equivale a AS 7.5.0
 
 Mapeo entre versiones: https://access.redhat.com/solutions/21906
 EAP  Wildly
+7.4  23
+7.3  18
 7.2  14
 7.1  11
 7.0  10
@@ -159,6 +161,10 @@ cd /opt/jboss/jboss-eap-6/bin/
 Se puede sacar en JSON en la versión 7.2 EAP
 https://access.redhat.com/solutions/3486201
 jboss-cli.sh --output-json
+
+Deploy de un war en domain mode
+java -jar jboss-cli-client.jar -c "deploy /opt/wildfly/standalone/deployments/jolokia.war --all-server-groups"
+
 
 Usar "help" y TAB para ir navegando
 

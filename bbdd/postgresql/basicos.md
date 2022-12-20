@@ -34,6 +34,9 @@ $ psql -c "drop database prueba;"
 Sacar solo los valores, sin alinear, sin cabeceras ni footers:
 psql -P pager=off -XAt -c "select ...;"
 
+Para separar los valores de cada línea por un caracter distinto a "|":
+-F ,
+
 Para devolver los resultados separados por un caracter (, por ejemplo) en vez de new line:
 -R ,
 

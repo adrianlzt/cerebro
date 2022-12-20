@@ -69,8 +69,8 @@ CREATE SCHEMA partman;
 CREATE EXTENSION pg_partman SCHEMA partman; -- cargar la extension en el schema partman, para no inteferir con nuestros datos. Crea tablas, funciones, vistas, etc
 
 En este momento podemos ver las tablas y funciones que crea partman:
-\df partman.*
 \dt partman.*
+\df partman.*
 
 
 Crear usuario (para particionado nativo no necesitamos un superuser):

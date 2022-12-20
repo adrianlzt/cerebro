@@ -5,6 +5,7 @@ Para saber el nombre que poner en "Driver" mirar en /etc/odbcinst.ini
 No hace falta reiniciar Zabbix.
 Si la máquina esta monitorizada por un proxy, deberá ser el proxy quien tenga odbc configurado.
 
+Para MSSQL: https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver15#redhat18
 
 Para MySQL:
 yum install -y unixODBC unixODBC-devel mysql-connector-odbc
@@ -36,6 +37,9 @@ Database    = zabbix-server
 
 Comprobar que podemos conectar con:
 isql -v keyODBC
+
+Para mssql:
+isql -v CLAVE user password
 
 db.odbc.select[<unique short description>,zabbix]
   "zabbix" sera el dsn que tiene que matchear con lo que pngamos en el odbc.ini entre corchetes

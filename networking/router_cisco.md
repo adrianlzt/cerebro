@@ -29,6 +29,9 @@ cd
 pwd
 mkdir
 more
+copy
+  no hay mv, haremos copy + delete
+delete
 dir
   mostrar contenido directorio
 
@@ -208,9 +211,14 @@ Testear que funciona
 write
 
 
+
 ## NAT en cisco ASA
 https://www.packetswitch.co.uk/cisco-asa-nat-example/
 https://ipwithease.com/dynamic-pat-configuration-on-cisco-asa/
+
+https://www.cisco.com/c/en/us/support/docs/security/adaptive-security-appliance-asa-software/116154-qanda-ASA-00.html
+Si configuramos un NAT en ASA, él contestará a las peticiones ARP para la IP que hayamos configurado.
+
 
 ### Dynamic-PAT (todos los clientes salen por cualquiera de las IPs públicas disponibles)
 
@@ -222,8 +230,32 @@ Ver estado:
 show xlate
 
 ### NAT one-to-one.
-Mapear la IP pública 6.11.34.134 puerto 80 a la IP interna 10.0.0.138 puerto 32080
+Mapear la IP pública 44.33.22.11 a la IP interna 10.0.2.10, todos los puertos:
+object network nat-from-44.33.22.11-to-10.0.2.10
+ host 10.0.2.10
+ nat (INSIDE,OUTSIDE) static 44.33.22.11
 
+
+### PAT
+Mapear la IP pública 6.11.34.134 puerto 80 y 443 a la IP interna 10.0.0.52 puertos 80 y 443.
+
+object network host-6.11.34.135
+  host 6.11.34.135
+object network host-10.0.0.52
+  host 10.0.0.52
+object service tcp-80
+  service tcp source eq 80
+object service tcp-443
+  service tcp source eq 443
+nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-80 tcp-80
+nat (inside,outside) source static host-10.0.0.52 host-6.11.34.135 service tcp-443 tcp-443
+
+Esto mapea el segundo puerto al primero.
+Esto por ejemplo mapearía el público 8080 al interno 80.
+... service tcp-80 tcp-8080
+
+
+Otra forma, para solo meter un puerto (80 -> 32080):
 object network k8s-ingress-public-external-ip
  host 6.11.34.134
 !
@@ -240,6 +272,21 @@ access-group outside_acl_k8s_ingress_public in interface outside
 Si queremos comprobar si todo el flujo está permitido:
 packet-tracer input OUTSIDE tcp 1.1.1.1 30000 6.11.34.134 http
   Comprobamos que la ip 1.1.1.1 usando el puerto 30000 puede atacar a la ip 6.11.34.134 (se entiende que una nuestra) al puerto http (80)
+
+
+#### Hairpin
+Si usamos NAT one-to-one no podremos acceder desde los servidores internos a las IPs "públicas" (las externas).
+Para esto necesitamos configurar hairpin.
+CUIDADO con el tráfico asimetrico (va por el ASA y vuelve directamente).
+
+https://www.cyrio.co.uk/tips/cisco/asa-hairpinning/
+Si tenemos un one-to-one NAT entre la ip externa 50.1.2.21 enrutando a 10.1.0.21, meteremos esta config:
+same-security-traffic permit intra-interface
+nat (inside,inside) 1 source dynamic any interface destination static 50.1.2.21 10.1.0.21
+
+Necesitamos también usar tcp_bypass para permitir el tráfico asimétrico
+http://blog.packetflow.io/2014/03/asa-hairpinning-and-tcp-state-bypass.html?m=1
+
 
 
 
@@ -341,8 +388,13 @@ Usando el "packet-tracer", si vemos la regla "Implicit Rule" es que está hacien
 Ejemplo de packet-tracer. Comprobamos si en la interface INSIDE la ip 10.0.0.1 con el pueto 43512 puede comunicarse con 10.5.0.50:80
 packet-tracer input INSIDE tcp 10.0.0.1 43512 10.5.0.50 http
 
+Abrir todo IP en todas las interfaces, tanto entrada como salida:
+access-list global_access extended permit ip any any 
+access-group global_access global
 
-Por defecto también está capado el tráfico inter-interface, si tienen el mismo security-level y intra-interface:
+
+
+Por defecto también está capado el tráfico inter-interface e intra-interface (solo si tienen el mismo security-level):
 Para permitirlo:
 same-security-traffic permit inter-interface
 same-security-traffic permit intra-interface
@@ -423,6 +475,49 @@ IP packet debugging is on (detailed) for access list 199
 
 
 
+## Troubleshooting cisco asa
+https://www.ciscolive.com/c/dam/r/ciscolive/us/docs/2018/pdf/BRKSEC-3020.pdf
+
+### Console
+Puerto 14:
+https://www.cisco.com/c/en/us/td/docs/security/asa/hw/maintenance/5585guide/5585Xhw/overview.html
+
+Config serial:
+Set up the terminal as follows: 9600 baud (default), 8 data bits, no parity, 1 stop bits, and Flow Control (FC) = Hardware.
+
+Podemos conectar el puerto serie a otro pc/server que tenga puerto serie.
+Si no, usaremos un conversor puerto serie - USB.
+
+Con Linux (puerto serie):
+screen /dev/ttyS0 9600
+
+Si es con USB será tipo:
+``````
+ls -ltr /dev/*ACM*
+screen /dev/ttyACM0 9600
+``````
+
+
+Config para putty:
+    Serial Line to Connect to:   COM?
+    Speed (Baud):  9600
+    Data Bits: 8
+    Stop Bits: 1
+    Parity: None
+    Flow Control: None
+
+### factory reset
+http://www.mokonamodoki.com/how-to-factory-reset-a-cisco-asa-5512-x-ips
+
+### ROMMON
+Parece como la "bios" del router.
+Es una shell limitada.
+
+Algunos comandos útiles:
+https://community.spiceworks.com/topic/1955017-asa-5512-x-won-t-boot#entry-6532861
+
+
+
 
 # DNS
 http://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr_dns/configuration/15-mt/dns-15-mt-book/dns-config-dns.html
@@ -495,6 +590,9 @@ ip route vrf Mgmt 0.0.0.0 0.0.0.0 172.30.6.24
 ## Rutas cisco ASA
 show route
 show run route
+
+Default route:
+route OUTSIDE 0.0.0.0 0.0.0.0 26.21.24.29 1
 
 
 
@@ -599,6 +697,9 @@ sh access-lists
 
 Con el comando "sh line" podemos ver las listas de acceso que se aplica a cada linea (AccO = access list output, AccI, access list input)
 
+## Desactivar acceso por puerto serie
+https://community.cisco.com/t5/network-security/disable-console-port/td-p/1434927
+
 
 
 # SSH
@@ -613,6 +714,9 @@ Please create RSA keys to enable SSH
 Generar las keys con:
 crypto key generate rsa usage-keys label router-key
   How many bits in the modulus [512]: 1024
+
+En asa parece que es:
+crypto key generate rsa modulus 2048
 
 
 ## Meter pub keys para acceder
@@ -669,6 +773,10 @@ sh tcp brief all | in LISTEN
 
 sh tcp
   conex establecidas
+show local-host
+  en ASA
+show local-host
+  en ASA
 
 sh tcp brief numeric
   salida tipo netstat
@@ -731,6 +839,7 @@ monitor capture buffer NOMBREBUFFER export ...
 monitor capture buffer NOMBREBUFFER export tftp://10.0.1.7/picorouter1.pcap
   no se puede cambiar el puerto (fallara si intentamos hacer tftp://a.b.c.d:nn/)
   server tftp con docker: docker run -v "/tmp/tftp:/var/tftpboot" --rm -it --net host pghalliday/tftp --secure /var/tftpboot -L -c
+  En /tmp/tftp tendremos que crear un fichero con el mismo nombre que usemos en el export (picorouter1.pcap) con permisos 777.
   no funciona? configurar la interfaz de salida de tftp (mirar que la interfaz que ponemos sea la que debe usarse para conectar con la ip del tftp):
     conf term
     ip tftp source-interface gigabitEthernet 0/1
@@ -754,7 +863,10 @@ no monitor capture buffer NOMBREBUFFER
 https://www.cisco.com/c/en/us/support/docs/security/asa-5500-x-series-next-generation-firewalls/118097-configure-asa-00.html
 
 Capturar tráfico desde una IP externa hacia cualquier sitio:
-capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
+capture NOMBRE interface outside match ip 9.18.208.224 255.255.255.255 any
+
+Capturar tráfico arp:
+capture trafico-arp interface ouTSIDE ethernet-type arp
 
 Para desactivarlo
 no capture NOMBRE match ip 9.18.208.224 255.255.255.255 any
@@ -781,6 +893,31 @@ conf term
   snmp-server community otronombre ro
   no snmp-server community public
 
+## V3
+snmp-server view ViewDefault iso included
+snmp-server group GrpMonitoring v3 priv read ViewDefault
+snmp-server user UserJustMe GrpMonitoring v3 auth sha AuthPass1 priv aes 128 PrivPass2
+
+Ejemplo de query:
+snmpget -v 3 -l authPriv -a SHA -u UserJustMe -A AuthPass1 -x AES -X PrivPass2 192.168.0.1 sysName.0
+
+
+Si queremos noAuthNoPriv:
+snmp-server group groupnoauth v3 noauth
+snmp-server user SinNada groupnoauth v3 
+
+snmpget -v 3 -l noAuthNoPriv -u SinNada 192.168.0.1 sysName.0
+
+
+Si queremos authNoPriv:
+snmp-server user UserAuth groupauth v3 auth md5
+snmp-server user UserAuth groupauth v3 auth md5 password
+
+snmpget -v 3 -l authNoPriv -u UserAuth -A password 192.168.0.1 sysName.0
+
+
+
+
 ## ASA
 https://www.networkstraining.com/how-to-configure-snmp-on-cisco-asa-5500-firewall/
 
@@ -788,6 +925,10 @@ snmp-server enable
 snmp-server host inside 10.1.1.100 community somesecretword version 2c
 snmp-server community somesecretword
 
+### V3
+snmp-server group GrpMonitoring v3 priv
+snmp-server user UserJustMe GrpMonitoring v3 auth sha AuthPass1 priv aes 128 PrivPass2
+snmp-server host mgmt 10.1.1.161 version 3 UserJustMe
 
 # BGP
 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus6000/sw/unicast/6_x/cisco_n6k_layer3_ucast_cfg_rel_602_N2_1/l3_bgp.html
@@ -916,13 +1057,6 @@ ip dns server
 
 
 
-# Dudas
-como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
-
-Como ver el numero de peticiones que esta recibiendo el dns por segundo?
-
-
-
 # cisco cli analyzer
 https://cway.cisco.com/go/sa/
 Cisco CLI analyzer
@@ -952,12 +1086,129 @@ Ver que está corriendo actualmente:
 show running-config boot system
 
 Desactivarlo:
+conf term
 no boot system disk0:/cdisk.bin
 no boot system disk0:/asa931-smp-k8.bin
 
 Configurar el nuevo firmware:
+conf term
 boot system disk0:/asa-9-12-1-smp-k8.bin
 
 Guardar y recargar:
 write
 reload
+
+Tras esto tendremos el router sin configuración (creo que no, que era por tener mal el config-register).
+Por como funciona el boot de cisco, si reiniciamos de nuevo arrancará el firmware que antes encuentre por orden alfabético.
+Así que lo más seguro es mover el antiguo firmware para que no arranque de él a otro directorio:
+mkdir old_firmware/
+copy asa917-smp-k8.bin old_firmware/asa917-smp-k8.bin
+delete asa917-smp-k8.bin
+
+Y volver a meter la config el firmware a cargar:
+conf term
+boot system disk0:/asa-9-12-1-smp-k8.bin
+
+Chequear que solo tenemos los dos ficheros (firmware y asdm) que queremos:
+dir *.bin
+
+Comprobar que el config-register está bien seteado (0x1 suele ser el de por defecto):
+show version | include register
+
+
+# Boot
+https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/cisco-ios-boot-system-image
+
+Aqui se almacena, en binario, una serie de parámetros para ver como arrancar.
+Por ejemplo, se puede modificar si queremos modificar la velocidad de la terminal serie o recuperar la password.
+
+https://networklessons.com/cisco/ccna-routing-switching-icnd1-100-105/configuration-register-cisco-ios
+
+## ASA
+https://www.cisco.com/c/en/us/td/docs/security/asa/asa912/configuration/general/asa-912-general-config/admin-trouble.html
+0x41 es para recuperar la password.
+
+Si queremos dejarlo por defecto:
+conf term
+no config-register
+show version | include register
+
+Si vemos la línea:
+Ignoring startup configuration as instructed by configuration register
+Es que la config está puesta para saltarse la configuración de arranque, por lo que no estamos cargando la config.
+
+# Reiniciar / reboot
+enable
+reload
+
+
+
+
+# Cisco ASA ASP / accelerated security path
+Paquetes que pueden ser descartados por distintas razones. En la web explican cada razón
+
+https://www.cisco.com/c/en/us/td/docs/security/asa/asa-cli-reference/show_asp_drop_command_usage/show-asp-drop-command-usage.html
+
+show asp drop
+
+Para limpiar la tabla:
+clear asp drop
+# Dudas
+como parar un servicio? por ejemplo, si el dns esta consumiendo mucho, se puede reiniciar o parar?
+
+Como ver el numero de peticiones que esta recibiendo el dns por segundo?
+
+
+
+# Cisco ASA ASDM
+Interfaz web para configurar y administrar el ASA.
+
+Activar (solo permitir acceso de esa red):
+ASA(config)#aaa authentication http console LOCAL
+ASA(config)#http server enable
+ASA(config)#http 10.0.1.0 255.255.255.0 INSIDE
+
+Necesitaremos también tener un usuario, posiblemente ya creado.
+
+Accedemos por https:
+https://10.0.1.1
+
+Lo he conseguido ejecutar en un windows 10 con jre7, ASDM 7.5(2)153
+
+Usando esta idea https://community.cisco.com/t5/network-security/asdm-on-ubuntu/m-p/4007044/highlight/true#M145740 (llevarnos el código java a linux) me falla con:
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+Necesito importar el cert, lo cogemos de https://10.0.1.1
+https://stackoverflow.com/questions/21076179/pkix-path-building-failed-and-unable-to-find-valid-certification-path-to-requ
+Nada, ni con ese cert ni con el que se generó la primera vez al ejecutar asdm en windows.
+Tal vez metiendo nosotros un cert en el dispositivo que esté aceptado por la ca del keytool de java funcionase.
+
+Application Error: Cannot grant permissions to unsigned jars
+Mirar:
+https://techblog.jeppson.org/2018/01/fix-icedtea-cannot-grant-permissions-unsigned-jars-error/
+https://unix.stackexchange.com/questions/143805/running-unsigned-javaws-code
+
+Con esto falla algo de java, parece porque usa la versión de 64bits?
+https://web.archive.org/web/20220808182716/https://noobient.com/2019/09/26/cisco-asdm-on-64-bit-ubuntu-18-04/
+Pero seguramente me lleve al primera de los certificados de arriba
+javaws -nosecurity https://10.0.2.1/admin/public/asdm.jnlp
+
+
+## Actualiar ASDM
+http://notthenetwork.me/blog/2012/04/02/how-to-upgrading-the-software-and-asdm-images-on-a-cisco-asa/
+
+Ver versión funcionando
+show asdm image
+
+Ver versiones disponibles:
+show flash | include asdm-645.bin
+
+
+# Cisco asa thread detection
+https://www.cisco.com/c/en/us/td/docs/security/asa/asa96/configuration/firewall/asa-96-firewall-config/conns-threat.html
+show threat-detection rate
+
+
+# Cisco ASA initial config
+https://www.routerfreak.com/basic-configuration-tutorial-cisco-asa-5505-firewall/
+
+Configurar interfaces.

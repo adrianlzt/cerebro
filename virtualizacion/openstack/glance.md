@@ -45,3 +45,9 @@ Makes an image accessible for all the tenants (admin-only by default).
 
 Bajar imagen
 glance image-download ID --progress --file fichero.qcow2
+
+
+# SQL
+Las 10 imágenes que más ocupan, tamaño en GB
+
+select name,size/1024/1024/1024 as size_gb,created_at from images where status <> "deleted" order by size desc limit 10;

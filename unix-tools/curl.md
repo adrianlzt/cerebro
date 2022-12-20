@@ -1,3 +1,5 @@
+https://everything.curl.dev/
+
 Mejor usar httpie.md
 
 Convertir curl a python/go/etc
@@ -81,6 +83,10 @@ curl -Ns http://www.climagic\.org/uxmas/[1-12]
 
 A través de proxy
 curl --proxy http://proxy.com:6666 http://www.google.es
+
+Si el proxy usa https con un cert inválido, podemos ignorarlo con:
+--proxy-insecure
+
 
 --socks5 <host[:port]>
 
@@ -219,3 +225,9 @@ Date: Wed Feb 16 10:35:43 CET 2022
 Por favor, encuentre adjunta la última factura.
 
 Que tenga un buen día.
+
+
+# POP3
+https://everything.curl.dev/usingcurl/reademail
+
+curl -u user@mail.com:secretpassword -v pop3s://mail.server.com/

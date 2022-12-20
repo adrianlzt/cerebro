@@ -67,11 +67,19 @@ cloud-init -d modules --mode=config
 cloud-init -d modules --mode=final
 
 
+Si hacemos el clean y reiniciamos será como si la máquina arrancase por primera vez
+
+
 
 # Config
 Ficheros de config:
 /etc/cloud/
 /run/cloud-init/cloud.cfg
+
+
+ssh_pwauth:   1
+Si tenemos esta config, cloud-init quitará la opción de poder logear por ssh con contraseña.
+Lo cambiará al arrancar la máquina.
 
 # Logs
 /var/log/cloud-init-output.log
@@ -108,3 +116,46 @@ mcopy -oi cloudconfig.img user-data meta-data ::
 Añadir el disco como Almacenamiento tipo VirtIO:
 -drive file=cloudconfig.img,if=virtio,format=raw
 
+
+# ConfigDrive
+mkdir openstack/{2012-08-10,latest}
+
+echo '{"local-hostname": "nombreHost", "local_hostname": "nombreHost", "metal3-name": "nombreHost", "metal3-namespace": "baremetal-operator-system", "name": "nombreHost", "uuid": "a9197aee-faf1-48bb-946d-7a886e38c560"}' > meta_data.json
+
+cat <<EOF > user-data
+#!
+touch /tmp/cloud.user-data
+EOF
+
+CAT <<EOF > network_data.json
+{
+    "links": [
+        {
+            "id": "port-92750f6c-60a9-4897-9cd1-090c5f361e18",
+            "type": "phy",
+            "ethernet_mac_address": "52:52:00:ce:10:93"
+        }
+    ],
+    "networks": [
+        {
+            "id": "network0",
+            "type": "ipv4",
+            "link": "port-92750f6c-60a9-4897-9cd1-090c5f361e18",
+            "ip_address": "192.168.122.61",
+            "netmask": "255.255.255.0",
+            "network_id": "network0",
+            "routes": []
+        }
+    ],
+    "services": []
+}
+EOF
+
+cp meta_data.json openstack/{2012-08-10,latest}/
+cp network_data.json openstack/{2012-08-10,latest}/
+cp user_data openstack/{2012-08-10,latest}/
+
+sudo truncate -s 2M configdrive.img
+sudo mkfs.vfat -n config-2 configdrive.img
+
+sudo mcopy -oi configdrive.img -s openstack ::

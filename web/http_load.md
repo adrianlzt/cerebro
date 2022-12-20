@@ -1,3 +1,5 @@
+https://k6.io/open-source
+
 Ideas de como lanzar load tests com AWS:
 https://www.reddit.com/r/aws/comments/640cb6/using_aws_for_load_testing/
 

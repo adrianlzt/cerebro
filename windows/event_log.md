@@ -1,5 +1,8 @@
 https://blogs.msdn.microsoft.com/dcook/2015/09/30/etw-overview/
 
+Listado de eventos existentes
+https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/
+
 Event Tracing for Windows (ETW) is a system for routing events
 
 Event Tracing for Windows (ETW) is a high-speed tracing facility provided by the Windows Operating System. ETW is the core tracing facility in Windows on top of which both the Event Log and WPP (Windows Software Tracing Pre-Processor) are built

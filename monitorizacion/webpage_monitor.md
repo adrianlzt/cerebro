@@ -1,3 +1,5 @@
+Parece mejor alternativa k6.md
+
 Si queremos comprobar que una web funciona bien: programacion/test/test_web_apps.md
 
 Monitorizar si se producen cambios en una pagina web

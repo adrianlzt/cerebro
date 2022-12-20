@@ -1,6 +1,13 @@
 https://wiki.debian.org/resolv.conf
 El problema es que varios demonios pueden querer modificar ese fichero.
 
+# networkmanager
+Puede que networkmanager escriba directamente el /etc/resolv.conf
+
+Función que lo crea:
+https://github.com/NetworkManager/NetworkManager/blob/e03b8fa44743d0ce91a849ea6f64cd99a0476e19/src/core/dns/nm-dns-manager.c#L753:1
+
+
 # dhclient
 Si queremos que dhclient no lo modifique podemos hacer:
 ``````

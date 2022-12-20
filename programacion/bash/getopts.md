@@ -26,7 +26,8 @@ En $OPTARG ira el valor del parámetro ("bla" para el param 't')
 Podemos usar getopts para pasar parámetros que no sea $@ (los parámetros al llamar al programa)
 while getopts :f:h opt "${MY_OWN_SET[@]}"; do
 
-
+Ejemplo de como lo hace hblock:
+https://github.com/hectorm/hblock/blob/ac1f78d9d9ad4c642d49ce60eee6adc5392b3ea8/hblock#L98
 
 Ejemplo:
 

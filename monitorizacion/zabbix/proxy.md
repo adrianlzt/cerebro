@@ -48,6 +48,18 @@ when you have some Zabbix server downtime, proxies are accumulating data, and wh
 https://support.zabbix.com/browse/ZBXNEXT-4920
 
 
+# Almacenamiento de datos
+Almacena datos en la tabla, de postgres, proxy_history
+
+
+# Errores
+
+Error cuando ponemos un PSK identity incorrecto:
+failed to accept an incoming connection: from 172.16.0.253: TLS handshake set result code to 1: file ssl/t1_lib.c line 3266 func tls_choose_sigalg: error:0A000076:SSL routines::no suitable signature algorithm: TLS write fatal alert "handshake failure"
+
+Error cuando la PSK key es incorrecta:
+failed to accept an incoming connection: from 172.16.0.253: TLS handshake set result code to 1: file ssl/statem/extensions.c line 1603 func tls_psk_do_binder: error:0A0000FD:SSL routines::binder does not verify: TLS write fatal alert "illegal parameter"
+
 
 # Internals
 Info que envia el proxy al server tras recibir un trap:

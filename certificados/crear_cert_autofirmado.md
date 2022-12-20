@@ -1,4 +1,10 @@
 mirar mkcert.md
+mirar cfssl.md
+https://easy-rsa.readthedocs.io/en/latest/
+
+https://github.com/minio/certgen
+certgen is a simple tool to generate self-signed certificates, and provides SAN certificates with DNS and IP entries.
+certgen-linux-amd64 --host localhost,172.30.110.145,127.0.0.1
 
 http://www.cyberciti.biz/faq/nginx-self-signed-certificate-tutorial-on-centos-redhat-linux/
 
@@ -6,8 +12,11 @@ En RedHat/CentOS usar
 /etc/pki/tls/certs/Makefile
 
 
-openssl req -batch -new -x509 -days 365 -nodes -out server.pem -keyout server.pem
+openssl req -batch -new -x509 -days 365 -nodes -out server.pem -keyout server.key
   generar cert autofirmado un año
+
+Probarlo:
+python3 -m http.server 8080 &  ncat -l 8443 --sh-exec "ncat 127.0.0.1 8080" --keep-open --ssl --ssl-cert server.pem --ssl-key server.key
 
 
 Otra forma generando la autoridad:

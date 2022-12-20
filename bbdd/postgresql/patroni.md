@@ -1,4 +1,5 @@
 https://patroni.readthedocs.io/en/latest/
+https://github.com/patroni-training/2019
 https://github.com/zalando/patroni
 https://github.com/zalando/spilo
 https://www.cybertec-postgresql.com/en/patroni-setting-up-a-highly-available-postgresql-cluster/
@@ -43,15 +44,32 @@ https://patroni.readthedocs.io/en/latest/rest_api.html
 
 Podemos consultar quien es el master, replica, health, recargar, etc
 
+## Modificar configuración
+https://github.com/zalando/patroni/blob/master/docs/rest_api.rst#config-endpoint
+
+curl -s -XPATCH -d \
+        '{"loop_wait":5,"ttl":20,"postgresql":{"parameters":{"max_connections":"101"}}}' \
+        http://localhost:8008/config | jq .
+
 
 # patronictl
 Ver el estado del cluster y sus miembros:
 patronictl -c /etc/patroni.yml list NOMBRECLUSTER
 
+## restart
+Supuestamente patronictl restart reinicia los postgres, pero no me funciona.
+Se hace la llamada a la API, se para pero no arranca (al menos con la imagen de timescaledb-ha para docker).
 
 # etcd
 Almacena la información en /service/$CLUSTER_NAME
 
+
+
+# Troubleshooting
+
+## Reiniciar nodo
+En un nodo replica, podemos parar patroni, borrar el contenido de PGDATA y arrancar de nuevo patroni.
+En este caso empezará haciendo un basebackup.
 
 
 # Errores
@@ -61,6 +79,14 @@ Si el cluster ya se consiguió inicializar existirá una key /service/$CLUSTER_N
 Si existe esa clave y hemos borrado ambos nodos del cluster de postgres, el cluster no podrá arrancar.
 Tendremos que borrar esa key (etcdctl del /service/batman/initialize) o, mejor, sacar el cluster del DCS:
 patronictl -c postgres.yml remove $CLUSTER_NAME
+
+
+## following a different leader because i am not the healthiest node
+Tras una caida del cluster, intento arrancar el que era el follower, pero no me deja, porque está en modo replica y patroni no lo acepta como válido porque no es capaz de arrancar.
+Pero no puede arrancar porque no puede conectar con el primario (está caído).
+
+Al final arranqué el nodo que paró más tarde y fue bien.
+
 
 
 

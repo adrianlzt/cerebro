@@ -1,6 +1,3 @@
-Servidor opensource de git.
-
-# docker
 docker run --name gitlab -v "$PWD/data:/var/opt/gitlab" -v "$PWD/etc:/etc/gitlab" -p 2222:22 -p 8070:80 -p 8443:443 -p 9090:9090 -d gitlab/gitlab-ce
   el puerto 9090 es la interfaz de prometheus
 
@@ -8,7 +5,7 @@ Tarda algún minuto en arrancar.
 Podemos consultar "docker ps" donde tendremos el "health" de la imagen que nos dira si está starting.
 Tras arrancar nos pedirá que definamos la pass de administrador (admin@example.com)
 
-## Configuración
+# Configuración
 Configure GitLab for your system by editing /etc/gitlab/gitlab.rb file
 And restart this container to reload settings.
 To do it use docker exec:
@@ -28,10 +25,13 @@ docker restart gitlab
 otra opcion:
 docker exec -it gitlab gitlab-ctl reconfigure
 
+## LDAP
+
+Verificar que users de LDAP tienen acceso
+gitlab-rake gitlab:ldap:check RAILS_ENV=production
 
 
-
-# TLS
+## TLS
 https://docs.gitlab.com/omnibus/settings/nginx.html#enable-https
 
 /etc/gitlab/gitlab.rb
@@ -45,47 +45,33 @@ gitlab-ctl reconfigure
 
 
 
-# Email
+## Email
 https://docs.gitlab.com/omnibus/settings/smtp.html
 
 Por defecto gitlab intentara enviar emails usando sendmail, pero podemos configurar un servidor SMTP de salida.
 
 
 
-# API
-https://docs.gitlab.com/ee/api/README.html
-Clientes para lenguajes: https://about.gitlab.com/applications/#api-clients
 
-Ejemplo usando como auth un private token:
-curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects | jq
+# Admin
+Si usamos la version de docker (y supongo que otras) viene un comando para hacer tareas administrativas.
 
-Lista de grupos:
-curl --header "Private-Token: xxx" http://localhost:8070/api/v4/groups | jq
+Ver procesos
+gitlab-ctl status
 
-Crear un repo:
-curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects -XPOST -d 'name=pruebaapi3' -d 'description=pepe' | jq
-
-Crear un repo en un grupo determinado:
-curl --header "Private-Token: xxx" http://localhost:8070/api/v4/projects -XPOST -d 'name=pruebaapi3' -d 'description=pepe' -d 'namespace_id=34' | jq
+Reiniciar un proceso:
+gitlab-ctl restart puma
 
 
+## Postgres
+Si queremos acceder a la db postgres
+su -c "/opt/gitlab/embedded/bin/psql -h /var/opt/gitlab/postgresql -U gitlab gitlabhq_production" git
 
-# Registry
-https://docs.gitlab.com/ce/administration/container_registry.html
+## Redis
+redis-cli -s /var/opt/gitlab/redis/redis.socket
 
-A partir de la version 8.8 tiene un registy de docker
-Veremos las imagenes y la conf necesaria en cada repo, en el menu de la izquierda, "Registry"
+Han desactivado el comando keys
+https://docs.gitlab.com/omnibus/settings/redis.html#renamed-commands
 
 
-# Attack protection / DoS
-https://docs.gitlab.com/ee/security/rack_attack.html
-Protección para evitar ataques de fuerza bruta.
 
-Si estamos detrás de un proxy tendremos que marcarlo para que gitlab coja la ip real.
-https://docs.gitlab.com/omnibus/settings/nginx.html
-trusted_proxies
-
-En el caso de ip bloqueada la deberemos limpiar del redis
-redis-cli del cache:gitlab:rack::attack:allow2ban:ban:172.22.0.6
-
-Podemos ver los bloqueos en /var/log/gitlab/gitlab/production.log

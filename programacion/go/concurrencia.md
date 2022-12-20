@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=oV9rvDllKEg
+  Concurrency is not Parallelism by Rob Pike
 https://talks.golang.org/2016/applicative.slide#36
 http://blog.codeship.com/an-intro-to-concurrency-patterns-in-go/
 https://blog.golang.org/pipelines

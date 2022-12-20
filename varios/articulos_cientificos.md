@@ -8,4 +8,6 @@ https://news.ycombinator.com/item?id=8654831
 
 
 Para saber si una revista científica es "buena" debemos mirar su "impact factor".
-Tambíen ver si está en los primeros "quartiles"
+Tambíen ver si está en los primeros "quantiles"
+
+https://www.resurchify.com/

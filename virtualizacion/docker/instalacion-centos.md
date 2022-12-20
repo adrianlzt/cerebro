@@ -2,8 +2,8 @@ https://docs.docker.com/installation/centos/
 
 
 # Centos 7
-yum install -y yum-utils
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y yum-utils && \
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
 yum install -y docker-ce
 
 Limitar tamaño máximo del log para json-file?

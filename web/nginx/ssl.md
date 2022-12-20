@@ -10,7 +10,7 @@ Strong Ciphers for Apache, nginx and Lighttpd
 # Por defecto nginx acepta mas (openssl ciphers -v 'HIGH:!aNULL:!MD5') (http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers)
 ssl_ciphers                 "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
 
-# Fichero necesario para ciphers DHE. Se genera con: openssl dhparam -out dhparams.pem 4096
+# Fichero necesario para ciphers DHE. Se genera con: openssl dhparam -out dhparam.pem 4096
 ssl_dhparam                 /etc/ssl/certs/dhparam.pem;
 
 # El servidor es el que elige los ciphers (por defecto esta off, por lo tanto es el cliente) (http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers)

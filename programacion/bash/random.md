@@ -1,3 +1,6 @@
+Random number between 80 and 120
+rand=$(shuf -i 80-120 -n 1)
+
 Número 0 o 1: $[ ($RANDOM % 2) ]
 Número entre 1 y 10: $[ ($RANDOM % 10) +1 ]
 

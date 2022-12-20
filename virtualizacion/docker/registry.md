@@ -78,6 +78,11 @@ auth:
 
 
 Visor web:
+https://hub.docker.com/r/joxit/docker-registry-ui
+También como app standalone en cliente: https://github.com/Joxit/docker-registry-ui/blob/main/examples/electron/README.md
+
+
+Deprecados:
 docker run -d -e ENV_DOCKER_REGISTRY_HOST=registry -e ENV_DOCKER_REGISTRY_PORT=5000 -p 8080:80 --link registry --name registry_web konradkleine/docker-registry-frontend:v2
   no permite borrar imagenes, no implementado
 
@@ -97,7 +102,7 @@ Limpiar blobs no usados (para borrar imágenes viejas mirar más abajo, en "Borr
 docker exec -it registry bin/registry garbage-collect /etc/docker/registry/config.yml
 
 Parece que no se pueden borrar "registries" aunque estén vacíos.
-Lo borramos eliminado el directorio: rm -fr registry/v2/repositories/usync/test
+Lo borramos eliminado el directorio: rm -fr registry/v2/repositories/test
 Comprobar primero que no tiene ningún _manifest enlazado (parece que si no tiene ficheros, no tiene nada. Solo veremos directorios vacios)
 
 

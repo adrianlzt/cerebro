@@ -16,11 +16,19 @@ https://docs.docker.com/engine/userguide/networking/default_network/custom-docke
 vi /etc/sysconfig/docker-network
 DOCKER_NETWORK_OPTIONS=--mtu=1400
 
+Otra forma:
+/etc/docker/daemon.json
+{
+  "mtu": 1450
+}
+
 systemctl restart docker
 
 Si usamos docker>=1.17 en OpenStack tenedremos que aumentar la MTU (poner a 1450)
 
 El problema es que la interfaz docker0 tenga un mtu más grande que la interfaz de la máquina. Las conexiones LTS no funcionan.
+Explicación:
+https://mlohr.com/docker-mtu/
 
 
 

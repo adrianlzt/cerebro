@@ -1,3 +1,5 @@
+mirar también proxychains.md
+
 https://www.inet.no/dante/index.html
 https://www.inet.no/dante/doc/latest/config/socks.html
 
@@ -16,16 +18,24 @@ Aunque en strace veamos que se llama a openat, al final la función que debemos 
 Otra lib donde fakean muchas syscall: https://github.com/mikix/deb2snap/blob/master/src/preload.c
 
 
-
 Otra opcion: tsocks.md (deprecated)
 Tambíen torsocks, aunque orientado a la red tor.
 
 Algunos programas, por ejemplo openvpn, escapan de socksify. No sabemos muy bien como. Por un fork? Creo que por trafico UDP.
 
+Dante/socksify también puede usar un proxy http, en vez de socks.
+Probado con Squid.
+
+
+Downloads
+https://www.inet.no/dante/sslfiles/binaries.html
+
+
 # Simple, sin dante server
 pacman -S dante
 ssh -D 1080 user@maquinasalto
 vi /etc/socks.conf
+``````
 # First route to go direct (no socks server) for telefonica network (dns, etc.)
 route { from: 0.0.0.0/0 to: 10.0.0.0/8 via: direct }
 
@@ -34,11 +44,37 @@ route {
         from: 0.0.0.0/0   to: 0.0.0.0/0   via: 127.0.0.1 port = 1080
         proxyprotocol: socks_v5         # server supports socks v5.
 }  
+``````
 
 socksify curl eth0.me
   deberiamos ver la ip de maquinasalto
 
-# RPM
+
+# Configuración a nivel global de SO
+CUIDADO! Afecta a todo el sistema. Si la lib no está disponible en el arranque del sistema puede que no arranque.
+Mirar el "Caveats" de tsocks: https://linux.die.net/man/8/tsocks#Caveats:~:text=redirect%20standard%20error.-,Caveats,-tsocks%20will%20not
+Probar a reiniciar para comprobar que no se rompe nada en el arranque.
+
+MUCHO OJO también a tener una configuración errónea. En ese caso, cualquier comando del SO fallará al ejecutarse.
+Para desactivar el ld.so.preload en caso de error:
+echo "" > /etc/ld.so.preload
+
+echo /usr/local/lib/libdsocks.so > /etc/ld.so.preload
+
+OJO con configurar un fichero de log sin permisos de escritura globales e intentar usar socksify con otro usuario.
+El usuario que ejecute el programa será quien necesite permisos para socksify
+
+
+# Build
+## Almalinux9
+dnf install -y gcc
+curl -O https://www.inet.no/dante/files/dante-1.4.3.tar.gz
+tar zxvf dante-1.4.3.tar.gz
+cd dante-1.4.3
+./configure
+make
+
+## RPM
 El .tar.gz viene con el .spec para gener un rpm
 
 Debajo de la línea de BuildRoot meter las dependencias:
@@ -56,6 +92,7 @@ dante-debuginfo-1.4.1-1.el6.x86_64.rpm
 # Cliente
 
 cat /etc/socks.conf
+``````
 # $Id: socks-simple.conf,v 1.13 2012/06/01 19:59:26 karls Exp $
 #
 # A simple sample socks.conf for users with a local DNS server.
@@ -78,6 +115,7 @@ route {
 }
 
 # Con esta regla enviamos todo el trafico al puerto 443 del servidor 5.77.22.9 donde habrá un servidor dante
+``````
 
 
 # Server
@@ -93,7 +131,7 @@ socks block { from: 0.0.0.0/0 to: lo log: connect }
 socks pass { from: 0.0.0.0/0 to: 0.0.0.0/0 }
 
 
-# Debug
+# Debug / client logging
 https://www.inet.no/dante/doc/faq.html#bugs
 $ head /etc/socks.conf  
 logoutput: /tmp/dante.log

@@ -74,6 +74,8 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
 
 Comprobar en el master que vemos la replica conectada:
 select * from pg_stat_replication;
+select * from  pg_replication_slots;
+  si estamos usando slots
 
 Comprobar si somos un primario o replica (off para el primario, on para replica):
 show in_hot_standby;
@@ -98,6 +100,15 @@ Conf slave, in recovery.conf (fichero eliminado en postgres 12):
 standby_mode = on
 primary_conninfo = "host=nodeMaster"
 application_name = "xxx"  # nombres para distinguir varios stand-bys, típicamente hostname
+primary_slot_name = "nombreslot_si_usamos"
+
+Ojo con llenar el disco porque se desconecte la replica y el primario se llene de WALs.
+https://web.archive.org/web/20190709143733/https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+
+Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
+https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
+Historia: https://www.postgresql.org/message-id/flat/20170228.122736.123383594.horiguchi.kyotaro@lab.ntt.co.jp
+
 
 También info en ha_scalability.md "Hot standby"
 
@@ -135,6 +146,7 @@ select pg_current_waL_flush_lsn()
 
 Podemos usar pg_wal_lsn_diff() para comparar lsn
 select pg_wal_lsn_diff('12D71/A2D142B8', '11EF2/8F000000');
+Calculates the difference in bytes (lsn1 - lsn2) between two write-ahead log locations. This can be used with pg_stat_replication or some of the functions shown in Table 9.89 to get the replication lag.
 
 select * from pg_stat_replication;
     solo muestra clientes actualmente conectados
@@ -179,11 +191,15 @@ Podemos usar pg_dumpwall para ver el contenido de un fichero WAL.
 
 
 Si queremos crear a mano un replication slot:
-SELECT * FROM pg_create_physical_replication_slot('replica1');
+SELECT pg_create_physical_replication_slot('replica1');
 
 Borrar a mano un replication slot (le llevará unos minutos hasta que borre los WAL antiguos, posiblemente espere a un checkpoint, pero no lo he comprobado):
-SELECT * FROM pg_drop_replication_slot('replica1');
+SELECT pg_drop_replication_slot('replica1');
 
+
+En la replica configuraremos ese slot con "primary_slot_name".
+En el fichero recovery.conf para postgres <= 11.
+En postgresql.conf para > 11.
 
 
 

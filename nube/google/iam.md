@@ -7,6 +7,11 @@ Gestión de identidades y accesos.
 Si queremos ver los roles disponibles y que permisos dan cada uno (para ver los permisos pinchar sobre la línea del rol y lo muestra en la tarjeta de la derecha)
 https://console.cloud.google.com/iam-admin/roles
 
+Hay tres roles generales:
+viewer, editor, owner.
+Estos existen desde antes de IAP y conceden permisos sobre todos los recursos.
+
+
 # Dar permisos a usuarios/SA
 https://console.cloud.google.com/iam-admin/iam
 Pulsar sobre ADD
@@ -35,3 +40,11 @@ curl "http://metadata/computeMetadata/v1/instance/service-accounts/default/token
 Nos devuelve un token que podemos usar para llamar a las APIs:
 curl -H "Authorization: Bearer ACCESS_TOKEN_DEL_JSON" ...
 
+
+# Verificar / troubleshooting
+
+## Buscar que roles tienen un permiso
+https://cloud.google.com/iam/docs/understanding-roles
+
+## Policy Troubleshooter
+Si nos sale algún check verde, es que el usuario tiene ese permiso habilitado.

@@ -18,6 +18,11 @@ Videos: https://www.dotconferences.com/conference/dotgo
 
 Common errors: http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/
 
+Codigo que podemos tomar como referencia:
+https://github.com/upspin/upspin
+https://github.com/adg
+https://github.com/robpike
+
 
 LearningGo.pdf
 a2pi1.GoinAction.epub

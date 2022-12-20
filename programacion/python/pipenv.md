@@ -1,3 +1,5 @@
+https://pipenv.pypa.io/en/latest/
+
 https://www.kennethreitz.org/essays/announcing-pipenv
 
 pip + virtualenv
@@ -16,11 +18,17 @@ PIPENV_IGNORE_VIRTUALENVS=1 pipenv ...
 export PIPENV_VENV_IN_PROJECT="enabled"
   para crear el virtualenv en un directorio .env en el mismo path que Pipfile
 
+PIPENV_PIPFILE=/autodoc/Pipfile pipenv
+  para forzar donde está el Pipfile, o como se llama el fichero
+
 Según vayamos instalando con:
 pipenv install
 se irán agregando las dependencias al fichero Pipfile.lock
 Ejemplo:
   pipenv install ansible==2.4.2
+
+pipenv --site-packages shell
+  usar paquetes del sistema
 
 pipenv install --system
   instalar los paquetes en el python del sistema
@@ -50,6 +58,17 @@ buscará un fichero Pipenv en este dir o superiores.
 para borrar el virtualenv
 pipenv --rm
 
+# Scripts
+https://pipenv.pypa.io/en/latest/advanced/#custom-script-shortcuts
+```
+[scripts]
+echospam = "echo I am really a very silly example"
+```
+
+Para luego usarlo con
+pipenv run echospam
+
+Si pasámos parámetros se pasarán a lo que ejecutemos en "script"
 
 # Limitaciones
 La principal que encuentro respecto a virtualenvwrapper, es que para activar un virtualenv tenemos que estar en el directorio donde creamos el venv o en un subdirectorio.
