@@ -20,6 +20,11 @@ yay -Quq --aur | xargs -n 1 yay -S --noconfirm
 Para ver lo que no se pudieron instalar (instalación pendientes)
 yay -Quq --aur
 
+Para ver que paquetes de AUR queremos borrar.
+yay -Quq --aur | xargs -n 1 yay -Qi | grep -e Nombre -e Descr | cut -d : -f 2- | paste -d "#" - - | sed "s/^\([^#]*\)/sudo pacman -Rs --noconfirm\1 /" | vi
+En el vi que nos abre borraremos lo que nos queremos quedar.
+Si alguna app es necesita por otra, no se borrará.
+
 # Editar PKGBUILD antes de instalar
 yay -G paquete
 cd paquete/trunk
