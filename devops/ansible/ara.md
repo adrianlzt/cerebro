@@ -6,4 +6,5 @@ pipenv shell
 pipenv install ansible "ara[server]"
 export ANSIBLE_CALLBACK_PLUGINS="$(python3 -m ara.setup.callback_plugins)"
 ansible-playbook foo.yaml
+ara-manage migrate
 ara-manage runserver
