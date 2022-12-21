@@ -23,3 +23,10 @@ Luego generamos una lista para imprimirlo por pantalla.
 Solo nos quedamos con el valor de "email":
 diccionario | map(attribute="email")
 
+
+
+# Modificar un dict y devolver la modificación
+Dado un diccionario "foo" del que queremos quitar la key "bar", podemos hacer:
+```
+"{{ set _ = foo.pop('bar') }}{{ foo }}"
+```
