@@ -372,6 +372,17 @@ https://gql.readthedocs.io/en/latest/gql-cli/intro.html
 
 $ echo 'query { continent(code:"AF") { name } }' | gql-cli https://countries.trevorblades.com
 
+gql-cli --print-schema https://countries.trevorblades.com
+
 
 Otra opción, nodejs:
 https://github.com/hasura/graphqurl
+
+
+# UI
+Insomnia
+aur/insomnia-bin
+
+Es como un "postman" que tiene funcionalidad para graphql.
+
+Nos puede valer para obtener el schema y ayudarnos a crear las queries, cuando no tenemos la UI de graphq y no podemos usar una externa por tema CORS.
