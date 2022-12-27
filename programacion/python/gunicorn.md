@@ -13,6 +13,9 @@ gunicorn app:application --bind 0.0.0.0:8000
 Timeout:
 --timeout 60
 
+Si hacemos bind a un socket y queremos consultar con curl:
+curl -I --unix-socket /run/gunicorn.sock http://localhost
+
 
 Si queremos un script python que arranque gunicorn:
 http://docs.gunicorn.org/en/latest/custom.html
