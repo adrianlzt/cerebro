@@ -1,5 +1,8 @@
 Mirar dsq.md
 
+Interactive jq: jq+ncurses
+https://sr.ht/~gpanders/ijq/
+
 http://stedolan.github.io/jq/
 Otra opción: jp (https://github.com/jmespath/jp)
 
