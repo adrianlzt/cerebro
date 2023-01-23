@@ -52,6 +52,10 @@ gcloud compute start-iap-tunnel NombreVM 8080 --local-host-port=localhost:5601
 Otra forma, mediante tunel ssh:
 gcloud compute ssh NombreVM -- -N -L 5601:localhost:5601
 
+O si ya estamos dentro, por ssh, podemos crear un tunel con este "truco" de ssh:
+~C
+-L 0.0.0.0:3000:127.0.0.1:3000
+
 
 Copiar fichero
 gcloud compute scp ...
