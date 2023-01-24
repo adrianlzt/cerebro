@@ -10,3 +10,11 @@ Usaremos un esquema con un transistor NPN, una resistencia y un diodo.
 https://elosciloscopio.com/tutorial-reles-arduino-y-esp8266/
 
 Cuidado al usarlo con un transistor, asegurarse que el transistor tiene suficiente corriente en la base para que circule la corriente necesaria por el relé.
+
+
+
+# Solid state relays
+Creo que es un tipo de optoacoplador
+LCC110P
+
+Relay en formato "chip" con un puerto NC (normally closed) y otro NO (normally open).
