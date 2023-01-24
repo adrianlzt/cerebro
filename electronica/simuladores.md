@@ -18,7 +18,7 @@ https://www.flux.ai/
 
 # App
 fritzing
-simula?
+simula y diseña. Nos puede generar la pcb lista para pedir.
 
 https://github.com/logisim-evolution/logisim-evolution
 para circuítos lógicos
