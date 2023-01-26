@@ -37,7 +37,7 @@ Podemos ver si estamos teniendo problemas de este tipo si encontramos métricas 
 Lo malo es que nos devolverá también métricas de máquinas que tienen su hora en el futuro
 
 https://excalidraw.com/#room=a60e0ff6649a5cb87234,wMBqlGnvO_GEWEeALIAQag
-gráfico explicativo
+gráfico explicativo (borrado :/)
 
 
 Zabbix4
