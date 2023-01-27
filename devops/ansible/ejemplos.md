@@ -4,6 +4,9 @@ https://galaxy.ansible.com/
 Este es como el puppet forge
 
 
+Si instalamos con -g nos baja el repo con su .git, con lo que podemos modificar ahí directamente.
+
+
 Instalar un galaxy:
 ansible-galaxy install angstwad.docker_ubuntu
 
