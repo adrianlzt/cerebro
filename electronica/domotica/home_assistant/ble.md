@@ -27,6 +27,14 @@ logger:
 Activar el "report unknown" a "Other" (o una marca determinada si está en la lista)
 
 
+## Device DIY
+Usar el protocolo bthome.
+Mirar bthome.md
+
+Usable con:
+https://www.home-assistant.io/integrations/bthome/
+https://custom-components.github.io/ble_monitor/bthome
+
 ## Simular device
 Ejemplo de un device Xiaomi, con explicación de los datos para que funcione el ble_parser.parse_data()
 https://gist.github.com/adrianlzt/49f8f5c563e97e516b6f4c8d8368d39e

@@ -1,6 +1,10 @@
 Me parece que con pyboard.py me falla mas que con mpfshell.
 
 # mpremote
+https://github.com/bulletmark/mpr
+wrapper para mpremote, más linux friendly
+
+
 https://docs.micropython.org/en/latest/reference/mpremote.html
 Otra herramienta más para hacer lo mismo.
 Nueva de la versión 1.16 https://github.com/micropython/micropython/releases/tag/v1.16

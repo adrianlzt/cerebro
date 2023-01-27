@@ -18,6 +18,7 @@ También hay un script python para subir/bajar ficheros.
 
 
 Mirar rshell.md para conectar remotamente y copiar ficheros.
+Mejor "mpr" (https://github.com/bulletmark/mpr, en AUR)
 
 
 # Cliente
