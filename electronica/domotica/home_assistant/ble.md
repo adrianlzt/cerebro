@@ -4,6 +4,11 @@ https://custom-components.github.io/ble_monitor/Installation
 En HACS:
 Passive BLE monitor integration
 
+Dar permisos al binario de python
+https://github.com/custom-components/ble_monitor/blob/b268772d66097d62899780fe5c5dfb258d39c4dd/docs/faq.md#i-get-a-permissionerror-in-home-assistant-after-the-installation-or-python-upgrade
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `readlink -f \`which python3\``
+
+
 Tras añadir el device desde la UI, si vamos a http://192.168.137.111:8123/config/integrations, en a tarjeta podremos ver:
 1 device and 4 entities
 
