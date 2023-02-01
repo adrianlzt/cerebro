@@ -71,6 +71,13 @@ Obtener IPs públicas
 gcloud compute addresses list
 
 
+## Load balancer
+
+### Backend
+gcloud compute backend-services list
+gcloud compute backend-services edit NOMBRE
+  nos abree el editor, estilo kubectl edit
+
 
 # GKE
 Listar clusters
