@@ -19,6 +19,13 @@ Cada módulo puede retornar succcess o failure, luego con control-flag determina
 
 Cada programa intetará buscar su policy, si no la encuentra, usará 'other'. Es importante tener este fichero.
 
+Doc RHEL7:
+Each file in this directory has the same name as the service to which it controls access
+It is highly recommended to configure PAMs using the authconfig tool instead of manually editing the PAM configuration files.
+authconfig-gtk provides a full graphical interface.
+authconfig provides a command-line interface for manual configuration.
+authconfig-tui provides a text-based UI. Note that this utility has been deprecated.
+
 
 Listado de módulos:
 ls /lib/security
