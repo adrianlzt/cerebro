@@ -136,6 +136,10 @@ Otra: https://github.com/nyxcharon/vault-ui
 # API
 curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
 
+https://developer.hashicorp.com/vault/api-docs/system/health
+Obtener el estado del vault:
+curl -s localhost:8200/v1/sys/health | jq
+
 
 
 # Ansible
