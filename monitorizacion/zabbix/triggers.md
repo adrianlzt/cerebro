@@ -127,6 +127,7 @@ Parece que hace falta crearse un custom low-level discovery.
 
 ## Fuzzytime
 Checking how much an item timestamp value differs from the Zabbix server time.
+Tiene que ser items pasivos (que el server pida el valor)
 
 ## Nodata
 Podemos poner expresiones que saltan si hace mucho que no se recibe un dato.
@@ -139,6 +140,9 @@ Ejemplo:
 {item.strlen(#1)}<>0 and {item.nodata(30)}=0
   si el último elemento que ha llegado a "item" tenía una longitud distinta de 0 se activa
   si pasan 30" y no hemos recibido datos volverá a estado OK
+
+## now
+Si usamos item.now() será la hora de cuando se envió/recogió el value.
 
 
 # Recovery expression
