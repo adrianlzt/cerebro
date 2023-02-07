@@ -142,7 +142,34 @@ Ejemplo:
   si pasan 30" y no hemos recibido datos volverá a estado OK
 
 ## now
-Si usamos item.now() será la hora de cuando se envió/recogió el value.
+Si usamos item.now() será la hora de cuando se envió/recogió el value o la hora cuando el server decide reejecutarlo (al tener una función de tiempo).
+
+Análisis hecho:
+
+Teniendo estos triggers:
+({host:item.last()}-{host:calculado.now()} > 124 or {host:calculado.now()}-{host:item.last()} > 124) and {host:item.nodata(120)}=0
+({host:item.now()}-{host:calculado.now()} > 125 or {host:calculado.now()}-{host:item.now()} > 125) and {host:item.nodata(120)}=0
+({host:item.last()}-{host:item.now()} > 127 or {host:item.now()}-{host:item.last()} > 127) and {host:item.nodata(120)}=0
+
+
+Si enviamos datos mediante trapper, enviando una hora del dato retrasada 599 segundos:
+$ echo -e "\nhora actual:  $(date +%s)\nhora enviada: $(($(date +%s) - 599))"; echo "host item $(($(date +%s) - 599)) 123" | zabbix_sender -z 127.0.0.1 -i - -T
+
+hora actual:  1675766313 (10:38:33)
+hora enviada: 1675765714 (10:28:34)
+
+
+La hora que se usa para sustituir TODOS los "now()" es la hora definida por el trapper (1675765714). Incluso el calculado.now() también toma esa hora.
+258:20230207:103834.015 zbx_substitute_functions_results() expression[0]:'({18660}-{18661} > 125 or {18661}-{18660} > 125) and {18662}=0' => '(1675765714-1675765714 > 125 or 1675765714-1675765714 > 125) and 1=0'
+258:20230207:103834.015 zbx_substitute_functions_results() expression[1]:'({18657}-{18658} > 127 or {18658}-{18657} > 127) and {18659}=0' => '(123-1675765714 > 127 or 1675765714-123 > 127) and 1=0'
+258:20230207:103834.015 zbx_substitute_functions_results() expression[2]:'({18674}-{18675} > 124 or {18675}-{18674} > 124) and {18676}=0' => '(123-1675765714 > 124 or 1675765714-123 > 124) and 1=0'
+
+
+Pero cuando salta por tiempo la hora usada para los now(), 1675766320 (10:38:40), es la del servidor:
+258:20230207:103840.017 zbx_substitute_functions_results() expression[0]:'({18660}-{18661} > 125 or {18661}-{18660} > 125) and {18662}=0' => '(1675766320-1675766320 > 125 or 1675766320-1675766320 > 125) and 1=0'
+258:20230207:103841.019 zbx_substitute_functions_results() expression[0]:'({18657}-{18658} > 127 or {18658}-{18657} > 127) and {18659}=0' => '(123-1675766321 > 127 or 1675766321-123 > 127) and 1=0'
+258:20230207:103842.021 zbx_substitute_functions_results() expression[0]:'({18674}-{18675} > 124 or {18675}-{18674} > 124) and {18676}=0' => '(123-1675766322 > 124 or 1675766322-123 > 124) and 1=0'
+
 
 
 # Recovery expression
