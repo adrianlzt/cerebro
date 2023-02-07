@@ -17,6 +17,9 @@ gcloud services list --available
 Cmabiar proyecto por defecto:
 gcloud config set project my-project
 
+Listar todos los "assets" de un proyecto:
+gcloud asset search-all-resources --scope=projects/NOMBRE
+
 
 # Configuración de cuenta
 Mostrar las que tenemos configuradas:
