@@ -100,3 +100,30 @@ ROLLBACK;
 
 -- data after dry-run update
 SELECT * from data;
+
+
+# UPDATE con CTE
+WITH cte AS (
+    SELECT * FROM ...
+)
+UPDATE table_to_update
+SET column_from_table_to_update = cte.some_column
+FROM cte
+WHERE table_to_update.id = cte.id
+
+
+Ejemplo para modificar un campo basándonos en el valor de otro campo:
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$1)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;

@@ -860,3 +860,86 @@ Si no ponemos distinct, tendremos el número total de entradas sin asociación c
 
 lastclock de un item (en cualquier history). Posiblemente muy costosa. Tal vez podríamos meter filtrado por tiempo.
 select host,key_,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key_) limit 3;
+
+
+
+
+Queries para cambiar los names de los items prototypes de "$1" a la macro.
+Cambia de $1 a $5.
+https://www.zabbix.com/documentation/4.0/en/manual/installation/upgrade_notes_400#deprecated-macros-in-item-names
+https://gist.github.com/adrianlzt/916a0c641c62b5b5ca700a59b4730dab
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$1)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$2)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$3)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$4)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$5)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
