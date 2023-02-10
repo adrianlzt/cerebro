@@ -28,7 +28,11 @@ WantedBy=multi-user.target
 
 
 Ver con una cli si tenemos datos
+gpsmon
 cgps
+
+gpsmon is a program that reads data directly from the serial port
+cgps is a program that read GPS positions from the GPSD service.
 
 
 # Ejecutar
