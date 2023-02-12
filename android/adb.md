@@ -27,6 +27,9 @@ adb pull <remote> [<local>]  - copy file/dir from device
 adb sync [ <directory> ]     - copy host->device only if changed
 adb remount                  - remounts the /system partition on the device read-write
 
+Mostrar paquetes
+adb shell cmd package list packages
+
 adb install /home/adrian/paquete.app
 adb install [-l] [-r] [-s] [--algo <algorithm name> --key <hex-encoded key> --iv <hex-encoded iv>] <file>
                                - push this package file to the device and install it
