@@ -203,6 +203,10 @@ grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
 GRANT SELECT ON partman.part_config TO zabbix_odbc;
 
 
+Dar permisos de creación de tablas temporales a un role:
+grant temp on database zabbix to partman;
+
+
 Mover todo lo que pertenezca a un usuario a otro:
 reassign owned by foo TO bar;
 
