@@ -187,6 +187,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
 NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
 
 
+
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
 
