@@ -150,7 +150,7 @@ Si tenemos cargado el background worker (bgw), él se encargará de estas llamad
 Si queremos llamar a mano mejor llamar a run_maintenance_proc()
 
 Si solo queremos ejecutarlo sobre una tabla:
-SELECT partman.run_maintenance('public.history_str', p_jobmon := 't', p_debug := 't');
+SELECT partman.run_maintenance('public.history_str', p_jobmon := 't');
 
 undo_partition()
 mover los datos de las particiones a la tabla parent y hacer unattach las partitions
