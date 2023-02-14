@@ -50,6 +50,11 @@ Parece que jolokia no puede hablar "remoting-jmx", que es el protocolo que susti
 Si queremos que lo soporte tendremos que meter la libreria jboss-cli-client.jar (en el codigo de JBoss) dentro del WAR (WEB-INF/lib/jboss-cli-client.jar)
 
 
+Si queremos hablar con un JMX con TLS configurado:
+https://github.com/rhuss/jolokia/pull/436
+
+
+
 # Install
 ## JBoss
 Desplegar el jolokia-war-unsecured.war desde la interfaz de web management.
