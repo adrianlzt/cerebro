@@ -150,6 +150,9 @@ control+v, seleccionar líneas y luego
 :se ft
 Nos dice que filetype tiene definido actualmente
 
+:verbose set PARAMETRO
+Nos dice el último sitio donde se definió este parámetro.
+
 
 Linea delimitando la columna 80 (esta limitación viene de poder imprimir el código en papel)
 :set colorcolumn=80

@@ -45,6 +45,11 @@ Remove temp CLOUDSDK_CONFIG directory.
 Listar VMs:
 gcloud compute instances list
 
+Encender:
+gcloud compute instances start NOMBREVM
+Apagar:
+gcloud compute instances stop NOMBREVM
+
 Acceder por ssh:
 gcloud compute ssh dev
 
