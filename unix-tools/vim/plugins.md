@@ -3,6 +3,9 @@ http://vimawesome.com/
 Lista de un programador
 https://github.com/joshdmiller/vim/blob/master/vim/lib/plugins.vim
 
+# Lazy
+https://github.com/folke/lazy.nvim
+Gestor de plugins
 
 # Plug
 https://github.com/junegunn/vim-plug
