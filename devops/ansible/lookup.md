@@ -1,5 +1,7 @@
-http://docs.ansible.com/playbooks_lookups.html
-https://github.com/ansible/ansible/tree/devel/lib/ansible/runner/lookup_plugins
+https://docs.ansible.com/ansible/latest/plugins/lookup.html
+
+Lista de plugins
+ansible-doc -t lookup -l
 
 Extraer información de distintos sitios:
 
