@@ -101,6 +101,7 @@ alter user postgres password 'xxx';
 ALTER ROLE partman PASSWORD 'par3456man';
 
 ### dar roles a posteriori:
+Permitir a un usuario crear nuevas dbs
 alter user usuario createdb;
 
 Asociar un role a un usuario:
