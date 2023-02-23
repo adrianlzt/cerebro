@@ -19,6 +19,8 @@ Commands:
       -KR[bind_address:]port                 Cancel remote forward
       -KD[bind_address:]port                 Cancel dynamic forward
 
+Si nos saca el caracter "~" en vez de entenderlo como la secuencia de escape, abrir "cat" (sin ningún fichero) y ponerlo ahí.
+https://superuser.com/a/1192862
 
 ## Tunel directo##
 # Nos conectamos al remote-host a través del gateway #
