@@ -30,6 +30,9 @@ Si queremos meter config custom seguir: https://cloud.google.com/monitoring/agen
 Parece que el ExecStartPre=/opt/google-cloud-ops-agent/libexec/google_cloud_ops_agent_engine es quien genera la config final para otel collector.
 
 ## Prometheus
+https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent/prometheus
+
+## Hasta la 2.25 era experimental
 Parece que si queremos meter un scrapper extra de prometheus hay que poner unos flags especiales
 
 Para la v2.23.0
