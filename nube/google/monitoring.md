@@ -1,5 +1,10 @@
 https://console.cloud.google.com/monitoring
 
+# Alerting
+Métricas a partir de logs
+https://pomba.net/2020/06/how-to-create-an-alert-in-gcp-for-a-specific-event-ex-modifying-a-firewall-rule/
+
+
 # Notificaciones a google chat
 Usar pub/sub + cloud function
 
