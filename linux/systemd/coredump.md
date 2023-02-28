@@ -12,6 +12,13 @@ echo "/var/cores/core.%e.%p" > /proc/sys/kernel/core_pattern
 To make the core_pattern permanent, and survive reboots, you can set it via "kernel.core_pattern" in /etc/sysctl.conf.
 
 
+Comando para lanzar un programa que da un core dump y obtener maś info
+https://www.commandlinux.com/man-page/man1/catchsegv.1.html
+
+catchsegv programa
+
+
+
 # GDB
 
 gdb -c core.xxx
