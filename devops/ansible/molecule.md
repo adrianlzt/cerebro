@@ -17,6 +17,9 @@ driver: que servicio usamos para crear la máquina donde probar (docker, podman,
 Flujo típico (lo que hace molecule test):
 dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
 
+Si hacemos un create haremos:
+dependency, create, prepare
+
 
 # Install
 ```
@@ -74,6 +77,9 @@ Ejecutará el rol dos veces para ver que tenemos idempotencia
 
 ## verify
 Ejecuta el playbook de verify para comprobar que se cumplen los tests que hayamos definido
+
+Podemos definir tests más complejos, aplicando distintos side effects y luego verifies:
+https://molecule.readthedocs.io/en/latest/configuration.html#root-scenario:~:text=%3A-,Advanced%20testing,-If%20needed%2C%20Molecule
 
 ## destroy
 Borrar las VMs/containers.
