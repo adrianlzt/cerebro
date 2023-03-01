@@ -14,6 +14,10 @@ echo "/var/cores/core.%e.%p" > /proc/sys/kernel/core_pattern
 To make the core_pattern permanent, and survive reboots, you can set it via "kernel.core_pattern" in /etc/sysctl.conf.
 
 
+Con systemd se usa un comando que almacena los cores:
+$ cat /proc/sys/kernel/core_pattern
+|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h
+
 
 
 # GDB
