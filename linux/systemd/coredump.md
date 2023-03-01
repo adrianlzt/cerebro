@@ -39,3 +39,16 @@ Se almacenan binariamente con journalctl.
 Si queremos sacar uno a un fichero:
 
 coredumpctl dump -o coredump 1549
+
+
+# Ubuntu
+https://askubuntu.com/a/1349048
+https://wiki.ubuntu.com/Apport
+
+cat /proc/sys/kernel/core_pattern
+|/usr/share/apport/apport -p%p -s%s -c%c -d%d -P%P -u%u -g%g -- %E
+
+Note that even if ulimit is set to disabled core files (by specyfing a core file size of zero using ulimit -c 0), apport will still capture the crash.
+
+Los core dumps los almacena en
+/var/lib/apport/coredump
