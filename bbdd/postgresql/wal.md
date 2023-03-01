@@ -137,6 +137,7 @@ https://www.kernel.org/doc/Documentation/sysctl/vm.txt
 # Datos sobre el wal
 select pg_current_wal_lsn();
 select pg_walfile_name(pg_current_wal_lsn());
+select last_archived_wal from pg_stat_archiver
   ver en que wal estamos
 
 Sacar con un comando más datos sobre wal, checkpoints, etc
@@ -151,7 +152,6 @@ Time of latest checkpoint:
 
 Podemos forzar a que se escriba en un nuevo wal con
 select pg_switch_wal();
-
 
 # wal_keep_segments / wal_keep_size
 https://postgresqlco.nf/doc/en/param/wal_keep_segments/
