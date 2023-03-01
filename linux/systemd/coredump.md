@@ -1,3 +1,5 @@
+Para lo que suele generar los core dump, mirar segmentation_fault.md
+
 ulimit -c
 nos dice el tamaño máximo de un fichero core (0 es que no se genere)
 
@@ -11,11 +13,6 @@ mkdir /var/cores
 echo "/var/cores/core.%e.%p" > /proc/sys/kernel/core_pattern
 To make the core_pattern permanent, and survive reboots, you can set it via "kernel.core_pattern" in /etc/sysctl.conf.
 
-
-Comando para lanzar un programa que da un core dump y obtener maś info
-https://www.commandlinux.com/man-page/man1/catchsegv.1.html
-
-catchsegv programa
 
 
 
