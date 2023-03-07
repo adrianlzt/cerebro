@@ -9,6 +9,13 @@ Correr los tests de integración del módulo zabbix_host usando una imagen de ub
 source hacking/env-setup
 ansible-test integration -v zabbix_host --docker ubuntu1804
 
+En un server remoto:
+ansible-test integration --target ssh:rocky@34.76.79.12,python=3.9
+
+Meter en el user que ponemos la clave que tenemos en:
+~/.ansible/test/id_rsa.pub
+
+
 
 ## Sanity tests
 ansible-test sanity
