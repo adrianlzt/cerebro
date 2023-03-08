@@ -72,6 +72,10 @@ VAULT_ADDR=http://vault.com:8200 vault ...
 
 Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
+## Status
+vault status
+vault -tls-skip-verify status
+
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
   los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
