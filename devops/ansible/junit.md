@@ -1,0 +1,3 @@
+https://sleeplessbeastie.eu/2021/01/11/how-to-store-and-visualize-playbook-events/
+
+ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="junit-results" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true ansible-playbook ...
