@@ -16,3 +16,15 @@ https://stackoverflow.com/questions/41521138/ansible-template-adds-u-to-array-in
 lista.0
 lista.1
 lista.N
+
+
+# De una lista de diccionarios, hacer un lista separada por comas de un parámetro
+ansible.builtin.set_fact:
+  proxies_ips: >-
+    {%- set valores_foo = [] -%}
+    {%- for elem in groups.proxy -%}
+        {%- set _ = valores_foo.append(hostvars[elem].ansible_default_ipv4.address) -%}
+    {%- endfor -%}
+    {{- valores_foo|join(',') -}}
+
+
