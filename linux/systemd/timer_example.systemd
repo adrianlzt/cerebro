@@ -28,6 +28,9 @@ OnCalendar=*:0/15
 Cada 10 segundos:
 OnCalendar=*:*:0/10
 
+Herramienta para saber que tiempos nos genera ese OnCalendar (ejemplo para 06-20 entre semana:
+systemd-analyze calendar --iterations=70 "Mon..Fri *-*-* 06..20:00,30"
+
 
 Persistent=true
 It starts once immediately if it missed the last start time

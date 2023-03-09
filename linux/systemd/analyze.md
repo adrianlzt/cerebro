@@ -22,3 +22,7 @@ systemctl list-dependencies sshd
 
 Unidades que dependende de nuestra unidad:
 systemctl list-dependencies --reverse sshd
+
+
+# Timestamp
+systemd-analyze timespan 1s 300s '1year 0.000001s'
