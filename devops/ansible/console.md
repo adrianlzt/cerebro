@@ -2,9 +2,12 @@ https://docs.ansible.com/ansible/latest/cli/ansible-console.html
 
 Ejecución de módulos con autocompletar.
 
-ansible-console localhost
+ansible-console
 $ copy dest=/tmp/foo content=hola
 
+
+ansible-console localhost
+debug msg="hola"
 
 Ejemplo configurando un repo:
 ````
