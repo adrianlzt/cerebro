@@ -264,3 +264,10 @@ mirar arrays.md
 https://groups.google.com/forum/#!topic/ansible-project/CWNmVa_lpsg
 
 Teoricamente se puede hacer que las variables sean privadas para controlar exactamente que pasamos a los roles
+
+
+# Tipo / type
+{{ item|type_debug }}
+
+Con ansible-console
+debug msg='{{ "foo" | type_debug }}'
