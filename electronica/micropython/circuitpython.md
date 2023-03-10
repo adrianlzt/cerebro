@@ -14,6 +14,12 @@ https://learn.adafruit.com/welcome-to-circuitpython/installing-circuitpython#sta
 Nearly all CircuitPython boards ship with a bootloader called UF2 (USB Flashing Format) that makes installing and updating CircuitPython a quick and easy process. The bootloader is the mode your board needs to be in for the CircuitPython .uf2 file you downloaded to work
 
 
+## WEMOS C3
+https://www.wemos.cc/en/latest/tutorials/c3/get_started_with_circuitpython_c3.html
+
+Una vez flaheado, pulsar RST y conectar:
+mpr repl
+
 
 # bundle / libs
 
@@ -36,6 +42,10 @@ Ni con mpremote ni mpr soy capaz de subir fiheros.
 Si de conectar al repl.
 
 En la web hablan de usar el editor "thonny" (en AUR).
+
+https://randomnerdtutorials.com/getting-started-thonny-micropython-python-ide-esp32-esp8266/#:~:text=Flashing%20MicroPython%20Firmware%20using%20Thonny%20IDE
+
+Tampoco me funciona para subir ficheros.
 
 
 # Doc
