@@ -1,8 +1,11 @@
+# REPL
+Para saltar al repl si estamos en la consola con el programa ejecutándose, pulsar
+Control+c
+
+# WebREPL
 http://micropython.org/webrepl/
 
-
-
-# Configurar
+## Configurar
 import webrepl
 webrepl.start(password=REPL_PASSWORD)
 
@@ -21,10 +24,10 @@ Mirar rshell.md para conectar remotamente y copiar ficheros.
 Mejor "mpr" (https://github.com/bulletmark/mpr, en AUR)
 
 
-# Cliente
-## Navegador
+## Cliente
+### Navegador
 
-## CLI
+### CLI
 webrepl_shell.py
 Para acceder al repl
 
