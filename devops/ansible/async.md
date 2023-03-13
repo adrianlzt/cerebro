@@ -27,3 +27,12 @@ O hacer un fire and forget, y posteriormente ver si ha terminado:
   register: job_result
   until: job_result.finished
   retries: 30
+
+
+# Internals
+Lo que hace es crear un fichero $HOME/.ansible_async/524489329660.3210556 donde, tras ejecutar al acción, deja el contenido:
+{"started": 1, "finished": 0, "ansible_job_id": "524489329660.3210556"}
+
+Luego la tarea "async_status" irá comprobando ese fichero.
+
+Cuando la tarea principal ha termiando, en ese fichero habrá un volcado del output y el async lo recuperará de ahí para seguir con las tareas.
