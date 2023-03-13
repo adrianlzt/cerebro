@@ -36,3 +36,14 @@ Lo que hace es crear un fichero $HOME/.ansible_async/524489329660.3210556 donde,
 Luego la tarea "async_status" irá comprobando ese fichero.
 
 Cuando la tarea principal ha termiando, en ese fichero habrá un volcado del output y el async lo recuperará de ahí para seguir con las tareas.
+
+# Debug
+Si usamos ANSIBLE_KEEP_REMOTE_FILES=1, en el directorio, a parte del típico AnsiballZ veremos un async_wrapper.py
+
+Podemos ver como lo ejecuta ansible si lanzamos el playbook con -vvvv
+Hará algo de este tipo:
+python async_wrapper.py 11111111 600 /home/awxtask/.ansible/tmp/ansible-tmp-1678694008.9198644-1457-67922134023490/AnsiballZ_docker_container.py _ -preserve_tmp
+
+
+Siendo los params:
+usage: async_wrapper <jid> <time_limit> <modulescript> <argsfile> [-preserve_tmp]
