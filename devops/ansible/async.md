@@ -47,3 +47,14 @@ python async_wrapper.py 11111111 600 /home/awxtask/.ansible/tmp/ansible-tmp-1678
 
 Siendo los params:
 usage: async_wrapper <jid> <time_limit> <modulescript> <argsfile> [-preserve_tmp]
+
+
+También se le puede hacer "explode" al async_wrapper.py
+
+Mirando el código del async_wrapper lo que hace es:
+ - forkea, con el proceso principal contestando a ansible y escribiendo el fichero de estado temporal.
+ - el child se vuelve a forkear en dos.
+   - el child ejecuta el módulo
+   - el parent se queda comprobando cuando ha terminado
+
+Si queremos modificar para poder ejecutar el async_wrapper con execute, tendremos que modificar una parte del código, porque solo hace "debug" si tenemos dos parámetros (y al async_wrapper le tenemos que pasar más).

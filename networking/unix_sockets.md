@@ -107,4 +107,4 @@ Parece que en Linux no se puede saber quien es el cliente de un unix socket.
 
 # Sniff socket
 https://github.com/mechpen/sockdump
-Usando eBPF/BCC
+Hace uso de eBPF/BCC.
