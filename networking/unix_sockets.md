@@ -108,3 +108,7 @@ Parece que en Linux no se puede saber quien es el cliente de un unix socket.
 # Sniff socket
 https://github.com/mechpen/sockdump
 Hace uso de eBPF/BCC.
+
+Con sysdig:
+sysdig fd.name contains /var/run/docker.sock -c echo_fds
+sysdig fd.name contains /var/run/docker.sock and \( proc.name=docker or proc.name=dockerd-current \) and evt.type=write -c echo_fds

@@ -40,6 +40,7 @@ Hace falta epel
 rpm -i http://mirror.us.leaseweb.net/epel/6/i386/epel-release-6-8.noarch.rpm
 
 yum install -y kernel-devel-$(uname -r)
+  esto parece que no hace falta, que viene como dependencia de sysdig
 yum install -y sysdig
 
 
