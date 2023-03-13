@@ -30,6 +30,14 @@ sed -e '/pattern/,+5d' file.txt
 Si no queremos incluir la linea del pattern:
 sed -e '/pattern/{n;N;N;N;N;d}' file.txt
 
+# Borrar líneas entre dos expresiones
+➜ echo -e "inicio\nfoo\n1\n2\n3\n4bar\nfin" | sed -e "/foo/,/bar/d"
+inicio
+fin
+
+Si encuentra varias veces foo...bar lo irá borrando todas las veces que lo encuentre.
+Si no encuentra el match final, borrará desde la primera expresión hasta el final del fichero.
+
 
 # Modificar solo parte de una línea
  echo "session inforce pam_loginuid.so pepeito" | sed  '/^session.*pam_loginuid.so/s/^session/# session/'
