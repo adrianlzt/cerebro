@@ -60,6 +60,9 @@ Crearemos un HTTPS load balancer: https://console.cloud.google.com/net-services/
 
 Hace falta activar la pantalla de consentimiento de OAuth: https://console.cloud.google.com/apis/credentials/consent
 
+Si queremos borrarla:
+
+
 Este proxy aparecerá en la web de config de IAP
 https://console.cloud.google.com/security/iap
 
