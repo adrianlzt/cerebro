@@ -87,3 +87,11 @@ Esto hace que si un comando en una pipe de bash falla, todo el job falle en ese 
 
 Parece que no se puede desactivar.
 https://forum.gitlab.com/t/does-the-ci-runner-have-something-against-pipes-gitlab-com/29434/5
+
+
+## breakpoints
+Podemos añadir estas lineas en nuestros scripts como una suerte de breakpoints.
+
+touch /tmp/flag; tail --follow=name /tmp/flag
+
+El script se quedará parado ahí hasta que borremos el fichero /tmp/flag

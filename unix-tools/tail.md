@@ -38,3 +38,10 @@ tail -f fichero | gzip -vc > fichero.gz
 gzip irá agrupando para enviar a comprimir, por lo que puede que no veamos datos en fichero.gz hasta pasadas muchas líneas.
 Si queremos terminar y que escriba los datos, enviar un kill a tail.
 Con control+c saldrá sin escribir al fichero.
+
+
+# Esperar hasta que un fichero se borre
+Lo que hacemos es usar tail en modo "fichero" en vez FD.
+Si el fichero deja de existir, salimos.
+
+touch foo; tail --follow=name foo
