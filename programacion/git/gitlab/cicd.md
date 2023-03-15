@@ -83,8 +83,32 @@ https://campfirecode.medium.com/debugging-gitlab-ci-pipelines-locally-e2699608f4
 DEPRECATED: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2797
 Algunas cosas no funcionan, como los yaml anchors
 https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26413
-
+Mirar gitlab-ci-local
 
 Vamos al directorio donde tenemos el .gitlab-ci.yml
 cd miproyecto/
 gitlab-runner exec docker --docker-image IMAGEN/DE/DOCKER NOMBREJOB
+
+### gitlab-ci-local
+Parece que hay una alternativa no oficial:
+https://github.com/firecow/gitlab-ci-local
+AUR/gitlab-ci-local
+
+cd proyecto/
+gitlab-ci-local --list-all
+
+Tenemos que explicitar en el job la "image" de docker a usar. Si no, correrá en local.
+
+Para pasar variables, crear el fichero .gitlab-ci-local-variables.yml y ponerlas con el siguiente formato:
+
+```
+SOME_ENV_VAR: mipassword
+
+TF_VAR_foobar:
+  type: file
+  values:
+    '*': |
+      contenido del fichero
+      que puede ser multilinea
+```
+

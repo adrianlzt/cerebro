@@ -17,7 +17,7 @@ is_binary() {
 }
 
 is_key() {
-  egrep "PRIVATE KEY-----" "$FILE" >& /dev/null
+  grep -E "PRIVATE KEY-----" "$FILE" >& /dev/null
   if [[ $? -eq 0 ]]; then
     return $TRUE
   fi
@@ -25,7 +25,7 @@ is_key() {
 }
 
 is_crl() {
-  egrep "X509 CRL-----$" "$FILE" >& /dev/null
+  grep -E "X509 CRL-----$" "$FILE" >& /dev/null
   if [[ $? -eq 0 ]]; then
     return $TRUE
   fi
@@ -33,7 +33,7 @@ is_crl() {
 }
 
 several_certificates_inside() {
-  COUNT=$(egrep "^-----" "$FILE" | wc -l)
+  COUNT=$(grep -E "^-----" "$FILE" | wc -l)
   if [[ $COUNT -gt 2 ]]; then
     return $TRUE
   fi
@@ -46,7 +46,7 @@ is_file() {
 }
 
 headers () {
-    echo "$1" | egrep -A 10 "^Certificate:"
+    echo "$1" | grep -E -A 10 "^Certificate:"
     echo "----"
     echo "$1" | grep -A 1 "Subject Alternative Name:"
 }
