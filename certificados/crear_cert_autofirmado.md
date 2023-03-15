@@ -42,3 +42,17 @@ self-ssl.crt ~= self-ssl.pem
 openssl genrsa -out cert.key 2048
 openssl req -new -key cert.key -out cert.csr
 openssl x509 -req -days 365 -in cert.csr -signkey cert.key -out cert.pem
+
+
+Generar CA
+openssl genrsa -out ca.key 2048
+openssl req -x509 -new -nodes -key ca.key -sha256 -days 10000 -out ca.pem
+openssl x509 -req -days 10000 -in ca.csr -signkey ca.key -out ca.pem
+
+Ahora crear un cert y firmarlo con esa CA
+openssl genrsa -out client.key 2048
+openssl req -new -key client.key -out client.csr
+
+Si queremos añadir extensiones X509, por ejemplo para alternative names, mirar https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/#:~:text=Finally%2C%20we%E2%80%99ll%20create%20an
+
+openssl x509 -req -in client.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out client.crt -days 10000 -sha256
