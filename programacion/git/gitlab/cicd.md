@@ -75,6 +75,10 @@ Pero no para los shared runners. Issue: https://gitlab.com/gitlab-org/gitlab/-/i
 
 Podemos hacer un docker exec en la máquina donde esté el runner.
 
+Si queremos tener las variables de entorno tipo fichero bien configuradas:
+cd /builds/ORG/PROJECT.tmp/
+for i in $(ls); do export $i=$PWD/$i; done
+
 
 ## runner local
 https://www.lullabot.com/articles/debugging-jobs-gitlab-ci
