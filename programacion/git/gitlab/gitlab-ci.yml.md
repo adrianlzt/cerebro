@@ -92,6 +92,6 @@ https://forum.gitlab.com/t/does-the-ci-runner-have-something-against-pipes-gitla
 ## breakpoints
 Podemos añadir estas lineas en nuestros scripts como una suerte de breakpoints.
 
-touch /tmp/flag; tail --follow=name /tmp/flag
+touch /tmp/flag; tail --follow=name /tmp/flag || true
 
 El script se quedará parado ahí hasta que borremos el fichero /tmp/flag

@@ -74,3 +74,17 @@ https://docs.gitlab.com/ee/ci/interactive_web_terminal/
 Pero no para los shared runners. Issue: https://gitlab.com/gitlab-org/gitlab/-/issues/24674
 
 Podemos hacer un docker exec en la máquina donde esté el runner.
+
+
+## runner local
+https://www.lullabot.com/articles/debugging-jobs-gitlab-ci
+https://campfirecode.medium.com/debugging-gitlab-ci-pipelines-locally-e2699608f4df
+
+DEPRECATED: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2797
+Algunas cosas no funcionan, como los yaml anchors
+https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26413
+
+
+Vamos al directorio donde tenemos el .gitlab-ci.yml
+cd miproyecto/
+gitlab-runner exec docker --docker-image IMAGEN/DE/DOCKER NOMBREJOB
