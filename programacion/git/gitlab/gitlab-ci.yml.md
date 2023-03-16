@@ -94,4 +94,14 @@ Podemos añadir estas lineas en nuestros scripts como una suerte de breakpoints.
 
 touch /tmp/flag; tail --follow=name /tmp/flag || true
 
+touch /tmp/flag; while test -f /tmp/flag; do sleep 3; done
+otra opción que funciona con alpine
+
 El script se quedará parado ahí hasta que borremos el fichero /tmp/flag
+
+
+# dynamic pipelines
+https://medium.com/@datails/stop-running-static-scoped-jobs-in-gitlab-run-dynamically-created-jobs-instead-481bb686cea5
+
+En un job usamos un script para generar los yaml de otras jobs que se ejecutarán más adelante.
+Usamos los artifacts para almacenar ese yml y recuperarlo en un job posterior.

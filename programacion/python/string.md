@@ -126,12 +126,19 @@ O asignarla a una variable y usarla
 
 f"{nombre:>12}"
 alineado a la derecha
+'        pepe'
+
 
 f"{nombre:<12}"
 alineado a la izquierda
+'pepe        '
+
 
 >>> f'{pi:.2f}'
 '3.14'
+
+>>> f"{123.123:>8.2f}"
+'  123.12'
 
 
 >>> "%0.2f" % 10
