@@ -53,3 +53,13 @@ Si tenemos dos frases entre el {% %} y el {% fin %}, la segunda si tendrá los e
 
 {%- hace que se borren todos los espacios en blanco y cambios de linea desde ese simbolo hasta el anterior caracter.
 -%} lo mismo hacia la derecha
+
+
+https://stackoverflow.com/questions/3790454/how-do-i-break-a-string-in-yaml-over-multiple-lines/21699210#21699210
+Si estamos usando yaml con cosas tipo:
+foo: >
+  JINJA
+
+Si queremos que el ">" no meta un cambio de línea al final, usar:
+foo: >-
+
