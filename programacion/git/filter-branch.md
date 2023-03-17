@@ -18,6 +18,11 @@ De esta manera tendremos el mismo repo pero con ese commit quitado.
 https://github.com/newren/git-filter-repo
 https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html
 
+https://docs.github.com/es/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
+Parece que en github se sigue viendo si apuntamos al commit directamente.
+Petición a soporte para que borren cache?
+
+
 En Arch: pacman -Ss git-filter-repo
 
 Mirar ejemplos con:
@@ -68,7 +73,7 @@ https://help.github.com/articles/remove-sensitive-data
 
 git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch localrepo' --prune-empty --tag-name-filter cat -- --all
   forcing (--force) Git to process—but not check out (--index-filter)—the entire history of every branch and tag (--tag-name-filter cat -- --all)
-  removing the specified file ('git rm -r --cached --ignore-unmatch localrepo') and any empty commits generated as a result (--prune-empty). 
+  removing the specified file ('git rm -r --cached --ignore-unmatch localrepo') and any empty commits generated as a result (--prune-empty).
   Note that you need to specify the path to the file you want to remove, not just its filename.
 
 Analizará todas las ramas y nos mostrará que ficheros ha borrado.
