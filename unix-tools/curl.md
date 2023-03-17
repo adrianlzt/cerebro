@@ -231,3 +231,6 @@ Que tenga un buen día.
 https://everything.curl.dev/usingcurl/reademail
 
 curl -u user@mail.com:secretpassword -v pop3s://mail.server.com/
+
+# HTTP socket
+curl -I --unix-socket /run/gunicorn.sock http://localhost

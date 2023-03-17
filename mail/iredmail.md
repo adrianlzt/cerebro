@@ -86,6 +86,28 @@ rm -fr /etc/postfix/ /etc/my.cnf* /etc/nginx/ /etc/php-fpm.d /etc/dovecot/ /etc/
 for i in vmail iredadmin iredapd clamupdate clamilt virusgroup mysql dovecot postfix dovenull amavis; do userdel $i; groupdel $i; done
 
 
+# SPAM
+
+Tal vez estemos rechazando emails por que se consideran SPAM.o
+
+Un ejemplo:
+"Your email was rejected because the sending mail server appears to be on a dynamic IP address that should not be doing direct mail delivery"
+Es por filtros puestos en este fichero https://github.com/iredmail/iRedMail/blob/master/samples/postfix/helo_access.pcre
+
+
+
+Recipient address rejected: Intentional policy rejection, please try again later
+Generado por iRedADP
+https://docs.iredmail.org/manage.iredapd.html
+
+Greylist es que les obligamos a reenviar el correo.
+
+
+## Whitelist
+Listar:
+python /opt/iredapd/tools/wblist_admin.py --list --whitelist
+
+
 # Errores
 SELECT: Internal error occurred. Refer to server log for more information.
   problema de permisos. mirar journalctl

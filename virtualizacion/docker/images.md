@@ -2,6 +2,9 @@ Para crear imágenes sin docker (en el userspace):
 buildah (redhat)
 kaniko (Google, usado por JenkinsX)
 
+Para crear imágenes pequeñas y seguras, solo deja los ficheros y syscalls necesarias.
+https://github.com/slimtoolkit/slim
+
 
 mirar containers.md
 

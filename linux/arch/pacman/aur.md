@@ -31,6 +31,11 @@ yay -Quq --aur | xargs -n 1 yay -Qi | grep -e Nombre -e Descr | cut -d : -f 2- |
 En el vi que nos abre borraremos lo que nos queremos quedar.
 Si alguna app es necesita por otra, no se borrará.
 
+
+Ignorar verificaciones, típicamente saltarnos el chequeo GPG
+yay -S --mflags --skipinteg PAQUETE
+
+
 # Editar PKGBUILD antes de instalar
 yay -G paquete
 cd paquete/trunk

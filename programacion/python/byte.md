@@ -18,6 +18,9 @@ Para varios valores:
 >>> map(lambda x: struct.unpack('B', x)[0], b'\x41\x42')
 [65, 66]
 
+Representación hexadecimal de "bytes":
+binascii.hexlify(b"\x01\x02\x03").decode()
+
 list(map(lambda x: x, clave))
 py3
 

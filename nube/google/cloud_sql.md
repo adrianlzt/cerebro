@@ -11,6 +11,10 @@ Para conectar podemos usar:
   - ip pública (usando una lista de redes permitidas)
   - cloud sql proxy
 
+Si tenemos ip pública:
+gcloud sql instances list
+gcloud sql connect NOMBRE
+
 
 Si usamos una IP privada, una vez creada la instancia, podremos obtener su ip para poder conectar.
 

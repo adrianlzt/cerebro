@@ -15,6 +15,10 @@ gdb> p close(FD)
 Lo probé con un programa y se cerro de golpe
 
 
+Si queremos cerrar un FD abierto por nuestra shell (para cerrar el 3):
+exec 3<&-
+
+
 
 Si queremos leer el stdout del programa:
 cat /proc/PID/fd/1
