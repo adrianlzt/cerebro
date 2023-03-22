@@ -34,9 +34,15 @@ git filter-repo --analyze
 
 Borrar la palabra "secret":
 git filter-repo --replace-text <(echo 'secret==>foobar')
+git filter-repo --replace-text fichero.txt
+fichero.txt tipo:
+foo==>bar
 
 Parece que el commit original sigue existiendo, pero sin enlazar.
 Mirar si hay opciones para eliminarlo.
+
+Si queremos borrar ficheros, meterlos en un fichero de texto y ejecutar:
+git filter-repo --invert-paths --paths-from-file borrar.txt
 
 
 
