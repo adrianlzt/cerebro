@@ -74,6 +74,35 @@ Hay un gps-unmanaged por si estamos usando el puerto con otro software (gpsd o a
 Obtener datos de localización:
 mmcli -m 0 --location-get
 
+Si no tengo posición veré algo tipo:
+  GPS | nmea: $GPGSA,A,1,,,,,,,,,,,,,,,,*32
+      |       $GNGNS,,,,,,NNN,,,,,,*1D
+      |       $GPRMC,,V,,,,,,,,,,N*53
+      |       $PQXFI,,,,,,,,,,*56
+      |       $GNGSA,A,1,,,,,,,,,,,,,,,,*2C
+      |       $BDGSA,A,1,,,,,,,,,,,,,,,*0F
+      |       $GPGSV,1,1,01,40,,,34,1*66
+      |       $GLGSV,1,1,01,,,,18,1*70
+      |       $GPGGA,,,,,,0,,,,,,,,*66
+      |       $GPVTG,,T,,M,,N,,K,N*2C
+
+
+Si tengo GPSs a la vista algo más tipo:
+  GPS | nmea: $GPGSA,A,2,01,10,14,17,32,,,,,,,,3.0,2.8,0.9*31
+      |       $GNGNS,194135.00,4510.878819,N,00544.224017,E,AAN,07,2.8,229.5,49.0,,,V*6B
+      |       $GPRMC,194135.00,A,4510.878819,N,00544.224017,E,0.0,,210323,0.8,W,A*0B
+      |       $PQXFI,194135.0,4510.878819,N,00544.224017,E,229.5,10.39,3.05,0.11*55
+      |       $GNGSA,A,2,87,88,,,,,,,,,,,3.0,2.8,0.9,2*3C
+      |       $BDGSA,A,2,12,,,,,,,,,,,,3.0,2.8,0.9,4*39
+      |       $GPGSV,3,1,10,01,60,307,38,10,11,052,29,14,21,289,33,17,11,316,34,1*62
+$GPGSV,3,2,10,21,77,021,25,27,15,151,23,32,35,064,37,03,34,232,,1*60
+$GPGSV,3,3,10,08,46,167,,22,39,109,,1*6D
+      |       $GLGSV,3,2,11,71,57,053,22,86,48,098,,77,01,255,,79,04,355,,1*72
+      |       $GPGGA,194135.00,4510.878819,N,00544.224017,E,1,05,2.8,229.5,M,49.0,M,,*69
+      |       $GPVTG,,T,0.8,M,0.0,N,0.0,K,A*05
+      |       $BDGSV,2,2,06,05,17,116,,06,17,061,,0,4*68
+
+
 
 mmcli -m 0 --location-enable-gps-nmea
 Enable location discovery using GPS and reported with NMEA traces.
