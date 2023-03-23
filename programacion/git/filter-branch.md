@@ -45,6 +45,14 @@ Si queremos borrar ficheros, meterlos en un fichero de texto y ejecutar:
 git filter-repo --invert-paths --paths-from-file borrar.txt
 
 
+Para github luego tendremos que contactar con soporte para que borren las caches que contengan ese commit o borrar ese datos en PRs externas al repo.
+
+En gitlab on-premises, ir a https://gitlab.foo.com/ORG/NOMBRE/-/settings/repository
+Y en "Repository cleanup" subir el fichero que pide.
+https://gitlab.com/gitlab-org/gitlab/-/issues/223752
+Parece que subir un fichero vacío también dispara la limpieza.
+
+
 
 -- DEPRECATED --
 ## Usando el jar bfg
