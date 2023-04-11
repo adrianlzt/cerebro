@@ -69,6 +69,7 @@ alert - status
 0 - not sent
 1 - sent
 2 - failed
+3 - not yet processed
 
 hosts - Flags
 0 - normal host
