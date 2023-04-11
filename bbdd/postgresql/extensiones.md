@@ -100,6 +100,12 @@ https://github.com/munakoiso/logerrors
 Extension for PostgreSQL for collecting statistics about messages in logfile.
 
 
+# emaj
+https://github.com/dalibo/emaj
+
+Logging de ciertas tablas.
+
+
 
 
 

@@ -11,6 +11,9 @@ https://github.com/pierreforstmann/pg_log_statements
 extensión que nos permite activar el logging de queries para ciertos PID.
 También nos permite activarlo para ciertos users/ips/aplicaciones/dbs
 
+Mirar también emaj (en extesiones.md)
+
+
 https://www.endpoint.com/blog/2012/06/30/logstatement-postgres-all-full-logging
 Artículo en favor de tener siempre log_statement='all'.
 Escribir los logs a otro disco para no impactar en IO. Se puede probar a activar para ver como afecta al performance.
