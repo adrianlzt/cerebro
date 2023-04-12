@@ -7,6 +7,7 @@ Usar las competiciones "Getting started".
 En particular, mirar estas dos guías:
 https://www.kaggle.com/jlawman/complete-beginner-your-first-titanic-submission
 https://www.kaggle.com/alexisbcook/titanic-tutorial
+https://www.kaggle.com/code/startupsci/titanic-data-science-solutions
 
 
 # Soluciones / kernels
