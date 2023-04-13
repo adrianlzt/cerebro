@@ -2,12 +2,14 @@ https://github.com/tiangolo/fastapi
 
 Para crear servers webs API REST JSON de manera rápida.
 
+Basado en starlette
+
 
 
 # Ejemplo evitando logging duplicado
 ```
 import uvicorn     ■ Import "uvicorn" could not be resolved
-from fastapi import FastAPI, Response     ■ "Response" is not 
+from fastapi import FastAPI, Response     ■ "Response" is not
 
 import logging
 logging.basicConfig(level=logging.INFO)

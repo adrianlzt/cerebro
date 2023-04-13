@@ -2,6 +2,8 @@ https://docs.python.org/3/library/asyncio.html
 https://pymotw.com/3/asyncio/
 http://www.snarky.ca/how-the-heck-does-async-await-work-in-python-3-5
   este último es muy bueno. Tiene un ejemplo casi al final muy bueno para entender todo esto. Lo he comentado aún más en async_snarky_example.py
+https://inv.vern.cc/watch?v=8aGhZQkoFbQ
+  video de que es un event loop, es para JS, pero es bueno para entender el concepto
 http://sahandsaba.com/understanding-asyncio-node-js-python-3-4.html
   entendiendo un event loop con python
 http://latentflip.com/loupe
