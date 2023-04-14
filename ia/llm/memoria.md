@@ -9,3 +9,8 @@ Por ejemplo, el desarrollador del búscador phind dice (https://news.ycombinator
 Pregunta: I'd love to know more about how you pull in relevant text from web results for it to use in answers.
 
 Respuesta: We've built out a decently complex pipeline for this, but a lot of the magic has to do with the specific embedding model we've trained to know what text is relevant to feed in and what text isn't.
+
+
+ChatPDF parece que hace lo mismo:
+Why can't ChatPDF see all PDF pages?
+For each answer, ChatPDF can look at only a few paragraphs from the PDF at once. These paragraphs are the most related to the question. ChatPDF might say it can't see the whole PDF or mention just a few pages because it can view only paragraphs from those pages for the current question.
