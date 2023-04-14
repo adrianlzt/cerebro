@@ -33,6 +33,9 @@ De esta manera va mejorando sus respuestas.
 Ejemplo de como usar fine-tunning + RLHF para entrenar LLaMa.
 https://huggingface.co/blog/stackllama
 
+En datasets.md hay ejemplos de un dataset de instrucciones para entrenar un LLM instruction-tuned.
+
 
 # Ejemplo entrenando LLaMa con un chat de amigos
 https://www.izzy.co/blogs/robo-boys.html
+https://news.ycombinator.com/item?id=35540154

@@ -29,3 +29,23 @@ https://huggingface.co/datasets/Anthropic/hh-rlhf
 
 Parejas de prompts, el original y el corregido.
 Para hacer fine tunning a instructGPTs
+
+
+# Instruction tunning
+Databricks Releases 15K Record Training Corpus for Instruction Tuning LLMs
+https://github.com/databrickslabs/dolly/tree/master/data
+https://news.ycombinator.com/item?id=35541861
+
+Ejemplos:
+{
+  "instruction": "Who gave the UN the land in NY to build their HQ",
+  "context": "",
+  "response": "John D Rockerfeller",
+  "category": "open_qa"
+}
+{
+  "instruction": "Why mobile is bad for human",
+  "context": "",
+  "response": "We are always engaged one phone which is not good.",
+  "category": "brainstorming"
+}
