@@ -1,7 +1,17 @@
 Servidor de aplicaciones
 
+# Desplegar .war
+Ejemplo: https://docs.wavefront.com/tomcat.html#step-2-install-the-jolokia-agent-on-your-tomcat-server
+
+Copy the jolokia.war file to ${TOMCAT_HOME}/webapps.
+Start or restart your Tomcat server.
+Verify the Jolokia agent installation by accessing this URL: http://<address>:<port>/jolokia/
+
 # Monitorización
 https://tomcat.apache.org/tomcat-7.0-doc/monitoring.html
+
+## Jolokia
+https://docs.wavefront.com/tomcat.html
 
 ## JMX remote
 Si queremos obtener métricas desde fuera.

@@ -8,6 +8,9 @@ Tenemos que activar el Auth Method user/pass.
 Una vez activo usaremos la consola para crear usuarios:
 vault write auth/userpass/users/mitchellh password=foo policies=admins
 
+Para que funcione la cli (tendremos que pasar un token):
+vault login
+
 
 # Conceptos
 
@@ -74,7 +77,7 @@ Cada vez que queramos comunicar con un server que no es local deberemos pasar el
 
 ## Status
 vault status
-vault -tls-skip-verify status
+vault status -tls-skip-verify
 
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
