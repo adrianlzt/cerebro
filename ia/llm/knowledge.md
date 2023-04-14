@@ -1,3 +1,16 @@
+Parametric knowledge — the knowledge mentioned above is anything that has been learned by the model during training time and is stored within the model weights (or parameters).
+
+Source knowledge — any knowledge provided to the model at inference time via the input prompt.
+
+
+Mirar como usarlo en prompt_engineering.md
+
+
+En los modelos orientado a chat, en cada llamada a la API tenemos que pasar todo el histórico del chat, esta es la manera que tiene de acordarse
+de lo que estamos hablando.
+
+
+
 Parece que el esquema típico para dar "memoria" a los LLM es usar embeddings.
 Se parsea la información que queremos tener accesible generando embeddings por cada párrafo (por ejemplo).
 Esos embeddings luego se almacenan en bases de datos habilitadas para tal fin (https://www.pinecone.io/, vector DB).
