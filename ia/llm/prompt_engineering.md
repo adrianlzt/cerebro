@@ -1,3 +1,5 @@
+https://learnprompting.org/
+https://github.com/pinecone-io/examples/blob/master/generation/prompt-engineering.ipynb
 https://www.pinecone.io/learn/langchain-prompt-templates/
 
 Intructions (ej.: "contesta a la pregunta usando el contexto siguiente. Di "no se" en caso de no saber la respuesta")

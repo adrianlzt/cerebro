@@ -17,5 +17,4 @@ Posiblemente antes queramos hacer algún tipo de preprocesado:
 
 
 # text-embedding-ada-002
-https://openai.com/blog/new-and-improved-embedding-model
-max tokens: 8192
+mirar llm/models/openai.md

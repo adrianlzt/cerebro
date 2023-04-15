@@ -205,7 +205,7 @@ if any("abc" in s for s in some_list):
 # Buscar si hay un elemento en un array de diccionarios
 data = [
     {'site': 'Stackoverflow', 'id': 1},
-    {'site': 'Superuser', 'id': 2}, 
+    {'site': 'Superuser', 'id': 2},
     {'site': 'Serverfault', 'id': 3}
 ]
 
@@ -256,6 +256,9 @@ Heapq llamará a las funciones __eq__ y __lt__ para comparar los objetos y decid
 
 Mergear dos listas
 zip(listaA,listaB)
+>>> list(zip([1,2,3,4], [10,20,30,40]))
+[(1, 10), (2, 20), (3, 30), (4, 40)]
+
 
 Mergear dejando el tamaño de la más larga:
 from itertools import zip_longest

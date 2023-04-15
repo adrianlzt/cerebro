@@ -8,10 +8,14 @@ Vector databases excel at similarity search, or “vector search.” Vector sear
 
 Freemium, índices borrados tras 7 días sin uso.
 
+# Python
+https://docs.pinecone.io/docs/python-client
+
 Ejemplo de uso:
 https://github.com/pinecone-io/examples/blob/master/generation/langchain/handbook/05-langchain-retrieval-augmentation.ipynb
 
 
+Creando un índice y almacenando datos
 ```
 import pinecone
 
@@ -34,4 +38,24 @@ pinecone.create_index(
 )
 
 index = pinecone.GRPCIndex(index_name)
+
+index.upsert(vectors=zip(ids, embeds, metadatas))
 ```
+
+
+Hacer una query:
+```
+query_response = index.query(
+    namespace="example-namespace",
+    top_k=10,
+    include_values=True,
+    include_metadata=True,
+    vector=[0.1, 0.2, 0.3, 0.4],
+    filter={
+        "genre": {"$in": ["comedy", "documentary", "drama"]}
+    }
+)
+```
+
+include_values es para que nos devuelva también el vector encontrado.
+include_metadata es para obtener la metadata, que seguramente la queramos, por que es donde habremos puesto la info que queremos (el texto codificado por ejemplo).
