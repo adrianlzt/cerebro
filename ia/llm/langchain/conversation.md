@@ -4,6 +4,10 @@ https://github.com/pinecone-io/examples/blob/master/generation/langchain/handboo
 Comparativa entre distintos métodos de mantener la memoria
 https://github.com/pinecone-io/examples/blob/master/generation/langchain/handbook/03a-token-counter.ipynb
 
+https://python.langchain.com/en/latest/modules/memory/how_to_guides.html
+
+Mirar también chat.md
+
 
 # ConversationBufferMemory
 https://www.pinecone.io/learn/langchain-conversational-memory/#:~:text=%7Bhistory%7D%20parameter.-,ConversationBufferMemory,-(Follow%20along%20with

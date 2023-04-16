@@ -27,3 +27,7 @@ Respuesta: We've built out a decently complex pipeline for this, but a lot of th
 ChatPDF parece que hace lo mismo:
 Why can't ChatPDF see all PDF pages?
 For each answer, ChatPDF can look at only a few paragraphs from the PDF at once. These paragraphs are the most related to the question. ChatPDF might say it can't see the whole PDF or mention just a few pages because it can view only paragraphs from those pages for the current question.
+
+
+AutoGPT detalla que se hace un poco de overlap entre los chunks:
+each document is split into chunks of a specified maximum length with a specified overlap between chunks
