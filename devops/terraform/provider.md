@@ -28,3 +28,13 @@ terraform {
         }
     }
 }
+
+También hace falta crear el fichero .terraformrc:
+provider_installation {
+  filesystem_mirror {
+    path    = "/home/user/.terraform.d/plugins"
+  }
+  direct {
+    exclude = ["terraform.local/*/*"]
+  }
+}

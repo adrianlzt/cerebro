@@ -97,6 +97,8 @@ Saltar entre paréntesis, fin/comienzo comentarios etc. link
 
 gd
 goto definition (ir a la definicion de una variable)
+control+t saltar a donde estábamos antes
+
 
 g*
 ir a donde aparezca la palabra que tenemos bajo el cursor
