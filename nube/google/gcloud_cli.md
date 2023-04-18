@@ -57,6 +57,7 @@ Levantar un tunel (puerto local contra puerto remoto de la VM, necesita acceso d
 gcloud compute start-iap-tunnel NombreVM 8080
 gcloud compute start-iap-tunnel NombreVM 8080 --local-host-port=localhost:5601
 
+
 Otra forma, mediante tunel ssh:
 gcloud compute ssh NombreVM -- -N -L 5601:localhost:5601
 

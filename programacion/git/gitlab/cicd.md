@@ -116,3 +116,13 @@ TF_VAR_foobar:
       que puede ser multilinea
 ```
 
+
+
+# Cache / artifacts
+https://about.gitlab.com/blog/2022/09/12/a-visual-guide-to-gitlab-ci-caching/
+
+If your job does not rely on the the previous one (i.e. can produce it by itself but if content already exists the job will run faster), then use cache.
+If your job does rely on the output of the previous one (i.e. cannot produce it by itself), then use artifacts and dependencies.
+
+## Cache
+Si un job falla, lo que pudiese haber guardado en los directorios de cache no se persiste.
