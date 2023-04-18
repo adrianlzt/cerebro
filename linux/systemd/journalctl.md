@@ -197,6 +197,8 @@ jul 20 11:27:18 archer MIAPP[1234]: pepe
 
 Podemos filtrar con -t MIAPP
 
+Con -t estamos filtrando por el campo SYSLOG_IDENTIFIER
+
 
 # Cursor
 journalctl -n 5 --show-cursor
