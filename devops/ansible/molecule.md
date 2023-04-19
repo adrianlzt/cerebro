@@ -53,6 +53,8 @@ molecule/NOMBRE_SCENARIO/molecule.yml: parametrización
 molecule/NOMBRE_SCENARIO/converge.yml: playbook que llama al rol
 molecule/NOMBRE_SCENARIO/verify.yml: donde definimos lo que queremos testear (también se puede usar testinfra)
 
+create.yml: si no existe, se usa uno por defecto del driver.
+
 Por defecto el driver será "delegated", es decir, que se delega al desarrollador la conexión a la máquina donde probar.
 
 ## Lint
