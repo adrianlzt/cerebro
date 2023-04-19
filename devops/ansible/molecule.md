@@ -20,6 +20,17 @@ dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempoten
 Si hacemos un create haremos:
 dependency, create, prepare
 
+## Para collections
+https://www.jeffgeerling.com/blog/2019/how-add-integration-tests-ansible-collection-molecule
+https://ericsysmin.com/2020/04/30/ansible-collections-role-tests-with-molecule/
+
+Según el segundo, parece que lo mejor es un dir molecule/ a la altura de la collection.
+Para inicializarlo:
+molecule init scenario
+
+Luego crear un escenario por role:
+molecule init scenario NOMBRE
+
 
 # Install
 ```
