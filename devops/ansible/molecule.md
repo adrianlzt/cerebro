@@ -76,6 +76,9 @@ molecule lint
 ## create
 Creará las VMs o contenedores
 
+Si queremos forzarlo, podemos marcar el estado de create a false en el state
+~/.cache/molecule/NOMBRE_ROLE_O_COLLECTION/NOMBRE_SCENARIO/state.yml
+
 
 ## converge
 Cada vez que hacemos una modificación en el rol podemos ejecutar:
