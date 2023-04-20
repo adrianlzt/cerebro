@@ -20,6 +20,9 @@ dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempoten
 Si hacemos un create haremos:
 dependency, create, prepare
 
+Si lanzamos prepare no se ejecutará si ya se ha ejecutado, pero lo podemos forzar con:
+molecule prepare -f
+
 ## Para collections
 https://www.jeffgeerling.com/blog/2019/how-add-integration-tests-ansible-collection-molecule
 https://ericsysmin.com/2020/04/30/ansible-collections-role-tests-with-molecule/
@@ -111,6 +114,16 @@ https://molecule.readthedocs.io/en/latest/examples.html#customizing-the-docker-i
 ## Openstack
 pipenv install molecule molecule-openstack ansible openstacksdk
 molecule init role datadope.pruebas_test_role
+
+
+# Internals
+El estado lo almacena en
+~/.cache/molecule/NOMBRE_ROLE_O_COLLECTION/NOMBRE_SCENARIO/state.yml
+Por ejemplo:
+~/.cache/molecule/ansible-collection-iometrics__role_tests/jboss-monitor/state.yml
+
+En el fichero molecule.yml tendremos el render completo del fichero (lo que hayamos definido + defaults para el resto de cosas).
+
 
 # ANTIGUO
 

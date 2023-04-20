@@ -11,8 +11,7 @@ variable.split(".")[0]
 
 Solo de ansible:
 
-http://docs.ansible.com/playbooks_variables.html#jinja2-filters
-http://docs.ansible.com/playbooks_filters.html
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html
 
 {{ 'ansible' | regex_replace('^a.*i(.*)$', 'a\\1') }}
 
@@ -48,4 +47,3 @@ selectattr("cluster.virtual_host", "equalto", "hostAB")
 # join paths
 Unir paths sin saber si "directorio" termina con barra o no.
 "{{ directorio | regex_replace('/$','') }}/fichero.yml"
-
