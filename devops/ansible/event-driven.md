@@ -1,4 +1,5 @@
 https://github.com/ansible/event-driven-ansible
+https://github.com/ansible/ansible-rulebook
 https://www.ansible.com/use-cases/event-driven-automation
 
 Es una app que se arranca y puede subscribirse a una cola de eventos y ejecutar playbooks en las máquinas que hayamos configurado en el inventario.
