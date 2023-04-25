@@ -19,8 +19,18 @@ De esta manera nos quitamos las típicas trazas recurrentes que posiblemtente no
 Contar número de lineas por hora:
 cat zabbix_server.log | grep -e "^\s*[0-9]*:" | awk '{print $1;}' | cut -d ':' -f 2,3 | cut -c 1-11 | uniq -c
 
-Analizar logs debug con zabbix-debug-logs
+Analizar logs debug con zabbix-debug-logs (ssh://git@gitlab.opensolutions.cloud:20022/adrian/zabbix-debug-logs.git)
 Usar versión zabbix modificada para sacar cada log a un fichero
+
+
+## Trocear un fichero de log en un fichero por pid
+Ejemplo para separar solo los trappers, siendo el fichero de log comprimido con gzip
+
+for pid in $(ps -e f | grep "trapper [#]" | cut -d ' ' -f 2); do
+  zgrep "^\s*${pid}:20" zabbix_server.log.trappers.gz > ${pid}.log
+done
+
+Mirar troubleshooting_tiempo_entre_lineas.py para buscar saltos de tiempo.
 
 
 
