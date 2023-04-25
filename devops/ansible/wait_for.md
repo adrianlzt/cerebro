@@ -14,5 +14,9 @@ Waits for a condition before continuing.
     sleep: 5
     timeout: 100
 
+Solo esperar unos segundos
+- name: Sleep for 300 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 300
 
 mirar uri.md si lo que queremos es ver que una URL esté disponible

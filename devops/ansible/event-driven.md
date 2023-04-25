@@ -14,3 +14,7 @@ A parte de los típicos servidores de evntos (kafka, etc), también puede escuch
 Un ejemplo típico es que un sistema de alertado que envía webhooks a este sistema.
 Hay una serie de reglas que se evaluan y, por ejemplo, se ejecuta un playbook (o una plantilla de awk) para solucionar ese problema.
 https://github.com/ansible/event-driven-ansible/tree/main/demos/dynatrace-demo
+
+
+Collection para conectar kubernetes con ansible-events
+https://www.ansible.com/blog/kubernetes-meets-event-driven-ansible
