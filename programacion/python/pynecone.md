@@ -34,12 +34,18 @@ Para organizar cosas horizontalmente.
 Definimos variables de la clase "State" (que pasaremos al pc.App).
 Podemos modificarlas con la función "set_NOMBREVAR", que se genera automáticamente. Podemos hacer override si queremos.
 
+# Ejemplos
+https://pynecone.io/docs/gallery
+
+## Ejemplo app web transcribe audio with OpenAI whipser
+https://github.com/romanpeters/whisper-api-ui
+
+Podemos crear una función que funcione como una var:
+@pc.var
+def upper_text(self) -> str:
+    return self.text.upper()
 
 # Errores
 ## next not found
 Al ejecutar "pc run" me daba un error de que no encontraba "next".
 Borre ~/.bun he hice init y run de nuevo.
-
-
-# Ejemplo app web transcribe audio with OpenAI whipser
-https://github.com/romanpeters/whisper-api-ui
