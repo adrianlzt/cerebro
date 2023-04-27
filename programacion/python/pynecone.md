@@ -29,6 +29,13 @@ Aquí cada función de python es un component que parametrizamos con kwargs.
 ## pc.hstack
 Para organizar cosas horizontalmente.
 
+## wrap react components
+https://pynecone.io/docs/advanced-guide/wrapping-react
+
+Ejemplo de oauth con un component de react
+https://github.com/pynecone-io/pynecone/issues/395#issuecomment-1510766586
+
+
 
 # Estado
 Definimos variables de la clase "State" (que pasaremos al pc.App).
