@@ -41,6 +41,11 @@ https://github.com/pynecone-io/pynecone/issues/395#issuecomment-1510766586
 Definimos variables de la clase "State" (que pasaremos al pc.App).
 Podemos modificarlas con la función "set_NOMBREVAR", que se genera automáticamente. Podemos hacer override si queremos.
 
+
+# Docker
+https://github.com/pynecone-io/pynecone/tree/main/docker-example
+
+
 # Ejemplos
 https://pynecone.io/docs/gallery
 
@@ -51,6 +56,8 @@ Podemos crear una función que funcione como una var:
 @pc.var
 def upper_text(self) -> str:
     return self.text.upper()
+
+
 
 # Errores
 ## next not found
