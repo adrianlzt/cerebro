@@ -20,6 +20,15 @@ Permitir a un grupo de usuario acceso a los dispositivos usb
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0a81", ATTRS{idProduct}=="0702", GROUP="INSERT_HERE", MODE="0660"
 
 
+# Mapear un dipositivo a su fichero
+https://unix.stackexchange.com/questions/81754/how-to-match-a-ttyusbx-device-to-a-usb-serial-device
+
+Hay varias opciones.
+Una cómoda parece:
+ls -l /dev/serial/by-id
+
+Que nos mapea nuestro device (que debería tener siempre el mismo nombre), a un file tipo /dev/ttyUSBN
+
 
 # UsbRedir
 https://www.spice-space.org/page/UsbRedir

@@ -90,3 +90,7 @@ O con timers, activando un timer para que haga una acción. Lo tengo puesto, per
       data:
         entity_id: "{{ 'timer.alarm_arm' if is_state('alarm_control_panel.home_alarm', 'disarmed') else 'timer.alarm_disarm' }}"
 
+
+# Evento en un estado
+Podemos meter una configuración que solo salte si un estado lleva más de x tiempo.
+https://www.home-assistant.io/docs/automation/trigger/#holding-a-state-or-attribute
