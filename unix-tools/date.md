@@ -1,6 +1,13 @@
 Convertir con distintos lenguajes:
 https://www.epochconverter.com/#code
 
+Convertir tiempo a human readable:
+➜ systemd-analyze timespan 63312s
+Original: 63312s
+      μs: 63312000000
+   Human: 17h 35min 12s
+
+
 
 Convertir fecha unix timestamp a normal:
 date --date @1012312312
