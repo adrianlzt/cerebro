@@ -8,6 +8,9 @@ https://github.com/ansible/ansible/blob/devel/lib/ansible/plugins/callback/unixy
 callback que saca el resultado en modo unix
 
 
+Hay dos tipos de callback, los tipo stdout y el resto.
+Solo podemos configurar un callback stdout, que es el encargado de gestionarl o que sacaremos
+
 # usar callback
 [defaults]
 stdout_callback = unixy

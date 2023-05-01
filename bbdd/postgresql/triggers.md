@@ -11,3 +11,6 @@ Mirar un ejemplo básico en blackhole.md
 
 
 También existen "rules" (algo parecido), pero no se usan
+
+
+Parece que los triggers se ejecutan después del parser, pero lo que no podríamos usarlo si el formato que nos dan es incorrecto.

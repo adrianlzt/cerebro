@@ -18,6 +18,19 @@ parece que envios gratis a francia
 http://fr.rs-online.com/web/
   para buscar ahí, más filtro y mas sencillo
   para comprar: https://www.rs-particuliers.com/ (es una mierda de web y no tiene lo mismo que la pro)
+  10€ gastos de envío (gratis a partir de 60€)
 
 http://www.conrad.fr/ce/
   más barata y mejor web para buscar
+
+https://www.mouser.fr/
+  parece el mejor buscador
+  20€ de gastos de envío. Gratis a partir de 50€ (parece que envía desde USA)
+
+https://www.digikey.fr/
+  18€ de gastos de envío (parece que envía desde USA)
+
+https://www.tme.eu/
+  10€ de gastos de envío
+
+https://fr.farnell.com/

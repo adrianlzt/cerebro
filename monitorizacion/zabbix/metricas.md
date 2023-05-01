@@ -34,10 +34,11 @@ Si en algún momento llega un dato viejo, o nuevo, (de las 10:xx), se flushea la
 Cuando llegue el siguiente valor de las 11, se flusheará el trend que cogimos de las 10, se obtendrá de la bbdd la trend de las 11 y se actualizara.
 
 Podemos ver si estamos teniendo problemas de este tipo si encontramos métricas en trends/trends_uint de la hora actual (querrá decir que alguna métrica llegó descolozada y le ha obligado a flushear el contenido de la hora actual)
-Lo malo es que nos devolverá también métricas de máquinas que tienen su hora en el futuro
+Lo malo es que nos devolverá también métricas de máquinas que tienen su hora en el futuro.
+Visto cuando tenemos dos máquinas enviando al mismo item y tienen horas distintas.
 
 https://excalidraw.com/#room=a60e0ff6649a5cb87234,wMBqlGnvO_GEWEeALIAQag
-gráfico explicativo
+gráfico explicativo (borrado :/)
 
 
 Zabbix4

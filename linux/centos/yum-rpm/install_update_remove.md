@@ -34,6 +34,9 @@ Borrar
 # rpm -e --nodeps <paquete>  (borra sin hacer caso a las dependencias)
 # yum remove <paquete>
 
+Borrar solo el paquete, sin borrar dependencias:
+yum remove --noautoremove <paquete>
+
 
 Actualizar
 # yum update <paquete>

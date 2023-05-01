@@ -1,3 +1,5 @@
+Mirar también solid state relays (SSR), reles.md, que tal vez también sean optoacopladores.
+
 El más sencillo
 http://www.electrodragon.com/w/images/1/1e/PC817.pdf
 http://www.electrodragon.com/product/sharp-pc817-optoisolator-optocoupler-dip-4/

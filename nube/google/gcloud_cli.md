@@ -17,6 +17,9 @@ gcloud services list --available
 Cmabiar proyecto por defecto:
 gcloud config set project my-project
 
+Listar todos los "assets" de un proyecto:
+gcloud asset search-all-resources --scope=projects/NOMBRE
+
 
 # Configuración de cuenta
 Mostrar las que tenemos configuradas:
@@ -42,6 +45,11 @@ Remove temp CLOUDSDK_CONFIG directory.
 Listar VMs:
 gcloud compute instances list
 
+Encender:
+gcloud compute instances start NOMBREVM
+Apagar:
+gcloud compute instances stop NOMBREVM
+
 Acceder por ssh:
 gcloud compute ssh dev
 
@@ -49,8 +57,13 @@ Levantar un tunel (puerto local contra puerto remoto de la VM, necesita acceso d
 gcloud compute start-iap-tunnel NombreVM 8080
 gcloud compute start-iap-tunnel NombreVM 8080 --local-host-port=localhost:5601
 
+
 Otra forma, mediante tunel ssh:
 gcloud compute ssh NombreVM -- -N -L 5601:localhost:5601
+
+O si ya estamos dentro, por ssh, podemos crear un tunel con este "truco" de ssh:
+~C
+-L 0.0.0.0:3000:127.0.0.1:3000
 
 
 Copiar fichero
@@ -66,6 +79,13 @@ gcloud compute instances start tools --zone=us-east1-b
 Obtener IPs públicas
 gcloud compute addresses list
 
+
+## Load balancer
+
+### Backend
+gcloud compute backend-services list
+gcloud compute backend-services edit NOMBRE
+  nos abree el editor, estilo kubectl edit
 
 
 # GKE

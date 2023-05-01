@@ -17,6 +17,23 @@ driver: que servicio usamos para crear la máquina donde probar (docker, podman,
 Flujo típico (lo que hace molecule test):
 dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
 
+Si hacemos un create haremos:
+dependency, create, prepare
+
+Si lanzamos prepare no se ejecutará si ya se ha ejecutado, pero lo podemos forzar con:
+molecule prepare -f
+
+## Para collections
+https://www.jeffgeerling.com/blog/2019/how-add-integration-tests-ansible-collection-molecule
+https://ericsysmin.com/2020/04/30/ansible-collections-role-tests-with-molecule/
+
+Según el segundo, parece que lo mejor es un dir molecule/ a la altura de la collection.
+Para inicializarlo:
+molecule init scenario
+
+Luego crear un escenario por role:
+molecule init scenario NOMBRE
+
 
 # Install
 ```
@@ -39,6 +56,8 @@ molecule/NOMBRE_SCENARIO/molecule.yml: parametrización
 molecule/NOMBRE_SCENARIO/converge.yml: playbook que llama al rol
 molecule/NOMBRE_SCENARIO/verify.yml: donde definimos lo que queremos testear (también se puede usar testinfra)
 
+create.yml: si no existe, se usa uno por defecto del driver.
+
 Por defecto el driver será "delegated", es decir, que se delega al desarrollador la conexión a la máquina donde probar.
 
 ## Lint
@@ -56,6 +75,9 @@ molecule lint
 
 ## create
 Creará las VMs o contenedores
+
+Si queremos forzarlo, podemos marcar el estado de create a false en el state
+~/.cache/molecule/NOMBRE_ROLE_O_COLLECTION/NOMBRE_SCENARIO/state.yml
 
 
 ## converge
@@ -75,6 +97,9 @@ Ejecutará el rol dos veces para ver que tenemos idempotencia
 ## verify
 Ejecuta el playbook de verify para comprobar que se cumplen los tests que hayamos definido
 
+Podemos definir tests más complejos, aplicando distintos side effects y luego verifies:
+https://molecule.readthedocs.io/en/latest/configuration.html#root-scenario:~:text=%3A-,Advanced%20testing,-If%20needed%2C%20Molecule
+
 ## destroy
 Borrar las VMs/containers.
 Tendremos que ejecutarlo si queremos cambiar de provisioner
@@ -92,6 +117,16 @@ https://molecule.readthedocs.io/en/latest/examples.html#customizing-the-docker-i
 ## Openstack
 pipenv install molecule molecule-openstack ansible openstacksdk
 molecule init role datadope.pruebas_test_role
+
+
+# Internals
+El estado lo almacena en
+~/.cache/molecule/NOMBRE_ROLE_O_COLLECTION/NOMBRE_SCENARIO/state.yml
+Por ejemplo:
+~/.cache/molecule/ansible-collection-iometrics__role_tests/jboss-monitor/state.yml
+
+En el fichero molecule.yml tendremos el render completo del fichero (lo que hayamos definido + defaults para el resto de cosas).
+
 
 # ANTIGUO
 

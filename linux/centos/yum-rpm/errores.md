@@ -44,3 +44,14 @@ Para forzar la instalación:
 rpm --nosignature -Uvh file.rpm
 Pero despues el "rpm -qa" falla: error: rpmdbNextIterator: skipping h#     426 Header V4 RSA/SHA512 signature: BAD, key ID d88e42b4
 
+
+
+
+
+warning: Signature not supported. Hash algorithm SHA1 not available
+https://www.redhat.com/en/blog/rhel-security-sha-1-package-signatures-distrusted-rhel-9
+Para permitir instalar paquetes con esa firma
+update-crypto-policies --set LEGACY
+
+Para dejarlo bien de nuevo:
+update-crypto-policies --set DEFAULT

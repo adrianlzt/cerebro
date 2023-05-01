@@ -3,6 +3,8 @@ Proxy http
 sudo tinyproxy -d
   en foreground
 
+docker run --rm -it -p 8888:8888 vimagick/tinyproxy
+
 curl --proxy localhost:8888 eth0.me
 
 

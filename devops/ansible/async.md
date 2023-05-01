@@ -27,3 +27,34 @@ O hacer un fire and forget, y posteriormente ver si ha terminado:
   register: job_result
   until: job_result.finished
   retries: 30
+
+
+# Internals
+Lo que hace es crear un fichero $HOME/.ansible_async/524489329660.3210556 donde, tras ejecutar al acción, deja el contenido:
+{"started": 1, "finished": 0, "ansible_job_id": "524489329660.3210556"}
+
+Luego la tarea "async_status" irá comprobando ese fichero.
+
+Cuando la tarea principal ha termiando, en ese fichero habrá un volcado del output y el async lo recuperará de ahí para seguir con las tareas.
+
+# Debug
+Si usamos ANSIBLE_KEEP_REMOTE_FILES=1, en el directorio, a parte del típico AnsiballZ veremos un async_wrapper.py
+
+Podemos ver como lo ejecuta ansible si lanzamos el playbook con -vvvv
+Hará algo de este tipo:
+python async_wrapper.py 11111111 600 /home/awxtask/.ansible/tmp/ansible-tmp-1678694008.9198644-1457-67922134023490/AnsiballZ_docker_container.py _ -preserve_tmp
+
+
+Siendo los params:
+usage: async_wrapper <jid> <time_limit> <modulescript> <argsfile> [-preserve_tmp]
+
+
+También se le puede hacer "explode" al async_wrapper.py
+
+Mirando el código del async_wrapper lo que hace es:
+ - forkea, con el proceso principal contestando a ansible y escribiendo el fichero de estado temporal.
+ - el child se vuelve a forkear en dos.
+   - el child ejecuta el módulo
+   - el parent se queda comprobando cuando ha terminado
+
+Si queremos modificar para poder ejecutar el async_wrapper con execute, tendremos que modificar una parte del código, porque solo hace "debug" si tenemos dos parámetros (y al async_wrapper le tenemos que pasar más).

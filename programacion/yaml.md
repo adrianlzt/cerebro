@@ -54,16 +54,27 @@ Array:
 
 # Multiline
 https://yaml-multiline.info/
+https://stackoverflow.com/questions/3790454/how-do-i-break-a-string-in-yaml-over-multiple-lines/21699210#21699210
+
+Tambien tenemos ">+", "|+"
 
 example: >
   una cosa
   otra cosa
+  todo seguido
+  y con un salto de línea al final
 
+example: >-
+  sin el salto de línea al final
 
 example: |
   en este formato
   se respetan los cambios
   de linea que aqui pongo
+
+example: |-
+  sin salto de línea al final
+
 
 foo:
   bar: |

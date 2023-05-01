@@ -343,3 +343,9 @@ tmux send-keys -t SESION:VENTANA.PANE "echo world" Enter
 
 tmux send-keys -t 1 "echo world" Enter
   enviar al pane 1 de la sesión y ventana activa
+
+Enviar Control+], esperar 1s, luego enviar Enter y luego Control+d
+
+Si quiero meterlo asociado en neovim al guardar el fichero main.py (para micropython)
+autocmd BufWritePost main.py !tmux send-keys -t 2 C-] && sleep 1 && tmux send-keys -t 2 Enter && tmux send-keys -t 2 C-d
+tmux send-keys -t 2 C-] && sleep 1 && tmux send-keys -t 2 Enter && tmux send-keys -t 2 C-d

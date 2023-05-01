@@ -58,7 +58,7 @@ vrrp_instance nombre {
     track_script {
         chk_haproxy
     }
-    # allows the lower priority # machine to maintain the master role, even when a higher priority machine comes back online
+    # allows the lower priority machine to maintain the master role, even when a higher priority machine comes back online
     nopreempt
 }
 

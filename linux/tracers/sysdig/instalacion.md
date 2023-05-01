@@ -1,3 +1,6 @@
+Tambien se puede ejecutar con docker, mirar docker.md
+
+
 https://docs.sysdig.com/en/docs/installation/sysdig-agent/agent-installation/agent-install-manual-linux-installation/#centos-rhel-fedora-amazon-ami-amazon-linux-2
 
 Necesita compilar un módulo para el kernel y cargarlo (se necesitan las fuentes del kernel que estemos corriendo)
@@ -29,10 +32,15 @@ rpm --import https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public
   no me funciona, quitar el gpgcheck del .repo
 curl -s -o /etc/yum.repos.d/draios.repo http://download.draios.com/stable/rpm/draios.repo
 
+Para poder instalar en RHEL9&co, hace falta permitir firmas SHA1 de rpms
+update-crypto-policies --set DEFAULT:SHA1
+
+
 Hace falta epel
 rpm -i http://mirror.us.leaseweb.net/epel/6/i386/epel-release-6-8.noarch.rpm
 
 yum install -y kernel-devel-$(uname -r)
+  esto parece que no hace falta, que viene como dependencia de sysdig
 yum install -y sysdig
 
 

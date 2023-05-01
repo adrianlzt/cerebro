@@ -6,6 +6,9 @@ ansible-console
 $ copy dest=/tmp/foo content=hola
 
 
+ansible-console localhost
+debug msg="hola"
+
 Ejemplo configurando un repo:
 ````
 $ become yes

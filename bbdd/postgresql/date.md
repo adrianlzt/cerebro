@@ -59,3 +59,7 @@ EXTRACT(EPOCH FROM interval_value)
 
 # Parsear fecha
 TO_DATE(date, 'DD/MM/YYYY')
+
+
+# Timestamp con zone (timestampz)
+select TIMESTAMP WITH TIME ZONE '2004-10-19 10:23:54+02'

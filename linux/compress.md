@@ -13,6 +13,9 @@ pzstd: parallel zstd
 
 
 # Zstd
+Descomprimir
+zstd -d fichero.zstd
+
 Archivar: tar + zstd
 tar --zstd -cf directory.tar.zst directory/
 

@@ -54,7 +54,7 @@ go build / go run
 
   Nomenclatura go.mod
     Si vemos en la versión de un paquete "+incompatible", es que el módulo usa vN (N>1) pero no está siguiendo el Semantic Import Versioning (paquete/v2/blabl)
-    indirect: 
+    indirect:
 
 
 La importación (go imports) automática de imports no funcionará si no tenemos el paquete cargado en nuestro module.
@@ -81,6 +81,10 @@ go get -u nombre/repo
 
 Dependencias que vamos a usar
 go get -m all
+
+
+Instalar un paquete:
+go install paquete
 
 
 

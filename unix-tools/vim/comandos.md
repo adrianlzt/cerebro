@@ -97,6 +97,8 @@ Saltar entre paréntesis, fin/comienzo comentarios etc. link
 
 gd
 goto definition (ir a la definicion de una variable)
+control+t saltar a donde estábamos antes
+
 
 g*
 ir a donde aparezca la palabra que tenemos bajo el cursor
@@ -149,6 +151,9 @@ control+v, seleccionar líneas y luego
 :set filetype?
 :se ft
 Nos dice que filetype tiene definido actualmente
+
+:verbose set PARAMETRO
+Nos dice el último sitio donde se definió este parámetro.
 
 
 Linea delimitando la columna 80 (esta limitación viene de poder imprimir el código en papel)

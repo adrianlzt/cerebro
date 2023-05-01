@@ -1,6 +1,9 @@
 # BLE (Bluetooth Low Energy)
 https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/
 
+https://www.youtube.com/watch?v=vrcPGeYinVQ
+Parece que hay chips (NRF52) mejores para hacer cosas BLE con batería, que consumen menos.
+
 Entre 0.01 y 0.5 del consumo normal de BT
 
 Esquema cliente/servidor.

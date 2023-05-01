@@ -1,6 +1,9 @@
 yum install mongodb-org-shell
 apt-get install mongodb-clients
 
+En las nuevas versiones (GA en 4.4) el comando es
+mongosh
+
 $ mongo 192.169.0.5:9999/foo
 
 

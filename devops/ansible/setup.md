@@ -182,6 +182,7 @@ Crear custom facts al desplegar:
 # ansible_os_family
 ansible_os_family == 'RedHat'
 ansible_os_family == 'Suse'
+ansible_os_family == 'Windows'
 
 
 # ansible_system

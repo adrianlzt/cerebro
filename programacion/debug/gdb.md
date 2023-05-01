@@ -119,6 +119,10 @@ gdb a.out
 > symbol-file a.out.debug
 
 
+# Ubuntu
+https://wiki.ubuntu.com/Debug%20Symbol%20Packages
+
+
 # CentOS/RedHat
 Para instalar los simbolos de un binario
 yum install -y yum-utils

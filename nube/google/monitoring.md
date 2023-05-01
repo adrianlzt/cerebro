@@ -1,5 +1,10 @@
 https://console.cloud.google.com/monitoring
 
+# Alerting
+Métricas a partir de logs
+https://pomba.net/2020/06/how-to-create-an-alert-in-gcp-for-a-specific-event-ex-modifying-a-firewall-rule/
+
+
 # Notificaciones a google chat
 Usar pub/sub + cloud function
 
@@ -30,6 +35,9 @@ Si queremos meter config custom seguir: https://cloud.google.com/monitoring/agen
 Parece que el ExecStartPre=/opt/google-cloud-ops-agent/libexec/google_cloud_ops_agent_engine es quien genera la config final para otel collector.
 
 ## Prometheus
+https://cloud.google.com/stackdriver/docs/solutions/agents/ops-agent/prometheus
+
+## Hasta la 2.25 era experimental
 Parece que si queremos meter un scrapper extra de prometheus hay que poner unos flags especiales
 
 Para la v2.23.0

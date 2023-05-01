@@ -101,6 +101,7 @@ alter user postgres password 'xxx';
 ALTER ROLE partman PASSWORD 'par3456man';
 
 ### dar roles a posteriori:
+Permitir a un usuario crear nuevas dbs
 alter user usuario createdb;
 
 Asociar un role a un usuario:
@@ -187,6 +188,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
 NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
 
 
+
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
 
@@ -201,6 +203,10 @@ Dar permisos en una función que está en otro schema que usa determianda tabla:
 GRANT USAGE ON SCHEMA partman to zabbix_odbc;
 grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
 GRANT SELECT ON partman.part_config TO zabbix_odbc;
+
+
+Dar permisos de creación de tablas temporales a un role:
+grant temp on database zabbix to partman;
 
 
 Mover todo lo que pertenezca a un usuario a otro:

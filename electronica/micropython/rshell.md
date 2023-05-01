@@ -1,6 +1,22 @@
 Me parece que con pyboard.py me falla mas que con mpfshell.
 
 # mpremote
+https://github.com/bulletmark/mpr
+wrapper para mpremote, más linux friendly
+
+mpr list
+  mostrar dispositivos
+
+mpr -d /dev/ttyUSB2 repl
+  entrar en el repl
+
+mpr -d /dev/ttyUSB2 ls
+  listar contenido de ese dev
+
+mpr -d /dev/ttyUSB2 put hx711_gpio.py .
+  copiar ese fichero local al dispositivo
+
+
 https://docs.micropython.org/en/latest/reference/mpremote.html
 Otra herramienta más para hacer lo mismo.
 Nueva de la versión 1.16 https://github.com/micropython/micropython/releases/tag/v1.16

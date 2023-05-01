@@ -1,3 +1,6 @@
+Mirar https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble
+
+
 Ejemplo de código BLE
 https://github.com/2black0/MicroPython-ESP32-BLE/blob/main/main.py
 

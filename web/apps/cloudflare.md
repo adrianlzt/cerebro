@@ -7,6 +7,17 @@ https://www.peer5.com/cdn
 cdn distribuido usando webrtc
 
 
+
+# Cloudflare
+Al darnos de alta nos pide un dominio de primer nivel.
+Escanea ese dominio y nos saca los subdominios que va a cachear.
+Nos pide que cambiemos los NS a cloudflare.
+
+## Under Attack Mode
+Show visitors a JavaScript challenge when they visit your site.
+
+
+
 # Como funciona
 Hay dos tipos de CDN, por DNS y por anycast.
 Lo que se busca es tener una baja latencia (bajo ping), a parte de otras ventajas (seguridad, protección ante DDoS, etc)

@@ -51,7 +51,7 @@ Cargarlo con minio-py set_bucket_policy()
 # Client mcli
 
 ## Añadir server
-mcli config host a ALIAS URL ACCESSKEY SECRETKEY
+mcli config host add ALIAS URL ACCESSKEY SECRETKEY
 
 
 ## Listar

@@ -74,3 +74,57 @@ https://docs.gitlab.com/ee/ci/interactive_web_terminal/
 Pero no para los shared runners. Issue: https://gitlab.com/gitlab-org/gitlab/-/issues/24674
 
 Podemos hacer un docker exec en la máquina donde esté el runner.
+
+Si queremos tener las variables de entorno tipo fichero bien configuradas:
+cd /builds/ORG/PROJECT.tmp/
+for i in $(ls); do export $i=$PWD/$i; done
+
+
+## runner local
+https://www.lullabot.com/articles/debugging-jobs-gitlab-ci
+https://campfirecode.medium.com/debugging-gitlab-ci-pipelines-locally-e2699608f4df
+
+DEPRECATED: https://gitlab.com/gitlab-org/gitlab-runner/-/issues/2797
+Algunas cosas no funcionan, como los yaml anchors
+https://gitlab.com/gitlab-org/gitlab-runner/-/issues/26413
+Mirar gitlab-ci-local
+
+Vamos al directorio donde tenemos el .gitlab-ci.yml
+cd miproyecto/
+gitlab-runner exec docker --docker-image IMAGEN/DE/DOCKER NOMBREJOB
+
+### gitlab-ci-local
+Parece que hay una alternativa no oficial:
+https://github.com/firecow/gitlab-ci-local
+AUR/gitlab-ci-local
+
+cd proyecto/
+gitlab-ci-local --list-all
+
+Tenemos que explicitar en el job la "image" de docker a usar. Si no, correrá en local.
+
+Para pasar variables, crear el fichero .gitlab-ci-local-variables.yml y ponerlas con el siguiente formato:
+
+```
+SOME_ENV_VAR: mipassword
+
+TF_VAR_foobar:
+  type: file
+  values:
+    '*': |
+      contenido del fichero
+      que puede ser multilinea
+```
+
+
+
+# Cache / artifacts
+https://about.gitlab.com/blog/2022/09/12/a-visual-guide-to-gitlab-ci-caching/
+
+If your job does not rely on the the previous one (i.e. can produce it by itself but if content already exists the job will run faster), then use cache.
+If your job does rely on the output of the previous one (i.e. cannot produce it by itself), then use artifacts and dependencies.
+
+Usando docker no me compartía bien los caches entre distintas ejecuciones. Una vez configurado s3/minio ya funcionó.
+
+## Cache
+Si un job falla, lo que pudiese haber guardado en los directorios de cache no se persiste.

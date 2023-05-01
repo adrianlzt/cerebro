@@ -81,6 +81,8 @@ gpg --with-colons --import-options show-only --import foo.key
 gpg --import fichero.key
 gpg --import private.key
   nos pedirá la password. Si ponemos --batch la importará sin pedirnos clave. Nos la pedirá al desencriptar
+  al importarla nos aparecerá (en gpg -K), como unkown. Para validarla (como absoluta) usar (https://unix.stackexchange.com/a/392355)
+    expect -c 'spawn gpg --edit-key {KEY} trust quit; send "5\ry\r"; expect eof'
 
 ## Exportar mi clave publica
 gpg --output public.key --armor --export nombre@email.com

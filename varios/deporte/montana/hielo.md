@@ -44,6 +44,7 @@ http://conditions.ice-fall.com/secteurs/cascades-vallon-du-diable-vallee-du-vene
 # Le Bourg-d'Oisans
 https://www.camptocamp.org/routes/56371/fr/le-bourg-d-oisans-villard-notre-dame-happy-birthday
 4 largos, grado 3+
+demasiado fácil, solo un largo de 3+ de 50m. Los otros dos fáciles.
 
 https://www.camptocamp.org/routes/146936/fr/le-bourg-d-oisans-villard-reymond-la-gorge-3-cigares-miroir-mon-beau-miroir
 Un largo, grado 5. Se puede montar un tope

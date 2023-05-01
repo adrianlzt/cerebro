@@ -69,13 +69,14 @@ alert - status
 0 - not sent
 1 - sent
 2 - failed
+3 - not yet processed
 
 hosts - Flags
 0 - normal host
 2 - host prototype
 4 - nodo discovered
 
-State (items y triggers)
+State (items y triggers). En zabbix6 items.state ya no existe, está en item_rtdata
 0 - normal
 1 - not supported
 
@@ -860,3 +861,272 @@ Si no ponemos distinct, tendremos el número total de entradas sin asociación c
 
 lastclock de un item (en cualquier history). Posiblemente muy costosa. Tal vez podríamos meter filtrado por tiempo.
 select host,key_,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key_) limit 3;
+
+
+
+
+Queries para cambiar los names de los items prototypes de "$1" a la macro.
+Cambia de $1 a $5.
+https://www.zabbix.com/documentation/4.0/en/manual/installation/upgrade_notes_400#deprecated-macros-in-item-names
+https://gist.github.com/adrianlzt/916a0c641c62b5b5ca700a59b4730dab
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$1)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$2)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$3)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$4)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$5)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
+
+
+
+# Queries para comprobar el buen estado de un host
+
+# Obtenemos los items de las entities del host analizado que no han recibido valores
+query_items_without_data: |
+  WITH items_with_data AS (
+      SELECT
+          host,
+          key_,
+          items.itemid,
+          greatest (max(h.clock), max(huint.clock), max(hstr.clock), max(hlog.clock), max(htext.clock)) AS lastclock
+      FROM
+          hosts
+          JOIN items USING (hostid)
+          LEFT JOIN history h USING (itemid)
+          LEFT JOIN history_uint huint USING (itemid)
+          LEFT JOIN history_str hstr USING (itemid)
+          LEFT JOIN history_log hlog USING (itemid)
+          LEFT JOIN history_text htext USING (itemid)
+      WHERE
+          hosts.status = 0 -- enabled
+          AND hosts.host like '{{ ansible_hostname }}..%'
+          AND items.status = 0 -- enabled
+          AND items.flags IN (0, 4) -- plain item or discovered
+      GROUP BY
+          (hosts.host, items.key_, items.itemid))
+  SELECT
+      host,
+      key_,
+      itemid
+  FROM
+      items_with_data
+  WHERE
+      lastclock IS NULL
+  ORDER BY
+      host
+
+# Obtenemos todos items de las entities del host analizado
+query_all_items: |
+  SELECT
+      host,
+      key_,
+      items.itemid
+  FROM
+      hosts
+      JOIN items USING (hostid)
+  WHERE
+      hosts.status = 0 -- enabled
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0 -- enabled
+      AND items.flags IN (0, 4) -- plain item or discovered
+  GROUP BY
+      (hosts.host, items.key_, items.itemid)
+
+# Obtener los items con estado no soportado
+query_unsupported_items: |
+  SELECT
+      host,
+      key_,
+      items.itemid
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      JOIN item_rtdata USING (itemid)
+  WHERE
+      hosts.status = 0 -- enabled
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0 -- enabled
+      AND item_rtdata.state = 1 -- not supported
+      AND items.flags IN (0, 4) -- plain item or discovered
+  GROUP BY
+      (hosts.host, items.key_, items.itemid)
+
+# Obtener los LLDs que no han sido ejecutados.
+# Lo que hacemos es contar cuantos items se han generado por cada LLD y devolvemos los que tengan 0.
+query_lld_exec: |
+  SELECT
+      host,
+      items.key_,
+      count(item_discovery.*) as generated_items
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      LEFT JOIN item_discovery ON items.itemid = item_discovery.parent_itemid
+  WHERE
+      hosts.status = 0 -- enabled
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0 -- enabled
+      AND items.flags = 1 -- LLD item
+  GROUP BY
+      (hosts.host, items.key_, items.itemid)
+  HAVING
+      count(item_discovery.*) = 0
+
+# Comprobar si algún LLD está en error.
+query_unsupported_llds: |
+  SELECT
+      host,
+      key_,
+      items.itemid
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      JOIN item_rtdata USING (itemid)
+  WHERE
+      hosts.status = 0 -- enabled
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0 -- enabled
+      AND item_rtdata.state = 1 -- not supported
+      AND items.flags = 1 -- LLD item
+  GROUP BY
+      (hosts.host, items.key_, items.itemid)
+
+# Comprobar si tenemos trigger en estado unknown (error)
+query_unknown_triggers: |
+  SELECT
+      triggers.description,
+      triggers.state
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      JOIN functions USING (itemid)
+      JOIN triggers using (triggerid)
+  WHERE
+      hosts.status = 0
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0
+      AND items.flags IN (0, 4)
+  GROUP BY
+      (triggers.description, triggers.state)
+
+
+# Obtener los problemas abiertos de un host
+query_problems: |
+  SELECT
+      key_,
+      triggers.description
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      JOIN functions using (itemid)
+      JOIN triggers using (triggerid)
+      JOIN problem ON triggers.triggerid = problem.objectid
+  WHERE
+      hosts.status = 0
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0
+      AND items.flags IN (0, 4)
+      AND r_eventid IS NULL
+  GROUP BY
+      (hosts.host, items.key_, items.itemid, triggers.description)
+
+
+# Obtener los item prototypes que estén usando el formato antiguo de naming ($1, $2, ...)
+query_item_prototypes_old_format: |
+  SELECT
+        items.name,
+        key_
+    FROM
+        hosts
+        JOIN items USING (hostid)
+    WHERE
+        hosts.status = 0
+        AND hosts.host like '{{ ansible_hostname }}..%'
+        AND items.status = 0
+        AND items.flags = 2
+        AND items.name like '%$%'
+    GROUP BY
+        (hosts.host, items.key_, items.itemid)
+
+
+# Items generados a partir de un LLD que ya no vienen en el LLD y van a ser borrados
+query_items_to_be_deleted: |
+  SELECT
+      items.key_
+  FROM
+      hosts
+      JOIN items USING (hostid)
+      JOIN item_discovery USING(itemid)
+  WHERE
+      hosts.status = 0 -- enabled
+      AND hosts.host like '{{ ansible_hostname }}..%'
+      AND items.status = 0 -- enabled
+      AND ts_delete <> 0

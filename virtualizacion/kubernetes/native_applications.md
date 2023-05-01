@@ -42,6 +42,11 @@ Para go, nos dan todo el boilerplate para engancharnos a las modificaciones y ac
 ## Desarrollar un operator
 https://github.com/operator-framework/getting-started
 
+Ejemplo de un operator que crea cronjobs
+https://book.kubebuilder.io/cronjob-tutorial/cronjob-tutorial.html
+https://github.com/paweloczadly/kubernetes-operator-cronjob/
+
+
 
 ## Operator Hub
 https://operatorhub.io/
@@ -49,4 +54,3 @@ https://operatorhub.io/
 
 https://github.com/operator-framework/awesome-operators
 Colección de operators
-

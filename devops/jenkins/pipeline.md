@@ -148,6 +148,12 @@ node {
     }
 }
 
+https://e.printstacktrace.blog/jenkins-pipeline-environment-variables-the-definitive-guide/
+Si tenemos una variable booleana, usar:
+if (env.IS_BOOLEAN.toBoolean()) {
+}
+
+
 https://www.jenkins.io/doc/book/pipeline/syntax/#when
 stage ('foo') {
     when { buildingTag() }

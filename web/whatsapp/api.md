@@ -1,3 +1,8 @@
+Algo intermedio es un bot de otra gente que nos permite enviarnos mensajes.
+https://www.callmebot.com/blog/free-api-whatsapp-messages/
+
+
+
 PHP
 https://github.com/mgp25/Chat-API
 

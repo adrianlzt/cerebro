@@ -7,6 +7,11 @@ docker run --rm -it --name socks5-proxy -p 1080:1080 -e PROXY_USER=adri -e PROXY
 curl --socks5 127.0.0.1:1080 -U adri:adri https://ifcfg.me
 
 
+Proxy http
+https://tinyproxy.github.io/
+https://hub.docker.com/r/ajoergensen/tinyproxy
+
+
 Socks4
 ssh hostname -D 54321
 

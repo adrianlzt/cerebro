@@ -103,6 +103,8 @@ Coger un valor de una columna de un fichero: grep + cut
 awk '/processes/ {print $2}' /proc/stat
   De la linea que tiene "processes" coge la segunda columna
 
+echo "foo bar" | awk '/foo/ {print $2;}'
+
 pactl list sinks short | awk -v sink=26 '{ if ($1 == sink) {print $2} }'
   si la primera columa es "26", imprime la segunda columna
 
@@ -136,3 +138,7 @@ awk 'BEGIN { "date +%N" | getline seed; srand(seed); print rand(); }';
 
 Imprimir todas las columnas menos la primera:
 awk '{$1=""; print $0}'
+
+
+Extraer un valor de un json
+cat fichero.json | python3 -m json.tool | awk -F'"' '/project_id/ {print $4}'

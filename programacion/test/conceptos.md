@@ -1,3 +1,12 @@
+https://martinfowler.com/tags/testing.html
+https://martinfowler.com/articles/practical-test-pyramid.html
+
+End-to-end: https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html
+https://docs.google.com/presentation/d/15gNk21rjer3xo-b1ZqyQVGebOp_aPvHU3YH7YnOMxtE/edit#slide=id.g437663ce1_53_98
+
+Google often suggests a 70/20/10 split: 70% unit tests, 20% integration tests, and 10% end-to-end tests
+
+
 [10:06:35] Tools - Agustin: QA = pruebas de aceptacion
 [10:06:39] Tools - Agustin: test cases
 [10:06:47] Tools - Agustin: "te tiene que salir un combo A cuando pulses en X"

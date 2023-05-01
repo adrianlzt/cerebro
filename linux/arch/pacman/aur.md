@@ -40,7 +40,11 @@ yay -S --mflags --skipinteg PAQUETE
 yay -G paquete
 cd paquete/trunk
 vi PKGBUILD
-makepkg -si
+yay -Bi
+otra opción: makepkg -si
+
+Si hemos modificado las fuentes, podemos borrar las firmas y ejecutar
+makepkg -si --skipchecksums
 
 
 Otra opción (no me ha funcionado la última vez que probé con un paquete ya instalado)

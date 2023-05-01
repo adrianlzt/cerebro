@@ -33,6 +33,10 @@ El valor PID que puede tener un proceso visto desde el host es distinto que el v
 https://lwn.net/Articles/689856/
 https://stackoverflow.com/a/22889401
 
+Lo que hace es que podamos tener distintos mount points en distintos namespaces.
+Si queremos encapsular un proceso en un FS distinto, tendremos que entrar en el ns y luego montar lo que queramos.
+Mirar ejemplo en overlayfs.md para hacer una copy-on-raw de /
+
 Leer un fichero de otro mount NS
 Lo hacemos a través de /proc/PID/root/path/al/fichero
 

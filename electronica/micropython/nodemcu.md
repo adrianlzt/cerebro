@@ -17,6 +17,11 @@ esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 
 esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-VERSION.bin
 
+
+Para algunos chips (WEEMO c3 mini), primero tenemos que ponerlo en modo u2f.
+https://www.wemos.cc/en/latest/tutorials/c3/get_started_with_micropython_c3.html
+
+
 3.- Acceder a la consola
 mirar mpfshell.md
 

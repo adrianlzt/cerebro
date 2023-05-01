@@ -138,6 +138,7 @@ Podemos ver las particiones creadas con:
 Se crean automáticamente o ha sido el worker?
 
 
+
 Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_proc() (más en sección monitoring)
 
 
@@ -150,7 +151,7 @@ Si tenemos cargado el background worker (bgw), él se encargará de estas llamad
 Si queremos llamar a mano mejor llamar a run_maintenance_proc()
 
 Si solo queremos ejecutarlo sobre una tabla:
-SELECT partman.run_maintenance('public.history_str', p_jobmon := 't', p_debug := 't');
+SELECT partman.run_maintenance('public.history_str', p_jobmon := 't');
 
 undo_partition()
 mover los datos de las particiones a la tabla parent y hacer unattach las partitions
@@ -158,6 +159,19 @@ mover los datos de las particiones a la tabla parent y hacer unattach las partit
 
 ## Ver particionado configurado
 select parent_table,control,partition_interval,premake from partman.part_config;
+
+
+## Arreglar en caso de que no esté particionando
+Si la bbdd ha estado mucho tiempo parado, la función run_maintenance dejará de funcionar.
+Vemos el error:
+WARNING:  Attempt to drop final partition in partition set public.history as part of retention policy. If you see this message multiple times for the same table, advise reviewing retention policy and/or data entry into the partition set. Also consider setting "infinite_time_partitions = true" if there are large gaps in data insertion.).
+
+Parece que es una protección para evitar borrar todas las particiones.
+
+Una forma de arreglarlo es borrar las particiones antiguas, crear una nueva anterior a los datos disponibles:
+select partman.create_partition_time('public.history_str', ARRAY[TIMESTAMP WITH TIME ZONE '2023-01-19 10:00:00+01']);
+Y luego mover lo que está en la default a las tablas particionadas:
+CALL partman.partition_data_proc('public.history_str');
 
 
 

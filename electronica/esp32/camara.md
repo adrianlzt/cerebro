@@ -10,9 +10,18 @@ Librerías para interactuar con la cámara: https://github.com/espressif/esp32-c
 Podemos usar ESPHome para crear un firmware para usar com HomeAssistant.
 https://esphome.io/components/esp32_camera.html#configuration-for-ai-thinker-camera
 
+## Micropython
+mirar micropython/camara.md
+
 
 ## Otros modelos
 https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
+
+## Lilygo-Camera
+http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
+
+ESP32 con cámara, sensor de movimiento, pantalla y dos botones.
+
 
 ## Ai Thinker
 http://www.ai-thinker.com/pro_view-24.html

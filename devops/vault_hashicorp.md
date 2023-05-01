@@ -8,6 +8,9 @@ Tenemos que activar el Auth Method user/pass.
 Una vez activo usaremos la consola para crear usuarios:
 vault write auth/userpass/users/mitchellh password=foo policies=admins
 
+Para que funcione la cli (tendremos que pasar un token):
+vault login
+
 
 # Conceptos
 
@@ -72,6 +75,10 @@ VAULT_ADDR=http://vault.com:8200 vault ...
 
 Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
+## Status
+vault status
+vault status -tls-skip-verify
+
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
   los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
@@ -135,6 +142,10 @@ Otra: https://github.com/nyxcharon/vault-ui
 
 # API
 curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
+
+https://developer.hashicorp.com/vault/api-docs/system/health
+Obtener el estado del vault:
+curl -s localhost:8200/v1/sys/health | jq
 
 
 

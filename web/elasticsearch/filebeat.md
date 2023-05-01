@@ -51,12 +51,15 @@ docker run --rm -it -v $PWD/filebeat.yaml:/usr/share/filebeat/filebeat.yml docke
 
 
 # Internals
-Output de redis.
+## Output de redis.
 Cuando se hace el primer envio a un output redis, filebeat resuelve todas las IPs de los servidores que tengamos listados en el output.
 Luego conecta al primero, lanza un "PING" para chequear que contesta. Luego un "INFO" para obtener la versión del servidor y por último un RPUSH para enviar los datos.
 Luego lanza PING e INFO contra el resto de servidores de la lista.
 
 Para próximos envios solo hará el RPUSH
+
+### TLS
+Si tenemos configurado TLS con certificate y key parece que ignora la opción de verification_mode.
 
 
 

@@ -91,6 +91,8 @@ Exportar y restaurar como pone en la sección de tower-cli
 Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar todas las máquinas
 
 ## Desencriptar valores almacenados
+credentials / passwords / keys / secrets
+
 Ejemplo para una clave ssh:
 https://gist.github.com/d940483d4450caa8f371ae6ea1234815
 

@@ -25,6 +25,12 @@ Ignorar ciertas líneas, por ejemplo, del meta/main.yml
   platforms: [] # noqa meta-no-info
 ```
 
+Ignorar una regla para todo un fichero:
+```
+.ansible-lint-ignore
+playbook.yml package-latest # disable package-latest rule for playbook.yml
+playbook.yml deprecated-module
+```
 
 Ejemplos de exclude
 https://opendev.org/openstack/bifrost/src/branch/master/.ansible-lint

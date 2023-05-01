@@ -1,14 +1,34 @@
 while str == 'abc':
 	cmd = raw_input('Introduzca comando: ')
 
-	# No existen los switch-case, así que se haría de esta manera
-	if cmd == 'a':
-		print "hola"
-		break # Sale del bucle
-	elif cmd == 'b':
-		print "adios" + str(n)
-	else:
-		sys.exit() #previo import sys
+
+# switch-case / match-case
+https://towardsdatascience.com/switch-case-statements-are-coming-to-python-d0caf7b2bfd3
+https://peps.python.org/pep-0635/
+
+http_code = "418"
+match http_code:
+    case "200":
+        print("OK")
+        do_something_good()
+    case "404":
+        print("Not Found")
+        do_something_bad()
+    case "418":
+        print("I'm a teapot")
+        make_coffee()
+    case _:
+        print("Code not found")
+
+Formato anterior a python 3.10, donde no existía esa sintaxis:
+if cmd == 'a':
+    print "hola"
+    break # Sale del bucle
+elif cmd == 'b':
+    print "adios" + str(n)
+else:
+    sys.exit() #previo import sys
+
 
 lista=['asda','2342','bbbb',11]
 for l in lista:
@@ -18,7 +38,7 @@ Con indices:
 >>> cosas =  ["casa", "sillA", "mesa"]
 >>> for i,v in enumerate(cosas):
 ...   print("indice: %s, valor: %s" % (i,v))
-... 
+...
 indice: 0, valor: casa
 indice: 1, valor: sillA
 indice: 2, valor: mesa
@@ -31,7 +51,7 @@ for num in range(0,10):
 
 >>> for i in range(0,3):
 ...     print i
-... 
+...
 0
 1
 2
@@ -112,4 +132,3 @@ Los filter() con iteradores
 
 # tqdm
 Para mostrar un ncurses de cuanto lleva en porcentaje y cuando tarda por item y va a tardar en total
-

@@ -8,6 +8,13 @@ En arch
 aur/k3s
 aur/k3s-bin
 
+## k3d / correr en docker
+https://www.suse.com/c/introduction-k3d-run-k3s-docker-src/
+AUR/rancher-k3d-bin
+
+k3d cluster create NOMBRE
+
+
 # Run
 systemctl start k3s
 

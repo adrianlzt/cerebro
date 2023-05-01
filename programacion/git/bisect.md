@@ -12,8 +12,12 @@ Si no funciona marcamos como bad, y nos llevará a la mitad entre el punto actua
 etc
 
 git bisect start
-git bisect good COMMIT/TAG
-git bisect bad # si donde estamo esta roto
+git bisect good COMMIT/TAG # donde está bien
+git bisect bad COMMIT/TAG # donde está mal
+
+Analizará cuantos commits hay en medio y nos dejará en medio.
+Ahí miraremos si está bien o mal y continuaremos con:
+git bisect good/bad, dependiendo del caso
 
 Si nos equivocamos al poner good/bad ->
 git bisect log > fichero.log

@@ -8,6 +8,10 @@ git clone --depth=1 https://github.com/raspberrypi/linux
 Bajar una copia de los ficheros, sin historial y sin otras ramas
 
 
+Clone+checkout
+git clone -b branch/foo https://repo
+
+
 Usando otra clave ssh (generalmente la mejor aproximación es meterla en el ssh agent):
 GIT_SSH_COMMAND='ssh -i ~/.ssh/foobar -o IdentitiesOnly=yes' git clone git@bitbucket.org:foo/bar.git
 

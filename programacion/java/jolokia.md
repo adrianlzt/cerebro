@@ -36,10 +36,18 @@ Podemos ver si está en modo proxy con:
 curl -s 172.17.0.2:8080/jolokia-war-unsecured-1.6.0 | jq '.value.config.dispatcherClasses'
 org.jolokia.http.Jsr160ProxyNotEnabledByDefaultAnymoreDispatcher -> no tenemos el proxy configurado
 
-Si no está habilitado el proxy y enviamos un POST JSON, ej.:
+Si no está habilitado el proxy y enviamos un POST JSON, ej. (para jboss6):
 curl -H "Content-Type: application/json" http://127.0.0.1:8080/jolokia-war-unsecured-1.6.0 -d '{"type":"READ", "mbean":"java.lang:type=Threading", "attribute":"ThreadCount", "target": { "url":"service:jmx:rmi:///jndi/rmi://jboss-as:8686/jmxrmi", "password":"admin", "user":"scrt" } }' | python -m json.tool |& sed "s#\\\n#\n#g"
 
+Para jboss 7 (jmx remote+http):
+curl -u jo:jo localhost:8080/jolokia/read -H "Content-type: application/json" -d '[{"type":"read","mbean":"java.lang:type=Runtime","attribute":"Uptime","target":{"url":"service:jmx:remote+http://0.0.0.0:8230","user":"jo","password":"jo"}}]'
+
+
 Nos devolverá un error, muy largo, que contiene al principio: No JSR-160 proxy is enabled by default since Jolokia 1.5.0
+
+Para activarlo en jboss, podemos ir a la web admin (http://localhost:9990/console/index.html#system-properties) y añadir org.jolokia.jsr160ProxyEnabled=true
+Para wildfly lo podemos hacer con:
+echo "JOLOKIA_JSR160_PROXY_ENABLED=true" >> /etc/wildfly/wildfly.conf
 
 
 Si no podemos conectar con el RMI remoto tendremos el error:
@@ -48,6 +56,11 @@ Failed to retrieve RMIServer
 
 Parece que jolokia no puede hablar "remoting-jmx", que es el protocolo que sustituye RMI a partir de JBoss EAP 6
 Si queremos que lo soporte tendremos que meter la libreria jboss-cli-client.jar (en el codigo de JBoss) dentro del WAR (WEB-INF/lib/jboss-cli-client.jar)
+
+
+Si queremos hablar con un JMX con TLS configurado:
+https://github.com/rhuss/jolokia/pull/436
+
 
 
 # Install
@@ -69,7 +82,8 @@ curl -s 172.17.0.2:8080/jolokia-war-unsecured-1.6.0/list | jq '.' | less
 ### Auth
 Si tenemos jolokia secured deberemos crear un user del ApplicationRealm que pertenzca al grupo "jolokia".
 
-Si usamos auth con jolokia y el server de jolokia corre en el mismo domain que el JMX por el que preguntamos (modo proxy), se reutilizan las credenciales (no tenemos porque ponerlas en el json)
+Si usamos auth con jolokia y el server de jolokia corre en el mismo domain que el JMX por el que preguntamos (modo proxy), se reutilizan las credenciales (no tenemos porque ponerlas en el json).
+De hecho parece que no funciona si ponemos las credenciales en el POST.
 
 
 # Operaciones
@@ -86,7 +100,7 @@ Listar todas las MBeans:
 {"type":"LIST", "mbean":"*"}
 
 
-Curl para pedir valores usando el proxy con auth
+Curl para pedir valores usando el proxy con auth (esto parece que es para versiones nuevas, jboss 7)
 curl -u jo:jo localhost:8080/jolokia/read -H "Content-type: application/json" -d '[{"type":"read","mbean":"java.lang:type=Runtime","attribute":"Uptime","target":{"url":"service:jmx:remote+http://0.0.0.0:8230","user":"jo","password":"jo"}}]'
 
 

@@ -23,3 +23,20 @@ nos devuelve un array con dos elementos
 
 regexp_replace('foobarbaz', 'b(..)', 'X\1Y', 'g')
                                    fooXarYXazY
+
+
+Ejemplo modificando un campo basándonos en el resultado de una regex en otro campo:
+WITH macro AS (
+    SELECT
+        itemid,
+        (regexp_matches(key_, '(\{#[^\}]*\})'))[1] AS m
+    FROM
+        items)
+UPDATE
+    items
+SET
+    name = regexp_replace(name, '(\$1)', macro.m)
+FROM
+    macro
+WHERE
+    macro.itemid = items.itemid;
