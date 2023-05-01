@@ -43,3 +43,10 @@ Luego arrancar la interfaz gráfica:
 xgps
 
 No he conseguido que me funcione
+
+
+# Protocolo
+https://gpsd.gitlab.io/gpsd/client-howto.html#_how_the_gpsd_wire_protocol_works
+
+Ejemplo para obtener los devices conectados:
+echo '?WATCH={"enable":true,"json":true}' | timeout 2s nc localhost 2947 | grep DEVICES | jq
