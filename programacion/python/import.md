@@ -53,3 +53,7 @@ from fichero import COSO,Juan
 juan = Juan()
 juan.func()
 
+
+
+Si queremos importar el módulo "foo" que está en nuestro mismo directorio:
+from . import foo
