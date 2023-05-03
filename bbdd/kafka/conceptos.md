@@ -25,3 +25,7 @@ Cada mensaje publicado en un topic es enviado a todosl los "consumer groups" sub
 
 Si todos los consumers están en el mismo consumer group, será como un sistema de colas (tareas que deben ser atendidas por un único worker).
 Si cada consumer está en su propio consumer group, el mensaje será distribuido a todos los consumers, estilo publish-subscribe.
+
+
+# Commit
+https://es.quarkus.io/blog/kafka-commit-strategies/
