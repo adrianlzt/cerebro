@@ -24,9 +24,11 @@ En modo debug veremos los mensajes pasados por el websocket.
 
 Según vamos editando my_app_name/my_app_name.py vamos viendo en tiempo real el resultado.
 
+
 # Conceptos
 Usa el mismo "component" que React.
 Aquí cada función de python es un component que parametrizamos con kwargs.
+
 
 # Componentes
 ## pc.hstack
@@ -39,14 +41,23 @@ Ejemplo de oauth con un component de react
 https://github.com/pynecone-io/pynecone/issues/395#issuecomment-1510766586
 
 
+# Eventos
+
+## debounce
+Parece que están trabajando en ello
+https://www.reddit.com/r/opensource/comments/z7az66/comment/iy5y2b2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+
 
 # Estado
 Definimos variables de la clase "State" (que pasaremos al pc.App).
 Podemos modificarlas con la función "set_NOMBREVAR", que se genera automáticamente. Podemos hacer override si queremos.
 
 
+
 # Docker
 https://github.com/pynecone-io/pynecone/tree/main/docker-example
+
 
 
 # Ejemplos
