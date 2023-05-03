@@ -49,6 +49,14 @@ Para go, nos dan todo el boilerplate para engancharnos a las modificaciones y ac
 
 
 ## Desarrollar un operator
+https://cloud.redhat.com/blog/kubernetes-operators-best-practices
+Diagramas explicativos interesantes.
+https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
+
+
+### Operator en python
+https://github.com/nolar/kopf
+
 
 ### Usando operator-sdk
 https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/
@@ -58,7 +66,9 @@ pacman -S operator-sdk
 Inicializar el proyecto.
 Crear la API.
 Crear la imagen de docker.
-Desplegarla en k8s.
+Desplegarla en k8s, localmente o como un deployment.
+
+Parece que es un recubrimiento de kubebuilder
 
 
 ### Usando kubebuilder
@@ -91,3 +101,12 @@ En esta función tendremos acceso a "client.Client", para acceder a los objetos 
 El objeto que debemos reconciliar estará en req.NamespacedName
 
 https://book.kubebuilder.io/cronjob-tutorial/controller-implementation.html#1-load-the-cronjob-by-name
+
+Los "errores" de salida pueden tener distintos significados.
+
+Reintentar la operación:
+return ctrl.Result{Requeue: true}, nil
+
+
+Rellamar al reconciliador en x minutos.
+return ctrl.Result{RequeueAfter: 5*time.Minute}, nil

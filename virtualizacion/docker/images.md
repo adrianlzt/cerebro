@@ -5,6 +5,9 @@ kaniko (Google, usado por JenkinsX)
 Para crear imágenes pequeñas y seguras, solo deja los ficheros y syscalls necesarias.
 https://github.com/slimtoolkit/slim
 
+Si buscamos las imágenes donde en el nombre podemos pasar las herramientas que queremos:
+container_with_tools.md
+
 
 mirar containers.md
 
