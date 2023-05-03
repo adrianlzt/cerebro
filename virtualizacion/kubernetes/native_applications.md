@@ -29,6 +29,15 @@ Es un pod más, pero subscrito a los cambios de k8s.
 
 
 
+## Operator Hub
+https://operatorhub.io/
+"Tienda" de operators
+
+https://github.com/operator-framework/awesome-operators
+Colección de operators
+
+
+
 # Operator framework
 https://github.com/operator-framework
 Ayudas para poder crear un operator para tu app
@@ -40,18 +49,45 @@ Para go, nos dan todo el boilerplate para engancharnos a las modificaciones y ac
 
 
 ## Desarrollar un operator
-https://github.com/operator-framework/getting-started
 
+### Usando operator-sdk
+https://sdk.operatorframework.io/docs/building-operators/golang/quickstart/
+
+pacman -S operator-sdk
+
+Inicializar el proyecto.
+Crear la API.
+Crear la imagen de docker.
+Desplegarla en k8s.
+
+
+### Usando kubebuilder
 Ejemplo de un operator que crea cronjobs
 https://book.kubebuilder.io/cronjob-tutorial/cronjob-tutorial.html
 https://github.com/paweloczadly/kubernetes-operator-cronjob/
-mirar kubebuilder.md
 
 
+#### Types
+api/v1/xx_types.go
 
-## Operator Hub
-https://operatorhub.io/
-"Tienda" de operators
+xxSpec
+Donde definimos los campos que podremos usar para crear un objeto de este tipo.
+Es donde declaramos como será el CRD
 
-https://github.com/operator-framework/awesome-operators
-Colección de operators
+xxStatus
+Será la info que nos devuelva k8s al hacer un "kubectl get xx"
+
+
+#### Controller
+controllers/xx_controller.go
+
+El que se encarga de, para un spec dado (lo que quiere el usuario), modificar lo que haga falta del "mundo" para que matchee ese estado deseado.
+
+Esto se hará en la función "Reconcile" (https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/reconcile).
+Se nos pasa el nombre de un objeto y tenemos que devolver el resultado (error o falta de error).
+
+En esta función tendremos acceso a "client.Client", para acceder a los objetos de k8s, un logger y un context.
+
+El objeto que debemos reconciliar estará en req.NamespacedName
+
+https://book.kubebuilder.io/cronjob-tutorial/controller-implementation.html#1-load-the-cronjob-by-name
