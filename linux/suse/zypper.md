@@ -4,6 +4,7 @@ zypper search paquete
 Instalar:
 zypper install paquete
   si el rpm que intentamos actualizar ha cambiado de Vendor, tendremos que especificar el nombre completo (con versión) para poder actualizarlo.
+  Si no está firmado nos saldrá un mensaje, podemos ignorarlo eligiendo "i" (ignore)
 
 Instalar a partir de un repo disabled:
 zypper --plus-content repoDesactivado install paquetes
