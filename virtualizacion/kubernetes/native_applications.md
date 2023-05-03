@@ -45,6 +45,7 @@ https://github.com/operator-framework/getting-started
 Ejemplo de un operator que crea cronjobs
 https://book.kubebuilder.io/cronjob-tutorial/cronjob-tutorial.html
 https://github.com/paweloczadly/kubernetes-operator-cronjob/
+mirar kubebuilder.md
 
 
 
