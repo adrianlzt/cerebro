@@ -7,6 +7,8 @@ git clone "[git@10.0.2.7:2222]:group/ansible-deploy.git"
 git clone --depth=1 https://github.com/raspberrypi/linux
 Bajar una copia de los ficheros, sin historial y sin otras ramas
 
+git clone -b v9.6 --depth 1 https://github.com/or-tools/python_or-tools
+Lo mismo pero solo para una tag determinado.
 
 Clone+checkout
 git clone -b branch/foo https://repo
