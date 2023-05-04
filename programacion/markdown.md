@@ -7,8 +7,10 @@ http://dillinger.io/
 https://stackedit.io/editor
   editar markdown almacenados en google drive
 
+aur/python-grip
 grip fichero.md
   monta un server en localhost:5000 mostrando el fichero
+  hace uso de la api de github
 
 markdown_py -f README.html -x tables README.md
   app python para convertir markdown a html/xhtml. Tendremos que cargar extensiones para algunas cosas (-x)
@@ -41,12 +43,12 @@ This is an H2
 > con texto quotado
 >
 > ## This is a header.
-> 
+>
 > 1.   This is the first list item.
 > 2.   This is the second list item.
-> 
+>
 > Here's some example code:
-> 
+>
 >     return shell_exec("echo $input | $markdown_script");
 
 
