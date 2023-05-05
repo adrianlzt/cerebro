@@ -46,3 +46,10 @@ print(counter.keys())
   [1, 2, 3, 4, 5]
 print(counter.most_common(3))
   [(1, 4), (2, 4), (3, 2)]
+
+
+# namedtuple
+mirar tuplas.md
+
+# defaultdict
+mirar dict.md

@@ -129,6 +129,14 @@ nueva = copy(vieja)
 >>> data
 {'p3': [{'t': 1111}, {'t': 2222}]}
 
+## defaultdict
+Dict donde si pedimos una key que no existe, nos devuelve el valor que hayamos asignado:
+
+import collections
+>>> foo = collections.defaultdict(list)
+>>> foo["bar"]
+[]
+
 
 # Obtener la key desde la value
 mydict = {'george':16,'amber':19}
