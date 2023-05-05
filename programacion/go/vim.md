@@ -9,6 +9,9 @@ deoplete-go
 Si se vuelve loco a consumir memoria, puede ser porque no ha encontrado un parent y ha subido por el tree y está intentando indexar todo el GOPATH
 hacer un touch go.mod en algún dir para que solo suba hasta ahí
 
+Si queremos evitar que salte el GoLint al guardar, desactivarlo en
+~/.config/nvim/lua/plugins/go.lua
+
 
 Comandos:
 :Go<TAB>
