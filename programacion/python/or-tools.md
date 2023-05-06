@@ -77,8 +77,14 @@ model.Minimize(obj_var)
 solver = cp_model.CpSolver()
 status = solver.Solve(model)
 
-
 status nos devuelve como de bien se consiguió el objetivo.
 FEASIBLE (2):   if some solutions have been found
 INFEASIBLE (3): if the solver has proved there are no solution
 OPTIMAL (4):    if all solutions have been found
+
+
+Resultado de la variable a optimizar:
+solver.ObjectiveValue()
+
+Resultados de otras variables:
+solver.Value(some_var)
