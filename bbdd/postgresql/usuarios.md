@@ -198,8 +198,14 @@ NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se cree
 Permiso para editar una tabla.
 GRANT UPDATE ON accounts TO joe;
 
-Todos los permisos para una db.
+Todos los permisos para una db (solo da CREATE, CONNECT y TEMPORARY).
 GRANT ALL ON DATABASE basededatos TO joe;
+
+Para dar todos los permisos (lectura y escritura incluídos):
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO new_user;
+NOTA: solo para el schema public. Y si se crean nuevas tablas no aplicará.
+
+
 
 Quitar permisos a un role:
 REVOKE SELECT ON public.events FROM auditor;
@@ -218,7 +224,7 @@ grant temp on database zabbix to partman;
 Mover todo lo que pertenezca a un usuario a otro:
 reassign owned by foo TO bar;
 
-### Privilegios por defecto
+### Privilegios por defecto (default privileges) / permisos por defecto
 Cuando un usuario crea tablas las crea siendo su dueño.
 Podemos configurar el usuario para que cuando cree tablas de permisos a otros roles, a parte de a si mismo.
 
