@@ -90,3 +90,15 @@ solver.ObjectiveValue()
 
 Resultados de otras variables:
 solver.Value(some_var)
+
+
+## Deterministic solver
+Si queremos una solución determinista (mismos inputs, misma solución), limitar el número de workers a 1.
+https://github.com/google/or-tools/issues/3590
+https://developers.google.com/optimization/support/release_notes?hl=en#:~:text=to%20enable%20LNS.-,Parallel%20search,-%3A%20Use%20the%20SatParameters
+
+solver = cp_model.CpSolver()
+solver.parameters.num_search_workers = 1
+solver.parameters.random_seed = 10
+
+No estoy seguro si el random_seed es obligatorio: https://github.com/google/or-tools/issues/3590#issuecomment-1346540840

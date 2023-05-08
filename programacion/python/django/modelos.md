@@ -15,6 +15,13 @@ class Book(models.Model):
     title = models.CharField(max_length=30)
     author = models.ForeignKey(Person)
 
+https://stackoverflow.com/a/8609425
+Si queremos un campo opcional añadiremos los parámetros:
+null=True, blank=True
+
+blank es el parámetro que específicamente define que podemos dejar un campo sin valor.
+null es para que un campo pueda tener null (permitir el "NULL" en la tabla SQL).
+
 
 # Uso
 Crear una instancia de un modelo:

@@ -1,11 +1,13 @@
-http://www.django-rest-framework.org/
+https://www.django-rest-framework.org/
 
-# Basico
+Genera una API para los modelos que tengamos definidos.
+Tambíen genera una interfaz web para navegar por la API como la de AWX.
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
+La idea es crear una función serializer de nuestro modelo, luego una vista y luego meterlo en el router.
 
-class RootController(APIView):
-    def get(self, request):
-        data = {"name": "API_NAME", "version": "API_VERSION"}
-        return Response(data)
+
+Creando una entrada usando httpie
+http -a admin:admin http://127.0.0.1:8000/probes/ name=apicreated url=http://pepe.com
+
+Ejemplos con curl
+https://www.django-rest-framework.org/tutorial/quickstart/#testing-our-api
