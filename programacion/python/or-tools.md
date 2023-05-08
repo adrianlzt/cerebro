@@ -1,5 +1,7 @@
 https://developers.google.com/optimization/scheduling/job_shop?hl=en
 
+Mirar ejemplo de scheduling minimizando la capacidad en or-tools-example.py
+
 Programado en C++, pero con wrappers para distintos lenguajes, entre ellos python.
 
 En este fichero podemos ver las funciones a las que podemos llamar, donde podemos ver la documentación.
