@@ -1,4 +1,5 @@
 https://docs.djangoproject.com/en/1.8/topics/db/models/
+https://docs.djangoproject.com/en/4.2/topics/db/examples/one_to_one/
 
 Referencia:
 https://docs.djangoproject.com/en/1.8/ref/models/fields/
