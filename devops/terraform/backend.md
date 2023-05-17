@@ -54,3 +54,15 @@ Darle permiso a la service account que estemos usando como "Storage object admin
 
 Activar el versionado (backup del estado):
 gsutil versioning set on gs://NOMBREBUCKET
+
+
+# Modificar el state
+
+Nos bajamos el state:
+terraform state pull > STATE
+
+Modificamos el fichero .json
+Obligatoriamente tenemos que subir el campo "serial" con +1.
+
+Subimos el state:
+terraform state push STATE
