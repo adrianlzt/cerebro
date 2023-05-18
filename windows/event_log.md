@@ -43,8 +43,18 @@ get-winevent -logname "Microsoft-Windows-TerminalServices-RemoteConnectionManage
 
 ## Crear un event
 https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/write-eventlog?view=powershell-5.1
+https://devblogs.microsoft.com/scripting/how-to-use-powershell-to-write-to-event-logs/
 
 Write-EventLog -LogName "System" -Source "Microsoft-Windows-TerminalServices-SessionBroker" -EventID 801 -EntryType Information -Message "evento 801 prueba"
+
+
+Tiene que existir el source para poder crear el evento. Para crearlo:
+New-EventLog –LogName Application –Source "MyApp"
+Write-EventLog -LogName "Application" -Source "MyApp" -EventID 3001 -EntryType Information -Message "MyApp added a user-requested feature to the display." -Category 1 -RawData 10,20
+De tipo error:
+Write-EventLog -LogName "Application" -Source "MyApp" -EventId 1001 -EntryType Error -Message "Something went wrong."
+
+
 
 
 Si queremos escribir a logs no "clásicos" usaremos:
