@@ -29,6 +29,8 @@ Para poder añadir más funcionalidad instalar plugins:
 Para usarla con jboss mirar jboss.md
 https://blog.akquinet.de/2012/11/01/connecting-visualvm-with-a-remote-jboss-as-7-eap6-jvm-process/
 
+Otra herramienta mas, recomendada por Mulesoft, de pago (con evaluación gratis): yourkit
+
 # Protocolo
 RMI
 "JSR-160 connectors are highly Java centric where its default protocol RMI is not available outside the Java universe"
