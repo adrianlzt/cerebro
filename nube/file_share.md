@@ -5,7 +5,7 @@ https://driveuploader.com/
 app que usa nuestro drive para recibir ficheros de un tercero
 
 
-curl --upload-file ./hello.txt https://transfer.sh/hello.txt
+curl -v --upload-file ./hello.txt https://transfer.sh/hello.txt
 https://transfer.sh/66nb8/hello.txt
 
 
