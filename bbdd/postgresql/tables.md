@@ -17,6 +17,9 @@ pg_dump NOMBREBBDD -t NOMBRETABLA --schema-only
 http://www.postgresql.org/docs/devel/static/sql-createtable.html
 http://www.postgresql.org/docs/devel/static/sql-droptable.html
 
+TRUNCATE table;
+Si queremos borrar todo el contenido rápidamente
+
 Se pueden añadir comentarios a las tablas y/o columnas. Mirar comment.md
 
 CREATE TABLE nombre (col1 CHAR(20, ...);
@@ -42,9 +45,9 @@ CREATE TABLE foo as select generate_series(1,100) bar;
 ## Modificar tabla ##
 http://www.postgresql.org/docs/devel/static/sql-altertable.html
 
-ALTER TABLE nombre 
+ALTER TABLE nombre
   ADD COLUMN nombrecol date_type
-  DROP COLUMN nombrecol 
+  DROP COLUMN nombrecol
   ALTER COLUMN nombre
     TYPE tipo
     SET DEFAULT expresion
@@ -71,13 +74,13 @@ Se podría hacer internamente con algo tipo:
 BEGIN;
 SELECT 'CREATE TABLE a' || id || ' (id int);'
        FROM generate_series(1, 20000) AS id;
- 
+
 \gexec
 
 
 Mover todo lo que pertenezca a un usuario a otro:
 reassign owned by foo TO bar;
- 
+
 ## Renombrar
 ALTER TABLE table_name RENAME TO new_table_name;
 
