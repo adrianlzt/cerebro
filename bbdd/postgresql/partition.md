@@ -139,7 +139,7 @@ Se crean automáticamente o ha sido el worker?
 
 
 
-Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_proc() (más en sección monitoring)
+Si queremos mover datos que han caído en la tabla "default" a particiones podemos usar la función: partition_data_time/partition_data_proc (más en sección monitoring)
 
 
 
@@ -583,4 +583,3 @@ $func$  LANGUAGE sql IMMUTABLE;
 
 Y cambiamos por: "clock > f_epoch_immutable() - 3600"
 Tardando un orden de magnitud menos.
-

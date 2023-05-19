@@ -117,6 +117,11 @@ CREATE TABLE films (
 
 
 
+# Copiar tabla o rows de tabla
+Crea la tabla part_config_backup con el contenido de part_config:
+create table public.part_config_backup AS select * from public.part_config;
+
+
 # Constraints
 https://www.postgresql.org/docs/current/ddl-constraints.html
 
