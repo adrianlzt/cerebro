@@ -1,3 +1,5 @@
+mirar tts/fairseq-meta.md
+
 https://openai.com/blog/whisper/
 Por ahora solo inglés.
 
