@@ -5,6 +5,7 @@ Anaconda is a completely free Python distribution (including for commercial use 
 miniconda, es como anaconda, pero con menos paquetes.
 
 conda es el gestor de paquetes que usan.
+mirar conda.md
 
 
 Docker
