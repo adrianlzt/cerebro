@@ -57,3 +57,15 @@ for group in concat(
         [for k,v in google_compute_instance_group.vm : v],
         [for k,v in google_compute_instance_group.vm_rep : v],
 ) :
+
+resource "google_compute_region_backend_service" "zabbix-server-internal" {
+  name                  = "zabbix-server-internal"
+  dynamic "backend" {
+    for_each = google_compute_instance_group.iometrics-and-rep
+    content {
+      group           = backend.value["id"]
+      balancing_mode  = "CONNECTION"
+    }
+  }
+  ...
+}
