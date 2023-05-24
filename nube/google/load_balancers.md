@@ -11,6 +11,11 @@ GCP uses non-standard vocabulary for load balancing concepts. In case you're unf
   URL maps define matching patterns for URL-based routing of requests to the appropriate backend services. A default service is defined to handle any requests that do not match a specified host rule or path matching rule.
   Backends are resources to which a GCP load balancer distributes traffic. These include backend services, such as instance groups or backend buckets.
 
+https://cloud.google.com/load-balancing/docs/backend-service#restrictions_and_guidance
+If you need a VM to participate in multiple load balancers, you must use the same instance group as a backend on each of the backend services.
+
+
+
 # http to https
 https://stackoverflow.com/a/66256756
 
