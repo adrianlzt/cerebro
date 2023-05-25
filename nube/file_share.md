@@ -8,6 +8,8 @@ app que usa nuestro drive para recibir ficheros de un tercero
 curl -v --upload-file ./hello.txt https://transfer.sh/hello.txt
 https://transfer.sh/66nb8/hello.txt
 
+Opción similar:
+curl -vT fichero https://temp.sh
 
 magic-wormhole
 https://github.com/warner/magic-wormhole

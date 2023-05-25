@@ -100,13 +100,17 @@ Ejecutar con superuser
 
 https://github.com/ioguix/pgsql-bloat-estimation/blob/master/btree/btree_bloat-superuser.sql
 
-SELECT current_database(), nspname AS schemaname, tblname, idxname, bs*(relpages)::bigint AS real_size,
-  bs*(relpages-est_pages)::bigint AS extra_size,
+Modificada para ordenar por bloat_pct y mostrar los tamaños "pretty" (MB, GB, etc).
+
+SELECT current_database(), nspname AS schemaname, tblname, idxname,
+  pg_size_pretty(bs*(est_pages)::bigint) AS est_size,
+  pg_size_pretty(bs*(relpages)::bigint) AS real_size,
+  pg_size_pretty(bs*(relpages-est_pages)::bigint) AS extra_size,
   100 * (relpages-est_pages)::float / relpages AS extra_pct,
   fillfactor,
   CASE WHEN relpages > est_pages_ff
-    THEN bs*(relpages-est_pages_ff)
-    ELSE 0
+    THEN pg_size_pretty(bs*(relpages-est_pages_ff)::bigint)
+    ELSE '0'
   END AS bloat_size,
   100 * (relpages-est_pages_ff)::float / relpages AS bloat_pct,
   is_na
@@ -136,7 +140,7 @@ FROM (
             -- , index_tuple_hdr_bm, nulldatawidth -- (DEBUG INFO)
       FROM (
           SELECT n.nspname, ct.relname AS tblname, i.idxname, i.reltuples, i.relpages,
-              i.idxoid, i.fillfactor, current_setting('block_size')::numeric AS bs, 
+              i.idxoid, i.fillfactor, current_setting('block_size')::numeric AS bs,
               CASE -- MAXALIGN: 4 on 32bits, 8 on 64bits (and mingw32 ?)
                 WHEN version() ~ 'mingw32' OR version() ~ '64-bit|x86_64|ppc64|ia64|amd64' THEN 8
                 ELSE 4
@@ -147,8 +151,8 @@ FROM (
               16 AS pageopqdata,
               /* per tuple header: add IndexAttributeBitMapData if some cols are null-able */
               CASE WHEN max(coalesce(s.stanullfrac,0)) = 0
-                  THEN 2 -- IndexTupleData size
-                  ELSE 2 + (( 32 + 8 - 1 ) / 8) -- IndexTupleData size + IndexAttributeBitMapData size ( max num filed per index + 8 - 1 /8)
+                  THEN 8 -- IndexTupleData size
+                  ELSE 8 + (( 32 + 8 - 1 ) / 8) -- IndexTupleData size + IndexAttributeBitMapData size ( max num filed per index + 8 - 1 /8)
               END AS index_tuple_hdr_bm,
               /* data len: we remove null values save space using it fractionnal part from stats */
               sum( (1-coalesce(s.stanullfrac, 0)) * coalesce(s.stawidth, 1024)) AS nulldatawidth,
@@ -184,4 +188,4 @@ FROM (
       ) AS rows_data_stats
   ) AS rows_hdr_pdg_stats
 ) AS relation_stats
-ORDER BY nspname, tblname, idxname;
+ORDER BY bloat_pct DESC, nspname, tblname, idxname;
