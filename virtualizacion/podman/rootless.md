@@ -40,3 +40,10 @@ sudo touch /etc/sub{u,g}id
 sudo usermod --add-subuids 10000-75535 $(whoami)
 sudo usermod --add-subgids 10000-75535 $(whoami)
 rm /run/user/$(id -u)/libpod/pause.pid
+
+
+# Mapear user a user del contenedor
+--userns=keep-id:uid=770,gid=770
+Esta opción mapea el user que ejecuta podman con el usuario 770 del contenedor.
+
+Si creamos un dir con nuestro user y lo montamos en el contenedor, veremos que tiene los permisos 770 desde dentro del contenedor.
