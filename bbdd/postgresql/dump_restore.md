@@ -101,7 +101,7 @@ pg_dump -Fc -d prueba -f prueba.custom
   -Z=n para seleccionar la compresion
 
 -t para seleccionar tablas (múltiples veces para varias tablas)
--T para todas menos las tablas seleccionadas
+Para excluir solo una tabla mirar el "truco" con --use-list más abajo.
 
 Si queremos seleccionar la tabla de un schema en particular:
 schemaName.tableName
@@ -110,6 +110,10 @@ Ver contenido del dump (los schemas, no los datos):
 pg_restore -l prueba.custom > fichero.list
 
 Podemos usar la salida de este comando para quitar (o comentar ";") lo que no queremos restaurar y luego usar "pg_restore --use-list=fichero.list fichero.dump" para recuperar solo lo que queramos.
+
+Un one liner para quitar solo ciertas tablas. Lo que hacemos es sacar de la salida de "-l" lo que no queremos y lo pasamos como entrada al "-L":
+pg_restore -L <(pg_restore -l /path/to/db/dump | grep -v 'TABLE DATA public table_to_ignore ') -d db_name_where_to_restore /path/to/db/dump
+
 
 Ver todo el contenido:
 pg_restore fichero.custom -f - | less
@@ -391,7 +395,7 @@ https://gist.github.com/ruckus/2293434
 
 # pg_probackup
 https://github.com/postgrespro/pg_probackup
-Empresa: 
+Empresa:
 Lenguaje: python
 
 

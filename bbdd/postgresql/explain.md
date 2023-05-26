@@ -139,6 +139,12 @@ En un caso con CMDBuild, desactivando el enable_nestloop conseguimos mejoras de 
 Al final el resultado "bueno" fue forzar recolectar las estadísticas, ejecutando "ANALYZE".
 
 
+En otro caso, con Zabbix, desactivando seq scan también se conseguían mejoras de 14s a 10ms.
+En este caso era porque el tamaño del índice era enorme (bloated) y parece que postgres calculaba que le salía mejor
+hacer un seq scan.
+Tal vez esto (la diferencia entre la planificación y la realidad), se debía a los costes seteados, que no eran correctos para el entorno (disco spinning vs ssd, posiblemente).
+
+
 
 # Coste
 https://github.com/postgres/postgres/blob/master/src/backend/optimizer/path/costsize.c
