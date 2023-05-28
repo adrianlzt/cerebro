@@ -3,7 +3,7 @@ mirar pgmetrics.md
 Queries que hace zabbix para monitorizar postgres: https://github.com/zabbix/zabbix/tree/master/templates/db/postgresql/postgresql
 
 http://pgstats.dev/
-Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace 
+Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace
 
 https://github.com/dalibo/pg_activity
 herramienta tipo top
@@ -182,3 +182,10 @@ Monitorizar conflictos, mirar ha_scalability.md
 gitlab.com/postgres-ai/postgres-checkup
 
 App en go para lanzar a mano cada x tiempo y obtener reportes del estado y futuras estimaciones.
+
+
+# Metricas de uso por tablas
+https://www.postgresql.org/docs/16/monitoring-stats.html#MONITORING-PG-STAT-ALL-TABLES-VIEW
+A partir de la v16
+
+Podemos ver cuantos seq o index scan se han hecho, cuantos analyze, vacuum, lecturas de tuplas, etc.

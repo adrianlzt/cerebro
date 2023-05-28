@@ -2,6 +2,11 @@ Para crear imágenes sin docker (en el userspace):
 buildah (redhat)
 kaniko (Google, usado por JenkinsX)
 
+https://www.docker.com/blog/reduce-your-image-size-with-the-dive-in-docker-extension/
+Para analizar imágenes usar "dive".
+Nos permite ver que se hace en cada layer y sugiere optimizaciones.
+
+
 Para crear imágenes pequeñas y seguras, solo deja los ficheros y syscalls necesarias.
 https://github.com/slimtoolkit/slim
 

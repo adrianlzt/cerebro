@@ -1,5 +1,7 @@
 https://docs.python.org/3/library/typing.html
 http://stackoverflow.com/questions/14379753/what-does-mean-in-python-function-definitions
+https://kobzol.github.io/rust/python/2023/05/20/writing-python-like-its-rust.html
+  ejemplos de como tipar "fuertemente"
 
 cheatsheet: https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
 

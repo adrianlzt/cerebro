@@ -1,5 +1,7 @@
 http://www.allaboutcircuits.com/textbook/
 
+https://learningtheartofelectronics.com/
+
 
 https://fr1lib.org/book/2612458/185ef0
 The Art of Electronics
