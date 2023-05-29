@@ -217,6 +217,9 @@ Logical replication allows us replicating only part of the primary server.
 Compatible entre distintas versiones.
 Suele usarse para upgradear.
 
+El server que va a enviar tiene que crear una SUBSCRIPTION.
+Los que van a recibir crean un PUBLICATION.
+
 Opciones:
   - está en version 10 (no avanza en 11 y 12), básica (CREATE PUBLICATION/SUBSCRIPTION)
     - limitado, no gestiona conflictos
