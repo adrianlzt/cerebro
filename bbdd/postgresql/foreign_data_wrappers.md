@@ -20,6 +20,10 @@ Podemos hacer nuestros propios wrappers en python con http://multicorn.org/
 Esqueleton: https://bitbucket.org/adunstan/blackhole_fdw
 
 
+# Exportar en otros formatos
+Mirar copy.md
+
+
 # CSV
 ## Exportar
 Copiar el FS del server, necesitamos superuser o tener el rol pg_write_server_files
