@@ -245,6 +245,29 @@ La diferencias más importantes contra el physical replication:
   - selective replication
   - cross-version replication
 
+## Crear una replicación lógica
+En el servidor que publica:
+```
+CREATE PUBLICATION alltables FOR ALL TABLES;
+```
+
+Otras opciones:
+```
+CREATE PUBLICATION mypublication FOR TABLE users, departments;
+CREATE PUBLICATION active_departments FOR TABLE departments WHERE (active IS TRUE);
+```
+
+NOTA: las tablas particionadas solo se pueden añadir a una PUBLICATION a partir de la v13.
+
+En el servidor que se subscribe a esa publicación:
+```
+CREATE SUBSCRIPTION mysub
+    CONNECTION 'host=10.89.0.1 port=5432 user=postgres password=postgres dbname=zabbix'
+    PUBLICATION alltables;
+```
+
+El servidor que se subscribe debe ya tener el schema de tablas creado.
+
 
 # Estado de los replication slots
 https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
