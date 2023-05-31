@@ -148,10 +148,24 @@ $imjournalRatelimitInterval 600
 $imjournalRatelimitBurst 20000
 
 
+
 ## limitar rate de mensajes iguales
 last message repeated N times
 The rsyslog package has a $RepeatedMsgReduction global directive which one can set to off to always log data and never log those annoying messages.
 
+
+# Performance
+Configuración para recibir por tcp/udp y enviar a un fichero, cuando nos envian mucha cantidad de datos.
+https://www.rsyslog.com/doc/master/examples/high_performance.html
+
+Con la config por defecto rsyslog va encolando en algún lado y no escribe al fichero (o tarda muuucho en escribir, no tengo claro donde estaba encolando).
+
+
+# TLS
+Para RHEL-like hace falta instalar:
+rsyslog-gnutls
+
+https://www.rsyslog.com/doc/master/tutorials/tls.html
 
 
 # /dev/log desaparece
@@ -164,3 +178,8 @@ systemctl start rsyslogd
 
 Chequear:
 file /dev/log
+
+
+# Testear / clientes
+Programas en go para enviar a rsyslog TCP y TCP+TLS
+https://gist.github.com/adrianlzt/637c6d97820fbeae31aa2df8cc838853
