@@ -21,7 +21,10 @@ ffmpeg -i input -c:v libx264 -preset veryfast output.mkv
   veryfast tarda algo más que la duración real del video, speed=0.7%
 
 https://write.corbpie.com/ffmpeg-preset-comparison-x264-2019-encode-speed-and-file-size/
-Dependiendo del preset tendremos videos más o menos comprimidos a cambios de más o menos cpu/memoria de procesado. 
+Dependiendo del preset tendremos videos más o menos comprimidos a cambios de más o menos cpu/memoria de procesado.
+
+Reducir tamaño
+https://unix.stackexchange.com/questions/28803/how-can-i-reduce-a-videos-size-with-ffmpeg
 
 
 # Emitir rtp
