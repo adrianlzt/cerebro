@@ -24,7 +24,7 @@ https://postgresqlco.nf/en/doc/param/archive_cleanup_command/?category=write-ahe
       pros: reducir RTO (recovery time objetive), si hacemos continuous archiving, evitar perder datos que están en el WAL
 
   max_wal_size:
-    default: 30s
+    default: 1GB
     incrementarlo:
       pros: si tenemos checkpoints con mucha frecuencia a causa de llenados de wal
       cons: incrementa el tiempo de crash recovery
