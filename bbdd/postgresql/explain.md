@@ -209,6 +209,18 @@ SELECT relname, relkind, reltuples, relpages
 FROM pg_class
 WHERE relname LIKE 'tenk1%';
 
+r = ordinary table
+i = index
+S = sequence
+t = TOAST table
+v = view
+m = materialized view
+c = composite type
+f = foreign table
+p = partitioned table
+I = partitioned index
+
+
 Cuando se generaron las últimas estadísticas:
 select relname,last_vacuum,last_autovacuum,last_analyze,last_autoanalyze from pg_stat_user_tables;
 
