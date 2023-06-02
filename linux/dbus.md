@@ -29,7 +29,11 @@ Tiene tipos: struct, arrays, dict
 # Enviar un mensaje
 
 ## dbus-send
-dbus-send --session --print-reply --type=method_call --dest=orf.freedekstip.Dbug / ...
+dbus-send --session --print-reply --type=method_call --dest=orf.freedesktop.Dbug / ...
+
+Enviar un mensaje al dbus de nuestra sesión. En este caso, solicitando que se levante el servicio org.freedesktop.secrets
+dbus-send  --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.StartServiceByName string:org.freedesktop.secrets uint32:0
+
 
 ## busctl
 Para inspeccionar que tenemos
