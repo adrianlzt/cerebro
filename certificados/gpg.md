@@ -139,6 +139,19 @@ gpg --verify fichero.asc
 
 # Agente
 https://wiki.archlinux.org/index.php/GnuPG#gpg-agent
+https://unix.stackexchange.com/a/188813
+
+Demonio al que pedir claves ssh. Las mantiene en memoria un periodo de tiempo.
+El gpg-agent deja su socket en /run/user/1000/gnupg/S.gpg-agent
+
+https://www.gnupg.org/documentation/manuals/gnupg/Agent-Protocol.html
+Podemos interactuar directamente con gpg-agent usando gpg-command-agent.
+Al abrirlo estaremos en una consola con ciertos comandos.
+Podemos poner "HELP" para ver cuales tenemos.
+KEYINFO --list
+  para obtener las claves que tiene disponible
+READKEY XXX
+  para obtener una clave que tiene
 
 Corriendo debajo de systemd user
  gpg-agent.service
