@@ -37,3 +37,12 @@ resource "aws_instance" "example" {
 
 Acceder a un campo determinado de una lista de elementos:
 element(aws_subnet.foo.*.id, count.index)
+
+
+# for_each
+https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
+
+resource "aws_iam_user" "the-accounts" {
+  for_each = toset( ["Todd", "James", "Alice", "Dottie"] )
+  name     = each.key
+}
