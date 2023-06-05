@@ -25,6 +25,15 @@ https://www.terraform.io/docs/backends/index.html
 Podemos usar backends en linea para mantener un estado compartido.
 Por ejemplo, etcd
 
+## local
+```
+terraform {
+  backend "local" {
+    path = "relative/path/to/terraform.tfstate"
+  }
+}
+```
+
 
 ## etcd
 Si queremos borrar el estado de etcd haremos algo tipo:
