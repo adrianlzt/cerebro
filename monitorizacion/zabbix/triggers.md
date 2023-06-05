@@ -201,3 +201,13 @@ si solo tengo un elemento, pues disparo si el valor es mayor que 0, si tengo var
 ## Procesamiento de las funciones
 libs/zbxserver/evalfunc.c
 evaluate_XXX
+
+## Procesamiento triggers
+libs/zbxdbhigh/trigger.c
+zbx_process_trigger
+
+sync_history_cache_full (writes updates and new data from history cache to database)
+  sync_server_history (flush history cache to database, process triggers of flushed and timer triggers from timer queue)
+    recalculate_triggers (re-calculate and update values of triggers related to the items)
+      zbx_process_triggers (calculates property changeset and generates events)
+        zbx_process_trigger (calculate changeset of trigger fields to be updated, generate events)

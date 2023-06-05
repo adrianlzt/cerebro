@@ -122,8 +122,11 @@ object
 5 - lld rule
 
 value (trigger events):
-0 - OK;
-1 - problem.
+0 - OK
+1 - problem
+2 - TRIGGER_VALUE_UNKNOWN /* only in server code, never in DB */
+3 - TRIGGER_VALUE_NONE    /* only in server code, never in DB */
+
 
 discovery events:
 0 - host or service up;
