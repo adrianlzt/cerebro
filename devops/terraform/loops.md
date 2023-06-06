@@ -46,3 +46,14 @@ resource "aws_iam_user" "the-accounts" {
   for_each = toset( ["Todd", "James", "Alice", "Dottie"] )
   name     = each.key
 }
+
+
+# for
+https://developer.hashicorp.com/terraform/language/expressions/for
+
+
+Generar un for a partir de dos maps:
+for group in concat(
+        [for k,v in google_compute_instance_group.vm : v],
+        [for k,v in google_compute_instance_group.vm_rep : v],
+) :
