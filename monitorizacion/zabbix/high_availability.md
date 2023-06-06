@@ -26,6 +26,7 @@ NodeAddress=ipserver:10051
 HANodeName será el nombre que usemos en los proxies/agentes para referirnos al server.
 NodeAddress es donde conectará el frontend.
 
+Si queremos pasar la cadena de conex de un primario+replica (otra opción, usar una VIP):
 Haría falta modificar el server (ejemplo para 6.0): https://github.com/datadope-io/zabbix/commit/0b887a7e9f0b66fbc14eaf637d82f02cd61ae9e0
 El problema es que cuando pierde la conex no vuelve a reconectar correctamente (no he mirado por qué).
 

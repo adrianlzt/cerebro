@@ -97,7 +97,7 @@ https://www.hiroom2.com/2017/10/12/archlinux-20171001-zabbix-en/
 
 # History / trends
 https://zabbix.org/wiki/Docs/howto/mysql_partition#Housekeeper_changes
-Si vamos a hacer una instalación grande debemos particionar las tablas history y trends.
+Si vamos a hacer una instalación grande debemos particionar las tablas history y trends (la events también es buena idea).
 Deberemos también desactivar el Housekeeping (Administration -> General -> Housekeeping)
 
 Otro detalle a tener en cuenta es que el valor de "History storage period (in days)" se usa al pintar las gráficas de "Latest data", para saber si debe usar tablas history o trends.
