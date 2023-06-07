@@ -30,6 +30,7 @@ mmcli -m 0 --3gpp-scan --timeout=300
 Conectar los datos:
 mmcli -m 0 --simple-connect="pin=1234,apn=internet"
 mmcli -m 0 --simple-connect="apn=orange,user=orange,password=orange,ip-type=ipv4v6,allow-roaming=yes"
+mmcli -m 0 --simple-connect="apn=movistar.es,user=movistar,password=movistar,ip-type=ipv4v6,allow-roaming=yes"
 
 Para saber si estamos conectados buscar el "bearer" del modem:
 mmcli -m 1 | tail -4
