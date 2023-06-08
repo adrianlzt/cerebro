@@ -3,7 +3,6 @@ https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC
 https://www.html5rocks.com/en/tutorials/webrtc/basics/
 https://tokbox.com/about-webrtc
 https://codelabs.developers.google.com/codelabs/webrtc-web/#0
-Ejemplo: https://apprtc.appspot.com
 
 Real-time communication without plugins
 Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to add video chat and peer-to-peer data sharing to your web application. That's the vision of WebRTC.
@@ -88,6 +87,13 @@ http://io13webrtc.appspot.com/#69
 http://peerjs.com/
 Facilita la conexión p2p. Se puede usar un broker suyo o montar el nuestro propio.
 
+## Golang pion
+https://github.com/pion/webrtc/
+
+Ejemplo de como enviar un stream de video a un app web usando webrtc
+https://github.com/pion/webrtc/tree/master/examples/play-from-disk
+
+
 
 # Usos
 http://moose-team.github.io/friends/
@@ -101,3 +107,6 @@ Demos de WebRTC (hace falta una API key, version freemium limitada)
 
 https://shanetully.com/2014/09/a-dead-simple-webrtc-example/
 Ejemplo simple de videoconferencia entre dos personas
+
+https://github.com/chandler-stimson/meeting
+addon para firefox/chrome para hacer videoconferencias usando un signal server de alguien
