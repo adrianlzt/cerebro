@@ -1,4 +1,5 @@
 Mirar dsq.md
+Para ficheros binarios: fq.md
 
 Interactive jq: jq+ncurses
 https://sr.ht/~gpanders/ijq/

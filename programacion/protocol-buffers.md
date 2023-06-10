@@ -6,6 +6,8 @@ Protocol buffers are Google's language-neutral, platform-neutral, extensible mec
 
 messagepack.md ?
 
+Para ver un fichero/paquete protobuf, mirar fq.md
+
 
 Es una forma de intercambiar datos, competencia de JSON.
 

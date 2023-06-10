@@ -6,6 +6,8 @@ entender como se configura el teclado, de donde vienen las configuraciones, camb
 localectl set-x11-keymap es pc105 '' caps:escape
   para fijar una configuración. Modifica /etc/X11/xorg.conf.d/00-keyboard.conf
 
+Para cambiar teclas, mirar kmonad.md y keyd.md
+
 También uso xmodmap ~/.Xmodmap para cambiar algunas teclas (ç es /)
 https://unix.stackexchange.com/a/65600
 Parece que xmodmap está deprecated y ahora se usa xkb tools
