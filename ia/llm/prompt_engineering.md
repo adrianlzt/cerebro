@@ -1,6 +1,7 @@
 https://learnprompting.org/
 https://github.com/pinecone-io/examples/blob/master/generation/prompt-engineering.ipynb
 https://www.pinecone.io/learn/langchain-prompt-templates/
+https://news.ycombinator.com/item?id=36197291
 
 Intructions (ej.: "contesta a la pregunta usando el contexto siguiente. Di "no se" en caso de no saber la respuesta")
 External information (información que queremos pasar al modelo)
