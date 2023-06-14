@@ -80,6 +80,7 @@ select * from  pg_replication_slots;
 Comprobar si somos un primario o replica (off para el primario, on para replica):
 select pg_is_in_recovery();
 show in_hot_standby; -- para versiones antiguas?
+show primary_conninfo; -- solo mostrará info en la réplica
 
 
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
