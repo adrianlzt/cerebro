@@ -6,6 +6,8 @@ https://www.cybertec-postgresql.com/en/patroni-setting-up-a-highly-available-pos
 https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
 https://www.opsdash.com/blog/postgres-getting-started-patroni.html
 https://www.slideshare.net/ZalandoTech/high-availability-postgresql-with-zalando-patroni
+https://cloud.google.com/architecture/architectures-high-availability-postgresql-clusters-compute-engine#ha_using_the_patroni_template
+  buen resumen de como funciona, con unos esquemas para entenderlo.
 
 Se encarga de hacer el auto-promote de una instancia replica en caso de que caiga la primaria.
 Podemos configurar una VIP usando https://github.com/cybertec-postgresql/vip-manager (mirar más abajo)
