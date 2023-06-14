@@ -78,7 +78,7 @@ select * from  pg_replication_slots;
   si estamos usando slots
 
 Comprobar si somos un primario o replica (off para el primario, on para replica):
-select pg_is_in_recovery from pg_is_in_recovery();
+select pg_is_in_recovery();
 show in_hot_standby; -- para versiones antiguas?
 
 
