@@ -12,7 +12,7 @@ Mirar ha_postgres.md para ver como configurar zabbix-web y zabbix-server para qu
 Cada server web es independiente (activo-activo), por lo que las cookies son diferentes.
 Si ponemos un LB por delante tendrá que tener sticky session (no estoy 100%, no probado).
 
-No configuraremos ZBX_SERVER ni ZBX_SERVER_PORT. Lo cogera de la DB.
+No configuraremos ZBX_SERVER_HOST ni ZBX_SERVER_PORT. Lo cogera de la DB.
 
 
 
