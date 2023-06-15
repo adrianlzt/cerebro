@@ -13,7 +13,7 @@ password_hash: get a hash form as string that can be used as a password in the u
 A whole set of ip/network manipulation filters: ipaddr,ipwrap,ipv4,ipv6ipsubnet,nthhost,hwaddr,macaddr
 
 
-{{ list1 | union(list2) }}
+{{ list1 | union(list2) }} unir las listas, sin repetidos
 {{ list1 | intersect(list2) }}
 {{ list1 | difference(list2) }}
 
