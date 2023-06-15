@@ -9,6 +9,8 @@ https://stackoverflow.com/a/40710177
 
 para obtener el dir de un path:
 dirname
+{{ '/foo/bar' | dirname }} -> /foo
+{{ '/foo/bar/' | dirname }} -> /foo/bar
 
 Para obtener el nombre de un fichero de un path:
 basename

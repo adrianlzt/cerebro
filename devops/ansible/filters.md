@@ -117,3 +117,10 @@ log_file: "{{  data['server']['facts']['files'] | json_query(\"[?type=='log' && 
 
 ```
 
+
+# path_join
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/path_join_filter.html
+
+{{ ('/etc', path, 'subdir', file) | path_join }}
+If path == 'foo/bar' and file == 'baz.txt', the result is '/etc/foo/bar/subdir/baz.txt'
+
