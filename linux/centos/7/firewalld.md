@@ -136,7 +136,7 @@ firewall-cmd --add-port=45/tcp
 firewall-cmd --add-port=50-55/tcp
 firewall-cmd --add-port=50/tcp --add-port=60/tcp
 
-Creo que hace falta recargar para coger la conf:
+Creo que si recargamos perdemos esas configs, a no ser que pasemos el --permanent:
 firewall-cmd --reload
 
 
