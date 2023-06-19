@@ -53,6 +53,8 @@ curl -s -XPATCH -d \
         '{"loop_wait":5,"ttl":20,"postgresql":{"parameters":{"max_connections":"101"}}}' \
         http://localhost:8008/config | jq .
 
+patronictl -c /etc/patroni.yml edit-config -p max_connections=101
+
 
 # patronictl
 Ver el estado del cluster y sus miembros:
