@@ -1,4 +1,4 @@
-http://docs.ansible.com/wait_for_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/wait_for_module.html
 
 Waits for a condition before continuing.
 
