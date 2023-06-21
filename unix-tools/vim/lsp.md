@@ -1,4 +1,4 @@
-Sistituye a COC
+Sustituye a COC
 
 https://github.com/neovim/nvim-lspconfig
 https://crispgm.com/page/neovim-is-overpowering.html
@@ -18,14 +18,14 @@ Podemos intentar arrancarlo a mano:
 
 
 # Mappings
-,f format
-,d definition
-,D declaration
-,t type definition
-,i implementation
-,r referencias (donde aparece lo que tenemos seleccionado
-,s document symbol
-,S workspace symbol
-,rn rename
-K tipo de dato
+,lf format
+,ld definition, ir al código donde se define
+,lD declaration
+,lt type definition
+,li implementation
+,lr referencias (donde aparece lo que tenemos seleccionado
+,ls document symbol
+,lS workspace symbol
+,lR rename
+K tipo de dato, o documentación (por ejemplo, en ansible)
 U firma de la función
