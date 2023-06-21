@@ -139,6 +139,9 @@ select pg_current_wal_lsn();
 select pg_walfile_name(pg_current_wal_lsn());
 select last_archived_wal from pg_stat_archiver
   ver en que wal estamos
+  si falla un archivado, veremos que se incrementará el "failed_count".
+  select last_failed_time>last_archived_time from pg_stat_archiver;
+  Si esta query nos da "t" es que no estamos pudiendo archivar los wal.
 
 Sacar con un comando más datos sobre wal, checkpoints, etc
 /usr/pgsql-11/bin/pg_controldata -D /var/lib/pgsql/11/data

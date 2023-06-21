@@ -177,6 +177,11 @@ https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
 Monitorizar conflictos, mirar ha_scalability.md
 
 
+# Archivado de WALs
+Si esta query nos da "t" es que no estamos pudiendo archivar los wal.
+
+select last_failed_time>last_archived_time from pg_stat_archiver;
+
 
 # Checkup
 gitlab.com/postgres-ai/postgres-checkup

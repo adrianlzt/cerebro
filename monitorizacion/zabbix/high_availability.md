@@ -32,6 +32,16 @@ El problema es que cuando pierde la conex no vuelve a reconectar correctamente (
 
 El nodo standby no tendrá levantado el puerto 10051.
 
+Parece que el proceso ha manager hace uso de la tabla "ha_node", donde está la lista de nodos y su estado.
+status:
+ZBX_NODE_STATUS_ERROR		-2
+ZBX_NODE_STATUS_UNKNOWN		-1
+ZBX_NODE_STATUS_STANDBY		0
+ZBX_NODE_STATUS_STOPPED		1
+ZBX_NODE_STATUS_UNAVAILABLE	2
+ZBX_NODE_STATUS_ACTIVE		3
+
+
 
 # Zabbix proxy
 https://blog.zabbix.com/how-to-setup-redundant-zabbix-proxies-without-complex-cluster-configurations/12092/
