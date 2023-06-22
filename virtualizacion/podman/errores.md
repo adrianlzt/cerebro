@@ -18,6 +18,8 @@ Si lo poníamos con privileged, si funcionaba, porque le daba un error de que cl
 Pero sin privileged docker no le permitía ejecutar esa función.
 El que está haciendo ese filtrado es seccomp.
 Si deshabilitamos seccomp si funcionaba bien.
+Para quitar seccomp: --security-opt seccomp=unconfined
+En podman se pueden generar perfiles de seccomp al ejecutar un contenedor.
 
 
 
