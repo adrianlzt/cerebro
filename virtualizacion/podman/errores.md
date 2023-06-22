@@ -20,6 +20,10 @@ El que está haciendo ese filtrado es seccomp.
 Si deshabilitamos seccomp si funcionaba bien.
 Para quitar seccomp: --security-opt seccomp=unconfined
 En podman se pueden generar perfiles de seccomp al ejecutar un contenedor.
+El problema venía por un cambio en glibc, que a partir de la versión 2.34 intentan usar la syscall clone3.
+https://patchwork.ozlabs.org/project/glibc/patch/87eebkf8ph.fsf@oldenburg.str.redhat.com/#2726539
+Como el perfil de seccomp no la conoce, la bloquea y falla ahí la ejecución.
+Con el privileged, le da un fallo que glibc sabe reintentar, usando clone.
 
 
 
