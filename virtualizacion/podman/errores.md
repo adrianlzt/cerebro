@@ -11,6 +11,16 @@ sysctl -w fs.inotify.max_user_watches=65536
 
 
 
+Problema extraño ejecutando un python.
+Rascando es que no podía hacer un clone de un proceso.
+El tema era que intentaba ejecutar la syscall clone3, que no estaba implementada en el kernel.
+Si lo poníamos con privileged, si funcionaba, porque le daba un error de que clone3 no estaba disponible y luego intentaba con clone a secas.
+Pero sin privileged docker no le permitía ejecutar esa función.
+El que está haciendo ese filtrado es seccomp.
+Si deshabilitamos seccomp si funcionaba bien.
+
+
+
 Permission denied
 https://www.redhat.com/sysadmin/container-permission-denied-errors
 Si tenemos algún error raro de permission denied, iremos probando con selinux, apparmor, capabilities, privileged, seccomp, etc.
