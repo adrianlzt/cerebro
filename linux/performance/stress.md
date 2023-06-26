@@ -1,5 +1,7 @@
 http://people.seas.harvard.edu/~apw/stress/
 
+stress-ng tiene un montón más de opciones.
+
 # Arch
 pacman -Ss stress
 

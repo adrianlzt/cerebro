@@ -262,6 +262,11 @@ Si queremos sincronizar un pane, podemos desactivarlo: selectp -d (para activarl
 No hay opción de hacer esto más user-friendly: https://github.com/tmux/tmux/issues/1638
 
 
+# Comandos / run-shell
+Ejecutar un comando y ver el resultado en el pane actual.
+:run-shell id
+
+
 
 
 # Plugins
