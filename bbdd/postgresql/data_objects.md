@@ -29,3 +29,6 @@ CHECK(
   VALUE ~ '^\d{5}$'
   OR VALUE ~ '^\d{5}-\d{4}$'
 );
+
+Ver los que hay con
+\dD+

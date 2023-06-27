@@ -60,5 +60,14 @@ No suele ser muy común.
 
 Cuando creamos una tabla automáticamente se crea una data type con el nombre de la tabla y los parámetros con las columnas que tenga la tabla.
 
+Para verlos
+\dT+
+
+
+Para ver un composite type (el listado lo sacamos con \dT):
+\d nombre
+
+Ejemplo de creación: https://github.com/alerta/alerta/blob/a0ceaf039cdffd56ffcf574133ecab0f36923aa5/alerta/sql/schema.sql#L5
+
 
 Si queremos crear un data type con un "where" crearemos domains (mirar data_objects.md)
