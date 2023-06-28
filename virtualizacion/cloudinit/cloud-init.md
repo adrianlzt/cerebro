@@ -93,7 +93,7 @@ cloud-final.service (after cloud-config.service)
 
 
 # NoCloud .iso
-https://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html
+https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html
 https://blog.condi.me/qemu-config-drive/
 
 Disco con label "cidata".
