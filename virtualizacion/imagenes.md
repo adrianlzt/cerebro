@@ -89,6 +89,10 @@ Cambiar imagen base (para renombrar la imagen base):
 qemu-img rebase -u -b nuevabase disco2.qcow2
 
 
+## Modificar imagen qcow2 / virt-customize
+Setear una password ("redhat"), quitar cloud-init y poner hostname:
+virt-customize -a rhel-8.6-x86_64-kvm.qcow2 --root-password password:redhat --uninstall cloud-init --hostname mihost
+
 # Montar imagen
 
 ## Montar directamente qcow2

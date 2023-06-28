@@ -109,6 +109,10 @@ instance-id: id-12345
 local-hostname: cloudy
 EOF
 
+genisoimage  -output seed.iso -volid cidata -joliet -rock user-data meta-data
+
+
+Otra forma de generar el disco:
 truncate -s 2M cloudconfig.img
 /usr/sbin/mkfs.vfat -n cidata cloudconfig.img
 mcopy -oi cloudconfig.img user-data meta-data ::

@@ -66,7 +66,7 @@ http://blog.kylemanna.com/linux/2014/02/20/ssh-reverse-tunnel-on-linux-with-syst
 -T: disable pseudo-terminal allocation
 
 
-ssh -NT -R 8087:192.168.1.1:80 estrella
+ssh -NT -R 8080:192.168.1.1:80 estrella
   Levantamos el puerto 8080 en estrella.
   Al conectar a ese puerto, estaremos conectando a 192.168.1.1:80, pasando por el pc que ha ejecutado este comando ssh
 
