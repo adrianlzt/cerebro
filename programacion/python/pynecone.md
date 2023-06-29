@@ -1,5 +1,11 @@
 mirar también https://pyscript.net/
 
+https://reflex.dev/
+https://github.com/reflex-dev/reflex
+Renombrado de pynecone a reflex.
+
+pip install reflex
+rx init?
 
 https://pynecone.io/
 https://pynecone.io/docs/getting-started/installation
@@ -73,7 +79,25 @@ def upper_text(self) -> str:
 
 
 
+# Internals
+
+## Comunicación frontend - backend
+Se hace via websockets.
+
+Ejemplo del frontend enviando datos al backend:
+42/event,["event","{\"name\":\"state.hydrate\",\"token\":\"5b7d7082-6b55-4d0b-a34b-ef6433e7bf34\",\"router_data\":{\"pathname\":\"/\",\"query\":{}}}"]
+
+## Código react
+Se genera en .web/
+
+Podemos modificarlo a mano para hacer pruebas y ver si se está generando lo que queremos.
+
+
 # Errores
 ## next not found
 Al ejecutar "pc run" me daba un error de que no encontraba "next".
 Borre ~/.bun he hice init y run de nuevo.
+
+## Problemas con el backend
+Parece que no funcionar cambiar el puerto del backend (server ws).
+Usar siempre 8000.
