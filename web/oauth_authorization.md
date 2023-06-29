@@ -1,3 +1,7 @@
+https://clerk.com/
+web para implementar oauth con distintos providers de forma sencilla. Componentes prebuilt para ciertas tecnologías, react, gatsby, next.js, etc.
+
+
 identiy: a set of facts about a thing that make it what it is
 single sign-on: un único acceso para poder acceder a todo lo que necesitamos
 
