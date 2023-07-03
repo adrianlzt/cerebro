@@ -4,6 +4,11 @@ man rename
 Hay dos renames, uno de utils-linux y otro de perl.
 El de perl puede venir como prename o perl-rename
 
+# utils-linux
+Quitar el sufijo ".off" a los ficheros que lo tengan:
+rename '.off' '' *.off
+
+# Perl
 For example, to rename all files matching "*.bak" to strip the extension, you might say
   rename 's/\.bak$//' *.bak
 
