@@ -6,7 +6,7 @@ pip + virtualenv
 
 En un directorio donde queremos un virtualenv:
 pipenv shell
-  nos creará un virtualenv en ~/.virtualenvs con el nombre del dir y un hash (ej.: mydir-d457g5)
+  nos creará un virtualenv en ~/.local/share/virtualenvs con el nombre del dir y un hash (ej.: mydir-d457g5)
   generará el ficheros Pipfile
 
 pipenv --python 2.7
