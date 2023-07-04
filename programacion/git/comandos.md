@@ -85,6 +85,7 @@ Borrar etiqueta remota                              git push origin :0.1.0
 Mirar alias                                         git aliases
 Dejar lo que estamos haciendo sin commit            git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
                                                     git stash save "mensaje"
+Guardar un único fichero en un stash                git stash push path/to/file
 Mostrar stashs                                      git stash list
 Volver a lo que estábamos haciendo                  git stash pop
                                                     git stash pop stash@{0}
