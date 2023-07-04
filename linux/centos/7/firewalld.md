@@ -1,6 +1,10 @@
 http://www.certdepot.net/rhel7-get-started-firewalld/
 https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
 
+Tenemos distintas zonas activas, cada zona asociada a una o más interfaces.
+Cada zona define que servicios, y/o puertos, permite.
+Por debajo configura el firewall con nftables (nfables list ruleset).
+Tenemos la configuración "runtime" y la "permanent".
 
 Ver que tenemos en runtime (obtiene las zonas activas y saca su resultado):
 firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={}
@@ -119,11 +123,14 @@ firewall-cmd --zone=docker --permanent --add-interface=docker0
 Servicios predefinidos
 firewall-cmd --get-services
 
-Listar puertos abiertos:
+Listar puertos abiertos (solo muestra los puertos, no los servicios):
 firewall-cmd --zone=internal --list-ports
 
 Listar servicios abiertos:
 firewall-cmd --list-services
+
+Si queremos ver que puerto está asociado a cada service:
+firewall-cmd --info-service=dhcpv6-client
 
 
 Añadir un servicio (abrir un puerto) a una zona (si no le pasamos nada, la de por defecto):
