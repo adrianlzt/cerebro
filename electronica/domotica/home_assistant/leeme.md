@@ -6,7 +6,18 @@ Programa en python para tener una web de control domótico
 
 ## Arch
 pacman -Ss home-assistant
-Tras arrancarlo dio bastantes errores, lo reinicié y entonces ya levantó la UI.
+
+Si falla bluetooth,. mirar https://bbs.archlinux.org/viewtopic.php?pid=2054884#p2054884
+
+Si falla el ble_monitor tras dar capabilities al binario de python, tuve que quitar, de la unit de systemd:
+```
+#AmbientCapabilities=
+#CapabilityBoundingSet=
+#LockPersonality=true
+#ProtectControlGroups=true
+#ProtectKernelModules=true
+#ProtectKernelTunables=true
+```
 
 http://localhost:8123/config/integrations
   no usar 127.0.0.1, problemas CORS
