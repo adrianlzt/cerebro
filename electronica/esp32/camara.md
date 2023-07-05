@@ -21,10 +21,26 @@ https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
 http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
 https://es.aliexpress.com/item/32968683765.html?gatewayAdapt=glo2esp
 LILYGO® TTGO T-Camera ESP32 WROVER y PSRAM módulo de cámara ESP32-WROVER-B OV2640 módulo de cámara 0,96 OLED
+
+Parece que hay una versión más moderna:
+https://www.tindie.com/products/lilygo/lilygo-t-camera-s3-esp32-s3-esp32-cam-2-million/
+
+La que compré era la versión OV2640_V1.6.2
+20190731
+ESP32-D0WDQ6 V3 (no es esp32-s3)
+
+ESP32 con cámara, sensor de movimiento, pantalla y dos botones.
+
 Schematic:
 https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/blob/master/schematic/T_CameraV162_Schematic.pdf
 
-Fimrware, ejemplos, links a las distintas versiones, etc:
+Parece que tiene PSRAM, visto al arrancar esphome
+[14:10:20][C][psram:020]: PSRAM:
+[14:10:20][C][psram:021]:   Available: YES
+[14:10:20][C][psram:024]:   Size: 4095 KB
+
+### Firmware
+Firmware, ejemplos, links a las distintas versiones, etc:
 https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series
 
 Este firmaware no me funciona
@@ -36,16 +52,9 @@ invalid header: 0xffffffff
 ```
 
 Probando con esphome, con los ficheros de ejemplo que vienen en el repo de Xinyuan-LilyGO.
+Captura imágenes correctamente.
 
-
-Parece que hay una versión más moderna:
-https://www.tindie.com/products/lilygo/lilygo-t-camera-s3-esp32-s3-esp32-cam-2-million/
-
-La que compré era la versión OV2640_V1.6.2
-20190731
-ESP32-D0WDQ6 V3 (no es esp32-s3)
-
-ESP32 con cámara, sensor de movimiento, pantalla y dos botones.
+Con platformio también funciona correctamente. Probado LilyGo-Camera-Series/examples/sketch
 
 
 
