@@ -21,6 +21,25 @@ https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
 http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
 https://es.aliexpress.com/item/32968683765.html?gatewayAdapt=glo2esp
 LILYGO® TTGO T-Camera ESP32 WROVER y PSRAM módulo de cámara ESP32-WROVER-B OV2640 módulo de cámara 0,96 OLED
+Schematic:
+https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/blob/master/schematic/T_CameraV162_Schematic.pdf
+
+Fimrware, ejemplos, links a las distintas versiones, etc:
+https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series
+
+Este firmaware no me funciona
+https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/blob/master/firmware/t-camera-v1.6_with_mic.bin
+Al conectar saca todo el rato el error:
+```
+rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+invalid header: 0xffffffff
+```
+
+Probando con esphome, con los ficheros de ejemplo que vienen en el repo de Xinyuan-LilyGO.
+
+
+Parece que hay una versión más moderna:
+https://www.tindie.com/products/lilygo/lilygo-t-camera-s3-esp32-s3-esp32-cam-2-million/
 
 La que compré era la versión OV2640_V1.6.2
 20190731
