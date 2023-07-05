@@ -8,15 +8,9 @@ https://docs.nginx.com/nginx/admin-guide/high-availability/ha-keepalived-nodes/
 Keepalived is a routing software written in C. The main goal of this project is to provide simple and robust facilities for loadbalancing and high-availability to Linux system and Linux based infrastructures. Loadbalancing framework relies on well-known and widely used Linux Virtual Server (IPVS) kernel module providing Layer4 loadbalancing. Keepalived implements a set of checkers to dynamically and adaptively maintain and manage loadbalanced server pool according their health. On the other hand high-availability is achieved by VRRP protocol. VRRP is a fundamental brick for router failover. In addition, Keepalived implements a set of hooks to the VRRP finite state machine providing low-level and high-speed protocol interactions. Keepalived frameworks can be used independently or all together to provide resilient infrastructures.
 
 
-Parche para unicast: http://1wt.eu/keepalived/
-
 Hace un funcionamiento parecido a Pacemaker+Corosync pero en un solo demonio, y bastante más básico.
 
-Soportado completamente en CentOS 6.6
-
-
 Con ansible: http://everythingshouldbevirtual.com/ansible-keepalived
-
 
 
 En la configuración, podemos poner los dos a MASTER y entre ellos eligirán cual se pone en modo BACKUP
@@ -70,6 +64,20 @@ En caso de que los dos tengan script a OK (empate) gana uno de los dos.
 Si uno sube de prioridad y empatan, se queda el que ya tenía la VIP.
 
 
+# Multicast VS unicast
+Unicast soportado desde la version 1.2.8
+https://www.keepalived.org/changelog.html#:~:text=ability%20to%20use%20VRRP%20over%0A%20%20unicast
+
+https://serverfault.com/a/1076854
+I would not recommend using unicast because it makes the VRRP setup more brittle than it should be, each time you need to reconfigure the peer IP address you would need to update the configuration of other peers, possibly incurring downtime
+
+In some environments, notably public clouds, multicast is unavailable. In this case, Keepalived can send VRRP packets using unicast
+https://vincent.bernat.ch/en/blog/2020-keepalived-unicast-vxlan#:~:text=In%20some%20environments%2C%20notably%20public%20clouds%2C%20multicast%20is%20unavailable.%20In%20this%20case%2C%20Keepalived%20can%20send%20VRRP%20packets%20using%20unicast
+
+En las clouds no se suele soportar multicast.
+Ejemplo, GCP: https://cloud.google.com/vpc/docs/vpc#:~:text=VPC%20networks%20support%20IPv4%20and%20IPv6%20unicast%20addresses.%20VPC%20networks%20do%20not%20support%20broadcast%20or%20multicast%20addresses%20within%20the%20network.
+
+
 # Configuraciones segun id/hostname
 Podemos poner en la config secciones que solo serán interpretadas si el id (puesto con la opción "-i", o por defecto el hostname) matchea el "@xxx":
 @main   router_id main_router
@@ -115,10 +123,21 @@ keepalived needs to successful connect to agentx (see logs).
 Hace falta arrancar el keepalived con "-x".
 
 
+# Authentication - NO USAR
+Se pueden configurar dos tipos "PASS" y "AH", pero ambas fueron sacadas del protocolo, así que no se aconseja su uso (entiendo).
 
-# Auth - NO USAR
-Note: authentication was removed from the VRRPv2 specification by RFC3768 in 2004.
-Use of this option is non-compliant and can cause problems
+Note: Earlier version of the VRRP specification had several defined authentication types [RFC2338]. These were removed in this
+specification because operational experience showed that they did not provide any real security and would only cause multiple masters to be created.
+https://datatracker.ietf.org/doc/rfc3768/#:~:text=Note%3A%20%20Earlier%20version%20of%20the%20VRRP%20specification%20had%20several%20defined%0A%20%20%20authentication%20types%20%5BRFC2338%5D.%20%20These%20were%20removed%20in%20this%0A%20%20%20specification%20because%20operational%20experience%20showed%20that%20they%20did%20not%0A%20%20%20provide%20any%20real%20security%20and%20would%20only%20cause%20multiple%20masters%20to%20be%0A%20%20%20created.
+
+En la RFC más reciente (https://datatracker.ietf.org/doc/rfc5798/) siguen especificando que no hay ningún tipo de seguridad (encriptación, passwords, etc).
+
+https://datatracker.ietf.org/doc/rfc3768/#:~:text=Removed%20authentication%20methods%20from%20VRRP
+   -  Removed authentication methods from VRRP.  Changes included:
+      o  Removed the values for password and IPSEC based authentication.
+         The fields and values are retained to keep backwards
+         compatibility with RFC 2338.
+
 
 
 # Debug
