@@ -19,8 +19,15 @@ https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
 
 ## Lilygo-Camera
 http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
+https://es.aliexpress.com/item/32968683765.html?gatewayAdapt=glo2esp
+LILYGO® TTGO T-Camera ESP32 WROVER y PSRAM módulo de cámara ESP32-WROVER-B OV2640 módulo de cámara 0,96 OLED
+
+La que compré era la versión OV2640_V1.6.2
+20190731
+ESP32-D0WDQ6 V3 (no es esp32-s3)
 
 ESP32 con cámara, sensor de movimiento, pantalla y dos botones.
+
 
 
 ## Ai Thinker
