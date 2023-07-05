@@ -99,6 +99,11 @@ global_defs {
 Ejecutar acciones cuando cambia de estado
 https://tobru.ch/keepalived-check-and-notify-scripts/
 
+También se puede configurar keepalived para que notifique via FIFO y poner a un demonio a escuchar al otro lado.
+
+Ejemplo de aplicación en go que recibe los eventos via FIFO y tiene su propio fichero de configuración para las tareas que debe ejecutar.
+https://git.st8l.com/luxolus/kdnotify
+
 
 # Monitoring
 https://serverfault.com/questions/560024/view-current-state-of-keepalived
