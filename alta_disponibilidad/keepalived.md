@@ -104,6 +104,9 @@ También se puede configurar keepalived para que notifique via FIFO y poner a un
 Ejemplo de aplicación en go que recibe los eventos via FIFO y tiene su propio fichero de configuración para las tareas que debe ejecutar.
 https://git.st8l.com/luxolus/kdnotify
 
+Ejemplo en python, script para "notify", gestiona los distintos tipos de llamada:
+https://gist.github.com/adrianlzt/818df9a12e82e8f5663f39c72015798b
+
 
 # Monitoring
 https://serverfault.com/questions/560024/view-current-state-of-keepalived
