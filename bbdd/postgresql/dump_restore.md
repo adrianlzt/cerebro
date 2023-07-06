@@ -143,6 +143,12 @@ Ahora hacer el pg_restore, con todos los params que queramos y pasando ese -L:
 pg_restore -L db.list ...
 
 
+Si nos fallan constraints, por ejemplo, una tabla referenciando a otra, pero no existe lo que buscamos, podemos cargar primero el schema y luego cargar los datos con los triggers deshabilitados.
+
+--schema-only
+
+--data-only --disable-triggers
+
 ## Formato SQL plano
 Sin compresión
   pg_dump -d dbname -n public -f outfile.sql
