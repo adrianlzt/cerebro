@@ -46,3 +46,16 @@ https://github.com/pianojockl/ttgo-camera-plus-micropython
 
 Para la cámara usa https://github.com/lemariva/micropython-camera-driver
 Con los dos ejemplos de camara.init() que tiene en el README no me ha funcionado.
+
+
+# Build a mano
+Siguiendo instrucciones de https://github.com/lemariva/micropython-camera-driver#diy
+
+git clone --recursive https://github.com/micropython/micropython.git
+cd micropython
+Me falla en mi pc.
+
+Luego he encontrado un repo que intenta hacer el build en un docker
+https://github.com/wieck/micropython-esp32-devel
+
+Parece que para el build hace falta tambien esp-idf y xtensa-esp32. Entiendo que esto es para dar el soporte esp32 a micropython.
