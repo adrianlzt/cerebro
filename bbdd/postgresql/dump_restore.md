@@ -97,7 +97,7 @@ Lleva compresión (mirar parámetro -Z).
 
 pg_dump -Fc -d prueba -f prueba.custom
   -x si no queremos guardar informacion de roles (permisos de las tablas)
-  -j=N para meter varios hilos
+  -j=N para meter varios hilos (solo válido para el directory format -Fd)
   -Z=n para seleccionar la compresion
 
 -t para seleccionar tablas (múltiples veces para varias tablas)
