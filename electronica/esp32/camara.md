@@ -18,16 +18,39 @@ mirar micropython/camara.md
 https://projetsdiy.fr/esp32-cam-choix-modele-2021-aithinker-ttgo-m5stack/
 
 ## Lilygo-Camera
-http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
+https://web.archive.org/web/20221207132442/http://www.lilygo.cn/prod_view.aspx?TypeId=50030&Id=1273&FId=t3:50030:3
 https://es.aliexpress.com/item/32968683765.html?gatewayAdapt=glo2esp
-LILYGO® TTGO T-Camera ESP32 WROVER y PSRAM módulo de cámara ESP32-WROVER-B OV2640 módulo de cámara 0,96 OLED
-
-Parece que hay una versión más moderna:
-https://www.tindie.com/products/lilygo/lilygo-t-camera-s3-esp32-s3-esp32-cam-2-million/
+https://github.com/lewisxhe/esp32-camera-series/blob/master/docs/T_CarmerV162.md
 
 La que compré era la versión OV2640_V1.6.2
 20190731
 ESP32-D0WDQ6 V3 (no es esp32-s3)
+LILYGO® TTGO T-Camera ESP32 WROVER y PSRAM módulo de cámara ESP32-WROVER-B OV2640 módulo de cámara 0,96 OLED
+
+Master Chip: esp32 dual-core
+Protocol: Wi-Fi 802.11 b/g/n & Bluetooth 4.2 BLE & BR/EDR
+Flash: 4MBytes
+PSRAM: 8MBytes
+Display chip: SSD1306 I2C
+Display type: OLED
+Display resolution: 128x64
+PIR: AS312
+Uart Chip: CP2104
+Charging chip: IP5306 I2C（Mic T-Camera without I2C)
+Camera: OV2640
+Camera Resolution: 2Megapixel
+
+Pines
+SDA	21
+SCL	22
+
+La que compré era la versión OV2640_V1.6.2
+20190731
+ESP32-D0WDQ6 V3 (no es esp32-s3)
+
+
+Parece que hay una versión más moderna:
+https://www.tindie.com/products/lilygo/lilygo-t-camera-s3-esp32-s3-esp32-cam-2-million/
 
 ESP32 con cámara, sensor de movimiento, pantalla y dos botones.
 
@@ -40,21 +63,10 @@ Parece que tiene PSRAM, visto al arrancar esphome
 [14:10:20][C][psram:024]:   Size: 4095 KB
 
 ### Firmware
+https://github.com/adrianlzt/micropython-esp32-cam-docker
+
 Firmware, ejemplos, links a las distintas versiones, etc:
 https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series
-
-Este firmaware no me funciona
-https://github.com/Xinyuan-LilyGO/LilyGo-Camera-Series/blob/master/firmware/t-camera-v1.6_with_mic.bin
-Al conectar saca todo el rato el error:
-```
-rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
-invalid header: 0xffffffff
-```
-
-Probando con esphome, con los ficheros de ejemplo que vienen en el repo de Xinyuan-LilyGO.
-Captura imágenes correctamente.
-
-Con platformio también funciona correctamente. Probado LilyGo-Camera-Series/examples/sketch
 
 
 
