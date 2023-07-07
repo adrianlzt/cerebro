@@ -22,6 +22,11 @@ Para chequear cual estamos usando:
 podman info --format {{.Host.NetworkBackend}}
 
 Podemos forzar cual queremos en /etc/containers/containers.conf
+```
+[network]
+network_backend = "netavark"
+```
+
 Tras cambiar la network recomiendan
 sudo podman system reset
 
