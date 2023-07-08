@@ -9,3 +9,6 @@ https://github.com/espressif/esp32-camera
 
 Ejemplo proyecto en micropython
 https://github.com/lemariva/uPyCam/blob/master/webcam.py
+
+Probando el uPyCam se vuelve inestable, no contesta a las peticiones de red.
+
