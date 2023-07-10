@@ -12,6 +12,10 @@ También uso xmodmap ~/.Xmodmap para cambiar algunas teclas (ç es /)
 https://unix.stackexchange.com/a/65600
 Parece que xmodmap está deprecated y ahora se usa xkb tools
 
+Parece que mejor usar algo tipo kmonad para gestionar el tema de las teclas
+Mirar kmonad.md
+No me convence la complejidad de la herramienta para las cuatro cosas que cambio.
+
 
 http://askubuntu.com/questions/209597/how-do-i-change-keyboards-from-the-command-line
 Consola, teclado a español:
@@ -89,8 +93,8 @@ para conocer que teclas estamos pulsando
 KeyPress event, serial 36, synthetic NO, window 0x3000001,
     root 0xd4, subw 0x0, time 757054, (-280,210), root:(773,388),
     state 0x0, keycode 107 (keysym 0xff61, Print), same_screen YES,
-    XLookupString gives 0 bytes: 
-    XmbLookupString gives 0 bytes: 
+    XLookupString gives 0 bytes:
+    XmbLookupString gives 0 bytes:
     XFilterEvent returns: False
 
 Se ha pulsado (KeyPress) la tecla 107 que tiene la función "Print"
