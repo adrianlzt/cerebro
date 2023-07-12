@@ -1,5 +1,9 @@
 https://untools.co/
+https://fs.blog/mental-models/
 Diferentes modelos mentales que podemos usar para resolver problemas.
+
+The map is not the territory: un mapa es una reprensetación, no la realidad
+Circle of competence: tener claros nuestros conocimientos y limitaciones. Nos ayudará a encontrar unknown unknowns (cosas que no sabemos que no sabemos).
 
 
 
