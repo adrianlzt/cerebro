@@ -4,6 +4,11 @@ Diferentes modelos mentales que podemos usar para resolver problemas.
 
 The map is not the territory: un mapa es una reprensetación, no la realidad
 Circle of competence: tener claros nuestros conocimientos y limitaciones. Nos ayudará a encontrar unknown unknowns (cosas que no sabemos que no sabemos).
+First principles thinking: separar y trocear el problema. Buscar las bases.
+Thought experiment: realizar experimentos mentales para poder imaginarnos distintos escenarios o límites
+Second order thinking: considerar los resultados que se producirán más adelante, no solo los inmediatos.
+Probabilistic Thinking: usar las matemáticas, estadística, lógica para intentar ser más precisos
+Inversion:
 
 
 
