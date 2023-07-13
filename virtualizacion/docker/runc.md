@@ -24,5 +24,3 @@ runc --root /tmp/run-$(id -u)/runc list
 
 ## Kill/Stop
 runc kill XXX KILL
-
-

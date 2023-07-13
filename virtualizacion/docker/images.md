@@ -70,3 +70,7 @@ En arch -> devicemapper
 
 Openshift -> /var/lib/docker/image/devicemapper
   en repositories.json tenemos un json con el mapeo entre imagenes y directorios que almacenan la info (el id de la imagen que usa docker será el segundo de los que aparece)
+
+
+# Bajar una imagen sin usar docker
+https://raw.githubusercontent.com/moby/moby/master/contrib/download-frozen-image-v2.sh
