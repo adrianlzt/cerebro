@@ -56,7 +56,7 @@ Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a ca
 ValueCacheSize=8M (default)
 Podemos ver como va de llena en la gráfica: "Zabbix value cache, % used"
 Métricas internal zabbix[vcache,*]
-Se verá afectada si tenemos muchos "last(x)" donde X sean muchos valores (horas, días, etc)
+Se verá afectada si tenemos muchos "last(x)" (y otras muchas funciones, avg, min, etc) donde X sean muchos valores (horas, días, etc)
 
 En un entorno productivo con 1.5M trigger y 500k triggers nunca superó los 850MB de uso (teniendo 2GB) (version 3.2.6)
 
@@ -67,6 +67,10 @@ https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L11
 Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
 
 Almacena, al menos, 24h de datos.
+
+vc_release_unused_items
+Frees space in cache by dropping items not accessed for more than 24 hours                                                          *
+
 
 Trigger y items count pueden hacer uso de la value cache.
 Las funciones que pueden usar valores atrás en el tiempo (v3.2) son estas (el valor sec|#num es el primer parámetro excepto si se especifica lo contrario):
