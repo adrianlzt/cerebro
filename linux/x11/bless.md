@@ -1,4 +1,5 @@
 https://github.com/WerWolv/ImHex
+https://github.com/WerWolv/ImHex-Patterns
 
 
 
