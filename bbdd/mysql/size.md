@@ -1,15 +1,19 @@
+NOTA: parece que no libera espacio de disco aunque hayamos borrado
+https://stackoverflow.com/questions/1270944/mysql-innodb-not-releasing-disk-space-after-deleting-data-rows-from-table
+
+
 Ver el tamaño de las tablas en MB:
 
-SELECT table_name AS "Tables", 
-round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB" 
-FROM information_schema.TABLES 
+SELECT table_name AS "Tables",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
 WHERE table_schema = "$DB_NAME";
 
 
 Para ver el de una tabla en concreto:
-SELECT table_name AS "Table", 
-round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB" 
-FROM information_schema.TABLES 
+SELECT table_name AS "Table",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
 WHERE table_schema = "$DB_NAME"
 AND table_name = "$TABLE_NAME";
 
@@ -23,7 +27,7 @@ SELECT count(*) tables,
   round(sum(index_length)/sum(data_length),2) idxfrac
 FROM information_schema.TABLES;
 
-Find the same data using some filter 
+Find the same data using some filter
 SELECT count(*) tables,
        concat(round(sum(table_rows)/1000000,2),'M') rows,
        concat(round(sum(data_length)/(1024*1024*1024),2),'G') data,
