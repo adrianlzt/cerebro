@@ -1,3 +1,6 @@
+Si estamos buscando cuantos paquetes cruzan las reglas, mirar paquetes-filtrados.md
+
+
 Como usar iptables para hacer una VIP que haga round-robin sobre una serie de nodos.
 Vamos a hacer un ejemplo creando una VIP que enrute las peticiones a 8080/TCP a tres sitios distintos:
  99.73.32.195 (eth0.me) (contesta con nuestra ip)
@@ -26,5 +29,3 @@ iptables -t nat -A VIP3 -p tcp -j DNAT --to-destination 50.19.95.187:80
 iptables -t nat -A OUTPUT -d 172.39.99.111/32 -p tcp -m tcp --dport 8080 -m statistic --mode random --probability 0.3333 -j VIP1
 iptables -t nat -A OUTPUT -d 172.39.99.111/32 -p tcp -m tcp --dport 8080 -m statistic --mode random --probability 0.5 -j VIP2
 iptables -t nat -A OUTPUT -d 172.39.99.111/32 -p tcp -m tcp --dport 8080 -j VIP3
-
-

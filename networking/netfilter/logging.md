@@ -1,3 +1,6 @@
+Si estamos buscando cuantos paquetes cruzan las reglas, mirar paquetes-filtrados.md
+
+
 http://www.toastresearch.com/2011/04/09/packet-logging-with-iptables/
 
 La cadena LOG envia las trazas al logging del sistema y continua analizando la chain (LOG is a "non-terminating target", so rule traversal will continue on to the next rule).
