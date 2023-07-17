@@ -17,3 +17,6 @@ cat /proc/<PID>/smaps
 
 # pmap
 Herramienta que nos saca esa información de forma más sencilla y más fácilmente parseable.
+
+# golang
+Mirar en programacion/go/acceso_memoria_procesos.md para una app en go que accede a la memoria de otro proceso para extraer información.

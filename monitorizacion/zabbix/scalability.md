@@ -102,6 +102,8 @@ history_value_t -> 8*5=40 bytes
 zbx_history_record_t -> 2*4 + history_value_t = 48 bytes
 zbx_vc_chunk_t -> 8*2 + 4*3 + zbx_history_record_t = 76 bytes
 
+Mirar la app programacion/go/acceso_memoria_procesos.md para ver como extraer info de la value cache.
+
 
 
 

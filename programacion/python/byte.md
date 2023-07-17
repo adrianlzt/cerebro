@@ -138,7 +138,7 @@ Vamos encontrando los "unos" que habíamos "shifteado"
 ...         r = n %2
 ...         n >>= 1
 ...         string = str(r) + string
-...         
+...
 ...     return string
 
 
@@ -199,3 +199,8 @@ version = file.read(2)
 struct.unpack('!H', version)
 len = file.read(4)
 struct.unpack('!I', len)
+
+
+
+Convertir el número 28727 a su representacion little endian con 8 bytes.
+struct.pack("<Q", 28727).hex()
