@@ -97,3 +97,7 @@ CUIDADO con pararnos entre algún LOCK de la cache, porque bloquearemos práctic
 
 Ejemplo sacando la información almacenada en la history write cache
 https://gist.github.com/28c300d362f83607094872d18eee3820
+
+Ejemplo, engancho al history syncer y pongo un breakpoint cuando está en la función del value cache (zabbix 4):
+gdb -p 12345
+b zbx_vc_add_values:2566

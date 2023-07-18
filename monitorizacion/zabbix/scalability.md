@@ -140,15 +140,18 @@ valuecache.c -> zbx_vc_add_values (adds item values to the history and value cac
   expire_timestamp = time(NULL) - ZBX_VC_ITEM_EXPIRE_PERIOD (esta macro es 86400s=1día)
 
   Por cada item de "history_values":
-    coje un slot de items, puede que esté vacío o puede que ya tenga datos anteriores.
+    Coje un slot de items, si está vacío sigue otra vuelta para coger el siguiente item.
+    Si es la primera vez que ve un value de un item, no se meterá por aquí.
+    En este caso, entrará más tarde, cuando se esté evaluando la función del trigger (o del item calculated).
+    Entrará por zbx_vc_get_values - vch_item_get_values - vch_item_cache_values_by_time_and_count - vch_item_add_values_at_tail
+
     Si no he recibido datos en 24h, borra esa cache que tuviese (y ese dato que aparece, no se mete en la caché).
-    La primera vez que ve un item esto "item->last_accessed < expire_timestamp" es true, por lo que no entra.
-    Parece que es la forma que tiene para solo meter items que tengan triggers o calculated, que requeriran ese valor de la cache y maracarán el last_access.
 
     vch_item_add_value_at_head(item, &record)      (record = {h->ts, h->value})
       si no tenía un chunk creado
         vch_item_add_chunk(item, vch_item_chunk_slot_count(item, 1), NULL)     (adds a new data chunk at the end of item's history data list)
           vch_item_chunk_slot_count: decide cuantos chunks crear y cuantos slots por chunk. Explicación del valor en los comentarios de la función.
+            parece que quiere mantener un número de slots por chunk igual a la raiz cuadrada de los valores almacenados para ese item.
           se crea el chunk, parece que con dos slots y lo mete en lo segundo (esto visto en la memoria, en el código es complicado de seguir)
 
       si ya tenía chunk
