@@ -50,13 +50,22 @@ value cache (tamaño máximo definido por ValueCacheSize), métricas zabbix[vcac
 
 
 ## Value cache
-https://www.zabbix.com/documentation/3.4/manual/config/items/value_cache
+https://www.zabbix.com/documentation/current/en/manual/config/items/value_cache
+
+Los struct vacíos ocupan 16360 Bytes (al menos para una ValueCache de 128K), zabbix 4.0.
+
 Value Cache is used for storing item values for evaluating trigger expressions, calculated items and some macros.
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
 ValueCacheSize=8M (default)
 Podemos ver como va de llena en la gráfica: "Zabbix value cache, % used"
 Métricas internal zabbix[vcache,*]
 Se verá afectada si tenemos muchos "last(x)" (y otras muchas funciones, avg, min, etc) donde X sean muchos valores (horas, días, etc)
+
+De la doc de 6.4
+Item values remain in value cache either until:
+  the item is deleted (cached values are deleted after the next configuration sync);
+  the item value is outside the time or count range specified in the trigger/calculated item expression (cached value is removed when a new value is received);
+  the time or count range specified in the trigger/calculated item expression is changed so that less data is required for calculation (unnecessary cached values are removed after 24 hours).
 
 En un entorno productivo con 1.5M trigger y 500k triggers nunca superó los 850MB de uso (teniendo 2GB) (version 3.2.6)
 
