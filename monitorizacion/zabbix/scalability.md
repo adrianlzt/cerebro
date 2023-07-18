@@ -53,6 +53,18 @@ value cache (tamaño máximo definido por ValueCacheSize), métricas zabbix[vcac
 https://www.zabbix.com/documentation/current/en/manual/config/items/value_cache
 
 Los struct vacíos ocupan 16360 Bytes (al menos para una ValueCache de 128K), zabbix 4.0.
+Al meter un nuevo valor en la cache (tipo int) se consumen 176 bytes.
+
+Mirando como funciona a nivel de memoria, cuando hemos metido un valor, la estructura zbx_vc_item_t apuntó con tail y head al mismo chunk.
+Al meter un segundo valor (el item tiene un trigger que solo quiere el último valor), cambió tail y head a otro chunk distinto.
+Curiosamente en el primer chunk también se metió el valor nuevo, pero quedó desconectado (nadie apunta a él).
+El incremento de hacer esto (nuevo valor, apunta a un nuevo chunk), fue de 16 bytes)
+En cada chunk puede almacenar uno o dos valores (uno en el slots[0] y otro en el slots[1]).
+En cada slot almacena un zbx_history_record_t, donde tiene un timestamp y luego un history_value_t.
+Este history_value_t es un union, por lo que veo gasta 4 bytes en saber cual de los 5 tipos va a usar y luego otros 8 bytes para ese valor.
+
+Si necesita almacenar más values va creando más chunks y usando la linked list para saltar de unos a otros.
+
 
 Value Cache is used for storing item values for evaluating trigger expressions, calculated items and some macros.
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
