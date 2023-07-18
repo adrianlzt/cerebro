@@ -1,3 +1,7 @@
+# Logear debug a múltiples ficheros
+https://github.com/datadope-io/zabbix/tree/feature/log_multi_file
+
+
 # Configuración logging del server/proxy
 Podemos sacar el logging a fichero, syslog o consola.
 

@@ -65,6 +65,9 @@ Este history_value_t es un union, por lo que veo gasta 4 bytes en saber cual de 
 
 Si necesita almacenar más values va creando más chunks y usando la linked list para saltar de unos a otros.
 
+Lo que no entiendo es por que, con un trigger que solo usa el último value, a veces comienza a almacenar más values de los necesarios.
+Cuando decide borrar?
+
 
 Value Cache is used for storing item values for evaluating trigger expressions, calculated items and some macros.
 Se puede activar una cache para ahorrar ciertas llamadas a la base de datos a cambio de memoria
@@ -124,6 +127,39 @@ zbx_history_record_t -> 2*4 + history_value_t = 48 bytes
 zbx_vc_chunk_t -> 8*2 + 4*3 + zbx_history_record_t = 76 bytes
 
 Mirar la app programacion/go/acceso_memoria_procesos.md para ver como extraer info de la value cache.
+https://github.com/datadope-io/zabbix4-read-valuecache
+
+
+### Como se insertan los datos en la cache en zabbix4
+Realizado por el history syncer
+
+dbcache.c    -> DBmass_add_history -> zbx_vc_add_values(&history_values)
+valuecache.c -> zbx_vc_add_values (adds item values to the history and value cache)
+  zbx_history_add_values (para meterlos en la history cache)
+
+  expire_timestamp = time(NULL) - ZBX_VC_ITEM_EXPIRE_PERIOD (esta macro es 86400s=1día)
+
+  Por cada item de "history_values":
+    coje un slot de items, puede que esté vacío o puede que ya tenga datos anteriores.
+    Si no he recibido datos en 24h, borra esa cache que tuviese (y ese dato que aparece, no se mete en la caché).
+    La primera vez que ve un item esto "item->last_accessed < expire_timestamp" es true, por lo que no entra.
+    Parece que es la forma que tiene para solo meter items que tengan triggers o calculated, que requeriran ese valor de la cache y maracarán el last_access.
+
+    vch_item_add_value_at_head(item, &record)      (record = {h->ts, h->value})
+      si no tenía un chunk creado
+        vch_item_add_chunk(item, vch_item_chunk_slot_count(item, 1), NULL)     (adds a new data chunk at the end of item's history data list)
+          vch_item_chunk_slot_count: decide cuantos chunks crear y cuantos slots por chunk. Explicación del valor en los comentarios de la función.
+          se crea el chunk, parece que con dos slots y lo mete en lo segundo (esto visto en la memoria, en el código es complicado de seguir)
+
+      si ya tenía chunk
+        Puede que metamos el valor en algún hueco.
+        También hacen algunos filtrados para evitar meter valores más antiguos del primer valor que esté en la caché de ese item.
+        Parece que en la cache los valores tienen que ir en orden temporal.
+        Puede que se añadan nuevos chunks y entonces se limpiarán los antiguos.
+
+      si ya tenía un chunk creado
+
+
 
 
 
