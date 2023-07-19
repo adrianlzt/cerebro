@@ -194,7 +194,7 @@ Por lo tanto, solo se limpia la cache cuando se genera un nuevo chunk. En ese mo
 sea anterior a now()-active_range (que será el número de valores que use el trigger o calculated más grande).
 
 
-Si un host está en mantenimiento y no entran métricas, parece que no se borrará la cache.
+Si un host está en mantenimiento y no entran métricas, parece que no se borrará la cache?
 
 ### Como se calcula el range
 vch_item_update_range puede ser llamada por
@@ -212,6 +212,8 @@ Esta operación lo que hace es quedarse con el byte menos significante del integ
 ```
 hour = (now / SEC_PER_HOUR) & 0xff;
 ```
+Si queremos calcular ese hour:
+python -c "from datetime import datetime; print(int(int(datetime.now().strftime('%s')) / (60*60)) & 0xff)"
 
 Hour puede tomar valores entre 0 y 255.
 Parece que simplemente es un contador de horas incremental, que le vale para saber si han pasado N horas desde una vez determinada.
@@ -222,6 +224,54 @@ Esto es para controlar si se ha "dado la vuelta" (hour es mayor, pero ha pasado 
 if (0 > (diff = hour - item->range_sync_hour))
 	diff += 0xff;
 ```
+
+## Explicación de problema visto
+
+Datos sacados con https://github.com/datadope-io/zabbix4-read-valuecache
+
+slot 37070: 0x7fe1fa3f6768
+itemid: 9963358 (uint, normal, enabled)
+rangeSyncHour: 130
+activeRange: 5324033
+dailyRange: 130
+valuesTotal: 3043
+head: 7fe1fbcac140
+tail: 7fe1f0dcb8d8
+
+│ 9963358 │ nombreHost │ telegraf.dns_query.result_code[google.com,A,172.11.1.1] │
+
+un poco de contexto
+
+cada vez que metemos un nuevo dato a zabbix, si ese item está asociado a un trigger o un item calculated, se almacena en la value cache
+
+en la value cache hay una "caja" por cada item
+
+dentro de esa caja hay otras cajas llamadas "chunks"
+
+y dentro de cada chunk se pueden almacenar N valores
+
+ese N varía como la raíz cuadrada del número total de valores. Es decir, si actualmente tenemos 100 valores, al crear un nuevo chunk lo hará con capacidad para 10 valores (slots)
+
+cada vez que se inserta un nuevo valor, se busca si hay hueco en el último chunk. Si no hay hueco, se crea un chunk nuevo
+
+Cuando se crea un chunk nuevo se lanza la operación de limpieza de chunks.
+Lo que hace esa operación es ir mirando chunk por chunk si su timestamp es muy viejo, en ese caso borra el chunk
+
+ese "es muy viejo" es la hora actual - activeRange.
+
+Por ejemplo, sin son las 1689763133 (unix epoch de ahora mismo) y el activeRange que se ve ahí arriba es 5324033, solo se borrarán los chunks más antiguos a jue 18 may 2023 21:45:00 CEST
+
+el problema son esos active_range, que son gigantes, cuando deberían ser el intervalo del trigger que se usa, es decir, si un trigger tiene algo tipo ``avg(10m)``, pues el activerange debería ser 600
+
+el daily_range va tomando el valor visto más grande del range. Yo lo entiendo como algo tipo, me espero 24h a ver si hay varios triggers para el mismo item y quiero conservar la cache del que más necesite
+
+cada 24h (que no tiene porque ser a las 00:00, depende de cada item), el daily_range se reinicializa con el range que aparezca en ese momento. Y el active_range pasa a tomar el valor de daily_range
+
+un sec, que ya termino
+
+El tema es que hace 24h (creo) el daily range tenía ese valor gigante de 5324033 y se lo copió al active_range.
+Durante las 24 próximas horas no va a poder borrar nada, porque ese active_range no va a bajar hasta que se haga de nuevo la copia del daily al active.
+
 
 
 
