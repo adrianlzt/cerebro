@@ -90,10 +90,9 @@ https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbcache/valuecache.c#L11
 
 Se almacenan structs con los items. Para cada item se almacenan sus valores, desde el actual, hasta el valor más antiguo solicitado
 
-Almacena, al menos, 24h de datos.
 
 vc_release_unused_items
-Frees space in cache by dropping items not accessed for more than 24 hours                                                          *
+Frees space in cache by dropping items not accessed for more than 24 hours
 
 
 Trigger y items count pueden hacer uso de la value cache.
@@ -183,14 +182,45 @@ Probado con 55k values para el mismo item.
 
 
 ¿Como se gestiona el borrado?
-Parece que lo hace la función vch_item_clean_cache usando el item->active_range (The range of the largest request in seconds)
+Parece que lo hace la función vch_item_clean_cache usando el item->active_range
+
+La función vch_item_clean_cache es llamada por vc_item_release, que a su vez es llamada desde zbx_vc_add_values.
+El borrado definitivo lo hace vch_item_remove_chunk, llada por vch_item_clean_cache.
+
+Esa función (vch_item_clean_cache) solo se ejecuta si el item->state tiene el flag ZBX_ITEM_STATE_CLEAN_PENDING.
+Ese flag se setea cuando se añade un nuevo chunk.
+
+Por lo tanto, solo se limpia la cache cuando se genera un nuevo chunk. En ese momento limpiará los antiguos, los cuyo timestamp
+sea anterior a now()-active_range (que será el número de valores que use el trigger o calculated más grande).
+
+
+
+### Como se calcula el range
+vch_item_update_range puede ser llamada por
+  vch_item_get_values_by_time (retrieves item history data from cache)
+  vch_item_get_values_by_time_and_count (retrieves item history data from cache)
+
+active_range (The range of the largest request in seconds)
 daily_range (The range for last 24 hours since active_range update. Once per day the active_range is synchronized (updated) with daily_range and the daily range is reset)
 
 vch_item_update_range (updates item range with current request range).
-Esta parece que actualiza el daily_range (valor mínimo 60) y una vez al día lo copia al active_range.
-Parece que lo hace cada 24h según el range_sync_hour.
+Pone en active_range el valor de daily_range siempre que daily_range>active_range o, la menos, una vez cada 24h.
+Si han pasado esas 24h, el valor de daily_range bajará a ese valor que estemos procesando.
 
+Esta operación lo que hace es quedarse con el byte menos significante del integer de las horas de "now".
+```
+hour = (now / SEC_PER_HOUR) & 0xff;
+```
 
+Hour puede tomar valores entre 0 y 255.
+Parece que simplemente es un contador de horas incremental, que le vale para saber si han pasado N horas desde una vez determinada.
+Entiendo que lo hacen para ahorrar memoria y poder almacenar en un único byte la última hora en la que se realizó tal cosa.
+
+Esto es para controlar si se ha "dado la vuelta" (hour es mayor, pero ha pasado de 255 y ha vuelto a empezar en 0).
+```
+if (0 > (diff = hour - item->range_sync_hour))
+	diff += 0xff;
+```
 
 
 

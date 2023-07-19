@@ -18,6 +18,32 @@ os.Args[0] // Nombre del programa
 os.Args[1:2] // slice con el primer y segundo argumento
 
 
+Si queremos un flag donde podamos añadir varios valores:
+```
+// Created so that multiple inputs can be accepted
+type arrayFlags []string
+
+func (i *arrayFlags) String() string {
+    // change this, this is just an example to satisfy the interface
+    return "my string representation"
+}
+
+func (i *arrayFlags) Set(value string) error {
+    *i = append(*i, strings.TrimSpace(value))
+    return nil
+}
+
+Then, in the main function where you are parsing the flags, you can use the flag.Var() function to bind your custom type to the flag name:
+
+var myFlags arrayFlags
+flag.Var(&myFlags, "term", "my terms")
+flag.Parse()
+```
+
+
+
+
+
 Mirar cobra.md para crear una CLI
 
 https://github.com/codegangsta/cli
