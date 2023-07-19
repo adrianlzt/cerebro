@@ -34,7 +34,7 @@ Consultar el estado FULL a mano:
 SCRIPT_NAME=/status QUERY_STRING=full SCRIPT_FILENAME=/status? REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000
 
 
-# Lanzar peticiones directamaente al protocolo de FCGI
+# Lanzar peticiones directamente al protocolo de FCGI
 SCRIPT_NAME=/status SCRIPT_FILENAME=/status REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000
 
 Para instalarlo:
