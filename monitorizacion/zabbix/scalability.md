@@ -144,6 +144,8 @@ valuecache.c -> zbx_vc_add_values (adds item values to the history and value cac
     Si es la primera vez que ve un value de un item, no se meterá por aquí.
     En este caso, entrará más tarde, cuando se esté evaluando la función del trigger (o del item calculated).
     Entrará por zbx_vc_get_values - vch_item_get_values - vch_item_cache_values_by_time_and_count - vch_item_add_values_at_tail
+      En este caso se calculara un nslots=2
+      Se mete el value en el segundo slot (slots[1]).
 
     Si no he recibido datos en 24h, borra esa cache que tuviese (y ese dato que aparece, no se mete en la caché).
 
@@ -152,6 +154,7 @@ valuecache.c -> zbx_vc_add_values (adds item values to the history and value cac
         vch_item_add_chunk(item, vch_item_chunk_slot_count(item, 1), NULL)     (adds a new data chunk at the end of item's history data list)
           vch_item_chunk_slot_count: decide cuantos chunks crear y cuantos slots por chunk. Explicación del valor en los comentarios de la función.
             parece que quiere mantener un número de slots por chunk igual a la raiz cuadrada de los valores almacenados para ese item.
+            se crean un mínimo de 2 slots y un máximo de N, para evitar que el chunk sea mayor a 64KiB
           se crea el chunk, parece que con dos slots y lo mete en lo segundo (esto visto en la memoria, en el código es complicado de seguir)
 
       si ya tenía chunk
@@ -160,8 +163,32 @@ valuecache.c -> zbx_vc_add_values (adds item values to the history and value cac
         Parece que en la cache los valores tienen que ir en orden temporal.
         Puede que se añadan nuevos chunks y entonces se limpiarán los antiguos.
 
-      si ya tenía un chunk creado
 
+
+La creación de los chunks con su número de slots variable es algo tipo (según vamos ingestando datos de uno en uno):
+- un chunk, dos slots, un values (en la segunda posición)
+- un nuevo chunk, dos slots, un value (en la primera posición)
+- un chunk, dos slots, dos values
+- dos chunks, dos slots por chunk, tres values
+- dos chunks, dos slots por chunk, cuatro values
+- tres chunks, dos slots por chunk, cinco values
+- tres chunks, dos slots por chunk, seis values
+- cuatro chunks, dos slots por chunk, siete values
+- cuatro chunks, dos slots por chunk, ocho values
+- cinco chunks, los cuatro antiguos con dos chunks y el nuevo con 3 chunks
+- etc
+
+Si inyecto datos muy rápido, parece que la value cache se llena cada vez más, aunque el trigger sea un "last()" que solo necesita el último valor.
+Probado con 55k values para el mismo item.
+
+
+¿Como se gestiona el borrado?
+Parece que lo hace la función vch_item_clean_cache usando el item->active_range (The range of the largest request in seconds)
+daily_range (The range for last 24 hours since active_range update. Once per day the active_range is synchronized (updated) with daily_range and the daily range is reset)
+
+vch_item_update_range (updates item range with current request range).
+Esta parece que actualiza el daily_range (valor mínimo 60) y una vez al día lo copia al active_range.
+Parece que lo hace cada 24h según el range_sync_hour.
 
 
 
