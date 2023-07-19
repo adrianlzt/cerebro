@@ -194,6 +194,7 @@ Por lo tanto, solo se limpia la cache cuando se genera un nuevo chunk. En ese mo
 sea anterior a now()-active_range (que será el número de valores que use el trigger o calculated más grande).
 
 
+Si un host está en mantenimiento y no entran métricas, parece que no se borrará la cache.
 
 ### Como se calcula el range
 vch_item_update_range puede ser llamada por
