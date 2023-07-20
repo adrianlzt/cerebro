@@ -110,6 +110,17 @@ watch -n 1 'ps -eo args | grep zabbix | grep -v -e idle -e "waiting for"'
 
 
 # Zabbix-web queries pesadas
+La idea es ver el ip_source:port_source y mapearlo a un proceso de php-fpm.
+
+## Usando procmem
+sudo procmem -p 191674 search -B 400 -A 2500 REMOTE_PORT -W 180 | cut -d "|" -f 2-
+
+Esto nos dará la info donde está la petición, quien la hizo, etc.
+
+Podemos buscar por otra cadena si queremos intentar ver la query SQL.
+Aunque esa query la podemos ver en postgres, que será la que esté running.
+
+## Usando dump_mem
 Si tenemos un php-fpm ejecutando una TX que dura mucho tiempo, podemos hacer un volcado de memoria del proceso php-fpm y ver que está ejecutando
 dump_mem.py 4273 |& strings >& dump.4273.txt
   parece que "gcore", de gdb, nos permite hacer un dump: gcore -o out pid

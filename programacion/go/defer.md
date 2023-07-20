@@ -23,3 +23,7 @@ Esto nos dará algunos nanosegundos
 Para evitarlo podemos hacer:
 defer func() { fmt.Printf("tiempo ejecución: %v", time.Since(start)) }()
 
+
+# os.Exit
+Para salir devolviendo un return code
+os.Exit(1)

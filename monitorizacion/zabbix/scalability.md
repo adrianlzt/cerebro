@@ -267,10 +267,20 @@ el daily_range va tomando el valor visto más grande del range. Yo lo entiendo c
 
 cada 24h (que no tiene porque ser a las 00:00, depende de cada item), el daily_range se reinicializa con el range que aparezca en ese momento. Y el active_range pasa a tomar el valor de daily_range
 
-un sec, que ya termino
-
 El tema es que hace 24h (creo) el daily range tenía ese valor gigante de 5324033 y se lo copió al active_range.
 Durante las 24 próximas horas no va a poder borrar nada, porque ese active_range no va a bajar hasta que se haga de nuevo la copia del daily al active.
+
+Si tenemos un host disabled durante, por ejemplo, 1 mes.
+Luego lo activamos y recibe su primer dato.
+El item que recibe el dato tiene un trigger que usa la notación "#N", para obtener los últimos N elementos.
+O también puede ser que tenga alguna función de tiempo (nodata por ejemplo).
+Si N>1, el valor no estará en la caché.
+Se irá a la bbdd a buscar esos valores, que serán de hace 1 mes.
+Esto provocará que el active_range y el daily_range tomen el valor de 1 mes.
+Hasta que no pasen 24h, el daily_range no rectificará su valor (en ese momento tomará el valor correcto de range adecuado a su trigger).
+En ese momento de cruce de las 24h, el valor de daily_range se copiará a active_range.
+Por lo tanto, tendremos otras 24h con el active_range al valor de 1 mes.
+Durange esas 48h se estará acumulando en la value cache todos los values de ese item.
 
 
 
