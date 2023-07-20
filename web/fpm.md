@@ -50,3 +50,8 @@ https://www.php.net/manual/es/install.fpm.configuration.php#122456
 
 https://www.tothenew.com/blog/php5-fpm-logging/
 %t : server time of receiving request
+
+
+# Analizar memoria
+Podemos analizar la memoria (con procmem, por ejemplo) para ver variables que esté usando, por ejemplo para identificar la petición que tiene php-fpm trabajando.
+Mirar zabbix-web troubleshooting para un ejemplo.

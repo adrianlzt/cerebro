@@ -49,7 +49,7 @@ https://support.zabbix.com/browse/ZBXNEXT-4920
 
 
 # Almacenamiento de datos
-Almacena datos en la tabla, de postgres, proxy_history
+Almacena datos en la tabla proxy_history.
 
 
 # Errores
@@ -88,3 +88,34 @@ ZBX_THREAD_ENTRY(proxyconfig_thread, args)
       DCupdate_hosts_availability
 
 
+
+### Como se ingesta un LLD
+Por ejemplo, envíamos:
+zabbix_sender -z 127.0.0.1 -s hostlld -k lld -o '{"data":[{"{#VAR}": "abc"}]}'
+
+No estoy seguro si este es el camino. Parece el del zabbix_server, temo que en algún momento no ví un "desvío" para cuando es un proxy.
+
+Lo recibe un trapper del proxy -> src/zabbix_server/trapper/trapper.c
+recv_senderhistory
+    process_sender_history_data
+        process_client_history_data
+            parse_history_data
+            process_history_data
+                process_history_data_value
+                    zbx_preprocess_item_value
+
+Al final, en algún punto, se termina almacenando la información en alguna memoria interna.
+Desde ahí lo coje el history syncer y lo almacena en la tabla proxy_history (función DCmass_proxy_add_history).
+
+### Como se envían los datos
+Cada DataSenderFrequency, 1s por defecto, el proxy hace una query a la bd para obtener los items que debe enviar:
+
+get_host_availability_data
+proxy_get_hist_data
+  proxy_get_history_data
+    select id,itemid,clock,ns,timestamp,source,severity,value,logeventid,state,lastlogsize,mtime,flags from proxy_history where id>6 order by id limit 1000
+    Ese "id>6" será el valor que tenga almacenado en proxy_history.history_lastid (func proxy_get_lastid).
+    previamente un trapper, por ejemplo, habrá insertado datos. Ejemplo de un LLD:
+        insert into proxy_history (itemid,clock,ns,value) values (28877,1689850664,498430889,'{"data":[{"{#VAR}": "abc"}]}');
+proxy_get_dhis_data (discovery)
+proxy_get_areg_data (autoregistration)
