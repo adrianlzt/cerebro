@@ -1,4 +1,5 @@
 http://man7.org/linux/man-pages/man7/capabilities.7.html
+  listado de las capabilities
 http://man7.org/linux/man-pages/man8/setcap.8.html
 http://man7.org/linux/man-pages/man8/getcap.8.html
 
