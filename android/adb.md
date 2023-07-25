@@ -48,6 +48,19 @@ adb logcat -T 50
   como tail -n 50 -f
 
 
+# Descargar apk instalado
+Primero obtener el nombre
+
+adb shell pm list packages
+
+
+Obtener el path del .apk
+adb shell pm path com.example.someapp
+
+Bajar el apk
+adb pull /data/app/com.example.someapp-2.apk path/to/desired/destination
+
+
 # adb con root
 Settings -> Developer options -> Root access
 
