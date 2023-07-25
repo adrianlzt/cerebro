@@ -106,3 +106,7 @@ Tenemos que permitirlo en las opciones de developer, buscar por "adb".
 Ahora cuando hagamos
 adb shell
 ya seremos root
+
+# port forward
+Exponer el puerto 8080 del móvil en el 8888 de nuestro pc
+adb forward tcp:8080 tcp:8888
