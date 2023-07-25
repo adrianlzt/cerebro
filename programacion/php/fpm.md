@@ -89,3 +89,13 @@ access.log = "/var/log/php-fpm/access.log"
 ; %M: peak of memory allocated by PHP
 ; %C: %CPU used by the request
 access.format = "%{REMOTE_ADDR}e - - [%t] \"%m %r%Q%q\" %s %l \"%{HTTP_REFERER}e\" \"%{HTTP_USER_AGENT}e\" %{mili}dT PID=%p MEM=%{kilo}M CPU=%C%%"
+
+
+# Ping
+Para poder tener un endpoint a donde apuntar los health checks de load balancers, etc:
+
+ping.path = /ping
+
+
+A partir de 8.2 podemos evitar que se muestren ciertas llamadas, por ejemplo si llamamos a /ping
+https://github.com/php/php-src/commit/327bb219867b16e1161da632fba170f46692484b
