@@ -1,3 +1,5 @@
+Si queremos obtener la "huella" de la clave, mirar fingerprint.md
+
 Convertir openssh public key en PEM:
 ssh-keygen -f id_rsa.pub -e -m pem
 

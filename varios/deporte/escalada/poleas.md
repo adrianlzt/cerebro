@@ -6,6 +6,11 @@ http://www.rockandice.com/video-gallery/climbing-tips-how-to-tape-your-finger-a3
 vendaje en H
 
 
+Como es el dedo por dentro (sacado de https://play.google.com/store/apps/details?id=com.a3d4medical.completeanatomy&hl=es_ES)
+modelo_3d_polea_con_tendon.jpg
+modelo_3d_polea_sin_tendon.jpg
+
+
 # Fisio posts
 Serie de posts que habla sobre las lesiones de poleas:
 https://www.instagram.com/p/CRWZQspj3KN/?igshid=MTc4MmM1YmI2Ng==
