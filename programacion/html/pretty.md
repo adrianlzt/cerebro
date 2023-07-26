@@ -7,6 +7,6 @@ pretty-js fichero.js > fichero.js.pretty
 
 
 
-
+sudo pacman -S prettier
 sudo npm install --global prettier
 prettier fichero.js > fichero.js.pretty
