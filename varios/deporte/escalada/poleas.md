@@ -13,6 +13,8 @@ modelo_3d_polea_sin_tendon.jpg
 
 Clasificación de las lesiones de poleas
 https://www.instagram.com/p/CiNM4kDDoC5/?igshid=MTc4MmM1YmI2Ng==
+Más explicaciones del mismo fisio:
+https://www.instagram.com/reel/Cuj3KXzIG8J/?igshid=MTc4MmM1YmI2Ng%3D%3D
 
 Climbing Medicine: A Practical Guide
 https://drive.google.com/file/d/1nBWrHG4neB-5L_9g9ji9A1Ts8CLcJahm/view
