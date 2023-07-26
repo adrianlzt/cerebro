@@ -6,3 +6,5 @@ Te hace unos gráficos.
 
 Es de pago.
 Versión grautita sin almacenar datos.
+
+Está muy bien las simulaciones de montecarlo, que usando datos históricos de distintos periodos simula si se cumpliría el plan correctamente.
