@@ -2,6 +2,14 @@ https://developers.google.com/apps-script/reference/gmail/gmail-app
 
 Gestionar el correo desde google script
 
+# clasp
+Para desarrollar localmente y luego pushear.
+No se puede ejecutar localmente.
+
+https://developers.google.com/apps-script/guides/clasp#using_clasp
+AUR/nodejs-google-clasp
+gclasp
+
 # Enviar email
 GmailApp.sendEmail(to, subject, body);
 
