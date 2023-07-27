@@ -104,6 +104,11 @@ time va a entender que la hora que le pasemos (datetimoe.timetuple()) esta en la
 
 
 # Parsear fecha
+from dateutil.parser import parse
+date_string = "2023-07-25 19:03:28.392 CEST"
+parse(date_string)
+
+
 >>> import datetime
 >>> datetime.datetime.strptime("10/11/2015","%d/%m/%Y")
 datetime.datetime(2015, 11, 10, 0, 0)
