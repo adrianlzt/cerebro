@@ -43,6 +43,22 @@ gráfico explicativo (borrado :/)
 
 Zabbix4
 libs/zbxdbcache/dbcache.c
-dc_trends_update_float / dc_trends_update_uint
-Funciones que actualizan los trends:
-  update trends set num=%d,value_min=" ZBX_FS_DBL ",value_avg="ZBX_FS_DBL ",value_max=" ZBX_FS_DBL " where itemid=" ZBX_FS_UI64" and clock=%d
+
+DBflush_trends: flush trend to the database
+
+  dc_remove_updated_trends: Update trends disable_until for items without trends data past or equal the specified clock
+      select distinct itemid from trends...
+
+  dc_trends_fetch_and_update
+      Función usada para cuando se van a updatear los trends. Primero se obtiene lo que hay en la db y luego se hace el update
+      select itemid,num,value_min,value_avg,value_max from trends_uint where clock=1690315200 and itemid=2358737
+
+      Por cada resultado que devuelva, ejecutará el update trends que toque. Si no hay nada, no ejecuta update y hará el insert.
+
+      dc_trends_update_float / dc_trends_update_uint
+      Funciones que actualizan los trends:
+        update trends set num=%d,value_min=" ZBX_FS_DBL ",value_avg="ZBX_FS_DBL ",value_max=" ZBX_FS_DBL " where itemid=" ZBX_FS_UI64" and clock=%d
+
+
+  dc_insert_trends_in_db
+  Esta es la función que hace el insert de trends.
