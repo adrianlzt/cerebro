@@ -2,6 +2,11 @@ https://developers.google.com/apps-script/reference/gmail/gmail-app
 
 Gestionar el correo desde google script
 
+# gas-local
+https://github.com/mzagorny/gas-local
+
+Desarrollo en local. No probado.
+
 # clasp
 Para desarrollar localmente y luego pushear.
 No se puede ejecutar localmente.
