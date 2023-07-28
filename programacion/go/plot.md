@@ -1,3 +1,10 @@
+https://github.com/go-echarts/go-echarts
+Esta parece que tiene más posibilidades que la de gonum.
+
+https://github.com/MetalBlueberry/go-plotly/
+Para generar código que luego interprete plotly
+
+
 https://github.com/gonum/plot/wiki/Example-plots
 
 go get gonum.org/v1/plot/...
@@ -44,4 +51,3 @@ func benchmarkTimePoints(data map[int]testing.BenchmarkResult) plotter.XYs {
     })
   return pts
 }
-
