@@ -36,4 +36,4 @@ Podremos ver con "free -m" como se va vaciando
 
 
 swap out / page out, sacar páginas de memoria a la swap
-swap in / page in, obtener páginas de memoria de la swap a memoria.
+swap in / page in, obtener páginas de memoria de la swap a memoria, este es un indicativo de problemas.
