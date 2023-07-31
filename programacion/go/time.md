@@ -145,3 +145,6 @@ https://github.com/araddon/dateparse
       fmt.Println("Current time: ", t)
     }
   }
+
+# Zone
+location, err := time.LoadLocation("Europe/Madrid")
