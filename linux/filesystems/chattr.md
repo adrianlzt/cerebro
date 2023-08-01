@@ -1,8 +1,17 @@
+# chattr / lsattr
 http://lifeofageekadmin.com/how-to-lock-down-files-in-linux-using-chattr/
 
 Bloquear un fichero:
 sudo chattr +i resolv.conf
 lsattr resolv.conf
+
+-------------e-- zabbix.conf
+The e attribute indicates that the file is using extents for mapping the blocks on disk.
+
+An extent is a contiguous area of storage in a computer file system, reserved for a file. When a process creates a file, file-system management software allocates a whole extent. When writing to the file again, possibly after doing other write operations, the data continues where the previous write left off. This reduces or eliminates file fragmentation and possibly file scattering too.
+
+An extent-based file system (i.e., one that addresses storage via extents rather than in single blocks) need not require limiting each file to a single, contiguous extent.
+
 
 
 # Lock files - concurrencia
@@ -25,7 +34,7 @@ Timeout
 Si definimos -w 0, le estamos diciendo que la espera sea 0 segundos, por lo que si existe el fichero de lock, flock saldrá directamente sin ejecutar el comando (con RC=1).
 
 Fallo
-Si definimos -n, falla (RC=1) 
+Si definimos -n, falla (RC=1)
 
 Script que solo ejecuta un comando, de larga duración, en caso de que ningún otro lo esté ejecutando. Se encarga de llamar a flock de manera transparente al usuario:
 
