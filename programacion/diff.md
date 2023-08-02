@@ -30,3 +30,6 @@ líneas únicas en file1
 
 comm -1 -3 file1 file2
 líneas únicas en file2
+
+comm -1 -2 file1 file2
+mostrar lineas que aparecen en los dos ficheros
