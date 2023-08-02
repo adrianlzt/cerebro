@@ -13,6 +13,12 @@ pzstd: parallel zstd
 
 
 # Zstd
+Comprimir
+zstd fichero
+Nos crea fichero.zst, no borra el original.
+Nos muestra como va realizando la compresión, para hacernos una idea de lo que va a tardar.
+En mi pc, 52GiB convertidos en 9GiB tardó algo menos de 4 minutos.
+
 Descomprimir
 zstd -d fichero.zstd
 
