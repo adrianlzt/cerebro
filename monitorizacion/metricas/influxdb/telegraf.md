@@ -59,6 +59,10 @@ telegraf --config example.conf -test
 # Output
 Cada métrica se envía a todos los outputs disponibles
 
+Si los inputs han generado ya "metric_batch_size" metrics, se realizará un envió, sin esperar al tiempo de flush configurado.
+https://github.com/influxdata/telegraf/blob/1.11.3/internal/models/running_output.go#L129
+
+
 # Cache
 Telegraf cachea los outputs en caso de que no pueda escribir.
 Si se llenan los buffers, va descartando las nuevas métricas.
@@ -250,7 +254,7 @@ Si en el regex ponemos "." monitorizará todos los procesos. CUIDADO con el núm
 Algunas medidas solo las sacará si el user telegraf tiene permisos para leer el /proc/PID (por ejemplo, num_fds, IO, etc). Ejecutar como root si queremos ver todo
 En la doc están especificados que campos necesitan root.
 
-/etc/telegraf/telegraf.d/procs.conf 
+/etc/telegraf/telegraf.d/procs.conf
 [[inputs.procstat]]
   user = "icinga"
 [[inputs.procstat]]
