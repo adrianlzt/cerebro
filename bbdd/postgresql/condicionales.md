@@ -50,3 +50,11 @@ SELECT a,
 
 select CASE WHEN (select count(*) from update_cte) = 0 THEN 'no hay cambios' ELSE 'cambios:'||t END AS output from dummy left join update_cte on 1=1
 
+
+
+CASE a
+       WHEN 1 THEN 'un'
+       WHEN 2 THEN 'deux'
+       WHEN 3 THEN 'trois'
+       ELSE 'autre'
+END

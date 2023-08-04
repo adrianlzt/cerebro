@@ -452,7 +452,66 @@ WHERE
 IMPACTO de las metricas segun su delay (excepto trappers)
 Se calcula que tipos de items y que delays están generando más metricas contra zabbix.
 Se omiten items desactivados, trappers (de estos últimos no podemos saber cuando van a enviar datos) e items de templates:
-select case when items.type=0 then 'Zabbix Agent' when items.type=1 then 'SNMPv1 agent' when items.type=2 then 'Zabbix trapper' when items.type=3 then 'simple check' when items.type=4 then 'SNMPv2 agent' when items.type=5 then 'Zabbix internal' when items.type=6 then 'SNMPv3 agent' when items.type=7 then 'Zabbix agent (active)' when items.type=8 then 'Zabbix aggregate' when items.type=9 then 'web item' when items.type=10 then 'external check' when items.type=11 then 'database monitor' when items.type=12 then 'IPMI agent' when items.type=13 then 'SSH agent' when items.type=14 then 'TELNET agent' when items.type=15 then 'calculated' when items.type=16 then 'JMX agent' when items.type=17 then 'SNMP trap' when items.type=18 then 'Dependent item' end as type,items.delay,count(*),count(*)/items.delay as points_per_sec from items,hosts where items.hostid=hosts.hostid and hosts.status <> 3 and items.status=0 and items.type <> 2 group by items.type,items.delay order by points_per_sec desc, items.type desc limit 10;
+SELECT
+    CASE WHEN items.type = 0 THEN
+        'Zabbix Agent'
+    WHEN items.type = 1 THEN
+        'SNMPv1 agent'
+    WHEN items.type = 2 THEN
+        'Zabbix trapper'
+    WHEN items.type = 3 THEN
+        'simple check'
+    WHEN items.type = 4 THEN
+        'SNMPv2 agent'
+    WHEN items.type = 5 THEN
+        'Zabbix internal'
+    WHEN items.type = 6 THEN
+        'SNMPv3 agent'
+    WHEN items.type = 7 THEN
+        'Zabbix agent (active)'
+    WHEN items.type = 8 THEN
+        'Zabbix aggregate'
+    WHEN items.type = 9 THEN
+        'web item'
+    WHEN items.type = 10 THEN
+        'external check'
+    WHEN items.type = 11 THEN
+        'database monitor'
+    WHEN items.type = 12 THEN
+        'IPMI agent'
+    WHEN items.type = 13 THEN
+        'SSH agent'
+    WHEN items.type = 14 THEN
+        'TELNET agent'
+    WHEN items.type = 15 THEN
+        'calculated'
+    WHEN items.type = 16 THEN
+        'JMX agent'
+    WHEN items.type = 17 THEN
+        'SNMP trap'
+    WHEN items.type = 18 THEN
+        'Dependent item'
+    END AS type,
+    items.delay,
+    count(*),
+    count(*) / items.delay AS points_per_sec
+FROM
+    items,
+    hosts
+WHERE
+    items.hostid = hosts.hostid
+    AND hosts.status <> 3
+    AND items.status = 0
+    AND items.type <> 2
+GROUP BY
+    items.type,
+    items.delay
+ORDER BY
+    points_per_sec DESC,
+    items.type DESC
+LIMIT 10;
+
+
 
 
 20 items pasivos (Zabbix Agent) enabled de hosts que no sean templates:
