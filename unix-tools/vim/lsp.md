@@ -29,3 +29,8 @@ Podemos intentar arrancarlo a mano:
 ,lR rename
 K tipo de dato, o documentación (por ejemplo, en ansible)
 U firma de la función
+
+g. ir al siguiente error
+g, ir al error anterior
+
+,lc intentar arreglar el problema actual
