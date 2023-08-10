@@ -75,10 +75,16 @@ Podemos definirlo de cualquier manera con total que tengamos esa interfaz para s
 
 
 # Error wrapping
+https://go.dev/doc/go1.13#error_wrapping
+
 newerr := fmt.Errorf("mas info: %w", err)
 
 errors.Is(err, os.ErrNotExist)
   nos dice si el "err" dentro de "newerr" es del tipo os.ErrNotExist
+
+err1 := errors.New("err1")
+err2 := errors.New("err2")
+err := errors.Join(err1, err2)
 
 
 # Named return values
@@ -174,6 +180,10 @@ if err != nil {
 
 # multierror
 https://github.com/hashicorp/go-multierror
+
+MEJOR USAR LA LIB STANDAR:
+err := errors.Join(err1, err2)
+
 
 Librería para cuando tenemos que devolver un único "error", pero estamos iterando por un slice y podemos generar varios errores.
 

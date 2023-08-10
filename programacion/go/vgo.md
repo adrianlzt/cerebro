@@ -25,6 +25,10 @@ v1 no llevará el sufijo "v1", tampoco la v0.
 github.com/my/mod -> github.com/my/mod/v2
 github.com/my/mod/mypkg -> github.com/my/mod/v2/mypkg
 
+https://go.dev/blog/v2-go-modules
+Si queremos hacer un breaking change, creamos un nuevo dir "vN" y ponemos ahí el código nuevo.
+Ejemplo: https://github.com/googleapis/gax-go
+
 go mod siempre eligirá la versión mínima necesaria de cada módulo (en el caso de que otros terceros módulos requieran la misma)
 https://github.com/golang/go/wiki/Modules#version-selection
 Esto se hace para evitar fallos por upgrades automáticos que puedan romper cosas.
