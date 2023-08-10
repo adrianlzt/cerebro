@@ -1,4 +1,7 @@
 golangci-lint es un metachecker, agrega en una sola herramienta un montón de linters.
+Si queremos ejecutar todos:
+golangci-lint run --enable-all --no-config .
+
 
 Dentro de los linters de estilo, parece que revive es el mejor hoy en día (sustituye a golint)
 https://github.com/mgechev/revive
@@ -71,4 +74,3 @@ Correct commonly misspelled words in source files
 go get -u github.com/client9/misspell/cmd/misspell
 
 misspell all.html your.txt important.md files.go
-

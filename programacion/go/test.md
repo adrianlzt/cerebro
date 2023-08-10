@@ -13,6 +13,31 @@ https://github.com/maxbrunsfeld/counterfeiter
 mirar examples.md para testear stdout
 
 
+Usar el mismo package o sufijarlo con "_test"?
+https://github.com/maratori/testpackage
+According to blackbox testing approach, you should not use unexported functions and methods from source code in tests.
+
+https://pkg.go.dev/testing
+The test file can be in the same package as the one being tested, or in a corresponding package with the suffix "_test".
+If the test file is in the same package, it may refer to unexported identifiers within the package.
+If the file is in a separate "_test" package, the package being tested must be imported explicitly and only its exported identifiers may be used. This is known as "black box" testing.
+
+
+Si queremos usar black box testing pero poder acceder a cosas internas, podemos usar este truco
+https://medium.com/@robiplus/golang-trick-export-for-test-aa16cbd7b8cd
+
+Usar un fichero que solo se cargará en los tests y nos da acceso al interior:
+export_test.go
+```
+package math
+
+// Export for testing.
+var Math = math
+```
+
+
+
+
 Correr test a mano:
 go test -v
 go test -v -run NameOfTest
@@ -232,6 +257,11 @@ $ go test -race mypkg    // to test the package
 $ go run -race mysrc.go  // to run the source file
 $ go build -race mycmd   // to build the command
 $ go install -race mypkg // to install the package
+
+# Parallel
+t.Parallel
+
+Ejecutar tests en paralelo.
 
 
 

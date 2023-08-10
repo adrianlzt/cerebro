@@ -12,6 +12,10 @@ hacer un touch go.mod en algún dir para que solo suba hasta ahí
 Si queremos evitar que salte el GoLint al guardar, desactivarlo en
 ~/.config/nvim/lua/plugins/go.lua
 
+Desactivar metalinter al guardar
+:let g:go_metalinter_autosave=0
+
+
 
 Comandos:
 :Go<TAB>
@@ -42,9 +46,6 @@ si el repo es grande puede ser demasiado costoso
 :GoChannelPeers
 ver senders/receivers de un canal
 
-
-Desactivar metalinter al guardar
-:let g:go_metalinter_autosave=0
 
 
 # Struct
