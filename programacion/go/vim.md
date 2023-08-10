@@ -12,7 +12,7 @@ hacer un touch go.mod en algún dir para que solo suba hasta ahí
 Si queremos evitar que salte el GoLint al guardar, desactivarlo en
 ~/.config/nvim/lua/plugins/go.lua
 
-Desactivar metalinter al guardar
+Desactivar metalinter al guardar (parece que esto no hace caso, es el de arriba que parece que funciona)
 :let g:go_metalinter_autosave=0
 
 
