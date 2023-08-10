@@ -86,6 +86,13 @@ err1 := errors.New("err1")
 err2 := errors.New("err2")
 err := errors.Join(err1, err2)
 
+Wrapeando errores, para poder añadir información y también identificar los errors más abajo y los siguientes de la cadena.
+https://bitfieldconsulting.com/golang/wrapping-errors
+
+Pruebas mías entendiendo los errores:
+error_pruebas.go
+https://gist.github.com/adrianlzt/fadbfddc489a25652e370d239949305c
+
 
 # Named return values
 http://golangtutorials.blogspot.com.es/2011/06/return-values-from-go-functions.html
