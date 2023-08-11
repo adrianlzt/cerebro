@@ -91,6 +91,25 @@ Instalar un paquete:
 go install paquete
 
 
+## list -m
+https://go.dev/ref/mod#go-list-m
+
+Ver los módulos que se usan
+go mod list -m all
+
+Si queremos ver que actualizaciones hay disponibles (puede llevarle un rato, conecta a internet):
+go mod list -m -u all
+
+Nos mostrará la lista com la versión nueva entre corchetes. Ejemplo:
+gopkg.in/macaroon-bakery.v3 v3.0.0 [v3.0.1]
+
+Si hay versiones retractadas también lo mostrará. Ejemplo:
+github.com/datadope-io/go-zabbix/v2 v2.0.0 (retracted) [v2.0.1]
+
+Para solo ver versiones retractadas (también conecta con internet):
+go list -m -retracted all
+
+
 
 # Replace / gohack
 https://github.com/rogpeppe/gohack
