@@ -124,6 +124,10 @@ https://go.googlesource.com/proposal/+/master/design/45713-workspace.md
 
 
 
+# retract / eliminar una versión publicada
+https://go.dev/ref/mod#go-mod-file-retract
+
+
 # Errores
 
 ## 410 Gone
