@@ -300,6 +300,7 @@ Si queremos seleccionar que bench ejecutar:
   -test.bench someregex
 Si no queremos que ejecute ningún test:
   -run=^$
+  go test -v -run ^$ --bench . --benchmem
 
 BenchmarkHelloWorld-8                500           3908505 ns/op         4375424 B/op      74594 allocs/op
 
