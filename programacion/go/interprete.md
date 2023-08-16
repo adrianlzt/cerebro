@@ -2,6 +2,8 @@ mirar neugram/ para hacer scripts en go
 
 https://www.tutorialspoint.com/execute_golang_online.php
 http://play.golang.org/
+https://goplay.space/
+  como el play.golang pero mejorado
 
 # yaegi
 ## goexports
