@@ -200,6 +200,10 @@ assert.Equal(t, 1, 1)
 Compara slices sin importar el orden
 assert.ElementsMatch(t, [1, 3, 2, 3], [1, 3, 3, 2])
 
+Podemos usar también
+github.com/stretchr/testify/require
+Es igual que assert, pero si falla, para la ejecución en ese punto.
+
 
 
 Otra opción:
