@@ -124,3 +124,7 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/path_join_fi
 {{ ('/etc', path, 'subdir', file) | path_join }}
 If path == 'foo/bar' and file == 'baz.txt', the result is '/etc/foo/bar/subdir/baz.txt'
 
+
+
+# version
+{{ ansible_python_version is version('3.7.0', '<') }}
