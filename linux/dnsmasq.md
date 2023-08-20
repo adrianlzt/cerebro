@@ -142,6 +142,7 @@ mirar networking/pxe.md
 Opciones: https://www.ietf.org/rfc/rfc2132.txt
 
 /etc/dnsmasq.conf
+```
 dhcp-range=192.168.1.200,192.168.1.220,12h
 # magic number 3 here is the DHCP standard option number for "router"
 dhcp-option=3,192.168.1.1
@@ -155,6 +156,10 @@ dhcp-option=6,8.8.8.8,8.8.4.4
 #dhcp-option=20,0
 # NTP Server (42)
 #dhcp-option=42,0.0.0.0
+```
+
+Ver los leases de DHCP
+/var/lib/NetworkManager/dnsmasq-wlan0.leases
 
 
 
