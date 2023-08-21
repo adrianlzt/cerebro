@@ -7,3 +7,5 @@ https://community.victronenergy.com/questions/187303/victron-bluetooth-advertisi
 https://github.com/keshavdv/victron-ble
 
 Linux app image: https://www.victronenergy.com/support-and-downloads/software#victronconnect-app
+
+Si tenemos un pin que no sea 000000, mirar lo que hay que hacer con bluetoothctl para meterlo.
