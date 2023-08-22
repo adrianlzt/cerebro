@@ -31,6 +31,10 @@ Zo
 ,q  cerrar buffer sin cerrar ventana
 
 
+Si no queremos que el scroll esté sincronizado:
+:set noscrollbind
+:set nodiff
+:set nocursorbind
 
 
 CTRL+w, v: Opens a new vertical split

@@ -6,6 +6,32 @@ REMOTE - the head for files(s) from a remote location that you are trying to mer
 BASE - the common ancestor(s) of LOCAL and REMOTE.
 MERGED - the tag / HEAD object after the merge - this is saved as a new commit.
 
+Si usamos nvimdiff
+https://github.com/git/git/blob/master/Documentation/mergetools/vimdiff.txt
+------------------------------------------
+|             |           |              |
+|   LOCAL     |   BASE    |   REMOTE     |
+|             |           |              |
+------------------------------------------
+|                                        |
+|                MERGED                  |
+|                                        |
+------------------------------------------
+
+`LOCAL`, `BASE` and `REMOTE` are read-only buffers showing the contents of the
+conflicting file in specific commits ("commit you are merging into", "common
+ancestor commit" and "commit you are merging from" respectively)
+
+`MERGED` is a writable buffer where you have to resolve the conflicts (using the
+other read-only buffers as a reference). Once you are done, save and exit Vim as
+usual (`:wq`) or, if you want to abort, exit using `:cq`.
+
+Si no queremos que el scroll esté sincronizado:
+:set noscrollbind
+:set nodiff
+:set nocursorbind
+
+
 Si usamos meld tendremos:
   - izquierda, LOCAL, la rama sobre la que estamos
   - centro, fichero ascentro común (sin los cambios de ningún lado)
