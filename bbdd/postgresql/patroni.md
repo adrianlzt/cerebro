@@ -115,3 +115,12 @@ Tendremos que modificar:
   - trigger-value: el nombre de host usado en patroni (el que se seteará en la key "leader", patroni.yaml key "name")
   - ip / netmask / interface: la VIP a usar, su netmask y la interfac donde configurarla
   - los endpoints de etcd (y credenciales en caso de ser necesario, o comentarlos si no lo usamos; lo mismo con los certs de etcd)
+
+
+# Switchover / failover
+
+Failover es la configuración de que pasa si falla el leader.
+
+Switchover es para cambiar a mano el leader.
+
+https://www.dbi-services.com/blog/patroni-operations-switchover-and-failover/
