@@ -158,10 +158,6 @@ dhcp-option=6,8.8.8.8,8.8.4.4
 #dhcp-option=42,0.0.0.0
 ```
 
-Ver los leases de DHCP
-/var/lib/NetworkManager/dnsmasq-wlan0.leases
-
-
 
 # Opciones interesantes
        --all-servers

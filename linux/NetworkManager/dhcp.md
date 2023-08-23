@@ -7,3 +7,9 @@ Podemos desactivarlo con:
 /etc/NetworkManager/conf.d/no_dhcp.conf
 [main]
 no-auto-default=*
+
+
+
+Ver los leases de DHCP
+/var/lib/NetworkManager/dnsmasq-wlan0.leases
+
