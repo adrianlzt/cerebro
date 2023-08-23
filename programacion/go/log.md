@@ -1,3 +1,7 @@
+https://go.dev/blog/slog
+https://pkg.go.dev/golang.org/x/exp/slog
+Solución nativa, que tiene niveles, permite formato json, key=values, etc
+
 https://dave.cheney.net/2015/11/05/lets-talk-about-logging
 Artículo sobre como logear
 Se defiende que solo debería haber un nivel info y otro debug.
