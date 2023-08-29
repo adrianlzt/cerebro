@@ -13,7 +13,7 @@ Si intentas arrancar una versión con una major diferente a los ficheros del PGD
 Ideal (los clientes solo notarán longs waits entre pause y resume):
   poner pgbouncer y apuntar las conex ahí
   montar un nuevo server
-  montar pglogical entre el antiguo y el nuevo
+  montar pglogical (pglogical 2 extension provides logical streaming replication for PostgreSQL, using a publish/subscribe model) entre el antiguo y el nuevo
   esperar a que la replicación sincronice (puede tardar mucho si es muy grande la db)
   hacer en un momento que no haya excesiva carga, tenemos que tener poco lag para que tengamos un tiempo corto entre pause y resume
   dar el cambiazo en pgbouncer: pause, reload, resume (antes de hacer el resume, asegurarnos que los server están en sync)
@@ -27,6 +27,7 @@ Casi sin downtime.
 Sin riesgo de pérdida de datos
 Fácil hacer roll-back
 Probar la nueva versión mientras la vieja está aún corriendo.
+Usar --link (hard links) parece que es mucho más rápido.
 
 La idea es montar un nuevo server, conectarlo con logical replication, esperar a que termine de sincronizar.
 En ese momento, parar el software, esperar que termine de sincronizar de nuevo (poco tiempo) y cambiar el puntero de la app para que apunte a la nueva instancia.
