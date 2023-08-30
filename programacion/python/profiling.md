@@ -1,3 +1,8 @@
+https://github.com/plasma-umass/scalene
+A high-performance, high-precision CPU, GPU, and memory profiler for Python with AI-powered optimization proposals
+https://aur.archlinux.org/packages/python-scalene-git/
+
+
 https://docs.python.org/3/library/debug.html
 Tambien en py2. Viene por defecto.
 python -m cProfile -o PROFILE apli_ucmdb.py --mis-params
