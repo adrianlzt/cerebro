@@ -1,6 +1,7 @@
 mirar ha_scalability.md
 mirar pl-proxy.md
 mirar monitoring.md
+mirar pg_cirrus
 
 https://repmgr.org/
 Usar repmgr.md para gestionar replication
