@@ -98,6 +98,22 @@ snmp
 dbus
 notify
 
+kill -USR2 $(cat /var/run/keepalived.pid)
+Vuelca estadísticas en /tmp/keepalived.stats
+
+Parece que hay mas signals disponibles, una que vuelca las métricas en formato json, pero el build que tengo no lo soporta:
+kill -s $(keepalived --signum=STOP) $(cat /run/keepalived.pid)
+
+
+## snmp
+https://keepalived.readthedocs.io/en/latest/snmp_support.html
+
+keepalived has to be compiled with SNMP support (parece que es lo normal).
+You need a running SNMP server with agentx enabled.
+keepalived needs to successful connect to agentx (see logs).
+
+Hace falta arrancar el keepalived con "-x".
+
 
 
 # Auth - NO USAR
