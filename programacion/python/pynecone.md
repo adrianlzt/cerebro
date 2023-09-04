@@ -1,3 +1,6 @@
+mirar también https://pyscript.net/
+
+
 https://pynecone.io/
 https://pynecone.io/docs/getting-started/installation
 https://news.ycombinator.com/item?id=35136827

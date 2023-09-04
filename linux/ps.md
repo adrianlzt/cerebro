@@ -164,6 +164,7 @@ para ver cuando empezó el proceso
 
 ps -eo pid,cmd,etime --forest
   elapsed time, formato: DIAS-HH:MM:SS
+  para tiempo en segundos: etimes
 
 ps -eo pid,lstart,cmd
   fecha de arranque exacta (date)
