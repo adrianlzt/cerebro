@@ -38,7 +38,8 @@ fmt.Println(
 %c  the character represented by the corresponding Unicode code point
 %d  base 10
 %o  base 8
-%q  a single-quoted character literal safely escaped with Go syntax.
+%q  a single-quoted character literal safely escaped with Go syntax
+    hola %q -> hola "pepe"
 %x  base 16, with lower-case letters for a-f
 %#x lo pone como 0xAAAA
 %X  base 16, with upper-case letters for A-F
