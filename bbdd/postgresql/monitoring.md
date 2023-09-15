@@ -107,6 +107,13 @@ pg_statio_
 Esto está para tablas e índices.
 
 
+## PG v16
+A key aspect of tuning the performance of database workloads is understanding the impact of your I/O operations on your system. PostgreSQL 16 introduces pg_stat_io, a new source of key I/O metrics for granular analysis of I/O access patterns.
+
+# pg_stat_all_tables (pg16)
+Additionally, this release adds a new field to the pg_stat_all_tables view that records a timestamp representing when a table or index was last scanned. PostgreSQL 16 also makes auto_explain more readable by logging values passed into parameterized statements, and improves the accuracy of the query tracking algorithm used by pg_stat_statements and pg_stat_activity.
+
+
 # Vacuum
 https://blog.2ndquadrant.com/autovacuum-tuning-basics/
 
