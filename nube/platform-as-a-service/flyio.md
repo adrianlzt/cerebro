@@ -45,3 +45,9 @@ Configurarlo en fly.toml
 source="myapp_data"
 destination="/data"
 ```
+
+# Acceder a una app
+flyctl ssh console
+
+Bajarse un fichero
+fly ssh sftp get /app/db/db.development.sqlite
