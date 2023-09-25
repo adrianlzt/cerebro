@@ -131,3 +131,12 @@ keepalived -nldD
 # Errores
 daemon is already running
 Mirar si hay un .pid en /var/run/keepalived
+
+
+
+## Receive advertisement timeout
+En una configuración con "peers", el nodo backup de vez en cuando muestra el mensaje:
+"Receive advertisement timeout"
+E inmediatamente después se pone como master.
+Al enviar el mensaje de que es el nuevo master, el master original lo ve y envía de nuevo un mensaje avisando de que él es el master bueno.
+Y el que acaba de pasar de backup a master, se vuelve a degradar a backup.
