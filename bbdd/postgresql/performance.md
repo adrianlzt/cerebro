@@ -66,13 +66,15 @@ Parece que vale para lanzar un nuevo postgres, cargar una schema determinado, la
 
 
 
-## pgbench
+## pgbench / load testing
 https://www.postgresql.org/docs/current/pgbench.html
 
 PGPASSWORD=xxx pgbench -U zabbix_server -h 172.16.0.95 zabbix -f history_test_basico.sql
 
 
 Podemos pasar scripts customizados para simular la carga que necesitemos.
+create table prueba2(id int);
+
 Ejemplo de un script muy simple que hace un insert:
 \set n random(1,10)
 BEGIN;
@@ -121,10 +123,6 @@ from generate_Series(0,9999) x;
 partbench_insert.sql contains:
 insert into partbench values('2018-04-26 15:00:00',1,2,3,4,5);
 
-
-
-partbench__insert.sql contains:
-insert into partbench_ values('2018-04-26 15:00:00',1,2,3,4,5);
 
 pgbench -n -T 60 -f partbench__insert.sql postgres
 
