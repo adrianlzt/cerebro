@@ -1,3 +1,4 @@
+??? desde aquí hasta ???FIN las líneas pueden haber sido insertadas/borradas
 https://www.postgresql.org/docs/current/user-manag.html
 
 Los usuarios y los grupos son roles.
@@ -41,7 +42,8 @@ SELECT * FROM pg_roles; <- se puede ejecutar estando en cualquier bd
 SELECT rolname, rolpassword FROM pg_authid;
   aqui vemos la pass en md5
 
-Si queremos meter la pass directamente encriptada podemos generarla asi (el nombre de role debe ponerse como sufijo):
+NOTA: 
+Si queremos meter la pass directamente encriptada con md5 podemos generarla asi (el nombre de role debe ponerse como sufijo):
 echo -n "CONTRASEÑAROLE" | md5sum | awk '{print "md5"$1;}'
 Ejemplo, user=pepe contraseña=bla123, pondríamos:
 echo -n "bla123pepe" ...
@@ -99,6 +101,10 @@ ALTER USER 'pepe' ...
 ### cambiar password / contraseña
 alter user postgres password 'xxx';
 ALTER ROLE partman PASSWORD 'par3456man';
+
+Contraseñas almacenadas
+select * from pg_catalog.pg_shadow;
+
 
 ### dar roles a posteriori:
 Permitir a un usuario crear nuevas dbs
