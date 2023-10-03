@@ -23,3 +23,13 @@ Las siguientes del multilinea se identarán 20 posiciones, quedando alineadas co
                     NhAAAAAwEAAQAAAYEAyC3zMEMpUK0rPBguOPwBPIrakvPjI652pMRyDtCK3ULn7lI+Qjl9
                     AiJOdiBllylFwIAk5ewtekW8ICAQnV0DwfGi2InfN/HsHzqtMoF1vmN9k195R7NnLA/0qn
 
+
+Otro ejemplo:
+```
+postgresql:
+  listen: 0.0.0.0
+  parameters:
+    {{ parameters | to_nice_yaml(indent=10) | indent(2) }}
+```
+
+parameters será un dict con varias entradas y todo quedará bien alineado.
