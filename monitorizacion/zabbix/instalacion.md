@@ -11,6 +11,10 @@ Server:
 DBHost=
 DBName=postgresql://postgres@192.168.32.4,192.168.32.3/zabbix?target_session_attrs=read-write
 
+Parece que no funciona con Zabbix 6.
+Parche para la v7? https://support.zabbix.com/browse/ZBXNEXT-6492
+
+
 Web (no funciona, mirar parcheo):
 $DB['TYPE']     = 'POSTGRESQL';
 $DB['SERVER'] = '192.168.32.4:5432,192.168.32.3:5432'
