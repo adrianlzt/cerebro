@@ -1,6 +1,9 @@
 /usr/bin/chromedriver --port=4444 --whitelisted-ips= --verbose
 
 # Controlarlo con curl
+Endpoints disponibles
+https://www.w3.org/TR/webdriver2/#endpoints
+
 Abrir un navegador:
 curl -X POST http://localhost:4444/session -d '{"desiredCapabilities":{"browserName":"chrome"}}'
 
@@ -8,10 +11,6 @@ Coger el sessionId (jq .sessionId)
 
 Navegar a una web:
 curl -X POST http://localhost:4444/session/a46075846d87dc002fc75ba0632630cb/url -d '{"url": "https://example.com"}'
-
-
-Endpoints disponibles
-https://www.w3.org/TR/webdriver2/#endpoints
 
 
 Ejemplo generados con copilot:
