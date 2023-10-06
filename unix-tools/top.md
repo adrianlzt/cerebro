@@ -1,3 +1,6 @@
+Versión mejorada:
+btop
+
 top version 3.3.10
 P - ordenar por CPU
 c - mostrar comando entero
