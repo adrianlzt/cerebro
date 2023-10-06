@@ -18,6 +18,10 @@ https://postgresqlco.nf/en/doc/param/stats_temp_directory/
 stats_temp_directory apuntar a un SSD para reducir IO
 
 
+# eBPF / flame graphs
+Analizar problemas de performance usando eBPF y flame graphs.
+https://twitter.com/samokhvalov/status/1710176204953919574
+
 
 # Performance
 La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias entradas en la misma query.

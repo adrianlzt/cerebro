@@ -1,4 +1,5 @@
 mirar logs.md
+mirar performance.md, análisis con ebpf.
 
 mirar en wal.md pg_filedump para mostrar contenido de ficheros
 
