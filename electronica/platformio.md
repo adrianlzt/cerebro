@@ -14,3 +14,8 @@ pio run -e t-camera-v162 -t upload
 
 Para conectar un terminal con el device
 pio device monitor
+
+
+# Espressif32
+Actualizar la versión de Espressif32
+pio pkg update -g -p espressif32
