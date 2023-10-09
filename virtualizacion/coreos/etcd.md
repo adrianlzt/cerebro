@@ -205,6 +205,19 @@ https://pkg.go.dev/github.com/coreos/etcd/wal
 
 snap son snapshots desde las cuales se puede recuperar un cluster de etcd.
 
+## Cuota
+https://etcd.io/docs/v3.2/op-guide/maintenance/
+
+Users can configure the quota of the backend db size using flag --quota-backend-bytes . It's the max number of bytes the etcd db file may consume, namely the ${etcd-data-dir}/member/snap/db file. Its default value is 2GB, and the suggested max value is 8GB. 2GB is usually sufficient for most use cases.
+
+Activar el automatic compactation para evitar llenarlo:
+https://etcd.io/docs/v3.5/op-guide/maintenance/#auto-compaction
+--auto-compaction-mode revision --auto-compaction-retention 1000000
+
+Meter monitorizaión para vigilar que no se pase.
+
+
+
 
 
 # Leases
@@ -236,6 +249,8 @@ https://github.com/coreos/etcd/blob/master/Documentation/faq.md
 - Nodo funcionando
 - ETCd como servicio funcionando
 - Latencias entre el lider y los followers
+- Ocupación de la cuota. Cálculo del porcentaje en uso (creo que si usamos compactation no habrá este problema):
+    etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes
 
 monitor backend_commit_duration_seconds (p99 duration should be less than 25ms) to confirm the disk is reasonably fast
 monitor wal_fsync_duration_seconds (p99 duration should be less than 10ms) to confirm the disk is reasonably fast
