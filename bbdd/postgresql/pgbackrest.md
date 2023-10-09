@@ -133,3 +133,7 @@ pgBackRest doesn’t check that all the needed WAL segments are still present. c
 # Debug
 --log-level-console=detail
 --log-level-console=debug
+
+
+# Restore
+https://pgbackrest.org/user-guide-rhel.html#restore

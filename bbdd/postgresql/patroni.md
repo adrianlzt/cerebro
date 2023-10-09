@@ -68,6 +68,13 @@ Se hace la llamada a la API, se para pero no arranca (al menos con la imagen de 
 Almacena la información en /service/$CLUSTER_NAME
 
 
+# Internals
+Cuando va a proceder a arrancar un cluster, una cosa que hace es obtener el "Database cluster state" para decidir como proceder.
+Esto lo hace con (paths de ejemplo):
+LC_ALL=C /usr/pgsql-14/bin/pg_controldata -D /var/lib/postgresql/data
+
+Según el estado determinará como debe arrancar.
+
 
 # Troubleshooting
 
