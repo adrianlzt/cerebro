@@ -87,6 +87,11 @@ show primary_conninfo; -- solo mostrará info en la réplica
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
 https://dba.stackexchange.com/a/259892
 
+https://www.postgresql.org/docs/16/runtime-config-wal.html#RUNTIME-CONFIG-WAL-ARCHIVE-RECOVERY
+Hay dos modos "recovery".
+  server as a standby: para que funcione así debemos dejar un ficheor standby.signal
+  targeted recovery mode: para recuperar de un backup, debemos dejar el fichero recovery.signal
+
 
 Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
 Se pasan diffs de binary files.
