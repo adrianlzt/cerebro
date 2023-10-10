@@ -58,6 +58,9 @@ mcli config host add ALIAS URL ACCESSKEY SECRETKEY
 mcli ls ALIAS
   lista todos los buckets del host/server
 
+## cp / download
+mcli --insecure cp --recursive ALIAS/foo/bar .
+
 ## stat
 Metadatos sobre un fichero
 mcli stat ALIAS/DIR/FILE
