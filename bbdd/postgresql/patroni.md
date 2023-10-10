@@ -131,3 +131,8 @@ Failover es la configuración de que pasa si falla el leader.
 Switchover es para cambiar a mano el leader.
 
 https://www.dbi-services.com/blog/patroni-operations-switchover-and-failover/
+
+
+# Backup / pgbackrest
+Como integrar patroni y pgbackrest.
+https://www.dbi-services.com/blog/bootstrap-patroni-cluster-from-pgbackrest-backup/
