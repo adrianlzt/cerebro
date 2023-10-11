@@ -159,6 +159,10 @@ Más info sobre esos números:
 https://twitter.com/samokhvalov/status/1709818510787162429?t=jBmsqGfCxEjPtZklrGCuVg&s=09
 https://fluca1978.github.io/2020/05/28/PostgreSQLWalNames
 
+Tamaño entre dos wal:
+select pg_size_pretty(pg_lsn '1EA7D/97173390' - '1EA7D/8334D570');
+
+
 select * from pg_stat_replication;
     solo muestra clientes actualmente conectados
     sent_lsn -> el último enviado al slave

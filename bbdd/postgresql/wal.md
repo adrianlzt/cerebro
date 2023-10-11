@@ -156,6 +156,8 @@ Time of latest checkpoint:
 Podemos forzar a que se escriba en un nuevo wal con
 select pg_switch_wal();
 
+Mirar en cluster.md para más datos sobre los wal.
+
 # wal_keep_segments / wal_keep_size
 https://postgresqlco.nf/doc/en/param/wal_keep_segments/
 Si tenemos "wal_keep_segments" estamos forzando a la bbdd a dejar ese número de ficheros de wal, por si una replica se tuviese que conectar.
