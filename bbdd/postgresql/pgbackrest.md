@@ -137,3 +137,9 @@ pgBackRest doesn’t check that all the needed WAL segments are still present. c
 
 # Restore
 https://pgbackrest.org/user-guide-rhel.html#restore
+
+Parar postgres/cluster.
+Borrar PGDATA en los hosts.
+
+En uno de los nodos recuperar el backup (si ni ponemos --set pillará el último; podemos especificar PITR):
+sudo -u postgres /usr/bin/pgbackrest --config /etc/pgbackrest/pgbackrest.conf  --stanza=iometrics restore --set 20231010-162101F

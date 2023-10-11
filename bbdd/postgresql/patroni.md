@@ -134,5 +134,22 @@ https://www.dbi-services.com/blog/patroni-operations-switchover-and-failover/
 
 
 # Backup / pgbackrest
+https://patroni.readthedocs.io/en/latest/replica_bootstrap.html#building-replicas
 Como integrar patroni y pgbackrest.
-https://www.dbi-services.com/blog/bootstrap-patroni-cluster-from-pgbackrest-backup/
+
+Para hacer la restauración tendremos que:
+Pararemos el cluster.
+Borraremos el PGDATA
+Meter esta config extra en patroni (la quitaremos una vez restaurado):
+
+postgresql:
+  create_replica_methods:
+    - pgbackrest
+  pgbackrest:
+    command: /usr/bin/pgbackrest --config /etc/pgbackrest/pgbackrest.conf --stanza=NOMBRESTANZA --log-level-console=info restore
+    keep_data: True
+    no_params: True
+    no_master: 1
+
+Arrancaremos solo en el nodo donde hayamos metido esa config.
+Una vez esté running, arrancaremos el otro.
