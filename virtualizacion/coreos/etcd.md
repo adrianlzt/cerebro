@@ -41,6 +41,8 @@ etcdctl member list
 get --prefix --keys-only /
   equivalente al "ls" de v2
 
+etcdctl del --prefix /service/iometrics
+  borrar todo lo que cuelge de ese path
 
 # v2
 etcdctl ls
