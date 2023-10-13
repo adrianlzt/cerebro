@@ -3,3 +3,5 @@ https://github.com/MaikuB/flutter_local_notifications/tree/master/flutter_local_
 
 Ejemplo ejecutando una local notification desde un background message de FCM
 https://stackoverflow.com/questions/66830661/firebase-messaging-onbackgroundmessage-local-notifications
+
+Local sound, si vemos que no lo detecta en los logs, borrar la app e instalar de nuevo.
