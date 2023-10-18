@@ -6,11 +6,12 @@ cluster.md
 pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
 odyssey.md yandex - Advanced multi-threaded PostgreSQL connection pooler and request router.
+pgcat.md PostgreSQL pooler with sharding, load balancing and failover support.
+https://agroal.github.io/pgagroal/ de RedHat, documentación escasa, no queda claro como funciona
+
 
 cybertec recomienda patroni sobre pgpool (para HA): https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
 
-https://agroal.github.io/pgagroal/
-  de RedHat
 
 
 
@@ -176,6 +177,9 @@ nodeb.pg_auto_failover |   5432 |     0 |     2 |           primary |           
 
 # Libq
 https://paquier.xyz/postgresql-2/postgres-10-libpq-read-write/
+https://www.postgresql.fastware.com/blog/enhancement-to-target-session-attrs
+  mejoras en v14
+
 libpq y postgres JDBC permiten definir varios hosts a donde conectar seleccionando que sea el master (read-write) o cualquiera (read-only)
 Ejemplo con psql:
 psql -d "postgresql://hostA,hostB/?target_session_attrs=read-write" -U usuario
