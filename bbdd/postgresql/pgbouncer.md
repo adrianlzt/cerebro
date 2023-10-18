@@ -1,5 +1,5 @@
-mirar pgpool.md
-http://wiki.postgresql.org/wiki/PgBouncer
+mirar ha_scalability.md
+https://www.pgbouncer.org/
 
 PgBouncer is a lightweight connection pooler for PostgreSQL.
 Mejor que pgpool, pero no permite enviar escrituras a una instancia distinta (esto es complejo, tiene muchos pequeños detalles, como funciones con SELECT que hacen escrituras)
@@ -63,6 +63,10 @@ Podemos poner una db de fallback, donde irán todas las conex que no sabe donde 
 * = host=172.16.0.250
 
 
+No se puede pasar en la connection string el parámetro target_session_attrs para conectar a la db read-write o read-only.
+https://github.com/pgbouncer/pgbouncer/issues/561
+
+
 # Admin / monitoring
 psql -p 6432 pgbouncer
 
@@ -106,3 +110,36 @@ Comandos de sesión no funcionarán: LISTEN/NOTIFY, PREPARE/EXECUTE, SET (LOCAL 
 
 Si un tenemos un pool size de 1 y dos clientes conectados.
 Si uno de ellos abre una transacción, las peticiones del otro se quedarán "congeladas" hasta que el primer cliente cierre la tx.
+
+
+# Docker
+https://hub.docker.com/r/bitnami/pgbouncer
+Parece la imagen mejor mantenida.
+
+
+Unas pruebas que hice:
+
+docker run --name pgbouncer --network patroni-ha \
+    -v $PWD/pgbouncer/:/opt/bitnami/pgbouncer/conf/ \
+    -p 6432:6432 -it --rm  \
+    --entrypoint bash \
+    -e POSTGRESQL_PASSWORD=postgres \
+    bitnami/pgbouncer:latest
+
+
+Fichero $PWD/pgbouncer/pgbouncer.ini
+```
+[databases]
+zabbix = host=172.28.0.2,172.28.0.3 user=postgres password=postgres dbname=postgres
+
+[pgbouncer]
+pool_mode = session
+listen_port = 6432
+listen_addr = 0.0.0.0
+auth_type = any
+; auth_type = md5
+; auth_file = users.txt
+logfile = /dev/stdout
+admin_users = admin
+stats_users = stat_collector
+```

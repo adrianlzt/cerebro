@@ -5,13 +5,15 @@ mirar:
 cluster.md
 pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
+odyssey.md yandex - Advanced multi-threaded PostgreSQL connection pooler and request router.
 
 cybertec recomienda patroni sobre pgpool (para HA): https://www.cybertec-postgresql.com/es/servicios/replicacion-postgresql/clustering-recuperacion-fallas-postgresql/
 
 https://agroal.github.io/pgagroal/
   de RedHat
 
-odyssey (https://github.com/yandex/odyssey)
+
+
 
 repmgr
   con el autofailover nos permite hacer promote de un master en caso de que el master casque

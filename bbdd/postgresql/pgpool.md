@@ -1,7 +1,7 @@
 http://www.pgpool.net/mediawiki/index.php/Main_Page
 https://gist.github.com/afair/3803895
 https://www.highgo.ca/2019/09/06/can-you-gain-performance-with-pgpool-ii-as-a-load-balancer/
-mirar pgbouncer.md
+mirar ha_scalability.md
 Parece que también puede gestionar una VIP
 
 Pgpool-II is a middleware that works between PostgreSQL servers and a PostgreSQL database client.
@@ -23,3 +23,7 @@ There is a limit on the maximum number of concurrent connections with PostgreSQL
 
 
 Pgpool-II talks PostgreSQL's backend and frontend protocol, and relays a connection between them. Therefore, a database application (frontend) thinks that Pgpool-II is the actual PostgreSQL server, and the server (backend) sees Pgpool-II as one of its clients. Because Pgpool-II is transparent to both the server and the client, an existing database application can be used with Pgpool-II almost without a change to its sources.
+
+
+# Docker
+https://hub.docker.com/r/bitnami/pgpool
