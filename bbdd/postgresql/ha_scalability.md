@@ -186,6 +186,16 @@ psql -d "postgresql://hostA,hostB/?target_session_attrs=read-write" -U usuario
 Esto nos puede servir para tener HA sin necesidad de balanceador.
 Si ponemos varios hosts, donde se puede conectar al primero, pero falla por que no existe el user o la database, no continuará probando con el resto de servers.
 
+target_session_attrs
+any (default)       Any successful connection is acceptable
+read-write          The session must accept read-write transactions by default (that is, the server must not be in hot standby mode and default_transaction_read_only must be off).
+read-only           The session must not accept read-write transactions by default (the converse of read-write).
+primary             The server must not be in hot standby mode.
+standby             The server must be in hot standby mode.
+prefer-standby      First try to find a standby server, but if none of the listed hosts is a standby server, try again in "any" mode.
+
+
+
 Para java (mirar sección "Connection Fail-over":
 https://jdbc.postgresql.org/documentation/head/connect.html
 

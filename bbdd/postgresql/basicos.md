@@ -10,6 +10,9 @@ psql -h hostname -U username -d database
 
 psql -d "postgresql://user:password@hostA:portA,hostB:portB/basededatos?target_session_attrs=read-write"
   conectar solo a la que sea read-write (no a una standby)
+Otro formato:
+psql -d "host=172.28.0.2,172.28.0.3 user=postgres password=postgres dbname=postgres target_session_attrs=read-only" -c "select pg_is_in_recovery()"
+
 
 Con password (-W ahorra el primer intento de conex sin auth, y lo intenta directamente con auth):
 psql -h hostname -U username -d database -W

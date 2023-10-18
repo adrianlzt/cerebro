@@ -13,6 +13,7 @@ Example file: https://github.com/postgresml/pgcat/blob/main/examples/docker/pgca
 
 Parece que hay que especificar a mano el rol de cada server.
 Esto no nos es útil si tenemos varios servidores que pueden variar (por ejemplo, un cluster con patroni).
+https://github.com/postgresml/pgcat/blob/main/CONFIG.md#servers
 
 
 # Docker
