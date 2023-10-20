@@ -10,8 +10,10 @@ Control+s
 
 Desactivar historial
 set +o history
+  de este queda histórico
 unset HISTFILE
   este en bash no me funciona
+  de este parece que no queda rastro (comprobar)
 
 Generalmente si escribimos
  comando
