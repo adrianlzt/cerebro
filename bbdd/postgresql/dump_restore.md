@@ -84,6 +84,10 @@ pg_dump siempre es compatible con versiones antiguas. Siempre mejor usar el últ
 
 Podemos solo hacer dump de los datos o solo del schema.
 
+Ojo con hacer pg_dump grandes en una réplica. Puede bloquear la aplicación de WALs en la réplica.
+Esto puede hacer que se cancele el backup con un error: "canceling statement due to conflict with recovery"
+https://repost.aws/es/knowledge-center/rds-postgresql-error-conflict-recovery
+
 ## Formato custom
 Lo mejor es siempre usar el archive (custom) format.
 Nos permite pasar a sql file con pg_restore.
