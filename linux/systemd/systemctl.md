@@ -78,7 +78,8 @@ systemctl reenable rsyslog
 systemctl mask rsyslog
   Previene que un usuario, u otro proceso, arranque rsyslog
   ln -s '/dev/null' '/etc/systemd/system/rsyslog.service'
-  No los limita del arranque
+  No los limita del arranque.
+  No funciona si hemos puesto el .service en /etc/systemd/system/, porque es donde quiere crear el enlace.
 systemctl mask rsyslog --runtime
   hasta el reinicio, prohibir que este servicio arranque
 systemctl unmask rsyslog
