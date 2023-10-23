@@ -86,6 +86,17 @@ process-max=4
 Va despacio? Mirar comentarios aquí:
 https://www.postgresql.org/message-id/20191011125053.GF6962%40tamriel.snowman.net
 
+## Configs
+https://pgbackrest.org/configuration.html#section-archive/option-archive-push-queue-max
+archive-push-queue-max
+Tamaño máximo de la cola de ficheros WAL.
+
+Si se llena esa cola veremos mensajes en postgres tipo:
+WARN: dropped WAL file '00000003000001740000004F' because archive queue exceeded 50GB
+
+Será que estamos generando muchos WAL y no es capaz de archivarlos a tiempo.
+Se pone un límite máximo para evitar llenar el disco.
+
 
 # Backup
 Los ficheros WAL los estará copiando postgres con el archive_command a /var/lib/pgbackrest/archive/STANZA/VERSION-POSTGRES/
