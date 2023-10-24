@@ -13,5 +13,5 @@ Si queremos ver si timescaledb tiene configurados los jobs de compresión:
 select * from timescaledb_information.jobs
 
 
-
+Fichero donde se gestiona configurar las compresiones, etc:
 src/zabbix_server/housekeeper/history_compress.c
