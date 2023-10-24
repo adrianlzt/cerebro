@@ -10,3 +10,6 @@ No ve tráfico ICMP
 
 yum install -y epel-release
 yum install -y nethogs
+
+
+En RHEL, sin EPEL, tenemos iptraf-ng
