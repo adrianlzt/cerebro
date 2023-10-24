@@ -1,4 +1,7 @@
-https://python.langchain.com/en/latest/tracing/local_installation.html
+https://python.langchain.com/docs/guides/debugging
+
+
+OBSOLETO:
 
 Si queremos debugear todo lo que hace LangChain tendremos que arrancar su server web:
 langchain-server
