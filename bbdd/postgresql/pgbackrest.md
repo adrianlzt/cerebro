@@ -1,6 +1,6 @@
 Full backup: todos los ficheros para poder realizar un restore.
 Differential backup: solo se almacenan las diferencias respecto a un full backup.
-Incremental backup: solo se almacenan las diferencias respecto al último backup (full o diff) (ese directorio no es completo, le hace falta el full para poder funcionar)
+Incremental backup: solo se almacenan las diferencias respecto al último backup (full, diff o incremental). Más complejo de restaurar, ya que hace falta ir sumando a full todos los incrementales.
 
 La idea es un servidor que hace backups de muchos otros nodos/clusters de postgres.
 Por cada uno creamos un "stanza".
