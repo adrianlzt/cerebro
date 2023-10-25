@@ -116,6 +116,8 @@ El backup se tiene que realizar localmente en el nodo primario o, usando ssh, co
 https://pgbackrest.org/user-guide-rhel.html#standby-backup
 Como usar, mayormente, un nodo standby/replica para obtener los fichero de backup.
 
+Si la réplica no funciona, no se podrá realizar el backup.
+
 ## HA
 https://community.pivotal.io/s/article/How-to-setup-pgbackrest-on-a-cluster-using-pg-auto-failover?language=en_US
 https://archive.is/QfQdo
