@@ -18,7 +18,8 @@ Un ejemplo de lo que nos puede enviar telegram está en:
 webhook.example
 
 
-Para enviar mensajes a un canal
+Para enviar mensajes a un canal o a una persona.
+El MY_CHANNEL_NAME sería el id de la persona o el canal.
 https://api.telegram.org/bot[BOT_API_KEY]/sendMessage?chat_id=[MY_CHANNEL_NAME]&text=[MY_MESSAGE_TEXT]
 
 Parece el channel name es https://web.telegram.org/#/im?p=g382900926
