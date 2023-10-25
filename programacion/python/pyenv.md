@@ -23,3 +23,9 @@ Aqui ahora veremos "shims", que van a capturar las llamadas a python
 
 Para poder usar python 3.8.6, por ejemplo, en un directorio, podemos hacer:
 echo 3.8.6 > .python-version
+
+
+# Debian
+apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+
+Instalar esto antes para tener un build "completo" de python.
