@@ -156,3 +156,10 @@ Borrar PGDATA en los hosts.
 
 En uno de los nodos recuperar el backup (si ni ponemos --set pillará el último; podemos especificar PITR):
 sudo -u postgres /usr/bin/pgbackrest --config /etc/pgbackrest/pgbackrest.conf  --stanza=iometrics restore --set 20231010-162101F
+
+
+# Expire
+Borrar backups antiguos.
+
+Si queremos borrar todos los full menos 1 (no podemos borrar todos, la retention no se puede poner a 0):
+pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --repo1-retention-full=1 --repo1-retention-full-type=count
