@@ -3,6 +3,9 @@ https://github.com/facebookresearch/llama/
 Los weights en principio solo se liberaban bajo petición, a equipos de investigación, etc.
 El código si es público.
 
+Llama2:
+https://huggingface.co/models?sort=trending&search=thebloke%2FLlama-2
+
 Pero están en torrent:
 https://github.com/juncongmoo/pyllama#-download-model-files
 https://github.com/facebookresearch/llama/pull/73/files
