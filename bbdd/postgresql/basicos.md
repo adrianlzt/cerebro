@@ -64,6 +64,10 @@ Mostrar tablas del schema "partman":
 Mostrar una fila por cada valor de cada columna
 \x
 select * from tabla;
+\x auto
+  que elija si expanded o no
+--expanded
+si lo queremos usar con psql
 
 \e
 editar el último statement con un editor
