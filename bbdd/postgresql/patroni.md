@@ -64,6 +64,14 @@ patronictl -c /etc/patroni.yml list NOMBRECLUSTER
 Supuestamente patronictl restart reinicia los postgres, pero no me funciona.
 Se hace la llamada a la API, se para pero no arranca (al menos con la imagen de timescaledb-ha para docker).
 
+
+## switchover
+Si queremos cambiar el primario, en un cluster healthy.
+
+## failover
+Si quremos hacer primario a una réplica, en un nodo sin cluster.
+
+
 # etcd
 Almacena la información en /service/$CLUSTER_NAME
 
@@ -152,4 +160,6 @@ postgresql:
     no_master: 1
 
 Arrancaremos solo en el nodo donde hayamos metido esa config.
-Una vez esté running, arrancaremos el otro.
+Una vez esté running y leader, arrancaremos el otro.
+
+Si no se vuelve leader (tal vez vemos el mensaje "My wal position exceeds maximum replication lag"), usaremos "failover" para forzarlo a que se haga primario.
