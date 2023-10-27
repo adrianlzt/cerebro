@@ -153,7 +153,7 @@ Time of latest checkpoint:
   último checkpoint ejecutado
 
 
-Podemos forzar a que se escriba en un nuevo wal con
+Podemos forzar a que se escriba en un nuevo wal con (regenerar, recrear, forzar wal):
 select pg_switch_wal();
 
 Mirar en cluster.md para más datos sobre los wal.

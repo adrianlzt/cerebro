@@ -304,6 +304,8 @@ Si por otro lado ya nos estamos llevando los ficheros WAL, solo tenemos que hace
 Podemos usar el "archive_command = %p /archiveDir/%f", que, cuando se llene un WAL, se copiará a otro directorio.
 También podemos usar pg_receivewal con el que nos vamos llevando los WAL files.
 
+Para ver el detalle del funcionamiento de el archivado de WALs en postgres, mirar pgbackrest.md, sección Async.
+
 
 Restaurar, parar postgres, mover los ficheros al PGDATA y arrancar.
 

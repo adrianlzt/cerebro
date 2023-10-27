@@ -30,6 +30,13 @@ Podemos limitar el tiempo que las sesiones están en idling transaction: https:/
 
 mirar en timeout_queries.md sección "Gestion timeout"
 
+Si estamos haciendo archive, mirar que estamos siendo capaces de archivarlo.
+Si no se puede archivar un wal se genera un error:
+2023-10-27 12:19:18.704 UTC [717] LOG:  archive command failed with exit code 82
+2023-10-27 12:19:18.704 UTC [717] DETAIL:  The failed archive command was: pgbackrest --config /etc/pgbackrest/pgbackrest.conf --stanza=iometrics archive-push pg_wal/000000060000074A00000003
+
+Tambien veremos que hay ficheros NOMBREWAL.ready en /var/lib/postgresql/data/pg_wal/archive_status
+
 
 
 Toda la info que queremos sacar lo tendremos catalog views o tables, y también tendremos que mirar el log file para buscar WARNINGS o ERRORS.

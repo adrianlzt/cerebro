@@ -12,6 +12,7 @@ Config real explicada en https://pgstef.github.io/2019/03/26/pgbackrest_archivin
 Config para usar con patroni: https://pgstef.github.io/2022/07/12/patroni_and_pgbackrest_combined.html
 
 Si tenemos muchos wal, usar async archive: https://pgbackrest.org/user-guide.html#async-archiving
+Mirar más abajo el detalle.
 
 Parece que no se puede hacer archive en el nodo standby, de la doc oficial:
 To get a complete series of WAL files in the archive, you must ensure that all WAL is archived, before it reaches the standby
@@ -86,6 +87,7 @@ process-max=4
 Va despacio? Mirar comentarios aquí:
 https://www.postgresql.org/message-id/20191011125053.GF6962%40tamriel.snowman.net
 
+
 ## Configs
 https://pgbackrest.org/configuration.html#section-archive/option-archive-push-queue-max
 archive-push-queue-max
@@ -96,6 +98,30 @@ WARN: dropped WAL file '00000003000001740000004F' because archive queue exceeded
 
 Será que estamos generando muchos WAL y no es capaz de archivarlos a tiempo.
 Se pone un límite máximo para evitar llenar el disco.
+
+
+## Async
+https://pgbackrest.org/configuration.html#section-archive/option-archive-async
+Asynchronous operation is more efficient because it can reuse connections and take advantage of parallelism
+
+No tengo muy claro lo que hace ese archive async.
+Cuando se genera un nuevo wal postgres:
+ - crea un fichero en pg_wal/archive_status/NOMBREWAL.ready
+ - ejecuta el archive command.
+ - si el archive command termina correctamente, mueve pg_wal/archive_status/NOMBREWAL.ready a pg_wal/archive_status/NOMBREWAL.done
+
+El archive_command configurado para pgbackrest lo que entiendo que hace es lanzar otro pgbackrest para subir los wal que esten "ready".
+Parece que postgres no intenta archivar otros WAL si no ha podido archivar uno. Se queda reintentando indefinidamente el más viejo a archivar.
+Si postgres lanza varios archive_command entiendo que no se crearán más pgbackrest de subida y se usará el mismo (parece que usa /tmp/pgbackrest/iometrics-archive.lock)
+
+Si pgbackrest termina bien, parece que genera un fichero NOMBREWAL.ok en el spool path cuando termina.
+Este fichero es la señal que usa para decirle al pgbackrest que ha lanzando postgres que ha terminado bien.
+
+El proceso que lanzó postgres está mirando si aparece en /var/lib/postgresql/spool/archive/iometrics/out/ uno de estos ficheros:
+    NOMBREWAL.ok
+    NOMBREWAL.error
+    global.error
+
 
 
 # Backup

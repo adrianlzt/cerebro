@@ -147,7 +147,7 @@ El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que 
 En el slave, del wal pasa al "startup" y de ahí a la database (recibe en memoria, escribe a disco, flush and replay changes)
 select pg_current_wal_insert_lsn();
   wal en memoria
-select pg_current_wal_lsn()
+select pg_current_wal_lsn();
   wal escrito en disco
 select pg_current_waL_flush_lsn()
   wal flushed al disco
