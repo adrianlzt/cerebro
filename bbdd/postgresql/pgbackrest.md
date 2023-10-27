@@ -116,11 +116,18 @@ Si postgres lanza varios archive_command entiendo que no se crearán más pgback
 
 Si pgbackrest termina bien, parece que genera un fichero NOMBREWAL.ok en el spool path cuando termina.
 Este fichero es la señal que usa para decirle al pgbackrest que ha lanzando postgres que ha terminado bien.
+Si no es capaz de archivar, tras 8 minutos de timeout, generará un error que leera el pgbackrest lanzado por postgres.
 
 El proceso que lanzó postgres está mirando si aparece en /var/lib/postgresql/spool/archive/iometrics/out/ uno de estos ficheros:
     NOMBREWAL.ok
     NOMBREWAL.error
     global.error
+
+
+Si pgbackrest no está siendo capaz de archivar los WAL a una velocidad suficiente, se emepezarán a encolar en el directorio pg_wal.
+Para proteger a postgres existe el parámetro XXX. Si hay más de esa cantidad de WAL esperando ser archivados, el pgbackrest push-async se "rinde" y da todos por archivados.
+Genera este error por cada WAL no archivado:
+2023-10-27 12:44:50.607 P00   WARN: dropped WAL file '000000060000074A00000009' because archive queue exceeded 128MB
 
 
 
