@@ -932,6 +932,10 @@ Cambia de $1 a $5.
 https://www.zabbix.com/documentation/4.0/en/manual/installation/upgrade_notes_400#deprecated-macros-in-item-names
 https://gist.github.com/adrianlzt/916a0c641c62b5b5ca700a59b4730dab
 
+Antes de ejecutarlo comprobar hasta que $N estamos usando.
+De forma simple, ir ejecutando esta query cambiando el número para ver donde tenemos match:
+select name from items where name like '%$5%' limit 1;
+
 WITH macro AS (
     SELECT
         itemid,

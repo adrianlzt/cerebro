@@ -32,6 +32,11 @@ Item prototypes, los nombre deben usar las macros que se usan en la key. A parti
 Antes: item name eg.: Free disk space on $1
 Ahora: item name eg.: Free disk space on {#FSNAME}
 
+Las antiguas se llamaban "positional macros".
+En la versión 6.0 ya están totalmente eliminadas.
+
+Para corregir eso mirar la SQL en sql.md "Queries para cambiar los names de los items prototypes de "$1" a la macro."
+
 
 # Discovery en templates
 Una template puede tener un discovery configurado.
