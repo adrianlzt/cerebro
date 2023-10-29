@@ -18,6 +18,10 @@ Llama.cpp 30B runs with only 6GB of RAM now
 https://github.com/ggerganov/llama.cpp/pull/613
 https://news.ycombinator.com/item?id=35393284
 
+# Tokens
+Para contar tokens de Llama/Llama2
+https://github.com/belladoreai/llama-tokenizer-js
+
 
 
 # Alpaca
