@@ -3,6 +3,10 @@ https://github.com/facebookresearch/llama/
 Los weights en principio solo se liberaban bajo petición, a equipos de investigación, etc.
 El código si es público.
 
+Para ejecutar llama de manera fácil?
+https://ollama.ai/
+
+
 Llama2:
 https://huggingface.co/models?sort=trending&search=thebloke%2FLlama-2
 
