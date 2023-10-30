@@ -65,9 +65,11 @@ repo1-s3-region=eu-west-3
 repo1-s3-uri-style=path
 
 
-Solo guardar los WAL desde el ultimo backup diff
-repo1-retention-archive-type=diff
+Solo guardar los WAL desde el ultimo backup diff/incr
+repo1-retention-archive-type=diff/incr # uno de los dos
 repo1-retention-archive=1
+Se guardarán los WAL necesarios para restaurar un backup y todos los WAL desde el último backup hasta el momento actual.
+Cuando se realize otro backup, se borrarán esos WAL dejando solo los necesarios para restaurar el backup.
 
 Para evitar un warning al hacer el backup. Solo se mantendrán los diff backups correspondientes a los basebackup que tengamos
 repo1-retention-diff=9999999
@@ -145,6 +147,16 @@ Si queremos forzar un full: --type=full
 
 El backup se tiene que realizar localmente en el nodo primario o, usando ssh, configurando el primario y la/las réplicas.
 
+Cuando termina el backup comprueba si tiene archivados los WAL que necesita para poder restaurar.
+Vemos que lo intenta con esta línea de log:
+INFO: check archive for segment(s) 000000060000074D0000002B:000000060000074D0000002F
+
+Si no consigue los WAL, tras un timeout (60s por defecto), saltará un error y descartará el backup:
+ERROR: [082]: WAL segment 000000060000074D0000002B was not archived before the 60000ms timeout
+                                    HINT: check the archive_command to ensure that all options are correct (especially --stanza).
+                                    HINT: check the PostgreSQL server log for errors.
+                                    HINT: run the 'start' command if the stanza was previously stopped.
+INFO: backup command end: aborted with exception [082]
 ## Standby
 https://pgbackrest.org/user-guide-rhel.html#standby-backup
 Como usar, mayormente, un nodo standby/replica para obtener los fichero de backup.
@@ -196,3 +208,14 @@ Borrar backups antiguos.
 
 Si queremos borrar todos los full menos 1 (no podemos borrar todos, la retention no se puede poner a 0):
 pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --repo1-retention-full=1 --repo1-retention-full-type=count
+
+
+# Verify
+https://github.com/pgbackrest/pgbackrest/issues/1032
+Añadido en la 2.39
+Verify command to validate the contents of a repository.
+
+Es bastante lento.
+2m30 en una bbdd casi vacía
+
+Probé a quitar uno de los directorios de archive WAL del s3 (minio) y no se quejó.
