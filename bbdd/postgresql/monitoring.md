@@ -1,6 +1,9 @@
 mirar pg_stat_statements.md
 mirar pgmetrics.md
 Queries que hace zabbix para monitorizar postgres: https://github.com/zabbix/zabbix/tree/master/templates/db/postgresql/postgresql
+https://docs.google.com/presentation/d/1taKST9H59FG7MKtVLUlqQ_WozJfRQ1MFidnN7HxBQ6U/edit#slide=id.g24d4917c5fd_0_96
+  Modern Postgres monitoring – PGCon 2023 tutorial
+
 
 http://pgstats.dev/
 Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace

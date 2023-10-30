@@ -45,6 +45,12 @@ https://www.2ndquadrant.com/en/blog/basics-of-tuning-checkpoints/
 "Now we need to estimate how much WAL..."
 
 
+Como analizar si el directorio pg_wal está creciendo sin parar:
+https://twitter.com/samokhvalov/status/1717773398586298703?t=RXEeHm2R5veUE13zir1vRA&s=08
+ - comprobar los replication slots
+ - comprobar archive_command
+
+
 # pg_resetwal
 reset the write-ahead log and other control information of a PostgreSQL database cluster
 

@@ -217,5 +217,6 @@ Verify command to validate the contents of a repository.
 
 Es bastante lento.
 2m30 en una bbdd casi vacía
+33m con algunos backups de ~100GB
 
 Probé a quitar uno de los directorios de archive WAL del s3 (minio) y no se quejó.
