@@ -133,6 +133,8 @@ pg_restore -v -e -Fc -d prueba -1 /backup/prueba.custom
   -d xxx, importar el dump en esa base de datos determinada.
   -t A -t B, podemos poner uno o varios -t para importar varias tablas. Tendremos que poner las dependencias adecuadas
 
+Podemos usar --jobs=N para restaurar en paralelo, solo soportado por el formato custom y directory.
+
 Restaurar de un backup a un directorio especificando el host de postgres y User:
 pg_restore -h 127.0.0.1 -U postgres -d zabbix-server -v -e -Fd pgdump-zabbix-server-20231019_2100.dump/ --no-privileges --no-owner
 
