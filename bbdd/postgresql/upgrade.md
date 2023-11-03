@@ -49,6 +49,8 @@ https://www.postgresql.org/docs/current/pgupgrade.html
 
 Al ejecutar pg_upgrade este arrancará los dos servidores (viejo y nuevo) para hacer el movimiento de datos.
 
+De 9.6 a 12 tardó 12s en una ddbb de 1.2TiB, usando --link.
+
 
 
 # pg_dumpall
