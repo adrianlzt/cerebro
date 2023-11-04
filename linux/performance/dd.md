@@ -1,4 +1,7 @@
 mirar guymager.md, gráfica
+https://dcfldd.sourceforge.net/
+  dcfldd versión de dd mejorada
+  podemos añadir "dcfldd status=on if=..." para ver el estado de la escritura
 
 https://www.vidarholen.net/contents/blog/?p=479
   Want to simulate a lseek+execve? Use dd! Want to open a file with O_SYNC? Use dd! Want to read groups of three byte pixels from a PPM file? Use dd
