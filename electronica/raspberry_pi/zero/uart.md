@@ -4,7 +4,7 @@ Necesitamos meter una linea en /boot/config.txt
 enable_uart=1
 
 Cable verde pin inferior
-Blanco superior.
+Blanco superior (el que está al lado del GND)
 
 Usar cable uart-to-usb.
 No usar cable rojo (voltaje) si ya alimentamos con el puerto de PWR.
