@@ -30,3 +30,13 @@ Por ejemplo:
 platform = espressif32
 board = lolin_c3_mini
 ```
+
+
+# Errores
+
+## undefined reference to `esp_ble_gap_stop_scanning'
+Compilando uno de los ejemplos oficiales.
+Faltaba meter en sdkconfig.nombreenv
+CONFIG_BT_BLE_42_FEATURES_SUPPORTED=y
+
+Visto en https://github.com/esphome/issues/issues/3580
