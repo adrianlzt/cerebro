@@ -103,6 +103,10 @@ Inline para definir una ip fija:
 nmcli c mod "System eth2" ipv4.addresses "10.0.2.72/24" ipv4.gateway "10.0.2.51"
 nmcli c up "System eth2"
 
+Definir una segunda ip (alias):
+nmcli con modify NOMBRECONEX +ipv4.addresses 172.30.10.3/24
+sudo nmcli con up NOMBRECONEX
+
 
 # Crear una red wifi a mano
 nmcli c add type 802-11-wireless con-name NombreConex ifname wlo1 ssid NombreSSID
@@ -119,7 +123,7 @@ nmcli c edit NombreConex
 La password la almacenaremos en /etc/NetworkManager/system-connections/NombreConex
 [connection]
 id=CONNECTION_NAME
- 
+
 [802-1x]
 password=YOUR_8021X_PASSWORD
 password-flags=0 # Si esta a 1 la cogera del keyring
