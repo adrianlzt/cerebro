@@ -15,6 +15,17 @@ FILTER:
   Buscar entradas con uid=alt390 y mostrar solo su cn y sn
   Podemos usar asteriscos "nane=Adrián*" (parece que meter un asterisco al comienzo ralentiza bastante la búsqueda, uso de índice invertido?)
 
+Si usamos LDAPS (ldap+tls) y queremos ignorar el cert del server:
+LDAPTLS_REQCERT=never ldapsearch ...
+
+Parece que también vale:
+TLS_REQCERT allow line to the /etc/openldap/ldap.conf
+```
+TLS_REQCERT never
+```
+
+En debian parece que la ruta es /etc/ldap/ldap.conf
+
 ### Con bind (logueadas)
 ldapsearch -h SERVERLDAP -D uid=USUARIO,ou=users,dc=grafana,dc=org -w PASSWORD -b BASE
 

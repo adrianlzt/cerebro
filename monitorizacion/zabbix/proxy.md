@@ -112,6 +112,7 @@ Cada DataSenderFrequency, 1s por defecto, el proxy hace una query a la bd para o
 
 get_host_availability_data
 proxy_get_hist_data
+  proxy_get_lastid: select nextid from ids where table_name='proxy_dhistory' and field_name='dhistory_lastid'
   proxy_get_history_data
     select id,itemid,clock,ns,timestamp,source,severity,value,logeventid,state,lastlogsize,mtime,flags from proxy_history where id>6 order by id limit 1000
     Ese "id>6" será el valor que tenga almacenado en proxy_history.history_lastid (func proxy_get_lastid).
