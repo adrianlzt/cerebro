@@ -51,6 +51,27 @@ https://support.zabbix.com/browse/ZBXNEXT-4920
 # Almacenamiento de datos
 Almacena datos en la tabla proxy_history.
 
+Housekeeper se encarga de limpiar esa tabla.
+  zabbix_proxy/housekeeper/housekeeper.c
+    housekeeping_history
+        records += delete_history("proxy_history", "history_lastid", now);
+
+Config por defecto:
+HousekeepingFrequency=1
+How often Zabbix will perform housekeeping procedure (in hours).
+Housekeeping is removing outdated information from the database.
+Note: To lower load on proxy startup, housekeeping is postponed for 30 minutes after proxy start. Thus, if HousekeepingFrequency is 1, the very first housekeeping procedure after proxy start will run after 30 minutes, and will repeat every hour thereafter.
+
+Visto en producción que teniendo N registros borra hasta quedarse con M:
+2.42M -> 0.18M
+  housekeeper [deleted 2482673 records in 2.597972 sec, idle for 1 hour(s)]
+
+22.48M -> 5.28M
+  housekeeper [deleted 17364018 records in 59.453940 sec, idle for 1 hour(s)]
+
+3.81M -> 2.00M
+  housekeeper [deleted 1845029 records in 2.069850 sec, idle for 1 hour(s)]
+
 
 # Errores
 
