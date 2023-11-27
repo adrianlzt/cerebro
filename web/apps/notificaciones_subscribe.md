@@ -12,5 +12,6 @@ yay aur/ntfysh-bin
 
 
 ntfy publish topic "texto"
+curl -d "hola" ntfy.sh/topic
 
 antfy, mi alias para enviar mensajes.

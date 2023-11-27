@@ -53,6 +53,7 @@ SELECT
 FROM
     hypertable_compression_stats ('trends');
 
+
 # Chunks
 Chunk de una hypertable
 https://docs.timescale.com/api/latest/hypertable/show_chunks/
@@ -71,3 +72,16 @@ SELECT chunk_schema||'.'||chunk_name as chunk FROM chunk_compression_stats('tren
 select * from timescaledb_information.jobs;
 
 Ejecutarlo en la db donde queramos ver los jobs.
+
+
+
+# Uncompress / decompress
+https://docs.timescale.com/use-timescale/latest/compression/decompress-chunks/
+
+Timescale automatically supports INSERTs into compressed chunks. But if you need to insert a lot of data, for example as part of a bulk backfilling operation, you should first decompress the chunk. Inserting data into a compressed chunk is more computationally expensive than inserting data into an uncompressed chunk. This adds up over a lot of rows.
+
+Pero no se soporta insertar en compressed chunks con primary or unique constrains: https://github.com/timescale/timescaledb/issues/3323
+Al menos hasta la 2.11.
+
+Desactivar primero las políticas de compresión que tengamos:
+https://docs.timescale.com/use-timescale/latest/compression/compression-policy/#remove-compression-policy
