@@ -190,6 +190,7 @@ GRANT SELECT ON nombreTabla to user;
 
 Permiso para leer de todas las tablas del schema public:
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO roleA,roleB,roleC;
 
 NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
 
@@ -340,3 +341,7 @@ REVOKE ALL ON DATABASE db_name FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 
 Los roles que creemos tendrán que tener los permisos CONNECT a la db y USAGE sobre el schema public.
+
+
+# Dump roles
+pgdump_all --roles-only
