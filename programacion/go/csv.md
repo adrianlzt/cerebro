@@ -19,3 +19,10 @@ for {
 
     fmt.Println(record)
 }
+
+
+Si queremos que los campos con string vacías tenga comillas (cosa que no hace encoding/csv) usar github.com/tushar2708/altcsv
+https://stackoverflow.com/a/53664201
+
+Sustituirla con:
+import csv "github.com/tushar2708/altcsv"
