@@ -59,8 +59,10 @@ Chunk de una hypertable
 https://docs.timescale.com/api/latest/hypertable/show_chunks/
 
 SELECT show_chunks('nombre_tabla');
-SELECT show_chunks('conditions', older_than => INTERVAL '3 months');
-SELECT show_chunks('conditions', older_than => DATE '2017-01-01');
+SELECT show_chunks('trends', older_than => INTERVAL '3 months');
+SELECT show_chunks('trends', older_than => DATE '2017-01-01');
+SELECT show_chunks('trends', older_than => 1601250362);
+SELECT show_chunks('trends', older_than => ROUND(EXTRACT(EPOCH FROM now() - INTERVAL '3 MONTH'))::integer);
 
 
 Chunks no comprimidos de una tabla:
