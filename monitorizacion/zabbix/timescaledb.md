@@ -44,3 +44,9 @@ select * from timescaledb_information.compression_settings;
 
 Fichero donde se gestiona configurar las compresiones, etc:
 src/zabbix_server/housekeeper/history_compress.c
+
+
+# Problemas
+
+La compresión de chunks bloquea los update de trends.
+https://github.com/timescale/timescaledb/issues/4432#issuecomment-1158765200

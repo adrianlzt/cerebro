@@ -136,11 +136,13 @@ Al final, en algún punto, se termina almacenando la información en alguna memo
 Desde ahí lo coje el history syncer y lo almacena en la tabla proxy_history (función DCmass_proxy_add_history).
 
 ### Como se envían los datos
-Cada DataSenderFrequency, 1s por defecto, el proxy hace una query a la bd para obtener los items que debe enviar:
+Cada DataSenderFrequency, 1s por defecto, el proxy hace una query a la bd para obtener los items que debe enviar.
+Los items pendientes de enviar son los ids > lastid
+Se cogen según el orden por id.
 
 get_host_availability_data
 proxy_get_hist_data
-  proxy_get_lastid: select nextid from ids where table_name='proxy_dhistory' and field_name='dhistory_lastid'
+  proxy_get_lastid: select nextid from ids where table_name='proxy_history' and field_name='history_lastid';
   proxy_get_history_data
     select id,itemid,clock,ns,timestamp,source,severity,value,logeventid,state,lastlogsize,mtime,flags from proxy_history where id>6 order by id limit 1000
     Ese "id>6" será el valor que tenga almacenado en proxy_history.history_lastid (func proxy_get_lastid).
@@ -148,3 +150,8 @@ proxy_get_hist_data
         insert into proxy_history (itemid,clock,ns,value) values (28877,1689850664,498430889,'{"data":[{"{#VAR}": "abc"}]}');
 proxy_get_dhis_data (discovery)
 proxy_get_areg_data (autoregistration)
+
+
+
+Ver cuantos elementos están pendientes de envío:
+select count(*) from proxy_history where id > (select nextid from ids where table_name='proxy_history' and field_name='history_lastid');
