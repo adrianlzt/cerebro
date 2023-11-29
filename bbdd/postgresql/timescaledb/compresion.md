@@ -68,6 +68,9 @@ SELECT show_chunks('trends', older_than => ROUND(EXTRACT(EPOCH FROM now() - INTE
 Chunks no comprimidos de una tabla:
 SELECT chunk_schema||'.'||chunk_name as chunk FROM chunk_compression_stats('trends') WHERE compression_status = 'Uncompressed' ORDER BY chunk_name;
 
+Ver chunks de cada tabla, con el rango que incluyen y viendo si están comprimidos (caso donde el range es un tipo int que representa unix epoch):
+select hypertable_name,chunk_name,is_compressed,to_timestamp(range_start_integer) as range_start_integer, to_timestamp(range_end_integer) as range_end_integer from timescaledb_information.chunks where hypertable_name like 'trends%' order by hypertable_name, range_start_integer;
+
 
 
 # Jobs
