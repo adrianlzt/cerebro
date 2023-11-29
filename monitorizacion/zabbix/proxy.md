@@ -73,6 +73,13 @@ Visto en producción que teniendo N registros borra hasta quedarse con M:
   housekeeper [deleted 1845029 records in 2.069850 sec, idle for 1 hour(s)]
 
 
+# Limitación de envío de datos
+Si la history cache de zabbix-server se llena mucho, zabbix-server no acepta que le envíen métricas.
+
+src/libs/zbxdbcache/dbcache.c:zbx_hc_check_proxy() esta es la función que decide si se permiten a los proxies enviar cosas.
+
+
+
 # Errores
 
 Error cuando ponemos un PSK identity incorrecto:
