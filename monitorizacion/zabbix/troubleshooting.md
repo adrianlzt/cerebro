@@ -67,6 +67,15 @@ Lag de los datos de la bbdd respecto al tiempo real (Solo cojemos los items acti
 select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
 
 
+Obtener estado cache:
+while true; do zabbix_server -R diaginfo=historycache | grep -A 1 "Memory.data" | grep used; sleep 10; done
+El used suele estar por debajo de 1M.
+
+En caso de que se llene mucho, zabbix no permite empujar los datos desde los zabbix-proxies.
+
+
+
+Versiones antiguas:
 Obtener el estado de la cache con gdb + python
 
 https://support.zabbix.com/browse/ZBX-17342
