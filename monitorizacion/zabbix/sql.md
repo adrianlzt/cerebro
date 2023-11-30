@@ -1196,3 +1196,29 @@ query_items_to_be_deleted: |
       AND hosts.host like '{{ ansible_hostname }}..%'
       AND items.status = 0 -- enabled
       AND ts_delete <> 0
+
+
+# Host que han escrito en las trends cuando no deberian
+Esto nos indica que han tenido que hacer el insert antes de tiempo porque habrán necesitado coger la hora anterior, lo que implicará que harán un update trends.
+
+select distinct split_part(host, '..', 1) as host from hosts join items using(hostid) join trends using(itemid) where clock = extract (epoch from date_trunc ('hour', now ()) AT TIME ZONE 'UTC')::int;
+
+Poniendo proxies:
+WITH update_trends_hosts AS (
+SELECT DISTINCT
+    split_part(h.host, '..', 1) AS host
+FROM
+    hosts h
+    JOIN items USING (hostid)
+    JOIN trends USING (itemid)
+WHERE
+    clock = extract(epoch FROM date_trunc('hour', now()) AT TIME ZONE 'UTC')::int
+)
+SELECT DISTINCT
+    h.host,
+    ph.host AS proxy
+FROM
+    hosts h
+    LEFT JOIN hosts ph ON ph.hostid = h.proxy_hostid
+WHERE
+    h.host IN (SELECT host FROM update_trends_hosts);

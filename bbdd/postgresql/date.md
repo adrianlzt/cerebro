@@ -4,6 +4,9 @@ Hora en unix epoch en segundos:
 SELECT ROUND(EXTRACT(EPOCH FROM now()));
   CUIDADO esto es un double, si lo queremos comparar con un int no podremos usar index, convertir a int con ::int
 
+SELECT extract (epoch from date_trunc ('hour', now ()) AT TIME ZONE 'UTC')::int as epoch_timestamp;
+  obtener el unix epoch de la hora actual, redondeada a minuto y segundo 00.
+
 Unix epoch a timestamp:
 select to_timestamp(1250028000);
 
