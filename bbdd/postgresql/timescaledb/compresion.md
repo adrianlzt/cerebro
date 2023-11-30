@@ -36,6 +36,7 @@ Tenemos que crear una función que devuelva now() en el tipo de dato del campo y
 
 Comprimir todos los chunks de una tabla que no estén comprimidos:
 SELECT compress_chunk(chunk, if_not_compressed => TRUE) FROM show_chunks('nombre_tabla') as chunk;
+SELECT compress_chunk('_timescaledb_internal._hyper_7_103_chunk');
 
 
 # Estadísticas
