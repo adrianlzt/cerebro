@@ -1,3 +1,16 @@
+# Info webcam
+v4l2-ctl --all
+v4l2-ctl --list-devices
+v4l2-ctl --all -d /dev/video0
+
+sudo lsusb
+  buscar el id de la webcam y meterlo como:
+sudo lsusb --verbose -d 04f2:b6b6
+
+
+Con el programa "cheese" me permite seleccionar la calidad de la imagen.
+
+
 # guvcview
 pacman -S guvcview
 
