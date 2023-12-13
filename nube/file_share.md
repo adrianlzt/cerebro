@@ -11,12 +11,17 @@ https://transfer.sh/66nb8/hello.txt
 Opción similar:
 curl -vT fichero https://temp.sh
 
+
 magic-wormhole
 https://github.com/warner/magic-wormhole
 Compartir ficheros, o pequeños texos, usando únicamente dos palabras legibles.
 Tenemos que instalar el cliente python.
 Enviamos el fichero, genera las dos palabras.
 La otra persona ejecuta el cliente, mete las dos palabras y recibe el fichero
+pacman -S magic-wormhole
+wormhole send fichero
+Nos da un comando que tiene que ejecutar la otra persona.
+
 
 https://www.sharedrop.io
 compartir ficheros entre usuarios de la misma red de manera directa (P2P). Usa WebRTC

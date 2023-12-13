@@ -60,6 +60,9 @@ dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'"
 ## qdbus
 También para obtener info del bus
 
+qdbusviewer
+  version x11
+
 qdbus
   sin parámetros, nos dice que servicios están disponibles en el bus
   busctl list parece más potente
@@ -78,3 +81,10 @@ Async
 Buscar artículos:
 "Chrome OS D-Bus best practices"
 "How to version DBus interafaces" (creo que era así)
+
+
+# Ver que proceso tiene registrado que servicio
+➜ cat /usr/share/dbus-1/services/org.freedesktop.secrets.service
+[D-BUS Service]
+Name=org.freedesktop.secrets
+Exec=/usr/bin/gnome-keyring-daemon --start --foreground --components=secrets
