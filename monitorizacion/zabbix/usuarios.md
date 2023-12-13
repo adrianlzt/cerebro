@@ -40,3 +40,11 @@ http://yourserver.fq.dn/zabbix/latest.php?filter_rst=1
 # database
 Se almacena en la tabla users
 La contrseña es md5 sin hashear
+
+## sesion
+Toda la info de la sesión del usuario (filtros, que host estaba viendo, etc) se almacena en la db:
+
+select profiles.* from users join profiles using (userid) where username = 'FOOBAR';
+
+Por ejemplo
+178678 │    184 │ web.templates.filter_name                   │        0 │        0 │          0 │ Template Foo
