@@ -2,15 +2,21 @@ https://www.zabbix.com/documentation/6.0/en/manual/concepts/server/ha
 https://blog.zabbix.com/build-zabbix-server-ha-cluster-in-10-minutes-by-kaspars-mednis-zabbix-summit-online-2021/18155/
 https://blog.zabbix.com/how-to-setup-redundant-zabbix-proxies-without-complex-cluster-configurations/12092/
 
-Para Zabbix-web se soporta desde 5.2, podemos arrancar todos los zabbix-web que queramos.
+Para Zabbix-web se soporta desde 5.2.0, podemos arrancar todos los zabbix-web que queramos.
+    https://www.zabbix.com/whats_new_5_2#:~:text=Load%20balancing%20for%20UI%20and%20API
+    https://support.zabbix.com/browse/ZBXNEXT-5965
+
 Para zabbix-server desde 6.0, servers activo-pasivo usando la DB como coordinación.
 
 Mirar ha_postgres.md para ver como configurar zabbix-web y zabbix-server para que puedan usar una postgres con primaria y réplica.
 
+Parece que van a meter proxies en HA en Zabbix 7.0
+https://support.zabbix.com/browse/ZBXNEXT-5911
+
 
 # Zabbix-web
-Cada server web es independiente (activo-activo), por lo que las cookies son diferentes.
-Si ponemos un LB por delante tendrá que tener sticky session (no estoy 100%, no probado).
+Parece que no hace falta sticky session. Probado con un haproxy haciendo round robin.
+No encuentro nada oficial.
 
 No configuraremos ZBX_SERVER_HOST ni ZBX_SERVER_PORT. Lo cogera de la DB.
 
