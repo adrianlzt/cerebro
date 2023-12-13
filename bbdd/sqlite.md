@@ -49,6 +49,10 @@ cursor.execute("select * from sqlite_master")
 Database activada:
 cursor.execute("PRAGMA database_list;").fetchall()[0][2]
 
+# dump
+$ sqlite
+.output dump.sql
+.dump
 
 
 # Extender sqlite
