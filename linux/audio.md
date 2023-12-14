@@ -1,3 +1,21 @@
+Parece que lo normal en linux ahora es usar pipewire.
+Creo que por debajo puede usar pulseaudio, jack, alsa, etc.
+
+
+
+# Sistemas de audio
+Pulseaudio, el más típico.
+Jack, más profesional.
+PipeWire, el más reciente.
+
+
+
+Para ver un gráfico de las conexiones (patch), para pipewire
+qpwgraph
+
+
+
+
 PulseAudio
 
 # Admin
@@ -97,3 +115,16 @@ Arreglado instalando el paquete: sof-firmware
 
 # Sox
 para editar audio
+
+
+
+# Mezclar micro más otra entrada
+Lo que queremos hacer es que una aplicación grabe al mismo tiempo el micrófono junto con algo que se está reproduciendo.
+
+Usando qpwgraph es muy sencillo
+
+Empezamos la app que graba eligiendo nuestro micro.
+Luego en qpwgraph añadimos también la salida de lo otro que se esté reproduciendo también a lo que graba.
+
+Haciendo una prueba de micro + video de youtube, el video se escucha entrecortado.
+Pero parece que era culpa de la app, porque con https://studio.opencast.org/ funciona bien.
