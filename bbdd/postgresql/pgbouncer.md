@@ -65,6 +65,8 @@ Podemos poner una db de fallback, donde irán todas las conex que no sabe donde 
 
 No se puede pasar en la connection string el parámetro target_session_attrs para conectar a la db read-write o read-only.
 https://github.com/pgbouncer/pgbouncer/issues/561
+https://github.com/pgbouncer/pgbouncer/pull/736
+  pr que intentaba hacer algo parecido y que queriá meter target_session_attrs, pero parece abandonada por el creador.
 
 
 # Admin / monitoring

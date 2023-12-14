@@ -16,7 +16,7 @@ https://support.zabbix.com/browse/ZBXNEXT-5911
 
 # Zabbix-web
 Parece que no hace falta sticky session. Probado con un haproxy haciendo round robin.
-No encuentro nada oficial.
+El soporte confirma que no hace falta sticky session.
 
 No configuraremos ZBX_SERVER_HOST ni ZBX_SERVER_PORT. Lo cogera de la DB.
 

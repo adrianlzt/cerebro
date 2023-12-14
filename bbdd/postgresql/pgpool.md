@@ -32,6 +32,12 @@ https://www.pgpool.net/docs/45/en/html/pcp-commands.html
 pcp_node_info -h 127.0.0.1 -U admin -W
 
 
+También podemos ejecutar comandos SQL que serán capturados por pgpool.
+https://www.pgpool.net/docs/45/en/html/sql-commands.html
+
+Por ejemplo, para ver el estado del pool:
+SHOW POOL_NODES;
+
 # Docker
 https://hub.docker.com/r/bitnami/pgpool
 
@@ -69,3 +75,54 @@ Este será el user que se meterá en el fichero pool_passwd.
 Por lo que he probado, será el único usuario con el que podremos loguear contra pgpool y también el que se usará para conectar con los backends.
 PGPOOL_POSTGRES_USERNAME: Postgres administrator user name, this will be use to allow postgres admin authentication through Pgpool.
 PGPOOL_POSTGRES_PASSWORD: Password for the user set in PGPOOL_POSTGRES_USERNAME environment variable. No defaults.
+
+Parece que podemos meter más con:
+PGPOOL_POSTGRES_CUSTOM_USERS: List of comma or semicolon separeted list of postgres usernames. This will create entries in pgpool_passwd. No defaults.
+PGPOOL_POSTGRES_CUSTOM_PASSWORDS: List of comma or semicolon separated list for postgresql user passwords. These are the corresponding passwords for the users in PGPOOL_POSTGRES_CUSTOM_USERS. No defaults.
+
+
+Haciendo una prueba con grafana conectado a pgpool, al tirar la conex al backend primario, no consigo que vuelva a funcionar.
+Estuvo reintentando conectar durante un rato y luego parece que se dió por vencido.
+Ahora intenta mirar si el nodo que le queda es el primario (pero es el standby).
+Aunque le permita conectar de nuevo al primario, no lo intenta.
+
+2023-12-14 16:45:17.744: health_check0 pid 157: LOG:  health check retrying on DB node: 0 (round:4)
+2023-12-14 16:45:22.745: health_check0 pid 157: LOG:  failed to connect to PostgreSQL server on "127.0.0.1:5434", getsockopt() failed
+2023-12-14 16:45:22.745: health_check0 pid 157: DETAIL:  Operation now in progress
+2023-12-14 16:45:22.745: health_check0 pid 157: LOG:  health check retrying on DB node: 0 (round:5)
+2023-12-14 16:45:27.713: sr_check_worker pid 156: ERROR:  Failed to check replication time lag
+2023-12-14 16:45:27.713: sr_check_worker pid 156: DETAIL:  No persistent db connection for the node 0
+2023-12-14 16:45:27.713: sr_check_worker pid 156: HINT:  check sr_check_user and sr_check_password
+2023-12-14 16:45:27.713: sr_check_worker pid 156: CONTEXT:  while checking replication time lag
+2023-12-14 16:45:27.713: sr_check_worker pid 156: LOG:  failed to connect to PostgreSQL server on "127.0.0.1:5434", getsockopt() failed
+2023-12-14 16:45:27.713: sr_check_worker pid 156: DETAIL:  Operation now in progress
+2023-12-14 16:45:27.745: health_check0 pid 157: LOG:  failed to connect to PostgreSQL server on "127.0.0.1:5434", getsockopt() failed
+2023-12-14 16:45:27.745: health_check0 pid 157: DETAIL:  Operation now in progress
+2023-12-14 16:45:27.745: health_check0 pid 157: LOG:  health check failed on node 0 (timeout:0)
+2023-12-14 16:45:27.745: health_check0 pid 157: LOG:  received degenerate backend request for node_id: 0 from pid [157]
+2023-12-14 16:45:27.745: health_check0 pid 157: LOG:  signal_user1_to_parent_with_reason(0)
+2023-12-14 16:45:27.746: main pid 1: LOG:  Pgpool-II parent process received SIGUSR1
+2023-12-14 16:45:27.746: main pid 1: LOG:  Pgpool-II parent process has received failover request
+2023-12-14 16:45:27.746: main pid 1: LOG:  === Starting degeneration. shutdown host 127.0.0.1(5434) ===
+2023-12-14 16:45:27.756: main pid 1: LOG:  Restart all children
+2023-12-14 16:45:27.757: main pid 1: LOG:  execute command: echo ">>> Failover - that will initialize new primary node search!"
+>>> Failover - that will initialize new primary node search!
+2023-12-14 16:45:27.759: main pid 1: LOG:  find_primary_node_repeatedly: waiting for finding a primary node
+
+
+Si lo que tiro es la conex de pgpool al backend réplica, entonces funciona inmediatamente el usar el primario.
+
+Tras conectar de nuevo la réplica, no la detecta, sigue solo conectado al primario.
+Con PCP vemos que el nodo lo tiene como down.
+/$ pcp_health_check_stats -h 127.0.0.1 -U admin -W 1
+1 127.0.0.1 5435 down standby 2023-12-14 16:54:09 7 2 1 4 5 1.666667 5 25003 239 8537.666667 2023-12-14 16:56:09 2023-12-14 16:53:14 2023-12-14 16:56:09 2023-12-14 16:54:09
+Podemos hacer un pcp_attach_node para ponerlo en "up".
+Pero las conex que ya estén contra el primario se quedarán.
+
+
+Si hago un detach a mano de un nodo réplica y luego un attach, las conexiones que se hubiesen ido al primario no se fuerzan a la réplica.
+
+
+Si hago un detach a mano del nodo primario, las conexiones dejan de funcionar y soy incapaz de volver a conectar el nodo primario. Se queda en down.
+Saca todo el rato las trazas:
+2023-12-14 17:21:44.047: main pid 1: LOG:  find_primary_node: standby node is 1
