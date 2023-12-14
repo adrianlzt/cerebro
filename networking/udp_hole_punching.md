@@ -6,14 +6,19 @@ Esta técnica aprovecha el "agujero" que se deja en el NAT al salir un paquete U
 
 Un ejemplo con tres máquinas. Bob y Alice quieren comunicarse entre si y Server es el que usamos para ver las IPs/Puertos públicos.
 
-Server escucha en el puerto 9000 paquetes UDP. Vieno el output del comando "ss -unp" podemos ver quien se conecta al puerto 9000.
+Server escucha en el puerto 9000 paquetes UDP. Viendo el output del comando "ss -unp" podemos ver quien se conecta al puerto 9000.
 La función de Server la realizan los servidores STUN
-Server$ nc -lu 9000
-Bob$ echo "toc" | nc -p 58888 -u 54.93.249.162 9000
-Anotamos que el ip/puerto público de Bob es: 54.93.229.24:58888
+Server$ nc -klu 9000
 
-Alice$ echo "toc" | nc -p 53333 -u 54.93.249.162 9000
-Anotamos que el ip/puerto público de Alice es: 82.230.120.113:53333
+Bob envía un mensaje al server usando su puerto origen 58888
+Bob$ hostname | nc -w 0 -p 58888 -u 54.93.249.162 9000
+
+En el server corremos tcpdump para ver el puerto del que venga la petición de Bob:
+tcpdump -nni any udp port 9000
+Anotamos que el ip/puerto público de Bob es (lo que veamos en tcpdump): 54.93.229.24:58888
+
+Alice$ hostname | nc -w 0 -p 53333 -u 54.93.249.162 9000
+Anotamos que el ip/puerto público de Alice es (lo que veamos en tcpdump): 82.230.120.113:53333
 
 
 Server (STUN) devuelve la información vista (ip/puerto público) a los clientes, para que estos se la intercambien.
@@ -29,7 +34,7 @@ Este comando no debe tardar mucho en enviarse, si no, se habrá cerrado el "hole
 El tiempo parece que varia desde las decenas de segundos a los minutos (depende del NAT)
 También depende del NAT tendremos que poner el puerto de origen o no será necesario (Restricted-Cone NAT vs Full-Cone NAT)
 Bob$ echo "soy Bob" | nc -p 58888 -u 82.230.120.113 53333
-  
+
 
 Y aquí hacemos lo contrario, abrimos un agujero para que lleguen los mensajes de Alice:
 Bob$ echo "upd hole" | nc -u -p 58888 82.230.120.113 53333
