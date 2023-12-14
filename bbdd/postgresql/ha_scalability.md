@@ -7,6 +7,7 @@ pgpool.md
 pgbouncer.md <- Aiven usa este https://aiven.io/blog/aiven-postgresql-connection-pooling
 odyssey.md yandex - Advanced multi-threaded PostgreSQL connection pooler and request router.
 pgcat.md PostgreSQL pooler with sharding, load balancing and failover support.
+  parece que hace falta definir a mano que nodos son primarios y cuales réplicas
 https://agroal.github.io/pgagroal/ de RedHat, documentación escasa, no queda claro como funciona
 
 
