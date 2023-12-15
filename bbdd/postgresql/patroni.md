@@ -40,6 +40,9 @@ Ejemplo de config: https://github.com/zalando/patroni/blob/master/postgres0.yml
 Explicación de cada uno de los parámetros:
 https://patroni.readthedocs.io/en/latest/SETTINGS.html#settings
 
+Configurar "use_slots", para poder trackear mejor a las réplicas:
+https://patroni.readthedocs.io/en/latest/faq.html#configuration:~:text=on%20Etcd%20v3.6.-,I%20have%20use_slots,-enabled%20in%20my
+
 
 # API
 https://patroni.readthedocs.io/en/latest/rest_api.html

@@ -164,6 +164,9 @@ En las réplicas podemos ver su lag con:
 select status, last_msg_receipt_time from pg_stat_wal_receiver;
 select now()-pg_last_xact_replay_timestamp() as replication_lag;
 
+En el primario podemos usar (NOTA: si se desconecta, la entrada desaparecerá):
+select application_name,now()-reply_time as lag from pg_stat_replication;
+
 Podemos también ir mirando la delta de los bytes que se están procesando en el receiver, para ver la velocidad en bytes que está procesando el receiver.
 
 La gráfica puede tener picos por que los envíos pueden ir a golpes y porque los VACUUM no tiene que aplicarse automáticamente, así que pueden hacerse esperar.
