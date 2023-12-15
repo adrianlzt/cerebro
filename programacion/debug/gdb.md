@@ -119,11 +119,15 @@ gdb a.out
 > symbol-file a.out.debug
 
 
-# Ubuntu
+## Arch
+https://wiki.archlinux.org/title/Debugging/Getting_traces
+
+
+## Ubuntu
 https://wiki.ubuntu.com/Debug%20Symbol%20Packages
 
 
-# CentOS/RedHat
+## CentOS/RedHat
 Para instalar los simbolos de un binario
 yum install -y yum-utils
 debuginfo-install -y PKG
@@ -272,7 +276,7 @@ win: divide la pantalla, mostrando arriba el código y la línea procesada, y ab
   layout prev/next: distintos layouts: ensamblador, valores de registros, codigo, y combinaciones de estos.
   focus next/prev: focus en las distintas ventas para poder hacer scroll
   refresh: refresh the screen
-  update: Update the source window and the current execution point. 
+  update: Update the source window and the current execution point.
   https://sourceware.org/gdb/onlinedocs/gdb/TUI-Commands.html
   control+l repain screen (por si se ha estropeado el output con algun print o similar)
 
@@ -407,7 +411,7 @@ hola
 >a=3
 >print("a vale %d", a)  # Control+d
 >a vale %d 3
-(gdb) 
+(gdb)
 
 Podemos escribir py en vez de python
 
@@ -445,7 +449,7 @@ $ pi
 >>> gdb.Breakpoint('8')
 Breakpoint 2 at 0x400573: file helloworld.c, line 8.
 <gdb.Breakpoint object at 0x7f7085eb1300>
->>> 
+>>>
 
 
 ## Comandos de gdb escritos en python
@@ -522,4 +526,3 @@ Una forma más directa
 
 O sin especificar un pid, para luego añadirlos:
 (gdb) target extended-remote | ssh -T root@xyz.example.com gdbserver --multi -
-
