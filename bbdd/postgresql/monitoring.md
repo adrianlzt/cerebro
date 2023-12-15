@@ -160,6 +160,10 @@ Tenemos funciones y valores, en pg_stat_replication, para poder ver en donde ten
 Mirar write_lag, flush_lag, reply_lag también, pero si se para la replicación este número se quedará parado (no tiene forma de saber el número).
 Por lo que tendremos que mirar este número junto con la diferencia de bytes entre los wal del master y lo del slave.
 
+En las réplicas podemos ver su lag con:
+select status, last_msg_receipt_time from pg_stat_wal_receiver;
+select now()-pg_last_xact_replay_timestamp() as replication_lag;
+
 Podemos también ir mirando la delta de los bytes que se están procesando en el receiver, para ver la velocidad en bytes que está procesando el receiver.
 
 La gráfica puede tener picos por que los envíos pueden ir a golpes y porque los VACUUM no tiene que aplicarse automáticamente, así que pueden hacerse esperar.
