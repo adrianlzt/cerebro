@@ -28,8 +28,15 @@ gcc main.c
 ./a.out
 
 
+# gcore, generar .core
+Generar un core dump de un proceso en ejecución:
 
-# catchsegv 
+gcore -o fichero.dump PID
+
+
+
+
+# catchsegv
 Comando para lanzar un programa que da un core dump y obtener maś info
 https://www.commandlinux.com/man-page/man1/catchsegv.1.html
 
@@ -45,3 +52,13 @@ http://ablagoev.github.io/linux/adventures/commands/2017/02/19/adventures-in-usr
 A partir de una línea tipo
 php-fpm[6048]: segfault at 10 ip 00007f46db77a8fb sp 00007fffa155e2d0 error 4 in xcache.so[7f46db763000+23000]
 Obtener la línea del código que lo generó
+
+
+# chap
+https://github.com/vmware/chap
+
+Analyzes un-instrumented ELF core files for leaks, memory growth, and corruption.
+Análisis de core dumps.
+
+Probado con python, pero es dificil sacar algo en claro, ya que no explica que es cada cosa
+https://github.com/vmware/chap/blob/master/USERGUIDE.md#patterns-related-to-python

@@ -93,3 +93,24 @@ No da info de memoria.
 
 https://functiontrace.com/#installation
 Este tiene buena pinta, pero no consigo que me genere ninguna info con una app simple.
+
+
+
+# guppy
+https://github.com/zhuyifei1999/guppy3
+https://www.pluralsight.com/blog/tutorials/how-to-profile-memory-usage-in-python
+
+Nos da info de en que cosas se está gastando memoria.
+
+pip install guppy3
+
+from guppy import hpy
+h = hpy()
+print(h.heap())
+
+
+
+# memory-profiler
+https://pypi.org/project/memory-profiler/
+
+Sopora varias cosas, entre ellas, un decorador para ver como consumimos memoria línea a línea en una función.
