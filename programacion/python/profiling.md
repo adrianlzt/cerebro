@@ -89,6 +89,9 @@ Tiene un modo "top" y un generador de flame graph.
 Puede conectarse a una app en ejecución.
 No da info de memoria.
 
+Para analizar un contenedor he tenido que usar nsenter:
+nsenter -t 2960076 -a py-spy record -o profile.svg --pid 1
+
 
 
 https://functiontrace.com/#installation
