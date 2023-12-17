@@ -3,6 +3,20 @@ A high-performance, high-precision CPU, GPU, and memory profiler for Python with
 https://aur.archlinux.org/packages/python-scalene-git/
 
 
+# py-spy
+https://github.com/benfred/py-spy
+Analizar que funciones están consumiendo más tiempo.
+Tiene un modo "top" y un generador de flame graph.
+Puede conectarse a una app en ejecución.
+No da info de memoria.
+
+Para analizar un contenedor he tenido que usar nsenter:
+nsenter -t 2960076 -a py-spy record -o profile.svg --pid 1
+
+Muy útil la vision tipo "top", que nos dice que se está ejecutando en ese momento.
+
+
+
 https://docs.python.org/3/library/debug.html
 Tambien en py2. Viene por defecto.
 python -m cProfile -o PROFILE apli_ucmdb.py --mis-params
@@ -80,17 +94,6 @@ http://127.0.0.1:8000/
 
 Ejemplo de como hacer profiling de una app de streamlit
 https://blog.streamlit.io/3-steps-to-fix-app-memory-leaks/
-
-
-
-https://github.com/benfred/py-spy
-Analizar que funciones están consumiendo más tiempo.
-Tiene un modo "top" y un generador de flame graph.
-Puede conectarse a una app en ejecución.
-No da info de memoria.
-
-Para analizar un contenedor he tenido que usar nsenter:
-nsenter -t 2960076 -a py-spy record -o profile.svg --pid 1
 
 
 
