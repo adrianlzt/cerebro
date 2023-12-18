@@ -38,6 +38,13 @@ Encoding from unicode to str.
 '\xd0\x91'
 
 
+```
+>>> char= "á"
+>>> f"\\u00{hex(ord(char))[2:]}"
+'\\u00e1'
+```
+
+
 Decoding from str to unicode.
 
 >>> "a".decode("utf-8")
