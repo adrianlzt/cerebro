@@ -1,4 +1,15 @@
 https://www.highgo.ca/2021/11/01/the-postgresql-timeline-concept/
+https://www.interdb.jp/pg/pgsql10.html#:~:text=2.-,Timeline%20History%20File,branched%20off%20from%20and%20when.
+
+A timeline in PostgreSQL is used to distinguish between the original database cluster and the recovered ones.
+
+When a PITR process completes, a timeline history file with names like '00000002.history' is created under the archival directory and the pg_wal.
+
+En el fichero .history pone la explicación de porque se ha creado otro timeline.
+Por ejemplo:
+1       0/A000198       before 2023-12-18 12:05:00.861324+00
+3       743/CE000000    no recovery target specified
+
 
 Los ficheros 00000003.history indican como se ha creado una timeline.
 Tendremos el LSN de la timeline 2 de la que parte y el LSN del que partía el timeline 2.
