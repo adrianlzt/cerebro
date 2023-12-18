@@ -198,3 +198,7 @@ Posibles causas:
 
 Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
 https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
+
+
+# pg_wal / .history files
+Mirar timeline.md
