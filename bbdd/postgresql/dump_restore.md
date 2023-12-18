@@ -351,14 +351,15 @@ Si solo hacemos recuperación del backup, perderemos los nuevos datos escritos d
 
 Si tenemos que restaurar un backup:
   1. Recuperar de un base backup (copiar el DATADIR)
-  2. Definir el recovery target (edit recovery.conf)
-     En la linea "reocver_command" debemos especificar donde están los WAL: "cp /path/con/los/wal/%f %p"
+  2. Definir el recovery target (edit postgresql.conf)
+     En la linea "recover_command" debemos especificar donde están los WAL: "cp /path/con/los/wal/%f %p"
      Aqui podemos especificar PITR. recovery_target_time (también podemos poner el lsn, xid o target_name, que tendremos que haber especificado antes. Especificar si la queremos incluir o no)
      recovery_target='immediate', para lo antes posible (base backup + los mínimos wal para que sea consistente)
      con recovery_target_action definimos que pasa cuando se recupere: promote (moverla a master), apagarse, pausarse (este nos permite consultar la db sin que la db se mueva)
        shutdown aplica los wal al base dir, conseguimos un datadir "compacto", que funciona por si solo, sin wal files.
-       si lo ponemos como promote, al terminar y arrancar renombrara el fichero recovery.conf y los ficheros wal ahora serán 00000002....
-  3. start database server
+       si lo ponemos como promote, al terminar y arrancar renombrara el fichero recovery.conf y los ficheros wal ahora serán 00000002.... (nuevo timeline)
+  3. crear el fichero recovery.signal dentro de PGDATA
+  4. start database server
 
 
 Parámetros que nos permiten ejecutar comandos tras un recovery, típicamente para limpiar WAL ya no necesitados y el otro ¿para avisar el fin?.
