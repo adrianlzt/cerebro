@@ -17,6 +17,7 @@ ans
 
 Cuidado con el tema del redondeo:
 https://github.com/sharkdp/insect/issues/400
+https://github.com/sharkdp/numbat/issues/179
 Internamente tiene el número correcto, pero con la notación "e" muestra un redondeo.
 
 Si queremos definir una unidad de algo "random"
