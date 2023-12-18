@@ -1,6 +1,10 @@
-https://github.com/sharkdp/insect
-https://insect.sh/
-  online
+https://numbat.dev/
+https://github.com/sharkdp/numbat
+https://numbat.dev/doc/example-numbat_syntax.html
+  Es la evolución de insect
+    https://github.com/sharkdp/numbat/blob/master/assets/reasons-for-rewriting-in-rust.md
+    https://github.com/sharkdp/insect
+    https://insect.sh/
 
 Convierte unidades
 Se pueden asignar constantes, crear funciones
@@ -11,8 +15,18 @@ Ejemplo calculando el tiempo de envio de un fichero, en minutos, dada una veloci
 ans
   último resultado
 
+Cuidado con el tema del redondeo:
+https://github.com/sharkdp/insect/issues/400
+Internamente tiene el número correcto, pero con la notación "e" muestra un redondeo.
 
-BC:
+Si queremos definir una unidad de algo "random"
+unit thing: Scalar
+
+Y podemos hacer:
+(3 thing/s) * 3 min
+
+
+# BC
 Para que use decimales en algunos SOs hay que arrancar con bc -l
 
 last es el último resultado
@@ -55,7 +69,7 @@ $ expr 32 \/ 4
 8
 $ expr 5 + 5.5
 expr: non-numeric argument
-$ expr 
+$ expr
 
 
 Convertir hexadecimal en decimal:
