@@ -21,7 +21,7 @@ parser_logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 formatter = logging.Formatter(fmt='%(levelname)s device=%(device)s %(message)s')
 ch.setFormatter(formatter)
-parser_logger.propagate = False  # Solo usar este StreamHandler, no el definido por basicConfi
+parser_logger.propagate = False  # Solo usar este StreamHandler, no el definido por basicConfig
 parser_logger.handlers = [ch]
 
 logger.warning("info msg main")
