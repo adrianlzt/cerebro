@@ -84,6 +84,12 @@ Buscar artículos:
 
 
 # Ver que proceso tiene registrado que servicio
+Preguntar el PID de un servicio de DBUS, luego pasarlo a ps para obtener el nombre del proceso:
+ps -ax -q $(dbus-send --session --print-reply --dest=org.freedesktop.DBus / org.freedesktop.DBus.GetConnectionUnixProcessID string:org.freedesktop.secrets | grep uint32 | awk '{print $2}')
+
+rg org.freedesktop.Notifications /usr/share/dbus-1/services/
+
+
 ➜ cat /usr/share/dbus-1/services/org.freedesktop.secrets.service
 [D-BUS Service]
 Name=org.freedesktop.secrets

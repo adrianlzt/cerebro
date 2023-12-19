@@ -1,5 +1,7 @@
 Vim reescrito para poder seguir avanzando en el desarrollo.
 
+Mirar configuracion_hecha.md
+
 # Install
 pacman -S neovim python-neovim
 
