@@ -222,3 +222,15 @@ Es bastante lento.
 33m con algunos backups de ~100GB
 
 Probé a quitar uno de los directorios de archive WAL del s3 (minio) y no se quejó.
+
+
+# Calculo storage
+
+El peor escenario es justo antes de que se borre un full backup.
+
+Si tenemos una retención full de 7 días, cada 14 días, justo antes de la finalización del backup full, tendremos almacenados:
+3 x backup full + backups incrementales + wal
+
+Esto suponiendo que realizamos los backups full cada 7 días y los incrementales cada día.
+
+Hoja de cálculo jugando con los números: https://docs.google.com/spreadsheets/d/1pciYqWFENX93Sq6p9R4if_hkMcXOFB9fnXuUvvtk0e8/edit?usp=sharing

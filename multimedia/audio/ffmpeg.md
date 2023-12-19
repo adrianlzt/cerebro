@@ -1,3 +1,6 @@
+https://www.phoronix.com/news/FFmpeg-CLI-MT-Merged
+FFmpeg Lands CLI Multi-Threading en version 7.0
+
 https://linuxconfig.org/ffmpeg-audio-format-conversions
 -> wav
 ffmpeg -i audio.aac audio.wav

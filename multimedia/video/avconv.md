@@ -1,6 +1,9 @@
 https://github.com/yuanqing/vdx
 Comando que simplifica la conversión de video (usando por debajo ffmpeg)
 
+https://www.phoronix.com/news/FFmpeg-CLI-MT-Merged
+FFmpeg Lands CLI Multi-Threading en version 7.0
+
 
 https://trac.ffmpeg.org/wiki/Encode/AAC
 -> mp4
