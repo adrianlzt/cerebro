@@ -56,9 +56,6 @@ def isfloat(value):
 65
 
 
-
-
-
 Convertir a string
 str(43)
 
