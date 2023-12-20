@@ -16,7 +16,7 @@ import argparse
 parser = argparse.ArgumentParser(prog="cyclops", description='Monitoring as a service')
 parser.add_argument("-c", "--config", action="store", dest="input_config_file",
                             help="Path to the cyclops configuration file.", default=None)
-# Positional argument                            
+# Positional argument
 parser.add_argument("cuenta", metavar="cuenta", help="Mostrar únicamente esta cuenta") # Esto genera algo tipo: prg [-c] cuenta
 args = parser.parse_args()
 
@@ -120,6 +120,13 @@ def perfect_square(string):
     return value
 
 parser.add_argument('foo', type=perfect_square)
+
+
+## datetime
+parser.add_argument ('--date', type=datetime.date.fromisoformat, help="Date in the format YYYY-MM-DD")
+
+parser.add_argument ('-s', "--statartdate", help="The Start Date - format YYYY-MM-DD ", required=True, type=lambda s: datetime.datetime.strptime (s, '%Y-%m-%d'))
+
 
 
 # Errores
