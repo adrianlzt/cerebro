@@ -31,3 +31,20 @@ conf.findall("./%sservers/%sserver[@name='SAM']" % (ns,ns))
 Si tenemos namespaces:
 ns = conf.getroot().tag  # Sacar de aqui el namespace
 remote_domain = conf.findall("./%sdomain-controller/%sremote" % (ns, ns))
+
+
+
+Ejemplo con namespaces
+xml_example.py
+
+
+Parece que los namespaces que se definen al principio del documento son como alias para no poner el churro entero:
+
+
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2"...
+
+La entrada:
+cac:TenderSubmissionDeadlinePeriod
+
+La buscamos como:
+entry.find(".//{urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2}TenderSubmissionDeadlinePeriod")

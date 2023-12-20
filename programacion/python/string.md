@@ -64,6 +64,7 @@ str(43)
 
 string = "escapar caracter %% y aqui ponemos algo %s" % 4
 
+# Multilinea
 
 String largo:
 string = ''' aqui empieza
