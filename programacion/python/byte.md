@@ -156,6 +156,9 @@ binascii.a2b_*   ascii -> binario
 binascii.b2a_*   binario -> ascii
 
 ## Python3
+>>> "000á".encode().hex()
+'303030c3a1'
+
 >>> import binascii
 >>> binascii.hexlify(b'asdas')
 b'6173646173'
