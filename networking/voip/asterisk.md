@@ -9,13 +9,15 @@ Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamada
 Acrobits Softphone (6.5€, android / ios)
 zoiper para linux
   quitar STUN en la config de la cuenta
+  este es el que uso
 linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
 jami, no me conecta, no he mirado mucho
 blink, linux windows mac: https://icanblink.com/
   el mejor que he visto para linux y opensource
+  no consigo compilarlo con yay, problemas con cython
 
 Hello world:
-https://wiki.asterisk.org/wiki/display/AST/Hello+World
+https://docs.asterisk.org/Getting-Started/Hello-World/
 
 # Configuración
 Relaciones entre los distintos tipos de objeto de configuración
