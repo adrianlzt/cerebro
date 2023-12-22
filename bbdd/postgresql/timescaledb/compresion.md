@@ -79,6 +79,11 @@ select * from timescaledb_information.jobs;
 
 Ejecutarlo en la db donde queramos ver los jobs.
 
+Modificar job:
+https://docs.timescale.com/api/latest/actions/alter_job/
+
+SELECT alter_job(1006, next_start => '2023-12-22 15:00:00.0+00');
+
 
 
 # Uncompress / decompress
