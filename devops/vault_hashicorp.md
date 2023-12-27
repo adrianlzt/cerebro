@@ -53,6 +53,15 @@ Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 
 # CLI
 
+
+## Loguearnos server remoto
+vault login -address=http://vault.com:8200 -method=userpass username=adrian
+Otra forma:
+VAULT_ADDR=http://vault.com:8200 vault ...
+
+Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
+
+
 ## Autocompletado
 https://www.vaultproject.io/docs/commands/index.html#autocompletion
 
@@ -66,14 +75,6 @@ E ir navegando por el arbol de secrets
 
 Parece que "vault kv get/put/... <TAB>" no funciona
 Tampoco para "vault write"
-
-
-## Loguearnos server remoto
-vault login -address=http://vault.com:8200 -method=userpass username=adrian
-Otra forma:
-VAULT_ADDR=http://vault.com:8200 vault ...
-
-Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
 ## Status
 vault status
