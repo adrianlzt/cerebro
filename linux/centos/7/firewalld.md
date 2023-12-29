@@ -144,6 +144,10 @@ firewall-cmd --add-port=50-55/tcp
 firewall-cmd --add-port=50/tcp --add-port=60/tcp
 
 Creo que si recargamos perdemos esas configs, a no ser que pasemos el --permanent:
+
+firewall-cmd --permanent --zone=public --add-port=30000-33000/udp
+
+Creo que hace falta recargar para coger la conf:
 firewall-cmd --reload
 
 

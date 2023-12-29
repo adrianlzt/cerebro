@@ -7,6 +7,8 @@ pystun
 Ejecutarlo varias veces, porque me da respuestas distintas.
 
 Para mirar como funciona el conectar por con este método, mirar networking/udp_hole_punching.md
+El puerto UDP lo elige el software. Para el caso de la lib de python aiortc (https://github.com/aiortc/aioice/issues/47), parece que no se define por lo que se elije uno random.
+Podemos ver el rango de ephemeral en /proc/sys/net/ipv4/ip_local_port_range
 
 ## Servidores publicos
 stun.ekiga.net
