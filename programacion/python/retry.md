@@ -1,5 +1,6 @@
 http://www.saltycrane.com/blog/2009/11/trying-out-retry-decorator-python/
 
+pip install retry
 from retry import retry
 @retry(urllib2.URLError, tries=4, delay=3, backoff=2)
 def urlopen_with_retry():
@@ -36,4 +37,3 @@ test()
 
 
 retry_if solo tendrá como parámetro la excepción, no podemos pasarle más parámetros ni podrá ser una función de una clase (no podemos hacer retry_if(self, ex))
-
