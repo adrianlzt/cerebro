@@ -59,7 +59,12 @@ https://github.com/doy/rbw
 Funcionalidad más limitada.
 Caché local
 
+## https://github.com/mvdan/bitw
+bitwarden expuesto via org.freedesktop.service dbus
+
+
 ## Desktop client
+https://bitwarden.com/download/
 Electron
 
 https://contributing.bitwarden.com/getting-started/clients/desktop/
