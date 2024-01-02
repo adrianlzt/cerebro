@@ -7,11 +7,17 @@ Sar forma parte de un conjunto de herramientas de estadísticas para linux.
 
 sar - Collect, report, or save system activity information.
 
+https://sarchart.dotsuresh.com/#
+para ver las métricas de sar en una herramienta online
+
 
 # ksar
 A sar grapher (http://sourceforge.net/projects/ksar/)
   yaourt -S ksar_bin
   /usr/bin/kSar
+
+  Parece que está roto en versiones modernas de jre
+  https://github.com/vlsi/ksar/issues/123
 
   Abrir, aplicación x11.
   En la ventana que vemos, pulsar sobre Data -> Launch SSH command
@@ -37,6 +43,7 @@ No es un comando estandar. Necesita de un demonio para estar corriendo.
 Por defecto toma un punto cada 10 minutos defindo en:
 /etc/cron.d/systat
   También se define la generación de los daily summaries.
+O con sysstat.timer, que se ejecuta cada 10 minutos.
 
 No es una herramienta costosa en principio.
 
