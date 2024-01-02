@@ -58,3 +58,12 @@ https://github.com/doy/rbw
 
 Funcionalidad más limitada.
 Caché local
+
+## Desktop client
+Electron
+
+https://contributing.bitwarden.com/getting-started/clients/desktop/
+
+
+# https://github.com/quexten/goldwarden
+Para integrar bitwarden con Linux, para poder usarlo como ssh-agent, desbloquear el vault, etc.
