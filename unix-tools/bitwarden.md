@@ -62,6 +62,10 @@ Caché local
 ## https://github.com/mvdan/bitw
 bitwarden expuesto via org.freedesktop.service dbus
 
+## https://github.com/quexten/goldwarden
+integraciones varias con linux
+
+
 
 ## Desktop client
 https://bitwarden.com/download/
