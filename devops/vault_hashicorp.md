@@ -285,6 +285,7 @@ El default_user deberá matchear con el usuario contra el que queremos loguear.
 
 Firmamos nuestra clave ssh:
 vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > /tmp/foo
+  podemos pedir otro usuario con "valid_principals=administrator"
 chmod 600 /tmp/foo
 Accedemos pasando la clave firmada y nuestra clave ssh:
 SSH_AUTH_SOCK="" ssh -v -i /tmp/foo -i ~/.ssh/id_rsa USUARIO@HOST

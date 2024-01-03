@@ -14,5 +14,10 @@ https://man.openbsd.org/OpenBSD-current/man8/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT
 Método de acceso donde tenemos una CA que firma certificados ssh.
 Esos certificados firmados son suficiente para poder acceder por ssh a una máquina.
 
+Usar junto con AuthorizedPrincipalsFile para mapear a que user del SO puede acceder cada cliente de vault.
+
 Mirar como lo usa hashicorp Vault, haciendo él de firmador:
 https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates
+
+Ejemplo de como usarlo con Vault:
+https://www.hashicorp.com/blog/managing-ssh-access-at-scale-with-hashicorp-vault
