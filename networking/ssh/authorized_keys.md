@@ -25,26 +25,11 @@ https://www.hashicorp.com/blog/managing-ssh-access-at-scale-with-hashicorp-vault
 # Crear usuarios al vuelo
 Usamos https://github.com/xenago/libnss_shim (mirar linux/nsswitch.md)
 
+```
 {
   "databases": {
-    "group": {
-      "functions": {
-        "get_all_entries": {
-          "command": "/bin/bash -c ':'"
-        },
-        "get_entry_by_gid": {
-          "command": "/bin/bash -c ':'"
-        },
-        "get_entry_by_name": {
-          "command": "/bin/bash -c ':'"
-        }
-      }
-    },
     "passwd": {
       "functions": {
-        "get_all_entries": {
-          "command": "/usr/local/bin/passwd_get_all_entries.sh"
-        },
         "get_entry_by_uid": {
           "command": "/usr/local/bin/passwd_get_all_entries.sh -u <$uid>"
         },
@@ -55,50 +40,22 @@ Usamos https://github.com/xenago/libnss_shim (mirar linux/nsswitch.md)
     },
     "shadow": {
       "functions": {
-        "get_all_entries": {
-          "command": "/usr/local/bin/shadow_get_all_entries.sh"
-        },
         "get_entry_by_name": {
-          "command": "/usr/local/bin/shadow_get_all_entries.sh -n <$name>"
+          "command": "/bin/bash -c \"echo $name:*:19156:0:99999:7:::\""
         }
       }
     }
   }
 }
-
-
-/usr/local/bin/shadow_get_all_entries.sh
 ```
-#! /bin/sh
-echo "" >> /tmp/LOG
-echo "SHADOW" >> /tmp/LOG
-echo "$@" >> /tmp/LOG
-
-if [ $# -eq 0 ]; then
-    exit 0
-fi
-
-while getopts "u:n:" opt; do
-    case $opt in
-        n)
-            name=$OPTARG
-            echo "$name:\$6\$vagrant.\$sd6r0/OKL.FIGZbhanVkrLassSxoPRv1h5lkISsmBONqaLUGVXkEcD22Ddak5W8JSxeU0VFkU/We1Y7o4hVO/1:19156:0:99999:7:::"
-            ;;
-        \?)
-            echo "Invalid option: -$OPTARG" >&2
-            exit 1
-            ;;
-    esac
-done
-```
-
 
 /usr/local/bin/passwd_get_all_entries.sh
 ```
-#! /bin/sh
+#!/bin/bash
 echo "" >> /tmp/LOG
+echo "----" >> /tmp/LOG
 echo "PASSWD" >> /tmp/LOG
-echo "$@" >> /tmp/LOG
+echo "args: $@" >> /tmp/LOG
 
 if [ $# -eq 0 ]; then
     exit 0
@@ -108,11 +65,20 @@ while getopts "u:n:" opt; do
     case $opt in
         u)
             uid=$OPTARG
-            echo "pepe:x:$uid:1::/home/pepe:/bin/bash"
+            name=$(find /home -maxdepth 1 -type d -uid $uid | head -1 | cut -d "/" -f 3)
+            echo "$name:x:$uid:1::/home/$name:/bin/bash"
             ;;
         n)
             name=$OPTARG
-            echo "$name:x:10222:1::/home/$name:/bin/bash"
+            # Miramos si ya tenemos uid para este usuario
+            uid=$(stat -c %u /home/$name 2>/dev/null)
+            if [[ -z $uid ]]; then
+              # Si no, cogemos +1 del más alto de /home
+              uid=$(stat -c %u /home/* | sort | tail -1 | awk '{print $1+1;}')
+            fi
+            sudo_gid=27
+            echo "$name:x:$uid:$sudo_gid::/home/$name:/bin/bash" >> /tmp/LOG
+            echo "$name:x:$uid:$sudo_gid::/home/$name:/bin/bash"
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -123,17 +89,24 @@ done
 ```
 
 Con esto consigo acceder con cualquier usuario:
-➜ vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub valid_principals=juana > /tmp/foo
-➜ SSH_AUTH_SOCK="" ssh -i /tmp/foo -i ~/.ssh/id_rsa -p 2222 -l juana 127.0.0.1
-$ id
-uid=10222 gid=1(daemon) groups=1(daemon)
+➜ vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub valid_principals=jal > /tmp/foo
+➜ SSH_AUTH_SOCK="" ssh -i /tmp/foo -i ~/.ssh/id_rsa -p 2222 127.0.0.1 -l jal
+jal@vagrant:~$ id
+uid=1006(jal) gid=27(sudo) groups=27(sudo)
 
 
-Si queremos crear el HOME al vuelo, meter ese pam_mkhomedir tras el de session selinux y antes de cualquier otro session:
+
+Hace falta crear el HOME al vuelo. Meter ese pam_mkhomedir tras el de session selinux y antes de cualquier otro session:
 /etc/pam.d/sshd
+```
 session [success=ok ignore=ignore module_unknown=ignore default=bad]        pam_selinux.so close
 
 session    required    pam_mkhomedir.so skel=/etc/skel/ umask=0022
 
 # Set the loginuid process attribute.
 session    required     pam_loginuid.so
+```
+
+
+Si queremos que el usuario pueda ver los mapeos (que cuando haga "id" le salgan los nombres):
+chmod a+r /etc/libnss_shim/config.json
