@@ -26,6 +26,21 @@ https://developer.hashicorp.com/vault/docs/auth/approle
 MFA/2FA
 https://developer.hashicorp.com/vault/docs/auth/login-mfa
 
+## Identity
+https://developer.hashicorp.com/vault/docs/secrets/identity
+
+Internamente Vault usa identity/ para almacenar los clientes conectados (excepto los que usan tokens).
+
+vault path-help identity/
+
+Ver las entities:
+vault list identity/entity/id/
+
+Detalle de una:
+vault read identity/entity/id/53dcc787-3fa3-ce57-21bb-04b472957be5
+
+Esas entities tendrán mapeados "alias", que serán los distintos métodos de acceso que se habrán usado:
+vault list identity/alias/id/
 
 
 # Engines
@@ -34,7 +49,7 @@ https://developer.hashicorp.com/vault/docs/secrets
 Son "funciones" que puede realizar Vault.
 Cada una asociada a un "path".
 Por ejemplo:
-  kv: almacenar key-values
+  kv: almacenar key-values, la kv-v2 tiene versionado (por defecto 10)
   totp
   certificados
   cloud varias: generar tokens dinámicos de acceso con tiempo de vida
@@ -130,6 +145,20 @@ https://developer.hashicorp.com/vault/docs/audit
 Detailed log of all requests to Vault, and their responses
 
 
+# Password policies / generación contraseñas
+https://developer.hashicorp.com/vault/docs/concepts/password-policies
+https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v2#:~:text=Write%20a%20password%20policy%3A
+
+En kv podemos usarlo para tener un generador de passwords de un formato determinado.
+Típico uso:
+vault kv put -mount=secret my-generated-secret \
+    password=$(vault read -field password sys/policies/password/example/generate)
+
+Por defecto vault tiene una política por defecto para generar contraseñas (cuando usamos plugin "databases" que crear passwords dinámicas).
+
+
+
+
 # CLI
 
 ## Loguearnos server remoto
@@ -158,6 +187,7 @@ Tampoco para "vault write"
 vault status
 vault status -tls-skip-verify
 
+
 ## Crear new vault server
 vault init -key-shares=1 -key-threshold=1
   los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
@@ -176,23 +206,94 @@ vault operator seal
   cualquier user root puede hacer seal del vault
 
 
-## Crear/borrar secrets
-vault write secret/hello value=world
-vault read secret/hello
-
 ### kv storage
 Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/list/put" en vez de directamente "get/list/put")
 vault kv list nombrePath
 vault kv put some/path foo=bar foo2=bar2
+  si ya existe "some/path", lo estaremos borrando y recreando con estos valores
+vault kv get some/path
+vault kv get -version=2 some/path
+vault kv delete some/path
+vault kv undelete -version=2 some/path
+vault kv get metadata some/path
+  metadata de la entrda. Tambien muestra todas las versiones que ha tenido (fecha de creación y borrado)
+vault kv metadata put -mount=secret -max-versions 2 -delete-version-after="3h25m19s" my-secret
+  borrar entradas antiguas
 
+Actualizaciones parciales:
+vault kv patch foo/bar bar=123
 
-Si queremos usar el motor kv debemos activarlo, por ejemplo, lo activamos en el path secret/
-vault secrets enable -path=secret kv
-Si no definimos el -path, lo pone en kv/
+Actualiza la versión 6 de kv/foo. Si tuviésemos una versión más moderna, falla.
+vault kv patch -cas=6 kv/foo user2=jose3
+
 
 
 En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after
+
+
+### SSH
+https://developer.hashicorp.com/vault/docs/secrets/ssh
+
+#### One time password
+https://developer.hashicorp.com/vault/docs/secrets/ssh/one-time-ssh-passwords
+El host remoto necesita poder conectar contra vault.
+
+
+#### Signed certificates
+Se crea una CA. Su llave pública se lleva a los servers donde queremos acceder.
+Vault firma certificados ssh para permitiendo acceder a los servidores.
+
+Activar el engine
+vault secrets enable -path=ssh-client-signer ssh
+
+Crear una CA para firmar los certs:
+vault write ssh-client-signer/config/ca generate_signing_key=true
+O si ya tenemos una CA:
+vault write ssh-client-signer/config/ca \
+    private_key="..." \
+    public_key="..."
+
+
+La clave pública que genera la configuraremos como TrustedUserCAKeys en los servidores donde queramos acceder.
+/etc/ssh/sshd_config.d/trusted_user_ca.conf
+TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
+
+cat /etc/ssh/trusted-user-ca-keys.pem
+ssh-rsa AAAAB3NzaC1...
+
+Reiniciamos sshd
+
+
+Creamos un role para firmar certificados ssh:
+vault write ssh-client-signer/roles/my-role -<<"EOH"
+{
+  "algorithm_signer": "rsa-sha2-256",
+  "allow_user_certificates": true,
+  "allowed_users": "*",
+  "allowed_extensions": "permit-pty,permit-port-forwarding",
+  "default_extensions": {
+    "permit-pty": ""
+  },
+  "key_type": "ca",
+  "default_user": "ubuntu",
+  "ttl": "30m0s"
+}
+EOH
+
+El default_user deberá matchear con el usuario contra el que queremos loguear.
+
+Firmamos nuestra clave ssh:
+vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > /tmp/foo
+chmod 600 /tmp/foo
+Accedemos pasando la clave firmada y nuestra clave ssh:
+SSH_AUTH_SOCK="" ssh -v -i /tmp/foo -i ~/.ssh/id_rsa USUARIO@HOST
+
+Si guardamos la clave en este path, ssh la cogerá automáticamente:
+vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > ~/.ssh/id_rsa-cert.pub
+
+Ver datos de la clave firmada:
+ssh-keygen -Lf /tmp/foo
 
 
 # Share secrets
