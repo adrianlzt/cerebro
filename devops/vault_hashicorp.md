@@ -232,6 +232,21 @@ En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after
 
 
+### TOTP
+vault write totp/keys/my-key4 url="otpauth:///?secret=AAB7LBD7AAAAAAAA"
+vault read totp/code/my-key4
+
+https://developer.hashicorp.com/vault/docs/secrets/totp#as-a-provider
+Tambíen se puede usar como provider.
+Generando el código totp, que un cliente usará para generar el código totp y luego pudiendo verificar que ese código es correcto.
+vault write totp/keys/my-gen generate=true account_name=x issuer=x
+  nos da el código en la variable "secret" de la url.
+
+No implementado en la UI.
+
+
+
+
 ### SSH
 https://developer.hashicorp.com/vault/docs/secrets/ssh
 
@@ -259,7 +274,7 @@ La clave pública que genera la configuraremos como TrustedUserCAKeys en los ser
 /etc/ssh/sshd_config.d/trusted_user_ca.conf
 TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
 
-cat /etc/ssh/trusted-user-ca-keys.pem
+/etc/ssh/trusted-user-ca-keys.pem
 ssh-rsa AAAAB3NzaC1...
 
 Reiniciamos sshd

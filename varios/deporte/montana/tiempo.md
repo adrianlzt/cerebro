@@ -1,3 +1,6 @@
+https://open-meteo.com/
+Open-Meteo is an open-source weather API and offers free access for non-commercial use
+
 # Precipitaciones segun el modelo GFS
 Bueno para previsiones a una semana.
 
