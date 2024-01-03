@@ -1,10 +1,21 @@
 https://www.vaultproject.io/
 
 
+# Arrancar server
+Tenemos que inicializarlo tras arrancarlo:
+vault init -key-shares=1 -key-threshold=1
+
+Luego hacer el unseal.
+Luego loguearnos.
+
+
+
 # Auth methods
 https://developer.hashicorp.com/vault/docs/auth
 
 Podemos usar servicios de terceros para hacer la autenticación: AWS, Azure, Google cloud, github, etc.
+
+Vault funciona validando el usuario y devolviéndole un token. Todas las peticiones en adelante se harán con ese token.
 
 Auth con user/pass
 https://www.vaultproject.io/docs/auth/userpass.html
@@ -144,6 +155,16 @@ Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 https://developer.hashicorp.com/vault/docs/audit
 Detailed log of all requests to Vault, and their responses
 
+Por defecto no viene activo.
+
+Asegurarnos que tiene permisos de escritura en el path:
+vault audit enable file file_path=/var/log/vault_audit.log
+
+Nos genera un JSON por cada iteración.
+La información sensible viene hasheada. Es posible desactivarlo (log_raw=true), pero entonces estaremos volcando información confidencial en el log.
+
+elide_list_responses, por si queremos quitar las respuestas tipo "list", que pueden generar entradas muy largas en el log.
+
 
 # Password policies / generación contraseñas
 https://developer.hashicorp.com/vault/docs/concepts/password-policies
@@ -189,7 +210,7 @@ vault status -tls-skip-verify
 
 
 ## Crear new vault server
-vault init -key-shares=1 -key-threshold=1
+vault operator init -key-shares=1 -key-threshold=1
   los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
   devolverá el número de claves master especificado en key-shares y un root token (como se loguea el user root contra el vault)
 
@@ -368,6 +389,34 @@ curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
 https://developer.hashicorp.com/vault/api-docs/system/health
 Obtener el estado del vault:
 curl -s localhost:8200/v1/sys/health | jq
+
+
+# Vault agent and proxy
+Aplicaciones para facilitar la integración de apps existentes con vault.
+Podremos atacar a su API sin necesitar el token.
+
+## AutoAuth
+https://developer.hashicorp.com/vault/docs/agent-and-proxy/autoauth
+
+Ambos tienen la funcionalidad de AutoAuth.
+Se loguean contra Vault y dejan en un fichero la clave.
+Actualizan ese fichero cuando caduque la clave.
+
+## Cache
+Ambos tienen cache, pero parece que solo cachean tokens y leases.
+Valores de un engine kv no se cachean, en el log del agente/proxy vemos:
+[DEBUG] agent.cache.leasecache: pass-through response; secret not renewable: method=GET path=/v1/kv/data/prod/zabbix
+
+En la versión 1.16 el proxy podrá cachear kv: https://github.com/hashicorp/vault/issues/19879
+
+
+## Vault proxy
+Parece que es un intermediario con Vault que tiene AutoAuth y puede cachear.
+
+## Vault Agent
+Parece que es para generar ficheros a partir de templates usando info de vault.
+También puede ejecutar procesos inyectando secretos como variables de entorno.
+Puede cachear.
 
 
 
