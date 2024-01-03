@@ -61,6 +61,8 @@ Son "funciones" que puede realizar Vault.
 Cada una asociada a un "path".
 Por ejemplo:
   kv: almacenar key-values, la kv-v2 tiene versionado (por defecto 10)
+    vault secrets enable kv
+    vault secrets enable -version=2 -path=kv2 kv
   totp
   certificados
   cloud varias: generar tokens dinámicos de acceso con tiempo de vida
@@ -412,6 +414,9 @@ Valores de un engine kv no se cachean, en el log del agente/proxy vemos:
 [DEBUG] agent.cache.leasecache: pass-through response; secret not renewable: method=GET path=/v1/kv/data/prod/zabbix
 
 En la versión 1.16 el proxy podrá cachear kv: https://github.com/hashicorp/vault/issues/19879
+
+El problema es que si usamos la cli, esta hace siempre una llamada a /v1/sys/internal/ui/mounts/kv (https://developer.hashicorp.com/vault/api-docs/system/internal-ui-mounts)
+que no se cachea, por lo que si el server está caído no funciona.
 
 
 ## Vault proxy
