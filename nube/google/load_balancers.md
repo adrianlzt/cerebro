@@ -40,3 +40,21 @@ resource "google_compute_global_forwarding_rule" "http-redirect" {
   ip_address = google_compute_global_address.static_pages.address
   port_range = "80"
 }
+
+
+
+# Rewrite URL
+Lo que me llegue a "/api/" lo enviamos al servicio "ws" quitándole ese "/api".
+
+defaultService: projects/XX/global/backendServices/-http
+name: path-matcher-1
+routeRules:
+- matchRules:
+  - prefixMatch: /api/
+  priority: 0
+  routeAction:
+    weightedBackendServices:
+    - backendService: projects/XX/global/backendServices/ws
+      weight: 100
+    urlRewrite:
+      pathPrefixRewrite: /
