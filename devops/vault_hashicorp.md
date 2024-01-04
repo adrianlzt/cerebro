@@ -237,6 +237,14 @@ Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/lis
 vault kv list nombrePath
 vault kv put some/path foo=bar foo2=bar2
   si ya existe "some/path", lo estaremos borrando y recreando con estos valores
+vault kv put kv/contacts/mario value=@prueba.yaml
+  subir un fichero.
+  Si queremos subir un fichero binario, usar base64
+  vault write kv/bin file=@<(cat /usr/bin/fc-cache | base64)
+  vault read -field=file kv/contacts/bin | base64 -d > fcat
+  Otra opción:
+  base64 /path/to/file | vault kv put secret/myapp/secretname file=-
+
 vault kv get some/path
 vault kv get -version=2 some/path
 vault kv delete some/path
@@ -263,14 +271,15 @@ https://github.com/xbglowx/vault-kv-search
 Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
 vault-kv-search --search=path kv -r . --json | jq -r .path | uniq | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data'
 
-https://github.com/xbglowx/vault-kv-search/pull/32
-PR para poder especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
+Se puede especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
 vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read ${}'
 vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
 
 https://github.com/hashicorp/vault/issues/5275
 Issue sobre lo de buscar o acceso recursivo.
 
+https://github.com/kir4h/rvault
+Small tool to perform some recursive operations on Hashicorp's Vault KV
 
 https://falcosuessgott.github.io/vkv/
 list, compare, import, document, backup & encrypt secrets
@@ -428,6 +437,11 @@ curl -s localhost:8200/v1/sys/health | jq
 
 ## Python
 https://pypi.org/project/hvac/
+
+Exportar VAULT_ADDR y VAULT_TOKEN
+import hvac
+client = hvac.Client()
+client.secrets.kv.v2.list_secrets(mount_point="kv2", path="/")
 
 
 # Vault agent and proxy
