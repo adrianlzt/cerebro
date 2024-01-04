@@ -269,11 +269,10 @@ CLI para buscar en paths, keys o values:
 https://github.com/xbglowx/vault-kv-search
 
 Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
-vault-kv-search --search=path kv -r . --json | jq -r .path | uniq | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data'
+vault-kv-search --search=path kv -r . --json | jq -r .path | sort -u | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data.data'
 
 Se puede especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
-vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read ${}'
-vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
+vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | sort -u | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
 
 https://github.com/hashicorp/vault/issues/5275
 Issue sobre lo de buscar o acceso recursivo.
@@ -442,7 +441,7 @@ Exportar VAULT_ADDR y VAULT_TOKEN
 import hvac
 client = hvac.Client()
 client.secrets.kv.v2.list_secrets(mount_point="kv2", path="/")
-
+client.secrets.kv.v2.create_or_update_secret(mount_point="kv2", path="/py", secret=dict(psss="1223", foo=333, bar=dict(abc=dict(jose:=1))))
 
 # Vault agent and proxy
 Aplicaciones para facilitar la integración de apps existentes con vault.
