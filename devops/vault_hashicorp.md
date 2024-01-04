@@ -257,6 +257,20 @@ vault kv patch -cas=6 kv/foo user2=jose3
 En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after
 
+CLI para buscar en paths, keys o values:
+https://github.com/xbglowx/vault-kv-search
+
+Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
+./vault-kv-search --search=path kv/ -r . --json | jq -r .path | fzf --preview 'vault kv get ${}'
+
+https://github.com/xbglowx/vault-kv-search/pull/32
+PR para poder especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
+
+
+https://falcosuessgott.github.io/vkv/
+list, compare, import, document, backup & encrypt secrets
+
+
 
 ### TOTP
 vault write totp/keys/my-key4 url="otpauth:///?secret=AAB7LBD7AAAAAAAA"
@@ -284,6 +298,9 @@ El host remoto necesita poder conectar contra vault.
 #### Signed certificates
 Se crea una CA. Su llave pública se lleva a los servers donde queremos acceder.
 Vault firma certificados ssh para permitiendo acceder a los servidores.
+
+https://github.com/isometry/vault-ssh-plus
+util para poder hacer "vssh servidor" y que gestione todo automáticamente por debajo.
 
 Activar el engine
 vault secrets enable -path=ssh-client-signer ssh
@@ -376,10 +393,12 @@ docker exec -it vault sh
 
 
 # UI
-La oficial es de pago: https://www.vaultproject.io/docs/enterprise/ui/index.html
-Con el container viene la UI. Ya no es de pago? (30/10/2018)
+Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 
-ARCHIVED
+https://github.com/adobe/cryptr
+Última release oct/2021
+
+ARCHIVED 2019
 La mejor (Vue.js + Go): https://github.com/caiyeon/goldfish
 Demo: https://vault-ui.io/
 Prod: https://github.com/Caiyeon/goldfish/wiki/Production-Deployment
