@@ -31,6 +31,10 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 
 Para que funcione la cli (tendremos que pasar un token):
 vault login
+vault login -method=userpass username=foo
+
+Si queremos únicamente obtener el token:
+vault login -token-only -method=userpass username=foo
 
 
 Para máquinas usar AppRoles
@@ -119,7 +123,7 @@ vault read database/creds/my-role
 
 
 # ACL
-https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html
+https://developer.hashicorp.com/vault/tutorials/policies/policies
 En esta web tenemos unas plantillas para crear ACLS para usuarios tipo: admin, provisioner
   https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html#example-policy-for-admin
 
@@ -132,17 +136,52 @@ path "secret/*" {
 
 Esta ACL permite todos las capabilities bajo el path secret/
 
+Para aplicarla, creamos la policy "admin":
+vault policy write admin admin-policy.hcl
+
+
 Luego tendremos que poner las policies a los usuarios:
 write auth/userpass/users/nombre policies=admins,all
 
+CUIDADO! si escribimos mal la policie no se hace ninguna comprobación. Si no matchea con una existente, simplemente se ignora.
 
-Permitir ver los engines que hay:
+Deben loguearse de nuevo (obtener un nuevo token), si le hemos cambiado las polcies.
+
+
+Capabilities (y el verbo HTTP asociado):
+create	POST/PUT
+read	GET
+update	POST/PUT
+delete	DELETE
+list	LIST
+patch	PATCH
+sudo	-
+deny    -
+
+
+Permitir ver los engines que hay (vault secrets list):
 path "sys/mounts"
 {
   capabilities = ["read"]
 }
 
-vault secrets list
+
+Ver las políticas que tenemos:
+vault policy list
+vault policy read admin
+
+Comprobar las capabilities de un token
+vault token capabilities $ADMIN_TOKEN sys/auth/approle
+
+Obtener que ACL hacen falta para una operación
+vault kv get -output-policy -mount=secret customer/acme
+vault kv put -output-policy -mount=secret customer/acme customer_name="ACME Inc." contact_email="john.smith@acme.com"
+
+
+## Templating
+https://developer.hashicorp.com/vault/tutorials/policies/policy-templating
+
+
 
 
 # Grupos
@@ -269,10 +308,12 @@ CLI para buscar en paths, keys o values:
 https://github.com/xbglowx/vault-kv-search
 
 Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
-vault-kv-search --search=path kv -r . --json | jq -r .path | sort -u | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data.data'
+vault-kv-search --search=path kv -r . --json | jq -r .path | sort -u | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data'
 
 Se puede especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
-vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | sort -u | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
+vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | sort -u | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
+Para V2:
+vault-kv-search --search=path kv/ -r . --json -k=2 | jq -r .path | sort -u | sed "s#\([^/]*\)/\(.*\)#\1/data/\2#" | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
 
 https://github.com/hashicorp/vault/issues/5275
 Issue sobre lo de buscar o acceso recursivo.
@@ -412,7 +453,9 @@ docker exec -it vault sh
 Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 
 https://github.com/adobe/cryptr
-Última release oct/2021
+Última release Apr/2022
+Parece que no consigue obtener las keys.
+
 
 ARCHIVED 2019
 La mejor (Vue.js + Go): https://github.com/caiyeon/goldfish
