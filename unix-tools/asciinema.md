@@ -37,7 +37,7 @@ Si tenemos aperturas de pantallas ncurses, por ejemplo vi, veremos un destello d
 
 
 # Convertir a gif
-docker run --rm -v /tmp:/data asciinema/asciicast2gif tmpxcinlbp4-ascii.cast foo.gif
+docker run --rm -v /tmp:/data kvaps/asciicast2gif tmpxcinlbp4-ascii.cast foo.gif
 
 
 # Convertir a video (se queda atascado)

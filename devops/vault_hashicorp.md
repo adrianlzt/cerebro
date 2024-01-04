@@ -261,14 +261,22 @@ CLI para buscar en paths, keys o values:
 https://github.com/xbglowx/vault-kv-search
 
 Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
-./vault-kv-search --search=path kv/ -r . --json | jq -r .path | fzf --preview 'vault kv get ${}'
+vault-kv-search --search=path kv -r . --json | jq -r .path | uniq | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data'
 
 https://github.com/xbglowx/vault-kv-search/pull/32
 PR para poder especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
+vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read ${}'
+vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | uniq | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
+
+https://github.com/hashicorp/vault/issues/5275
+Issue sobre lo de buscar o acceso recursivo.
 
 
 https://falcosuessgott.github.io/vkv/
 list, compare, import, document, backup & encrypt secrets
+
+Otro cliente, en python
+https://vault-cli.readthedocs.io/
 
 
 
@@ -417,6 +425,9 @@ vault kv get -output-curl-string kv/foo3
 https://developer.hashicorp.com/vault/api-docs/system/health
 Obtener el estado del vault:
 curl -s localhost:8200/v1/sys/health | jq
+
+## Python
+https://pypi.org/project/hvac/
 
 
 # Vault agent and proxy
