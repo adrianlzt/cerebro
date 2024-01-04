@@ -455,6 +455,13 @@ Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 https://github.com/adobe/cryptr
 Última release Apr/2022
 Parece que no consigue obtener las keys.
+Los usuarios necesitan estos permisos para que la UI muestre todas las entradas:
+path "sys/policy/*" {
+  capabilities = ["read", "list"]
+}
+Creo que solo sobre las policies que tengan asignadas.
+Si le damos "*", le estaremos dando acceso al contenido de todas las policies.
+
 
 
 ARCHIVED 2019
