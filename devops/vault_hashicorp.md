@@ -1,5 +1,8 @@
 https://www.vaultproject.io/
 
+Vault VS passwords managers
+https://web.archive.org/web/20211206021559/https://www.reddit.com/r/devops/comments/r9r5u7/comment/hneodbp/
+
 
 # Arrancar server
 Tenemos que inicializarlo tras arrancarlo:
