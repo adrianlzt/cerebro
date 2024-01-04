@@ -28,6 +28,7 @@ Por defecto = 100, sin huecos.
 
 
 # work_mem
+https://twitter.com/samokhvalov/status/1740813478150189172?t=tEvpGJiS58CJzk9UtlgYgA&s=08
 Cuidado! Cada nodo de un statement puede usar hasta esa cantidad de memoria.
 Incrementarlo puede consumir mucha memoria en una sola query.
 
