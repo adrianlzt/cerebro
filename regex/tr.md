@@ -13,13 +13,13 @@ Borrar los paréntesis y mayúsculas:
 tr -d '[A-Z]()'
 
 Pasar de minúsculas a mayúsculas
-echo "qwert" | tr [:lower:] [:upper:]
+echo "qwert" | tr "[:lower:]" "[:upper:]"
 
-Pasar de mayúsculas a minúsculas 
-echo "qwert" | tr [:upper:] [:lower:]
+Pasar de mayúsculas a minúsculas
+echo "qwert" | tr "[:upper:]" "[:lower:]"
 
 Borrar minúsculas
-echo "qwEeBrNt" | tr -d [:lower:]
+echo "qwEeBrNt" | tr -d "[:lower:]"
   EBN
 
 Convertir muchos caracteres a uno solo, squeeze:
