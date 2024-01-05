@@ -671,6 +671,13 @@ vault list kv2/metadata/foo
 vault read kv2/data/bar
   para hacer un kv get kv2/bar
 
+Si queremos usar "kv XX" necesitamos forzar (-kv-version=N) la versión del KV, para evitar que la tenga que consultar.
+Parche con esa funcionalidad.
+https://github.com/hashicorp/vault/issues/19879
+
+El autocompletado no funcionará, porque internamente usa otro camino, que también obtiene el namespace
+https://github.com/hashicorp/vault/blob/2051758f04434fbcf99dc4180802e08e2a073748/command/base_predict.go#L255
+
 
 
 ## Vault proxy
