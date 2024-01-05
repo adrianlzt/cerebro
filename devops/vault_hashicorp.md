@@ -12,7 +12,7 @@ https://developer.hashicorp.com/vault/tutorials/operations/production-hardening
 
 Best practices:
 https://www.linkedin.com/pulse/securely-storing-secrets-best-practices-hashicorp-vault-pavel-topal
-
+https://medium.com/hashicorp-engineering/how-id-attack-your-hashicorp-vault-and-how-you-can-prevent-me-system-hardening-ce151454e26b
 
 
 # Arrancar server
@@ -31,7 +31,23 @@ Podemos usar servicios de terceros para hacer la autenticación: AWS, Azure, Goo
 
 Vault funciona validando el usuario y devolviéndole un token. Todas las peticiones en adelante se harán con ese token.
 
-Auth con user/pass
+Ver cuales tenemos activos
+vault auth list -detailed
+
+Valores por defecto para ttl:
+vault read sys/auth/token/tune
+vault read sys/auth/userpass/tune
+
+Modificar el default ttl:
+vault auth tune -default-lease-ttl=72h github/
+Modificar el tiempo máximo de ttl:
+vault auth tune -max-lease-ttl=2m userpass/
+
+Mirar también info en la sección Tokens.
+
+
+
+## Auth con user/pass
 https://www.vaultproject.io/docs/auth/userpass.html
 
 Tenemos que activar el Auth Method user/pass.
@@ -52,12 +68,14 @@ O sacar la info en una tabla, como la salida normal, pero tampoco generar el ~/.
 vault login -no-store -method=userpass username=foo3
 
 
+## AppRoles
 Para máquinas usar AppRoles
 https://developer.hashicorp.com/vault/docs/auth/approle
 
 
-MFA/2FA
+## MFA/2FA
 https://developer.hashicorp.com/vault/docs/auth/login-mfa
+
 
 ## Identity
 https://developer.hashicorp.com/vault/docs/secrets/identity
@@ -74,6 +92,21 @@ vault read identity/entity/id/53dcc787-3fa3-ce57-21bb-04b472957be5
 
 Esas entities tendrán mapeados "alias", que serán los distintos métodos de acceso que se habrán usado:
 vault list identity/alias/id/
+
+## Token
+https://developer.hashicorp.com/vault/tutorials/tokens/token-management
+
+Info sobre el token que estamos usando actualmente
+vault token lookup
+
+Ver todos los tokens actuales:
+vault list -format=json auth/token/accessors/  | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
+
+
+Los token tienen un tiempo de vida por defecto, default_lease_ttl, y un tiempo de vida máximo (max_lease_ttl).
+Cuando nos logueamos se nos da un token con el ttl por defecto.
+Podemos renovarlo sin pasarnos de max_lease_ttl. Al pasar ese tiempo tendremos que loguearnos de nuevo.
+
 
 
 # Engines
@@ -350,6 +383,7 @@ https://vault-cli.readthedocs.io/
 
 ## CLI safe
 https://github.com/Qarik-Group/safe
+Guarda el token en claro en $HOME/.saferc
 
 
 
