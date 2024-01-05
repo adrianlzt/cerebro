@@ -122,6 +122,7 @@ Los alias son los mapeos entre entities de vault y proveedores de identidad (ter
 
 
 ### Groups
+https://developer.hashicorp.com/vault/tutorials/auth-methods/identity#create-an-internal-group
 https://irezyigit.medium.com/vault-authorization-part-2-aliases-entities-and-groups-4f044d1e2010
 
 vault write identity/group name="engineers" \
@@ -129,6 +130,13 @@ vault write identity/group name="engineers" \
      member_entity_ids=$(cat entity_id.txt) \
      metadata=team="Engineering" \
      metadata=region="North America"
+
+
+También se pueden crear grupos "external", para mapearlos a aquellos de los proveedores de identidad externos.
+vault write -format=json identity/group name="education" \
+     policies="education" \
+     type="external" \
+     metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
 
 
 
@@ -342,6 +350,10 @@ E ir navegando por el arbol de secrets
 Parece que "vault kv get/put/... <TAB>" no funciona
 Tampoco para "vault write"
 
+Como funciona internamente. Zsh llama a vault pasándole variables de entorno:
+COMP_CWORD=3 COMP_LINE="vault kv get gopass/wi" COMP_POINT=24 vault
+
+
 ## Status
 vault status
 vault status -tls-skip-verify
@@ -434,6 +446,10 @@ https://github.com/gites/awesome-vault-tools
 https://github.com/Lingrino/vaku
 Usar las variables de entorno estandar.
 Autocompletado, pero no navega por los engines ni paths.
+Forzar a cachear todo el contenido de un engine, para poder tenerlo offline en nuestro cache.
+Vaku necesita parche para no usar namespaces.
+/home/adrian/Documentos/repos/vaku/vaku folder list gopass/ | parallel -j 10 vault read gopass/data/{} > /dev/null
+
 
 ## vht
 https://github.com/ilijamt/vht
@@ -646,6 +662,15 @@ En la versión 1.16 el proxy podrá cachear kv: https://github.com/hashicorp/vau
 
 El problema es que si usamos la cli, esta hace siempre una llamada a /v1/sys/internal/ui/mounts/kv (https://developer.hashicorp.com/vault/api-docs/system/internal-ui-mounts)
 que no se cachea, por lo que si el server está caído no funciona.
+
+Si usamos llamadas directas (sin usar "vault kv ..."), evitamos las llamadas a mounts. Ejemplo:
+vault list kv2/metadata
+  para hacer un kb ls kv2/
+vault list kv2/metadata/foo
+  para hacer un kb ls kv2/foo
+vault read kv2/data/bar
+  para hacer un kv get kv2/bar
+
 
 
 ## Vault proxy

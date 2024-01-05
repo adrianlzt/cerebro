@@ -9,6 +9,9 @@ Los comandos compatibles con autocomplete funcionan tipo:
 COMP_LINE='vault kv get -' /usr/local/bin/vault
 Nos devuelve que podemos completar para ese "vault kv get -"
 
+Otro ejemplo:
+COMP_CWORD=3 COMP_LINE="vault kv get gopass/wi" COMP_POINT=24 vault
+
 
 
 En .zshrc
