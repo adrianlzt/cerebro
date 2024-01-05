@@ -76,6 +76,12 @@ Para que funcione la cli (tendremos que pasar un token):
 vault login
 vault login -method=userpass username=foo
   guardará el token en ~/.vault-token
+  Podemos usar un token-helper para almacenar ese token de forma segura
+  https://github.com/frntn/vault-token-helper-gopass
+    mirar como configurarlo en https://github.com/sethvargo/vault-token-helper-osx-keychain
+    Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
+  https://github.com/joemiller/vault-token-helper
+    soporte para pass, linux dbus secrets, osx, windows
 
 Si queremos únicamente obtener el token (no lo guardará en ~/.vault-token):
 vault login -token-only -method=userpass username=foo
@@ -108,6 +114,24 @@ vault read identity/entity/id/53dcc787-3fa3-ce57-21bb-04b472957be5
 
 Esas entities tendrán mapeados "alias", que serán los distintos métodos de acceso que se habrán usado:
 vault list identity/alias/id/
+
+Podemos asociar muchos alias a una única entity, de esta manera podríamos hacer que un usuario que se loguea de distintas
+maneras siempre sea el mismo de cara a vault.
+
+Los alias son los mapeos entre entities de vault y proveedores de identidad (terceros o locales).
+
+
+### Groups
+https://irezyigit.medium.com/vault-authorization-part-2-aliases-entities-and-groups-4f044d1e2010
+
+vault write identity/group name="engineers" \
+     policies="team-eng" \
+     member_entity_ids=$(cat entity_id.txt) \
+     metadata=team="Engineering" \
+     metadata=region="North America"
+
+
+
 
 ## Token
 https://developer.hashicorp.com/vault/tutorials/tokens/token-management
