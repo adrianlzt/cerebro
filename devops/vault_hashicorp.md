@@ -32,9 +32,13 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 Para que funcione la cli (tendremos que pasar un token):
 vault login
 vault login -method=userpass username=foo
+  guardará el token en ~/.vault-token
 
-Si queremos únicamente obtener el token:
+Si queremos únicamente obtener el token (no lo guardará en ~/.vault-token):
 vault login -token-only -method=userpass username=foo
+
+O sacar la info en una tabla, como la salida normal, pero tampoco generar el ~/.vault-token:
+vault login -no-store -method=userpass username=foo3
 
 
 Para máquinas usar AppRoles
@@ -124,8 +128,7 @@ vault read database/creds/my-role
 
 # ACL
 https://developer.hashicorp.com/vault/tutorials/policies/policies
-En esta web tenemos unas plantillas para crear ACLS para usuarios tipo: admin, provisioner
-  https://learn.hashicorp.com/vault/identity-access-management/iam-policies.html#example-policy-for-admin
+https://irezyigit.medium.com/vault-authorization-acl-access-control-list-policies-d220be54ca31
 
 
 Las ACL deciden que se puede hacer para cada path.
@@ -176,6 +179,12 @@ vault token capabilities $ADMIN_TOKEN sys/auth/approle
 Obtener que ACL hacen falta para una operación
 vault kv get -output-policy -mount=secret customer/acme
 vault kv put -output-policy -mount=secret customer/acme customer_name="ACME Inc." contact_email="john.smith@acme.com"
+
+Ver nuestra ACL
+vault read -format=yaml sys/internal/ui/resultant-acl | faq -f yaml .data
+
+
+Para poder hacer
 
 
 ## Templating
@@ -522,6 +531,20 @@ Parece que es un intermediario con Vault que tiene AutoAuth y puede cachear.
 Parece que es para generar ficheros a partir de templates usando info de vault.
 También puede ejecutar procesos inyectando secretos como variables de entorno.
 Puede cachear.
+
+
+# Production hardening
+https://developer.hashicorp.com/vault/tutorials/operations/production-hardening
+
+
+# Backend storage
+https://developer.hashicorp.com/vault/docs/configuration/storage
+Se recomienda usar el método de ficheros que trae por defecto.
+
+
+# Namespaces (enterprise feature)
+https://developer.hashicorp.com/vault/tutorials/enterprise/namespaces
+Each namespace would have its own auth methods, secrets engines, policies, and so on. Think of it as a mini-vault.
 
 
 
