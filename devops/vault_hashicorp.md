@@ -4,6 +4,17 @@ Vault VS passwords managers
 https://web.archive.org/web/20211206021559/https://www.reddit.com/r/devops/comments/r9r5u7/comment/hneodbp/
 
 
+# Install
+https://developer.hashicorp.com/vault/install
+
+## Production hardening
+https://developer.hashicorp.com/vault/tutorials/operations/production-hardening
+
+Best practices:
+https://www.linkedin.com/pulse/securely-storing-secrets-best-practices-hashicorp-vault-pavel-topal
+
+
+
 # Arrancar server
 Tenemos que inicializarlo tras arrancarlo:
 vault init -key-shares=1 -key-threshold=1
@@ -129,6 +140,7 @@ vault read database/creds/my-role
 # ACL
 https://developer.hashicorp.com/vault/tutorials/policies/policies
 https://irezyigit.medium.com/vault-authorization-acl-access-control-list-policies-d220be54ca31
+https://github.com/jeffsanicola/vault-policy-guide
 
 
 Las ACL deciden que se puede hacer para cada path.
@@ -336,6 +348,9 @@ list, compare, import, document, backup & encrypt secrets
 Otro cliente, en python
 https://vault-cli.readthedocs.io/
 
+## CLI safe
+https://github.com/Qarik-Group/safe
+
 
 
 ### TOTP
@@ -532,9 +547,6 @@ Parece que es para generar ficheros a partir de templates usando info de vault.
 También puede ejecutar procesos inyectando secretos como variables de entorno.
 Puede cachear.
 
-
-# Production hardening
-https://developer.hashicorp.com/vault/tutorials/operations/production-hardening
 
 
 # Backend storage
