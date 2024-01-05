@@ -14,6 +14,22 @@ Best practices:
 https://www.linkedin.com/pulse/securely-storing-secrets-best-practices-hashicorp-vault-pavel-topal
 https://medium.com/hashicorp-engineering/how-id-attack-your-hashicorp-vault-and-how-you-can-prevent-me-system-hardening-ce151454e26b
 
+Un engine con todas las passwords.
+No usar docker si es posible.
+TLS 1.3 hasta vault, con HSTS
+Obligar a MFA
+El token generado tras el login que sea short lived (9h, con max ttl 24h?)
+Usar IaC para configurar vault (https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
+Activar auditing
+Hacer backups
+Meter dentro de la VPN?
+  pros: más seguro
+  cons: sin acceso sin vpn (posibilidad de cachear con el proxy v1.16; cuanto tiempo? perdemos auditing, se baja todo)
+Transmitir las claves de unseal de manera segura
+Borrar el token root (se puede regenerar con las claves de unseal)
+Desactivar el histórico de bash si vamos a meter info sensible.
+
+
 
 # Arrancar server
 Tenemos que inicializarlo tras arrancarlo:
@@ -384,6 +400,41 @@ https://vault-cli.readthedocs.io/
 ## CLI safe
 https://github.com/Qarik-Group/safe
 Guarda el token en claro en $HOME/.saferc
+No tiene autocompletado
+Permite usar distintos servers de vault
+
+## Otras herramientas
+https://github.com/gites/awesome-vault-tools
+
+## vaku
+https://github.com/Lingrino/vaku
+Usar las variables de entorno estandar.
+Autocompletado, pero no navega por los engines ni paths.
+
+## vht
+https://github.com/ilijamt/vht
+El buscador está bastante bien.
+No tiene autocompletado para zsh.
+
+## fuse
+Montar los engines como ficheros
+
+Issue solicitándolo: https://github.com/hashicorp/vault/issues/110
+
+https://github.com/jboero/hashifuse/tree/master/VaultFS
+  no me deja vajar más de un nivel en kv2
+  https://github.com/jboero/hashifuse/issues/7
+
+https://github.com/asteris-llc/vaultfs
+  sin desarrollo desde Marzo 2016
+  en go
+  me da un panic al intentar usarlo
+  hay algunos forks más recientes (2017), peo tampoco me funcionan
+
+https://github.com/PsyanticY/vaultfs
+  sin desarrollo desde mayo 2021
+  python
+  sin terminar, no soporta "ls"
 
 
 
