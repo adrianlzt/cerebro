@@ -35,6 +35,9 @@ Como configurar Sender Policy Framework (SPF) y DomainKey Identified Mail (DKIM)
 DKIM asegura que un email lo ha enviado un determinado servidor.
 El servidor firma el mensaje con una clave privada (esa firma esta en la cabecera del mensaje). La clave pública esta disponible en XXX._domainkey.SUDOMINIO.COM
 "XXX" es el campo "s=" de la cabecera que encontramos en el email
+Ejemplo (donde "s" es "isystem4"):
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ionos.es header.s=isystem4 header.b=YCTQ4L3w
 
 Comprobar clave DKIM
 host -t TXT CLAVE._domainkey.SUDOMINIO.COM
@@ -44,6 +47,18 @@ amavisd -c /etc/amavisd/amavisd.conf testkeys
 
 Obtener la clave pública para configurar el DNS
 amavisd -c /etc/amavisd/amavisd.conf showkeys nombre.dominio
+
+### Configurarlo
+
+Crear clave pública y privada.
+openssl genrsa -out dkim_rsa.private 2048
+La pública exportarla en base64 para ponerla como registro DNS:
+openssl rsa -in dkim_rsa.private -out /dev/stdout -pubout -outform PEM | base64 | tr -d '\n'; echo
+
+Crear un TXT donde CLAVE será un parámetro que configuraremos en el servidor de correo (en exim es el "selector").
+SELECTOR._domainkey.DOMINIO.com
+El contenido del registro TXT será:
+v=DKIM1; p=BASE64_de_la_clave_publica
 
 
 

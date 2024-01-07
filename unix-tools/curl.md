@@ -77,7 +77,7 @@ Las cookies podemos sacarlas de Chrome con:
   Boton derecho -> Inspeccionar elemento -> Resources -> Cookies
 
 
-curl -Ns http://www.climagic\.org/uxmas/[1-12] 
+curl -Ns http://www.climagic\.org/uxmas/[1-12]
 # curl supports numeric ranges. This is the full 12 days of unix-mas from last year
 
 
@@ -205,12 +205,13 @@ Escapar esos braces
 
 
 # SMTP
-curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt \
-receiver@example.com --upload-file email.txt
+curl smtp://mail.example.com --mail-from myself@example.com --mail-rcpt receiver@example.com --upload-file email.txt
 
 curl --ssl-reqd smtp://mail.example.com --mail-from myself@example.com \
      --mail-rcpt receiver@example.com --upload-file email.txt \
      --user 'user@your-account.com:your-account-password'
+
+Si el server escucha en el puerto 465 tendremos que poner smtps://
 
 
 Enviando a gmail:
