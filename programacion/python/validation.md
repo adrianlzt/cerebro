@@ -1,3 +1,11 @@
+https://inventwithpython.com/blog/2022/11/19/python-linter-comparison-2022-pylint-vs-pyflakes-vs-flake8-vs-autopep8-vs-bandit-vs-prospector-vs-pylama-vs-pyroma-vs-black-vs-mypy-vs-radon-vs-mccabe/
+Comparación linters/checkers.
+
+https://docs.astral.sh/ruff/
+An extremely fast Python linter and code formatter, written in Rust.
+
+
+
 https://pypi.python.org/pypi/voluptuous
 Voluptuous, despite the name, is a Python data validation library. It is primarily intended for validating data coming into Python as JSON, YAML, etc.
 

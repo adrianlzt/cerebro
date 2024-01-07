@@ -1,3 +1,5 @@
+En linux, configurarlo con ModemManager.
+
 https://www.waveshare.com/w/upload/4/4a/GSM_GPRS_GNSS_HAT_User_Manual_EN.pdf
 https://www.waveshare.com/w/upload/6/68/SIM868_Series_Hardware_Design_V1.06.pdf
   más datos, con tiempos, consumos, etc
