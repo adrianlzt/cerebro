@@ -58,6 +58,9 @@ buscará un fichero Pipenv en este dir o superiores.
 para borrar el virtualenv
 pipenv --rm
 
+pipenv graph
+  ver el arbol de dependencias
+
 # Scripts
 https://pipenv.pypa.io/en/latest/advanced/#custom-script-shortcuts
 ```

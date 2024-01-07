@@ -7,6 +7,7 @@ Poetry gestiona dependencias, pero también la publicación del paquete, version
 Parece que es más rápido que pipenv.
 Podemos ver el arbol de dependencias, entendiendo por qué se instala cada una y que requiere.
 
+Parece que la resolución de dependencias puede cambiar bastante respecto a pipenv.
 
 # Iniciar un proyecto
 poetry init
