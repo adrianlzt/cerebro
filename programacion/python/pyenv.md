@@ -16,13 +16,17 @@ Arrancar otra shell
 Instalar una versión de python:
 pyenv install 3.8.6
 
+pyenv versions
+Ver versiones disponibles
+
 
 pyenv shims
 Aqui ahora veremos "shims", que van a capturar las llamadas a python
 
 
-Para poder usar python 3.8.6, por ejemplo, en un directorio, podemos hacer:
-echo 3.8.6 > .python-version
+Para poder usar python 3.10, por ejemplo, en un directorio, podemos hacer:
+pyenv local 3.10
+    Por debajo hace: echo 3.10 > .python-version
 
 
 # Debian
