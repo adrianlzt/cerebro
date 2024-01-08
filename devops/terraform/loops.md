@@ -1,3 +1,16 @@
+https://spacelift.io/blog/terraform-for-loop
+variable "storage_account_names" {
+  type    = list(string)
+  default = ["jackuksstr001", "jackuksstr002", "jackuksstr003"]
+}
+
+resource "azurerm_storage_account" "my_storage" {
+  for_each                 = toset(var.storage_account_names)
+  name                     = "read-only-${each.key}"
+
+
+
+
 https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9
 
 resource "aws_instance" "example" {

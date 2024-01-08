@@ -700,6 +700,12 @@ https://developer.hashicorp.com/vault/tutorials/enterprise/namespaces
 Each namespace would have its own auth methods, secrets engines, policies, and so on. Think of it as a mini-vault.
 
 
+# Terraform
+Se puede usar para provisionar vault.
+
+Puede ser sencillo usar terraformer para generar los .tf files a partir de cosas ya creadas en un vault donde hagamos las cosas a mano
+terraformer plan vault --resources=policy
+
 
 # Ansible
 https://docs.ansible.com/ansible/devel/plugins/lookup/hashi_vault.html

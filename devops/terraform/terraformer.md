@@ -5,6 +5,9 @@ Generar ficheros .tf a partir de despliegues ya realizados en infraestructura.
 Mirar que versión de terraform necesita (parece que van con algunas de retraso)
 https://github.com/GoogleCloudPlatform/terraformer#capabilities
 
+terraformer plan PROVIDER --some-filter
+Genera un JSON de lo que quiere importar.
+
 Importar ciertos recursos de un projecto en google
 terraformer import google --projects NOMBREPROYECTO --resources addresses,backendBuckets,backendServices,forwardingRules,gcs,globalAddresses,healthChecks,httpHealthChecks,httpsHealthChecks,iam,images,instanceGroupManagers,instanceGroups,instances,networkEndpointGroups,networks,nodeGroups,sslCertificates,sslPolicies,subnetworks,targetHttpProxies,targetHttpsProxies,targetInstances,targetPools,targetSslProxies,targetTcpProxies
 

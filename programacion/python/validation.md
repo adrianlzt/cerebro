@@ -3,9 +3,17 @@ Comparación linters/checkers.
 
 https://docs.astral.sh/ruff/
 An extremely fast Python linter and code formatter, written in Rust.
+ruff check .   # Lint all files in the current directory.
+ruff format .  # Format all files in the current directory.
+
+Correciones automáticas
+ruff check . --fix
+Correciones que pueden romper cosas
+ruff check . --unsafe-fixes
+ruff check . --unsafe-fixes --fix
 
 
-
+# Voluptuous
 https://pypi.python.org/pypi/voluptuous
 Voluptuous, despite the name, is a Python data validation library. It is primarily intended for validating data coming into Python as JSON, YAML, etc.
 
