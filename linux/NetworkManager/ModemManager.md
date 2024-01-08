@@ -14,7 +14,7 @@ Su cli es mmcli (dos 'm'!)
 Listar modems
 mmcli --list-modems
 
-Para muchos de los comandos esatmos obligados a pasar el modem a usar (el id lo vemos en --list-modems):
+Para muchos de los comandos estamos obligados a pasar el modem a usar (el id lo vemos en --list-modems):
 mmcli -m 0 ...
 
 Volcar toda la info de un modem
@@ -33,7 +33,7 @@ mmcli -m 0 --simple-connect="apn=orange,user=orange,password=orange,ip-type=ipv4
 mmcli -m 0 --simple-connect="apn=movistar.es,user=movistar,password=movistar,ip-type=ipv4v6,allow-roaming=yes"
 
 Para saber si estamos conectados buscar el "bearer" del modem:
-mmcli -m 1 | tail -4
+mmcli -m 0 | tail -4
 Ejemplo:
 Bearer   |               dbus path: /org/freedesktop/ModemManager1/Bearer/1
 
