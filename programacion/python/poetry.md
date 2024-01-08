@@ -64,6 +64,8 @@ python = "~3.10"
 poetry add requests
   nos meterá la última dependencia con "^", para que en el pyproject quede registrada que vesión y no suba una major.
 
+poetry add --group=dev ruff
+
 poetry add nemo --extras=asr
   pasar que extras queremos instalar
 
