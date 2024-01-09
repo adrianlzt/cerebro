@@ -23,3 +23,5 @@ El AG deberá redirigir el tráfico a la tarea que se encargará de obtener el c
 https://github.com/shibayan/keyvault-acmebot
 
 Automated ACME SSL/TLS certificates issuer for Azure Key Vault (App Gateway / Front Door / CDN / others)
+
+Necesita acceso a la gestión de la zona DNS, ya que la usará para validar los challengues contra el proveedor de certificados (creará el registro TXT necesario para el dominio que pidamos).
