@@ -8,7 +8,7 @@ Podemos utilizarlo para contribuir a un proyecto, o para usarlo como base para u
 En la web del proyecto que queramos, pulsamos en Fork. Nos copiará el repo a nuestra cuenta.
 Nos bajamos el repo a local con git clone.
 
-Asignamos el remote original: 
+Asignamos el remote original:
 git remote add upstream https://github.com/octocat/Spoon-Knife.git
 
 Hacer cambios y subirlos a mi repo (como siempre)
@@ -110,3 +110,19 @@ svn ls https://web.com/repo/trunk/src/templates/project.template
 Luego bajar
 svn export https://web.com/TDAF/repo/trunk/src/templates/project.template
 
+
+# Actions / CI/
+
+## Debug
+
+## Simular ejecución en local
+https://blog.harshcasper.com/debugging-github-actions-workflows-effectively
+
+Arch linux: aur/act
+
+Ver jobs:
+act -l
+
+Ejecutar:
+act
+act -j UNSOLOJOB

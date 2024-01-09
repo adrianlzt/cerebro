@@ -6,8 +6,28 @@ Nos pedirá que arranquemos un server web en el puerto 80 del dominio que querem
 # Lets encrypt
 Entidad gratuita: https://letsencrypt.org/
 Let’s Encrypt is a new Certificate Authority: It’s free, automated, and open.
-
 Lo aceptan todos los navegadores.
+
+# Buypass
+Otra alternativa a letsencrypt, que soporta el protocolo ACME.
+Da certs a 180 días.
+No wildcard, pocos subdominios por cert.
+Menos rate de certificados/semana.
+
+Con certbot:
+https://www.buypass.no/produkter/tls-ssl-sertifikater/ressurser-tls-ssl-sertifikater/produkter/buypass-go-ssl-technical-information
+
+# Otras opciones
+https://certbot.eff.org/hosting_providers
+Let's Encrypt
+Buypass Go SSL
+ZeroSSL (Requires EAB Credentials)
+Google Trust Services (Requires EAB Credentials)
+SSL.com (Requires EAB Credentials)
+
+# EAB / ACME external account binding
+The ACME protocol (RFC 8555) defines an external account binding (EAB) field that ACME clients can use to access a specific account on the certificate authority (CA).
+
 
 # Certbot
 https://certbot.eff.org/docs/using.html
