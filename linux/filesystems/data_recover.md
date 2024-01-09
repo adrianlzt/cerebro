@@ -7,7 +7,6 @@ mirar analisis_forense/
 https://www.cs.montana.edu/courses/309/topics/4-disks/debugfs_example.html
   buscar "# You inadvertently delete a file you want back"
 
-http://www.cgsecurity.org/wiki/PhotoRec  recuperar ficheros borrados
 Scalpel
 foremost
   usan la técnica carving. Va analizando el contenido de los inodos e identificando el tipo de fichero (analiza los magic files)
@@ -37,17 +36,7 @@ sudo mmls -t gpt /dev/sdb
 1845248*512=944766976
 
 sudo mount --ro -o loop,offset=944766976 -t ntfs /dev/sdb /mnt
-
-
-Recuva (de la gente de CCleaner) si recupera NTFS con la estructura de directorios.
-
-
-
-disk_stat: muestra si hay HPA (https://en.wikipedia.org/wiki/Host_protected_area) en el disco
-
-
-sorter -f <filetype> -d <dir_out> image/fs
-  nos hace un resumen de lo que contiene la imagen o el fs (sin montar)
+el fs (sin montar)
 
 
 # XFS
@@ -62,3 +51,22 @@ No recupera file names.
 
 https://github.com/salviati/xfsr
 no probado
+
+https://github.com/ianka/xfs_undelete
+The filename cannot be recovered
+No probado
+
+
+# photorec
+http://www.cgsecurity.org/wiki/PhotoRec
+recuperar ficheros borrados
+No recupera nombres de fichero.
+
+https://www.cgsecurity.org/wiki/PhotoRec_Step_By_Step
+
+Tiene un menú ncurses que nos deja configurar la recuperación
+photorec /dev/sdb1
+
+Podemos recuperar de extN/XFS/etc
+
+Podemos seleccionar que tipos de ficheros queremos recuperar.
