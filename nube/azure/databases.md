@@ -19,5 +19,16 @@ General Purpose Compute
 D2ds v4	2vCPU	8 GiB	€130.158/month
 
 
+## CLI
+https://learn.microsoft.com/en-us/azure/mysql/flexible-server/connect-azure-cli
+
+
+
 # SQL Server
+https://azure.microsoft.com/en-us/pricing/details/azure-sql-database/single/
 https://azure.microsoft.com/en-us/pricing/details/azure-sql-managed-instance/single/
+
+
+# Cosmos DB
+https://azure.microsoft.com/en-us/pricing/details/cosmos-db/autoscale-provisioned/
+Globally distributed, multi-model database service.
