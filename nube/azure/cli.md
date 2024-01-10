@@ -52,3 +52,8 @@ az ssh config --resource-group myResourceGroup --name myMachine --local-user use
 ssh -F ./sshconfig MyResourceGroup-myMachine-username
 
 Por defecto el usuario que crea azure es linux es "azureuser".
+
+
+# Resource groups
+Borrar:
+az group delete --name NAME
