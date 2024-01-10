@@ -91,16 +91,21 @@ vault login -no-store -method=userpass username=foo3
 
 
 ## LDAP
-https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap
-https://developer.hashicorp.com/vault/docs/secrets/ldap
-vault secrets enable ldap
+https://developer.hashicorp.com/vault/docs/auth/ldap
 
-vault write ldap/config binddn=$USERNAME bindpass=$PASSWORD url=ldaps://138.91.247.105
+vault auth enable ldap
 
-Opcional: podemos forzar el rotado de la pass de "root", para que solo openldap la conozca:
-vault write -f ldap/rotate-root
-
-Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario se lamacena en userPassword.
+Configuración donde tenemos que especificar como se mapean los usuarios y grupos en el LDAP:
+vault write auth/ldap/config \
+    url="ldap://ldap.example.com" \
+    userdn="cn=opensolutions,dc=ldap,dc=opensolutions,dc=clou" \
+    groupdn="ou=Groups,dc=example,dc=com" \
+    groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
+    groupattr="cn" \
+    upndomain="example.com" \
+    certificate=@ldap_ca_cert.pem \
+    insecure_tls=false \
+    starttls=true
 
 
 
@@ -193,6 +198,23 @@ vault path-help PATH/
 
 Cada engine está separado del resto. Si hackeasen un engine, no podrían saltar al resto.
 https://developer.hashicorp.com/vault/docs/secrets#barrier-view
+
+
+
+## LDAP
+Esto no es para autenticar, si no para gestionar LDAP.
+
+https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap
+https://developer.hashicorp.com/vault/docs/secrets/ldap
+vault secrets enable ldap
+
+vault write ldap/config binddn=$USERNAME bindpass=$PASSWORD url=ldaps://138.91.247.105
+
+Opcional: podemos forzar el rotado de la pass de "root", para que solo openldap la conozca:
+vault write -f ldap/rotate-root
+
+Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario se lamacena en userPassword.
+
 
 
 ## Database
