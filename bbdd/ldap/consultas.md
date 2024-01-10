@@ -2,6 +2,9 @@
 https://access.redhat.com/documentation/en-US/Red_Hat_Directory_Server/9.0/html/Administration_Guide/Examples-of-common-ldapsearches.html
 
 ### Anónimas
+ldapsearch -H ldap://HOST:PORT
+
+Antiguo:
 ldapsearch -h SERVERLDAP -x
   obtenemos todo el arbol
 

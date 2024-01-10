@@ -90,6 +90,20 @@ O sacar la info en una tabla, como la salida normal, pero tampoco generar el ~/.
 vault login -no-store -method=userpass username=foo3
 
 
+## LDAP
+https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap
+https://developer.hashicorp.com/vault/docs/secrets/ldap
+vault secrets enable ldap
+
+vault write ldap/config binddn=$USERNAME bindpass=$PASSWORD url=ldaps://138.91.247.105
+
+Opcional: podemos forzar el rotado de la pass de "root", para que solo openldap la conozca:
+vault write -f ldap/rotate-root
+
+Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario se lamacena en userPassword.
+
+
+
 ## AppRoles
 Para máquinas usar AppRoles
 https://developer.hashicorp.com/vault/docs/auth/approle
@@ -260,6 +274,9 @@ path "sys/mounts"
 {
   capabilities = ["read"]
 }
+
+Hay otro endpoint que solo permite ver los mounts donde tengamos permisos:
+sys/internal/ui/mounts
 
 
 Ver las políticas que tenemos:
@@ -603,7 +620,8 @@ Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 
 https://github.com/adobe/cryptr
 Última release Apr/2022
-Parece que no consigue obtener las keys, necesita permisos (para cada policy que tenga asignada):
+Para ver las keys necesita permiso de lectura sobre sus policies:
+https://github.com/adobe/cryptr?tab=readme-ov-file#secret-discovery
 path "sys/policy/POLITICA_ASIGNADA" {
   capabilities = ["read"]
 }
