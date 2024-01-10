@@ -19,18 +19,9 @@ yum clean all && rm -rf /var/cache/yum
 El rpm -V nos asegura haber instalado lo que queríamos. yum no falla si algún paquete no existe.
 
 
-RUN apt-get update && apt-get install -y \
-    aufs-tools \
-    automake \
-    build-essential \
-    curl \
-    dpkg-sig \
-    libcap-dev \
-    libsqlite3-dev \
-    mercurial \
-    reprepro \
-    ruby1.9.1 \
-    ruby1.9.1-dev \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    aufs-tools=1.2.3 \
+    automake=2.3.4 \
     s3cmd=1.1.* \
  && rm -rf /var/lib/apt/lists/*
 
