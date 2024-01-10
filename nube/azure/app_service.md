@@ -34,3 +34,10 @@ Se pueden luego añadir dominios custom.
 
 Si queremos acceder al kudu, poner, tras el id de la app, scm:
 https://ashy-island-464e1b62755447148a9e054a916d139b.scm.azurewebsites.net/
+
+# Contenedores / docker
+También podemos desplegar contenedores.
+
+Parece que espera que sea una app web y que tengamos definido en la variable de entorno "PORT" donde expone el server http.
+
+Si queremos ver los logs del contenedor iremos a "Deployment Center / Logs".

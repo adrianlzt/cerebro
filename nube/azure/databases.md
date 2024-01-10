@@ -18,11 +18,21 @@ Storage €0.120 GB/month
 General Purpose Compute
 D2ds v4	2vCPU	8 GiB	€130.158/month
 
+Por defecto tiene activado TLS mandatory.
+Si queremos quitarlo o ver como gestionarlo
+https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-connect-tls-ssl
+
 
 ## CLI
 https://learn.microsoft.com/en-us/azure/mysql/flexible-server/connect-azure-cli
 
+## Networking
+https://learn.microsoft.com/es-es/azure/mysql/flexible-server/concepts-networking#private-access-vnet-integration
 
+Tres opciones:
+ - acceso público (internet)
+ - interconexión con otras redes virtuales mediante "private link"
+ - virtual network, donde se verá con el resto de cosas pinchadas a esa red
 
 # SQL Server
 https://azure.microsoft.com/en-us/pricing/details/azure-sql-database/single/
