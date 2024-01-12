@@ -5,6 +5,8 @@ Guía de como usarlos:
 https://github.com/pluralsight/intro-to-pytest/blob/master/tutorials/01_basic_test.md
 
 Hay muchos plugins para distintas librerías.
+Ejemplos: https://github.com/home-assistant/core/blob/dc10f3c204e0e94e958f3b71c0fcb1caab12e1ce/requirements_test.txt#L20
+pytest-sugar:  extends pytest by showing failures and errors instantly, adding a progress bar
 
 
 Un test se considera válido si:
