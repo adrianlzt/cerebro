@@ -113,7 +113,18 @@ svn export https://web.com/TDAF/repo/trunk/src/templates/project.template
 
 # Actions / CI/
 
-## Debug
+# self-hosted runner
+https://docs.github.com/en/actions/hosting-your-own-runners
+
+## Usar un contenedor de docker para correr el runner
+https://github.com/myoung34/docker-github-actions-runner
+
+Este usa docker-in-docker, montando el docker.sock
+
+
+El oficial, pero usa sysbox en vez de docker:
+https://github.com/docker/github-actions-runner
+
 
 ## Simular ejecución en local
 https://blog.harshcasper.com/debugging-github-actions-workflows-effectively
