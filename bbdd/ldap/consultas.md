@@ -102,6 +102,16 @@ changetype: modify
 add: uniqueMember
 uniqueMember: uid=dse,ou=People,dc=example,dc=edu
 
+Cambiar un parámetro
+fichero.ldif
+dn: cn=foo,dc=ldap,dc=foo,dc=cloud
+changetype: modify
+replace: mail
+mail: new@email.com
+
+ldapmodify -f fichero.ldif
+
+
 
 # Borrar entradas
 ldapdelete -h 127.0.0.1:10389 -D "cn=Directory Manager" -w password uid=jose,ou=People,dc=example,dc=edu

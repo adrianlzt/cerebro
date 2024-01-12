@@ -41,3 +41,5 @@ También podemos desplegar contenedores.
 Parece que espera que sea una app web y que tengamos definido en la variable de entorno "PORT" donde expone el server http.
 
 Si queremos ver los logs del contenedor iremos a "Deployment Center / Logs".
+
+También hay otros logs, "Logs stream", en el que deberíamos ver lo mismo, pero en caso de error en esos no veía el fallo (error al hacer pull de la imagen).
