@@ -77,6 +77,10 @@ aws_instance.example.0.public_ip
 Generar una lista a partir de un map (generado con for each):
 instances = [for d in google_compute_instance.host: d.id]
 
+Con filtrado:
+[for s in var.list : upper(s) if s != ""]
+
+
 ## concat
 > concat(["a", ""], ["b", "c"])
 [ "a", "", "b", "c", ]
@@ -96,7 +100,13 @@ variable "amis" {
 }
 
 "${lookup(var.amis, var.region)}"
-${var.amis["us-east-1"]} 
+${var.amis["us-east-1"]}
+
+
+type = map(list(string))
+
+Ejemplo:
+{"foo":["a","b"], "bar": ["qwe"]}
 
 
 
