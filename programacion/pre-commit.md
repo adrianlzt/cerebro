@@ -8,7 +8,11 @@ pacman -S python-pre-commit
 Generar una config de ejemplo:
 pre-commit sample-config > .pre-commit-config.yaml
 
+Para instalar el hook en un repo determinado:
+pre-commit install --hook-type commit-msg
 
+
+# Global
 Podemos ponerlo también a nivel global.
 Copiar este fichero https://gist.github.com/6ac7467b5f9d255c63ee289cfafcca84 en ~/.git_hooks/pre-commit
 
@@ -18,6 +22,11 @@ Y en ~/.gitconfig tendremos que tener:
     hooksPath = ~/.git_hooks
 ```
 
+Si queremos instalar pre-commit en otro repo tendremos que desactivar esa configuración global.
+Y tras instalarlo tendremos que forzar el hooks path al repo:
+git config core.hookspath '$GIT_DIR/hooks'
+
+# Extensiones
 Hooks interesantes:
 https://gruntwork.io/repos/v0.1.10/pre-commit
 
