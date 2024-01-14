@@ -107,6 +107,11 @@ vault write auth/ldap/config \
     insecure_tls=false \
     starttls=true
 
+Si queremos autenticarnos haciendo un bind DN con el usuario, podemos definir
+userattr y userdn.
+El bind se generará como:
+"%s=%s,%s", cfg.UserAttr, EscapeLDAPValue(username), cfg.UserD
+
 
 
 ## AppRoles
@@ -206,6 +211,7 @@ Esto no es para autenticar, si no para gestionar LDAP.
 
 https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap
 https://developer.hashicorp.com/vault/docs/secrets/ldap
+
 vault secrets enable ldap
 
 vault write ldap/config binddn=$USERNAME bindpass=$PASSWORD url=ldaps://138.91.247.105
