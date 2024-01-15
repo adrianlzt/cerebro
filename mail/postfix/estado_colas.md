@@ -10,3 +10,6 @@ Despues del Queue ID pueden pasar varias cosas:
 
 Contenido de un mensaje:
 postcat -vq QUEUE_ID
+
+Borrar email de la cola:
+postsuper -d mail_queue_id
