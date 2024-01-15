@@ -12,7 +12,16 @@ Podemos probarlas en local con Azure Functions Core Tools.
 En arch linux: aur/azure-functions-core-tools-bin
 
 
+# CLI
+az functionapp list
+
+
 # Desplegar app
+
+Podemos subir el código con sftp:// (en linux usar lftp).
+Para las credencials ver el "publish profile", usar "xq" para ver el .xml.
+Ahí estarán distintas credenciales para distintos servicios de subida de datos.
+
 
 ## Local git
 Nos crean un server git donde poder subir el código.

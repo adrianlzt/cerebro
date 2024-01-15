@@ -55,3 +55,6 @@ Si queremos activarlo comentar ("# ") la línea:
 DENY_LOGIN=
 
 Por defecto se muestra el directorio /srv/ftp
+
+# lftp / ftps
+lftp es un cliente que soporta ftps://
