@@ -11,6 +11,10 @@ pre-commit sample-config > .pre-commit-config.yaml
 Para instalar el hook en un repo determinado:
 pre-commit install --hook-type commit-msg
 
+Desactivarlo para un commit en concreto:
+git commit --no-verify ...
+git commit -n ...
+
 
 # Global
 Podemos ponerlo también a nivel global.
