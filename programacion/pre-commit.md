@@ -35,5 +35,15 @@ Hooks interesantes:
 https://gruntwork.io/repos/v0.1.10/pre-commit
 
 
+Conventional commit
+https://github.com/dev-build-deploy/commit-me/blob/main/docs/pre-commit.md
+Instala otro hook, "commit-msg".
+Podemos ponerlo en el .pre-commit-config.yaml:
+```
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+```
+
 Ejemplos pygrep:
 https://github.com/pre-commit/pygrep-hooks/blob/main/.pre-commit-hooks.yaml
