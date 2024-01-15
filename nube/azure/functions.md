@@ -13,7 +13,14 @@ En arch linux: aur/azure-functions-core-tools-bin
 
 
 # CLI
+Listar las funciones:
 az functionapp list
+
+Hacer un despliegue:
+zip function.zip -r *
+az functionapp deployment source config-zip --resource-group iaplike --name iap-like --src function.zip
+
+Con una function-linux no me funciona este deployment. Devuelve un "Bad request".
 
 
 # Desplegar app
@@ -34,6 +41,10 @@ Al pushear el código lanzaremos el despliegue.
 ## Golang
 https://blog.stackademic.com/a-quick-guide-to-creating-azure-function-with-golang-4c22b4f90e68
 https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-other
+  Ojo, tenemos que compilar y subir el código para ser ejecutado en windows, que es el server function que se levanta por defecto.
+  "defaultExecutablePath": "handler.exe",
+  GOOS=windows GOARCH=amd64 go build handler.go
+
 
 Tenemos que subir un binario compilado.
 
@@ -57,3 +68,18 @@ Para ejecución local configurar en local.setting.json
   }
 }
 ```
+
+
+# Auth
+Podemos proteger las functions de dos maneras.
+
+Una es con el "authLevel" definido en cada function.json, pudiendo elegir que acceda todo el mundo o que haga falta una api key.
+
+Otra forma es con el authentication provider, donde configuraremos un identity provider.
+
+
+# Conexion con virtual nets
+https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-cli
+
+Creo que las functions de pago por uso no puede conectar a private virtual nets.
+Hace falta usar el plan premium, que es bastante caro.
