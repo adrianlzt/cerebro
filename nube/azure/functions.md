@@ -81,5 +81,7 @@ Otra forma es con el authentication provider, donde configuraremos un identity p
 # Conexion con virtual nets
 https://learn.microsoft.com/en-us/azure/azure-functions/functions-networking-options?tabs=azure-cli
 
+Requires a supported Basic or Standard, Premium, Premium v2, Premium v3, or Elastic Premium App Service pricing tier.
+
 Creo que las functions de pago por uso no puede conectar a private virtual nets.
 Hace falta usar el plan premium, que es bastante caro.
