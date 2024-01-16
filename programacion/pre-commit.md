@@ -27,6 +27,8 @@ Y en ~/.gitconfig tendremos que tener:
 ```
 
 Si queremos instalar pre-commit en otro repo tendremos que desactivar esa configuración global.
+GIT_CONFIG=. pre-commit install
+
 Y tras instalarlo tendremos que forzar el hooks path al repo:
 git config core.hookspath $PWD/.git/hooks
 

@@ -10,6 +10,11 @@ Podemos ver el arbol de dependencias, entendiendo por qué se instala cada una y
 Parece que la resolución de dependencias puede cambiar bastante respecto a pipenv.
 
 # Iniciar un proyecto
+poetry new
+Nos ininicia un pkg.
+Por ahora (Ene'24) no hay soporte para no pkgs: https://github.com/python-poetry/poetry/pull/8650
+
+Esto es si ya tenemos el directorio:
 poetry init
 
 Creará el fichero pyproject.toml
