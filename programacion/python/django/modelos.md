@@ -38,4 +38,5 @@ Borrar las instancias
 people.delete()
 
 # sincronizar la bbdd tras un cambio en un modelo
+manage.py makemigrations
 manage.py migrate
