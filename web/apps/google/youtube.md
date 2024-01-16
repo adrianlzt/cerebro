@@ -1,3 +1,8 @@
+Chrome sin publi de youtube
+https://news.ycombinator.com/item?id=38061187
+https://andadinosaur.com/youtube-s-anti-adblock-and-ublock-origin
+https://old.reddit.com/r/uBlockOrigin/comments/178yasm/youtube_antiadblock_and_ads_october_16_2023/
+
 Cliente para consola:
 https://github.com/mps-youtube/mps-youtube
 mpsyt
