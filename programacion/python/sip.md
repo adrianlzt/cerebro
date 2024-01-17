@@ -1,3 +1,15 @@
+# baresipy
+https://github.com/OpenJarbas/baresipy
+
+Funciona el llamar y enviar un audio.
+Parece que sin opcion de recibir audio.
+
+
+# https://github.com/andreabak/sibilant
+Buena pinta, pero aún en desarrollo (enero'24)
+
+
+# pyvoip
 https://pyvoip.readthedocs.io/en/latest/
 
 Si queremos reproducir ficheros de audio tiene que ser .wav de 16 bits:
