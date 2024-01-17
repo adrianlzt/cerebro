@@ -17,6 +17,8 @@ blink, linux windows mac: https://icanblink.com/
 
 
 # baresip
+https://github.com/baresip/baresip/wiki/Using-Baresip:-Basic-Commands
+
 La primera vez que lo arrancamos nos creará una ~/.baresip con ficheros de config por defecto.
 
 Para configurar una cuenta:
@@ -33,6 +35,15 @@ module pipewire.so
   llamar a la extensión 100
 /reginfo
   para ver el estado actual del registro en el server sip
+
+Para reproducir un audio al llamar:
+En la config:
+audio_source		aufile,hello-16b.wav
+module			aufile.so
+
+
+El .wav generado con:
+ffmpeg -i wire.wav -ac 1 -ar 8000 -acodec pcm_s16le wire2.wav
 
 
 # Python
