@@ -3,6 +3,10 @@ Parece que puede reproducir distintos "moods", hablar bajito, dudando, etc.
 Los ejemplos en inglés son muy buenos, no tanto el ejemplo en español.
 https://suno-ai.notion.site/Bark-Examples-5edae8b02a604b54a42244ba45ebc2e2
 
+On enterprise GPUs and PyTorch nightly, Bark can generate audio in roughly real-time.
+The full version of Bark requires around 12GB of VRAM to hold everything on GPU at the same time
+SUNO_USE_SMALL_MODELS=True -> 8GB VRA
+
 Opensource. Por ahora no tiene API.
 Parece que puede clonar voces, pero no lo tienen activado (es opensource, se puede hacer tocando algo?).
 Se pueden pasar "prompts" para indicar quien habla e irá cambiando de voz.

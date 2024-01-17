@@ -5,17 +5,6 @@ https://www.redhat.com/sysadmin/topics/voip
 
 Si queremos una UI (php): freepbx
 
-Apps de softphone (para instalar en el móvil o pc para llamar o recibir llamadas):
-Acrobits Softphone (6.5€, android / ios)
-zoiper para linux
-  quitar STUN en la config de la cuenta
-  este es el que uso
-linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
-jami, no me conecta, no he mirado mucho
-blink, linux windows mac: https://icanblink.com/
-  el mejor que he visto para linux y opensource
-  no consigo compilarlo con yay, problemas con cython
-
 Hello world:
 https://docs.asterisk.org/Getting-Started/Hello-World/
 
@@ -51,6 +40,7 @@ Mirar después de la explicación de cada una de las partes.
 
 ## Endpoints
 Podemos verlo como las entidades a las que queremos conectar. En este objeto se enlazarán otras partes de la configuración.
+pjsip_wizard.conf
 
 Para crear un usuario "6001" con usuario=6001 y password=6001:
 ```
@@ -342,3 +332,12 @@ database show
 
 Borrarlo:
 database del registrar/contact 101;@949152fdbe7da2c56519bf9b4985c047
+
+
+# ASR / TTS
+Cosas que tal vez sean interesantes
+
+https://github.com/asterisk/aeap-speech-to-text
+  para comunicar asterisk via websockets con una tercera app
+
+https://github.com/Tinkoff/asterisk-voicekit-modules/tree/master

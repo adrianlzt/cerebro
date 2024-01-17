@@ -21,6 +21,19 @@ La primera vez que lo arrancamos nos creará una ~/.baresip con ficheros de conf
 
 Para configurar una cuenta:
 .baresip/accounts
+Usar "localhost", no 127.0.0.1
+Si usamos la ip nos dará un error de "ladrr".
+Ejemplo:
+<sip:movil@localhost>;auth_pass=secret;answermode=auto
 
-Si queremos poder recibir llamadas, en .baresip/config descomentar:
-sip_listen
+En config poner nuestro módulo de audio,por ejemplo, quitar alsa y poner
+module pipewire.so
+
+/dial 100
+  llamar a la extensión 100
+/reginfo
+  para ver el estado actual del registro en el server sip
+
+
+# Python
+mirar python/sip.md
