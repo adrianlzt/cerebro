@@ -1,3 +1,7 @@
+Al bajarlos el binario podemos elegir que venga ya con los plugins que queremos
+https://caddyserver.com/download
+
+
 # systemd / process
 https://github.com/greenpau/caddy-systemd
 
