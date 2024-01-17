@@ -32,7 +32,10 @@ Desactivar el histórico de bash si vamos a meter info sensible.
 
 
 # Arrancar server
-Tenemos que inicializarlo tras arrancarlo:
+Modo desarrollo (sin config):
+vault server -dev -dev-root-token-id="root"
+
+Tenemos que inicializarlo tras arrancarlo (antiguo, ver como es ahora):
 vault init -key-shares=1 -key-threshold=1
 
 Luego hacer el unseal.

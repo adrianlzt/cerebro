@@ -118,6 +118,12 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 
 
 # Open source
+https://authp.github.io/
+https://github.com/greenpau/caddy-security
+    Authentication, Authorization, and Accounting (AAA) App and Plugin for Caddy v2. 💎 Implements Form-Based, Basic, Local, LDAP, OpenID Connect, OAuth 2.0 (Github, Google, Facebook, Okta, etc.), SAML Authentication. MFA/2FA with App Authenticators and Yubico. 💎 Authorization with JWT/PASETO tokens
+    Esta solución es muy sencilla y funciona perfectamente.
+    Mirar web/caddy/oauth.md
+
 https://zero.pritunl.com/
   50$/month la versión con single sign-on
   soporta ssh y web apps
@@ -131,6 +137,17 @@ https://github.com/vouch/vouch-proxy
 
 https://github.com/warp-tech/warpgate
   ssh webapps, mysql
+
+## oauth2-proxy
+https://github.com/oauth2-proxy/oauth2-proxy
+https://oauth2-proxy.github.io/oauth2-proxy/docs/
+A reverse proxy and static file server that provides authentication using Providers (Google, GitHub, and others) to validate accounts by email, domain or group.
+
+Config de ejemplo: https://github.com/oauth2-proxy/oauth2-proxy/blob/master/contrib/oauth2-proxy.cfg.example
+
+Recomiendan poner alguie que haga el TLS offloading por delante.
+
+
 
 ## teleport
 https://github.com/gravitational/teleport/
