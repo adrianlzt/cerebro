@@ -119,9 +119,41 @@ También podemos usar IAP para el acceso a recursos instalados fuera de gcp
 
 # Open source
 https://zero.pritunl.com/
+  50$/month la versión con single sign-on
+  soporta ssh y web apps
+
+https://www.ory.sh/
 https://github.com/ory/oathkeeper
+
 https://github.com/vouch/vouch-proxy
   An SSO and OAuth / OIDC login solution for Nginx using the auth_request module
+  Obliga a los usuarios a pasar por un IdP para acceder a las web apps detrás de nginx
+
+https://github.com/warp-tech/warpgate
+  ssh webapps, mysql
+
+## teleport
+https://github.com/gravitational/teleport/
+  ssh, webapps, k8s, postgres, mongo, mysql, cockroach, windows, net hosts
+  SSO y SAML de pago.
+  Es gratis la integración con Github.
+  Tiene muy buena pinta y una forma sencilla de gestionar los recursos, pero gratis es bastante limitante el tema de no tener SSO.
+
+Crear dominio teleport.foo.bar y *.teleport.foo.bar
+curl https://goteleport.com/static/install.sh | bash -s 14.3.3
+teleport configure -o file --acme --acme-email=email@email.io --cluster-name=teleport.foo.bar
+Config en /etc/teleport.yaml, escribe en /var/lib/teleport
+
+Crear un user admin llamado "teleport-admin" que va a ¿poder acceder por ssh a esos users?
+tctl users add teleport-admin --roles=editor,access --logins=root,ubuntu,ec2-use
+
+Para integrar aplicaciones tenemos que levantar también un servicio teleport.
+teleport configure --output=$HOME/.config/app_config.yaml --app-name=EXAMPLE --app-uri=http://localhost/ --roles=app --token=a0c87a5db46e3c8288d0 --proxy=teleport.foo.bar:443 --data-dir=$HOME/.config
+teleport start --config=$HOME/.config/app_config.yaml
+
+Al levantarlo aparecerá el servicio integrado en teleport y se habrá registrado con el nombre EXAMPLE.teleport.foo.bar
+
+
 
 ## Pomerium
 pomerium.md

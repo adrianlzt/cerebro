@@ -13,3 +13,6 @@ caddy file-server --domain example.com
 
 HTTPS reverse proxy
 caddy reverse-proxy --from example.com --to localhost:9000
+
+Automáticamente obtiene los certs TLS con letsencrypt.
+Automáticamente pone redirect de http a https.
