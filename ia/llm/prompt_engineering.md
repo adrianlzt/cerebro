@@ -1,3 +1,4 @@
+https://www.promptingguide.ai/models
 https://learnprompting.org/
 https://github.com/pinecone-io/examples/blob/master/generation/prompt-engineering.ipynb
 https://www.pinecone.io/learn/langchain-prompt-templates/

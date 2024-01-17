@@ -5,6 +5,11 @@ mirar tts/fairseq-meta.md
 
 https://openai.com/blog/whisper/
 
+https://twitter.com/lemonfoxai/status/1729101103994683476?t=0AiiRpwYwS4dbXN0o7U_RA
+https://www.lemonfox.ai/
+Save up to 75% by using our speech-to-text, TTS, LLM chat and image generation APIs.
+
+
 
 
 Whisper JAX is an optimised implementation of the Whisper model by OpenAI. It runs on JAX with a TPU v4-8 in the backend. Compared to PyTorch on an A100 GPU, it is over 70x faster, making it the fastest Whisper API available.
