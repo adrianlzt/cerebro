@@ -1,0 +1,1 @@
+soxi file.wav

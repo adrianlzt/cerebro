@@ -287,6 +287,10 @@ pjsip show aors
 pjsip show contacts
 pjsip show auths
 
+Borrar registors AORs (borra todo)
+https://community.asterisk.org/t/clearing-unavailable-pjsip-registrations/82469
+database deltree registrar/contact
+
 
 # ARI / API REST
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+20+ARI
