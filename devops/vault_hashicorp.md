@@ -116,12 +116,17 @@ El bind se generará como:
 "%s=%s,%s", cfg.UserAttr, EscapeLDAPValue(username), cfg.UserD
 
 
-# OIDC / OpenID Connect
+## OIDC / OpenID Connect
+https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-auth
+
 Una extensión de oauth para hacer autenticación.
 
 La idea es tener un identity provider (google, azure, etc)
 
-## Mapear grupos de OIDC a grupos de Vault
+Para autenticar con google solo falta oauth. Si queremos obtener los grupos si hace falta permisos de admin.
+https://www.kostavro.eu/posts/2021-02-18-hashicorp-vault-part1/
+
+### Mapear grupos de OIDC a grupos de Vault
 
 https://support.hashicorp.com/hc/en-us/articles/17137847224083-Azure-AD-Group-Mapped-to-Vault-External-Groups-auth-via-OIDC
 Para mapear los grupos de OIDC a policies de Vault haremos:
@@ -132,6 +137,12 @@ vault write identity/group name="soporte_ext" type="external" policies="policy1,
    También tendremos que poner el mount_accessor, el del método de auth que estamos usando, lo podemos obtener con "vault auth list".
 vault write identity/group-alias name='soporte@foo.io' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
 
+
+### Vault como OIDC provider
+https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-identity-provider
+
+Esto es para que las aplicaciones se autentiquen contra vault.
+Lo de arriba es para que puedas usar un OIDC externo para autenticarte contra vault.
 
 
 
