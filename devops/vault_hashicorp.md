@@ -116,6 +116,24 @@ El bind se generará como:
 "%s=%s,%s", cfg.UserAttr, EscapeLDAPValue(username), cfg.UserD
 
 
+# OIDC / OpenID Connect
+Una extensión de oauth para hacer autenticación.
+
+La idea es tener un identity provider (google, azure, etc)
+
+## Mapear grupos de OIDC a grupos de Vault
+
+https://support.hashicorp.com/hc/en-us/articles/17137847224083-Azure-AD-Group-Mapped-to-Vault-External-Groups-auth-via-OIDC
+Para mapear los grupos de OIDC a policies de Vault haremos:
+1. Crear un grupo type=external con las policies que queramos asignar
+vault write identity/group name="soporte_ext" type="external" policies="policy1,policy2"
+
+2. Crear un group-alias, que mapeará el grupo de OIDC (puesto en "name") con el ID (grupo external de Vault) puesto en canonical_id.
+   También tendremos que poner el mount_accessor, el del método de auth que estamos usando, lo podemos obtener con "vault auth list".
+vault write identity/group-alias name='soporte@foo.io' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
+
+
+
 
 ## AppRoles
 Para máquinas usar AppRoles
