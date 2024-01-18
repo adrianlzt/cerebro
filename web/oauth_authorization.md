@@ -139,6 +139,11 @@ Podemos pedir:
  - id token: info sobre el usuario (creo que tenemos que usar el flow implicit obligatoriamente)
 
 
+Como saber los endpoints para openid:
+https://{oauth-provider-hostname}/.well-known/openid-configuration
+
+El token endpoint es donde se intercambia el oauth por un token jwt.
+
 
 ## Debugger
 https://oidcdebugger.com/
@@ -178,4 +183,3 @@ OpenID connect (implicit flow), obteniendo token y id token.
 Con id token sabemos quien es el usuario.
 El token lo usamos para las peticiones que realizemos a las APIs.
 Tener cuidado de que esos tokens no puedan ser "leaked". Medidas extra de seguridad de JS.
-
