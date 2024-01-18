@@ -28,6 +28,8 @@ https://software-factotum.medium.com/saml-101-lets-write-a-service-provider-c12d
 Repo con un SP y un IdP en golang.
 https://github.com/monmohan/samltools
 
+Antes de poder hacer el flujo, el IdP nos dará un certificado (generalmente te da un .xml con el cert dentro). Ese cert lo tendremos que cargar en el SP para que pueda luego validar las respuestas del IdP (los xml assertions).
+
 Hacemos un curl al SP.
 El SP nos reenvia al IdP, junto con información codificada en la URL.
 Lo que se envía es un XML, inflated y codificado en base64.
