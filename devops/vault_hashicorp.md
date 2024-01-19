@@ -118,6 +118,7 @@ El bind se generará como:
 
 ## OIDC / OpenID Connect
 https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-auth
+Implementación que usa vault para OIDC: https://github.com/hashicorp/cap/tree/main/oidc
 
 Una extensión de oauth para hacer autenticación.
 
@@ -152,6 +153,24 @@ https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-identity-provi
 
 Esto es para que las aplicaciones se autentiquen contra vault.
 Lo de arriba es para que puedas usar un OIDC externo para autenticarte contra vault.
+
+
+### Desarrollo
+https://github.com/hashicorp/vault-plugin-auth-jwt
+
+Para cargar el plugin:
+vault plugin register \
+        -sha256=$(sha256sum vault-plugin-auth-jwt/bin/vault-plugin-auth-jwt | cut -d ' ' -f 1) \
+        -command="vault-plugin-auth-jwt" \
+        auth \
+        oidc
+vault auth enable -plugin-name='oidc' plugin
+
+Para cambiarlo:
+vault auth disable oidc
+...register...
+...enable...
+Y cargar la config de ODIC (vault write...)
 
 
 
