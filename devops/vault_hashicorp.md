@@ -124,7 +124,16 @@ Una extensión de oauth para hacer autenticación.
 La idea es tener un identity provider (google, azure, etc)
 
 Para autenticar con google solo falta oauth. Si queremos obtener los grupos si hace falta permisos de admin.
+https://developer.hashicorp.com/vault/tutorials/auth-methods/google-workspace-oauth
 https://www.kostavro.eu/posts/2021-02-18-hashicorp-vault-part1/
+Los grupos de google se administran en: https://groups.google.com/all-groups
+Podemos crear también subgrupos.
+
+Para debuear podemos activar
+vault write auth/oidc/role/your_default_role verbose_oidc_logging=true
+
+https://developer.hashicorp.com/vault/docs/auth/jwt#claims-as-metadata
+Para mapear metadata del OIDC a Vault usaremos los "claim_mappings".
 
 ### Mapear grupos de OIDC a grupos de Vault
 
@@ -794,3 +803,8 @@ https://www.vaultproject.io/docs/commands/debug
 vault debug
   lo arrancamos, hacemos interacciones y lo paramos. Nos genera un .tgz con ficheros con datos (pero no veo las llamadas de clientes)
   Es para el vault server
+
+Si queremos ver que peticiones hace vault hacia fuera podemos hacer un MitM, con burpsuite por ejemplo.
+HTTPS_PROXY=http://localhost:8080 vault server
+
+Tendremos que instalar la CA de burp en nuestro SO.
