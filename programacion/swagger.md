@@ -8,6 +8,7 @@ http://swagger.io/open-source-integrations/
 
 Ejemplo:
 http://editor.swagger.io/#/
+Podemos usar este editor para declarar nuestra API.
 
 La mayoria de los frameworks te puede autogenerar la doc
 
