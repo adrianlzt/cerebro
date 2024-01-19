@@ -37,6 +37,8 @@ Pero oauth también se ha extendido a otros casos de uso de authentication
 ## Flow: Authorization channel
 El "client" (por ejemplo, Uber), pide al "resource owner" (nosotros), que quiere acceder a nuestros contactos (que los tiene el "Resource server")=.
 Para ello, al clickar en una web de uber, nos redirigirá a una web (el "Autorization server", por ejemplo accounts.google.com) donde en la URL irá:
+  uber, para saber a donde enviarnos, puede conectar a url-identity-provider/.well-known/openid-configuration
+  Mandará el navegador hacia authorization_endpoint, poniendo los siguientes valores url-encoded.
   los scopes (que recursos) solicita (param scope en el caso de google)
   quien los solicita (client_id)
   un callback/redirect uri (redirect_uri). Los dominios permitidos podrán estar registrados a priori, para evitar que alguien modifique la request y acabe donde no debe
@@ -61,6 +63,20 @@ Existen otros tipos de flows:
  - Implicit: nos devuelven el token directamente por el front channels (por si no tenemos back channel, por ejemplo un app que solo corre en el navegador, react o js por ejemplo). Menos seguro
  - Resource owner password credentials (back channel only): para apps viejas, no recomendado
  - Client credentials (back channel only): normalmente usado en machine 2 machine communication (no usado normalmente)
+
+## cli golang
+https://github.com/hashicorp/cap/tree/main/oidc/examples/cli
+Si queremos usarlo para google cambiar "oidc.Alg{oidc.ES384" por "oidc.Alg{oidc.RS256}" en el main.go
+
+Tendremos que crear unas claves de Oauth con redirect a http://localhost:8222/callback
+Poner el client id y secret en las variables de entorno:
+El issuer lo he puesto simulando que lo estamos haciendo con google.
+
+OIDC_CLIENT_ID=REDACTED OIDC_CLIENT_SECRET=REDACTED OIDC_ISSUER=https://accounts.google.com OIDC_PORT=8222 ./cli -scopes email,openid
+
+Nos dará una URL que tenemos que abrir en el navegador.
+En el navegador nos loguearemos y el navegador será reenviado a http://localhost:8222/callback con los datos url-encoded.
+
 
 ## Debugger oauth
 https://oauthdebugger.com/
