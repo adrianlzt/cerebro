@@ -130,6 +130,41 @@ https://www.kostavro.eu/posts/2021-02-18-hashicorp-vault-part1/
 Los grupos de google se administran en: https://groups.google.com/all-groups
 Podemos crear también subgrupos.
 
+vault write auth/oidc/config -<<EOF
+{
+    "oidc_discovery_url": "https://accounts.google.com",
+    "oidc_client_id": "XXX",
+    "oidc_client_secret": "XXX",
+    "default_role": "user",
+    "provider_config": {
+        "provider": "gsuite",
+        "gsuite_service_account": "/home/foo/idp-e7872456d12e-service-account-group-admin.json",
+        "gsuite_admin_impersonate": "admin@foo.io",
+        "fetch_groups": true,
+        "fetch_user_info": true,
+        "groups_recurse_max_depth": 5
+    }
+}
+EOF
+
+vault write auth/oidc/role/user -<<EOF
+{
+    "allowed_redirect_uris": "http://localhost:8200/ui/vault/auth/oidc/oidc/callback,http://localhost:8250/oidc/callback",
+    "user_claim": "email",
+    "groups_claim": "groups",
+    "verbose_oidc_logging": true,
+    "oidc_scopes": ["openid","email","profile"],
+    "claim_mappings": {
+        "sub": "google_id",
+        "email": "email",
+        "name": "name"
+    }
+}
+EOF
+
+
+
+
 Para debuear podemos activar
 vault write auth/oidc/role/your_default_role verbose_oidc_logging=true
 
