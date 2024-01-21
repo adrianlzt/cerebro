@@ -15,3 +15,9 @@ Ejemplos de uso de github copilot para programar, testing, etc.
 
 Copilot testing automático
 https://twitter.com/oegerikus/status/1610945035888955392?t=lIsLLnlxx5-yskrL1Zsyjw&s=19
+
+
+https://twitter.com/itamar_mar/status/1747957362743271436?t=3rpbZ0bzzS7Rmw6O60bMiA
+AlphaCodium
+Conjunto de prompts para generar código.
+Hace paso por paso, genera tests, comprueba los tests, reprograma.
