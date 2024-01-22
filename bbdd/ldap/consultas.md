@@ -5,10 +5,10 @@ https://access.redhat.com/documentation/en-US/Red_Hat_Directory_Server/9.0/html/
 ldapsearch -H ldap://HOST:PORT
 
 Antiguo:
-ldapsearch -h SERVERLDAP -x
+ldapsearch -H ldap://SERVERLDAP -x
   obtenemos todo el arbol
 
-ldapsearch -h SERVERLDAP -x -b BASE FILTER
+ldapsearch -H ldap://SERVERLDAP -x -b BASE FILTER
 
 Preguntamos al servidor ldap de forma anónima.
 Se hace un bind pero sin login.
@@ -30,7 +30,7 @@ TLS_REQCERT never
 En debian parece que la ruta es /etc/ldap/ldap.conf
 
 ### Con bind (logueadas)
-ldapsearch -h SERVERLDAP -D uid=USUARIO,ou=users,dc=grafana,dc=org -w PASSWORD -b BASE
+ldapsearch -H ldap://SERVERLDAP -D uid=USUARIO,ou=users,dc=grafana,dc=org -w PASSWORD -b BASE
 
 Primero hacemos un bind al servidor con nuestro usuario (definiendo el DN entero) y la password.
 Una vez unidos podremos hacer la consulta.
