@@ -55,6 +55,11 @@ La URL a donde nos reenvia tiene que haber sido configurada previamente en el Id
 
 El post tendrá una key SAMLResponse con el XML codificado en base64.
 
+Hay extensiones para chrome y firefox para ver los assertions.
+https://addons.mozilla.org/en-US/firefox/addon/saml-tracer/
+https://chrome.google.com/webstore/detail/saml-message-decoder/mpabchoaimgbdbbjjieoaeiibojelbhm?hl=en
+
+
 
 # Tools
 https://www.samltool.com/decode.php

@@ -4,6 +4,12 @@ Examples:
 https://docs.gitlab.com/ee/ci/examples/
 https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates
 
+https://docs.gitlab.com/ee/ci/components/#cicd-catalog
+Components, para reusar partes.
+A CI/CD component is a reusable single-purpose building block that can be used to compose a part of a project's CI/CD configuration, or even an entire pipeline.
+
+
+
 # Auto DevOps
 Si activamos AutoDevOps, a todos los proyectos se le aplica este .gitlab-ci.yml (en caso de no tener uno custom).
 https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
