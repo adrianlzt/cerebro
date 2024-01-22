@@ -16,6 +16,10 @@ qpwgraph
 https://wiki.archlinux.org/title/WirePlumber
 wpctl status
 
+Config renames y disabled devices:
+$HOME/.config/wireplumber/main.lua.d/
+
+
 
 
 
