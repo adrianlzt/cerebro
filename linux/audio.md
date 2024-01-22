@@ -9,9 +9,12 @@ Jack, más profesional.
 PipeWire, el más reciente.
 
 
-
 Para ver un gráfico de las conexiones (patch), para pipewire
 qpwgraph
+
+# Cli / WirePlumber
+https://wiki.archlinux.org/title/WirePlumber
+wpctl status
 
 
 
