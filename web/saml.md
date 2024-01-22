@@ -53,6 +53,8 @@ Una vez nos hayamos logeado en el IdP, el navegador será reenviado a un path es
 Que será de nuevo un XML, firmado, con la información del usuario.
 La URL a donde nos reenvia tiene que haber sido configurada previamente en el IdP. Se llama la ACS (Assertion Consumer Service) URL.
 
+El post tendrá una key SAMLResponse con el XML codificado en base64.
+
 
 # Tools
 https://www.samltool.com/decode.php
