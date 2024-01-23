@@ -31,6 +31,10 @@ Si no queremos que el scroll esté sincronizado:
 :set nodiff
 :set nocursorbind
 
+En la ventana de abajo, ir pasando por los distintos conflictos y haciendo:
+:diffg RE  " get from REMOTE
+:diffg BA  " get from BASE
+:diffg LO  " get from LOCAL
 
 Si usamos meld tendremos:
   - izquierda, LOCAL, la rama sobre la que estamos
