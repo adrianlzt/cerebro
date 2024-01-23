@@ -23,3 +23,7 @@ urlpatterns = [
 def page(request, num="1"):
     # Output the appropriate page of blog entries, according to num.
     ...
+
+
+Código para listar todos los url patterns
+python manage.py show_urls
