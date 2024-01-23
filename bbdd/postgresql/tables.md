@@ -163,6 +163,29 @@ ORDER BY fk.confrelid, fk.conname
 ;
 
 
+## Deshabilitar contraints
+CREATE OR REPLACE FUNCTION f() RETURNS void AS
+$BODY$
+BEGIN
+  SET CONSTRAINTS ALL DEFERRED;
+
+  -- Code that temporarily violates the constraint...
+  -- UPDATE table_name ...
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+Ese set contraints hace que las contraints se chequeen en el momento del commit;
+
+
+Otra forma:
+ALTER TABLE reference DISABLE TRIGGER ALL;
+DELETE FROM reference WHERE refered_id > 1;
+ALTER TABLE reference ENABLE TRIGGER ALL;
+
+
+
 
 # Crear una tabla copiando a otra
 create table new (
