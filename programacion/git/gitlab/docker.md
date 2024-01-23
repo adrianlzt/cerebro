@@ -67,11 +67,13 @@ gitlab-ctl restart puma
 Si queremos acceder a la db postgres
 su -c "/opt/gitlab/embedded/bin/psql -h /var/opt/gitlab/postgresql -U gitlab gitlabhq_production" git
 
+Tablas:
+users
+emails
+
+
 ## Redis
 redis-cli -s /var/opt/gitlab/redis/redis.socket
 
 Han desactivado el comando keys
 https://docs.gitlab.com/omnibus/settings/redis.html#renamed-commands
-
-
-
