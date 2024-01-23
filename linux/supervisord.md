@@ -143,3 +143,8 @@ Error: Another program is already listening on a port that one of our HTTP serve
 http://serverfault.com/questions/114477/supervisor-http-server-port-issue
 sudo unlink /tmp/supervisor.sock
 sudo unlink /var/run/supervisor.sock
+
+
+Sin stdout para programas python.
+Ejecutar con python -u
+https://github.com/Supervisor/supervisor/issues/13
