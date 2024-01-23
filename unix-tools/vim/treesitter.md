@@ -25,3 +25,8 @@ incremental_selection
 indent
 playground
 query_linter
+
+
+Si da errores tipo
+treesitter/highlighter: Error executing lua: /usr/share/nvim/runtime/lua/vim/treesitter/query.lua:259: query: invalid node type at position 672 for language python
+Ejecutar :TSUpdate
