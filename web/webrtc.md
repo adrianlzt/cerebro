@@ -8,6 +8,11 @@ Real-time communication without plugins
 Imagine a world where your phone, TV and computer could all communicate on a common platform. Imagine it was easy to add video chat and peer-to-peer data sharing to your web application. That's the vision of WebRTC.
 
 
+# Test
+https://webcasts.com/webrtc/
+Web que realiza una serie de tests para ver si hay problemas para usar webrtc.
+
+
 # APIs
 WebRTC se implementa mediante 3 APIs:
 getUserMedia: obtener video y audio del usuario
