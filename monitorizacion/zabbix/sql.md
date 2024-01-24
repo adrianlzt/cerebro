@@ -57,6 +57,7 @@ type (item)
 16 - JMX agent
 17 - SNMP trap
 18 - Dependent item
+21 - script
 
 Status
 0 - enabled
