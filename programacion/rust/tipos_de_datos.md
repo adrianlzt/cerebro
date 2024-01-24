@@ -6,6 +6,9 @@ Se almacena en el "heap".
 mirar string.md
 
 ## Vector / Vec<T>
+https://doc.rust-lang.org/stable/nomicon/vec/vec.html
+https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
+
 let v: Vec<i32> = Vec::new();
 
 let v = vec![1, 2, 3];
@@ -16,18 +19,71 @@ Añadir datos:
 let mut v = Vec::new();
 v.push(5);
 
+Quitar del final:
+v.pop() // Option<T>
+
 Acceder, generará un panic si no existe ese elemento con "index out of bounds":
 &v[2]
 &v[2..4] // coge los elementos en la posición 2 y 3 (en notación matemática sería "[2,4)")
 
 Si queremos acceder de forma segura usar .get:
 let x = v.get(2)
-Esto no devolverá un Option<i32> en este caso. Seguramente luego usemos match o if-let para gestionar la posibilidad de que tenga o no valor.
+Esto no devolverá un Option<&i32> en este caso. Seguramente luego usemos match o if-let para gestionar la posibilidad de que tenga o no valor.
 
 let x = v.get(0..5)  // en este caso será un Option<&[i32]>
 
+Si cogemos referencias inmutables del vector (un puntero para leer un determinado elemento) estaremos quitando el permiso de escritura, por lo que no podremos modificar ese vector hasta que esa referencia inmutable salga del scope.
+
+
+Iterar con referencias inmutables:
+```rust
+let v = vec![100, 32, 57];
+for i in &v {
+    println!("{i}");
+}
+```
+
+Iterar con referencias mutables:
+```rust
+let mut v = vec![100, 32, 57];
+for i in &mut v {
+    *i += 50;
+}
+```
+
+No se puede modificar el vector (añadir/quitar elementos) mientras se itera. For tiene una referencia del vector que lo evita.
+
+Podemos usar un enum con distintos variants para almacenar distintos tipos de datos en un vector.
+```rust
+enum SpreadsheetCell {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from("blue")),
+    SpreadsheetCell::Float(10.12),
+];
+```
+
+## Capacidad / longitud
+Los vectores tienen una longitud (número de elementos) y una capacidad (huecos disponibles antes de tener que hacer un resize).
+Si metemos más elementos de la capacidad, se creará un vector con mayor capacidad y se copiarán los elementos del antiguo al nuevo.
+
+let v: Vec<i32> = Vec::with_capacity(10);
 v.len()
 v.capacity()
+
+
+Concatenar, unir los elementos de dos vectores:
+["hello", "world"].concat() // "helloworld"
+[[1, 2], [3, 4]].concat() // [1,2,3,4]
+
+["hello", "world"].join(" ") // "hello world"
+
+[1,2,3].last() // 3
+
 
 
 ## HashMap
