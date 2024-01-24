@@ -12,3 +12,7 @@ let parse: u32 = "5".trim().parse().expect("Please type a number!");
 
 Otra forma usando la sintaxis turbofish:
 let four = "4".parse::<u32>().expect("Please type a number!");
+
+
+# Generar string usando interpolación, format!
+let s = format!("foo {}", bar);

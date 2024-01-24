@@ -61,3 +61,8 @@ fn metodo(self) {
 }
 ```
 Esto es raro. Podría darse el caso si queremos modificar "self" en algo distinto y evitar que el usuario lo use.
+
+
+# Public / private
+Si hacemos público un struct, tenemos que especificar que fields serán públicos.
+Si hay fields privados, no se podrá generar el struct desde fuera, tendremos que crearle una función tipo "new" para ello.
