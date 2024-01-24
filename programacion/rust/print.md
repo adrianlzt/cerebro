@@ -14,6 +14,10 @@ Para escapar "{" o "}", doblarlos, ejemplo println!("hola {{")
 En los structs podemos añadir el "outer attribute" #[derive(Debug)] antes de crearlo para que se implemente automáticamente ese trait.
 
 Ese trait tiene esta forma:
+```rust
+use core::fmt::Debug;
+use core::fmt::Formatter;
+
 impl Debug for Name {
     fn fmt(&self, x: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
         if x.alternate() {
@@ -25,6 +29,7 @@ impl Debug for Name {
         Ok({})
     }
 }
+```
 
 Lo de alternate es si hemos hecho "{#?}"
 
