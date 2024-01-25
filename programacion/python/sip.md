@@ -2,6 +2,7 @@
 https://github.com/OpenJarbas/baresipy
 
 Funciona el llamar y enviar un audio.
+En realidad está enviando comandos a un baresip por debajo de forma bastante simple.
 Parece que sin opcion de recibir audio.
 
 

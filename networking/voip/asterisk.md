@@ -345,3 +345,10 @@ https://github.com/asterisk/aeap-speech-to-text
   para comunicar asterisk via websockets con una tercera app
 
 https://github.com/Tinkoff/asterisk-voicekit-modules/tree/master
+
+
+# Python
+https://docs.pjsip.org/en/latest/pjsua2/hello_world.html#python3
+
+Para instalarlo en Arch:
+https://wiki.archlinux.org/title/Unofficial_user_repositories#alerque
