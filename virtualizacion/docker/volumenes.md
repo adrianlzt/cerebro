@@ -160,3 +160,14 @@ volumes:
       o: "addr=10.0.2.2,nolock,soft,rw"
       device: ":/export/assets"
 
+
+
+# Problemas, fichero que no se modifica
+https://github.com/moby/moby/issues/15793
+
+If you are using some editor like vim, when you save the file it does not save the file directly, rather it creates a new file and copies it into place.
+This breaks the bind-mount, which is based on inode. Since saving the file effectively changes the inode, changes will not propagate into the container.
+When the container is restarted the new inode.
+If you edit the file in place you should see changes propagate.
+
+Lo que se mapea son los inodes, si se reemplaza el fichero, no se verá reflejado en el contenedor.
