@@ -14,7 +14,7 @@ Best practices:
 https://www.linkedin.com/pulse/securely-storing-secrets-best-practices-hashicorp-vault-pavel-topal
 https://medium.com/hashicorp-engineering/how-id-attack-your-hashicorp-vault-and-how-you-can-prevent-me-system-hardening-ce151454e26b
 
-Un engine con todas las passwords.
+Parece buena idea usar distintos engines para distintos conjuntos de secretos, así evitamos mostrar que existen a quien no haga falta.
 No usar docker si es posible.
 TLS 1.3 hasta vault, con HSTS
 Obligar a MFA
@@ -36,7 +36,7 @@ Modo desarrollo (sin config):
 vault server -dev -dev-root-token-id="root"
 
 Tenemos que inicializarlo tras arrancarlo (antiguo, ver como es ahora):
-vault init -key-shares=1 -key-threshold=1
+vault operator init -key-shares=3 -key-threshold=1
 
 Luego hacer el unseal.
 Luego loguearnos.
