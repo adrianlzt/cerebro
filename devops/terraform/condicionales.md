@@ -32,3 +32,8 @@ resource condicional false {
   count = "${1 - var.create_eip}"
 }
 
+
+
+# List comprehension
+[for s in var.list : upper(s)]
+{for s in var.list : s => upper(s)}

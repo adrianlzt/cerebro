@@ -60,7 +60,7 @@ StopIteration
 
 
 
-# Yield drom
+# Yield from
 https://docs.python.org/3/whatsnew/3.3.html#pep-380
 
 In summary, its best to think of yield from as a transparent two way channel between the caller and the sub-generator.

@@ -10,11 +10,11 @@ az version
 Para loguearnos
 az login
 
-Suscripciónes:
+Suscripciones:
 az account list -o table
 
 Cambiar la suscripción por defecto:
-az account set --subscription DataDope\ Global
+az account set --subscription FooBar
 
 # Configuración
 ~/.azure/config

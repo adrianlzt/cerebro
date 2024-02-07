@@ -1,5 +1,7 @@
 https://caddyserver.com/download?package=github.com%2Fgreenpau%2Fcaddy-security
 
+Mirar ejemplo en ejemplos/Caddyfile.oauth_un_dominio
+
 # Google as IdP
 Crear OAuth client ID
 https://console.cloud.google.com/apis/credentials/oauthclient

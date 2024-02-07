@@ -80,7 +80,13 @@ Aquí también tenemos un contador de deadlocks.
 blks_read, tuvimos que ir al disco a leer
 blks_hit, lo encontramos en el shared buffer
 
-tup_returned/fetched/inserted/updated/etc
+tup_returned: Number of live rows fetched by sequential scans and index entries returned by index scans in this database
+tup_fetched: Number of live rows fetched by index scans in this database
+tup_inserted: Number of rows inserted by queries in this database
+tup_updated: Number of rows updated by queries in this database
+https://www.postgresql.org/docs/current/monitoring-stats.html
+
+
 
 temp_files/bytes si usamos mucho es que el work_mem se queda corto, posiblemente tengamos que incrementar el work_mem
 

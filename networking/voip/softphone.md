@@ -7,7 +7,17 @@ zoiper para linux
   este es el que uso
   mirar que tena un tick verde arriba a la izquierda, es que estamos conectados
 
-linphone (android, también tiene appimage para linux, pero no me funciona, no conecta)
+linphone (android, también tiene appimage para linux)
+  aur/linphone-desktop-appimage
+  Lo conseguí conectar a un asterisk local tras varias pruebas.
+    dirección sip: sip:adri-movil@172.17.0.1
+    server sip: <sip:172.17.0.1;transport=tcp>
+    no publicar info presencia
+    no activar ice
+    En red, cambiados los puertos de SIP UDP/TCP a 5601
+  Explota al colgar las llamadas (segmentation fault).
+  Comprobar que asterisk no rechaza el auth por ya estar registrado
+    WARNING[2048597]: res_pjsip_registrar.c:769 register_aor_core: Registration attempt from endpoint 'adri-movil' (172.17.0.1:55734) to AOR 'adri-movil' will exceed max contacts of 1
 
 jami, no me conecta, no he mirado mucho
 

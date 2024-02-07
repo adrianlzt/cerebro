@@ -234,6 +234,9 @@ vault read identity/entity/id/53dcc787-3fa3-ce57-21bb-04b472957be5
 Esas entities tendrán mapeados "alias", que serán los distintos métodos de acceso que se habrán usado:
 vault list identity/alias/id/
 
+Mostrar todos los alias name junto con su entity id:
+for i in $(vault list -format=json identity/alias/id/ | jq -r '.[]'); do vault read -format=json identity/alias/id/$i | jq '.data | {"id":.canonical_id,"email":.metadata.email}'; done
+
 Podemos asociar muchos alias a una única entity, de esta manera podríamos hacer que un usuario que se loguea de distintas
 maneras siempre sea el mismo de cara a vault.
 
@@ -265,6 +268,8 @@ https://developer.hashicorp.com/vault/tutorials/tokens/token-management
 
 Info sobre el token que estamos usando actualmente
 vault token lookup
+En formato API:
+auth/token/lookup-self
 
 Ver todos los tokens actuales:
 vault list -format=json auth/token/accessors/  | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
@@ -437,7 +442,7 @@ Varios usuarios de distintos auth engines pueden unirse en un entitie.
 Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 
 
-# Audit
+# Audit / traces
 https://developer.hashicorp.com/vault/docs/audit
 Detailed log of all requests to Vault, and their responses
 

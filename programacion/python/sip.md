@@ -23,5 +23,15 @@ ffmpeg -i hello.wav -acodec pcm_s16le -ac 1 -ar 16000 hello-16b.wav
 Aquí dicen que debe ser 8bit, 8k, mono/1
 https://stackoverflow.com/questions/76550246/pyvoip-write-audio-send-really-bad-quality-sound
 
-No consigo enviar audio.
+Alguien quejándose de que no puede enviar audio.
+Yo si he podido enviar audio usando los clientes Zoiper
 https://github.com/tayler6000/pyVoIP/issues/149
+
+
+# PJSUA
+https://docs.pjsip.org/en/latest/pjsua2/hello_world.html#python3
+
+Para instalarlo en Arch:
+https://wiki.archlinux.org/title/Unofficial_user_repositories#alerque
+
+Librería bastante compleja. Posiblemente valga para todo.

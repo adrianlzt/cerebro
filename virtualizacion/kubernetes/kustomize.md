@@ -83,10 +83,10 @@ https://github.com/kubernetes-sigs/kustomize/tree/master/examples/transformercon
 https://github.com/kubernetes-sigs/kustomize/blob/master/examples/inlinePatch.md
 
 Formas de modificar los yaml base.
-Hay 3: patches, patchesJson6902 y strategicMerge
+Hay 2 tipos: patchesJson6902 y strategicMerge
 
 ### patchesJSON6902
-patchesJSON6902:
+patches:
 - target:
     group: apps
     version: v1
@@ -103,12 +103,35 @@ https://stackoverflow.com/a/54820201
 Ejemplo:
   path: /metadata/annotations/kubernetes.io~1ingress.class
 
+Si queremos modificar elementos en una lista tenemos que elegir la posición a fuego "env/0/value".
+Podemos hacer un truco para primero testear si tenemos en esa posición lo que esperamos y luego modificarlo.
+https://stackoverflow.com/a/75037408
+
+- op: test
+  path: /spec/containers/0/name
+  value: my-app
+- op: replace
+  path: /spec/containers/0/command
+  value: ["sh", "-c", "tail -f /dev/null"]
+
+Otro ejemplo:
+- op: test
+  path: /spec/template/spec/containers/0/env/0/name
+  value: TEMPO_STORAGE_TRACE_BACKEND_TYPE
+- op: replace
+  path: /spec/template/spec/containers/0/env/0/value
+  value: azure
+
+
 
 ### strategicMerge
+https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md
+https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#patchstrategicmerge
+
 Un parche que modifica algún campo de uno de los yaml base
 No funciona si el yaml base tiene "namespace" configurado.
 
-patchesStrategicMerge:
+patches:
 - |-
   apiVersion: apps/v1
   kind: Deployment
@@ -121,6 +144,36 @@ patchesStrategicMerge:
           - name: nginx
             image: nignx:latest
 
+
+Si queremos modificar los elementos de un array (en vez de añadir). Solo dejará esa env var, borrado el resto:
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loki-backend
+spec:
+  template:
+    spec:
+      containers:
+        - name: loki
+          env:
+            - $patch: replace
+            - name: SCHEMA_CONFIG_OBJECT_STORE
+              value: azure
+
+
+Borrar un elemento de una lista
+volumes:
+  - $patch: delete
+    name: credential
+
+volumeMounts:
+  - $patch: delete
+    mountPath: /secret/tempo/
+
+
+# Replacements
+Copiar valores de un recurso a otro
+https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/replacements/#example
 
 
 # Generators

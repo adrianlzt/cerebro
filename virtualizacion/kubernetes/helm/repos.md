@@ -8,6 +8,9 @@ helm repo list
 helm3 repo add stable https://kubernetes-charts.storage.googleapis.com
 helm3 repo add elastic https://helm.elastic.co
 
+Si queremos obtener a mano el índice de un repo:
+https://repo.com/index.yaml
+
 
 # OCI repos
 Usar "OCI registries" (registros de contenedores de docker) como almacen de helms.

@@ -4,12 +4,17 @@ Encrypt your Secret into a SealedSecret, which is safe to store - even to a publ
 
 # Uso
 Obtener el cert para encriptar los secrets (public key):
-kubeseal --fetch-cert --controller-name sealed-secrets > sealed-secrets.crt
+kubeseal --fetch-cert --controller-namespace kube-system --controller-name sealed-secrets-controller > sealed-secrets.crt
 
 
 Encriptar un fichero (un fichero que contenga Secret de k8s)
 ```
-kubeseal --format yaml --cert sealed-secrets.crt </tmp/admin-credentials.yml> sealed-admin-credentials.yml
+kubeseal --format yaml --cert sealed-secrets.crt < admin-credentials.yml > sealed-admin-credentials.yml
+```
+
+Otra forma:
+```
+kubectl create secret generic azure-storage-sa --from-literal=azure_storage_key=SECRETO --dry-run=client -o yaml | kubeseal --format yaml --cert sealed-secrets.crt > secret-sealed.yaml
 ```
 
 

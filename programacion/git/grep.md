@@ -4,3 +4,5 @@ Buscar regexp en todos los commits
 git grep <regexp> $(git rev-list --all)
 
 git show <sha1>
+
+git log -G"cosa a buscar"

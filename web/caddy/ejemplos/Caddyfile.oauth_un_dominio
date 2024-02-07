@@ -1,0 +1,76 @@
+#
+# Ejemplo que protege con oauth un endpoint de Vault, usando un único dominio para todo.
+#
+#
+# No configurar el redirect http->https
+{
+  auto_https off
+  servers {
+    # Convertir la X-Forwarded-For a la client_ip
+    trusted_proxies static private_ranges
+  }
+
+  # Configuración del plugin para tener OAuth: https://authp.github.io/
+  order authenticate before respond
+  # Modificado de "before basicauth" a "before respond" para poder enrutar por el mismo dominio el oauth y el backend de vault
+  order authorize before respond
+
+  security {
+  	oauth identity provider google {
+  		realm google
+  		driver google
+  		client_id REDACTED.apps.googleusercontent.com
+  		client_secret GOCSPX-REDACTED
+  		scopes openid email profile
+  	}
+
+  	authentication portal myportal {
+  		crypto default token lifetime 3600
+  		crypto key sign-verify 08978f34-d834-4ad7-8ee4-596365b86f36
+  		enable identity provider google
+  		cookie domain foo.bar.io
+  		ui {
+  			links {
+  				"My Identity" "/whoami" icon "las la-user"
+  				"Vault" https://foo.bar.io/ icon "las la-star"
+  			}
+  		}
+		transform user {
+			match realm google
+			action add role authp/user
+		}
+  	}
+
+  	authorization policy mypolicy {
+  		set auth url https://foo.bar.io/oauth2/google
+  		crypto key verify 08978f34-d834-4ad7-8ee4-596365b86f36
+  		allow roles authp/user
+  		validate bearer header
+  		inject headers with claims
+  	}
+  }
+}
+
+:8200 {
+  tls /opt/vault/tls/tls.crt /opt/vault/tls/tls.key
+
+  # Reusamos el dominio foo.bar.io para todo.
+  # Con esta ruta enviamos todo el flujo de oauth a "authenticate"
+  route /oauth* {
+    authenticate with myportal
+  }
+
+  # Bloquear las peticiones que no vengan de la red de Datadope
+  @blocked not {
+    client_ip 8.2.3.7
+  }
+  # Esas peticiones las obligamos a autenticarse contra Google para poder acceder a la UI de Vault
+  authorize @blocked with mypolicy
+
+  reverse_proxy https://127.0.0.1:8203 {
+    transport http {
+      tls
+      tls_insecure_skip_verify
+    }
+  }
+}

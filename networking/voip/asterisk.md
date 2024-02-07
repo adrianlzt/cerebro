@@ -13,7 +13,8 @@ Relaciones entre los distintos tipos de objeto de configuración
 https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Sections+and+Relationships#PJSIPConfigurationSectionsandRelationships-RelationshipsofConfigurationObjectsinpjsip.conf
 
 Usaremos pjsip (sip está deprecated).
-Podemos usar "pjsip reload" para recargar la config de pjsip.
+Podemos usar este comando para recargar la config de pjsip.
+pjsip reload
 
 ## Transport
 Transport es el protocolo que tendremos para que se comunique pjsip.
@@ -42,11 +43,16 @@ Mirar después de la explicación de cada una de las partes.
 Podemos verlo como las entidades a las que queremos conectar. En este objeto se enlazarán otras partes de la configuración.
 pjsip_wizard.conf
 
-Para crear un usuario "6001" con usuario=6001 y password=6001:
+Para verlas en la consola:
+pjsip show endpoints
+Con más detalle:
+pjsip show endpoint NOMBRE
+
+
+Para crear un endpoint "6001" con usuario=6001 y password=6001:
 ```
 [6001]
 type=endpoint
-context=from-internal
 disallow=all
 allow=ulaw
 auth=6001
@@ -121,8 +127,39 @@ inbound_auth/username = pepe
 inbound_auth/password = foobar123
 ```
 
-En ednpoints.conf tendremos que al menos crear el context default.
+En endpoints.conf tendremos que al menos crear el context default.
 En pjsip.conf tendremos que crear el transport que hayamos usado aqui.
+
+Si queremos poner parámetros para que vayan al objeto "endpoint" en el wizard, lo haremos con el prefijo "endpoint/", por ejemplo:
+endpoint/direct_media = no
+
+
+## NAT / direct media
+https://docs.asterisk.org/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-to-work-through-NAT/#for-remote-phones-behind-nat
+
+Si queremos que la comunicación de los softphones/extension se haga pasando por asterisk configuraremos el pjsip wizard con:
+```
+endpoint/direct_media = no
+endpoint/rtp_symmetric = yes
+endpoint/force_rport = yes
+endpoint/rewrite_contact = yes
+```
+
+El direct_media lo que hace es evitar que los softphones intenten conectarse directamente.
+Solo con eso lo que veo es que el dispositivo que llama no es capaz de llevar su audio al destinatario.
+Ejemplo, A llama a B. A envía el audio RTP a asterisk, pero luego asterisk lo envía a la ip privada de B (está NATeado), por lo que no funciona.
+Parece que las otras 3 opciones arreglan ese problema.
+
+rtp_symmetric: Enforce that RTP must be symmetric. Send RTP back to the same address/port we received it from.
+force_rport: Force RFC3581 compliant behavior even when no rport parameter exists. Basically always send SIP responses back to the same port we received SIP requests from.
+direct_media: Determines whether media may flow directly between endpoints.
+rewrite_contact: Determine whether SIP requests will be sent to the source IP address and port, instead of the address provided by the endpoint.
+
+
+
+Otra opción serían clientes que soporten ICE,STUN,TURN.
+No lo he mirado aún.
+https://docs.asterisk.org/Configuration/Channel-Drivers/SIP/Configuring-res_pjsip/Configuring-res_pjsip-to-work-through-NAT/#clients-supporting-icestunturn
 
 
 ## Dialplan / Extensiones
@@ -318,13 +355,15 @@ Para conocer el estado de una extensión.
 
 core show hints
 
-# Troubleshooting
+# Troubleshooting / debug
 https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
 
 core set verbose 4
 core set debug 4
 pjsip set logger on
-  trazas de señalizacioń (semejantes a HTTP)
+  trazas de señalizacioń SIP (protocolo similar a HTTP)
+rtp set debug on
+  para ver como navegan los paquetes RTP cuando pasan por asterisk (si es que así lo tenemos configurado con direct_media=no) Podemos ver de donde vienen y a donde se envían.
 
 ## Borrar contactos asociados a un AOR
 Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
@@ -347,8 +386,43 @@ https://github.com/asterisk/aeap-speech-to-text
 https://github.com/Tinkoff/asterisk-voicekit-modules/tree/master
 
 
-# Python
-https://docs.pjsip.org/en/latest/pjsua2/hello_world.html#python3
+# Firewall
+https://www.voip-info.org/asterisk-firewall-rules/
+Para SIP entrada en el 5060 tcp y udp.
+    firewall-cmd --zone=external --add-service=sip (esto permite tcp y udp?)
+Si queremos filtrar por ip origen:
+    firewall-cmd  --zone=external --add-rich-rule='rule family="ipv4" source address="92.184.97.64" port protocol="tcp" port="5060" accept'
+    firewall-cmd  --zone=external --add-rich-rule='rule family="ipv4" source address="92.184.97.64" port protocol="udp" port="5060" accept'
 
-Para instalarlo en Arch:
-https://wiki.archlinux.org/title/Unofficial_user_repositories#alerque
+Para RTP entrada udp 10000-20000
+    firewall-cmd --zone=external --add-port=10000-20000/udp
+
+
+# Python
+mirar python/sip.md
+
+
+# SIP trunking
+Conectar con un proveedor para poder enrutar las llamadas a la red telefónica.
+https://support.telnyx.com/en/articles/1130628-asterisk-configure-an-asterisk-ip-trunk
+
+Ojo que la config del pjsip_wizard.conf tiene unas cosas mal (el "(!)" y el "(trunk_defaults)").
+
+```
+[trunk_defaults](!)
+type = wizard
+
+[telnyx](trunk_defaults)
+endpoint/transport = 0.0.0.0-udp
+```
+
+Si no podemos llamar, comprobar los mensajes SIP intercambiados con telnyx.
+
+Por ejemplo, tal vez tengamos que meter en la white list los paises a los que queremos llamar:
+SIP/2.0 403 Dialed number +34666666666 (associated countries: ESP) is not included in whitelisted countries USA,CAN D13
+
+Hay que añadir los paises en el outbound voice profile que tengamos asignado al SIP connection que estemos usando para conectar desde asterisk con telnyx.
+
+También hace falta añadir el Caller ID Number (CID) correcto:
+https://support.telnyx.com/en/articles/3546251-caller-id-number-policy
+https://portal.telnyx.com/#/app/numbers/verified-numbers

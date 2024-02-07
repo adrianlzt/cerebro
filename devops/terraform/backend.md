@@ -57,6 +57,7 @@ gsutil versioning set on gs://NOMBREBUCKET
 
 
 # Modificar el state
+mirar destroy.md
 
 Nos bajamos el state:
 terraform state pull > STATE
