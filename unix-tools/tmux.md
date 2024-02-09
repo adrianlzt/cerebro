@@ -354,3 +354,12 @@ Enviar Control+], esperar 1s, luego enviar Enter y luego Control+d
 Si quiero meterlo asociado en neovim al guardar el fichero main.py (para micropython)
 autocmd BufWritePost main.py !tmux send-keys -t 2 C-] && sleep 1 && tmux send-keys -t 2 Enter && tmux send-keys -t 2 C-d
 tmux send-keys -t 2 C-] && sleep 1 && tmux send-keys -t 2 Enter && tmux send-keys -t 2 C-d
+
+
+# xpanes
+Para dividir la pantalla y ejecutar un comando en cada pane
+https://github.com/greymd/tmux-xpanes
+
+xpanes -c "ping {}" 192.168.0.{1..9}
+xpanes -x -e "top" "vmstat 1" "watch -n 1 df"
+docker ps -q | xpanes -s -c "docker exec -it {} sh"

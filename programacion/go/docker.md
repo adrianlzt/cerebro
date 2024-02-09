@@ -1,5 +1,8 @@
 https://hub.docker.com/_/golang/
 
+Setear GOMAXPROCS si limitamos las CPUs
+https://www.riverphillips.dev/blog/go-cfs
+
 Para generar binarios
 docker run -it golang:1.6.2-alpine /bin/sh
 

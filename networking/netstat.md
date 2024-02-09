@@ -3,6 +3,8 @@ Mientras que netstat parsea /proc/net
 https://pcarleton.com/2018/05/31/netstat-vs-ss/
 https://github.com/shirou/gopsutil/issues/695
 
+Para netstat -s -> nstat
+
 
 Listening ports (tcp+udp+unix+ipv4+ipv6)
 netstat -nlp
@@ -61,4 +63,3 @@ Destino         Pasarela        Genmask         Indic   MSS Ventana irtt Interfa
 default         192.168.1.1     255.255.255.192 UG        0 0          0 wlan1
 default         192.168.1.1     255.255.255.128 UG        0 0          0 wlan1
 default         192.168.1.1     0.0.0.0         UG        0 0          0 wlan1
-
