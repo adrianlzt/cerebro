@@ -1,0 +1,6 @@
+foo.bar.es:443 foo.bar.tech:443 {
+  reverse_proxy :8501
+  basicauth {
+    assistify $2a$12$1dr79736wm/sXYty.fI2bWaJzOKsq04WHYC
+  }
+}
