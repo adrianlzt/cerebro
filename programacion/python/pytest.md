@@ -24,6 +24,10 @@ Cada test individual será una función que comience por `test_`
 En él podemos, entre otras cosas, definir fixtures globales.
 
 
+Obtener el listado de tests:
+pytest -q --collect-only
+
+
 
 # Test básico
 ejemplo_basico.py
@@ -57,6 +61,7 @@ pytest -vs "10_advanced_params-ception_test.py::test_advanced_fixtureception[d-4
 Los tests que matcheen la expresión:
 pytest -k foo
 pytest -k "foo or bar"
+pytest -k "SomeClass and someFunc"
 
 Selecionar usando marks:
 pytest -m db
