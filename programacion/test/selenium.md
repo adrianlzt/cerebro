@@ -23,6 +23,11 @@ Plugin para firefox que nos permite generar codigo que nos sirva como base para 
 
 
 # Docker
+Podemos tener un container standalone, sin que nos haga falta el hub:
+docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-firefox:4.17.0-20240123
+Point your WebDriver tests to http://localhost:4444
+
+
 https://github.com/SeleniumHQ/docker-selenium/wiki/Getting-Started-with-Hub-and-Nodes
 
 helm: https://github.com/SeleniumHQ/docker-selenium/tree/trunk/chart/selenium-grid
