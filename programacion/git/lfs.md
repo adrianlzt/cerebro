@@ -28,6 +28,9 @@ git lfs migrate
 Si queremos hacer un "git status" pero solo para lfs:
 git lfs status
 
+Bajar los ficheros (si no se hizo antes porque no teníamos lfs)
+git lfs fetch
+
 
 
 Los servidores de git deben implementar el soporte a LFS.
