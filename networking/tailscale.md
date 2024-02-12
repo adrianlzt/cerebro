@@ -31,6 +31,8 @@ Hace falta que la habiliten, mirar en Headscale.Routes
 Los clientes linux tienen que haber configurado que permiten aceptar rutas.
 sudo tailscale up --accept-routes
 
+### 4to6 / IPv4 overlapped
+https://tailscale.com/kb/1201/4via6-subnets
 
 
 # Headscale

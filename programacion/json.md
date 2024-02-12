@@ -1,3 +1,6 @@
+https://github.com/tailscale/hujson
+JSON con trailing comas y comentarios.
+
 Generador de JSONs: http://beta.json-generator.com/
 Se le puede pasar un template
 
