@@ -3,6 +3,10 @@ https://habr.com/en/company/postgrespro/blog/441962/
 https://www.highgo.ca/2020/06/22/types-of-indexes-in-postgresql/
 Enteder como funcionan los índices
 
+Como encontrar y borrar índices en deshuso
+https://twitter.com/samokhvalov/status/1734044926755967163?t=ISWtkkmqhT8tJcp-Lelazw
+
+
 \di
 \d index_name
 

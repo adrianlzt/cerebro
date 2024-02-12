@@ -9,3 +9,8 @@ Listado
 
 https://twitter.com/1littlecoder/status/1747976274537013606?t=OvNLDXvVXdtgT874F4nuGw
 https://github.com/collabora/WhisperSpeech
+
+https://news.ycombinator.com/item?id=38335255
+https://github.com/yl4579/StyleTTS2
+StyleTTS 2: Towards Human-Level Text-to-Speech through Style Diffusion and Adversarial Training with Large Speech Language Models
+StyleTTS2 – open-source Eleven-Labs-quality Text To Speech (github.com/yl4579)
