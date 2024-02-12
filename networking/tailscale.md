@@ -14,6 +14,23 @@ tailscale up --login-server <YOUR_HEADSCALE_URL>
 Si queremos una interfaz web para la admin local
 sudo tailscale web
 
+Rutas que configura tailscale
+ip route show table 52
+
+
+## Enrutar subredes
+Permitir forward
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
+
+Tenemos que pasar al "up" todo los parámetros que hayamos usado (si no lo hacemos, nos los mostrará para que los añadamos):
+tailscale up --login-server=https://headscale.azure.iometrics.io --advertise-routes=10.1.0.0/24
+Hace falta que la habiliten, mirar en Headscale.Routes
+
+Los clientes linux tienen que haber configurado que permiten aceptar rutas.
+sudo tailscale up --accept-routes
+
 
 
 # Headscale
@@ -33,6 +50,14 @@ headscale users list
 
 ## Nodos
 headscale nodes list
+
+## Rutas
+headscale routes list
+
+Habilitar una ruta que alguien ha expuesto
+headscale routes enable -r 1
+
+
 
 ## ACL
 https://headscale.net/acls/

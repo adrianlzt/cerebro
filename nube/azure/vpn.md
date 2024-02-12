@@ -10,6 +10,8 @@ Configuramos el Point-to-Point
   un CA cert público (será quien firme los certificados clientes)
   Download VPN client, nos baja un fichero .ovpn donde tenemos que meter el cert del cliente.
 
+Configuración con terraform (falta parte certificados cliente).
+https://gist.github.com/adrianlzt/86033b29559965de0c32b6782d448991
 
 
 # Site to site / vpn peering
