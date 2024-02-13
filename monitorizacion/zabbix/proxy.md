@@ -143,8 +143,9 @@ Se cogen según el orden por id.
 get_host_availability_data
 proxy_get_hist_data
   proxy_get_lastid: select nextid from ids where table_name='proxy_history' and field_name='history_lastid';
-  proxy_get_history_data
-    select id,itemid,clock,ns,timestamp,source,severity,value,logeventid,state,lastlogsize,mtime,flags from proxy_history where id>6 order by id limit 1000
+  proxy_get_history_data (en versiones recientes, 7.0beta, https://github.com/zabbix/zabbix/blob/ca1d720d15b5a42a1d9c16cef547543ee6648b7e/src/libs/zbxproxybuffer/pb_history.c#L125)
+    envía como máximo 1000 elementos, si hay más, muesta un mensaje (en modo debug)
+    select id,itemid,clock,ns,timestamp,source,severity,value,logeventid,state,lastlogsize,mtime,flags from proxy_history where id>6 order by id ( limit 1000 ) este limit creo que no va, pero solo envía 1000 como máximo
     Ese "id>6" será el valor que tenga almacenado en proxy_history.history_lastid (func proxy_get_lastid).
     previamente un trapper, por ejemplo, habrá insertado datos. Ejemplo de un LLD:
         insert into proxy_history (itemid,clock,ns,value) values (28877,1689850664,498430889,'{"data":[{"{#VAR}": "abc"}]}');
