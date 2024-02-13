@@ -62,7 +62,7 @@ $ python
 >>> import pdb
 >>> import programa
 >>> pdb.run('simple.main()')
-(Pdb) 
+(Pdb)
 
 Otra forma, metiendo un punto de parada en el programa:
 import pdb
@@ -118,6 +118,7 @@ q(uit)
 whatis # nos dice el tipo de una variable
 debug # recursive debugger (para que sirve?):w
 !comando python # no es necesario poner la exclamación si el comando no se parece a ninguno de los de pdb, pero es más comodo por seguridad
+interact saltar al repl
 
 
 Subir/bajar por el stack trace
