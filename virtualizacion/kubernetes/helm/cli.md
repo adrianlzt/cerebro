@@ -56,6 +56,8 @@ helm list --all
 helm status FOO
   estado de un deploy, fecha, namespace, status y el NOTES.txt
 
+helm history FOO
+  historial de despliegues, con los fallos
 
 helm delete nombre
   borra los objectos, pero deja el chart como "DELETED"
