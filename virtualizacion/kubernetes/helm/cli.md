@@ -50,7 +50,7 @@ helm package mychart
 
 
 helm list --all
-  muestra los charts desplegados
+  muestra los charts desplegados en el NS actual
   sin --all solo muestra las "DEPLOYED"
 
 helm status FOO

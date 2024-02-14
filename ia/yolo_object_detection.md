@@ -37,3 +37,5 @@ pip install "ultralytics[explorer]"
 
 
 ## Roboflow
+App web que nos permite crear datasets.
+También tiene un servicio de inferencia (creo).
