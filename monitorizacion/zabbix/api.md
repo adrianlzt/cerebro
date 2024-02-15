@@ -7,6 +7,9 @@ Codigo en frontends/php/include/classes/api/services
 https://github.com/red-tux/zbxapi
 
 # Python
+La oficial
+https://github.com/zabbix/python-zabbix-utils
+
 ## zabbix-gnomes
 https://github.com/q1x/zabbix-gnomes
 coleccion de scripts
