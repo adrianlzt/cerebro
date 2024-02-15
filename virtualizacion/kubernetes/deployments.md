@@ -1,7 +1,7 @@
 # Scale
 kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
 
-# Redeploy with latest
+# Redeploy with latest / restart container
 https://github.com/kubernetes/kubernetes/issues/33664
 
 k8s 1.15:
