@@ -17,6 +17,10 @@ terraform state list
 terraform state show google_iap_brand.default
   mostrar un elemento
 
+Si queremos ver una "sensitive value" haremos:
+https://devops.stackexchange.com/a/17379
+terraform show -json | jq ...
+
 
 
 # Backend
