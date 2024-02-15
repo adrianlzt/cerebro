@@ -33,6 +33,14 @@ The ACME protocol (RFC 8555) defines an external account binding (EAB) field tha
 https://certbot.eff.org/docs/using.html
 Utilidad para obtener un cert de Let’s Encrypt usando el protocolo ACMEv2 (https://tools.ietf.org/html/rfc8555)
 
+## Snap
+snap install --classic certbot
+Mete un timer de systemd en vez de un cron
+
+systemctl list-timers snap.certbot.renew.timer
+
+
+## yum
 yum install certbot
 certbot certonly --webroot-path /var/www/html/ --email email@mail.com -d domain.com --preferred-challenges http -n --webroot
 Usando el puerto 80 (http) y usando webroot
@@ -54,6 +62,19 @@ _acme-challenge.dominio.com
 DNS+Docker
 mkdir etc var
 docker run -it --rm --name certbot -v "$PWD/etc:/etc/letsencrypt" -v "$PWD/var:/var/lib/letsencrypt" certbot/certbot --no-eff-email --agree-tos -m MIEMAIL@DOMINIO.COM --manual-public-ip-logging-ok -d MI.DOMINIO.COM --manual --preferred-challenges dns certonly
+
+
+### Delegar DNS a otra zona
+https://community.letsencrypt.org/t/trusted-ssl-for-private-networks/149663/4
+https://docs.certbot-dns-azure.co.uk/en/latest/#dns-delegation
+  buena explicación
+
+Since Let’s Encrypt follows the DNS standards when looking up TXT records for DNS-01 validation, you can use CNAME records or NS records to delegate answering the challenge to other DNS zones.
+
+Podemos delegar con un CNAME para que la verificación del domino foo.com no se haga en _acme-challenge.foo.com si no en otra zona.
+
+_acme-challenge.sub.domain.com CNAME somethingelse
+
 
 
 
