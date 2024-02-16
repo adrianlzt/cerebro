@@ -12,10 +12,12 @@ ip a
 
 Rutas:
 ip route
+  solo muestra la tabla main
+ip route show table all
 ip r
   Mirar porque ruta salimos a una determinada IP:
     ip route get <ip>
-  
+
   Añadir ruta
     ip route add {NETWORK/MASK} via {GATEWAYIP}
     ip route add {NETWORK/MASK} dev {DEVICE}
@@ -78,7 +80,7 @@ ip n add {IP-HERE} lladdr {MAC/LLADDRESS} dev {DEVICE} nud {STATE}
    neighbour state (nud)	meaning
    permanent			The neighbour entry is valid forever and can be only be removed administratively
    noarp			The neighbour entry is valid. No attempts to validate this entry will be made but it can be removed when its lifetime expires.
-   stale			The neighbour entry is valid but suspicious. 
+   stale			The neighbour entry is valid but suspicious.
    				This option to ip neigh does not change the neighbour state if it was valid and the address is not changed by this command.
    reachable			The neighbour entry is valid until the reachability timeout expires.
 
@@ -136,7 +138,7 @@ ip link set mtu {NUMBER} dev {DEVICE}
 
 
 
-Interfaces 
+Interfaces
 ip link / ip l
 ip link ls up <- interfaces lenvantadas
 ip l set eth1 down
