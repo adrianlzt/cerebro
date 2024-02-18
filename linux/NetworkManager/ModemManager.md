@@ -22,6 +22,8 @@ mmcli -m 0
 
 El output se puede sacar en formato JSON (-J) o key-value (-K)
 
+Mirar ahora "Integración con NetworkManager" para configurar el APN.
+
 
 # GSM/3G/4G
 Escanear redes:

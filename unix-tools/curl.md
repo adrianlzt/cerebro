@@ -235,3 +235,8 @@ curl -u user@mail.com:secretpassword -v pop3s://mail.server.com/
 
 # HTTP socket
 curl -I --unix-socket /run/gunicorn.sock http://localhost
+
+
+# Interface
+Enviar el paquete por una interfaz determinada
+curl --interface wwan0 eth0.me

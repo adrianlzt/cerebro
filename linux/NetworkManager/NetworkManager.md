@@ -90,6 +90,8 @@ save
 ```
 
 nmcli c up orange
+nmcli con show orange
+  abajo del todo tendremos la IP y DNS
 
 
 # Editar una red existente, cambiando ipv4 fixed por dhcp
