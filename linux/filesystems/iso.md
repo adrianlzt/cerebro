@@ -10,7 +10,7 @@ sudo mount -o loop rhel-server-6.3-x86_64-dvd.iso /mnt/
 
 Create iso:
 http://www.ispexperts.com.np/?p=650
-mkisofs -r -o /fully-qualified-file-name-of-iso-image.iso /name-of-directory-containing-files-to-format-into-iso-image 
+mkisofs -r -o /fully-qualified-file-name-of-iso-image.iso /name-of-directory-containing-files-to-format-into-iso-image
 
 
 Descomprimir iso
@@ -33,3 +33,12 @@ mkisofs -o CentOS-7.0-1406-x86_64-DVD.iso -b isolinux/isolinux.bin -c isolinux/b
 genisoimage -l -r -J -V "ARCH_201209" -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -c isolinux/boot.cat -o ../arch-custom.iso ./
 
 
+
+
+# .img files
+fdisk -l fichero.img
+
+Multiplicar el tamaño de sector por el inicio de la partición y luego usar:
+mount -o loop,offset=65536 Stick.img /mnt/tmp
+
+https://www.linuxquestions.org/questions/linux-general-1/how-to-mount-img-file-882386/
