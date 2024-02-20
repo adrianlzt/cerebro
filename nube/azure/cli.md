@@ -10,6 +10,9 @@ az version
 Para loguearnos
 az login
 
+Login con una ServicePrincipal:
+az login --service-principal -u 694 -p "RuB" --tenant 31f34
+
 Suscripciones:
 az account list -o table
 
