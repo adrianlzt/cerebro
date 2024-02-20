@@ -68,6 +68,8 @@ kc create secret tls NOMNRE --cert certs/cert.pem --key certs/cert.key
           - key: service-account-key
             path: key.json
 
+Podemos no poner la sección de "items" y montará cada parte del secret en un fichero distinto.
+
 
 # Kustomize
 https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-from-generator

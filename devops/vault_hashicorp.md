@@ -503,6 +503,8 @@ COMP_CWORD=3 COMP_LINE="vault kv get gopass/wi" COMP_POINT=24 vault
 vault status
 vault status -tls-skip-verify
 
+VAULT_SKIP_VERIFY=true vault ...
+
 
 ## Crear new vault server
 vault operator init -key-shares=1 -key-threshold=1
