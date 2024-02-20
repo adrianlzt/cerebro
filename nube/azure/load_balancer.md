@@ -25,3 +25,16 @@ https://github.com/shibayan/keyvault-acmebot
 Automated ACME SSL/TLS certificates issuer for Azure Key Vault (App Gateway / Front Door / CDN / others)
 
 Necesita acceso a la gestión de la zona DNS, ya que la usará para validar los challengues contra el proveedor de certificados (creará el registro TXT necesario para el dominio que pidamos).
+
+## Esquema de la distintas partes
+
+Frontend IP configurations: donde se configuran las IPs donde escucha
+
+Listeners (vhost): puertos donde escucha, asociado a un frontend IP. Aquí es donde se configura el certificado (en caso de TLS) y los hostnames a los que contestará
+
+Rules: como enrutar desde los listeners hacia los backends. Aquí se pueden poner reglas para decidir a que backend enviar según un path, etc.
+
+Backend pools: a donde enviar el tráfico (VMs, IPs, domains, App Service, etc)
+Backend settings: para definir el puerto y protocolo del backend y el health check a usar. Affinity y otras cosas.
+
+Health probes: sondas para comprobar los backends.
