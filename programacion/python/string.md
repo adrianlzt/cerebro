@@ -280,3 +280,10 @@ b'a string'
 http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
 
 Buscar cadenas parecidas
+
+
+# textwrap / limitar ancho
+import textwrap
+textwrap.fill(msg, width=100)
+
+Meterá "\n" cuando sea conveniente, evitando cortar palabras.
