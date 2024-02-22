@@ -72,3 +72,55 @@ headscale routes enable -r 1
 https://headscale.net/acls/
 
 Si configuramos la opción de ACL, por defecto nada conectará con nada.
+
+## exit-node
+https://tailscale.com/kb/1103/exit-nodes
+
+Enrutar todo el tráfico hacia internet por un nodo de la tailnet.
+
+Hace falta configurar sysctl y firewalld para que pueda enrutar tráfico.
+El nodo también debe advertirse como  exit-node
+tailscale set --advertise-exit-node
+
+Hace falta aceptarlo en la interfaz web.
+
+A partir de ese momento otros nodos podrán verlo:
+tailscale exit-node list
+
+Para hacer que un nodo salga por un exit-node determinado:
+tailscale set --exit-node=NOMBRE_NODO --exit-node-allow-lan-access
+  generalmente querremos poner el exit-node-allow-lan-access para poder seguir accediendo a nuestra LAN
+
+Para desactivarlo:
+tailscale set --exit-node=
+
+
+## Serve
+Exponer servicios locales al resto de la tailnet.
+Monta un server https delante con un cert válido.
+
+
+## Funnel
+Exponer servicios locales a internet, estilo ngrok
+
+tailscale funnel 8000
+Levanta un server https redirigido a ese puerto.
+
+tailscale funnel https+insecure://localhost:8443
+Para enviar tráfico a un http inseguro local.
+
+## SSH
+Tailscale levanta un server ssh en la ip de tailscale.
+Como dentro de la tailnet ya estamos autenticados, no hace falta el intercambio de claves típico de ssh, nos dejará acceder según la ACL que tengamos configurado.
+
+Tenemos que permitirlo en las máquinas que queramos acceder via ssh
+tailscale set --ssh
+
+
+### Record session
+https://tailscale.com/kb/1246/tailscale-ssh-session-recording
+
+Enviar una grabación de las sesiones ssh a otro nodo de la tailnet.
+
+tailscale ssh maquina
+  si el user es distinto tendremos que hacer user@maquina
