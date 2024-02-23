@@ -28,3 +28,11 @@ az storage directory create --account-name aaagroupb79c --share-name data -n foo
 
 Subir un directorio (sube el contenido de foo):
 az storage file upload-batch --account-name groupb79c --destination data --source foo/
+
+
+### Containers
+az storage container list --account-name XXX --account-key XXX
+
+
+az storage blob list --container-name vault --account-name XXX --account-key XXX
+az storage blob delete --container-name vault --account-name XXX --account-key XXX --name FOO
