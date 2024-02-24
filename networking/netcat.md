@@ -72,3 +72,7 @@ ncat -kl 8446 --ssl  -c 'tee /dev/stderr | ncat -v --ssl 127.0.0.1 8445 | tee /d
 
 Proxy, lo que llegue al puerto 12345 lo envio a google.com
 nc -l 12345 0<backpipe | nc www.google.com 80 1>backpipe
+
+
+# Forzar el puerto origen
+nc -p NN IPdestino puertodestino

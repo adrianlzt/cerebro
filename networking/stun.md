@@ -1,3 +1,5 @@
+Para más detalle sobre NAT transversal mirar nat.md
+
 # STUN
 Es un protocolo que se usa para descubrir nuestra ip pública y un puerto que el NAT nos haya asociado.
 Luego los clientes usan esa información para comunicarse directamente.

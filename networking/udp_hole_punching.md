@@ -1,3 +1,5 @@
+Para más detalle mirar nat.md
+
 http://web.archive.org/web/20070629165848/http://www.heise-security.co.uk/articles/82481
 https://www.cyberciti.biz/tips/howto-linux-iptables-bypass-firewall-restriction.html
 Comunicación directa entre nodos detrás de un NAT
