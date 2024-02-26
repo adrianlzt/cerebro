@@ -665,6 +665,8 @@ vault write ssh-client-signer/config/ca \
     private_key="..." \
     public_key="..."
 
+Obtener la clave pública:
+vault read ssh-client-signer/public_key -format=raw
 
 La clave pública que genera la configuraremos como TrustedUserCAKeys en los servidores donde queramos acceder.
 /etc/ssh/sshd_config.d/trusted_user_ca.conf
