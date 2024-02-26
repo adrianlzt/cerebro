@@ -3,6 +3,9 @@ https://wiki.archlinux.org/title/Nix
 
 Declarative builds and deployments.
 
+Ejemplo de proyecto que lo usa
+https://github.com/juanfont/headscale
+
 # Install
 yay nix zsh-nix-shell nix-zsh-completions
   el segundo paquete es para que los nuevos entornos usen zsh en vez de bash
