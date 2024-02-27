@@ -168,6 +168,9 @@ ipn es como "tailscale status"
 magicsock tiene bastante info interna sobre a donde estamos conectando, latencias, etc
 
 
+Si queremos sacar el MapResponse (toda la info que le envía el server central al nodo), podemos configurar
+TS_DEBUG_MAP=true
+
 
 # Low level
 Donde tailscaled guarda los perfiles y su información.
