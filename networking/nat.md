@@ -45,6 +45,7 @@ Para saber que tipo de nateo tenemos mirar stun.md
 
 
 # NAT transversal
+Para más detalle sobre NAT transversal mirar nat.md
 Artículo con mucho detalle: https://tailscale.com/blog/how-nat-traversal-works
 
 Aquí se recogen las técnicas para interconectar nodos que se encuentran detrás de firewalls y/o NAT.

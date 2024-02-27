@@ -11,6 +11,9 @@ ff02::/16: Direcciones de redes IPv6 Multicast. Equivalentes a las  (224.X) en r
 ff02::2 -> all router multicast
 
 fc00::/7: Son las direcciones para redes IPv6 privadas. Estas direcciones tampoco son enrutables en Internet y son equivalentes a 10.X, 172.16.X y 192.168.X en redes IPv4
+A estas direcciones se las llama ULA.
+Para generar direciones de ese rango:
+https://cd34.com/rfc4193/
 
 ::ffff:0:0/96: Direcciones IPv4 mapeadas en IPv6. Se utilizan para conversiones e interconexiones de protocolos IPv4 e IPv6.
 
@@ -20,8 +23,8 @@ fc00::/7: Son las direcciones para redes IPv6 privadas. Estas direcciones tampoc
 
 2001::/32: Usado por el protocolo de túneles Teredo que permite hacer tunneling IPv6 sobre redes IPv4 en Internet. Este sistema es el que se utiliza a la hora de implementar Direct Access en Windows Server 2008 R2 y Windows 7.
 
-2001:2::/48: Asignado a Benchmarking Methodology Working Group (BMWG) para comparativas (benchmarking) en IPv6 (similar a la red 198.18.0.0/15 para comparativas en IPv4). 
+2001:2::/48: Asignado a Benchmarking Methodology Working Group (BMWG) para comparativas (benchmarking) en IPv6 (similar a la red 198.18.0.0/15 para comparativas en IPv4).
 
-2001:10::/28: ORCHID (Overlay Routable Cryptographic Hash Identifiers). Direcciones IPv6 no-enrutables usadas para identificadores criptográficos Hash. 
+2001:10::/28: ORCHID (Overlay Routable Cryptographic Hash Identifiers). Direcciones IPv6 no-enrutables usadas para identificadores criptográficos Hash.
 
 2001:db8::/32: Direcciones utilizadas para documentación o ejemplos IPv6. Similar a las redes 192.0.2.0/24, 198.51.100.0/24 y 203.0.113.0/24 en IPv4.

@@ -17,3 +17,7 @@ user@host:~$ subnetcalc 2401:3800:c001::68
 
 Which are the MAC address and Solicited Node Multicast address of 2001:638:501:4ef8:223:aeff:fea4:8ca9/64?
 user@host:~$ subnetcalc 2001:638:501:4ef8:223:aeff:fea4:8ca9/64
+
+
+# Generar direcciones IP privadas
+https://cd34.com/rfc4193/
