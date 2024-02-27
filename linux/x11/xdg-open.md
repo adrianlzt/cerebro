@@ -70,3 +70,6 @@ https://github.com/Browsers-software/browsers
 
 Pequeña app gtk para poder elegir el browser cuando X11 quiera abrir un link.
 Se pueden poner reglas para que para ciertas URLs abra siempre el mismo.
+
+Config
+~/.config/software.Browsers/config.json
