@@ -710,6 +710,14 @@ Ver datos de la clave firmada:
 ssh-keygen -Lf /tmp/foo
 
 
+Para navegar por los roles de un ssh mount:
+vault list datadope-ssh/roles/
+
+Detalles:
+vault read datadope-ssh/roles/datadope-vault-vm
+
+
+
 # Share secrets
 https://developer.hashicorp.com/vault/tutorials/secrets-management/cubbyhole-response-wrapping
 
