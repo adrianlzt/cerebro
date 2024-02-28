@@ -352,29 +352,7 @@ For example, you could use this function to enable playing a periodic beep sound
 https://wiki.asterisk.org/wiki/display/AST/Extension+State+and+Hints
 
 Para conocer el estado de una extensión.
-
 core show hints
-
-# Troubleshooting / debug
-https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
-
-core set verbose 4
-core set debug 4
-pjsip set logger on
-  trazas de señalizacioń SIP (protocolo similar a HTTP)
-rtp set debug on
-  para ver como navegan los paquetes RTP cuando pasan por asterisk (si es que así lo tenemos configurado con direct_media=no) Podemos ver de donde vienen y a donde se envían.
-
-## Borrar contactos asociados a un AOR
-Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
-Veremos el error:
-res_pjsip_registrar.c:769 register_aor_core: Registration attempt from endpoint 'pepe' (192.168.1.82:56948) to AOR 'pepe' will exceed max contacts of 1
-
-Encontrar el contacto en la db:
-database show
-
-Borrarlo:
-database del registrar/contact 101;@949152fdbe7da2c56519bf9b4985c047
 
 
 # ASR / TTS
@@ -426,3 +404,36 @@ Hay que añadir los paises en el outbound voice profile que tengamos asignado al
 También hace falta añadir el Caller ID Number (CID) correcto:
 https://support.telnyx.com/en/articles/3546251-caller-id-number-policy
 https://portal.telnyx.com/#/app/numbers/verified-numbers
+
+
+
+# Troubleshooting / debug
+https://wiki.asterisk.org/wiki/display/AST/Asterisk+PJSIP+Troubleshooting+Guide
+
+core set verbose 4
+core set debug 4
+pjsip set logger on
+  trazas de señalizacioń SIP (protocolo similar a HTTP)
+rtp set debug on
+  para ver como navegan los paquetes RTP cuando pasan por asterisk (si es que así lo tenemos configurado con direct_media=no) Podemos ver de donde vienen y a donde se envían.
+
+## Borrar contactos asociados a un AOR
+Esto nos puede suceder cuando un teléfono ha creado automáticamente el contacto y por lo que sea luego cambia algo y no puede volver a registrarse.
+Veremos el error:
+res_pjsip_registrar.c:769 register_aor_core: Registration attempt from endpoint 'pepe' (192.168.1.82:56948) to AOR 'pepe' will exceed max contacts of 1
+
+Encontrar el contacto en la db:
+database show
+
+Borrarlo:
+database del registrar/contact 101;@949152fdbe7da2c56519bf9b4985c047
+
+
+## Busy / congested
+Everyone is busy/congested at this time (1:0/1/0)
+
+Esos nuḿeros del final son: busy/congested/unavailable
+
+Problemas con usuarios TCP vs UDP?
+En el pjsip_wizard.conf tenía como transport "udp", por lo que solo aceptaba clientes tcp. En este caso pyVOIP solo soporta UDP, por lo que no podía recibir llamadas.
+Cambiando a UDP (pyVOIP y clientes) funciona.

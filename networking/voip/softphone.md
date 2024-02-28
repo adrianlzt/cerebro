@@ -11,7 +11,7 @@ linphone (android, también tiene appimage para linux)
   aur/linphone-desktop-appimage
   Lo conseguí conectar a un asterisk local tras varias pruebas.
     dirección sip: sip:adri-movil@172.17.0.1
-    server sip: <sip:172.17.0.1;transport=tcp>
+    server sip: <sip:172.17.0.1;transport=tcp> (con udp también me funciona)
     no publicar info presencia
     no activar ice
     En red, cambiados los puertos de SIP UDP/TCP a 5601
