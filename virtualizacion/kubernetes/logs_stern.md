@@ -1,4 +1,10 @@
 https://github.com/stern/stern
+deprecated
+
+Ahora bajarlo de aquí y meterlo en nuestro path
+https://github.com/stern/stern/releases
+Usarlo direcatametne como stern
+
 
 kubectl krew install stern
 
@@ -11,3 +17,7 @@ Tail the pods filtered by run=nginx label selector across all namespaces
 stern --all-namespaces -l run=nginx
 
 kc stern --tail 40 -l app=foo
+
+
+Todos los pods, solo últimas 40 líneas, sin intercalar líneas de pods
+stern . --tail 40 --no-follow --max-log-requests 1

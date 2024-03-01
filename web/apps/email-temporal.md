@@ -1,5 +1,7 @@
 http://temp-mail.org/es/
 https://www.mailinator.com/  permite recibir correos antes de generar el correo
+  https://www.mailinator.com/v4/public/inboxes.jsp?to=test_user
+  test_user@mailinator.com
 https://10minutemail.com/
 
 https://zemail.me/mailbox
