@@ -14,6 +14,11 @@ kubectl krew install sniff
 Use:
 kubectl sniff <POD_NAME>
 
+Si no me copia el bin de tcpdump, hacerlo a mano:
+kc cp /home/adrian/.krew/store/sniff/513b04c6a63a287e9566c28a9d72fdd8d06c6aa0ab8eb30e5303923c97701ab8/static-tcpdump POD:/tmp/
+
+Y luego reejecutar el sniff
+
 
 # inspektor gadget
 https://github.com/kinvolk/inspektor-gadget
