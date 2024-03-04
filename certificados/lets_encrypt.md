@@ -1,3 +1,6 @@
+caddy también puede hacer esta función.
+Mirar web/caddy/certificados.md
+
 # Web
 Cliente web para generar el cert.
 https://gethttpsforfree.com/

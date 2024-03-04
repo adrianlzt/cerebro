@@ -150,6 +150,10 @@ firewall-cmd --permanent --zone=public --add-port=30000-33000/udp
 Creo que hace falta recargar para coger la conf:
 firewall-cmd --reload
 
+Quitar reglas:
+firewall-cmd --zone=public --remove-port=2380/tcp --permanent
+
+
 
 ## Filtrar por IPs y puertos
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source

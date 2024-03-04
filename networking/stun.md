@@ -26,6 +26,27 @@ stun.voxgratia.org
 Cuando no es posible la conexión usando STUN (el firewall o nat bloquea las conex entrantes con otro origen, symmetric nat) usaremos TURN.
 Este servidor hará de intermediario en la conexión.
 
+Servidor de código abierto:
+https://github.com/coturn/coturn
+
+Para configurar usuarios activar lt-cred-mech
+Hace falta definir el "realm" (si no usamos ninguna db):
+realm=dominio.com
+Y luego definir los usuarios:
+user=USER:PASSWORD
+O con la clave encritada, usando turnadmin (mirar ejemplo en fichero de config).
+
+
+Si no queremos auth activar: no-auth
+
+Para testear servidores STUN y TURN:
+https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
+
+Tambien coturn viene con una cli para testear.
+pacman -S coturn
+
+turnutils_uclient -y -u USER -w PASSWORD turn.dominio.com
+
 
 # Python
 https://github.com/node/turn-client
