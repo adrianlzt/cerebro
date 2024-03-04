@@ -23,3 +23,31 @@ Llamar a la API
 curl -XPUT https://management.azure.com/subscriptions/${subscription_id}/resourceGroups/${resource_group_name}/providers/Microsoft.AzureActiveDirectory/b2cDirectories/${aad_b2c_name}.onmicrosoft.com?api-version=2023-01-18-preview \
     -H "Authorization: Bearer ${access_token}" -H "Content-Type: application/json" \
     -d '{ "location": "United States", "sku": { "name": "Standard", "tier": "A0" }, "properties": { "createTenantProperties": { "displayName": "PruebaAdriB2CDir", "countryCode": "US", "isGoLocalTenant": true } } }'
+
+
+# Python
+https://pypi.org/project/msgraph-sdk/
+
+Ejemplo:
+```
+import asyncio
+from msgraph import GraphServiceClient
+from azure.identity.aio import ClientSecretCredential
+
+tenantID  = "xxxxxbd0-046c-xxxx-87b6-xxxxxxxxxf68"
+clientID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+clientSecret = "Rxxxx~Y5gGxxxxAb~Sc1oV1f6Exxxxh2kJxxxxgV"
+
+credentials = ClientSecretCredential(tenantID, clientID, clientSecret)
+scopes = ['https://graph.microsoft.com/.default']
+
+graph_client = GraphServiceClient(credentials, scopes)
+
+# result = graph_client.identity.b2c_user_flows.by_b2c_identity_user_flow_id('b2cIdentityUserFlow-id').user_attribute_assignments.get()
+
+async def get_user_flow():
+    result = await graph_client.identity.b2x_user_flows.by_b2x_identity_user_flow_id('b2cIdentityUserFlow-id').user_attribute_assignments.get()
+    print(result)
+
+asyncio.run(get_user_flow())
+```
