@@ -31,7 +31,7 @@ https://pypi.org/project/msgraph-sdk/
 Ejemplo:
 ```
 import asyncio
-from msgraph import GraphServiceClient
+from msgraph_beta import GraphServiceClient
 from azure.identity.aio import ClientSecretCredential
 
 tenantID  = "xxxxxbd0-046c-xxxx-87b6-xxxxxxxxxf68"
