@@ -1,3 +1,7 @@
+https://huggingface.co/coqui/XTTS-v2
+https://huggingface.co/spaces/coqui/xtts
+
+
 Bark unleashed debería ser capaz, pero en los foros dicen que no funciona. Ejecución local.
 
 Elevenlabs, pero solo en inglés por ahora. Via API.
