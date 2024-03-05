@@ -42,6 +42,9 @@ Si no queremos auth activar: no-auth
 Para testear servidores STUN y TURN:
 https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
 
+Si queremos forzar a que vaya por tcp lo debemos especificar:
+turn:turn.dominio.es:3478?transport=tcp
+
 Tambien coturn viene con una cli para testear.
 pacman -S coturn
 
