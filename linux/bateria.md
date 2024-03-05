@@ -3,6 +3,7 @@ para actuar ante eventos de bateria
 Configuración:
 xfce4-power-manager --customize
 
+upower -i /org/freedesktop/UPower/devices/battery_BAT0
 
 sudo apt-get install acpi
 watch --interval=5 acpi -V
