@@ -59,9 +59,15 @@ audio_sf = sf.SoundFile(file=io.BytesIO(audio_bytes), format='RAW', samplerate=1
 Podemos luego guardarlo cambiando el subtype:
 sf.write("prueba_piper_8k_8b.wav", waveform, 16000, subtype="PCM_U8")
 
-Este "waveform" será una lista de numpy.float32 (supongo que valdrán otros tipos de float) con valores entre -1 y 1.
+Este "waveform" puede ser una lista de numpy.float32 (supongo que valdrán otros tipos de float) con valores entre -1 y 1.
+Creo que también puede ser un numpy.array.
 
 El samplerate debe coincidir.
 Si queremos modificar el samplerate podemos usar:
 import resampy
 waveform_8khz = resampy.resample(waveform, 16000, 8000)
+
+resampy espera que waveform sea un numpy.array, no una lista de numpy.float32.
+
+Para convertir una lista de numpy.float32 a numpy.array:
+waveform = np.array(waveform)
