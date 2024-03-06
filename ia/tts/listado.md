@@ -3,6 +3,11 @@ listado con muchas opciones, pero sin casi descripción
 
 https://pypi.org/project/TTS/
 https://huggingface.co/coqui/XTTS-v2
+lento?
+
+https://multilingualtoucan.github.io/
+la voz parece bastante falta en sus muestras
+
 
 https://rhasspy.github.io/piper-samples/
 Parece una muy buena opción.
