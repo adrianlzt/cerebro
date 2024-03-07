@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import sys
 from login import login_check
 
 class Main:

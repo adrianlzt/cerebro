@@ -17,7 +17,8 @@ https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application
 
 # Usuarios
 https://rtfm.co.ua/en/argocd-users-access-and-rbac/
-Se hace editando el CM argocd-cm
+Si queremos usuarios locales, se hace editando el CM argocd-cm.
+Luego podemos configurar oauth contra distintos IdPs.
 
 Para cambiar la password:
 argocd account update-password --account readonly
