@@ -121,3 +121,22 @@ all: # keys must be unique, i.e. only one 'hosts' per group
                 test1 # same host as above, additional group membership
             vars:
                 last_var: MYVALUE
+
+Otro ejemplo:
+```
+robot:
+  hosts:
+    staging-agent-wr01.staging.azure.foo.co:
+scenario:
+  hosts:
+    staging-agent-ws01.staging.azure.foo.co:
+agents:
+  children:
+    webrobot:
+    webrobot_advanced:
+    webscenario:
+  vars:
+    ansible_ssh_private_key_file: ~/.ssh/saas.key
+    ansible_user: ubuntu
+    env: staging
+```
