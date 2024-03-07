@@ -731,6 +731,7 @@ Desde la web también se puede hacer. En tools también podemos generar un wrapp
 
 
 Obtenemos el wrapped token, ejemplos para cubbyhole y kv:
+vault write cubbyhole/pepe foo=bar
 vault read -wrap-ttl=5m cubbyhole/pepe
 vault kv get -wrap-ttl=120 kv/dev
 vault read -wrap-ttl=5m -field=wrapping_token cubbyhole/pepe
