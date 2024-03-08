@@ -2,6 +2,7 @@ https://variwiki.com/index.php?title=Wifi_NetworkManager#Creating_WiFi_AP
 
 nmcli con add type wifi ifname wlan0 mode ap con-name <name> ssid <ssid>
 nmcli con modify <name> 802-11-wireless-security.key-mgmt wpa-psk
+nmcli con modify <name> 802-11-wireless-security.psk <passphrase>
 nmcli con modify <name> ipv4.method shared
 
 nmcli con modify <name> 802-11-wireless.band bg
