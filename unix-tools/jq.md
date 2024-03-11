@@ -161,3 +161,9 @@ cat hosts.json| jq '. + { "status": .ctime | strftime("%Y-%m-%d %H:%M:%S UTC") }
 # Single line
 Convertir los elementos de un array a una línea por elemento
 cat hosts.json | jq -c '.[]'
+
+
+# Custom output format
+De una lista de diccionarios, generar una cadena por cada uno:
+invoke-safeguard-method.sh -s core -U AccessRequests | jq -r '.[] | "bash new-access-request.sh -s \(.AssetId) -c \(.AccountId) -y ssh # \(.AccountAssetName)"'
+
