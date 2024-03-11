@@ -21,7 +21,7 @@ ip route show table 52
 
 
 Cambiar entre cuentas:
-tailscale --set nickname=foo
+tailscale set --nickname foo
 tailscale login --nickname=bar
 tailscale switch foo
 tailscale switch bar
