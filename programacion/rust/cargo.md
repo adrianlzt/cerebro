@@ -14,3 +14,6 @@ cargo b
 cargo add nombre_crate
 
 En el siguiente cargo run/build se bajará el crate y sus dependencias.
+
+Algunas dependencias pueden tener "features" que se pueden añadir:
+cargo add nombre_crate --features "feature1 feature2"
