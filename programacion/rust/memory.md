@@ -20,3 +20,5 @@ Definir una referencia mutable:
 let mut s1 = String::from("hello");
 let s1_ref = &mut s1;
 ```
+
+Si hago un mutable borrow, la variable "original" no la podré usar (cuando la intento usar la considera un borrow y dice que ya no puedo usarla).
