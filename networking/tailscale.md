@@ -37,6 +37,9 @@ Tenemos que pasar al "up" todo los parámetros que hayamos usado (si no lo hacem
 tailscale up --login-server=https://headscale.azure.iometrics.io --advertise-routes=10.1.0.0/24
 Hace falta que la habiliten, mirar en Headscale.Routes
 
+Podemos advertir rutas dentro de otras rutas y así poder afinar en las ACLs.
+Por ejemplo, podemos advertir 10.1.0.0/16 para que entren un grupo de usuarios y luego advertir 10.1.1.200/32 para que entre un usuario en concreto.
+
 Los clientes linux tienen que haber configurado que permiten aceptar rutas.
 sudo tailscale up --accept-routes
 
