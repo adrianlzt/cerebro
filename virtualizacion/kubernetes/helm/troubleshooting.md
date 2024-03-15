@@ -3,4 +3,7 @@ Si vemos esto seguramente es porque alguno de los elementos no está consiguiend
 Tal vez un pod "Pending", o un svc/LoadBalancer?
 Tal vez pods con PVC no resueltos?
 
-usar "helm status" para que nos devuelva el estado de los objetos creados
+usar "helm status <release_name>" para que nos devuelva el estado de los objetos creados
+
+Para saber el error:
+helm history <release_name>
