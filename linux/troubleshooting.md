@@ -11,3 +11,6 @@ Ver que no hay ningún fichero tocado a mano:
 
 Algún agente de seguridad instalado?
 En un caso era un agente (ds_agent, de Trend micro), que tiraba los paquetes por hacer match en una de las reglas que tenía configurada.
+
+Las fechas del sistema están bien?
+Tenemos ficheros en el futuro?
