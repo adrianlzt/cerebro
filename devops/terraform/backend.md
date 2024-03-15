@@ -21,6 +21,9 @@ Si queremos ver una "sensitive value" haremos:
 https://devops.stackexchange.com/a/17379
 terraform show -json | jq ...
 
+Para buscar podemos usar:
+terraform show -json | gron | grep foo
+
 
 
 # Backend
