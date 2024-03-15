@@ -13,3 +13,5 @@ tolist([
 
 Podemos arrancarlo donde tengamos un deployment y consultar variables:
 > vars.apps.foo
+
+Parece que si llamo a un módulo, solo puedo trabajar con sus ouputs.
