@@ -28,3 +28,13 @@ Hay dos tipos de crates:
 
 ## Versiones
 ^0.1.1: esto es 0.1.x, es decir, sin romper compatibilidad al subir el major.
+
+
+# Update
+Si usamos "cargo update", ignorará el Cargo.lock y actualizará las dependencias a las últimas versiones compatibles.
+
+
+# Doc local
+cargo doc --open
+
+Build documentation provided by all your dependencies locally
