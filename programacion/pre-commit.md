@@ -15,6 +15,10 @@ Desactivarlo para un commit en concreto:
 git commit --no-verify ...
 git commit -n ...
 
+Ejecutarlo a mano
+pre-commit run --all-files --force
+
+
 
 # Global
 Podemos ponerlo también a nivel global.
