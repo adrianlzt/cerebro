@@ -7,3 +7,8 @@ usar "helm status <release_name>" para que nos devuelva el estado de los objetos
 
 Para saber el error:
 helm history <release_name>
+
+Si da un timeout, hacer un:
+kubectl get all
+
+Mirar si hay algo pending.
