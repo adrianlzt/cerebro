@@ -9,6 +9,11 @@ let mut x = 5;
 ```
 
 # Tipos de variables
+integers numbers
+floating-point numbers
+booleans
+characters
+
 i32, a 32-bit number
 u32, an unsigned 32-bit number
 i64, a 64-bit number
@@ -35,3 +40,13 @@ let uno = 1;  // esto normalmente sería un i32, pero como luego interactúa con
 let num: i64 = 14;
 let otro = num + uno;
 ```
+
+
+# Shadowing
+Podemos redefinir una variable con el mismo nombre, y Rust lo considerará como una nueva variable.
+Un uso típico es para convertir entre tipos de variables.
+```rust
+let body_length = "5";
+let body_length: i32 = body_length.trim().parse().expect("Please type a number!");
+```
+
