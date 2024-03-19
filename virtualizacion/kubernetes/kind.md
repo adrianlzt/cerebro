@@ -30,6 +30,8 @@ https://projectcontour.io/kindly-running-contour/
 kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
 Crea las cosas en el ns projectcontour
 
+No lo terminé de probar.
+
 
 ## LoadBalancer
 No tiene https://github.com/kubernetes-sigs/kind/issues/702
