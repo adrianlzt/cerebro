@@ -27,6 +27,10 @@ También podemos atacar a la IP del contenedor de kind, a uno de los puertos "in
 ## Ingress
 https://projectcontour.io/kindly-running-contour/
 
+kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
+Crea las cosas en el ns projectcontour
+
+
 ## LoadBalancer
 No tiene https://github.com/kubernetes-sigs/kind/issues/702
 
