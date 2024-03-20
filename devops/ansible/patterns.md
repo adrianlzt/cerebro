@@ -1,6 +1,10 @@
 https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html
 
-# Ansible 2.0
+Varios hosts
+host1:host2 (or host1,host2)
+
+
+
 webser*
 
 Afecta a todos los webservers y todos los ftpservers
