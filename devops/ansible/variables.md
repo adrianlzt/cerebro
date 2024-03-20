@@ -146,7 +146,7 @@ nombre del host en el inventario
 
 ## inventory_hostname_short
 fqdn hasta el primer punto
-
+Si estamos delegando, este será el nombre del host al que delegamos. Esto funciona distinto que para inventory_hostname, que si es el host que delega.
 
 ## hostvars
 Lets you ask about the variables of another host, including facts that have been gathered about that host.
