@@ -23,3 +23,11 @@ Statistics target es muy pequeño
 Estimates are off (correlation). Mirar explain.md "Correlated columns"
 
 Hay más causas
+
+
+
+# Invalid resource manager ID in primary checkpoint record
+La réplica no arrancaba y soltaba ese mensaje.
+El problema parece que era que había en pgbackrest, en el archive, unos ficheros de líneas temporales futuras no válidas (algún nodo que se levantó y creo su timeline pero luego no se usó).
+
+Eso parece que hubiese una diferencia entre lo que esperaba encontrar y lo que encontraba en esos últimos WAL.
