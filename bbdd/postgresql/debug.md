@@ -6,6 +6,11 @@ mirar en wal.md pg_filedump para mostrar contenido de ficheros
 para PL/pgSQL mirar omnidb.md
 
 
+Subir nivel logging
+https://postgresqlco.nf/doc/en/param/log_min_messages/
+https://postgresqlco.nf/doc/en/param/log_min_error_statement/
+
+
 Para sacar al fichero de logs todas las queries
 /var/lib/pgsql/data/postgresql.conf:
   log_statement = 'all'
