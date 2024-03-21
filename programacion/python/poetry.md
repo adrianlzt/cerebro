@@ -14,6 +14,10 @@ poetry new
 Nos ininicia un pkg.
 Por ahora (Ene'24) no hay soporte para no pkgs: https://github.com/python-poetry/poetry/pull/8650
 
+Elegir version
+poetry env use /full/path/to/python
+
+
 Esto es si ya tenemos el directorio:
 poetry init
 
