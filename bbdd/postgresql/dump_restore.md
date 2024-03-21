@@ -303,7 +303,7 @@ pg_basebackup --xlog-method=fetch --format=tar -z -D /path/to/dir -P
 
 
 Si por otro lado ya nos estamos llevando los ficheros WAL, solo tenemos que hacer el basebackup
-Podemos usar el "archive_command = %p /archiveDir/%f", que, cuando se llene un WAL, se copiará a otro directorio.
+Podemos usar el 'archive_command = "cp %p /archiveDir/%f"', que, cuando se llene un WAL, se copiará a otro directorio.
 También podemos usar pg_receivewal con el que nos vamos llevando los WAL files.
 
 Para ver el detalle del funcionamiento de el archivado de WALs en postgres, mirar pgbackrest.md, sección Async.
