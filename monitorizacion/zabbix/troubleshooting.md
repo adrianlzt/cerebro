@@ -147,3 +147,19 @@ SELECT i.itemid,i.name,i.type,i.value_type,i.units,i.hostid,i.state,i.valuemapid
 
 Es probable que fuese una consulta a latest data que se fue de madre.
 Habrá que matar a los php-fpm involucrados.
+
+
+En zabbix 4.0 podíamos conocer el usuario a partir del session id.
+En zabbix 6.0 es un json codificado como base64
+Ejemplo:
+zbx_sessionid=eyJzZXNzaW9uaWQiOiIzODU3NzE0MjQzZGVlMWEwMGY5ZmNlYzQxMzg5MDEyNiIsInNlcnZlckNoZWNrUmVzdWx0Ijp0cnVlLCJzZXJ2ZXJDaGVja1RpbWUiOjE3MTEzODYyOTksInNpZ24iOiI0MTM2MTNhZTE0NjY4ZjhhZWU4NzQzNWJhMzE3NzIyMWY3NDVmYjllYTE2MzAyOWM2MTQyMTA2NTI0M2FlMmEwIn0%3D
+
+
+Decodificado:
+{"sessionid":"3857714243dea0f9cec41389126","serverCheckResult":true,"serverCheckTime":1711386299,"sign":"a163029c61421065243ae2a0"}
+
+
+
+Ver que filtros tienen configurados los usuarios.
+Nos puede valer para ver quien pudo lanzar la petición:
+select * from profiles where userid=411 and idx like '%latest%' ;
