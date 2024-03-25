@@ -75,6 +75,11 @@ gcore PID
 Mientras se ejecuta, porque puede que no termine:
 strings core.PID | grep -e zbx_sessionid -e REQUEST_URI -e REMOTE_ADDR -e SELECT -e UPDATE
 
+
+https://serverfault.com/a/970213
+Para un dump de memoria con bash
+
+
 mirar troubleshooting.md
 
 

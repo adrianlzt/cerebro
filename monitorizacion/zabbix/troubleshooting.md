@@ -130,11 +130,12 @@ Podemos buscar por otra cadena si queremos intentar ver la query SQL.
 Aunque esa query la podemos ver en postgres, que será la que esté running.
 
 ## Usando dump_mem
+Mejor con gcore (de gdb). Mirar en debug.md
+
 Si tenemos un php-fpm ejecutando una TX que dura mucho tiempo, podemos hacer un volcado de memoria del proceso php-fpm y ver que está ejecutando
 dump_mem.py 4273 |& strings >& dump.4273.txt
   parece que "gcore", de gdb, nos permite hacer un dump: gcore -o out pid
 
-Mejor con gcore (de gdb). Mirar en debug.md
 
 cat dump.4273.txt | grep -e REMOTE_ADDR -e HTTP_USER_AGENT -e REQUEST_METHOD -e QUERY_STRING -e HTTP_REFERER -e SCRIPT_NAME -e REQUEST_URI -e '"jsonrpc"'
   asi deberiamos poder ver quien nos está pidiendo que, a donde, que POST nos ha hecho, etc
