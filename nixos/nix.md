@@ -34,6 +34,8 @@ nix-env -iA nixpkgs.hello
 Borrarlo:
 nix-env --uninstall hello
 
+## Buscar un fichero en los paquetes
+nix-locate --top-level libstdc++.so.6
 
 
 ## Shells
