@@ -32,6 +32,11 @@ Si llamamos a una función que devuelve Result e ignoramos el resultado, el comp
 note: this `Result` may be an `Err` variant, which should be handled
 
 
+## unwrap
+Este método devuelve el valor si es Ok, o hace panic si es Err.
+Como mensaje devuelve el error.
+
+
 ## expect
 https://doc.rust-lang.org/std/result/enum.Result.html#method.expect
 
