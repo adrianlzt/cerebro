@@ -1,3 +1,5 @@
+Mirar fx.md para una versión interactiva.
+
 Mirar dsq.md
 Para ficheros binarios: fq.md
 
