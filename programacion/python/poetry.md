@@ -35,11 +35,21 @@ poetry install --no-root
 
 poetry shell
 
-poetry env remove python
-Borrar el venv
+Listar envs
+poetry env list
 
-poetry list
+Path donde está el env
+poetry env info --path
+
+La info sobre el mapeo venv - proyecto se guarda en
+/home/adrian/.cache/pypoetry/virtualenvs/envs.toml
+
+
+Borrar el venv
+poetry env remove python
+
 ver los comandos
+poetry list
 
 
 # Virtualenvs
