@@ -3,6 +3,8 @@ https://www.postgresql.org/docs/current/sql-delete.html
 Si tenemos problemas al borrar porque está bloqueando todo lo que va a borrar mientras se ejecuta, o falla la tx por falta de espacio, podemos intentar borrar con una subselect:
 https://stackoverflow.com/questions/3421226/deleting-many-rows-without-locking-them
 
+En postgres no hay DELETE ... LIMIT n.
+
 DELETE FROM
   table
 WHERE
@@ -49,4 +51,3 @@ delete escanea la tabla por lo que es más lento
 
 https://www.postgresql.org/docs/current/sql-truncate.html
 TRUNCATE table;
-
