@@ -21,6 +21,16 @@ Añadir un canal y actualizarlo:
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix-channel --update
 
+Parece bastante habitual añadir a /etc/nix/nix.conf
+experimental-features = nix-command flakes
+
+Nos permite ejecutar como
+nix build
+
+En vez de nix-build
+
+
+
 # Uso
 
 ## Instalar "localmente"
