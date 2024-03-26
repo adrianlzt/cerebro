@@ -9,3 +9,9 @@ https://serokell.io/blog/practical-nix-flakes#:~:text=Nix%20Pills.-,Basic%20flak
 
 Paquetes instalados:
 nix-store -qR result/
+
+
+# Templates
+Para hacer el build de algún lenguaje
+
+https://github.com/NixOS/templates

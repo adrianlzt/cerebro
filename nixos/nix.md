@@ -30,6 +30,10 @@ nix build
 En vez de nix-build
 
 
+# Paquetes
+https://search.nixos.org/packages
+
+
 
 # Uso
 
