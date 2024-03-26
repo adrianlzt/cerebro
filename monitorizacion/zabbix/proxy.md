@@ -51,6 +51,8 @@ https://support.zabbix.com/browse/ZBXNEXT-4920
 # Almacenamiento de datos
 Almacena datos en la tabla proxy_history.
 
+En write_clock guarda la fecha del servidor de cuando recibe el dato (clock será la fecha que puso el agente que envió el dato).
+
 Housekeeper se encarga de limpiar esa tabla.
   zabbix_proxy/housekeeper/housekeeper.c
     housekeeping_history
@@ -168,3 +170,5 @@ proxy_get_areg_data (autoregistration)
 
 Ver cuantos elementos están pendientes de envío:
 select count(*) from proxy_history where id > (select nextid from ids where table_name='proxy_history' and field_name='history_lastid');
+
+
