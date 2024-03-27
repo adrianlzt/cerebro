@@ -27,3 +27,10 @@ curl -H "Content-Type: application/x-ndjson" -XPOST http://elasticsearch:9200/_b
 Estadísticas
 Para ver todas las posibles usar "-z help"
 tshark -r zabbix_configuration_syncer.pcap -z endpoints,tcp -q
+
+
+Histograma tamaños paquetes (https://osqa-ask.wireshark.org/questions/16371/how-can-i-get-packet-size-summary-by-tshark/):
+tshark -nr input.pcap -T fields -e frame.len | gsl-histogram 0 60000 30
+
+Si queremos saber el tamaño máximo de paquete, podemos hacer primero:
+tshark -nr input.pcap -T fields -e frame.len | sort -n | tail -n 1

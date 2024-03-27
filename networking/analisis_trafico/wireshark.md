@@ -130,3 +130,10 @@ Bus y Device lo vemos en lsusb. El tercer número no se que es.
 
 
 Si conectamos el USB a una windows via virtualbox, seguiremos viendo el dispositivo en el mismo puerto.
+
+
+# TCP analysis
+Cuando Wireshark marca los paquetes en negro es porque considera que hay alguna inconsistencia.
+
+Aquí se explican las razones:
+https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html
