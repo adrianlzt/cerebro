@@ -1,3 +1,7 @@
+dust
+una app en rust tipo "du" con colores y un pequeño gráfico para mostrar con claridad el uso de disco
+
+
 du -hsc *
 
 List the 20 largest files or folders under the current working directory.

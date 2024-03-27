@@ -1,3 +1,6 @@
+Mirar "dust" para version terminal
+
+
 http://www.marzocca.net/linux/baobab/
 
 Análisis de ocupación del disco
