@@ -99,3 +99,15 @@ Y ese fichero json tiene una estructura tipo:
   "repo_tag": "flox-env-container:ay200cxkkhajvdjc3cfx3cxi0y3d5fl7",
   "created": "1970-01-01T00:00:01+00:00"
 }
+
+
+# Errores
+
+## Problemas con poetry
+Si algún paquete de poetry no linka bien con alguna librería en C, puede ser porque poetry ha cacheado algún build local (fuera de nix) usando alguna otra librería de C.
+Borrar de la cache de poetry (~/.cache/pypoetry) y volver a cargar el entorno para que haga el build del paquete usando las librerías de nix.
+
+## Faltan libs al compilar
+Comprobar que tenemos instalada una versión "wrapped" de gcc.
+La "gcc-unwrapped" no vale, porque no mete las librerías en el path de nix.
+```
