@@ -6,6 +6,9 @@ El código si es público.
 Para ejecutar llama de manera fácil?
 https://ollama.ai/
 
+Llamafile, ficheros ejecutables que levantan una pequeña interfaz web. Hay diferentes modelos OSS
+https://github.com/Mozilla-Ocho/llamafile
+
 
 Llama2:
 https://huggingface.co/models?sort=trending&search=thebloke%2FLlama-2
