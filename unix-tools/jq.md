@@ -67,6 +67,8 @@ Localizar un elemento en un array:
   Input[0,1,2,1,3,1,4]
   Output[1,3,5]
 
+  .foo[:3]  // primeros 3 elementos
+
 
 Convertir diccionario a array. Tambien tenemos from_entries (array a dict) y with_entries (para hacer to_entries | map | from_entries)
 echo '{"aa": {"foo": 2}, "bb": {"foo": 1}}' | jq '. | to_entries'
@@ -168,4 +170,3 @@ cat hosts.json | jq -c '.[]'
 # Custom output format
 De una lista de diccionarios, generar una cadena por cada uno:
 invoke-safeguard-method.sh -s core -U AccessRequests | jq -r '.[] | "bash new-access-request.sh -s \(.AssetId) -c \(.AccountId) -y ssh # \(.AccountAssetName)"'
-
