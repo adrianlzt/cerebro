@@ -5,6 +5,8 @@ Si vamos a la Storage account / Networking, podemos ver desde donde puede accede
 https://azure.microsoft.com/en-us/products/storage/storage-explorer/
   el .tar.gz me ha funcionado correctamente.
 
+Es la forma más fiable que he visto para calcular el tamaño de los containers.
+
 Arch linux: aur/azure-storage-explorer
 
 
@@ -43,3 +45,6 @@ az storage blob delete --container-name vault --account-name XXX --account-key X
 Descargar un blob recursivamente:
 mkdir vault
 az storage blob download-batch --account-name NOMBRE --account-key CLAVE --source vault --destination vault
+
+Calcular tamaño (NO funciona bien):
+https://learn.microsoft.com/en-us/azure/storage/scripts/storage-blobs-container-calculate-size-cli#sample-script
