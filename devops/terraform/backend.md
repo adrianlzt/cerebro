@@ -24,6 +24,10 @@ terraform show -json | jq ...
 Para buscar podemos usar:
 terraform show -json | gron | grep foo
 
+Filtrar por un "type":
+terraform show -json | jq -r '.values.root_module.child_modules[0].resources[] | select (.type | test("postgresql_role"))'
+
+
 
 
 # Backend
