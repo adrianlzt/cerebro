@@ -1,4 +1,4 @@
-http://tldp.org/LDP/abs/html/arithexp.html 
+http://tldp.org/LDP/abs/html/arithexp.html
 num=$((num1 + num2))
 num=$(($num1 + $num2))       # also works
 num=$((num1 + 2 + 3))        # ...
@@ -19,7 +19,7 @@ TW_PERCENTAGE=$(awk "BEGIN {printf \"%.2f\",${TIME_WAIT}/${TOTAL}}")
 
 
 # Numeros flotantes
-echo | awk -v n1=5.65 -v n2=3.14e-22  '{if (n1<n2) printf ("%s < %s\n", n1, n2); else printf ("%s >= %s\n", n1, n2);}' 
+echo | awk -v n1=5.65 -v n2=3.14e-22  '{if (n1<n2) printf ("%s < %s\n", n1, n2); else printf ("%s >= %s\n", n1, n2);}'
 
 
 El símbolo '>' en el echo es solamente por completitud, no esta haciendo nada
@@ -45,6 +45,7 @@ https://www.gnu.org/software/coreutils/manual/html_node/numfmt-invocation.html
 A partir de coreutils 8.21
 
 numfmt --to=iec 5363453
+  convertir a unidades de 1024, KiB, MiB, GiB, TiB, PiB, EiB, ZiB, YiB
 
 Puede modificar una línea convirtiendo solo uno de los valores (típica salida con multicolumna).
 También tiene una opción para ignorar la primera (o varias) líneas al comienzo.
