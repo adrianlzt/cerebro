@@ -43,7 +43,7 @@ Luego loguearnos.
 
 
 # Config
-Arrancar sin TLS
+Arrancar sin TLS, con una configuración simple para hacer pruebas.
 ```
 disable_mlock = true
 
@@ -53,11 +53,23 @@ storage "file" {
 
 listener "tcp" {
   address = "[::]:8200"
+  tls_disable = true
 }
 
-api_addr = "https://127.0.0.1:8200"
+api_addr = "http://127.0.0.1:8200"
 ```
 
+Para inicializarlo:
+VAULT_ADDR=http://127.0.0.1:8200 vault operator init
+
+Si solo queremos una key de unseal podemos usar:
+vault operator init -key-shares=1 -key-threshold=1
+
+Luego haremos el unseal
+VAULT_ADDR=http://127.0.0.1:8200 vault operator unseal
+
+Y luego podremos ya usarlo con el root token:
+VAULT_TOKEN=hvs.XXX VAULT_ADDR=http://127.0.0.1:8200 vault secrets list
 
 
 # Auth methods
@@ -311,6 +323,7 @@ Por ejemplo:
   certificados
   cloud varias: generar tokens dinámicos de acceso con tiempo de vida
   cubbyhole: engine temporal asociado a un token que se destruye cuando expira el token, parece como un "create temp table" de sql. Útil para compartir credenciales, mirar "Share secrets"
+  transit: encriptar y desencriptar datos
 
 Ver los que tenemos disponibles:
 vault plugin list secret
@@ -321,6 +334,8 @@ vault path-help PATH/
 Cada engine está separado del resto. Si hackeasen un engine, no podrían saltar al resto.
 https://developer.hashicorp.com/vault/docs/secrets#barrier-view
 
+Ejemplo, crear un engine kv:
+vault secrets enable -path=kv kv
 
 
 ## LDAP
@@ -372,6 +387,15 @@ vault write database/roles/my-role \
 
 Obtenemos credenciales (durará 1h, renovable hasta 24h):
 vault read database/creds/my-role
+
+
+## transit
+https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-transit
+
+Le pasamos un texto y nos devuelve una cadena encriptada, que luego se la podemos enviar de nuevo para que nos la desencripte.
+
+vault write transit/encrypt/orders plaintext=$(base64 <<< "4111 1111 1111 1111")
+vault write transit/decrypt/orders ciphertext=$CIPHERTEXT
 
 
 
@@ -539,6 +563,31 @@ vault operator seal
   esto será una operación poco común, realizada cuando consideremos que el vault está en riesgo
   solo se podrá abrir de nuevo metiendo las claves master
   cualquier user root puede hacer seal del vault
+
+
+## AutoUnseal
+Podemos usar otro servidor con claves para desbloquear el vault de manera automática.
+El típico escenario es un vault desplegado en una nube, con las claves guardadas en un almacen de claves de dicha nube.
+
+
+### Vault transit
+https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-transit
+
+Existe la opción es usar otro servidor vault para hacer unseal.
+
+Ese segundo vault necesita tener el plugin transit activado.
+vault secrets enable transit
+
+Y una clave de encriptación:
+vault write -f transit/keys/autounseal
+
+Luego configuramos el segundo vault (el que tendrá auto unseal). Mirar la config en la doc.
+Luego tendremos que inicializarlo (operator init).
+En este caso nos devolverá el root token y claves de recuperación.
+
+Si el segundo vault se reinicia, lo que hará es enviar las claves de unseal que tiene cifradas al primer vault, que las devuelve descifradas.
+Y con esas claves se desbloquea el vault.
+Mirando el tráfico, parece que primero encripta una cadena "tonta" y entiendo que ¿usará ese resultado para no enviar las claves tal cual?
 
 
 ### kv storage
@@ -897,3 +946,7 @@ Si queremos ver que peticiones hace vault hacia fuera podemos hacer un MitM, con
 HTTPS_PROXY=http://localhost:8080 vault server
 
 Tendremos que instalar la CA de burp en nuestro SO.
+
+
+# Backup
+Cuidado si usamos autounseal, porque si perdemos acceso al provider que usa para desbloquear, no podremos recuperar los datos.
