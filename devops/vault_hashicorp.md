@@ -42,6 +42,23 @@ Luego hacer el unseal.
 Luego loguearnos.
 
 
+# Config
+Arrancar sin TLS
+```
+disable_mlock = true
+
+storage "file" {
+  path = "/mnt/blob"
+}
+
+listener "tcp" {
+  address = "[::]:8200"
+}
+
+api_addr = "https://127.0.0.1:8200"
+```
+
+
 
 # Auth methods
 https://developer.hashicorp.com/vault/docs/auth
