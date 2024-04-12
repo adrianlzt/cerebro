@@ -623,6 +623,11 @@ vault kv patch -cas=6 kv/foo user2=jose3
 En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after
 
+Copiar secrets entre distintos paths (si queremos mantener version mirar https://gist.github.com/elasticdog/e82f0b8e63407cbb6af69341cb9d0336?permalink_comment_id=5013818#gistcomment-5013818):
+vault kv get -format=json kv/origin/path | vault kv put kv/destination/path -
+vault kv get -format=json -field=data kv/origin/path | vault kv put kv/destination/path -
+
+
 CLI para buscar en paths, keys o values:
 https://github.com/xbglowx/vault-kv-search
 
