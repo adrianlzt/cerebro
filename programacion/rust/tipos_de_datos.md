@@ -1,3 +1,74 @@
+# Números
+Si queremos generar un integer de un tipo determinado: 58u8
+
+Decimal 98_222
+Hex 0xff
+Octal 0 o77
+Binary 0b1111_0000
+
+# Bytes
+Byte (u8 only) b'A'
+
+# Bool
+let f: bool = false
+
+# Char
+let z: char = 'ℤ'
+
+# tuple
+let tup: (i32, f64, u8) = (500, 6.4, 1);
+let (x, y, z) = tup;
+
+Acceder a un elemento:
+tup.0
+
+## unit tuple
+let x: () = ()
+
+Es lo que se usa cuando no queremos devolver nada.
+
+# Arrays
+Tienen un tamaño fijo y todos los elementos deben ser del mismo tipo.
+let a = [1, 2, 3, 4, 5];
+let a: [i32; 5] = [1, 2, 3, 4, 5]
+let a = [3; 5]; // [3, 3, 3, 3, 3]
+
+Acceder a un elemento:
+a[2]
+
+Si queremos un "array" que pueda crecer, usar un "vector".
+
+
+# Rangos
+for number in (1..4) {
+    println!("{}", number);
+}
+
+Si queremos invertir el rango:
+(1..4).rev()
+
+
+# Box
+Un puntero a un dato en el heap.
+
+let mut b: Box<i32> = Box::new(5);
+let a: i32 = *b;
+
+
+
+# Clone
+Para copiar un dato en lugar de moverlo.
+let s1 = String::from("hello");
+let s2 = s1.clone();
+
+
+# Copied
+https://github.com/rust-lang/rust/pull/56534
+
+The intent of copied is to avoid accidentally cloning iterator elements after doing a code refactoring which causes a structure to be no longer Copy. This is a relatively common pattern, as it can be seen by calling rg --pcre2 '[.]map[(][|](?:(\w+)[|] [*]\1|&(\w+)[|] \2)[)]' on Rust main repository. Additionally, many uses of cloned actually want to simply Copy, and changing something to be no longer copyable may introduce unnoticeable performance penalty.
+
+
+
 # Collections
 Tipos de contenedores que pueden almacenar un número variable de datos.
 Se almacena en el "heap".
@@ -8,6 +79,7 @@ mirar string.md
 ## Vector / Vec<T>
 https://doc.rust-lang.org/stable/nomicon/vec/vec.html
 https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
+Almacena los datos en heap.
 
 let v: Vec<i32> = Vec::new();
 
@@ -88,3 +160,37 @@ Concatenar, unir los elementos de dos vectores:
 
 ## HashMap
 use std::collections::HashMap;
+let mut scores = HashMap::new();
+scores.insert(String::from("Blue"), 10)
+
+scores.get(&team_name).copied().unwrap_or(0);
+
+Iterar:
+for (key, value) in &scores {
+    println!("{}: {}", key, value);
+}
+
+El owner de los datos es el HashMap, no los datos que contiene.
+
+
+Insertar un valor si la key no está definida
+scores.entry(String::from("Yellow")).or_insert(50);
+
+
+Típico ejemplo de contar palabras en un texto:
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let text = "hello world wonderful world";
+
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("{:?}", map);
+}
+```
