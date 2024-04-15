@@ -15,9 +15,8 @@ pdfinfo file.pdf
 Editar metadatos
 pdftk
 
-Unir dos pdfs (aur/pdfjam-extras extra/texlive-latexrecommended)
-pdfjoin /tmp/salida.pdf /tmp/salida.pdf
-genera salida-joined.pdf
+Unir dos pdfs
+pdftk file1.pdf file2.pdf cat output merged_file.pdf
 
 
 # De imagen a pdf sin pérdidas
