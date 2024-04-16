@@ -18,6 +18,8 @@ cargo r
 cargo build
 cargo b
 
+Debug symbols are enabled by default when using cargo build or cargo run without the --release flag
+
 # Añadir crates (librerías)
 cargo add nombre_crate
 
@@ -46,3 +48,12 @@ Si usamos "cargo update", ignorará el Cargo.lock y actualizará las dependencia
 cargo doc --open
 
 Build documentation provided by all your dependencies locally
+
+
+# Cargo generate
+Para generar scaffolding de específicos.
+
+cargo install cargo-generate
+
+Ejemplo:
+cargo generate https://github.com/aya-rs/aya-template

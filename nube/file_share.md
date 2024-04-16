@@ -4,6 +4,8 @@ Si tengo la Freebox, tiene un mecanismo para compartir carpetas.
 https://driveuploader.com/
 app que usa nuestro drive para recibir ficheros de un tercero
 
+Compartir con curl:
+curl -T fichero oshi.at
 
 curl -v --upload-file ./hello.txt https://transfer.sh/hello.txt
 https://transfer.sh/66nb8/hello.txt

@@ -14,6 +14,9 @@ let mut guess = String::new();
 Append:
 some_string.push_str("foo");
 
+Splitear por espacio en blanco:
+let s = "foo bar".split_whitespace();
+
 
 No se puede acceder con un índice a una string. El número de bytes varía.
 Mejor usar "Зд".chars()

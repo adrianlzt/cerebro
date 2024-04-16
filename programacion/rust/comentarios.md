@@ -1,2 +1,5 @@
 // foo.
-// No hay nada para multilinea
+
+/*
+  multi-line comment
+*/

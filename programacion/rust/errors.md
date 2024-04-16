@@ -51,6 +51,13 @@ Este método devuelve el valor si es Ok, o hace panic si es Err.
 Como mensaje devuelve el error.
 Mejor usar expect, donde podemos añadir un mensaje.
 
+
+## unwrap_or
+Devolvemos el valor del Ok, o un valor por defecto si es Err.
+```rust
+let b = a.unwrap_or("bar".to_string());
+```
+
 ## unwrap_or_else
 Este método devuelve el valor si es Ok, o ejecuta una función (clousure) si es Err.
 ```rust
