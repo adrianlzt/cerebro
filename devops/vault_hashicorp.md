@@ -618,6 +618,9 @@ vault kv patch foo/bar bar=123
 Actualiza la versión 6 de kv/foo. Si tuviésemos una versión más moderna, falla.
 vault kv patch -cas=6 kv/foo user2=jose3
 
+Editar un secret (script bash custom https://gist.github.com/adrianlzt/9ef4a1d1c966494ba596c3a1886aaebc):
+vault-editor kv/secret/secret-name
+
 
 
 En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
