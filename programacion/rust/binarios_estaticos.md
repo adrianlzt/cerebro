@@ -3,6 +3,13 @@ https://msfjarvis.dev/posts/building-static-rust-binaries-for-linux/
 
 RUSTFLAGS='-C target-feature=+crt-static' cargo build --release --target x86_64-unknown-linux-gnu
 
+
+Statically linked glibc binaries aren't very portable. In general, you need to run them on a system with exactly the same glibc version
+https://github.com/rust-lang/libc/issues/2054#issuecomment-829535318
+
+Parece mejor compilar contra musl.
+
+
 Si nos falla, podemos ver los crates que necesitan links con librearías dinámicas con:
 ```
 cargo tree | rg -- -sys
