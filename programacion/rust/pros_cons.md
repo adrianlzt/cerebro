@@ -7,3 +7,4 @@ Mensaje del compilador muy detallados y con ejemplos ("rustc --explain XXX")
 # Cons
 Dificil de aprender.
 Mucho sugar syntax (comparado con go)
+Complicado de generar binarios estáticos (no es tan fácil como en go)
