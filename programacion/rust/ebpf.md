@@ -65,9 +65,15 @@ https://github.com/aya-rs/aya/pull/329
 # aya_log
 https://docs.rs/aya-log/latest/aya_log/
 
+```rust
+use aya_log_ebpf::{debug, error, info, trace, warn};
 info!(&ctx, "PID={} tracepoint tcp:tcp_send_reset called", pid);
+```
 
 Para imprimir datos desde el programa eBPF se puede usar aya_log.
+
+Para mostrar trazas nivel info debemos setear la variable de entorno RUST_LOG=info.
+Por defecto solo se muestran las de nivel ERROR.
 
 
 # aya_tool
