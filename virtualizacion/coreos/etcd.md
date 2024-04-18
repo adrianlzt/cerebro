@@ -167,6 +167,10 @@ podman exec -it etcd etcdctl -w table endpoint health --cluster
 
 Deberán salirnos los endpoints con health a true
 
+Con esto podemos ver quien es el leader
+sudo docker exec -it etcd etcdctl -w table endpoint status --cluster
+
+
 Para los clientes el puerto es el 2379
 
 
