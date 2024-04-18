@@ -48,6 +48,21 @@ let fd: u32 = unsafe {ctx.read_at(FD_OFFSET)?};
 
 # uprobes / uretprobes
 
+```rust
+let program: &mut UProbe = bpf.program_mut("tcp_send_reset").unwrap().try_into()?;
+program.load()?;
+program.attach(Some("zbx_snprintf_alloc"), 0, "/opt/zabbix/sbin/zabbix_server", Some(1283776))?; // aqui es donde lo enganchamos a la uprobe
+```
+
+Si no encuentra el símbolo, falla con:
+Error: error resolving symbol
+Caused by:
+    unknown symbol `foobarbaz132`
+
+Si no saca nada, comprobar que estamos apuntando al pid correcto (tal vez mismo programa pero es un pid child el que buscamos?)
+
+
+
 ## Ejemplo
 git clone https://github.com/elbaro/mybee.git
 cd mybee
