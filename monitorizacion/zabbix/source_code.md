@@ -27,8 +27,8 @@ svn://svn.zabbix.com/branches/dev/ZBXNEXT-4002
 
 # Build
 https://www.zabbix.org/wiki/Compilation_instructions#Creating_source_archive
-https://www.zabbix.com/documentation/4.0/manual/installation/install
 https://github.com/zabbix/zabbix-docker/blob/3.4/server-pgsql/alpine/Dockerfile
+https://www.zabbix.com/documentation/current/en/manual/installation/install
 
 Podemos usar los Dockerfile para hacer el build
 
