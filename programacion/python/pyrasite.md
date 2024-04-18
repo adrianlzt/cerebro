@@ -1,6 +1,6 @@
 http://pyrasite.com/
 
-
+pip install pyrasite
 
 Ejecutar un programa python dentro de PID de python
 pyrasite PID programa.py
