@@ -18,18 +18,22 @@ q = Queue()
 def worker():
     while True:
         item = q.get()
-        do_work(item)
-        print("task remaining: %s" % q.unfinished_tasks)
-        print("task working: %s" % (q.unfinished_tasks-q.qsize()))
-        if randint(0,10) > 7:
-            print("Errr, requeue job %s" % item)
-            q.put(item)
-        q.task_done()
+        try:
+            do_work(item)
+            print("task remaining: %s" % q.unfinished_tasks)
+            print("task working: %s" % (q.unfinished_tasks-q.qsize()))
+            if randint(0,10) > 7:
+                print("Errr, requeue job %s" % item)
+                q.put(item)
+        except Exception as e:
+            print(e)
+        finally:
+            q.task_done()
 
 # Create thread pool.
 for i in range(4):
     t = threading.Thread(target=worker)
-    # Para pasar parámetros: 
+    # Para pasar parámetros:
     # processThread = threading.Thread(target=processLine, args=(dRecieved));
 
     t.daemon = True  # thread dies when main thread (only non-daemon thread) exits.
