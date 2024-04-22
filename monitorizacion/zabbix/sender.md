@@ -14,6 +14,10 @@ echo "<hostname> <key> <value>" | zabbix_sender -z SERVER -i -
 echo -e 'prueba_0 telegraf.lld.cpu.cpu {"data":[{"{#CPU}":"uno","{#CPU}":"dos","{#CPU}":"tres"}]}\nprueba_0 telegraf.lld.diskio.name {"data":[{"{#NAME}":"uno"}]}' | zabbix_sender -z SERVERZABBIX -i -
   enviar dos LLDs de golpe
 
+Enviar con una fecha generada con date y mostrar lo que estamos enviando:
+echo "host item $(date -d "2024/04/21 01:00:00" +%s) 102" | tee /dev/stderr | zabbix_sender -z 127.0.0.1 -i - -T -v
+
+
 Podemos enviar hasta 250 métricas en el mismo mensaje.
 Tras enviar el mensaje el servidor zabbix cierra la conex (no podemos reutilizar la conex para enviar varios paquetes de métricas)
 

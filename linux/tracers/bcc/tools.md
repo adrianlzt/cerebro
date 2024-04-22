@@ -1,6 +1,11 @@
 Mirar bcc_tracing_tools_2016.png para ver que herramienta necesitamos para cada parte que queramos analizar
 https://github.com/iovisor/bcc/tree/master/tools
 
+Parece que las herremientas bcc-tools (que eran python+ebpf) se están migrando a libbpf (todo c)
+https://nakryiko.com/posts/bcc-to-libbpf-howto-guide/
+https://github.com/iovisor/bcc/pull/4706/files
+https://github.com/iovisor/bcc/tree/master/libbpf-tools
+
 
 # Latencias / disco / ficheros
 
