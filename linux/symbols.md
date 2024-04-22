@@ -10,3 +10,6 @@ readelf -Ws programa
 nm -D fichero
 
 objdump -d -l programa
+
+
+Si no encontramos el símbolo de una función puede ser porque el optimizador no haya creado esa función.
