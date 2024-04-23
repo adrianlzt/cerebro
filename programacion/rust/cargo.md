@@ -39,6 +39,18 @@ nombre_crate = { version = "0.1", default-features = false }
 ## Versiones
 ^0.1.1: esto es 0.1.x, es decir, sin romper compatibilidad al subir el major.
 
+## git
+https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories
+
+Podemos especificar una librería de git:
+cargo add nombre_crate --git "url"
+
+O en Cargo.toml:
+```toml
+[dependencies]
+nombre_crate = { git = "url", rev = "commit" }
+```
+
 
 # Update
 Si usamos "cargo update", ignorará el Cargo.lock y actualizará las dependencias a las últimas versiones compatibles.
