@@ -79,10 +79,14 @@ Para que funcione la cli (tendremos que pasar un token):
 vault login
 vault login -method=userpass username=foo
   guardará el token en ~/.vault-token
-  Podemos usar un token-helper para almacenar ese token de forma segura
+
+  Podemos usar un token-helper para almacenar ese token de forma segura.
+  Lo configuramos en ~/.vault con "token_helper = /foo/path"
+
   https://github.com/frntn/vault-token-helper-gopass
     mirar como configurarlo en https://github.com/sethvargo/vault-token-helper-osx-keychain
     Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
+    En mi caso lo guardo en privado/vault-auth
   https://github.com/joemiller/vault-token-helper
     soporte para pass, linux dbus secrets, osx, windows
 
