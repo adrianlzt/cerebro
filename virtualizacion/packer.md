@@ -102,3 +102,20 @@ Meter este provisioner para obtener la clave privada ssh
 No destruir la VM si hay un fallo:
 packer build -on-error=abort ost.pkr.hcl
 Si queremos obtener la ssh priv key que usa, 
+
+
+# Run
+packer build file.pkr.hcl
+
+
+Si queremos pasar variables podemos ponerlas inline:
+packer build -var 'aws_access_key=foo' -var 'aws_secret_key=bar' file.pkr.hcl
+
+O con un fichero json o hcl:
+packer build -var-file=variables.json file.pkr.hcl
+packer build -var-file=example.pkrvars.hcl file.pkr.hcl
+
+Ejemplo de fichero hcl con variables:
+```
+ami_prefix = "learn-packer-aws-redis-var"
+```
