@@ -53,6 +53,8 @@ SCARD clave <- numero de elementos
 ZADD clave puntuacion "valor" <- set ordenado según la puntuación que demos a cada uno
 
 ## Hashes ## http://redis.io/commands#hash
+HGET clave campo
+
 HSET user:1000 name "John Smith"
 HSET user:1000 email "john.smith@example.com"
 HSET user:1000 password "s3cret"
@@ -60,3 +62,6 @@ HGETALL user:1000 <- nos devuelve todos los valores
 HMSET user:1001 name "Mary Jones" password "hidden" email "mjones@example.com" <- definir varios de golpe
 HGET user:1001 name => "Mary Jones"
 HLEN coso   número de elementos del hash
+
+Obtener todas las jeys de un hash:
+HKEYS clave

@@ -3,6 +3,9 @@ Si vamos a la Storage account / Networking, podemos ver desde donde puede accede
 
 # UI
 https://azure.microsoft.com/en-us/products/storage/storage-explorer/
+  el .tar.gz me ha funcionado correctamente.
+
+Es la forma más fiable que he visto para calcular el tamaño de los containers.
 
 Arch linux: aur/azure-storage-explorer
 
@@ -12,7 +15,9 @@ Arch linux: aur/azure-storage-explorer
 ## azcopy
 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json
 
-No la he usado
+No la he usado.
+No consigo loguearme. Me manda ejecutar "az login --scope https://storage.azure.com/.default" que da un error.
+'La cuenta de usuario seleccionada no existe en el inquilino "Microsoft Services"'
 
 ## az
 https://learn.microsoft.com/fr-fr/cli/azure/storage?view=azure-cli-latest
@@ -36,3 +41,10 @@ az storage container list --account-name XXX --account-key XXX
 
 az storage blob list --container-name vault --account-name XXX --account-key XXX
 az storage blob delete --container-name vault --account-name XXX --account-key XXX --name FOO
+
+Descargar un blob recursivamente:
+mkdir vault
+az storage blob download-batch --account-name NOMBRE --account-key CLAVE --source vault --destination vault
+
+Calcular tamaño (NO funciona bien):
+https://learn.microsoft.com/en-us/azure/storage/scripts/storage-blobs-container-calculate-size-cli#sample-script

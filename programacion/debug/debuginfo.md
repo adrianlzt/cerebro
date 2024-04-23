@@ -7,9 +7,21 @@ http://debuginfo.centos.org/6/x86_64/
 
 
 # Arch
-https://wiki.archlinux.org/index.php/Debug_-_Getting_Traces
+https://wiki.archlinux.org/title/Debugging/Getting_traces
 
-Parece que tenemos que recompilar el kernel si queremos tener debuginfo: https://wiki.archlinux.org/index.php/SystemTap#Kernel_rebuild
+Buscar el paquete en https://archlinux.org/packages/
+Mirar en que repo está.
+
+Luego ir a https://geo.mirror.pkgbuild.com/
+Entrar el REPO-debug/
+
+Instalarlo a mano:
+sudo pacman -U https://geo.mirror.pkgbuild.com/extra-debug/os/x86_64/zabbix-debug-6.4.13-1-x86_64.pkg.tar.zst
+
+Instala los símbolos en /usr/lib/debug/.build-id/
+También instala el código fuente en /usr/src/debug/
+
+También podemos configurarlo en pacman para tener los paquetes disponibles con pacman.
 
 ## AUR
 Editar el PKGBUILD y añadir en la linea options:

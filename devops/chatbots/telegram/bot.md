@@ -25,6 +25,8 @@ https://api.telegram.org/bot[BOT_API_KEY]/sendMessage?chat_id=[MY_CHANNEL_NAME]&
 Parece el channel name es https://web.telegram.org/#/im?p=g382900926
 el parámetro p cambiando la g por un -
 
+O añadir al bot @getidsbot, que al entrar en un canal te dice el id del canal.
+
 Si no, enviar el mensaje al bot: "/my_id @nombrebot" (tras haberlo metido en el canal)
 Y mirar los mensajes que recibe el bot:
 curl https://api.telegram.org/botXXX:YYYY/getUpdates

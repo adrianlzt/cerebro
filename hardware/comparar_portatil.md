@@ -1,1 +1,0 @@
-comprar_portatil.md

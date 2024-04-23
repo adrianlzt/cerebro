@@ -74,6 +74,8 @@ Se un dump de los datos, no da la database tal cual.
 Permite mover datos entre distintas releases.
 Nos permite sacar solo algunas tablas, o solo obtener los schemas de las tablas.
 
+*NOTA* la versión de las utilidades de backup tiene que ser igual o mayor que la "major version" (10, 11, 12, etc) de la base de datos.
+
 pg_dumpall -g
   dump solo los elementos globales (roles y tablespaces)
 

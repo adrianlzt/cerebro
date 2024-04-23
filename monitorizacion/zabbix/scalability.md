@@ -46,6 +46,7 @@ trend cache (tamaño máximo definido por TrendCacheSize)
 configuration cache (tamaño máximo definido por CacheSize), métricas zabbix[rcache,*]
 
 value cache (tamaño máximo definido por ValueCacheSize), métricas zabbix[vcache,*]
+  Used for storing item values for evaluating trigger expressions, calculated items and some macros.
 
 
 

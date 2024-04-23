@@ -1,9 +1,28 @@
+En rust tenemos dos tipos de strings:
+- String: un tipo de dato que se puede modificar. UTF-8, almacenado en el heap.
+- &str: un slice de un string. UTF-8, almacenado en el stack.
+
+
 String no mutable:
 let hello = std::string::String::from("Hello, world!");
 
 String mutable vacía:
 use std::string::String;
 let mut guess = String::new();
+
+
+Append:
+some_string.push_str("foo");
+
+Splitear por espacio en blanco:
+let s = "foo bar".split_whitespace();
+
+
+No se puede acceder con un índice a una string. El número de bytes varía.
+Mejor usar "Зд".chars()
+Devuelve un struct Char que implementa el trait Iterator.
+https://doc.rust-lang.org/std/str/struct.Chars.html
+
 
 # parse
 Parse mirará el tipo de dato que se espera y lo convertirá.

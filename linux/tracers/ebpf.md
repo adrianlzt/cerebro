@@ -1,3 +1,5 @@
+Más info en linux/tracers/bcc
+
 https://ebpf.io/
 http://www.brendangregg.com/blog/2015-05-15/ebpf-one-small-step.html
 https://suchakra.wordpress.com/2015/05/18/bpf-internals-i/
@@ -7,6 +9,7 @@ bcc/esquema_funcionamiento.jpg
 http://docs.cilium.io/en/latest/bpf/ explicación de como funciona en detalle
 https://jvns.ca/perf-cheat-sheet.pdf
 http://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html
+https://developers.redhat.com/articles/2023/10/19/ebpf-application-development-beyond-basics#ebpf_application_development_faq
 
 These are coming to Linux in the 4.x series
 redhat7 usa 3.10, lo mete como tech preview en RHEL7.6 (3.10.0-940.el7)
@@ -32,8 +35,15 @@ Optimizado para interfaces de 10Gbps y más.
 samples/bpf (raw)
 bcc: python, c
 linux perf_events
+rust, aya: nos permite escribir el userspace y kernel space en rust
 
 https://github.com/weaveworks/tcptracer-bpf
+
+bpfman
+https://github.com/bpfman/bpfman
+bpfman operates as an eBPF manager, focusing on simplifying the deployment and administration of eBPF programs
+
+
 
 
 # Comunicación
@@ -44,3 +54,12 @@ Esto consigue ser más eficiente evitando tener que hacer un dump de todos los d
 # Debug
 https://www.redhat.com/en/blog/introduction-ebpf-red-hat-enterprise-linux-7
 RHEL-7.6 comes with bpftool which can be used to list and dump eBPF programs loaded in the running kernel
+
+En arch: sudo pacman -S bpf
+
+Mostrar programas cargados:
+sudo bpftool prog list
+
+
+# CO-RE
+CO-RE: BPF CO-RE (Compile Once - Run Everywhere) makes it possible to write portable BPF applications that can run on multiple kernel versions without modification or recompilation for the target machine.

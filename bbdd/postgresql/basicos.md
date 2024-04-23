@@ -34,6 +34,8 @@ Se pueden usar asteriscos
 Ejecutar comandos desde la línea de comandos:
 $ psql -c "drop database prueba;"
 
+Si ponemos varios -c serán tx distintas.
+
 Sacar solo los valores, sin alinear, sin cabeceras ni footers:
 psql -P pager=off -XAt -c "select ...;"
 

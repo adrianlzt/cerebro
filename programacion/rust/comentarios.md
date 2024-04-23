@@ -1,0 +1,5 @@
+// foo.
+
+/*
+  multi-line comment
+*/
