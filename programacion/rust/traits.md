@@ -83,3 +83,75 @@ fn some_function<T, U>(t: &T, u: &U) -> i32
 ```rust
 fn returns_summarizable() -> impl Summary {
 ```
+
+
+# Ejemplos de traits típicos
+
+## Debug
+https://doc.rust-lang.org/std/fmt/trait.Debug.html
+
+```rust
+pub trait Debug {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error>;
+}
+```
+
+Ejemplo de uso:
+```rust
+use std::fmt::Debug;
+
+fn main() {
+    let s = 3;
+    println!("{:?}", s);
+}
+```
+
+Para structs lo típico es hacer:
+```rust
+use std::fmt::Debug;
+use std::cmp::PartialEq;
+
+#[derive(PartialEq, Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+```
+
+## PartialEq
+https://doc.rust-lang.org/std/cmp/trait.PartialEq.html
+
+```rust
+pub trait PartialEq<Rhs = Self>
+where
+    Rhs: ?Sized,
+{
+    // Required method
+    fn eq(&self, other: &Rhs) -> bool;
+
+    // Provided method
+    fn ne(&self, other: &Rhs) -> bool { ... }
+}
+```
+
+x.eq(y) can also be written x == y, and x.ne(y) can be written x != y
+
+```rust
+use std::cmp::PartialEq;
+
+fn main() {
+    let s = 3;
+    assert_eq!(s, 3);
+}
+```
+
+Para structs lo típico es hacer:
+```rust
+use std::fmt::Debug;
+use std::cmp::PartialEq;
+
+#[derive(PartialEq, Debug)]
+struct Point {
+    x: i32,
+    y: i32,
+}
