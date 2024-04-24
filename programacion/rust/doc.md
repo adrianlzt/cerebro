@@ -9,3 +9,6 @@ https://doc.rust-lang.org/stable/book/title-page.html
 
 Variante de libro interactiva (con quizs)
 https://rust-book.cs.brown.edu/
+
+https://www.youtube.com/@jonhoo
+Vídeos largos de un tipo programando en rust.

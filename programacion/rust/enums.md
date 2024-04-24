@@ -86,22 +86,3 @@ impl Message {
 ```
 
 Implementar una associated funcion (sin self) es parecido a un elemento del enum con parámetros.
-
-
-
-# Option enum
-Para codificar cosas que pueden ser algo o nada.
-
-```rust
-let some_number = Some(5); // el tipo de dato será Option<i32>
-let some_char = Some('e'); // el tipo de dato será Option<char>
-let absent_number: Option<i32> = None;
-```
-
-Es el "equivalente" a null/none de otros lenguajes.
-Aquí debemos ser explícitos de que queremos hacer al obtener el Option.
-
-Hay muchos métodos para trabajar con Option.
-
-El más básico sería "unwrap()", que intenta obtener el valor y si no genera un panic.
-Algo un poco mejor sería "expect(&str)", que intenta obtener el valor y si no genera un panic con el string que le hemos pasado.

@@ -1,10 +1,3 @@
-```rust
-#[derive(Debug)]
-struct Name {
-    field: Type
-}
-```
-
 Implementar métodos a un struct:
 ```rust
 impl Name {
