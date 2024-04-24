@@ -46,6 +46,8 @@ az vm show --resource-group myResourceGroup --name myVMnam
 Para ver la IP pública
 az vm show --resource-group myResourceGroup --name myVMnam --show-details
 
+az vm list-ip-addresses -n appliance --query "[].virtualMachine.network.publicIpAddresses[].ipAddress" -o tsv
+
 ## SSH
 https://learn.microsoft.com/en-us/cli/azure/ssh?view=azure-cli-latest
 az ssh vm --resource-group testlink_group --name testlink
