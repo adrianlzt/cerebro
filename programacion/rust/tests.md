@@ -23,3 +23,19 @@ Para correr los tests se puede usar el comando cargo test.
 ```bash
 cargo test
 ```
+
+# Funciones para testear
+```rust
+assert_eq!(2 + 2, 4); // Pasa si los dos argumentos son iguales
+assert_ne!(2 + 2, 5); // Pasa si los dos argumentos son diferentes
+
+assert!(true); // Pasa si el argumento es true
+assert!(result.contains("specific text"),
+    "Mesaje customizado: {}",
+    result
+); // Pasa si el argumento es true, si no, imprime el mensaje customizado
+```
+
+Values being compared must implement the PartialEq and Debug traits.
+All primitive types and most of the standard library types implement these traits.
+For structs and enums that you define yourself, you’ll need to implement PartialEq to assert equality of those types
