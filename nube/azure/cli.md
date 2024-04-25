@@ -62,3 +62,7 @@ Por defecto el usuario que crea azure es linux es "azureuser".
 # Resource groups
 Borrar:
 az group delete --name NAME
+
+
+# Subir un fichero a un storage
+az storage azcopy blob upload -c source-images --account-name iometricsappliance -s Rocky-9-Azure-Base-9.3-20231113.0.x86_64.vhd
