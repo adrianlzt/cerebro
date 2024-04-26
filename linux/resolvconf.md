@@ -7,6 +7,23 @@ Puede que networkmanager escriba directamente el /etc/resolv.conf
 Función que lo crea:
 https://github.com/NetworkManager/NetworkManager/blob/e03b8fa44743d0ce91a849ea6f64cd99a0476e19/src/core/dns/nm-dns-manager.c#L753:1
 
+/etc/NetworkManager/conf.d/90-dns.conf
+Típico fichero que se usa para controlar el fichero resolv.conf
+Ejemplo donde definimos un search:
+```
+[global-dns]
+searches=foo.co
+```
+
+Ejemplo donde evitamos que networkmanager modifique el fichero:
+```
+[main]
+dns=none
+```
+
+Los nameservers que se configurarán los definimos en la connection:
+nmcli connection modify "Wired connection 1" ipv4.dns "1.1.1.1"
+
 
 # dhclient
 Si queremos que dhclient no lo modifique podemos hacer:
