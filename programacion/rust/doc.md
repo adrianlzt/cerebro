@@ -12,3 +12,5 @@ https://rust-book.cs.brown.edu/
 
 https://www.youtube.com/@jonhoo
 Vídeos largos de un tipo programando en rust.
+
+https://github.com/shirshak55/Rust-Book-In-PDF/releases
