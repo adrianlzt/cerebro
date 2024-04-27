@@ -38,3 +38,38 @@ class Hero(SQLModel, table=True):
 
     teams: list[Team] = Relationship(back_populates="heroes", link_model=HeroTeamLink)
 ```
+
+
+# Migrations
+https://github.com/tiangolo/sqlmodel/issues/85
+
+No hay doc oficial aún. Parece que la gente usa alembic.
+
+https://testdriven.io/blog/fastapi-sqlmodel/
+
+1. Instalar alembic y asyncpg (si usamos postgres, hace falta que sea async)
+2. Inicializarlo:
+```bash
+alembic init -t async migrations
+```
+3. Añadir "import sqlmodel" al migrations/script.py.mako
+4. Editar migrations/env.py para añadir SQLModel y nuestros modelos.
+5. Configurar url de la db en alembic.ini
+6. Generar la primera migración (la generará en migrations/versions):
+```bash
+alembic revision --autogenerate -m "init"
+```
+7. Aplicar la migración:
+```bash
+alembic upgrade head
+```
+
+Para posteriores modificaciones:
+1. Generar la migración:
+```bash
+alembic revision --autogenerate -m "nombre"
+```
+2. Aplicar la migración:
+```bash
+alembic upgrade head
+```
