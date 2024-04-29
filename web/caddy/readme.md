@@ -17,6 +17,8 @@ caddy reverse-proxy --from example.com --to localhost:9000
 
 sudo caddy reverse-proxy --disable-redirects --insecure --from gitlab.datadope.io:443 -i --to localhost:8060
 
+caddy caddy reverse-proxy --from "*:6060" --to localhost:6061
+
 
 Automáticamente obtiene los certs TLS con letsencrypt.
 Automáticamente pone redirect de http a https.
