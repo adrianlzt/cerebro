@@ -36,6 +36,36 @@ assert!(result.contains("specific text"),
 ); // Pasa si el argumento es true, si no, imprime el mensaje customizado
 ```
 
+Si queremos testear que una función panique, podemos usar el atributo #[should_panic] en la definición del test.
+```rust
+#[test]
+#[should_panic]
+fn greater_than_100() {
+    Guess::new(200);
+}
+```
+
+Si esperamos un panic determinado ("expected" debe ser una substring del mensaje):
+```rust
+#[should_panic(expected = "less than or equal to 100")]
+```
+
+Un test también puede devolver Ok/Err:
+```rust
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() -> Result<(), String> {
+        if 2 + 2 == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plus two does not equal four"))
+        } 
+    } 
+}
+```
+
+
 Values being compared must implement the PartialEq and Debug traits.
 All primitive types and most of the standard library types implement these traits.
 For structs and enums that you define yourself, you’ll need to implement PartialEq to assert equality of those types
