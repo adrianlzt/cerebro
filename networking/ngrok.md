@@ -53,12 +53,13 @@ ngrok http 8443
   nos crea dos endpoint publicos, uno http y otro https (con terminación del tunel en su server) y nos llega el tráfico a localhost:8443
 
 SSL parece que es de pago.
+ngrok http https://localhost:443
 
 Nos da una web donde analizar las peticiones que están atravesando ngrok
 
 # Login / Auth
 Si queremos usar ciertas funcionalidades tenemos que meter el token de nuestra cuenta.
-Lo obtenemos en https://dashboard.ngrok.com/auth
+Lo obtenemos en https://dashboard.ngrok.com/signup
 
 ./ngrok authtoken XXXXXXXXXXXXX
 
