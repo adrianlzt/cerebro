@@ -78,3 +78,12 @@ Obligatoriamente tenemos que subir el campo "serial" con +1.
 
 Subimos el state:
 terraform state push STATE
+
+
+# Migrate
+https://zeet.co/blog/terraform-migrate-state
+
+Si queremos migrar el backend (probado de local a azure):
+- borrar la config antigua
+- poner la nueva
+- terraform init -migrate-state
