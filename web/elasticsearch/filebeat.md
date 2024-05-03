@@ -89,3 +89,12 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
     fileset.module: container
   processors:
     - add_docker_metadata: ~
+
+
+# Keystore
+Para almacenar, por ejemplo, contraseñas y luego poner una variable en el fichero de config.
+
+El fichero con las keystores está en /var/lib/filebeat/filebeat.keystore
+
+Para ver el contenido:
+https://github.com/adrianlzt/extract-filebeat-keystore/
