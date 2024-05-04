@@ -50,7 +50,7 @@ Si esperamos un panic determinado ("expected" debe ser una substring del mensaje
 #[should_panic(expected = "less than or equal to 100")]
 ```
 
-Un test también puede devolver Ok/Err:
+Un test también puede devolver Ok/Err, marcando que tiene un Result como retorno:
 ```rust
 #[cfg(test)]
 mod tests {
@@ -62,6 +62,16 @@ mod tests {
             Err(String::from("two plus two does not equal four"))
         } 
     } 
+}
+```
+
+Si queremos capturar un panic cuando estamos devolviendo un Result:
+```rust
+#[test]
+#[should_panic]
+fn it_works() -> Result<(), String> {
+    ...
+    assert!(value.is_err())
 }
 ```
 
