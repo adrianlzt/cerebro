@@ -1,9 +1,19 @@
 # Waydroid
+https://docs.waydro.id/
+https://wiki.archlinux.org/title/Waydroid
 https://news.ycombinator.com/item?id=28616985
 https://aur.archlinux.org/packages/waydroid/
 
-Necesita un módulo que parece que no está disponible para el kernel que uso
+Necesita un módulo que parece que no está disponible para el kernel que uso, si está en linux-zen.
 Necesita también wayland
+
+Se puede usar weston para correr wayland encima de x11
+https://www.reddit.com/r/linuxquestions/comments/qs9c9s/how_to_run_waydroid_under_xorg/
+
+La primera vez que usamos waydroid:
+```bash
+sudo waydroid init
+```
 
 
 ## Genymotion ##
