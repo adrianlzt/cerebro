@@ -46,6 +46,32 @@ Para instalar una apk:
 waydroid app install /path/to/apk
 ```
 
+Listado de APKs disponibles:
+```bash
+waydroid app list
+```
+
+Si queremos instalar un .apk de arm en waydroid (que seguramente será x86_64), necesitamos instalar el paquete de traducción:
+https://github.com/casualsnek/waydroid_script 
+  usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
+
+Parece que libndk y libhoudini hacen lo mismo.
+
+```bash
+python main.py install libndk
+```
+
+Después de instalar libndk, instalar la apk arm:
+```bash
+waydroid app install /path/to/apk
+```
+
+
+Problemas? Reiniciar el servicio y recomenzar:
+```bash
+systemctl restart waydroid-container.service
+```
+
 
 ## Genymotion ##
 http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/
