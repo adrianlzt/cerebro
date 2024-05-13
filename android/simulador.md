@@ -14,6 +14,37 @@ La primera vez que usamos waydroid (para tener imágens base con google apps):
 ```bash
 sudo waydroid init -s GAPPS
 ```
+Con la imagen de GAPPS me dice que el dispositivo no está cerficado para usar google apps o google services.
+
+Arrancar el servicio:
+```bash
+systemctl start waydroid-container.service
+```
+
+Comenzar una sesión:
+```bash
+waydroid session start
+```
+
+Si no tenemos wayland, arrancar una ventana con wayland usando weston:
+```bash
+weston
+```
+
+Dentro de ella, mostrar la UI de waydroid:
+```bash
+waydroid show-full-ui
+```
+
+Problemas con la red? Probar a reiniciar el servicio:
+```bash
+systemctl restart waydroid-container.service
+```
+
+Para instalar una apk:
+```bash
+waydroid app install /path/to/apk
+```
 
 
 ## Genymotion ##

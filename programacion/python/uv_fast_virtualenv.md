@@ -4,7 +4,8 @@ uv venv
 source .venv/bin/activate
 uv pip install hvac
 
-Aún un poco limitada
+Para usar los paquetes del sistema:
+uv venv --system-site-packages
 
 
 Instalar un requirements.txt reproduciendo como hubiese sido en una fecha determinada
