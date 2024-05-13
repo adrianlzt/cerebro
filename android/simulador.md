@@ -10,9 +10,9 @@ Necesita también wayland
 Se puede usar weston para correr wayland encima de x11
 https://www.reddit.com/r/linuxquestions/comments/qs9c9s/how_to_run_waydroid_under_xorg/
 
-La primera vez que usamos waydroid:
+La primera vez que usamos waydroid (para tener imágens base con google apps):
 ```bash
-sudo waydroid init
+sudo waydroid init -s GAPPS
 ```
 
 
