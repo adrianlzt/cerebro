@@ -35,3 +35,17 @@ owns();
 
 Un caso típico es cuando usamos un closure en un nuevo thread.
 Moveremos la variable para evitar que el main thread intente dropear la variable al terminar, sin que el otro thread pueda haber terminado.
+
+
+# Traits que puede implementar un closure
+https://doc.rust-lang.org/book/ch13-01-closures.html#moving-captured-values-out-of-closures-and-the-fn-traits
+
+Depende de como se comporte el body de un clouser, puede implementar distintos traits.
+
+FnOnce: El closure consume las variables capturadas, solo puede ser llamado una vez. Todos los closure implementan este trait.
+
+FnMut: El closure puede mutar las variables capturadas. Puede ser llamado múltiples veces.
+
+Fn: no mueve ni muta las variables capturadas. Puede ser llamado múltiples veces y concurrentemente.
+
+```rust

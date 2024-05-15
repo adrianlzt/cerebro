@@ -9,16 +9,19 @@ Hay dos tipos de crates:
 # Crear una nueva app
 cargo new nombre_paquete
 
+
 # Ejecutar
 Desde el dir de la app
 cargo run
 cargo r
+
 
 # Compilar
 cargo build
 cargo b
 
 Debug symbols are enabled by default when using cargo build or cargo run without the --release flag
+
 
 # Añadir crates (librerías)
 cargo add nombre_crate
@@ -60,6 +63,9 @@ Si usamos "cargo update", ignorará el Cargo.lock y actualizará las dependencia
 cargo doc --open
 
 Build documentation provided by all your dependencies locally
+Mirar doc.md para ver como definir esta documentación.
+
+Usar "rustdoc" para generar la doc, que la dea en target/doc.
 
 
 # Cargo generate
@@ -69,3 +75,38 @@ cargo install cargo-generate
 
 Ejemplo:
 cargo generate https://github.com/aya-rs/aya-template
+
+
+# publish
+Si queremos publicar nuestro crate públicamente.
+Necesitaremos añadir cierta info en la sección [package] del Cargo.toml (fallará el publish si nos falta algo).
+
+Para poder publicar tendremos que habernos logueado, cargo login (se almacenará la info en ~/.cargo/credentials)
+
+La versiones publicadas son permanentes, no se pueden eliminar.
+Si hemos subido una versión que no queremos, podemos hacer "yanking", para evitar que nuevos proyectos dependan de esa versión, pero sin romper los que ya pudiesen depender.
+
+```bash
+cargo yank --vers 1.0.1
+```
+
+Deshacer un yank:
+```rust
+cargo yank --vers 1.0.1 --undo
+```
+
+
+# install
+The cargo install command allows you to install and use binary crates locally. This isn’t intended to replace system packages; it’s meant to be a convenient way for Rust developers to install tools that others have shared on crates.io.
+
+
+
+# Profiles
+Cargo has two main profiles: the dev profile Cargo uses when you run cargo build and the release profile Cargo uses when you run cargo build --release. The dev profile is defined with good defaults for development, and the release profile has good defaults for release builds.
+
+Si queremos modificar los valores por defecto definiremos, en el Cargo.toml la sección [profile.*]
+
+
+
+# Subcommands
+Cargo is designed so you can extend it with new subcommands without having to modify Cargo. If a binary in your $PATH is named cargo-something, you can run it as if it was a Cargo subcommand by running cargo something. Custom commands like this are also listed when you run cargo --list
