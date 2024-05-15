@@ -27,3 +27,13 @@ println!("Exited the outer loop");
 # while
 
 # for
+
+
+# iteradores
+Son "generadores" de valores.
+Podemos llamar a su método "collect()" para convertirlos en colecciones.
+
+Collect necesita que anotemos el tipo de dato, ya que rust no puede inferir el tipo de dato:
+```rust
+let v: Vec<i32> = (1..4).collect();
+```

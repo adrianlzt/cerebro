@@ -40,6 +40,22 @@ match val {
 }
 ```
 
+Otra opción más compacta es usar if let:
+```rust
+if let Ok(valor) = val {
+    // hacer algo con valor
+} else {
+    // manejar el error
+}
+```
+
+O si queremos comprobar si es un error:
+```rust
+if let Err(e) = val {
+    // manejar el error
+}
+```
+
 ## gestionar errores
 Si llamamos a una función que devuelve Result e ignoramos el resultado, el compilador nos avisará.
 
@@ -85,6 +101,11 @@ if err != nil {
 ```
 
 
+## is_ok
+Este método devuelve false si el result es Err.
+
+
+
 ## ? operator
 https://doc.rust-lang.org/std/macro.try.html
 
@@ -126,3 +147,11 @@ fn funcion() -> Result<(), Box<dyn Error>> {
     Err(Box::new(MiError))
 }
 ```
+
+
+# Anyhow crate
+https://docs.rs/anyhow/latest/anyhow/
+
+This library provides anyhow::Error, a trait object based error type for easy idiomatic error handling in Rust applications.
+
+Para poder devolver cualquier tipo de error y poder añadirle contexto.

@@ -1,3 +1,5 @@
+https://doc.rust-lang.org/std/string/struct.String.html
+
 En rust tenemos dos tipos de strings:
 - String: un tipo de dato que se puede modificar. UTF-8, almacenado en el heap.
 - &str: un slice de un string. UTF-8, almacenado en el stack.
@@ -24,6 +26,14 @@ Devuelve un struct Char que implementa el trait Iterator.
 https://doc.rust-lang.org/std/str/struct.Chars.html
 
 
+# multilínea
+```rust
+let s = "\
+foo bar
+baz";
+```
+
+
 # parse
 Parse mirará el tipo de dato que se espera y lo convertirá.
 let parse: i32 = String::from("5").trim().parse().expect("Please type a number!");
@@ -35,3 +45,20 @@ let four = "4".parse::<u32>().expect("Please type a number!");
 
 # Generar string usando interpolación, format!
 let s = format!("foo {}", bar);
+
+
+# lines
+Crea un iterador de las líneas de un string.
+
+```rust
+let s = "foo\nbar\nbaz";
+let lines = s.lines();
+```
+
+
+# contains
+Devuelve true si el string contiene el substring.
+```rust
+let s = "foo bar baz";
+let contains = s.contains("bar");
+```
