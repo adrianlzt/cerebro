@@ -10,10 +10,11 @@ Si no tenemos permisos de administracion:
 /etc/cups/cups-files.conf
 SystemGroup sys root printadmin
 
-systemctl restart org.cups.cupsd.service
+systemctl restart cups.service
 
 pacman -S hplip
   para tener impresoras hp laserjet
+  abrí el hp-info que me dejó abierto el hp-systray. Abre una interfaz gráfica para poder buscar impresoras.
 
 
 
