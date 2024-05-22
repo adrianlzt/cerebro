@@ -1,4 +1,4 @@
-mirar ha_scalability.md
+mpg_wal_lsn_diffirar ha_scalability.md
 mirar pl-proxy.md
 mirar monitoring.md
 mirar pg_cirrus
