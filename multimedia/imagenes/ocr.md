@@ -1,3 +1,7 @@
+# saas
+https://cloud.google.com/use-cases/ocr?hl=es#demo
+
+
 # normcap
 capturar texto haciendo una captura de pantalla
 AUR/normcap
