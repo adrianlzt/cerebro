@@ -34,6 +34,8 @@ pass: chip
 sudo nmcli device wifi connect '(your wifi network name/SSID)' ifname wlan0
 sudo nmcli device wifi connect '(your wifi network name/SSID)' password '(your wifi password)' ifname wlan0
 
+Me ha tardado unos minutos hasta que me ha funcionado la conexión.
+
 
 # Zona horaria
 dpkg-reconfigure tzdata
