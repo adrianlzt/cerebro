@@ -109,6 +109,15 @@ jsonb_insert('{"a": [0,1,2]}', '{a, 1}', '"new_value"')
 {"a": [0, "new_value", 1, 2]}
 
 
+## Borrar una key
+
+Le "restamos" la key que queremos borrar al jsonb.
+Ejemplo donde variables es un campo tipo texto que convertimos a jsonb.
+```sql
+select variables::jsonb - 'ansible_user' - 'ansible_password' from main_host where id =142266;
+```
+
+
 
 # Pretty print
 jsonb_pretty(xxX)
