@@ -115,6 +115,7 @@ Le "restamos" la key que queremos borrar al jsonb.
 Ejemplo donde variables es un campo tipo texto que convertimos a jsonb.
 ```sql
 select variables::jsonb - 'ansible_user' - 'ansible_password' from main_host where id =142266;
+update main_host set variables = (variables::jsonb - 'ansible_user' - 'ansible_password')::text where id =142266;
 ```
 
 
