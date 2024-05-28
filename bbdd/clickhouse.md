@@ -20,6 +20,10 @@ docker exec -it clickhouse-server clickhouse-client
 
 
 # Cliente
+Para conectar se usa el puerto 9000
+
+clickhouse-client -h IP -u user -p password
+
 La sintaxis tiene un parecido a mysql.
 SHOW DATABASES;
 USE nombredb;
