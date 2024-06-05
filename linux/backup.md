@@ -38,6 +38,8 @@ Conectará con la clave ssh que tengamos en ~/.ssh/id_rsa
 
 vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
 
+Para que pille lo de .nobackup: https://github.com/borgbase/vorta/issues/1863
+
 
 ## Analizar cuanto espacio va a ocupar un backup
 
