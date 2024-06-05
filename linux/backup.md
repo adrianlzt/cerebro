@@ -18,6 +18,10 @@ BackupPC
 # borg
 export BORG_PASSCOMMAND="gopass show -o backup_borg"
 export BORG_REPO="borgbackup@server.borg.cloud:backup"
+
+borg init -e repokey
+  inicializar el backup (la config necesaria en el remoto)
+
 borg list
   sacar listado de backups
 
@@ -35,7 +39,11 @@ Conectará con la clave ssh que tengamos en ~/.ssh/id_rsa
 vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
 
 
-## Analizar cuanto espacio va a ocupar un backup con baobab
+## Analizar cuanto espacio va a ocupar un backup
+
+En vorta, en la vista de fuentes parece que lo calcula.
+
+### Usando baobab
 
 Obtener los directorios que ignorará borg:
 find /home/adrian -type f -name ".nobackup" 2> /dev/null > .nobackups_dirs
