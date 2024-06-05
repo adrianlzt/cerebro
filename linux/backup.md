@@ -40,6 +40,9 @@ vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
 
 Para que pille lo de .nobackup: https://github.com/borgbase/vorta/issues/1863
 
+Logs vorta
+~/.local/state/Vorta/log
+
 
 ## Analizar cuanto espacio va a ocupar un backup
 
