@@ -42,7 +42,7 @@ SELECT * FROM pg_roles; <- se puede ejecutar estando en cualquier bd
 SELECT rolname, rolpassword FROM pg_authid;
   aqui vemos la pass en md5
 
-NOTA: 
+NOTA:
 Si queremos meter la pass directamente encriptada con md5 podemos generarla asi (el nombre de role debe ponerse como sufijo):
 echo -n "CONTRASEÑAROLE" | md5sum | awk '{print "md5"$1;}'
 Ejemplo, user=pepe contraseña=bla123, pondríamos:
@@ -99,6 +99,9 @@ http://www.postgresql.org/docs/devel/static/sql-alteruser.html
 ALTER USER 'pepe' ...
 
 ### cambiar password / contraseña
+Desde psql podemos hacer:
+\password USUARIO
+
 alter user postgres password 'xxx';
 ALTER ROLE partman PASSWORD 'par3456man';
 
