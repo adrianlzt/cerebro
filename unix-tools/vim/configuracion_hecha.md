@@ -83,3 +83,13 @@ Suelo usar los ayu themes.
 # Change leader
 Modificar ~/.config/nvim.nvchad/init.lua
 vim.g.mapleader = ","
+
+
+# Configuraciones
+Creo que nuestra customización va en:
+~/.config/nvim.nvchad/lua/options.lua
+
+
+# TODO
+meter snippet ansible
+comparar versus lunarvim
