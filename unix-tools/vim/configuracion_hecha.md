@@ -8,6 +8,14 @@ Permite intstalar un montón de plugins y configuraciones de forma sencilla.
 Para cambiar el schema de colores, jugar con los de tokio:
 :colorscheme XXX
 
+## Keymaps
+
+<https://www.lazyvim.org/keymaps>
+
+Si presionamos
+
+<leader>sk - para buscar en las keymaps, podemos usar su "description"
+
 # lunarvim
 
 <https://www.lunarvim.org/#opinionated>
@@ -79,27 +87,6 @@ ansible-lint
 ansible-language-server
 lua-language-server
 stylua
-
-Luego he metido en plugins unos cuantos ficheros lua sacados de
-<https://github.com/LazyVim/LazyVim/tree/main/lua/lazyvim/plugins/extras>
-
-ansible.lua
-copilot-chat.lua
-copilot.lua
-docker.lua
-git.lua
-go.lua
-helm.lua
-json.lua
-markdown.lua
-python.lua
-sql.lua
-terraform.lua
-toml.lua
-typescript.lua
-yaml.lua
-
-Esto no vale, los he sacado de un repo que se llama LazyVim, pero que es ya una distro de neovim.
 
 ## Ver mappings
 
