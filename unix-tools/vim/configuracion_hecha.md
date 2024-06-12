@@ -16,6 +16,21 @@ Si presionamos
 
 <leader>sk - para buscar en las keymaps, podemos usar su "description"
 
+## plugins
+
+Muchos ya vienen preparados en los "extras".
+Mirar en :LazyExtras
+
+## package manager
+
+Usa mason.
+Easily install and manage LSP servers, DAP servers, linters, and formatters.
+:Mason
+
+## diagnostics
+
+Deshabilitarlas <leader>ud
+
 # lunarvim
 
 <https://www.lunarvim.org/#opinionated>
