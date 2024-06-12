@@ -2,7 +2,6 @@ A buffer is the in-memory text of a file.
 A window is a viewport on a buffer.
 A tab page is a collection of windows.
 
-
 Dividir verticalmente:
 C-w v
 :vsplit
@@ -11,31 +10,32 @@ Horizontalmente
 C-w S
 
 Control+w w
-  anterior
+anterior
 Control+w h,j,k,l
-  para navegar entre ellas
+para navegar entre ellas
 
 Control+w q
-  cerrar splits
+cerrar splits
 
 ZZ
- cerrar el split seleccionado
+cerrar el split seleccionado
 
+<Space>wm
+toogle zoom sobre split
+
+Antiguo:
 Zz
- zoom sobre el split
+zoom sobre el split
 
 Zo
-  restaurar zoom (todas igual
+restaurar zoom (todas igual)
 
-
-,q  cerrar buffer sin cerrar ventana
-
+,q cerrar buffer sin cerrar ventana
 
 Si no queremos que el scroll esté sincronizado:
 :set noscrollbind
 :set nodiff
 :set nocursorbind
-
 
 CTRL+w, v: Opens a new vertical split
 
@@ -49,17 +49,16 @@ CTRL+w, r: Moves the current window to the right
 
 CTRL+w, =: Makes all splits equal size
 
-
 Cerrar ventanas
 :q[uit]
 :{count}q[uit]
 ...
-                If [count] is greater than the last window number the last
-                window will be closed:
-                    :1quit  " quit the first window
-                    :$quit  " quit the last window
-                    :9quit  " quit the last window
-                            " if there are less than 9 windows opened
-                    :-quit  " quit the previews window
-                    :+quit  " quit the next window
-                    :+2quit " quit the second next window
+If [count] is greater than the last window number the last
+window will be closed:
+:1quit " quit the first window
+:$quit " quit the last window
+:9quit " quit the last window
+" if there are less than 9 windows opened
+:-quit " quit the previews window
+:+quit " quit the next window
+:+2quit " quit the second next window
