@@ -31,6 +31,14 @@ Easily install and manage LSP servers, DAP servers, linters, and formatters.
 
 Deshabilitarlas <leader>ud
 
+## buscar
+
+<leader><space> buscar ficheros
+<leader>s cosas con fzf
+<leader>sg grepear en el root
+<leader>sG grepear en el cwd
+<leader>ss saltar a una función, símbolo, etc
+
 # lunarvim
 
 <https://www.lunarvim.org/#opinionated>

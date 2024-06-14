@@ -14,6 +14,9 @@ anterior
 Control+w h,j,k,l
 para navegar entre ellas
 
+<leader>bd
+cerrar buffer
+
 Control+w q
 cerrar splits
 
