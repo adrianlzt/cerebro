@@ -68,3 +68,10 @@ test and entry-level production workloads requiring consistent latency
 dev/test and other infrequent access workloads that are less sensitive to performance variability
 
 128 GiB -> €5.45/month
+
+# Aceso a internet
+
+<https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access>
+
+Por defecto las VMs pueden salir a internet, aunque no tengan interfaz pública.
+Si tienen un LB configurado, intentarán usar ese LB.
