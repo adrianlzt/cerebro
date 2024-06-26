@@ -246,15 +246,23 @@ Y cargar la config de ODIC (vault write...)
 Para máquinas usar AppRoles
 https://developer.hashicorp.com/vault/docs/auth/approle
 
-Para loguearse haremos:
+Activarlo
 
 ```
-vault write auth/approle/login \
-    role_id=xxxxxxxx-a04c-15c6-xxxx-225709fad05c \
-    secret_id=xxxxxxxx-770f-d7ae-xxxx-caa3eae29c97
+vault auth enable approle
 ```
 
-Esto nos dará un vault token que ya usaremos con la API.
+Crear un named role:
+
+```
+vault write auth/approle/role/my-role \
+    token_type=batch \
+    secret_id_ttl=10m \
+    token_num_uses=10 \
+    token_ttl=20m \
+    token_max_ttl=30m \
+    secret_id_num_uses=40
+```
 
 ## MFA/2FA
 https://developer.hashicorp.com/vault/docs/auth/login-mfa
