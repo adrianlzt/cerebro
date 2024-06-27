@@ -1,14 +1,14 @@
-https://docs.ansible.com/ansible/latest/plugins/lookup.html
+<https://docs.ansible.com/ansible/latest/plugins/lookup.html>
 
 Lista de plugins
 ansible-doc -t lookup -l
 
 Extraer información de distintos sitios:
 
-  vars:
-    contents: "{{ lookup('file', '/etc/foo.txt') }}"
+vars:
+contents: "{{ lookup('file', '/etc/foo.txt') }}"
 
-  tasks:
+tasks:
 
      - debug: msg="{{ lookup('env','HOME') }} is an environment variable"
 
@@ -24,25 +24,22 @@ Extraer información de distintos sitios:
 
      - debug: msg="{{ lookup('template', './some_template.j2') }} is a value from evaluation of this template"
 
-
-
 vars:
-  motd_value: "{{ lookup('file', '/etc/motd') }}"
+motd_value: "{{ lookup('file', '/etc/motd') }}"
 
 tasks:
-  - debug: msg="motd value is {{ motd_value }}"
 
-
-
+- debug: msg="motd value is {{ motd_value }}"
 
 Podemos usar lookup para definir la variable ansible_password que se usará para conectar.
 Podemos poner este lookup en el inventario:
-  ansible_password="{{ lookup('pipe', 'pass servers/foo') }}"
-
+ansible_password="{{ lookup('pipe', 'pass servers/foo') }}"
 
 Obtener ip de un dominio:
 lookup('dig', 'example.com.')
 
-
 Leer un fichero yaml (por ejemplo para usarlo con un with_items):
 {{ lookup('file','containers.yaml') | from_yaml }}
+
+Si queremos usar "default" con un lookup que puede generar una excepción podemos usar errors='ignore'
+{{ lookup('foo', errors='ignore') | default('foo') }}
