@@ -21,6 +21,11 @@ Si queremos pasar una lista
 
 O con un fichero:
 terraform.tfvars \*.auto.tfvars (estos se cogerán automáticamente)
+Formato:
+
+```
+foo = "bar"
+```
 
 En un fichero damos valores a las variables como (NOTA: tendrán que estar definidas en algun sitio (en algún fichero .tf), ejemplo de definición: variable nombrevariable {}):
 nombrevariable = "valor"
