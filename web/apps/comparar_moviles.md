@@ -1,21 +1,23 @@
-http://www.kimovil.com/
+<http://www.kimovil.com/>
+
+Almacenamiento, al menos 128GiB
+Duración de la batería.
+El lector de huellas funciona bien?
 
 Comprobar si las bandas de red funcionan en nuestro pais
-http://willmyphonework.net/
-https://www.frequencycheck.com
-http://blog.geekbuying.com/index.php/2016/06/02/how-to-know-if-the-phone-can-work-with-network-frequency-of-your-country/#prettyPhoto
-
+<http://willmyphonework.net/>
+<https://www.frequencycheck.com>
+<http://blog.geekbuying.com/index.php/2016/06/02/how-to-know-if-the-phone-can-work-with-network-frequency-of-your-country/#prettyPhoto>
 
 Bandas 4G
-http://www.xatakamovil.com/conectividad/si-vas-a-comprar-un-movil-chino-comprueba-antes-su-compatibilidad-con-el-4g-de-espana
+<http://www.xatakamovil.com/conectividad/si-vas-a-comprar-un-movil-chino-comprueba-antes-su-compatibilidad-con-el-4g-de-espana>
 B20 800Mhz
 B3: 1800MHz
 B7: 2600MHz
 FDD
 
-
-
 # 3g
+
 RSSI: Received Signal Strength Indicator
 
 WCDMA
@@ -23,7 +25,6 @@ RSSI: -102 / -105dBm -> Transferencia: 7Mbps, ping bastante alto y variable, ent
 
 RSSI: -113dBm -> sin señal
 RSSI: -101dBm -> funciona, pero con bastantes cortes (día un poco nublado, mismo sitio otro día con 4g)
-
 
 # 4g
 
@@ -49,7 +50,6 @@ Mal:
 RSRP <= -100dBm
 RSRQ <= -20dB
 SNR <= 0dB
-
 
 Medidas con Archer-MR200 y las mismas antenas conectadas por fuera con un cable de 2m
 
@@ -97,12 +97,12 @@ RSRQ: -8 / -10dB
 SNR: 7.8 / 12.4dB
 ping avg 43ms
 
-
 # Nuevas medidas 3g/4g con temperatura y humedad
+
 ping 20 paquetes a 1.1.1.1
 
 3G/4G
-banda 
+banda
 Signal Strength: %
 RSRP: dBm
 RSRQ: dB
@@ -176,7 +176,6 @@ antenas: verticales
 notas: buena conexión, estable
 ping(min/avg/max/mdev/loss): 115.818/194.043/555.733/121.966 ms
 
-
 Con esta señal (variando el RRSI entre -99 y -103) las llamadas por meet a veces van perfectas y otras veces con mucho lag. Parece que esta cantidad de señal es bastante límite
 
 4G
@@ -226,10 +225,14 @@ antenas: originales
 notas: cerca de la ciudad de cuenca. Lag al trabajar con ssh
 ping(min/avg/max/mdev/loss): 25.600/529.512/1489.253/510.441 ms
 
-
 # Pruebas tras comprar un movil
+
 antutu, comparar la puntuacion con la que dice kimovil
 
 chequear pixels muertos (la app de antutu lo hace?
 
 Comprobar cámaras. Enfocan correctamente?
+
+AccuBatery para estimar la capacidad de la batería
+
+DeviceInfo para testear la pantalla y los sensores.
