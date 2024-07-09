@@ -107,19 +107,6 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 Para que funcione la cli (tendremos que pasar un token):
 vault login
 vault login -method=userpass username=foo
-<<<<<<< HEAD
-  guardará el token en ~/.vault-token
-
-  Podemos usar un token-helper para almacenar ese token de forma segura.
-  Lo configuramos en ~/.vault con "token_helper = /foo/path"
-
-  https://github.com/frntn/vault-token-helper-gopass
-    mirar como configurarlo en https://github.com/sethvargo/vault-token-helper-osx-keychain
-    Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
-    En mi caso lo guardo en privado/vault-auth
-  https://github.com/joemiller/vault-token-helper
-    soporte para pass, linux dbus secrets, osx, windows
-=======
 guardará el token en ~/.vault-token
 Podemos usar un token-helper para almacenar ese token de forma segura
 <https://github.com/frntn/vault-token-helper-gopass>
@@ -127,7 +114,6 @@ mirar como configurarlo en <https://github.com/sethvargo/vault-token-helper-osx-
 Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
 <https://github.com/joemiller/vault-token-helper>
 soporte para pass, linux dbus secrets, osx, windows
->>>>>>> 220a1a5d (Auto save)
 
 Si queremos únicamente obtener el token (no lo guardará en ~/.vault-token):
 vault login -token-only -method=userpass username=foo
