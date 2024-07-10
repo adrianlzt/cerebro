@@ -2,5 +2,7 @@
 
 # Libreswan
 
+<https://libreswan.org/man/ipsec.conf.5.html>
+
 Conectar libreswan al VPN Gateway de Azure
 <https://reinhardt.dev/posts/azure-vpn-using-libreswan/>
