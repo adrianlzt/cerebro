@@ -13,7 +13,7 @@ BackupPC
 
 # borg
 
-borgmatic, una capa por encima de borg para hacer la configuración de que queremos backup (bbdds incluidas): <https://torsion.org/borgmatic/>
+Mirar más abajo el cliente "borgmatic", que nos simplifica el uso de borg.
 
 export BORG_PASSCOMMAND="gopass show -o backup_borg"
 export BORG_REPO="<borgbackup@server.borg.cloud>:backup"
@@ -52,7 +52,14 @@ find /home/adrian -type f -name ".nobackup" 2> /dev/null > .nobackups_dirs
 Configurar baobab para ignorar esos directorios:
 gsettings set org.gnome.baobab.preferences excluded-uris "$(cat .nobackups_dirs | sed "s#/.nobackup#',#" | sed "s#^#'file://#" | tr -d '\n' | sed 's#^#[#' | sed 's#,$#]#')"
 
+## borgmatic
+
+borgmatic, una capa por encima de borg para hacer la configuración de que queremos backup (bbdds incluidas): <https://torsion.org/borgmatic/>
+
+En borgbase.com/ nos dan 10GiB gratis.
+
 # restic
+
 <https://restic.readthedocs.io/en/latest/index.html>
 Simple, con varios backends. Escrito en go.
 
@@ -136,6 +143,7 @@ Podemos poner "latest" como ID
 Seleccionar con --path --host --include
 
 ### Borrar snapshots
+
 <https://restic.readthedocs.io/en/latest/060_forget.html>
 Costoso
 restic forget --prune a8228ef0
@@ -166,6 +174,7 @@ si borramos la key, se dejará de tener acceso.
 podemos pasar --json para sacar el output en formato json
 
 # rsnapshot
+
 <https://rsnapshot.org/>
 basado en rsync, escrito en perl. Conecta remotamente con las máquinas para obtener los backups
 
