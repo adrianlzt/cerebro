@@ -1,6 +1,24 @@
 <http://www.cyberciti.biz/faq/howto-site-to-site-ipsec-vpn-between-cisco-openbsd-router-pfsense/>
 
+strongswan vs libreswap
+<https://serverfault.com/questions/173158/strongswan-vs-openswan/655752#655752>
+
+Parece mejor strongswan. Aunque para rhel viene libreswan por defecto (pero strongswan está en epel).
+strongswan tiene mejor documentación.
+
+# Linux
+
+Libreswan/strongswan usan por debajo las políticas de IPsec sin el "ip routing".
+Para ver esas políticas podemos usar:
+ip xfrm policy # shows the established phase2 connections
+ip xfrm state # shows the keys and bytes used for a phase2 connection
+ip xfrm policy # shows changes
+
+Más info de como debugear: <https://debugging.works/blog/debugging-ipsec/>
+
 # Libreswan
+
+Una vez tenemos establecida la conexión no veremos ninguna ruta ni interfaz nueva. Parece que el tráfico se enruta "mágicamente" para la red que tengamos seleccionada.
 
 ## Configuración
 
@@ -41,6 +59,61 @@ If using IP addresses in combination with NAT, always use the actual local machi
 
 Tener en cuenta que necesitamos los puertos abiertos en el firewall de turno y los mismos puertos reenviados desde el router si tenemos una NAT.
 
+### Azure VPN Gateway
+
+Conectar libreswan al VPN Gateway de Azure
+<https://reinhardt.dev/posts/azure-vpn-using-libreswan/>
+<https://blog.notnot.ninja/2020/09/19/azure-site-to-site-vpn/>
+
+Otro ejemplo, parece que más moderno:
+<https://libreswan.org/wiki/Microsoft_Azure_configuration>
+
+Configuración final que usé:
+
+```
+conn conn2AzureRouteBasedGW
+        authby=secret
+        auto=start
+        dpdaction=restart
+        dpddelay=30
+
+        ikev2=yes
+        ike=aes256-sha256
+        ikelifetime=10800s
+
+        keyingtries=3
+        salifetime=3600s
+        type=tunnel
+
+        #pfs=yes
+        pfs=no
+
+        phase2alg=aes256-sha256
+
+        left=%defaultroute
+        leftid=40.113.59.156
+        leftsubnets=10.0.0.0/24
+
+        right=20.240.192.55
+        rightid=20.240.192.55
+        rightsubnets=10.240.10.0/24
+```
+
+En la `Connection` de Azure usé una Custom IPsec / IKE policy.
+Esta configuración la usamos porque era la que nos solicitaban desde un cliente.
+
+IKE Phase 1
+
+- Encryption: AES256
+- Integrity/PRF: SHA256
+- DH Group: DHGroup14
+
+IKE Phase 2(IPsec)
+
+- IPsec Encryption: AES256
+- IPsec Integrity: SHA256
+- PFS Group: None
+
 ## Comandos
 
 Forzar a iniciar una conex. Es útil para poder ver posibles errores de la configuración.
@@ -75,6 +148,8 @@ Y debe devolver:
 ```
 
 ## Troubleshooting
+
+<https://debugging.works/blog/debugging-ipsec/>
 
 Ejecutar:
 
@@ -118,6 +193,11 @@ El "showstates" no muestra nada.
 Comprobar que las subnets definidas a ambos lados son iguales.
 Mirar parámetros leftsubnets y rightsubnets.
 
+### No IKEv2 connection found with compatible Traffic Selectors
+
+It's a mismatched IP address ranges for IKEv2 (called Traffic Selectors - TS).
+The libreswan side and the other endpoint do not agree on the left/right subnets
+
 ## Debug
 
 Para ver un "dump" del estado actual, configuraciones, etc:
@@ -137,63 +217,3 @@ Ejemplo de línea que nos dice como se establece la conexión:
 ```
 
 Es la red interna a conectar===a través de una ip privada [ip pública]...ip pública del otro lado===red a conectar del otro lado
-
-## Azure VPN Gateway
-
-Conectar libreswan al VPN Gateway de Azure
-<https://reinhardt.dev/posts/azure-vpn-using-libreswan/>
-
-Otro ejemplo, parece que más moderno:
-<https://libreswan.org/wiki/Microsoft_Azure_configuration>
-
-Configuración final que usé:
-
-```
-conn conn2AzureRouteBasedGW
-        authby=secret
-        auto=start
-        dpdaction=restart
-        dpddelay=30
-        dpdtimeout=120
-
-        ikev2=yes
-        ike=aes256-sha256
-        ikelifetime=10800s
-
-        keyingtries=3
-        salifetime=3600s
-        type=tunnel
-        pfs=yes
-
-        phase2alg=aes256-sha256
-
-        left=10.0.0.5
-        leftid=40.113.59.156
-        leftsubnets=10.0.0.0/24
-
-        right=20.240.192.55
-        rightid=20.240.192.55
-        rightsubnets=10.240.10.160/27
-```
-
-En la `Connection` de Azure usé una Custom IPsec / IKE policy.
-
-IKE Phase 1
-Encryption
-AES256
-
-    Integrity/PRF
-    SHA256
-
-    DH Group
-    DHGroup14
-
-IKE Phase 2(IPsec)
-IPsec Encryption
-AES256
-
-IPsec Integrity
-SHA256
-
-PFS Group
-PFS24
