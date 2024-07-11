@@ -56,8 +56,10 @@ ipsec showstates
 Para una conexión establecida veía esto:
 
 ```
-ipsec showstates
-000 #11: "conn2AzureRouteBasedGW/1x1":4500 STATE_V2_ESTABLISHED_IKE_SA (established IKE SA); REKEY in 3877s; REPLACE in 4735s; newest; idle;
+# ipsec showstates
+000 #1: "conn2AzureRouteBasedGW/1x1":4500 STATE_V2_ESTABLISHED_IKE_SA (established IKE SA); REKEY in 9949s; REPLACE in 10796s; newest; idle;
+000 #2: "conn2AzureRouteBasedGW/1x1":4500 STATE_V2_ESTABLISHED_CHILD_SA (established Child SA); LIVENESS in 26s; REKEY in 2959s; REPLACE in 3596s; newest; eroute owner; IKE SA #1; idle;
+000 #2: "conn2AzureRouteBasedGW/1x1" esp.9894a50e@20.240.192.55 esp.84ac8cb5@10.0.0.5 tun.0@20.240.192.55 tun.0@10.0.0.5 Traffic: ESPin=0B ESPout=0B ESPmax=2^63B
 ```
 
 Para saber si la conexión está establecida correctamente podemos hacer:
@@ -89,9 +91,28 @@ for vpn in /proc/sys/net/ipv4/conf/*; do
 done
 ```
 
+### dropping unexpected IKE_SA_INIT message containing NO_PROPOSAL_CHOSEN notification; message payloads: N; missing payloads: SA,KE,Ni
+
+Este error es al tener mal configurado el `ike`, el parámetro donde definimos la encriptación de IKE phase 1 (el ike phase 2 si está bien).
+
+En el state veo:
+
+```
+# ipsec showstates
+000 #2: "conn2AzureRouteBasedGW/1x1":500 STATE_V2_PARENT_I1 (sent IKE_SA_INIT request); RETRANSMIT in 27s; idle;
+000 #2: pending CHILD SA for "conn2AzureRouteBasedGW/1x1"
+```
+
+### IKE_AUTH response contained the error notification NO_PROPOSAL_CHOSEN
+
+Este error parece que sale si tenemos el `phase2alg` configurado distinto entre los dos dispositivos (la encriptación de IKE phase 2). La encriptación del phase1 si está bien.
+
+El "showstates" no muestra nada.
+
 ### CREATE_CHILD_SA failed with error notification NO_PROPOSAL_CHOSEN
 
 Comprobar que las subnets definidas a ambos lados son iguales.
+Mirar parámetros leftsubnets y rightsubnets.
 
 ## Debug
 
