@@ -89,6 +89,10 @@ for vpn in /proc/sys/net/ipv4/conf/*; do
 done
 ```
 
+### CREATE_CHILD_SA failed with error notification NO_PROPOSAL_CHOSEN
+
+Comprobar que las subnets definidas a ambos lados son iguales.
+
 ## Debug
 
 Para ver un "dump" del estado actual, configuraciones, etc:
@@ -98,6 +102,8 @@ ipsec status
 ```
 
 Para sacar trazas, configurar debug a "base".
+
+Por mi experiencia buscando errores, activar el modo debug lo que conseguía era ocultar las trazas útiles. Parece mejor no activar el debug.
 
 Ejemplo de línea que nos dice como se establece la conexión:
 
