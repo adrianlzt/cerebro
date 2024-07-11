@@ -2,7 +2,27 @@
 
 # Libreswan
 
+## Configuración
+
 <https://libreswan.org/man/ipsec.conf.5.html>
+
+Cuando libreswan habla de parte izquiera y derecha de la red, da igual que lado es cada uno.
+
+### Secrets
+
+Si queremos una clave que matchee cualquier conexión:
+
+```
+%any %any : PSK "$psk"
+```
+
+Si queremos distintas, usaremos el formato:
+
+```
+IP_PUBLICA_ORIGEN IP_PUBLICA_DESTINO : PSK "mysecret"
+```
+
+### NAT
 
 Si estamos dentras de NAT, en "left", tenemos que cambiarlo de:
 
@@ -38,6 +58,18 @@ Para una conexión establecida veía esto:
 ```
 ipsec showstates
 000 #11: "conn2AzureRouteBasedGW/1x1":4500 STATE_V2_ESTABLISHED_IKE_SA (established IKE SA); REKEY in 3877s; REPLACE in 4735s; newest; idle;
+```
+
+Para saber si la conexión está establecida correctamente podemos hacer:
+
+```
+ipsec status | grep "Total IPsec"
+```
+
+Y debe devolver:
+
+```
+000 Total IPsec connections: loaded 1, active 1
 ```
 
 ## Troubleshooting
