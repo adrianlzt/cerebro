@@ -12,7 +12,7 @@ Libreswan/strongswan usan por debajo las políticas de IPsec sin el "ip routing"
 Para ver esas políticas podemos usar:
 ip xfrm policy # shows the established phase2 connections
 ip xfrm state # shows the keys and bytes used for a phase2 connection
-ip xfrm policy # shows changes
+ip xfrm monitor # shows changes
 
 En libreswan veo que crea una interfaz ip_vti0 que es donde vemos el tráfico con tcpdump.
 
@@ -239,3 +239,69 @@ Ejemplo de línea que nos dice como se establece la conexión:
 ```
 
 Es la red interna a conectar===a través de una ip privada [ip pública]...ip pública del otro lado===red a conectar del otro lado
+
+# Strongswan
+
+Parece que tiene dos units, strongswan (para usar swanctl) y strongswan-starter (para usar el fichero /etc/strongswan/ipsec.conf)
+
+Si usamos strongswan-starter luego podemos comprobar el estado con:
+
+```
+redhat:
+strongswan status
+
+ubuntu:
+ipsec status
+```
+
+Ejemplo de salida de una conexión establecida:
+
+```
+# strongswan status
+Security Associations (1 up, 0 connecting):
+ azureTunnel[1]: ESTABLISHED 39 seconds ago, 10.0.0.5[40.113.59.156]...4.223.79.15[4.223.79.15]
+ azureTunnel{1}:  INSTALLED, TUNNEL, reqid 1, ESP in UDP SPIs: ce32722a_i 75a3f0e4_o
+ azureTunnel{1}:   10.0.0.0/24 === 192.168.3.0/24
+```
+
+Con este software si que vemos las rutas en "ip route":
+
+```
+# ip route show table 220
+192.168.3.0/24 via 10.0.0.1 dev eth0 proto static src 10.0.0.5
+```
+
+## Configuración
+
+### Azure VPN Gateway
+
+Configuración que me ha funcionado:
+
+```
+conn azureTunnel
+    authby=secret
+    auto=start
+    dpdaction=restart
+    dpddelay=30
+    dpdtimeout=120
+    ikelifetime=3600s
+    ikev2=yes
+    keyingtries=3
+    pfs=yes
+    phase2alg=aes128-sha1
+
+    salifetime=3600s
+    type=tunnel
+
+
+    left=%defaultroute
+    leftid=40.113.59.156
+    leftsubnet=10.0.0.0/24
+
+    right=4.223.79.15
+    rightid=4.223.79.15
+    rightsubnet=192.168.3.0/24
+
+    ike=aes256-sha1-modp1024!
+    esp=aes256-sha1-modp2048!
+```
