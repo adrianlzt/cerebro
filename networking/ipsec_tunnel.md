@@ -14,7 +14,25 @@ ip xfrm policy # shows the established phase2 connections
 ip xfrm state # shows the keys and bytes used for a phase2 connection
 ip xfrm policy # shows changes
 
+En libreswan veo que crea una interfaz ip_vti0 que es donde vemos el tráfico con tcpdump.
+
 Más info de como debugear: <https://debugging.works/blog/debugging-ipsec/>
+
+Parece que también es posible forzar a que se cree una interfaz y se use el ip routing.
+<https://libreswan.org/wiki/Route-based_XFRMi>
+
+tcpdump parece que no puede ver el tráfico de salida por que:
+On the right side (egress), since the packet is already encrypted by xfrm before reaching AF_PACKET, tcpdump can only see the encrypted result and isn't able to see the plain text version
+<https://serverfault.com/a/1020769>
+
+Truco para capturar el tráfico de salida: <https://serverfault.com/a/1069111>
+
+```
+iptables -I INPUT -m addrtype --dst-type LOCAL -m policy --pol ipsec --dir in -j NFLOG --nflog-group 5
+iptables -I OUTPUT -m policy --pol ipsec --dir out -j NFLOG --nflog-group 5
+
+tcpdump -s 0 -n -i nflog:5
+```
 
 # Libreswan
 
@@ -113,6 +131,10 @@ IKE Phase 2(IPsec)
 - IPsec Encryption: AES256
 - IPsec Integrity: SHA256
 - PFS Group: None
+
+Esta `Connection` también estaba enlazada con un _Local network gateway_ donde estaba configurada la IP del libreswan remoto y la subred remota que exponíamos.
+
+Una vez conectado, tanto desde el lado de libreswan como desde azure podemos intercambiar datos.
 
 ## Comandos
 
