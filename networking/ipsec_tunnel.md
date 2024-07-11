@@ -91,6 +91,10 @@ for vpn in /proc/sys/net/ipv4/conf/*; do
 done
 ```
 
+### STATE_V2_PARENT_I1: retransmission; will wait 0.5 seconds for response
+
+El otro endpoint no está contestando.
+
 ### dropping unexpected IKE_SA_INIT message containing NO_PROPOSAL_CHOSEN notification; message payloads: N; missing payloads: SA,KE,Ni
 
 Este error es al tener mal configurado el `ike`, el parámetro donde definimos la encriptación de IKE phase 1 (el ike phase 2 si está bien).
