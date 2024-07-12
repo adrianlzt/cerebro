@@ -5,6 +5,7 @@ strongswan vs libreswap
 
 Parece mejor strongswan. Aunque para rhel viene libreswan por defecto (pero strongswan está en epel).
 strongswan tiene mejor documentación.
+Usar strongswan
 
 # Linux
 
@@ -34,6 +35,20 @@ iptables -I OUTPUT -m policy --pol ipsec --dir out -j NFLOG --nflog-group 5
 tcpdump -s 0 -n -i nflog:5
 ```
 
+# Nomenclaturas
+
+## Mapeo entre DHn y Groupm
+
+```
+Groupe Diffie-Hellman 1 : groupe 768 bits
+Groupe Diffie-Hellman 2 : groupe 1 024 bits
+Groupe Diffie-Hellman 5 : groupe 1 536 bits
+Groupe Diffie-Hellman 14 : groupe 2 048 bits
+Groupe Diffie-Hellman 15 : groupe 3 072 bits
+Groupe Diffie-Hellman 19 : groupe de courbe elliptique 256 bits
+Groupe Diffie-Hellman 20 : groupe de courbe elliptique 384 bits
+```
+
 # Libreswan
 
 Una vez tenemos establecida la conexión no veremos ninguna ruta ni interfaz nueva. Parece que el tráfico se enruta "mágicamente" para la red que tengamos seleccionada.
@@ -43,6 +58,16 @@ Una vez tenemos establecida la conexión no veremos ninguna ruta ni interfaz nue
 <https://libreswan.org/man/ipsec.conf.5.html>
 
 Cuando libreswan habla de parte izquiera y derecha de la red, da igual que lado es cada uno.
+
+### ip forward y NAT
+
+Para que las máquinas del otro lado de la VPN puedan enrutar a la red local donde esté strongswan, necesitamos habilitar el ip forward y el NATeo:
+
+```
+sysctl -w net.ipv4.ip_forward=1
+modprobe iptable_nat
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
 
 ### Secrets
 
@@ -220,6 +245,17 @@ Mirar parámetros leftsubnets y rightsubnets.
 It's a mismatched IP address ranges for IKEv2 (called Traffic Selectors - TS).
 The libreswan side and the other endpoint do not agree on the left/right subnets
 
+### Al hacer ping veo el tráfico en ambos sentidos pero no funciona
+
+Era por culpa de tener una interfaz `vti` sin configurar.
+No se cuando se creó, tal vez al usar libreswan.
+
+Conseguí que todo funcionase deshabilitándola:
+
+```
+ip link set ip_vti0 down
+```
+
 ## Debug
 
 Para ver un "dump" del estado actual, configuraciones, etc:
@@ -243,6 +279,8 @@ Es la red interna a conectar===a través de una ip privada [ip pública]...ip p�
 # Strongswan
 
 Parece que tiene dos units, strongswan (para usar swanctl) y strongswan-starter (para usar el fichero /etc/strongswan/ipsec.conf)
+
+Parece que los mensajes de error que da strongswan son más útiles que libreswan.
 
 Si usamos strongswan-starter luego podemos comprobar el estado con:
 
@@ -273,9 +311,69 @@ Con este software si que vemos las rutas en "ip route":
 
 ## Configuración
 
+<https://docs.strongswan.org/docs/5.9/index.html>
+
+La configuración via ipsec.conf está deprecated. (<https://docs.strongswan.org/docs/5.9/config/config.html>)
+
+### IP forward y NAT
+
+Para que las máquinas del otro lado de la VPN puedan enrutar a la red local donde esté strongswan, necesitamos habilitar el ip forward y el NATeo:
+
+```
+sysctl -w net.ipv4.ip_forward=1
+modprobe iptable_nat
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
 ### Azure VPN Gateway
 
 Configuración que me ha funcionado:
+
+Con una configuración parametrizada de esta manera, en la connection de azure:
+
+IKE Phase 1
+
+- Encryption: AES256
+- Integrity/PRF: SHA256
+- DH Group: DHGroup14
+
+IKE Phase 2(IPsec)
+
+- IPsec Encryption: AES256
+- IPsec Integrity: SHA256
+- PFS Group: PFS2048 (equivalente a group14)
+
+Esta configuración me ha funcionado:
+
+```
+conn conn2AzureRouteBasedGW
+    authby=secret
+    auto=start
+    dpdaction=restart
+    dpddelay=30
+    dpdtimeout=120
+    ikelifetime=3600s
+    ikev2=yes
+    keyingtries=3
+    pfs=yes
+    phase2alg=aes256-sha256
+
+    salifetime=3600s
+    type=tunnel
+
+    ike=aes256-sha256-modp2048!
+
+    left=%defaultroute
+    leftid=40.113.59.156
+    leftsubnet=10.0.0.0/24
+
+    right=20.240.192.55
+    rightid=20.240.192.55
+    rightsubnet=10.240.10.0/24
+
+```
+
+Para el vpn gateway sku basic, que no permite configuración específica, me ha funcionado con esta configuración.
 
 ```
 conn azureTunnel
@@ -304,4 +402,37 @@ conn azureTunnel
 
     ike=aes256-sha1-modp1024!
     esp=aes256-sha1-modp2048!
+```
+
+## Troubleshooting
+
+### traffic selectors a.b.c.d/24 === c.d.e.f/24 unacceptable
+
+Era porque al copiar una config de libreswan, estaba usando "leftsubnets" (válido en libreswan, pero no en strongswan). Hay que cambiarlo por "leftsubnet" (sin s).
+Lo mismo para la right.
+
+### Podemos pingear a la máquina con strongswan pero no al resto de la red
+
+Nos falta poder forwarder el tráfico:
+
+```
+sysctl -w net.ipv4.ip_forward=1
+```
+
+Y natearlo con iptables:
+
+```
+modprobe iptable_nat
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+### Al hacer ping veo el tráfico en ambos sentidos pero no funciona
+
+Era por culpa de tener una interfaz `vti` sin configurar.
+No se cuando se creó, tal vez al usar libreswan.
+
+Conseguí que todo funcionase deshabilitándola:
+
+```
+ip link set ip_vti0 down
 ```
