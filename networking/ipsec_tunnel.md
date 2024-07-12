@@ -404,6 +404,8 @@ conn azureTunnel
     esp=aes256-sha1-modp2048!
 ```
 
+Si hemos montado el strongswan en una VM de azure, para que otras VMs e la misma red enruten pasando por ese strongswan tendremos que crear una route table (mirar nube/azure/networking.md). No vale con meterla a mano con un "ip route add ...".
+
 ## Troubleshooting
 
 ### traffic selectors a.b.c.d/24 === c.d.e.f/24 unacceptable
