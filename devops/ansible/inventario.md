@@ -80,6 +80,7 @@ ansible_sudo_pass: contraseña2
 ansible_ssh_private_key_file=~/fichero
 
 # Añadir máquinas al inventario desde un playbook, solo para esa ejecucción (in-memory)
+
 <http://docs.ansible.com/add_host_module.html>
 This module bypasses the play host loop and only runs once for all the hosts in the play, if you need it to iterate use a with_ directive.
 
@@ -89,6 +90,7 @@ This module bypasses the play host loop and only runs once for all the hosts in 
             groups=just_created foo=42
 
 # YAML
+
 <https://docs.ansible.com/ansible/2.5/plugins/inventory/yaml.html>
 
 Convertir de formatos a formato .yaml:
