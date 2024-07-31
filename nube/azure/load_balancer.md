@@ -21,6 +21,10 @@ Hace falta montar una arquitectura con un proceso que obtenga el cert y lo deje 
 Se basa en tener un "cron" que se ejecute periódicamente, obtenga el cert y se lo ponga al AG.
 El AG deberá redirigir el tráfico a la tarea que se encargará de obtener el cert.
 
+Los certificados se configuran en los listeners, cuando son de tipo HTTPS.
+
+Como hacerlo a mano, usando "az" y "certbot": <https://trstringer.com/azure-key-vault-lets-encrypt/>
+
 ### keyvault-acmebot
 
 <https://github.com/shibayan/keyvault-acmebot>
@@ -28,6 +32,12 @@ El AG deberá redirigir el tráfico a la tarea que se encargará de obtener el c
 Automated ACME SSL/TLS certificates issuer for Azure Key Vault (App Gateway / Front Door / CDN / others)
 
 Necesita acceso a la gestión de la zona DNS, ya que la usará para validar los challengues contra el proveedor de certificados (creará el registro TXT necesario para el dominio que pidamos).
+
+### AKS
+
+Configurar un pod en AKS para generar certs con Let's encrypt.
+
+<https://learn.microsoft.com/en-us/azure/application-gateway/ingress-controller-letsencrypt-certificate-application-gateway>
 
 ## Esquema de la distintas partes
 
