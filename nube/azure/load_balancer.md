@@ -32,6 +32,12 @@ Como hacerlo a mano, usando "az" y "certbot": <https://trstringer.com/azure-key-
 Automated ACME SSL/TLS certificates issuer for Azure Key Vault (App Gateway / Front Door / CDN / others)
 
 Necesita acceso a la gestión de la zona DNS, ya que la usará para validar los challengues contra el proveedor de certificados (creará el registro TXT necesario para el dominio que pidamos).
+También tenemos que dar permisos a la función sobre la zona DNS donde queremos crear los certs: <https://github.com/shibayan/keyvault-acmebot/wiki/DNS-Provider-Configuration#azure-dns>
+Esto incluye crear la variable de entorno "Acmebot:AzureDns:SubscriptionId" con el id de la suscripción.
+
+Una vez desplegado, tendremos que configurar la autenticación: <https://github.com/shibayan/keyvault-acmebot/wiki/Getting-Started#5-enable-app-service-authentication>
+En la function app, ir a Settings -> Authentication
+Añadir un identity provider, para poder autenticarnos.
 
 ### AKS
 
