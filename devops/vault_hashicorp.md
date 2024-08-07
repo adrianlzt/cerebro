@@ -297,7 +297,8 @@ vault write -format=json identity/group name="education" \
      metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
 
 ## Token
-<https://developer.hashicorp.com/vault/tutorials/tokens/token-management>
+https://developer.hashicorp.com/vault/tutorials/tokens/token-management
+https://developer.hashicorp.com/vault/tutorials/tokens/tokens
 
 Info sobre el token que estamos usando actualmente
 vault token lookup
@@ -306,6 +307,10 @@ auth/token/lookup-self
 
 Ver todos los tokens actuales:
 vault list -format=json auth/token/accessors/  | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
+
+Crear un token:
+vault token create -policy=my-policy -ttl=1h -explicit-max-ttl=2h
+vault token create --period=0 -orphan -no-default-policy -policy=read-telemetry
 
 Renovar un token (si es renovable), mantenemos el mismo token, pero se actualiza su tiempo de vida:
 vault token renew
