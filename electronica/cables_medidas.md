@@ -21,3 +21,13 @@ AWG  Section de Câble mm²   Densité de courant Ampère   Diámetro 2*sqrt(are
 3    26,65                  154 A
 2    33,61                  170 A
 1    42,38                  180 A
+
+Tamaños típicos para vivienda:
+<https://www.topcable.com/blog-electric-cable/cables-para-instalaciones-electricas-domesticas/>
+
+Diámetro: 1,5 mm2: iluminación y automatización
+Diámetro: 2,5 mm2: tomas de uso en general, baño y cuarto de cocina
+Diámetro: 4   mm2: lavadora, secadora, lavavajillas y termo electrico (*)
+Diámetro: 6   mm2: cocina y horno, aire acondicionado y calefacción
+
+(*) en este circuito exclusivamente, cada toma individual puede conectarse mediante un conductor de 2,5 mm2 que parte de una caja de derivación del circuito de 4 mm2
