@@ -75,3 +75,12 @@ Para poder ver las peticiones al WAF y cuales son bloqueadas, tendremos que acti
 Para ello primero deberemos crear un "Log Analytics workspace" donde los enviaremos.
 
 Tras activar el envío de logs tardarán unos minutos en aparecer.
+
+Las reglas que bloquean son las de OWASP.
+Si por ejemplo vemos esto:
+RuleSetType: OWASP CRS
+RuleSetVersion: 3.2
+RuleId: 949110
+
+Encontraremos la regla en:
+<https://github.com/coreruleset/coreruleset/blob/v3.2.3/rules/REQUEST-949-BLOCKING-EVALUATION.conf#L80>
