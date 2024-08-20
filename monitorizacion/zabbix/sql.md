@@ -1,41 +1,38 @@
-https://www.zabbix.com/documentation/3.4/manual/api/reference/host/object#host
-  En los "Object reference" podemos ver los mapeos de valores a significado
-Modelo de la bbdd (version 2.x): https://zabbix.org/wiki/Database_Schemas
+<https://www.zabbix.com/documentation/3.4/manual/api/reference/host/object#host>
+En los "Object reference" podemos ver los mapeos de valores a significado
+Modelo de la bbdd (version 2.x): <https://zabbix.org/wiki/Database_Schemas>
 
 Esquema tablas:
-https://zabbix.org/wiki/Docs/DB_schema/4.0
-
+<https://zabbix.org/wiki/Docs/DB_schema/4.0>
 
 Accediendo directamente a la base de datos de zabbix.
 
 Tabla items
 Descripción e id de todos los items.
-Generalmente podemos acceder fácilmente a través de: key_
+Generalmente podemos acceder fácilmente a través de: key\_
 itemid es el valor que usaremos para buscar el item en otras tablas.
 
 Buscar por una key:
-select itemid,name,key_,value_type from items where key_ like '%Beta%';
+select itemid,name,key*,value_type from items where key* like '%Beta%';
 
 Ver los valores recordados de la interfaz web para un usuario
-select users.alias,profiles.profileid,profiles.idx,profiles.value_id,profiles.value_int,profiles.value_str from users,profiles where users.userid=profiles.userid and users.alias='adrian';
+select users.username,profiles.profileid,profiles.idx,profiles.value_id,profiles.value_int,profiles.value_str from users,profiles where users.userid=profiles.userid and users.username='adrian';
+
 Si queremos quitar uno de estos valores, borraremos la fila:
 delete from profiles where profileid=96;
 
-
 value_type
 El tipo de dato que almacena el item:
- 0 -> double/float
- 1 -> char
- 2 -> log
- 3 -> uint
- 4 -> text
-
+0 -> double/float
+1 -> char
+2 -> log
+3 -> uint
+4 -> text
 
 type (trigger)
 0 - (default) do not generate multiple events;
 1 - generate multiple events.
 7 - ¿? No lo veo en el código
-
 
 type (item)
 0 - Zabbix agent
@@ -90,22 +87,21 @@ items - Flags:
 
 Triggers, templateid: si el campo no es null, quiere decir que es un trigger heredado de un linked template.
 
-
 # History
+
 El histórico de los datos se almacena en tablas según su tipo:
 double/float -> history
-char         -> history_str
-log          -> history_log
-uint         -> history_uint
-text         -> history_text
+char -> history_str
+log -> history_log
+uint -> history_uint
+text -> history_text
 
 Si usamos ElasticSearch, estas tablas se almacenan en ES en vez de la SQL.
 
-
-
 # Events / problems
-https://www.zabbix.com/documentation/4.2/manual/api/reference/event/object#host
-https://www.zabbix.com/documentation/current/manual/api/reference/problem/object
+
+<https://www.zabbix.com/documentation/4.2/manual/api/reference/event/object#host>
+<https://www.zabbix.com/documentation/current/manual/api/reference/problem/object>
 Obtenidos de include/common.h
 
 source
@@ -125,9 +121,8 @@ object
 value (trigger events):
 0 - OK
 1 - problem
-2 - TRIGGER_VALUE_UNKNOWN /* only in server code, never in DB */
-3 - TRIGGER_VALUE_NONE    /* only in server code, never in DB */
-
+2 - TRIGGER*VALUE_UNKNOWN /\_only in server code, never in DB */
+3 - TRIGGER*VALUE_NONE /* only in server code, never in DB\_/
 
 discovery events:
 0 - host or service up;
@@ -138,7 +133,6 @@ discovery events:
 internal events:
 0 - 'normal' state;
 1 - 'unknown' or 'not supported' state.
-
 
 acknowledged
 0 - not acknowledged
@@ -155,185 +149,179 @@ Una vez resueltos podemos usar la tabla event_recovery para matchear los que est
 
 -- problemas abiertos (quitando duplicados, con el distinct). No coincide exactamente con el número de la interfaz web por que el web esconde las dependencias
 SELECT DISTINCT
-    p.eventid,
-    h.host,
-    h.name AS hostname,
-    p.name AS problem,
-    (ARRAY['Not classified', 'Information', 'Warning', 'Average', 'High', 'Disaster'])[p.severity+1] AS severity,
-    p.severity AS severitynum
+p.eventid,
+h.host,
+h.name AS hostname,
+p.name AS problem,
+[ARRAY['Not classified', 'Information', 'Warning', 'Average', 'High', 'Disaster']](p.severity+1) AS severity,
+p.severity AS severitynum
 FROM
-    problem p
-    JOIN functions f ON p.objectid = f.triggerid
-    JOIN triggers t USING (triggerid)
-    JOIN items i USING (itemid)
-    JOIN hosts h USING (hostid)
+problem p
+JOIN functions f ON p.objectid = f.triggerid
+JOIN triggers t USING (triggerid)
+JOIN items i USING (itemid)
+JOIN hosts h USING (hostid)
 WHERE
-    source = 0
-    AND r_eventid IS NULL
-    AND h.status = 0
-    AND i.status = 0
-    AND t.status = 0;
-
+source = 0
+AND r_eventid IS NULL
+AND h.status = 0
+AND i.status = 0
+AND t.status = 0;
 
 -- problemas que estaban abiertos en un momento determinado (y ahora ya están cerrados), para un host determinado
 WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
-   hosts.host,
-   triggers.description,
-   to_timestamp(events.clock) AS START,
-   to_timestamp(r_events.clock) AS END
+hosts.host,
+triggers.description,
+to_timestamp(events.clock) AS START,
+to_timestamp(r_events.clock) AS END
 FROM
-   events
-   JOIN event_recovery ON events.eventid = event_recovery.eventid
-   JOIN events as r_events ON event_recovery.r_eventid = r_events.eventid,
-   triggers,
-   functions,
-   items,
-   hosts
+events
+JOIN event_recovery ON events.eventid = event_recovery.eventid
+JOIN events as r_events ON event_recovery.r_eventid = r_events.eventid,
+triggers,
+functions,
+items,
+hosts
 WHERE
-   events.source = 0 -- solo eventos generados por triggers
-   AND events.object = 0
-   AND events.objectid = triggers.triggerid
-   AND functions.triggerid = triggers.triggerid
-   AND functions.itemid = items.itemid
-   AND items.hostid = hosts.hostid
-   AND events.clock < (SELECT DATE FROM DATE)
-   AND (r_events.clock > (SELECT DATE FROM DATE) OR r_events.clock IS NULL)
-   AND hosts.host = 'somehost'
+events.source = 0 -- solo eventos generados por triggers
+AND events.object = 0
+AND events.objectid = triggers.triggerid
+AND functions.triggerid = triggers.triggerid
+AND functions.itemid = items.itemid
+AND items.hostid = hosts.hostid
+AND events.clock < (SELECT DATE FROM DATE)
+AND (r_events.clock > (SELECT DATE FROM DATE) OR r_events.clock IS NULL)
+AND hosts.host = 'somehost'
 ORDER BY events.clock ASC;
-
 
 -- problemas abiertos en un momento determinado para un host determinado
 -- miramos la tabla problems, que se va purgando, por lo que solo estarán recientes
 -- CUIDADO! aparecen filas duplicadas si la expresión del trigger usa items distintos (una línea por item)
 WITH DATE AS ( SELECT ROUND(EXTRACT(EPOCH FROM '2019-03-12 03:30:12'::timestamptz))::int AS DATE)
 SELECT
-   hosts.host,
-   triggers.description,
-   to_timestamp(problem.clock) AS START
+hosts.host,
+triggers.description,
+to_timestamp(problem.clock) AS START
 FROM
-   problem,
-   triggers,
-   functions,
-   items,
-   hosts
+problem,
+triggers,
+functions,
+items,
+hosts
 WHERE
-   problem.source = 0 -- solo eventos generados por triggers
-   AND triggers.status = 0 -- solo triggers activos
-   AND r_eventid IS NULL
-   AND problem.objectid = triggers.triggerid
-   AND functions.triggerid = triggers.triggerid
-   AND functions.itemid = items.itemid
-   AND items.hostid = hosts.hostid
-   AND problem.clock < (SELECT DATE FROM DATE)
-   AND hosts.host = 'somehost'
+problem.source = 0 -- solo eventos generados por triggers
+AND triggers.status = 0 -- solo triggers activos
+AND r_eventid IS NULL
+AND problem.objectid = triggers.triggerid
+AND functions.triggerid = triggers.triggerid
+AND functions.itemid = items.itemid
+AND items.hostid = hosts.hostid
+AND problem.clock < (SELECT DATE FROM DATE)
+AND hosts.host = 'somehost'
 ORDER BY problem.clock ASC;
-
 
 -- número de problems abiertos por host
 SELECT
-   hosts.host, count(*)
+hosts.host, count(*)
 FROM
-   problem,
-   triggers,
-   functions,
-   items,
-   hosts
+problem,
+triggers,
+functions,
+items,
+hosts
 WHERE
-   problem.source = 0 -- solo eventos generados por triggers
-   AND triggers.status = 0 -- solo triggers activos
-   AND r_eventid IS NULL
-   AND problem.objectid = triggers.triggerid
-   AND functions.triggerid = triggers.triggerid
-   AND functions.itemid = items.itemid
-   AND items.hostid = hosts.hostid
+problem.source = 0 -- solo eventos generados por triggers
+AND triggers.status = 0 -- solo triggers activos
+AND r_eventid IS NULL
+AND problem.objectid = triggers.triggerid
+AND functions.triggerid = triggers.triggerid
+AND functions.itemid = items.itemid
+AND items.hostid = hosts.hostid
 GROUP BY hosts.host
 ORDER BY COUNT(*) DESC;
 
-
 -- número de problems abiertos
-select count(*) from problem where problem.source = 0 AND r_eventid is null;
+select count(\*) from problem where problem.source = 0 AND r_eventid is null;
 MAL! tenemos que al menos coger solo los triggers enabled y los objectid que hagan match a un triggerid
 
-
 ## Alerts
+
 -- alertas pendientes de enviar agrupadas por media type
-select media_type.description,count(*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
+select media_type.description,count(\*) from alerts,media_type where media_type.mediatypeid = alerts.mediatypeid and alerts.status=0 group by media_type.description;
 
 -- alertas que no han sido enviadas por un error (zabbix 6)
-select to_timestamp(alerts.clock) as date, hosts.name, items.key_, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join tri
+select to*timestamp(alerts.clock) as date, hosts.name, items.key*, media_type.name, alerts.error from alerts join media_type using (mediatypeid) join events using (eventid) join tri
 ggers on triggers.triggerid=events.objectid join functions using (triggerid) join items using (itemid) join hosts using (hostid) where alerts.status=2 order by alerts.clock desc;
 
-
 # Trigger - functions - items - hosts
-select hosts.host,items.key_,triggers.description from triggers join functions USING(triggerid) join items using (itemid) join hosts using (hostid) limit 10;
 
+select hosts.host,items.key\_,triggers.description from triggers join functions USING(triggerid) join items using (itemid) join hosts using (hostid) limit 10;
 
 # Queries varias
+
 Número de items en la tabla history agrupados por buckets de 1', filtrado entre unos timestamps:
 
-select count(*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(\*),date from history,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
-select count(*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(\*),date from history_uint,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
-select count(*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(\*),date from history_log,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
-select count(*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(\*),date from history_str,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
-select count(*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
+select count(\*),date from history_text,(select generate_series('2018-11-22 07:30:00+01'::timestamp, '2018-11-22 07:33:00+01', '1 min') as date) as d where to_timestamp(clock) between date and date + (interval '1m') group by date order by date;
 
-Otra forma de lanzar la query. Haciendo uso del indice? (por no convertir el "clock" en el where?). Nos saca "count, date_from y date_to"
+Otra forma de lanzar la query. Haciendo uso del indice? (por no convertir el "clock" en el where?). Nos saca "count, date*from y date_to"
 SELECT
-  count(*),to_timestamp(date_from) as date_from,to_timestamp(date_to) as date_to
+count(*),to_timestamp(date_from) as date_from,to_timestamp(date_to) as date_to
 FROM
-  partitions.history_uint_2019_02_19,
-  history_str,
-  (
-    -- quitamos la fila donde no tenemos "from" y "to"
-    SELECT * FROM
-      (
-        -- generamos el campo "from" y "to" para el rango elegido
-        SELECT
-          LAG(a.date) OVER() AS date_from, a.date AS date_to
-        FROM
-          (
-            -- generamos los epoch del rango de tiempo que queremos
-            SELECT
-              ROUND(EXTRACT(EPOCH FROM
-                GENERATE_SERIES(
-                  '2019-02-19 06:00:00+01'::timestamp,
-                  '2019-02-19 16:00:00+01'::timestamp,
-                  '1 hour')
-              ))::int AS date
-        ) a
-      ) b
-    WHERE
-      b.date_from > 0
-  ) AS d
+partitions.history_uint_2019_02_19,
+history_str,
+(
+-- quitamos la fila donde no tenemos "from" y "to"
+SELECT \_FROM
+(
+-- generamos el campo "from" y "to" para el rango elegido
+SELECT
+LAG(a.date) OVER() AS date_from, a.date AS date_to
+FROM
+(
+-- generamos los epoch del rango de tiempo que queremos
+SELECT
+ROUND(EXTRACT(EPOCH FROM
+GENERATE_SERIES(
+'2019-02-19 06:00:00+01'::timestamp,
+'2019-02-19 16:00:00+01'::timestamp,
+'1 hour')
+))::int AS date
+) a
+) b
 WHERE
-  clock BETWEEN date_from AND date_to
+b.date_from > 0
+) AS d
+WHERE
+clock BETWEEN date_from AND date_to
 GROUP BY
-  date_from,date_to
+date_from,date_to
 ORDER BY
-  date_from;
-
-
+date_from;
 
 Número de items en la tabla history_uint, type trappers, agrupados por buckets de 10' (más facil con generate_series):
-select count(*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
+select count(\*),date_trunc('hour',to_timestamp(clock)) as hour,(extract (minute from to_timestamp(clock))::int / 10) as min10 from history_uint where clock > 1527379200 and clock < 1527393600 and itemid IN (select itemid from items where type=2) group by hour,min10 order by hour,min10;
 
 Número de eventos trigger contados cada hora para un intervalo determinado:
-select count(*),date_trunc('hour',to_timestamp(clock)) as hour from events where source=0 and object=0 and clock>1536745132 and clock<1536788332 group by hour order by hour;
+select count(\*),date_trunc('hour',to_timestamp(clock)) as hour from events where source=0 and object=0 and clock>1536745132 and clock<1536788332 group by hour order by hour;
 
 Número de eventos por segundo de los últimos 10 minutos, organizados por source y object (mirar explicación de valores en la sección de Events, más arriba):
 select elt(source,'trigger','discovery','auto registration','internal') as source, elt(object,'trigger','host','service','host','item','lld') as object, elt(value,'ok/up/normal', 'problem/down/unkown/not supported', 'discovered', 'lost'), count(*)/(10*60.0) as events_per_sec from events where clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int GROUP BY source,object,value;
-  NOTA: elt() es una función, cón código "SELECT $2[$1+1];", podemos usar (ARRAY['a','b'])[type+1] en vez de usar la función
+NOTA: elt() es una función, cón código "SELECT $2[$1+1];", podemos usar [ARRAY['a','b']](type+1) en vez de usar la función
 
 Eventos internal por fallos de triggers, items, LLDs:
 select hosts.host,to_timestamp(clock),triggers.description,triggers.error from events,triggers,functions,items,hosts where hosts.hostid=items.hostid AND items.itemid=functions.itemid AND functions.triggerid=triggers.triggerid AND triggers.triggerid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=0 and source=3 and events.value=1 order by events.clock desc limit 40;
 select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=4 and source=3 and events.value=1 order by events.clock desc limit 40;
 select hosts.host,to_timestamp(clock),items.name,items.error from events,items,hosts where hosts.hostid=items.hostid AND items.itemid=events.objectid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '10 MIN')))::int AND object=5 and source=3 and events.value=1 order by events.clock desc limit 40;
-   esta última sería para los LLDs pero no tenía resultados, no se seguro si está bien
+esta última sería para los LLDs pero no tenía resultados, no se seguro si está bien
 
 Todos los items de un hostgroup:
 select items.name,items.itemid from hosts_groups,groups,items where items.hostid=hosts_groups.hostid and hosts_groups.groupid=groups.groupid and groups.name='SOMEHOSTGROUP' limit 10;
@@ -353,326 +341,296 @@ Cuando enganchamos desde functions hacia triggers (para luego poder tirar de ite
 Esto es porque la función que se usa para el recover también engancha con el trigger, por lo que tendremos dos conexiones desde host->item->functions hacia el trigger.
 Incluso, si el recovery fuera con un item de otro host, podríamos tener dos hosts distintos apuntando al mismo trigger.
 
-
 Items que van a ser borrados por que no se descubren más con el LLD:
-select * from (select key_,count(*) from item_discovery where ts_delete <> 0 group by key_) a order by a.count;
+select *from (select key\_,count(*) from item*discovery where ts_delete <> 0 group by key*) a order by a.count;
 
-La tabla item_discovery almacena la relación entre items descubiertos y sus prototypes (key_ null y lastcheck = 0)
-y entre los items prototypes y los parent discovery, los items LLD (key_ not null y lastcheck <> 0)
-La key_ de item_discovery será la key_ del parent_item
+La tabla item*discovery almacena la relación entre items descubiertos y sus prototypes (key* null y lastcheck = 0)
+y entre los items prototypes y los parent discovery, los items LLD (key*not null y lastcheck <> 0)
+La key* de item*discovery será la key* del parent*item
 Items descubiertos de un LLD de un host:
-select id2.lastcheck,items.key_ from item_discovery as id1, item_discovery as id2, items  where id1.parent_itemid=(select items.itemid from hosts,items where hosts.hostid=items.hostid and hosts.host= 'somehost' and items.name = 'telegraf.lld.internal_gather.input') and id1.itemid=id2.parent_itemid and id2.itemid=items.itemid;
+select id2.lastcheck,items.key* from item_discovery as id1, item_discovery as id2, items where id1.parent_itemid=(select items.itemid from hosts,items where hosts.hostid=items.hostid and hosts.host= 'somehost' and items.name = 'telegraf.lld.internal_gather.input') and id1.itemid=id2.parent_itemid and id2.itemid=items.itemid;
 
 Número de items LLD (ejemplo telegraf.lld.xxx). En esta cuenta se cuelan los de los templates:
-select count(*) from (select parent_itemid from item_discovery where key_ = '' group by parent_itemid) a;
-
+select count(\*) from (select parent*itemid from item_discovery where key* = '' group by parent_itemid) a;
 
 LLDs enviados por los clientes por segundo (media sobre los recibidos en la última hora):
 WITH llds as
 (
-   select
-      parent_itemid as itemid
-   from
-      item_discovery
-   where
-      key_ = ''
-   group by
-      parent_itemid
+select
+parent*itemid as itemid
+from
+item_discovery
+where
+key* = ''
+group by
+parent_itemid
 )
 ,
 latest_discover as
 (
-   select
-      llds.itemid,
-      id2.lastcheck
-   from
-      llds,
-      item_discovery id1,
-      item_discovery id2
-   where
-      id1.itemid = id2.parent_itemid
-      and id1.parent_itemid = llds.itemid
-      and id2.ts_delete = 0
-   GROUP BY
-      llds.itemid,
-      id2.lastcheck
+select
+llds.itemid,
+id2.lastcheck
+from
+llds,
+item_discovery id1,
+item_discovery id2
+where
+id1.itemid = id2.parent_itemid
+and id1.parent_itemid = llds.itemid
+and id2.ts_delete = 0
+GROUP BY
+llds.itemid,
+id2.lastcheck
 )
 select
-   count(*)/(60*60.0) as llds_per_sec
+count(*)/(60*60.0) as llds_per_sec
 from
-   latest_discover
+latest_discover
 where
-   lastcheck > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '1 HOUR')))
+lastcheck > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '1 HOUR')))
 ;
-
-
-
 
 Cuantos items de cada tipo tenemos, agrupados por activados/desactivados y poniendo su nombre en vez del type id. Ignoranmos los items de las templates:
 SELECT
-  (ARRAY[
-    'Zabbix Agent',
-    'SNMPv1 agent',
-    'Zabbix trapper',
-    'simple check',
-    'SNMPv2 agent',
-    'Zabbix internal',
-    'SNMPv3 agent',
-    'Zabbix agent (active)',
-    'Zabbix aggregate',
-    'Web item',
-    'External check',
-    'Database monitor',
-    'IPMI agent',
-    'SSH agent',
-    'TELNET agent',
-    'Calculated',
-    'JMX agent',
-    'SNMP trap',
-    'Dependent item'
-  ])[type+1] AS type,
-  (ARRAY[
-    'ON',
-    'OFF'
-  ])[items.status+1] AS status,
-  (ARRAY[
-    'OK',
-    'NOT SUPPORTED'
-    ])[items.state+1] AS state,
-  count(*)
+(ARRAY[
+'Zabbix Agent',
+'SNMPv1 agent',
+'Zabbix trapper',
+'simple check',
+'SNMPv2 agent',
+'Zabbix internal',
+'SNMPv3 agent',
+'Zabbix agent (active)',
+'Zabbix aggregate',
+'Web item',
+'External check',
+'Database monitor',
+'IPMI agent',
+'SSH agent',
+'TELNET agent',
+'Calculated',
+'JMX agent',
+'SNMP trap',
+'Dependent item'
+])[type+1] AS type,
+(ARRAY[
+'ON',
+'OFF'
+])[items.status+1] AS status,
+(ARRAY[
+'OK',
+'NOT SUPPORTED'
+])[items.state+1] AS state,
+count(\*)
 FROM items,hosts
 WHERE
-  items.hostid=hosts.hostid
-  AND hosts.status <> 3
-  GROUP BY items.type,  items.status, items.state
-  ORDER BY items.type, items.status DESC;
-
-
-
+items.hostid=hosts.hostid
+AND hosts.status <> 3
+GROUP BY items.type, items.status, items.state
+ORDER BY items.type, items.status DESC;
 
 IMPACTO de las metricas segun su delay (excepto trappers)
 Se calcula que tipos de items y que delays están generando más metricas contra zabbix.
 Se omiten items desactivados, trappers (de estos últimos no podemos saber cuando van a enviar datos) e items de templates:
 SELECT
-    CASE WHEN items.type = 0 THEN
-        'Zabbix Agent'
-    WHEN items.type = 1 THEN
-        'SNMPv1 agent'
-    WHEN items.type = 2 THEN
-        'Zabbix trapper'
-    WHEN items.type = 3 THEN
-        'simple check'
-    WHEN items.type = 4 THEN
-        'SNMPv2 agent'
-    WHEN items.type = 5 THEN
-        'Zabbix internal'
-    WHEN items.type = 6 THEN
-        'SNMPv3 agent'
-    WHEN items.type = 7 THEN
-        'Zabbix agent (active)'
-    WHEN items.type = 8 THEN
-        'Zabbix aggregate'
-    WHEN items.type = 9 THEN
-        'web item'
-    WHEN items.type = 10 THEN
-        'external check'
-    WHEN items.type = 11 THEN
-        'database monitor'
-    WHEN items.type = 12 THEN
-        'IPMI agent'
-    WHEN items.type = 13 THEN
-        'SSH agent'
-    WHEN items.type = 14 THEN
-        'TELNET agent'
-    WHEN items.type = 15 THEN
-        'calculated'
-    WHEN items.type = 16 THEN
-        'JMX agent'
-    WHEN items.type = 17 THEN
-        'SNMP trap'
-    WHEN items.type = 18 THEN
-        'Dependent item'
-    END AS type,
-    items.delay,
-    count(*),
-    count(*) / items.delay AS points_per_sec
+CASE WHEN items.type = 0 THEN
+'Zabbix Agent'
+WHEN items.type = 1 THEN
+'SNMPv1 agent'
+WHEN items.type = 2 THEN
+'Zabbix trapper'
+WHEN items.type = 3 THEN
+'simple check'
+WHEN items.type = 4 THEN
+'SNMPv2 agent'
+WHEN items.type = 5 THEN
+'Zabbix internal'
+WHEN items.type = 6 THEN
+'SNMPv3 agent'
+WHEN items.type = 7 THEN
+'Zabbix agent (active)'
+WHEN items.type = 8 THEN
+'Zabbix aggregate'
+WHEN items.type = 9 THEN
+'web item'
+WHEN items.type = 10 THEN
+'external check'
+WHEN items.type = 11 THEN
+'database monitor'
+WHEN items.type = 12 THEN
+'IPMI agent'
+WHEN items.type = 13 THEN
+'SSH agent'
+WHEN items.type = 14 THEN
+'TELNET agent'
+WHEN items.type = 15 THEN
+'calculated'
+WHEN items.type = 16 THEN
+'JMX agent'
+WHEN items.type = 17 THEN
+'SNMP trap'
+WHEN items.type = 18 THEN
+'Dependent item'
+END AS type,
+items.delay,
+count(*),
+count(*) / items.delay AS points_per_sec
 FROM
-    items,
-    hosts
+items,
+hosts
 WHERE
-    items.hostid = hosts.hostid
-    AND hosts.status <> 3
-    AND items.status = 0
-    AND items.type <> 2
+items.hostid = hosts.hostid
+AND hosts.status <> 3
+AND items.status = 0
+AND items.type <> 2
 GROUP BY
-    items.type,
-    items.delay
+items.type,
+items.delay
 ORDER BY
-    points_per_sec DESC,
-    items.type DESC
+points_per_sec DESC,
+items.type DESC
 LIMIT 10;
-
-
-
 
 20 items pasivos (Zabbix Agent) enabled de hosts que no sean templates:
 select hosts.name as host,items.name as item from items,hosts where items.type=0 and items.status=0 and hosts.status<>3 and items.hostid=hosts.hostid;
-select count(*) from items,hosts where items.type=0 and items.status=0 and hosts.status<>3 and items.hostid=hosts.hostid;
+select count(\*) from items,hosts where items.type=0 and items.status=0 and hosts.status<>3 and items.hostid=hosts.hostid;
 
 Lag entre el tiempo actual y el ultimo dato indexado.
 Hacer un order by clock sobre toda la tabla es demasiado costoso, por eso solo lo hacemos sobre un número limitado de items (20 items Zabbix Agent del host SOMEHOST).
 select now()-to_timestamp(clock) AS lag from history where itemid IN (select itemid from items,hosts where items.hostid=hosts.hostid and value_type=0 and hosts.name='SOMEHOST' limit 20) order by clock desc limit 1;
 
-
 Número de items enabled por hostgroup:
-select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.status=0 group by g.name limit 10;
+select g.name,count(\*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.status=0 group by g.name limit 10;
 
 Top 10 de hostgroups por número de items pasivos (enabled):
-select g.name,count(*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
-
+select g.name,count(\*) from hosts as h, items as i, hosts_groups, groups as g where i.hostid=h.hostid and h.hostid=hosts_groups.hostid and hosts_groups.groupid=g.groupid and g.name <> 'Templates' and i.type=0 and i.status=0 group by g.name order by count desc limit 10;
 
 Query para obtener los templates que tienen triggers con nodata asociados a items trapper (solo triggers originales, no heredados de linked templates):
-select 60*count(clock)::float/(max(clock)-min(clock)) as points_per_min,hosts.host,items.key_ from partitions.history_2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m')))::int and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m')))::int group by h.itemid,items.key_,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
-
-
+select 60\*count(clock)::float/(max(clock)-min(clock)) as points*per_min,hosts.host,items.key* from partitions.history*2018_11_26 as h,hosts,items WHERE h.itemid=items.itemid AND items.hostid=hosts.hostid AND clock > ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '40m')))::int and clock < ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '35m')))::int group by h.itemid,items.key*,hosts.host HAVING (max(clock)-min(clock)) <> 0 order by points_per_min desc;
 
 Tamaño de las partitions por día:
-SELECT substring(relname from '20.*') as date, pg_size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%_' and c.reltuples <> 0 group by date order by date;
-
+SELECT substring(relname from '20.\*') as date, pg*size_pretty(sum(pg_total_relation_size(c.oid))) FROM pg_class c LEFT JOIN pg_namespace n ON n.oid = c.relnamespace WHERE relkind = 'r' and nspname = 'partitions' and relname like 'history%*' and c.reltuples <> 0 group by date order by date;
 
 Templates que se están usando por algún host al menos:
 select hostid,host from hosts where status = 3 and hostid IN (select ht.templateid from hosts_templates ht, hosts h where ht.hostid = h.hostid and h.status != 3 and flags=0);
 
 Items sin template asociada:
 SELECT
-   hosts.name,
-   items.key_
+hosts.name,
+items.key\_
 FROM
-   hosts
+hosts
 JOIN
-   items USING (hostid)
+items USING (hostid)
 WHERE
-   hosts.status = 0
-   AND items.templateid IS NULL
-   AND items.status = 0
-   AND items.flags <> 4;
-
+hosts.status = 0
+AND items.templateid IS NULL
+AND items.status = 0
+AND items.flags <> 4;
 
 Templates que pertenecen a un grupo:
 select h.host from hosts h, hosts_groups hg, groups g where h.hostid = hg.hostid AND hg.groupid = g.groupid AND g.name = 'Templates/Metrics' limit 10;
 
 Tipos de file systems encontrados por telegraf:
-select fs,count(*) from (select (string_to_array(key_,','))[2] as fs from items where flags <> 2 and key_ LIKE 'telegraf.disk.inodes_used[%') a group by fs;
+select fs,count(\*) from (select (string*to_array(key*,','))[2] as fs from items where flags <> 2 and key\_ LIKE 'telegraf.disk.inodes_used[%') a group by fs;
 
 Funciones que ejecutan los timers:
-SELECT function, parameter, count(*) FROM functions where function IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY function, parameter ORDER BY count;
+SELECT function, parameter, count(\*) FROM functions where function IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY function, parameter ORDER BY count;
 
 Para zabbix 4:
-SELECT name, parameter, count(*) FROM functions where name IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY name, parameter ORDER BY count;
-
+SELECT name, parameter, count(\*) FROM functions where name IN ('nodata', 'date', 'dayofmonth', 'dayofweek', 'time', 'now') GROUP BY name, parameter ORDER BY count;
 
 Obtener las últimas métricas de latest data, como lo hace Zabbix Web:
-SELECT * FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
-
-
+SELECT \* FROM history_uint h WHERE h.itemid='13664490' AND h.clock>1552988052 ORDER BY h.clock DESC LIMIT 2 OFFSET 0
 
 Hosts que tienen items descubiertos por LLDs, donde el LLD hace más de 4 días que no se lanza (ignorando hosts desactivados, o items/hosts que van a ser borrados).
 Se muestra el hostname, cuantos LLDs tiene sin datos recientes y la fecha más reciente en que recibió datos alguno de los LLDs sin datos recientes:
-WITH not_working_lld AS
-  (SELECT DISTINCT hosts.host,
-                   items.key_,
-                   item_discovery_proto.lastcheck
-   FROM items,
-        item_discovery AS item_discovery_proto,
-        item_discovery AS item_discovery_lld,
-        hosts
-   LEFT JOIN host_discovery ON host_discovery.hostid=hosts.hostid
-   WHERE hosts.hostid=items.hostid
-     AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
-     AND items.itemid=item_discovery_lld.parent_itemid
-     AND hosts.status=0
-     AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH
-                                                         FROM (now() - INTERVAL '4 DAY'))))
-     AND item_discovery_proto.lastcheck <> 0
-     AND item_discovery_proto.ts_delete=0
-     AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
-   ORDER BY hosts.host)
+WITH not*working_lld AS
+(SELECT DISTINCT hosts.host,
+items.key*,
+item_discovery_proto.lastcheck
+FROM items,
+item_discovery AS item_discovery_proto,
+item_discovery AS item_discovery_lld,
+hosts
+LEFT JOIN host_discovery ON host_discovery.hostid=hosts.hostid
+WHERE hosts.hostid=items.hostid
+AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
+AND items.itemid=item_discovery_lld.parent_itemid
+AND hosts.status=0
+AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH
+FROM (now() - INTERVAL '4 DAY'))))
+AND item_discovery_proto.lastcheck <> 0
+AND item_discovery_proto.ts_delete=0
+AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
+ORDER BY hosts.host)
 SELECT HOST,
-       to_timestamp(max(lastcheck)) AS max_lastcheck,
-       count(*)
+to_timestamp(max(lastcheck)) AS max_lastcheck,
+count(\*)
 FROM not_working_lld
 GROUP BY HOST
 ORDER BY max(lastcheck);
 
-
-
 Para obtener el nombre y fecha de los LLDs sin datos recientes:
 SELECT DISTINCT hosts.host,
-                items.key_,
-                items.itemid,
-                to_timestamp(item_discovery_proto.lastcheck) AS lastcheck
+items.key\_,
+items.itemid,
+to_timestamp(item_discovery_proto.lastcheck) AS lastcheck
 FROM items,
-     item_discovery AS item_discovery_proto,
-     item_discovery AS item_discovery_lld,
-     hosts
+item_discovery AS item_discovery_proto,
+item_discovery AS item_discovery_lld,
+hosts
 LEFT JOIN host_discovery ON host_discovery.hostid=hosts.hostid
 WHERE hosts.hostid=items.hostid
-  AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
-  AND items.itemid=item_discovery_lld.parent_itemid
-  AND hosts.status=0
-  AND items.status=0
-  AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '4 DAY'))))
-  AND item_discovery_proto.lastcheck <> 0
-  AND item_discovery_proto.ts_delete=0
-  AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
-  AND hosts.host = 'NOMBREHOST';
-
-
+AND item_discovery_lld.itemid=item_discovery_proto.parent_itemid
+AND items.itemid=item_discovery_lld.parent_itemid
+AND hosts.status=0
+AND items.status=0
+AND item_discovery_proto.lastcheck < (ROUND(EXTRACT(EPOCH FROM (now() - INTERVAL '4 DAY'))))
+AND item_discovery_proto.lastcheck <> 0
+AND item_discovery_proto.ts_delete=0
+AND (host_discovery.ts_delete IS NULL OR host_discovery.ts_delete = 0)
+AND hosts.host = 'NOMBREHOST';
 
 Triggers con nombres duplicados para un mismo host:
 with hosts_triggers as (
-  select
-    h.host,
-    t.description,
-    t.triggerid
-  from
-    hosts h
-    join items i using(hostid)
-    join functions using (itemid)
-    join triggers t using (triggerid)
-  where
-    t.flags <> 2
-  group by
-    t.description,
-    h.host,
-    t.triggerid
+select
+h.host,
+t.description,
+t.triggerid
+from
+hosts h
+join items i using(hostid)
+join functions using (itemid)
+join triggers t using (triggerid)
+where
+t.flags <> 2
+group by
+t.description,
+h.host,
+t.triggerid
 )
 select
-  ht.host,
-  ht.description
+ht.host,
+ht.description
 from
-  hosts_triggers ht
+hosts_triggers ht
 group by
-  ht.host,
-  ht.description
+ht.host,
+ht.description
 having
-  count(*) > 1;
-
-
-
-
+count(\*) > 1;
 
 Triggers disparados, que generaron eventos de problema, pero que ya fueron borrados por el housekeeper.
 Se muestra el host, trigger y la fecha en que se disparó.
 select host,triggers.description,to_timestamp(lastchange) from hosts,items,functions,triggers left join problem ON triggers.triggerid=problem.objectid WHERE hosts.hostid=items.hostid and items.itemid=functions.itemid and functions.triggerid=triggers.triggerid and triggers.value=1 and triggers.status=0 and problem.eventid is null;
 
-
 Hosts en mantenimiento (cada minuto los timer actualizan el estado)
 select host from hosts where maintenance_status=1;
 
-
-
 # Audit
+
 details
 detalle de la operación
 
@@ -686,13 +644,13 @@ action
 6 AUDIT_ACTION_DISABLE
 
 resourcetype
-0  AUDIT_RESOURCE_USER
-2  AUDIT_RESOURCE_ZABBIX_CONFIG
-3  AUDIT_RESOURCE_MEDIA_TYPE
-4  AUDIT_RESOURCE_HOST
-5  AUDIT_RESOURCE_ACTION
-6  AUDIT_RESOURCE_GRAPH
-7  AUDIT_RESOURCE_GRAPH_ELEMENT
+0 AUDIT_RESOURCE_USER
+2 AUDIT_RESOURCE_ZABBIX_CONFIG
+3 AUDIT_RESOURCE_MEDIA_TYPE
+4 AUDIT_RESOURCE_HOST
+5 AUDIT_RESOURCE_ACTION
+6 AUDIT_RESOURCE_GRAPH
+7 AUDIT_RESOURCE_GRAPH_ELEMENT
 11 AUDIT_RESOURCE_USER_GROUP
 12 AUDIT_RESOURCE_APPLICATION
 13 AUDIT_RESOURCE_TRIGGER
@@ -714,23 +672,21 @@ resourcetype
 30 AUDIT_RESOURCE_TEMPLATE
 31 AUDIT_RESOURCE_TRIGGER_PROTOTYPE
 
-
 Ejemplo de query buscando un update (action=1) de un host (resourcetype=4)
-select *,to_timestamp(clock) as fecha from auditlog join auditlog_details using (auditid) where action=1 and resourcetype=4 and resourcename like '%zbxalerter' limit 10;
-
+select \*,to_timestamp(clock) as fecha from auditlog join auditlog_details using (auditid) where action=1 and resourcetype=4 and resourcename like '%zbxalerter' limit 10;
 
 # Zabbix-proxy
+
 Last seen (last access) de los proxies:
 SELECT h.hostid,h.host,to_timestamp(h.lastaccess) FROM hosts h WHERE h.status IN (5,6);
 
-
-
 # Unreachable pollers
+
 Ver los hosts que están unreachable, ocasionando que estos reporten estar ocupados.
 select host,error,to_timestamp(disable_until) from hosts where disable_until <> 0;
 
-
 # Tocando la bbdd / inserts
+
 Es el frontend el que se encarga de generar elementos en la bbdd.
 
 La incrementalidad de los IDs la lleva a cabo Zabbix, almacenando en la tabla "ids" el útimo ID generado por tabla y field.
@@ -744,48 +700,45 @@ UPDATE ids SET nextid=7 WHERE table_name='regexps' AND field_name='regexpid'
 INSERT INTO regexps (name,test_string,regexpid) VALUES ('PRUEBA','','7')
 commit;
 
-
 Lanzar una tx para realizar una actualización, cogiendo el id, updateandolo y usándolo para crear lo necesario:
 
 BEGIN;
 DO $$
-  DECLARE
-    rid INTEGER;
-    eid INTEGER;
-    regex integer;
-    regex_name VARCHAR := 'Oracle tablespaces bisbis';
+DECLARE
+rid INTEGER;
+eid INTEGER;
+regex integer;
+regex_name VARCHAR := 'Oracle tablespaces bisbis';
 
 BEGIN
 
 select regexpid into regex from regexps where name = regex_name;
 
 if not found then
-  update ids set nextid = nextid + 1 where table_name = 'regexps' returning nextid into rid;
-  insert into regexps values(rid, regex_name);
+update ids set nextid = nextid + 1 where table_name = 'regexps' returning nextid into rid;
+insert into regexps values(rid, regex_name);
 
-  update ids set nextid = nextid + 1 where table_name = 'expressions' returning nextid into eid;
-  insert into expressions values(eid, rid, 'mi expresion');
+update ids set nextid = nextid + 1 where table_name = 'expressions' returning nextid into eid;
+insert into expressions values(eid, rid, 'mi expresion');
 
 end if;
 
 END $$;
 COMMIT;
 
-
-
 # Config
-select * from config;
+
+select \* from config;
 Parámetros de config general.
 
-
-
 # Version del schema
-select * from dbversion;
+
+select \* from dbversion;
 
 3.2 -> mandatory=3020000 optional=3020000
 4.0 -> mandatory=4000000 optional=4000003
 
-https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbupgrade/dbupgrade.c#L780
+<https://github.com/zabbix/zabbix/blob/trunk/src/libs/zbxdbupgrade/dbupgrade.c#L780>
 src/libs/zbxdbupgrade/dbupgrade.c
 {DBPATCH_VERSION(2010), "2.2 development"},
 {DBPATCH_VERSION(2020), "2.2 maintenance"},
@@ -800,118 +753,113 @@ src/libs/zbxdbupgrade/dbupgrade.c
 {DBPATCH_VERSION(3050), "4.0 development"},
 {DBPATCH_VERSION(4000), "4.0 maintenance"},
 
-
-
 # Sacar max/min/avg de las trends
 
 with time as (select EXTRACT(EPOCH FROM (now() - INTERVAL '24 HOUR')) as e)
 select
-  h.host,
-  i.key_,
-  COALESCE(t.value_min, tu.value_min) as min,
-  COALESCE(t.value_avg, tu.value_avg) as avg,
-  COALESCE(t.value_max, tu.value_max) as max,
-  to_timestamp(COALESCE(t.clock, tu.clock)) as clock
+h.host,
+i.key*,
+COALESCE(t.value_min, tu.value_min) as min,
+COALESCE(t.value_avg, tu.value_avg) as avg,
+COALESCE(t.value_max, tu.value_max) as max,
+to_timestamp(COALESCE(t.clock, tu.clock)) as clock
 from
-  hosts h
-  join items i using(hostid)
-  left join trends t using(itemid)
-  left join trends_uint tu using(itemid)
+hosts h
+join items i using(hostid)
+left join trends t using(itemid)
+left join trends_uint tu using(itemid)
 where
-  h.host IN ('lel1zb01')
-  AND i.key_ IN (
-    'zabbix[wcache,values,float]',
-    'net.tcp.service[tcp,,10051]'
-  )
-  AND (
-    (
-      t.clock is not null
-      and t.clock > (select e from time)
-    )
-    OR (
-      tu.clock is not null
-      and tu.clock > (select e from time)
-    )
-  );
-
+h.host IN ('lel1zb01')
+AND i.key* IN (
+'zabbix[wcache,values,float]',
+'net.tcp.service[tcp,,10051]'
+)
+AND (
+(
+t.clock is not null
+and t.clock > (select e from time)
+)
+OR (
+tu.clock is not null
+and tu.clock > (select e from time)
+)
+);
 
 Query que realiza zabbix-web para obtener trends:
 SELECT
-  itemid,
-  round(
-    1395 * MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
-    0
-  ) AS i,
-  SUM(num) AS count,
-  AVG(value_avg) AS avg,
-  MIN(value_min) AS min,
-  MAX(value_max) AS max,
-  MAX(clock) AS clock
+itemid,
+round(
+1395 *MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
+0
+) AS i,
+SUM(num) AS count,
+AVG(value_avg) AS avg,
+MIN(value_min) AS min,
+MAX(value_max) AS max,
+MAX(clock) AS clock
 FROM
-  trends_uint
+trends_uint
 WHERE
-  itemid = '10715785'
-  AND clock >= '1592300137'
-  AND clock <= '1594892137'
+itemid = '10715785'
+AND clock >= '1592300137'
+AND clock <= '1594892137'
 GROUP BY
-  itemid,
-  round(
-    1395 * MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
-    0
-  );
-
-
+itemid,
+round(
+1395* MOD(CAST(clock AS BIGINT) + 1779863, 2592000) /(2592000),
+0
+);
 
 # Número de triggers activos en cada nivel para una lista de hosts
+
 WITH alarms AS (
-  select
-    distinct h.host,
-    t.description,
-    t.priority,
-    count(*)
-  from
-    hosts h
-    join items i using(hostid)
-    join functions f using(itemid)
-    join triggers t using(triggerid)
-  where
-    h.status = 0
-    AND t.status = 0
-    and t.value = 1
-    AND h.host IN (
-      'zabbix_web01',
-      'zabbix_server01..notification__zbxalerter',
-      'zabbix_web01..zabbix__httpd_80',
-      'awx01',
-      'pruebasSLA'
-    )
-  group by
-    h.host,
-    t.priority,
-    t.description
+select
+distinct h.host,
+t.description,
+t.priority,
+count(*)
+from
+hosts h
+join items i using(hostid)
+join functions f using(itemid)
+join triggers t using(triggerid)
+where
+h.status = 0
+AND t.status = 0
+and t.value = 1
+AND h.host IN (
+'zabbix_web01',
+'zabbix_server01..notification**zbxalerter',
+'zabbix_web01..zabbix**httpd_80',
+'awx01',
+'pruebasSLA'
+)
+group by
+h.host,
+t.priority,
+t.description
 )
 select
-  host,
-  count(*) FILTER (where priority=0) as "0",
-  count(*) FILTER (where priority=1) as "1",
-  count(*) FILTER (where priority=2) as "2",
-  count(*) FILTER (where priority=3) as "3",
-  count(*) FILTER (where priority=4) as "4",
-  count(*) FILTER (where priority=5) as "5"
+host,
+count(*) FILTER (where priority=0) as "0",
+count(*) FILTER (where priority=1) as "1",
+count(*) FILTER (where priority=2) as "2",
+count(*) FILTER (where priority=3) as "3",
+count(*) FILTER (where priority=4) as "4",
+count(\*) FILTER (where priority=5) as "5"
 from
-  alarms
+alarms
 group by
-  host
-  ;
+host
+;
 
               host              | 0 | 1 | 2 | 3 | 4 | 5
+
 --------------------------------+---+---+---+---+---+---
- awx01                          | 0 | 0 | 1 | 0 | 2 | 0
- pruebasSLA                     | 2 | 0 | 0 | 0 | 0 | 0
- zabbix_web01                   | 0 | 0 | 1 | 0 | 0 | 0
- zabbix_web01..zabbix__httpd_80 | 0 | 0 | 1 | 0 | 0 | 0
-
-
+awx01 | 0 | 0 | 1 | 0 | 2 | 0
+pruebasSLA | 2 | 0 | 0 | 0 | 0 | 0
+zabbix_web01 | 0 | 0 | 1 | 0 | 0 | 0
+zabbix_web01..zabbix\_\_httpd_80 | 0 | 0 | 1 | 0 | 0 | 0
 
 Itemids que están en history pero no en items-float (MUY COSTOSA!):
 select distinct b.itemid from (select itemid from items where value_type=0) a full outer join history b ON a.itemid=b.itemid WHERE a.itemid IS NULL;
@@ -921,285 +869,286 @@ select distinct b.itemid from (select itemid from items where value_type=3) a fu
 
 Si no ponemos distinct, tendremos el número total de entradas sin asociación con la tabla items
 
-
 lastclock de un item (en cualquier history). Posiblemente muy costosa. Tal vez podríamos meter filtrado por tiempo.
-select host,key_,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key_) limit 3;
-
-
-
+select host,key*,greatest(max(h.clock),max(huint.clock)) as lastclock from hosts join items using (hostid) left join history h using (itemid) join history_uint huint using (itemid) where hosts.status=0 and items.itemid=44071 and items.status=0 group by (hosts.host, items.key*) limit 3;
 
 Queries para cambiar los names de los items prototypes de "$1" a la macro.
 Cambia de $1 a $5.
-https://www.zabbix.com/documentation/4.0/en/manual/installation/upgrade_notes_400#deprecated-macros-in-item-names
-https://gist.github.com/adrianlzt/916a0c641c62b5b5ca700a59b4730dab
+<https://www.zabbix.com/documentation/4.0/en/manual/installation/upgrade_notes_400#deprecated-macros-in-item-names>
+<https://gist.github.com/adrianlzt/916a0c641c62b5b5ca700a59b4730dab>
 
 Antes de ejecutarlo comprobar hasta que $N estamos usando.
 De forma simple, ir ejecutando esta query cambiando el número para ver donde tenemos match:
 select name from items where name like '%$5%' limit 1;
 
 WITH macro AS (
-    SELECT
-        itemid,
-        (regexp_matches(key_, '(\{#[^\}]*\})'))[1] AS m
-    FROM
-        items)
-UPDATE
-    items
-SET
-    name = regexp_replace(name, '(\$1)', macro.m)
+SELECT
+itemid,
+(regexp*matches(key*, '(\{#[^\}]\*\})'))[1] AS m
 FROM
-    macro
+items)
+UPDATE
+items
+SET
+name = regexp_replace(name, '(\$1)', macro.m)
+FROM
+macro
 WHERE
-    macro.itemid = items.itemid;
+macro.itemid = items.itemid;
 
 WITH macro AS (
-    SELECT
-        itemid,
-        (regexp_matches(key_, '\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
-    FROM
-        items)
-UPDATE
-    items
-SET
-    name = regexp_replace(name, '(\$2)', macro.m)
+SELECT
+itemid,
+(regexp*matches(key*, '\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
 FROM
-    macro
+items)
+UPDATE
+items
+SET
+name = regexp_replace(name, '(\$2)', macro.m)
+FROM
+macro
 WHERE
-    macro.itemid = items.itemid;
+macro.itemid = items.itemid;
 
 WITH macro AS (
-    SELECT
-        itemid,
-        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
-    FROM
-        items)
-UPDATE
-    items
-SET
-    name = regexp_replace(name, '(\$3)', macro.m)
+SELECT
+itemid,
+(regexp*matches(key*, '\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]\*\})'))[1] AS m
 FROM
-    macro
+items)
+UPDATE
+items
+SET
+name = regexp_replace(name, '(\$3)', macro.m)
+FROM
+macro
 WHERE
-    macro.itemid = items.itemid;
+macro.itemid = items.itemid;
 
 WITH macro AS (
-    SELECT
-        itemid,
-        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
-    FROM
-        items)
-UPDATE
-    items
-SET
-    name = regexp_replace(name, '(\$4)', macro.m)
+SELECT
+itemid,
+(regexp*matches(key*, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
 FROM
-    macro
+items)
+UPDATE
+items
+SET
+name = regexp_replace(name, '(\$4)', macro.m)
+FROM
+macro
 WHERE
-    macro.itemid = items.itemid;
+macro.itemid = items.itemid;
 
 WITH macro AS (
-    SELECT
-        itemid,
-        (regexp_matches(key_, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]*\})'))[1] AS m
-    FROM
-        items)
-UPDATE
-    items
-SET
-    name = regexp_replace(name, '(\$5)', macro.m)
+SELECT
+itemid,
+(regexp*matches(key*, '\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},\{#[^\}]*\},(\{#[^\}]\*\})'))[1] AS m
 FROM
-    macro
+items)
+UPDATE
+items
+SET
+name = regexp_replace(name, '(\$5)', macro.m)
+FROM
+macro
 WHERE
-    macro.itemid = items.itemid;
-
-
+macro.itemid = items.itemid;
 
 # Queries para comprobar el buen estado de un host
 
 # Obtenemos los items de las entities del host analizado que no han recibido valores
-query_items_without_data: |
-  WITH items_with_data AS (
-      SELECT
-          host,
-          key_,
-          items.itemid,
-          greatest (max(h.clock), max(huint.clock), max(hstr.clock), max(hlog.clock), max(htext.clock)) AS lastclock
-      FROM
-          hosts
-          JOIN items USING (hostid)
-          LEFT JOIN history h USING (itemid)
-          LEFT JOIN history_uint huint USING (itemid)
-          LEFT JOIN history_str hstr USING (itemid)
-          LEFT JOIN history_log hlog USING (itemid)
-          LEFT JOIN history_text htext USING (itemid)
-      WHERE
-          hosts.status = 0 -- enabled
-          AND hosts.host like '{{ ansible_hostname }}..%'
-          AND items.status = 0 -- enabled
-          AND items.flags IN (0, 4) -- plain item or discovered
-      GROUP BY
-          (hosts.host, items.key_, items.itemid))
-  SELECT
-      host,
-      key_,
-      itemid
-  FROM
-      items_with_data
-  WHERE
-      lastclock IS NULL
-  ORDER BY
-      host
+
+query*items_without_data: |
+WITH items_with_data AS (
+SELECT
+host,
+key*,
+items.itemid,
+greatest (max(h.clock), max(huint.clock), max(hstr.clock), max(hlog.clock), max(htext.clock)) AS lastclock
+FROM
+hosts
+JOIN items USING (hostid)
+LEFT JOIN history h USING (itemid)
+LEFT JOIN history*uint huint USING (itemid)
+LEFT JOIN history_str hstr USING (itemid)
+LEFT JOIN history_log hlog USING (itemid)
+LEFT JOIN history_text htext USING (itemid)
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND items.flags IN (0, 4) -- plain item or discovered
+GROUP BY
+(hosts.host, items.key*, items.itemid))
+SELECT
+host,
+key\_,
+itemid
+FROM
+items_with_data
+WHERE
+lastclock IS NULL
+ORDER BY
+host
 
 # Obtenemos todos items de las entities del host analizado
-query_all_items: |
-  SELECT
-      host,
-      key_,
-      items.itemid
-  FROM
-      hosts
-      JOIN items USING (hostid)
-  WHERE
-      hosts.status = 0 -- enabled
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0 -- enabled
-      AND items.flags IN (0, 4) -- plain item or discovered
-  GROUP BY
-      (hosts.host, items.key_, items.itemid)
+
+query*all_items: |
+SELECT
+host,
+key*,
+items.itemid
+FROM
+hosts
+JOIN items USING (hostid)
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND items.flags IN (0, 4) -- plain item or discovered
+GROUP BY
+(hosts.host, items.key\_, items.itemid)
 
 # Obtener los items con estado no soportado
-query_unsupported_items: |
-  SELECT
-      host,
-      key_,
-      items.itemid
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      JOIN item_rtdata USING (itemid)
-  WHERE
-      hosts.status = 0 -- enabled
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0 -- enabled
-      AND item_rtdata.state = 1 -- not supported
-      AND items.flags IN (0, 4) -- plain item or discovered
-  GROUP BY
-      (hosts.host, items.key_, items.itemid)
 
-# Obtener los LLDs que no han sido ejecutados.
-# Lo que hacemos es contar cuantos items se han generado por cada LLD y devolvemos los que tengan 0.
-query_lld_exec: |
-  SELECT
-      host,
-      items.key_,
-      count(item_discovery.*) as generated_items
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      LEFT JOIN item_discovery ON items.itemid = item_discovery.parent_itemid
-  WHERE
-      hosts.status = 0 -- enabled
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0 -- enabled
-      AND items.flags = 1 -- LLD item
-  GROUP BY
-      (hosts.host, items.key_, items.itemid)
-  HAVING
-      count(item_discovery.*) = 0
+query*unsupported_items: |
+SELECT
+host,
+key*,
+items.itemid
+FROM
+hosts
+JOIN items USING (hostid)
+JOIN item*rtdata USING (itemid)
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND item_rtdata.state = 1 -- not supported
+AND items.flags IN (0, 4) -- plain item or discovered
+GROUP BY
+(hosts.host, items.key*, items.itemid)
 
-# Comprobar si algún LLD está en error.
-query_unsupported_llds: |
-  SELECT
-      host,
-      key_,
-      items.itemid
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      JOIN item_rtdata USING (itemid)
-  WHERE
-      hosts.status = 0 -- enabled
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0 -- enabled
-      AND item_rtdata.state = 1 -- not supported
-      AND items.flags = 1 -- LLD item
-  GROUP BY
-      (hosts.host, items.key_, items.itemid)
+# Obtener los LLDs que no han sido ejecutados
+
+# Lo que hacemos es contar cuantos items se han generado por cada LLD y devolvemos los que tengan 0
+
+query*lld_exec: |
+SELECT
+host,
+items.key*,
+count(item*discovery.\*) as generated_items
+FROM
+hosts
+JOIN items USING (hostid)
+LEFT JOIN item_discovery ON items.itemid = item_discovery.parent_itemid
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND items.flags = 1 -- LLD item
+GROUP BY
+(hosts.host, items.key*, items.itemid)
+HAVING
+count(item_discovery.\*) = 0
+
+# Comprobar si algún LLD está en error
+
+query*unsupported_llds: |
+SELECT
+host,
+key*,
+items.itemid
+FROM
+hosts
+JOIN items USING (hostid)
+JOIN item*rtdata USING (itemid)
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND item_rtdata.state = 1 -- not supported
+AND items.flags = 1 -- LLD item
+GROUP BY
+(hosts.host, items.key*, items.itemid)
 
 # Comprobar si tenemos trigger en estado unknown (error)
-query_unknown_triggers: |
-  SELECT
-      triggers.description,
-      triggers.state
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      JOIN functions USING (itemid)
-      JOIN triggers using (triggerid)
-  WHERE
-      hosts.status = 0
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0
-      AND items.flags IN (0, 4)
-  GROUP BY
-      (triggers.description, triggers.state)
 
+query_unknown_triggers: |
+SELECT
+triggers.description,
+triggers.state
+FROM
+hosts
+JOIN items USING (hostid)
+JOIN functions USING (itemid)
+JOIN triggers using (triggerid)
+WHERE
+hosts.status = 0
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0
+AND items.flags IN (0, 4)
+GROUP BY
+(triggers.description, triggers.state)
 
 # Obtener los problemas abiertos de un host
-query_problems: |
-  SELECT
-      key_,
-      triggers.description
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      JOIN functions using (itemid)
-      JOIN triggers using (triggerid)
-      JOIN problem ON triggers.triggerid = problem.objectid
-  WHERE
-      hosts.status = 0
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0
-      AND items.flags IN (0, 4)
-      AND r_eventid IS NULL
-  GROUP BY
-      (hosts.host, items.key_, items.itemid, triggers.description)
 
+query*problems: |
+SELECT
+key*,
+triggers.description
+FROM
+hosts
+JOIN items USING (hostid)
+JOIN functions using (itemid)
+JOIN triggers using (triggerid)
+JOIN problem ON triggers.triggerid = problem.objectid
+WHERE
+hosts.status = 0
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0
+AND items.flags IN (0, 4)
+AND r*eventid IS NULL
+GROUP BY
+(hosts.host, items.key*, items.itemid, triggers.description)
 
 # Obtener los item prototypes que estén usando el formato antiguo de naming ($1, $2, ...)
-query_item_prototypes_old_format: |
-  SELECT
-        items.name,
-        key_
-    FROM
-        hosts
-        JOIN items USING (hostid)
-    WHERE
-        hosts.status = 0
-        AND hosts.host like '{{ ansible_hostname }}..%'
-        AND items.status = 0
-        AND items.flags = 2
-        AND items.name like '%$%'
-    GROUP BY
-        (hosts.host, items.key_, items.itemid)
 
+query*item_prototypes_old_format: |
+SELECT
+items.name,
+key*
+FROM
+hosts
+JOIN items USING (hostid)
+WHERE
+hosts.status = 0
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0
+AND items.flags = 2
+AND items.name like '%$%'
+GROUP BY
+(hosts.host, items.key\_, items.itemid)
 
 # Items generados a partir de un LLD que ya no vienen en el LLD y van a ser borrados
-query_items_to_be_deleted: |
-  SELECT
-      items.key_
-  FROM
-      hosts
-      JOIN items USING (hostid)
-      JOIN item_discovery USING(itemid)
-  WHERE
-      hosts.status = 0 -- enabled
-      AND hosts.host like '{{ ansible_hostname }}..%'
-      AND items.status = 0 -- enabled
-      AND ts_delete <> 0
 
+query*items_to_be_deleted: |
+SELECT
+items.key*
+FROM
+hosts
+JOIN items USING (hostid)
+JOIN item_discovery USING(itemid)
+WHERE
+hosts.status = 0 -- enabled
+AND hosts.host like '{{ ansible_hostname }}..%'
+AND items.status = 0 -- enabled
+AND ts_delete <> 0
 
 # Host que han escrito en las trends cuando no deberian
+
 Esto nos indica que han tenido que hacer el insert antes de tiempo porque habrán necesitado coger la hora anterior, lo que implicará que harán un update trends.
 
 select distinct split_part(host, '..', 1) as host from hosts join items using(hostid) join trends using(itemid) where clock = extract (epoch from date_trunc ('hour', now ()) AT TIME ZONE 'UTC')::int;
@@ -1207,19 +1156,19 @@ select distinct split_part(host, '..', 1) as host from hosts join items using(ho
 Poniendo proxies:
 WITH update_trends_hosts AS (
 SELECT DISTINCT
-    split_part(h.host, '..', 1) AS host
+split_part(h.host, '..', 1) AS host
 FROM
-    hosts h
-    JOIN items USING (hostid)
-    JOIN trends USING (itemid)
+hosts h
+JOIN items USING (hostid)
+JOIN trends USING (itemid)
 WHERE
-    clock = extract(epoch FROM date_trunc('hour', now()) AT TIME ZONE 'UTC')::int
+clock = extract(epoch FROM date_trunc('hour', now()) AT TIME ZONE 'UTC')::int
 )
 SELECT DISTINCT
-    h.host,
-    ph.host AS proxy
+h.host,
+ph.host AS proxy
 FROM
-    hosts h
-    LEFT JOIN hosts ph ON ph.hostid = h.proxy_hostid
+hosts h
+LEFT JOIN hosts ph ON ph.hostid = h.proxy_hostid
 WHERE
-    h.host IN (SELECT host FROM update_trends_hosts);
+h.host IN (SELECT host FROM update_trends_hosts);

@@ -5,10 +5,10 @@ ansible-doc -t lookup -l
 
 Extraer información de distintos sitios:
 
-  vars:
-    contents: "{{ lookup('file', '/etc/foo.txt') }}"
+vars:
+contents: "{{ lookup('file', '/etc/foo.txt') }}"
 
-  tasks:
+tasks:
 
      - debug: msg="{{ lookup('env','HOME') }} is an environment variable"
 
@@ -25,7 +25,7 @@ Extraer información de distintos sitios:
      - debug: msg="{{ lookup('template', './some_template.j2') }} is a value from evaluation of this template"
 
 vars:
-  motd_value: "{{ lookup('file', '/etc/motd') }}"
+motd_value: "{{ lookup('file', '/etc/motd') }}"
 
 tasks:
 
@@ -53,3 +53,6 @@ Si usamos el ignore al definir una variable, la deja definida pero vacía.
 
 Si el lookup se supone que devuelve un dict y luego estamos extrayendo keys de ahí, fallará porque el lookup devuelve un None.
 Podemos usar " | default('xxx')" en ese caso para que no falle.
+
+Si queremos usar "default" con un lookup que puede generar una excepción podemos usar errors='ignore'
+{{ lookup('foo', errors='ignore') | default('foo') }}

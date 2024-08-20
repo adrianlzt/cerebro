@@ -1,3 +1,6 @@
+<leader>gg
+Abrir lazygit para tener un ncurses para gestionar git.
+
 https://scribe.froth.zone/neovim-for-beginners-source-code-control-71139e4513a1
 Las distintas integraciones que podemos hacer explicadas
 

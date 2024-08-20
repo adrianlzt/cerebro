@@ -43,3 +43,10 @@ La fuente que se elige es la que se encuente antes en este fichero y esté insta
 Si queremos cargar una fuente de mac, vendrá en un formato .dmg
 Usaremos varias vecez "7z x" para descomprimir los distintos ficheros.
 https://securitronlinux.com/debian-testing/install-mac-osx-fonts-on-linux-easily/
+
+
+# nerd fonts
+ttf-jetbrains-mono-nerd
+
+Para testear si salen los iconos usar:
+https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/bin/scripts/test-fonts.sh

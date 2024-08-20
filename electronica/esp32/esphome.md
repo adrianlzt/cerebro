@@ -24,6 +24,9 @@ esphome run --device /dev/ttyUSB2 esp32cam.yaml
 
 Tras flashear la imagen pasará automáticamente a escuchar en el puerto serie.
 
+Si queremos ver los logs:
+esphome logs esp32cam.yaml
+
 Si vamos a nuestro HA, a la zona de integrations:
 <http://IP:8123/config/integrations>
 

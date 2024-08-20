@@ -1,4 +1,4 @@
-https://www.terraform.io/intro/getting-started/variables.html
+<https://www.terraform.io/intro/getting-started/variables.html>
 
 Generalmente usadas para esconder keys de los ficheros de configuración y para cuando usamos un valor en repetidas ocasiones
 
@@ -8,24 +8,27 @@ variable "aws_access_key" {}
 La usaremos como:
 var.aws_access_key
 
-
 Si no definimos la variable nos la preguntará por stdout.
 
 La podemos pasar como parametro:
 terraform apply -var "ost_pass=1234"
 
 Si queremos pasar una lista
-``````
+
+```
 -var='image_id_list=["ami-abc123","ami-def456"]'
-``````
+```
 
 O con un fichero:
-terraform.tfvars *.auto.tfvars (estos se cogerán automáticamente)
+terraform.tfvars \*.auto.tfvars (estos se cogerán automáticamente)
+Formato:
+
+```
+foo = "bar"
+```
 
 En un fichero damos valores a las variables como (NOTA: tendrán que estar definidas en algun sitio (en algún fichero .tf), ejemplo de definición: variable nombrevariable {}):
 nombrevariable = "valor"
-
-
 
 Si queremo forzar a coger un fichero:
 -var-file="fichero"
@@ -33,25 +36,26 @@ Si queremo forzar a coger un fichero:
 Variables de entorno (solo strings):
 TF_VAR_nombre
 
-
 # Default
+
 variable "aws_access_key" {
-  default = "valor_si_no_se_define"
+default = "valor_si_no_se_define"
 }
 
 Type de las variables:
-  string
-  number
-  bool (se usa como true / false)
+string
+number
+bool (se usa como true / false)
 
-  list
-  set
-  maps
-  object
-  tuple
+list
+set
+maps
+object
+tuple
 
 # Lists
-https://www.terraform.io/intro/getting-started/variables.html#lists
+
+<https://www.terraform.io/intro/getting-started/variables.html#lists>
 
 variable "cidrs" { default = [] }
 
@@ -69,7 +73,6 @@ Si son variable con count:
 variable.INDICE.attr
 aws_instance.web.0.id
 
-
 Si tenemos una variable con muchos elementos por que se ha generado con un count, podemos acceder a los elementos con:
 Parece que esta sintaxis (.NUMERO.) no podemos usarla cuando nosotros generamos el array (un output de un module por ejemplo)
 aws_instance.example.0.public_ip
@@ -80,45 +83,46 @@ instances = [for d in google_compute_instance.host: d.id]
 Con filtrado:
 [for s in var.list : upper(s) if s != ""]
 
-
 ## concat
-> concat(["a", ""], ["b", "c"])
-[ "a", "", "b", "c", ]
 
+> concat(["a", ""], ["b", "c"])
+> [ "a", "", "b", "c", ]
 
 # Maps
-https://www.terraform.io/intro/getting-started/variables.html#maps
+
+<https://www.terraform.io/intro/getting-started/variables.html#maps>
 
 Todos los tipos de los datos de un map deben ser del mismo tipo
 
 variable "amis" {
-  type = map(string)
-  default = {
-    "us-east-1" = "ami-b374d5a5"
-    "us-west-2" = "ami-4b32be2b"
-  }
+type = map(string)
+default = {
+"us-east-1" = "ami-b374d5a5"
+"us-west-2" = "ami-4b32be2b"
+}
 }
 
 "${lookup(var.amis, var.region)}"
 ${var.amis["us-east-1"]}
-
 
 type = map(list(string))
 
 Ejemplo:
 {"foo":["a","b"], "bar": ["qwe"]}
 
+## Merge maps
 
+merge({"foo": 1}, {"bar": 2})
 
 # Ficheros
+
 Si queremos pasar el contenido de un fichero:
 "${file(var.nombre)}"
 
-
-
 # Iterpolation
-https://www.terraform.io/docs/configuration/interpolation.html
 
-Built-in functions: https://www.terraform.io/docs/configuration/interpolation.html#built-in-functions
+<https://www.terraform.io/docs/configuration/interpolation.html>
+
+Built-in functions: <https://www.terraform.io/docs/configuration/interpolation.html#built-in-functions>
 
 ${length("a,b,c")} = 5

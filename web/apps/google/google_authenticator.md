@@ -7,8 +7,9 @@ otpauth-migration://offline?data=xxxxxxxxipzrve%2B%2F%2F%2F%2F%2F8B
 
 Las xxxx son en base64 la clave y el nombre asignado a esa cuenta.
 
-Para generar la clave en base32:
-echo -n "otpauth-migration://offline?data=CiIKxxxxxxxxxxdTNxxxxxxxxxxSCFE3MTxxxxxxxxxxAxxxxxxxxxxAKNejxuYH" | sed "s/.*data=//" | base64 -di | cut -c 1-17 | tail -1 | base32
+Para generar la clave en base32 usar https://github.com/dim13/otpauth
+go install github.com/dim13/otpauth@latest
+otpauth -link "otpauth-migration://offline?data=CiIKxxxxxxxxxxdTNxxxxxxxxxxSCFE3MTxxxxxxxxxxAxxxxxxxxxxAKNejxuYH"
 
 En caso de que nos den el secret directamente, o lo obtengamos de la url tipo otpauth://totp/foobar?secret=aaaaaaaay&issuer=Test
 Lo podremos usar directamente, en mayúsculas

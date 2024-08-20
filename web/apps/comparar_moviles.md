@@ -4,6 +4,12 @@ Almacenamiento, al menos 128GiB
 Duración de la batería.
 El lector de huellas funciona bien?
 
+Problemas pixel:
+
+- el lector de huellas funciona mal
+- carga lenta
+- con el móvil encendido, algunas llamadas dan que no está disponible (probar más)
+
 Comprobar si las bandas de red funcionan en nuestro pais
 <http://willmyphonework.net/>
 <https://www.frequencycheck.com>

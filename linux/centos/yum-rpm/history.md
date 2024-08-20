@@ -1,7 +1,9 @@
 http://www.cyberciti.biz/faq/yum-history-command/
 
 yum history
-yum history list all
+
+yum history list NOMBREPAQUETE
+  solo los history de ese paquete
 
 The history command allows an admin to access detailed information on the history of yum transactions that have been run on a system
 Nos da los cambios que se han realizado mediante yum

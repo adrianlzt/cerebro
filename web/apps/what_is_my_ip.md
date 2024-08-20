@@ -7,12 +7,13 @@ nc ipv4.cat 22
 ftp ipv4.cat
 curl --http0.9 ipv4.cat
 
-http://ifcfg.co
-http://ip-addr.es/
-http://eth0.me/
-
+<http://ifcfg.co>
+<http://ip-addr.es/>
+<http://eth0.me/>
+<http://icanhazip.com>
 
 # IPv6
-https://jsonip.com/
 
-curl -s6 https://jsonip.com | jq -r '.ip'
+<https://jsonip.com/>
+
+curl -s6 <https://jsonip.com> | jq -r '.ip'
