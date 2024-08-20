@@ -66,8 +66,12 @@ Si tenemos un backend https, revisar bien el hostname que le estamos enviando. D
 Tal vez la probe funcione porque está usando otra cabecera "Host".
 
 # WAF / Web Application Firewall
+
 <https://learn.microsoft.com/en-us/azure/application-gateway/log-analytics>
 
 En loa AppGw podemos configurar un WAF para detectar posibles peticiones maliciosas y bloquearlas.
 
 Para poder ver las peticiones al WAF y cuales son bloqueadas, tendremos que activar los logs en "Diagnostic settings".
+Para ello primero deberemos crear un "Log Analytics workspace" donde los enviaremos.
+
+Tras activar el envío de logs tardarán unos minutos en aparecer.
