@@ -3,6 +3,9 @@ otra opción: protocol-buffers.md
 
 formato: <https://github.com/msgpack/msgpack/blob/master/spec.md>
 
+<https://msgpack.solder.party/>
+Para ver como se convierte json a msgpack.
+
 Serialización binaria para lograr eficacia.
 Permite el intercambio de datos como JSON pero de manera más eficaz.
 
