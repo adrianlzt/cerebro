@@ -1,1 +1,0 @@
-../../certificados/gpg.md
