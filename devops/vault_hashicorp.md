@@ -4,9 +4,11 @@ Vault VS passwords managers
 <https://web.archive.org/web/20211206021559/https://www.reddit.com/r/devops/comments/r9r5u7/comment/hneodbp/>
 
 # Install
+
 <https://developer.hashicorp.com/vault/install>
 
 ## Production hardening
+
 <https://developer.hashicorp.com/vault/tutorials/operations/production-hardening>
 
 Best practices:
@@ -71,6 +73,7 @@ Y luego podremos ya usarlo con el root token:
 VAULT_TOKEN=hvs.XXX VAULT_ADDR=<http://127.0.0.1:8200> vault secrets list
 
 # Auth methods
+
 <https://developer.hashicorp.com/vault/docs/auth>
 
 Podemos usar servicios de terceros para hacer la autenticación: AWS, Azure, Google cloud, github, etc.
@@ -92,6 +95,7 @@ vault auth tune -max-lease-ttl=2m userpass/
 Mirar también info en la sección Tokens.
 
 ## Auth con user/pass
+
 <https://www.vaultproject.io/docs/auth/userpass.html>
 
 Tenemos que activar el Auth Method user/pass.
@@ -122,6 +126,7 @@ O sacar la info en una tabla, como la salida normal, pero tampoco generar el ~/.
 vault login -no-store -method=userpass username=foo3
 
 ## LDAP
+
 <https://developer.hashicorp.com/vault/docs/auth/ldap>
 
 vault auth enable ldap
@@ -144,6 +149,7 @@ El bind se generará como:
 "%s=%s,%s", cfg.UserAttr, EscapeLDAPValue(username), cfg.UserD
 
 ## OIDC / OpenID Connect
+
 <https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-auth>
 Implementación que usa vault para OIDC: <https://github.com/hashicorp/cap/tree/main/oidc>
 
@@ -208,12 +214,14 @@ vault write identity/group name="soporte_ext" type="external" policies="policy1,
 vault write identity/group-alias name='<soporte@foo.io>' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
 
 ### Vault como OIDC provider
+
 <https://developer.hashicorp.com/vault/tutorials/auth-methods/oidc-identity-provider>
 
 Esto es para que las aplicaciones se autentiquen contra vault.
 Lo de arriba es para que puedas usar un OIDC externo para autenticarte contra vault.
 
 ### Desarrollo
+
 <https://github.com/hashicorp/vault-plugin-auth-jwt>
 
 Para cargar el plugin:
@@ -254,9 +262,11 @@ vault write auth/approle/role/my-role \
 ```
 
 ## MFA/2FA
+
 <https://developer.hashicorp.com/vault/docs/auth/login-mfa>
 
 ## Identity
+
 <https://developer.hashicorp.com/vault/docs/secrets/identity>
 
 Internamente Vault usa identity/ para almacenar los clientes conectados (excepto los que usan tokens).
@@ -281,6 +291,7 @@ maneras siempre sea el mismo de cara a vault.
 Los alias son los mapeos entre entities de vault y proveedores de identidad (terceros o locales).
 
 ### Groups
+
 <https://developer.hashicorp.com/vault/tutorials/auth-methods/identity#create-an-internal-group>
 <https://irezyigit.medium.com/vault-authorization-part-2-aliases-entities-and-groups-4f044d1e2010>
 
@@ -297,8 +308,8 @@ vault write -format=json identity/group name="education" \
      metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
 
 ## Token
-https://developer.hashicorp.com/vault/tutorials/tokens/token-management
-https://developer.hashicorp.com/vault/tutorials/tokens/tokens
+<https://developer.hashicorp.com/vault/tutorials/tokens/token-management>
+<https://developer.hashicorp.com/vault/tutorials/tokens/tokens>
 
 Info sobre el token que estamos usando actualmente
 vault token lookup
@@ -322,6 +333,7 @@ Podemos renovarlo sin pasarnos de max_lease_ttl. Al pasar ese tiempo tendremos q
 También existen los token periódicos, que tienen un ttl y se pueden renovar indefinidamente (mientras lo hagamos en ese ttl).
 
 # Engines
+
 <https://developer.hashicorp.com/vault/docs/secrets>
 
 Son "funciones" que puede realizar Vault.
@@ -365,6 +377,7 @@ vault write -f ldap/rotate-root
 Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario se lamacena en userPassword.
 
 ## Database
+
 <https://developer.hashicorp.com/vault/docs/secrets/databases>
 Un tipo especial de engines son los de tipo database
 
@@ -397,6 +410,7 @@ Obtenemos credenciales (durará 1h, renovable hasta 24h):
 vault read database/creds/my-role
 
 ## transit
+
 <https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-transit>
 
 Le pasamos un texto y nos devuelve una cadena encriptada, que luego se la podemos enviar de nuevo para que nos la desencripte.
@@ -405,6 +419,7 @@ vault write transit/encrypt/orders plaintext=$(base64 <<< "4111 1111 1111 1111")
 vault write transit/decrypt/orders ciphertext=$CIPHERTEXT
 
 # ACL
+
 <https://developer.hashicorp.com/vault/tutorials/policies/policies>
 <https://irezyigit.medium.com/vault-authorization-acl-access-control-list-policies-d220be54ca31>
 <https://github.com/jeffsanicola/vault-policy-guide>
@@ -463,6 +478,7 @@ vault read -format=yaml sys/internal/ui/resultant-acl | faq -f yaml .data
 Para poder hacer
 
 ## Templating
+
 <https://developer.hashicorp.com/vault/tutorials/policies/policy-templating>
 
 # Grupos
@@ -477,6 +493,7 @@ Varios usuarios de distintos auth engines pueden unirse en un entitie.
 Sería la forma de centralizar el usuario que se loguea por github y por ldap.
 
 # Audit / traces
+
 <https://developer.hashicorp.com/vault/docs/audit>
 Detailed log of all requests to Vault, and their responses
 
@@ -491,6 +508,7 @@ La información sensible viene hasheada. Es posible desactivarlo (log_raw=true),
 elide_list_responses, por si queremos quitar las respuestas tipo "list", que pueden generar entradas muy largas en el log.
 
 # Password policies / generación contraseñas
+
 <https://developer.hashicorp.com/vault/docs/concepts/password-policies>
 <https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v2#:~:text=Write%20a%20password%20policy%3A>
 
@@ -512,6 +530,7 @@ VAULT_ADDR=<http://vault.com:8200> vault ...
 Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
 ## Autocompletado
+
 <https://www.vaultproject.io/docs/commands/index.html#autocompletion>
 
 Para que funcione el autocompletado tendremos que tener el ACL:
@@ -560,6 +579,7 @@ Podemos usar otro servidor con claves para desbloquear el vault de manera autom�
 El típico escenario es un vault desplegado en una nube, con las claves guardadas en un almacen de claves de dicha nube.
 
 ### Vault transit
+
 <https://developer.hashicorp.com/vault/tutorials/auto-unseal/autounseal-transit>
 
 Existe la opción es usar otro servidor vault para hacer unseal.
@@ -641,15 +661,18 @@ Otro cliente, en python
 <https://vault-cli.readthedocs.io/>
 
 ## CLI safe
+
 <https://github.com/Qarik-Group/safe>
 Guarda el token en claro en $HOME/.saferc
 No tiene autocompletado
 Permite usar distintos servers de vault
 
 ## Otras herramientas
+
 <https://github.com/gites/awesome-vault-tools>
 
 ## vaku
+
 <https://github.com/Lingrino/vaku>
 Usar las variables de entorno estandar.
 Autocompletado, pero no navega por los engines ni paths.
@@ -658,6 +681,7 @@ Vaku necesita parche para no usar namespaces.
 /home/adrian/Documentos/repos/vaku/vaku folder list gopass/ | parallel -j 10 vault read gopass/data/{} > /dev/null
 
 ## vht
+
 <https://github.com/ilijamt/vht>
 El buscador está bastante bien.
 No tiene autocompletado para zsh.
@@ -697,9 +721,11 @@ vault write totp/keys/my-gen generate=true account_name=x issuer=x
 No implementado en la UI.
 
 ### SSH
+
 <https://developer.hashicorp.com/vault/docs/secrets/ssh>
 
 #### One time password
+
 <https://developer.hashicorp.com/vault/docs/secrets/ssh/one-time-ssh-passwords>
 El host remoto necesita poder conectar contra vault.
 
@@ -771,6 +797,7 @@ Detalles:
 vault read datadope-ssh/roles/datadope-vault-vm
 
 # Share secrets
+
 <https://developer.hashicorp.com/vault/tutorials/secrets-management/cubbyhole-response-wrapping>
 
 Si queremos compartir unas credenciales con alguien, que también tiene acceso a Vault:
@@ -838,6 +865,7 @@ Obtener el estado del vault:
 curl -s localhost:8200/v1/sys/health | jq
 
 ## Python
+
 <https://pypi.org/project/hvac/>
 
 Exportar VAULT_ADDR y VAULT_TOKEN
@@ -852,6 +880,7 @@ Aplicaciones para facilitar la integración de apps existentes con vault.
 Podremos atacar a su API sin necesitar el token.
 
 ## AutoAuth
+
 <https://developer.hashicorp.com/vault/docs/agent-and-proxy/autoauth>
 
 Ambos tienen la funcionalidad de AutoAuth.
@@ -894,11 +923,17 @@ Parece que es para generar ficheros a partir de templates usando info de vault.
 También puede ejecutar procesos inyectando secretos como variables de entorno.
 Puede cachear.
 
+# Integrar vault con systemd
+
+<https://medium.com/@umglurf/using-systemd-credentials-to-pass-secrets-from-hashicorp-vault-to-systemd-services-928f0e804518>
+
 # Backend storage
+
 <https://developer.hashicorp.com/vault/docs/configuration/storage>
 Se recomienda usar el método de ficheros que trae por defecto.
 
 # Namespaces (enterprise feature)
+
 <https://developer.hashicorp.com/vault/tutorials/enterprise/namespaces>
 Each namespace would have its own auth methods, secrets engines, policies, and so on. Think of it as a mini-vault.
 
@@ -910,11 +945,13 @@ Puede ser sencillo usar terraformer para generar los .tf files a partir de cosas
 terraformer plan vault --resources=policy
 
 # Ansible
+
 <https://docs.ansible.com/ansible/devel/plugins/lookup/hashi_vault.html>
 
 Otro módulo no oficial con ciertas mejoras: <https://github.com/jhaals/ansible-vault>
 
 # Debug
+
 <https://www.vaultproject.io/docs/commands/debug>
 
 vault debug
