@@ -23,9 +23,35 @@ Para desplegar en producción:
 swa deploy --env production
 ```
 
+Al hacer deploy no estaremos haciendo el build.
+Tendremos que primero generar el build con:
+
+```
+swa build
+```
+
+También podemos hacer un build tipo dev y luego subirlo:
+
+```bash
+yarn build --dev
+swa deploy
+```
+
 # Auth
 
 Si queremos añadir auth podemos hacer uso de unos endpoints donde se puede obtener el login actual.
 
 <https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-authorization>
 <https://learn.microsoft.com/en-us/azure/static-web-apps/user-information?tabs=javascript>
+
+En cualquier SWA, podemos loguearnos usando github o azure.
+Ejemplo para azure.
+
+Entrar en:
+<https://miweb.swa/.auth/login/aad>
+
+Una vez hecho el proceso de login podemos obtener la información del usuario en:
+<https://miweb.swa/.auth/me>
+
+Desde Settings -> Role management podemos invitar a usuarios mediante email.
+En ese momento le podemos asignar unos roles.
