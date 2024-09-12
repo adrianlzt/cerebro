@@ -1,3 +1,6 @@
+Mostrar las DBs con su tamaño en disco
+\l+
+
 ## -- <https://wiki.postgresql.org/wiki/Disk_Usage>
 
 -- \dti+ nombre\*
