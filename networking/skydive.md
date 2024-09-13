@@ -59,6 +59,7 @@ Config completa: <https://github.com/skydive-project/skydive/blob/master/etc/sky
 Me parece un poco jaleo, porque tiene mezclada la config del agente, del server, etc
 
 ### Probes
+
 <https://github.com/skydive-project/skydive/tree/master/topology/probes>
 
 Los distintos métodos que tienen de recolectar información
@@ -153,12 +154,14 @@ No se si al conectar otro nodo que enganche me creará alguna conex
 Y que diferencia hay con netlink?
 
 # Alerts
+
 <http://skydive.network/swagger/#operation/createAlert>
 
 Se pueden ejecutar scripts locales o ejecutar webhooks cuando se haga match de una expresión gremlin (puede tener procesado con javascript).
 <http://skydive.network/documentation/cli#alerting>
 
 # Graffiti
+
 <https://fosdem.org/2020/schedule/event/graph_graffiti/>
 Base de datos de grafos que funciona como backend
 
@@ -194,6 +197,7 @@ hace falta tener un elasticsearch escuchando en :9201, en el mismo namespace de 
 podman run --net host --rm -it -p 9201:9200 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.10.2
 
 ## Client
+
 <http://skydive.network/blog/topology-rules.html>
 Para interactuar con los analyzers, crear nodos, etc.
 SKYDIVE_ANALYZERS=127.0.0.1:8082 ./skydive client status
@@ -222,6 +226,7 @@ Actualizar un nodo:
   con curl: curl <http://127.0.0.1:8082/api/noderule> -d '{"Action": "update", "Metadata":{"Alarms": [{"Name": "disk", "Severity": 1}]}, "Query": "G.V().Has(\"Name\", \"test1\")"}'
 
 ## Gremlin
+
 <http://skydive.network/documentation/api-gremlin>
 Queries para atacar a graffiti.
 
@@ -351,6 +356,7 @@ true
 false
 
 ## API
+
 <http://skydive.network/swagger/>
 <http://skydive.network/documentation/api#topologyflow-request>
 
@@ -441,6 +447,7 @@ Crear edge:
 curl 127.0.0.1:8082/api/edge -H "Content-Type: application/json" -d "{\"ID\": \"test\", \"CreatedAt\": $(date +%s%3N), \"UpdatedAt\": $(date +%s%3N), \"Origin\": \"CMDB-Syncer\", \"Metadata\": {\"RelationType\": \"foo\"}, \"Child\": \"a\", \"Parent\": \"b\"}"
 
 ### Python
+
 <http://skydive.network/documentation/api-python>
 
 Tanto para solicitar cosas (API REST) como para modificar o recibir cambios del grafo, via websockets
@@ -547,6 +554,7 @@ La query se lanza sobre todos los índices (live + archives).
 Del índice live solo se cogerán nodos si el UpdatedAt es inferior a la fecha solicitada.
 
 # Graffiti UI
+
 <https://github.com/skydive-project/graffiti-ui>
 Basada en ReactJS
 
