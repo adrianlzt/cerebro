@@ -308,6 +308,7 @@ vault write -format=json identity/group name="education" \
      metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
 
 ## Token
+
 <https://developer.hashicorp.com/vault/tutorials/tokens/token-management>
 <https://developer.hashicorp.com/vault/tutorials/tokens/tokens>
 
@@ -922,6 +923,8 @@ Parece que es un intermediario con Vault que tiene AutoAuth y puede cachear.
 Parece que es para generar ficheros a partir de templates usando info de vault.
 También puede ejecutar procesos inyectando secretos como variables de entorno.
 Puede cachear.
+
+Podemos configurar el agent para que levante un proceso con una variable de entorno determinada y que reinicie el proceso si se cambia la variable de entorno (si no reiniciamos la variable de entorno que ve el programa no se modifica).
 
 # Integrar vault con systemd
 
