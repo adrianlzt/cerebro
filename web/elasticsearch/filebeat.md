@@ -118,3 +118,35 @@ Para ver el contenido:
 
 Generar una configuración por cada contenedor que se detecte.
 También se pueden pasar configuraciones específicas usando labels del contenedor.
+
+Ejemplo de contenedor con configuraciones específicas:
+
+```bash
+docker run \
+  --rm \
+  -it \
+  -l "co.elastic.logs/multiline.pattern=^\d{4}-\d{2}-\d{2}" \
+  -l "co.elastic.logs/multiline.negate=true" \
+  -l "co.elastic.logs/multiline.match=after" \
+  -l "co.elastic.logs/processors.dissect.tokenizer=%{timestamp}|%{log_level}|%{field1}|%{field2}|%{field3}|%{message}[[%{module}|%{process_name}][%{file_path}:%{line_number}]]" \
+  -l "co.elastic.logs/processors.dissect.field=message" \
+  -l "co.elastic.logs/processors.dissect.target_prefix=dissect" \
+  alpine
+```
+
+Ejemplo de configuración de filebeat:
+
+```yaml
+output.console:
+  pretty: true
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+      hints.default_config:
+        type: container
+        scan_frequency: "1s"
+        paths:
+          - /var/lib/docker/containers/${data.container.id}/*.log
+```
