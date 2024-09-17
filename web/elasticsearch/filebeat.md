@@ -66,6 +66,7 @@ Para próximos envios solo hará el RPUSH
 Si tenemos configurado TLS con certificate y key parece que ignora la opción de verification_mode.
 
 # Autodiscover (docker/kubernetes)
+
 <https://www.elastic.co/guide/en/beats/filebeat/current/configuration-autodiscover.html>
 
 Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
@@ -99,6 +100,9 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 Procesador para extraer campos de un mensaje. Se le pasa un patrón y los campos a extraer.
 Aquí podemos probar configuraciones: <https://dissect-tester.jorgelbg.me/>
 
+Key modifiers para el pattern:
+<https://www.elastic.co/guide/en/elasticsearch/reference/current/dissect-processor.html>
+
 # Keystore
 
 Para almacenar, por ejemplo, contraseñas y luego poner una variable en el fichero de config.
@@ -107,3 +111,10 @@ El fichero con las keystores está en /var/lib/filebeat/filebeat.keystore
 
 Para ver el contenido:
 <https://github.com/adrianlzt/extract-filebeat-keystore/>
+
+# Autodiscover
+
+<https://www.elastic.co/guide/en/beats/filebeat/8.11/configuration-autodiscover-hints.html>
+
+Generar una configuración por cada contenedor que se detecte.
+También se pueden pasar configuraciones específicas usando labels del contenedor.
