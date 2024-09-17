@@ -1,8 +1,10 @@
-https://www.elastic.co/guide/en/beats/filebeat/current/configuring-howto-filebeat.html
+<https://www.elastic.co/guide/en/beats/filebeat/current/configuring-howto-filebeat.html>
 
 Generalmente lo que haremos es configurar algunos prospectors (donde configuramos que ficheros se deben leer), unos processors (como tratar la información) y unos outputs (donde enviar la info).
 
 Ejemplo leyedo ficheros de log en formato md-json, extrayendo los campos del json como fields, borrando fields que no queremos y almacenando la info en elastic:
+
+```yaml
 filebeat.inputs:
 - type: log
   paths:
@@ -31,14 +33,14 @@ output.elasticsearch:
 
 #logging.metrics.enabled: true  # por defecto cada 30s se envian metricas de como esta funcionando filebeat
 
-Output a logstash (protocolo beats)
+# Output a logstash (protocolo beats)
 output.logstash:
   hosts: ["10.233.107.172:5044"]
 
-Prueas, sacar a la consola:
+# Pruebas, sacar a la consola:
 output.console:
   pretty: true
-
+```
 
 Testear config:
 filebeat -c filebeat.yml test config
@@ -49,9 +51,10 @@ filebeat run -c filebeat.yml -v -e
 Con docker:
 docker run --rm -it -v $PWD/filebeat.yaml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:7.3.2
 
-
 # Internals
-## Output de redis.
+
+## Output de redis
+
 Cuando se hace el primer envio a un output redis, filebeat resuelve todas las IPs de los servidores que tengamos listados en el output.
 Luego conecta al primero, lanza un "PING" para chequear que contesta. Luego un "INFO" para obtener la versión del servidor y por último un RPUSH para enviar los datos.
 Luego lanza PING e INFO contra el resto de servidores de la lista.
@@ -59,21 +62,19 @@ Luego lanza PING e INFO contra el resto de servidores de la lista.
 Para próximos envios solo hará el RPUSH
 
 ### TLS
+
 Si tenemos configurado TLS con certificate y key parece que ignora la opción de verification_mode.
 
-
-
-
 # Autodiscover (docker/kubernetes)
-https://www.elastic.co/guide/en/beats/filebeat/current/configuration-autodiscover.html
+<https://www.elastic.co/guide/en/beats/filebeat/current/configuration-autodiscover.html>
 
 Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
-
-
 
 # Inputs / Prospectors
 
 ## Docker
+
+```yaml
 - type: container
   format: docker
   containers.ids: "*"
@@ -89,12 +90,20 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
     fileset.module: container
   processors:
     - add_docker_metadata: ~
+```
 
+# Processors
+
+## dissect
+
+Procesador para extraer campos de un mensaje. Se le pasa un patrón y los campos a extraer.
+Aquí podemos probar configuraciones: <https://dissect-tester.jorgelbg.me/>
 
 # Keystore
+
 Para almacenar, por ejemplo, contraseñas y luego poner una variable en el fichero de config.
 
 El fichero con las keystores está en /var/lib/filebeat/filebeat.keystore
 
 Para ver el contenido:
-https://github.com/adrianlzt/extract-filebeat-keystore/
+<https://github.com/adrianlzt/extract-filebeat-keystore/>
