@@ -39,3 +39,5 @@ sniff
   capturar con wireshask, mirar debug.md
   muerto? Usar <https://github.com/larryTheSlap/dumpy>
     este usa tcpdump y puedes exportar los .pcap, no lenvanta el wireshark directamente como el sniff
+kubectl krew install resource-capacity
+  analizar capacidad
