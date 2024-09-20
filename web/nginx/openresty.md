@@ -7,6 +7,7 @@ Ver como gestionar el nginx como load-balancer para realizar esta tarea.
 Lo hacemos con un script LUA
 
 # Openresty
+
 <https://openresty.org/>
 
 # LUA
@@ -66,3 +67,73 @@ pacman -S nginx-mod-njs
 load_module /usr/lib/nginx/modules/ngx_http_js_module.so;
 
 nginx -s reload
+
+## Ejemplo
+
+transform.js
+
+```js
+function transformJson(r) {
+  try {
+    let data = JSON.parse(r.requestText);
+
+    if (data.Report && Array.isArray(data.Report)) {
+      let newFormat = {
+        records: data.Report.map(item => ({ value: item }))
+      };
+      r.requestBody = JSON.stringify(newFormat);
+      r.internalRedirect('@backend');
+    } else {
+      r.return(400, "Invalid JSON format");
+    }
+  } catch (e) {
+    r.error("Failed to parse or transform JSON: " + e);
+    r.return(400, "Bad Request");
+  }
+}
+
+export default { transformJson };
+```
+
+nginx.conf
+
+```
+daemon off;
+pid /var/tmp/tmp.AXYdPmcnYG/nginx.pid;
+load_module /usr/lib/nginx/modules/ngx_http_js_module.so;
+
+events {}
+
+http {
+  js_import main from transform.js;
+
+  client_body_temp_path /var/tmp/tmp.AXYdPmcnYG;
+  fastcgi_temp_path /var/tmp/tmp.AXYdPmcnYG;
+  uwsgi_temp_path /var/tmp/tmp.AXYdPmcnYG;
+  scgi_temp_path /var/tmp/tmp.AXYdPmcnYG;
+  access_log /var/tmp/tmp.AXYdPmcnYG/access.log;
+  error_log /var/tmp/tmp.AXYdPmcnYG/error.log;
+
+  server {
+    listen 8086;
+
+    location /transform {
+      js_content main.transformJson;
+    }
+
+    location @backend {
+      proxy_pass      http://localhost:8000;
+    }
+
+    location / {
+        root   /var/tmp/tmp.AXYdPmcnYG/;
+        index  index.html index.htm;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root /home/username/nginx/html;
+    }
+  }
+}
+```

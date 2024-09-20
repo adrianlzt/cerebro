@@ -12,3 +12,15 @@ rpk cluster info --brokers 127.0.0.1:19092
 
 Enviar mensaje (nos dejará la shell sin retornar para que pongamos un mensaje y demos a enter, podemos hacerlo varias, veces, control+c para salir):
 rpk --brokers 127.0.0.1:19092 topic produce pruebas
+
+Crear topic:
+
+```
+rpk topic create NOMBRE
+```
+
+Ingestar datos:
+
+```
+curl -H "Content-Type: application/vnd.kafka.json.v2+json" 10.0.2.183:8082/topics/adrian -d '{ "records": [ { "value": { "CollectionTime": "1726482720", "Device": { "DeviceInfo": { "Manufacturer": "TP-Link" } } } }, { "value": { "CollectionTime": "1726482721", "Device": { "DeviceInfo": { "Manufacturer": "Off-TW" } } } } ] }'
+```

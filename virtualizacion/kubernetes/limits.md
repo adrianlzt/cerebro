@@ -39,6 +39,7 @@ kubectl resource-capacity --pods --util
 kubectl resource-capacity --pods --namespace timescaledb
 
 ## kube-resource-report
+
 <https://codeberg.org/hjacobs/kube-resource-report>
 
 Aplicación que desplegamos, levanta un server web y muestra un reporte html
