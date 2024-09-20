@@ -1,10 +1,12 @@
 flink
 
-https://redpanda.com/
+<https://redpanda.com/>
 Redpanda is a Kafka®-compatible streaming data platform that is up to 10x faster and 6x more hardware-efficient. It is also JVM-free, ZooKeeper®-free, Jepsen-tested and source available.
 
 # CLI
-curl -LO https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip
+
+curl -LO <https://github.com/redpanda-data/redpanda/releases/latest/download/rpk-linux-amd64.zip>
+aur/redpanda-bin
 
 rpk cluster info --brokers 127.0.0.1:19092
 
