@@ -1,5 +1,5 @@
-https://pypi.python.org/pypi/awscli
-http://docs.aws.amazon.com/cli/latest/reference/
+<https://pypi.python.org/pypi/awscli>
+<http://docs.aws.amazon.com/cli/latest/reference/>
 pip install awscli
 pacman -Ss aws-cli
 
@@ -13,11 +13,22 @@ aws SERVICIO COMANDO help
 Configuración:
 aws configure
   Genera el fichero .aws/config y nos pedirá las claves, la región por defecto y el tipo de formateo (table, json o text)
-  Obtener las claves en https://console.aws.amazon.com/iam/home?region=eu-west-1#/security_credential
+  Obtener las claves en <https://console.aws.amazon.com/iam/home?region=eu-west-1#/security_credential>
 
 Output:
 aws --output table|json|text servicio comando
 
+Podemos tener distintas configuraciones para usar distintas cuentas.
+aws configure list
+
+Para elegir una confiuración:
+
+```bash
+export AWS_DEFAULT_PROFILE=nombre
+```
+
+Testear si tenemos bien configuradas las credenciales:
+aws s3 ls
 
 Estado de las instancias:
 aws ec2 describe-instance-status
@@ -26,7 +37,6 @@ Más información:
 aws ec2 describe-instances
 De una en particular:
 aws ec2 describe-instances --instance-ids i-0e9df042
-
 
 Terminar instancia:
 aws ec2 terminate-instances --instance-ids i-0e9df042
@@ -37,18 +47,20 @@ aws ec2 stop-instances --instance-ids i-0e9df042
 Crear una imagen de una instancia parada (tambien vale de una running?)
 aws ec2 create-image --instance-id i-62f4eb2e --name calculopi
 
-
 ## Keypairs ##
-#Generate keypair
+
+# Generate keypair
+
 aws ec2 create-key-pair --key-name asTestKey
 echo -e "-----BEGIN RS..." > asTestKey.pem
 chmod 0400 asTestKey.pem
 
-#Import
+# Import
+
 aws ec2 import-key-pair --key-name (no lo he probado, algo asi)
 
-
 ## Security groups ##
+
 authorize-security-group-ingress
 authorize-security-group-egress
 revoke-security-group-egress
