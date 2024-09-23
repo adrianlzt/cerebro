@@ -34,7 +34,7 @@ Nginx + ngx_lua + luaJIT (open resty)
 <https://www.nginx.com/resources/wiki/modules/lua/?highlight=lua#lua-installation>
 <http://artifactory.hi.inet/artifactory/yum-ccb-ci/nginx-lua/x84_64/>
 
-# nginScript
+# nginScript / njs
 
 Nginx + nginScript (just launched)
 <https://www.nginx.com/blog/launching-nginscript-and-looking-ahead/>
@@ -68,21 +68,54 @@ load_module /usr/lib/nginx/modules/ngx_http_js_module.so;
 
 nginx -s reload
 
+## Processing phase
+
+Processing Phase                              HTTP Module                   Stream Module
+Access – Authentication and access control    auth_request and js_content   js_access
+Pre-read – Read/write payload                 N/A                           js_preread
+Filter – Read/write response during proxy     js_body_filter
+                                              js_header_filter              js_filter
+Content – Send response to client             js_content                    N/A
+Log / Variables – Evaluated on demand         js_set                        js_set
+
+Si queremos modificar el body que recibimos de un cliente, usaremos una async function con js_content usando una r.subrequest.
+Si queremos modificar la respuesta de un proxy antes de pasarla al cliente usaremos js_body_filter.
+
+## Debug
+
+nginx.conf
+
+```
+
+http {
+  error_log /tmp/error.log info;
+```
+
+script.js
+
+```
+function foo(r, data, flags) {
+  try {
+    r.log("Data: " + JSON.stringify(data));
+```
+
 ## Ejemplo
 
 transform.js
 
-```js
-function transformJson(r) {
+```javascript
+async function transformJson(r) {
   try {
     let data = JSON.parse(r.requestText);
+    r.log("Data: " + JSON.stringify(data));
 
     if (data.Report && Array.isArray(data.Report)) {
       let newFormat = {
         records: data.Report.map(item => ({ value: item }))
       };
-      r.requestBody = JSON.stringify(newFormat);
-      r.internalRedirect('@backend');
+      let res = await r.subrequest("/backend", { body: JSON.stringify(newFormat), method: "POST" });
+      r.log("Response: " + JSON.stringify(res));
+      r.return(res.status, res.responseText);
     } else {
       r.return(400, "Invalid JSON format");
     }
@@ -97,7 +130,7 @@ export default { transformJson };
 
 nginx.conf
 
-```
+```none
 daemon off;
 pid /var/tmp/tmp.AXYdPmcnYG/nginx.pid;
 load_module /usr/lib/nginx/modules/ngx_http_js_module.so;
@@ -112,7 +145,7 @@ http {
   uwsgi_temp_path /var/tmp/tmp.AXYdPmcnYG;
   scgi_temp_path /var/tmp/tmp.AXYdPmcnYG;
   access_log /var/tmp/tmp.AXYdPmcnYG/access.log;
-  error_log /var/tmp/tmp.AXYdPmcnYG/error.log;
+  error_log /var/tmp/tmp.AXYdPmcnYG/error.log info;
 
   server {
     listen 8086;
@@ -121,8 +154,10 @@ http {
       js_content main.transformJson;
     }
 
-    location @backend {
-      proxy_pass      http://localhost:8000;
+    location /backend {
+      proxy_pass      http://localhost:8082;
+      rewrite ^/(.*)$ /topics/adrian break;
+      proxy_set_header Content-Type application/vnd.kafka.json.v2+json;
     }
 
     location / {
