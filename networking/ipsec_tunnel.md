@@ -315,6 +315,8 @@ Con este software si que vemos las rutas en "ip route":
 
 La configuración via ipsec.conf está deprecated. (<https://docs.strongswan.org/docs/5.9/config/config.html>)
 
+La configuración ipsec se almacenaba en /etc/ipsec.conf y /etc/ipsec.secrets
+
 ### IP forward y NAT
 
 Para que las máquinas del otro lado de la VPN puedan enrutar a la red local donde esté strongswan, necesitamos habilitar el ip forward y el NATeo:
