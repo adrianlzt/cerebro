@@ -1,10 +1,9 @@
 Con PostgreSQL 9.2 se incorporan unas cuantas funciones para guardar e interpretar JSON.
 En 9.3 se incrementa este número de funciones.
 
-https://www.postgresql.org/docs/current/static/functions-json.html
-http://wiki.postgresql.org/wiki/PostgreSQL_9.3_Blog_Posts#JSON_support
-http://www.postgresqltutorial.com/postgresql-json/
-
+<https://www.postgresql.org/docs/current/static/functions-json.html>
+<http://wiki.postgresql.org/wiki/PostgreSQL_9.3_Blog_Posts#JSON_support>
+<http://www.postgresqltutorial.com/postgresql-json/>
 
 json vs jsonb
 The data types json and jsonb, as defined by the PostgreSQL documentation,are almost identical; the key difference is that  json data is stored as an exact copy of the JSON input text, whereas jsonb stores data in a decomposed binary form; that is, not as an ASCII/UTF-8 string, but as binary code.
@@ -44,7 +43,6 @@ Primer elemento
 Convertir un array en rows:
 jsonb_array_elements(data -> 'software')
 
-
 Tipo de dato:
 jsonb_typeof(data->'software')
 
@@ -58,8 +56,6 @@ JSON array a postgres array
  {"foo": "3fo1"}
  {"foo": "333"}
 
-
-
 Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);
 insert into checks VALUES('check-http-google-8000','monitorizacion::checks::http','{"host" : "www.google.es","port" : "8000"}');
@@ -68,6 +64,7 @@ select DISTINCT json_object_keys(juanson) from checks; <- las keys sin duplicar
 jsonb_object_keys para jsonb
 
 # JSON a tabla
+
 with data as (select event_data::jsonb from main_jobevent)
 select
   q.key, q.value
@@ -77,10 +74,8 @@ from
 
 Nos saca el dict de event_data como una tabla con columna keys y values
 
-
-
-
 # WHERE
+
 notes::jsonb->>'class' = 'db';
 
 select * from main_job where extra_vars::jsonb->>'telegraf_hostname' = 'linux123';
@@ -89,8 +84,8 @@ Comprobar si tenemos una key en el json
 '{"a":1, "b":2}'::jsonb ? 'b'
   este sería true
 
-
 # Modificar
+
 Ejemplo donde actualizamos el campo "variables" (tipo text, pero que contiene un json).
 Lo que hacemos es modificar "ansible_host", haciéndole un append de ".com"
 update main_host set variables=jsonb_set(variables::jsonb,'{ansible_host}',to_jsonb(variables::json->>'ansible_host'||'.com'),false) WHERE inventory_id=2;
@@ -101,33 +96,31 @@ jsonb_set(target jsonb, path text[], new_value jsonb[, create_missing boolean])
 Ejemplo de la doc:
 jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false)   ->   [{"f1":[2,3,4],"f2":null},2,null,3]
 
-
 Insertar un elemento dentro de otro
 jsonb_insert(target jsonb, path text[], new_value jsonb [, insert_after boolean])
 
 jsonb_insert('{"a": [0,1,2]}', '{a, 1}', '"new_value"')
 {"a": [0, "new_value", 1, 2]}
 
-
 ## Borrar una key
 
 Le "restamos" la key que queremos borrar al jsonb.
 Ejemplo donde variables es un campo tipo texto que convertimos a jsonb.
+
 ```sql
 select variables::jsonb - 'ansible_user' - 'ansible_password' from main_host where id =142266;
 update main_host set variables = (variables::jsonb - 'ansible_user' - 'ansible_password')::text where id =142266;
 ```
 
-
-
 # Pretty print
+
 jsonb_pretty(xxX)
 
 Sacar un json a un fichero:
 psql -XAt -d facts -c "select jsonb_pretty(data) from facts where host = 'XXX' order by timestamp desc limit 1;" > facts.json
 
-
 # Generar un objeto custom
+
 select json_build_object('hola', event) from main_jobevent ..
 
 select
@@ -148,11 +141,37 @@ select
 Retorna:
 {"set": [{"uid": "uid(Parent)", "depends_on": {"uid": "uid(Child)"}}], "query": "asd"}
 
-
 # NULL
+
 Si al hacer un left join estamos generando cosas tipo:
 [{"foo": null}, {"bar": "123"}] podemos quitar los null con:
 json_strip_nulls('[{"f1":1,"f2":null},2,null,3]')
 ->
 [{"f1":1},2,null,3]
 Quita las parejas clave-valor cuyo valor sea null
+
+# JSON schema validation
+
+<https://sqlfordevs.com/json-schema-validation>
+
+```sql
+ALTER TABLE products ADD CONSTRAINT data_is_valid CHECK(
+  validate_json_schema('{
+    "type": "object", "properties": {
+       "tags": {
+          "type": "array", "items": { "type": "string" }
+       }
+    }
+  }',  attributes)
+);
+
+INSERT INTO products (attributes) VALUES ('{}');
+-- Result: OK
+INSERT INTO products (attributes) VALUES ('{ "tags":[] }');
+-- Result: OK
+INSERT INTO products (attributes) VALUES ('{ "tags":["test"] }');
+-- Result: OK
+INSERT INTO products (attributes) VALUES ('{ "tags":[2] }');
+-- ERROR: new row for relation "products" violates check constraint "data_is_valid"
+-- DETAIL: Failing row contains ({"tags": [2]}).
+```
