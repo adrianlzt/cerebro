@@ -30,3 +30,53 @@ curl -H "Content-Type: application/vnd.kafka.json.v2+json" 10.0.2.183:8082/topic
 ```bash
 kubectl --namespace redpanda port-forward svc/redpanda-console 8080:8080
 ```
+
+# Redpanda connect
+
+<https://docs.redpanda.com/redpanda-connect/components/about/>
+
+Es una aplicación a parte para hacer ETLs.
+Puedes ingestar de distintos inputs (si queremos ingestar de redpanda usar kafka_franz), hacer procesamientos e ingestar a distintos outputs.
+
+El lenguaje que usa para las transformaciones es _bloblang_: <https://docs.redpanda.com/redpanda-connect/guides/bloblang/functions/#content>
+
+Ejemplo ingestando de un topic de redpanda y escribiendo un JSONB en postgresql:
+
+```
+input:
+  label: ""
+  kafka_franz:
+    seed_brokers:
+      - redpanda-0.redpanda.redpanda.svc.cluster.local.:9093
+      - redpanda-1.redpanda.redpanda.svc.cluster.local.:9093
+      - redpanda-2.redpanda.redpanda.svc.cluster.local.:9093
+    topics:
+      - mytopic
+    consumer_group: ""
+
+pipeline:
+  processors: []
+
+output:
+  broker:
+    copies: 1
+    pattern: fan_out # enviar a los dos outputs
+    outputs:
+      - stdout:
+          codec: lines
+      - sql_insert:
+          driver: postgres
+          dsn: "postgres://postgres:password@cluster.timescaledb.svc.cluster.local:5432/postgres?sslmode=disable"
+          table: reports
+          columns:
+            - report
+          args_mapping: root = [json().string()]
+          init_statement: |
+            CREATE TABLE IF NOT EXISTS reports (
+              report JSONB,
+              time TIMESTAMPTZ DEFAULT now()
+            );
+          batching:
+            count: 3
+            period: 1s
+```
