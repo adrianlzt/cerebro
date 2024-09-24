@@ -24,3 +24,9 @@ Ingestar datos:
 ```
 curl -H "Content-Type: application/vnd.kafka.json.v2+json" 10.0.2.183:8082/topics/adrian -d '{ "records": [ { "value": { "CollectionTime": "1726482720", "Device": { "DeviceInfo": { "Manufacturer": "TP-Link" } } } }, { "value": { "CollectionTime": "1726482721", "Device": { "DeviceInfo": { "Manufacturer": "Off-TW" } } } } ] }'
 ```
+
+# Web UI
+
+```bash
+kubectl --namespace redpanda port-forward svc/redpanda-console 8080:8080
+```
