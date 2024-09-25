@@ -3,22 +3,23 @@ mirar pl-proxy.md
 mirar monitoring.md
 mirar pg_cirrus
 
-https://repmgr.org/
+<https://repmgr.org/>
 Usar repmgr.md para gestionar replication
 
 patroni
-https://www.opsdash.com/blog/postgres-getting-started-patroni.html
-https://github.com/zalando/spilo
+<https://www.opsdash.com/blog/postgres-getting-started-patroni.html>
+<https://github.com/zalando/spilo>
+
+<https://github.com/vitabaks/postgresql_cluster>
+PostgreSQL High-Availability Cluster (based on Patroni). Automating with Ansible.
 
 physical replication es "sencillo".
 logical replication es un poco más complejo (gestión de conflictos)
 multi master logical replication (muy complejo)
 
-pgcat logical replication (go): https://github.com/kingluo/pgcat
-
+pgcat logical replication (go): <https://github.com/kingluo/pgcat>
 
 El el nodo "slave" quien conecta al master para obtener los valores.
-
 
 Crear user para streaming
 createuser -P --replication streaming_barman
@@ -27,10 +28,8 @@ local   replication  streaming_barman  trust
 Probarlo:
 psql -U streaming_barman -h pg -c "IDENTIFY_SYSTEM" replication=1
 
-
-
-
 # Physical streaming replication
+
 Just 4 steps to set up streaming replication in #PostgreSQL:
 In master server
  initdb -D data
@@ -46,7 +45,6 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
  echo 12.3.17.16:5432:*:replication:MIPASSWORD > .pgpass
  chmod 400 .pgpass
  PGPASSFILE=.pgpass pg_basebackup -D data -PRv -h 12.3.17.16 -U replication
-
 
  El pg_basebackup no empezará hasta que el master haga un checkpoint.
  Mirar en wal.md la query para ver el tiempo entre checkpoints y el último checkpoint realizado.
@@ -68,14 +66,11 @@ sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
  No conseguí que se arrancase si usar "-c fast".
  Lo que hice fue ejecutarlo después de un checkpoint, para saber que no iba a tener mucho impacto.
 
-
-
  pg_ctl -D data start
 
-
 Comprobar en el master que vemos la replica conectada:
-select * from pg_stat_replication;
-select * from  pg_replication_slots;
+select *from pg_stat_replication;
+select* from  pg_replication_slots;
   si estamos usando slots
 
 Comprobar si somos un primario o replica (off para el primario, on para replica):
@@ -83,15 +78,13 @@ select pg_is_in_recovery();
 show in_hot_standby; -- para versiones antiguas?
 show primary_conninfo; -- solo mostrará info en la réplica
 
-
 Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/replica.conf/standby.signal
-https://dba.stackexchange.com/a/259892
+<https://dba.stackexchange.com/a/259892>
 
-https://www.postgresql.org/docs/16/runtime-config-wal.html#RUNTIME-CONFIG-WAL-ARCHIVE-RECOVERY
+<https://www.postgresql.org/docs/16/runtime-config-wal.html#RUNTIME-CONFIG-WAL-ARCHIVE-RECOVERY>
 Hay dos modos "recovery".
   server as a standby: para que funcione así debemos dejar un ficheor standby.signal
   targeted recovery mode: para recuperar de un backup, debemos dejar el fichero recovery.signal
-
 
 Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
 Se pasan diffs de binary files.
@@ -102,7 +95,7 @@ max_wal_senders, por defecto vale
 max_replication_slots
   estos slots se les asocia un id y evitan borrar WALs si no han sido consumidos, por una desconexión del cliente por ejemplo.
   Mirar monitoring.md para evitar llenar el disco
-  https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
+  <https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS>
 
 Conf slave, in recovery.conf (fichero eliminado en postgres 12):
 standby_mode = on
@@ -111,22 +104,19 @@ application_name = "xxx"  # nombres para distinguir varios stand-bys, típicamen
 primary_slot_name = "nombreslot_si_usamos"
 
 Ojo con llenar el disco porque se desconecte la replica y el primario se llene de WALs.
-https://web.archive.org/web/20190709143733/https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html
+<https://web.archive.org/web/20190709143733/https://blog.dataegret.com/2018/04/pgwal-is-too-big-whats-going-on.html>
 
 Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
-https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/
-Historia: https://www.postgresql.org/message-id/flat/20170228.122736.123383594.horiguchi.kyotaro@lab.ntt.co.jp
-
+<https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/>
+Historia: <https://www.postgresql.org/message-id/flat/20170228.122736.123383594.horiguchi.kyotaro@lab.ntt.co.jp>
 
 También info en ha_scalability.md "Hot standby"
-
 
 Delayed apply:
 Por defecto se intentan aplicar los cambios tan rápido como sea posible.
 Podemos usarlo como truco para retrasar los cambios y usarlo como un "control+z"
 
 Podemos forzar el pausado de replication pg_wal_replay_pause(), pg_wal_replay_resume()
-
 
 Chequear estados:
 
@@ -141,8 +131,6 @@ select pg_is_in_recovery();
 select pg_is_wal_replay_paused();
   True if recovery is paused.
 
-
-
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recibe en memoria, escribe a disco, flush and replay changes)
 select pg_current_wal_insert_lsn();
@@ -156,12 +144,11 @@ Podemos usar pg_wal_lsn_diff() para comparar lsn
 select pg_wal_lsn_diff('12D71/A2D142B8', '11EF2/8F000000');
 Calculates the difference in bytes (lsn1 - lsn2) between two write-ahead log locations. This can be used with pg_stat_replication or some of the functions shown in Table 9.89 to get the replication lag.
 Más info sobre esos números:
-https://twitter.com/samokhvalov/status/1709818510787162429?t=jBmsqGfCxEjPtZklrGCuVg&s=09
-https://fluca1978.github.io/2020/05/28/PostgreSQLWalNames
+<https://twitter.com/samokhvalov/status/1709818510787162429?t=jBmsqGfCxEjPtZklrGCuVg&s=09>
+<https://fluca1978.github.io/2020/05/28/PostgreSQLWalNames>
 
 Tamaño entre dos wal:
 select pg_size_pretty(pg_lsn '1EA7D/97173390' - '1EA7D/8334D570');
-
 
 select * from pg_stat_replication;
     solo muestra clientes actualmente conectados
@@ -174,9 +161,7 @@ Si estamos usando replication slots, podemos ver la configuración y el último 
 select * from  pg_replication_slots;
 select slot_name,pg_walfile_name(restart_lsn) from pg_replication_slots;
 
-
-Doc de esos comandos: https://www.postgresql.org/docs/12/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE
-
+Doc de esos comandos: <https://www.postgresql.org/docs/12/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE>
 
 El master tendrá un "WAL sender" por cada slave. max_wal_senders para evitar crear muchos wal seders en caso de bugs, problemas de reconexión, etc
 El slave pide datos desde un punto y arranca un "COPY" que envia indefinidamente datos.
@@ -186,8 +171,6 @@ El slave va dando feedback enviando el LSN (Log Sequence Number) que ha procesad
 LSN es un puntero a una posición del WAL, empezando en 0 cuando se inició el db server (no cuando arrancó, si no la primera vez que se creó)
 
 Las cosas uncommited también se envían, porque se están escribiendo en el WAL.
-
-
 
 Significado el nombre de los ficheros WAL (sin espacios blancos):
 00000001 00000ACB 000000A2
@@ -201,9 +184,7 @@ select pg_current_wal_lsn();
 Esto apuntaría al fichero (tambien podemos usar la función "select pg_walfile_name(pg_current_wal_lsn());" para obtener el nombre del fichero):
 00000001 00000005 000000DF
 
-
 Podemos usar pg_dumpwall para ver el contenido de un fichero WAL.
-
 
 Si queremos crear a mano un replication slot:
 SELECT pg_create_physical_replication_slot('replica1');
@@ -211,19 +192,15 @@ SELECT pg_create_physical_replication_slot('replica1');
 Borrar a mano un replication slot (le llevará unos minutos hasta que borre los WAL antiguos, posiblemente espere a un checkpoint, pero no lo he comprobado):
 SELECT pg_drop_replication_slot('replica1');
 
-
 En la replica configuraremos ese slot con "primary_slot_name".
 En el fichero recovery.conf para postgres <= 11.
 En postgresql.conf para > 11.
 
-
-
 # Hot Standby
-https://cloud.google.com/community/tutorials/setting-up-postgres-hot-standby
-
-
+<https://cloud.google.com/community/tutorials/setting-up-postgres-hot-standby>
 
 # Logical replication
+
 Streaming replication is a fast, secure and is a perfect mechanism for high availability/disaster recovery needs.
 Logical replication allows us replicating only part of the primary server.
 Compatible entre distintas versiones.
@@ -233,15 +210,16 @@ El server que va a enviar tiene que crear una SUBSCRIPTION.
 Los que van a recibir crean un PUBLICATION.
 
 Opciones:
-  - está en version 10 (no avanza en 11 y 12), básica (CREATE PUBLICATION/SUBSCRIPTION)
-    - limitado, no gestiona conflictos
-    - no se lleva los índices
-    - no se lleva las secuencias
-    - podemos escribir en el target, pero con eso podemos romperlo, así que lo mejor es dar solo read-only a los usuarios
-  - pglogical, módulo (CREATE EXTENSION), open source
-    - más avanzada y compleja que la versión básica que está en pg10
-    - más parámetros
-  - algunas otras soluciones, no parecen muy recomendables (triggers es muy mala idea)
+
+- está en version 10 (no avanza en 11 y 12), básica (CREATE PUBLICATION/SUBSCRIPTION)
+  - limitado, no gestiona conflictos
+  - no se lleva los índices
+  - no se lleva las secuencias
+  - podemos escribir en el target, pero con eso podemos romperlo, así que lo mejor es dar solo read-only a los usuarios
+- pglogical, módulo (CREATE EXTENSION), open source
+  - más avanzada y compleja que la versión básica que está en pg10
+  - más parámetros
+- algunas otras soluciones, no parecen muy recomendables (triggers es muy mala idea)
 
 Config necesaria:
 wal_level = logical
@@ -250,20 +228,24 @@ Se instala una extensión en wal_sender y en el backgroup worker (en el slave, q
 Ese plugin es el que gestiona la traducción de los WAL al formato para replicación lógica.
 
 La diferencias más importantes contra el physical replication:
-  - el target node (el que recibe los datos de la replicación) es un nodo master
-    - permite tener temp tables en el target
-    - permite diferentes índices
-    - permite tener distintos security/users
-  - selective replication
-  - cross-version replication
+
+- el target node (el que recibe los datos de la replicación) es un nodo master
+  - permite tener temp tables en el target
+  - permite diferentes índices
+  - permite tener distintos security/users
+- selective replication
+- cross-version replication
 
 ## Crear una replicación lógica
+
 En el servidor que publica:
+
 ```
 CREATE PUBLICATION alltables FOR ALL TABLES;
 ```
 
 Otras opciones:
+
 ```
 CREATE PUBLICATION mypublication FOR TABLE users, departments;
 CREATE PUBLICATION active_departments FOR TABLE departments WHERE (active IS TRUE);
@@ -272,6 +254,7 @@ CREATE PUBLICATION active_departments FOR TABLE departments WHERE (active IS TRU
 NOTA: las tablas particionadas solo se pueden añadir a una PUBLICATION a partir de la v13.
 
 En el servidor que se subscribe a esa publicación:
+
 ```
 CREATE SUBSCRIPTION mysub
     CONNECTION 'host=10.89.0.1 port=5432 user=postgres password=postgres dbname=zabbix'
@@ -280,25 +263,22 @@ CREATE SUBSCRIPTION mysub
 
 El servidor que se subscribe debe ya tener el schema de tablas creado.
 
-
 # Estado de los replication slots
-https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS
-https://www.postgresql.org/docs/current/view-pg-replication-slots.html
+<https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS>
+<https://www.postgresql.org/docs/current/view-pg-replication-slots.html>
 select * from pg_replication_slots;
   solo vemos entradas si hay cosas conectadas
 
-
-
 # master-master
+
 Postgres-BDR, de pago
   permite hacer sharding
   multimaster simétrico
   tiene solución de conflictos, un log donde se muestran errores de, por ejemplo, inserciones que colisionan
-https://www.symmetricds.org/about/overview
-https://info.crunchydata.com/blog/active-active-on-kubernetes
+<https://www.symmetricds.org/about/overview>
+<https://info.crunchydata.com/blog/active-active-on-kubernetes>
 
-
-https://github.com/timbira/krahodb
+<https://github.com/timbira/krahodb>
 
 open source asynchronous multi-master
-https://bucardo.org
+<https://bucardo.org>
