@@ -96,6 +96,8 @@ bar=2
 
 Tambien podemos hacer {{ansible_local.something}}:
 echo "true" > /etc/ansible/facts.d/something.fact
+echo '["foo", 3]' > /etc/ansible/facts.d/something.fact
+
 O también {{ansible_local.something.hola}}:
 echo '{"hola": 123}' > /etc/ansible/facts.d/something.fact
 
@@ -143,7 +145,9 @@ Crear facts locales:
 usar nombres con guiones bajos: ejemplo_de_nombre
 
 Tiene que ser un ejecutable que devuelva un json. Ejemplo:
+
 # !/bin/bash
+
 DATE=`date`
 echo "{\"date\" : \"${DATE}\"}"
 
