@@ -1,6 +1,6 @@
-http://yaml.org/
+<http://yaml.org/>
 
-https://github.com/cblp/yaml-sucks/
+<https://github.com/cblp/yaml-sucks/>
 Cuidado con las respuestas de diferentes librerías.
 
 YAML: YAML Ain't Markup Language
@@ -11,13 +11,12 @@ What It Is: YAML is a human friendly data serialization
 Convertir YAML a JSON
 ruby -r json -r yaml -e "yaml = YAML.load(File.read('./stack.yml')); print yaml.to_json" > stack.json
 
-http://jsontoyaml.com/
+<https://www.bairesdev.com/tools/json2yaml/>
 
-basic.yml:
+basic.yml
 --
+
 - key: value
-
-
 
 Array:
   "baz": [
@@ -25,36 +24,32 @@ Array:
     "quxx"
   ],
 
-  baz: 
+  baz:
     - "qux"
     - "quxx"
-
 
   "garply": [
     {"foo": "VAR", "cosa": "asd12"},
     {"pepe":"MAR"}
   ],
 
-  garply: 
+  garply:
     - foo: "VAR"
       cosa: "asd12"
     - pepe: "MAR"
-
 
   "emptyObject": {
       "uno" : "cpsp",
       "dos" : "http"
   },
 
-  emptyObject: 
+  emptyObject:
     uno: "cpsp"
     dos: "http"
 
-
-
 # Multiline
-https://yaml-multiline.info/
-https://stackoverflow.com/questions/3790454/how-do-i-break-a-string-in-yaml-over-multiple-lines/21699210#21699210
+<https://yaml-multiline.info/>
+<https://stackoverflow.com/questions/3790454/how-do-i-break-a-string-in-yaml-over-multiple-lines/21699210#21699210>
 
 Tambien tenemos ">+", "|+"
 
@@ -75,7 +70,6 @@ example: |
 example: |-
   sin salto de línea al final
 
-
 foo:
   bar: |
     el identado tiene que
@@ -85,4 +79,4 @@ foo:
         las cosas
 
 # Lint
-https://yamllint.readthedocs.io/
+<https://yamllint.readthedocs.io/>
