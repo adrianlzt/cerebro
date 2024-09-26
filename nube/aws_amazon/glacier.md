@@ -89,8 +89,20 @@ aws glacier list-jobs --account-id - --vault-name prueba
   InProgress
   Una prueba que he hecho, ha tardado 2h en devolverme una job de inventory retrieval
 
-Obtener el resultado de la job
+Obtener el resultado del job (el job desaparecerá al cabo de las horas):
+
+```bash
 aws glacier get-job-output --account-id - --vault-name prueba --job-id XXX out.json
+```
+
+Esperar hasta que el job haya terminado, notificar y obtener el resultado:
+
+```bash
+while [[ $(aws glacier list-jobs --account-id NNN --region us-east-2 --vault-name backup | jq '.JobList[0].Completed') == "false" ]]; do
+echo -n "."
+sleep 600
+done; pushbullet "glacier end"; aws glacier get-job-output --account-id NNN --region us-east-2 --vault-name backup --job-id XXXXXX job-output.json
+```
 
 Solicitar bajar un fichero (no estoy seguro si para ficheros enormes este es el sistema adecuado)
 aws glacier initiate-job --account-id - --vault-name my-vault --job-parameters '{"Type": "archive-retrieval", "ArchiveId": "XXX", "Description": "Solicitud de fichero AAA el YYYYMMDD-HHMM"}'
