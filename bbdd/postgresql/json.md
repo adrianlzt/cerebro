@@ -175,3 +175,9 @@ INSERT INTO products (attributes) VALUES ('{ "tags":[2] }');
 -- ERROR: new row for relation "products" violates check constraint "data_is_valid"
 -- DETAIL: Failing row contains ({"tags": [2]}).
 ```
+
+# JSON TABLE
+
+<https://www.postgresql.org/docs/17/functions-json.html#FUNCTIONS-SQLJSON-TABLE>
+
+Convertir un documento JSON a una representación tipo tabla.

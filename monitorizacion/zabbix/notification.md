@@ -1,17 +1,18 @@
 Cuidado con caidas másivas, pueden generar oleadas muy grandes de emails.
 En caso de una avalancha de emails para pararla podemos hacer:
+
 - Disable in Zabbix all Actions
 - Edit the database and delete all items in the Zabbix queue
 - Delete all emails in the Mail server Queue
 
-
 # Histórico de notificaciones
+
 Reports -> Action Log
 Elegir un usuario
 Veremos todas las notificaciones que se le han enviado
 
-
 # Notificar un usuario
+
 Un host tiene items.
 Un trigger se dispara por algunas condiciones en unos items.
 Al dispararse un trigger genera un evento (tipo trigger, source=0).
@@ -20,8 +21,8 @@ Cada eventos se intenta matchear contra cada una de las Actions definidas.
 En caso de que matchee, se ejecutan las Operations definidas (enviar un mensaje, a uno o varios contactos, o ejecutar un comando)
 En las operations podemos definir varios "steps" que se irán ejecutando con el paso del tiempo (escalado)
 
-
 # Steps
+
 Las actions tienen pasos y duración del paso.
 Es la forma de escalar.
 Primero se ejecuta el paso 1.
@@ -37,55 +38,61 @@ También podemos decidir solo ejecutar el step en caso de que no tengamos ACK.
 
 Tip: retrasar las notificaciones de triggers leves (ponerlas en el step 2) para ver si en ese tiempo que le damos se recupera sola.
 
-
 # Operations
-Messages:
-  - user
-  - user group
-Command
-  - script
-    - zabbix server
-    - zabbix proxy
-    - remote agent (tiene que tenerlo habilitado)
-  - ipmi
-  - ssh/telnet
-  - global script (se define al definirlo si se debe ejecutar en el server o en el agente)
 
+Messages:
+
+- user
+- user group
+Command
+- script
+  - zabbix server
+  - zabbix proxy
+  - remote agent (tiene que tenerlo habilitado)
+- ipmi
+- ssh/telnet
+- global script (se define al definirlo si se debe ejecutar en el server o en el agente)
 
 # Notifications
+
 Si queremos enviar más información
 
-
 # Alerter
+
 En la version 4, los alerter corren como user zabbix, con cwd / y las variables de entorno no seteadas (HOME lo tienen a / también)
 
-
-
 # Events / problems
+
 El housekeeper borra los eventos más antiguos de N días (config Administration -> General -> Housekeeping). Esto provoca también que se borren los problemas más antiguos de esa fecha.
 No se borran si el trigger aún está disparado.
 
-https://www.zabbix.com/documentation/3.2/manual/config/events/sources
-Cuatro tipos de fuentes de eventos:
+<https://www.zabbix.com/documentation/6.0/en/manual/config/events/sources>
+Cuatro tipos de fuentes de eventos (event_source):
 
-trigger - whenever a trigger changes its status (OK→PROBLEM→OK)
+trigger (event_source=0) - whenever a trigger changes its status (OK→PROBLEM→OK)
   Change of trigger status is the most frequent and most important source of events.
   Each time the trigger changes its state, an event is generated. The event contains details of the trigger state's change - when did it happen and what the new state is.
-discovery - when hosts or services are detected
-auto registration - when active agents are auto-registered by server
-internal - when an item/low-level discovery rule becomes unsupported or a trigger goes into an unknown state
-  podemos enviar notificaciones para este tipo, http://zabbix/actionconf.php?eventsource=3 (Configuration -> Actions -> Event Source: Internal)
 
-https://www.zabbix.com/documentation/current/manual/api/reference/problem/object
+discovery (event_source=1) - when hosts or services are detected
+
+auto registration (event_source=2) - when active agents are auto-registered by server
+
+internal (event_source=3) - when an item/low-level discovery rule becomes unsupported or a trigger goes into an unknown state
+  podemos enviar notificaciones para este tipo, <http://zabbix/actionconf.php?eventsource=3> (Configuration -> Actions -> Event Source: Internal)
+  podemos ver su estado (si ha fallado el envío o cuales se han disparado) en Reports > Action log
+
+service (event_source=4)
+
+<https://www.zabbix.com/documentation/current/manual/api/reference/problem/object>
 Algunos eventos se convertiran en problems:
- - los events de fuente triggers que tienen un problema (value=1)
- - los internal, cuando un trigger, item o lld pasa a unknown/not supported
+
+- los events de fuente triggers que tienen un problema (value=1)
+- los internal, cuando un trigger, item o lld pasa a unknown/not supported
 
 El objectid de la tabla events o problem apuntá al triggerid.
 
 En la tabla problems tendremos un campo, en principio vacío, que se rellenará con el evento de recovery, si es que tenemos:
 r_eventid, r_clock, r_ns
-
 
 Los eventos luego se pasan por "process_actions" (src/zabbix_server/actions.c).
 En esta función, por cada action que tengamos definido, se comprobará si el evento hace match.
@@ -109,7 +116,6 @@ Meter más escalations no parece que mejore este problema, porque tendríamos m�
 
 escalation_execute_operations: para saber que generar, escalator comprobará las tablas operations y opmessage. Esta función ejecutará comandos (execute_commands) o generará entradas en la tabla alerts (add_message_alert)
 
-
 En zabbix 3.2 tenemos un único procesor alerter. A partir de 3.4 hay un alerter manager que lee entradas en alerts y envia mensajes via IPC a los alerter workers.
 En zabbix 3.2, tras 40" el proceso alerter intentará matar el script de alertado con SIGTERM. Podemos manejar la señal para evitarlo, pero saturaremos el alerter.
 Si el programa que queremos ejecutar no funciona, zabbix parece que retorna un código OK, aunque veremos que reinenta tres veces el envío.
@@ -122,14 +128,8 @@ En zabbix 4 cambia un poco, pero sigue el mismo timeout
   execute_script_alert()
     zbx_execute(command, &output, Rrror, max_error_len, ALARM_ACTION_TIMEOUT, ZBX_EXIT_CODE_CHECKS_ENABLED)
 
-
-
-
 trigger +--> event +--> escalation +--> alert +--> email,sms,script,etc
                    |
                    +--> problem
 
-
-
 Aquí falta explicar como se procesa el cerrado de eventos/problems.
-
