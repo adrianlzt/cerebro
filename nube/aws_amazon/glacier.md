@@ -1,6 +1,20 @@
 <http://aws.amazon.com/es/glacier/>
 <https://docs.aws.amazon.com/cli/latest/reference/glacier/index.html>
 
+En vez de usar Glacier directamente, es mejor usar S3 Glacier storage classes.
+Desde el punto de vista del usuario es como S3, pero por debajo se almacena en Glacier.
+<https://stackoverflow.com/a/65929235>
+
+"Amazon S3 Glacier" es lo antiguo.
+
+Los nuevos son:
+
+- S3 Glacier Instant Retrieval: almacenamiento de datos de archivo de acceso cada tres meses con recuperación instantánea en milisegundos
+- S3 Glacier Flexible Retrieval: Para copias de seguridad y archivos a largo plazo con la opción de recuperación de 1 minuto a 12 horas
+- S3 Glacier Deep Archive: almacenamiento de archivos de datos a largo plazo a los que se accede una o dos veces al año y que se pueden restaurar dentro de un plazo de 12 horas
+
+Para usar el nuevo "glacier", creamos un bucket de s3 normal y tendremos que seleccionar el storage class adecuado al subir los objetos.
+
 Amazon Glacier es un servicio de almacenamiento de coste extremadamente bajo, que ofrece almacenamiento seguro y duradero para realizar copias de seguridad y archivar datos. Para mantener un bajo coste, Amazon Glacier está optimizado para datos a los que se accede con poca frecuencia y para cuando los tiempos de recuperación de varias horas son necesarios. Amazon Glacier permite a los clientes almacenar con seguridad cantidades pequeñas o grandes de datos por apenas 0,01 USD por gigabyte al mes, lo que representa un ahorro significativo en comparación con una solución centralizada en una empresa.
 
 # Costes
