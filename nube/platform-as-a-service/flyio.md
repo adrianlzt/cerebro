@@ -1,4 +1,4 @@
-https://fly.io/
+<https://fly.io/>
 
 Despliegue de contenedores
 
@@ -6,18 +6,17 @@ Deploy App Servers
 Close to Your Users
 Run your full stack apps (and databases!) all over the world. No ops required.
 
-
-https://fly.io/docs/signup-welcome/
-
+<https://fly.io/docs/signup-welcome/>
 
 # Regions
+
 Donde podemos desplegar
-https://fly.io/docs/reference/regions/
+<https://fly.io/docs/reference/regions/>
 
 "mad" madrid
 
-
 # Desplegar
+
 Podemos desplegar a partir de un Dockerfile o de código en distintos lenguajes.
 
 Si ejecutamos
@@ -29,17 +28,19 @@ Podemos detener el despliegue al final, con lo que nos generará el fichero fly.
 Cuando tenemos todo listo:
 fly deploy
 
-
 # Datos permanentes
+
 Crear volúmenes o usar postgres o redis.
 
 ## Volúmenes
+
 Una vez tenemos el fly.toml
 
 Crear un volumen:
 fly volumes create timeoff_sqlite --region mad --size 1
 
 Configurarlo en fly.toml
+
 ```
 [mounts]
 source="myapp_data"
@@ -47,7 +48,24 @@ destination="/data"
 ```
 
 # Acceder a una app
+
 flyctl ssh console
 
 Bajarse un fichero
 fly ssh sftp get /app/db/db.development.sqlite
+
+# Postgres
+
+Ofrecen un postgres grautito pequeño.
+
+Conectar usando un tunel:
+
+```
+fly postgres connect -a NOMBREAPP
+```
+
+Para darle una IPv6 para poder accede desde internet:
+
+```
+fly ips allocate-v6 --app NOMBREAPP
+```
