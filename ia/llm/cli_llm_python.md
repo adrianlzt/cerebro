@@ -115,6 +115,13 @@ llm install llm-gemini
 llm keys set gemini
 ```
 
+## Anthropic / Claude
+
+```
+llm install llm-claude-3
+llm keys set claude
+```
+
 # Plugins
 
 Añadir un nuevo plugin (añadiendo un nuevo módelo vía API):
