@@ -15,6 +15,31 @@ llm -m MODELO 'texto a analizar'
 cat myscript.py | llm 'explain this code'
 ```
 
+<https://simonwillison.net/2024/Apr/8/files-to-prompt/>
+
+```bash
+pipx install files-to-prompt
+```
+
+Si queremos pasar muchos ficheros:
+
+```bash
+files-to-prompt path/to/file_or_directory | llm -s "summarize these files"
+```
+
+Los mete con el formato:
+
+```
+nombre_fichero
+---
+contenido
+---
+nombre_otro_fichero
+---
+contenido
+---
+```
+
 Continuar una conversación:
 
 ```bash
@@ -136,10 +161,25 @@ cat my-file.txt | ttok
 
 ## symbex / símbolos python
 
+<https://github.com/simonw/symbex>
+<https://simonwillison.net/2023/Jun/18/symbex/>
+
 Symbex is a tool for searching for symbols in Python codebases. It’s useful for extracting just the code for a specific problem and then piping that into LLM for explanation, refactoring or other tasks.
 
 ```bash
 symbex 'test*csv*' | llm --system 'based on these tests guess what this tool does'
+```
+
+Devuelve los ficheros con una cabecera tipo:
+
+```
+# File: setup.py Line: 5
+```
+
+Mostrar todos los métodos de todas las clases:
+
+```bash
+symbex '*.*'
 ```
 
 ## strip-tags / HTML
