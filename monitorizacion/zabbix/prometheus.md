@@ -7,23 +7,8 @@ También se pueden crear LLD rules.
 
 # Generar templates
 
-<https://github.com/zabbix-tooling/prometheus_zabbix_template_generator>
-
 Script para generar una template de Zabbix a partir de unas métricas de Prometheus.
 
-## Install
+<https://github.com/k1nky/prometheus2zabbix>
 
-```bash
-# git clone https://github.com/zabbix-tooling/prometheus_zabbix_template_generator.git
-# Usar esta versión con arreglos:
-git clone https://github.com/szelga/prometheus_zabbix_template_generator.git
-cd prometheus_zabbix_template_generator
-source .venv/bin/activate
-uv pip install -e .
-```
-
-## Uso
-
-```bash
-python prom2zabbix.py --template foo.json --dump metrics.txt --name foo
-```
+Este funciona peor: <https://github.com/zabbix-tooling/prometheus_zabbix_template_generator>
