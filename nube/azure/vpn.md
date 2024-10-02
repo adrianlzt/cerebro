@@ -28,3 +28,9 @@ The Basic SKU is relatively affordable at ~$26.28 US/month, but it has a couple 
 - Custom IPsec policies are not supported, as mentioned in this article.
 
 The next SKU is about five times the price at ~$138.70 US/month. Also, keep in mind that you will be charged for the duration that the Virtual Network Gateway is provisioned even if you don’t have any active connections. Outbound data charges apply after 5GB /month.
+
+## Packet capture
+
+<https://learn.microsoft.com/en-us/azure/vpn-gateway/packet-capture#stop-packet-capture---portal>
+
+Al parar la captura tenemos que enviarla a una "SAS URL". Esta se genera en un storage account, en un container (en los puntitos de la derecha), dándole permisos read-write.
