@@ -53,6 +53,13 @@ Modo chat:
 llm chat -m gemini-pro
 ```
 
+Continuar una conversación pasada en un chat:
+
+```bash
+llm logs
+llm chat --cid xxx
+```
+
 Si queremos definir un system protmp:
 
 ```bash
