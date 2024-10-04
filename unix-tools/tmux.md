@@ -189,7 +189,7 @@ C-b }
 Rotar por distintas organizaciones de ventanas
 C-b space
 
-Volver al layout que teníamos antes (por si le hemos dado por error a C-b space) (undo, revert, restore, restaurar, ventanas, panes)
+Volver al layout que teníamos antes (por si le hemos dado por error a C-b space) (undo, revert, restore, restaurar, ventanas, panes, layout, schema, format)
 :select-layout -o
 
 # Uso
