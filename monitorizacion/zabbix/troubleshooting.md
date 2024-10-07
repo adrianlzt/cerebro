@@ -31,17 +31,21 @@ done
 Con python, sin necesidad de tener los pids. No muy eficiente al tener que abrir ficheros todo el rato.
 Nos pide un fichero como primer param y separa en PID.trapper.log
 4.6G procesado en ~4min
+
+```python
 import sys
 log = sys.argv[1]
 with open(log, 'r') as f:
-for line in f:
-pid = line.split[':'](0).strip()
-try:
-int(pid)
-except ValueError:
-continue
-with open('%s.trapper.log' % pid, 'a') as p:
-p.write(line)
+  for line in f:
+    pid = line.split[':'](0).strip()
+    try:
+      int(pid)
+    except ValueError:
+      continue
+
+    with open('%s.trapper.log' % pid, 'a') as p:
+      p.write(line)
+```
 
 Mirar troubleshooting_tiempo_entre_lineas.py para buscar saltos de tiempo.
 
