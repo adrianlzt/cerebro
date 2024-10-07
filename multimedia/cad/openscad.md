@@ -1,9 +1,11 @@
-https://openscad.org/
+<https://openscad.org/>
 
 The Programmers Solid 3D CAD Modeller
 
+F6 - render
+
 # solidython
 
-https://github.com/jeff-dh/SolidPython
+<https://github.com/jeff-dh/SolidPython>
 
 Programar en python y generar código openscad.
