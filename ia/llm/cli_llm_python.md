@@ -1,3 +1,42 @@
+# aider-chat
+
+<https://aider.chat/>
+
+Agente SWE (software engineering)
+
+Definir las variables de entorno.
+Luego arrancar `aider`.
+
+Nos permite chatear con distintos LLMs.
+Si el LLM quiere generar un fichero, aider nos ayudar a crearlos, instalar dependencias, ejecutar la aplicación, etc.
+
+Podemos pasarle ficheros al arrancar:
+
+```bash
+aider file1 file2 ...
+```
+
+Podemos añadirlos a posteriori con:
+
+```
+/add file1
+```
+
+Ask for changes:
+  Add new features or test cases.
+  Describe a bug.
+  Paste in an error message or or GitHub issue URL.
+  Refactor code.
+  Update docs.
+
+Para obtener ayuda:
+
+```
+/help <question>
+```
+
+# llm
+
 <https://llm.datasette.io/en/stable/>
 
 ```bash
