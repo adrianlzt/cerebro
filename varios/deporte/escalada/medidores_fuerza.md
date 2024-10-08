@@ -1,7 +1,7 @@
-https://github.com/lcismondi/Forceboard
+<https://github.com/lcismondi/Forceboard>
 Multipresa con medidores de fuerza.
 
-https://github.com/Stevie-Ray/hangtime-grip-connect
+<https://github.com/Stevie-Ray/hangtime-grip-connect>
 App node para conectar con distintos medidores de fuerza
 
 ✅ Griptonite - Motherboard
