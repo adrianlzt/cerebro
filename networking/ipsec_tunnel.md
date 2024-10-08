@@ -10,13 +10,15 @@ Usar strongswan
 # IPSec
 
 <https://networklessons.com/cisco/ccie-routing-switching/ipsec-internet-protocol-security>
+Las capturas son de IKEv1.
 
-Dos fases para conectar.
+<http://www.unixwiz.net/techtips/iguide-ipsec.html>
+Detalles sobre el formato de los paquetes.
 
-IKE Phase 1: negotiate about the encryption, authentication, hashing and other protocols that they want to use and some other parameters that are required. In this phase, an ISAKMP (Internet Security Association and Key Management Protocol) session is established. This is also called the ISAKMP tunnel or IKE phase 1 tunnel
-only used for management traffic. We use this tunnel as a secure method to establish the second tunnel called the IKE phase 2 tunnel or IPsec tunnel and for management traffic like keepalives.
+Dos fases para conectar:
 
-IKE Phase 2: IKE phase 2 tunnel (or IPsec tunnel) that we can use to protect our user data. This user data will be sent through the IKE phase 2 tunnel:
+- IKE Phase 1: negotiate about the encryption, authentication, hashing and other protocols that they want to use and some other parameters that are required. In this phase, an ISAKMP (Internet Security Association and Key Management Protocol) session is established. This is also called the ISAKMP tunnel or IKE phase 1 tunnel only used for management traffic. We use this tunnel as a secure method to establish the second tunnel called the IKE phase 2 tunnel or IPsec tunnel and for management traffic like keepalives.
+- IKE Phase 2: IKE phase 2 tunnel (or IPsec tunnel) that we can use to protect our user data. This user data will be sent through the IKE phase 2 tunnel:
 
 IKE builds the tunnels for us but it doesn’t authenticate or encrypt user data. We use two other protocols for this:
 
@@ -33,6 +35,14 @@ Puertos:
 - **UDP Port 500 (ISAKMP):** ISAKMP (Internet Security Association and Key Management Protocol) is used to establish and manage the Security Associations (SAs) that IPsec uses. Think of it as the "handshake" phase – setting up the secure tunnel. It negotiates things like encryption algorithms, authentication methods, and the lifetime of the connection.
 
 - **UDP Port 4500 (NAT-Traversal):** Network Address Translation (NAT) is a common technique used in home and corporate networks. Since IPsec often needs to traverse NAT devices (routers), port 4500 is used to facilitate this process. It's specifically used for the IKE (Internet Key Exchange) phase, which is part of ISAKMP. If your IPsec tunnel needs to go through NAT devices, this port will be crucial for the connection to work.
+
+## Establecimiento de la conexión
+
+1. Negotiation
+2. DH key exchange
+3. Authentication
+
+Captura de tráfico de un establecimiento de conexión: <https://www.cloudshark.org/captures/767a93d720ad>
 
 # Python
 
