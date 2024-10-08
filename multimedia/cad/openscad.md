@@ -14,6 +14,12 @@ F6 - render
 foo();
 ```
 
+# Debug
+
+Se puede usar echo para pintar valores:
+
+```openscad
+%echo("foo", foo);
 ```
 
 # solidython
