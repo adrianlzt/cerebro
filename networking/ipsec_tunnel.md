@@ -38,15 +38,42 @@ Puertos:
 
 ## Establecimiento de la conexión
 
-1. Negotiation
-2. DH key exchange
-3. Authentication
-
 Captura de tráfico de un establecimiento de conexión: <https://www.cloudshark.org/captures/767a93d720ad>
+
+El iniciador envía un primer paquete "IKE_SA_INIT" con los tipos de encriptación, hash, etc que soporta. También envía el intercambio de claves Diffie-Hellman e información para poder hacer NAT traversal.
+El otro lado responde con un "IKE_SA_INIT" con los tipos que soporta.
+
+Luego el iniciador envía un "IKE_AUTH" con las claves públicas y el otro lado responde con otro "IKE_AUTH" con las claves públicas.
+Estos paquetes ya contienen información cifrada:
+
+- identification: parece que suele usarse la IP pública o el FQDN
+- authentication
+- Security Association (SA): información sobre el cifrado a usar para ESP, encriptación, hash y extended sequence numbers.
+- Traffic Selector initiator: las redes que se van a conectar
+- Traffic Selector responder: las redes que se van a conectar
+
+## Demystifying NAT Traversal In IPSEC VPN With Wireshark
+
+<https://community.cisco.com/t5/security-blogs/demystifying-nat-traversal-in-ipsec-vpn-with-wireshark/ba-p/4524496>
 
 # Python
 
 Implementación de IPSec en python, para aprender como funciona: <https://github.com/qwj/python-vpn>
+
+Los paquetes se muestran con un print, a parte de enviarse a la red:
+
+```
+ECHO 68.21.5.148 -> 172.30.0.4 Id=4 Seq=1 Data=b'*\xdc\x04g\x00\x00\x00\x00\xa0\xb6\x01\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567'
+TCP 68.21.5.148:47034 -> 172.30.0.4:80
+```
+
+<https://github.com/adrianlzt/python-vpn>
+Algunas modificaciones para mostrar más información:
+
+- datos para desencriptar el tráfico con wireshark
+- mostrar los traffic selectors directamente
+- habilitar tráfico ICMP (necesita ejecutarse como root)
+- más prints que estaban comentados
 
 # Linux
 
