@@ -23,16 +23,30 @@ Podemos añadirlos a posteriori con:
 ```
 
 Ask for changes:
-  Add new features or test cases.
-  Describe a bug.
-  Paste in an error message or or GitHub issue URL.
-  Refactor code.
-  Update docs.
+Add new features or test cases.
+Describe a bug.
+Paste in an error message or or GitHub issue URL.
+Refactor code.
+Update docs.
 
 Para obtener ayuda:
 
 ```
 /help <question>
+```
+
+## Models
+
+<https://aider.chat/docs/llms.html>
+
+```bash
+aider --list-models gemini/
+```
+
+Arrancar aider con un modelo concreto:
+
+```bash
+aider --model gemini/gemini-1.5-pro-latest
 ```
 
 # llm
