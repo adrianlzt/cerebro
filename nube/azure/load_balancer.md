@@ -1,6 +1,26 @@
 Los load balancers parece que solo son de capa 4 (TCP/UDP).
 Para capa 7 les llaman Application gateway.
 
+# Load balancer capa 4 / iLB
+
+Pueden ser públicos o privados (internal LB).
+
+## iLB
+
+Detalle del problema y posibles soluciones:
+<https://github.com/microsoft/Azure-ILB-hairpin>
+
+Por defecto, al configurar el iLB, se activa el Direct Server Return (DSR).
+Esto significa que el paquete no pasa por el LB, sino que va directamente a la máquina destino.
+Si una máquina del backend pool intenta enviar un paquete al iLB, no funcionará. En tcpdump veremos que el paquete vuelve a entrar por la interfaz con la ip origen puesta a la IP de la misma máquina.
+
+<https://learn.microsoft.com/es-es/azure/load-balancer/load-balancer-floating-ip>
+En principio existe una configuración, _Enable Floating IP_, que debería permitir que una máquina del backend pool pueda enviar paquetes al iLB.
+Esto lo hace poniendo la ip del iLB como dirección ip destino al pasar el paquete a los backend pools.
+Para que esto funcione los nodos del backend pool deberán configurar esa IP como local.
+
+El problema es que si tenemos un activo-pasivo, y configuramos la IP en el pasivo, cuando intente enviar tráfico al iLB, lo estará enviando localmente, por lo que no funcionará.
+
 # Application gateway
 
 <https://learn.microsoft.com/en-us/azure/application-gateway/create-ssl-portal>

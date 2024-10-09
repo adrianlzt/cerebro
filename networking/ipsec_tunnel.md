@@ -7,6 +7,74 @@ Parece mejor strongswan. Aunque para rhel viene libreswan por defecto (pero stro
 strongswan tiene mejor documentación.
 Usar strongswan
 
+# IPSec
+
+<https://networklessons.com/cisco/ccie-routing-switching/ipsec-internet-protocol-security>
+Las capturas son de IKEv1.
+
+<http://www.unixwiz.net/techtips/iguide-ipsec.html>
+Detalles sobre el formato de los paquetes.
+
+Dos fases para conectar:
+
+- IKE Phase 1: negotiate about the encryption, authentication, hashing and other protocols that they want to use and some other parameters that are required. In this phase, an ISAKMP (Internet Security Association and Key Management Protocol) session is established. This is also called the ISAKMP tunnel or IKE phase 1 tunnel only used for management traffic. We use this tunnel as a secure method to establish the second tunnel called the IKE phase 2 tunnel or IPsec tunnel and for management traffic like keepalives.
+- IKE Phase 2: IKE phase 2 tunnel (or IPsec tunnel) that we can use to protect our user data. This user data will be sent through the IKE phase 2 tunnel:
+
+IKE builds the tunnels for us but it doesn’t authenticate or encrypt user data. We use two other protocols for this:
+
+- AH (Authentication Header)
+- ESP (Encapsulating Security Payload). Este es el único con ecnriptación y parece que el realmente usado.
+
+Two different modes:
+
+- Transport mode: se mete una cabecera entre la cabecera IP y la carga útil.
+- Tunnel mode: se añade una nueva ip header y AH header antes de la ip header original.
+
+Puertos:
+
+- **UDP Port 500 (ISAKMP):** ISAKMP (Internet Security Association and Key Management Protocol) is used to establish and manage the Security Associations (SAs) that IPsec uses. Think of it as the "handshake" phase – setting up the secure tunnel. It negotiates things like encryption algorithms, authentication methods, and the lifetime of the connection.
+
+- **UDP Port 4500 (NAT-Traversal):** Network Address Translation (NAT) is a common technique used in home and corporate networks. Since IPsec often needs to traverse NAT devices (routers), port 4500 is used to facilitate this process. It's specifically used for the IKE (Internet Key Exchange) phase, which is part of ISAKMP. If your IPsec tunnel needs to go through NAT devices, this port will be crucial for the connection to work.
+
+## Establecimiento de la conexión
+
+Captura de tráfico de un establecimiento de conexión: <https://www.cloudshark.org/captures/767a93d720ad>
+
+El iniciador envía un primer paquete "IKE_SA_INIT" con los tipos de encriptación, hash, etc que soporta. También envía el intercambio de claves Diffie-Hellman e información para poder hacer NAT traversal.
+El otro lado responde con un "IKE_SA_INIT" con los tipos que soporta.
+
+Luego el iniciador envía un "IKE_AUTH" con las claves públicas y el otro lado responde con otro "IKE_AUTH" con las claves públicas.
+Estos paquetes ya contienen información cifrada:
+
+- identification: parece que suele usarse la IP pública o el FQDN
+- authentication
+- Security Association (SA): información sobre el cifrado a usar para ESP, encriptación, hash y extended sequence numbers.
+- Traffic Selector initiator: las redes que se van a conectar
+- Traffic Selector responder: las redes que se van a conectar
+
+## Demystifying NAT Traversal In IPSEC VPN With Wireshark
+
+<https://community.cisco.com/t5/security-blogs/demystifying-nat-traversal-in-ipsec-vpn-with-wireshark/ba-p/4524496>
+
+# Python
+
+Implementación de IPSec en python, para aprender como funciona: <https://github.com/qwj/python-vpn>
+
+Los paquetes se muestran con un print, a parte de enviarse a la red:
+
+```
+ECHO 68.21.5.148 -> 172.30.0.4 Id=4 Seq=1 Data=b'*\xdc\x04g\x00\x00\x00\x00\xa0\xb6\x01\x00\x00\x00\x00\x00\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !"#$%&\'()*+,-./01234567'
+TCP 68.21.5.148:47034 -> 172.30.0.4:80
+```
+
+<https://github.com/adrianlzt/python-vpn>
+Algunas modificaciones para mostrar más información:
+
+- datos para desencriptar el tráfico con wireshark
+- mostrar los traffic selectors directamente
+- habilitar tráfico ICMP (necesita ejecutarse como root)
+- más prints que estaban comentados
+
 # Linux
 
 Libreswan/strongswan usan por debajo las políticas de IPsec sin el "ip routing".

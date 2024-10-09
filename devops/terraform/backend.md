@@ -1,4 +1,5 @@
 # State
+
 <https://www.terraform.io/docs/language/state/remote.html>
 El estado por defecto se guarda en un fichero: terraform.tfstate
 
@@ -12,10 +13,13 @@ Nos preguntará si queremos migrar los datos al backend remoto
 ## Consultar
 
 terraform state list
-  mostrar que tenemos en el state
+mostrar que tenemos en el state
 
 terraform state show google_iap_brand.default
-  mostrar un elemento
+mostrar un elemento
+
+Sacar un dump del state:
+terraform state pull
 
 Si queremos ver una "sensitive value" haremos:
 <https://devops.stackexchange.com/a/17379>
@@ -28,6 +32,7 @@ Filtrar por un "type":
 terraform show -json | jq -r '.values.root_module.child_modules[0].resources[] | select (.type | test("postgresql_role"))'
 
 # Backend
+
 <https://www.terraform.io/docs/backends/index.html>
 
 Podemos usar backends en linea para mantener un estado compartido.
@@ -50,6 +55,7 @@ terraform-state/bootstrap-graph/
 etcdctl --endpoints <http://10.10.10.47:2379> del terraform-state/integracion-tfstate/default
 
 ## Google cloud storage
+
 <https://www.terraform.io/docs/language/settings/backends/gcs.html>
 
 Crear un object en:
@@ -76,11 +82,12 @@ Obligatoriamente tenemos que subir el campo "serial" con +1.
 Subimos el state:
 terraform state push STATE
 
-
 # Migrate
-https://zeet.co/blog/terraform-migrate-state
+
+<https://zeet.co/blog/terraform-migrate-state>
 
 Si queremos migrar el backend (probado de local a azure):
+
 - borrar la config antigua
 - poner la nueva
 - terraform init -migrate-state

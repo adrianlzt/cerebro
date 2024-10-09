@@ -1,23 +1,22 @@
-https://github.com/influxdata/telegraf
-https://docs.influxdata.com/telegraf/v0.10/introduction/getting-started-telegraf/
+<https://github.com/influxdata/telegraf>
+<https://docs.influxdata.com/telegraf/v0.10/introduction/getting-started-telegraf/>
 
 Telegraf is an agent written in Go for collecting metrics from the system it's running on, or from other services, and writing them into InfluxDB.
 
-
 Issues relacionadas con la extensión de telegraf con plugins:
-https://github.com/influxdata/telegraf/issues/1717
-https://github.com/influxdata/telegraf/issues/3813
+<https://github.com/influxdata/telegraf/issues/1717>
+<https://github.com/influxdata/telegraf/issues/3813>
 
 # Instalación
-https://github.com/influxdata/telegraf#linux-deb-and-rpm-packages
+<https://github.com/influxdata/telegraf#linux-deb-and-rpm-packages>
 
 Bajando el rpm linkado en la web e instalado a mano
 
 yum install telegraf
 
-
 # Configuración
-POC conf dinámica: https://github.com/danielnelson/tgconfig
+
+POC conf dinámica: <https://github.com/danielnelson/tgconfig>
 
 Por defecto el rpm genera:
 /etc/telegraf/telegraf.conf
@@ -30,6 +29,7 @@ También se pueden meter configs en:
 /etc/telegraf/telegraf.d
 
 ## Conf server
+
 [[outputs.influxdb]]
   urls = ["http://10.5.2.180:8086"]
   database = "nombre" # NO poner guiones (-)
@@ -38,60 +38,61 @@ También se pueden meter configs en:
   username = "adri"
   password = "adri"
 
-
 # Run
+
 Ver que metricas se generan por stdout y salir:
 telegraf -config /etc/telegraf/telegraf.conf -test
 
 telegraf --config /etc/telegraf/telegraf.conf --config-directory /etc/telegraf/telegraf.d --test
 
 ## Centos 7
+
 systemctl start telegraf
 
 ## Centos 6
+
 service telegraf start
 
 # Test
+
 telegraf --input-filter logparser config > example.conf
 telegraf --config example.conf -test
   run a single telegraf collection, outputing metrics to stdout
 
 # Output
+
 Cada métrica se envía a todos los outputs disponibles
 
 Si los inputs han generado ya "metric_batch_size" metrics, se realizará un envió, sin esperar al tiempo de flush configurado.
-https://github.com/influxdata/telegraf/blob/1.11.3/internal/models/running_output.go#L129
-
+<https://github.com/influxdata/telegraf/blob/1.11.3/internal/models/running_output.go#L129>
 
 # Cache
+
 Telegraf cachea los outputs en caso de que no pueda escribir.
 Si se llenan los buffers, va descartando las nuevas métricas.
-https://github.com/influxdata/telegraf/issues/802 petición para cachear en disco
+<https://github.com/influxdata/telegraf/issues/802> petición para cachear en disco
 
 metric_buffer_limit: Telegraf will cache metric_buffer_limit metrics for each output, and will flush this buffer on a successful write. This should be a multiple of metric_batch_size and could not be less than 2 times metric_batch_size.
 
-
-
 # Jitter
+
 Podemos configurar telegraf para que recolecte los inputs con ligeras variaciones de tiempo y asi evitar un "pico" en el momento de recolección general.
 collection_jitter
 Cada vez que va a ejecutar la recolección se pone un random sleep entre 0 y collection_jitter.
 Por lo tanto, para un interval de 10" y un jitter de 3" se ejecutará:
 00, 11, 20, 31, 40, 53, 62, etc
 
-
-
-
 # Plugins
+
 Para ver ayuda de un cierto plugin:
 
 telegraf --usage NOMBRE
 
-
 ## agregar/quitar/modificar tags/fields
-https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering
+<https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering>
 
 ## parámetros globales de los inputs
+
 interval
 name_override
 name_prefix
@@ -99,6 +100,7 @@ name_suffix
 tags
 
 ## selectors, para dejar pasar, o quitar, metrics enteras
+
 namepass
 namedrop
 tagpass
@@ -108,12 +110,11 @@ Se pueden usar caracteres "glob".
 Tipo: "nombre*"
 
 ## Modifiers, para dejar pasar, o quitar, tags o fields
+
 fieldpass
 fielddrop
 taginclude
 tagexclude
-
-
 
 name_prefix
 name_suffix
@@ -143,7 +144,7 @@ taginclude = ["cpu"]
 
 dejar pasar solo tags que cumplan cierto key=value
 si ponemos varios valores, se unen con OR
-Si queremos AND, hay una PR y una issue no cerradas: https://github.com/influxdata/telegraf/issues/937
+Si queremos AND, hay una PR y una issue no cerradas: <https://github.com/influxdata/telegraf/issues/937>
 [inputs.disk.tagpass]
   fstype = [ "ext4", "xfs" ]
 
@@ -156,13 +157,10 @@ files = ["/var/tmp/tmp.EJsRmOCPwx/zabbix"]
 [outputs.file.tagdrop]
 output = ["*"] # no dejamos pasar si tiene la tag output con cualquier valor
 
-
-
 agregar tags:
 [[inputs.cpu]]
   [inputs.cpu.tags]
     tag1 = "foo"
-
 
 Tirar todas las métricas de un nombre determinado:
 [[processors.rename]]
@@ -170,84 +168,90 @@ Tirar todas las métricas de un nombre determinado:
   namepass = ["sqlserver_performance"]
   fieldpass = [""]
 
-
 ## elasticsearch
-no nos da info detallada de cada índice: https://github.com/influxdata/telegraf/pull/2872
+
+no nos da info detallada de cada índice: <https://github.com/influxdata/telegraf/pull/2872>
 una vez tengamos esa info detallada, hacer un aggregator para sacar la info de un pattern junta, por ejemplo, sacar toda la info de los índices logstash-* como una sola métrica
 
 ## mem
+
 La memoria used la calcula (la lib gopsutil) como:
 ret.Used = ret.Total - ret.Available
 
 ## cpu
+
 Hace uso de la lib gopsutil, que, para la cpu, lee /proc/stat.
 Va calculando la diferencia entre dos medidas (la primera ejecucción se descarta)
 
 ## filestat
+
 Para obtener si existe un fichero, su tamaño y md5 (opcional).
 CUIDADO, si no tenemos permisos en los ficheros no dirá nada, solo veremos que no saca información
 
-
 ## nagios
-https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md#nagios
+<https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md#nagios>
 
 ## dig / dns
+
 Nos devuelve tiempos de respuesta del servidor dns
 
 ## exec
+
 Ejecuta un programa que debe devolver las métricas en formato inline, graphite o json
 
 Puede ejecutar powershell:
-https://github.com/influxdata/telegraf/issues/3734
+<https://github.com/influxdata/telegraf/issues/3734>
 [[inputs.exec]]
   commands = [
     "powershell -command \"Get-ClusterResource\""
 
-
 ## sysctl fs
-https://github.com/phemmer/telegraf/blob/7e77be97eb200f5e47691f4bfd62746c535eab85/plugins/inputs/system/LINUX_SYSCTL_FS_README.md
+<https://github.com/phemmer/telegraf/blob/7e77be97eb200f5e47691f4bfd62746c535eab85/plugins/inputs/system/LINUX_SYSCTL_FS_README.md>
 Nos da, entre otras cosas, número de ficheros abiertos, inodos disponibles, etc
 
 ## Apache
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/apache
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/apache>
 
 [[inputs.apache]]
   urls = ["http://127.0.0.1/server-status?auto"]
 
 ## MongoDB
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mongodb
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/mongodb>
 
 /etc/telegraf/telegraf.d/mongodb.conf
 [[inputs.mongodb]]
   servers = ["127.0.0.1:27017"]
 
 ## httpjson
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/httpjson
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/httpjson>
 
 Hace un get a un endpoint y espera un json con valores que sean métricas.
 
 ## json - influxdb
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/influxdb
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/influxdb>
 
 Como el anterior, pero esperando un formato determinado del json
 
 ## net response / check_tcp check_udp
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net_response
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/net_response>
 
 Conecta a un puerto y ve cuanto tiempo tarda en contestar.
 
 ## nginx
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/nginx
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/nginx>
 
 [[inputs.nginx]]
-  ## An array of Nginx stub_status URI to gather stats.
+
+## An array of Nginx stub_status URI to gather stats
+
   urls = ["http://localhost/status"]
 
 ## ping
+
 envia ping a un server y mide tiempo de respuesta
 
 ## procstat
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/procstat>
 
 Monitoriza un proceso usando los valores de /proc/PID/...
 Si en el regex ponemos "." monitorizará todos los procesos. CUIDADO con el número de series creadas!
@@ -270,14 +274,13 @@ Monitorizar que un proceso esta levantado:
   #fieldpass = ["cpu_usage", "read_bytes", "write_bytes", "num_threads", "memory_rss", "memory_swap", "pid_count", "num_fds"]
   fieldpass = ["pid_count"]
 
-
-
 ## sensors
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sensors
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sensors>
 
 Utiliza lm-sensors para obtener información de temperatura, ventiladores, etc
 
 ## snmp
+
 Obtiene valores de snmp
 
 Tendremos que cargar el mapeo de nombre de oid a número.
@@ -304,41 +307,38 @@ Si queremos coger todo un arbol:
 Este último creará una medida ifOutOctets con un único valor (ifOutOctets) y tags por cada uno de los elementos del arbol
 
 ## sysstat
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sysstat
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/sysstat>
 
 ## http reponse
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/http_response>
 
 ## Parse logs
-https://github.com/influxdata/telegraf/blob/master/plugins/inputs/logparser/README.md
-https://www.influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/
+<https://github.com/influxdata/telegraf/blob/master/plugins/inputs/logparser/README.md>
+<https://www.influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/>
 
-https://github.com/influxdata/telegraf/blob/master/plugins/inputs/tail/README.md
+<https://github.com/influxdata/telegraf/blob/master/plugins/inputs/tail/README.md>
 esto hace un tail -f de un fichero y va consumiendo las líneas, que deben estar en formato aceptado por influx
 
 ## docker
-https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker
+<https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker>
 recordar que el socket de docker debe tener permisos de lectura para el user telegraf (crear grupo docker, reiniciar y meter nuestro user en el grupo docker)
 Por defecto el endpoint será unix:///var/run/docker.sock
 
-
-
 ## prometheus
+
 para obtener metricas de servicios que exponen sus métricas via prometheus, por ejemplo etcd
 
-
-
-
 ## Github
+
 Puede levantar un puerto donde apuntamos un webhook de github
 
-
 ## windows
-Ejemplo de inputs y dashboard de grafana
-https://grafana.com/dashboards/1902
 
+Ejemplo de inputs y dashboard de grafana
+<https://grafana.com/dashboards/1902>
 
 # Consumo
+
 Con la instalación básica haciendo pooling cada 10"
   15MB 0.25%
 
@@ -350,27 +350,26 @@ Metiendo procstat para todos los procesos (el resto básico, con pooling cada 10
 Metiendo procstat para todos los procesos (el resto básico, con pooling cada 30"):
   16.4MB 0.7%
 
-
 # Internals
+
 Si usamos UDP envia tramas de payload 512bytes:
-https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L21
-https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L334
+<https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L21>
+<https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L334>
 
 Si usamos HTTP:
 Envia toda la info que le pasamos a la función Write:
-https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L354
+<https://github.com/influxdata/influxdb/blob/616da49019703338da893ea6a619beebeb51f755/client/v2/client.go#L354>
 
 Parece que telegraf genera un gran array de metricas y se lo pasa a write:
-https://github.com/influxdata/telegraf/blob/master/plugins/outputs/influxdb/influxdb.go#L135
+<https://github.com/influxdata/telegraf/blob/master/plugins/outputs/influxdb/influxdb.go#L135>
 
 Por aqui está como corre el agente:
-https://github.com/influxdata/telegraf/blob/master/agent/agent.go
+<https://github.com/influxdata/telegraf/blob/master/agent/agent.go>
 
 No me queda claro como hace el write y si lo hace de todas las métricas de golpe
 
-
 # Aggregator & Processor
-https://docs.influxdata.com/telegraf/v1.1/concepts/aggregator_processor_plugins/
+<https://docs.influxdata.com/telegraf/v1.1/concepts/aggregator_processor_plugins/>
 
 Plugins que se encuentran entre los inputs y los outputs y nos permiten modificar la información
 
@@ -382,6 +381,7 @@ Los processors pueden llevar "order", para definir en que orden se ejecutan.
 No se ejecutan en modo --test
 
 ## basicstats
+
 [[aggregators.basicstats]]
   namepass = [ "procstat_nginx_worker" ]
   drop_original = false
@@ -394,32 +394,28 @@ La idea es que el aggregator nunca coja más de un grupo de métricas (procstat 
 Si el aggregator no recoge nada, no generará nada.
 Si por el contrario ponemos un period mayor, podría suceder que cogiese dos grupos de métricas de prostat, generando un "sum" y un "count" variable dependiendo de las condiciones de carrera
 
-
 ## regex processor
-https://github.com/influxdata/telegraf/tree/master/plugins/processors/regex
+<https://github.com/influxdata/telegraf/tree/master/plugins/processors/regex>
 Nos permite modificar los values de una tag o un field (tambien puede almacenar el valor en un nuevo tag)
 Parece que solo funciona cuando el value es una string.
 Típico caso, extraer campos de un field con regex para generar uno nuevo.
 
 No funciona con --test
 
-
 ## converter processor
-https://github.com/influxdata/telegraf/tree/master/plugins/processors/converter
+<https://github.com/influxdata/telegraf/tree/master/plugins/processors/converter>
 Cambiar tipos de datos de tag o fields.
 Cambiar fields por tags y viceversa
 
-
 ## override processor
-https://github.com/influxdata/telegraf/tree/master/plugins/processors/override
+<https://github.com/influxdata/telegraf/tree/master/plugins/processors/override>
 nos sirve para cambiar nombres de tags, agregar tags.
 
-
-
 # Monitorizar el propio telegraf
+
 Los logs meten dos caracteres para distinguir el tipo de error:
-https://github.com/influxdata/telegraf/pull/1838
-https://github.com/influxdata/telegraf/blob/master/logger/logger.go#L13
+<https://github.com/influxdata/telegraf/pull/1838>
+<https://github.com/influxdata/telegraf/blob/master/logger/logger.go#L13>
 
 D!   debug
 I!   info
@@ -428,8 +424,8 @@ E!   error
 
 Mirar en el siguiente apartado (logparser) para ver como parsear los logs de Telegraf con logparser
 
-
 # Logparser / grok
+
 Ejemplo de fichero de configuración para hacer pruebas:
 [agent]
   interval = "1s"
@@ -456,7 +452,6 @@ COMM (?:rasdaemon\[[0-9]*\]:\s*)
 ERROR (?:.*[Ee][Rr]{2}[Oo][Rr].*)
 '''
 
-
 Parseando los propios logs de Telegraf:
 [[inputs.logparser]]
   files = ["/var/log/telegraf.log"]
@@ -468,28 +463,34 @@ Parseando los propios logs de Telegraf:
 TELEGRAF_LOG_LEVEL (?:[DIWE]+)
 '''
 
-
 ## Zabbix (custom nuestro)
+
 [[aggregators.zabbix_lld]]
-  ## Time between sending LLD traps, only new ones, modifications or deleteions
+
+## Time between sending LLD traps, only new ones, modifications or deleteions
+
   period = "11m"
-  ## Numer of executions after all LLDs are sent again
+
+## Numer of executions after all LLDs are sent again
+
   reset_period = 11
 
 [[outputs.zabbix]]
-  ## Address of zabbix host
+
+## Address of zabbix host
+
   host = "zabbix.com"
-  ## Port of the Zabbix server
+
+## Port of the Zabbix server
+
   port = 10051
-  ## Add prefix to all keys sent to Zabbix
+
+## Add prefix to all keys sent to Zabbix
+
   prefix = "telegraf."
 
-
-
-
-
 # Debug / Profiling
-https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md
+<https://github.com/influxdata/telegraf/blob/master/docs/PROFILING.md>
 
 Si queremos obtener un stacktrace del proceso tenemos que matarlo con:
 kill -SIGQUIT $(pgrep telegraf)
@@ -499,34 +500,32 @@ Plugin de output: influxdb
 Plugins de input: inputs.disk inputs.diskio inputs.kernel inputs.mem inputs.processes inputs.swap inputs.system inputs.cpu inputs.procstat inputs.docker inputs.procstat inputs.prometheus inputs.kubernetes inputs.net inputs.netstat inputs.prometheus inputs.procstat inputs.procstat
 telegraf.stacktrace (con comentarios)
 
-
 ## Delve
+
 dlv debug github.com/influxdata/telegraf/cmd/telegraf
 > break main.main
 > break NOMBREPLUGIN.Gather
 > c
 
-
-
 # Develop
-https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md
-https://www.influxdata.com/telegraf-update-1-3/
+<https://github.com/adrianlzt/telegraf/blob/master/CONTRIBUTING.md>
+<https://www.influxdata.com/telegraf-update-1-3/>
   How to Write Plugins
-https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/
-https://www.influxdata.com/blog/building-better-telegraf-plugin/
-https://es.slideshare.net/influxdata/how-to-build-a-telegraf-plugin-by-noah-crowley
+<https://www.influxdata.com/blog/how-to-write-telegraf-plugin-beginners/>
+<https://www.influxdata.com/blog/building-better-telegraf-plugin/>
+<https://es.slideshare.net/influxdata/how-to-build-a-telegraf-plugin-by-noah-crowley>
 
 En internal/internal.md tenemos algunos helpers que pueden ser útiles
 
-En este fichero se inicializa todo (inputs, processors, aggregators, outputs): https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go
+En este fichero se inicializa todo (inputs, processors, aggregators, outputs): <https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go>
 
-Interfaz a cumplir para los writters: https://github.com/influxdata/telegraf/blob/master/plugins/outputs/discard/discard.go
+Interfaz a cumplir para los writters: <https://github.com/influxdata/telegraf/blob/master/plugins/outputs/discard/discard.go>
 Para los input mirar un ejemplo en este dir
 
-Interfaces a cumplir por los inputs https://github.com/influxdata/telegraf/blob/master/input.go
+Interfaces a cumplir por los inputs <https://github.com/influxdata/telegraf/blob/master/input.go>
 Hay una básica, que recolecta cuando le llaman a gaher, y la ServiceInput pensada para un input que recolecta todo el rato y puede gestionar errores, etc.
 
-Los ServiceInputs se arrancan aquí: https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go#L599
+Los ServiceInputs se arrancan aquí: <https://github.com/influxdata/telegraf/blob/41286d10c2abe0c0e8d6d458f4fc89def30236b4/agent/agent.go#L599>
 Un input es ServiceInput si implementa la interfaz (tambien tiene que implementar la interfaz Input)
 Los ServiceInput solo tienen un Start() y un Stop() funcionales.
 En Start() debemos arrancar una gorotuina y retornar nil (o retornar un error si no podemos arrancar y se parará todo telegraf)
@@ -535,7 +534,6 @@ Cuidado que no se nos llene el canal de Delivered, telegraf terminará con un pa
 Las métricas con tracking tiene los métodos Drop() y Reject()
 Drop() generará un informe válido, como si se hubiese enviado.
 Reject() devolverá el informe con delivered a false
-
 
 go get github.com/influxdata/telegraf
 cd $GOPATH/src/github.com/influxdata/telegraf
@@ -561,7 +559,6 @@ CGO_ENABLED=0 make telegraf
 build.py compila estático si en el arch le ponemos static_XXX
 Ejemplo: static_amd64
 
-
 make build
 $GOPATH/bin/telegraf --version
 $GOPATH/bin/telegraf config > telegraf.conf
@@ -571,14 +568,13 @@ Tambien, para probar, podemos poner el outputs.file a stdout y opciones para sac
 interval = "2s"
 flush_interval = "2s"
 
-
-
 # Errores
 
 ## Metric buffer overflow
+
 Ejemlo:
 2020-02-11T12:39:30Z W! [outputs.zabbix] Metric buffer overflow; 5652 metrics have been dropped
 
-https://github.com/influxdata/telegraf/issues/6336
+<https://github.com/influxdata/telegraf/issues/6336>
 
 Input plugins write into the memory buffer and outputs take from the buffer and write to the database, but if the inputs are producing more metrics than the size of the buffer they may be almost immediately dropped.

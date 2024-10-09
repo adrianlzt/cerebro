@@ -189,7 +189,7 @@ C-b }
 Rotar por distintas organizaciones de ventanas
 C-b space
 
-Volver al layout que teníamos antes (por si le hemos dado por error a C-b space) (undo, revert, restore, restaurar, ventanas, panes)
+Volver al layout que teníamos antes (por si le hemos dado por error a C-b space) (undo, revert, restore, restaurar, ventanas, panes, layout, schema, format)
 :select-layout -o
 
 # Uso
@@ -231,6 +231,15 @@ C-a /
 
 Para saltar al "copy mode":
 C-b [
+
+Si no nos funciona, mirar estas opciones (<https://superuser.com/a/1549280/526882>)
+
+- prefix+[ to enter copy mode
+- navigate to the start or the end of text selection with arrow keys
+- press space to to start selection, sometimes control+space
+- move to opposite end of text to copy with arrow keys
+- press return to copy selected text into tmux clipboard, sometimes control+w or esc+w or alt+w
+- in the same tmux session, paste with prefix+], to paste into vim, use prefix+] in vim insert mode
 
 emacs:
 movernos hasta el inicio de la seleccion y para comenzar a seleccionar pulsar:
