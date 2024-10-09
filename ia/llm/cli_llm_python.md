@@ -49,6 +49,18 @@ Arrancar aider con un modelo concreto:
 aider --model gemini/gemini-1.5-pro-latest
 ```
 
+Para que funcione gemini hace falta instalar otro paquete (suponiendo que hemos isntalado aider-chat con pipx):
+
+```
+~/.local/share/pipx/venvs/aider-chat/bin/python -m pip install google
+```
+
+## Config
+
+<https://aider.chat/docs/config/aider_conf.html>
+
+Se puede crear un fichero .aider.conf.yml en el directorio de trabajo, root del git o en el home.
+
 # llm
 
 <https://llm.datasette.io/en/stable/>
