@@ -87,6 +87,7 @@ aur/openscad-round-anything
 
 Dibujar una especie de "tecla" de un teclado.
 Cóncava y redondeada.
+El filtro de minkowski es muy costoso, intentar evitarlo.
 
 ```openscad
 include <Round-Anything/MinkowskiRound.scad>
@@ -122,6 +123,13 @@ No vale para una pieza donde el fillet que queremos hacer no está en un mismo p
 <https://github.com/BelfrySCAD/BOSL2/wiki>
 
 The Belfry OpenScad Library, v2.0. An OpenSCAD library of shapes, masks, and manipulators to make working with OpenSCAD easier. BETA
+
+# Render
+
+```bash
+openscad -o foo.stl foo.scad
+openscad -D var=val -D var1=val1 -o foo.stl foo.scad
+```
 
 # Ejemplos
 
