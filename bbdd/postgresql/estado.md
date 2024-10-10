@@ -1,4 +1,10 @@
-https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d
+<https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d>
+
+Sesiones conectadas a una db;
+
+```sql
+SELECT * FROM pg_stat_activity WHERE datname = 'grafana';
+```
 
 -- para >= 9.6+
 SELECT pid, client_addr, client_port, now() - query_start as "runtime", now() - xact_start as "xact_runtime", usename, datname, wait_event, pg_blocking_pids(pid) as blocked_by, state, query FROM  pg_stat_activity WHERE now() - xact_start > '3 seconds'::interval and (state = 'active' or state = 'idle in transaction') ORDER BY xact_runtime DESC;
@@ -6,13 +12,12 @@ SELECT pid, client_addr, client_port, now() - query_start as "runtime", now() - 
 Sacamos el tiempo que lleva ejecutandose la query (runtime) y el de la transaccion (xact_runtime). Serán iguales en el caso de que sea una query simple, sin transacción.
 
 Nos da tambien el pid/pids que puedan estar bloqueando a la transacción.
-  https://paquier.xyz/postgresql-2/postgres-9-6-feature-highlight-pg-blocking-pids/
-  https://stackoverflow.com/questions/26489244/how-to-detect-query-which-holds-the-lock-in-postgres
+  <https://paquier.xyz/postgresql-2/postgres-9-6-feature-highlight-pg-blocking-pids/>
+  <https://stackoverflow.com/questions/26489244/how-to-detect-query-which-holds-the-lock-in-postgres>
 
 Si queremos subir el tamaño de la query capturada podemos modificar el parámetro (necesita reiniciar):
 track_activity_query_size
-https://postgresqlco.nf/doc/en/param/track_activity_query_size/
-
+<https://postgresqlco.nf/doc/en/param/track_activity_query_size/>
 
 A
 Si es una transacción, en query veremos la última ejecutada. No sabremos que otras cosas ha ejecutado la transacción antes.
@@ -20,9 +25,8 @@ Si es una transacción, en query veremos la última ejecutada. No sabremos que o
 idle in transaction -> es una transacción que está esperando el "commit" para poder terminar
   si se van ejecutando más queries dentro de la transacción, veremos como el campo "query" se va modificando. xact_start se mantendrá y se actualizarán query_start y state_change
 
-
 -- kill running query (cancel es más "soft" que terminate)
-https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL
+<https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL>
 SELECT pg_cancel_backend(procpid);
   manda un SIGINT al proceso
   para running queries
@@ -37,8 +41,6 @@ SELECT pg_terminate_backend(procpid);
   si la sesión está en un BEGIN..COMMIT, no se aplicará el commit
   si cancelamos una running query, no se realizará ningún cambio que estuviese haciendo (si le pillamos en medio de un gran update, es como si no se hubiese ejecutado)
 
-
-
 -- show running queries (9.2)
 SELECT pid, age(query_start, clock_timestamp()), usename, query FROM pg_stat_activity WHERE query != '<IDLE>' AND query NOT ILIKE '%pg_stat_activity%' ORDER BY query_start desc;
 
@@ -48,11 +50,8 @@ SELECT now() - query_start as "runtime", usename, datname, waiting, state, query
 -- para 9.4+
 SELECT pid, now() - query_start as "runtime", usename, datname, waiting, state, query FROM  pg_stat_activity WHERE now() - query_start > '2 minutes'::interval and state = 'active' ORDER BY runtime DESC;
 
-
-
-
 # deadlocks
-http://shiroyasha.io/deadlocks-in-postgresql.html
+<http://shiroyasha.io/deadlocks-in-postgresql.html>
 
 Cuando sale un error deadlock, el proceso que la pinta es quien muere
 En este ejemplo, muere el 522300:
@@ -66,11 +65,8 @@ En este ejemplo, muere el 522300:
 2019-12-10 13:18:25.882 CET [522300] CONTEXTO:  mientras se actualizaba la tupla (0,3) en la relación «users»
 2019-12-10 13:18:25.882 CET [522300] SENTENCIA:  update users set name='x' where id=1;
 
-
-
-
-https://wiki.postgresql.org/wiki/Lock_Monitoring
-https://wiki.postgresql.org/wiki/Lock_dependency_information
+<https://wiki.postgresql.org/wiki/Lock_Monitoring>
+<https://wiki.postgresql.org/wiki/Lock_dependency_information>
   query para ver de donde viene los bloqueos originarios
 
 Bloqueos potenciales. Si el lock está granted es que tiene el lock concendido.
@@ -79,17 +75,15 @@ Si vemos en estas queries granted=f quiere decir peticionse que están esperando
 Los problems son los Exclusive locks, que limitan a otras transacciones trabajar
 
 Cuidado, en query veremos la última llamada lanzada por la transacción, pero puede que no estemos viendo la llamada que originó el lock
-https://dba.stackexchange.com/questions/223083/postgresql-get-statements-of-a-running-transaction
+<https://dba.stackexchange.com/questions/223083/postgresql-get-statements-of-a-running-transaction>
   preguntando eso
 
+<https://www.citusdata.com/blog/2018/02/22/seven-tips-for-dealing-with-postgres-locks/>
 
-
-https://www.citusdata.com/blog/2018/02/22/seven-tips-for-dealing-with-postgres-locks/
-
-Para ver que rows están bloqueadas: https://www.postgresql.org/docs/9.6/pgrowlocks.html
+Para ver que rows están bloqueadas: <https://www.postgresql.org/docs/9.6/pgrowlocks.html>
 
 Explicación locks:
-https://www.postgresql.org/docs/current/explicit-locking.html
+<https://www.postgresql.org/docs/current/explicit-locking.html>
 Exclusive Lock: permite lectura a otros
 Access Exclusive Lock: solo permite leer/escribir a la tx (bloquea todas las SELECT de otras TX)
 Row Exclusive Lock: cuando hacemos un update de una tabla dentro de una TX generaremos este lock.
@@ -97,8 +91,6 @@ Row Exclusive Lock: cuando hacemos un update de una tabla dentro de una TX gener
 Access ShareLock are acquired for objects involved in a query to block them from being modified or dropped by another session during their use
 
 select ... for update, bloquea los campos obtenidos por la select como si hubiésemos modificado con update ese row
-
-
 
 -- locks
 -- Muestra solo los locks de "relations", bloqueos a rows o tablas
@@ -111,7 +103,7 @@ SELECT * FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid;
 SELECT pl.pid,locktype,mode,datname,relation::regclass::text as locked_item,usename,xact_start,now()-xact_start as "running",query FROM pg_locks pl LEFT JOIN pg_stat_activity psa ON pl.pid = psa.pid WHERE mode like '%Exclusive%';
   en locked item veremos que estamos bloqueando (puede ser una tabla, un índice de la tabla, ...)
 
--- Ver que procesos están esperando a que (https://www.postgresql.org/docs/9.6/static/monitoring-stats.html#WAIT-EVENT-TABLE)
+-- Ver que procesos están esperando a que (<https://www.postgresql.org/docs/9.6/static/monitoring-stats.html#WAIT-EVENT-TABLE>)
 SELECT pid, wait_event_type, wait_event FROM pg_stat_activity WHERE wait_event is NOT NULL;
 
 -- Bloqueos entre transacciones
@@ -131,8 +123,6 @@ JOIN pg_stat_activity blockinga ON blockingl.pid = blockinga.pid
   AND blockinga.datid = blockeda.datid
 WHERE NOT blockedl.granted
 AND blockinga.datname = current_database();
-
-
 
 -- locks recursivo
 Ejemplo:
