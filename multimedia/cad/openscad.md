@@ -85,6 +85,27 @@ include <Round-Anything/polyround.scad>
 
 aur/openscad-round-anything
 
+Dibujar una especie de "tecla" de un teclado.
+Cóncava y redondeada.
+
+```openscad
+include <Round-Anything/MinkowskiRound.scad>
+
+module finger_platform(width, height, base_depth, cylinder_radius,cylinder_offset) {
+    difference() {
+        cube([width, base_depth, height]);
+
+        translate([width/2, base_depth+1, height + cylinder_offset])
+            rotate([90, 0, 0])
+                cylinder(r=cylinder_radius, h=base_depth+2, $fn=100);
+    }
+}
+
+$fn=10;
+minkowskiOutsideRound(1,1)
+finger_platform(25,10,30,60,55);
+```
+
 ## prism-chamfer
 
 <https://github.com/hraftery/prism-chamfer>
@@ -92,6 +113,9 @@ aur/openscad-round-anything
 ## fillets
 
 <https://github.com/ademuri/openscad-fillets>
+
+Le decimos donde termina la pieza y hace ahí el fillet.
+No vale para una pieza donde el fillet que queremos hacer no está en un mismo plano.
 
 ## BOSL2
 
