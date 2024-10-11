@@ -142,3 +142,14 @@ En freecad existe un _OpenSCAD Workbench_ que permite editar los archivos .scad 
 <https://wiki.freecad.org/Import_OpenSCAD_code>
 
 Hay que habilitarlo en Choose Edit → Preferences → OpenSCAD from the Top menu, luego cambiar a OpenSCAD (a la izquierda del botón rojo de grabar macros) e importer el fichero de openscad.
+
+# Thingverse
+
+Si queremos publicar en thingverse, el código tiene que ser compatible con la versión 2015.03
+
+Podemos probar con el contenedor de docker:
+<https://hub.docker.com/r/openscad/openscad/tags?name=2015>
+
+```bash
+docker run --rm -it -v "$PWD:/mnt" -w "/mnt" openscad/openscad:2015.03 openscad -D round_edges_fn=2 -o a.stl hangboard.scad
+```
