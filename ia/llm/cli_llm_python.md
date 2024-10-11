@@ -134,8 +134,19 @@ git diff | llm -s 'Describe these changes'
 
 Histórico de chats:
 
+<https://llm.datasette.io/en/stable/logging.html>
+
 ```bash
 llm logs
+llm logs -n 10
+llm logs -n 0
+llm logs --cid XXX
+```
+
+Para buscar en los logs:
+
+```bash
+llm logs -q 'cheesecake'
 ```
 
 ## Templates
