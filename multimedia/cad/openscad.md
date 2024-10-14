@@ -1,3 +1,5 @@
+# OpenSCAD
+
 <https://openscad.org/>
 
 Cheatsheet: <https://openscad.org/cheatsheet/>
@@ -9,24 +11,26 @@ F6 - render
 
 Normalmente se diseña en 2d y luego se extruye.
 
-# Online
+## Online
 
 <https://cadhub.xyz/>
 
-# Doc
+<https://manifoldcad.org/>
+
+## Doc
 
 <https://learn.cadhub.xyz/docs/definitive-beginners/>
 
-# Caracteres de control
+## Caracteres de control
 
 - disable
   ! show only
 
-# highlight / debug
+## highlight / debug
 
 % transparent / background
 
-## Transparencia con color
+### Transparencia con color
 
 Útil para ver un módulo que está restando a otro.
 
@@ -35,7 +39,7 @@ Normalmente se diseña en 2d y luego se extruye.
 foo();
 ```
 
-# Loops
+## Loops
 
 <https://learn.cadhub.xyz/docs/definitive-beginners/loops>
 
@@ -43,7 +47,7 @@ foo();
 for(increment=[startNumber:endNmuber]){ /* your code ... */ }
 ```
 
-# Debug
+## Debug
 
 Se puede usar echo para pintar valores:
 
@@ -52,12 +56,6 @@ Se puede usar echo para pintar valores:
 
 echo("increment is currently", increment);
 ```
-
-# solidython
-
-<https://github.com/jeff-dh/SolidPython>
-
-Programar en python y generar código openscad.
 
 # Redondear
 
@@ -71,7 +69,7 @@ Esto es quitar con un corte liso una esquina.
 A fillet is a rounded corner that removes sharp edges or corners on a manufactured part
 Esto sería como el redondeo de una multipresa.
 
-# Librerías
+## Librerías
 
 Como añadirlas:
 
@@ -79,7 +77,7 @@ Como añadirlas:
 include <Round-Anything/polyround.scad>
 ```
 
-## round-anything
+### round-anything
 
 <https://learn.cadhub.xyz/docs/round-anything/overview/>
 
@@ -107,31 +105,31 @@ minkowskiOutsideRound(1,1)
 finger_platform(25,10,30,60,55);
 ```
 
-## prism-chamfer
+### prism-chamfer
 
 <https://github.com/hraftery/prism-chamfer>
 
-## fillets
+### fillets
 
 <https://github.com/ademuri/openscad-fillets>
 
 Le decimos donde termina la pieza y hace ahí el fillet.
 No vale para una pieza donde el fillet que queremos hacer no está en un mismo plano.
 
-## BOSL2
+### BOSL2
 
 <https://github.com/BelfrySCAD/BOSL2/wiki>
 
 The Belfry OpenScad Library, v2.0. An OpenSCAD library of shapes, masks, and manipulators to make working with OpenSCAD easier. BETA
 
-# Render
+## Render
 
 ```bash
 openscad -o foo.stl foo.scad
 openscad -D var=val -D var1=val1 -o foo.stl foo.scad
 ```
 
-# Ejemplos
+## Ejemplos
 
 <https://github.com/KitWallace/openscad/tree/master>
 
@@ -153,3 +151,21 @@ Podemos probar con el contenedor de docker:
 ```bash
 docker run --rm -it -v "$PWD:/mnt" -w "/mnt" openscad/openscad:2015.03 openscad -D round_edges_fn=2 -o a.stl hangboard.scad
 ```
+
+# solidython
+
+<https://github.com/jeff-dh/SolidPython>
+
+Programar en python y generar código openscad.
+
+Mirar también manifold
+
+# Manifold
+
+Geometry library for topological robustness
+
+Se ha integrado manifold como backend de openscad: <https://github.com/openscad/openscad/pull/4533>
+
+Esta librería premite generar modelos 3D usando JS y python.
+
+Tiene una versión online con JS: <https://manifoldcad.org/#Intro>
