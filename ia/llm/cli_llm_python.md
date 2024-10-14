@@ -35,6 +35,15 @@ Para obtener ayuda:
 /help <question>
 ```
 
+Para prompt multilínea:
+
+```
+{
+aquí ya podemos hacer
+multilínea
+}
+```
+
 ## Models
 
 <https://aider.chat/docs/llms.html>
