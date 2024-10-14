@@ -81,3 +81,19 @@ Han desactivado el comando keys
 ```bash
 gitlab-rails runner -e production "user = User.find_by(id: 2);user.password = user.password_confirmation = 'the_secret_word';user.save!"
 ```
+
+## Crear usuario
+
+```ruby
+u = User.new(username: 'test_user', email: 'test@example.com', name: 'Test User', password: 'password_ASDA123', password_confirmation: 'password_ASDA123')
+u.assign_personal_namespace(Organizations::Organization.default_organization)
+u.skip_confirmation!
+u.save!
+```
+
+Si quiero que sea admin:
+
+```ruby
+u.admin=true
+u.save!
+```
