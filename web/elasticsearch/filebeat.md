@@ -132,6 +132,14 @@ Key modifiers para el pattern:
 
 Para parsear cosas como "key1=value1 key2=value2"
 
+## script / javascript
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/processor-script.html>
+
+## json
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/decode-json-fields.html>
+
 # Keystore
 
 Para almacenar, por ejemplo, contraseñas y luego poner una variable en el fichero de config.
