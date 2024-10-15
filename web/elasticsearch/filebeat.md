@@ -6,21 +6,21 @@ Ejemplo leyedo ficheros de log en formato md-json, extrayendo los campos del jso
 
 ```yaml
 filebeat.inputs:
-- type: log
-  paths:
-    - /var/log/messages
-    - /var/log/*.log
-  # scan_frequency: 10s  # por defecto
-  # tail_files: true  # empezar a leer solo nuevas lineas. CUIDADO, la doc dice que podemos perder lineas con esta config si tenemos rotado de logs
+  - type: log
+    paths:
+      - /var/log/messages
+      - /var/log/*.log
+    # scan_frequency: 10s  # por defecto
+    # tail_files: true  # empezar a leer solo nuevas lineas. CUIDADO, la doc dice que podemos perder lineas con esta config si tenemos rotado de logs
 
 processors:
- - decode_json_fields:
-     fields: ['message']
-     target: ''
-     overwrite_keys: true
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+      overwrite_keys: true
 
- - drop_fields:
-     fields: ["message", "prospector", "beat", "source", "offset"]
+  - drop_fields:
+      fields: ["message", "prospector", "beat", "source", "offset"]
 
 setup.template.enabled: false
 
@@ -80,7 +80,7 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
   format: docker
   containers.ids: "*"
   paths:
-    - '/var/lib/docker/containers/*/*.log'
+    - "/var/lib/docker/containers/*/*.log"
   json.message_key: log
   json.keys_under_root: true
   json.ignore_decoding_error: true
@@ -140,6 +140,15 @@ Ejemplo de configuración de filebeat:
 output.console:
   pretty: true
 
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+```
+
+Si queremos modificar la configuración por defecto, añadir:
+
+```yaml
 filebeat.autodiscover:
   providers:
     - type: docker
