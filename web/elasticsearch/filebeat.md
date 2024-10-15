@@ -95,6 +95,29 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 
 # Processors
 
+## Condicionales
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/defining-processors.html>
+
+Ejemplos:
+
+```yaml
+processors:
+  - include_fields:
+      when:
+        equals:
+          source: /var/log/sample.log
+      fields: ["tmp"]
+  - drop_event:
+      when:
+        equals:
+          source: /var/log/sample1.log
+  - drop_event:
+      when:
+        not:
+          has_fields: ["tmp"]
+```
+
 ## dissect
 
 Procesador para extraer campos de un mensaje. Se le pasa un patrón y los campos a extraer.
@@ -102,6 +125,12 @@ Aquí podemos probar configuraciones: <https://dissect-tester.jorgelbg.me/>
 
 Key modifiers para el pattern:
 <https://www.elastic.co/guide/en/elasticsearch/reference/current/dissect-processor.html>
+
+## kv
+
+<https://www.elastic.co/guide/en/elasticsearch/reference/current/kv-processor.html>
+
+Para parsear cosas como "key1=value1 key2=value2"
 
 # Keystore
 
