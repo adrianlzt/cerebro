@@ -69,6 +69,11 @@ dev/test and other infrequent access workloads that are less sensitive to perfor
 
 128 GiB -> €5.45/month
 
+## extra disks y cloud-init
+
+Si queremos montar extra discos con cloud-init, mirar este script:
+<https://github.com/hashicorp/terraform-provider-azurerm/issues/6117#issuecomment-976428442>
+
 ## Mapear disco externo a lun y a dispositivo
 
 Para encontrar el lun a partir de un nombre:
