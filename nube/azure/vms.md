@@ -69,6 +69,20 @@ dev/test and other infrequent access workloads that are less sensitive to perfor
 
 128 GiB -> €5.45/month
 
+## Mapear disco externo a lun y a dispositivo
+
+Para encontrar el lun a partir de un nombre:
+
+```bash
+curl -sH Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/compute/storageProfile?api-version=2021-02-01" | jq -r '.dataDisks[] | select(.name=="volume-docker") | .lun'
+```
+
+Para encontrar el device a partir del lun:
+
+```bash
+lsblk -o NAME,HCTL | grep ":${DOCKER_LUN}$" | cut -d ' ' -f 1)
+```
+
 # Aceso a internet
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access>
