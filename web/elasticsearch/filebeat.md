@@ -95,6 +95,8 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 
 # Processors
 
+<https://www.elastic.co/guide/en/beats/filebeat/current/filtering-and-enhancing-data.html>
+
 ## Condicionales
 
 <https://www.elastic.co/guide/en/beats/filebeat/current/defining-processors.html>
@@ -203,6 +205,55 @@ Si queremos ver la configuración que está generando filebeat, subir a debug y 
 cat filebeat.log-20241016-50.ndjson | grep "Generated config" | jq .message | cut -c 20- | sed 's/"$//' | sed "s/\\\n//g" | sed "s/\\\//g" | jq
 ```
 
+# Debug
+
+Config file, en json en este caso:
+
+```json
+{
+  "filebeat.inputs": [
+    {
+      "type": "log",
+      "paths": [
+        "/var/lib/docker/containers/c0718ac5622149d6d1e2b13f8ff9e376471507cfc99dec7513065d40876b6a18/*-json.log"
+      ]
+    }
+  ],
+  "processors": [
+    {
+      "dissect": {
+        "field": "message",
+        "target_prefix": "dissect",
+        "tokenizer": "%{timestamp-u003e} %{log_level-u003e} %{file_path}:%{line_number-u003e} %{module-u003e} %{instance_name}: %{message}",
+        "when": {
+          "regexp": {
+            "message": "d{4}-d{2}-d{2}Td{2}:d{2}:d{2}.d{3}Z"
+          }
+        }
+      }
+    },
+    {
+      "dissect": {
+        "field": "message",
+        "target_prefix": "dissect",
+        "tokenizer": "%{timestamp} %{+timestamp} %{log_level} | %{module}: %{message}",
+        "when": {
+          "regexp": {
+            "message": "d{4}-d{2}-d{2} d{2}:d{2}:d{2}.d+"
+          }
+        }
+      }
+    }
+  ],
+  "type": "container",
+  "output": {
+    "console": { "pretty": true }
+  }
+}
 ```
 
+Ejecutar:
+
+```bash
+filebeat -c $PWD/prueba-filebeat.json -d="*" --path.data=$PWD/filebeat-data/ --path.home=$PWD/filebeat-data --path.logs=$PWD/ run
 ```
