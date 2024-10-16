@@ -173,6 +173,12 @@ docker run \
   alpine
 ```
 
+Si queremos meter algo completamente custom:
+
+```
+co.elastic.logs/raw: "[{\"containers\":{\"ids\":[\"${data.container.id}\"]},\"multiline\":{\"negate\":\"true\",\"pattern\":\"^test\"},\"type\":\"docker\"}]"
+```
+
 Ejemplo de configuración de filebeat:
 
 ```yaml
@@ -203,6 +209,23 @@ Si queremos ver la configuración que está generando filebeat, subir a debug y 
 
 ```bash
 cat filebeat.log-20241016-50.ndjson | grep "Generated config" | jq .message | cut -c 20- | sed 's/"$//' | sed "s/\\\n//g" | sed "s/\\\//g" | jq
+```
+
+Ejemplo complejo para parsear un log que lleva tabuladores.
+Se usa javascript para convertir los tags en " ". No se puede usar replace porque el símbolo "\t" lo pierde filebeat al leer del label.
+
+```
+    labels:
+      "co.elastic.logs/processors.0.script.lang": "javascript"
+      "co.elastic.logs/processors.0.script.source": "function process(event) { var message = event.Get(\"message\"); if (message) { var tabRegex = new RegExp(String.fromCharCode(9), \"g\"); var newMessage = message.replace(tabRegex, \" \"); event.Put(\"message\", newMessage); } return event; }"
+      "co.elastic.logs/processors.1.dissect.when.regexp.message": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z"
+      "co.elastic.logs/processors.1.dissect.tokenizer": "%{timestamp} %{log_level} %{file_path}:%{line_number} %{module} %{instance_name}: %{message}"
+      "co.elastic.logs/processors.1.dissect.field": "message"
+      "co.elastic.logs/processors.1.dissect.target_prefix": "dissect"
+      "co.elastic.logs/processors.2.dissect.when.regexp.message": "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]+"
+      "co.elastic.logs/processors.2.dissect.tokenizer": "%{timestamp} %{+timestamp} %{log_level} | %{module}: %{message}"
+      "co.elastic.logs/processors.2.dissect.field": "message"
+      "co.elastic.logs/processors.2.dissect.target_prefix": "dissect"
 ```
 
 # Debug
