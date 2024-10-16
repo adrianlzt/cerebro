@@ -196,3 +196,13 @@ filebeat.autodiscover:
         paths:
           - /var/lib/docker/containers/${data.container.id}/*.log
 ```
+
+Si queremos ver la configuración que está generando filebeat, subir a debug y filtrar por "Generated config":
+
+```bash
+cat filebeat.log-20241016-50.ndjson | grep "Generated config" | jq .message | cut -c 20- | sed 's/"$//' | sed "s/\\\n//g" | sed "s/\\\//g" | jq
+```
+
+```
+
+```

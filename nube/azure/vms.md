@@ -83,6 +83,8 @@ Para encontrar el device a partir del lun:
 lsblk -o NAME,HCTL | grep ":${DOCKER_LUN}$" | cut -d ' ' -f 1)
 ```
 
+Parece que los "dataDisks" no están aún en el metadata cuando arranca la VM, por lo que no podemos usarlo para el cloud-init.
+
 # Aceso a internet
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access>
