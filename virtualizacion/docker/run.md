@@ -4,7 +4,11 @@ Obtener el "docker run" de una imagen que ya está corriendo
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike NOMBRE_CONTAINER
 
 Hacer lo mismo con un único comando (guardada copia del run.tpl en este dir):
-docker inspect --format "$(curl -s <https://gist.githubusercontent.com/efrecon/8ce9c75d518b6eb863f667442d7bc679/raw/run.tpl>)" NOMBRE_CONTENEDOR
+
+```bash
+docker inspect --format "$(curl -s https://gist.githubusercontent.com/efrecon/8ce9c75d518b6eb863f667442d7bc679/raw/run.tpl)" NOMBRE_CONTENEDOR
+```
+
 OJO no pilla el tamaño de shm (shared memory, /dev/shm)
 
 Si no funciona "docker inspect", podemos coger el config.v2.json (var/lib/docker/containers/CONTANIERID/) y subirlo aquí:
