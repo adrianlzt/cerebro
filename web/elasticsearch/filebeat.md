@@ -71,6 +71,12 @@ Si tenemos configurado TLS con certificate y key parece que ignora la opción de
 
 Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 
+# Modules
+
+Se almacenan en `/usr/share/filebeat/module/`
+
+Son inputs + processors precofigurados para leer logs de aplicaciones comunes.
+
 # Inputs / Prospectors
 
 ## Docker
