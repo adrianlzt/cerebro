@@ -234,6 +234,12 @@ Se usa javascript para convertir los tags en " ". No se puede usar replace porqu
       "co.elastic.logs/processors.2.dissect.target_prefix": "dissect"
 ```
 
+Si queremos activar/desactivar un fileset de un módulo. Esto es para activar únicamente un fileset.
+
+```yaml
+"co.elastic.logs/fileset": "log"
+```
+
 # Debug
 
 Config file, en json en este caso:
