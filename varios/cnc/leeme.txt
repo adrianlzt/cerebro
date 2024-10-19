@@ -1,0 +1,18 @@
+Se puede diseñar en 2d y luego en el programa de CAM definir la profundidad
+En 3d es si queremos hacer rampas o diseños más complejos
+Hace falta convertir el diseño que tengamos a gCode. Para esto podemos usar freecad.
+En freecad seleccionaremos el modo CAM.
+Tendremos que meterle el tamaño de la pieza de madera que tenemos.
+Las brocas que queramos usar (hay que configurar la velocidad de giro y avance según el tipo de material, el vendedor debería proporcionar está información).
+Luego iremos seleccionando sobre nuestra pieza y que queremos hacer.
+Lo más básico es profile (contorno) o hacer vaciados.
+
+Esa muy importante calibrar la máquina con nuestro diseño.
+Al hacer el CAM deberemos indicar donde está nuestro (0,0,0).
+El x=0,y=0 suele estar en el centro de la pieza o en la esquina inferior izquierda.
+La z deberemos indicar si es en la parte alta de nuestra pieza o en la base
+
+Tenemos que anclar muy bien la pieza (en freecad parece que lo llaman "holding tags/tabs") a la base para que no se mueva, generalmente la atornillamos.
+CUIDADO! El taladro no debe tocar ningún tornillo
+
+Mirar en freecad.md para más detalles de como usarlo.
