@@ -1,1 +1,1 @@
-https://github.com/mhatalski/awesome-cnc
+<https://github.com/mhatalski/awesome-cnc>
