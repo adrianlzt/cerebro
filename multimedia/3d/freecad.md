@@ -15,6 +15,8 @@ Antes de dar por terminado un proyecto dar al botón de "Check the CAM job for c
 
 Configurar el postprocesador según el controlador de la máquina.
 
+Al hacer las distintos operations, podemos jugar con los parámetros para ajustar profundidad, ponerle dressings, etc.
+
 ## Dressings
 
 <https://wiki.freecad.org/CAM_Workbench#:~:text=surface.%20Experimental.-,Path%20Dressup,-Axis%20Map%3A%20Remaps>
@@ -32,6 +34,12 @@ Selecionamos la operación de profile, vamos al menú de CAM -> Path dressup -> 
 <https://wiki.freecad.org/CAM_DressupRampEntry>
 
 Para entrar a la pieza de forma suave.
+
+### Path boundary
+
+<https://wiki.freecad.org/CAM_DressupPathBoundary>
+
+Para limitar la zona de trabajo.
 
 ## 3d
 
