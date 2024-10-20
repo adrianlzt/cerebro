@@ -20,3 +20,12 @@ Mirar en freecad.md para más detalles de como usarlo.
 Antes de hacer el CNC podemos modificar el gcode para quitarle el arranque del spindle, decirle a la máquina que su Z=0 está muy arriba y dejar que se mueva simulando lo que va a hacer.
 
 Antes de cargar el gcode en la app de la máquina pasarlo por https://ncviewer.com/ para ver si está cuadrado, hace lo que esperamos, etc.
+
+
+
+# Direction / mill
+
+Conventional mill VS Climb mill.
+
+Siempre usar climb mill.
+https://youtu.be/U2NF41ixIJ8?si=lwV0brF1QfajfKqI

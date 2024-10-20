@@ -7,10 +7,13 @@ Puede abrir ficheros .stl
 # CAM
 
 <https://wiki.freecad.org/CAM_Walkthrough_for_the_Impatient/en>
+<https://www.youtube.com/@opensourcecnc>
 
 Para generar ficheros de GCode para controlar máquinas CNC, se puede usar FreeCAD CAM.
 
 Antes de dar por terminado un proyecto dar al botón de "Check the CAM job for common errors".
+
+Configurar el postprocesador según el controlador de la máquina.
 
 ## Holding tags/tabs - Sujecciones
 

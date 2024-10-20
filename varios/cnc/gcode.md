@@ -2,6 +2,8 @@ Es el fichero que se envía a la CNC.
 
 Es un fichero de texto que contiene las instrucciones que la máquina debe seguir para realizar el trabajo.
 
+Each CNC Controller speaks a specific G-code dialect, requiring a Dialect-correct Postprocessor to translate the final output from the agnostic internal FreeCAD G-code dialect.
+
 Visualizador online: <https://ncviewer.com/>
 
 Cheatsheet: <https://www.probotix.com/gcode_cheatsheet.pdf>
