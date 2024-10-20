@@ -27,7 +27,7 @@ G0 X0 Y0 ; Return to origin
 M2 ; End program
 ```
 
-Con la máquina forest scientific no me dejar usar G54, me dice que quiere usar la posición absoluta de la máquina y que no está definida.
+Con la máquina forest scientific no me deja usar G54, me dice que quiere usar la posición absoluta de la máquina y que no está definida.
 
 # Códigos
 
