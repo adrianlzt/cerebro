@@ -15,6 +15,11 @@ Edit -> Placement
 
 <https://www.youtube.com/watch?v=2nddnR9L8LU>
 
+# Simuladores
+
+Si instalamos Camotics (aur/camotics), nos aparecerá un nuevo simulador para este software (un icono con un "C").
+<https://youtu.be/RFu-DQ04uZM?t=993>
+
 # Dressings
 
 <https://wiki.freecad.org/CAM_Workbench#:~:text=surface.%20Experimental.-,Path%20Dressup,-Axis%20Map%3A%20Remaps>
@@ -57,6 +62,12 @@ Podemos usar la propiedad "freeze" si estamos tocando la pieza, para evitar que 
 
 Podemos enviar un comando de stop a la máquina hasta que el usuario decida continuar.
 
+## Probing
+
+<https://www.youtube.com/watch?v=dY8SIL1cdmA>
+
+Parece que es para ajustar el eje Z.
+
 # Brocas
 
 <https://wiki.freecad.org/CAM_Tools>
@@ -95,3 +106,9 @@ Usar un "shape string" de Draft. Podremos usarlo como job directamente, sin conv
 ## Vcarve
 
 <<https://wiki.freecad.org/CAM_Vcarve>
+
+# Postprocesado / gCode
+
+Si no le pongo ningún _fixture_, no me genera el gcode.
+
+Parece que por defecto suele poner G54 (use coordinate system 1).

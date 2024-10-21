@@ -8,6 +8,8 @@ Visualizador online: <https://ncviewer.com/>
 
 Cheatsheet: <https://www.probotix.com/gcode_cheatsheet.pdf>
 
+<https://linuxcnc.org/docs/stable/html/#:~:text=User%20Interfaces-,G%2Dcode%20Programming,-Coordinate%20System>
+
 Ejemplo haciendo un cuadrado, sin arrancar el spindle:
 
 ```gcode
@@ -117,8 +119,8 @@ M9 Turn all coolant off
 F Set Feed Rate
 S Set Spindle Speed
 T Select Tool
-M50…M53 P0 (off) or P1 (on) Feed Override, Spindle Override, Adaptive Feed, Feed Hold
-G54…G59, G59.1…G59.3 Select coordinate system
+M50...M53 P0 (off) or P1 (on) Feed Override, Spindle Override, Adaptive Feed, Feed Hold
+G54...G59, G59.1...G59.3 Select coordinate system
 O … sub/endsub, while/endwhile,
 if/else/endif, do/while, call,
 break/continue/return
