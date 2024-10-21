@@ -16,3 +16,15 @@ Web donde venden brocas de madera.
 
 Materiales, velocidades de perfilado, vaciado y taladrado:
 <https://github.com/knipknap/better-tool-library/blob/main/btl/feeds/material.py>
+
+Velocidad cortes madera:
+<https://www.researchgate.net/figure/Recommended-cutting-speed-for-various-materials_tbl3_345430498>
+
+Cutting speed
+Materials min Max
+Softwood 70 100
+Hardwood 70 90
+MDF 60 80
+Plywood 60 80
+Hard Plywood 60 80
+Chipboard 60 120
