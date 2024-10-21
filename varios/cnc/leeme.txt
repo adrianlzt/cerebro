@@ -22,6 +22,10 @@ Antes de hacer el CNC podemos modificar el gcode para quitarle el arranque del s
 Antes de cargar el gcode en la app de la máquina pasarlo por https://ncviewer.com/ para ver si está cuadrado, hace lo que esperamos, etc.
 
 
+# Profundidad
+
+Parece que lo normal suele ser bajar en cada pasada la mitad del radio de la broca.
+
 
 # Direction / mill
 
