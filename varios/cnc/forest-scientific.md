@@ -6,3 +6,5 @@ Este lo genera freecad, tal vez por alguna falta de configuración? <https://wik
 <https://forestscientific.com/makerfab-router/>
 
 El controlador de la máquina creo que es velocitycnc
+
+Potencia = 2.57 kW
