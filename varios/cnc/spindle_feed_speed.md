@@ -1,5 +1,7 @@
-https://www.ns-tool.com/en/technology/technical_data/cutting_speed/
-https://tormach.com/articles/definitive-guide-to-feeds-and-speeds-for-wood
+<https://brturn.github.io/feeds-and-speeds/>
+en freecad hay un plugin que integra esa calculadora
+<https://www.ns-tool.com/en/technology/technical_data/cutting_speed/>
+<https://tormach.com/articles/definitive-guide-to-feeds-and-speeds-for-wood>
 
 Tenemos que dar la velocidad de giro del taladro (spindle speed), la velocidad de anvance horizontal (feed rate) y la velocidad de avance vertical (plunge rate/vertical feed).
 
@@ -10,4 +12,7 @@ CS = Cutting speed in m/min
 D = Drill diameter in mm
 
 Web donde venden brocas de madera.
-https://idcwoodcraft.com/collections/ball-nose
+<https://idcwoodcraft.com/collections/ball-nose>
+
+Materiales, velocidades de perfilado, vaciado y taladrado:
+<https://github.com/knipknap/better-tool-library/blob/main/btl/feeds/material.py>

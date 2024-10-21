@@ -57,21 +57,15 @@ Podemos usar la propiedad "freeze" si estamos tocando la pieza, para evitar que 
 
 Podemos enviar un comando de stop a la máquina hasta que el usuario decida continuar.
 
-# Addons
-
-Para instalar addons, copiarlos a la carpeta Mod.
-
-O desde la UI: Tools -> Addon manager
-
-Se instalan en: ~/.local/share/FreeCAD/Mod
-
-Las que vienen con la instalación están en /usr/share/freecad/Mod
-
 # Brocas
 
 <https://wiki.freecad.org/CAM_Tools>
 
 Usar este plugin para gestionarlas: <https://github.com/knipknap/better-tool-library>
+Al meter este plugin guarda los bits en /home/adrian/.local/share/FreeCAD/Bit
+
+Permite importar catálogos para Fusion360: <https://github.com/knipknap/better-tool-library/blob/main/docs/formats.md#importing-vendor-catalogs>
+DB de un fabricante de brocas: <https://spetools.com/en-eu/pages/spetool-tool-file-database>
 
 Abrir el ToolBit Dock -> Library editor.
 
@@ -82,3 +76,8 @@ Sin ficheros .zip con muchos ficheros dentro.
 Llevan una imagen adjunta: (thumbnails/Thumbnail.png), supongo que para la recreación del trabajo.
 
 Las almaceno en .local/share/FreeCAD/Tools/Bit
+
+# Spindle speed / Feed rate
+
+<https://github.com/dubstar-04/FeedsAndSpeeds/>
+<https://github.com/knipknap/better-tool-library>
