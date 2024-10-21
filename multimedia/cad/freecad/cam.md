@@ -87,3 +87,11 @@ Las almaceno en .local/share/FreeCAD/Tools/Bit
 No soporta importar brocas y luego hacer los cálculos: <https://github.com/knipknap/better-tool-library/issues/17>
 
 Si le cambio el shape por uno de los que vienen con FreeCAD, si me deja hacer los cálculos.
+
+# Texto
+
+Usar un "shape string" de Draft. Podremos usarlo como job directamente, sin convertirlo en 3d.
+
+## Vcarve
+
+<<https://wiki.freecad.org/CAM_Vcarve>
