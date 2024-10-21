@@ -17,6 +17,12 @@ Configurar el postprocesador según el controlador de la máquina.
 
 Al hacer las distintos operations, podemos jugar con los parámetros para ajustar profundidad, ponerle dressings, etc.
 
+## Ajustar ejes / posición
+
+Edit -> Placement
+
+<https://www.youtube.com/watch?v=2nddnR9L8LU>
+
 ## Dressings
 
 <https://wiki.freecad.org/CAM_Workbench#:~:text=surface.%20Experimental.-,Path%20Dressup,-Axis%20Map%3A%20Remaps>
