@@ -63,6 +63,8 @@ Podemos enviar un comando de stop a la máquina hasta que el usuario decida cont
 
 Usar este plugin para gestionarlas: <https://github.com/knipknap/better-tool-library>
 Al meter este plugin guarda los bits en /home/adrian/.local/share/FreeCAD/Bit
+En ./Library/UUID.fctl almacena los mapeos de librería a bit.
+Y las máquinas: ./Machine/UUID.json
 
 Permite importar catálogos para Fusion360: <https://github.com/knipknap/better-tool-library/blob/main/docs/formats.md#importing-vendor-catalogs>
 DB de un fabricante de brocas: <https://spetools.com/en-eu/pages/spetool-tool-file-database>
@@ -80,4 +82,8 @@ Las almaceno en .local/share/FreeCAD/Tools/Bit
 # Spindle speed / Feed rate
 
 <https://github.com/dubstar-04/FeedsAndSpeeds/>
+
 <https://github.com/knipknap/better-tool-library>
+No soporta importar brocas y luego hacer los cálculos: <https://github.com/knipknap/better-tool-library/issues/17>
+
+Si le cambio el shape por uno de los que vienen con FreeCAD, si me deja hacer los cálculos.
