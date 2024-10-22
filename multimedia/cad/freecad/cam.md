@@ -21,6 +21,9 @@ Edit -> Placement
 
 Si instalamos Camotics (aur/camotics), nos aparecerá un nuevo simulador para este software (un icono con un "C").
 <https://youtu.be/RFu-DQ04uZM?t=993>
+No veo eso, pero podemos importar el gcode en camotics para hacer la simulación.
+He tenido que crear una tool a mano que concuerde en número de identificación con el puesto en freecad para que use esa herramienta.
+También he tenido que definir el stock material a mano, porque ponía uno muy grande.
 
 # Dressings
 
