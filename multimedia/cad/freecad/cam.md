@@ -1,5 +1,7 @@
 <https://wiki.freecad.org/CAM_Walkthrough_for_the_Impatient/en>
 <https://www.youtube.com/@opensourcecnc>
+<https://www.youtube.com/@sliptonic>
+parece que es uno de los desarrolladores de FreeCAD CAM.
 
 Para generar ficheros de GCode para controlar máquinas CNC, se puede usar FreeCAD CAM.
 
