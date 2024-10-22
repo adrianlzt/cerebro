@@ -21,7 +21,11 @@ Velocidad cortes madera:
 <https://www.researchgate.net/figure/Recommended-cutting-speed-for-various-materials_tbl3_345430498>
 
 En la formación de FabLab ponen entre 300 y 500 mm/min
+
+```
 N=1000*Vc/(π*D)
+```
+
 Vc=velocidad de corte
 D=diametro de la broca en mm
 Para una broca de 6mm saldría: 16000 - 26000 RPM
@@ -29,17 +33,26 @@ Para una broca de 3mm saldría: 32000 - 53000 RPM
 
 Feed rate (mm/diente) para madera según el diámetro:
 | Diámetro (mm) | Feed rate, Fz (mm/diente)| Plunge rate |
-|--------------- | --------------- |
-| 1-1.5 | 0.02 |
-| 2-2.5 | 0.03 |
-| 3-3.5 | 0.03-0.06 |
-| 4 | 0.04-0.08 |
-| 5 | 0.05-0.12 |
-| 6 | 0.06-0.14 |
-| 8 | 0.08-0.18 |
-| 10 | 0.08-0.24 |
-| 12 | 0.08-0.3 |
+|--------------- | --------------- | --------------- |
+| 1-1.5 | 0.02 | 1xD |
+| 2-2.5 | 0.03 | 1xD |
+| 3-3.5 | 0.03-0.06 | 1.5xD |
+| 4 | 0.04-0.08 | 1.5xD |
+| 5 | 0.05-0.12 | 1.5-2xD |
+| 6 | 0.06-0.14 | 1.5-2xD |
+| 8 | 0.08-0.18 | 1.5-2xD |
+| 10 | 0.08-0.24 | 1.5-2xD |
+| 12 | 0.08-0.3 | 1.5-2xD |
 
 Velocidad de avance (feed rate, mm/min).
 Z: número de dientes de la broca.
-Vf = N * Fz * Z
+Vf = N _Fz_ Z
+
+## Chipload
+
+Table of chiploads for different materials (mm):
+| Material | 3mm | 6mm | 8mm |
+|----------|-----|-----|-----|
+| MDF | 0.05 | 0.08 | 0.1 |
+| Softwood / plywood | 0.035 | 0.07 | 0.09 |
+| Hardwood | 0.03 | 0.06 | 0.08 |
