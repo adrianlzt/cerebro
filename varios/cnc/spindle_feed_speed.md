@@ -20,11 +20,26 @@ Materiales, velocidades de perfilado, vaciado y taladrado:
 Velocidad cortes madera:
 <https://www.researchgate.net/figure/Recommended-cutting-speed-for-various-materials_tbl3_345430498>
 
-Cutting speed
-Materials min Max
-Softwood 70 100
-Hardwood 70 90
-MDF 60 80
-Plywood 60 80
-Hard Plywood 60 80
-Chipboard 60 120
+En la formación de FabLab ponen entre 300 y 500 mm/min
+N=1000*Vc/(π*D)
+Vc=velocidad de corte
+D=diametro de la broca en mm
+Para una broca de 6mm saldría: 16000 - 26000 RPM
+Para una broca de 3mm saldría: 32000 - 53000 RPM
+
+Feed rate (mm/diente) para madera según el diámetro:
+| Diámetro (mm) | Feed rate, Fz (mm/diente)| Plunge rate |
+|--------------- | --------------- |
+| 1-1.5 | 0.02 |
+| 2-2.5 | 0.03 |
+| 3-3.5 | 0.03-0.06 |
+| 4 | 0.04-0.08 |
+| 5 | 0.05-0.12 |
+| 6 | 0.06-0.14 |
+| 8 | 0.08-0.18 |
+| 10 | 0.08-0.24 |
+| 12 | 0.08-0.3 |
+
+Velocidad de avance (feed rate, mm/min).
+Z: número de dientes de la broca.
+Vf = N * Fz * Z

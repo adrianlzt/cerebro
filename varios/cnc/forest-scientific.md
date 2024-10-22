@@ -8,3 +8,5 @@ Este lo genera freecad, tal vez por alguna falta de configuración? <https://wik
 El controlador de la máquina creo que es velocitycnc
 
 Potencia = 2.57 kW
+
+RPM max parece que es 240000 (pdf formación).
