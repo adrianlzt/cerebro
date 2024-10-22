@@ -1,5 +1,10 @@
 <https://brturn.github.io/feeds-and-speeds/>
-en freecad hay un plugin que integra esa calculadora
+En freecad hay un plugin que integra esa calculadora.
+Creo que la velocidad de avance horizontal que da es la máxima teórica posible.
+
+Para ir sobre seguro normalmente se suelen usar RPMs y velocidades de avance horizontal más bajas.
+Es importante poner el chipload para que haga una buena medición.
+
 <https://www.ns-tool.com/en/technology/technical_data/cutting_speed/>
 <https://tormach.com/articles/definitive-guide-to-feeds-and-speeds-for-wood>
 
@@ -56,3 +61,7 @@ Table of chiploads for different materials (mm):
 | MDF | 0.05 | 0.08 | 0.1 |
 | Softwood / plywood | 0.035 | 0.07 | 0.09 |
 | Hardwood | 0.03 | 0.06 | 0.08 |
+
+# Ejemplos
+
+Para hacer la multipresa de madera (hard wood) usé broca de dos dientes de 8mm. 15600RPPM, feed 1687mm/min y stepdown 6mm.
