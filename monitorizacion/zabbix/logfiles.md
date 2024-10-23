@@ -1,5 +1,17 @@
 Mirar troubleshooting.md para ver como trabajar con el log de zabbix-server o zabbix-proxy.
 
+# Loguear a journald
+
+En vez de enviar a fichero, podemos enviar los logs de zabbix-server y proxy al journald.
+De esta manera tendremos el nivel con el que se ha generado el log.
+pri=2: crit
+pri=3: err
+pri=4: warning
+pri=5: debug/trace
+pri=6: info
+
+También nos da las líneas correctamente, sin los cambios de línea que a veces se ven en el fichero de log y que complican el parseado.
+
 # Logear debug a múltiples ficheros
 
 <https://github.com/datadope-io/zabbix/tree/feature/log_multi_file>
@@ -29,16 +41,25 @@ journal: Suppressed 290762 messages from /system.slice/zabbix-server.service
 
 Si escribimos a fichero, aún usando /dev/shm para evitar el disco, los procesos se ralentizan mucho por bloqueos a la hora de escribir al log.
 Ejemplo de backtrace con el bloqueo:
+
 # 0 0x00007fa9e3c7b6a7 in semop () from /lib64/libc.so.6
-# 1 0x000000000048c6e3 in **zbx_mutex_lock (filename=filename@entry=0x4fd47f "log.c", line=line@entry=238, mutex=mutex@entry=0x79790c <log_access>) at mutexs.c:216
+
+# 1 0x000000000048c6e3 in \*\*zbx_mutex_lock (filename=filename@entry=0x4fd47f "log.c", line=line@entry=238, mutex=mutex@entry=0x79790c <log_access>) at mutexs.c:216
+
 # 2 0x00000000004564c0 in lock_log () at log.c:238
-# 3 0x0000000000457045 in**zbx_zabbix_log (level=level@entry=4, fmt=fmt@entry=0x4fe58e "In %s() data:EMPTY") at log.c:423
+
+# 3 0x0000000000457045 in\*\*zbx_zabbix_log (level=level@entry=4, fmt=fmt@entry=0x4fe58e "In %s() data:EMPTY") at log.c:423
 
 En el caso de usar syslog también se atascan. El bt
+
 # 0 0x00007f06c2d23e6d in send () from /lib64/libc.so.6
-# 1 0x00007f06c2d1cd31 in **vsyslog_chk () from /lib64/libc.so.6
-# 2 0x00007f06c2d1cff2 in**syslog_chk () from /lib64/libc.so.6
+
+# 1 0x00007f06c2d1cd31 in \*\*vsyslog_chk () from /lib64/libc.so.6
+
+# 2 0x00007f06c2d1cff2 in\*\*syslog_chk () from /lib64/libc.so.6
+
 # 3 0x0000000000457236 in syslog (**fmt=0x4ea938 "%s",**pri=7) at /usr/include/bits/syslog.h:31
+
 # 4 \_\_zbx_zabbix_log (level=level@entry=4, fmt=fmt@entry=0x4fe58e "In %s() data:EMPTY") at log.c:548
 
 Solución, los los de debug a un fichero distinto por cada pid.
