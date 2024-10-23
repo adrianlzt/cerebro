@@ -251,7 +251,8 @@ Config file, en json en este caso:
       "type": "log",
       "paths": [
         "/var/lib/docker/containers/c0718ac5622149d6d1e2b13f8ff9e376471507cfc99dec7513065d40876b6a18/*-json.log"
-      ]
+      ],
+      "type": "container"
     }
   ],
   "processors": [
@@ -280,7 +281,6 @@ Config file, en json en este caso:
       }
     }
   ],
-  "type": "container",
   "output": {
     "console": { "pretty": true }
   }
