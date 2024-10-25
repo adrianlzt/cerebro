@@ -100,3 +100,8 @@ Si tienen un LB configurado, intentarán usar ese LB.
 # az cli
 
 mirar az.md
+
+# user-data / custom-data
+
+Parece que no es posible acceder al user-data/custom-data configurado en una VM tras su despliegue.
+Únicamente desde dentro de la vm.
