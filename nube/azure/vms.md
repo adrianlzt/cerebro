@@ -96,3 +96,7 @@ Parece que los "dataDisks" no están aún en el metadata cuando arranca la VM, p
 
 Por defecto las VMs pueden salir a internet, aunque no tengan interfaz pública.
 Si tienen un LB configurado, intentarán usar ese LB.
+
+# az cli
+
+mirar az.md
