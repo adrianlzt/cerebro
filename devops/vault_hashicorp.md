@@ -962,7 +962,10 @@ vault debug
   Es para el vault server
 
 Si queremos ver que peticiones hace vault hacia fuera podemos hacer un MitM, con burpsuite por ejemplo.
-HTTPS_PROXY=<http://localhost:8080> vault server
+
+```bash
+HTTPS_PROXY=http://localhost:8080 vault server
+```
 
 Tendremos que instalar la CA de burp en nuestro SO.
 

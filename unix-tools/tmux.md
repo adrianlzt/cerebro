@@ -112,7 +112,7 @@ C-b d
 Listar sessiones (nos da una previsualizacion de que hay en cada uno)
 C-b s
 
-Saltar a la última sesión
+Saltar a la última sesión (last session)
 C-b L
 
 Listar windows:
