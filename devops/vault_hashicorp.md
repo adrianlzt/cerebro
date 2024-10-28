@@ -855,8 +855,10 @@ Otra: <https://github.com/nyxcharon/vault-ui> ARCHIVED
 
 # API
 
-curl -H "X-Vault-Token: foobarxxx" "<http://127.0.0.1:8200/v1/secret?list=true>"
-curl -H "X-Vault-Token: $(vault print token)" -H "X-Vault-Request: true" <http://127.0.0.1:8101/v1/kv/foo3>
+```
+curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
+curl -H "X-Vault-Token: $(vault print token)" -H "X-Vault-Request: true" http://127.0.0.1:8101/v1/kv/foo3
+```
 
 Ver que petición equivalente curl haría el cliente (no devuelve el valor, pero algo envía al server):
 vault kv get -output-curl-string kv/foo3
