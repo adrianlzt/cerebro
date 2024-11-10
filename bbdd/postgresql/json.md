@@ -6,18 +6,18 @@ En 9.3 se incrementa este número de funciones.
 <http://www.postgresqltutorial.com/postgresql-json/>
 
 json vs jsonb
-The data types json and jsonb, as defined by the PostgreSQL documentation,are almost identical; the key difference is that  json data is stored as an exact copy of the JSON input text, whereas jsonb stores data in a decomposed binary form; that is, not as an ASCII/UTF-8 string, but as binary code.
+The data types json and jsonb, as defined by the PostgreSQL documentation,are almost identical; the key difference is that json data is stored as an exact copy of the JSON input text, whereas jsonb stores data in a decomposed binary form; that is, not as an ASCII/UTF-8 string, but as binary code.
 Por lo que veo, ciertos operadores solo se pueden aplicar sobre jsonb, por ejemplo para where, para ver si contiene una key, etc.
 
 CREATE TABLE orders (
- ID serial NOT NULL PRIMARY KEY,
- info json NOT NULL
+ID serial NOT NULL PRIMARY KEY,
+info json NOT NULL
 );
 
 INSERT INTO orders (info)
 VALUES
 (
- '{ "customer": "John Doe", "items": {"product": "Beer","qty": 6}}'
+'{ "customer": "John Doe", "items": {"product": "Beer","qty": 6}}'
 );
 
 Seleccionar:
@@ -26,16 +26,16 @@ SELECT info->>'customer' (en formato postgresql string)
 
 to_json(valor)
 to_jsonb(valor)
-  convertir algo a json/jsonb
+convertir algo a json/jsonb
 
 Si el campo no es tipo json, podemos hacer un cast:
 info::json->'customer'
 
 info#>>'{tabla,nth-elemento}'
-  Coge el elemento n del array tabla (en formato texto)
+Coge el elemento n del array tabla (en formato texto)
 
 jsonb_pretty(data#>'{software,0}')
-  Muestra tabulado el primer elemento del array "software" del dicciónario "data"
+Muestra tabulado el primer elemento del array "software" del dicciónario "data"
 
 tabla#>>'{1}'
 Primer elemento
@@ -50,11 +50,13 @@ Length de un array
 jsonb_array_length()
 
 JSON array a postgres array
+
 > SELECT jsonb_array_elements_text('[{"foo": "3fo1"}, {"foo": "333"}]'::jsonb);
- jsonb_array_elements_text
----------------------------
- {"foo": "3fo1"}
- {"foo": "333"}
+
+## jsonb_array_elements_text
+
+{"foo": "3fo1"}
+{"foo": "333"}
 
 Extraer las claves de los json (claves de primer nivel):
 create table checks(title VARCHAR(30), type varchar(30), juanson json);
@@ -67,10 +69,10 @@ jsonb_object_keys para jsonb
 
 with data as (select event_data::jsonb from main_jobevent)
 select
-  q.key, q.value
+q.key, q.value
 from
-  data d
-  join jsonb_each_text(d.hosts) q on true;
+data d
+join jsonb_each_text(d.hosts) q on true;
 
 Nos saca el dict de event_data como una tabla con columna keys y values
 
@@ -78,11 +80,11 @@ Nos saca el dict de event_data como una tabla con columna keys y values
 
 notes::jsonb->>'class' = 'db';
 
-select * from main_job where extra_vars::jsonb->>'telegraf_hostname' = 'linux123';
+select \* from main_job where extra_vars::jsonb->>'telegraf_hostname' = 'linux123';
 
 Comprobar si tenemos una key en el json
 '{"a":1, "b":2}'::jsonb ? 'b'
-  este sería true
+este sería true
 
 # Modificar
 
@@ -94,7 +96,7 @@ La función para modificar es jsonb_set:
 jsonb_set(target jsonb, path text[], new_value jsonb[, create_missing boolean])
 
 Ejemplo de la doc:
-jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false)   ->   [{"f1":[2,3,4],"f2":null},2,null,3]
+jsonb_set('[{"f1":1,"f2":null},2,null,3]', '{0,f1}','[2,3,4]', false) -> [{"f1":[2,3,4],"f2":null},2,null,3]
 
 Insertar un elemento dentro de otro
 jsonb_insert(target jsonb, path text[], new_value jsonb [, insert_after boolean])
@@ -124,19 +126,19 @@ psql -XAt -d facts -c "select jsonb_pretty(data) from facts where host = 'XXX' o
 select json_build_object('hola', event) from main_jobevent ..
 
 select
-  jsonb_build_object(
-    'query',
-    'asd',
-    'set',
-    jsonb_agg(
-      jsonb_build_object(
-        'uid',
-        'uid(Parent)',
-        'depends_on',
-        jsonb_build_object('uid', 'uid(Child)')
-      )
-    )
-  );
+jsonb_build_object(
+'query',
+'asd',
+'set',
+jsonb_agg(
+jsonb_build_object(
+'uid',
+'uid(Parent)',
+'depends_on',
+jsonb_build_object('uid', 'uid(Child)')
+)
+)
+);
 
 Retorna:
 {"set": [{"uid": "uid(Parent)", "depends_on": {"uid": "uid(Child)"}}], "query": "asd"}
