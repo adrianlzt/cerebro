@@ -35,6 +35,7 @@ yay -G paquete
 cd paquete/trunk
 vi PKGBUILD
 yay -Bi
+si ejecuto esto me vuelve a modificar el PKGBUILD y lo deja como el original
 otra opción: makepkg -si
 
 Si hemos modificado las fuentes, podemos borrar las firmas y ejecutar
