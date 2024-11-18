@@ -26,6 +26,9 @@ tailscale login --nickname=bar
 tailscale switch foo
 tailscale switch bar
 
+Profiles definidos:
+sudo cat /var/lib/tailscale/tailscaled.state | jq ._profiles -r | base64 -d | gron | grep "\.Name"
+
 ## Enrutar subredes
 
 Permitir forward
