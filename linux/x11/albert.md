@@ -6,6 +6,9 @@ Plugins externos
 Pacman
 aur/albert
 
+Config
+~/local/share/albert
+
 Módulos custom:
 /home/adrian/.local/share/albert/org.albert.extension.python/modules
 
@@ -21,3 +24,15 @@ tz America/Argentina/Buenos_Aires
 
 Buscar en el clipboard (xclip):
 cp text
+
+Más plugins, pero parece que necesitarían adaptarse a la nueva API
+<https://github.com/bergercookie/awesome-albert-plugins>
+<https://github.com/bergercookie/awesome-albert-plugins/issues/26>
+
+## Desarrollo
+
+Se pueden hacer en C++ o Python.
+
+### Python
+
+Crear un directorio en ~/.local/share/albert/python/plugins/NOMBRE
