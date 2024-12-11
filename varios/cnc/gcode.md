@@ -1,10 +1,10 @@
-Es el fichero que se envía a la CNC.
+Es el fichero que se envía a la CNC o impresoras 3d.
 
 Es un fichero de texto que contiene las instrucciones que la máquina debe seguir para realizar el trabajo.
 
 Each CNC Controller speaks a specific G-code dialect, requiring a Dialect-correct Postprocessor to translate the final output from the agnostic internal FreeCAD G-code dialect.
 
-Visualizador online: <https://ncviewer.com/>
+Visualizador online (para CNC): <https://ncviewer.com/>
 
 Cheatsheet: <https://www.probotix.com/gcode_cheatsheet.pdf>
 
@@ -28,6 +28,10 @@ G0 Z5 ; Move to safe height
 G0 X0 Y0 ; Return to origin
 M2 ; End program
 ```
+
+# Coordinate system
+
+<https://linuxcnc.org/docs/html/gcode/coordinates.html#cha:coordinate-system>
 
 # Códigos
 
@@ -116,6 +120,9 @@ G97 RPM mode
 M7 Turn mist on
 M8 Turn flood on
 M9 Turn all coolant off
+
+## Others
+
 F Set Feed Rate
 S Set Spindle Speed
 T Select Tool

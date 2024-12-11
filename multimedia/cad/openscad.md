@@ -47,6 +47,54 @@ foo();
 for(increment=[startNumber:endNmuber]){ /* your code ... */ }
 ```
 
+## CLI
+
+Renderizar usando la cli:
+
+```bash
+openscad -D var=123 -o out.stl file.scad
+```
+
+<https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Customizer#:~:text=%3D%20true%3B-,Saving%20Parameters%20value%20in%20JSON%20file,-%5Bedit%20%7C>
+
+Pasando un fichero con los parámetros:
+
+```bash
+openscad -P params.json -P set-of-params -o out.stl file.scad
+```
+
+Dentro del fichero json puede haber varios sets de parámetros. Con -P definimos cual usar.
+
+Podemos generar el fichero usando el modo "customizer" de la UI.
+
+Ejemplo del fichero:
+
+```json
+{
+  "parameterSets": {
+    "FirstSet": {
+      "Labeled_values": "13",
+      "Numbers": "18",
+      "Spinbox": "35",
+      "Vector": "[2, 34, 45, 12, 23, 56]",
+      "slider": "2",
+      "stepSlider": "12",
+      "string": "he"
+    },
+    "SecondSet": {
+      "Labeled_values": "10",
+      "Numbers": "8",
+      "Spinbox": "5",
+      "Vector": "[12, 34, 45, 12, 23, 56]",
+      "slider": "12",
+      "stepSlider": "2",
+      "string": "hello"
+    }
+  },
+  "fileFormatVersion": "1"
+}
+```
+
 ## Debug
 
 Se puede usar echo para pintar valores:
@@ -55,6 +103,42 @@ Se puede usar echo para pintar valores:
 %echo("foo", foo);
 
 echo("increment is currently", increment);
+```
+
+## Condicionales
+
+```openscad
+if (size < 10) {
+  echo("Small");
+} else if (size < 20) {
+  echo("Medium");
+} else {
+  echo("Large");
+}
+```
+
+Operadores:
+`==` (equal to)
+`!=` (not equal to)
+`>` (greater than)
+`<` (less than)
+`>=` (greater than or equal to)
+`<=` (less than or equal to)
+`&&` (logical AND)
+`||` (logical OR)
+`!` (logical NOT)
+
+## Exportar
+
+Lo normal es exportar en .stl.
+
+También podemos exportar como .svg, pero tendremos que tener una proyección.
+Meter nuestro objeto final en esta función:
+
+```openscad
+projection(cut = false) {
+    // Your 3D model here
+}
 ```
 
 # Redondear

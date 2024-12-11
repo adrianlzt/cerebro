@@ -2,6 +2,9 @@ Sintaxis: <http://daringfireball.net/projects/markdown/syntax>
 
 Typora, editor x11 simple WYSIWYG
 
+<https://markwhen.com/>
+A markdown-like journal language for plainly writing logs , gantt charts , blogs , feeds , notes , journals , diaries , todos , timelines , calendars or anything that happens over time.
+
 Online:
 <http://dillinger.io/>
 <https://stackedit.io/editor>

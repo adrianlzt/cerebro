@@ -1,6 +1,7 @@
 <https://brturn.github.io/feeds-and-speeds/>
 En freecad hay un plugin que integra esa calculadora.
 Creo que la velocidad de avance horizontal que da es la máxima teórica posible.
+Parece que el stepdown que mete muy bestia. Veo valores de 22mm para una broca de 6mm. Limitarlo a mano.
 
 Para ir sobre seguro normalmente se suelen usar RPMs y velocidades de avance horizontal más bajas.
 Es importante poner el chipload para que haga una buena medición.
@@ -8,7 +9,11 @@ Es importante poner el chipload para que haga una buena medición.
 <https://www.ns-tool.com/en/technology/technical_data/cutting_speed/>
 <https://tormach.com/articles/definitive-guide-to-feeds-and-speeds-for-wood>
 
-Tenemos que dar la velocidad de giro del taladro (spindle speed), la velocidad de anvance horizontal (feed rate) y la velocidad de avance vertical (plunge rate/vertical feed).
+Tenemos que dar la velocidad de giro del taladro (spindle speed), la velocidad de anvance horizontal (feed rate) y la velocidad de avance vertical (plunge rate/vertical feed/stepdown).
+
+Stepover es la distancia entre dos pasadas consecutivas en el plano horizontal.
+
+El stepdown suele ser la mitad del diámetro de la broca.
 
 The formula for spindle speed (N) in RPM is:
 N = (CS x 1000) / (π x D)

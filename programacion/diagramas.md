@@ -1,5 +1,5 @@
-https://untools.co/
-https://fs.blog/mental-models/
+<https://untools.co/>
+<https://fs.blog/mental-models/>
 Diferentes modelos mentales que podemos usar para resolver problemas.
 
 The map is not the territory: un mapa es una reprensetación, no la realidad
@@ -10,27 +10,24 @@ Second order thinking: considerar los resultados que se producirán más adelant
 Probabilistic Thinking: usar las matemáticas, estadística, lógica para intentar ser más precisos
 Inversion:
 
-
-
-https://excalidraw.com/
+<https://excalidraw.com/>
 gratis
 simula esquemas hechos a mano
 figuras básicas
 
+Para cosas temporales, podemos usar markwhen, un markdown orientado a cosas temporales.
+<https://markwhen.com/>
+A markdown-like journal language for plainly writing logs , gantt charts , blogs , feeds , notes , journals , diaries , todos , timelines , calendars or anything that happens over time .
 
-https://mermaid-js.github.io/mermaid-live-editor/
-Colorear un nodo: https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-and-classes
+<https://mermaid-js.github.io/mermaid-live-editor/>
+Colorear un nodo: <https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-and-classes>
 
-
-https://miro.com/
-
+<https://miro.com/>
 
 rail_road_diagram.md
 
-
 Web para dibujar distintos tipos de diagramas:
-https://www.websequencediagrams.com/
-
+<https://www.websequencediagrams.com/>
 
 en python
-https://diagrams.mingrammer.com/
+<https://diagrams.mingrammer.com/>
