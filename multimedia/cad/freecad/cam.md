@@ -85,6 +85,9 @@ Y las máquinas: ./Machine/UUID.json
 Esto nos vale para calcular los parámetros de corte.
 Por debajo una los cálculos de la app web. Mirar sus instrucciones: <https://brturn.github.io/feeds-and-speeds/instructions.html>
 
+Configurar WOC como el diámetro de la broca.
+Usar la mitad del DOC y luego ir aumentándolo según veamos que funciona bien.
+
 Permite importar catálogos para Fusion360: <https://github.com/knipknap/better-tool-library/blob/main/docs/formats.md#importing-vendor-catalogs>
 DB de un fabricante de brocas: <https://spetools.com/en-eu/pages/spetool-tool-file-database>
 
