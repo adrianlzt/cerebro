@@ -51,6 +51,8 @@ Puede hacer marcado, corte y grabado.
 
 60W
 
+Lente de 2.5"
+
 600x300mm
 
 Altura máxima 200mm
