@@ -87,9 +87,10 @@ set-option -g mode-keys emacs
 
 # Shortcuts
 
-Ver shortcuts:
+Ver shortcuts/bindings:
 C-b ?
 tmux list-keys
+con este comando veo más combinaciones de teclas que lo que muestra C-b ?
 
 Nueva ventana:
 C-b c
