@@ -115,6 +115,10 @@ C-b s
 
 Saltar a la última sesión (last session)
 C-b L
+Sesión anterior (en el orden que estén definidas)
+C-b (
+Sesión posterior (en el orden que estén definidas)
+C-b )
 
 Listar windows:
 C-b w
