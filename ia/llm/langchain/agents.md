@@ -1,5 +1,7 @@
 <https://github.com/pinecone-io/examples/blob/master/generation/langchain/handbook/06-langchain-agents.ipynb>
 
+Ejemplo multiagent: <https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb>
+
 LangGraph
 
 Agents are like "tools" for LLMs. They allow a LLM to access Google search, perform complex calculations with Python, and even make SQL queries.
