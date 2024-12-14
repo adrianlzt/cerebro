@@ -1,0 +1,33 @@
+Se puede diseñar en 2d y luego en el programa de CAM definir la profundidad
+En 3d es si queremos hacer rampas o diseños más complejos
+Hace falta convertir el diseño que tengamos a gCode. Para esto podemos usar freecad.
+En freecad seleccionaremos el modo CAM.
+Tendremos que meterle el tamaño de la pieza de madera que tenemos.
+Las brocas que queramos usar (hay que configurar la velocidad de giro y avance según el tipo de material, el vendedor debería proporcionar está información).
+Luego iremos seleccionando sobre nuestra pieza y que queremos hacer.
+Lo más básico es profile (contorno) o hacer vaciados.
+
+Esa muy importante calibrar la máquina con nuestro diseño.
+Al hacer el CAM deberemos indicar donde está nuestro (0,0,0).
+El x=0,y=0 suele estar en el centro de la pieza o en la esquina inferior izquierda.
+La z deberemos indicar si es en la parte alta de nuestra pieza o en la base
+
+Tenemos que anclar muy bien la pieza (en freecad parece que lo llaman "holding tags/tabs") a la base para que no se mueva, generalmente la atornillamos.
+CUIDADO! El taladro no debe tocar ningún tornillo
+
+Mirar en freecad.md para más detalles de como usarlo.
+
+Antes de hacer el CNC podemos modificar el gcode para quitarle el arranque del spindle, decirle a la máquina que su Z=0 está muy arriba y dejar que se mueva simulando lo que va a hacer.
+
+Antes de cargar el gcode en la app de la máquina pasarlo por https://ncviewer.com/ para ver si está cuadrado, hace lo que esperamos, etc.
+
+Al principio ser conservadores: RPMs no muy altas y velocidades de descenso vertical menores al diámetro de la broca.
+
+Usar la broca más grande posible, ya que será más rápida.
+
+# Direction / mill
+
+Conventional mill VS Climb mill.
+
+Siempre usar climb mill.
+https://youtu.be/U2NF41ixIJ8?si=lwV0brF1QfajfKqI

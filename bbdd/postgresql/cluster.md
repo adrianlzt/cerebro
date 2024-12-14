@@ -24,7 +24,7 @@ El el nodo "slave" quien conecta al master para obtener los valores.
 Crear user para streaming
 createuser -P --replication streaming_barman
 Añadirlo al pg_hba:
-local   replication  streaming_barman  trust
+local replication streaming_barman trust
 Probarlo:
 psql -U streaming_barman -h pg -c "IDENTIFY_SYSTEM" replication=1
 
@@ -32,46 +32,55 @@ psql -U streaming_barman -h pg -c "IDENTIFY_SYSTEM" replication=1
 
 Just 4 steps to set up streaming replication in #PostgreSQL:
 In master server
- initdb -D data
- pg_ctl -D data start
+
+```bash
+initdb -D data
+pg_ctl -D data start
+```
+
 In standby server
+
+```bash
 sudo -u postgres pg_basebackup -D data -PRv -U <user> -h <master's ip>
-    -R, --write-recovery-conf
-                           write recovery.conf for replication
-    -P, --progress         show progress information
-    -v, --verbose          output verbose messages
+```
 
- Si queremos pasar la password
- echo 12.3.17.16:5432:*:replication:MIPASSWORD > .pgpass
- chmod 400 .pgpass
- PGPASSFILE=.pgpass pg_basebackup -D data -PRv -h 12.3.17.16 -U replication
+````
+-R, --write-recovery-conf
+write recovery.conf for replication
+-P, --progress show progress information
+-v, --verbose output verbose messages
 
- El pg_basebackup no empezará hasta que el master haga un checkpoint.
- Mirar en wal.md la query para ver el tiempo entre checkpoints y el último checkpoint realizado.
- No se debe ejecutar CHECKPOINT a mano, ya que le estaremos pidiendo que lo haga lo más rápido posible, colapsando los discos posiblemente.
+Si queremos pasar la password
+echo 12.3.17.16:5432:\*:replication:MIPASSWORD > .pgpass
+chmod 400 .pgpass
+PGPASSFILE=.pgpass pg_basebackup -D data -PRv -h 12.3.17.16 -U replication
 
- En el server master veremos un proceso preparado para enviar el backup, ejemplo:
- postgres: data: walsender replication 172.3.17.13(54370) sending backup "pg_basebackup base backup"
+El pg_basebackup no empezará hasta que el master haga un checkpoint.
+Mirar en wal.md la query para ver el tiempo entre checkpoints y el último checkpoint realizado.
+No se debe ejecutar CHECKPOINT a mano, ya que le estaremos pidiendo que lo haga lo más rápido posible, colapsando los discos posiblemente.
 
- Tambien podemos ver el proceso desde SQL
- select * from pg_stat_activity where application_name='pg_basebackup';
+En el server master veremos un proceso preparado para enviar el backup, ejemplo:
+postgres: data: walsender replication 172.3.17.13(54370) sending backup "pg_basebackup base backup"
 
- Si vemos que se queda indefinidamente en "waiting for checkpoint to complete" mirar mensajes de error en el master.
- Si vemos "ERROR:  base backup could not send data, aborting backup" tendremos que volver a intentar lanzar el comando.
+Tambien podemos ver el proceso desde SQL
+select \* from pg_stat_activity where application_name='pg_basebackup';
 
- Esto tal vez se debe a una pérdida de conectividad entre la replica y el primario. Podría ser algún elemento de red que cierre la conexión por llevar mucho tiempo
- sin tráfico (ya que la replica pide el backup, el primario dice que OK y no vuelve a enviar nada hasta que no pase el checkout).
- Una posible solución sería ejecutar pg_basebackup en los últimos minutos antes de que salte el checkpoint.
+Si vemos que se queda indefinidamente en "waiting for checkpoint to complete" mirar mensajes de error en el master.
+Si vemos "ERROR: base backup could not send data, aborting backup" tendremos que volver a intentar lanzar el comando.
 
- No conseguí que se arrancase si usar "-c fast".
- Lo que hice fue ejecutarlo después de un checkpoint, para saber que no iba a tener mucho impacto.
+Esto tal vez se debe a una pérdida de conectividad entre la replica y el primario. Podría ser algún elemento de red que cierre la conexión por llevar mucho tiempo
+sin tráfico (ya que la replica pide el backup, el primario dice que OK y no vuelve a enviar nada hasta que no pase el checkout).
+Una posible solución sería ejecutar pg_basebackup en los últimos minutos antes de que salte el checkpoint.
 
- pg_ctl -D data start
+No conseguí que se arrancase si usar "-c fast".
+Lo que hice fue ejecutarlo después de un checkpoint, para saber que no iba a tener mucho impacto.
+
+pg_ctl -D data start
 
 Comprobar en el master que vemos la replica conectada:
-select *from pg_stat_replication;
-select* from  pg_replication_slots;
-  si estamos usando slots
+select _from pg_stat_replication;
+select_ from pg_replication_slots;
+si estamos usando slots
 
 Comprobar si somos un primario o replica (off para el primario, on para replica):
 select pg_is_in_recovery();
@@ -83,8 +92,8 @@ Hay cambios en las versiones 11/12/13 con el tema del fichero recovery.conf/repl
 
 <https://www.postgresql.org/docs/16/runtime-config-wal.html#RUNTIME-CONFIG-WAL-ARCHIVE-RECOVERY>
 Hay dos modos "recovery".
-  server as a standby: para que funcione así debemos dejar un ficheor standby.signal
-  targeted recovery mode: para recuperar de un backup, debemos dejar el fichero recovery.signal
+server as a standby: para que funcione así debemos dejar un ficheor standby.signal
+targeted recovery mode: para recuperar de un backup, debemos dejar el fichero recovery.signal
 
 Solo para mismas versiones de postgres (major, las minor si son compatibles). No compatible entre distintos SO (linux, windows, osx).
 Se pasan diffs de binary files.
@@ -93,14 +102,14 @@ Conf needed:
 wal_level = replica (o logical, si queremos que también se pueda hacer replicación lógica)
 max_wal_senders, por defecto vale
 max_replication_slots
-  estos slots se les asocia un id y evitan borrar WALs si no han sido consumidos, por una desconexión del cliente por ejemplo.
-  Mirar monitoring.md para evitar llenar el disco
-  <https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS>
+estos slots se les asocia un id y evitan borrar WALs si no han sido consumidos, por una desconexión del cliente por ejemplo.
+Mirar monitoring.md para evitar llenar el disco
+<https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS>
 
 Conf slave, in recovery.conf (fichero eliminado en postgres 12):
 standby_mode = on
 primary_conninfo = "host=nodeMaster"
-application_name = "xxx"  # nombres para distinguir varios stand-bys, típicamente hostname
+application_name = "xxx" # nombres para distinguir varios stand-bys, típicamente hostname
 primary_slot_name = "nombreslot_si_usamos"
 
 Ojo con llenar el disco porque se desconecte la replica y el primario se llene de WALs.
@@ -121,24 +130,24 @@ Podemos forzar el pausado de replication pg_wal_replay_pause(), pg_wal_replay_re
 Chequear estados:
 
 select pg_is_in_backup();
-  True if an on-line exclusive backup is still in progress.
+True if an on-line exclusive backup is still in progress.
 
 select pg_is_in_recovery();
-  True if recovery is still in progress
-  True también si estamos en una réplica, false en master.
-  Nos vale para distinguir master de replica.
+True if recovery is still in progress
+True también si estamos en una réplica, false en master.
+Nos vale para distinguir master de replica.
 
 select pg_is_wal_replay_paused();
-  True if recovery is paused.
+True if recovery is paused.
 
 El master tiene un "WAL sender" (otro proceso), que lee los ficheros de WAL que los envía al "WAL reciever" del slave, se usa el mismo protocolo que usan los usuarios para conectar (psql).
 En el slave, del wal pasa al "startup" y de ahí a la database (recibe en memoria, escribe a disco, flush and replay changes)
 select pg_current_wal_insert_lsn();
-  wal en memoria
+wal en memoria
 select pg_current_wal_lsn();
-  wal escrito en disco
+wal escrito en disco
 select pg_current_waL_flush_lsn()
-  wal flushed al disco
+wal flushed al disco
 
 Podemos usar pg_wal_lsn_diff() para comparar lsn
 select pg_wal_lsn_diff('12D71/A2D142B8', '11EF2/8F000000');
@@ -150,16 +159,19 @@ Más info sobre esos números:
 Tamaño entre dos wal:
 select pg_size_pretty(pg_lsn '1EA7D/97173390' - '1EA7D/8334D570');
 
-select * from pg_stat_replication;
-    solo muestra clientes actualmente conectados
-    sent_lsn -> el último enviado al slave
-    write_lsn -> wal escrito por el slave
-    flush_lsn -> wal flusheado por el slave
-    replay_lsn -> wal aplicado en el slave
+select \* from pg_stat_replication;
+solo muestra clientes actualmente conectados
+sent_lsn -> el último enviado al slave
+write_lsn -> wal escrito por el slave
+flush_lsn -> wal flusheado por el slave
+replay_lsn -> wal aplicado en el slave
 
 Si estamos usando replication slots, podemos ver la configuración y el último LSN pendiente de enviar con:
+
+```sql
 select * from  pg_replication_slots;
 select slot_name,pg_walfile_name(restart_lsn) from pg_replication_slots;
+````
 
 Doc de esos comandos: <https://www.postgresql.org/docs/12/functions-admin.html#FUNCTIONS-ADMIN-BACKUP-TABLE>
 
@@ -197,6 +209,7 @@ En el fichero recovery.conf para postgres <= 11.
 En postgresql.conf para > 11.
 
 # Hot Standby
+
 <https://cloud.google.com/community/tutorials/setting-up-postgres-hot-standby>
 
 # Logical replication
@@ -264,17 +277,22 @@ CREATE SUBSCRIPTION mysub
 El servidor que se subscribe debe ya tener el schema de tablas creado.
 
 # Estado de los replication slots
+
 <https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS>
 <https://www.postgresql.org/docs/current/view-pg-replication-slots.html>
+
+```sql
 select * from pg_replication_slots;
-  solo vemos entradas si hay cosas conectadas
+```
+
+solo vemos entradas si hay cosas conectadas
 
 # master-master
 
 Postgres-BDR, de pago
-  permite hacer sharding
-  multimaster simétrico
-  tiene solución de conflictos, un log donde se muestran errores de, por ejemplo, inserciones que colisionan
+permite hacer sharding
+multimaster simétrico
+tiene solución de conflictos, un log donde se muestran errores de, por ejemplo, inserciones que colisionan
 <https://www.symmetricds.org/about/overview>
 <https://info.crunchydata.com/blog/active-active-on-kubernetes>
 

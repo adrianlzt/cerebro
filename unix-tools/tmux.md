@@ -87,9 +87,10 @@ set-option -g mode-keys emacs
 
 # Shortcuts
 
-Ver shortcuts:
+Ver shortcuts/bindings:
 C-b ?
 tmux list-keys
+con este comando veo más combinaciones de teclas que lo que muestra C-b ?
 
 Nueva ventana:
 C-b c
@@ -112,8 +113,12 @@ C-b d
 Listar sessiones (nos da una previsualizacion de que hay en cada uno)
 C-b s
 
-Saltar a la última sesión
+Saltar a la última sesión (last session)
 C-b L
+Sesión anterior (en el orden que estén definidas)
+C-b (
+Sesión posterior (en el orden que estén definidas)
+C-b )
 
 Listar windows:
 C-b w

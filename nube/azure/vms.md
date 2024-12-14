@@ -69,9 +69,39 @@ dev/test and other infrequent access workloads that are less sensitive to perfor
 
 128 GiB -> €5.45/month
 
+## extra disks y cloud-init
+
+Si queremos montar extra discos con cloud-init, mirar este script:
+<https://github.com/hashicorp/terraform-provider-azurerm/issues/6117#issuecomment-976428442>
+
+## Mapear disco externo a lun y a dispositivo
+
+Para encontrar el lun a partir de un nombre:
+
+```bash
+curl -sH Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/compute/storageProfile?api-version=2021-02-01" | jq -r '.dataDisks[] | select(.name=="volume-docker") | .lun'
+```
+
+Para encontrar el device a partir del lun:
+
+```bash
+lsblk -o NAME,HCTL | grep ":${DOCKER_LUN}$" | cut -d ' ' -f 1)
+```
+
+Parece que los "dataDisks" no están aún en el metadata cuando arranca la VM, por lo que no podemos usarlo para el cloud-init.
+
 # Aceso a internet
 
 <https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access>
 
 Por defecto las VMs pueden salir a internet, aunque no tengan interfaz pública.
 Si tienen un LB configurado, intentarán usar ese LB.
+
+# az cli
+
+mirar az.md
+
+# user-data / custom-data
+
+Parece que no es posible acceder al user-data/custom-data configurado en una VM tras su despliegue.
+Únicamente desde dentro de la vm.

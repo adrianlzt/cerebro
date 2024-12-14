@@ -26,6 +26,9 @@ tailscale login --nickname=bar
 tailscale switch foo
 tailscale switch bar
 
+Profiles definidos:
+sudo cat /var/lib/tailscale/tailscaled.state | jq ._profiles -r | base64 -d | gron | grep "\.Name"
+
 ## Enrutar subredes
 
 Permitir forward
@@ -44,6 +47,7 @@ Los clientes linux tienen que haber configurado que permiten aceptar rutas.
 sudo tailscale up --accept-routes
 
 ### 4to6 / IPv4 overlapped
+
 <https://tailscale.com/kb/1201/4via6-subnets>
 
 ## Dos clientes simultáneos
@@ -56,6 +60,7 @@ El primer cliente será la instalación normal de tailscale.
 El segundo expondrá únicamente un socket socks5.
 
 # Headscale
+
 <https://headscale.net/>
 Implementación opensource del "backend" de tailscale.
 
@@ -84,6 +89,7 @@ Habilitar una ruta que alguien ha expuesto
 headscale routes enable -r 1
 
 ## ACL
+
 <https://headscale.net/acls/>
 
 Si configuramos la opción de ACL, por defecto nada conectará con nada.
@@ -96,12 +102,13 @@ Luego, por cada paquete se pasa por esos filtros para ver si aceptarlo o dropear
 NOTA: si estamos limitando subnets, deben coincidir con la subred anunciada por alguno de los nodos
 
 ## exit-node
+
 <https://tailscale.com/kb/1103/exit-nodes>
 
 Enrutar todo el tráfico hacia internet por un nodo de la tailnet.
 
 Hace falta configurar sysctl y firewalld para que pueda enrutar tráfico.
-El nodo también debe advertirse como  exit-node
+El nodo también debe advertirse como exit-node
 tailscale set --advertise-exit-node
 
 Hace falta aceptarlo en la interfaz web.
@@ -111,7 +118,7 @@ tailscale exit-node list
 
 Para hacer que un nodo salga por un exit-node determinado:
 tailscale set --exit-node=NOMBRE_NODO --exit-node-allow-lan-access
-  generalmente querremos poner el exit-node-allow-lan-access para poder seguir accediendo a nuestra LAN
+generalmente querremos poner el exit-node-allow-lan-access para poder seguir accediendo a nuestra LAN
 
 Para desactivarlo:
 tailscale set --exit-node=
@@ -140,16 +147,18 @@ Tenemos que permitirlo en las máquinas que queramos acceder via ssh
 tailscale set --ssh
 
 ## Record session
+
 <https://tailscale.com/kb/1246/tailscale-ssh-session-recording>
 
 Enviar una grabación de las sesiones ssh a otro nodo de la tailnet.
 
 tailscale ssh maquina
-  si el user es distinto tendremos que hacer user@maquina
+si el user es distinto tendremos que hacer user@maquina
 
 # Logs
 
 ## Logs de aplicación
+
 <https://github.com/tailscale/tailscale/blob/main/logtail/api.md>
 
 Se envían a <https://log.tailscale.io/>
@@ -184,3 +193,7 @@ Donde tailscaled guarda los perfiles y su información.
 /var/lib/tailscale/tailscaled.state
 
 Son base64 encoded.
+
+El servidor 100.100.100.100 es el propio tailscaled local.
+
+Cuando le realizamos peticiones las reenvia al servidor remoto DNS adecuado (se puede ver con sysdig).

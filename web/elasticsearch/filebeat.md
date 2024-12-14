@@ -6,21 +6,21 @@ Ejemplo leyedo ficheros de log en formato md-json, extrayendo los campos del jso
 
 ```yaml
 filebeat.inputs:
-- type: log
-  paths:
-    - /var/log/messages
-    - /var/log/*.log
-  # scan_frequency: 10s  # por defecto
-  # tail_files: true  # empezar a leer solo nuevas lineas. CUIDADO, la doc dice que podemos perder lineas con esta config si tenemos rotado de logs
+  - type: log
+    paths:
+      - /var/log/messages
+      - /var/log/*.log
+    # scan_frequency: 10s  # por defecto
+    # tail_files: true  # empezar a leer solo nuevas lineas. CUIDADO, la doc dice que podemos perder lineas con esta config si tenemos rotado de logs
 
 processors:
- - decode_json_fields:
-     fields: ['message']
-     target: ''
-     overwrite_keys: true
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+      overwrite_keys: true
 
- - drop_fields:
-     fields: ["message", "prospector", "beat", "source", "offset"]
+  - drop_fields:
+      fields: ["message", "prospector", "beat", "source", "offset"]
 
 setup.template.enabled: false
 
@@ -71,6 +71,12 @@ Si tenemos configurado TLS con certificate y key parece que ignora la opción de
 
 Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 
+# Modules
+
+Se almacenan en `/usr/share/filebeat/module/`
+
+Son inputs + processors + dashboards precofigurados para leer logs de aplicaciones comunes.
+
 # Inputs / Prospectors
 
 ## Docker
@@ -80,7 +86,7 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
   format: docker
   containers.ids: "*"
   paths:
-    - '/var/lib/docker/containers/*/*.log'
+    - "/var/lib/docker/containers/*/*.log"
   json.message_key: log
   json.keys_under_root: true
   json.ignore_decoding_error: true
@@ -95,6 +101,31 @@ Si la imagen es XXX, arranca el modulo A leyendo los logs de ese container.
 
 # Processors
 
+<https://www.elastic.co/guide/en/beats/filebeat/current/filtering-and-enhancing-data.html>
+
+## Condicionales
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/defining-processors.html>
+
+Ejemplos:
+
+```yaml
+processors:
+  - include_fields:
+      when:
+        equals:
+          source: /var/log/sample.log
+      fields: ["tmp"]
+  - drop_event:
+      when:
+        equals:
+          source: /var/log/sample1.log
+  - drop_event:
+      when:
+        not:
+          has_fields: ["tmp"]
+```
+
 ## dissect
 
 Procesador para extraer campos de un mensaje. Se le pasa un patrón y los campos a extraer.
@@ -102,6 +133,20 @@ Aquí podemos probar configuraciones: <https://dissect-tester.jorgelbg.me/>
 
 Key modifiers para el pattern:
 <https://www.elastic.co/guide/en/elasticsearch/reference/current/dissect-processor.html>
+
+## kv
+
+<https://www.elastic.co/guide/en/elasticsearch/reference/current/kv-processor.html>
+
+Para parsear cosas como "key1=value1 key2=value2"
+
+## script / javascript
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/processor-script.html>
+
+## json
+
+<https://www.elastic.co/guide/en/beats/filebeat/current/decode-json-fields.html>
 
 # Keystore
 
@@ -134,6 +179,12 @@ docker run \
   alpine
 ```
 
+Si queremos meter algo completamente custom:
+
+```
+co.elastic.logs/raw: "[{\"containers\":{\"ids\":[\"${data.container.id}\"]},\"multiline\":{\"negate\":\"true\",\"pattern\":\"^test\"},\"type\":\"docker\"}]"
+```
+
 Ejemplo de configuración de filebeat:
 
 ```yaml
@@ -144,9 +195,100 @@ filebeat.autodiscover:
   providers:
     - type: docker
       hints.enabled: true
+```
+
+Si queremos modificar la configuración por defecto, añadir:
+
+```yaml
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
       hints.default_config:
         type: container
         scan_frequency: "1s"
         paths:
           - /var/lib/docker/containers/${data.container.id}/*.log
+```
+
+Si queremos ver la configuración que está generando filebeat, subir a debug y filtrar por "Generated config":
+
+```bash
+cat filebeat.log-20241023-108.ndjson | grep "Generated config" | jq .message | cut -c 20- | sed 's/"$//' | sed "s/\\\n//g" | sed 's#\\\"#"#g' | sed 's#\\\\"#\\"#g' | jq
+```
+
+Ejemplo complejo para parsear un log que lleva tabuladores.
+Se usa javascript para convertir los tags en " ". No se puede usar replace porque el símbolo "\t" lo pierde filebeat al leer del label.
+
+```
+    labels:
+      "co.elastic.logs/processors.0.script.lang": "javascript"
+      "co.elastic.logs/processors.0.script.source": "function process(event) { var message = event.Get(\"message\"); if (message) { var tabRegex = new RegExp(String.fromCharCode(9), \"g\"); var newMessage = message.replace(tabRegex, \" \"); event.Put(\"message\", newMessage); } return event; }"
+      "co.elastic.logs/processors.1.dissect.when.regexp.message": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z"
+      "co.elastic.logs/processors.1.dissect.tokenizer": "%{timestamp} %{log_level} %{file_path}:%{line_number} %{module} %{instance_name}: %{message}"
+      "co.elastic.logs/processors.1.dissect.field": "message"
+      "co.elastic.logs/processors.1.dissect.target_prefix": "dissect"
+      "co.elastic.logs/processors.2.dissect.when.regexp.message": "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]+"
+      "co.elastic.logs/processors.2.dissect.tokenizer": "%{timestamp} %{+timestamp} %{log_level} | %{module}: %{message}"
+      "co.elastic.logs/processors.2.dissect.field": "message"
+      "co.elastic.logs/processors.2.dissect.target_prefix": "dissect"
+```
+
+Si queremos activar/desactivar un fileset de un módulo. Esto es para activar únicamente un fileset.
+
+```yaml
+"co.elastic.logs/fileset": "log"
+```
+
+# Debug
+
+Config file, en json en este caso:
+
+```json
+{
+  "filebeat.inputs": [
+    {
+      "type": "log",
+      "paths": [
+        "/var/lib/docker/containers/c0718ac5622149d6d1e2b13f8ff9e376471507cfc99dec7513065d40876b6a18/*-json.log"
+      ],
+      "type": "container"
+    }
+  ],
+  "processors": [
+    {
+      "dissect": {
+        "field": "message",
+        "target_prefix": "dissect",
+        "tokenizer": "%{timestamp-u003e} %{log_level-u003e} %{file_path}:%{line_number-u003e} %{module-u003e} %{instance_name}: %{message}",
+        "when": {
+          "regexp": {
+            "message": "d{4}-d{2}-d{2}Td{2}:d{2}:d{2}.d{3}Z"
+          }
+        }
+      }
+    },
+    {
+      "dissect": {
+        "field": "message",
+        "target_prefix": "dissect",
+        "tokenizer": "%{timestamp} %{+timestamp} %{log_level} | %{module}: %{message}",
+        "when": {
+          "regexp": {
+            "message": "d{4}-d{2}-d{2} d{2}:d{2}:d{2}.d+"
+          }
+        }
+      }
+    }
+  ],
+  "output": {
+    "console": { "pretty": true }
+  }
+}
+```
+
+Ejecutar:
+
+```bash
+filebeat -c $PWD/prueba-filebeat.json -d="*" --path.data=$PWD/filebeat-data/ --path.home=$PWD/filebeat-data --path.logs=$PWD/ run
 ```

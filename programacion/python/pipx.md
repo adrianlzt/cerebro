@@ -8,5 +8,11 @@ Ejemplo:
 pipx install llm
 ```
 
+Actualizar:
+
+```bash
+pipx upgrade llm
+```
+
 Instala el _binario_ en ~/.local/bin/llm
 Será un enlace al venv: ~/.local/share/pipx/venvs/llm/bin/llm

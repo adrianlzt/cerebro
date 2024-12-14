@@ -1,50 +1,50 @@
-https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
+<https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs>
 
 Captura logs de:
- - kernel log messages
- - Simple system log messages, via the libc syslog(3) call
- - Structured system log messages via the native Journal API, see sd_journal_print(4)
- - Standard output and standard error of system services
- - Audit records, via the audit subsystem
-Almacen binario de logs
-Indexado.
-Salida formateada:
-  - errores en rojo
-  - warnings en negrita
-Por defecto journal no es persistente (se escribe en /run/log/journald/MACHINEID)
+
+- kernel log messages
+- Simple system log messages, via the libc syslog(3) call
+- Structured system log messages via the native Journal API, see sd_journal_print(4)
+- Standard output and standard error of system services
+- Audit records, via the audit subsystem
+  Almacen binario de logs
+  Indexado.
+  Salida formateada:
+- errores en rojo
+- warnings en negrita
+  Por defecto journal no es persistente (se escribe en /run/log/journald/MACHINEID)
 
 MACHINEID es el valor de /etc/machine-id
 
-
 # Configuracion
+
 /etc/systemd/journald.conf
 
 Si existe el directorio /var/log/journal/, se creará almacenamiento persistente, usando el directorio con el nombre del MACHINEID (en este caso no se usará /run/log/journal)
 
-
 journalctl -f
-  como tail -f a los syslog
+como tail -f a los syslog
 
 journalctl -n [X]
-  mostrar X ultimas lineas.
-  si no ponemos nada, muestra las 10 ultimas
-
+mostrar X ultimas lineas.
+si no ponemos nada, muestra las 10 ultimas
 
 # Boots
+
 journalctl --list-boots
-  mostrar los arranques de la máquina
+mostrar los arranques de la máquina
 
 journalctl -b
-  mostrar logs desde el arranque
+mostrar logs desde el arranque
 journalctl -b -1
-  logs del anterior arranque
+logs del anterior arranque
 journalctl -b ID
-  poner el ID que nos dio el --list-boots
-
-
+poner el ID que nos dio el --list-boots
 
 # Filtros
+
 ## Fechas
+
 --since=
 --until=
 
@@ -58,33 +58,37 @@ If the date component is omitted, the current day is assumed.
 yesterday, today, tomorrow
 
 ## Unidad
+
 journalctl -u UNIDAD
-  muestra solo los logs de una unidad
-  -o verbose
-    muestra toda la información, pid, priority, hostname, code, etc
+muestra solo los logs de una unidad
+-o verbose
+muestra toda la información, pid, priority, hostname, code, etc
 journalctl -u nginx.service -u php-fpm.service --since today
 
 ## Proceso / Exec
-journalctl _PID=8088
+
+journalctl \_PID=8088
 
 journalctl /usr/bin/bash
-  mostrar todas las trazas generadas por ese binario
+mostrar todas las trazas generadas por ese binario
 
 Filtrar por el nombre que pone despues del host:
 jun 10 09:36:04 archer nm-dispatcher[14263]: req:3 'up' [tun1]: new request (2 scripts)
 
-journalctl -fn 100 _COMM=nm-dispatcher
-  sacar las ultimas 100 lineas y seguir
-
+journalctl -fn 100 \_COMM=nm-dispatcher
+sacar las ultimas 100 lineas y seguir
 
 ## User / Group
-journalctl _UID=33 --since today
+
+journalctl \_UID=33 --since today
 
 ## Mensajes de kernel
+
 journalctl -k
 journalctl --dmesg
 
 ## Priority
+
 journalctl -p err
 journalctl -p warning..err
 journalctl -p err..err
@@ -99,24 +103,24 @@ journalctl -p err..err
 7: debug
 
 ## Más filtros
+
 man systemd.journal-fields
 
 Ver que grupos están usando journal
-journalctl -F _GID
-
-
+journalctl -F \_GID
 
 # Output
+
 Por defecto saca el output contra less
-  Si vemos lineas truncadas podemos movernos con las flechas de izquierda y derecha
-  Si no queremos pager: --no-pager
+Si vemos lineas truncadas podemos movernos con las flechas de izquierda y derecha
+Si no queremos pager: --no-pager
 
 journalctl -a
-  saca todo, hasta caracteres no printables
+saca todo, hasta caracteres no printables
 
 journalctl -o json
 journalctl -o json-pretty
-  sacar logs en json en una linea, o con cambios de lineas y tabulado
+sacar logs en json en una linea, o con cambios de lineas y tabulado
 
 Tipos de output:
 cat: Displays only the message field itself.
@@ -130,23 +134,23 @@ short-monotonic: The default format with monotonic timestamps.
 short-precise: The default format with microsecond precision
 verbose: Shows every journal field available for the entry, including those usually hidden internally.
 
-
 # Storage / max sizes
+
 journalctl --disk-usage
-  uso del disco
-  va creciendo en bloques de 8M
+uso del disco
+va creciendo en bloques de 8M
 
 Journald automáticamente cuando supera un treshold
 
 journalctl --vacuum-time=04222015
-  borrar ficheros más antiguos de 22/4/2015
+borrar ficheros más antiguos de 22/4/2015
 journalctl --vacuum-time=1years
-  quedarnos con logs del ultimo año
+quedarnos con logs del ultimo año
 journalctl --vacuum-size=1G
-  borrar logs hasta que solo ocupemos 1GB
+borrar logs hasta que solo ocupemos 1GB
 
 Limitar el tamaño, /etc/systemd/journald.conf
-System* para cuando se usa /var/log/journal (fs persistente)
+System*para cuando se usa /var/log/journal (fs persistente)
 Runtime* para cuando se usa /run/log/journal (memoria)
 
 *MaxUse= espacio máximo usado por los ficheros de journal en total (default 10% del filesystem)
@@ -167,9 +171,8 @@ SIGUSR2: obligar a un rotado de ficheros
 
 SyncIntervalSec=5m, timeout antes de sincronizar los journals files al disco. Si un mensaje es CRIT, ALERT o EMERG la sincronización es inmediata
 
-
-
 # Limites
+
 Valores por defecto
 RateLimitInterval=30s
 RateLimitBurst=1000
@@ -187,8 +190,8 @@ Oct 02 03:17:11 app6 systemd-journal[565]: Suppressed 25193 messages from /syste
 Podemos filtrar estos mensajes con:
 journalctl -u systemd-journald
 
-
 # Escribir al journald
+
 systemd-cat -t MIAPP -p 3 echo "pepe"
 echo "coso" | systemd-cat -t MIAPP -p 3
 
@@ -199,27 +202,25 @@ Podemos filtrar con -t MIAPP
 
 Con -t estamos filtrando por el campo SYSLOG_IDENTIFIER
 
-
 # Cursor
+
 journalctl -n 5 --show-cursor
-  saca al final una línea con el cursor
+saca al final una línea con el cursor
 
 Luego podemos pedir el log a partir de este punto:
 journalctl -c "s=acde4146521c446880060487b61d044e;i=13c5c;b=a7be29acb68644c6a7e9ed471c97df79;m=376cd5dce;t=53f0f67c9d68d;x=7dab3c47de31848d"
 
-
-
 # Permitir ejecutar a no root
+
 gpasswd -a USER systemd-journal
 
-
 # Leer del journal
+
 Los grupos adm y wheel tienen permisos de lectura sobre /var/log/journal/ y /run/log/journal
 En caso de no tenerlo podemos ponerlo asi:
-  setfacl -Rnm g:wheel:rx,d:g:wheel:rx,g:adm:rx,d:g:adm:rx /var/log/journal/
-
-
+setfacl -Rnm g:wheel:rx,d:g:wheel:rx,g:adm:rx,d:g:adm:rx /var/log/journal/
 
 # Leer de un directorio no estandar
+
 Por ejemplo, si nos queremos traer los ficheros binarios de un disco de un OS que no funciona y queremos ver los logs.
 journalctl -D path/journal -n 10
