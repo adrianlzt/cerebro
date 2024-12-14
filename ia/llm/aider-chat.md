@@ -40,7 +40,7 @@ Para obtener ayuda:
 /help <question>
 ```
 
-Para prompt multilínea:
+Para prompt multilínea (o arrancar con --multiline y enviar con alt+enter):
 
 ```
 {
@@ -49,7 +49,7 @@ multilínea
 }
 ```
 
-## Models
+# Models
 
 Podemos usar los modelos del marketplace de github gratuitamente con ciertas limitaciones.
 
@@ -71,8 +71,41 @@ Para que funcione gemini hace falta instalar otro paquete (suponiendo que hemos 
 ~/.local/share/pipx/venvs/aider-chat/bin/python -m pip install google
 ```
 
-## Config
+# Config
 
 <https://aider.chat/docs/config/aider_conf.html>
 
 Se puede crear un fichero .aider.conf.yml en el directorio de trabajo, root del git o en el home.
+
+# Watch
+
+<https://aider.chat/docs/usage/watch.html>
+
+Modo de trabajo donde arrancamos aider como:
+
+```bash
+aider --watch
+```
+
+Y por otro lado editamos los ficheros.
+Cuando guaramos algún fichero, aider busca comentarios tipo:
+
+```
+# AI comments
+// AI comments
+-- AI comments
+```
+
+O preguntas usando comentarios tipo:
+
+```
+# ... AI? 
+// ... AI? 
+-- ... AI? 
+```
+
+Y actua en ese momento.
+
+En el caso de las preguntas nos contestará en la shell donde tengamos aider.
+
+Para lo otro realizará el cambio directamente en el código.
