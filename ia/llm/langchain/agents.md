@@ -29,16 +29,89 @@ Action Input: Stock prices of 'ABC' and 'XYZ' on January 3rd and January 4th
 
 En este punto langchain verá que LLM quiere usar una tool, así que pasará el input a dicha tool.
 
+# Grafo
+
+## Estado del grafo
+
+<https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.message.add_messages>
+
+```python
+class State(TypedDict):
+    messages: Annotated[list, add_messages]
+
+
+graph_builder = StateGraph(State)
+```
+
+## Añadir nodos
+
+El esquema de los nodos es recibir el `state` como input y devolver ese `state` modificado.
+
+```python
+def chatbot(state: State):
+    return {"messages": [llm.invoke(state["messages"])]}
+
+
+# "chatbot" es el nombre del nodo.
+# El segundo argumento es la función asociada a ese nodo
+graph_builder.add_node("chatbot", chatbot)
+```
+
+## Enlazar nodos / edges
+
+Debemos definir el inicio del grafo haciendo un _edge_ desde el nodo `START`.
+
+```python
+graph_builder.add_edge(START, "chatbot")
+```
+
+Similar para terminar:
+
+```python
+graph_builder.add_edge("chatbot", END)
+```
+
+## Crear / compilar el grafo
+
+Una vez definido debemos compilar el grafo:
+
+```python
+graph = graph_builder.compile()
+```
+
+Podemos mostrar el grafo con ascii art instalando:
+
+```bash
+pip install grandalf
+```
+
+Y haciendo:
+
+```python
+print(graph.get_graph().draw_ascii())
+```
+
+## Usar el grafo
+
+```python
+e = graph.stream({"messages": [("user", "hola, como te llamas?")]})
+list(e)
+```
+
+`e` es un generador, usamos list para extraer todos los eventos.
+
 # Definir un agente
 
+```python
 conversational_agent = initialize_agent(
-agent='conversational-react-description',
-tools=tools,
-llm=llm,
-verbose=True,
-max_iterations=3,
-memory=memory,
+  agent='conversational-react-description',
+  tools=tools,
+  llm=llm,
+  verbose=True,
+  max_iterations=3,
+  memory=memory,
 )
+```
 
 ## Memoria
 
@@ -46,23 +119,3 @@ En el prompt se va pasando un histórico de la conversación.
 Pero con un ejemplo sencillo que he hecho, en el histórico se veía mi pregunta pero la respuesta de la IA no era completa, solo:
 "AI: Is there anything else I can help you with?"
 Al no tener contexto, no contestó bien a mi pregunta.
-
-# Definir una tool
-
-Ejemplo de una tool que habla con una bbdd SQL.
-
-```
-from langchain.agents import Tool
-from langchain.sql_database import SQLDatabase
-from langchain.chains import SQLDatabaseChain
-
-db = SQLDatabase(engine) # falta la inicialización de este engine
-sql_chain = SQLDatabaseChain(llm=llm, database=db, verbose=True)
-
-sql_tool = Tool(
-    name='Stock DB',
-    func=sql_chain.run,
-    description="Useful for when you need to answer questions about stocks " \
-                "and their prices."
-)
-```
