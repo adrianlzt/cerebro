@@ -93,12 +93,40 @@ print(graph.get_graph().draw_ascii())
 
 ## Usar el grafo
 
+Podemos usar `invoke` o `stream`.
+`invoke` nos devolverá el resultado directamente.
+`stream` nos devolverá un generador.
+
 ```python
 e = graph.stream({"messages": [("user", "hola, como te llamas?")]})
 list(e)
 ```
 
 `e` es un generador, usamos list para extraer todos los eventos.
+
+# Herramientas
+
+Las herramientas serán nodos del grafo.
+
+```python
+from langgraph.prebuilt import ToolNode, tools_condition
+tool_node = ToolNode(tools=[tool])
+```
+
+Para saltar a esas herramientas meteremos un _edge condicional_, que mirará el el LLM ha contestado con que necesita usar una herramienta.
+En ese caso, el edge condicional saltará al nodo herramienta.
+
+Aquí definimos un edge desde el chatbot hacia tools o hacia END. La función `route_tools` será quien tome la decisión.
+
+```python
+graph_builder.add_conditional_edges("chatbot", tools_condition)
+```
+
+También tendremos que definir como volver del nodo tools:
+
+```python
+graph_builder.add_edge("tools", "chatbot")
+```
 
 # Definir un agente
 
@@ -113,9 +141,50 @@ conversational_agent = initialize_agent(
 )
 ```
 
-## Memoria
+# Memoria
 
-En el prompt se va pasando un histórico de la conversación.
-Pero con un ejemplo sencillo que he hecho, en el histórico se veía mi pregunta pero la respuesta de la IA no era completa, solo:
-"AI: Is there anything else I can help you with?"
-Al no tener contexto, no contestó bien a mi pregunta.
+<https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-3-adding-memory-to-the-chatbot>
+
+Almacenar (checkpoint) el estado del grafo (State), según va pasando por los nodos.
+
+Podemos almacenar la memoria en RAM, sqlite, postgres:
+
+```python
+from langgraph.checkpoint.memory import MemorySaver, SqliteSaver, PostgresSaver
+...
+graph = graph_builder.compile(checkpointer=memory)
+```
+
+Para usar la memoria tenemos que definirle un `thread_id`
+
+```python
+graph.invoke({"messages": [("user", "what is the normal color of the tomates. Just one word")]}, {"configurable": {"thread_id": "1"}})
+```
+
+Mientras mantengamos el mismo `thread_id`, se pasará la conversación completa al LLM cada vez que lo invoquemos.
+
+Podemos ver el checkpoint para un thread_id determinado con:
+
+```python
+snapshot = graph.get_state({"configurable": {"thread_id": "1"}})
+snapshot.next # siguiente nodo a procesar, excepto si ya estábamos en "END"
+```
+
+# Human-in-the-loop
+
+<https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-4-human-in-the-loop>
+
+Podemos usar `interrupt` al compilar el grafo para decirle que se espere a intervención humana.
+
+```python
+graph = graph_builder.compile(
+    checkpointer=memory,
+    # This is new!
+    interrupt_before=["tools"],
+    # Note: can also interrupt __after__ tools, if desired.
+    # interrupt_after=["tools"]
+)
+```
+
+En este caso, si el LLM decide que va a usar el nodo de tools, el grafo se dentendrá ahí.
+Podremos consultar la memoria cual es el siguiente nodo que quiere ejecutar con `snapshot.next`.
