@@ -257,3 +257,7 @@ Suponiendo que guardamos en `to_replay` el checkpoint desde el que queremos part
 ```python
 for event in graph.stream(None, to_replay.config, stream_mode="values"):
 ```
+
+# React agent
+
+Si usamos la función create_react_agent, estaremos creando un agente con acceso a herramientas.

@@ -1,3 +1,5 @@
+Listado de tools ya implementadas <https://python.langchain.com/api_reference/community/tools.html>
+
 # Definir una tool
 
 Ejemplo de una tool que habla con una bbdd SQL.
