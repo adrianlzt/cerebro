@@ -174,6 +174,9 @@ snapshot.next # siguiente nodo a procesar, excepto si ya estábamos en "END"
 
 <https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-4-human-in-the-loop>
 
+En esta parte lo desarrollan un poco más, metiendo un nodo tipo humano con su interrupt:
+<https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-6-customizing-state>
+
 Podemos usar `interrupt` al compilar el grafo para decirle que se espere a intervención humana.
 
 ```python
@@ -233,4 +236,24 @@ Si queremos modificar un mensaje podemos especificar el id del mensaje:
 
 ```python
 graph.update_state({"configurable": {"thread_id": "2"}}, {"messages": [HumanMessage(content="search in internet the euromillon winner number of the 2023/03/21",id='56e9a015-ed2d-4e7d-be94-c4c68db58b6d')]}, as_node="__start__")
+```
+
+# Time travel
+
+<https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-7-time-travel>
+
+Podemos ir a un checkpoint del pasado, hacer modificaciones y volver a ejecutar desde ahí.
+
+Para iterar por los checkpoints anteriores:
+
+```python
+for state in graph.get_state_history(config):
+  ...
+  to_replay = state
+```
+
+Suponiendo que guardamos en `to_replay` el checkpoint desde el que queremos partir, podemos reanudar el flujo con:
+
+```python
+for event in graph.stream(None, to_replay.config, stream_mode="values"):
 ```
