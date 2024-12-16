@@ -209,8 +209,28 @@ Un caso típico del Human-in-the-loop es modificar el estado, por ejemplo para s
 Podemos hacerlo con `graph.update_state`
 
 ```python
-from langchain_core.messages import AIMessage, ToolMessage
+from langchain_core.messages import AIMessage, ToolMessage, HumanMessage
 graph.update_state({"configurable": {"thread_id": "2"}}, {"messages": [ToolMessage(content="1 4 8 9 10 and 14", tool_call_id='9f7dc6ed-68be-4242-b1b6-0434b074b72a')]})
 ```
 
-Al hacer esto perdemos el next node.
+Hacer un update_state simula un step.
+`update_state` se comporta como si hubiese sido un nodo más del grafo.
+Si en el grafo no tenemos ese nodo definido, no tendremos un next node al que ir.
+Pero podemos simular que `update_state` es un nodo determinado, usando `as_node="nodo"`
+Con esto conseguiremos que se siga el flujo del grafo.
+
+Si usamos `update_state` para modificar los `messages`, dependerá de como hayamos configurado ese parámetro, de como se actuará.
+Si tenemos definido así el State:
+
+```python
+class State(TypedDict):
+    messages: Annotated[list, add_messages]
+```
+
+Se hará un append a la lista de mensajes.
+
+Si queremos modificar un mensaje podemos especificar el id del mensaje:
+
+```python
+graph.update_state({"configurable": {"thread_id": "2"}}, {"messages": [HumanMessage(content="search in internet the euromillon winner number of the 2023/03/21",id='56e9a015-ed2d-4e7d-be94-c4c68db58b6d')]}, as_node="__start__")
+```
