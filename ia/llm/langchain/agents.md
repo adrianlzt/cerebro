@@ -213,6 +213,4 @@ from langchain_core.messages import AIMessage, ToolMessage
 graph.update_state({"configurable": {"thread_id": "2"}}, {"messages": [ToolMessage(content="1 4 8 9 10 and 14", tool_call_id='9f7dc6ed-68be-4242-b1b6-0434b074b72a')]})
 ```
 
-En la doc meten un ToolMessage y un AIMessage.
-Si meto solo el ToolMessage veo que en next del snapshot no hay siguiente nodo.
-Estaba esperando que, tras simular la respuesta del nodo tools, el siguiente nodo fuese de nuevo el llm.
+Al hacer esto perdemos el next node.
