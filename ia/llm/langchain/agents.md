@@ -188,3 +188,31 @@ graph = graph_builder.compile(
 
 En este caso, si el LLM decide que va a usar el nodo de tools, el grafo se dentendrá ahí.
 Podremos consultar la memoria cual es el siguiente nodo que quiere ejecutar con `snapshot.next`.
+Podemos ver que tool quiere usar y como con:
+
+```python
+snapshot.values['messages'][-1].tool_calls
+```
+
+Si queremos continuar con el grafo, pasaremos un `None`:
+
+```python
+graph.invoke(None, {"configurable": {"thread_id": "2"}})
+```
+
+## Modificar el state
+
+<https://langchain-ai.github.io/langgraph/tutorials/introduction/#part-5-manually-updating-the-state>
+
+Un caso típico del Human-in-the-loop es modificar el estado, por ejemplo para simular que se ha usado la herramienta y el resultado que hubiese dado.
+
+Podemos hacerlo con `graph.update_state`
+
+```python
+from langchain_core.messages import AIMessage, ToolMessage
+graph.update_state({"configurable": {"thread_id": "2"}}, {"messages": [ToolMessage(content="1 4 8 9 10 and 14", tool_call_id='9f7dc6ed-68be-4242-b1b6-0434b074b72a')]})
+```
+
+En la doc meten un ToolMessage y un AIMessage.
+Si meto solo el ToolMessage veo que en next del snapshot no hay siguiente nodo.
+Estaba esperando que, tras simular la respuesta del nodo tools, el siguiente nodo fuese de nuevo el llm.
