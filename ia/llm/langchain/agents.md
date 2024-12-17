@@ -1,6 +1,9 @@
 <https://github.com/pinecone-io/examples/blob/master/generation/langchain/handbook/06-langchain-agents.ipynb>
 
-Ejemplo multiagent: <https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb>
+Multiagent:
+<https://blog.langchain.dev/langgraph-multi-agent-workflows/>
+<https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb>
+<https://github.com/rotemweiss57/gpt-newspaper>
 
 LangGraph
 
