@@ -1,10 +1,5 @@
 <https://github.com/pinecone-io/examples/blob/master/generation/langchain/handbook/06-langchain-agents.ipynb>
 
-Multiagent:
-<https://blog.langchain.dev/langgraph-multi-agent-workflows/>
-<https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb>
-<https://github.com/rotemweiss57/gpt-newspaper>
-
 LangGraph
 
 Agents are like "tools" for LLMs. They allow a LLM to access Google search, perform complex calculations with Python, and even make SQL queries.
@@ -31,6 +26,14 @@ Action Input: Stock prices of 'ABC' and 'XYZ' on January 3rd and January 4th
 """
 
 En este punto langchain verá que LLM quiere usar una tool, así que pasará el input a dicha tool.
+
+# Multiagent
+
+Decidir que arquitectura queremos usar: <https://langchain-ai.github.io/langgraph/concepts/multi_agent/#multi-agent-architectures>
+
+<https://blog.langchain.dev/langgraph-multi-agent-workflows/>
+<https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/multi_agent/multi-agent-collaboration.ipynb>
+<https://github.com/rotemweiss57/gpt-newspaper>
 
 # Grafo
 
