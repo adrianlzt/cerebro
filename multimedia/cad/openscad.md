@@ -1,3 +1,6 @@
+mirar cadquery.md
+<https://cadquery.readthedocs.io/en/latest/intro.html#why-cadquery-instead-of-openscad>
+
 # OpenSCAD
 
 <https://openscad.org/>
