@@ -10,6 +10,12 @@ yay oracle-instantclient-sqlplus
 
 sqlplus hr/my_hr_password@host_computer_name:1521/SID
 
+Para conectar como admin, con el usuario oracle:
+
+```
+ORACLE_HOME=/u01/app/oracle/product/19.0.0.0/dbhome_1 /u01/app/oracle/product/19.0.0.0/dbhome_1/bin/sqlplus / as sysdba
+```
+
 Ejemplo en una centos 7:
 ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE /opt/oracle/product/21c/dbhomeXE/bin/sqlplus  "oracle_user/D4t4d0p3@localhost:1539/XE"
 
