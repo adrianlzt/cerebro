@@ -8,13 +8,17 @@ Script de prueba para contar tokens en un directorio
 Para contar tokens de gemini: <https://medium.com/google-cloud/counting-gemini-text-tokens-locally-with-the-vertex-ai-sdk-78979fea6244>
 
 ```python
+import sys
 from vertexai.preview import tokenization
 
 model_name = "gemini-1.5-flash-001"
 tokenizer = tokenization.get_tokenizer_for_model(model_name)
 
-contents = "Hello World!"
+contents = sys.stdin.read()
+
 result = tokenizer.count_tokens(contents)
 
 print(f"{result.total_tokens = :,}")
 ```
+
+cat fichero | python token_count.py
