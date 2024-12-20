@@ -9,3 +9,9 @@ Para crear una aplicación dar al botón de "Use this template", a la derecha de
 
 Configurar las credenciales como se explica aquí:
 <https://github.com/Yuyz0112/dewhale/blob/main/docs/quick-start.md>
+
+Configurar en Github actions para darle permisos:
+Workflow permissions:
+  Read and write permissions
+  Allow GitHub Actions to create and approve pull requests
+Save
