@@ -4,3 +4,9 @@
 just is a handy way to save and run project-specific commands.
 
 Ejemplo de uso: <https://github.com/simonw/llm/blob/main/Justfile>
+
+Ver comandos:
+
+```bash
+just --list
+```
