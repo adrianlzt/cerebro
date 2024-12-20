@@ -1,5 +1,7 @@
 <https://dewhale.pages.dev/>
 
+Parece abandonado, me da varios problemas, no lo he conseguido echar a andar (tampoco lo he intentado mucho).
+
 Opción opensource de v0 de vercel.
 
 Crear aplicaciones web con React o vue usando prompts.

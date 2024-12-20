@@ -31,6 +31,8 @@ borg extract --list ::default-2020-05-21T08:42:00 home/user/pulse
   extraer/recuperar ciertos ficheros de un backup
   los dejará en home/user/pulse
 
+borg mount ::nombre-fecha mountpath/
+
 Conectará con la clave ssh que tengamos en ~/.ssh/id_rsa
 
 vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
