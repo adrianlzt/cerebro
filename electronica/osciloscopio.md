@@ -8,6 +8,13 @@ Osciloscopio que se puede conectar vía USB y funciona con Linux.
 
 <https://sigrok.org/wiki/Hantek_6022BE>
 
+Parece que solo es necesario conectar el cable usb negro (el otro no he mirado para que es).
+
+Gain range: 10mV - 5V (9 steps).
+Si queremos medir más voltaje, configurar la sonda en modo 10x, lo que reducirá el voltaje.
+
+Por ejemlo, si queremos medir algo de 12v, ponemos la sonda a 10x y en el software veremos 1.2v.
+
 # Sigrok
 
 Programa para manejar dispositivos de medición. De facto en linux
