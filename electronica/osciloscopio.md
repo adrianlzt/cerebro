@@ -20,6 +20,10 @@ Por ejemlo, si queremos medir algo de 12v, ponemos la sonda a 10x y en el softwa
 Programa para manejar dispositivos de medición. De facto en linux
 
 Pulseview, interfaz gráfica para sigrok, muy básica.
+<https://sigrok.org/doc/pulseview/unstable/manual.html>
+
+Lo que nos permite es grabar la señal durante un tiempo (n número de muestras a una frecuencia determinada).
+Por ejemlo, tomar 10M muestras a 1MHz (10s de grabación).
 
 One of Sigrok's strengths is its ability to decode various digital protocols (I2C, SPI, UART, etc.). If your signal involves a known protocol, you can select the appropriate decoder plugin in PulseView to decode the data and display the decoded information
 
