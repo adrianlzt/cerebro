@@ -43,6 +43,22 @@ ST_AsText(ST_FlipCoordinates(xxx))
 
 raster is a new PostGIS type for storing and analyzing raster data.
 
+Obtener el SRID usado en el raster:
+
+```sql
+SELECT ST_SRID(rast) AS srid FROM movistar_coverage limit 1 ;
+```
+
+# SRID
+
+Obtener información de un SRID:
+
+```sql
+SELECT * FROM spatial_ref_sys WHERE srid = 4326;
+```
+
+Obtener estadísticas: ST_SummaryStats, nos devuelve: count, sum, mean, stddev, min, max
+
 # Errores
 
 ## Input geometry has unknown (0) SRID

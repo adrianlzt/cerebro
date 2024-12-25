@@ -1,4 +1,7 @@
-https://geojson.org/
+<https://geojson.org/>
+
+<https://geojson.io/>
+Para generar y visualizar geojsons.
 
 GeoJSON is a format for encoding a variety of geographic data structures.
 
@@ -13,5 +16,8 @@ GeoJSON is a format for encoding a variety of geographic data structures.
   }
 }
 
+If no SRID is specified, it is assumed to be WGS84 (EPSG:4326)
+
 # python
-https://pypi.org/project/geojson/
+
+<https://pypi.org/project/geojson/>
