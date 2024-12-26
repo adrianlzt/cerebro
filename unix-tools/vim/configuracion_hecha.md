@@ -21,11 +21,13 @@ Si presionamos
 Muchos ya vienen preparados en los "extras".
 Mirar en :LazyExtras
 
-## package manager
+## package manager, formatters, linters, etc
 
 Usa mason.
 Easily install and manage LSP servers, DAP servers, linters, and formatters.
 :Mason
+
+También se puede abrir con <leader>cm
 
 ## diagnostics
 
