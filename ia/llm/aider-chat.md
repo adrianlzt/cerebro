@@ -6,6 +6,12 @@ Estoy usando el modelo azure/gpt4o usando la API key de Github.
 
 Agente SWE (software engineering)
 
+Para instalarlo:
+
+```bash
+uvx -p /usr/bin/python aider-install
+```
+
 Definir las variables de entorno.
 Luego arrancar `aider`.
 
