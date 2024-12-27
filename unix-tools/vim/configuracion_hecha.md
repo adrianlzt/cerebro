@@ -134,6 +134,14 @@ vim.g.mapleader = ","
 Creo que nuestra customización va en:
 ~/.config/nvim.nvchad/lua/options.lua
 
+# Window popup
+
+Usa <https://github.com/folke/noice.nvim> para mostrar "ventanas" dentro de neovim.
+
+Para los keywords de noice buscar por "noice" o "notification"
+
+space+n: histórico de notificaciones
+
 # TODO
 
 meter snippet ansible
