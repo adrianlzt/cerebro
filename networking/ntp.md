@@ -1,4 +1,10 @@
+# ntp-check
+
+Pequeño programa en go para comprobar una conexión a time.google.com:123
+<https://github.com/adrianlzt/ntp-check/releases/download/0.1.0/ntp-check>
+
 # timesync (systemd)
+
 Cliente ntp parte de systemd
 
 timedatectl status
@@ -8,17 +14,17 @@ Activar ntp
 timedatectl set-ntp true
 
 # Chrony
+
 Sustituto moderno de ntp
 
 Comprobar que tenemos "sources" (servidores NTP a los que podemos conectar):
 chronyc activity
 
-Comprobar que estamos conectados y funcionando (Reach=377)
+Comprobar que estamos conectados y funcionando (Reach=77)
 chronyc sources
 
-Comprobar como vamos de desfasados (solo funciona si tenemos sources funcionando)
+Comprobar como vamos de desfasados (solo funciona si tenemos sources funcionando; tenemos que tener un Reference ID)
 chronyc tracking
-
 
 Por defecto chrony va corrigiendo el tiempo modificando ligeramente la velocidad de los segundos para evitar saltos (que pueden afectar negativamente a cierto software).
 
@@ -27,33 +33,28 @@ makestep 1.0 3
 
 Si reiniciamos el servicio de chronyd se cambia la hora brúscamente.
 
-
-
 # NTP
-http://www.pool.ntp.org/es/zone/es
+<http://www.pool.ntp.org/es/zone/es>
 
 ntpdate 1.es.pool.ntp.org
 
-ntpdate program is to be retired 
+ntpdate program is to be retired
 
 Si esta corriendo ntpd podemos usar:
 ntpdate -u server.com
-
 
 Usar ntpd:
 /etc/ntp.conf
 server 1.1.1.1
 server 2.2.2.2
 
-
 chkconfig ntpd on
 service ntpd start
-
 
 Comprobar el estado
 ntpstat
 
-http://support.ntp.org/bin/view/Support/TroubleshootingNTP
+<http://support.ntp.org/bin/view/Support/TroubleshootingNTP>
 Comprobar que el servidor ya está en proceso de sincronización ejecutando la siguiente sentencia:
 ntpq -n -p
   -n, numeric host addresses
@@ -74,18 +75,16 @@ El servidor está en fase de inicialización o no llega (columna reach con valor
 Campo "reach" de "ntpq -p".
 Es un registro de como han ido las últimas 8 actualizaciones.
 Es una representación octal: 377 = 11111111 (las últimas 8 actualizaciones han ido bien)
-http://www.linuxjournal.com/article/6812
-
-
+<http://www.linuxjournal.com/article/6812>
 
 # Forzar update
+
 systemctl stop ntpd
 ntpdate 0.centos.pool.ntp.org
 systemctl start ntpd
 
-
-
 # Stratum / Uso como servidor
+
 ntpdc -c sysinfo
 
 El nivel de stratum es uno menos del que nos estamos conectando
