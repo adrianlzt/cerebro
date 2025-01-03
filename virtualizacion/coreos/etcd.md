@@ -26,6 +26,7 @@ Como saber si el hardware es suficientemente rápido para etcd (test con "fio"):
 <https://web.archive.org/web/20230123204909/https://www.ibm.com/cloud/blog/using-fio-to-tell-whether-your-storage-is-fast-enough-for-etcd>
 
 # etcdctl / CLI
+
 <https://github.com/coreos/etcd/tree/master/etcdctl>
 
 Lo que este en v2 no tiene porque verse en v3
@@ -121,6 +122,7 @@ Ejemplo teórico de un HA de postgresql usando etcd
 <https://blog.compose.io/high-availability-for-postgresql-batteries-not-included/>
 
 ## Statistics
+
 <https://coreos.com/etcd/docs/latest/v2/api.html#statistics>
 
 /v2/stats/leader
@@ -133,6 +135,7 @@ un montón de métricas sobre el estado del nodo (id, bytes rx/tx, star time, es
 estadisticas sobre número de creaciones, borrados, get, watch, etc
 
 # Cluster
+
 <https://coreos.com/etcd/docs/latest/v2/docker_guide.html#running-a-3-node-etcd-cluster>
 
 Instrucciones para montar un cluster de etcd.
@@ -166,6 +169,7 @@ sudo docker exec -it etcd etcdctl -w table endpoint status --cluster
 Para los clientes el puerto es el 2379
 
 ## Discovery
+
 <https://etcd.io/docs/v3.5/op-guide/clustering/>
 
 En vez de poner las IPs directamente se pueden usar distintos métodos para hacer discovery.
@@ -177,6 +181,7 @@ Podemos usar un cluster etcd ya montado o usar registros SRV DNS.
 --initial-cluster-state existing
 
 # BackUp / Disaster recovery
+
 <https://coreos.com/etcd/docs/latest/v2/admin_guide.html#disaster-recovery>
 etcdctl backup ...
 
@@ -204,6 +209,7 @@ Idea similar a postgres.
 snap son snapshots desde las cuales se puede recuperar un cluster de etcd.
 
 ## Cuota
+
 <https://etcd.io/docs/v3.2/op-guide/maintenance/>
 
 Users can configure the quota of the backend db size using flag --quota-backend-bytes . It's the max number of bytes the etcd db file may consume, namely the ${etcd-data-dir}/member/snap/db file. Its default value is 2GB, and the suggested max value is 8GB. 2GB is usually sufficient for most use cases.
@@ -235,6 +241,7 @@ Para un lease determinado, ver su TTL y keys asociadas:
 etcdctl lease timetolive --keys 695682b0c0573e40
 
 # Monitorización
+
 <https://sysdig.com/blog/monitor-etcd/>
 <https://github.com/coreos/etcd/blob/master/Documentation/faq.md>
 
@@ -246,6 +253,10 @@ etcdctl lease timetolive --keys 695682b0c0573e40
 
 monitor backend_commit_duration_seconds (p99 duration should be less than 25ms) to confirm the disk is reasonably fast
 monitor wal_fsync_duration_seconds (p99 duration should be less than 10ms) to confirm the disk is reasonably fast
+
+sync duration of 1.083760629s, expected less than 1s
+<https://github.com/etcd-io/etcd/issues/10414>
+Hay un ejemplo del comando "fio" para testear la velocidad de los discos.
 
 Another metric to consider is the member latency: delay until a Follower achieves data coherence with the cluster Leader.
 In a testing scenario running on a local network, the sync latencies are fairly stable around 0.01-0.02 sec.
