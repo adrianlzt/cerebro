@@ -1,3 +1,5 @@
+Para control automático via LLM mirar click3.md
+
 Mirar scrcpy.md
 
 <https://github.com/xSAVIKx/AndroidScreencast>
