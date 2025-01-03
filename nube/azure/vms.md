@@ -105,3 +105,14 @@ mirar az.md
 
 Parece que no es posible acceder al user-data/custom-data configurado en una VM tras su despliegue.
 Únicamente desde dentro de la vm.
+
+# Imágenes
+
+Para sacar el listado de imágenes disponibles.
+
+<https://stackoverflow.com/questions/57395138/how-to-set-the-virtual-machine-image-details-e-g-publisher-offer-sku-and-vers>
+
+```bash
+az vm image list -o table --all
+az vm image list --offer GitLab -o table --all
+```

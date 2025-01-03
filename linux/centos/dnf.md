@@ -44,3 +44,22 @@ Meter un fichero en /etc/yum/protected.d/\*.conf con los nombres de los paquetes
 <https://dnf-plugins-core.readthedocs.io/en/latest/index.html>
 
 A parte de los que vienen, podemos instalar más con dnf-plugins-core
+
+# Dependencias
+
+```bash
+dnf deplist PAQUETE
+```
+
+Eso nos dará las deps del paquete más moderno.
+Si queremos del paquete que tenemos instalado:
+
+```bash
+dnf deplist PAQUETE --installed
+```
+
+Obtener dos niveles de dependencias de un paquete:
+
+```bash
+for i in $(dnf repoquery --requires --resolve git); do echo -e "\n$i:"; dnf repoquery --requires --resolve $i; done
+```
