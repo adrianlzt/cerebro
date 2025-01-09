@@ -971,6 +971,12 @@ HTTPS_PROXY=http://localhost:8080 vault server
 
 Tendremos que instalar la CA de burp en nuestro SO.
 
+Para el cliente:
+
+```bash
+HTTPS_PROXY=http://localhost:8000 VAULT_SKIP_VERIFY=true vault ...
+```
+
 # Backup
 
 Cuidado si usamos autounseal, porque si perdemos acceso al provider que usa para desbloquear, no podremos recuperar los datos.
