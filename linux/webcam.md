@@ -18,6 +18,12 @@ Ver stream de una webcam:
 ffplay /dev/video0
 ```
 
+Generar un video grabando de la webcam:
+
+```bash
+ffmpeg -f v4l2 -i /dev/video0 -c:v libx264 output2.mp4
+```
+
 # guvcview
 
 pacman -S guvcview
