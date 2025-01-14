@@ -43,7 +43,7 @@ SCAN Listener is enabled.
 ```
 
 ```bash
-srvctl status scan_listener
+$ srvctl status scan_listener
 SCAN Listener LISTENER_SCAN1 is enabled
 SCAN listener LISTENER_SCAN1 is running on node rac1
 SCAN Listener LISTENER_SCAN2 is enabled
