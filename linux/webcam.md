@@ -120,7 +120,7 @@ Parece que la clave está en la codificación del vídeo, que debe ser yuv420p.
 Para grabar un vídeo de la webcam con ese formato:
 
 ```bash
-ffmpeg -stream_loop -1 -re -i grabacion_webcam_yuv420p.mp4 -f v4l2 /dev/video2
+ffmpeg -f v4l2 -i /dev/video0 -pix_fmt yuv420p grabacion_webcam_yuv420p.mp4
 ```
 
 Luego podemos simular la webcam con:
