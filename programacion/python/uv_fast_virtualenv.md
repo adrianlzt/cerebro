@@ -10,3 +10,31 @@ uv venv --system-site-packages
 
 Instalar un requirements.txt reproduciendo como hubiese sido en una fecha determinada
 uv pip install --exclude-newer 2020-01-01 -r requirements.txt
+
+# Ejecutar scripts
+
+## Pasando versión y deps
+
+```bash
+uv run --python 3.12 --with pandas python
+```
+
+## Declarar python y versiones en el fichero
+
+```python
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#   "requests",
+# ]
+# ///
+import requests
+
+print(requests.get("https://eth0.me").text)
+```
+
+```bash
+chmod a+x fichero.py
+./fichero.py
+```
