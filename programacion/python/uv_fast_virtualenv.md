@@ -38,3 +38,13 @@ print(requests.get("https://eth0.me").text)
 chmod a+x fichero.py
 ./fichero.py
 ```
+
+# Docker
+
+<https://docs.astral.sh/uv/guides/integration/docker/>
+
+```bash
+docker run ghcr.io/astral-sh/uv:debian-slim --help
+docker run ghcr.io/astral-sh/uv --help
+docker run ghcr.io/astral-sh/uv:alpine --help
+```
