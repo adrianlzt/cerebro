@@ -11,6 +11,12 @@ uv venv --system-site-packages
 Instalar un requirements.txt reproduciendo como hubiese sido en una fecha determinada
 uv pip install --exclude-newer 2020-01-01 -r requirements.txt
 
+# Instalar uv
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 # Instalar globalmente / uvx
 
 ```bash
