@@ -21,6 +21,16 @@ Si el LLM quiere generar un fichero, aider nos ayudar a crearlos, instalar depen
 Para poder cargar páginas web tenemos que instalar aur/playwright.
 <https://aider.chat/docs/install/optional.html#enable-playwright>
 
+Ask for changes:
+
+- Add new features or test cases.
+- Describe a bug.
+- Paste in an error message or or GitHub issue URL.
+- Refactor code.
+- Update docs.
+
+# Uso
+
 Podemos pasarle ficheros al arrancar:
 
 ```bash
@@ -33,18 +43,16 @@ Podemos añadirlos a posteriori con:
 /add file1
 ```
 
-Ask for changes:
-Add new features or test cases.
-Describe a bug.
-Paste in an error message or or GitHub issue URL.
-Refactor code.
-Update docs.
-
-Para obtener ayuda:
+O quitarlos con:
 
 ```
-/help <question>
+/drop fichero
 ```
+
+Si queremos que genere un nuevo fichero, podemos meterlo con /add, aunque no exista.
+Aunque normalmente él solo se encargará de generar el fichero y nos confirmará que queremos crearlo.
+
+Para obtener ayuda: `/help <question>`
 
 Para prompt multilínea (o arrancar con --multiline y enviar con alt+enter):
 
@@ -54,6 +62,34 @@ aquí ya podemos hacer
 multilínea
 }
 ```
+
+Podemos usar `/editor` para editar el mensaje con nuestro $EDITOR.
+
+Si queremos borrar el contexto hasta ahora: `/clear`
+
+Si queremos ejecutar comandos:
+
+```bash
+!comando
+/run comando
+/test comando # parece que es como run pero que añade un prompt de que lo arregle listo para ejecutar
+```
+
+Podemos meter el contenido del clipboard con `/paste`
+
+## Conventions
+
+<https://aider.chat/docs/usage/conventions.html>
+
+Si queremos añadir documentación podemos añadir un fichero como contexto con (será un fichero read-only):
+
+```
+/read fichero.txt
+```
+
+Podemos definir en `.aider.conf.yml` para que siempre lea uno o varios ficheros de este tipo.
+
+Conventions propuestas por la comunidad: <https://github.com/Aider-AI/conventions/tree/main>
 
 # Models
 
