@@ -11,6 +11,20 @@ uv venv --system-site-packages
 Instalar un requirements.txt reproduciendo como hubiese sido en una fecha determinada
 uv pip install --exclude-newer 2020-01-01 -r requirements.txt
 
+# Instalar globalmente / uvx
+
+```bash
+uvx -p /usr/bin/python aider-install
+```
+
+# Proyecto
+
+```bash
+uv init
+uv add LIB
+uv run main.py
+```
+
 # Ejecutar scripts
 
 ## Pasando versión y deps
