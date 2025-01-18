@@ -15,3 +15,9 @@ duckdb fichero.db
 .tables
 .schema
 ```
+
+## CSV
+
+```
+select "V DC",count(*) from read_csv_auto('fichero.csv') group by "V DC" limit 100;
+```
