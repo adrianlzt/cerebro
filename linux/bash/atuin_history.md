@@ -17,6 +17,11 @@ Se puede desplegar un server propioi, autin + postgres: <https://docs.atuin.sh/s
 
 Si estábamos usando el plugin de zsh `per-directory-history`, podemos importar el histórico con:
 <https://blog.markhepburn.com/posts/atuin-and-per-directory-history-import/>
+Ejecutar en ~/.local/share/atuin/, añadiendo la línea al final:
+
+```python
+main("/home/adrian/.directory_history")
+```
 
 Configuración en ~/.config/atuin/config.toml
 SQLite en ~/.local/share/atuin/atuin.db
