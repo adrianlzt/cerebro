@@ -8,9 +8,13 @@ Repo de un tipo que compila AURs populares, acepta peticiones.
 
 Usar con yay
 Instalar:
-curl -LO <https://github.com/Jguer/yay/releases/download/v11.3.1/yay_11.3.1_x86_64.tar.gz>
-tar zxvf yay_11.3.1_x86_64.tar.gz
-sudo cp yay_11.3.1_x86_64/yay /usr/local/bin/
+
+```bash
+curl -LO https://github.com/Jguer/yay/releases/download/v12.4.2/yay_12.4.2_x86_64.tar.gz
+tar zxvf yay_*_x86_64.tar.gz
+find yay* -name yay | sudo xargs -I{} mv {} /usr/local/bin
+rm -fr yay_*
+```
 
 Compilando:
 git clone <https://aur.archlinux.org/yay.git> && \
