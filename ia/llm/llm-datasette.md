@@ -7,13 +7,16 @@ Estoy usando gemini-flash como modelo por defecto.
 Para los modelos de openai, llamo a una instancia local de litellm que use los modelos de azure con la apikey de github.
 
 ```bash
-pipx install llm
+uv tool install llm
+llm install llm-gemini
+llm install llm-jq
+llm install llm-cmd
 ```
 
 Actualizar:
 
 ```bash
-pipx upgrade llm
+uv tool upgrade llm
 ```
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
@@ -30,7 +33,7 @@ cat myscript.py | llm 'explain this code'
 <https://simonwillison.net/2024/Apr/8/files-to-prompt/>
 
 ```bash
-pipx install files-to-prompt
+uv tool install files-to-prompt
 ```
 
 Si queremos pasar muchos ficheros:
@@ -192,14 +195,8 @@ llm similar readmes -c 'upload csvs to stuff' -d embed.db
 
 ## Contar tokens
 
-Contar tokens con el tokenizador de openai.
-
 ```bash
-pipx install ttok
-```
-
-```bash
-cat my-file.txt | ttok
+cat my-file.txt | uvx ttok
 ```
 
 ## symbex / símbolos python
@@ -255,6 +252,10 @@ curl -s https://api.github.com/repos/simonw/datasette/issues | \
 <https://github.com/simonw/llm-cmd>
 
 Como lo de `gh copilot suggest -t shell`.
+
+```bash
+llm install cmd
+```
 
 ```bash
 llm cmd undo last git commit

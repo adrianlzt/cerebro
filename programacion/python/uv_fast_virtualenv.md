@@ -17,10 +17,35 @@ uv pip install --exclude-newer 2020-01-01 -r requirements.txt
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-# Instalar globalmente / uvx
+# Usar sin instalar / uvx
 
 ```bash
 uvx -p /usr/bin/python aider-install
+```
+
+`uvx` es equivalente a `uv tool run`
+
+# Tools
+
+Instalar una tool en un venv aislado:
+
+```bash
+uv tool install ruff
+```
+
+Meterá el bin en /home/adrian/.local/bin/llm.
+El venv en /home/adrian/.local/share/uv/tools/
+
+Para atualizar:
+
+```bash
+uv tool upgrade ruff
+```
+
+Borrar:
+
+```bash
+uv tool uninstall ruff
 ```
 
 # Proyecto
