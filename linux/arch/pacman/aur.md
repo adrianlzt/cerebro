@@ -3,6 +3,9 @@
 Repositorio de paquetes de la comunidad Arch
 Funciona como pkgsrc, te baja el código y un script PKGBUILD define las instrucciones para compilarlo, instalarlo y crear el paquete.
 
+Repo de un tipo que compila AURs populares, acepta peticiones.
+<https://aur.andontie.net/>
+
 Usar con yay
 Instalar:
 curl -LO <https://github.com/Jguer/yay/releases/download/v11.3.1/yay_11.3.1_x86_64.tar.gz>
