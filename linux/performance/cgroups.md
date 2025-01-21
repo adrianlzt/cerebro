@@ -1,15 +1,14 @@
-https://www.kernel.org/doc/Documentation/cgroup-v2.txt (mergeado en kernel 4.5)
-http://mirror.onet.pl/pub/mirrors/video.fosdem.org/2017/UA2.220/cgroupv2.vp8.webm
-https://www.kernel.org/doc/Documentation/cgroup-v1/
-https://www.certdepot.net/rhel7-get-started-cgroups/
-http://en.wikipedia.org/wiki/Cgroups
-http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf
+<https://www.kernel.org/doc/Documentation/cgroup-v2.txt> (mergeado en kernel 4.5)
+<http://mirror.onet.pl/pub/mirrors/video.fosdem.org/2017/UA2.220/cgroupv2.vp8.webm>
+<https://www.kernel.org/doc/Documentation/cgroup-v1/>
+<https://www.certdepot.net/rhel7-get-started-cgroups/>
+<http://en.wikipedia.org/wiki/Cgroups>
+<http://www.redhat.com/summit/2011/presentations/summit/in_the_weeds/friday/WangKozdemba_f_1130_cgroups14.pdf>
 yum install kernel-doc; cd /usr/share/doc/kernel-doc-3.14.2/Documentation/cgroups/
-https://wiki.archlinux.org/index.php/cgroups
-https://www.redhat.com/en/about/blog/world-domination-cgroups-part-1-cgroup-basics presents some basics and theory behind CGroups,
-https://www.redhat.com/en/about/blog/world-domination-cgroups-part-2-turning-knobs investigates the current state of active CGroups,
-https://www.redhat.com/en/about/blog/world-domination-cgroups-part-3-thanks-memories looks at the Memory controller.
-
+<https://wiki.archlinux.org/index.php/cgroups>
+<https://www.redhat.com/en/about/blog/world-domination-cgroups-part-1-cgroup-basics> presents some basics and theory behind CGroups,
+<https://www.redhat.com/en/about/blog/world-domination-cgroups-part-2-turning-knobs> investigates the current state of active CGroups,
+<https://www.redhat.com/en/about/blog/world-domination-cgroups-part-3-thanks-memories> looks at the Memory controller.
 
 Para usarlo en sistemas con systemd mirar cgroups-systemd.md
 
@@ -18,8 +17,6 @@ Otras formas de limitar:
  setrlimits
  limits.conf
  nice
-
-
 
 cgroup is a mechanism to organize processes hierarchically and distribute system resources along the hierarchy in a controlled and configurable manner.
 
@@ -32,17 +29,32 @@ Muchos de los problemas vienen por la exhaustación de recursos.
 Con cGroups limitamos, por recurso, que límites tiene de CPU, memoria, disco, etc
 
 Tipos de controladores / Subsistemas:
-  - CPU
-  - Memoria
-  - Disk IO
-  - Red
+
+- CPU
+- Memoria
+- Disk IO
+- Red
 
 cgroups v2 tiene un único punto de montaje (v1 tenia varios). v2 y v1 pueden convivir juntos al mismo tiempo. Los controllers que soporten v2 y no estén siendo utilizados en v1 se unirán automáticamente a v2
 Podemos ver si lo tenemos montado con (cgroup2 será la versión 2)
 mount | grep cgroup
 
+# Comparar dos cgroups
+
+<https://gist.github.com/adrianlzt/a8784e402d6fdd8cff9296225fb911cf>
+
+# libcgroup
+
+Herramientas para manejar cgroupsV2
+
+Listar cgroups y procesos asociados
+
+```bash
+lscgroup
+```
 
 # v2 uso manual
+
 cd /sys/fs/cgroup/unified
   o donde tengamos montado el cgroupsv2
 mkdir prueba
@@ -64,8 +76,8 @@ echo "+cpu +memory -io" > cgroup.subtree_control
   activamos/desactivamos controllers
   consultamos cuales están activos
 
-
 ## Pesos / Límites / Proteciones / Allocations
+
 Pesos: distribuir pesos entre los hijos (entre 1 y 10000, por defecto 100).
 Límites: limite por hijo. La suma de hijos puede ser mayor que el límite de padre
 Protections: para asegurar una memoría mínima para un cgroup
@@ -74,11 +86,13 @@ Allocations: límites que no se pueden sobrepasar
 ## Controllers
 
 ### Memoria
+
 Gestión complicada.
 Se tienen en cuenta:
- - Userland memory - page cache and anonymous memory.
- - Kernel data structures such as dentries and inodes.
- - TCP socket buffers.
+
+- Userland memory - page cache and anonymous memory.
+- Kernel data structures such as dentries and inodes.
+- TCP socket buffers.
 Valores en bytes (redondeados automáticamente a PAGE_SIZE).
 
 memory.current: consumo total de memoria por el cgroup y sus descendientes
@@ -90,22 +104,21 @@ memory.swap: consumo de ram (se puede limitar memory.swap.max)
 
 Limitando memory.high y observando memory.events podemos llegar a un valor mínimo de la app para que funcione bien.
 
-
 ### IO
+
 ### CPU
+
 ### PID
+
   pids.max: número máximo de pids
+
 ### RDMA
+
 ### perf_event enables monitoring CGroups with the perf tool
 
 ## Namespace
+
 La información puesta en /proc/PID/cgroup debe estar en un namespace para que un proceso dentro de uno no pueda ver el path completo donde está configurado (información sensible)
-
-
-
-
-
-
 
 # V1
 
@@ -120,10 +133,10 @@ net_cls: tags network packets with a class identifier (classid) that allows the 
 perf_event: enables monitoring CGroups with the perf tool;
 hugetlb: allows to use virtual memory pages of large sizes, and to enforce resource limits on these pages.
 
-
 Listar todos y decir donde están montados (si tenemos systemd ya estarán montados)
 
 # lssubsys -am
+
 cpuset /sys/fs/cgroup/cpuset
 cpu,cpuacct /sys/fs/cgroup/cpu,cpuacct
 memory /sys/fs/cgroup/memory
@@ -167,28 +180,27 @@ Red:
 ns: Name Space
   Para aislamiento de procesos (containers)
 
-
 Jerarquías y cGroups:
   Con esto podemos hacer un arbol de jerarquías, por ejemplo creando el cgroup "IT" y debajo de este cgroup meter cuatro departamentos.
 
 Instalación:
 yum -y install libcgroup
 
-
 Debemos tener un demonio arrancando que será el encargado de hacer cumplir las restricciones.
 chkconfig cgconfig on
 service cgconfig start
 
-
 Ejemplos de configuraciones /etc/cgconfig.conf (reiniciar cgconfig tras modificar el fichero):
 
 # Asigno los subsistemas cpu y cpuacct al cgroup "jcpu"
+
 mount {
   cpu = /cgroup/jcpu;
   cpuacct = /cgroup/jcpu;
 }
 
 # Configuración de un grupo o subgrupo
+
 group GRUPO1/SUBGRUPO1 {
   perm {
     # owner del fichero tasks (puede añadir tareas)
@@ -203,12 +215,12 @@ group GRUPO1/SUBGRUPO1 {
     }
   }
 
-  # Características de los controladores
+# Características de los controladores
+
   cpu {
     cpu.shares = "1000";
   }
 }
-
 
 Toda esta configuración tiene una representación a nivel de ficheros.
       mkdir -p /cgroup/jcpu
@@ -228,7 +240,6 @@ Esta configuración se aplicaría en el mismo momento, pero no sería persistent
 Si quisieramos hacerlo persistente:
 cgsnapshot > /etc/cgconfig.conf
 
-
 También podemos usar comandos:
 cgcreate -g cpuset:GRUPO # crear grupo
 cgcreate -a uid:gid -t uid:gid -g cpu,cpuset,freezer:/group1
@@ -240,8 +251,6 @@ cgget -a GRUPO # mostrar cgroup
 cgsnapshot cpuset # genera cgconfig.conf solo para cpuset
 cgclassify -g cpu,cpuset:GRUPO PID1 PID2 PID3 # mueve proceso a cgroup
 cgdelete cpuset:GRUPO # borrar cgroup
-
-
 
 Arrancar un proceso en un cgroup:
 echo $$ > /sys/fs/cgroup/cpuset/pruebaadri/tasks
@@ -260,23 +269,20 @@ Si metemos un proceso corriendo en un cgroup, no va a cambiar en caliente el uso
 Con cgexec (sticky los hijos también pertenecerán al mismo grupo)
 cgexec -g cpu:grupo1 CMD --sticky
 
-
-
 ## cgred
+
 Asignar a grupos por reglas
 Cuando se arranca un proceso mira el fichero /etc/cgrules.conf y si aplica una regla lo mete en el cgroup correspondiente.
 
 Sintaxis:
-usuario		controlador	/cgroup1/
-usuario:cmd	controlador	/cgroup2/
-@grupo		*		/cgroup3/
-%		cpu,memory	/grupo2/subgrupo3 # '%' es que copia el valor de arriba
-
+usuario  controlador /cgroup1/
+usuario:cmd controlador /cgroup2/
+@grupo  *  /cgroup3/
+%  cpu,memory /grupo2/subgrupo3 # '%' es que copia el valor de arriba
 
 Arrancar un servicio en un cgroup, independientemente de que cgred este corriendo o no (este usa cgexec):
   Definir CGROUP_DAEMON=cpu:grupo1" en su fichero /etc/sysconfig/
   Arrancarlo con la funciona daemon() de /etc/init.d/functions
-
 
 cGroups, número y activados
 cat /proc/cgroups
@@ -290,17 +296,14 @@ cat /proc/PID/cpuset
 Listar cgroups
 lscgroup
 
-
-
 Ejemplo, mueve el proceso con pid PID al procesador 0
 cgcreate -g cpuset:solocpu0
 cgset -r cpuset.cpus=0 solocpu0
 cgclassify -g cpuset:solocpu0 PID
   Una vez se muera el proceso, se borrará la regla, no hay problemas de que cuando se reuse el PID habrá problemas
 
-
-
 ## Disco ##
+
 traspas dia3-io/io step-66
 Limitar acceso a disco:
 cgcreate -g devices:NOMBRE
@@ -318,8 +321,8 @@ Para tasas absolutas
   velocidad: cgset -r blkio.throttle.read_bps_device ...
   iops: ...
 
-
 ## Memoria ##
+
 - Kernel arrancado con opcion "cgroup_enable=memory"
 
 cgset
@@ -329,9 +332,8 @@ cgset
   memory.swappiness             # swappiness por cgroup
   cpuset.mems                   # afinidad NUMA
 
-
 ## CPU ##
-https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-cpuset.html
+<https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-cpuset.html>
 
 cgset
   cpu.rt_period_us              # periodo para RT (tamaño del turno de los procesos RT, para no monopolizar la CPU)
@@ -350,24 +352,21 @@ cgset
   cpuset.sched_load_balance     # activa/desactiva balanceo de carga
   cpuset.sched_relax_domain_level  # configuracion del balanceo (1-5)
 
+## Errores ##
 
-## Errores ## 
 Error changing group of pid 8370: No space left on device
   No se puede asignar solo cpuset.cpus, también hace falta definie cpuset.mems
   Parece que es un bug de Fedora/RedHat
 
+# echo 1 > cpuset.cpu_exclusive
 
-# echo 1 > cpuset.cpu_exclusive 
 bash: echo: error de escritura: Argumento inválido
 bash: echo: write error: Invalid argument
 Porque hay ya una tarea en tasks
 
-
-
-
-
 # PRUEBAS
-Para ver como gestionan los cgroups la memoria (malloc vs usada, OOM killer, etc) podemos usar este programa
-https://stackoverflow.com/questions/28843537/using-cgroups-to-control-memory-usage-on-linux
 
-Otro ejemplo de uso aqui: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-memory.html
+Para ver como gestionan los cgroups la memoria (malloc vs usada, OOM killer, etc) podemos usar este programa
+<https://stackoverflow.com/questions/28843537/using-cgroups-to-control-memory-usage-on-linux>
+
+Otro ejemplo de uso aqui: <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-memory.html>
