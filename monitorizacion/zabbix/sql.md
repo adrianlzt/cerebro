@@ -678,7 +678,11 @@ select \*,to_timestamp(clock) as fecha from auditlog join auditlog_details using
 # Zabbix-proxy
 
 Last seen (last access) de los proxies:
+
+```sql
 SELECT h.hostid,h.host,to_timestamp(h.lastaccess) FROM hosts h WHERE h.status IN (5,6);
+SELECT h.hostid,h.host,now()-to_timestamp(h.lastaccess) AS "last_seen" FROM hosts h WHERE h.status IN (5,6);
+```
 
 # Unreachable pollers
 
