@@ -14,6 +14,7 @@ duckdb fichero.db
 ```
 .tables
 .schema
+.edit # edit last command
 ```
 
 ## CSV
@@ -21,3 +22,15 @@ duckdb fichero.db
 ```
 select "V DC",count(*) from read_csv_auto('fichero.csv') group by "V DC" limit 100;
 ```
+
+## XLSX
+
+```bash
+INSTALL spatial;
+LOAD spatial;
+select * from st_read('Matrix_19_01_2025.xlsx')
+```
+
+# Query
+
+Se pueden usar CTEs / WITH: <https://duckdb.org/docs/sql/query_syntax/with.html>

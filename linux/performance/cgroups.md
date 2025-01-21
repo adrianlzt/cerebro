@@ -55,6 +55,12 @@ lscgroup
 
 # v2 uso manual
 
+Modificar el cgroup de nuesta shell actual, limitar la memoria y ejecutar un comando (si se produce un OMM nos matará la shell):
+
+```bash
+bash -c 'export CG="/sys/fs/cgroup`cat /proc/self/cgroup | cut -d : -f 3`"; echo 10000000 > $CG/memory.max; echo 10000000 > $CG/memory.swap.max; ./reserva'
+```
+
 cd /sys/fs/cgroup/unified
   o donde tengamos montado el cgroupsv2
 mkdir prueba
@@ -333,6 +339,7 @@ cgset
   cpuset.mems                   # afinidad NUMA
 
 ## CPU ##
+
 <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-cpuset.html>
 
 cgset
