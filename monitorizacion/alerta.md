@@ -41,3 +41,7 @@ curl -X POST \
   }' \
   127.0.0.1:8080/alert
 ```
+
+# Multitenancy / Customer views
+
+<https://docs.alerta.io/customer-views.html#customer-views>
