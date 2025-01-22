@@ -161,6 +161,22 @@ llm keys set claude
 
 Podemos usar litellm para exponer una API compatible con OpenAI y por detrás llamar al modelo que queramos.
 
+## Ollama
+
+```bash
+llm install llm-ollama
+```
+
+Modelos disponibles:
+
+```bash
+llm ollama list-models
+```
+
+```bash
+llm -m gemma:2b "pregunta"
+```
+
 # Plugins
 
 Añadir un nuevo plugin (añadiendo un nuevo módelo vía API):
