@@ -7,14 +7,10 @@ Estoy usando gemini-flash como modelo por defecto.
 Para los modelos de openai, llamo a una instancia local de litellm que use los modelos de azure con la apikey de github.
 
 ```bash
-uv tool install --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama llm
+uv tool install --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama --with llm-cmd-comp llm
 ```
 
-Actualizar:
-
-```bash
-uv tool install -U --with llm-gemini --with llm-jq --with llm-cmd llm
-```
+Actualizar, ejecutar el comando anterior pero con `install -U`.
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
 
@@ -25,6 +21,12 @@ Prompt básico:
 ```bash
 llm -m MODELO 'texto a analizar'
 cat myscript.py | llm 'explain this code'
+```
+
+Generar scripts (-x saca solo el primer bloque de código):
+
+```bash
+llm -x "create a bash script that returns all the keys of type set in redis" > p.sh
 ```
 
 <https://simonwillison.net/2024/Apr/8/files-to-prompt/>
@@ -273,3 +275,5 @@ llm install cmd
 ```bash
 llm cmd undo last git commit
 ```
+
+Con <https://github.com/CGamesPlay/llm-cmd-comp> podemos empezar a escribir el comando
