@@ -8,6 +8,13 @@ To configure WinRM we need to run the following command:
 winrm quickconfig
 ```
 
+Para activar WinRM con https:
+
+<https://learn.microsoft.com/en-us/troubleshoot/windows-client/system-management-components/configure-winrm-for-https>
+WinRM HTTPS requires a local computer Server Authentication certificate with a CN matching the hostname to be installed. The certificate mustn't be expired, revoked, or self-signed.
+
+Para usar un cert auto-firmado: <https://www.withsecure.com/userguides/product.html?business/radar/4.0/en/task_8772A6A76D994406B4809EB264EB51EE-4.0-en>
+
 # Desde linux
 
 <https://blogs.technet.microsoft.com/heyscriptingguy/2015/10/27/using-winrm-on-linux/>
