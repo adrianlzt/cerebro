@@ -7,16 +7,13 @@ Estoy usando gemini-flash como modelo por defecto.
 Para los modelos de openai, llamo a una instancia local de litellm que use los modelos de azure con la apikey de github.
 
 ```bash
-uv tool install llm
-llm install llm-gemini
-llm install llm-jq
-llm install llm-cmd
+uv tool install --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama llm
 ```
 
 Actualizar:
 
 ```bash
-uv tool upgrade llm
+uv tool install -U --with llm-gemini --with llm-jq --with llm-cmd llm
 ```
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
