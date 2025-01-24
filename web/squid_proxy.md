@@ -46,7 +46,9 @@ https_port 3129 tls-cert=/etc/squid/ssl/squid.pem tls-key=/etc/squid/ssl/squid.k
 
 ## Http basic auth
 
-Comprobar esta configuración, me sigue permitiendo peticiones sin autenticar.
+<https://wiki.squid-cache.org/Features/Authentication>
+
+Poner basic auth al proxy:
 
 ```
 auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
@@ -54,23 +56,34 @@ auth_param basic children 5
 auth_param basic realm Squid Proxy Authentication
 auth_param basic credentialsttl 5 hours
 auth_param basic casesensitive off
-```
-
-Creo que falta meter:
-
-```
+# Aqui creamos una acl de nombre "authenticated" para los usuarios logueados
 acl authenticated proxy_auth REQUIRED
+# Aqui permitimos pasar a los usuarios logueados y no permitimos pasar al resto
+http_access allow authenticated
+http_access deny all
+```
+
+Si tenemos problemas podemos subir el nivel de debug del Authenticator:
+
+```
+debug_options 29,5
+```
+
+Podemos probar si las claves están bien configuradas llamando al helper directamente:
+
+```bash
+$ /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+myuser mypass
+OK
+myuser nopass
+ERR
 ```
 
 Para generar el fichero de /etc/squid/passwd:
 
 ```bash
-
-```
-
 htpasswd -c /etc/squid/passwd user1
-
-````
+```
 
 # Monitoring
 
@@ -82,11 +95,10 @@ htpasswd -c /etc/squid/passwd user1
 
 ```bash
 docker run --rm -it --name squid -p 3128:3128 -e TZ=UTC ubuntu/squid:6.10-24.10_edge
-````
+```
 
-Nos da un forward proxy funcional que acepta peticiones de la localnet (no estoy seguro de esto, parece que está aceptando de todos los sitios).
+Nos da un forward proxy funcional que acepta peticiones de la localnet (definidas como todas las redes privadas).
 
 ```bash
 curl -x http://localhost:3128 https://example.com
-
 ```
