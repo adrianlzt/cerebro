@@ -34,6 +34,25 @@ Ejemplo: <https://scubarda.com/2020/03/23/configure-squid-proxy-for-ssl-tls-insp
 
 Con las ACL y http_access filtramos quien puede acceder al proxy, a usar CONNECT (para https) o a métricas de squid.
 
+Se pueden hacer reglas negativas:
+
+```
+http_access deny !authenticated
+```
+
+Crear una ACL para definir una red:
+
+```
+acl localnet src 0.0.0.1-0.255.255.255  # RFC 1122 "this" network (LAN)
+acl localnet src 10.0.0.0/8             # RFC 1918 local private network (LAN)
+acl localnet src 100.64.0.0/10          # RFC 6598 shared address space (CGN)
+acl localnet src 169.254.0.0/16         # RFC 3927 link-local (directly plugged) machines
+acl localnet src 172.16.0.0/12          # RFC 1918 local private network (LAN)
+acl localnet src 192.168.0.0/16         # RFC 1918 local private network (LAN)
+acl localnet src fc00::/7               # RFC 4193 local private network range
+acl localnet src fe80::/10              # RFC 4291 link-local (directly plugged) machines
+```
+
 ## TLS
 
 Que squid use https en vez de http.
@@ -79,15 +98,57 @@ myuser nopass
 ERR
 ```
 
-Para generar el fichero de /etc/squid/passwd:
+Para generar el fichero de /etc/squid/passwd (usar MD5):
 
 ```bash
-htpasswd -c /etc/squid/passwd user1
+htpasswd -nbm username 123456789
 ```
+
+<https://wiki.squid-cache.org/ConfigExamples/Authenticate/Ncsa>
+
+Ojo que el helpe no soporta todos los métodos de encriptación:
+Squid helpers support DES, MD5 and SHA encryption of the passwords file. Bcrypt requires additional support in the crypto libraries Squid is built with so may or may not work.
 
 # Monitoring
 
 <http://www.squid-cache.org/Misc/monitor.html>
+
+## SNMP
+
+<https://wiki.squid-cache.org/Features/Snmp>
+<https://www.zabbix.com/integrations/squid>
+
+Config:
+
+```
+snmp_port 3401
+acl snmpMonitoring snmp_community CHANGEME
+acl OPEN src 0.0.0.0/0
+snmp_access allow snmpMonitoring OPEN
+snmp_access deny all
+```
+
+Testear:
+
+```bash
+snmpwalk -v 2c -c CHANGEME 127.0.0.1:3401 nsExtendOutput1
+```
+
+## CacheManager
+
+<https://wiki.squid-cache.org/Features/CacheManager/Index>
+
+```bash
+apt install squidclient
+squidclient mgr:info
+```
+
+Hacen falta las ACLs:
+
+```
+http_access allow localhost manager
+http_access deny manager
+```
 
 # Docker
 
@@ -101,4 +162,50 @@ Nos da un forward proxy funcional que acepta peticiones de la localnet (definida
 
 ```bash
 curl -x http://localhost:3128 https://example.com
+```
+
+# Ejemplo de configuración
+
+Ejemplo usado para usarlo como proxy HTTPs para conexiones WinRM-TLS:
+
+```
+# Expose Squid with HTTPs, using self-signed certs
+https_port 3129 tls-cert=/etc/ssl/certs/ssl-cert-snakeoil.pem tls-key=/etc/ssl/private/ssl-cert-snakeoil.key
+coredump_dir /var/spool/squid
+
+# Set max_filedescriptors to avoid using system's RLIMIT_NOFILE. See LP: #1978272
+max_filedescriptors 1024
+
+# Logs are managed by logrotate on Debian
+logfile_rotate 0
+
+# Basic auth
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Squid Proxy Authentication
+auth_param basic credentialsttl 5 hours
+auth_param basic casesensitive off
+acl authenticated proxy_auth REQUIRED
+
+# SNMP monitoring
+snmp_port 3401
+acl snmpMonitoring snmp_community CHANGEME
+acl OPEN src 0.0.0.0/0
+snmp_access allow snmpMonitoring OPEN
+snmp_access deny all
+
+# Allow only TLS (CONNECT) connections to this remote port
+acl winRMTLS port 5986        # WinRM with TLS
+http_access deny CONNECT !winRMTLS
+
+# Allow acces to CacheManager only on localhost
+http_access allow localhost manager
+http_access deny manager
+
+# Only allow connections from auth users
+http_access allow authenticated
+http_access deny all
+
+# To show verbose debugging information
+#debug_options All,5
 ```
