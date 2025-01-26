@@ -7,7 +7,7 @@ Estoy usando gemini-flash como modelo por defecto.
 Para los modelos de openai, llamo a una instancia local de litellm que use los modelos de azure con la apikey de github.
 
 ```bash
-uv tool install --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama --with llm-cmd-comp llm
+uv tool install --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama --with llm-cmd-comp --with llm-deepseek llm
 ```
 
 Actualizar, ejecutar el comando anterior pero con `install -U`.
