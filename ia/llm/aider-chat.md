@@ -77,6 +77,20 @@ Si queremos ejecutar comandos:
 
 Podemos meter el contenido del clipboard con `/paste`
 
+## Repomap
+
+Por defecto aider envía un "repomap" del repo de git.
+En repositorios muy grandes, o cuando sepamos que no nos hace falta ese contexto, podemos deshabilitarlo.
+
+Si queremos deshabilitarlo podemos usar:
+
+```
+--map-tokens 0
+```
+
+Para repositorios grandes también podemos usar:
+--subtree-only and .aiderignore
+
 ## Conventions
 
 <https://aider.chat/docs/usage/conventions.html>
@@ -96,6 +110,12 @@ Conventions propuestas por la comunidad: <https://github.com/Aider-AI/convention
 Podemos usar los modelos del marketplace de github gratuitamente con ciertas limitaciones.
 
 <https://aider.chat/docs/llms.html>
+
+Parece que lo más potente VS coste ahora mismo es:
+
+```bash
+aider --architect --model r1 --editor-model sonnet
+```
 
 ```bash
 aider --list-models gemini/
@@ -141,9 +161,9 @@ Cuando guaramos algún fichero, aider busca comentarios tipo:
 O preguntas usando comentarios tipo:
 
 ```
-# ... AI? 
-// ... AI? 
--- ... AI? 
+# ... AI?
+// ... AI?
+-- ... AI?
 ```
 
 Y actua en ese momento.
