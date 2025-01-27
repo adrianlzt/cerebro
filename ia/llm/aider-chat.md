@@ -117,6 +117,12 @@ Parece que lo más potente VS coste ahora mismo es:
 aider --architect --model r1 --editor-model sonnet
 ```
 
+Uno gratís y muy rápido:
+
+```bash
+aider --model groq/llama-3.3-70b-versatile
+```
+
 ```bash
 aider --list-models gemini/
 ```
