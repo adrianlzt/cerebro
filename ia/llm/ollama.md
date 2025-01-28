@@ -33,3 +33,5 @@ Parar un modelo:
 ```bash
 ollama stop gemma:2b
 ```
+
+Cambiar el directorio para bajar los modelos: <https://github.com/ollama/ollama/blob/main/docs/faq.md#where-are-models-stored>
