@@ -25,6 +25,12 @@ Otro ejemplo: <https://almightycouch.org/blog/realtime-changefeeds-postgresql-no
 
 Con psql, subscribirnos a los cambios de una tabla y enviar dichos cambios via socket tcp: <https://gonzalo123.com/2012/11/26/sending-sockets-from-postgresql-triggers-with-python/>
 
+Mirar quien está escuchando en que canales:
+
+```
+select datname,usename,client_addr,client_port,query from pg_stat_activity where query like 'LISTEN %';
+```
+
 # Dudas
 
 Conectar los clientes directamente contra postgres? Usar postrgres como frontend

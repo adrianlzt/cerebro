@@ -280,9 +280,87 @@ Para conseguir que me funcione el inventario, lo cambio de ser un ejecutable pyt
 
 ## worker
 
-Si queremos ver que están haciendo los run_dispatchers
-/usr/bin/awx-manage run_dispatcher --status
+Si queremos ver que están haciendo los run_dispatchers, desde dentro de un contenedor de worker:
+
+```bash
+(awx) bash-4.4# /usr/bin/awx-manage run_dispatcher --status
+
+2025-01-28 14:45:57,820 WARNING  awx.main.dispatch checking dispatcher status for awx_tools01_task_1
+listening on ['tower_broadcast_all', 'awx_tools01_task_1']
+awx_tools01_task_1[pid:170] workers total=4 min=4 max=80
+.  worker[pid:2056] sent=411 finished=411 qsize=0 rss=130.297MB [IDLE]
+.  worker[pid:3313] sent=378 finished=378 qsize=0 rss=130.273MB [IDLE]
+.  worker[pid:4595] sent=352 finished=352 qsize=0 rss=129.820MB [IDLE]
+.  worker[pid:5685] sent=270 finished=270 qsize=0 rss=128.711MB [IDLE]
+```
+
 <https://github.com/ansible/awx/blob/fcfd59ebe26d0051a838ea395d05665dba0db15d/docs/tasks.md#debugging>
+
+Redis no tengo claro para que se usa:
+awx/main/dispatch/worker/base.py
+awx/main/queue.py
+
+Gestion del pubsub a postgres:
+awx/awx/main/dispatch/init.py
+
+Los workers se subscriben a un canal de Postgres donde reciben las tareas.
+Ejemplo:
+
+```
+LISTEN "awx_tools01_task_1";
+```
+
+Parece que las jobs se envían de esta manera:
+
+```
+{
+  "uuid": "00bdea17-b5a2-4b10-98b6-3a14bdb85de2",
+  "args": [
+    177
+  ],
+  "kwargs": {},
+  "task": "awx.main.tasks.RunJob",
+  "callbacks": [
+    {
+      "task": "awx.main.tasks.handle_work_success",
+      "kwargs": {
+        "task_actual": {
+          "type": "job",
+          "id": 177
+        }
+      }
+    }
+  ],
+  "errbacks": [
+    {
+      "task": "awx.main.tasks.handle_work_error",
+      "args": [
+        "00bdea17-b5a2-4b10-98b6-3a14bdb85de2"
+      ],
+      "kwargs": {
+        "subtasks": [
+          {
+            "type": "job",
+            "id": 177
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+La tarea se ejecuta con awx/main/tasks.py
+
+Si queremos modificar el código python de un worker, luego tendremos que reiniciarlo par que lo utilice.
+
+# Redis
+
+Conectar:
+
+```bash
+docker exec -it awx_redis redis-cli -s /var/run/redis/redis.sock
+```
 
 # API
 
