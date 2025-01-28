@@ -269,6 +269,7 @@ Al terminar deberemos tener uno o varios directorios en /tmp/AWX
 Para poder ejecutarlo a mano:
 
 Ojo, no estamos configurando las mismas variables de entorno, si quermos sacarlas: while true; do strings /proc/$(pgrep -f ansible-playbook)/environ >> /tmp/environ; sleep 0.1; done
+Cuidado, mirar los PYTHONPATH que está cargando.
 
 - copiar el directorio awx_XXXX a /tmp
 - movernos al directorio del proyecto /var/lib/awx/projects/XXXX
@@ -283,7 +284,7 @@ Para conseguir que me funcione el inventario, lo cambio de ser un ejecutable pyt
 Si queremos ver que están haciendo los run_dispatchers, desde dentro de un contenedor de worker:
 
 ```bash
-(awx) bash-4.4# /usr/bin/awx-manage run_dispatcher --status
+bash-4.4# /usr/bin/awx-manage run_dispatcher --status
 
 2025-01-28 14:45:57,820 WARNING  awx.main.dispatch checking dispatcher status for awx_tools01_task_1
 listening on ['tower_broadcast_all', 'awx_tools01_task_1']
@@ -353,6 +354,23 @@ Parece que las jobs se envían de esta manera:
 La tarea se ejecuta con awx/main/tasks.py
 
 Si queremos modificar el código python de un worker, luego tendremos que reiniciarlo par que lo utilice.
+Más sencillo, podemos entrar en el supervisord:
+
+```bash
+supervisorctl -c /supervisor_task.conf
+```
+
+Y reiniciar el dispatcher:
+
+```
+restart tower-processes:dispatcher
+```
+
+Podemos meter trazas con:
+
+```python
+logger.error("foo {}".format(123))
+```
 
 # Redis
 
