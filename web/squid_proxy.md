@@ -53,6 +53,28 @@ acl localnet src fc00::/7               # RFC 4193 local private network range
 acl localnet src fe80::/10              # RFC 4291 link-local (directly plugged) machines
 ```
 
+Para conexiones no TLS (sin CONNECT), solo permitir estos puertos:
+
+```
+acl Safe_ports port 80
+acl Safe_ports port 8080
+http_access deny !Safe_ports
+```
+
+Con TLS, permitir solo este puerto (también tendremos que haberlo permitido en el Safe_ports):
+
+```
+acl SSL_ports port 443
+http_access deny CONNECT !SSL_ports
+```
+
+Si se hace match, no se miran más reglas.
+Se suele terminar con:
+
+```
+http_access deny all
+```
+
 ## TLS
 
 Que squid use https en vez de http.
@@ -173,6 +195,9 @@ Ejemplo usado para usarlo como proxy HTTPs para conexiones WinRM-TLS:
 https_port 3129 tls-cert=/etc/ssl/certs/ssl-cert-snakeoil.pem tls-key=/etc/ssl/private/ssl-cert-snakeoil.key
 coredump_dir /var/spool/squid
 
+# Do not try to cache anything
+cache deny all
+
 # Set max_filedescriptors to avoid using system's RLIMIT_NOFILE. See LP: #1978272
 max_filedescriptors 1024
 
@@ -194,9 +219,14 @@ acl OPEN src 0.0.0.0/0
 snmp_access allow snmpMonitoring OPEN
 snmp_access deny all
 
-# Allow only TLS (CONNECT) connections to this remote port
-acl winRMTLS port 5986        # WinRM with TLS
-http_access deny CONNECT !winRMTLS
+# Allow only WinRM-http and https connections to the remote hosts
+acl winRM port 5985           # WinRM http
+acl winRMTLS port 5986        # WinRM https
+http_access allow winRM
+http_access allow winRMTLS
+http_access CONNECT !winRMTLS
+http_access deny all
+
 
 # Allow acces to CacheManager only on localhost
 http_access allow localhost manager
