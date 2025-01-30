@@ -262,13 +262,17 @@ select name from main_host where variables like '%RED HAT ENTERPRISE LINUX SERVE
 # Debug
 
 Si queremos capturar lo que está ejecutando awx, entraremos en el container task y:
+
+```
 cd /tmp
-while true; do ps -ef f | grep [a]nsible-play; cp -fr awx\* AWX/; sleep 0.5; done
+rm -f AWX/environ; while true; do if pgrep -f ansible-playbook; then echo captura; cp -fr awx* AWX/;  strings /proc/$(pgrep -fo ansible-playbook | head -1)/environ >> AWX/environ; fi; sleep 0.1; done
+```
+
 Al terminar deberemos tener uno o varios directorios en /tmp/AWX
 
 Para poder ejecutarlo a mano:
 
-Ojo, no estamos configurando las mismas variables de entorno, si quermos sacarlas: while true; do strings /proc/$(pgrep -f ansible-playbook)/environ >> /tmp/environ; sleep 0.1; done
+Mirar a ver si queremos usar las mismas variables de entorno, guardadas en /tmp/AWX/environ.
 Cuidado, mirar los PYTHONPATH que está cargando.
 
 - copiar el directorio awx_XXXX a /tmp
