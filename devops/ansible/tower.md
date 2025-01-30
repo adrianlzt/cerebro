@@ -277,9 +277,9 @@ Cuidado, mirar los PYTHONPATH que está cargando.
 
 - copiar el directorio awx_XXXX a /tmp
 - movernos al directorio del proyecto /var/lib/awx/projects/XXXX
-- /var/lib/awx/venv/ansible/bin/activate
-- chmod a+x /tmp/awx\__/tmp_ # dar permisos de ejecución al inventario
-- /usr/bin/python3.6 /usr/bin/ansible-playbook -u centos --ask-vault-pass -l demo-1 -vvvv -e @/tmp/awx_92_q4asqt0d/tmp_y91bk1s -i /tmp/awx_92_q4asqt0d/tmpl6lgvg42 -e @/tmp/awx_92_q4asqt0d/env/extravars 21-precheck.yml # ejecutar el playbook (lo veremos con el ps)
+- `while IFS='=' read -r k v; do [[ -n "$k" ]] && export "$k"="$v"; done < /tmp/AWX/environ`
+- `chmod a+x /tmp/awx\__/tmp_` # dar permisos de ejecución al inventario
+- `/usr/bin/python3.6 /usr/bin/ansible-playbook -u centos --ask-vault-pass -l demo-1 -vvvv -e @/tmp/awx_92_q4asqt0d/tmp_y91bk1s -i /tmp/awx_92_q4asqt0d/tmpl6lgvg42 -e @/tmp/awx_92_q4asqt0d/env/extravars 21-precheck.yml` # ejecutar el playbook (lo veremos con el ps)
 
 Para conseguir que me funcione el inventario, lo cambio de ser un ejecutable python a dejar el json únicamente.
 
