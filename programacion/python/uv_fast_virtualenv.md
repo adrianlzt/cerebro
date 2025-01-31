@@ -64,7 +64,9 @@ uv run main.py
 uv run --python 3.12 --with pandas python
 ```
 
-## Declarar python y versiones en el fichero
+## Declarar python y versiones en el fichero (Inline script metadata)
+
+<https://packaging.python.org/en/latest/specifications/inline-script-metadata/#script-type>
 
 ```python
 #!/usr/bin/env -S uv run
