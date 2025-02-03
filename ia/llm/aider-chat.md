@@ -117,10 +117,10 @@ Parece que lo más potente VS coste ahora mismo es:
 aider --architect --model r1 --editor-model sonnet
 ```
 
-Uno gratís y muy rápido:
+Interesantes:
 
-```bash
-aider --model groq/llama-3.3-70b-versatile
+```
+aider --model o3-mini --reasoning-effort [low,medium,high]
 ```
 
 ```bash
@@ -137,6 +137,18 @@ Para que funcione gemini hace falta instalar otro paquete (suponiendo que hemos 
 
 ```
 ~/.local/share/pipx/venvs/aider-chat/bin/python -m pip install google
+```
+
+## Gratís
+
+Muy rápido, pero no muy potente:
+
+```bash
+aider --model groq/llama-3.3-70b-versatile
+```
+
+```
+aider --model openrouter/deepseek/deepseek-r1:free
 ```
 
 # Config

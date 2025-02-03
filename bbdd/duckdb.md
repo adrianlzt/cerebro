@@ -9,7 +9,11 @@ It can read and write file formats such as CSV, Parquet, and JSON, to and from t
 
 # CLI
 
+```
 duckdb fichero.db
+
+duckdb -c "select 1"
+```
 
 ```
 .tables
