@@ -10,6 +10,11 @@ Online:
 <https://stackedit.io/editor>
 editar markdown almacenados en google drive
 
+glow
+<https://github.com/charmbracelet/glow>
+Lector de markdown para la consola
+Puede abrir URLs
+
 aur/python-grip
 grip fichero.md
 monta un server en localhost:5000 mostrando el fichero
