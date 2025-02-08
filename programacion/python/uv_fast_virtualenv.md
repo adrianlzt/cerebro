@@ -95,3 +95,10 @@ docker run ghcr.io/astral-sh/uv:debian-slim --help
 docker run ghcr.io/astral-sh/uv --help
 docker run ghcr.io/astral-sh/uv:alpine --help
 ```
+
+## Dockerfile
+
+```
+COPY pyproject.toml uv.lock /app/
+RUN uv sync --frozen
+```
