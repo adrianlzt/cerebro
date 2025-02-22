@@ -81,6 +81,13 @@ import requests
 print(requests.get("https://eth0.me").text)
 ```
 
+Si queremos forzar las dependencies hasta una fecha determinada (aquí no tenemos un .lock):
+
+```
+# [tool.uv]
+# exclude-newer = "2023-10-16T00:00:00Z"
+```
+
 ```bash
 chmod a+x fichero.py
 ./fichero.py
