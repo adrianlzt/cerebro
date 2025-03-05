@@ -95,7 +95,7 @@ credentials / passwords / keys / secrets
 Ponemos los datos de la postgres y el secret de AWX. Nos muestra los secrets y al seleccionar uno lo desencripta.
 
 ```bash
-uv run --python 3.10 https://gist.githubusercontent.com/adrianlzt/XXX/raw/XXX/awx_secrets.py --host 10.1.1.10 --user awx --password SECRETPASSWORD --secret-key SECRETKEY
+uv run https://gist.githubusercontent.com/adrianlzt/b2c2c9581757ad359216eef0f05beb1a/raw/5a0f29c2496a98e9aef0eef8ad1469d1cbdd09e8/awx_secrets.py --host 10.1.1.10 --user awx --password SECRETPASSWORD --secret-key SECRETKEY
 ```
 
 # Clonar repo
