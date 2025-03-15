@@ -1,16 +1,19 @@
 # Waydroid
+
 <https://docs.waydro.id/>
 <https://wiki.archlinux.org/title/Waydroid>
 <https://news.ycombinator.com/item?id=28616985>
 <https://aur.archlinux.org/packages/waydroid/>
 
-Necesita un módulo que parece que no está disponible para el kernel que uso, si está en linux-zen.
-Necesita también wayland
+Me ha funcionado correctamente.
+
+Necesita un módulo que parece que no está disponible para el kernel que uso, si está en linux-zen (parece que ya está en casi todos los precomilados).
+Necesita también wayland (pero se puede usar con x11+cage).
 
 Se puede usar weston para correr wayland encima de x11
 <https://www.reddit.com/r/linuxquestions/comments/qs9c9s/how_to_run_waydroid_under_xorg/>
 
-La primera vez que usamos waydroid (para tener imágens base con google apps):
+La primera vez que usamos waydroid (el `-s` para tener imágenes base con google apps, `-f` si queremo forzar el init):
 
 ```bash
 sudo waydroid init -s GAPPS
@@ -30,7 +33,15 @@ Comenzar una sesión:
 waydroid session start
 ```
 
-Si no tenemos wayland, arrancar una ventana con wayland usando weston:
+Si no tenemos wayland, arrancar una ventana con wayland usando
+
+cage:
+
+```bash
+cage waydroid show-full-ui
+```
+
+weston:
 
 ```bash
 weston
@@ -48,6 +59,8 @@ Problemas con la red? Probar a reiniciar el servicio:
 systemctl restart waydroid-container.service
 ```
 
+Si me da problemas con algo de arrancando un dnsmasq, parar el que tenemos corriendo.
+
 Para instalar una apk:
 
 ```bash
@@ -62,7 +75,7 @@ waydroid app list
 
 Si queremos instalar un .apk de arm en waydroid (que seguramente será x86_64), necesitamos instalar el paquete de traducción:
 <https://github.com/casualsnek/waydroid_script>
-  usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
+usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
 
 Parece que libndk y libhoudini hacen lo mismo.
 
@@ -82,15 +95,25 @@ Problemas? Reiniciar el servicio y recomenzar:
 systemctl restart waydroid-container.service
 ```
 
-## Genymotion ##
+Acceder a la shell de waydroid/emulador:
+
+```bash
+waydroid shell
+```
+
+Para tener red tenemos que habilitar ciertas cosas en el firewall:
+<https://wiki.archlinux.org/title/Waydroid#:~:text=app%20launch%20%24package_name-,Network,-The%20network%20should>
+
+## Genymotion
+
 <http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/>
 
 Hace falta registrarse en una web.
 Bajamos un programa para gestionar las imágenes de android.
-  Se baja un .bin (bash script)
-  sudo mkdir /opt/genymotion
-  sudo chown adrian /opt/genymotion
-  ./genymotion-2.7.2-linux_x64.bin -d /opt/
+Se baja un .bin (bash script)
+sudo mkdir /opt/genymotion
+sudo chown adrian /opt/genymotion
+./genymotion-2.7.2-linux_x64.bin -d /opt/
 Arrancar con /opt/genymotion/genymotion
 
 Si da este problema:
@@ -99,6 +122,7 @@ Se arregla así:
 <http://stackoverflow.com/questions/18641423/not-able-to-start-genymotion-device>
 
 ## Google Apps (gapps)
+
 <https://docs.genymotion.com/paas/latest/041_Installing_applications.html#from-playstore>
 
 <https://opengapps.org/>
@@ -120,12 +144,13 @@ priv-adrianRepo/hack/Genymotion-ARM-Translation_v1.1.zip
 También podemos conectar por ssh
 
 adb -s 192.168.60.106:5555 shell
-  mirar en ps a donde conecta, habrá un par de adb arrancados
+mirar en ps a donde conecta, habrá un par de adb arrancados
 
 Instalar .zip
 adb shell "/system/bin/flash-archive.sh /sdcard/Download/opengapps.zip"
 
 ## SSH
+
 <https://docs.genymotion.com/paas/latest/03_Accessing_an_instance/033_Accessing_a_virtual_device_from_SSH.html>
 
 ## Errores
@@ -135,6 +160,7 @@ Mirar logcat
 En un caso se estaba quedando sin memoria al abrir una app.
 
 # Run apps
+
 <http://www.shashlik.io/>
 
 yay -S shashlik-bin
@@ -156,6 +182,7 @@ En emulator_args agregamos:
 -http-proxy <https://localhost/>
 
 ## Android emulator
+
 <http://developer.android.com/sdk/installing/index.html?pkg=tools>
 
 Lo más sencillo para usar las UI que viene con android-studio (tools -> AVD manager)
