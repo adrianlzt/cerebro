@@ -104,7 +104,33 @@ waydroid shell
 Para tener red tenemos que habilitar ciertas cosas en el firewall:
 <https://wiki.archlinux.org/title/Waydroid#:~:text=app%20launch%20%24package_name-,Network,-The%20network%20should>
 
-## Genymotion
+## Proxy
+
+<https://github.com/waydroid/waydroid/issues/870#issuecomment-1696466694>
+<https://julien.duponchelle.info/android/use-proxy-with-waydroid#:~:text=Install%20the%20certificate%20in%20Waydroid>
+
+Para configurar un proxy http (podemos poner la ip del host):
+
+```
+adb shell settings put global http_proxy "172.17.0.1:8080"
+adb shell settings put global https_proxy "172.17.0.1:8080"
+```
+
+Las apps pueden ignorar estos proxies.
+
+Tras meter el cert en el overlay, terminar la sesión de waydroid y arrancar de nuevo.
+
+## Modificar ficheros RO
+
+Crear los ficheros en el overlayfs (/var/lib/waydroid/overlay/) y luego reiniciar la sesión.
+
+## Root / magisk
+
+Este no me ha funcionado, y pide root: <https://github.com/waydroid/waydroid/issues/1415>
+
+<https://github.com/nitanmarcel/waydroid-magisk>
+
+# Genymotion
 
 <http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/>
 
