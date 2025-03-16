@@ -144,6 +144,8 @@ Las apps pueden ignorar estos proxies.
 
 Tras meter el cert en el overlay, terminar la sesión de waydroid y arrancar de nuevo.
 
+Mirar httptoolkit para cosas más complejas. A veces tengo que andar reiniciando el contenedor, weston, session para que httptoolkit detecte el adb.
+
 ## Modificar ficheros RO
 
 Crear los ficheros en el overlayfs (/var/lib/waydroid/overlay/) y luego reiniciar la sesión.
