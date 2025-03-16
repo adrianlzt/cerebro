@@ -113,6 +113,9 @@ También me funciona con:
 adb shell
 ```
 
+A veces, no se por qué, el adb shell no funciona, no detecta ningún dispositivo.
+Cerrando waston y reiniciando el servicio de systemd parace que lo arregla.
+
 ## red
 
 Para tener red tenemos que habilitar ciertas cosas en el firewall:
