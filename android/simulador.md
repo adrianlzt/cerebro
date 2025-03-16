@@ -73,6 +73,10 @@ Listado de APKs disponibles:
 waydroid app list
 ```
 
+## arm
+
+Mirar aur/waydroid-script-git
+
 Si queremos instalar un .apk de arm en waydroid (que seguramente será x86_64), necesitamos instalar el paquete de traducción:
 <https://github.com/casualsnek/waydroid_script>
 usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
@@ -95,11 +99,21 @@ Problemas? Reiniciar el servicio y recomenzar:
 systemctl restart waydroid-container.service
 ```
 
+## shell
+
 Acceder a la shell de waydroid/emulador:
 
 ```bash
 waydroid shell
 ```
+
+También me funciona con:
+
+```bash
+adb shell
+```
+
+## red
 
 Para tener red tenemos que habilitar ciertas cosas en el firewall:
 <https://wiki.archlinux.org/title/Waydroid#:~:text=app%20launch%20%24package_name-,Network,-The%20network%20should>
@@ -116,6 +130,13 @@ adb shell settings put global http_proxy "172.17.0.1:8080"
 adb shell settings put global https_proxy "172.17.0.1:8080"
 ```
 
+Quitar proxy:
+
+```bash
+adb shell settings put global http_proxy :0
+adb shell settings put global https_proxy :0
+```
+
 Las apps pueden ignorar estos proxies.
 
 Tras meter el cert en el overlay, terminar la sesión de waydroid y arrancar de nuevo.
@@ -129,6 +150,18 @@ Crear los ficheros en el overlayfs (/var/lib/waydroid/overlay/) y luego reinicia
 Este no me ha funcionado, y pide root: <https://github.com/waydroid/waydroid/issues/1415>
 
 <https://github.com/nitanmarcel/waydroid-magisk>
+
+Probando aur/waydroid-magisk
+
+Necesito usar weston, con cage no me encuentra la sessión de waydroid.
+
+Con esto puedo hacer "su", pero no es root por defecto.
+
+```bash
+waydroid prop set persist.waydroid.root_access true
+```
+
+Esto me rompe "adb shell", aunque "waydroid shell" sigue funcionando.
 
 # Genymotion
 
