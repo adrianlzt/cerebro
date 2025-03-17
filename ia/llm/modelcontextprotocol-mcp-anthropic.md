@@ -14,3 +14,11 @@
 <https://github.com/ravitemer/mcphub.nvim>
 
 mirar vim/ncp.md
+
+# Servidores oficiales
+
+<https://github.com/modelcontextprotocol/servers>
+
+Si queremos modificar alguno, clonar el repo, hacer las modificaciones, build `npm run build`.
+
+Para usarlo `node dist/index.js`
