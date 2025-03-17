@@ -91,6 +91,7 @@ Cuidado con la seguridad de Tower. Es un punto de acceso para poder controlar to
 ## Desencriptar valores almacenados
 
 credentials / passwords / keys / secrets
+ansible -i inventory -m win_ping windows
 
 Ponemos los datos de la postgres y el secret de AWX. Nos muestra los secrets y al seleccionar uno lo desencripta.
 

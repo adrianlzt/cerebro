@@ -27,7 +27,10 @@ windows ansible_connection=psrp ansible_become_method=runas ansible_psrp_protoco
 ```
 
 Comando de prueba:
-ansible -i inventory -m win_ping windows
+
+```bash
+uv run --with ansible --with pywinrm --with pypsrp --with pysocks ansible -i inv -m win_ping all
+```
 
 # Services
 

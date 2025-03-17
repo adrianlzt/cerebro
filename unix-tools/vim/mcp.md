@@ -13,6 +13,8 @@ Para abrir la interfaz:
 
 Desde la interfaz podemos instalar nuevos servers MCP.
 
+La forma de instalación es curiosa, hace uso de CodeCompanion, le pasa lo que tiene que hacer y CodeCompanion es realmente quien realiza los cambios.
+
 # mcp-hub
 
 <https://github.com/ravitemer/mcp-hub>
