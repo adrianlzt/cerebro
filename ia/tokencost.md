@@ -31,4 +31,4 @@ result = tokenizer.count_tokens(contents)
 print(f"{result.total_tokens=:,}")
 ```
 
-cat fichero | ./token_count.py
+files-to-prompt dir/ | ./token_count.py
