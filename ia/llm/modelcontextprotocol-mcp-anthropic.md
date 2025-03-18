@@ -26,6 +26,10 @@ Visual testing tool for MCP servers
 
 Levanta una web para poder llamar a cualquier servidor MCP.
 
+```bash
+npx @modelcontextprotocol/inspector uvx mcp-server-time
+```
+
 ## cli
 
 ### chrishayuk/mcp-cli
