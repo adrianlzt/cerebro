@@ -3,7 +3,7 @@
 # Encontrar mcp-servers
 
 <https://github.com/modelcontextprotocol/servers>
-<https://mcp.so/>
+<https://mcp.so/> Permite testear los servidores desde la propia web.
 <https://github.com/topics/mcp-server>
 <https://mcpsvr.com/>
 <https://github.com/punkpeye/awesome-mcp-servers>
@@ -18,11 +18,49 @@ Para usarlo `node dist/index.js`
 
 # Clientes
 
-## mcpgod
+## mcp inspector
+
+<https://github.com/modelcontextprotocol/inspector>
+
+Visual testing tool for MCP servers
+
+Levanta una web para poder llamar a cualquier servidor MCP.
+
+## cli
+
+### chrishayuk/mcp-cli
+
+Nos da un ncurses tipo chat donde, por defecto, con gpt-4o-mini podemos probar una tool.
+
+```bash
+uvx git+https://github.com/chrishayuk/mcp-cli chat --config-file ~/.config/Claude/claude_desktop_config.json --server mcp-server-time
+```
+
+Si queremos añadir más servers use mcp-get
+
+Comandos:
+
+```
+/tools --all
+```
+
+### wong2/mcp-cli
+
+<https://github.com/wong2/mcp-cli>
+
+Abre una app interactiva para ver los métodos y llamar al que queramos.
+
+```bash
+npx @wong2/mcp-cli npx -y @modelcontextprotocol/server-everything
+```
+
+### mcpgod
 
 <https://github.com/mcpgod/cli>
 
-Ver las tools que ofrece un MCP server:
+Ver las tools que ofrece un MCP server (parece que limitado a servers de nodejs):
+
+Tengo un par de PRs para poder correr servers python (<https://github.com/mcpgod/cli/pull/3>) y formatear el output en JSON (<https://github.com/mcpgod/cli/pull/4>).
 
 ```bash
 npx -y mcpgod tools @modelcontextprotocol/server-everything
@@ -34,9 +72,29 @@ Usar una tool:
 npx -y mcpgod tool @modelcontextprotocol/server-everything add a=59 b=40
 ```
 
+### mcp-get
+
+<https://github.com/michaellatman/mcp-get>
+
+Para instalar servers localmente. Usa un registry.
+
+Configura el fichero `~/.config/Claude/claude_desktop_config.json`
+
+Listar servers (podemos instalar desde el ncurses que abre):
+
+```bash
+npx -y @michaellatman/mcp-get@latest list
+```
+
 ## nvim / mcp-hub
 
 <https://github.com/ravitemer/mcp-hub>
 <https://github.com/ravitemer/mcphub.nvim>
 
 mirar vim/ncp.md
+
+# Desarrollo
+
+## python
+
+<https://github.com/jlowin/fastmcp>
