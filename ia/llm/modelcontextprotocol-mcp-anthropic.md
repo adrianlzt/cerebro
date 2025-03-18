@@ -101,4 +101,6 @@ mirar vim/ncp.md
 
 ## python
 
+<https://github.com/modelcontextprotocol/python-sdk>
+
 <https://github.com/jlowin/fastmcp>
