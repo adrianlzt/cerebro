@@ -1,1 +1,0 @@
-../../nube/amazon/ansible.md
