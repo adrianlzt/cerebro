@@ -3,6 +3,16 @@
 <https://blog.px.dev/ebpf-tls-tracing-past-present-future/>
 Resumen del estado del arte en 2024.
 
+# bcc tools - sslsniff
+
+<https://github.com/iovisor/bcc/blob/master/tools/sslsniff_example.txt>
+
+Bug, corregido? <https://github.com/iovisor/bcc/pull/5242>
+
+Arch: bcc-tools
+
+/usr/share/bcc/tools/sslsniff
+
 # subtrace
 
 <https://github.com/subtrace/subtrace>
@@ -39,6 +49,17 @@ Mirar kyanos (eBPF) para sacar tr√°fico para un proeso concreto. Permite ver tr√
 <https://github.com/monasticacademy/httptap>
 
 aur/httptap-bin
+
+```bash
+httptap -- curl http://eth0.me
+httptap --head --body -- curl http://eth0.me
+```
+
+Podemos hacer un dump a un .har para luego verlo en el inspector de red de Firefox o Chrome:
+
+```bash
+httptap --dump-har out.har -- curl -Lso /dev/null https://monasticacademy.org
+```
 
 # mitmproxy
 
