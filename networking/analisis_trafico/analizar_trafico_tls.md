@@ -3,6 +3,16 @@
 <https://blog.px.dev/ebpf-tls-tracing-past-present-future/>
 Resumen del estado del arte en 2024.
 
+# ecapture
+
+<https://github.com/gojue/ecapture>
+
+eBPF.
+SSL/TLS plaintext capture, support openssl\libressl\boringssl\gnutls\nspr(nss) libraries.
+
+aur/ecapture
+aur/ecapture-bin
+
 # bcc tools - sslsniff
 
 <https://github.com/iovisor/bcc/blob/master/tools/sslsniff_example.txt>
@@ -70,3 +80,9 @@ mitmproxy usa eBPF para enviar el tráfico de un proceso a través de mitmproxy.
 # Inpector Gadget / kubernetes
 
 <https://inspektor-gadget.io/docs/latest/gadgets/trace_ssl/>
+
+# x-ray-tls
+
+<https://github.com/eurecom-s3/x-ray-tls>
+
+X-Ray-TLS allows to inspect TLS-encrypted traffic made from local programs by extracting TLS session keys from process memory in a generic and transparent way.
