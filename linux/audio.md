@@ -22,6 +22,27 @@ pw-dump
 
 ### pw-cli
 
+Esto lo saqué de LLM, pero no parece funcionar (pero tampoco da error).
+
+Crear un null sink (nodo de captura/escucha):
+
+```bash
+pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name="VirtualMicSink" node.description="Virtual Mic" media.class=Audio/Sink }'
+```
+
+Crear un nodo loopback (micrófono virtual):
+
+```bash
+pw-cli create-node adapter '{ factory.name=support.null-audio-source node.name="VirtualMicSource" node.description="Virtual Mic Source" media.class=Audio/Source }'
+```
+
+Unir el sink con el source:
+
+```bash
+pw-link VirtualMicSink:output_FL VirtualMicSource:input_FL
+pw-link VirtualMicSink:output_FR VirtualMicSource:input_FR
+```
+
 ### WirePlumber
 
 <https://wiki.archlinux.org/title/WirePlumber>
@@ -30,9 +51,9 @@ wpctl status
 Config renames y disabled devices:
 $HOME/.config/wireplumber/main.lua.d/
 
-PulseAudio
+# PulseAudio
 
-# Admin
+## Admin
 
 Comprobar si está arrancado (devolverá RC=0)
 pulseaudio --check
@@ -40,7 +61,7 @@ pulseaudio --check
 Restart:
 systemctl --user restart pulseaudio
 
-# Varios
+## Varios
 
 Herramienta
 pavucontrol - gestion grafica del sonido
@@ -108,8 +129,11 @@ UI:
 
 <https://superuser.com/a/1021823/526882>
 
+```
 pactl list | grep "Monitor Source"
 cvlc -vvv pulse://XXXX --sout '#transcode{acodec=mp3,ab=128,channels=2}:standard{access=http,dst=0.0.0.0:8888/pc.mp3}'
+```
+
 ejemplo:
 
 Desde otro navegador abrir:
