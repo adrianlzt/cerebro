@@ -82,6 +82,7 @@ ffplay /dev/video2
 ```
 
 Si en el navegador no funciona, mirar la consola.
+Mirar que hayamos puesto un label al cargar el v4l2loopback.
 En firefox se quejaba de que la webcam tenía unas dimensiones no válidas (creo que era cosa de jitsi):
 
 ```
@@ -112,6 +113,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Professional_Mode_16x9_Three_friends__t
 ```
 
 Usando <https://webrtc.github.io/samples/src/content/getusermedia/gum/>
+Para poder elegir la webcam: <https://webrtc.github.io/samples/src/content/devices/input-output/>
 Consigo ver el vídeo.
 También funciona con google meet.
 
