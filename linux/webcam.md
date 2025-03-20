@@ -64,6 +64,10 @@ ffplay rtsp://127.0.0.1:8554/video
 
 # Fake stream webcam
 
+Con OBS me ha funcionado bien, usando virtual camera, output type: program (default).
+Lo he podido conectar con google meet usando firefox.
+Para el audio, en la pista de audio he puesto Audio monitoring: Monitor and output. Y he tenido que aumentar el sync offset para que video y a audio se sincronizaran.
+
 <https://www.linuxfordevices.com/tutorials/linux/fake-webcam-streams>
 
 ```bash
@@ -130,3 +134,12 @@ Luego podemos simular la webcam con:
 ```bash
 ffmpeg -stream_loop -1 -re -i grabacion_webcam_yuv420p.mp4 -f v4l2 /dev/video2
 ```
+
+Otra opción:
+
+```bash
+gst-launch-1.0 -v filesrc location=Professional_Mode_16x9_Three_friends__two_men_with_shor.mp4 ! decodebin ! videoconvert ! v4l2sink device=/dev/video2
+```
+
+No consigo saber como poder controlar (play/pause) ese vídeo.
+Tampoco me está enviando el audio.
