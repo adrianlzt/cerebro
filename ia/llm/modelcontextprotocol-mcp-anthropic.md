@@ -18,6 +18,10 @@ Para usarlo `node dist/index.js`
 
 # Clientes
 
+## goose
+
+cli y x11. Parece que similar a aider, pero permite meter MCP.
+
 ## mcp inspector
 
 <https://github.com/modelcontextprotocol/inspector>
