@@ -15,3 +15,5 @@ playwright install
 ```
 
 Una vez hecho eso, ya podemos usar, por ejemplo, una app de python que use playwright.
+
+Si instalo playwright con pip, parece que falla.
