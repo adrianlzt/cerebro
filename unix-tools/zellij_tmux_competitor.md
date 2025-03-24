@@ -155,6 +155,12 @@ Mapeado a C-a y
 
 Para compartir la terminal con otros usuarios.
 
+# Develop
+
+## Commands API
+
+<https://zellij.dev/documentation/plugin-api-commands>
+
 # TODO
 
 Si hacemos resurrect de una sesión, se puede ver como estaba todo? En cada pane el resultado de la última ejecución y en el directorio que estábamos.
