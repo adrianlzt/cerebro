@@ -22,6 +22,8 @@ Para usarlo `node dist/index.js`
 
 cli y x11. Parece que similar a aider, pero permite meter MCP.
 
+mirar en goose.md
+
 ## mcp inspector
 
 <https://github.com/modelcontextprotocol/inspector>
@@ -44,7 +46,7 @@ Nos da un ncurses tipo chat donde, por defecto, con gpt-4o-mini podemos probar u
 uvx git+https://github.com/chrishayuk/mcp-cli chat --config-file ~/.config/Claude/claude_desktop_config.json --server mcp-server-time
 ```
 
-Si queremos añadir más servers use mcp-get
+Si queremos añadir más servers podemos usar mcp-get (que los añadirá al fichero de config).
 
 Comandos:
 
