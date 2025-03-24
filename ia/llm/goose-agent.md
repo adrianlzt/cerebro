@@ -19,3 +19,7 @@ Se puede usar también este comando para gestionar esa config:
 ```bash
 goose configure
 ```
+
+# Logs
+
+~/.local/share/goose/

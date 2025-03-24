@@ -15,6 +15,9 @@ sudo npm install -g npx
 npx -y @angular/cli new my-app
 ```
 
-```
+Buscar en que directorio se ha instalado el "virtual env" y borrarlo completo:
+
+```bash
+ls ~/.npm/_npx/*/node_modules | grep matcha-stock
 
 ```

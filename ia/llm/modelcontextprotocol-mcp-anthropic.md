@@ -46,6 +46,8 @@ Nos da un ncurses tipo chat donde, por defecto, con gpt-4o-mini podemos probar u
 uvx git+https://github.com/chrishayuk/mcp-cli chat --config-file ~/.config/Claude/claude_desktop_config.json --server mcp-server-time
 ```
 
+2025-03-24: no me funciona con upx, pero si clonando y con uv run.
+
 Si queremos añadir más servers podemos usar mcp-get (que los añadirá al fichero de config).
 
 Comandos:
@@ -68,9 +70,11 @@ npx @wong2/mcp-cli npx -y @modelcontextprotocol/server-everything
 
 <https://github.com/mcpgod/cli>
 
-Ver las tools que ofrece un MCP server (parece que limitado a servers de nodejs):
+Ver las tools que ofrece un MCP server y poder ejecutarlas.
 
-Tengo un par de PRs para poder correr servers python (<https://github.com/mcpgod/cli/pull/3>) y formatear el output en JSON (<https://github.com/mcpgod/cli/pull/4>).
+No hace uso de ningún fichero de configuración, hace las ejecuciones directamente.
+
+Tengo un par de PRs para poder correr servers python (<https://github.com/mcpgod/cli/pull/3>) y formatear el output en JSON (<https://github.com/mcpgod/cli/pull/4>). Esperando nueva release: <https://github.com/mcpgod/cli/issues/5>
 
 ```bash
 npx -y mcpgod tools @modelcontextprotocol/server-everything
@@ -102,6 +106,8 @@ npx -y @michaellatman/mcp-get@latest list
 <https://github.com/ravitemer/mcphub.nvim>
 
 mirar vim/ncp.md
+
+Genera ficheros sqlite en cada directorio donde abro el vim.
 
 # Desarrollo
 
