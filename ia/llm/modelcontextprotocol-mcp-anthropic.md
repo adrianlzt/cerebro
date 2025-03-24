@@ -111,6 +111,10 @@ Genera ficheros sqlite en cada directorio donde abro el vim.
 
 # Desarrollo
 
+Parece importante dar bastante detalle en la description de las tools.
+
+Ejemplo de como declaran la de "shell" en goose: <https://github.com/block/goose/blob/c11e357fb320c6799a7e337b62b32bd906118974/crates/goose-mcp/src/developer/mod.rs#L133>
+
 ## python
 
 <https://github.com/modelcontextprotocol/python-sdk>

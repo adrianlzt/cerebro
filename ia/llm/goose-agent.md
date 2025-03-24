@@ -23,3 +23,12 @@ goose configure
 # Logs
 
 ~/.local/share/goose/
+
+# Funcionamiento
+
+Cuando abrimos una sesión y escribimos algo, lo primero que hace goose es enviar al texto al LLM para pedirle un resumen en 4 palabras.
+
+Luego hace una segunda llamada.
+Pasa el promp de sistema (<https://github.com/block/goose/blob/bf760fd630b9accd1eff63adba24798d6bf7413a/crates/goose/src/prompts/system.md?plain=1>) con la fecha y las tools (extensions).
+Y pasa el prompt del usuario.
+Y las herramientas que se pueden usar.
