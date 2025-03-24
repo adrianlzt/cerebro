@@ -67,6 +67,8 @@ Movernos entre panes
 Alt+hjkl (o flechas).
 Si no hay más pane saltará al siguiente tab.
 
+Buscar: C-a /
+
 ## Size / arrange
 
 <https://zellij.dev/tutorials/stacked-resize>
@@ -77,7 +79,7 @@ Cambiar organizactión (vertical, horizontal, stacked): `alt [ / alt ]`
 
 ## Floating pane
 
-Tendremos un floating pane por cada tab, serán independientes.
+Tendremos una o varias floating pane por cada tab, serán independientes.
 
 Floating pane, abrir un panel temporal: Alt+f
 Para maximizarlo: Alt+]
@@ -89,7 +91,7 @@ Podemos pinchar en "PIN" o Control p+i
 
 Podemos moverlo pinchando y usando el ratón.
 
-Podemos convertir un pane normal a floating con "embed".
+Podemos convertir panes normales a floating con "embed".
 
 # Sessions
 
@@ -127,7 +129,23 @@ El programa nos indicará donde está conectado cada uno, cada uno puede estar e
 
 <https://zellij.dev/documentation/plugins>
 
+<https://github.com/zellij-org/awesome-zellij?tab=readme-ov-file>
+
 Control o+p
+
+## forgot
+
+<https://github.com/karimould/zellij-forgot>
+
+Para encontrar los keybindings.
+
+Mapeado en C-a ?
+
+## zeco
+
+<https://github.com/julianbuettner/zeco>
+
+Para compartir la terminal con otros usuarios.
 
 # TODO
 
@@ -151,3 +169,10 @@ Lo de restaurar y que arranque el último comando tiene algún bug. Si pongo un 
 Cuando hago control+p se ve que hay más comandos hacia la derecha, pero no se como ver que más cosas hay.
 
 Shortcut para ir a la última sesión activa.
+
+Undo el último cambio de layout.
+
+Buscar path.
+Buscar url
+Buscar números
+Buscar IP
