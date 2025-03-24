@@ -15,6 +15,7 @@ Abrir config leader keys: Control o + c
 # Tips
 
 Abrir el contenido de la terminal en $EDITOR: control s +e
+Esto nos puede valer para copiar texto.
 
 Copiar, seleccionar con el ratón, se copiará al clipboard.
 Podemos usar control+click si quieremos enviar el ratón a la aplicación que tengamos abierta.
@@ -56,8 +57,13 @@ Mover a nuevo tab: C-a !
 
 Mover pane a otro tab: C-t []
 
-## Move
+Cerrar C-a x
 
+Fullscreen C-a z
+
+Cambiar ubicación de pane: Control+h <arrows>
+
+Movernos entre panes
 Alt+hjkl (o flechas).
 Si no hay más pane saltará al siguiente tab.
 
@@ -82,6 +88,8 @@ Podemos "pinear" un floating pane para que se mantenga encima aunque vayamos a o
 Podemos pinchar en "PIN" o Control p+i
 
 Podemos moverlo pinchando y usando el ratón.
+
+Podemos convertir un pane normal a floating con "embed".
 
 # Sessions
 
