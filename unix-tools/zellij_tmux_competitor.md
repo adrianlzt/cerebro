@@ -190,3 +190,4 @@ Buscar path.
 Buscar url
 Buscar números
 Buscar IP
+PR para buscar por regex
