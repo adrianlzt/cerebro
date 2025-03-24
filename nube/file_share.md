@@ -5,6 +5,9 @@ Telegram @filetobot
 <https://driveuploader.com/>
 app que usa nuestro drive para recibir ficheros de un tercero
 
+<https://github.com/n0-computer/sendme>
+This is an example application using iroh (p2p) with the iroh-blobs protocol to send files and directories over the internet.
+
 Compartir con curl:
 curl -T fichero oshi.at
 
@@ -28,6 +31,7 @@ Nos da un comando que tiene que ejecutar la otra persona.
 # croc
 
 <https://github.com/schollz/croc>
+App android: <https://f-droid.org/packages/com.github.howeyc.crocgui/>
 
 Enviar:
 
