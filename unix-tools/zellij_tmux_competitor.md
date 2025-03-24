@@ -129,7 +129,7 @@ El programa nos indicará donde está conectado cada uno, cada uno puede estar e
 
 <https://zellij.dev/documentation/plugins>
 
-<https://github.com/zellij-org/awesome-zellij?tab=readme-ov-file>
+<<https://github.com/zellij-org/awesome-zellij>
 
 Control o+p
 
@@ -140,6 +140,14 @@ Control o+p
 Para encontrar los keybindings.
 
 Mapeado en C-a ?
+
+## ghost
+
+<https://github.com/vdbulcke/ghost>
+
+Ejecutar nuevos comandos en una floating window.
+
+Mapeado a C-a y
 
 ## zeco
 
