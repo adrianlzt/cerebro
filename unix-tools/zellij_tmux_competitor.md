@@ -191,3 +191,11 @@ Buscar url
 Buscar números
 Buscar IP
 PR para buscar por regex
+
+# Mejoras respecto a tmux
+
+Restaurar sesión sin fallos.
+
+Floating panes.
+
+Unirse a una misma sesión desde distintas terminales siendo independientes de pane/tab.
