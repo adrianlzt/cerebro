@@ -10,8 +10,11 @@ LLM con prompts para generar aplicaciones web.
 
 <https://github.com/stackblitz/bolt.new>
 
-# scrbook
+# mocha / scrbook
 
+<https://getmocha.com/>
+
+Antes se llamaba srcbook:
 <https://github.com/srcbookdev/srcbook/tree/main>
 <https://srcbook.com/>
 
