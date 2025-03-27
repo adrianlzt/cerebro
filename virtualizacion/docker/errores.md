@@ -1,28 +1,23 @@
 Mirar también los errores de podman
 
-
 Error response from daemon: client is newer than server (client API version: 1.20, server API version: 1.19)
 Actualizamos docker pero no reiniciamos el servicio.
 
-
 Problemas con los permisos? Los ficheros aparecen sin permisos:
-?---------   ? ?  ?     ?            ? README.md
+?--------- ? ? ? ? ? README.md
 Mirar que no tengamos el selinux activado
-http://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker
-
-
-
+<http://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker>
 
 Problemas con la red. Paquetes que no entran al docker
 Diferencias en la MTU del host y la interfaz de docker? Parece que si es más grande la de docker no tira
-https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/
+<https://docs.docker.com/engine/userguide/networking/default_network/custom-docker0/>
 vi /etc/sysconfig/docker-network
 DOCKER_NETWORK_OPTIONS=--mtu=1400
 
 Otra forma:
 /etc/docker/daemon.json
 {
-  "mtu": 1450
+"mtu": 1450
 }
 
 systemctl restart docker
@@ -31,10 +26,7 @@ Si usamos docker>=1.17 en OpenStack tenedremos que aumentar la MTU (poner a 1450
 
 El problema es que la interfaz docker0 tenga un mtu más grande que la interfaz de la máquina. Las conexiones LTS no funcionan.
 Explicación:
-https://mlohr.com/docker-mtu/
-
-
-
+<https://mlohr.com/docker-mtu/>
 
 dockerd-current[3380]: time="2017-05-19T14:50:16.867948483+02:00" level=fatal msg="Error starting daemon: error initializing graphdriver: devmapper: Base Device UUID and Filesystem verification failed: devmapper: Current Base Device UUID:8d5652f9-77b6-4fb7-a47f-e3eae9f14a4c does not match with stored UUID:adaa5863-1f84-4f82-8a66-f8a8d6314089. Possibly using a different thin pool than last invocation"
 rm -fr /var/lib/docker
@@ -42,29 +34,21 @@ lvremove docker-vg
 vgremove docker-vg
 rm -fr /etc/sysconfig/docker-storage
 fdisk /disco/para/Docker
- borrar particion
+borrar particion
 wipefs -a /disco/para/docker
 docker-storage-setup
 systemctl start docker
-
-
-
 
 uniendo un nodo a un docker swarm
 Error starting daemon: error initializing graphdriver: devmapper: Device %device% is not a thin pool
 mirar si esta abierto el puerto en el server donde estamos intentando ejecutar el comando de join del cluster
 
-
-
-https://github.com/docker/distribution/issues/1874
+<https://github.com/docker/distribution/issues/1874>
 server gave HTTP response to HTTPS client
-    Create or modify /etc/docker/daemon.json
-    { "insecure-registries":["myregistry.example.com:5000"] }
-    Restart docker daemon
-    sudo service docker restart
-
-
-
+Create or modify /etc/docker/daemon.json
+{ "insecure-registries":["myregistry.example.com:5000"] }
+Restart docker daemon
+sudo service docker restart
 
 lvm[1214]: Insufficient free space: 1488 extents needed, but only 60 available
 LVM breaks up each physical volume into extents. A logical volume consists of a set of extents. Each extent is either wholly unused, or wholly in used by a particular logical volume: extents cannot be subdivided. Extents are the elementary blocks of LVM allocation.
@@ -73,4 +57,6 @@ Mirar que configuración tenemos puesto de autocrecimiento del lvm en /etc/lvm/p
 Ahi tendremos que cuando el LV pase de tanto %, se incremente en otro %
 Mirar lvm.md
 
-
+Contenedores que no funcionan con una versión antigua de kernel del host.
+Puede ser por que la glibc es moderna y no compatible con ese kernel antiguo.
+Visto con un ubuntu20 y un debian reciente (2025). Algo con relacionado con fork()
