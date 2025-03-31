@@ -64,6 +64,7 @@ multilínea
 ```
 
 Podemos usar `/editor` para editar el mensaje con nuestro $EDITOR.
+O usar Control+x Control+e para abrir el editor.
 
 Si queremos borrar el contexto hasta ahora: `/clear`
 
