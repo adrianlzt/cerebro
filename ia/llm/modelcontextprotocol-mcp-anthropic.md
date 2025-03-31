@@ -7,6 +7,7 @@
 <https://github.com/topics/mcp-server>
 <https://mcpsvr.com/>
 <https://github.com/punkpeye/awesome-mcp-servers>
+<https://glama.ai/mcp/servers>
 
 # Servidores oficiales
 
