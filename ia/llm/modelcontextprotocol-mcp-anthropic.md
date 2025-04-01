@@ -64,7 +64,7 @@ Comandos:
 Abre una app interactiva para ver los métodos y llamar al que queramos.
 
 ```bash
-npx @wong2/mcp-cli npx -y @modelcontextprotocol/server-everything
+npx -y @wong2/mcp-cli npx -y @modelcontextprotocol/server-everything
 ```
 
 ### mcpgod
@@ -121,3 +121,30 @@ Ejemplo de como declaran la de "shell" en goose: <https://github.com/block/goose
 <https://github.com/modelcontextprotocol/python-sdk>
 
 <https://github.com/jlowin/fastmcp>
+
+# Debug
+
+<https://collabnix.com/mastering-mcp-debugging-with-cli-tools-and-jq/>
+
+```bash
+echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | npx -y @modelcontextprotocol/server-filesystem ~ | jq
+```
+
+Crear un script con unas fifo pipes a los lados para capturar los datos:
+
+```bash
+#!/bin/bash
+tee /tmp/mcp.fifo | uvx mcp-gsuite | tee /tmp/mcp.fifo
+```
+
+Mirar le contenido con:
+
+```bash
+tail -f /tmp/mcp.fifo
+```
+
+Ejecutar el server con:
+
+```bash
+npx @wong2/mcp-cli ./server.sh
+```
