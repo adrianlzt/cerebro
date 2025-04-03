@@ -1,5 +1,7 @@
 PIM es un servicio para solicitar una elevación de privilegios.
 
+Puede tardar unos minutos en hacer efecto. Visto al usar las APIs (terraform).
+
 # az-pim-cli
 
 <https://github.com/netr0m/az-pim-cli>
