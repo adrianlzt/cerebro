@@ -122,6 +122,10 @@ Ejemplo de como declaran la de "shell" en goose: <https://github.com/block/goose
 
 <https://github.com/jlowin/fastmcp>
 
+## golang
+
+<https://github.com/mark3labs/mcp-go>
+
 # Debug
 
 <https://collabnix.com/mastering-mcp-debugging-with-cli-tools-and-jq/>

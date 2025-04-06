@@ -20,6 +20,10 @@ Se puede usar también este comando para gestionar esa config:
 goose configure
 ```
 
+## Extensions / tools use
+
+Se puede configurar (en el fichero de config), como se comporta goose al llamar a tools: auto, manual o smart.
+
 # Logs
 
 ~/.local/share/goose/
