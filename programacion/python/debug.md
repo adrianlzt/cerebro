@@ -5,6 +5,11 @@ mirar también py_inject.md, para inyectar código
 <https://github.com/P403n1x87/austin-tui>
 Una interfaz "top-like" para austin, que permite debugear en caliente
 
+<https://github.com/microsoft/debug-gym>
+A Text-Based Environment for Interactive Debugging
+"Gimnasio" para que los LLMs puedan resolver problemas de código usando el python debugger.
+Tools + agentes de ejemplo. Creo que sería más interesante un MCP al rededor de esto para poder acoplarlo fácilmente.
+
 Saltar de pdb al intérprete con el contexto de variables
 !import code
 code.interact(local=locals())
@@ -16,6 +21,7 @@ import bpython; bpython.embed({**globals(), **locals()})
 ```
 
 # breakpoint
+
 <https://www.python.org/dev/peps/pep-0553/>
 A partir de python 3.7 podemos poner en el código:
 breakpoint()
@@ -40,24 +46,25 @@ Herramienta ncurses para debugear python PuDB
 # Interactivo tras fallo
 
 python -i script.py
-  tras fallar nos deja una traceback de donde ha parado y la consola abierta
-  en realidad -i lo que hace es ejecutar el codigo y luego abrirnos el terminal
+tras fallar nos deja una traceback de donde ha parado y la consola abierta
+en realidad -i lo que hace es ejecutar el codigo y luego abrirnos el terminal
 
 Mirar pudb.md
 
 Con bpython, poner al principio:
 import bpdb
 bpdb.set_trace()
-  con 'B' se salta al bpython
+con 'B' se salta al bpython
 
 Probar ejemplo debug-test.py
 
 $ vi programa.py
 $ python
->>> import pdb
->>> import programa
->>> pdb.run('simple.main()')
-(Pdb)
+
+> > > import pdb
+> > > import programa
+> > > pdb.run('simple.main()')
+> > > (Pdb)
 
 Otra forma, metiendo un punto de parada en el programa:
 import pdb
@@ -69,20 +76,20 @@ $ python -m pdb script.py
 Cuando estamos pasando stdin al comando: <http://stackoverflow.com/questions/17074177/how-to-debug-python-cli-that-takes-stdin>
 El truco es que pdb va a usar el stdin y stdout de los fifo que creamos.
 En una terminal:
- mkfifo stdin
- mkfifo stdout
- cat stdout &
- cat > stdin
+mkfifo stdin
+mkfifo stdout
+cat stdout &
+cat > stdin
 
 En otra terminal (en el mismo dir):
- modificamos el .py para meterle el set_trace() de la siguiente manera:
-   import pdb
-   mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
-   pdb.set_trace=mypdb.set_trace
-   pdb.set_trace()
+modificamos el .py para meterle el set_trace() de la siguiente manera:
+import pdb
+mypdb=pdb.Pdb(stdin=open('stdin','r'), stdout=open('stdout','w'))
+pdb.set_trace=mypdb.set_trace
+pdb.set_trace()
 
- arrancamos el programa que necesita stdin:
-   cat args | PYTHONPATH=. python ansible_module_*.py
+arrancamos el programa que necesita stdin:
+cat args | PYTHONPATH=. python ansible*module*\*.py
 
 En la primera terminal tendremos el pdb.
 
@@ -95,11 +102,11 @@ r(eturn) # until the current function returns
 unt(il) # sigue ejecutando hasta que la ejecucción continue en una linea con un número superior a la actual (como next?)
 until N # seguir hasta ese número de linea y parar
 b(reak) # [[filename:]lineno | function[, condition]]
- Sin parametros muestra los breakpoints y los numera
- b 5, i>4 # Para en la linea 5 solo si i vale mayor que 4
+Sin parametros muestra los breakpoints y los numera
+b 5, i>4 # Para en la linea 5 solo si i vale mayor que 4
 cl(ear) # [filename:lineno | bpnumber [bpnumber ...]]
- Con filename:lineno, borra todos los bp en esa linea
- Si es un numero, se refiere a la lista que saca break
+Con filename:lineno, borra todos los bp en esa linea
+Si es un numero, se refiere a la lista que saca break
 !comando # ejecuta dicho comando
 j(ump) lineno
 l(ist) [first[, last]]
@@ -127,8 +134,8 @@ Tambien me ha valido en algunos casos donde por usar multiprocessing pdb no me f
 import epdb; epdb.st()
 
 import epdb; epdb.serve(port=8080)
-  entrar con:
-  nc IP 8080
+entrar con:
+nc IP 8080
 
 # Remote-pdb
 
@@ -139,7 +146,8 @@ RemotePdb('127.0.0.1', 4444).set_trace()
 
 nc 127.0.0.1 4444
 
-## GDB ##
+## GDB
+
 <http://fedoraproject.org/wiki/Features/EasierPythonDebugging>
 
 <http://stackoverflow.com/questions/7412708/debugging-stepping-through-python-script-using-gdb>
