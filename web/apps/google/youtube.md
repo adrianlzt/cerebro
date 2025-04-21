@@ -14,6 +14,8 @@ Visor web sin publicidad
 Una que funciona:
 <https://invidious.osi.kr/feed/popular>
 
+Poner un guión para pantalla completa y sin publicidad (no siempre funciona): yout-ube.com/XXX
+
 Una app para linux: <https://freetubeapp.io/>
 
 Para android: NewPipe
@@ -22,4 +24,5 @@ Bajar videos CLI:
 yt-dlp
 
 # Subir videos CLI
+
 <https://github.com/porjo/youtubeuploader>
