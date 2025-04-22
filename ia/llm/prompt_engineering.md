@@ -1,3 +1,4 @@
+<https://cookbook.openai.com/examples/gpt4-1_prompting_guide>
 <https://www.promptingguide.ai/models>
 <https://learnprompting.org/>
 <https://github.com/pinecone-io/examples/blob/master/generation/prompt-engineering.ipynb>
