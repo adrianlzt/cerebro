@@ -1,16 +1,26 @@
-# llm
-
 <https://llm.datasette.io/en/stable/>
 
 Estoy usando gemini-flash como modelo por defecto.
 
 Para los modelos de openai, llamo a una instancia local de litellm que use los modelos de azure con la apikey de github.
 
-```bash
-uv tool install -U --with llm-gemini --with llm-jq --with llm-cmd --with llm-claude-3 --with llm-ollama --with llm-cmd-comp --with llm-deepseek --with llm-groq llm
-```
+Instalar/actualizar:
 
-Actualizar, ejecutar el comando anterior pero con `install -U`.
+```bash
+uv tool install -U \
+  --with llm-gemini  \
+  --with llm-jq  \
+  --with llm-cmd  \
+  --with llm-claude-3  \
+  --with llm-ollama  \
+  --with llm-cmd-comp  \
+  --with llm-deepseek  \
+  --with llm-groq  \
+  --with git+https://github.com/OttoAllmendinger/llm-git.git  \
+  --with llm-github-models \
+  --with llm-edit \
+  llm
+```
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
 
@@ -85,6 +95,12 @@ Histórico de chats:
 
 <https://llm.datasette.io/en/stable/logging.html>
 
+Interfaz web para visualizarlo:
+
+```bash
+npx -y llm-web-ui $(llm logs path)
+```
+
 ```bash
 llm logs
 llm logs -n 10
@@ -114,6 +130,43 @@ Usarlo:
 cat llm/utils.py | llm -t pytest
 ```
 
+# Fragments
+
+<https://llm.datasette.io/en/stable/fragments.html>
+
+Añadir fragmentos (más texto) a una llamada a llm.
+Estos fragmentos pueden user URLs, ficheros o extensiones custom (transcripción de youtube, un repo de github, etc).
+
+```bash
+llm -f https://llm.datasette.io/robots.txt "Explain this robots.txt file in detail"
+llm -f setup.py 'extract the metadata'
+```
+
+Para ver fragmentos previamente añadidos:
+
+```bash
+llm fragments
+```
+
+## github
+
+Cargar un repo de github como fragmento:
+
+```bash
+llm install llm-fragments-github
+llm -f github:simonw/s3-credentials 'Suggest new features for this tool'
+```
+
+# Schemas
+
+<https://llm.datasette.io/en/stable/schemas.html>
+
+Allows you to define the exact structure of JSON data you want to receive from a model.
+
+```bash
+llm --schema 'name, age int, one_sentence_bio' 'invent a cool dog'
+```
+
 # Modelos
 
 ```bash
@@ -125,7 +178,6 @@ También podemos usarlos mediante su alias:
 ```bash
 llm aliases
 llm aliases set turbo gpt-3.5-turbo-16k
-
 ```
 
 Definir el modelo por defecto:
@@ -174,14 +226,6 @@ llm ollama list-models
 
 ```bash
 llm -m gemma:2b "pregunta"
-```
-
-# Plugins
-
-Añadir un nuevo plugin (añadiendo un nuevo módelo vía API):
-
-```bash
-llm install llm-gemini
 ```
 
 # Embeddings
@@ -247,6 +291,16 @@ curl -s https://www.nytimes.com/ \
   | llm -s 'summarize the news'
 ```
 
+# Plugins
+
+Añadir un nuevo plugin (añadiendo un nuevo módelo vía API):
+
+```bash
+llm install llm-gemini
+```
+
+Se usan para añadir nuevos modelos o nuevas funcionalidades.
+
 ## jq
 
 <https://github.com/simonw/llm-jq>
@@ -277,3 +331,56 @@ llm cmd undo last git commit
 ```
 
 Con <https://github.com/CGamesPlay/llm-cmd-comp> podemos empezar a escribir el comando
+
+## llm-git
+
+<https://github.com/OttoAllmendinger/llm-git>
+
+Los más comunes:
+
+```bash
+
+llm git describe-staged
+llm git commit
+```
+
+```bash
+llm git [--model MODEL] commit [--no-edit] [--amend] [--add-metadata] [--extend-prompt TEXT] [--include-prompt] - Generate commit message and commit changes
+llm git [--model MODEL] rebase [--upstream BRANCH] [--no-edit] [--extend-prompt TEXT] [--onto BRANCH] - Rebase the current branch with AI assistance
+llm git [--model MODEL] create-branch [COMMIT_SPEC] [--preview] [--extend-prompt TEXT] - Generate branch name from commits and create it
+llm git [--model MODEL] describe-staged [--extend-prompt TEXT] - Describe staged changes with suggestions
+llm git [--model MODEL] apply INSTRUCTIONS [--cached] [--extend-prompt TEXT] - [BETA] Generate changes based on instructions (not fully functional yet)
+llm git [--model MODEL] add [--extend-prompt TEXT] - [BETA] Generate and stage fixes (not fully functional yet)
+llm git dump-prompts - Display all available prompts
+GitHub Commands
+llm github [--model MODEL] create-pr [--upstream BRANCH] [--no-edit] [--extend-prompt TEXT] - Generate PR description from commits
+```
+
+## llm-github-models
+
+<https://github.com/tonybaloney/llm-github-models>
+
+Poder usar los modelos del marketplace de github.
+
+Listar los disponibles:
+
+```bash
+llm models | grep github
+```
+
+Usar
+
+```bash
+llm -m github/o1-mini "cuanto es 2+2"
+```
+
+## llm-edit
+
+<https://github.com/ajac-zero/llm-edit/tree/main>
+
+Crea o modifica un fichero según el prompt.
+Como un "aider" super básico.
+
+```bash
+llm edit nombre.fichero lo que queremos hacer o cambiar
+```
