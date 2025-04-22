@@ -19,7 +19,15 @@ uv tool install -U \
   --with git+https://github.com/OttoAllmendinger/llm-git.git  \
   --with llm-github-models \
   --with llm-edit \
+  --with git+https://github.com/lexh/llm-cerebras.git@llama4-scout \
+  --with jsonschema \
   llm
+```
+
+El de cerebras instalo ese fork porque tiene el último modelo de meta, para meter el original usar:
+
+```
+  --with llm-cerebras \
 ```
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
