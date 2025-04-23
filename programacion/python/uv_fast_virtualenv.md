@@ -20,6 +20,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Usar sin instalar / uvx
 
 ```bash
+uvx grip index.md
+# especificando un repo de git
+uvx --from git+https://github.com/nikolavp/grip@add-mermaid-support grip index.md
+```
+
+```bash
 uvx -p /usr/bin/python aider-install
 ```
 

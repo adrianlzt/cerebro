@@ -46,6 +46,8 @@ Formas de detectar si se está tocando el trackpad con la palma de la mano.
 
 <https://wayland.freedesktop.org/libinput/doc/latest/palm-detection.html>
 
+Lo activo con `touchpad-toggle.sh` o `trackpad-toggle.sh`.
+
 ## Syngesture
 
 Creo que esto está mejorado por libinput.

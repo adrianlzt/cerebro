@@ -15,10 +15,18 @@ glow
 Lector de markdown para la consola
 Puede abrir URLs
 
-aur/python-grip
-grip fichero.md
+```bash
+uvx grip index.md fichero.md
+```
+
 monta un server en localhost:5000 mostrando el fichero
 hace uso de la api de github
+
+Para soporte de mermaid:
+
+```bash
+uvx --from git+https://github.com/nikolavp/grip@add-mermaid-support grip index.md
+```
 
 markdown_py -f README.html -x tables README.md
 app python para convertir markdown a html/xhtml. Tendremos que cargar extensiones para algunas cosas (-x)
