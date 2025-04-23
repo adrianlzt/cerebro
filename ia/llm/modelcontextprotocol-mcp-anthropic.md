@@ -128,6 +128,8 @@ Ejemplo de como declaran la de "shell" en goose: <https://github.com/block/goose
 
 # Debug
 
+Parte del tráfico que se intercambia: <https://www.catiemcp.com/blog/mcp-transport-layer/>
+
 <https://collabnix.com/mastering-mcp-debugging-with-cli-tools-and-jq/>
 
 ```bash
