@@ -1,5 +1,8 @@
 Mirar también linux/events.md
 
+Esta parece que es la librería que se encarga de gestionar teclado, ratón, touchpad, etc.
+libinput: <https://wayland.freedesktop.org/libinput/doc/latest/>
+
 <http://tuxradar.com/content/xdotool-script-your-mouse>
 
 Controlar el mouse desde la linea de comandos
@@ -32,12 +35,20 @@ xdotool selectwindow
 Otra opcion
 <https://linux.die.net/man/1/wmctrl>
 
-# Touchpad
+# Touchpad / trackpad
 
 Activar click con el touchpad
 synclient TapButton1=1
 
+## Palm detection / syndaemon
+
+Formas de detectar si se está tocando el trackpad con la palma de la mano.
+
+<https://wayland.freedesktop.org/libinput/doc/latest/palm-detection.html>
+
 ## Syngesture
+
+Creo que esto está mejorado por libinput.
 
 <https://github.com/mqudsi/syngesture>
 Acciones ante patrones más complicados.
