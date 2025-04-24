@@ -16,3 +16,8 @@ Para datasets y basemaps.
 
 Añadir una capa de un GeoTiff.
 Capa -> Añadir capa -> Añadir capa raster -> seleccionar el GeoTiff
+
+## Mover un punto
+
+En una capa de puntos, activar la edición, dar a la herramienta de vertex tool y luego click derecho sobre el punto.
+Nos mostrará en una ventana las coordenadas y las podremos cambiar.
