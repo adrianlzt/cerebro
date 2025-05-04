@@ -2,6 +2,9 @@
 
 Controlar el navegador con python u otros lenguajes.
 
+<https://pypi.org/project/tf-playwright-stealth/>
+This is a package that makes playwright stealthy like a ninja by spoofing browser features in order to reduce the chance of detection.
+
 ## Arch linux
 
 <https://blog.nicoandres.dev/use-playwright-in-arch-linux/>
@@ -16,4 +19,4 @@ playwright install
 
 Una vez hecho eso, ya podemos usar, por ejemplo, una app de python que use playwright.
 
-Si instalo playwright con pip, parece que falla.
+Si instalo playwright con pip, parece que falla. Versión más reciente?
