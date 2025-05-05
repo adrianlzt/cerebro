@@ -15,3 +15,17 @@ Gallery: Like the Azure Marketplace, a gallery is a repository for managing and 
 Image definition: Image definitions are created within a gallery and they carry information about the image and any requirements for using it to create VMs. This includes whether the image is Windows or Linux, release notes, and minimum and maximum memory requirements. It's a definition of a type of image.
 
 Image version: An image version is what you use to create a VM when using a gallery. You can have multiple versions of an image as needed for your environment. Like a managed image, when you use an image version to create a VM, the image version is used to create new disks for the VM. Image versions can be used multiple times.
+
+# Crear una VM a partir de otra VM copiando el disco
+
+1. Hacer snapshot del disco
+2. Crear una imagen a partir de ese snapshot
+3. Usar esa disk image para levantar una nueva VM
+
+# Plan
+
+Specifies information about the marketplace image used to create the virtual machine.
+This element is only used for marketplace images.
+Before you can use a marketplace image from an API, you must enable the image for programmatic use.
+In the Azure portal, find the marketplace image that you want to use and then click Want to deploy programmatically, Get Started ->.
+Enter any required information and then click Save.
