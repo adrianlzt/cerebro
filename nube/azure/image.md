@@ -22,6 +22,8 @@ Image version: An image version is what you use to create a VM when using a gall
 2. Crear una imagen a partir de ese snapshot
 3. Usar esa disk image para levantar una nueva VM
 
+Si tenemos problemas (tuve el caso de que la organización de donde partía el disco fue borrada y fallaba con "Organization is in deleted state"), podemos bajarnos el .vhd e intentar borrar la metadata de esa asociación (creo que es el "purchasePlan" que se ve en el "JSON view" del disco).
+
 # Plan
 
 Specifies information about the marketplace image used to create the virtual machine.
