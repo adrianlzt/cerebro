@@ -81,6 +81,8 @@ uv run --python 3.12 --with pandas python
 # dependencies = [
 #   "requests",
 # ]
+# [tool.uv]
+# exclude-newer = "2023-10-16T00:00:00Z"
 # ///
 import requests
 
