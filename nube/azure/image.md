@@ -69,7 +69,24 @@ En el source type poner snapshot y seleccionar la snapshot que acabamos de crear
 
 En el nuevo disco creado nos aparecerá el botón para poder crear una VM desde él.
 
-TODO: no me ha funcionado. Tal vez haga falta tratar el .vhdx de alguna manera antes de subirlo.
+No me ha funcionado. Tal vez haga falta tratar el .vhdx de alguna manera antes de subirlo.
+
+Prueba uno:
+
+- alpine OS
+- stop
+- snapshot del disco OS
+- crear disco del snapshot
+- disk export
+
+Prueba preparar linux antes de bajar:
+
+- guia: <https://learn.microsoft.com/en-us/azure/virtual-machines/linux/redhat-create-upload-vhd?tabs=rhel89KVM>
+- ejecutados los comandos en la máquina para crear una imagen generalizada
+- stop
+- snapshot
+- create disk
+- disk export
 
 # Plan
 
@@ -78,3 +95,21 @@ This element is only used for marketplace images.
 Before you can use a marketplace image from an API, you must enable the image for programmatic use.
 In the Azure portal, find the marketplace image that you want to use and then click Want to deploy programmatically, Get Started ->.
 Enter any required information and then click Save.
+
+# Obtener info de una imagen del marketplace
+
+```bash
+az rest -m get -u "https://management.azure.com/subscriptions/4fac6287-5e3d-45b8-aa65-26a912491df1/Providers/Microsoft.Compute/locations/swedencentral/Publishers/bellsoft1582871421940/ArtifactTypes/VMImage/Offers/alpaquita-linux/Skus/alpaquita-linux-musl-stream/Versions/23.0421.0?api-version=2024-07-01"
+```
+
+Nos devuelve el plan, osDiskImage, etc.
+
+# Aceptar los términos de una imagen del marketplace
+
+```bash
+az vm image terms accept --urn publisher:offer:sku:version
+```
+
+```
+
+```

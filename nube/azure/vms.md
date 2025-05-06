@@ -108,11 +108,12 @@ Parece que no es posible acceder al user-data/custom-data configurado en una VM 
 
 # Imágenes
 
-Para sacar el listado de imágenes disponibles.
+Para sacar el listado de imágenes disponibles (muy lento).
 
 <https://stackoverflow.com/questions/57395138/how-to-set-the-virtual-machine-image-details-e-g-publisher-offer-sku-and-vers>
 
 ```bash
 az vm image list -o table --all
 az vm image list --offer GitLab -o table --all
+az vm image list --architecture x64 --location northeurope --all -f alpine
 ```
