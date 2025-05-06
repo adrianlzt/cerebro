@@ -22,7 +22,54 @@ Image version: An image version is what you use to create a VM when using a gall
 2. Crear una imagen a partir de ese snapshot
 3. Usar esa disk image para levantar una nueva VM
 
-Si tenemos problemas (tuve el caso de que la organización de donde partía el disco fue borrada y fallaba con "Organization is in deleted state"), podemos bajarnos el .vhd e intentar borrar la metadata de esa asociación (creo que es el "purchasePlan" que se ve en el "JSON view" del disco).
+Si tenemos problemas (tuve el caso de que la organización de donde partía el disco fue borrada y fallaba con "Organization is in deleted state"), podemos bajarnos el .vhdx e intentar borrar la metadata de esa asociación (creo que es el "purchasePlan" que se ve en el "JSON view" del disco).
+
+Si queremos ver el contenido podemos montarlo con:
+
+```bash
+guestmount --add demo-bastion01-os-managed-disk-pruebas-adri.vhd --inspector --ro /mnt
+```
+
+Para subirlo, crear un "Managed disk" vacío, con tamaño suficiente:
+
+```bash
+az disk create --resource-group image-builder -n empty-disk-upload-vhdx --upload-type Upload --upload-size-bytes 10737418752
+```
+
+Obener el SAS token para poder subirlo:
+
+```bash
+az disk grant-access --resource-group image-builder -n empty-disk-upload-vhdx --duration-in-seconds 86400 --access-level Write
+```
+
+Subir el fichero .vhdx usando azcopy:
+
+```bash
+azcopy copy /home/foo/Downloads/os-managed-disk-pruebas.vhdx "https://<storage-account-name>.blob.core.windows.net/<container-name>/<blob-name>?<SAS-token>"
+```
+
+Terminar revocando el acceso de subida para cambiar el estado del disco:
+
+```bash
+az disk revoke-access --resource-group image-builder -n empty-disk-upload-vhdx
+```
+
+Comprobar que está en estado Unattached:
+
+```bash
+az disk show --resource-group image-builder -n empty-disk-upload-vhdx
+```
+
+Para poder usarlo como disco de OS: <https://learn.microsoft.com/en-us/azure/virtual-machines/attach-os-disk?tabs=portal#create-the-new-vm>
+
+Crear un snapshot Full del disco.
+
+Crear un managed disk: <https://portal.azure.com/#create/Microsoft.ManagedDisk>
+En el source type poner snapshot y seleccionar la snapshot que acabamos de crear.
+
+En el nuevo disco creado nos aparecerá el botón para poder crear una VM desde él.
+
+TODO: no me ha funcionado. Tal vez haga falta tratar el .vhdx de alguna manera antes de subirlo.
 
 # Plan
 
