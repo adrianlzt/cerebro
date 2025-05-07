@@ -48,3 +48,19 @@ az role assignment create --assignee <user_principal_name_or_object_id> --role "
 ```
 
 Parece que los roles creados pueden tardar en aparecer en la web, pero usando la cli pude asginarlos sin problemas.
+
+# Obtener los permisos asociado a una Service Principal
+
+```bash
+az role assignment list --assignee <ID> --output table --all
+```
+
+Para todas las subscripciones:
+
+```bash
+for i in $(az account list --all | jq '.[].id' -r); do
+  echo "Subscription $i"
+  az role assignment list --assignee 1426cabc-bb99-44f8-9f3d-31c299ad1c99 --output table --all --subscription $i
+  echo "---"
+done
+```

@@ -1,3 +1,6 @@
+Interfaz con IA integrada:
+<https://github.com/GoogleCloudPlatform/kubectl-ai>
+
 <https://kubernetes.io/docs/reference/kubectl/cheatsheet/>
 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>
 Herramienta administrativa de Kubernetes
@@ -32,7 +35,7 @@ ckc = cambiar de contexto (disable, quitamos el prompt de spaceship zsh)
 nkc = cambiar de namespace
 
 kubie ctx
-  arranca una shell en otro contexto, aislado del resto
+arranca una shell en otro contexto, aislado del resto
 
 <https://github.com/ahmetb/kubectx>
 cambiar de contexto
@@ -48,7 +51,7 @@ Si queremos poner ficheros usamos estilo "client-certificate", si queremos poner
 Tres secciones:
 
 - cluster
-      podemos poner "insecure-skip-tls-verify: true" para ignorar cert
+  podemos poner "insecure-skip-tls-verify: true" para ignorar cert
 - context (cluster+user+namespace)
 - users
 
@@ -57,7 +60,7 @@ kubectl --kubeconfig=''
 
 kubectl config view
 kubectl config view --minify
-  solo ver la config activa
+solo ver la config activa
 
 Contexto actual:
 kubectl config current-context
@@ -124,7 +127,7 @@ kubectl get svc
 
 Listar
 kubectl get pod -o wide
-  con -o wide veremos la IP del pod y en que nodo está desplegado
+con -o wide veremos la IP del pod y en que nodo está desplegado
 
 Crear: mirar shell.md
 
@@ -142,7 +145,7 @@ apiVersion: v1
 EOF
 
 kubectl apply -f fichero.yml
-  crea o actualiza
+crea o actualiza
 
 # Debug
 
@@ -179,7 +182,7 @@ $ oc get pods -o go-template-file=podlist.gotemplate
 
 Otro ejemplo:
 
-``````
+```
 {{range .items}}
 ---
 apiVersion: v1
@@ -196,7 +199,7 @@ spec:
  {{- end }}
  type: ClusterIP
 {{- end }}
-``````
+```
 
 # diff
 
@@ -206,12 +209,12 @@ KUBECTL_EXTERNAL_DIFF=meld kubectl diff -f some-resources.yaml
 
 kc apply --dry-run=server -f replicationcontroller.yaml
 
-  server = the request is still processed as typical request: the fields are defaulted, the object is validated, it goes through the validation admission chain, and through the mutating admission chain, and then the final object is returned to the user as it normally would, without being persisted.
+server = the request is still processed as typical request: the fields are defaulted, the object is validated, it goes through the validation admission chain, and through the mutating admission chain, and then the final object is returned to the user as it normally would, without being persisted.
 
 # exec
 
 kubectl exec svc/foo
-  ejecutar en uno de los pods que sirven ese service
+ejecutar en uno de los pods que sirven ese service
 
 # logs
 
