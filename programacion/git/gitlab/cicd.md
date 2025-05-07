@@ -38,7 +38,7 @@ EL PROBLEMA es que este repo tiene que ser público.
 include:
 
 - project: 'cicd/auto-devops'
-    file: 'main.yml'
+  file: 'main.yml'
 
 Otra opción es exponer un repo nuestro internamente (usando un contenedor git-sync + python http.server) y apuntar con un include external a esa url http.
 Tendremos que permitir en gitlab el acceso a las ips internas (settings - network - Outbound requests - Local IP addresses and domain names that hooks and services may access)
@@ -147,3 +147,20 @@ Usando docker no me compartía bien los caches entre distintas ejecuciones. Una 
 ## Cache
 
 Si un job falla, lo que pudiese haber guardado en los directorios de cache no se persiste.
+
+# Script
+
+Si queremos sacar el output completo de un script, usar: <https://docs.gitlab.com/runner/configuration/feature-flags/#:~:text=trace%20update%20interval.-,FF_SCRIPT_SECTIONS,-false>
+
+Por ejemplo, para configurarlo en un .gitlab-ci.yml:
+
+```yaml
+variables:
+  FF_SCRIPT_SECTIONS: 1
+```
+
+# Inputs
+
+<https://gitlab.datadope.co/help/ci/inputs/_index.md>
+
+Poder pasar valores al ejecutar una pipeline a mano, predefiniendo valores, posibles opciones, etc.
