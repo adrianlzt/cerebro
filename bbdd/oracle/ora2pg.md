@@ -1,8 +1,8 @@
-https://ora2pg.darold.net/documentation.html
+<https://ora2pg.darold.net/documentation.html>
 
 # Docker
 
-https://hub.docker.com/r/georgmoser/ora2pg
+<https://hub.docker.com/r/georgmoser/ora2pg>
 
 ```bash
 mkdir config
@@ -29,6 +29,18 @@ ORACLE_COPIES   2
 ALLOW           FILE[tables_to_migrate.txt]
 ```
 
-```
+Selecionar tablas a migrar:
 
 ```
+EXLUDE          ^history$ ^history_uint$ ^history_str$ ^history_log$ ^history_text$ ^trends$ ^trends_uint$
+ALLOW           actions
+```
+
+Hacer transformaciones a los datos:
+
+```
+TRANSFORM_VALUE ACTIONS[name:NVL(name,'')];ACTIONS[esc_period:NVL(esc_period,'1h')];ACTIONS[formula:NVL(formula,'')]
+```
+
+Cuidado con el NVL(XX,''), volverá a generar el valor \N (null).
+Lo que he hecho es hacer un sed para cambiar en el .sql los \N por ''.

@@ -36,7 +36,12 @@ set sqlprompt "_user'@'_connect_identifier> "
 set linesize 200
 set pagesize 1000
 set trimspool on
+set history on
 ```
+
+Ver el history: history
+
+Editar: history 2 edit
 
 # Comandos
 
