@@ -31,6 +31,11 @@ El ángulo del tendón respecto al hueso puede indicar si hay una rotura parcial
 Para escalar, usar vendaje en H o en 8.
 Los cazos que justo el borde pille donde la polea A4 pueden doler.
 
+Episode 2: Pulley Injuries Part 1
+Climbing Medicine Academy
+<https://open.spotify.com/episode/4Sv9bIcQhroOtZ5otshiih>
+Xeber habla de que últimamente busca más evidencias directas (falta de polea, posición del tendón respecto al hueso), que la medición de la distancia tendon-hueso.
+
 # Valoración
 
 Poleas A2:

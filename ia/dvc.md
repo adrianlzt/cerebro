@@ -49,6 +49,8 @@ Es una especie de _Makefile_ para almacenar como ejecutar experimentos.
 Definimos que inputs tenemos (para poder saber si hace falta volver a ejecutarlo ante cambios en los inputs), que parámetros, que outputs y que comandos.
 También podemos definir dependencias entre experimentos, para ejecutar unos antes de otros (DAG, directed acyclic graph).
 
+Como dependencias se debe meter el código involucrado (por ejemplo, ficheros .py) y los datos de entrada (ficheros .csv, .json, etc).
+
 Ejemplo:
 
 ```bash
