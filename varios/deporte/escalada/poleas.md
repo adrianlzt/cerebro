@@ -2,6 +2,9 @@
 
 <https://juan-martinez.es/blog/escalada-lesiones-de-poleas-plazos-de-recuperacion-y-tratamiento/>
 
+Dolor en el dedo escalando, ¿que hacer?
+Rest, ice, compression, parar de escalar. Darle un par de días a ver si mejora. Si no, ir al médico/fisio.
+
 <https://youtu.be/0ThzPFaxgEE?t=71>
 <http://www.rockandice.com/video-gallery/climbing-tips-how-to-tape-your-finger-a3-pulley>
 vendaje en H

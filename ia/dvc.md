@@ -76,3 +76,7 @@ Tras ejecutar los experimentos se genera un fichero `dvc.lock`, donde se guarda 
 Si volvemos a ejecutar los exprimentos, pero no hay cambios en los inputs, nos dirá que ya está ejecutado y no hace falta.
 
 Podemos especificar un único experimento con `dvc exp run -n <nombre>`.
+
+# Remotes
+
+<https://dvc.org/doc/user-guide/data-management/remote-storage>
