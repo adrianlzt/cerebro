@@ -77,6 +77,18 @@ Si volvemos a ejecutar los exprimentos, pero no hay cambios en los inputs, nos d
 
 Podemos especificar un único experimento con `dvc exp run -n <nombre>`.
 
+Si clonamos un repo y queremos ejecutar los experimentos (suponiendo que se ha usado un remote donde acceder a los ficheros):
+
+```bash
+dvc exp run --pull
+```
+
 # Remotes
 
 <https://dvc.org/doc/user-guide/data-management/remote-storage>
+
+Añadir remoto:
+
+```bash
+dvc remote add -d myremote /tmp/dvcstore
+```
