@@ -5,7 +5,7 @@ El "git" de los datos
 Install:
 
 ```bash
-uvx tool install dvc
+uv tool install -U --with dvc-s3 dvc
 ```
 
 # Iniciar
