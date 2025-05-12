@@ -8,6 +8,12 @@ Install:
 uv tool install -U --with dvc-s3 dvc
 ```
 
+Usar sin instalar:
+
+```bash
+uvx dvc
+```
+
 # Iniciar
 
 ```bash
