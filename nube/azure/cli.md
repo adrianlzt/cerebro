@@ -16,6 +16,12 @@ Para loguearnos
 az login
 ```
 
+Si queremos que nos aparezca el menú para seleccionar la subscripción:
+
+```bash
+az config set core.login_experience_v2=on
+```
+
 Login con una ServicePrincipal:
 
 ```bash
