@@ -23,6 +23,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uvx grip index.md
 # especificando un repo de git
 uvx --from git+https://github.com/nikolavp/grip@add-mermaid-support grip index.md
+# usando otro bin
+uvx --from podcast-llm podcast-llm-gui
 ```
 
 ```bash
