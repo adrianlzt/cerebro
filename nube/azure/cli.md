@@ -46,6 +46,12 @@ Cambiar la suscripción por defecto:
 az account set --subscription FooBar
 ```
 
+Forzar a reloguearse (borrar tokens):
+
+```bash
+rm ~/.azure/msal_token_cache.json
+```
+
 # Configuración
 
 ~/.azure/config
