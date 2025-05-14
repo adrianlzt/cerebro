@@ -52,7 +52,16 @@ az account set --subscription FooBar
 En ~/.azure habrá logs, ficheros con los tokens, etc
 
 Para modificar la config usar la cli:
+
+```bash
 az config set core.output=table
+```
+
+Si queremos cambiar el directorio de configuración de azure-cli:
+
+```bash
+export AZURE_CONFIG_DIR=/path/to/your/azure/config
+```
 
 # Parámetros generales
 
