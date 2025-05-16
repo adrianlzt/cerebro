@@ -4,7 +4,7 @@
 
 Arch
 yay oracle-instantclient-sqlplus
-  Necesitamos meter config en /etc/pacman.conf para bajarnos binarios compilados (temas de licencias de Oracle)
+Necesitamos meter config en /etc/pacman.conf para bajarnos binarios compilados (temas de licencias de Oracle)
 
 # Uso
 
@@ -17,7 +17,7 @@ ORACLE_HOME=/u01/app/oracle/product/19.0.0.0/dbhome_1 /u01/app/oracle/product/19
 ```
 
 Ejemplo en una centos 7:
-ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE /opt/oracle/product/21c/dbhomeXE/bin/sqlplus  "oracle_user/password@localhost:1539/XE"
+ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE /opt/oracle/product/21c/dbhomeXE/bin/sqlplus "oracle_user/password@localhost:1539/XE"
 
 El formato es:
 
@@ -32,8 +32,16 @@ echo "select 1" | sqlplus '/as sysdba'
 Para que se vean bien las tablas:
 
 ```sql
+set sqlprompt "_user'@'_connect_identifier> "
 set linesize 200
+set pagesize 1000
+set trimspool on
+set history on
 ```
+
+Ver el history: history
+
+Editar: history 2 edit
 
 # Comandos
 
@@ -55,4 +63,16 @@ Generará un fichero temporal con la query, para ejecutarla:
 @filename.buf
 ```
 
+# Analizar tablas
+
+Mostar las tablas
+
+```sql
+select table_name from user_tables;
+```
+
+Mostrar el schema de una tabla
+
+```sql
+desc table_name;
 ```

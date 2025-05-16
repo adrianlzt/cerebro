@@ -25,6 +25,10 @@ tz America/Argentina/Buenos_Aires
 Buscar en el clipboard (xclip):
 cp text
 
+Snippets:
+Generar ficheros de texto (terminados en .txt) en /home/adrian/.config/albert/snippets
+Se abre con "snip"
+
 Más plugins, pero parece que necesitarían adaptarse a la nueva API
 <https://github.com/bergercookie/awesome-albert-plugins>
 <https://github.com/bergercookie/awesome-albert-plugins/issues/26>

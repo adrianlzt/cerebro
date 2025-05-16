@@ -5,6 +5,9 @@ Telegram @filetobot
 <https://driveuploader.com/>
 app que usa nuestro drive para recibir ficheros de un tercero
 
+<https://github.com/n0-computer/sendme>
+This is an example application using iroh (p2p) with the iroh-blobs protocol to send files and directories over the internet.
+
 Compartir con curl:
 curl -T fichero oshi.at
 
@@ -14,7 +17,8 @@ curl -v --upload-file ./hello.txt <https://transfer.sh/hello.txt>
 Opción similar:
 curl -vT fichero <https://temp.sh>
 
-magic-wormhole
+# magic-wormhole
+
 <https://github.com/warner/magic-wormhole>
 Compartir ficheros, o pequeños texos, usando únicamente dos palabras legibles.
 Tenemos que instalar el cliente python.
@@ -24,12 +28,35 @@ pacman -S magic-wormhole
 wormhole send fichero
 Nos da un comando que tiene que ejecutar la otra persona.
 
+# croc
+
+<https://github.com/schollz/croc>
+App android: <https://f-droid.org/packages/com.github.howeyc.crocgui/>
+
+Enviar:
+
+```
+croc send [file(s)-or-folder]
+```
+
+Recibir:
+
+```
+croc code-phrase
+```
+
+# sharedrop
+
 <https://www.sharedrop.io>
 compartir ficheros entre usuarios de la misma red de manera directa (P2P). Usa WebRTC
+
+# sharefest
 
 <https://sharefest.me>
 compartir ficheros entre usuarios via p2p (parecido a torrent pero usando webrtc)
 Parece que ya NO EXISTE
+
+# otros
 
 dat parecido a torrent
 upspin acceso a ficheros via user@email/path/fichero

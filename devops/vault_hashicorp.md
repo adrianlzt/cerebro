@@ -24,8 +24,8 @@ Usar IaC para configurar vault (<https://registry.terraform.io/providers/hashico
 Activar auditing
 Hacer backups
 Meter dentro de la VPN?
-  pros: más seguro
-  cons: sin acceso sin vpn (posibilidad de cachear con el proxy v1.16; cuanto tiempo? perdemos auditing, se baja todo)
+pros: más seguro
+cons: sin acceso sin vpn (posibilidad de cachear con el proxy v1.16; cuanto tiempo? perdemos auditing, se baja todo)
 Transmitir las claves de unseal de manera segura
 Borrar el token root (se puede regenerar con las claves de unseal)
 Desactivar el histórico de bash si vamos a meter info sensible.
@@ -107,17 +107,17 @@ vault write auth/userpass/users/mitchellh password=foo policies=admins
 Para que funcione la cli (tendremos que pasar un token):
 vault login
 vault login -method=userpass username=foo
-  guardará el token en ~/.vault-token
+guardará el token en ~/.vault-token
 
-  Podemos usar un token-helper para almacenar ese token de forma segura.
-  Lo configuramos en ~/.vault con "token_helper = /foo/path"
+Podemos usar un token-helper para almacenar ese token de forma segura.
+Lo configuramos en ~/.vault con "token_helper = /foo/path"
 
-  <https://github.com/frntn/vault-token-helper-gopass>
-    mirar como configurarlo en <https://github.com/sethvargo/vault-token-helper-osx-keychain>
-    Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
-    En mi caso lo guardo en privado/vault-auth
-  <https://github.com/joemiller/vault-token-helper>
-    soporte para pass, linux dbus secrets, osx, windows
+<https://github.com/frntn/vault-token-helper-gopass>
+mirar como configurarlo en <https://github.com/sethvargo/vault-token-helper-osx-keychain>
+Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
+En mi caso lo guardo en privado/vault-auth
+<https://github.com/joemiller/vault-token-helper>
+soporte para pass, linux dbus secrets, osx, windows
 
 Si queremos únicamente obtener el token (no lo guardará en ~/.vault-token):
 vault login -token-only -method=userpass username=foo
@@ -133,15 +133,15 @@ vault auth enable ldap
 
 Configuración donde tenemos que especificar como se mapean los usuarios y grupos en el LDAP:
 vault write auth/ldap/config \
-    url="ldap://ldap.example.com" \
-    userdn="cn=opensolutions,dc=ldap,dc=opensolutions,dc=clou" \
-    groupdn="ou=Groups,dc=example,dc=com" \
-    groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
-    groupattr="cn" \
-    upndomain="example.com" \
-    certificate=@ldap_ca_cert.pem \
-    insecure_tls=false \
-    starttls=true
+ url="ldap://ldap.example.com" \
+ userdn="cn=opensolutions,dc=ldap,dc=opensolutions,dc=clou" \
+ groupdn="ou=Groups,dc=example,dc=com" \
+ groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
+ groupattr="cn" \
+ upndomain="example.com" \
+ certificate=@ldap_ca_cert.pem \
+ insecure_tls=false \
+ starttls=true
 
 Si queremos autenticarnos haciendo un bind DN con el usuario, podemos definir
 userattr y userdn.
@@ -165,33 +165,33 @@ Podemos crear también subgrupos.
 
 vault write auth/oidc/config -<<EOF
 {
-    "oidc_discovery_url": "<https://accounts.google.com>",
-    "oidc_client_id": "XXX",
-    "oidc_client_secret": "XXX",
-    "default_role": "user",
-    "provider_config": {
-        "provider": "gsuite",
-        "gsuite_service_account": "/home/foo/idp-e7872456d12e-service-account-group-admin.json",
-        "gsuite_admin_impersonate": "<admin@foo.io>",
-        "fetch_groups": true,
-        "fetch_user_info": true,
-        "groups_recurse_max_depth": 5
-    }
+"oidc_discovery_url": "<https://accounts.google.com>",
+"oidc_client_id": "XXX",
+"oidc_client_secret": "XXX",
+"default_role": "user",
+"provider_config": {
+"provider": "gsuite",
+"gsuite_service_account": "/home/foo/idp-e7872456d12e-service-account-group-admin.json",
+"gsuite_admin_impersonate": "<admin@foo.io>",
+"fetch_groups": true,
+"fetch_user_info": true,
+"groups_recurse_max_depth": 5
+}
 }
 EOF
 
 vault write auth/oidc/role/user -<<EOF
 {
-    "allowed_redirect_uris": "<http://localhost:8200/ui/vault/auth/oidc/oidc/callback,http://localhost:8250/oidc/callback>",
-    "user_claim": "email",
-    "groups_claim": "groups",
-    "verbose_oidc_logging": true,
-    "oidc_scopes": ["openid","email","profile"],
-    "claim_mappings": {
-        "sub": "google_id",
-        "email": "email",
-        "name": "name"
-    }
+"allowed_redirect_uris": "<http://localhost:8200/ui/vault/auth/oidc/oidc/callback,http://localhost:8250/oidc/callback>",
+"user_claim": "email",
+"groups_claim": "groups",
+"verbose_oidc_logging": true,
+"oidc_scopes": ["openid","email","profile"],
+"claim_mappings": {
+"sub": "google_id",
+"email": "email",
+"name": "name"
+}
 }
 EOF
 
@@ -207,11 +207,11 @@ Para mapear metadata del OIDC a Vault usaremos los "claim_mappings".
 Para mapear los grupos de OIDC a policies de Vault haremos:
 
 1. Crear un grupo type=external con las policies que queramos asignar
-vault write identity/group name="soporte_ext" type="external" policies="policy1,policy2"
+   vault write identity/group name="soporte_ext" type="external" policies="policy1,policy2"
 
 2. Crear un group-alias, que mapeará el grupo de OIDC (puesto en "name") con el ID (grupo external de Vault) puesto en canonical_id.
    También tendremos que poner el mount_accessor, el del método de auth que estamos usando, lo podemos obtener con "vault auth list".
-vault write identity/group-alias name='<soporte@foo.io>' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
+   vault write identity/group-alias name='<soporte@foo.io>' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
 
 ### Vault como OIDC provider
 
@@ -226,10 +226,10 @@ Lo de arriba es para que puedas usar un OIDC externo para autenticarte contra va
 
 Para cargar el plugin:
 vault plugin register \
-        -sha256=$(sha256sum vault-plugin-auth-jwt/bin/vault-plugin-auth-jwt | cut -d ' ' -f 1) \
-        -command="vault-plugin-auth-jwt" \
-        auth \
-        oidc
+ -sha256=$(sha256sum vault-plugin-auth-jwt/bin/vault-plugin-auth-jwt | cut -d ' ' -f 1) \
+ -command="vault-plugin-auth-jwt" \
+ auth \
+ oidc
 vault auth enable -plugin-name='oidc' plugin
 
 Para cambiarlo:
@@ -296,16 +296,16 @@ Los alias son los mapeos entre entities de vault y proveedores de identidad (ter
 <https://irezyigit.medium.com/vault-authorization-part-2-aliases-entities-and-groups-4f044d1e2010>
 
 vault write identity/group name="engineers" \
-     policies="team-eng" \
-     member_entity_ids=$(cat entity_id.txt) \
-     metadata=team="Engineering" \
-     metadata=region="North America"
+ policies="team-eng" \
+ member_entity_ids=$(cat entity_id.txt) \
+ metadata=team="Engineering" \
+ metadata=region="North America"
 
 También se pueden crear grupos "external", para mapearlos a aquellos de los proveedores de identidad externos.
 vault write -format=json identity/group name="education" \
-     policies="education" \
-     type="external" \
-     metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
+ policies="education" \
+ type="external" \
+ metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
 
 ## Token
 
@@ -318,7 +318,7 @@ En formato API:
 auth/token/lookup-self
 
 Ver todos los tokens actuales:
-vault list -format=json auth/token/accessors/  | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
+vault list -format=json auth/token/accessors/ | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
 
 Crear un token:
 vault token create -policy=my-policy -ttl=1h -explicit-max-ttl=2h
@@ -340,14 +340,14 @@ También existen los token periódicos, que tienen un ttl y se pueden renovar in
 Son "funciones" que puede realizar Vault.
 Cada una asociada a un "path".
 Por ejemplo:
-  kv: almacenar key-values, la kv-v2 tiene versionado (por defecto 10)
-    vault secrets enable kv
-    vault secrets enable -version=2 -path=kv2 kv
-  totp
-  certificados
-  cloud varias: generar tokens dinámicos de acceso con tiempo de vida
-  cubbyhole: engine temporal asociado a un token que se destruye cuando expira el token, parece como un "create temp table" de sql. Útil para compartir credenciales, mirar "Share secrets"
-  transit: encriptar y desencriptar datos
+kv: almacenar key-values, la kv-v2 tiene versionado (por defecto 10)
+vault secrets enable kv
+vault secrets enable -version=2 -path=kv2 kv
+totp
+certificados
+cloud varias: generar tokens dinámicos de acceso con tiempo de vida
+cubbyhole: engine temporal asociado a un token que se destruye cuando expira el token, parece como un "create temp table" de sql. Útil para compartir credenciales, mirar "Share secrets"
+transit: encriptar y desencriptar datos
 
 Ver los que tenemos disponibles:
 vault plugin list secret
@@ -392,20 +392,20 @@ vault secrets enable database
 
 Creamos una nueva entrada para configurar, por ejemplo, un postgres:
 vault write database/config/my-postgresql-database \
-    plugin_name="postgresql-database-plugin" \
-    allowed_roles="my-role" \
-    connection_url="postgresql://{{username}}:{{password}}@localhost:5432/database-name" \
-    username="vaultuser" \
-    password="vaultpass" \
-    password_authentication="scram-sha-256"
+ plugin_name="postgresql-database-plugin" \
+ allowed_roles="my-role" \
+ connection_url="postgresql://{{username}}:{{password}}@localhost:5432/database-name" \
+ username="vaultuser" \
+ password="vaultpass" \
+ password_authentication="scram-sha-256"
 
 Configuramos un role para esa db:
 vault write database/roles/my-role \
-    db_name="my-postgresql-database" \
-    creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
-        GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
-    default_ttl="1h" \
-    max_ttl="24h"
+ db_name="my-postgresql-database" \
+ creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
+ GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
+ default_ttl="1h" \
+ max_ttl="24h"
 
 Obtenemos credenciales (durará 1h, renovable hasta 24h):
 vault read database/creds/my-role
@@ -427,8 +427,8 @@ vault write transit/decrypt/orders ciphertext=$CIPHERTEXT
 
 Las ACL deciden que se puede hacer para cada path.
 Ejemplo:
-path "secret/*" {
-  capabilities = ["create", "read", "update", "delete", "list"]
+path "secret/\*" {
+capabilities = ["create", "read", "update", "delete", "list"]
 }
 
 Esta ACL permite todos las capabilities bajo el path secret/
@@ -451,12 +451,12 @@ delete DELETE
 list LIST
 patch PATCH
 sudo -
-deny    -
+deny -
 
 Permitir ver los engines que hay (vault secrets list):
 path "sys/mounts"
 {
-  capabilities = ["read"]
+capabilities = ["read"]
 }
 
 Hay otro endpoint que solo permite ver los mounts donde tengamos permisos:
@@ -516,7 +516,7 @@ elide_list_responses, por si queremos quitar las respuestas tipo "list", que pue
 En kv podemos usarlo para tener un generador de passwords de un formato determinado.
 Típico uso:
 vault kv put -mount=secret my-generated-secret \
-    password=$(vault read -field password sys/policies/password/example/generate)
+ password=$(vault read -field password sys/policies/password/example/generate)
 
 Por defecto vault tiene una política por defecto para generar contraseñas (cuando usamos plugin "databases" que crear passwords dinámicas).
 
@@ -536,10 +536,10 @@ Cada vez que queramos comunicar con un server que no es local deberemos pasar el
 
 Para que funcione el autocompletado tendremos que tener el ACL:
 path "sys/mounts" {
-    capabilities = ["read"]
+capabilities = ["read"]
 }
 Asi podemos hacer cosas tipo:
-vault read s*<TAB>
+vault read s\*<TAB>
 E ir navegando por el arbol de secrets
 
 Parece que "vault kv get/put/... <TAB>" no funciona
@@ -555,24 +555,26 @@ vault status -tls-skip-verify
 
 VAULT_SKIP_VERIFY=true vault ...
 
+Ignorar certs, tls, https, skip.
+
 ## Crear new vault server
 
 vault operator init -key-shares=1 -key-threshold=1
-  los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
-  devolverá el número de claves master especificado en key-shares y un root token (como se loguea el user root contra el vault)
+los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
+devolverá el número de claves master especificado en key-shares y un root token (como se loguea el user root contra el vault)
 
 ## Desbloquear/abrir el vault
 
 vault operator unseal
 vault operator unseal $KEY
-  debemos pasar las keys necesarias para abrirlo, ejecutando el comando el número de veces definido en key-threshold
+debemos pasar las keys necesarias para abrirlo, ejecutando el comando el número de veces definido en key-threshold
 
 ## Bloquear/cerrar el vault
 
 vault operator seal
-  esto será una operación poco común, realizada cuando consideremos que el vault está en riesgo
-  solo se podrá abrir de nuevo metiendo las claves master
-  cualquier user root puede hacer seal del vault
+esto será una operación poco común, realizada cuando consideremos que el vault está en riesgo
+solo se podrá abrir de nuevo metiendo las claves master
+cualquier user root puede hacer seal del vault
 
 ## AutoUnseal
 
@@ -604,23 +606,23 @@ Mirando el tráfico, parece que primero encripta una cadena "tonta" y entiendo q
 Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/list/put" en vez de directamente "get/list/put")
 vault kv list nombrePath
 vault kv put some/path foo=bar foo2=bar2
-  si ya existe "some/path", lo estaremos borrando y recreando con estos valores
+si ya existe "some/path", lo estaremos borrando y recreando con estos valores
 vault kv put kv/contacts/mario value=@prueba.yaml
-  subir un fichero.
-  Si queremos subir un fichero binario, usar base64
-  vault write kv/bin file=@<(cat /usr/bin/fc-cache | base64)
-  vault read -field=file kv/contacts/bin | base64 -d > fcat
-  Otra opción:
-  base64 /path/to/file | vault kv put secret/myapp/secretname file=-
+subir un fichero.
+Si queremos subir un fichero binario, usar base64
+vault write kv/bin file=@<(cat /usr/bin/fc-cache | base64)
+vault read -field=file kv/contacts/bin | base64 -d > fcat
+Otra opción:
+base64 /path/to/file | vault kv put secret/myapp/secretname file=-
 
 vault kv get some/path
 vault kv get -version=2 some/path
 vault kv delete some/path
 vault kv undelete -version=2 some/path
 vault kv get metadata some/path
-  metadata de la entrda. Tambien muestra todas las versiones que ha tenido (fecha de creación y borrado)
+metadata de la entrda. Tambien muestra todas las versiones que ha tenido (fecha de creación y borrado)
 vault kv metadata put -mount=secret -max-versions 2 -delete-version-after="3h25m19s" my-secret
-  borrar entradas antiguas
+borrar entradas antiguas
 
 Actualizaciones parciales:
 vault kv patch foo/bar bar=123
@@ -647,7 +649,7 @@ vault-kv-search --search=path kv -r . --json | jq -r .path | sort -u | fzf --pre
 Se puede especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
 vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | sort -u | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
 Para V2:
-vault-kv-search --search=path kv/ -r . --json -k=2 | jq -r .path | sort -u | sed "s#\([^/]*\)/\(.*\)#\1/data/\2#" | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
+vault-kv-search --search=path kv/ -r . --json -k=2 | jq -r .path | sort -u | sed "s#\([^/]_\)/\(._\)#\1/data/\2#" | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
 
 <https://github.com/hashicorp/vault/issues/5275>
 Issue sobre lo de buscar o acceso recursivo.
@@ -694,19 +696,19 @@ Montar los engines como ficheros
 Issue solicitándolo: <https://github.com/hashicorp/vault/issues/110>
 
 <https://github.com/jboero/hashifuse/tree/master/VaultFS>
-  no me deja vajar más de un nivel en kv2
-  <https://github.com/jboero/hashifuse/issues/7>
+no me deja vajar más de un nivel en kv2
+<https://github.com/jboero/hashifuse/issues/7>
 
 <https://github.com/asteris-llc/vaultfs>
-  sin desarrollo desde Marzo 2016
-  en go
-  me da un panic al intentar usarlo
-  hay algunos forks más recientes (2017), peo tampoco me funcionan
+sin desarrollo desde Marzo 2016
+en go
+me da un panic al intentar usarlo
+hay algunos forks más recientes (2017), peo tampoco me funcionan
 
 <https://github.com/PsyanticY/vaultfs>
-  sin desarrollo desde mayo 2021
-  python
-  sin terminar, no soporta "ls"
+sin desarrollo desde mayo 2021
+python
+sin terminar, no soporta "ls"
 
 ### TOTP
 
@@ -717,7 +719,7 @@ vault read totp/code/my-key4
 Tambíen se puede usar como provider.
 Generando el código totp, que un cliente usará para generar el código totp y luego pudiendo verificar que ese código es correcto.
 vault write totp/keys/my-gen generate=true account_name=x issuer=x
-  nos da el código en la variable "secret" de la url.
+nos da el código en la variable "secret" de la url.
 
 No implementado en la UI.
 
@@ -745,8 +747,8 @@ Crear una CA para firmar los certs:
 vault write ssh-client-signer/config/ca generate_signing_key=true
 O si ya tenemos una CA:
 vault write ssh-client-signer/config/ca \
-    private_key="..." \
-    public_key="..."
+ private_key="..." \
+ public_key="..."
 
 Obtener la clave pública:
 vault read ssh-client-signer/public_key -format=raw
@@ -763,16 +765,16 @@ Reiniciamos sshd
 Creamos un role para firmar certificados ssh:
 vault write ssh-client-signer/roles/my-role -<<"EOH"
 {
-  "algorithm_signer": "rsa-sha2-256",
-  "allow_user_certificates": true,
-  "allowed_users": "*",
-  "allowed_extensions": "permit-pty,permit-port-forwarding",
-  "default_extensions": {
-    "permit-pty": ""
-  },
-  "key_type": "ca",
-  "default_user": "ubuntu",
-  "ttl": "30m0s"
+"algorithm_signer": "rsa-sha2-256",
+"allow_user_certificates": true,
+"allowed_users": "\*",
+"allowed_extensions": "permit-pty,permit-port-forwarding",
+"default_extensions": {
+"permit-pty": ""
+},
+"key_type": "ca",
+"default_user": "ubuntu",
+"ttl": "30m0s"
 }
 EOH
 
@@ -780,7 +782,7 @@ El default_user deberá matchear con el usuario contra el que queremos loguear.
 
 Firmamos nuestra clave ssh:
 vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > /tmp/foo
-  podemos pedir otro usuario con "valid_principals=administrator"
+podemos pedir otro usuario con "valid_principals=administrator"
 chmod 600 /tmp/foo
 Accedemos pasando la clave firmada y nuestra clave ssh:
 SSH_AUTH_SOCK="" ssh -v -i /tmp/foo -i ~/.ssh/id_rsa USUARIO@HOST
@@ -815,8 +817,8 @@ vault write cubbyhole/pepe foo=bar
 vault read -wrap-ttl=5m cubbyhole/pepe
 vault kv get -wrap-ttl=120 kv/dev
 vault read -wrap-ttl=5m -field=wrapping_token cubbyhole/pepe
-  Para solo sacar el token.
-  Podemos obviar -wrap-ttl si usamos la variable de entorno VAULT_WRAP_TTL
+Para solo sacar el token.
+Podemos obviar -wrap-ttl si usamos la variable de entorno VAULT_WRAP_TTL
 
 La otra persona usa esto para leerlo:
 vault unwrap hvs.XXXX
@@ -825,11 +827,11 @@ vault unwrap hvs.XXXX
 
 VERSION=0.11.5
 docker run --restart=unless-stopped \
-  -v "$PWD/vault/config:/vault/config" \
+ -v "$PWD/vault/config:/vault/config" \
   -v "$PWD/vault/file:/vault/file" \
-  --cap-add=IPC_LOCK \
-  -d -p 8200:8200 \
-  --name=vault-${VERSION} vault:${VERSION} server
+ --cap-add=IPC_LOCK \
+ -d -p 8200:8200 \
+ --name=vault-${VERSION} vault:${VERSION} server
 
 docker exec -it vault sh
 
@@ -842,7 +844,7 @@ Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 Para ver las keys necesita permiso de lectura sobre sus policies:
 <https://github.com/adobe/cryptr?tab=readme-ov-file#secret-discovery>
 path "sys/policy/POLITICA_ASIGNADA" {
-  capabilities = ["read"]
+capabilities = ["read"]
 }
 
 ARCHIVED 2019
@@ -903,11 +905,11 @@ que no se cachea, por lo que si el server está caído no funciona.
 
 Si usamos llamadas directas (sin usar "vault kv ..."), evitamos las llamadas a mounts. Ejemplo:
 vault list kv2/metadata
-  para hacer un kb ls kv2/
+para hacer un kb ls kv2/
 vault list kv2/metadata/foo
-  para hacer un kb ls kv2/foo
+para hacer un kb ls kv2/foo
 vault read kv2/data/bar
-  para hacer un kv get kv2/bar
+para hacer un kv get kv2/bar
 
 Si queremos usar "kv XX" necesitamos forzar (-kv-version=N) la versión del KV, para evitar que la tenga que consultar.
 Parche con esa funcionalidad.
@@ -960,8 +962,8 @@ Otro módulo no oficial con ciertas mejoras: <https://github.com/jhaals/ansible-
 <https://www.vaultproject.io/docs/commands/debug>
 
 vault debug
-  lo arrancamos, hacemos interacciones y lo paramos. Nos genera un .tgz con ficheros con datos (pero no veo las llamadas de clientes)
-  Es para el vault server
+lo arrancamos, hacemos interacciones y lo paramos. Nos genera un .tgz con ficheros con datos (pero no veo las llamadas de clientes)
+Es para el vault server
 
 Si queremos ver que peticiones hace vault hacia fuera podemos hacer un MitM, con burpsuite por ejemplo.
 

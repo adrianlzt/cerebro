@@ -29,6 +29,8 @@ Easily install and manage LSP servers, DAP servers, linters, and formatters.
 
 También se puede abrir con <leader>cm
 
+Para actualizar todo: "C"
+
 ## diagnostics
 
 Deshabilitarlas <leader>ud

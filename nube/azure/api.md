@@ -23,6 +23,23 @@ curl -XPUT <https://management.azure.com/subscriptions/${subscription_id}/resour
  -H "Authorization: Bearer ${access_token}" -H "Content-Type: application/json" \
  -d '{ "location": "United States", "sku": { "name": "Standard", "tier": "A0" }, "properties": { "createTenantProperties": { "displayName": "PruebaAdriB2CDir", "countryCode": "US", "isGoLocalTenant": true } } }'
 
+# Troubleshooting
+
+Al hacer "az login" el token se almacena en ~/.azure/msal_token_cache.json
+
+Podemos coger el secret y descrifrarlo en la web <https://jwt.ms/>
+
+Si tenemos "API permissions" asignados, deberíamos verlos. Ej.:
+
+```json
+  "roles": [
+    "Directory.Read.All",
+    "Application.Read.All"
+  ],
+```
+
+Si tenemos problemas de permisos, que ya deberíamos tener, probar a borrar ~/.azure
+
 # Python
 
 <https://pypi.org/project/msgraph-sdk/>

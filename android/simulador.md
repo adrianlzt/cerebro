@@ -1,16 +1,19 @@
 # Waydroid
+
 <https://docs.waydro.id/>
 <https://wiki.archlinux.org/title/Waydroid>
 <https://news.ycombinator.com/item?id=28616985>
 <https://aur.archlinux.org/packages/waydroid/>
 
-Necesita un módulo que parece que no está disponible para el kernel que uso, si está en linux-zen.
-Necesita también wayland
+Me ha funcionado correctamente.
+
+Necesita un módulo que parece que no está disponible para el kernel que uso, si está en linux-zen (parece que ya está en casi todos los precomilados).
+Necesita también wayland (pero se puede usar con x11+cage).
 
 Se puede usar weston para correr wayland encima de x11
 <https://www.reddit.com/r/linuxquestions/comments/qs9c9s/how_to_run_waydroid_under_xorg/>
 
-La primera vez que usamos waydroid (para tener imágens base con google apps):
+La primera vez que usamos waydroid (el `-s` para tener imágenes base con google apps, `-f` si queremo forzar el init):
 
 ```bash
 sudo waydroid init -s GAPPS
@@ -30,7 +33,15 @@ Comenzar una sesión:
 waydroid session start
 ```
 
-Si no tenemos wayland, arrancar una ventana con wayland usando weston:
+Si no tenemos wayland, arrancar una ventana con wayland usando
+
+cage:
+
+```bash
+cage waydroid show-full-ui
+```
+
+weston:
 
 ```bash
 weston
@@ -48,6 +59,8 @@ Problemas con la red? Probar a reiniciar el servicio:
 systemctl restart waydroid-container.service
 ```
 
+Si me da problemas con algo de arrancando un dnsmasq, parar el que tenemos corriendo.
+
 Para instalar una apk:
 
 ```bash
@@ -60,9 +73,13 @@ Listado de APKs disponibles:
 waydroid app list
 ```
 
+## arm
+
+Mirar aur/waydroid-script-git
+
 Si queremos instalar un .apk de arm en waydroid (que seguramente será x86_64), necesitamos instalar el paquete de traducción:
 <https://github.com/casualsnek/waydroid_script>
-  usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
+usar "uv venv --system-site-packages" para que no de errorores con paquetes que faltan
 
 Parece que libndk y libhoudini hacen lo mismo.
 
@@ -82,15 +99,85 @@ Problemas? Reiniciar el servicio y recomenzar:
 systemctl restart waydroid-container.service
 ```
 
-## Genymotion ##
+## shell
+
+Acceder a la shell de waydroid/emulador:
+
+```bash
+waydroid shell
+```
+
+También me funciona con:
+
+```bash
+adb shell
+```
+
+A veces, no se por qué, el adb shell no funciona, no detecta ningún dispositivo.
+Cerrando waston y reiniciando el servicio de systemd parace que lo arregla.
+
+## red
+
+Para tener red tenemos que habilitar ciertas cosas en el firewall:
+<https://wiki.archlinux.org/title/Waydroid#:~:text=app%20launch%20%24package_name-,Network,-The%20network%20should>
+
+## Proxy
+
+<https://github.com/waydroid/waydroid/issues/870#issuecomment-1696466694>
+<https://julien.duponchelle.info/android/use-proxy-with-waydroid#:~:text=Install%20the%20certificate%20in%20Waydroid>
+
+Para configurar un proxy http (podemos poner la ip del host):
+
+```
+adb shell settings put global http_proxy "172.17.0.1:8080"
+adb shell settings put global https_proxy "172.17.0.1:8080"
+```
+
+Quitar proxy:
+
+```bash
+adb shell settings put global http_proxy :0
+adb shell settings put global https_proxy :0
+```
+
+Las apps pueden ignorar estos proxies.
+
+Tras meter el cert en el overlay, terminar la sesión de waydroid y arrancar de nuevo.
+
+Mirar httptoolkit para cosas más complejas. A veces tengo que andar reiniciando el contenedor, weston, session para que httptoolkit detecte el adb.
+
+## Modificar ficheros RO
+
+Crear los ficheros en el overlayfs (/var/lib/waydroid/overlay/) y luego reiniciar la sesión.
+
+## Root / magisk
+
+Este no me ha funcionado, y pide root: <https://github.com/waydroid/waydroid/issues/1415>
+
+<https://github.com/nitanmarcel/waydroid-magisk>
+
+Probando aur/waydroid-magisk
+
+Necesito usar weston, con cage no me encuentra la sessión de waydroid.
+
+Con esto puedo hacer "su", pero no es root por defecto.
+
+```bash
+waydroid prop set persist.waydroid.root_access true
+```
+
+Esto me rompe "adb shell", aunque "waydroid shell" sigue funcionando.
+
+# Genymotion
+
 <http://techapple.net/2014/07/tutorial-installsetup-genymotion-android-emulator-linux-ubuntulinuxmintfedoraarchlinux/>
 
 Hace falta registrarse en una web.
 Bajamos un programa para gestionar las imágenes de android.
-  Se baja un .bin (bash script)
-  sudo mkdir /opt/genymotion
-  sudo chown adrian /opt/genymotion
-  ./genymotion-2.7.2-linux_x64.bin -d /opt/
+Se baja un .bin (bash script)
+sudo mkdir /opt/genymotion
+sudo chown adrian /opt/genymotion
+./genymotion-2.7.2-linux_x64.bin -d /opt/
 Arrancar con /opt/genymotion/genymotion
 
 Si da este problema:
@@ -99,6 +186,7 @@ Se arregla así:
 <http://stackoverflow.com/questions/18641423/not-able-to-start-genymotion-device>
 
 ## Google Apps (gapps)
+
 <https://docs.genymotion.com/paas/latest/041_Installing_applications.html#from-playstore>
 
 <https://opengapps.org/>
@@ -120,12 +208,13 @@ priv-adrianRepo/hack/Genymotion-ARM-Translation_v1.1.zip
 También podemos conectar por ssh
 
 adb -s 192.168.60.106:5555 shell
-  mirar en ps a donde conecta, habrá un par de adb arrancados
+mirar en ps a donde conecta, habrá un par de adb arrancados
 
 Instalar .zip
 adb shell "/system/bin/flash-archive.sh /sdcard/Download/opengapps.zip"
 
 ## SSH
+
 <https://docs.genymotion.com/paas/latest/03_Accessing_an_instance/033_Accessing_a_virtual_device_from_SSH.html>
 
 ## Errores
@@ -135,6 +224,7 @@ Mirar logcat
 En un caso se estaba quedando sin memoria al abrir una app.
 
 # Run apps
+
 <http://www.shashlik.io/>
 
 yay -S shashlik-bin
@@ -156,6 +246,7 @@ En emulator_args agregamos:
 -http-proxy <https://localhost/>
 
 ## Android emulator
+
 <http://developer.android.com/sdk/installing/index.html?pkg=tools>
 
 Lo más sencillo para usar las UI que viene con android-studio (tools -> AVD manager)

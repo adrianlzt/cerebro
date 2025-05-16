@@ -46,9 +46,14 @@ SMEMBERS clave <- nos devuelve los elementos del set
 SUNION clave1 clave2 <- nos devuelvo un set con la unión de ambas claves
 SCARD clave <- numero de elementos
 
-## Sorted Sets
+## Sorted Sets / ZSET
+
+Cardinaldiad de un zset
+ZCARD key
 
 ZADD clave puntuacion "valor" <- set ordenado según la puntuación que demos a cada uno
+
+ZRANGE clave 0 1
 
 ## Hashes ## <http://redis.io/commands#hash>
 

@@ -41,3 +41,21 @@ curl -X POST \
   }' \
   127.0.0.1:8080/alert
 ```
+
+# Multitenancy / Customer views
+
+<https://docs.alerta.io/customer-views.html#customer-views>
+
+En `alertad.conf` configurar:
+
+```
+AUTH_REQUIRED = True
+CUSTOMER_VIEWS = True
+```
+
+Crear un nuevo usuario en la interfaz web.
+
+Crear el customer lookup. Ejemplos: <https://docs.alerta.io/api/reference.html#customers>
+Si en el match ponemos "example.com", matcheará los emails que sean \*@example.com.
+
+Para que un usuario asociado a ese "customer" pueda ver un evento, el evento tendrá que tener una nueva "key": "customer": "valorPuestoAlCrearElCustomerLookup".

@@ -64,6 +64,7 @@ multilínea
 ```
 
 Podemos usar `/editor` para editar el mensaje con nuestro $EDITOR.
+O usar Control+x Control+e para abrir el editor.
 
 Si queremos borrar el contexto hasta ahora: `/clear`
 
@@ -76,6 +77,20 @@ Si queremos ejecutar comandos:
 ```
 
 Podemos meter el contenido del clipboard con `/paste`
+
+## Repomap
+
+Por defecto aider envía un "repomap" del repo de git.
+En repositorios muy grandes, o cuando sepamos que no nos hace falta ese contexto, podemos deshabilitarlo.
+
+Si queremos deshabilitarlo podemos usar:
+
+```
+--map-tokens 0
+```
+
+Para repositorios grandes también podemos usar:
+--subtree-only and .aiderignore
 
 ## Conventions
 
@@ -97,6 +112,18 @@ Podemos usar los modelos del marketplace de github gratuitamente con ciertas lim
 
 <https://aider.chat/docs/llms.html>
 
+Parece que lo más potente VS coste ahora mismo es:
+
+```bash
+aider --architect --model r1 --editor-model sonnet
+```
+
+Interesantes:
+
+```
+aider --model o3-mini --reasoning-effort [low,medium,high]
+```
+
 ```bash
 aider --list-models gemini/
 ```
@@ -111,6 +138,18 @@ Para que funcione gemini hace falta instalar otro paquete (suponiendo que hemos 
 
 ```
 ~/.local/share/pipx/venvs/aider-chat/bin/python -m pip install google
+```
+
+## Gratís
+
+Muy rápido, pero no muy potente:
+
+```bash
+aider --model groq/llama-3.3-70b-versatile
+```
+
+```
+aider --model openrouter/deepseek/deepseek-r1:free
 ```
 
 # Config
@@ -141,9 +180,9 @@ Cuando guaramos algún fichero, aider busca comentarios tipo:
 O preguntas usando comentarios tipo:
 
 ```
-# ... AI? 
-// ... AI? 
--- ... AI? 
+# ... AI?
+// ... AI?
+-- ... AI?
 ```
 
 Y actua en ese momento.

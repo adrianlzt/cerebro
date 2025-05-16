@@ -101,7 +101,7 @@ Luego, por cada paquete se pasa por esos filtros para ver si aceptarlo o dropear
 
 NOTA: si estamos limitando subnets, deben coincidir con la subred anunciada por alguno de los nodos
 
-## exit-node
+## exit-node / enrutar trafico
 
 <https://tailscale.com/kb/1103/exit-nodes>
 

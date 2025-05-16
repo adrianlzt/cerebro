@@ -1,4 +1,4 @@
-http://tmate.io/
+<http://tmate.io/>
 
 Otra idea parecida, compartiendo via web: gotty
 
@@ -11,15 +11,15 @@ Por defecto los clientes pueden escribir.
 Quien arranca tmate se conecta por ssh a ssh.tmate.io
 
 Al arrancar tmate nos pone una línea que deberan usar los clientes estilo:
-ssh 2HbKwmSfXqwFrJAdFAKEiY7dw@am1.tmate.io
+ssh <2HbKwmSfXqwFrJAdFAKEiY7dw@am1.tmate.io>
 
 Para conocer la url donde conectar para read-only, una vez arrancado tmate, escribir:
 tmate show-messages
 
 Ahí veremos la url para read-only y la normal
 
-
 # Install
+
 Mirar web para ubuntu, fedora, etc
 
-Binario: https://github.com/tmate-io/tmate/releases/tag/2.2.1
+Binario: <https://github.com/tmate-io/tmate/releases/>

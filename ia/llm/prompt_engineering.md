@@ -1,3 +1,4 @@
+<https://cookbook.openai.com/examples/gpt4-1_prompting_guide>
 <https://www.promptingguide.ai/models>
 <https://learnprompting.org/>
 <https://github.com/pinecone-io/examples/blob/master/generation/prompt-engineering.ipynb>
@@ -7,6 +8,7 @@
 Colleciones de prompts:
 <https://docs.anthropic.com/en/prompt-library/library>
 <https://smith.langchain.com/hub>
+<https://github.com/danielmiessler/fabric/tree/main/patterns>
 
 Intructions (ej.: "contesta a la pregunta usando el contexto siguiente. Di "no se" en caso de no saber la respuesta")
 External information (información que queremos pasar al modelo)

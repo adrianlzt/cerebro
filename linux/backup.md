@@ -29,7 +29,7 @@ borg list ::default-2020-05-21T08:42:00
 
 borg extract --list ::default-2020-05-21T08:42:00 home/user/pulse
   extraer/recuperar ciertos ficheros de un backup
-  los dejará en home/user/pulse
+  los dejará en $PWD/home/user/pulse
 
 borg mount ::nombre-fecha mountpath/
 

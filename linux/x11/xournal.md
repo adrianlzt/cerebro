@@ -1,3 +1,21 @@
+Editor online que corre en el navegador (rellenar, añadir texto, imágenes, firmar, poner contraseña, combinar PDFs, borrar páginas):
+<https://breezepdf.com/>
+
+Para esconder datos poniendo cajas negras delante.
+<https://pdfredactoronline.com/>
+
+Reducir tamaño PDFs
+<https://den-run-ai.github.io/pdfmini/>
+
+Multitool para PDFs, mergear, convertir, dividir, rotar, comprimir, firmar, cifrar, etc.
+<https://stirlingpdf.io/>
+También tiene un editor: <https://stirlingpdf.io/view-pdf>
+
+Añadir recuadros para rellenar a un PDF con cajas pero sin esa funcionalidad puesta:
+<https://detect.penpusher.app/>
+
+Discusión en hackernews con más herramientas: <https://news.ycombinator.com/item?id=43880962>
+
 xournal
 Para tomar notas e insertar imágenes sobre pdfs
 
@@ -26,9 +44,10 @@ img2pdf 1.png 2.png 3.png -o file.pdf
 
 shrinkpdf in.pdf out.pdf
 shrinkpdf in.pdf out.pdf 200
-  ir jugando con el valor (resolución in DPI) hasta encontrar el tamaño que queremos.
+ir jugando con el valor (resolución in DPI) hasta encontrar el tamaño que queremos.
 
 # Quitar watermark
+
 <https://superuser.com/questions/448519/how-to-remove-watermark-from-pdf-using-pdftk>
 
 1.- Descomprimir el pdf
