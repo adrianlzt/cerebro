@@ -48,8 +48,8 @@ number
 bool (se usa como true / false)
 
 list
-set
-maps
+set: lista sin repetidos ni orden
+maps: como el diccionario de python
 object
 tuple
 
