@@ -7,3 +7,4 @@ No sep puede porque el provider de k8s no es capaz de obtener la información, p
 Parece que terraform lo soluciona con "stacks", solución por aún solo de pago.
 
 Terragrunt provee el concepto de stacks: <https://terragrunt.gruntwork.io/docs/features/stacks/>
+mirar terragrunt.md
