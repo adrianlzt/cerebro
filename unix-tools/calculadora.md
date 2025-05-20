@@ -1,10 +1,10 @@
-https://numbat.dev/
-https://github.com/sharkdp/numbat
-https://numbat.dev/doc/example-numbat_syntax.html
+<https://numbat.dev/>
+<https://github.com/sharkdp/numbat>
+<https://numbat.dev/doc/example-numbat_syntax.html>
   Es la evolución de insect
-    https://github.com/sharkdp/numbat/blob/master/assets/reasons-for-rewriting-in-rust.md
-    https://github.com/sharkdp/insect
-    https://insect.sh/
+    <https://github.com/sharkdp/numbat/blob/master/assets/reasons-for-rewriting-in-rust.md>
+    <https://github.com/sharkdp/insect>
+    <https://insect.sh/>
 
 Convierte unidades
 Se pueden asignar constantes, crear funciones
@@ -15,9 +15,12 @@ Ejemplo calculando el tiempo de envio de un fichero, en minutos, dada una veloci
 ans
   último resultado
 
+Devoler el último resultado con el número de decimales que queramos:
+"{ans:.3}"
+
 Cuidado con el tema del redondeo:
-https://github.com/sharkdp/insect/issues/400
-https://github.com/sharkdp/numbat/issues/179
+<https://github.com/sharkdp/insect/issues/400>
+<https://github.com/sharkdp/numbat/issues/179>
 Internamente tiene el número correcto, pero con la notación "e" muestra un redondeo.
 
 Si queremos definir una unidad de algo "random"
@@ -26,8 +29,8 @@ unit thing: Scalar
 Y podemos hacer:
 (3 thing/s) * 3 min
 
-
 # BC
+
 Para que use decimales en algunos SOs hay que arrancar con bc -l
 
 last es el último resultado
@@ -52,15 +55,12 @@ $ echo "scale=0;90/24" | bc -s
 
 Se puede usar para programar, en cuyo caso podemos usar read() para leer de la entrada estandar
 
-
-
 $ echo $(( 6 / 2 ))
 3
 $ echo $(( 6 * 2 ))
 12
 $ echo $(( 6 / 7 ))
 0
-
 
 expr 300 + 9230
 9530
@@ -71,7 +71,6 @@ $ expr 32 \/ 4
 $ expr 5 + 5.5
 expr: non-numeric argument
 $ expr
-
 
 Convertir hexadecimal en decimal:
 echo "ibase=16; 7F" | bc
