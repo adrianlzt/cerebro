@@ -78,6 +78,12 @@ Ejecutar los experimentos:
 dvc exp run
 ```
 
+Ejecutar una única stage (preguntando antes de empezar y forzando a que se ejecute):
+
+```bash
+dvc exp run -fis stage_foo
+```
+
 Tras ejecutar los experimentos se genera un fichero `dvc.lock`, donde se guarda que inputs, params y outputs se generaron.
 Si volvemos a ejecutar los exprimentos, pero no hay cambios en los inputs, nos dirá que ya está ejecutado y no hace falta.
 
