@@ -1,5 +1,4 @@
-Interfaz con IA integrada:
-<https://github.com/GoogleCloudPlatform/kubectl-ai>
+mirar kubectl-ai.md (kubectl con LLM integrado).
 
 <https://kubernetes.io/docs/reference/kubectl/cheatsheet/>
 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>
