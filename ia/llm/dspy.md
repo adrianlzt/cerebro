@@ -12,6 +12,28 @@ Por ejemplo: quiero hacer CoT con RAG, y DSPy genera el prompt para conseguir es
 
 # Conceptos
 
+## Signatures
+
+Decidimos que queremos que haga el LM, expresadas como "firmas" de funciones:
+
+```
+question -> answer: float
+```
+
+## Modules
+
+Son las distintas técnicas que existen para hacer prompting (CoT, etc), empaquetadas de manera que las podamos usar sencillamente.
+A estos módulos le pasaremos una signature.
+
+## Optimizers
+
+Es la forma automática de hacer prompt engineering.
+Como mejorar esos prompts para mejorar una métrica que hayamos definido.
+
+Estos optimizadores "compilan" los módulos+signatures para nuestro caso de uso.
+Buscan el mejor prompt para nuestra pipeline.
+Generan el entregable que usaremos.
+
 ## Adapters
 
 Tradcucen módulos en basic prompts.
