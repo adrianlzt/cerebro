@@ -117,3 +117,11 @@ control de file descriptors, definir flags, obtener nuevos FDs, obtener usuarios
 
 Mostrar los parámetros en hexadecimal
 -X raw
+
+# Inyectar errores
+
+<https://medium.com/@manav503/using-strace-to-perform-fault-injection-in-system-calls-fcb859940895>
+
+```bash
+strace -e trace=clone -e fault=clone:error=EAGAIN ./fork-example
+```
