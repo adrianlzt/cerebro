@@ -1,10 +1,20 @@
 <https://dspy.ai/>
 [Explicación de uno de los developers](https://x.com/lateinteraction/status/1921565300690149759?t=gO4O2Ty_D6yVv90E-usxtw&s=19)
 [Video donde lo explican](https://www.youtube.com/watch?v=JEMYuzrKLUw&t=941s)
+Este [video](https://www.youtube.com/watch?v=Dt3H2ninoeY) me parece una mejor, y más pausada, explicación.
 
 DSPy is a declarative framework for building modular AI software. It allows you to iterate fast on structured code, rather than brittle strings, and offers algorithms that compile AI programs into effective prompts and weights for your language models, whether you're building simple classifiers, sophisticated RAG pipelines, or Agent loops.
 
 Think of DSPy as a higher-level language for AI programming (lecture), like the shift from assembly to C or pointer arithmetic to SQL.
+
+Parece que la idea es decir lo que quieres hacer con el LM, en vez de tener que crear prompts haciendo copy&paste de templates.
+Por ejemplo: quiero hacer CoT con RAG, y DSPy genera el prompt para conseguir eso.
+
+# Conceptos
+
+## Adapters
+
+Tradcucen módulos en basic prompts.
 
 # Como funciona
 
@@ -73,6 +83,7 @@ To express this as a float, we calculate 1 divided by 36.
 ```
 
 # Tracing / debug / observability
+
 <https://dspy.ai/tutorials/observability/>
 
 Para loguear a MLflow Tracing
