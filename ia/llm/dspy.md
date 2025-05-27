@@ -10,22 +10,35 @@ Think of DSPy as a higher-level language for AI programming (lecture), like the 
 Parece que la idea es decir lo que quieres hacer con el LM, en vez de tener que crear prompts haciendo copy&paste de templates.
 Por ejemplo: quiero hacer CoT con RAG, y DSPy genera el prompt para conseguir eso.
 
+Nos evita tener que crear prompts de manera manual, y nos abstrae de las técnicas de prompting.
+
 # Conceptos
 
 ## Signatures
 
-Decidimos que queremos que haga el LM, expresadas como "firmas" de funciones:
+Decidimos que queremos que haga el LM, expresadas como "firmas" de funciones.
+Ejemplos:
 
 ```
 question -> answer: float
+long_document -> summary
+context, question -> rationale, response
 ```
+
+Si no especificamos el tipo de dato se considera que es `str`.
 
 ## Modules
 
-Son las distintas técnicas que existen para hacer prompting (CoT, etc), empaquetadas de manera que las podamos usar sencillamente.
+Son las distintas técnicas que existen para hacer prompting (CoT, ReAct, etc), empaquetadas de manera que las podamos usar sencillamente.
 A estos módulos le pasaremos una signature.
 
+Nos abstraen de las técnicas de prompting. Para nosotros es solo una capa que usamos.
+
+Estos modules serán funciones que podremos llamar.
+
 ## Optimizers
+
+**NOTA**: cuidado con las optimizaciones, pueden realizar muchas llamadas al LM y ser costosas.
 
 Es la forma automática de hacer prompt engineering.
 Como mejorar esos prompts para mejorar una métrica que hayamos definido.
@@ -33,6 +46,28 @@ Como mejorar esos prompts para mejorar una métrica que hayamos definido.
 Estos optimizadores "compilan" los módulos+signatures para nuestro caso de uso.
 Buscan el mejor prompt para nuestra pipeline.
 Generan el entregable que usaremos.
+
+Para generar una optimización tenemos que pasar unos ejemplos con el resultado esperado.
+
+Ejemplo de código (`CoT` es nuestro módulo generado antes):
+
+```python
+examples [dspy.Example(question='Which award did the first book of Gary Zukav', answer='The Dancing Wu Li Masters'),
+teleprompter dspy.BootstrapFewShot(metric=dspy.evaluate.answer_exact_match)
+bootstrapped_program teleprompter.compile(CoT, trainset=examples)
+```
+
+Cuando juntamos varios módulos, al optimizador solo le estamos dando ejemplos de inputs y output esperado, pero nada de los resultados intermedios.
+Los optimizadores BootstrapFewShot usarán el LM para auto generar trazas intermedias que le puedan servir de ejemplos.
+
+Los optimizadores pueden usar distintas técnicas:
+
+- encontrar que few shots funcionan mejor
+- encontrar mejores formas de describir lo que necesitamos
+- generar datasets para hacer fine-tunning del LM
+
+## MIPROv2
+<https://dspy.ai/api/optimizers/MIPROv2/>
 
 ## Adapters
 
@@ -119,3 +154,10 @@ Para ver las n últimas peticiones:
 ```python
 dspy.inspect_history(n)
 ```
+
+# Dudas
+
+El formato de la signature, nos lo podemos inventar?
+Podemos pasar los parámetros que nos de la gana de entrada y de salida?
+Solo hay que respetar:
+XXX -> YYY?
