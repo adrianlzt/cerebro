@@ -66,8 +66,11 @@ Los optimizadores pueden usar distintas técnicas:
 - encontrar mejores formas de describir lo que necesitamos
 - generar datasets para hacer fine-tunning del LM
 
-## MIPROv2
+### MIPROv2
+
 <https://dspy.ai/api/optimizers/MIPROv2/>
+
+Mejora el prompt probando distintos few shots, leyendo nuestro código (para conocer nuestro objetivo) para generar mejores instruciones, buscando la mejor combinación de few shots e instrucciones.
 
 ## Adapters
 
