@@ -277,6 +277,12 @@ Para ver a que tools está llamando el LLM y que se está contestando:
 --tools-debug
 ```
 
+## Instalar tools
+
+```bash
+llm install llm-tools-simpleeval
+```
+
 # Extras
 
 ## Contar tokens
