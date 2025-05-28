@@ -258,6 +258,25 @@ Buscar contra los embeddings generados:
 llm similar readmes -c 'upload csvs to stuff' -d embed.db
 ```
 
+# Tools
+
+<https://simonwillison.net/2025/May/27/llm-tools/>
+
+Permitir ejecutar tools a los LM. Los LM solicitan ejecutar las tools y es `llm` quien las ejecuta localmente, devuelve el resultado y el LM da la respuesta.
+
+Ejemplo básico (se puede usar también `-t`):
+
+```bash
+llm --tool llm_version "What version?" --td
+```
+
+Para ver a que tools está llamando el LLM y que se está contestando:
+
+```bash
+--td
+--tools-debug
+```
+
 # Extras
 
 ## Contar tokens
