@@ -76,6 +76,13 @@ Mejora el prompt probando distintos few shots, leyendo nuestro código (para con
 
 Tradcucen módulos en basic prompts.
 
+# Configurar LM
+
+```python
+llm = dspy.LM("github/microsoft/Phi-4",api_base="https://models.github.ai/inference",api_key="github_pat_XXX")
+llm("say hello")
+```
+
 # Como funciona
 
 Definimos como debe "pensar" y que debe devolver.
