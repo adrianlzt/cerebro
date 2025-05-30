@@ -57,6 +57,8 @@ teleprompter dspy.BootstrapFewShot(metric=dspy.evaluate.answer_exact_match)
 bootstrapped_program teleprompter.compile(CoT, trainset=examples)
 ```
 
+When you build a dspy.Example, you should generally specify .with_inputs("field1", "field2", ...) to indicate which fields are inputs. The other fields are treated as labels or metadata.
+
 Cuando juntamos varios módulos, al optimizador solo le estamos dando ejemplos de inputs y output esperado, pero nada de los resultados intermedios.
 Los optimizadores BootstrapFewShot usarán el LM para auto generar trazas intermedias que le puedan servir de ejemplos.
 
@@ -65,6 +67,15 @@ Los optimizadores pueden usar distintas técnicas:
 - encontrar que few shots funcionan mejor
 - encontrar mejores formas de describir lo que necesitamos
 - generar datasets para hacer fine-tunning del LM
+
+<https://dspy.ai/tutorials/rag/?h=with_inputs#:~:text=Training%20(and%20with%20it%20Validation)%20set%3A>
+
+- Optimizers typically learn directly from the training examples and check their progress using the validation examples.
+- It's good to have 30--300 examples for training and validation each.
+- For prompt optimizers in particular, it's often better to pass more validation than training.
+
+Podemos tener también un dataset "dev" pequeño para ir paso a paso viendo que hace.
+También un dataset "test" que usaremos al final para ver la calidad del programa.
 
 ### MIPROv2
 
@@ -76,7 +87,9 @@ Mejora el prompt probando distintos few shots, leyendo nuestro código (para con
 
 Tradcucen módulos en basic prompts.
 
-# Configurar LM
+# Configurar LM / models
+
+<https://dspy.ai/learn/programming/language_models>
 
 ```python
 llm = dspy.LM("github/microsoft/Phi-4",api_base="https://models.github.ai/inference",api_key="github_pat_XXX")
@@ -153,16 +166,48 @@ To express this as a float, we calculate 1 divided by 36.
 
 <https://dspy.ai/tutorials/observability/>
 
+## MLFlow
+
 Para loguear a MLflow Tracing
 
-```
+```python
 mlflow.dspy.autolog()
 ```
+
+Por defecto almacenará los resultados en ficheros locales que podemos consultar con:
+
+```
+mlflow ui
+```
+
+Si queremos usar un server remoto hace falta especificar el server de mlflow, con la variable de entorno:
+
+```bash
+MLFLOW_TRACKING_URI=http://localhost:5000
+```
+
+O en código:
+
+```python
+mlflow.set_tracking_uri("http://localhost:5000")
+```
+
+## Peticiones
 
 Para ver las n últimas peticiones:
 
 ```python
 dspy.inspect_history(n)
+```
+
+## Logging
+
+Si queremos sacar trazas, también mostrando lo que genera litellm:
+
+```python
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 ```
 
 # Dudas
