@@ -7,7 +7,7 @@ Para los modelos de openai, llamo a una instancia local de litellm que use los m
 Instalar/actualizar:
 
 ```bash
-uv tool install -Uf \
+uv tool install -U \
   --with llm-gemini  \
   --with llm-jq  \
   --with llm-cmd  \
