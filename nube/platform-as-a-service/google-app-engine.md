@@ -1,1 +1,0 @@
-../google-compute-engine.md

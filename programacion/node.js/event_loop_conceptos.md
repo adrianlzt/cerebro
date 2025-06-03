@@ -1,1 +1,1 @@
-programacion_concurrente_conceptos.md
+../programacion_concurrente_conceptos.md
