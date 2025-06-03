@@ -1,1 +1,1 @@
-../nube/amazon/arquitecturas_de_referencia.md
+../nube/aws_amazon/arquitecturas_de_referencia.md

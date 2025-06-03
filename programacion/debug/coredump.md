@@ -1,1 +1,1 @@
-../../linux/systemd/coredump
+../../linux/core_dump.md

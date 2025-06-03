@@ -1,1 +1,1 @@
-../../linux/profiling.md
+../../linux/performance/profiling.md

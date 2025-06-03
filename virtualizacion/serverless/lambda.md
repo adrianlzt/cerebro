@@ -1,1 +1,1 @@
-../../nube/amazon/lambda.md
+../../nube/aws_amazon/lambda.md
