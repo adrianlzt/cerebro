@@ -19,6 +19,7 @@ uv tool install -U \
   --with git+https://github.com/OttoAllmendinger/llm-git.git  \
   --with llm-github-models \
   --with llm-edit \
+  --with llm-sentence-transformers \
   --with git+https://github.com/lexh/llm-cerebras.git@llama4-scout \
   --with jsonschema \
   llm
@@ -250,6 +251,24 @@ Podemos generar una sqlite con los emebddings:
 
 ```bash
 llm embed-multi readmes --files . '*/README.md' -d embed.db -m text-embedding-004
+```
+
+<https://llm.datasette.io/en/stable/embeddings/cli.html#embedding-data-from-files-in-directories>
+Generar embeddings para todos los .md de un directorio:
+
+```bash
+llm embed-multi documentation \
+  -m 3-small \
+  --files docs '**/*.md' \
+  -d documentation.db \
+  --store
+```
+
+Buscar las collections que tenemos:
+
+```bash
+llm collections list
+llm collections list -d database.db
 ```
 
 Buscar contra los embeddings generados:
