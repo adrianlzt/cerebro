@@ -30,7 +30,7 @@ Esto generará un directorio por unit, tipo: `.terragrunt-stack/FOOBAR`
 
 Dentro de ese fichero tendremos las variables usadas en el fichero `terragrunt-debug.tfvars.json`
 
-Para poder ejecutarlo tendremos que comentar toda la sección de `input` y ejecutar con:
+Para poder ejecutarlo tendremos que comentar toda la sección de `input` del `terragrun.hcl` y ejecutar con:
 
 ```bash
 terragrunt plan -var-file terragrunt-debug.tfvars.json
