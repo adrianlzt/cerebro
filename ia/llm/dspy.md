@@ -96,6 +96,13 @@ llm = dspy.LM("github/microsoft/Phi-4",api_base="https://models.github.ai/infere
 llm("say hello")
 ```
 
+## Cache
+
+Por defecto está activado el "cache", que recodará las llamadas a los modelos para evitar reahacerlas si son iguales.
+<https://dspy.ai/api/models/LM/?h=cache#dspy.LM:~:text=4000-,cache,-bool>
+
+Almacena por defecto en `~/.dspy_cache`.
+
 # Como funciona
 
 Definimos como debe "pensar" y que debe devolver.

@@ -43,9 +43,18 @@ Por cada fichero añadido a dvc genera otro fichero con extensión .dvc que cont
 Almacenar los ficheros en servicios remotos.
 
 ```bash
-dvc remote add -d myremote /tmp/dvcstore
+dvc remote add myremote /tmp/dvcstore
 dvc push
 ```
+
+Para Azure Blob Storage:
+
+```bash
+dvc remote add -d myremote azure://foobar/
+dvc remote modify --local azure connection_string 'BlobEndpoint=https://ACCOUTN.blob.core.windows.net;SharedAccessSignature=sp=racwdl&st=2025-06-05T14:59:36Z&se=2029-06-05T22:59:36Z&spr=https&sv=2024-11-04&sr=c&sig=SECRETODiEHXPE%3D
+```
+
+El `--local` hace que se guarde la info en `.dvc/config.local` y no en `.dvc/config`, de forma que no se suba al git.
 
 # Experiments
 
