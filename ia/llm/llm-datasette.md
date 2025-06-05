@@ -16,11 +16,11 @@ uv tool install -U \
   --with llm-cmd-comp  \
   --with llm-deepseek  \
   --with llm-groq  \
+  --with llm-cerebras \
   --with git+https://github.com/OttoAllmendinger/llm-git.git  \
   --with llm-github-models \
   --with llm-edit \
   --with llm-sentence-transformers \
-  --with git+https://github.com/lexh/llm-cerebras.git@llama4-scout \
   --with jsonschema \
   llm
 ```
