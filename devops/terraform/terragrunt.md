@@ -18,6 +18,8 @@ Para poder ejecutar varios terragrunts en un orden y pasando variables de los pr
 
 Los diferentes units los generará en $PWD/.terragrunt-stack/MODULO
 
+Complica el hacer troubleshooting, porque como pasa variables entre stacks, luego es dificil reproducir el error, hacer imports o usar "target" para probar cosas.
+
 ## Debug / troubleshooting
 
 Si quiero tener más control sobre la ejecución de una unit en particular, primero ejecutaré el stack con:
@@ -35,6 +37,9 @@ Para poder ejecutarlo tendremos que comentar toda la sección de `input` del `te
 ```bash
 terragrunt plan -var-file terragrunt-debug.tfvars.json
 ```
+
+Podemos coger las variables de `terragrunt-debug.tfvars.json` y meterlas en la sección `input` si las necesitamos.
+Creo que esto ya lo hace el `-var-file`.
 
 Si tenemos dependencias puede dar algunos errores (intentando buscar `values`), pero continua.
 
