@@ -37,3 +37,6 @@ terragrunt plan -var-file terragrunt-debug.tfvars.json
 ```
 
 Si tenemos dependencias puede dar algunos errores (intentando buscar `values`), pero continua.
+
+Si tenemos variables en el terragrunt.hcl puede dar fallos.
+Alguna vez he tenido que incluso comentar los ficheros .tf del cache que generá quitando variables para conseguir que funcione un import.
