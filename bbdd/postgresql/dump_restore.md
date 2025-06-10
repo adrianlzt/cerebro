@@ -113,15 +113,25 @@ Si queremos seleccionar la tabla de un schema en particular:
 schemaName.tableName
 
 Ver contenido del dump (los schemas, no los datos):
+
+```bash
 pg_restore -l prueba.custom > fichero.list
+```
 
 Podemos usar la salida de este comando para quitar (o comentar ";") lo que no queremos restaurar y luego usar "pg_restore --use-list=fichero.list fichero.dump" para recuperar solo lo que queramos.
 
 Un one liner para quitar solo ciertas tablas. Lo que hacemos es sacar de la salida de "-l" lo que no queremos y lo pasamos como entrada al "-L":
+
+```bash
 pg_restore -L <(pg_restore -l /path/to/db/dump | grep -v 'TABLE DATA public table_to_ignore ') -d db_name_where_to_restore /path/to/db/dump
+```
 
 Ver todo el contenido:
+
+```bash
 pg_restore fichero.custom -f - | less
+pg_restore fichero.psql -f fichero.sql
+```
 
 Restaurar (CUIDADO, muy lento para ddbb grandes):
 createdb prueba
@@ -202,6 +212,7 @@ Con compresión
   -D, para añadir también los nombres de las columnas a los INSERT
 
 ## Backup periodico en cron
+
 <https://wiki.postgresql.org/wiki/Automated_Backup_on_Linux>
 
 Los scripts y el fichero de conf están en backup-scripts
@@ -232,6 +243,7 @@ cp pg_backup_rotated.sh /usr/local/sbin/ && chmod 755 /usr/local/sbin/pg_backup_
 30 02 ** * postgres /usr/local/sbin/pg_backup_rotated.sh -c /etc/pg_backup.config
 
 # Base backup / físico
+
 <https://www.postgresql.org/docs/current/app-pgbasebackup.html>
 
 Explicación simple: <https://blog.2ndquadrant.com/what-does-pg_start_backup-do/>
@@ -316,6 +328,7 @@ The key point is that the base backup is NOT a consistent copy of the database. 
 FIN NO HACER!
 
 # Point in time recovery (PITR) / Continuous archiving
+
 <https://www.postgresql.org/docs/current/continuous-archiving.html>
 
 Se trata de llevarnos los ficheros WAL (una vez completados) a un directorio distinto de donde no sean borrados.
@@ -363,6 +376,7 @@ Generalmente tendremos varios base_backups y luego un archiveDir con todos los w
 Si queremos borrar backups antiguos, tendremos que chequear el LSN de start del backup que queremos borrar y podremos borrar los wal previos a esos.
 
 # Barman
+
 <https://www.pgbarman.org>
 <https://github.com/2ndquadrant-it/barman>
 Empresa: 2ndquadrant
@@ -377,6 +391,7 @@ Recibe actualizaciones, pero tiene muchas issues sin respuesta
 Más info en barman.md
 
 # wal-g
+
 <https://github.com/wal-g/wal-g>
 Empresa: Yandex (mantenedor principal) / Citus (creadores)
 Lenguaje: go
@@ -394,16 +409,19 @@ Ejemplo de config para wal-e que parece similar a lo que se haría con wal-g
 <https://gist.github.com/ruckus/2293434>
 
 # pg_probackup
+
 <https://github.com/postgrespro/pg_probackup>
 Empresa:
 Lenguaje: python
 
 # pgbackrest
+
 <https://pgbackrest.org/>
 Empresa: The PostgreSQL Global Development Group, CrunchyData
 Lenguaje: c
 mirar pgbackrest.md
 
 # omnipitr
+
 <https://github.com/omniti-labs/omnipitr/>
 Descontinuado
