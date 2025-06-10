@@ -2,6 +2,7 @@
 <https://github.com/kubernetes-sigs/kustomize/blob/master/docs/README.md>
 
 Me parece una mala solución. Se crea fácilmente un caos entre "bases" y "patches". Metes cambio en la base, que no sabes si ya están en patches que te lo pueden estar modificando. Cuando cambias cosas en la base y solo lo quieres aplicar en staging, pones el patch en ambos entornos (suponiendo que tienes staging y prod)?
+Me repito en esto, es un caos.
 
 Es una forma de componer y modificar ficheros YAML.
 La idea es tener una base de YAML y luego otros que hagan pequeñas modificaciones (por ejemplo, por entorno).
