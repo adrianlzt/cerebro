@@ -16,6 +16,12 @@ La idea es que cada unit apunta a un módulo de terraform.
 
 Para poder ejecutar varios terragrunts en un orden y pasando variables de los primeros hacia abajo.
 
+Más seguro ejectarlo con:
+
+```bash
+--no-auto-approve
+```
+
 Los diferentes units los generará en $PWD/.terragrunt-stack/MODULO
 
 Complica el hacer troubleshooting, porque como pasa variables entre stacks, luego es dificil reproducir el error, hacer imports o usar "target" para probar cosas.
