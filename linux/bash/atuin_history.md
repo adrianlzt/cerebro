@@ -24,7 +24,7 @@ main("/home/adrian/.directory_history")
 ```
 
 Configuración en ~/.config/atuin/config.toml
-SQLite en ~/.local/share/atuin/atuin.db
+SQLite en ~/.local/share/atuin/history.db
 
 Para usarlo en zsh, meter en .zshrc:
 
