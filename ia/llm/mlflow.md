@@ -27,3 +27,25 @@ mlflow server --backend-store-uri sqlite:///mydb.sqlite
 ```
 
 Esto también levantará la UI.
+
+# Azure ML como servidor de MLFlow
+
+<https://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-mlflow-configure-tracking?view=azureml-api-2&tabs=cli%2Cmlflow>
+
+Podemos usar un workspace de Azure ML como servidor de MLFlow.
+
+Tendemos que tener instalados los paquetes: mlflow-skinny y azureml-mlflow.
+El skinny es mlflow sin la UI ni otras cosas, que hacen que sea más ligero.
+
+Luego tenemos que configurar mlflow.set_tracking_uri para que apunte al workspace de Azure ML.
+
+Se puede obtener de varias maneras, por ejemplo con `az`:
+
+```bash
+az ml workspace show -g RESOURCEGROUP -n NOMBRE --query mlflow_tracking_uri
+```
+
+También podemos usar el SDK de Azure ML para obtenerlo junto con un fichero `config.json` que baremos del workspace:
+Ejemplo completo en <https://gist.github.com/adrianlzt/435c4a95e105abd105931a0a15347b1c>
+
+Cuando ejecutemos un experimento, para los resultados, iremos a Machine Learning Studio - Assets - Experiments.
