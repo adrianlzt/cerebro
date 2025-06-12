@@ -80,6 +80,7 @@ Esto genera una configuración en el fichero `dvc.yaml`.
 
 En el fichero `params.yaml` podemos definir parámetros (deberemos parsearlo en nuestro código python y usarlo).
 Podemos modificar los parámetros modifcando ese fichero o usando `--set-param foo=bar`.
+Este --set-param / -S lo que hace es modificar el fichero `params.yaml` y luego ejecutar.
 
 Ejecutar los experimentos:
 
