@@ -28,11 +28,20 @@ mlflow server --backend-store-uri sqlite:///mydb.sqlite
 
 Esto también levantará la UI.
 
-# Azure ML como servidor de MLFlow
+# Usar un servidor remoto
+
+```python
+mlflow_tracking_uri = "http://mlflow-server.com"
+mlflow.set_tracking_uri(mlflow_tracking_uri)
+```
+
+## Azure ML como servidor de MLFlow
 
 <https://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-mlflow-configure-tracking?view=azureml-api-2&tabs=cli%2Cmlflow>
 
 Podemos usar un workspace de Azure ML como servidor de MLFlow.
+
+**NOTA**: junio 2025, no soporta tracing, por lo que no podremos ver las llamadas al LLM.
 
 Tendemos que tener instalados los paquetes: mlflow-skinny y azureml-mlflow.
 El skinny es mlflow sin la UI ni otras cosas, que hacen que sea más ligero.
