@@ -43,7 +43,6 @@ Por ahora solo se pueden compartir con otra gente que tenga acceso a la beta.
 
 <https://stitch.withgoogle.com/>
 Para diseñar UIs
-No he conseguido que haga nada.
 
 <https://studio.firebase.google.com/>
 Para desarrollar apps y desplegarlas en GCP.
