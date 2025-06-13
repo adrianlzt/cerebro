@@ -36,3 +36,11 @@ Luego hace una segunda llamada.
 Pasa el promp de sistema (<https://github.com/block/goose/blob/bf760fd630b9accd1eff63adba24798d6bf7413a/crates/goose/src/prompts/system.md?plain=1>) con la fecha y las tools (extensions).
 Y pasa el prompt del usuario.
 Y las herramientas que se pueden usar.
+
+# Visualización
+
+Si estamos usando goose con un light theme, arrancar con:
+
+```bash
+GOOSE_CLI_THEME=light goose
+```
