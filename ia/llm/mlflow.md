@@ -68,3 +68,7 @@ También podemos usar el SDK de Azure ML para obtenerlo junto con un fichero `co
 Ejemplo completo en <https://gist.github.com/adrianlzt/435c4a95e105abd105931a0a15347b1c>
 
 Cuando ejecutemos un experimento, para los resultados, iremos a Machine Learning Studio - Assets - Experiments.
+
+# Artefacts
+
+Cuando queremos almacenar un artefact, hay que pasar un directorio.
