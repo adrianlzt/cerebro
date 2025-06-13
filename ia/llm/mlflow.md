@@ -28,6 +28,16 @@ mlflow server --backend-store-uri sqlite:///mydb.sqlite
 
 Esto también levantará la UI.
 
+No entiendo muy bien como funciona el tema de almacenamiento de artefactos.
+No consigo que los almacene mlflow localmente, parece que necesita un object storage.
+Por defecto el mlflow server hará de proxy para este object storage.
+
+Usando azure como blob storage me ha funcionado con:
+
+```bash
+AZURE_STORAGE_CONNECTION_STRING="BlobEndpoint=https://mlflow.blob.core.windows.net;SharedAccessSignature=sp=racwdl&st=2025-06-13T07:44:31Z&se=2035-06-13T15:44:31Z&spr=https&sv=2024-11-04&sr=c&sig=REDACTED" mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:////mlflow_data/mlruns.db --artifacts-destination wasbs://mlflow-artifacts@mlflow.blob.core.windows.net/ --serve-artifacts
+```
+
 # Usar un servidor remoto
 
 ```python
