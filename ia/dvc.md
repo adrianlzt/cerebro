@@ -62,6 +62,8 @@ El `--local` hace que se guarde la info en `.dvc/config.local` y no en `.dvc/con
 
 Stores the current contents of files and directories tracked by DVC in the cache, and updates dvc.lock or .dvc files if/as needed. This forces DVC to accept any changed contents of tracked data currently in the workspace.
 
+Útil si tenemos un fichero en local y queremos que actualize el dvc.lock con esos valores locales.
+
 # Experiments
 
 <https://dvc.org/doc/command-reference/exp/run#options>
