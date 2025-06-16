@@ -56,6 +56,12 @@ dvc remote modify --local azure connection_string 'BlobEndpoint=https://ACCOUTN.
 
 El `--local` hace que se guarde la info en `.dvc/config.local` y no en `.dvc/config`, de forma que no se suba al git.
 
+## dvc commit
+
+<https://dvc.org/doc/command-reference/commit>
+
+Stores the current contents of files and directories tracked by DVC in the cache, and updates dvc.lock or .dvc files if/as needed. This forces DVC to accept any changed contents of tracked data currently in the workspace.
+
 # Experiments
 
 <https://dvc.org/doc/command-reference/exp/run#options>
