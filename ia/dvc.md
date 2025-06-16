@@ -111,6 +111,12 @@ Si clonamos un repo y queremos ejecutar los experimentos (suponiendo que se ha u
 dvc exp run --pull
 ```
 
+Listar experimentos:
+
+```bash
+dvc exp show --all-commits
+```
+
 # Remotes
 
 <https://dvc.org/doc/user-guide/data-management/remote-storage>
