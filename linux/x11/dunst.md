@@ -14,6 +14,9 @@ dunstify -a app -h int:nombre:2 -A action,YES -A other,NO pepe
   Nos abre un menú para seleccionar entre opciones
   si el usuario elige "YES", dunstify nos devolverá la cadena "action"
 
+Para la urgencia:
+-u 0/1/2
+
 Pausar notifications:
 dunstctl set-paused true
 
@@ -62,7 +65,7 @@ And you can override the
    set_stack_tag
    set_transient
    timeout
-   urgency
+   urgency (aunque cambie el urgency, los colores no cambian, forzarlos también)
 
 ```
 [skip-display]
