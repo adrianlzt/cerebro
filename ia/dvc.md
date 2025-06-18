@@ -96,6 +96,8 @@ Ejecutar los experimentos:
 dvc exp run
 ```
 
+Cuando se ejecuta un experimento, dvc fija el commit (hace un detach, supongo que para asegurarse que no hay cambios mientras se ejecuta).
+
 Ejecutar una única stage (preguntando antes de empezar y forzando a que se ejecute):
 
 ```bash
