@@ -8,7 +8,7 @@ Puede tardar unos minutos en hacer efecto. Visto al usar las APIs (terraform).
 
 Automatizar la solicitud de acceso PIM
 
-Parece poco útil para dar permisos a grupos po roles, porque necesita un token que hay que sacar del navegador.
+Parece poco útil para dar permisos a grupos o roles, porque necesita un token que hay que sacar del navegador.
 Tal vez se podría automatizar extrayendo de la Session Storage del navegador la key "_-login.windows.net-idtoken-_---", donde dentro está el "secret" que usar como PIM_TOKEN.
 
 Listar recursos tipo grupo:
