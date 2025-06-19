@@ -29,3 +29,8 @@ Para consultar los modelos configurados:
 ```bash
 curl  http://localhost:4000/v1/models | jq
 ```
+
+El proxy, cuando arranca, se baja un json con los modelos, precios, etc:
+<https://github.com/BerriAI/litellm/blob/b55e1daff9f89c15b68a8bd0b7addc652a22b7c9/litellm/litellm_core_utils/get_model_cost_map.py#L25>
+
+Lo almacena en model_prices_and_context_window.json
