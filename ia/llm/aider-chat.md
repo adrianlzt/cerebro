@@ -190,3 +190,7 @@ Y actua en ese momento.
 En el caso de las preguntas nos contestará en la shell donde tengamos aider.
 
 Para lo otro realizará el cambio directamente en el código.
+
+# Debug
+
+Si usamos -v veremos parte de lo que se envía al LLM, pero parece que no la respuesta.
