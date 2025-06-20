@@ -28,6 +28,9 @@ Se puede configurar (en el fichero de config), como se comporta goose al llamar 
 
 ~/.local/share/goose/
 
+Ficheros jsonl con toda la activdad:
+~/.local/share/goose/sessions/
+
 # Funcionamiento
 
 Cuando abrimos una sesión y escribimos algo, lo primero que hace goose es enviar al texto al LLM para pedirle un resumen en 4 palabras.
