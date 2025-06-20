@@ -47,3 +47,19 @@ Si estamos usando goose con un light theme, arrancar con:
 ```bash
 GOOSE_CLI_THEME=light goose
 ```
+
+# Hints
+
+<https://block.github.io/goose/docs/guides/using-goosehints>
+
+Para poder pasar información a goose, de forma global o por directorio.
+
+Solo los lee si la extensión developer está enabled.
+
+# Dudas
+
+Como pasar información siempre?
+Por ejemplo, si quiero que siempre busque tal información en un sitio, sería útil que pueda dejarle un fichero que siempre lea.
+
+Se puede modificar el prompt general? Me gustaría poder customizarlo.
+Esto podría unirse con lo anterior.
