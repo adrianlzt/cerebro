@@ -43,6 +43,10 @@ Deshabilitarlas <leader>ud
 <leader>sG grepear en el cwd
 <leader>ss saltar a una función, símbolo, etc
 
+## Instalación
+
+/home/adrian/.local/share/nvim/lazy/LazyVim
+
 # lunarvim
 
 <https://www.lunarvim.org/#opinionated>
