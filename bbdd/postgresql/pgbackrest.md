@@ -109,19 +109,27 @@ Se pone un límite máximo para evitar llenar el disco.
 <https://pgbackrest.org/configuration.html#section-archive/option-archive-async>
 Asynchronous operation is more efficient because it can reuse connections and take advantage of parallelism
 
-No tengo muy claro lo que hace ese archive async.
-Cuando se genera un nuevo wal postgres:
+Primero una nota de como funciona el archive de PostgreSQL: <https://www.dbi-services.com/blog/__trashed-3/>
+Cuando activamos el archive_mode, por cada fichero WAL a archivar (ficheros WAL ya consolidados) se ejecuta el archive_command.
+Si el archive_command termina correctamente, se generará un fichero .done en el directorio pg_wal/archive_status/.
+Si falla, se generará un fichero .ready en el mismo directorio, indicando que hace falta reintentar el archivado.
 
-- crea un fichero en pg_wal/archive_status/NOMBREWAL.ready
-- ejecuta el archive command.
-- si el archive command termina correctamente, mueve pg_wal/archive_status/NOMBREWAL.ready a pg_wal/archive_status/NOMBREWAL.done
+El modo asíncrono lo que hace es mantener una comunicación (vía ficheros del spool path) entre los procesos que ejecuta postgres y un proceso en background que se encarga de archivar los ficheros WAL.
 
-El archive_command configurado para pgbackrest lo que entiendo que hace es lanzar otro pgbackrest para subir los wal que esten "ready".
-Parece que postgres no intenta archivar otros WAL si no ha podido archivar uno. Se queda reintentando indefinidamente el más viejo a archivar.
-Si postgres lanza varios archive_command entiendo que no se crearán más pgbackrest de subida y se usará el mismo (parece que usa /tmp/pgbackrest/iometrics-archive.lock)
+When executed with archive-push in an asynchronous configuration, the command performs the following actions based on the cmdArchivePush function:
 
-Si pgbackrest termina bien, parece que genera un fichero NOMBREWAL.ok en el spool path cuando termina.
+1 It enters a loop, waiting up to the configured archive-timeout.
+2 Inside the loop, it first checks if the specified WAL segment has already been successfully pushed by the background async process (si existe el .fichero .ok en el spool path)
+3 If the WAL segment has not been pushed and a background async process has not yet been started by this command execution, it will:
+   • Acquire a lock.
+   • Fork a new background archive-push process with the async role (archive-push:async). This new process is responsible for doing the actual work of pushing WAL files.
+   • Release the lock (/tmp/pgbackrest/iometrics-archive.lock)
+4 The original command continues to wait and check the status until it sees that the specific WAL file has been successfully archived or the timeout is reached.
+5 If the WAL file is not pushed before the timeout, an error is thrown. Otherwise, it logs a success message.
+
+Si pgbackrest async termina bien, genera un fichero NOMBREWAL.ok en el spool path cuando termina.
 Este fichero es la señal que usa para decirle al pgbackrest que ha lanzando postgres que ha terminado bien.
+Si terminal mal, generará un fichero NOMBREWAL.error o global.error, con el error dentro.
 Si no es capaz de archivar, tras 8 minutos de timeout, generará un error que leera el pgbackrest lanzado por postgres.
 
 El proceso que lanzó postgres está mirando si aparece en /var/lib/postgresql/spool/archive/iometrics/out/ uno de estos ficheros:
@@ -130,9 +138,15 @@ NOMBREWAL.error
 global.error
 
 Si pgbackrest no está siendo capaz de archivar los WAL a una velocidad suficiente, se emepezarán a encolar en el directorio pg_wal.
-Para proteger a postgres existe el parámetro XXX. Si hay más de esa cantidad de WAL esperando ser archivados, el pgbackrest push-async se "rinde" y da todos por archivados.
+Para proteger a postgres existe el parámetro archive-push-queue-max. Si hay más de esa cantidad de WAL esperando ser archivados, el pgbackrest push-async se "rinde" y da todos por archivados, esto es que genera ficheros .ok en el spool path para todos los WAL que están en pg_wal/archive_status/ con .ready.
+Esto lo que hace es decir a postgres que todo se ha archivado correctamente, aunque es mentira. De esta manera evitamos llenar el disco con los ficheros WAL que no se están pudiendo archivar.
+
+Para calcular este tamaño de cola, en modo asíncrono, pgbackrest mira que ficheros wal están con .ready en el pg_wal/archive_status/ y quita los marcados como enviados (.ok en el spool path).
+
 Genera este error por cada WAL no archivado:
 2023-10-27 12:44:50.607 P00 WARN: dropped WAL file '000000060000074A00000009' because archive queue exceeded 128MB
+
+Si vemos este error quiere decir que hemos roto el backup, porque no hemos podido archivar los WAL necesarios para restaurar el backup.
 
 # Backup
 
