@@ -232,6 +232,18 @@ pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --
 
 # Verify
 
+The verify command performs a comprehensive integrity check of the pgBackRest repository. Here is what it does:
+
+ 1 Verifies Repository Info Files: It starts by checking the backup.info and archive.info files. It ensures they exist, are not corrupt (by checking their checksums), and that their database history information is consistent with each other.
+ 2 Verifies Backups: For each backup in the repository, it:
+    • Verifies the integrity of the backup.manifest file.
+    • For every file listed in the manifest, it checks that the file exists in the repository and that its size and checksum match the values recorded in the manifest. This includes files referenced from prior backups.
+ 3 Verifies WAL Archive: It scans the entire WAL archive and:
+    • Verifies the integrity of each individual WAL segment by checking its checksum.
+    • Identifies gaps in the WAL sequence by checking for missing segments. This is critical for ensuring that a point-in-time recovery is possible.
+
+Finally, it produces a summary report detailing the status of the archives and each backup, highlighting any errors found, such as missing files, checksum mismatches, or gaps in the WAL stream.
+
 <https://github.com/pgbackrest/pgbackrest/issues/1032>
 Añadido en la 2.39
 Verify command to validate the contents of a repository.
