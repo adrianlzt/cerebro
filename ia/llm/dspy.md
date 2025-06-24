@@ -12,6 +12,8 @@ Por ejemplo: quiero hacer CoT con RAG, y DSPy genera el prompt para conseguir es
 
 Nos evita tener que crear prompts de manera manual, y nos abstrae de las técnicas de prompting.
 
+La documentación no es muy buena. Por ejemplo, para saber como usar el LabeledFewShot hay un ejemplo con 3 líneas donde no explica que hay que hacer, el objetivo, etc.
+
 # Conceptos
 
 ## Signatures
