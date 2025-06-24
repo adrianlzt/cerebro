@@ -86,6 +86,23 @@ Añadir unos few shots a partir de una lista de Examples generada por nosotros.
 Ejemplo de uso:
 <https://gist.github.com/adrianlzt/5623709cd64c3a2e2b2d2ee2688ced8e>
 
+Si queremos cambiar un predictor para que ahora use few shots haremos:
+
+```
+<<<<<<< SEARCH
+    predictor = dspy.Predict(CorrelateEventToChange)
+=======
+    # Use LabeledFewShot to compile the predictor with the example
+    trainset = [FEW_SHOT_EXAMPLE]
+    # k=1 means it will use 1 example from the trainset for the few-shot prompt
+    labeled_fewshot_optimizer = LabeledFewShot(k=1)
+    predictor_to_compile = dspy.Predict(CorrelateEventToChange)
+    predictor = labeled_fewshot_optimizer.compile(
+        student=predictor_to_compile, trainset=trainset
+    )
+>>>>>>> REPLACE
+```
+
 ### MIPROv2
 
 <https://dspy.ai/api/optimizers/MIPROv2/>
