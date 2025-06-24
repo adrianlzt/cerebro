@@ -79,6 +79,13 @@ Los optimizadores pueden usar distintas técnicas:
 Podemos tener también un dataset "dev" pequeño para ir paso a paso viendo que hace.
 También un dataset "test" que usaremos al final para ver la calidad del programa.
 
+### LabeledFewShot
+
+Añadir unos few shots a partir de una lista de Examples generada por nosotros.
+
+Ejemplo de uso:
+<https://gist.github.com/adrianlzt/5623709cd64c3a2e2b2d2ee2688ced8e>
+
 ### MIPROv2
 
 <https://dspy.ai/api/optimizers/MIPROv2/>
@@ -225,3 +232,4 @@ El formato de la signature, nos lo podemos inventar?
 Podemos pasar los parámetros que nos de la gana de entrada y de salida?
 Solo hay que respetar:
 XXX -> YYY?
+Parece que si, que esto no sigue un formato concreto.
