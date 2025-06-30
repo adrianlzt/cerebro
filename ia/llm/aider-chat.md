@@ -43,6 +43,12 @@ Podemos añadirlos a posteriori con:
 /add file1
 ```
 
+Si queremos de solo lectura:
+
+```
+/read fichero
+```
+
 O quitarlos con:
 
 ```
@@ -64,7 +70,6 @@ multilínea
 ```
 
 Podemos usar `/editor` para editar el mensaje con nuestro $EDITOR.
-O usar Control+x Control+e para abrir el editor.
 
 Si queremos borrar el contexto hasta ahora: `/clear`
 
@@ -78,19 +83,13 @@ Si queremos ejecutar comandos:
 
 Podemos meter el contenido del clipboard con `/paste`
 
-## Repomap
+`/diff` will show all the file changes since the last message you sent.
 
-Por defecto aider envía un "repomap" del repo de git.
-En repositorios muy grandes, o cuando sepamos que no nos hace falta ese contexto, podemos deshabilitarlo.
+## Lint / compilar / tests
 
-Si queremos deshabilitarlo podemos usar:
+Por defecto aider tiene configurados linter para varios lenguajes.
 
-```
---map-tokens 0
-```
-
-Para repositorios grandes también podemos usar:
---subtree-only and .aiderignore
+Si nuestro lenguaje es compilado podemos configurar un comando (usando por ejemplo `just`)
 
 ## Conventions
 
@@ -112,18 +111,6 @@ Podemos usar los modelos del marketplace de github gratuitamente con ciertas lim
 
 <https://aider.chat/docs/llms.html>
 
-Parece que lo más potente VS coste ahora mismo es:
-
-```bash
-aider --architect --model r1 --editor-model sonnet
-```
-
-Interesantes:
-
-```
-aider --model o3-mini --reasoning-effort [low,medium,high]
-```
-
 ```bash
 aider --list-models gemini/
 ```
@@ -138,18 +125,6 @@ Para que funcione gemini hace falta instalar otro paquete (suponiendo que hemos 
 
 ```
 ~/.local/share/pipx/venvs/aider-chat/bin/python -m pip install google
-```
-
-## Gratís
-
-Muy rápido, pero no muy potente:
-
-```bash
-aider --model groq/llama-3.3-70b-versatile
-```
-
-```
-aider --model openrouter/deepseek/deepseek-r1:free
 ```
 
 # Config
@@ -180,9 +155,9 @@ Cuando guaramos algún fichero, aider busca comentarios tipo:
 O preguntas usando comentarios tipo:
 
 ```
-# ... AI?
-// ... AI?
--- ... AI?
+# ... AI? 
+// ... AI? 
+-- ... AI? 
 ```
 
 Y actua en ese momento.
@@ -190,7 +165,3 @@ Y actua en ese momento.
 En el caso de las preguntas nos contestará en la shell donde tengamos aider.
 
 Para lo otro realizará el cambio directamente en el código.
-
-# Debug
-
-Si usamos -v veremos parte de lo que se envía al LLM, pero parece que no la respuesta.
