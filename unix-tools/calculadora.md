@@ -24,7 +24,8 @@ Cuidado con el tema del redondeo:
 Internamente tiene el número correcto, pero con la notación "e" muestra un redondeo.
 
 Si queremos definir una unidad de algo "random"
-unit thing: Scalar
+Use 'unit token' for ad-hoc units.
+Use 'unit token: Scalar = …' for derived units.
 
 Y podemos hacer:
 (3 thing/s) * 3 min
