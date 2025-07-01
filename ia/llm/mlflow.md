@@ -72,3 +72,32 @@ Cuando ejecutemos un experimento, para los resultados, iremos a Machine Learning
 # Artefacts
 
 Cuando queremos almacenar un artefact, hay que pasar un directorio.
+
+# SQL
+
+Runs de un experimento:
+
+```sql
+select r.name, r.status, start_time, end_time from runs r join experiments e where e.name = 'ExperimentName' and e.experiment_id = r.experiment_id limit 1;
+```
+
+trace_info: request_id, experiment_id, timestamp_ms, execution_time_ms, status
+
+trace_tags: key, value, request_id
+
+trace_request_metadata: key, value, request_id
+
+Requests para un run:
+
+```sql
+select request_id from trace_request_metadata where value = 'b15a6ae5fffe4fe089a312c7dcd2ff85';
+```
+
+Status de las trazas de un run:
+
+```sql
+with reqs as (
+  select distinct request_id from trace_request_metadata where value = 'b15a6ae5fffe4fe089a312c7dcd2ff85'
+)
+select status, count(*) as count from trace_info where request_id IN (select request_id from reqs) group by status;
+```

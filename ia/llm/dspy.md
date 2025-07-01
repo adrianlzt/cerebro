@@ -125,9 +125,13 @@ llm("say hello")
 ## Cache
 
 Por defecto está activado el "cache", que recodará las llamadas a los modelos para evitar reahacerlas si son iguales.
+<https://dspy.ai/tutorials/cache/>
 <https://dspy.ai/api/models/LM/?h=cache#dspy.LM:~:text=4000-,cache,-bool>
 
 Almacena por defecto en `~/.dspy_cache`.
+
+Por defecto almacena en memoria 1000000 entries y en disco 30GiB.
+<https://github.com/stanfordnlp/dspy/blob/main/dspy/clients/__init__.py#L18>
 
 # Como funciona
 
