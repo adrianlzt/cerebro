@@ -2,4 +2,14 @@
 
 config='git --git-dir=/home/adrian/.config.git/ --work-tree=/home/adrian'
 
-Otra opción más completa: [chezmoi](https://www.chezmoi.io/).
+# Chezmoi
+
+[chezmoi](https://www.chezmoi.io/).
+
+Crea un repo git en ~/.local/share/chezmoi/
+
+Añadir ficheros con:
+
+```bash
+chezmoi add ~/.bashrc
+```
