@@ -124,7 +124,7 @@ Subir/bajar por el stack trace
 up
 down
 
-# ePDB
+# ePDB - DEPRECATED, última versión 2017, no funciona con versiones recientes
 
 remote debug
 <https://pypi.python.org/pypi/epdb/>
@@ -141,8 +141,7 @@ nc IP 8080
 
 pip install remote-pdb
 
-from remote_pdb import RemotePdb
-RemotePdb('127.0.0.1', 4444).set_trace()
+from remote_pdb import RemotePdb; RemotePdb('127.0.0.1', 4444).set_trace()
 
 nc 127.0.0.1 4444
 
