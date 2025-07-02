@@ -40,3 +40,5 @@ Si queremos forzar que el clipboard de nvim funcione con OSC52:
 ```vim
 let g:clipboard = 'osc52'
 ```
+
+Funciona un poco mal, me deja el nvim pillado muchas veces con un mensaje de que está esperando al servidor de OSC52.
