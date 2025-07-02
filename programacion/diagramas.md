@@ -10,6 +10,9 @@ Second order thinking: considerar los resultados que se producirán más adelant
 Probabilistic Thinking: usar las matemáticas, estadística, lógica para intentar ser más precisos
 Inversion:
 
+<https://github.com/stan-smith/FossFLOW>
+Isometric Diagramming Tool
+
 <https://excalidraw.com/>
 gratis
 simula esquemas hechos a mano
