@@ -13,6 +13,10 @@ Inversion:
 <https://github.com/stan-smith/FossFLOW>
 Isometric Diagramming Tool
 
+```bash
+npx github:adrianlzt/FossFLOW#feat/npx-compatible
+```
+
 <https://excalidraw.com/>
 gratis
 simula esquemas hechos a mano
