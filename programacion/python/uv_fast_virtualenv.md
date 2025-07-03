@@ -77,7 +77,7 @@ uv run --python 3.12 --with pandas python
 <https://packaging.python.org/en/latest/specifications/inline-script-metadata/#script-type>
 
 ```python
-#!/usr/bin/env -S uv run
+#!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [

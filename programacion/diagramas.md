@@ -12,6 +12,7 @@ Inversion:
 
 <https://github.com/stan-smith/FossFLOW>
 Isometric Diagramming Tool
+Basado en <https://github.com/markmanx/isoflow>
 
 ```bash
 npx github:adrianlzt/FossFLOW#feat/npx-compatible
