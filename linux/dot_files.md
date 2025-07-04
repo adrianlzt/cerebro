@@ -14,6 +14,12 @@ Añadir ficheros con:
 chezmoi add ~/.bashrc
 ```
 
+Si queremos añadir un fichero que hemos modificado fuera de chezmoi (persistiendo si estaba encriptado o no):
+
+```bash
+chezmoi re-add file
+```
+
 Añade los ficheros también a una boltdb:
 
 ```

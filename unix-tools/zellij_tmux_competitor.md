@@ -38,6 +38,12 @@ strider: abre un navegador de ficheros en un pane estrecho a la izquierda. Los f
 zellij --layout compact
 ```
 
+# Lock / scape / escapar comandos
+
+Control+g
+
+Nos pone en modo "lock" que nos permite ejecutar otros "control+" sin que los coja zellij.
+
 # Tabs
 
 Rename: C-a ,
