@@ -25,7 +25,7 @@ Pone el path, sha256, mode y tipo.
 Para ver que tenemos añadido podemos hacer:
 
 ```bash
-ls -R /home/adrian/.local/share/chezmoi
+chezmoi managed --include=encrypted
 ```
 
 ## Config
@@ -56,6 +56,12 @@ encryption = "gpg"
 [gpg]
 recipient = "adrianlzt@gmail.com"
 args = ["--quiet"]
+```
+
+Listar todo los ficheros encriptados:
+
+```bash
+chezmoi managed
 ```
 
 ## Git
