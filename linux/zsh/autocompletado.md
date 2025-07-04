@@ -33,6 +33,7 @@ En .zshrc
 fpath=(~/.zsh/completion $fpath)
 
 ~/.zsh/completion/_hello
+
 # compdef hello
 
 _arguments "1: :(World 'Otra opcion')"    Separamos con espacios en blanco las opciones
@@ -72,6 +73,7 @@ OPT[DESCRIPTION]:MESSAGE:ACTION
 Si no ponemos MESSAGE nos permitirá este parámetro varias veces. Si ponemos clave, una vez relleno, ya no lo mostrará en el autocompletado.
 
 ## actions
+
 <https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org#actions>
 En actions podemos declararas directamente: (valor1 valor2 valor3)
 O llarma a una función: _get_names
@@ -103,3 +105,23 @@ Si el comando tiene un --help estandar podemos usar:
 compdef _gnu_generic comandognu
 
 Y automáticamente se generará el autocompeltion
+
+# Debug
+
+En la shell, arrancar el compinit en modo debug:
+
+```bash
+compinit -D -i
+```
+
+Luego intentar el autocompletado, pero en vez de dar al TAB hacer `Control+x ?`.
+Nos volcará el debug en un fichero.
+
+# Errores
+
+No autocompletaba después del redirect porque estaba leyendo de /usr/local/share/zsh/site-functions/_python-argcomplete y esa función parece que estaba mal definida.
+Dejo ese directorio comentado:
+
+```bash
+sudo mv /usr/local/share/zsh{,.off}
+```
