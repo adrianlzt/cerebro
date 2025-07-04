@@ -25,8 +25,17 @@ Pone el path, sha256, mode y tipo.
 Para ver que tenemos añadido podemos hacer:
 
 ```bash
-ls -R /home/adrian/.local/share/chezmoi
+chezmoi managed --include=encrypted
 ```
+
+Hacer como un "git status":
+
+```bash
+chezmoi status
+```
+
+Si vemos 'MM' es que tiene modificaciones locales.
+Si vemos 'M' es que hay ficheros en chezmoi más modernos que en nuestros dotfiles.
 
 ## Config
 
@@ -99,6 +108,12 @@ Si nos gusta:
 chezmoi apply
 ```
 
+Podemos solo aplicar ciertos ficheros:
+
+```bash
+chezmoi apply ~/.bashrc
+```
+
 ## Editar un fichero
 
 Lo editaremos con chezmoi y luego aplicaremos los cambios:
@@ -147,8 +162,28 @@ Podemos añadir más datos en: ~/.config/chezmoi/chezmoi.toml
 
 Integración con gopass: <https://www.chezmoi.io/user-guide/password-managers/gopass/>
 
+Añadir un fichero como una template:
+
+```bash
+chezmoi add --template ~/.config/chezmoi/chezmoi.toml
+```
+
+Convertir un fichero en template:
+
+```bash
+chezmoi chattr +template ~/.zshrc
+```
+
 ## Instalar paquetes
 
 <https://www.chezmoi.io/user-guide/advanced/install-packages-declaratively/>
 
 <https://www.chezmoi.io/user-guide/advanced/install-your-password-manager-on-init/>
+
+## Configurar un nuevo host
+
+```bash
+chezmoi init git@github.com:adrianlzt/dotfiles.git
+chezmoi diff
+chezmoi apply
+```
