@@ -35,6 +35,8 @@ ls -R /home/adrian/.local/share/chezmoi
 ## Encriptar
 
 Una buena práctica es encriptar los ficheros para que no sean legibles en el repo.
+Meter muchos ficheros luego da problems con el "diff", porque el gpg a veces falla al intentar descomprimir algunos ficheros.
+Mejor reducir el número de ficheros encriptados.
 
 <https://www.chezmoi.io/user-guide/encryption/gpg/>
 
@@ -53,6 +55,7 @@ Config:
 encryption = "gpg"
 [gpg]
 recipient = "adrianlzt@gmail.com"
+args = ["--quiet"]
 ```
 
 ## Git
