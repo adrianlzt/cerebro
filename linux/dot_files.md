@@ -25,7 +25,7 @@ Pone el path, sha256, mode y tipo.
 Para ver que tenemos añadido podemos hacer:
 
 ```bash
-chezmoi managed --include=encrypted
+ls -R /home/adrian/.local/share/chezmoi
 ```
 
 ## Config
@@ -61,7 +61,7 @@ args = ["--quiet"]
 Listar todo los ficheros encriptados:
 
 ```bash
-chezmoi managed
+chezmoi managed --include=encrypted
 ```
 
 ## Git
@@ -72,6 +72,31 @@ Config:
 [git]
 autoCommit = true
 autoPush = true
+```
+
+Para hacerlo a mano, distintas opciones:
+
+```bash
+chezmoi cd && git ...
+chezmoi git -- status
+```
+
+Bajar los cambios de remoto y aplicarlos:
+
+```bash
+chezmoi update
+```
+
+Más seguro, bajar y ver que va a cambiar:
+
+```bash
+chezmoi git pull -- --autostash --rebase && chezmoi diff
+```
+
+Si nos gusta:
+
+```bash
+chezmoi apply
 ```
 
 ## Editar un fichero
@@ -89,9 +114,41 @@ To automatically run chezmoi apply when you quit your editor, run:
 chezmoi edit --apply $FILENAME
 ```
 
-```
 To automatically run chezmoi apply whenever you save the file in your editor, run:
 
 ```bash
 chezmoi edit --watch $FILENAME
 ```
+
+## Configurar nueva máquina
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply adrianlzt
+```
+
+Para contenedores podemos usar (la diferencia es que borra los ficheros de chezmoi, dejando solo los dotfiles):
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --one-shot $GITHUB_USERNAME
+```
+
+## Templates
+
+<https://www.chezmoi.io/user-guide/manage-machine-to-machine-differences/#use-templates>
+<https://www.chezmoi.io/user-guide/templating/#template-data>
+
+Para ver que datos podemos usar en las
+
+```bash
+chezmoi data
+```
+
+Podemos añadir más datos en: ~/.config/chezmoi/chezmoi.toml
+
+Integración con gopass: <https://www.chezmoi.io/user-guide/password-managers/gopass/>
+
+## Instalar paquetes
+
+<https://www.chezmoi.io/user-guide/advanced/install-packages-declaratively/>
+
+<https://www.chezmoi.io/user-guide/advanced/install-your-password-manager-on-init/>
