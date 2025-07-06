@@ -5,7 +5,7 @@ El "git" de los datos
 Install:
 
 ```bash
-uv tool install -U --with dvc-s3 dvc
+uv tool install -U --with dvc-s3 --with dvc-azure dvc
 ```
 
 Usar sin instalar:
