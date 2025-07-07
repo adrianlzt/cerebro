@@ -15,7 +15,7 @@ Isometric Diagramming Tool
 Basado en <https://github.com/markmanx/isoflow>
 
 ```bash
-npx github:adrianlzt/FossFLOW#feat/npx-compatible
+npx github:stan-smith/FossFLOW#feat/npx-compatible
 ```
 
 <https://excalidraw.com/>
