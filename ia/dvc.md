@@ -64,6 +64,14 @@ Stores the current contents of files and directories tracked by DVC in the cache
 
 Útil si tenemos un fichero en local y queremos que actualize el dvc.lock con esos valores locales.
 
+## dvc checkout
+
+Para volver al estado anterior de una ejecución usé:
+
+```
+dvc checkout output/file
+```
+
 # Experiments
 
 <https://dvc.org/doc/command-reference/exp/run#options>
