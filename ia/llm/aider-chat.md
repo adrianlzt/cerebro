@@ -155,9 +155,9 @@ Cuando guaramos algún fichero, aider busca comentarios tipo:
 O preguntas usando comentarios tipo:
 
 ```
-# ... AI? 
-// ... AI? 
--- ... AI? 
+# ... AI?
+// ... AI?
+-- ... AI?
 ```
 
 Y actua en ese momento.
@@ -165,3 +165,17 @@ Y actua en ese momento.
 En el caso de las preguntas nos contestará en la shell donde tengamos aider.
 
 Para lo otro realizará el cambio directamente en el código.
+
+
+# MCP
+
+https://github.com/Aider-AI/aider/pull/3937
+
+
+## Python-pdb
+
+```bash
+uv tool uvx --from git+https://github.com/quinlanjager/aider@feature/litellm-mcp aider --mcp-servers '{"mcpServers":{"pdb":{"command":"uv","args":["run", "--python", "3.13", "--with", "mcp-pdb", "mcp-pdb"]}}}'
+```
+
+Recordarle que "start a debugging session".
