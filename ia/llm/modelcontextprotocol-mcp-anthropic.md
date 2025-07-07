@@ -136,17 +136,10 @@ Parte del tráfico que se intercambia: <https://www.catiemcp.com/blog/mcp-transp
 echo '{"jsonrpc":"2.0","method":"tools/list","id":1}' | npx -y @modelcontextprotocol/server-filesystem ~ | jq
 ```
 
-Crear un script con unas fifo pipes a los lados para capturar los datos:
+Si queremos obtener los logs que se intercambian, usar esta app. Nos dejará el intermcambio en un fichero `mcp_session.log`:
 
 ```bash
-#!/bin/bash
-tee /tmp/mcp.fifo | uvx mcp-gsuite | tee /tmp/mcp.fifo
-```
-
-Mirar le contenido con:
-
-```bash
-tail -f /tmp/mcp.fifo
+uvx mcp-stdin-debug SERVER MCP
 ```
 
 Ejecutar el server con:
