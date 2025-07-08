@@ -34,6 +34,7 @@ Para ver que tenemos añadido podemos hacer:
 chezmoi managed --include=encrypted
 ```
 
+<https://www.chezmoi.io/reference/commands/status/>
 Hacer como un "git status":
 
 ```bash
@@ -42,6 +43,13 @@ chezmoi status
 
 Si vemos 'MM' es que tiene modificaciones locales.
 Si vemos 'M' es que hay ficheros en chezmoi más modernos que en nuestros dotfiles.
+
+The first column of output indicates the difference between the last state written by chezmoi and the actual state. The second column indicates the difference between the actual state and the target state, and what effect running chezmoi apply will have.
+
+A: added
+D: deleted
+M: modified
+R: run
 
 ## Config
 
