@@ -298,6 +298,11 @@ El trigger por defecto salta cuando estamos al 25% de capacidad disponible (haya
 Aproximación burda: 1GB / 11k+1.5M+500k = 0.5kB/elemento
 Validad también con un Zabbix 4
 
+Ratio de triggers por item de los templates de OS linux y windows: ~0.4
+Average Item Name Length: 25
+Average Trigger Description Length: 139
+Average Trigger Expression Length: 163
+
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.
 El problema de subir el tiempo es que tardemos más tiempo en que se produzcan cambios, recibir métricas, lld, etc
@@ -306,6 +311,41 @@ Podemos forzar ese update con:
 zabbix_server -R config_cache_reload
 
 Cuando se realiza el update, se nota una pequeña congelación en los procesos. Al menos visto en los trappers, que mientras se hace el update dejan de contestar.
+
+Calculo de aider+gemini2.5-pro (para 5M items agrupados en 33333 hosts y algunas suposiciones sobre strings, macros, tags, etc):
+
+```
+1. Memory for Base Structures (Fixed-Size Part)
+
+This is the memory for the main C structures, assuming a 64-bit system.
+
+ • Hosts: 33,333 hosts × sizeof(ZBX_DC_HOST) (~184 bytes) ≈ 6.1 MB
+ • Items: 5,000,000 items × sizeof(ZBX_DC_ITEM) (~224 bytes) ≈ 1120.0 MB
+ • Triggers: 2,000,000 triggers × sizeof(ZBX_DC_TRIGGER) (~156 bytes) ≈ 312.0 MB
+ • Subtotal: ~1438 MB (1.40 GB)
+
+2. Memory for Dynamic Data (Strings and Vectors)
+
+This is an estimation for dynamically sized data stored within the configuration cache.
+
+ • Host Data:
+    • Names (host & visible): 33,333 hosts × (25 + 25) chars ≈ 1.7 MB
+    • Host Tags: 33,333 hosts × 10 tags/host × 50 chars ≈ 17.3 MB
+    • Host Macros: 33,333 hosts × 5 macros/host × (25+25) chars ≈ 8.7 MB
+ • Item Data:
+    • Item Keys, units, parameters, etc.: 5,000,000 items × ~107 bytes/item ≈ 535.0 MB
+ • Trigger Data:
+    • Descriptions & Expressions: 2,000,000 triggers × (139 + 163) chars ≈ 604.0 MB
+ • Other Structures (Interfaces, Functions, etc.):
+    • This includes interfaces, trigger functions, host inventory, and other supporting data structures. A rough estimate for your scale is ~420 MB.
+ • Subtotal: ~1587 MB (1.55 GB)
+
+Total Estimated CacheSize:
+
+ • Base Structures: ~1.40 GB
+ • Dynamic Data: ~1.55 GB
+ • Total CacheSize Required: ~2.95 GB
+```
 
 ## Write cache / history cache + history index cache
 
@@ -442,7 +482,7 @@ cache->history_items es un hashset (creo que algo como un dict) donde hay almace
 Más abajo hay una sección sobre los hashset
 
 Buscar un elemento en la tabla history_items a partir del itemid:
-p (zbx_hc_item_t _)zbx_hashset_search(&cache->history_items, &((zbx_hc_item_t_)history_items->values[0])->itemid)
+p (zbx_hc_item_t *)zbx_hashset_search(&cache->history_items, &((zbx_hc_item_t*)history_items->values[0])->itemid)
 
 Iterar por el hashset de cache->history_items
 set $iter = malloc(sizeof(zbx_hashset_iter_t))
