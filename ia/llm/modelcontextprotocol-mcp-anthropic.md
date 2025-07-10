@@ -34,8 +34,10 @@ Visual testing tool for MCP servers
 Levanta una web para poder llamar a cualquier servidor MCP.
 
 ```bash
-npx @modelcontextprotocol/inspector uvx mcp-server-time
+npx -y @modelcontextprotocol/inspector uvx mcp-server-time
 ```
+
+Si queremos quitar el auth: DANGEROUSLY_OMIT_AUTH=true
 
 ## cli
 
@@ -66,6 +68,8 @@ Abre una app interactiva para ver los métodos y llamar al que queramos.
 ```bash
 npx -y @wong2/mcp-cli npx -y @modelcontextprotocol/server-everything
 ```
+
+Salta errores, Jul 2025
 
 ### mcpgod
 
@@ -140,10 +144,4 @@ Si queremos obtener los logs que se intercambian, usar esta app. Nos dejará el 
 
 ```bash
 uvx mcp-stdin-debug SERVER MCP
-```
-
-Ejecutar el server con:
-
-```bash
-npx @wong2/mcp-cli ./server.sh
 ```
