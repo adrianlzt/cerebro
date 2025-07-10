@@ -1,3 +1,5 @@
+Parece que hub es antigua y lo nuevo es usar "gh".
+
 <https://github.com/github/hub/>
 <http://hub.github.com/>
 <http://hub.github.com/hub.1.html>
