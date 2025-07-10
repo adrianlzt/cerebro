@@ -85,6 +85,10 @@ Podemos meter el contenido del clipboard con `/paste`
 
 `/diff` will show all the file changes since the last message you sent.
 
+## .aiderignore
+
+Por defecto aider ignora los ficheros que tengamos puestos en .gitignore y en .aiderignore (mismo formato).
+
 ## Lint / compilar / tests
 
 Por defecto aider tiene configurados linter para varios lenguajes.
@@ -166,11 +170,9 @@ En el caso de las preguntas nos contestará en la shell donde tengamos aider.
 
 Para lo otro realizará el cambio directamente en el código.
 
-
 # MCP
 
-https://github.com/Aider-AI/aider/pull/3937
-
+<https://github.com/Aider-AI/aider/pull/3937>
 
 ## Python-pdb
 
