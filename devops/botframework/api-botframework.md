@@ -1,1 +1,0 @@
-../../linux/x11/skype/api-botframework.md

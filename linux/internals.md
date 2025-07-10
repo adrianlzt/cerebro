@@ -1,1 +1,1 @@
-inside.md
+kernel/inside.md

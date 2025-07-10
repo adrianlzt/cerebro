@@ -1,1 +1,0 @@
-../../bbdd/postgresql/timescaledb.md

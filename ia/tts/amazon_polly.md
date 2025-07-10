@@ -1,1 +1,1 @@
-../../nube/amazon/tts.md
+../../nube/aws_amazon/tts.md
