@@ -19,6 +19,8 @@ if [[ $? -eq 1 ]]; then
     if [[ $? -eq 1 ]]; then
       exit 0
     else
+      export SSH_ASKPASS=/home/adrian/bin/askpass
+      export SSH_ASKPASS_REQUIRE=force
       /usr/bin/git push
       /usr/bin/git push gitlab master
       exit 0
