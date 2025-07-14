@@ -10,6 +10,13 @@ redis 127.0.0.1:6379> SET persona:nombre "adri"
 OK
 redis 127.0.0.1:6379> KEYS \*
 
+Pasar la password de AUTH como env var:
+
+```bash
+export REDISCLI_AUTH=xxx
+redis-cli PING
+```
+
 1. "persona:nombre"
    redis 127.0.0.1:6379> TYPE persona:nombre
    string
