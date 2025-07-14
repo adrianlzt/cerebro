@@ -20,6 +20,18 @@ Si queremos añadir un fichero que hemos modificado fuera de chezmoi (persistien
 chezmoi re-add file
 ```
 
+Dejar de manejar un fichero:
+
+```bash
+chezmoi forget file
+```
+
+Actualizar los ficheros. Bajará lo nuevo del remote y nos irá mostrando los cambios que quiere hacer localmente.
+
+```bash
+chezmoi update
+```
+
 Añade los ficheros también a una boltdb:
 
 ```
