@@ -1,3 +1,3 @@
-//www.wps.com/linux
+https:///www.wps.com/linux
 
-https: onlyoffice;
+onlyoffice
