@@ -1,8 +1,14 @@
+claude-code.md
+gemini-cli.md
+octofriend.md
+qwen-code.md
+
 aider
 ia/llm/aider-chat.md
 
 <https://github.com/openai/codex>
-el de github
+el de openai
+Un poco rollo que pide confirmación para cada comando. No hace lo típico de "permitir todos los comandos 'XX *'"
 
 <https://block.github.io/goose/>
 ia/llm/goose-agent.md

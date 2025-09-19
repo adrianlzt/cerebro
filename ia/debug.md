@@ -1,4 +1,5 @@
 # Posibles técnicas para mejorar un algoritmo
+
 - Obtener más training examples -> fix high variance (cuanto más datos más le va a costar crear un modelo que se adapte perfecto, por lo que estará generalizando)
 - Probar con menos features     -> fix high variance (le quitamos datos para que no se pueda reconocer tan bien el traning set)
 - Probar con más features       -> fix high bias
@@ -6,8 +7,8 @@
 - Decrementar λ                 -> fix high bias
 - Incrementar λ                 -> fix high variance (no le dejamos adaptarse completamente al trainig set)
 
-
 # Evaluar una hipótesis
+
 Separar nuestro dataset:
   60% traning set
   20% cross validation set (CV), también llamado validation set
@@ -23,11 +24,10 @@ Finalmente, una vez elegido el modelo final, lo probaremos contra el test set.
 
 Lo que estamos evitando es adaptar el modelo al test set, lo que nos daría una sobreestimación de la realidad.
 
-Parece que una técnica habitual (https://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics) es coger el training+CV sets y repetir el traning y la cross validation haciendo grupos diferentes de manera automática.
-
-
+Parece que una técnica habitual (<https://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics>) es coger el training+CV sets y repetir el traning y la cross validation haciendo grupos diferentes de manera automática.
 
 # Underfit / high bias (alto sesgo de que nuestro problema se basa en asunciones simples)
+
 Un modelo que no se adapta bien.
 Por ejemplo, una regresión lineal tipo a+bx para una serie de puntos que en realidad siguen una estructura a+bx+c^2
 
@@ -35,9 +35,8 @@ Lo reconoceremos por tener un error grande tanto en el traning set como en el CV
 
 Añadir más muestras no reducirá el error (mirar learning curve para la explicación).
 
-
-
 # Overfitting / high variance (el modelo varía mucho dependiento los datos que le des)
+
 Una función que se adapta perfectamente a las muestras, pero falla al intentar generalizarse a nuevas muestras  (falla en la predicción)
 Suele darse cuando tenenmos muchas features.
 Esto puede deberse por una función de alto orden cuando tenemos pocas muestras.
@@ -57,9 +56,8 @@ Posibles soluciones:
     - quedarnos todas las features, pero reducir las magnitud/valores de los parámetros theta
     - funciona bien cuando tenemos muchas features, donde todas ellas contributen a predicir y
 
-
-
 # Regularizar
+
 Reducir los parámetros theta.
 Gráficamente lo podemos ver como que si reducimos parámtros de theta cerca de cero, estamos anulando componentes, por lo tanto simplificando la función.
 Generalizando esta idea, pequeños valores de theta nos dan una hipótesis más simple y por tanto menos propensa a overfitting.
@@ -70,8 +68,9 @@ Se añade al final de la cost function: lambda*∑ᵢ=₁,ₘ (theta²)
 lambda = regularization parameter
 Por convenio no se penaliza a theta₀
 Excluir theta₀ quiere decir:
- - que no se suma en el término añadido para calcular la "cost function"
- - que no se suma el nuevo término a la hora de calcular la derivada parcial para theta₀
+
+- que no se suma en el término añadido para calcular la "cost function"
+- que no se suma el nuevo término a la hora de calcular la derivada parcial para theta₀
 
 Se produce una "lucha" en la cost function, donde el primer término intenta adaptarse lo mejor posible a las muestras mientras que el segundo (el nuevo) término intenta reducir los valores de theta.
 Si aumentamos theta, aumenta el valor de la "cost function", por lo que el global de la función (donde queremos conseguir un mínimo de la "cost function") no quiere subir mucho theta.
@@ -82,6 +81,7 @@ Detalles para regresión lineal: regresion.md
 Detalles para regresión logística: clasificacion.md
 
 ## Elegir un valor de λ adecuado
+
 Minimizar J(θ) para distintos valores de λ, por ejemplo subiendo en potencias de dos: 0, 0.01, 0.02, 0.04, ..., 10 (podríamos usar otros valores, estos son un ejemplo)
 Obtenemos θ¹,θ²...θⁿ
 
@@ -90,13 +90,12 @@ Nos quedaremos con el θⁿ que nos de el menor J_cv(θ).
 Usaremos ese θⁿ para calcular el error usando el test set (de nuevo, sin usar el termino de regularización)
 
 Gráficamente, si elegimos:
- - λ muy grande no permitimos al modelo adaptarse, por lo que tendremos underfitting (errores tanto para J_train como para J_cv)
- - λ muy pequeña permitimos al modelo adaptarse demasiado, por lo que tendremos overfitting (errores bajos para J_train y altos J_cv)
 
-
-
+- λ muy grande no permitimos al modelo adaptarse, por lo que tendremos underfitting (errores tanto para J_train como para J_cv)
+- λ muy pequeña permitimos al modelo adaptarse demasiado, por lo que tendremos overfitting (errores bajos para J_train y altos J_cv)
 
 # Learning curves
+
 Creamos una gráfica donde el eje X es el tamaño del training set y en el eje "y" ponemos el error.
 Pintamos los valores de J_train y J_cv.
 Para pintar J_train iremos cogiendo 1 muestra, 2 muestras, 3, etc. Entrenaremos el modelo con ese subset, obteniendo θ y luego calcularemos J_train como el error de ese subset para esa θ.
@@ -112,7 +111,7 @@ Generalmente lo que se hace es aleatorizar varias veces como cogemos los grupos 
 DUDA: al entrenar para un m determinado, el tamaño del set CV debe ser de m muestras o del tamaño completo si usásemos todas las m?
 Ejemplo, si tenemos m=100, normalmente haríamos trainig=70, cv=30.
 Si estamos calculando la curva para m=10, cogemos trainig=7 y cv=¿? 30 o 3?
-Parece que hay distintas técnicas https://www.coursera.org/learn/machine-learning/discussions/weeks/6/threads/pdrpvNxYEeiPfgrj9kYHeA
+Parece que hay distintas técnicas <https://www.coursera.org/learn/machine-learning/discussions/weeks/6/threads/pdrpvNxYEeiPfgrj9kYHeA>
 
 High bias (underfitting)
 J_train partirá de casi 0, y según aumentemos m irá subiendo hasta llegar a un valor donde se estabilizará.
@@ -126,10 +125,8 @@ J_cv comenzará alto, pero nunca logrará bajar mucho su error.
 La diferencia de errores entre ambas J será alta.
 Añadir más datos puede ayudar, ya que las gráficas tienden a converger. Podremos lograr un error que se encuentre entre ambos valores.
 
-
-
-
 # Skewed classes / valores sesgados
+
 Si tenemos un conjunto de datos muy sesgado, por ejemplo, donde solo el 0.5% de las muestras son "positivas", podríamos tener problemas a la hora de decidir si nuestro algoritmo es bueno.
 Si solo usásemos el porcentaje de acierto/error, un algoritmo que siempre diese "negativo", para el caso anterior, tendría una tasa de acierto del 99.5%
 Para evitar estos problemas se añaden otros valores para medir la calidad del algoritmo.
@@ -141,30 +138,37 @@ True negative: predicho 0, real 0
 False positive: predicho 1, real 0
 False negative: predicho 0, real 1
 
+Web con un ejemplo gráfico para ver la precisión, recall, etc: <https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall?hl=es-419>
+
 ## Precision
+
 Probabilidad de que una muestra elegida al azar sea relevante.
 Alta precisión, bajos falsos positivos. Solo de dispara si está muy seguro.
 Ejemplo: no decirle a alguien que está enfermo si no esamos muy seguros
 Porcentaje de valores positivos reales sobre el total de predichos positivos.
 true_positives / num_predicted_positives = true_positives / (true_pos + false_pos)
 
-## Recall (sensibilidad, exhaustividad)
+## Recall (sensibilidad, exhaustividad, tasa de verdaderos positivos)
+
 Probabilidad de que una muestra relevante elegida al azar sea elegida.
 Alta sensibilidad, bajos falsos negativos. Se dispara enseguida
 Ejemplo: logramos siempre detectar cuando alguien está enfermo
 De todos los positivos reales, cuando predecimos como positivos.
 num_predicted_positives / num_positives = true_pos / (true_pos + false_neg)
 
+## Tasa de falsos negativos / FPR
+
+false_pos/(false_pos + true_neg)
 
 ## Accuracy / Exactitud
+
 Este sería el más general.
 El porcentaje de aciertos.
 
 Accuracy = (true positives + true negatives) / (total examples)
 
-
-
 ## Trade off / compromiso / F₁ score
+
 Generalmente subir la precisión reduce la sensabilidad y a la inversa.
 En un ejemplo donde intentamos detectar una enfermedad.
 Tener mucha precisión evita decirle a los pacientes que tienen la enfermedad cuando no la tienen.
@@ -180,11 +184,8 @@ F₁ score = 2*P*R/(P+R)
 
 F₁ score, precision y recall siempre debe calcularse en el CV set si estamos eligiendo entre diferentes algortimos, para evitar adaptarnos al set que queremos analizar.
 
-
-
-
-
 # Large data sets
+
 Bajo ciertas condiciones cuanto más datos usemos para entrenar el algoritmo, mejor resultados dará.
 
 Pero no tiene que ser siempre cierto.

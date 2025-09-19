@@ -12,7 +12,7 @@ zypper --plus-content repoDesactivado install paquetes
      Additionally use disabled repositories denoted by 'tag' for this operation.
      If 'tag' matches a repositories 'alias', 'name' or 'URL', or is a 'keyword' defined in the repositories metadata, the repository will be temporarily enabled for this operation.
      The repository will then be refreshed and used according to the commands rules. You can specify this option multiple times.
-  No funciona en algunas versiones: https://bugzilla.suse.com/show_bug.cgi?id=1123681 (parece que solo afecta a la beta 15? visto en container openSUSE Leap 42.1)
+  No funciona en algunas versiones: <https://bugzilla.suse.com/show_bug.cgi?id=1123681> (parece que solo afecta a la beta 15? visto en container openSUSE Leap 42.1)
 
 Info:
 zypper info paquete
@@ -22,6 +22,7 @@ zypper packages
 
 What provides:
 zypper wp fichero
+zyper search --provides --match-exact fichero
 
 Demonios corriendo con ficheros eliminados:
 zypper ps
@@ -35,23 +36,19 @@ zypper modifyrepo --enable reponame
 Actualizar un repo:
 zypper refresh -r nombre
 
-
 Obsoletes, al contrario que yum, zypper si nos deja instalar un paquete que esté "obsolete".
 En yum, si un paquete A está marcado como obsolete por otro paquete B, si intentamos instalar A no nos dejará, e instalará B.
 Zypper si nos deja sin problemas.
-
 
 Los repos se definen en:
 /etc/zypp/repos.d/
 Podemos poner repos tipo suse o tipo rhel, se detectará automáticamene el tipo (se puede forzar con type=xx)
 
-
 History:
 /var/log/zypp/history
 
-
 # Debug
-https://en.opensuse.org/SDB:Zypper_troubleshooting
+<https://en.opensuse.org/SDB:Zypper_troubleshooting>
 
 Sacar mucho debug al fichero especificado
 ZYPP_LOGFILE=zypper.log ZYPP_FULLLOG=1 zypper --plus-content monitorizacion -vv in iometrics-agent

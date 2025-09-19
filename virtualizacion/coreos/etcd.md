@@ -25,6 +25,27 @@ The recommended value size is < 1MB
 Como saber si el hardware es suficientemente rápido para etcd (test con "fio"):
 <https://web.archive.org/web/20230123204909/https://www.ibm.com/cloud/blog/using-fio-to-tell-whether-your-storage-is-fast-enough-for-etcd>
 
+```bash
+fio --rw=write --ioengine=sync --fdatasync=1 --size=22m --bs=2300 --name=etcd-io --directory=/var/lib/etcdwal/
+```
+
+Comprobar que el percentil 99% de `fsync/fdatasync/sync_file_range` sea inferior a 10000us. Ejemplo:
+
+```
+fsync/fdatasync/sync_file_range:
+  ...
+  sync percentiles (usec):
+  ...
+  | 99.00th=[ 2376] ...
+```
+
+En azure:
+  disco Standard SSD LRS 99.00th=10552
+  disco Premium  SSD LRS 99.00th=8225
+
+El disco crítico es el "wal-dir". El "data-dir" también debería ser un SSD.
+Evitar juntarlos para que las escrituras al data-dir no afecten al wal-dir.
+
 # etcdctl / CLI
 
 <https://github.com/coreos/etcd/tree/master/etcdctl>

@@ -5,6 +5,7 @@ O estas:
 <https://support.honeywellaidc.com/s/article/How-to-capture-Bluetooth-traffic-from-and-to-an-Android-Device>
 
 Activar el snoop de BT en las developer options
+En pixel 7 hay dos, registro HCI (Host controller interface) y registro de pila (más alto nivel, BLE, GATT, etc)
 Apagar/enceder el BT
 Hacer lo que queramos con BT
 Apagar el BT

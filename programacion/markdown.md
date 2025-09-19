@@ -28,6 +28,12 @@ Para soporte de mermaid:
 uvx --from git+https://github.com/nikolavp/grip@add-mermaid-support grip index.md
 ```
 
+Otro server para mostrar markdowns, con soporte para mermaid:
+
+```bash
+npx mdts
+```
+
 markdown_py -f README.html -x tables README.md
 app python para convertir markdown a html/xhtml. Tendremos que cargar extensiones para algunas cosas (-x)
 

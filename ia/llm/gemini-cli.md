@@ -38,6 +38,12 @@ gemini-cli -s -p "run shell command 'env | grep SANDBOX' and 'mount | grep works
 
 Podemos configurar la imagen en `.gemini/sandbox.Dockerfile`
 
+O también hacer un build de una imagen y usar:
+
+```bash
+gemini --sandbox --sandbox-image gemini-cli-foo
+```
+
 Por defecto usa: us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox
 
 Para usar ese Dockerfile arrancar con:
@@ -85,3 +91,28 @@ Si queremos reusar un checkpoint en otro directorio, podemos arrancar el comando
 ```bash
 DEBUG=1 gemini
 ```
+
+# Github actions
+
+<https://github.com/google-github-actions/run-gemini-cli>
+
+Configurar gemini-cli como una github action.
+
+Dentro del repo git:
+
+```bash
+gemini
+/setup-github
+```
+
+Nos crea el dir `.github/`, lo comiteamos y pusheamos.
+
+A partir de ese momento, para cada issue nos la etiqueta y cada PR la analiza.
+
+Podemos pedirle cosas con:
+
+```
+@gemini-cli do this
+```
+
+Primera prueba bastante mal. Usó mal una herramienta, salió con error y no reportó nada ni pudo continuar.

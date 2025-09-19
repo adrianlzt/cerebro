@@ -1,4 +1,4 @@
-http://www.polinux.upv.es/drupal/node/1062
+<http://www.polinux.upv.es/drupal/node/1062>
 
 Crear repositorio                                   git init
 Añadir ficheros                                     git add            git add -f (si el fichero esta conf como ignorado .gitignore)
@@ -21,18 +21,18 @@ Log de un fichero poniendo los cambios              git log -p -2 <fichero>
 Log entre commits                                   git log xxxx..yyyy (xxx no lo pilla, sería "(]" en notación matemática. xxx < yyy)
 Log entre commits afectando a un fichero            git log xxxx..yyyy -- FICHERO
 Log de un fichero borrado                           git log --all --full-history -- FICHERO
-Log en JSON                                         https://gist.github.com/varemenos/e95c2e098e657c7688fd
-                                                    https://gist.github.com/adrianlzt/b12c47715c2f68501e8e6cac098af77c
+Log en JSON                                         <https://gist.github.com/varemenos/e95c2e098e657c7688fd>
+                                                    <https://gist.github.com/adrianlzt/b12c47715c2f68501e8e6cac098af77c>
 El ultimo sed quita los cambios de linea            git log --pretty=format:'{ "commit": "%H", "abbreviated_commit": "%h", "tree": "%T", "abbreviated_tree": "%t", "parent": "%P", "abbreviated_parent": "%p", "refs": "%D", "encoding": "%e", "subject": "%s", "sanitized_subject_line": "%f", "body": "%b", "commit_notes": "", "verification_flag": "%G?", "signer": "%GS", "signer_key": "%GK", "author": { "name": "%aN", "email": "%aE", "date": "%aD" }, "commiter": { "name": "%cN", "email": "%cE", "date": "%cD" }},' | sed "$ s/,$//" | sed ':a;N;$!ba;s/\r\n\([^{]\)/\\n\1/g'| awk 'BEGIN { print("[") } { print($0) } END { print("]") }' | sed ':a;N;$!ba;s/\n/ /g'
 
 Mostrar configuración                               git config -l
 Configurar remoto                                   git remote add origin ssh://git@bitbucket.org/pepe/pepe.git
-                                                    git remote add origin git@bitbucket.org:pepe/dotfiles.git
+                                                    git remote add origin <git@bitbucket.org>:pepe/dotfiles.git
                                                     Para usar ssh, meter mi clave pública en el servidor remoto
-Push a dos remotos                                  http://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes
-                                                    git remote set-url --add --push origin git@github.com:adrianlzt/puppet-monitoring.git
-                                                    git remote set-url --add --push origin git@miserver.com:pepe/puppet-monitoring.git
-Agregar un remoto de donde hemos hecho fork         git remote add upstream https://github.com/otheruser/repo.git
+Push a dos remotos                                  <http://stackoverflow.com/questions/14290113/git-pushing-code-to-two-remotes>
+                                                    git remote set-url --add --push origin <git@github.com>:adrianlzt/puppet-monitoring.git
+                                                    git remote set-url --add --push origin <git@miserver.com>:pepe/puppet-monitoring.git
+Agregar un remoto de donde hemos hecho fork         git remote add upstream <https://github.com/otheruser/repo.git>
 Mostrar remotos                                     git remote -v
 Borrar remoto                                       git remote remove origin (o en vez de origin, el nombre que sea)
 Bajar código de un origin (sobreescribe local)      git fetch upstream
@@ -44,7 +44,7 @@ Subir a determinado remoto y branch                 git push origin master
 Subir todas branches y tags                         git push --all
                                                     git push --tags
 Copiar repo remoto                                  git clone <url> <dir-local> (si !<dir-local> crea un dir como el repo)
- Con credenciales                                   git clone https://user:pass@github.com/asdasd.git
+ Con credenciales                                   git clone <https://user:pass@github.com/asdasd.git>
  Clonar y saltar directamente a una rama            git clone -b rama http...
 Copiar repo remoto y submodules                     git clone --recursive <url> <dir-local> (si !<dir-local> crea un dir como el repo)
 Borrar remoto                                       git remote rm origin
@@ -63,7 +63,7 @@ Merge con la actual                                 git merge <branch>
 Solucionar merges                                   git mergetool
 Mergear contra otro origin                          git merge upstream/master
 Subir código a remoto                               git push origin <branch>
-Reabase (cambios de otro branch a este)             git rebase develop   Aplica los cambios de develop sobre la rama donde estemos http://git-scm.com/book/ch3-6.html
+Reabase (cambios de otro branch a este)             git rebase develop   Aplica los cambios de develop sobre la rama donde estemos <http://git-scm.com/book/ch3-6.html>
 Definir un repo remoto por defecto para bajar       git branch --set-upstream-to=origin/develop develop
 Bajar código de remoto                              git pull
                                                     = fetch + merge
@@ -83,7 +83,7 @@ Listar etiquetas                                    git tag       git tag 
 Borrar etiqueta                                     git tag -d "0.1.0"
 Borrar etiqueta remota                              git push origin :0.1.0
 Mirar alias                                         git aliases
-Dejar lo que estamos haciendo sin commit            git stash  http://www.gitguys.com/topics/temporarily-stashing-your-work/
+Dejar lo que estamos haciendo sin commit            git stash  <http://www.gitguys.com/topics/temporarily-stashing-your-work/>
                                                     git stash save "mensaje"
 Guardar un único fichero en un stash                git stash push path/to/file
 Mostrar stashs                                      git stash list
@@ -94,14 +94,11 @@ Mostrar ficheros excluídos                          git ls-files --others --exc
 Mostrar ramas contenidas en rama develop            git branch --contains develop
 Contenido de un fichero                             git show HEAD:nuevo
 
-
-
 Directorio de trabajo distinto que directorio de git
 git --git-dir=/dir/.git/ --work-tree=/dir
 
-
 Obtener solo parte del repositorio - sparse checkout
-http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only
+<http://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only>
 git init <repo>
 cd <repo>
 git remote add origin <url>
@@ -109,43 +106,40 @@ git config core.sparsecheckout true
 echo some/dir/ >> .git/info/sparse-checkout
 git pull origin master
 
+git clone --depth 1 --filter=blob:none --sparse <https://github.com/flutter-ml/google_ml_kit_flutter.git>
+cd google_ml_kit_flutter
+git sparse-checkout set packages/example
 
 Trabajando con ramas - branch
-http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging
+<http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging>
 Nueva rama: git branch <nombre>
 Trabajar en la nueva rama: git checkout <nombre>
 Crear nueva rama y ponernos en ella: git checkout -b <nombre>
 Cuando hagamos un pull deberemos determinar que rama queremos subir. No cogerá por defecto en la que estemos.
 
-
 Deshacer - undo - delete
-http://stackoverflow.com/questions/927358/undo-last-git-commit
-
+<http://stackoverflow.com/questions/927358/undo-last-git-commit>
 
 Borrar el último commit:
 $ git reset --hard HEAD~1
 Si quiero subir el cambio me pedirá force (git push -f)
 
-
 Cambiar usuario y email de commit realizado
 git commit --amend --author='ez <ep@gmail.com>'
 
-
 Definir usuario y email
 git config --global user.name "ez"
-git config --global user.email pep@gmail.com
-
+git config --global user.email <pep@gmail.com>
 
 Atajos - shortcuts
-https://git.wiki.kernel.org/index.php/Aliases#Introduction
-http://lukas.zapletalovi.com/2012/07/my-git-aliases-again.html
-http://blog.blindgaenger.net/advanced_git_aliases.html
-http://stackoverflow.com/questions/7066325/how-to-list-show-git-aliases
+<https://git.wiki.kernel.org/index.php/Aliases#Introduction>
+<http://lukas.zapletalovi.com/2012/07/my-git-aliases-again.html>
+<http://blog.blindgaenger.net/advanced_git_aliases.html>
+<http://stackoverflow.com/questions/7066325/how-to-list-show-git-aliases>
 Editar ~/.gitconfig
-Otra opción: 
+Otra opción:
 $ git config --global alias.co checkout
 $ git config --global alias.lg “log -p”
-
 
 Submodules
 Podemos hacer que nuestro repositorio dependa de otros repositorio git.
@@ -158,16 +152,17 @@ Remotes
 El remote ‘origin’ es a donde se hace push y pull por defecto.
 Si queremos tener varios remotos sincronizados mediante push, podemos hacer lo siguiente en .git/config
 [remote "origin"]
-          url = git@bitbucket.org:adrit/dotfiles.git
+          url = <git@bitbucket.org>:adrit/dotfiles.git
           url = ssh://asda@sun/home/repositorios/dotfiles
 [remote "bitbucket"]
           fetch = +refs/heads/*:refs/remotes/origin/*
-          url = git@bitbucket.org:asda/dotfiles.git
+          url = <git@bitbucket.org>:asda/dotfiles.git
 [remote "sun"]
           url = ssh://er@sun/home/repositorios/dotfiles
           fetch = +refs/heads/*:refs/remotes/sun/*
 
 ## Alias ##
+
         ci = commit
         cam = commit -am
         ca = commit -a
@@ -187,11 +182,10 @@ Si queremos tener varios remotos sincronizados mediante push, podemos hacer lo s
         sb = show-branch -a --list
         ccm = !git reset --soft HEAD~ && git commit
 
-
 ## Sincronizar mi fork contra el de origen
-https://help.github.com/articles/syncing-a-fork
+<https://help.github.com/articles/syncing-a-fork>
 
-git remote add upstream https://github.com/JuliaLang/julia.git
+git remote add upstream <https://github.com/JuliaLang/julia.git>
 git fetch upstream
 git co master
 git merge upstream/master

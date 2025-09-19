@@ -1,4 +1,8 @@
-https://www.toofishes.net/blog/linux-command-day-slabtop/
+<https://www.toofishes.net/blog/linux-command-day-slabtop/>
+
+<https://sysdig.com/blog/container-isolation-gone-wrong/>
+Análisis interesante de un problema de dos procesos en contendores que se interferían al saturar la cache con dentries.
+Analizando con sysdig y perf.
 
 Aqui suelen almacenarse los metadatos del sistema de ficheros.
   dentry -> directorios
@@ -14,7 +18,6 @@ cat /proc/slabinfo
 vmstat -m
 atop
 
-
 con el drop caches podemos liberar esa memoria:
 sync; echo 2 > /proc/sys/vm/drop_caches
 
@@ -23,7 +26,6 @@ Dentry cache hash table entries: 2097152 (order: 12, 16777216 bytes)
 Inode-cache hash table entries: 1048576 (order: 11, 8388608 bytes)
 linux/kernel/path-lookup.md
 
-
 Para probar como se llena la cache podemos hacer:
 find / 2>& /dev/null
 
@@ -31,4 +33,3 @@ Generar todas las entradas en la dcache que queramos, intentando abrir ficheros 
 python -c 'exec("def x(f):\n try: open(f,\"r\")\n except: pass"); [f for f in range(0,1000000) if x("/var/tmp/%s" % f)]'
 
 Si lo ejecutamos intentando abrir 10M ficheros, la dcache ocupará un espacio de unos 2GB (0.19K por 10M)
-

@@ -1,121 +1,97 @@
-https://www.kernel.org/doc/Documentation/sysctl/vm.txt
+<https://www.kernel.org/doc/Documentation/sysctl/vm.txt>
 
 - vm.admin_reserve_kbytes = min(3% of free pages, 8MB)
 The amount of free memory in the system that should be reserved for users with the capability cap_sys_admin.
 That should provide enough for the admin to log in and kill a process, if necessary, under the default overcommit 'guess' mode.
 
-
-
 - vm.block_dump = 0
 Enables block I/O debugging on dmesg (WRITED blocks, dirtied inodes) when set to a nonzero numerical value.
-
-
 
 - vm.compact_memory
 Available only when CONFIG_COMPACTION is set. When 1 is written to the file, all zones are compacted such that free memory is available in contiguous blocks where possible. This can be important for example in the allocation of huge pages although processes will also directly compact memory as required.
 Tiene un coste en CPU
 
-
-
 - vm.dirty_background_bytes = 0
 Contains the amount of dirty memory at which the background kernel flusher threads will start writeback (llevar a disco esa cache).
 Note: dirty_background_bytes is the counterpart of dirty_background_ratio. Only one of them may be specified at a time. When one sysctl is written it is immediately taken into account to evaluate the dirty memory limits and the other appears as 0 when read.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT) 
-
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 - vm.dirty_background_ratio = 5
 Contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which the background kernel flusher threads will start writing out dirty data.
 The total avaiable memory is not equal to total system memory.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 Ejemplo, 100GB de ram, el 5% serán 5GB, y el writeback será muy grande y consumirá bastante.
 Si el ratio es pequeño, el writeback se va haciendo constantemente, bloqueos de pequeña duración, pero más continuos.
 Por ejemplo a un portatil le vendrá bien dejar el disco idle el mayor tiempo posible (porque mover el disco consume bateria). Un ratio alto será mejor para usar poco el disco constantemente.
 Este tunable controla el demonio que en background va haciendo el escaneo de todo el sistema.
 
-
 - vm.dirty_bytes = 0
-Contains the amount of dirty memory at which a process generating disk writes will itself start writeback.  
+Contains the amount of dirty memory at which a process generating disk writes will itself start writeback.
 Note: dirty_bytes is the counterpart of dirty_ratio. Only one of them may be specified at a time. When one sysctl is written it is immediately taken into account to evaluate the dirty memory limits and the other appears as 0 when read.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 Esto es para controlar el writeback por proceso, en vez de esperar a que el demonio background se encargue del writeback.
-
 
 - vm.dirty_expire_centisecs = 3000
 This tunable is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads.  It is expressed in 100'ths of a second.
 Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 Cuanto tiempo hasta considerar la memoria dirty.
-
 
 - vm.dirty_ratio = 10
 Contains, as a percentage of total available memory that contains free pages and reclaimable pages, the number of pages at which a process which is generating disk writes will itself start writing out dirty data.
 The total avaiable memory is not equal to total system memory.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
-
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 - vm.dirty_writeback_centisecs = 500
 The kernel flusher threads will periodically wake up and write `old' data out to disk. This tunable expresses the interval between those wakeups, in 100'ths of a second. Setting this to zero disables periodic writeback altogether.
 
-* Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
-
+- Un valor alto mejora throughput (menos I/O) a costa de mayor consumo de memoria y bloqueos de más larga duración cuando hay writeback (malo para RT)
 
 - drop_caches
 mirar proc/sys-vm-drop_caches.md
-
 
 - vm.extfrag_threshold = 500
 This parameter affects whether the kernel will compact memory or direct reclaim to satisfy a high-order allocation.  /sys/kernel/debug/extfrag/extfrag_index shows what the fragmentation index for each order is in each zone in the system.  Values tending towards 0 imply allocations would fail due to lack of memory, values towards 1000 imply failures are due to fragmentation and -1 implies that the allocation will succeed as long as watermarks are met.
 
 The kernel will not compact memory in a zone if the fragmentation index is <= extfrag_threshold. The default value is 500.
 
-
-
 - vm.hugepages_treat_as_movable = 0
 This parameter controls whether we can allocate hugepages from ZONE_MOVABLE or not. If set to non-zero, hugepages can be allocated from ZONE_MOVABLE.  ZONE_MOVABLE is created when kernel boot parameter kernelcore= is specified, so this parameter has no effect if used without kernelcore=.
-
-
 
 - vm.laptop_mode = 0
 laptop_mode is a knob that controls "laptop mode". All the things that are controlled by this knob are discussed in Documentation/laptops/laptop-mode.txt
 
-* Optimizaciones de consumo de batería por menor uso de disco (aumentar tiempo de writeback a 10min con los tunables anteriores, cpufreq, noatime, readahead).
+- Optimizaciones de consumo de batería por menor uso de disco (aumentar tiempo de writeback a 10min con los tunables anteriores, cpufreq, noatime, readahead).
 Riesgo de perder trabajo en poweroff brusco (muchos datos en memoria no respaldados en disco).
 
-
-
 - vm.lowmem_reserve_ratio = 256 256     32
-For some specialised workloads on highmem machines it is dangerous for the kernel to allow process memory to be allocated from the "lowmem" zone. This is because that memory could then be pinned via the mlock() system call, or by unavailability of swapspace.  And on large highmem machines this lack of reclaimable lowmem memory can be fatal.  
+For some specialised workloads on highmem machines it is dangerous for the kernel to allow process memory to be allocated from the "lowmem" zone. This is because that memory could then be pinned via the mlock() system call, or by unavailability of swapspace.  And on large highmem machines this lack of reclaimable lowmem memory can be fatal.
 So the Linux page allocator has a mechanism which prevents allocations which _could_ use highmem from using too much lowmem.  This means that a certain amount of lowmem is defended from the possibility of being captured into pinned user memory.
 
 If you would like to protect more pages, smaller values are effective. The minimum value is 1 (1/1 -> 100%).
-
-
 
 - vm.max_map_count = 65530
 This file contains the maximum number of memory map areas a process may have. Memory map areas are used as a side-effect of calling malloc, directly by mmap and mprotect, and also when loading  shared libraries.
 While most applications need less than a thousand maps, certain programs, particularly malloc debuggers (Valgrind), may consume lots of them, e.g., up to one or two maps per allocation.
 The default value is 65536.
 
-
-
 - vm.min_free_kbytes = 67584
 This is used to force the Linux VM to keep a minimum number of kilobytes free.  The VM uses this number to compute a watermark[WMARK_MIN] value for each lowmem zone in the system.  Each lowmem zone gets a number of reserved free pages based   proportionally on its size.
 Some minimal amount of memory is needed to satisfy PF_MEMALLOC allocations; if you set this to lower than 1024KB, your system will become subtly broken, and prone to deadlock under high loads.
 Setting this too high will OOM your machine instantly.
 
-
-
 - vm.min_slab_ratio = 5
 This is available only on NUMA kernels.
 A percentage of the total pages in each zone.  On Zone reclaim (fallback from the local zone occurs) slabs will be reclaimed if more than this percentage of pages in a zone are reclaimable slab pages.  This insures that the slab growth stays under control even in NUMA systems that rarely perform global reclaim.
+
 ```
 
 
@@ -177,7 +153,7 @@ https://www.kernel.org/doc/Documentation/vm/overcommit-accounting
 This value contains a flag that enables memory overcommitment.
 When this flag is 0, the kernel attempts to estimate the amount of free memory left when userspace requests more memory.
 When this flag is 1, the kernel pretends there is always enough memory until it actually runs out.
-When this flag is 2, the kernel uses a "never overcommit" policy that attempts to prevent any overcommit of memory. 
+When this flag is 2, the kernel uses a "never overcommit" policy that attempts to prevent any overcommit of memory.
 Note that user_reserve_kbytes affects this policy.
 This feature can be very useful because there are a lot of programs that malloc() huge amounts of memory "just-in-case" and don't use much of it.
 
@@ -264,6 +240,15 @@ sys     0m0.652s
 
 
 
+Two main types of file-related cache:
+   1. Page Cache: Caches the actual contents of files.
+   2. VFS Cache: Caches file metadata—specifically dentries (directory lookups) and inodes (file structure, permissions, timestamps). This cache makes operations like ls,
+      finding files, and checking file existence very fast.
+
+vm.vfs_cache_pressure is the knob that adjusts the balance between these two. It answers the question: "When memory is low, how aggressively should I reclaim the VFS
+  (metadata) cache compared to the page (content) cache?"
+
+
 
 - vm.zone_reclaim_mode = 0
 Zone_reclaim_mode allows someone to set more or less aggressive approaches to reclaim memory when a zone runs out of memory. If it is set to zero then no zone reclaim occurs.  Allocations will be satisfied from other zones / nodes in the system.
@@ -276,5 +261,3 @@ This is value ORed together of
 zone_reclaim_mode is set during bootup to 1 if it is determined that pages from remote zones will cause a measurable performance reduction.
 
 * 0 mejora rendimiento en file servers (es preferible acceder a datos cacheados en nodos remotos porque todos ellos tienen cache de ficheros).
-
-

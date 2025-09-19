@@ -49,3 +49,13 @@ analiza cada una de las columnas y nos da el tipo de dato, distribución, si con
 
 Definir delimitador:
 -d ","
+
+# cvslint / validar
+
+Nos sirve para validar si un fichero .csv tiene un formato correcto.
+Por ejemplo, que no hay comas en sitios donde no deben rompiendo el formato.
+
+```bash
+go install github.com/Clever/csvlint/cmd/csvlint@latest
+csvlint file.csv
+```

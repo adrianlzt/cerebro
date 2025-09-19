@@ -34,3 +34,7 @@ El proxy, cuando arranca, se baja un json con los modelos, precios, etc:
 <https://github.com/BerriAI/litellm/blob/b55e1daff9f89c15b68a8bd0b7addc652a22b7c9/litellm/litellm_core_utils/get_model_cost_map.py#L25>
 
 Lo almacena en model_prices_and_context_window.json
+
+# Usuarios
+
+Para que un usuario pueda crear api keys tiene que tener un rol asignado y unos modelos a los que poder atacar.

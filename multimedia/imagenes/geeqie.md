@@ -1,6 +1,8 @@
 geeqie: Visor básico de imágenes.
 Abre svg
 
+<https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/>
+
 <https://www.hyvector.com/>
 Hyvector is an SVG editor that runs in all modern browsers. It is stable, very fast, and capable of handling complex SVG images.
 

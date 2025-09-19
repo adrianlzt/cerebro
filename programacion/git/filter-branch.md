@@ -58,6 +58,16 @@ Parece que subir un fichero vacío también dispara la limpieza.
 
 En bitbucket hay un artículo al respecto, <https://confluence.atlassian.com/bitbucketserverkb/how-do-i-remove-sensitive-unwanted-content-that-was-pushed-to-my-bitbucket-server-instance-1019389998.html>, pero no dicen de hacer nada extra, solo contactar soporte si puede que esos ficheros estén en PRs.
 
+Reescribir mensajes de commit:
+
+```bash
+git filter-repo --commit-callback '
+msg = commit.message.decode("utf-8")
+newmsg = msg.replace("old string", "new string")
+commit.message = newmsg.encode("utf-8")
+' --force
+```
+
 -- DEPRECATED --
 
 ## Usando el jar bfg

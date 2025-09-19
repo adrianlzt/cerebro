@@ -3,6 +3,8 @@ aur/autofirma-bin
 
 Si tenemos la base de datos NSSDB protegida por contraseña, nos la pedirá nada más arrancar.
 
+Al final le he cargado el .p12 manualmente al programa para firmar. No me encontraba el certificado que está instalado en el navegador.
+
 Parece que abre el .pki/nssdb pero luego intenta leer los certs de ~/.mozilla/firefox/adpmqe4n.default-release
 Haciendo links simbólicos en firefox a .pki/nssdb parece que tampoco funciona.
 Ahora no me saca error de que el cert está caducado, pero tampoco me saca ningún cert.

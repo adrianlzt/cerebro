@@ -1,16 +1,17 @@
-https://github.com/pgaudit/pgaudit
+E-Maj is a PostgreSQL extension which enables fine-grained write logging and time travel on subsets of the database.
+
+<https://github.com/pgaudit/pgaudit>
 
 Extensión para poder logear a un fichero de texto las queries que se realizan en la bbdd.
 Es necesario reiniciar la bbdd.
 
-Tenemos RPM en https://yum.postgresql.org/12/redhat/rhel-7-x86_64/
+Tenemos RPM en <https://yum.postgresql.org/12/redhat/rhel-7-x86_64/>
 
-
-Tendremos que compilarlo, necesitaremos los paquetes (https://github.com/theory/pg-semver/issues/35#issuecomment-440671985):
+Tendremos que compilarlo, necesitaremos los paquetes (<https://github.com/theory/pg-semver/issues/35#issuecomment-440671985>):
 yum install -y centos-release-scl
 yum install -y postgresql12-devel gcc openssl-devel llvm5.0 llvm-toolset-7 devtoolset-7 llvm-toolset-7-clang
 
-git clone https://github.com/pgaudit/pgaudit.git
+git clone <https://github.com/pgaudit/pgaudit.git>
 saltar a la tag que necesitemos según nuestra versión de postgres
 export PATH=/usr/pgsql-12/bin/:$PATH
 make install USE_PGXS=1
@@ -21,25 +22,21 @@ make install USE_PGXS=1
 /usr/pgsql-12/share/extension/pgaudit--1.4.sql
 /usr/pgsql-12/share/extension/pgaudit.control
 
-
-
 psql> alter system set shared_preload_libraries = pgaudit;
   lo meterá en DATADIR/postgresql.auto.conf, parámetro shared_preload_libraries
   También podemos meterlo nosotros en /etc/postg.../postgresql.conf
   valores separados por coma. Comprobar antes si ya tenemos algún valor definido: show shared_preload_libraries ;
   para poner varios: alter system set shared_preload_libraries = pgaudit,pg_stat_statements;
 
-
 systemctl restart postgresql-9.6
 
 psql> create extension pgaudit;
 Una vez ejecutado el create extension ya quedará cargado para siempre en esa db (aunque reiniciemos).
 
-
 Hay dos tipos de logeo, de sesión y de objeto.
 
-
 # Scope  settings
+
 Podemos definir las settings a distintos niveles
 
 Definiremos donde afecta el loggin según donde apliquemos el "SET pgaudit...".
@@ -54,11 +51,11 @@ select pg_terminate_backend(15705);
   mirar el pid en pg_stat_activity
   mirar status.md para notas sobre usar esta función
 
-
 # Formato
+
 Los logs se sacarán por el fichero que tenga configurado postgres (o journald en caso de usar systemd).
 Podemos añadir más info útil modificando log_line_prefix. Un valor típico: '%m %u %d [%p]: '  (date/time, user name, database name, process id)
-https://postgresqlco.nf/en/doc/param/log_line_prefix
+<https://postgresqlco.nf/en/doc/param/log_line_prefix>
 
 ALTER SYSTEM SET log_line_prefix = '%m user=%u db=%d host=%r pid=%p sess=%c: ';
 SELECT pg_reload_conf();
@@ -71,8 +68,8 @@ journalctl -n 100 -u postgresql-9.6 -f -o cat
 
 El logging de una query se produce en el momento en el que el cliente la manda, no se espera a la respuesta.
 
-
 # Session login
+
 Obtenemos logs de todo lo que haga la sesión a partir de configurar el pgaudit.log
 
 Seleccionar lo que va a mostrar pgaudit
@@ -92,9 +89,8 @@ Podemos hacer cosas tipo:
   "role,ddl,write"
   "all,-ddl"
 
-
-
 # Object login
+
 Logeamos lo que afecte a un determinado objeto, por ejemplo a una tabla.
 Se hará uso del sistema de roles.
 El logging verá lo que vea un role que nosotros elegiremos.
@@ -106,10 +102,8 @@ grant select on public.account to auditor;
 Quitar permisos:
 revoke delete,insert,update on public.ids from auditor;
 
-
 Los permisos que le demos serán para la database a la que estemos conectados.
 Los cambios de permisos afectan inmediatamente, no hace falta desconectar la sesión.
-
 
 Mirar permisos del rol "auditor"
 
@@ -120,12 +114,11 @@ SELECT grantee
       ,string_agg(privilege_type, ', ' ORDER BY privilege_type) AS privileges
 FROM information_schema.role_table_grants
 WHERE grantee = 'auditor'
---  and table_catalog = 'somedatabase' /* uncomment line to filter database */
+--  and table_catalog = 'somedatabase' /*uncomment line to filter database */
 --  and table_schema  = 'someschema'   /* uncomment line to filter schema  */
---  and table_name    = 'sometable'    /* uncomment line to filter table  */
+--  and table_name    = 'sometable'    /* uncomment line to filter table*/
 GROUP BY 1, 2, 3, 4;
 
-
-
 # Buscar en los logs
+
 grep AUDIT ...

@@ -1,18 +1,54 @@
-http://linux-ip.net/articles/Traffic-Control-HOWTO/
-https://wiki.linuxfoundation.org/networking/netem
+<http://linux-ip.net/articles/Traffic-Control-HOWTO/>
+<https://wiki.linuxfoundation.org/networking/netem>
+
+Traffic control.
+
+Nomenclatura:
+
+- qdisc: queue discipline (disciplina de cola)
+- class: clase (clase de tráfico)
+- filter: filtro (regla de netfilter)
+
+tc aplica qdiscs a interfaces.
+
+Los qdiscs son algoritmos de cuando y como se pasan los paquetes a una interfaz.
+
+Tipos de qdiscs, mirar la man page de tc.
+
+Podemos aplicar classful qdiscs para crear distintas clases con distintas capacidades y prioridades.
 
 Como dar prioridades a ciertos tráficos.
+
+Ejemplo de una interfaz limitada a 64kbps para una ip determinada:
+
+```bash
+# tc qdisc show dev eth0
+qdisc htb 1: root refcnt 65 r2q 10 default 0x12 direct_packets_stat 25648 direct_qlen 1000
+# tc class show dev eth0
+class htb 1:10 parent 1:1 prio 0 rate 64Kbit ceil 64Kbit burst 1600b cburst 1600b
+class htb 1:1 root rate 1Gbit ceil 1Gbit burst 1375b cburst 1375b
+# tc filter show dev eth0
+filter parent 1: protocol ip pref 1 u32 chain 0
+filter parent 1: protocol ip pref 1 u32 chain 0 fh 800: ht divisor 1
+filter parent 1: protocol ip pref 1 u32 chain 0 fh 800::800 order 2048 key ht 800 bkt 0 flowid 1:10 not_in_hw
+  match b9971e9f/ffffffff at 16
+filter parent 1: protocol ip pref 2 u32 chain 0
+filter parent 1: protocol ip pref 2 u32 chain 0 fh 801: ht divisor 1
+filter parent 1: protocol ip pref 2 u32 chain 0 fh 801::800 order 2048 key ht 801 bkt 0 flowid 1:10 not_in_hw
+  match b9971e9f/ffffffff at 12
+```
+
+# Otras notas
 
 1.- Netfilter
 Aplicar una disciplina de clase con el comando 'tc'
 
 - Se aplica justo antes de la salida por el interfaz, así que podemos marcar los paquetes en el POSTROUTING.
 
-- Ejemplo: cola 1:0 de tipo HTB (Hierarchical Token Bucket) con 3 clases 1:1 1:2 1:3 de distinta capacidad, y crea 3 filtros que envían el trafico con 
+- Ejemplo: cola 1:0 de tipo HTB (Hierarchical Token Bucket) con 3 clases 1:1 1:2 1:3 de distinta capacidad, y crea 3 filtros que envían el trafico con
     MARK=10 a 1:1
     MARK=20 a 1:2
     MARK=30 a 1:3:
-
 
 tc qdisc add dev eth0 root handle 1:0 htb default 3
   definimos la clase raiz, definiendo la disciplina (HTB). Hay muchas clases de disciplinas. Otro interesante es SFQ para suavizar el tráfico (permitir sobrepasar)
@@ -34,8 +70,6 @@ tc filter add dev eth0 parent 1:0 protocol ip handle 10 fw classid 1:1
 tc filter add dev eth0 parent 1:0 protocol ip handle 20 fw classid 1:2
 tc filter add dev eth0 parent 1:0 protocol ip handle 30 fw classid 1:3
 
-
-
 ip link show                                    # qdisc usada por cada interfaz
 tc -s qdisc                                     # muestra conf de colas
 tc -s qdisc show dev eth0                       # muestra conf de colas para una interfaz
@@ -44,18 +78,17 @@ tc filter show dev eth0                         # muestra conf de filtros
 tc qdisc del dev eth0 root                      # blanquea configuracion (pfifo_fast)
 tc -s qdisc del dev enp8s0 handle 8001: root    # Borrar una conf especifica por su id
 
-
 - Prueba: se envía tráfico de salida a través de cada una de las clases, y se monitoriza la tasa de bytes ICMP enviados con iptraf.
 
-ping -f -s 5000 www.google.com
+ping -f -s 5000 <www.google.com>
 iptables -t mangle -A POSTROUTING -p icmp -j MARK --set-mark 10
 iptables -t mangle -A POSTROUTING -p icmp -j MARK --set-mark 20
 iptables -t mangle -A POSTROUTING -p icmp -j MARK --set-mark 30
 
 iptables -t mangle -F
 
-
 # Delay
+
 tc qdisc add dev eth0 root netem delay 100ms 10ms
   100+10ms de delay de paquetes salientes
 
@@ -65,6 +98,7 @@ tc qdisc del dev eth0 root netem delay 100ms 10ms
 Tambien con TFB (token bucket filter)
 
 ## Delay incoming packets
-https://stackoverflow.com/a/16952242/1407722
+
+<https://stackoverflow.com/a/16952242/1407722>
 Es más complicado. Hace falta usar un pseudo-device.
 Como aproximácion, intentar afectar el output del otro extremo.

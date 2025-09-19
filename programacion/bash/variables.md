@@ -10,8 +10,7 @@ Si hacemos
 local var=$(cmd)
 la variable $? siempre será 0
 
-
-Usar declare para definir las variables http://www.tldp.org/LDP/abs/html/declareref.html
+Usar declare para definir las variables <http://www.tldp.org/LDP/abs/html/declareref.html>
 -r readonly
 -i integer
 -a array
@@ -24,13 +23,12 @@ dir="/path/to/directory/with a space/"
 cd $dir #NO funciona
 cd "$dir" #SI funciona
 
-
 VAR=cosa
 echo $VAR
 
 Para asignarle el resultado de un comando:
 VAR=$(ifconfig)
- 
+
 ENTRE LA VARIABLE Y EL IGUAL NO PUEDE HABER ESPACIOS
 
 Asignar variables en bash
@@ -40,9 +38,8 @@ En sh
 VAR=cosa
 export VAR
 
-
 ## Parameter expansion
-https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html
+<https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html>
 
 Definir valor por defecto:
 echo "para que nunca salga null la variable: ${variable:-valorDefault}"
@@ -68,11 +65,19 @@ Variable en minusculas:
 "${y,,}"
 
 Quitar a partir del último caracter hacia el final
+
 ```
 echo ${$(echo 6.6.2_foo-3)%_*}
 6.6.2
 ```
 
+Quitar extensión:
+
+```bash
+❯ FOO="pepe.json"
+❯ echo ${FOO%.*}
+pepe
+```
 
 ${SERVICE/A/B}
 Cambia la primera A por B
@@ -94,17 +99,13 @@ Quitar los tres primeros caracteres:
 var=miercoles; echo ${var#mie}
 rcoles
 
-
-
 Mas acciones con las variables según si están definidas o no:
-http://www.debuntu.org/how-to-bash-parameter-expansion-and-default-values/
-
+<http://www.debuntu.org/how-to-bash-parameter-expansion-and-default-values/>
 
 Concatenar:
 foo="Hello"
 foo="$foo World"
 echo $foo
-
 
 eval $( cat /proc/sys/net/ipv4/ip_local_port_range | awk '{printf "MAX_PORTS=%d", $2-$1;}')
 El cat+awk me generan "MAX_PORTS=232322", que usando $() y eval termino teniendo definida la variable MAX_PORTS con ese valor.

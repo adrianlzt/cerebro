@@ -3,6 +3,14 @@ Mirar fx.md para una versión interactiva.
 <https://github.com/simonw/llm-jq>
 Versión donde especificamos que queremos en lenguaje natural.
 
+<https://github.com/mikefarah/yq>
+golang
+yq is a portable command-line YAML, JSON, XML, CSV, TOML and properties processor
+
+<https://github.com/kislyuk/yq>
+python
+Command-line YAML, XML, TOML processor - jq wrapper for YAML/XML/TOML documents
+
 Mirar dsq.md
 Para ficheros binarios: fq.md
 

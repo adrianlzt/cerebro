@@ -20,3 +20,6 @@ Si al hacer el unzp tenemos múltiples .apk, instalar con:
 ```bash
 adb install-multiple com.foo.bar.apk config.arm64_v8a.apk
 ```
+
+Será necesario que instalemos ciertos de los apks que podemos tener.
+Tal vez no todos, pero algunos son obligatorios, si no fallará.

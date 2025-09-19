@@ -1,4 +1,5 @@
-http://www.redhat.com/advice/tips/meminfo.html
+<https://elixir.bootlin.com/linux/v6.15.6/source/fs/proc/meminfo.c>
+<http://www.redhat.com/advice/tips/meminfo.html>
 
 - Información detallada de memoria del sistema (usada por free y vmstat)
 
@@ -14,19 +15,18 @@ Para el comando "free"
   cache -> Cached and SReclaimable
   available -> MemAvailable, Estimation of how much memory is available for starting new applications, without swapping
 
-
-http://stackoverflow.com/questions/658411/entries-in-proc-meminfo
+<http://stackoverflow.com/questions/658411/entries-in-proc-meminfo>
 MemTotal = MemFree + Active + Inactive + Slab + PageTables + VmallocUsed + X (X : alloc_pages() (get_free_pages(), etc))
 MemUsed = Active + Inactive + Slab + PageTables + VmallocUsed + X (X : alloc_pages() (get_free_pages(), etc))
 Active + Inactive = Buffers + Cached + SwapCached + AnonPages
 Total PageCache = Buffers + Cached + SwapCached
 Slab = SReclaimable + SUnreclaim
 
-cat /proc/meminfo 
+cat /proc/meminfo
   %MemTotal     # RAM total usable (menos reservada por kernel)
   %MemFree      # memoria libre (incluyendo buffers y pagecache)
-  %Buffers      # Relatively temporary storage for raw disk blocks (http://elixir.free-electrons.com/linux/latest/source/mm/page_alloc.c#L4363)
-  %Cached       # pagecache en RAM (contenido de ficheros cacheados)
+  %Buffers      # Relatively temporary storage for raw disk blocks (<http://elixir.free-electrons.com/linux/latest/source/mm/page_alloc.c#L4363>)
+  %Cached       # pagecache en RAM (contenido de ficheros cacheados): cached = global_node_page_state(NR_FILE_PAGES) - total_swapcache_pages() - i.bufferram;
   %SwapCached   # pagecache en swap que también está en RAM (por tanto
                 # si se necesita memoria puede descartarse sin swapear)
   %Active         # recientemente usada: %Active(anon) + %Active(file)
@@ -55,7 +55,7 @@ cat /proc/meminfo
   %WritebackTmp # usada como buffer writeback por FUSE
   %CommitLimit  # memoria total disponible (overcommit_ratio*RAM+swap, solo se aplica con overcommit_ratio=2)
                 # es como el overbooking, se da más memoria de la que realmente existe porque se sabe que después los procesos no usarán toda la pedida
-  %Committed_AS # The amount of memory presently allocated on the system.  The committed memory is a sum of all of the memory which has been allocated by processes, 
+  %Committed_AS # The amount of memory presently allocated on the system.  The committed memory is a sum of all of the memory which has been allocated by processes,
                 # even if it has not been "used" by them as of yet
   %VMallocTotal  # total allocated virtual address space.
   %VMallocUsed   # total amount of used virtual address space.
@@ -66,4 +66,3 @@ cat /proc/meminfo
                    # parecido a overcommit)
   %HugePages_Surp  # Hugepages "surplus" (exceso sobre %HugePages_Total)
   %Hugepagesize    # tamaño de Hugepage (512 páginas, 2M)
-

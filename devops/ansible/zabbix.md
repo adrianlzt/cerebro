@@ -1,7 +1,15 @@
-http://docs.ansible.com/ansible/latest/zabbix_host_module.html
+Mirar como funciona el nuevo usando httpapi: <https://www.lilatomic.ca/posts/ansible_httpapi_plugins/>
+
+Para cambiar el ansible_host usar:
+
+```
+ansible_host: "httpbin.org"
+```
+
+<http://docs.ansible.com/ansible/latest/zabbix_host_module.html>
 
 Otros módulos no oficiales:
-https://github.com/openshift/openshift-tools/commits/prod/ansible/roles/lib_zabbix/library
+<https://github.com/openshift/openshift-tools/commits/prod/ansible/roles/lib_zabbix/library>
 
 Hace falta tener instalado en la maquina donde se lance la task:
 pip install zabbix-api
@@ -14,26 +22,26 @@ sudo pip install zabbix-api
 
 No vale un venv de python porque el .py que se genera para ejecutarse correrá con el python del sistema.
 
-
 # zabbix_host
-https://github.com/ansible/ansible/blob/devel/lib/ansible/modules/monitoring/zabbix/zabbix_host.py#L786
+
+<https://github.com/ansible/ansible/blob/devel/lib/ansible/modules/monitoring/zabbix/zabbix_host.py#L786>
 Si le ponemos force:no, añadirá interfaces, templates y host_groups
 
-
 # Templates
-ansible localhost -m zabbix_template -a "server_url=http://zabbix login_user=Admin login_password=zabbix template_name='Template Telegraf XXXX' state=dump" | sed "s/localhost | SUCCESS => //" | jq '.template_json' > zbx_export_templates_telegraf_XXXX.json
+
+ansible localhost -m zabbix_template -a "server_url=<http://zabbix> login_user=Admin login_password=zabbix template_name='Template Telegraf XXXX' state=dump" | sed "s/localhost | SUCCESS => //" | jq '.template_json' > zbx_export_templates_telegraf_XXXX.json
 
 bajarnos un template en formato json
 
-
 Pequeño playbook para subir un template json:
+
 - hosts: localhost
   gather_facts: false
   tasks:
-    - name: Import templates on zabbix
+  - name: Import templates on zabbix
       local_action:
         module: zabbix_template
-        server_url: "http://zabbix"
+        server_url: "<http://zabbix>"
         login_user: "Admin"
         login_password: "zabbix"
         template_name: "Template Telegraf JBoss JMX"

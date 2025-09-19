@@ -8,3 +8,7 @@ Generar imágenes a partir de un prompt o de otra foto.
 # SVG
 
 <https://starvector.github.io/>
+
+# Generador de imágenes con acceso a múltiples proovedores
+
+<https://imagerouter.io/>

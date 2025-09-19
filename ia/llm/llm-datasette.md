@@ -25,12 +25,6 @@ uv tool install -U \
   llm
 ```
 
-El de cerebras instalo ese fork porque tiene el último modelo de meta, para meter el original usar:
-
-```
-  --with llm-cerebras \
-```
-
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
 
 # Uso

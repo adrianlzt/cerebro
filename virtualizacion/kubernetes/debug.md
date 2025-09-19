@@ -20,6 +20,16 @@ kc cp /home/adrian/.krew/store/sniff/513b04c6a63a287e9566c28a9d72fdd8d06c6aa0ab8
 
 Y luego reejecutar el sniff
 
+# Sidecar tcpdump
+
+```yaml
+   - name: tcpdump                                                                                                                                   │
+     image: nicolaka/netshoot                                                                                                                        │
+     command: ["/bin/sh", "-c", "tcpdump -i any -n"]                                                                                                 │
+     securityContext:                                                                                                                                │
+       privileged: true
+```
+
 # inspektor gadget
 
 <https://github.com/kinvolk/inspektor-gadget>
