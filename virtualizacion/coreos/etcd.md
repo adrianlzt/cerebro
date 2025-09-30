@@ -31,47 +31,50 @@ Como saber si el hardware es suficientemente rápido para etcd (test con "fio"):
 
 Lo que este en v2 no tiene porque verse en v3
 
-ETCDCTL_API=3 etcdctl --endpoints <https://server:2379> member list
-  lista de los nodos del cluster
-  si da fallo, comprobar con http://
+```bash
+ETCDCTL_API=3 etcdctl --endpoints https://server:2379 member list
+```
+
+lista de los nodos del cluster
+si da fallo, comprobar con http://
 
 etcdctl member list
-  para la v2
+para la v2
 
 ## v3
 
 get --prefix --keys-only /
-  equivalente al "ls" de v2
+equivalente al "ls" de v2
 
 etcdctl del --prefix /service/iometrics
-  borrar todo lo que cuelge de ese path
+borrar todo lo que cuelge de ese path
 
 # v2
 
 etcdctl ls
 etcdctl ls --recursive
-  si ponemos --debug recursive no mostrará nada
+si ponemos --debug recursive no mostrará nada
 
 etcdctl get /path/key
 
 etcdctl -o extended get /path/key
-  para ver el ttl, index, created-index y modified-index
+para ver el ttl, index, created-index y modified-index
 
 Hacer long pooling de una key o un dir
 etcdctl watch -f /path/key
-  se queda recibiendo metricas
-  --after-index N, para obtener solo métricas a partir de ese valor. Sin -f parece que nos devuelve la primera
-  -r para poner sobre un directorio y escuchar a todos los eventos child
+se queda recibiendo metricas
+--after-index N, para obtener solo métricas a partir de ese valor. Sin -f parece que nos devuelve la primera
+-r para poner sobre un directorio y escuchar a todos los eventos child
 
 etcdctl cluster-health
-  nos devuelve una línea por cada miembro diciendo si esta healthy
-  la última linea devuelve el estado global del cluster
-  hace un curl a /v2/members
+nos devuelve una línea por cada miembro diciendo si esta healthy
+la última linea devuelve el estado global del cluster
+hace un curl a /v2/members
 
 --debug para ver que está lanzando (al final son peticiones HTTP, en la v2)
 
 Borrar todas las keys
-podman exec -it etcd etcdctl get --keys-only --prefix / | grep -o "[a-z/]*" | xargs -n 1 podman exec -it etcd etcdctl del
+podman exec -it etcd etcdctl get --keys-only --prefix / | grep -o "[a-z/]\*" | xargs -n 1 podman exec -it etcd etcdctl del
 
 ## con docker
 
@@ -144,11 +147,11 @@ Lo que hacemos es levantar cada nodo pasandole las direcciones del resto de nodo
 Cada container expone los puertos que necesita para comunicarse en la VM
 Los nombres de LISTA_NODOS deben matchear con lo que pasemos en "etcd -name XXX"
 
-IP="poner_la_ip_de_cada_maquina"
+IP="poner*la_ip_de_cada_maquina"
 LISTA_NODOS="etcd_HOSTNAME1=<http://IPNODO1:2380,etcd_HOSTNAME2=http://IPNODO2:2380,etcd_HOSTNAME3=http://IPNODO3:2380>"
 docker run --restart=unless-stopped -d -v /usr/share/ca-certificates/:/etc/ssl/certs -p 2380:2380 -p 2379:2379 \
  --name etcd quay.io/coreos/etcd \
- etcd -name "etcd_$(hostname)" \
+ etcd -name "etcd*$(hostname)" \
  -advertise-client-urls http://${IP}:2379 \
  -listen-client-urls <http://0.0.0.0:2379> \
  -initial-advertise-peer-urls http://${IP}:2380 \
@@ -249,7 +252,7 @@ etcdctl lease timetolive --keys 695682b0c0573e40
 - ETCd como servicio funcionando
 - Latencias entre el lider y los followers
 - Ocupación de la cuota. Cálculo del porcentaje en uso (creo que si usamos compactation no habrá este problema):
-    etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes
+  etcd_mvcc_db_total_size_in_bytes / etcd_server_quota_backend_bytes
 
 monitor backend_commit_duration_seconds (p99 duration should be less than 25ms) to confirm the disk is reasonably fast
 monitor wal_fsync_duration_seconds (p99 duration should be less than 10ms) to confirm the disk is reasonably fast
@@ -283,19 +286,19 @@ Version 3.1.7:
 Para ver todos los errores posibles podemos buscar el string "plog".
 También deberemos tener en cuenta los generados por "mlog":
 etcdserver/api/v2http/http.go
-63-   case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost, etcdserver.ErrNotEnoughStartedMembers, etcdserver.ErrUnhealthy:
-64:     mlog.MergeError(err)
-65-   default:
-66:     mlog.MergeErrorf("got unexpected response error (%v)", err)
+63- case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost, etcdserver.ErrNotEnoughStartedMembers, etcdserver.ErrUnhealthy:
+64: mlog.MergeError(err)
+65- default:
+66: mlog.MergeErrorf("got unexpected response error (%v)", err)
 
 etcdserver/api/v2http/client.go
-649-    case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost:
-650:      mlog.MergeError(err)
-651-    default:
-652:      mlog.MergeErrorf("got unexpected response error (%v)", err)
+649- case etcdserver.ErrTimeoutDueToLeaderFail, etcdserver.ErrTimeoutDueToConnectionLost:
+650: mlog.MergeError(err)
+651- default:
+652: mlog.MergeErrorf("got unexpected response error (%v)", err)
 
 Un nodo no conecta al cluster. El id ha cambiado.
 Borrar el /var/lib/etcd
 Cambiar en la conf:
-ETCD_INITIAL_CLUSTER_STATE=new  ->  ETCD_INITIAL_CLUSTER_STATE=existing
+ETCD_INITIAL_CLUSTER_STATE=new -> ETCD_INITIAL_CLUSTER_STATE=existing
 Arrancar de nuevo
