@@ -1,6 +1,8 @@
 <https://www.zabbix.com/documentation/4.0/manual/installation/requirements>
 Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
 
+<https://assets.zabbix.com/files/events/2024/zabbix_summit_2024/day1/7_Karlis_Salins.pdf>
+
 # Logs
 
 Llevar los logs al journald, con LogType=system.
@@ -387,9 +389,9 @@ En cada "elems" se almacena el itemid (cache->history_queue->elems[5]->key) y el
      entre 0 y history_items->values_num - 1
 
 Sacar el valor más antiguo de uno de esos items:
-p ((zbx_hc_item_t_)history_items->values[1])->tail->value
+p ((zbx*hc_item_t*)history*items->values[1])->tail->value
 Su timestamp:
-p ((zbx_hc_item_t _)history_items->values[1])->tail->ts
+p ((zbx_hc_item_t*)history_items->values[1])->tail->ts
 tail es un zbx_hc_data
 Podemos avanzar por la lista enlazada con tail->next
 
@@ -401,20 +403,20 @@ p hc_index_mem->used_size
 Prueba para entender hc_index_mem.
 Tengo 6 elementos en la queue
 
-hc_index_mem, en memalloc.c se explica como está estructurada la memoria. Pongo un resumen rápido.
+hc*index_mem, en memalloc.c se explica como está estructurada la memoria. Pongo un resumen rápido.
 Cada "chunk" tiene en sus 8 primeros bytes el tamaño y el flag de si está usado.
 El flag de usado (MEM_FLG_USED) es el primer bit.
 El resto es el tamaño de ese chunk.
 Tras los datos del chunk, está repetido el bloque de flag usado + size
 Ejemplo:
 (gdb) p hc_index_mem->buckets[1630]
-$42 = (void _) 0x8000000000000300
+$42 = (void *) 0x8000000000000300
 El primer bit es 1 (0x8 = 1000 0000), por lo que el chunk está usado.
 Para obtener el tamaño le quitamos el primer bit, y nos queda 0x300 = 768 bytes
-Como en este caso sabemos que está almacenado un zbx_binary_heap_elem_t, podemos obtener sus dos valores (8 bytes cada uno) con:
+Como en este caso sabemos que está almacenado un zbx*binary_heap_elem_t, podemos obtener sus dos valores (8 bytes cada uno) con:
 (uint64_t)hc_index_mem->buckets[1631] (itemid)
 hc_index_mem->buckets[1632] (puntero a los datos)
-_(zbx_hc_item_t*)hc_index_mem->buckets[1632] (ver los datos)
+*(zbx_hc_item_t*)hc_index_mem->buckets[1632] (ver los datos)
 *(zbx_hc_item_t\*)((zbx_binary_heap_elem_t)hc_index_mem->buckets[1641])->data (otra forma de ver data)
 
 Entendido como almacena los elementos de la queue.
@@ -441,8 +443,8 @@ más 8 bytes, tamaño del primer size+flag = 0x7f41a4a62650
 cache->history_items es un hashset (creo que algo como un dict) donde hay almacenadas estructuras zbx_hc_item_t para cada itemid que tiene values pendientes de procesar.
 Más abajo hay una sección sobre los hashset
 
-Buscar un elemento en la tabla history_items a partir del itemid:
-p (zbx_hc_item_t _)zbx_hashset_search(&cache->history_items, &((zbx_hc_item_t_)history_items->values[0])->itemid)
+Buscar un elemento en la tabla history*items a partir del itemid:
+p (zbx_hc_item_t *)zbx*hashset_search(&cache->history_items, &((zbx_hc_item_t*)history_items->values[0])->itemid)
 
 Iterar por el hashset de cache->history_items
 set $iter = malloc(sizeof(zbx_hashset_iter_t))
@@ -589,11 +591,11 @@ Usado, al menos, para almacenar las estructuras de itemids con los punteros a la
 Función para iterar por un hashset
 zbx_hashset_iter_reset
 
-Ejemplo de uso, iterando sobre todos los elementos de la history_items:
+Ejemplo de uso, iterando sobre todos los elementos de la history*items:
 zbx_hashset_iter_t iter;
 zbx_hc_item_t_item;
 zbx_hashset_iter_reset(&cache->history_items, &iter);
-while (NULL != (item = (zbx_hc_item_t_)zbx_hashset_iter_next(&iter)))
+while (NULL != (item = (zbx_hc_item_t*)zbx_hashset_iter_next(&iter)))
 // hacer algo con item
 
 Esta iteración lo que hace es recorrer desde 0 hasta cache->history_items->num_slots - 1
