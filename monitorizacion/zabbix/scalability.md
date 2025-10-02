@@ -59,6 +59,25 @@ Trends: 80 bytes per one aggregate
 History in MB per day = NVPS*90*24*3600/1024/1024 = NVPS*7.416
 Trends in MB per year = Items*80*24*365/1024/1024 = Items*0.668
 
+# Escalado
+
+De las primeras cosas que necesitaremos aumentar para tener un cluster más grandes serán las cachés.
+La recomendación
+
+La cache donde se almacena la configuración (CacheSize).
+La TrendCacheSize
+
+La ocupación de los workers debe estar entre el 40-60%.
+
+Los history syncers, la regla es uno por cada 1000 NVPS.
+
+Los LLD workers (StartLLDProcessors), se suele dejar el número por defecto (2). Tienen mucho impacto en la db.
+
+## Proxies
+
+Zabbix >=7:
+Tener activado ProxyBufferMode en modo hybrid.
+
 # Varios
 
 <http://blog.zabbix.com/scalable-zabbix-lessons-on-hitting-9400-nvps/2615/>
@@ -100,7 +119,7 @@ Parece que zabbix 3.2 tiene problemas con permisos y queries.
 ZAS: zabbix agent simulator
 Software que simular ser un agente para poder realizar test sobre la infraestructura
 
-# <https://www.zabbix.com/files/zabconf2017/fgiordano_pantonacci-zabbix_in_intesa_sanpaolo_bank.pdf>
+<https://www.zabbix.com/files/zabconf2017/fgiordano_pantonacci-zabbix_in_intesa_sanpaolo_bank.pdf>
 
 Server+Frontend, 8vcpu, 20GB
 DB, mysql, 8vcpu, 16GB
@@ -108,3 +127,11 @@ DB, mysql, 8vcpu, 16GB
 390000 items
 170000 triggers
 5000 NVPS
+
+# Disco / fio
+
+Simular la carga que podría producir zabbix en la VM de postgres:
+
+```bash
+fio --name=reproduce-iostat-load --filename=fio_test_file --size=10G --rw=randrw --rwmixwrite=97 --bsrange=4k-32k --ioengine=libaio --direct=1 --numjobs=8 --iodepth=8 --runtime=120s --group_reporting
+```

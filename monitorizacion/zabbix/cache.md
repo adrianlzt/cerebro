@@ -332,12 +332,12 @@ El proceso estará como máximo 60" en DCsync_history. Se le permite salir para 
 DCsync_history (writes updates and new data from pool to database)
 
 Info interesante para debuggear:
-cache->history_num, número de elementos en la history write cache
+cache->history*num, número de elementos en la history write cache
 cache->history_queue->elems_num, número de items en la history queue
 itemid de los elementos de la queue:
 p cache->history_queue->elems[3]
 entre 0 y cache->history_queue->elems_num - 1
-En cada "elems" se almacena el itemid (cache->history_queue->elems[5]->key) y el struct de la history_items (_(zbx_hc_item_t_)cache->history_queue->elems[5]->data) donde tenemos los punteros tail y head apuntando a la history write cache
+En cada "elems" se almacena el itemid (cache->history_queue->elems[5]->key) y el struct de la history_items (*(zbx*hc_item_t*)cache->history_queue->elems[5]->data) donde tenemos los punteros tail y head apuntando a la history write cache
 
     Si paramos un history syncer cuando está ocupado y subimos hasta la función DCsync_history, podemos ver que items está procesando con (si ya ha pasado por hc_pop_items):
      p ((zbx_hc_item_t *)history_items->values[0])->itemid
@@ -415,8 +415,8 @@ Cuando nos devuelva 0x0 (NULL) es que no hay más datos
 Podemos acceder al contenido de iter con:
 p ((zbx_hashset_iter_t\*)$iter)
 
-La posición de memoria que nos devuelve zbx_hashset_iter_next sale de:
-p &((struct zbx_hashset_entry_s _) ((zbx_hashset_iter_t_)$iter)->entry)->data
+La posición de memoria que nos devuelve zbx*hashset_iter_next sale de:
+p &((struct zbx_hashset_entry_s *) ((zbx*hashset_iter_t*)$iter)->entry)->data
 
 Sacar el data de un slot de cache->history_items:
 p ((zbx_hc_item_t\*)cache->history_items->slots[1]->data)->itemid

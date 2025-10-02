@@ -121,7 +121,7 @@ total_checkpoints | minutes_between_checkpoints
 -------------------+-----------------------------
 37 | 27.7296053148649
 
-Para sacar último checkpoint:
+Para sacar último checkpoint (por debajo lee del fichero de control <https://github.com/postgres/postgres/blob/482bc0705d807a8cf4d959e9a42f179ff4b9b121/src/backend/utils/misc/pg_controldata.c#L70>):
 
 ```sql
 SELECT checkpoint_time FROM pg_control_checkpoint();
@@ -133,9 +133,11 @@ También:
 pg_controldata -D /var/lib/pgsql/11/data/ | grep "latest checkpoint:"
 ```
 
-Esa fecha será cuando empezó el checkpoint.
+Esa fecha será cuando terminó el último checkpoint.
 Si tenemos 30' de tiempo entre checkpoints, por ejemplo, podríamos ver que el último checkpoint ha sido a las 11:30 (que lo habrá hecho entre las 11:30 y las 11:59).
 Sobre las 12:30 veremos que se actualizará y pondra el último a las 12:00.
+
+Si tenemos "log_checkpoints = on" (por defecto a partir de v15), veremos el comienzo y final de los checkpoints.
 
 Mirar monitoring.md pg_stat_bgwriter para ver si los checkpoints llegan tarde y los shared_buffers están saturados.
 

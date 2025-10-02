@@ -38,16 +38,21 @@ rsec/s: The number of sectors read from the device per second.
 wsec/s: The number of sectors written to the device per second.
 rkB/s: The number of sectors (kilobytes, megabytes) read from the device per second. (~100 en SATA)
 wkB/s: The number of sectors (kilobytes, megabytes) written to the device per second. (~50 en SATA)
+
 avgrq-sz: The average size (in sectors) of the requests that were issued to the device.
 Valor falseado por readahead. A no ser que hagamos direct_io, el tamaño mínimo sería el de readahead.
-avgqu-sz: The average queue length of the requests that were issued to the device.
+
+aqu-sz/avgqu-sz: The average queue length of the requests that were issued to the device.
 El número de peticiones encoladas (el tamaño se ve en avgrq-sz)
 IMPORTANTE! junto con iowait nos sirve para ver si nuestro sistema está saturado por io
 si regularmente (los picos no importan) tienen valores más o menos altos (5 es valor alto)
 se va a notar mucho la degradación
+
 await: average time (milliseconds) for I/O requests issued to the device to be served. Includes the time spent by the requests in queue and the time spent servicing them.
 r_await: average time (milliseconds) for read requests issued to the device to be served. Includes time spent by the requests in queue and the time spent servicing them.
 w_await: average time (ms) for write requests issued to the device to be served. This includes the time spent by the requests in queue and the time spent servicing them
+Si tenemos un valor alto de aqu-sz, el tiempo de r_await y w_await seguramente sea alto debido a la espera para ser atentidos.
+
 svctm: WARNING! Do not trust this field any more. This field will be removed in a future sysstat version.
 <https://access.redhat.com/solutions/2039133>
 %util: Percentage of CPU time during which I/O requests were issued to the device(BW utilization for the device).Device saturation occurs when this value is close to 100%
@@ -85,4 +90,21 @@ Calculo r_await, w_await:
 ```c
 r_await = ioi->rd_ticks - ioj->rd_ticks) / ((double) (ioi->rd_ios - ioj->rd_ios))
 w_await = ioi->wr_ticks - ioj->wr_ticks) / ((double) (ioi->wr_ios - ioj->wr_ios))
+```
+
+# Ejemplos
+
+## VM Azure con 3000 IOPS y BW=250MB/s
+
+Usando fio para saturar el disco:
+
+```bash
+fio --name=reproduce-iostat-load --filename=fio_test_file --size=10G --rw=randrw --rwmixwrite=97 --bsrange=4k-32k --ioengine=libaio --direct=1 --numjobs=8 --iodepth=8 --runtime=120s --group_reporting
+```
+
+Esto es como se ve el disco tostado (los IOPS están limitando):
+
+```
+     r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util Device
+   55.40 2977.60   1012.8k     55.4M     0.00     0.00   0.0%   0.0%   32.23   50.66 152.62    18.3k    19.1k   0.33 100.0% vg_postgres-lv_postgresql
 ```
