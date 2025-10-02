@@ -74,10 +74,15 @@ el tiempo total que la CPU está parada es %idle + %iowait
 
 iostat toma medidas cada x segundos.
 Para calcular el await, w_await y r_await lo que hace es:
-numero de operaciones / tiempo dedicado a IO
+tiempo dedicado a IO / numero de operaciones
 
 Este tiempo se obtiene de /proc/diskstats, haciendo la diferencia entre el contador actual y la medida anterior.
 El número de operaciones se obtiene de la misma manera.
 
-Calculo r_arait, w_await:
-<https://github.com/sysstat/sysstat/blob/master/iostat.c#L942>
+Calculo r_await, w_await:
+<https://github.com/sysstat/sysstat/blob/eb341c2e4d8ef784004b2ec02d124254ad5486c9/iostat.c#L1520>
+
+```c
+r_await = ioi->rd_ticks - ioj->rd_ticks) / ((double) (ioi->rd_ios - ioj->rd_ios))
+w_await = ioi->wr_ticks - ioj->wr_ticks) / ((double) (ioi->wr_ios - ioj->wr_ios))
+```
