@@ -5,6 +5,8 @@ v0_vercel.md
 
 <https://topai.tools/alternatives/v0-dev-by-vercel-labs>
 
+<https://base44.com/pricing>
+
 OSS
 <https://github.com/rapidpages/rapidpages> (último commit mayo 2024, en diciembre 2024)
 
