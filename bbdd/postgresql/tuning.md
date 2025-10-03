@@ -59,6 +59,9 @@ Idea: si los procesos de postgres tienen muchos forced context switches puede es
 <https://www.postgresql.org/docs/current/runtime-config-resource.html>
 25% de la memoria, MAL. Consejo antiguo no válido.
 
+<https://www.tigerdata.com/blog/timescale-parameters-you-should-know-about-and-tune-to-maximize-your-performance>
+Parece que si hacemos primariamente escrituras, 25% puede estar bien, y más si es más orientada a lecturas.
+
 Otras areas de memoria que coge postgres tienen un tamaño proporcional al shared_buffers
 
 shared_buffers muy grandes causa checkpoints más costosos.
