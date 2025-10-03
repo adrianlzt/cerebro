@@ -88,10 +88,24 @@ SELECT datname,temp_files,temp_bytes FROM pg_stat_database;
 ```
 
 temp_files/bytes si usamos mucho es que el work_mem se queda corto, posiblemente tengamos que incrementar el work_mem
+Podemos reiniciar las estadísticas y mirar esos valores si crecen. En ese caso mirar activar el log_temp_files (mirar abajo).
 
 <https://adriennedomingus.com/tech/understanding-temp-files-in-postgres/>
-Si tenemos pg_stat_statements podemos encontrar exactamente las queries que están usando ficheros temporales.
+Si tenemos pg_stat_statements podemos encontrar exactamente las queries que están usando ficheros temporales. Aunque parece más sencillo lo de log_temp_files.
 Mirar tuning.md # work_mem
+También podemos activar (el valor son los kiB por encima de los cuales se loga el fichero temporal):
+
+```sql
+set log_temp_files=1;
+```
+
+Para que logee todas las queries que generan temp files.
+Ejemplo de salida:
+
+```
+2025-10-03 07:47:08.387 UTC [43692] LOG:  temporary file: path "base/pgsql_tmp/pgsql_tmp43692.0", size 54788096
+2025-10-03 07:47:08.387 UTC [43692] STATEMENT:  select itemid from history where clock>1758882038 order by ns;
+```
 
 blk_read/write movimiento de memoria a disco
 
