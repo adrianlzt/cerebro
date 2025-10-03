@@ -138,3 +138,10 @@ Simulando una carga de disco que podría ser similar a un zabbix usando postgres
 ```bash
 fio --name=reproduce-iostat-load --filename=fio_test_file --size=10G --rw=randrw --rwmixwrite=97 --bsrange=4k-32k --ioengine=libaio --direct=1 --numjobs=8 --iodepth=8 --runtime=120s --group_reporting
 ```
+
+### pg_test_fsync
+
+Para comprobar los distintos métodos de escritura a disco y su performance.
+
+He probado en dos discos en una VM de azure y los resultados son prácticamente iguales, pero un disco era 80k IOPS / 1200MiB/s y el otro 3k IOPS / 125 MiB/s.
+No entiendo el por qué.
