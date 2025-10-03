@@ -4,7 +4,6 @@ Para ver posibles problemas, verlo con octal dump:
 Dump en hexadecimal
 xsel | od -t x
 
-
 $ echo "abc" | xclip
 $ xsel | od -t x
 0000000 0a636261
@@ -19,3 +18,5 @@ Se muestran los caracteres en orden inverso en cada byte.
 hola que
 estaría puesto en hexadecimal: 'aloh euq '
 
+<https://jvns.ca/til/vim-osc52/>
+Copying to your clipboard over SSH in vim with OSC52

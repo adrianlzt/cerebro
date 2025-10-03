@@ -53,8 +53,9 @@ r_await: average time (milliseconds) for read requests issued to the device to b
 w_await: average time (ms) for write requests issued to the device to be served. This includes the time spent by the requests in queue and the time spent servicing them
 Si tenemos un valor alto de aqu-sz, el tiempo de r_await y w_await seguramente sea alto debido a la espera para ser atentidos.
 
+Cuidado con estos valores: <https://brooker.co.za/blog/2014/07/04/iostat-pct.html>
+Para SSDs no parecen fiables.
 svctm: WARNING! Do not trust this field any more. This field will be removed in a future sysstat version.
-<https://access.redhat.com/solutions/2039133>
 %util: Percentage of CPU time during which I/O requests were issued to the device(BW utilization for the device).Device saturation occurs when this value is close to 100%
 
 Info de CPU
