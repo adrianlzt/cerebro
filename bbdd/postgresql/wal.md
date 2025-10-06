@@ -205,6 +205,33 @@ Posibles causas:
 Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
 <https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/>
 
+# ratio de generaición de ficheros WAL
+
+```sql
+WITH wal_start AS (
+  SELECT pg_current_wal_lsn() AS lsn, clock_timestamp() AS ts
+),
+wal_rates AS (
+  SELECT pg_sleep(60), -- Wait for 60 seconds
+         pg_current_wal_lsn() AS lsn,
+         clock_timestamp() AS ts
+  FROM wal_start
+)
+SELECT
+  pg_size_pretty(
+    pg_wal_lsn_diff(r.lsn, s.lsn) -- Total bytes generated
+  ) AS total_wal_generated_in_period,
+  (
+    pg_wal_lsn_diff(r.lsn, s.lsn) / 1024 / 1024 / -- Convert bytes to MB
+    extract(epoch FROM (r.ts - s.ts)) -- Divide by seconds elapsed
+  )::numeric(10, 2) AS wal_rate_mb_per_sec,
+  (
+    pg_wal_lsn_diff(r.lsn, s.lsn) / 1024 / 1024 / 1024 * -- Convert bytes to GB
+    (3600 / extract(epoch FROM (r.ts - s.ts))) -- Extrapolate to an hour
+  )::numeric(10, 2) AS estimated_wal_rate_gb_per_hour
+FROM wal_rates r, wal_start s;
+```
+
 # pg_wal / .history files
 
 Mirar timeline.md

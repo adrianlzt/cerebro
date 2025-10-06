@@ -135,3 +135,34 @@ Simular la carga que podría producir zabbix en la VM de postgres:
 ```bash
 fio --name=reproduce-iostat-load --filename=fio_test_file --size=10G --rw=randrw --rwmixwrite=97 --bsrange=4k-32k --ioengine=libaio --direct=1 --numjobs=8 --iodepth=8 --runtime=120s --group_reporting
 ```
+
+# Valores de referencia
+
+## 18000 NVPS
+
+Hosts: 18.3k (17.8k activos)
+Items: 2.7M (1.6M activos)
+Triggers: 580k (325k activos)
+
+Mayoría de agentes telegraf.
+
+History 10d
+Trends 365d
+
+0.27 eventos/segundo
+
+35 LLDs/s
+
+Configuration cache: 2.56GiB
+
+### Database
+
+PostgreSQL 14.5 + timescaledb 2.7 con compresión.
+
+DATADIR 1.9TiB
+
+WAL 61GiB/hour
+
+Backup full 1748GiB, comprimido 433GiB
+
+Backup incremental 310GiB, comprimido 71GiB
