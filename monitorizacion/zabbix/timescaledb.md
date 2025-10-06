@@ -10,8 +10,11 @@ db_extension debe estar a 'timescaledb'.
 dbversion_status es un JSON donde si vemos extension_err_code es que tenemos un error (excepto si está a 1, que no tenemos problemas).
 
 Si queremos ver si timescaledb tiene configurados los jobs de compresión:
-select \* from timescaledb_information.jobs;
+
+```sql
+select * from timescaledb_information.jobs;
 select hypertable_name,max_runtime,config,next_start from timescaledb_information.jobs where proc_name = 'policy_compression';
+```
 
 compress_after=612000 son 7d de compress_older más 2h que mete de margen.
 
@@ -23,21 +26,57 @@ Zabbix crea la función: zbx_ts_unix_now (definida en la macro ZBX_TS_UNIX_NOW_C
 create or replace function zbx_ts_unix_now() returns integer language sql stable as $$ select extract(epoch from now())::integer $$;
 
 Y la asigna con:
+
+```sql
 select set_integer_now_func('TABLA', 'zbx_ts_unix_now', true)
+```
 
 Podemos consultar la asignación en:
-SELECT \* from timescaledb_information.dimensions;
+
+```sql
+SELECT * from timescaledb_information.dimensions;
+```
 
 Para activar la compresión ejecuta, para todas las tablas history y trends:
+
+```sql
 alter table trends set (timescaledb.compress,timescaledb.compress_segmentby='itemid',timescaledb.compress_orderby='clock');
 alter table trends_uint set (timescaledb.compress,timescaledb.compress_segmentby='itemid',timescaledb.compress_orderby='clock');
 alter table HISTORY_NOMBRE_TABLA set (timescaledb.compress,timescaledb.compress_segmentby='itemid',timescaledb.compress_orderby='clock,ns');
+```
 
 Se puede configurar la configuración con:
-select \* from timescaledb_information.compression_settings;
+
+```sql
+select * from timescaledb_information.compression_settings;
+```
 
 Fichero donde se gestiona configurar las compresiones, etc:
 src/zabbix_server/housekeeper/history_compress.c
+
+# Ratios de compresión
+
+```sql
+SELECT
+    (1 - (after_compression_total_bytes::float / before_compression_total_bytes)) * 100 AS compression_ratio,
+    pg_size_pretty(before_compression_total_bytes) AS before,
+    pg_size_pretty(after_compression_total_bytes) AS after
+FROM
+    hypertable_compression_stats ('trends');
+```
+
+Vistos valores del 90%
+
+```sql
+SELECT
+    (1 - (after_compression_total_bytes::float / before_compression_total_bytes)) * 100 AS compression_ratio,
+    pg_size_pretty(before_compression_total_bytes) AS before,
+    pg_size_pretty(after_compression_total_bytes) AS after
+FROM
+    hypertable_compression_stats ('trends_uint');
+```
+
+Vistos valores del 94%
 
 # Problemas
 
