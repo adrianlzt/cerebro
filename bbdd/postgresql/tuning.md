@@ -31,6 +31,10 @@ Por defecto = 100, sin huecos.
 Cuidado! Cada nodo de un statement puede usar hasta esa cantidad de memoria.
 Incrementarlo puede consumir mucha memoria en una sola query.
 
+The goal of further work_mem tuning is getting rid of temporary files completely, or minimizing the frequency of creation of them and the size.
+
+<https://threadreaderapp.com/thread/1389662037299531783.html>
+
 Regla general, solo incrementarlo para usuarios haciendo analíticas.
 
 Si es muy pequeño, podemos estar forzando al planner a usar otros planes que quepan en la work_mem.

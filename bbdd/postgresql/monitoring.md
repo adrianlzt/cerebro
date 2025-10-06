@@ -89,6 +89,7 @@ SELECT datname,temp_files,temp_bytes FROM pg_stat_database;
 
 temp_files/bytes si usamos mucho es que el work_mem se queda corto, posiblemente tengamos que incrementar el work_mem
 Podemos reiniciar las estadísticas y mirar esos valores si crecen. En ese caso mirar activar el log_temp_files (mirar abajo).
+temp_blks_read temp_blks_written en pg_stat_statements
 
 <https://adriennedomingus.com/tech/understanding-temp-files-in-postgres/>
 Si tenemos pg_stat_statements podemos encontrar exactamente las queries que están usando ficheros temporales. Aunque parece más sencillo lo de log_temp_files.
