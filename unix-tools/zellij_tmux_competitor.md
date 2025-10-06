@@ -91,7 +91,7 @@ Podemos pinchar en "PIN" o Control p+i
 
 Podemos moverlo pinchando y usando el ratón.
 
-Podemos convertir panes normales a floating con "embed".
+Podemos convertir panes normales a floating con "embed", y viceversa.
 C-a g
 
 # Sessions
