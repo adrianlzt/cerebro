@@ -254,6 +254,9 @@ La CacheSize por defecto (8MB) es muy pequeña y la llenaremos rápidamente (50 
 Para 11k hosts, 1.5M items, 500k triggers -> ~1GB
 El trigger por defecto salta cuando estamos al 25% de capacidad disponible (hayamos usado el 75%).
 
+Para 50k hosts / 5M items / 1.4M triggers:
+Configuration cache 7.6GiB
+
 Aproximación burda: 1GB / 11k+1.5M+500k = 0.5kB/elemento
 Validad también con un Zabbix 4
 
