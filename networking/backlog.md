@@ -24,6 +24,9 @@ Cola backlog estab:
     ss -antp sport = :5060
       Recv-Q es el número de elementos en la cola
 
+  /usr/share/bcc/tools/tcpsynbl
+  Nos da un histograma de como de ocupada está la cola durante el tiempo de ejecución del programa.
+
 Cola backlog syn-recv (/proc/sys/net/ipv4/tcp_syncookies=1, por defecto):
   Cola sync-recv virtualmente infinita.
   Con ss podemos ver cada conexión que ha enviado un SYN, pero la cola no se llena.
@@ -68,7 +71,7 @@ Clientes en la cola sync-rev:
 
 Cola syn-recv llena (/proc/sys/net/ipv4/tcp_syncookies=1):
   En realidad aquí parece que no existe una cola como tal.
-  
+
 
 Cola syn-recv llena (/proc/sys/net/ipv4/tcp_syncookies=0):
   Cliente envia un SYN
@@ -125,4 +128,3 @@ send(IP(dst="192.168.33.10")/TCP(sport=40000,dport=9999))
 
 # Dudas
 somaxconn aplica a sockets?
-
