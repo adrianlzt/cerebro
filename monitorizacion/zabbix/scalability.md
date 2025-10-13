@@ -73,6 +73,11 @@ Los history syncers, la regla es uno por cada 1000 NVPS.
 
 Los LLD workers (StartLLDProcessors), se suele dejar el número por defecto (2). Tienen mucho impacto en la db.
 
+Con un único trapper estoy siendo capaz de ingestar 20kNVPS y pone que está al 20%.
+20kNVPS al 40%. Cuando se hizo el cambio de hora (insert trends), se llenó durante unos segundos la cola Recv-Q del listener.
+Pero parece que la cola Recv-Q si anda un poco alta.
+Al cabo de las horas con 40kNVPS empieza a fluctuar.
+
 ## Proxies
 
 Zabbix >=7:
