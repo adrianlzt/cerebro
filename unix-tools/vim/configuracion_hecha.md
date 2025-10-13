@@ -148,6 +148,24 @@ Para los keywords de noice buscar por "noice" o "notification"
 
 space+n: histórico de notificaciones
 
+# prettier
+
+<https://prettier.io/docs/>
+
+Usa esto al guardar los ficheros para ponerlos "bonitos".
+
+Se puede definir un `.prettierignore`, sintaxis como gitignore para omitir ficheros.
+
+También podemos usar tags para ignorar <https://prettier.io/docs/ignore>.
+
+En markdown:
+
+```md
+<!-- prettier-ignore-start -->
+foo
+<!-- prettier-ignore-end-->
+```
+
 # TODO
 
 meter snippet ansible
