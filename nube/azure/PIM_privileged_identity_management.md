@@ -1,5 +1,8 @@
 PIM es un servicio para solicitar una elevación de privilegios.
 
+Para ver los recursos gestionados por PIM ir a <https://portal.azure.com/#view/Microsoft_Azure_PIMCommon/CommonMenuBlade/~/azurerbacbrowse>
+Elegir la subscription y luego Manage->Assignments para ver quien lo puede aplicar. Manage->Roles para ver los roles elegibles.
+
 Puede tardar unos minutos en hacer efecto. Visto al usar las APIs (terraform).
 
 # az-pim-cli
