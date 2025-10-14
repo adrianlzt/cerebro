@@ -1,6 +1,8 @@
 aider
 ia/llm/aider-chat.md
 
+gemini-cli.md
+
 <https://github.com/openai/codex>
 el de github
 
@@ -11,7 +13,7 @@ ia/llm/goose-agent.md
 
 <https://github.com/FoundationAgents/OpenManus>
 
-claude code, con <https://github.com/musistudio/claude-code-router> para poder modificar el modelo
+claude-code.md
 
 # Comparativa
 
