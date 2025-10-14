@@ -8,6 +8,8 @@ Para ver obtener info de los distintos modelos (max input/output tokens, coste, 
 
 Podemos usarlo como python sdk o como proxy.
 
+# Proxy
+
 Como proxy nos puede levantar una admin UI para gestionar equipos, usuarios, budgets, etc.
 
 Tenemos que pasarle un fichero de configuración con los modelos soportados.
@@ -34,3 +36,9 @@ El proxy, cuando arranca, se baja un json con los modelos, precios, etc:
 <https://github.com/BerriAI/litellm/blob/b55e1daff9f89c15b68a8bd0b7addc652a22b7c9/litellm/litellm_core_utils/get_model_cost_map.py#L25>
 
 Lo almacena en model_prices_and_context_window.json
+
+## Usuarios
+
+Parece que los usuarios no pueden crear api keys asociadas a los proyectos.
+Tal vez si son admins, pero pone que es feature de pago.
+Aunque se puede modificar la tabla LiteLLM_TeamTable para hacerlos admins.
