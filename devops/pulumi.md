@@ -2,9 +2,23 @@
 
 Librerias para hacer IaaS con python, go o javascript
 
-# Azure
+# target
 
-<https://www.pulumi.com/registry/packages/azure-native/>
+Como en terraform, para apuntar únicamente a un recurso.
+
+Tenemos que pasar el Uniform Resource Name (URN).
+
+Lo más fácil para buscar ese valor es:
+
+```bash
+pulumi stack export | fx
+```
+
+Ejemplo:
+
+```bash
+pulumi up -t "urn:pulumi:azure::azure-subscription-manager::azure-native:authorization:RoleManagementPolicy::internal-contributor-policy"
+```
 
 # Debug / logging
 
@@ -34,3 +48,7 @@ cd provider/cmd/pulumi-resource-azure-native
 dlv debug
 b ../../../provider/pkg/resources/customresources/custom_pim_eligibility.go:459
 ```
+
+# Azure
+
+<https://www.pulumi.com/registry/packages/azure-native/>

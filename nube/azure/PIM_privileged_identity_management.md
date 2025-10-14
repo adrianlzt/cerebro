@@ -35,6 +35,12 @@ Expiration_Admin_Eligibility: cuanto durará esta regla PIM
 Expiration_Admin_Assignment: cuanto tiempo puede asignarse este rol un admin
 Expiration_EndUser_Assignment: cuanto tiempo puede asignarse este rol un usuario normal
 
+Modificar una policy Expiration_Admin_Eligibility para permitir NoExpiration:
+
+```bash
+az rest -m patch --header "Content-Type=application/json" -u https://management.azure.com/providers/Microsoft.Subscription//subscriptions/SUBSCRIPTIONID/providers/Microsoft.Authorization/roleManagementPolicies/ROLEMANAGEMENTID\?api-version\=2020-10-01 --body '{ "properties": { "rules": [ { "isExpirationRequired": false, "maximumDuration": "P365D", "id": "Expiration_Admin_Eligibility", "ruleType": "RoleManagementPolicyExpirationRule", "target": { "caller": "Admin", "operations": [ "All" ], "level": "Eligibility", "targetObjects": null, "inheritableSettings": null, "enforcedSettings": null } } ] } }'
+```
+
 # az-pim-cli
 
 <https://github.com/netr0m/az-pim-cli>
