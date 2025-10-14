@@ -1,30 +1,27 @@
-https://github.com/google/gops
+<https://github.com/google/gops>
 Nos permite recolectar información de procesos que están ejecutándose
 Sacar su stack (mirar PrintStack), forzar GC, tracear, etc
 
-
 # GODEBUG
+
 Setting the GODEBUG environment variable to inittrace=1 now causes the runtime to emit a single line to standard error for each package init, summarizing its execution time and memory allocation. This trace can be used to find bottlenecks or regressions in Go startup performance. The GODEBUG documentation describes the format.
 
-
-
 # Delve
-https://github.com/derekparker/delve
+<https://github.com/derekparker/delve>
 go get -u github.com/derekparker/delve/cmd/dlv
 dlv debug -- -arg1 -arg2
 
-UI: https://github.com/aarzilli/gdlv
+UI: <https://github.com/aarzilli/gdlv>
   go get -u github.com/aarzilli/gdlv
   cd path/package/main
   gdlv debug -arg1 val1
   > b main.main
   > c
 
-neovim plugin: https://github.com/jodosha/vim-godebug
+neovim plugin: <https://github.com/jodosha/vim-godebug>
   :GoToggleBreakpoint
   :GoDebug
   Pero esto solo nos funciona si estamos en el package main
-
 
 Tenemos que buscar donde está el "package main" de nuestra aplicación.
 Por ejemplo en telegraf: github.com/influxdata/telegraf/cmd/telegraf
@@ -63,9 +60,13 @@ set a = 3
 Podemos llamar funciones (limitado)
 call myFunc(2,3,4)
 
+Para mostrar como varia el valor de la variable "mean"
+display -a mean
+
 Podemos listar las funciones disponibles y seleccionar con regex
 
 ## Docker
+
 Para poder correr delve dentro de un container
 docker run --security-opt=apparmor=unconfined" --cap-add=SYS_PTRACE ...
 
@@ -79,40 +80,40 @@ Para mapear los ficheros del container a nuestro path local:
 > config
   aqui parece que también se puede configurar
 
-
 ## Debug tests
+
 dlv test -- -test.run TestZabbixLLDForceSamePointSeveralPushes$
 (dlv) b TestZabbixLLDForceSamePointSeveralPushes
 
-
 ## Scripting
-https://github.com/go-delve/delve/blob/master/Documentation/cli/starlark.md
-Scriptable con starlark (https://github.com/bazelbuild/starlark)
+<https://github.com/go-delve/delve/blob/master/Documentation/cli/starlark.md>
+Scriptable con starlark (<https://github.com/bazelbuild/starlark>)
 
 Nos permite crear funciones para usar en el debugger
-
 
 ## rr (deterministic debugging)
 
 ### Manual
+
 Build sin optimizaciones
 
 ### Automático
+
 dlv debug --backend=rr
 
 > b main.main
 > c
 
 ### Scripting
+
 Un ejemplo interesante hacemos un pequeño script que ejecuta el programa hasta que falla.
 Y en ese momento tenemos el record para hacer debug
 
-
 # Trace
-https://blog.gopheracademy.com/advent-2017/go-execution-tracer/
-
+<https://blog.gopheracademy.com/advent-2017/go-execution-tracer/>
 
 ## runtime/trace
+
 f, _ := os.Create("trace.out")
 defer f.Close()
 trace.Start(f)
@@ -124,13 +125,13 @@ Un problema que veo es que si el programa está fallando y lo tenemos que matar 
 go tool trace trace.out
 Nos abrirá una ventana del navegador con mucha info
 
-
 ## cutre
+
 println("traza %s", valor)
 mirar pretty_print.md
 
-
 ## mostrar una linea diciendo donde estamos, fichero, linea y funcion
+
 func trace() {
   pc := make([]uintptr, 10)  // at least 1 entry needed
   runtime.Callers(2, pc)
@@ -142,33 +143,30 @@ func trace() {
 
 Luego pondremos trace() al comienzo de las funciones (por ejemplo)
 
-
 ## mostrar el stack trace
+
 import "runtime/debug"
 debug.PrintStack()
 
-
 # Numero CPUs
-https://golang.org/pkg/runtime/#NumCPU
+<https://golang.org/pkg/runtime/#NumCPU>
 runtime.NumCPU()
 
 NumCPU returns the number of logical CPUs usable by the current process.
 
 The set of available CPUs is checked by querying the operating system at process startup. Changes to operating system CPU allocation after process startup are not reflected.
 
-
-
 # Gorutinas
+
 Saber cuantas tenemos activas
 runtime.NumGoroutine()
 
-
 # Debug
-https://golang.org/pkg/runtime/debug/
+<https://golang.org/pkg/runtime/debug/>
 Package debug contains facilities for programs to debug themselves while they are running.
 
-
 # Stack trace
+
 Para mostrar en código, mirar PrintStack
 
 kill -ABRT xxx
@@ -189,11 +187,11 @@ head -1q * | cut -d ' ' -f 3- | cut -d , -f 1 | tr -d '[]:' | sort | uniq -c | s
 Separamos por librerías que hacen match, ejemplo:
 grep -l skydive * | xargs -n10 mv -ft skydive
 
-
 ## Entender output
-https://www.ardanlabs.com/blog/2015/01/stack-traces-in-go.html
+<https://www.ardanlabs.com/blog/2015/01/stack-traces-in-go.html>
 
 ### Cabeceras
+
 La cabecera "running" nos indica la gorutina que se estaba ejecutando en el momento del panic.
 
 "chan receive", el hilo está esperando, ejemplo "<-ch"
@@ -214,8 +212,8 @@ Ejemplos de cabeceras:
 [syscall, 9 minutes, locked to thread]:
   Locked to thread is due to this syscall being blocking, so an operating system thread is assigned to this goroutine for the duration of the syscall and a new one has been created to replace the loss of this one
 
-
 ### Cuerpo
+
 Se nos muestra la anidación de llamadas (más arriba, la llamada que estaba siendo/iba a ser procesada).
 
 Por cada llamada se nos muestra la función donde estábamos, con sus parámetros y debajo una línea indicando la línea del código fuente.
@@ -243,11 +241,8 @@ runtime.mapiternext(0xc00343f720)
 github.com/skydive-project/skydive/graffiti/graph.(*MemoryBackend).GetNodeEdges(0xc00044fa60, 0xc0018e4090, 0x0, 0x203001, 0x58d9c60, 0xc0017dcfc0, 0xc00343f860, 0x1f28376, 0xc0017b17a0)
   /go/src/github.com/skydive-project/skydive/graffiti/graph/memory.go:150 +0xf1 fp=0xc00343f790 sp=0xc00343f6a0 pc=0x25e3ed1
 
-
-
-
-
 # GDB
+
 No funciona por defecto porque los binarios son DWARF comprimidos.
 Tenemos que compilar go sin compresión dwarf
 
@@ -256,19 +251,13 @@ bit.ly/adv_debug_goF0SD3M
 
 No funciona bien, pero puede ser útil para CGo
 
-
 > b main.main
 > c
 > run
 
-
-
 # Go / ASM / reverse engineering
 
-
-
-
 # Tamaño variables / size
-https://github.com/DmitriyVTitov/size
+<https://github.com/DmitriyVTitov/size>
 
 Hay otra opciones en la librería estandar, pero no "siguen" indirecciones (no vale para calcular el tamaño total de un slice, dict, etc)
