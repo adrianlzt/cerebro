@@ -205,6 +205,20 @@ Posibles causas:
 Hay un parámetro, pero solo para >=v13, para limitar el máximo numero de wals para los replication slots.
 <https://postgresqlco.nf/doc/en/param/max_slot_wal_keep_size/>
 
+## Limpiar pg_wal / pg_archivecleanup
+
+<https://www.postgresql.org/docs/current/pgarchivecleanup.html>
+
+Es una herramienta pensada para borrar wals del nodo standby.
+
+Pero podemos usarlo, con mucho cuidado, para borrar wals del nodo principal.
+En este ejemplo se obtiene el último wal checkpointeado y se borran los anteriores.
+
+```bash
+export CHECKPOINT_FILE=\$(psql -d zabbix -t -A -c "SELECT redo_wal_file FROM pg_control_checkpoint();")
+/usr/lib/postgresql/14/bin/pg_archivecleanup /var/lib/postgresql/data/pg_wal "$CHECKPOINT_FILE"
+```
+
 # ratio de generaición de ficheros WAL
 
 ```sql
