@@ -54,6 +54,37 @@ select * from timescaledb_information.compression_settings;
 Fichero donde se gestiona configurar las compresiones, etc:
 src/zabbix_server/housekeeper/history_compress.c
 
+# Tamaños chunks
+
+```sql
+SELECT
+    cds.chunk_schema,
+    cds.chunk_name,
+    pg_size_pretty(cds.total_bytes) AS pretty_total_size,
+    to_timestamp(tic.range_start_integer::double precision) AS range_start_time,
+    to_timestamp(tic.range_end_integer::double precision) AS range_end_time
+FROM
+    chunks_detailed_size('history') AS cds
+JOIN
+    timescaledb_information.chunks AS tic
+ON
+    cds.chunk_schema = tic.chunk_schema AND cds.chunk_name = tic.chunk_name
+ORDER BY
+    tic.range_start_integer DESC;
+```
+
+# Borrar chunks a mano
+
+Primero comprobar que va a borrar:
+
+```sql
+SELECT show_chunks('history', EXTRACT(EPOCH FROM '2025-10-15'::TIMESTAMP)::integer);
+```
+
+```sql
+SELECT drop_chunks('history', EXTRACT(EPOCH FROM '2025-10-15'::TIMESTAMP)::integer);
+```
+
 # Ratios de compresión
 
 ```sql
