@@ -1,5 +1,8 @@
 # Claude code
 
+Prompts, plugins, etc
+<https://www.aitmpl.com/agents>
+
 ## router
 
 <https://github.com/musistudio/claude-code-router> para poder modificar el modelo
