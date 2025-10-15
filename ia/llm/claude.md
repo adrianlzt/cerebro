@@ -1,3 +1,11 @@
+# Claude code
+
+## router
+
+<https://github.com/musistudio/claude-code-router> para poder modificar el modelo
+
+Config `~/.claude-code-router/config.json`
+
 # Claude desktop
 
 Para Windows y OSx.
