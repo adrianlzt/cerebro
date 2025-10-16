@@ -1,13 +1,14 @@
 Más facil usar: manjaro.md
 Es una distribucion de arch
 
+Otra distro: <https://omarchy.org/>
+
 Idea de instalación automatizada:
-https://github.com/bashrc666/arch-gotoole
+<https://github.com/bashrc666/arch-gotoole>
 
+<https://wiki.archlinux.org/index.php/Installation_guide>
 
-https://wiki.archlinux.org/index.php/Installation_guide
-
-Bajar imagen desde https://www.archlinux.org/download/
+Bajar imagen desde <https://www.archlinux.org/download/>
 sudo dd if=archlinux-2020.06.01-x86_64.iso of=/dev/sdc
 
 Cargar desde usb, nos abre un terminal como root:
@@ -44,10 +45,9 @@ mkfs.XXXX /dev/sda3
 mkswap /dev/xxxx
 swapon /dev/xxx
 
-
-# Si estamos instalando con el disco duro montado en otro linux, si no, saltar hasta "Si estamos en el propio ...":
-https://wiki.archlinux.org/index.php/Install_from_existing_Linux
-Bajar bootstrap desde https://mirrors.kernel.org/archlinux/iso/
+# Si estamos instalando con el disco duro montado en otro linux, si no, saltar hasta "Si estamos en el propio ..."
+<https://wiki.archlinux.org/index.php/Install_from_existing_Linux>
+Bajar bootstrap desde <https://mirrors.kernel.org/archlinux/iso/>
 Descomprimir en algun dir
 vi root.x86_64/etc/pacman.d/mirrorlist
   descomentar nuestro proxy más cercano
@@ -59,15 +59,12 @@ mkdir /run/shm
 
 Seguimos como si ya estuviesemos en el propio sistema a instalar
 
-
-
 # Si estamos en el propio sistema a instalar
+
 mkdir /mnt
 mount /dev/sda1 /mnt
 mkdir /mnt/home
 mount /dev/sda3 /mnt/home
-
-
 
 pacstrap /mnt base base-devel linux linux-firmware
   ~1min
@@ -80,9 +77,8 @@ pacstrap /mnt base base-devel linux linux-firmware
   /etc/pacman.conf
   SigLevel = Never
 
-
 genfstab -U /mnt >> /mnt/etc/fstab
-  Quitar la linea de swap (si esta presente) https://bbs.archlinux.org/viewtopic.php?pid=1558001#p1558001
+  Quitar la linea de swap (si esta presente) <https://bbs.archlinux.org/viewtopic.php?pid=1558001#p1558001>
 arch-chroot /mnt
 echo "hostname" > /etc/hostname
 ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -104,8 +100,6 @@ mount /dev/xxx /mnt
 grub-install --target=x86_64-efi --efi-directory=/mnt --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
-
-
 Editar /etc/pacman.conf
 Descomentar [multilib] (solo 64 bits)
 
@@ -116,16 +110,12 @@ gpasswd -a adrian wheel
 Descomentar de /etc/sudoers
 %wheel ALL=(ALL) ALL
 
-
-
 Mirar:
 basico.md
 red.md
 x.md
 trackpad.md
 linux/dnsmasq.md
-
-
 
 Problemas:
 No me configura la red al arrancar (tengo que poner "dhcpcd") -> Network Manager con el entorno grafico
