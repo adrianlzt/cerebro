@@ -8,6 +8,10 @@
 <https://mcpsvr.com/>
 <https://github.com/punkpeye/awesome-mcp-servers>
 <https://glama.ai/mcp/servers>
+<https://mcp.pipedream.com/>
+
+Servidor online SSE para hacer pruebas
+<https://demo-day.mcp.cloudflare.com/sse>
 
 # Servidores oficiales
 
