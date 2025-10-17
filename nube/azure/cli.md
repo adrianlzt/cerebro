@@ -49,7 +49,7 @@ az account set --subscription FooBar
 Forzar a reloguearse (borrar tokens):
 
 ```bash
-rm ~/.azure/msal_token_cache.json
+az logout
 ```
 
 # Configuración

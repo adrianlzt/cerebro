@@ -121,9 +121,9 @@ When executed with archive-push in an asynchronous configuration, the command pe
 1 It enters a loop, waiting up to the configured archive-timeout.
 2 Inside the loop, it first checks if the specified WAL segment has already been successfully pushed by the background async process (si existe el .fichero .ok en el spool path)
 3 If the WAL segment has not been pushed and a background async process has not yet been started by this command execution, it will:
-   • Acquire a lock.
-   • Fork a new background archive-push process with the async role (archive-push:async). This new process is responsible for doing the actual work of pushing WAL files.
-   • Release the lock (/tmp/pgbackrest/iometrics-archive.lock)
+• Acquire a lock.
+• Fork a new background archive-push process with the async role (archive-push:async). This new process is responsible for doing the actual work of pushing WAL files.
+• Release the lock (/tmp/pgbackrest/iometrics-archive.lock)
 4 The original command continues to wait and check the status until it sees that the specific WAL file has been successfully archived or the timeout is reached.
 5 If the WAL file is not pushed before the timeout, an error is thrown. Otherwise, it logs a success message.
 
@@ -230,17 +230,23 @@ Por defecto se ejecuta tras un backup correcto (--expire-auto, por defecto a "y"
 Si queremos borrar todos los full menos 1 (no podemos borrar todos, la retention no se puede poner a 0):
 pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --repo1-retention-full=1 --repo1-retention-full-type=count
 
+Un truco es modificar el `backup/STANZA/backup.info` y meterle a mano un backup full al final y luego borrar.
+Si modificamos ese fichero tenemos que modificar el `backrest-checksum` del final del fichero.
+Lo más sencillo es ejecutar el pgbackrest, que se quejará de que el checksum es inválido.
+
+Usando un repo de azure el pgbackrest no se queja del checksum, pero parece que lo ignora y coge el `.copy`.
+
 # Verify
 
 The verify command performs a comprehensive integrity check of the pgBackRest repository. Here is what it does:
 
- 1 Verifies Repository Info Files: It starts by checking the backup.info and archive.info files. It ensures they exist, are not corrupt (by checking their checksums), and that their database history information is consistent with each other.
- 2 Verifies Backups: For each backup in the repository, it:
-    • Verifies the integrity of the backup.manifest file.
-    • For every file listed in the manifest, it checks that the file exists in the repository and that its size and checksum match the values recorded in the manifest. This includes files referenced from prior backups.
- 3 Verifies WAL Archive: It scans the entire WAL archive and:
-    • Verifies the integrity of each individual WAL segment by checking its checksum.
-    • Identifies gaps in the WAL sequence by checking for missing segments. This is critical for ensuring that a point-in-time recovery is possible.
+1 Verifies Repository Info Files: It starts by checking the backup.info and archive.info files. It ensures they exist, are not corrupt (by checking their checksums), and that their database history information is consistent with each other.
+2 Verifies Backups: For each backup in the repository, it:
+• Verifies the integrity of the backup.manifest file.
+• For every file listed in the manifest, it checks that the file exists in the repository and that its size and checksum match the values recorded in the manifest. This includes files referenced from prior backups.
+3 Verifies WAL Archive: It scans the entire WAL archive and:
+• Verifies the integrity of each individual WAL segment by checking its checksum.
+• Identifies gaps in the WAL sequence by checking for missing segments. This is critical for ensuring that a point-in-time recovery is possible.
 
 Finally, it produces a summary report detailing the status of the archives and each backup, highlighting any errors found, such as missing files, checksum mismatches, or gaps in the WAL stream.
 
