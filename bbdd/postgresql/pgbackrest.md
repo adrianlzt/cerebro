@@ -233,6 +233,8 @@ pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --
 Un truco es modificar el `backup/STANZA/backup.info` y meterle a mano un backup full al final y luego borrar.
 Si modificamos ese fichero tenemos que modificar el `backrest-checksum` del final del fichero.
 Lo más sencillo es ejecutar el pgbackrest, que se quejará de que el checksum es inválido.
+Si existe el backup.info.copy y el backup.info tiene el checksum mal, pgbackrest, silenciosamente, usará el backup.info.copy.
+<https://github.com/pgbackrest/pgbackrest/blob/bfd97907311a25ed239798691cff52cf73acdb83/src/info/infoBackup.c#L696>
 
 Usando un repo de azure el pgbackrest no se queja del checksum, pero parece que lo ignora y coge el `.copy`.
 
