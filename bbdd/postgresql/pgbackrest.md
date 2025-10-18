@@ -228,7 +228,10 @@ Borrar backups antiguos.
 Por defecto se ejecuta tras un backup correcto (--expire-auto, por defecto a "y").
 
 Si queremos borrar todos los full menos 1 (no podemos borrar todos, la retention no se puede poner a 0):
+
+```bash
 pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=iometrics --repo1-retention-full=1 --repo1-retention-full-type=count
+```
 
 Un truco es modificar el `backup/STANZA/backup.info` y meterle a mano un backup full al final y luego borrar.
 Si modificamos ese fichero tenemos que modificar el `backrest-checksum` del final del fichero.
