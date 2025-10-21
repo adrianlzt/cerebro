@@ -22,15 +22,22 @@ docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
 Si queremos filtrar de una forma más extensa mirar ngrep.md
 
 Capturar todo el tráfico en ficheros, cada uno almacenando 15':
-tcpdump -G 900 -w /tmp/'%Y-%m-%d_%H:%M:%S.pcap' -W 96
-  -G segundos que captura cada fichero
-  Podemos usar -C para rotar por tamaño
-  -W cuantos ficheros en total rotaremos (poner 1 si solo queremos capturar -G segundos)
-  Solo se rotan ficheros cuando hay tráfico
-  No quiere decir que tcpdump solo vaya a estar ejecutándose 96 * 15'
-  Quiere decir, que si recibimos un paquete cada 15', cuando lo haya hecho 96 veces se detendrá
-  CUIDADO parece que en RHEL/Fedora bajo ciertas circunstancias los ficheros pcap al usar esto se escriben con tcpdump, por lo que tal vez no tengamos permisos. Chequear antes de dejar corriendo que es capaz de generar ficheros rotados. Escribir a /tmp nos quita el problema.
-  <https://github.com/the-tcpdump-group/tcpdump/issues/448>
+tcpdump -G 900 -w /tmp/'%Y-%m-%d\_%H:%M:%S.pcap' -W 96
+-G segundos que captura cada fichero
+Podemos usar -C para rotar por tamaño
+-W cuantos ficheros en total rotaremos (poner 1 si solo queremos capturar -G segundos)
+Solo se rotan ficheros cuando hay tráfico
+No quiere decir que tcpdump solo vaya a estar ejecutándose 96 \* 15'
+Quiere decir, que si recibimos un paquete cada 15', cuando lo haya hecho 96 veces se detendrá
+CUIDADO parece que en RHEL/Fedora bajo ciertas circunstancias los ficheros pcap al usar esto se escriben con tcpdump, por lo que tal vez no tengamos permisos. Chequear antes de dejar corriendo que es capaz de generar ficheros rotados. Escribir a /tmp nos quita el problema.
+<https://github.com/the-tcpdump-group/tcpdump/issues/448>
+
+Para tener un máximo de 3 ficheros (foo.pcapN) con un tamaño máximo de 10MB.
+Va rotando por los ficheros, estilo buffer ring.
+
+```bash
+tcpdump -C 10 -W 3 -w /tmp/'foo.pcap'
+```
 
 Si queremos mostrar el tráfico aunque estemos capturando
 tcpdump --print ...
@@ -120,9 +127,9 @@ tcpdump ether host e8:2a:ea:44:55:66
 Permitir a un no root ejecutar tcpdump:
 <http://www.stev.org/post/2012/01/19/Getting-tcpdump-to-run-as-non-root.aspx>
 setfacl -m u:adrian:rx /usr/sbin/tcpdump
-  dar permisos de ejecución a un usuario en particular (no necesario si others ya tiene +x)
+dar permisos de ejecución a un usuario en particular (no necesario si others ya tiene +x)
 setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
-  permitimos al binario leer los paquetes de red, sin verificar el usuario que lo ejecuta
+permitimos al binario leer los paquetes de red, sin verificar el usuario que lo ejecuta
 
 Para quitar la capability:
 setcap -r /usr/sbin/tcpdump
@@ -135,6 +142,7 @@ S -> SYN
 . -> ACK
 
 # Replay un paquete .cap
+
 <https://tcpreplay.appneta.com/>
 pacman -Ss tcpreplay
 
@@ -164,17 +172,18 @@ Con tcprewrite podemos modificar los paquetes para modificar, por ejemplo, sus M
 
 Cambiando MAC de origen (smac) y de destino (dmac)
 tcprewrite --enet-dmac=00:55:22:AF:C6:37 --enet-smac=00:44:66:FC:29:AF --infile=input.pcap --outfile=output.pcap
-  si queremos usar cache (de tcprep): --cachefile=input.cache
+si queremos usar cache (de tcprep): --cachefile=input.cache
 
 Cambiando IPs:
 tcprewrite --endpoints=10.10.1.1:10.10.1.2 --cachefile=input.cache --infile=input.pcap --outfile=output.pcap --skipbroadcast
-  con el tcpprep (que era solo un cliente enviando paquetes UDP), me ha puesto la ip 10.10.1.2 como origen y la otra como destino
+con el tcpprep (que era solo un cliente enviando paquetes UDP), me ha puesto la ip 10.10.1.2 como origen y la otra como destino
 
 tcpreplay -i INTERFAZ paquete.cap
 
 Parece que cuando se hace un replay tampoco se lleva bien con "tcpdump -i any"
 
 ## tcpliveplay
+
 <http://tcpreplay.appneta.com/wiki/tcpliveplay>
 <https://tcpreplay.appneta.com/wiki/tcpliveplay-man.html>
 Replays network traffic stored in a pcap file on live networks using new TCP connections
@@ -183,5 +192,5 @@ Hace falta meter una regla de iptables para evitar que se envien unos paquetes R
 sudo iptables -A OUTPUT -p tcp --tcp-flags RST RST -s <your ip> -d <dst ip> --dport <dst port, example 80 or 23 etc.> -j DROP
 
 tcpliveplay eth0 curl.cap 10.20.20.38 fa:16:3e:67:86:23 random
-  la ip es la de destino
-  la MAC también la de destino
+la ip es la de destino
+la MAC también la de destino
