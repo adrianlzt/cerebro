@@ -2,12 +2,29 @@
 
 ```sql
 SELECT create_hypertable('conditions', by_time('time', interval '1 day'));
-
 ```
 
 # Particiones / chunks
 
+Como decidir el tamaño para particionar:
+<https://forum.tigerdata.com/forum/t/choosing-the-right-chunk-time-interval-value-for-timescaledb-hypertables/116>
+<https://docs.tigerdata.com/use-timescale/latest/hypertables/#best-practices-for-scaling-and-partitioning>
+Postgres builds the index on the fly during ingestion. That means that to build a new entry on the index, a significant portion of the index needs to be traversed during every row insertion. When the index does not fit into memory, it is constantly flushed to disk and read back. This wastes IO resources which would otherwise be used for writing the heap/WAL data to disk.
+<https://www.tigerdata.com/blog/timescale-cloud-tips-testing-your-chunk-size>
+
 Se puede particionar por fecha (range_start/end) o por un valor (range_start_integer/end_integer)
+
+Información de la tabla:
+
+```sql
+SELECT *
+FROM
+  timescaledb_information.hypertables
+  join
+  timescaledb_information.dimensions
+  using (hypertable_name)
+WHERE hypertable_name = 'history'
+```
 
 Ver como está particionada una tabla:
 

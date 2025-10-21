@@ -49,16 +49,6 @@ Mirar cache.md
 Si tenemos screens con muchas imágenes (50) y un tiempo de recarga pequeño (30"), esto realiza una carga muy grande sobre el frontend.
 Se puede fundir la CPU de una máquina muy potente.
 
-# Sizing
-
-Required space for a single value
-Depends on database engine
-History: 90 bytes per numeric data
-Trends: 80 bytes per one aggregate
-
-History in MB per day = NVPS*90*24*3600/1024/1024 = NVPS*7.416
-Trends in MB per year = Items*80*24*365/1024/1024 = Items*0.668
-
 # Escalado
 
 De las primeras cosas que necesitaremos aumentar para tener un cluster más grandes serán las cachés.
@@ -140,6 +130,79 @@ Simular la carga que podría producir zabbix en la VM de postgres:
 ```bash
 fio --name=reproduce-iostat-load --filename=fio_test_file --size=10G --rw=randrw --rwmixwrite=97 --bsrange=4k-32k --ioengine=libaio --direct=1 --numjobs=8 --iodepth=8 --runtime=120s --group_reporting
 ```
+
+# Timescaledb
+
+## Tamaño chunks
+
+Por defecto configura 1 día para las tablas history.
+Lo ideal es que los índices del chunk del día actual de las tablas history y history_uint quepan en el 25% de memoria de la máquina.
+Con esto evitamos que para cada insert postgres tenga que hacer lecturas para poder encontrar la parte del índice a modificar.
+El 25% es una recomendación para dejar espacio libre para otras cosas.
+
+Zabbix ya comenta que 1 día por chunk puede no ser un valor correcto para todo el mundo:
+
+<https://support.zabbix.com/si/jira.issueviews:issue-html/ZBXNEXT-4868/ZBXNEXT-4868.html#:~:text=1%20day%20is%20just%20a%20sensible%20default%2C%20not%20a%20universal%20recommendation.%20If%20you%20feel%201%20day%20doesn%27t%20match%20your%20history%20data%20rates%20you%20can%20always%20change%20it%20by%20calling%20set_chunk_time_interval()>.
+
+1 day is just a sensible default, not a universal recommendation. If you feel 1 day doesn't match your history data rates you can always change it by calling set_chunk_time_interval().
+
+# Sizing / storage
+
+<https://www.zabbix.com/documentation/7.0/en/manual/installation/requirements>
+
+Required space for a single value
+Depends on database engine
+History: 90 bytes per numeric data (en postgres+timescaledb, era más 110 bytes/value, mirar más abajo)
+Trends: 80 bytes per one aggregate
+
+```
+History in MB per day = NVPS*90*24*3600/1024/1024 = NVPS*7.416
+Trends in MB per year = Items*80*24*365/1024/1024 = Items*0.668
+```
+
+Zabbix 7.0 con timescaledb
+
+```sql
+SELECT
+    'history' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS total_size,
+    pg_size_pretty(s.index_bytes) AS index_size,
+    pg_size_pretty(s.table_bytes) AS table_size,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes
+FROM
+    hypertable_detailed_size('history') s,
+    (SELECT * FROM approximate_row_count('history')) AS r(row_count)
+UNION ALL
+SELECT
+    'history_uint' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS total_size,
+    pg_size_pretty(s.index_bytes) AS index_size,
+    pg_size_pretty(s.table_bytes) AS table_size,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes
+FROM
+    hypertable_detailed_size('history_uint') s,
+    (SELECT * FROM approximate_row_count('history_uint')) AS r(row_count);
+```
+
+En un zabbix 6.0 con postgres 14
+hypertable_name | total_size | index_size | table_size | approximate_row_count | avg_row_size_bytes
+-----------------+------------+------------+------------+-----------------------+--------------------
+history | 1076 GB | 504 GB | 571 GB | 9750102016 | 118
+history_uint | 761 GB | 378 GB | 384 GB | 7274875392 | 112
+
+En un zabbix 7.0 con postgres 17
+hypertable_name | total_size | index_size | table_size | approximate_row_count | avg_row_size_bytes
+-----------------+------------+------------+------------+-----------------------+--------------------
+history | 78 GB | 37 GB | 40 GB | 701157888 | 118
+history_uint | 56 GB | 28 GB | 27 GB | 547325120 | 109
 
 # Valores de referencia
 
