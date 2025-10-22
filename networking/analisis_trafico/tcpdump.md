@@ -33,7 +33,7 @@ CUIDADO parece que en RHEL/Fedora bajo ciertas circunstancias los ficheros pcap 
 <https://github.com/the-tcpdump-group/tcpdump/issues/448>
 
 Para tener un máximo de 3 ficheros (foo.pcapN) con un tamaño máximo de 10MB.
-Va rotando por los ficheros, estilo buffer ring.
+Va creando nuevos y borrando los antiguos.
 
 ```bash
 tcpdump -C 10 -W 3 -w /tmp/'foo.pcap'
