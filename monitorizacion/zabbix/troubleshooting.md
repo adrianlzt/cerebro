@@ -93,6 +93,10 @@ Tal vez otros procesos de zabbix bloqueando la cache y ralentizando a los histor
 Tenemos?
 Mirar "Problema overflow" en proxy.md
 
+Mirar diaginfo.
+
+Cola de preprocessing?
+
 # Zabbix web: Audit, login incorrectos
 
 Reports > Audit
