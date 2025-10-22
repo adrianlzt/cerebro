@@ -146,16 +146,26 @@ Tunear sysctl vm.dirty_background_bytes o vm.dirty_background_ratio en sistemas 
 
 # Datos sobre el wal
 
+```sql
 select pg_current_wal_lsn();
 select pg_walfile_name(pg_current_wal_lsn());
 select last_archived_wal from pg_stat_archiver
+```
+
 ver en que wal estamos
 si falla un archivado, veremos que se incrementará el "failed_count".
+
+```sql
 select last_failed_time>last_archived_time from pg_stat_archiver;
+```
+
 Si esta query nos da "t" es que no estamos pudiendo archivar los wal.
 
 Sacar con un comando más datos sobre wal, checkpoints, etc
+
+```bash
 /usr/pgsql-11/bin/pg_controldata -D /var/lib/pgsql/11/data
+```
 
 Latest checkpoint's REDO WAL file: 0000000100000257000000D4
 ultimo wal aplicado
@@ -244,6 +254,12 @@ SELECT
     (3600 / extract(epoch FROM (r.ts - s.ts))) -- Extrapolate to an hour
   )::numeric(10, 2) AS estimated_wal_rate_gb_per_hour
 FROM wal_rates r, wal_start s;
+```
+
+# Uso de disco entre dos wal
+
+```sql
+select pg_size_pretty(pg_wal_lsn_diff('3BB9F/E0E76000','3BB88/BF000000'));
 ```
 
 # pg_wal / .history files

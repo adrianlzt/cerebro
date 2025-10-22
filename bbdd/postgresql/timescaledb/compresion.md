@@ -7,14 +7,14 @@ La compresión funciona metiendo varios rows en uno solo, usando un arrray.
 Parece que los índices que puedan venir en la tabla se dejan de usar, en favor de unos custom de timescale.
 
 Configuraciones de compresión:
-select * from timescaledb_information.compression_settings;
+select \* from timescaledb_information.compression_settings;
 
 Aquí podemos ver si está la compresión habilitada:
-SELECT * FROM timescaledb_information.hypertables;
+SELECT \* FROM timescaledb_information.hypertables;
 
 Aquí podemos ver como particiona y si tiene alguna función definida para tablas sin columna de tipo date
 <https://docs.timescale.com/api/latest/informational-views/dimensions/>
-SELECT * from timescaledb_information.dimensions;
+SELECT \* from timescaledb_information.dimensions;
 
 # Activar compresión
 
@@ -35,23 +35,23 @@ Tenemos que crear una función que devuelva now() en el tipo de dato del campo y
 
 Comprimir todos los chunks de una tabla que no estén comprimidos:
 SELECT compress_chunk(chunk, if_not_compressed => TRUE) FROM show_chunks('nombre_tabla') as chunk;
-SELECT compress_chunk('_timescaledb_internal._hyper_7_103_chunk');
+SELECT compress_chunk('\_timescaledb_internal.\_hyper_7_103_chunk');
 
 # Estadísticas
 
 <https://docs.timescale.com/api/latest/compression/hypertable_compression_stats/>
-SELECT * FROM hypertable_compression_stats('nombre_tabla');
+SELECT \* FROM hypertable_compression_stats('nombre_tabla');
 
 <https://docs.timescale.com/api/latest/compression/chunk_compression_stats/>
-SELECT * FROM chunk_compression_stats('nombre_tabla') ORDER BY chunk_name;
+SELECT \* FROM chunk_compression_stats('nombre_tabla') ORDER BY chunk_name;
 
 Cuanto ha comprimido:
 SELECT
-    (1 - (after_compression_total_bytes::float / before_compression_total_bytes)) * 100 AS compression_ratio,
-    pg_size_pretty(before_compression_total_bytes) AS before,
-    pg_size_pretty(after_compression_total_bytes) AS after
+(1 - (after_compression_total_bytes::float / before_compression_total_bytes)) \* 100 AS compression_ratio,
+pg_size_pretty(before_compression_total_bytes) AS before,
+pg_size_pretty(after_compression_total_bytes) AS after
 FROM
-    hypertable_compression_stats ('trends');
+hypertable_compression_stats ('trends');
 
 # Chunks
 
