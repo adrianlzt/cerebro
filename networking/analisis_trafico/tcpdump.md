@@ -22,7 +22,11 @@ docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
 Si queremos filtrar de una forma más extensa mirar ngrep.md
 
 Capturar todo el tráfico en ficheros, cada uno almacenando 15':
-tcpdump -G 900 -w /tmp/'%Y-%m-%d\_%H:%M:%S.pcap' -W 96
+
+```bash
+tcpdump -G 900 -w /tmp/'%Y-%m-%d_%H:%M:%S.pcap' -W 96
+```
+
 -G segundos que captura cada fichero
 Podemos usar -C para rotar por tamaño
 -W cuantos ficheros en total rotaremos (poner 1 si solo queremos capturar -G segundos)
@@ -33,6 +37,7 @@ CUIDADO parece que en RHEL/Fedora bajo ciertas circunstancias los ficheros pcap 
 <https://github.com/the-tcpdump-group/tcpdump/issues/448>
 
 Para tener un máximo de 3 ficheros (foo.pcapN) con un tamaño máximo de 10MB.
+Va rotando por los ficheros, estilo buffer ring. N va subiendo hasta el máximo de W (0-N) y luego reusa el primero.
 Va creando nuevos y borrando los antiguos.
 
 ```bash
