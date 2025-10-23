@@ -139,6 +139,7 @@ Por defecto configura 1 día para las tablas history.
 Lo ideal es que los índices del chunk del día actual de las tablas history y history_uint quepan en el 25% de memoria de la máquina.
 Con esto evitamos que para cada insert postgres tenga que hacer lecturas para poder encontrar la parte del índice a modificar.
 El 25% es una recomendación para dejar espacio libre para otras cosas.
+General PostgreSQL server tuning guidance suggests that active data reside in about 25% of the configured server memory. Pay special attention to the details that this includes all active tables and hypertables.
 
 Zabbix ya comenta que 1 día por chunk puede no ser un valor correcto para todo el mundo:
 
@@ -146,14 +147,28 @@ Zabbix ya comenta que 1 día por chunk puede no ser un valor correcto para todo 
 
 1 day is just a sensible default, not a universal recommendation. If you feel 1 day doesn't match your history data rates you can always change it by calling set_chunk_time_interval().
 
+## Cambiar tamaño particiones
+
+Si queremos cambiar la tabla history a 6h (21600s) haremos:
+
+```sql
+SELECT set_chunk_time_interval('history', 21600);
+```
+
+Solo aplicará a las particiones que tengan que crearse a partir de ahora.
+
 # Sizing / storage
 
 <https://www.zabbix.com/documentation/7.0/en/manual/installation/requirements>
 
-Required space for a single value
+<https://adrianlzt.github.io/zabbix-postgres-calculator.html>
+Calculadora para estimar uso de disco y cuanta memoria deberíamos tener.
+La idea es que la las particiones de las tablas usadas (hot) deberían caber en el 25% de memoria de la base de datos.
+
+Required space for a single value, contando tamaño de tabla y de índice.
 Depends on database engine
 History: 90 bytes per numeric data (en postgres+timescaledb, era más 110 bytes/value, mirar más abajo)
-Trends: 80 bytes per one aggregate
+Trends: 80 bytes per one aggregate (con postgres+timescaledb+compresión creo que podemos usar 60 bytes/value)
 
 ```
 History in MB per day = NVPS*90*24*3600/1024/1024 = NVPS*7.416
@@ -204,6 +219,12 @@ hypertable_name | total_size | index_size | table_size | approximate_row_count |
 history | 78 GB | 37 GB | 40 GB | 701157888 | 118
 history_uint | 56 GB | 28 GB | 27 GB | 547325120 | 109
 
+De la tabla de trends, con compresión tras 7 diás
+hypertable_name | current_disk_size | uncompressed_size | compressed_size | compression_ratio | approximate_row_count | avg_row_size_bytes | avg_row_size_bytes_compressed
+-----------------+-------------------+-------------------+-----------------+-------------------+-----------------------+--------------------+-------------------------------
+trends | 65 GB | 397 GB | 39 GB | 10.18 | 632502144 | 110 | 66
+trends_uint | 37 GB | 317 GB | 18 GB | 17.55 | 478064448 | 83 | 40
+
 # Valores de referencia
 
 ## 18000 NVPS
@@ -229,8 +250,14 @@ PostgreSQL 14.5 + timescaledb 2.7 con compresión.
 
 DATADIR 1.9TiB
 
-WAL 61GiB/hour
+WAL 93GiB/hour con 20kNVPS.
+Podemos usar este valor para asumir la generación de WAL files:
+4.65 GiB/hour\*kNVPS
 
-Backup full 1748GiB, comprimido 433GiB
+Al almacenar los en pgbackrest se comprimen, ocupan un 30% del tamaño original.
 
-Backup incremental 310GiB, comprimido 71GiB
+Backup full 1748GiB, comprimido 433GiB (comprimido ocupa un 25%)
+
+Backup incremental diario 310GiB, comprimido 71GiB (comprimido ocupa un 20%).
+
+Cada parece necesitar un 25% del tamaño total para el backup incremental.

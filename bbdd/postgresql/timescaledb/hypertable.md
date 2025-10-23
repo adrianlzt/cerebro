@@ -90,3 +90,9 @@ Si usamos ranges que son unix epoch:
 ```sql
 SELECT drop_chunks('history', EXTRACT(EPOCH FROM '2025-10-15'::TIMESTAMP)::integer);
 ```
+
+Por nombre (<https://github.com/timescale/timescaledb/issues/7216#issuecomment-2361897867>):
+
+```sql
+SELECT _timescaledb_functions.drop_chunk('_timescaledb_internal._hyper_1_4_chunk')
+```
