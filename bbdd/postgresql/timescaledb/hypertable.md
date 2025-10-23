@@ -82,13 +82,14 @@ Antes de borrar, usar `show_chunks` para ver que va a borrar.
 Si usamos fechas:
 
 ```sql
-SELECT drop_chunks('conditions', INTERVAL '3 months');
+SELECT drop_chunks('conditions', INTERVAL '3 months', verbose => true);
 ```
 
 Si usamos ranges que son unix epoch:
 
 ```sql
 SELECT drop_chunks('history', EXTRACT(EPOCH FROM '2025-10-15'::TIMESTAMP)::integer);
+SELECT show_chunks('history', newer_than => 172800)
 ```
 
 Por nombre (<https://github.com/timescale/timescaledb/issues/7216#issuecomment-2361897867>):

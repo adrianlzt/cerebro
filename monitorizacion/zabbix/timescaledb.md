@@ -2,8 +2,24 @@ Podemos usar timescaledb para comprimir las trends.
 
 Si activamos la compresión, <https://www.zabbix.com/documentation/6.0/en/manual/appendix/install/timescaledb#timescaledb-compression>, será el proceso de housekeeper quien se encarga de la compresión.
 
+Como crea zabbix las hypertablas:
+<https://github.com/zabbix/zabbix/blob/eaea6eab8f6b37db8ddcfe0f660d98408807634f/create/bin/gen_schema.pl#L662>
+
+```sql
+PERFORM create_hypertable('$_', 'clock', chunk_time_interval => 86400, $flags);
+```
+
+Ejemplo "renderizado":
+
+```sql
+create_hypertable('history', 'clock', chunk_time_interval => 86400, migrate_data => true, if_not_exists => true);
+```
+
 Comprobar la configuración en postgres:
+
+```sql
 select compression_status,db_extension,dbversion_status from config;
+```
 
 compression_status=1 es que está activado. Comprobar dbversion_status.compression_availability para ver si está disponible.
 db_extension debe estar a 'timescaledb'.
@@ -61,6 +77,8 @@ SELECT
     cds.chunk_schema,
     cds.chunk_name,
     pg_size_pretty(cds.total_bytes) AS pretty_total_size,
+    pg_size_pretty(cds.table_bytes) AS pretty_table_size,
+    pg_size_pretty(cds.index_bytes) AS pretty_index_size,
     to_timestamp(tic.range_start_integer::double precision) AS range_start_time,
     to_timestamp(tic.range_end_integer::double precision) AS range_end_time
 FROM
@@ -71,6 +89,98 @@ ON
     cds.chunk_schema = tic.chunk_schema AND cds.chunk_name = tic.chunk_name
 ORDER BY
     tic.range_start_integer DESC;
+```
+
+# Tamaño de history e history_uint con media de tamaño por value
+
+```sql
+SELECT
+    'history' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS total_size,
+    pg_size_pretty(s.index_bytes) AS index_size,
+    pg_size_pretty(s.table_bytes) AS table_size,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes
+FROM
+    hypertable_detailed_size('history') s,
+    (SELECT * FROM approximate_row_count('history')) AS r(row_count)
+UNION ALL
+SELECT
+    'history_uint' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS total_size,
+    pg_size_pretty(s.index_bytes) AS index_size,
+    pg_size_pretty(s.table_bytes) AS table_size,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes
+FROM
+    hypertable_detailed_size('history_uint') s,
+    (SELECT * FROM approximate_row_count('history_uint')) AS r(row_count);
+```
+
+Lo mismo para trends:
+
+```sql
+SELECT *
+FROM timescaledb_information.dimensions
+WHERE hypertable_name = 'history';
+
+SELECT *
+FROM timescaledb_information.hypertables
+WHERE hypertable_name = 'your_hypertable_name';
+
+SELECT
+    'trends' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS current_disk_size,
+    pg_size_pretty(c.before_compression_total_bytes) AS uncompressed_size,
+    pg_size_pretty(c.after_compression_total_bytes) AS compressed_size,
+    CASE
+        WHEN c.after_compression_total_bytes > 0 THEN
+            round((c.before_compression_total_bytes::numeric / c.after_compression_total_bytes), 2)
+        ELSE 0
+    END AS compression_ratio,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes,
+    CASE
+        WHEN r.row_count > 0 THEN round(c.after_compression_total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes_compressed
+FROM
+    hypertable_detailed_size('trends') s,
+    hypertable_compression_stats('trends') c,
+    (SELECT * FROM approximate_row_count('trends')) AS r(row_count)
+UNION ALL
+SELECT
+    'trends_uint' AS hypertable_name,
+    pg_size_pretty(s.total_bytes) AS current_disk_size,
+    pg_size_pretty(c.before_compression_total_bytes) AS uncompressed_size,
+    pg_size_pretty(c.after_compression_total_bytes) AS compressed_size,
+    CASE
+        WHEN c.after_compression_total_bytes > 0 THEN
+            round((c.before_compression_total_bytes::numeric / c.after_compression_total_bytes), 2)
+        ELSE 0
+    END AS compression_ratio,
+    r.row_count AS approximate_row_count,
+    CASE
+        WHEN r.row_count > 0 THEN round(s.total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes,
+    CASE
+        WHEN r.row_count > 0 THEN round(c.after_compression_total_bytes / r.row_count)
+        ELSE 0
+    END AS avg_row_size_bytes_compressed
+FROM
+    hypertable_detailed_size('trends_uint') s,
+    hypertable_compression_stats('trends_uint') c,
+    (SELECT * FROM approximate_row_count('trends_uint')) AS r(row_count);
 ```
 
 # Borrar chunks a mano
