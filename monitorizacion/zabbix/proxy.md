@@ -1,5 +1,7 @@
 https://www.zabbix.com/documentation/3.4/manual/concepts/proxy
 
+https://assets.zabbix.com/files/events/2025/zabbix_summit_2025/slides/d1/6_Kaspars_Mednis_Preprocessing.pdf
+
 Zabbix proxy is a process that may collect monitoring data from one or more monitored devices and send the information to the Zabbix server, essentially working on behalf of the server. All collected data is buffered locally and then transferred to the Zabbix server the proxy belongs to.
 
 Active proxy:  proxy -> server (el proxy envia datos, ProxyMode=0)
@@ -51,6 +53,8 @@ https://support.zabbix.com/browse/ZBXNEXT-4920
 # Almacenamiento de datos
 Almacena datos en la tabla proxy_history.
 
+Ha cambiado en v7.0 para usar memoria o híbrido.
+
 En write_clock guarda la fecha del servidor de cuando recibe el dato (clock será la fecha que puso el agente que envió el dato).
 
 Housekeeper se encarga de limpiar esa tabla.
@@ -90,6 +94,11 @@ failed to accept an incoming connection: from 172.16.0.253: TLS handshake set re
 Error cuando la PSK key es incorrecta:
 failed to accept an incoming connection: from 172.16.0.253: TLS handshake set result code to 1: file ssl/statem/extensions.c line 1603 func tls_psk_do_binder: error:0A0000FD:SSL routines::binder does not verify: TLS write fatal alert "illegal parameter"
 
+
+# Arquitectura
+
+collectors -> preprocessing manager -> pending queue -> preprocessing workers -> processed queue -> history cache
+           -> history cache
 
 # Internals
 Info que envia el proxy al server tras recibir un trap:
@@ -170,5 +179,3 @@ proxy_get_areg_data (autoregistration)
 
 Ver cuantos elementos están pendientes de envío:
 select count(*) from proxy_history where id > (select nextid from ids where table_name='proxy_history' and field_name='history_lastid');
-
-

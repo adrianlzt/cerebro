@@ -260,6 +260,9 @@ Configuration cache 7.6GiB
 Aproximación burda: 1GB / 11k+1.5M+500k = 0.5kB/elemento
 Validad también con un Zabbix 4
 
+En zabbix 7.0 visto 0.8KiB
+0.96 × 8 gibibyte / (8_198_909 items + 1_473_282 triggers + 50822 hosts)
+
 CacheUpdateFrequency=90
 Si tenemos un servidor muy grande tendremos que incrementar este valor. En estos updates zabbix server se baja una copia de todos la config de la bbdd a una cache.
 El problema de subir el tiempo es que tardemos más tiempo en que se produzcan cambios, recibir métricas, lld, etc
