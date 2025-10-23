@@ -35,6 +35,12 @@ pdftk
 Unir dos pdfs
 pdftk file1.pdf file2.pdf cat output merged_file.pdf
 
+# Terminal / consola / cli
+
+```bash
+pdftotext file.pdf -
+```
+
 # De imagen a pdf sin pérdidas
 
 img2pdf imagen.png -o file.pdf

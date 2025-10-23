@@ -215,3 +215,20 @@ Captura las llamadas de resolución de nombres y nos devuelve por quien se ha pr
 # sslsniff
 
 Analizar tráfico tls
+
+# tcpsynbl
+
+Tracing SYN backlog size
+
+Muestra un histograma del tamaño del backlog
+
+# Suse linux
+
+Para soluciionar:
+modprobe: FATAL: Module kheaders not found in directory /lib/modules/5.14.21-150500.33.75-azure
+
+Instalar:
+```bash
+zypper install kernel-devel
+zypper install kernel-devel-azure # en azure SLES
+```
