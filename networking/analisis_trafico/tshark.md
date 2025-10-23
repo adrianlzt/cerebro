@@ -48,3 +48,15 @@ Si queremos saber el tamaño máximo de paquete, podemos hacer primero:
 ```bash
 tshark -nr input.pcap -T fields -e frame.len | sort -n | tail -n 1
 ```
+
+Generar un csv con la fecha (unix epoch) del paquete y el número de frame.
+
+```bash
+tshark -r file.pcap -Y "tcp" -T fields -e frame.time_epoch -e frame.number -E header=n -E separator=, > file.pcap.csv
+```
+
+Para luego generar un png con tiempo vs frame number:
+
+```bash
+uv run https://gist.githubusercontent.com/adrianlzt/c8867cd072ba56b94fae5acc76ec8052/raw/74e287be5f465c808f3a86bddbec49efb1418495/create_graph.py file.pcap.csv
+```
