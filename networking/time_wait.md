@@ -8,6 +8,22 @@ Análsis conciencudo del problema del TIME-WAIT
 <http://tools.ietf.org/html/rfc793>
 <http://tools.ietf.org/html/rfc1323>
 
+Para jugar con un client y server python: <https://gist.github.com/adrianlzt/b7767ba3ef4d0c2d8ce06d6ee5b81a5d>
+
+Ver conexiones en TIME-WAIT:
+
+```bash
+ss -tan state time-wait | wc -l
+```
+
+Contar conexiones entrantes:
+
+```bash
+iptables -A INPUT -p tcp --syn -j ACCEPT --dport 8087
+while true; do sudo iptables -vnL INPUT -Z | grep 'dpt:8087'; sleep 10; done
+iptables -D INPUT -p tcp --syn -j ACCEPT --dport 8087
+```
+
 TIME-WAIT - represents waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request.
 
 Se produce en el extremo que está cerrando la conexión.
@@ -32,12 +48,6 @@ Podría ser culpa del firewall con conex en keep alive, que el KA sea mayor que 
 TIME-WAIT ----esperar 2xMSL---> CLOSED
 
 En realidad el tiempo está fijado "a fuego" en el kernel a 60". Leer más abajo.
-
-Pues parece que ahora (2025) se puede cambiar:
-
-```bash
-sudo sysctl -w net.ipv4.tcp_fin_timeout=15
-```
 
 MSL = Maximum Segment Lifetime
 

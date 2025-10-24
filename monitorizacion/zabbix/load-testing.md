@@ -1,3 +1,13 @@
+CUIDADO! Si usamos una única máquina para testear, es muy posible que lleguemos al límite
+
+Increase local port range
+
+```bash
+sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535"
+```
+
+Vigilar el "net.tcp.socket.count[,10051,,,time_wait]" mientras hacemos las pruebas.
+
 Creo que lo más sencillo para hacer pruebas de carga es crear una template con 1000 items usando keys:
 
 ```

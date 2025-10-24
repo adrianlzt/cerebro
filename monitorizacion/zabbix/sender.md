@@ -1,4 +1,4 @@
-https://www.zabbix.com/documentation/3.4/manual/concepts/sender
+<https://www.zabbix.com/documentation/3.4/manual/concepts/sender>
 
 CUIDADO! Si la maquina está configurada con un proxy deberemos apuntar al proxy
 
@@ -12,61 +12,69 @@ zabbix_sender -z zabbix -s "Linux DB3" -k db.connections -o 43
 echo "<hostname> <key> <timestamp> <value>" | zabbix_sender -z SERVER -i - -T
 echo "<hostname> <key> <value>" | zabbix_sender -z SERVER -i -
 echo -e 'prueba_0 telegraf.lld.cpu.cpu {"data":[{"{#CPU}":"uno","{#CPU}":"dos","{#CPU}":"tres"}]}\nprueba_0 telegraf.lld.diskio.name {"data":[{"{#NAME}":"uno"}]}' | zabbix_sender -z SERVERZABBIX -i -
-  enviar dos LLDs de golpe
+enviar dos LLDs de golpe
 
 Enviar con una fecha generada con date y mostrar lo que estamos enviando:
 echo "host item $(date -d "2024/04/21 01:00:00" +%s) 102" | tee /dev/stderr | zabbix_sender -z 127.0.0.1 -i - -T -v
-
 
 Podemos enviar hasta 250 métricas en el mismo mensaje.
 Tras enviar el mensaje el servidor zabbix cierra la conex (no podemos reutilizar la conex para enviar varios paquetes de métricas)
 
 La hora de la métrica trap será la hora a la que llegue al servidor
-https://support.zabbix.com/browse/ZBXNEXT-2476
+<https://support.zabbix.com/browse/ZBXNEXT-2476>
 Haciendo pruebas con la lib de go-zabbix, puedo definir la hora que yo quiera y será la que se almacene.
 Tambien puedo enviar métricas en el pasado (más antiguas que la última), o enviar dos métricas para la misma fecha (se muestran dos curvas en la gráfica con una tercera linea haciendo la media)
 
-
 Libreria sneder en go
-https://github.com/adubkov/go-zabbix
+<https://github.com/adubkov/go-zabbix>
 
 Python
-https://github.com/adubkov/py-zabbix
-https://github.com/jbfavre/python-zabbix
+<https://github.com/adubkov/py-zabbix>
+<https://github.com/jbfavre/python-zabbix>
 
 Varios lenguajes:
-https://github.com/hengyunabc/zabbix-sender
-https://github.com/holidayextras/node-zabbix-sender
-https://github.com/dominikschulz/Zabbix-Sender
-https://github.com/englishm/zabbix_send
-
+<https://github.com/hengyunabc/zabbix-sender>
+<https://github.com/holidayextras/node-zabbix-sender>
+<https://github.com/dominikschulz/Zabbix-Sender>
+<https://github.com/englishm/zabbix_send>
 
 # Formato
-https://www.zabbix.com/documentation/1.8/protocols
+
+<https://www.zabbix.com/documentation/1.8/protocols>
 
 echo '{"request":"queue.get","sid":"0256aa0253c253a812f17a7755970baa","type":"overview"}' | nc zabbixserver 10051
-
 
 Se envia un formato binario con un json dentro
 
 Envio (legible, copiado desde wirehsark):
-  ZBXD#
-  {
-    "request":"sender data",
-    "data":[
-      {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.410375","clock":1519043805},
-      {"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.277847","clock":1519043805}
-    ],
-    "clock":1519043805
-  }
+ZBXD#
+{
+"request":"sender data",
+"data":[
+{"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.410375","clock":1519043805},
+{"host":"archer","key":"telegraf.dns_query.query_time_ms[archer][A][127.0.0.1]","value":"0.277847","clock":1519043805}
+],
+"clock":1519043805
+}
 
 Respuesta (legible):
 {"response":"success","info":"processed: 2; failed: 0; total: 2; seconds spent: 0.000268"}
 
-
-
 # Internal
+
 ## 1. Recepción de los datos TCP
+
+@claude, zabbix 7.0
+Main trapper loop in libs/zbxtrapper/trapper.c:1391-1443:
+
+- zbx_tcp_accept() - Accept incoming connection
+- process_trapper_child() - Receive and process ONE request
+- zbx_tcp_unaccept() - Always closes connection after processing
+
+The zbx_tcp_unaccept() function (libs/zbxcomms/comms.c:1739-1754) performs:
+shutdown(s->socket, 2); // Bidirectional shutdown
+zbx_socket_close(s->socket);
+
 Cada trapper escucha en un bucle for por nuevas conex tcp: zbx_tcp_accept
 
 Dentro de esa función:
@@ -81,7 +89,7 @@ Luego se ejecuta:
 process_trapper_child
 ->
 zbx_tcp_recv_to
-#define     zbx_tcp_recv_to(s, timeout)     SUCCEED_OR_FAIL(zbx_tcp_recv_ext(s, 0, timeout))
+# define zbx_tcp_recv_to(s, timeout) SUCCEED_OR_FAIL(zbx_tcp_recv_ext(s, 0, timeout))
 zbx_tcp_recv_ext (Purpose: receive data)
 
 Esta función usa zbx_tcp_read para leer datos del socket. Se encarga de leer TLS/no-TLS.
@@ -89,8 +97,8 @@ Para no-TLS usa ZBX_TCP_READ, que es un define sobre la syscall recv, con flags=
 Para setear el timeout usan el método de SIGALRM.
 
 En esta función (zbx_tcp_recv_ext) se realiza un lioso análisis para saber si el mensaje recibido cumple con lo que se espera.
-https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c#1654
-Lo que se va haciendo es ir leyendo el protocolo: https://www.zabbix.com/documentation/4.0/manual/appendix/protocols/header_datalen
+<https://git.zabbix.com/projects/ZBX/repos/zabbix/browse/src/libs/zbxcomms/comms.c#1654>
+Lo que se va haciendo es ir leyendo el protocolo: <https://www.zabbix.com/documentation/4.0/manual/appendix/protocols/header_datalen>
 Primero la header, luego version, data length y datos
 
 Si zbx_tcp_recv_to termina bien, se ejecuta process_trap.
@@ -99,66 +107,64 @@ Cada una llama a su función.
 
 Para trappers o agent active, se llama a recv_agenthistory (mirar siguiente sección)
 
-
 ## Procesado de trappers / agent active
+
 En lld.md trazas de que hace un trap al procesar un lld enabled o disabled.
 
 Ejemplo de logs debug para la llegada de un simple item sin macros ni lld:
-  __zbx_zbx_setproctitle() title:'trapper #1 [processing data]'
-  trapper got '{"request":"sender data","data":[{"host":"test","key":"test","value":"1"}]}'
-  In recv_agenthistory()
-  In process_hist_data()
-  In process_mass_data()
-  In substitute_simple_macros() data:EMPTY
-  End of process_mass_data()
-  End of process_hist_data():SUCCEED
-  In zbx_send_response()
-  zbx_send_response() '{"response":"success","info":"processed: 1; failed: 0; total: 1; seconds spent: 0.000105"}'
-  End of zbx_send_response():SUCCEED
-  End of recv_agenthistory()
-  __zbx_zbx_setproctitle() title:'trapper #1 [processed data in 0.000274 sec, waiting for connection]'
-
+**zbx_zbx_setproctitle() title:'trapper #1 [processing data]'
+trapper got '{"request":"sender data","data":[{"host":"test","key":"test","value":"1"}]}'
+In recv_agenthistory()
+In process_hist_data()
+In process_mass_data()
+In substitute_simple_macros() data:EMPTY
+End of process_mass_data()
+End of process_hist_data():SUCCEED
+In zbx_send_response()
+zbx_send_response() '{"response":"success","info":"processed: 1; failed: 0; total: 1; seconds spent: 0.000105"}'
+End of zbx_send_response():SUCCEED
+End of recv_agenthistory()
+**zbx_zbx_setproctitle() title:'trapper #1 [processed data in 0.000274 sec, waiting for connection]'
 
 Los datos de los agentes activos y los traps se tratan de igual manera (en zabbix 4 creo que esto cambia ligeramente, para comprobar que si un item es active, solo pueda recibir datos que tenga la header AGENT DATA, y la misma comprobación para los trapper)
 Entran por la función:
 recv_agenthistory (processes the received values from active agents and senders)
 En el log modo debug podemos encontrar "In recv_agenthistory"
 
-
-https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071
+<https://zabbix.org/wiki/Docs/specs/ZBXNEXT-3071>
 Resumen de como se almacenan los datos en la cache:
 Adding values
-  get item by itemid from history items hashset, add new item if none found.
-  allocate zbx_hc_data_t structure and string/log values if required in history cache.
-  add the allocated structure at the head of item value list.
-  add item to history queue if it was just created. Esta estructura es un binary_heap, de manera que el "root" siempre será el elemento con el timestamp más antiguo
+get item by itemid from history items hashset, add new item if none found.
+allocate zbx_hc_data_t structure and string/log values if required in history cache.
+add the allocated structure at the head of item value list.
+add item to history queue if it was just created. Esta estructura es un binary_heap, de manera que el "root" siempre será el elemento con el timestamp más antiguo
 
 Se procesa el dato y se envia la respuesta al cliente:
 
 process_hist_data (process values sent by proxies, active agents and senders)
-  se van pasando los elementos de "data" en grupos de 256 elementos a process_mass_data
-  process_mass_data (process new item value)
-    se obtienen los items de la cache de configuración (DCconfig_get_items_by_keys)
-    se skipean las disabled, host disabled, que no pertenezcan al proxy adecuado, que estén en mantinimiento, o que no sean trapper o agent active.
-    los trappers, se les sustituye las macros (substitute_simple_macros) y se comprueba se la ip se puede comunicar (zbx_tcp_check_security)
-    si el item no está soportado, se marca como ZBX_NOTSUPPORTED
-    se almacena: dc_add_history
-    dc_add_history (add new value to the cache)
-      para los not supported, un short circuit: dc_local_add_history_notsupported
-      si es un lld: lld_process_discovery_rule (mirar lld.md)
-      se almacena cada tipo de dato con su función particular
-      dc_local_add_history_dbl (float)
-      dc_local_add_history_uint (int)
-        se coje un slot en la local history cache y se almacena el dato (reducido para ejemplificar como lo hace)
-        item_value = dc_local_get_history_slot();
-          si la local history cache llega a los 256 elementos, se hace un flush dc_flush_history (mirar más abajo como trabaja)
-        item_value->itemid = itemid;
-        item_value->value_type = ITEM_VALUE_TYPE_UINT64;
-        item_value->state = ITEM_STATE_NORMAL;
-        item_value->value.value_uint = value_orig;
-      dc_local_add_history_str
-      dc_local_add_history_text
-      dc_local_add_history_log
+se van pasando los elementos de "data" en grupos de 256 elementos a process_mass_data
+process_mass_data (process new item value)
+se obtienen los items de la cache de configuración (DCconfig_get_items_by_keys)
+se skipean las disabled, host disabled, que no pertenezcan al proxy adecuado, que estén en mantinimiento, o que no sean trapper o agent active.
+los trappers, se les sustituye las macros (substitute_simple_macros) y se comprueba se la ip se puede comunicar (zbx_tcp_check_security)
+si el item no está soportado, se marca como ZBX_NOTSUPPORTED
+se almacena: dc_add_history
+dc_add_history (add new value to the cache)
+para los not supported, un short circuit: dc_local_add_history_notsupported
+si es un lld: lld_process_discovery_rule (mirar lld.md)
+se almacena cada tipo de dato con su función particular
+dc_local_add_history_dbl (float)
+dc_local_add_history_uint (int)
+se coje un slot en la local history cache y se almacena el dato (reducido para ejemplificar como lo hace)
+item_value = dc_local_get_history_slot();
+si la local history cache llega a los 256 elementos, se hace un flush dc_flush_history (mirar más abajo como trabaja)
+item_value->itemid = itemid;
+item_value->value_type = ITEM_VALUE_TYPE_UINT64;
+item_value->state = ITEM_STATE_NORMAL;
+item_value->value.value_uint = value_orig;
+dc_local_add_history_str
+dc_local_add_history_text
+dc_local_add_history_log
 
     dc_requeue_items, creo que para mover items entre un/reachable
     dc_flush_history
@@ -184,25 +190,23 @@ process_hist_data (process values sent by proxies, active agents and senders)
             Si no tenemos el item zbx_hc_item_t en history_items, creamos esa estructura y copiamos el itemid a la history_queue, que es donde van los history syncer a coger los itemids que procesar
       cache->history_num += item_values_num
         actualizamos ese contador para saber cuantos values están pendientes de ser procesados
+
 zbx_send_response
 
 La cache:
 typedef struct
 {
-  zbx_hashset_t   trends;
-  ZBX_DC_STATS    stats;
+zbx_hashset_t trends;
+ZBX_DC_STATS stats;
 
-  zbx_hashset_t   history_items;
-  zbx_binary_heap_t history_queue;
+zbx_hashset_t history_items;
+zbx_binary_heap_t history_queue;
 
-  int     history_num;
-  int     trends_num;
-  int     trends_last_cleanup_hour;
+int history_num;
+int trends_num;
+int trends_last_cleanup_hour;
 }
 ZBX_DC_CACHE;
-
-
-
 
 Luego parece que hay una función que resuelve las macros de cada item que venga en el array de traps: substitute_simple_macros
 
@@ -213,14 +217,10 @@ End of lld_process_discovery_rule()
 
 Para el resto de valores el debug no mostrará nada (veremos una línea de "substitute_simple_macros" por cada trap analizado)
 
-
 Termina cuando contesta al cliente (zbx_send_response) y pone:
 End of recv_agenthistory()
 
-Luego, si se queda sin nada que hacer, pondrá el título (__zbx_zbx_setproctitle) o si no, seguirá con el siguiente item (y pondrá el título una vez cada 5")
+Luego, si se queda sin nada que hacer, pondrá el título (\_\_zbx_zbx_setproctitle) o si no, seguirá con el siguiente item (y pondrá el título una vez cada 5")
 
 Cuando un trapper recibe datos veremos una linea como:
-  2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
-
-
-
+2250:20181121:081646.349 trapper got '{"request":"sender data","dat...
