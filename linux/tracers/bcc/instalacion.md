@@ -10,6 +10,10 @@ En /usr/share/bcc/tools/ tendremos todas las herramientas que vienen.
 zypper in bcc-tools kernel-azure-devel
 ```
 
+kernel-azure-devel es para las VMs de azure, si no, el kernel-devel.
+
+# Ubuntu
+
 # Man pages
 
 export MANPATH=$MANPATH:/usr/share/bcc/man
