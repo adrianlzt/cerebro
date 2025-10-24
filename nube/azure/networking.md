@@ -8,6 +8,6 @@ Para interconectar vnets usar azure peering.
 
 # Rutas
 
-No poemos setear rutas manuales en las máquinas, el tráfico no se enrutará.
+No podemos setear rutas manuales en las máquinas, el tráfico no se enrutará.
 
 Tendremos que crear una [Route table](https://portal.azure.com/#browse/Microsoft.Network%2FrouteTables) y asociarla a la subnet.
