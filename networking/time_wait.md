@@ -9,7 +9,12 @@ Análsis conciencudo del problema del TIME-WAIT
 <http://tools.ietf.org/html/rfc1323>
 
 TIME-WAIT - represents waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request.
-Solo se produce en el extremo que está cerrando la conexión.
+
+Se produce en el extremo que está cerrando la conexión.
+
+Si es comunicación entre dos máquinas tenemos un límite de ~30000 connections/min o 500 connections/s (puertos efiremos / 60s de liberación).
+
+El servidor es quien debe gestionar los TIME-WAIT.
 
 Si por ejemplo hacemos
 curl google.es
@@ -27,6 +32,12 @@ Podría ser culpa del firewall con conex en keep alive, que el KA sea mayor que 
 TIME-WAIT ----esperar 2xMSL---> CLOSED
 
 En realidad el tiempo está fijado "a fuego" en el kernel a 60". Leer más abajo.
+
+Pues parece que ahora (2025) se puede cambiar:
+
+```bash
+sudo sysctl -w net.ipv4.tcp_fin_timeout=15
+```
 
 MSL = Maximum Segment Lifetime
 
