@@ -9,7 +9,8 @@ Configurar el autoregister de hosts linkados a esa template.
 Luego arrancar muchos agentes.
 Cada agente consume unos ~50MiB usando esa template básica.
 El load si que puede ser bastante grande.
-En una máquina con 64 cores, arranacando 500 agentes en algunos momentos se ha ido a 180 puntos de load. Aunque en general se mantiene sobre 10, cada agente consumiendo un ~4% de cpu.
+En una máquina con 64 cores, arranacando 500 agentes, cada 20 minutos sucede algo que lleva la máquina a 3000 de load durante 5 minutos.
+Seguramente ayudaría arrancar los agentes repartiendo su arranque a lo largo de un minuto.
 
 Con 500 agentes y esa template de 1000 items con interval de 5s, me genera 100kNVPS, cuadrando perfectamente con el teórico.
 
