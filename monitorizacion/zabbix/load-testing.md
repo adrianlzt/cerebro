@@ -25,7 +25,7 @@ También se puede usar como un zabbix-server y conectarle un proxy.
 Tendremos que usar `fetch-config` para obtener la configuración de proxy que queramos y luego arrancarlo.
 Cuando un proxy pida su configuración, se le devolverá y a partir de ahí aceptará todas las métricas.
 
-# Usando múltiples agentes
+# Usando múltiples zabbix-agent2
 
 Crear una template con 1000 items usando keys:
 

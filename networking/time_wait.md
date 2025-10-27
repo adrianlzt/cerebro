@@ -10,6 +10,12 @@ Análsis conciencudo del problema del TIME-WAIT
 
 Para jugar con un client y server python: <https://gist.github.com/adrianlzt/b7767ba3ef4d0c2d8ce06d6ee5b81a5d>
 
+Script en python para comprobar si tenemos conex cerca del límite:
+
+```bash
+uv run https://gist.githubusercontent.com/adrianlzt/f6285f7b6c79e5180b0d8b3bffb1d45e/raw/a0d08176a7e5a59dc1adedfdbfc8156e62684a8e/timewait_monitor.py --threshold 50
+```
+
 Ver conexiones en TIME-WAIT:
 
 ```bash
