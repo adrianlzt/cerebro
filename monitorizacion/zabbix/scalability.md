@@ -1,3 +1,5 @@
+mirar load-testing.md
+
 <https://www.zabbix.com/documentation/4.0/manual/installation/requirements>
 Pequeña tabla con ejemplos de hardware para distintos tamaños de instalación.
 

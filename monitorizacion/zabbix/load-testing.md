@@ -1,3 +1,9 @@
+# zbx-load-testing
+
+<https://github.com/datadope-io/zbx-load-testing>
+
+App para generar carga.
+
 CUIDADO! Si usamos una única máquina para testear, es muy posible que lleguemos al límite
 
 Increase local port range
@@ -8,7 +14,20 @@ sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535"
 
 Vigilar el "net.tcp.socket.count[,10051,,,time_wait]" mientras hacemos las pruebas.
 
-Creo que lo más sencillo para hacer pruebas de carga es crear una template con 1000 items usando keys:
+# zabbix-blackhole
+
+<https://github.com/datadope-io/zabbix-blackhole>
+
+Para simular ser un server/proxy que responde siempre que ha consumido las métricas.
+La idea es poder aislar si los problemas son generados por la app que genera carga o por limitaciones del server.
+
+También se puede usar como un zabbix-server y conectarle un proxy.
+Tendremos que usar `fetch-config` para obtener la configuración de proxy que queramos y luego arrancarlo.
+Cuando un proxy pida su configuración, se le devolverá y a partir de ahí aceptará todas las métricas.
+
+# Usando múltiples agentes
+
+Crear una template con 1000 items usando keys:
 
 ```
 net.tcp.port[127.0.0.1,N]
@@ -24,12 +43,9 @@ Seguramente ayudaría arrancar los agentes repartiendo su arranque a lo largo de
 
 Con 500 agentes y esa template de 1000 items con interval de 5s, me genera 100kNVPS, cuadrando perfectamente con el teórico.
 
-Esto no es muy justo, porque tenemos menos items de los que en realidad tendría el entorno, facilitando el insert trends (menos items que insertar en los cambios de hora).
+Tenemos menos items de los que en realidad tendría el entorno, facilitando el insert trends (menos items que insertar en los cambios de hora).
 
 Simular con agentes también nos limita más las posibilidades de decidir cuantas alarmas disparar o forzar los cambios de hora.
-
-Intenté (/home/adrian/Documentos/datadope/zabbix/zbx-load-testing) crear una app para generar carga, pero al final es más complicado gestionar que los datos se envían correctamente.
-Al cabo de los minutos los NVPS empezaban a variar mucho, parece porque se empezaban a sincronizar los envíos.
 
 # Postgres
 
