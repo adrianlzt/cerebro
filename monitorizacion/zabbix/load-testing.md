@@ -4,6 +4,8 @@
 
 App para generar carga.
 
+OJO! No usar resolución DNS para evitar tener otro punto de lantencia y cuello de botella.
+
 CUIDADO! Si usamos una única máquina para testear, es muy posible que lleguemos al límite
 
 Increase local port range
