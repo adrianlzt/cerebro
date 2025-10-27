@@ -5,10 +5,18 @@ v4l2-ctl --list-devices
 v4l2-ctl --all -d /dev/video0
 
 sudo lsusb
-  buscar el id de la webcam y meterlo como:
+buscar el id de la webcam y meterlo como:
 sudo lsusb --verbose -d 04f2:b6b6
 
 Con el programa "cheese" me permite seleccionar la calidad de la imagen.
+
+## Parametrizar
+
+```bash
+v4l2-ctl -c contrast=65
+v4l2-ctl -c exposure_time_absolute=1000
+v4l2-ctl -c sharpness=75
+```
 
 # ffmpeg
 
@@ -34,11 +42,11 @@ Interfaz gráfica
 guvcview
 
 -d /dev/video1
-  para seleccionar otra webcam
+para seleccionar otra webcam
 
 Capturar una imagen desde la cli sin X
 guvcview -g none -i captura.jpg -n 1 -a none -e -t 1 -b
-  la crea en $HOME/captura-N.jpg
+la crea en $HOME/captura-N.jpg
 
 # fswebcamn
 
@@ -46,7 +54,7 @@ sudo pacman -S fswebcam
 
 fswebcam web-cam-shot.jpg
 -d /dev/video1
-  para seleccionar otra webcam
+para seleccionar otra webcam
 
 # Streaming con VLC
 

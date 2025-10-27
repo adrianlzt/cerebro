@@ -75,6 +75,23 @@ ORDER BY
     tic.range_start_integer DESC;
 ```
 
+# Cambiar tamaño chunks
+
+Afectará a la creación de nuevos chunks.
+No modifica los datos almacenados.
+
+Si es un tipo int (ejemplo zabbix, que usa unix epoch):
+
+```sql
+SELECT set_chunk_time_interval('history', 21600);
+```
+
+Si la columna es timestamp:
+
+```sql
+SELECT set_chunk_time_interval('columna', INTERVAL '6 hours');
+```
+
 # Drop chunks
 
 Antes de borrar, usar `show_chunks` para ver que va a borrar.
