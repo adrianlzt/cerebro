@@ -28,3 +28,13 @@ En un caso era un agente (ds_agent, de Trend micro), que tiraba los paquetes por
 
 Las fechas del sistema están bien?
 Tenemos ficheros en el futuro?
+
+Problemas con las DNS?
+Si estamos estableciendo muchas conexiones el DNS puede estar afectando, si tenemos que hacer la resolución cada vez.
+Tuve el problema intentando hacer pruebas de carga, apuntando a proxies via dns.
+El servidor DNS me retenía las peticiones y contestaba de golpe.
+Lo que veía era que las peticiones se agrupaban cada 5s, en vez de estar distribuidas en el tiempo (como indicaba el log de la app que lo estaba haciendo).
+
+Esta herarmienta que hice fue la clave para entender la distribución de las llamadas en un periodo:
+tcpconn-hist
+<https://gist.github.com/adrianlzt/9d3935b02b1bcdb90634413005cf3ef1>
