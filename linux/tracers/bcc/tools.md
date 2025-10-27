@@ -191,9 +191,10 @@ Estaría bien una tool para esto (intentos de conexión no conseguidos)
 
 ### tcpconn-hist
 
-<https://gist.github.com/adrianlzt/e7f26a2c85314acff5339cfb1f533f9b>
+<https://gist.github.com/adrianlzt/9d3935b02b1bcdb90634413005cf3ef1>
 
 He hecho esta variante para saber cuantas conexiones se establecen a lo largo de un periodo.
+También añadimos filtrado por ip destino.
 Si tenemos pérdidas de capturas ("Possibly lost 1236 samples"), ejecutar como:
 
 ```bash
