@@ -49,6 +49,9 @@ with open(log, 'r') as f:
 
 Mirar troubleshooting_tiempo_entre_lineas.py para buscar saltos de tiempo.
 
+Otra app para buscar tiempos entre líneas, sacados del journald:
+<https://github.com/datadope-io/zabbix-logs-gaps>
+
 # Queues
 
 queue.md
