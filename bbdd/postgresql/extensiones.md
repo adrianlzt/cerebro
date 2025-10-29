@@ -5,8 +5,23 @@ Listar extensiones y funciones de estas
 Listar extensiones y funciones de estas
 \dx+
 
+Ver extensiones disponibles:
+
+```sql
+SELECT * FROM pg_available_extensions;
+```
+
 Si queremos instalar una extensión en todas las database que creemos, la instalaremos en la db "template1".
 No aplicará a las DBs ya existentes.
+
+Parece útil instalar POWA, que nos da acceso a varias extensiones ya de forma sencilla
+mirar powa.md
+<https://powa.readthedocs.io/en/latest/components/stats_extensions/index.html#stat-extensions>
+pg_stat_statements
+pg_qualstats
+pg_stat_kcache
+pg_wait_sampling
+pg_track_settings
 
 <https://github.com/omniti-labs/pg_jobmon>
 <https://pgxn.org/dist/pg_jobmon/> <- versión más nueva que en github (mirar PR)
@@ -34,9 +49,9 @@ psql> INSERT INTO jobmon.dblink_mapping_jobmon (username, pwd) VALUES ('partman'
 pg_hba.conf
 Cuidado que no haga match la típica "local all all peer" antes, porque no funcionará (joblib es ejecutado por postgres pero aqui intentamos que se loguee como jobmon)
 
-# TYPE  DATABASE       USER            ADDRESS                 METHOD
+# TYPE DATABASE USER ADDRESS METHOD
 
-local   pruebas        jobmon                                  md5
+local pruebas jobmon md5
 
 Darle permisos al rol:
 grant usage on schema jobmon to jobmon;
@@ -49,13 +64,13 @@ grant all on all sequences in schema jobmon to jobmon;
 <https://github.com/omniti-labs/pg_jobmon/blob/master/doc/pg_jobmon.md>
 
 Mostrar todas las jobs (100 es el limit que ponemos):
-select *from jobmon.show_job_like('.*', 100);
+select _from jobmon.show_job_like('._', 100);
 
 Mostrar los datos y duración de los jobs entre dos fechas:
-select *,end_time-start_time as duration from jobmon.show_job_like('.*', 1600) where end_time < '2020-09-21 20:30:00.000000+02' and start_time > '2020-09-21 18:00:00.000000+02'
+select _,end_time-start_time as duration from jobmon.show_job_like('._', 1600) where end_time < '2020-09-21 20:30:00.000000+02' and start_time > '2020-09-21 18:00:00.000000+02'
 
 Jobs running:
-select * from jobmon.show_running();
+select \* from jobmon.show_running();
 
 Mostrar estado de todas las jobs con su error (si tiene):
 SELECT t.alert_text || c.alert_text AS alert_status
@@ -63,7 +78,7 @@ FROM jobmon.check_job_status() c
 JOIN jobmon.job_status_text t ON c.alert_code = t.alert_code;
 
 Si queremos ver el mensaje de error, ponemos un jobid en esta función:
-select * from jobmon.show_detail(109296) where status <> 'OK';
+select \* from jobmon.show_detail(109296) where status <> 'OK';
 
 Ejemplo, en el campo message: "ERROR: must be owner of table trends_uint_p2020_10_13"
 
@@ -126,7 +141,7 @@ Nos baja un zip con el código.
 ## Install
 
 pgxnclient install pg_jobmon
-  baja el código y lo instala, compilando si es necesario
+baja el código y lo instala, compilando si es necesario
 
 ## Código RPMs
 
