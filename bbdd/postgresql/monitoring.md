@@ -4,11 +4,16 @@ Queries que hace zabbix para monitorizar postgres: <https://github.com/zabbix/za
 <https://docs.google.com/presentation/d/1taKST9H59FG7MKtVLUlqQ_WozJfRQ1MFidnN7HxBQ6U/edit#slide=id.g24d4917c5fd_0_96>
 Modern Postgres monitoring – PGCon 2023 tutorial
 
+mirar powa.md
+
 <http://pgstats.dev/>
 Gráfico con las tablas para mirar cada cosa. Rollo los gráficos que hace
 
 <https://github.com/dalibo/pg_activity>
 herramienta tipo top
+
+<https://pg_top.gitlab.io/>
+Otra tipo top
 
 <https://github.com/coroot/coroot-pg-agent>
 Exporter para prometheus

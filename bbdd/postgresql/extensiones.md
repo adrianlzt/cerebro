@@ -14,12 +14,14 @@ SELECT * FROM pg_available_extensions;
 Si queremos instalar una extensión en todas las database que creemos, la instalaremos en la db "template1".
 No aplicará a las DBs ya existentes.
 
+Mirar las que instala <https://github.com/timescale/timescaledb-docker-ha/blob/master/Dockerfile>
+
 Parece útil instalar POWA, que nos da acceso a varias extensiones ya de forma sencilla
 mirar powa.md
 <https://powa.readthedocs.io/en/latest/components/stats_extensions/index.html#stat-extensions>
 pg_stat_statements
-pg_qualstats
-pg_stat_kcache
+pg_qualstats: statistics about predicates
+pg_stat_kcache: statistics about physical disk access and CPU consumption done by backends.
 pg_wait_sampling
 pg_track_settings
 
@@ -28,6 +30,25 @@ pg_track_settings
 pg_jobmon is an extension to add the capability to log the progress of running functions and provide a limited monitoring capability to those logged functions.
 Caso de uso: <https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md#loggingmonitoring>
 pg_partman lo usa para loguear y generar alarmas cuando su worker falla.
+
+<https://github.com/citusdata/pg_cron>
+Run periodic jobs in PostgreSQL
+
+<https://www.pgaudit.org/>
+detailed session and/or object audit logging via the standard logging facility
+
+<https://github.com/reorg/pg_repack>
+remove bloat from tables and indexes, and optionally restore the physical order of clustered indexes. Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive lock on the processed tables during processing
+
+<https://github.com/eulerto/wal2json>
+Extraer lo que está sucediendo en los WAL en formato JSON.
+Hace falta activar la replicación lógica.
+
+<https://github.com/pgq/pgq>
+PgQ is PostgreSQL extension that provides generic, high-performance lockless queue with simple API based on SQL functions.
+
+<https://github.com/michelp/pgsodium>
+encryption library extension for PostgreSQL using the libsodium library for high level cryptographic algorithms.
 
 # Install
 

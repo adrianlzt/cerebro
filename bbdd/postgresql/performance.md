@@ -28,6 +28,25 @@ La mejora más basica, en inserts, es hacer batch inserts. Añadiendo varias ent
 
 mirar powa.md
 
+# IO
+
+<https://postgresqlco.nf/doc/en/param/track_io_timing/>
+
+Turn it on if you're monitoring disk usage per request.
+
+Enables timing of database I/O calls.
+It will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+You can use the pgtesttiming tool to measure the overhead of timing on your system.
+
+<https://www.postgresql.org/docs/current/pgtesttiming.html>
+Mirar que >90% sean <1us
+
+```bash
+pg_test_timing -d 30
+```
+
+I/O timing information is displayed in pg_stat_database, pg_stat_io, in the output of sql-explain when the BUFFERS option is used, in the output of sql-vacuum when the VERBOSE option is used, by autovacuum for auto-vacuums and auto-analyzes, when log_autovacuum_min_duration is set and by pgstatstatements.
+
 # Load testers
 
 Por lo hablado en el curso de Postgres, hacer replay no es una buena estrategía. Puede influir donde postgres realize actuaciones automáticas, por lo que no parece que el resultado sea interesante.
