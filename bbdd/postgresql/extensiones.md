@@ -1,5 +1,7 @@
 En principio no es necesario reiniciar (tal vez alguna extensión particular lo requiera)
 
+Las extensiones se instalan por database.
+
 Listar extensiones y funciones de estas
 \dx
 Listar extensiones y funciones de estas
@@ -49,6 +51,12 @@ PgQ is PostgreSQL extension that provides generic, high-performance lockless que
 
 <https://github.com/michelp/pgsodium>
 encryption library extension for PostgreSQL using the libsodium library for high level cryptographic algorithms.
+
+<https://github.com/RafiaSabih/pg_auth_mon>
+monitoring client authentication attempts
+
+<https://github.com/munakoiso/logerrors>
+logerrors is an extension to count the number of errors logged by postgrs, grouped by the error codes
 
 # Install
 

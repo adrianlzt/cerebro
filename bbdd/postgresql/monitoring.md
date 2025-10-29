@@ -15,6 +15,9 @@ herramienta tipo top
 <https://pg_top.gitlab.io/>
 Otra tipo top
 
+<https://github.com/percona/pg_stat_monitor>
+Query Performance Monitoring Tool for PostgreSQL
+
 <https://github.com/coroot/coroot-pg-agent>
 Exporter para prometheus
 Puede ser interesante ver que métricas extraen. Se venden como que extraen mejores métricas que el exporter típico y que saben responder a cosas como:
