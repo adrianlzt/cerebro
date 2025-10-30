@@ -200,6 +200,12 @@ Convertir un fichero en template:
 chezmoi chattr +template ~/.zshrc
 ```
 
+Para que se renderize la template hace falta hacer un
+
+```bash
+chezmoi update
+```
+
 ## Instalar paquetes
 
 <https://www.chezmoi.io/user-guide/advanced/install-packages-declaratively/>
