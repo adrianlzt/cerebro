@@ -1,7 +1,13 @@
 # Crear hypertable
 
 ```sql
-SELECT create_hypertable('conditions', by_time('time', interval '1 day'));
+
+CREATE TABLE conditions (
+   time        TIMESTAMPTZ         NOT NULL,
+   location    text                NOT NULL,
+   temperature DOUBLE PRECISION    NULL
+);
+SELECT create_hypertable('conditions', by_range('time'));
 ```
 
 # Particiones / chunks
