@@ -15,6 +15,27 @@ herramienta tipo top
 <https://pg_top.gitlab.io/>
 Otra tipo top
 
+```
+^L      - redraw screen
+<sp>    - update screen
+A       - EXPLAIN ANALYZE (UPDATE/DELETE safe)
+a       - show PostgreSQL activity
+C       - toggle the use of color
+E       - show execution plan (UPDATE/DELETE safe)
+I       - show I/O statistics per process (Linux only)
+L       - show locks held by a process
+Q       - show current query of a process
+c       - toggle the display of process commands
+d       - change number of displays to show
+h or ?  - help; show this text
+i       - toggle the displaying of idle processes
+n or #  - change number of processes to display
+o       - specify sort order (cpu, size, res, xtime, qtime, iops, iorps, iowps, reads, writes, locks, command, flag, rlag, slag, wlag)
+q       - quit
+s       - change number of seconds to delay between updates
+u       - display processes for only one user (+ selects all users)
+```
+
 <https://github.com/percona/pg_stat_monitor>
 Query Performance Monitoring Tool for PostgreSQL
 
