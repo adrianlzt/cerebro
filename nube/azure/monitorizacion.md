@@ -1,5 +1,7 @@
 # VMInsights
 
+<https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/virtualMachines>
+
 Agentes antiguos?
 
 ```bash

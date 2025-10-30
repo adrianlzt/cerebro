@@ -2,6 +2,9 @@
 
 Usar las herramietnas de monitoring.md
 
+¿Que procesos escriben/leen de las base de datos?
+walwriter, bgwriter, checkpointer, autovacumm, ...?
+
 # Borrados lentos
 
 Hacer un explain para ver que está haciendo.

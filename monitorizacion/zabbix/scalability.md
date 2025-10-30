@@ -229,6 +229,14 @@ trends_uint | 37 GB | 317 GB | 18 GB | 17.55 | 478064448 | 83 | 40
 
 # Valores de referencia
 
+## Proxy enviando 18.5kNVPS
+
+Zabbix 7.0.19 + postgres-timescaledb
+
+16GiB / 8 cores
+6.4GiB mem available
+load ~1.5
+
 ## 18000 NVPS
 
 Hosts: 18.3k (17.8k activos)
