@@ -55,6 +55,13 @@ CREATE EXTENSION pg_track_settings;
 Estas extensiones las podemos crear en una db "powa".
 Con que carguemos las extensiones ahí ya analizarán todas las dbs.
 
+Crear un usuario "powa" con:
+
+```sql
+GRANT EXECUTE ON FUNCTION public.pg_qualstats_reset() TO powa;
+GRANT pg_read_all_stats TO powa;
+```
+
 # Servidor repositorio
 
 ```bash
@@ -91,7 +98,7 @@ Modificar configuración:
 SELECT powa_configure_server(1, '{"frequency": 60}');
 ```
 
-# colector
+# collector
 
 <https://github.com/powa-team/powa-collector>
 
@@ -118,6 +125,28 @@ powa-collector.conf
 }
 ```
 
+Ejemplos de queries que lanzar contra los remote servers:
+
+```sql
+select * from powa_statements_src(0);
+select * from powa_kcache_src(0);
+select * from powa_qualstats_src(0);
+SELECT public.pg_qualstats_reset();
+SELECT * FROM public.powa_wait_sampling_src(0);
+SELECT * FROM public.pg_track_settings_rds_src(0);
+SELECT * FROM public.pg_track_settings_reboot_src(0);
+SELECT * FROM public.pg_track_settings_settings_src(0);
+SELECT * FROM public.powa_catalog_database_src(0);
+SELECT * FROM public.powa_catalog_role_src(0);
+SELECT * FROM public.powa_replication_slots_src(0);
+SELECT * FROM public.powa_stat_activity_src(0);
+SELECT * FROM public.powa_stat_archiver_src(0);
+SELECT * FROM public.powa_stat_bgwriter_src(0);
+SELECT * FROM public.powa_stat_checkpointer_src(0);
+SELECT * FROM public.powa_stat_database_src(0);
+...
+```
+
 # Interfaz web
 
 <https://powa.readthedocs.io/en/latest/components/powa-web/index.html#powa-web>
@@ -129,3 +158,9 @@ podman run --rm -it -P --name powa-web --net powa-test -v "$PWD/powa-web.conf:/e
 ```
 
 Usar las credenciales de postgres para acceder.
+
+## Errores
+
+### Could not get status for this instance
+
+Reiniciar powa-web

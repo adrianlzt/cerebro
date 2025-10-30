@@ -1,4 +1,3 @@
-??? desde aquí hasta ???FIN las líneas pueden haber sido insertadas/borradas
 <https://www.postgresql.org/docs/current/user-manag.html>
 
 Los usuarios y los grupos son roles.
@@ -32,21 +31,36 @@ Solo el owner puede DROP/ALTER/GRANT
 No se puede hacer REVOKE a superadmins.
 Los superusers pueden hacer cualquier cosa. Incluso pueden borrar las trazas de lo que han hecho.
 
+# Consultas
+
 Para consultar los usuarios y sus roles
+
+```sql
 \du+
-SELECT \* FROM pg_roles; <- se puede ejecutar estando en cualquier bd
+SELECT * FROM pg_roles; -- se puede ejecutar estando en cualquier bd
 SELECT rolname, rolpassword FROM pg_authid;
+```
+
 aqui vemos la pass en md5
 
 NOTA:
 Si queremos meter la pass directamente encriptada con md5 podemos generarla asi (el nombre de role debe ponerse como sufijo):
+
+```bash
 echo -n "CONTRASEÑAROLE" | md5sum | awk '{print "md5"$1;}'
+```
+
 Ejemplo, user=pepe contraseña=bla123, pondríamos:
+
+```bash
 echo -n "bla123pepe" ...
+```
 
 Con ansible: "{{ 'md5' + (password + user) | hash('md5') }}"
 
-Consultar los grants en una db:
+Para ver el detalle e los permisos
+
+```sql
 SELECT grantee as role, table_schema as schema, table_name as table, privilege_type FROM information_schema.role_table_grants;
 
 SELECT grantee
@@ -61,10 +75,37 @@ WHERE grantee != 'postgres'
 -- and table_name = 'sometable' /_ uncomment line to filter table_/
 GROUP BY 1, 2, 3, 4;
 
-\z table
-para permisos de una tabla
+\z table -- para permisos de una tabla
+```
 
 Los usuarios tendrán los grants puestos directamente a él, a los roles heredados y los grants de public.
+
+## Consultar roles asignados
+
+Ver que roles tiene asignado cada role/user:
+
+```sql
+SELECT
+    r.rolname,
+    ARRAY(
+        SELECT b.rolname
+        FROM pg_catalog.pg_auth_members m
+        JOIN pg_catalog.pg_roles b ON (m.roleid = b.oid)
+        WHERE m.member = r.oid
+    ) as memberof
+FROM pg_catalog.pg_roles r
+ORDER BY 1;
+```
+
+## Funciones
+
+Permisos para una función
+
+```sql
+\df+ public.pg_qualstats_reset
+```
+
+# Usuarios
 
 ## Crear usuarios (roles con login privilege)
 
@@ -88,26 +129,40 @@ Será necesario crearla previamente: CREATE DATABASE pepe;
 
 <http://www.postgresql.org/docs/devel/static/sql-alteruser.html>
 
+```sql
 ALTER USER 'pepe' ...
+```
 
 ### cambiar password / contraseña
 
 Desde psql podemos hacer:
+
+```sql
 \password USUARIO
 
 alter user postgres password 'xxx';
 ALTER ROLE partman PASSWORD 'par3456man';
+```
 
 Contraseñas almacenadas
-select \* from pg_catalog.pg_shadow;
+
+```sql
+select * from pg_catalog.pg_shadow;
+```
 
 ### dar roles a posteriori
 
 Permitir a un usuario crear nuevas dbs
+
+```sql
 alter user usuario createdb;
+```
 
 Asociar un role a un usuario:
+
+```sql
 grant read_only_user to intdevteam;
+```
 
 ## Privilegios / Permisos
 
@@ -127,7 +182,10 @@ No: Reject access.
 Yes: Check column privileges.
 
 Chequear permisos de una bbdd:
+
+```sql
 \dp
+```
 
 Explicación output:
 rolename=xxxx -- privileges granted to a role
@@ -164,8 +222,10 @@ UPDATE, DELETE (posiblemente necesite SELECT)
 REFERENCES (para poder hacer referencia a otras columas de tablas a las que no tienes permisos, generalemente porque tendremos una columna referenciada a esa tabla que no tenemos acceso)
 TRIGGER
 
+```sql
 GRANT roleX to roleY;
 REVOKE roleX to roleY;
+```
 
 La opción "WITH GRANT OPTION" es para que un role pueda dar ese privilegio a otros roles.
 
@@ -173,44 +233,78 @@ CUIDADO! Si quitamos a un role la opción de hacer INSERT, pero ese role pertene
 Siempre que tengas un camino con permiso con alguno de los roles, podras hacer las cosas.
 
 Dar permiso de login a un role:
+
+```sql
 ALTER ROLE nombre LOGIN;
+```
 
 Permiso para acceder a una database:
+
+```sql
 GRANT CONNECT ON DATABASE NombreDatabase to "user";
+```
 
 Permiso para leer una tabla:
+
+```sql
 GRANT SELECT ON nombreTabla to user;
+```
 
 Permiso para leer de todas las tablas del schema public:
+
+```sql
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO slator;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO roleA,roleB,roleC;
+```
 
 NOTA: si le damos acceso a todas las tablas, no tendrá acceso a las que se creen nuevas. Mirar "Privilegios por defecto"
 
 Permiso para editar una tabla.
+
+```sql
 GRANT UPDATE ON accounts TO joe;
+```
 
 Todos los permisos para una db (solo da CREATE, CONNECT y TEMPORARY).
+
+```sql
 GRANT ALL ON DATABASE basededatos TO joe;
+```
 
 Para dar todos los permisos (lectura y escritura incluídos):
+
+```sql
 GRANT ALL ON SCHEMA public TO new_user;
+```
+
 NOTA: solo para el schema public. Y si se crean nuevas tablas no aplicará.
 
 Quitar permisos a un role:
+
+```sql
 REVOKE SELECT ON public.events FROM auditor;
 REVOKE SELECT ON ALL TABLES IN SCHEMA public FROM prueba;
+```
 
 Dar permisos en una función que está en otro schema que usa determianda tabla:
+
+```sql
 GRANT USAGE ON SCHEMA partman to zabbix_odbc;
 grant EXECUTE ON FUNCTION partman.check_default TO zabbix_odbc;
 GRANT SELECT ON partman.part_config TO zabbix_odbc;
+```
 
 Dar permisos de creación de tablas temporales a un role:
+
+```sql
 grant temp on database zabbix to partman;
+```
 
 Mover todo lo que pertenezca a un usuario a otro:
+
+```sql
 reassign owned by foo TO bar;
+```
 
 ### Privilegios por defecto (default privileges) / permisos por defecto
 
@@ -218,36 +312,57 @@ Cuando un usuario crea tablas las crea siendo su dueño.
 Podemos configurar el usuario para que cuando cree tablas de permisos a otros roles, a parte de a si mismo.
 
 Consultar que privilegios por defecto da cada user:
+
+```sql
 \ddp
+```
 
 Ejemplo para que las tablas creadas por foo le den permisos de lectura a bar:
+
+```sql
 ALTER DEFAULT PRIVILEGES
 FOR USER foo
 IN SCHEMA schema_name
 GRANT SELECT ON TABLES TO bar;
+```
 
 Otra forma:
+
+```sql
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO Read_Only_User;
+```
 
 ## Borrar usuarios
 
 <http://www.postgresql.org/docs/8.4/static/sql-dropuser.html>
 <http://www.postgresql.org/docs/8.4/interactive/app-dropuser.html>
 
-dropuser nombre
 comando unix
 
+```bash
+dropuser nombre
+```
+
+```sql
 DROP USER 'nombre';
+```
 
 ## Parámetros usuarios
 
 Consultar:
+
+```sql
 \drds
+```
 
 ### Limitar tiempo queries
 
 Timeout: limitar a NOMBREROLE para que las ejecuciones no puedan durar más de 1s:
+
+```sql
 alter role NOMBREROLE set statement_timeout=1000;
+```
+
 Esto solo aplica cuando el user vuelve a conectar.
 
 Para ver los params de los usuarios: \drds
@@ -295,10 +410,15 @@ Fichero de ejemplo en este directorio.
 
 Tras modificar el fichero deberemos recargar la config (no hace falta reiniciar la bbdd):
 
-# SELECT pg_reload_conf()
+```sql
+SELECT pg_reload_conf()
+```
 
 O desde la consola:
+
+```bash
 pg_ctl reload
+```
 
 ## pg_ident.conf
 
@@ -319,11 +439,16 @@ Es el que aparece sin nombre, ejemplo:
 =UC/postgres
 
 Quitar permisos por defecto de PUBLIC:
+
+```sql
 REVOKE ALL ON DATABASE db_name FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
+```
 
 Los roles que creemos tendrán que tener los permisos CONNECT a la db y USAGE sobre el schema public.
 
 # Dump roles
 
+```bash
 pgdump_all --roles-only
+```
