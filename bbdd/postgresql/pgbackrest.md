@@ -125,7 +125,7 @@ When executed with archive-push in an asynchronous configuration, the command pe
 3 If the WAL segment has not been pushed and a background async process has not yet been started by this command execution, it will:
    • Acquire a lock.
    • Fork a new background archive-push process with the async role (archive-push:async). This new process is responsible for doing the actual work of pushing WAL files.
-   • Release the lock (/tmp/pgbackrest/zabbix-archive.lock)
+   • Release the lock (/tmp/pgbackrest/iometrics-archive.lock)
 4 The original command continues to wait and check the status until it sees that the specific WAL file has been successfully archived or the timeout is reached.
 5 If the WAL file is not pushed before the timeout, an error is thrown. Otherwise, it logs a success message.
 
@@ -284,7 +284,13 @@ pgbackrest --stanza=zabbix stop
 pgbackrest --stanza=zabbix stanza-delete
 ```
 
-Borrará el contenido del repo.
+Un truco es modificar el `backup/STANZA/backup.info` y meterle a mano un backup full al final y luego borrar.
+Si modificamos ese fichero tenemos que modificar el `backrest-checksum` del final del fichero.
+Lo más sencillo es ejecutar el pgbackrest, que se quejará de que el checksum es inválido.
+Si existe el backup.info.copy y el backup.info tiene el checksum mal, pgbackrest, silenciosamente, usará el backup.info.copy.
+<https://github.com/pgbackrest/pgbackrest/blob/bfd97907311a25ed239798691cff52cf73acdb83/src/info/infoBackup.c#L696>
+
+Usando un repo de azure el pgbackrest no se queja del checksum, pero parece que lo ignora y coge el `.copy`.
 
 # Verify
 

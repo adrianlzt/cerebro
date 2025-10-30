@@ -126,6 +126,12 @@ En este caso se quedaria orphan, y saldrá un boton de "Adopt package" para mant
 
 # Fallos GPG
 
+Intentar importar la clave a mano:
+
+```bash
+gpg --keyserver keyserver.ubuntu.com --recv-keys XXXX
+```
+
 ## Clave sin nombre
 
 ```bash

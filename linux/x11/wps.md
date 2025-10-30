@@ -3,4 +3,6 @@ wps
 
 et para excel
 
-https: onlyoffice;
+onlyoffice
+
+Para la terminal tenemos: doxx

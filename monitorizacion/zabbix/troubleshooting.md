@@ -49,6 +49,9 @@ with open(log, 'r') as f:
 
 Mirar troubleshooting_tiempo_entre_lineas.py para buscar saltos de tiempo.
 
+Otra app para buscar tiempos entre líneas, sacados del journald:
+<https://github.com/datadope-io/zabbix-logs-gaps>
+
 # Queues
 
 queue.md
@@ -66,7 +69,11 @@ Lag de los datos de la bbdd respecto al tiempo real (Solo cojemos los items acti
 select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
 
 Obtener estado cache:
+
+```bash
 while true; do zabbix_server -R diaginfo=historycache | grep -A 1 "Memory.data" | grep used; sleep 10; done
+```
+
 El used suele estar por debajo de 1M.
 
 En caso de que se llene mucho, zabbix no permite empujar los datos desde los zabbix-proxies.
@@ -92,6 +99,12 @@ Tal vez otros procesos de zabbix bloqueando la cache y ralentizando a los histor
 
 Tenemos?
 Mirar "Problema overflow" en proxy.md
+
+Mirar diaginfo.
+
+Cola de preprocessing?
+
+Mirar sección cache y el problema de que el server no deja enviar a los proxies.
 
 # Zabbix web: Audit, login incorrectos
 

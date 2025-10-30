@@ -1,5 +1,5 @@
-<https://github.com/facebookincubator/below>
-<https://developers.facebook.com/blog/post/2021/09/21/below-time-travelling-resource-monitoring-tool/?ck_subscriber_id=185276597>
+https://github.com/facebookincubator/below
+https://developers.facebook.com/blog/post/2021/09/21/below-time-travelling-resource-monitoring-tool/?ck_subscriber_id=185276597
 
 Como un atop moderno.
 Tiene un demonio que va almacenando métricas y una interfaz similar a htop para consultarlas.
@@ -36,13 +36,11 @@ docker run --rm --name below-replay --privileged --cgroupns=host --pid=host -it 
 ```
 
 # Config
-
 sudo systemctl enable --now below
 
 Si queremos recolectar io-stat: --collect-io-stat
 
 # Uso
-
 below live
 
 ? mostrar ayuda
@@ -63,6 +61,7 @@ D sort by total disk activity(cgroup view and process view only)
 También podemos ir a cualquier columna con "." y "," y luego:
 S ordenar
 SS ordernar inversamente
+
 
 / buscar
 control+l dejar de buscar (borrar el filtro)
@@ -102,7 +101,6 @@ for i in $(seq 0 300); do echo -n "$i - "; docker exec -it below-replay /below -
 ```
 
 ## Histórico
-
 Acceder a valores del pasado
 below replay -t "3m ago"
 
@@ -110,7 +108,6 @@ t: avanzar 10s
 T: retroceder 10s
 
 ## Short lived procs
-
 Los agrega en el "sample" posterior al proceso terminado.
 Por ejemplo, si el proceso se ejecutó a las 00:03 y los bucket saltan de 5 en 5s,
 veremos el proceso en el sample 00:05.
@@ -119,8 +116,8 @@ En el "state" pondrá DEAD
 Mostrar todos los procesos dead entre unas fechas:
 sudo below dump process -b 08:40 -e 09:00 --select state --filter DEAD --fields datetime pid ppid comm uptime_secs
 
-# Dump
 
+# Dump
 below dump
 
 Nos permite exportar los datos con diferentes filtrados y formatos.

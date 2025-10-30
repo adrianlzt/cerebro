@@ -189,6 +189,39 @@ La versión con latencia solo muestra conexiones establecidas.
 Mirando los dos comandos podríamos encontrar conexiónes que no se establecen.
 Estaría bien una tool para esto (intentos de conexión no conseguidos)
 
+### tcpconn-hist
+
+<https://gist.github.com/adrianlzt/9d3935b02b1bcdb90634413005cf3ef1>
+
+He hecho esta variante para saber cuantas conexiones se establecen a lo largo de un periodo.
+También añadimos filtrado por ip destino.
+Si tenemos pérdidas de capturas ("Possibly lost 1236 samples"), ejecutar como:
+
+```bash
+./tcpconnect --histogram 2> /dev/null
+```
+
+Ejemplo, donde vemos una distribución homogénea de las conexiones:
+
+```
+Connection distribution over the last 15 seconds (Total: 459422)
+[ 0.00 -  1.00 s]: 29073 |##########################################
+[ 1.00 -  2.00 s]: 34276 |##################################################
+[ 2.00 -  3.00 s]: 29457 |##########################################
+[ 3.00 -  4.00 s]: 29234 |##########################################
+[ 4.00 -  5.00 s]: 31700 |##############################################
+[ 5.00 -  6.00 s]: 30756 |############################################
+[ 6.00 -  7.00 s]: 30024 |###########################################
+[ 7.00 -  8.00 s]: 29107 |##########################################
+[ 8.00 -  9.00 s]: 31470 |#############################################
+[ 9.00 - 10.00 s]: 29094 |##########################################
+[10.00 - 11.00 s]: 33621 |#################################################
+[11.00 - 12.00 s]: 29366 |##########################################
+[12.00 - 13.00 s]: 31817 |##############################################
+[13.00 - 14.00 s]: 30161 |###########################################
+[14.00 - 15.00 s]: 30266 |############################################
+```
+
 ## tcpaccept
 
 Muestra conexiones entrantes (cuando se produce la syscall accept())
@@ -215,3 +248,21 @@ Captura las llamadas de resolución de nombres y nos devuelve por quien se ha pr
 # sslsniff
 
 Analizar tráfico tls
+
+# tcpsynbl
+
+Tracing SYN backlog size
+
+Muestra un histograma del tamaño del backlog
+
+# Suse linux
+
+Para soluciionar:
+modprobe: FATAL: Module kheaders not found in directory /lib/modules/5.14.21-150500.33.75-azure
+
+Instalar:
+
+```bash
+zypper install kernel-devel
+zypper install kernel-devel-azure # en azure SLES
+```

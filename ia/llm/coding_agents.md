@@ -6,6 +6,8 @@ qwen-code.md
 aider
 ia/llm/aider-chat.md
 
+gemini-cli.md
+
 <https://github.com/openai/codex>
 el de openai
 Un poco rollo que pide confirmación para cada comando. No hace lo típico de "permitir todos los comandos 'XX *'"
@@ -17,7 +19,7 @@ ia/llm/goose-agent.md
 
 <https://github.com/FoundationAgents/OpenManus>
 
-claude code, con <https://github.com/musistudio/claude-code-router> para poder modificar el modelo
+claude-code.md
 
 # Comparativa
 

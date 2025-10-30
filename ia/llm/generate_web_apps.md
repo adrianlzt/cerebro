@@ -12,6 +12,8 @@ Gamma 3.0
 
 <https://topai.tools/alternatives/v0-dev-by-vercel-labs>
 
+<https://base44.com/pricing>
+
 replit agent 3
 <https://x.com/svpino/status/1966157373112037435?t=0Y-_uQ0eBf9-9z0rtCd2jA&s=08>
 

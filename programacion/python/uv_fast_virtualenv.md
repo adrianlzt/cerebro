@@ -119,3 +119,11 @@ docker run ghcr.io/astral-sh/uv:alpine --help
 COPY pyproject.toml uv.lock /app/
 RUN uv sync --frozen
 ```
+
+```Dockerfile
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
+
+COPY . .
+RUN uv sync --locked --no-dev
+```

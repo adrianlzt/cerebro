@@ -38,19 +38,21 @@ apt-get install wireshark-common
 
 Si no podemos hacer ssh como root tendremos que permitir a un usuario normal tener permisos para capturar con dumpcap
 setfacl -m u:adrian:rx /usr/sbin/tcpdump
-  dar permisos de ejecución a un usuario en particular (no necesario si others ya tiene +x)
+dar permisos de ejecución a un usuario en particular (no necesario si others ya tiene +x)
 setcap "CAP_NET_RAW+eip" /usr/sbin/tcpdump
-  permitimos al binario leer los paquetes de red, sin verificar el usuario que lo ejecuta
+permitimos al binario leer los paquetes de red, sin verificar el usuario que lo ejecuta
 
 Para quitar la capability:
 setcap -r /usr/sbin/tcpdump
 
 ## Merge
+
 <https://www.wireshark.org/docs/wsug_html_chunked/ChIOMergeSection.html>
 Ver dos capturas al mismo tiempo.
 Útil si hemos capturado en origen y destino.
 
-## Mate ##
+## Mate
+
 <http://wiki.wireshark.org/Mate>
 MATE's goal is to enable users to filter frames based on information extracted from related frames or information on how frames relate to each other. MATE was written to help troubleshooting gateways and other systems where a "use" involves more protocols. However MATE can be used as well to analyze other issues regarding a interaction between packets like response times, incompleteness of transactions, presence/absence of certain attributes in a group of PDUs and more.
 
@@ -62,17 +64,20 @@ Lo he dejado tambien en este directorio con el nombre: wireshask-tcp.mate
 Ahora si siltramos por: mate.tcp_ses.NumOfPdus == 3
 Estamos consiguiendo sacar las sesiones tcp que estén compuestas por tres paquetes.
 
-## Problemas análisis falso checksum ##
+## Problemas análisis falso checksum
 
 Si wireshark nos dice que el checksum de un paquete de salida es incorrecto es porque estamos capturando el paquete entre el nivel 2 y el nivel 1, y el checksum se calcula en la tarjeta de red, por lo tanto aún no está generado y por eso falla.
 
 # HTTP/2.0
+
 <https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=9042>
 
 # Paquetes de muestra
+
 <https://wiki.wireshark.org/SampleCaptures#Other_Sources_of_Capture_Files>
 
 # Filtros / condicionales
+
 <https://www.wireshark.org/docs/man-pages/wireshark-filter.html>
 <https://www.wireshark.org/docs/wsug_html_chunked/ChWorkBuildDisplayFilterSection.html>
 
@@ -93,6 +98,7 @@ tcp.time_relative > 3
 tiempo entre el paquete y el primero de su frame mayor a 3"
 
 # Visualización / columnas
+
 <https://unit42.paloaltonetworks.com/unit42-customizing-wireshark-changing-column-display/>
 
 Podemos añadir un campo cualquier como columna custom, picharle con el botón derecho.
@@ -103,6 +109,7 @@ Leer ficheros con la cli y aplicar filtros:
 tshark -r 2020-05-25_11:49:13.pcap -Y '(mysql.command == 22) && !(mysql.query contains "SELECT")'
 
 # USB
+
 <https://wiki.wireshark.org/CaptureSetup/USB>
 
 sudo modprobe usbmon
@@ -126,4 +133,12 @@ Aquí se explican las razones:
 
 ```
 frame matches "User-Agent: \\r\\n$"
+```
+
+# editcap
+
+Nos permite dividir los ficheros pcap
+
+```bash
+editcap -r original.pcap -c 1000 first_1000_packets.pcap
 ```

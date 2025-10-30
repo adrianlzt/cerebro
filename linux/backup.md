@@ -19,17 +19,17 @@ export BORG_PASSCOMMAND="gopass show -o backup_borg"
 export BORG_REPO="<borgbackup@server.borg.cloud>:backup"
 
 borg init -e repokey
-  inicializar el backup (la config necesaria en el remoto)
+inicializar el backup (la config necesaria en el remoto)
 
 borg list
-  sacar listado de backups
+sacar listado de backups
 
 borg list ::default-2020-05-21T08:42:00
-  sacar listado de un backup determinado
+sacar listado de un backup determinado
 
 borg extract --list ::default-2020-05-21T08:42:00 home/user/pulse
-  extraer/recuperar ciertos ficheros de un backup
-  los dejará en $PWD/home/user/pulse
+extraer/recuperar ciertos ficheros de un backup
+los dejará en $PWD/home/user/pulse
 
 borg mount ::nombre-fecha mountpath/
 
@@ -45,6 +45,9 @@ Logs vorta
 ## Analizar cuanto espacio va a ocupar un backup
 
 En vorta, en la vista de fuentes parece que lo calcula.
+
+Otra app que he hecho para ver donde se va el storage
+<git@github.com>:adrianlzt/borg-storage-analyzer.git
 
 ### Usando baobab
 
@@ -85,7 +88,7 @@ Y la password ejecutando un comando: RESTIC_PASSWORD_COMMAND
 
 Hacer un backup de un directorio
 restic backup dir1/ dir2/ dir3/file1
-  usará deduplicación para no enviar datos de más
+usará deduplicación para no enviar datos de más
 
 Si volvemos a ejecutar el backup contra el mismo dir, verá que es lo mismo y solo enviará los cambios
 En cada id tendremos todos los ficheros del directorio.
@@ -117,7 +120,7 @@ restic ls ID
 
 Buscar ficheros en todos los snapshots
 restic find nombre
-restic find "*.sql"
+restic find "\*.sql"
 
 Dump de un fichero
 restic dump 098db9d5 production.sql | mysql
@@ -149,12 +152,12 @@ Seleccionar con --path --host --include
 <https://restic.readthedocs.io/en/latest/060_forget.html>
 Costoso
 restic forget --prune a8228ef0
-  forget solo "olvida". Prune borra
+forget solo "olvida". Prune borra
 
 Si hicimos un backup de un dir y borramos un id viejo, los ficheros seguiran estando en los ids nuevos
 
 restic forget --keep-last 1 --prune
-  dejar solo el último backup de cada directorio
+dejar solo el último backup de cada directorio
 
 Tenemos varios parámetros para poder políticas de borrado
 <https://restic.readthedocs.io/en/latest/060_forget.html#removing-snapshots-according-to-a-policy>
@@ -167,7 +170,7 @@ Podemos gestionar varias keys para acceder al repo
 restic key list/add/remove/passwd
 
 restic key add
-  crearemos una nueva key con la pass que pongamos. Parece que el User y Host lo pone de forma automática <https://github.com/restic/restic/blob/master//internal/repository/key.go#L223>
+crearemos una nueva key con la pass que pongamos. Parece que el User y Host lo pone de forma automática <https://github.com/restic/restic/blob/master//internal/repository/key.go#L223>
 
 si borramos la key, se dejará de tener acceso.
 
@@ -180,11 +183,11 @@ podemos pasar --json para sacar el output en formato json
 <https://rsnapshot.org/>
 basado en rsync, escrito en perl. Conecta remotamente con las máquinas para obtener los backups
 
-## Dirvish ##
+## Dirvish
 
 Mirar dirvish.md
 
-## Rsnapshot ##
+## Rsnapshot
 
 Para tener un servidor donde almacenar backups
 mirar rsnapshot.md
@@ -193,12 +196,12 @@ mirar rsnapshot.md
 
 cd dir/
 git init .
-git add *
+git add \*
 git commit -a -m "initial commit"
 
 Cron:
 cd dir/
-git add *
+git add \*
 git commit -a -m "dd/mm/yyyy"
 
 # etckeeper
