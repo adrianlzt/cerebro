@@ -77,7 +77,12 @@ La idea es tener el valor más pequeño posible.
 Será muy grande si vemos que no se le está dando uso.
 Dejaremos ese uso más un pequeño percentaje.
 
-pg_buffercache para ver como de lleno está.
+<https://www.postgresql.org/docs/current/pgbuffercache.html>
+pg_buffercache para ver como de lleno está. Hace falta carga la extensión:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS pg_buffercache;
+```
 
 Mirar monitoring.md pg_stat_m tunning.md
 bgwriter para ver si los checkpoints llegan tarde y los shared_buffers están saturados.
@@ -95,7 +100,7 @@ Si tenemos una cache de disco con baterias auxiliares, podemos considerar que te
 Mejor ponerlo en otro disco que esté tuneado para escrituras secuenciales.
 Si tiene una cache battery-backuped conseguiremos fsync inmediatos que será lo mejor para los wal.
 
-# \_ seq_page_cost / random_page_cost
+# seq_page_cost / random_page_cost
 
 Por defecto 1 / 4
 Para disco ssd poner random_page_cost 1.5 o 2.

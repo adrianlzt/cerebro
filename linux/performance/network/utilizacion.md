@@ -1,68 +1,65 @@
 # Utilizacion
+
 sar -n DEV 1
-  mirar "rxKB/s"/max "txKB/s"/max
-  
+mirar "rxKB/s"/max "txKB/s"/max
+
 ip -s link
 /proc/net/dev
-  RX/TX tput / max bandwidth
-  nos da la suma total, tendríamos que calcular en el tiempo
-  
+RX/TX tput / max bandwidth
+nos da la suma total, tendríamos que calcular en el tiempo
+
 iptraf
-  nos saca tabla en ncurses por el consumo por interfaz con muchos detalles
+nos saca tabla en ncurses por el consumo por interfaz con muchos detalles
 
 iftop -i interfaz
-  nos dice el ancho de banda consumido por cada conexion y el total
+nos dice el ancho de banda consumido por cada conexion y el total
 
 nethogs
-  consumo de ancho de banda por proceso
+consumo de ancho de banda por proceso
 
 nicstat
-  "%Util"
+"%Util"
 
-
-
+Para saber cuanto tráfico estamos enviando a un endpoint determinado podemos usar iptables:
+mirar iptables/contador_trafico_endpoint.md
 
 # Saturacion
+
 Paquetes "overrun" o "drop"
 
 ifconfig
-  "overruns", "dropped"
+"overruns", "dropped"
 
 netstat -s
-  "segments retransmited"
+"segments retransmited"
 
 sar -n EDEV
-  *drop and *fifo metrics
-  
+*drop and*fifo metrics
+
 /proc/net/dev
-  RX/TX "drop"
-  
+RX/TX "drop"
+
 nicstat
-  "Sat"
-  
+"Sat"
+
 dynamic tracing for other TCP/IP stack queueing
-  Dropped packets are included as both saturation and error indicators, since they can occur due to both types of events
-
-
-
-
-
-
+Dropped packets are included as both saturation and error indicators, since they can occur due to both types of events
 
 # Errores
+
 ifconfig
-  mirar "errors", "dropped"
-  
+mirar "errors", "dropped"
+
 netstat -i
-  mirar "RX-ERR"/"TX-ERR"
-  
+mirar "RX-ERR"/"TX-ERR"
+
 ip -s link
-  mirar "errors"
-  
+mirar "errors"
+
 sar -n EDEV
-  mirar "rxerr/s" "txerr/s"
-  
+mirar "rxerr/s" "txerr/s"
+
 /proc/net/dev
-  mirar "errs", "drop"
-  
+mirar "errs", "drop"
+
 extra counters may be under /sys/class/net/..
