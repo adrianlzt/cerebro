@@ -266,7 +266,7 @@ Configuration cache: 2.56GiB
 
 ### Database
 
-PostgreSQL 14.5 + timescaledb 2.7 con compresión.
+#### PostgreSQL 14.5 + timescaledb 2.7 con compresión
 
 DATADIR 1.9TiB
 
@@ -277,14 +277,6 @@ Podemos usar este valor para asumir la generación de WAL files:
 4.65 GiB/hour*kNVPS
 ```
 
-Otras medidas que he visto en un entorno de pruebas (divido entre el kNVPS):
-
-```
-(11 MiB/s) /47 -> GiB/hour = 0.822806 GiB/h*kNVPS
-(17 MiB/s) /70-> GiB/hour = 0.853795 GiB/h*kNVPS
-(25 MiB/s) /90-> GiB/hour = 0.976563 GiB/h*NVPS
-```
-
 Al almacenar los en pgbackrest se comprimen, ocupan un 30% del tamaño original.
 
 Backup full 1748GiB, comprimido 433GiB (comprimido ocupa un 25%)
@@ -292,3 +284,19 @@ Backup full 1748GiB, comprimido 433GiB (comprimido ocupa un 25%)
 Backup incremental diario 310GiB, comprimido 71GiB (comprimido ocupa un 20%).
 
 Cada parece necesitar un 25% del tamaño total para el backup incremental.
+
+#### Postgres 17 y timescale 2.23 con compresión
+
+Otras medidas que he visto en un entorno de pruebas.
+
+```
+(11 MiB/s) /47 -> GiB/hour = 0.822806 GiB/h*kNVPS
+(17 MiB/s) /70-> GiB/hour = 0.853795 GiB/h*kNVPS
+(25 MiB/s) /90-> GiB/hour = 0.976563 GiB/h*NVPS
+```
+
+Para 92kNPVS, el disco (PGDATA) crece a un ratio de 40.35GiB/hour
+
+```
+0.438587 GiB/h*kNVPS
+```
