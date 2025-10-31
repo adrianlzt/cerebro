@@ -272,7 +272,18 @@ DATADIR 1.9TiB
 
 WAL 93GiB/hour con 20kNVPS.
 Podemos usar este valor para asumir la generación de WAL files:
-4.65 GiB/hour\*kNVPS
+
+```
+4.65 GiB/hour*kNVPS
+```
+
+Otras medidas que he visto en un entorno de pruebas (divido entre el kNVPS):
+
+```
+(11 MiB/s) /47 -> GiB/hour = 0.822806 GiB/h*kNVPS
+(17 MiB/s) /70-> GiB/hour = 0.853795 GiB/h*kNVPS
+(25 MiB/s) /90-> GiB/hour = 0.976563 GiB/h*NVPS
+```
 
 Al almacenar los en pgbackrest se comprimen, ocupan un 30% del tamaño original.
 
