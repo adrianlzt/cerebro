@@ -1,9 +1,9 @@
-https://eng.uber.com/mysql-migration/
+<https://eng.uber.com/mysql-migration/>
 
 Comentan algunos detalles de como funciona internamente postgres, de como almacena la información en disco.
 
-
 # Memoria / disco / wal
+
 Por defecto los bloques en memoria y disco son 8kB
 
 Al leer las cosas se mueven del disco a shared buffers.
@@ -21,13 +21,13 @@ Si necesitamos memoria y no tenemos, un select puede forzar que dirty blocks se 
 
 "checkpoint" es cuando postgres va moviendo cosas al disco y borrando los WAL files que ya no hacen falta.
 
-"bgwriter" cada 200ms, flushea los least used (el número de páginas que se van a flushear es un cálculo basado en dos parametros https://postgresqlco.nf/en/doc/param/bgwriter_lru_multiplier)
+"bgwriter" cada 200ms, flushea los least used (el número de páginas que se van a flushear es un cálculo basado en dos parametros <https://postgresqlco.nf/en/doc/param/bgwriter_lru_multiplier>)
 Mirar checkpoint.md "# Checkpoint"
 
-
 # buffers
+
 Consultar el shared buffer, podemos usar la extensión pg_buffercache
-https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/
+<https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/>
 
 Tamaño:
 show shared_buffers;
@@ -35,23 +35,27 @@ show shared_buffers;
 create EXTENSION pg_buffercache;
 
 Porcentaje de uso de la buffer cache (este buffer es general para todas las bbdd).
+
+```sql
 select count(relfilenode)*100.0/count(*) as buff_pct_used from pg_buffercache;
+```
 
 Megas usados por cada tabla (solo mostrará las tablas de la bbdd a la que estemos conectados):
-select relname,count(*)*8.0/1024 as cache_mb from pg_buffercache,pg_class where pg_buffercache.relfilenode=pg_class.relfilenode group by relname order by count(*) desc;
 
+```sql
+select relname,count(*)*8.0/1024 as cache_mb from pg_buffercache,pg_class where pg_buffercache.relfilenode=pg_class.relfilenode group by relname order by count(*) desc;
+```
 
 Postgres usa algunos trucos al leer, dando por hecho que por debajo tenemos un SO que va a gestionar la lectura del disco.
-Si hacemos un avg(*) de una tabla, usará un ring buffer para ir calculando los datos, por eso solo usará algunos bloques.
+Si hacemos un avg(\*) de una tabla, usará un ring buffer para ir calculando los datos, por eso solo usará algunos bloques.
 
 Ver el contenido de un block:
-select * from heap_page_items(get_raw_page('prueba4',2));
-
+select \* from heap_page_items(get_raw_page('prueba4',2));
 
 Cuidado! Puede que los objetos no estén en la buffer cache, pero estén en la cache del SO.
 Esto quiere decir que puede estar yendo rápido (porque las cosas están en memoria) aunque no estén en la buffer cache.
 
-
 ## drop cache
-https://github.com/zilder/pg_dropcache
+
+<https://github.com/zilder/pg_dropcache>
 Extension that invalidates shared_buffers cache
