@@ -216,6 +216,8 @@ Fallar cuando:
 - the newest backup is older than --retention-age
 - the newest full backup is older than --retention-age-to-full
 
+Vigilar la cola de ficheros WAL pendientes de archivar.
+
 # Debug
 
 --log-level-console=detail
