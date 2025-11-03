@@ -30,9 +30,14 @@ Consultar el shared buffer, podemos usar la extensión pg_buffercache
 <https://paquier.xyz/postgresql-2/postgres-feature-highlight-pg_buffercache/>
 
 Tamaño:
-show shared_buffers;
 
+```sql
+show shared_buffers;
+```
+
+```sql
 create EXTENSION pg_buffercache;
+```
 
 Porcentaje de uso de la buffer cache (este buffer es general para todas las bbdd).
 
@@ -50,10 +55,27 @@ Postgres usa algunos trucos al leer, dando por hecho que por debajo tenemos un S
 Si hacemos un avg(\*) de una tabla, usará un ring buffer para ir calculando los datos, por eso solo usará algunos bloques.
 
 Ver el contenido de un block:
-select \* from heap_page_items(get_raw_page('prueba4',2));
+
+```sql
+select * from heap_page_items(get_raw_page('prueba4',2));
+```
 
 Cuidado! Puede que los objetos no estén en la buffer cache, pero estén en la cache del SO.
 Esto quiere decir que puede estar yendo rápido (porque las cosas están en memoria) aunque no estén en la buffer cache.
+
+De la doc oficial, número de buffer por relation.
+
+```sql
+SELECT n.nspname, c.relname, count(*) AS buffers
+             FROM pg_buffercache b JOIN pg_class c
+             ON b.relfilenode = pg_relation_filenode(c.oid) AND
+                b.reldatabase IN (0, (SELECT oid FROM pg_database
+                                      WHERE datname = current_database()))
+             JOIN pg_namespace n ON n.oid = c.relnamespace
+             GROUP BY n.nspname, c.relname
+             ORDER BY 3 DESC
+             LIMIT 10;
+```
 
 ## drop cache
 
