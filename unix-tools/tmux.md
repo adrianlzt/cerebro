@@ -101,6 +101,9 @@ C-b n/p/l
 Next/last pane
 C-b o/;
 
+Cambiar formato layout:
+C-b space
+
 Mostrar un numero y cada pane y luego movernos al seleccionado
 C-b q
 
