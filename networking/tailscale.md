@@ -27,7 +27,7 @@ tailscale switch foo
 tailscale switch bar
 
 Profiles definidos:
-sudo cat /var/lib/tailscale/tailscaled.state | jq ._profiles -r | base64 -d | gron | grep "\.Name"
+sudo cat /var/lib/tailscale/tailscaled.state | jq .\_profiles -r | base64 -d | gron | grep "\.Name"
 
 ## Enrutar subredes
 
@@ -58,6 +58,11 @@ Issue en tailscale: <https://github.com/tailscale/tailscale/issues/183>
 El primer cliente será la instalación normal de tailscale.
 
 El segundo expondrá únicamente un socket socks5.
+
+<https://jamesguthrie.ch/blog/multi-tailnet-unlocking-access-to-multiple-tailscale-networks/>
+
+Usando un nuevo namespace de red.
+Dejar como principal en la que necesitemos resolver DNS de tailscale.
 
 # Headscale
 
