@@ -4,6 +4,16 @@
 pg_stat_monitor is developed on the basis of pg_stat_statements as its more advanced replacement.
 Parece que uno de los puntos que soluciona es la mala agregación que hace pg_stat_statements cuando tenemos la misma query con diferentes parameters (un insert con diferente número de values insertados).
 
+Guía de uso: <https://docs.percona.com/pg-stat-monitor/user_guide.html>
+
+Reference: <https://docs.percona.com/pg-stat-monitor/reference.html>
+
+Podemos ver las columnas con:
+
+```sql
+\d pg_stat_monitor;
+```
+
 # pg_stat_statements
 
 <https://www.postgresql.org/docs/current/pgstatstatements.html>
