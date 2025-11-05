@@ -48,7 +48,29 @@ select count(relfilenode)*100.0/count(*) as buff_pct_used from pg_buffercache;
 Megas usados por cada tabla (solo mostrará las tablas de la bbdd a la que estemos conectados):
 
 ```sql
-select relname,count(*)*8.0/1024 as cache_mb from pg_buffercache,pg_class where pg_buffercache.relfilenode=pg_class.relfilenode group by relname order by count(*) desc;
+SELECT
+  c.relname AS table_name,
+  count(*) AS blocks_in_cache,
+  pg_size_pretty(count(*) * 8192) AS size_in_cache, -- Assumes 8kB blocks
+
+  -- Calculate % of total shared_buffers
+  ROUND(
+    (count(*) * 100.0 /
+      (SELECT setting::bigint FROM pg_settings WHERE name = 'shared_buffers')
+    )::numeric, 2
+  ) AS pct_of_total_cache
+FROM
+  pg_buffercache AS b
+JOIN
+  pg_class AS c ON b.relfilenode = c.relfilenode
+WHERE
+  -- Filter for the current database's OID
+  b.reldatabase = (SELECT oid FROM pg_database WHERE datname = current_database())
+GROUP BY
+  c.relname
+ORDER BY
+  blocks_in_cache DESC
+LIMIT 20;
 ```
 
 Postgres usa algunos trucos al leer, dando por hecho que por debajo tenemos un SO que va a gestionar la lectura del disco.
@@ -75,6 +97,49 @@ SELECT n.nspname, c.relname, count(*) AS buffers
              GROUP BY n.nspname, c.relname
              ORDER BY 3 DESC
              LIMIT 10;
+```
+
+## usage count
+
+column called usage_count. This is a small counter (0-5) that indicates how "hot" a block is. When Postgres needs to evict a block, it looks for one with a low usage_count (like 1 or 0).
+
+A usage_count of 1 means: "This block was recently read from disk, used once, and hasn't been touched since." It is a prime candidate for eviction.
+
+A usage_count of 5 (the max) means: "This block is very hot! Don't evict it."
+
+```sql
+SELECT
+  c.relname AS table_name,
+  b.usagecount,
+  count(*) AS num_blocks
+FROM
+  pg_buffercache AS b
+JOIN
+  pg_class AS c ON b.relfilenode = c.relfilenode
+WHERE
+  -- Filter for the current database
+  b.reldatabase = (SELECT oid FROM pg_database WHERE datname = current_database())
+  -- Filter for our specific Zabbix tables and their main indexes
+  AND c.relname like '%history%pkey' or c.relname like '%trends%pkey'
+GROUP BY
+  c.relname, b.usagecount
+ORDER BY
+  count(*) DESC
+limit 20;
+```
+
+Ejemplo database zabbix. Vemos que las particiones de trends se pueden sacar porque no se están usando (han pasado 10' desde las en punto).
+
+```
+        table_name         | usagecount | num_blocks
+---------------------------+------------+------------
+ 119_117_history_pkey      |          5 |     606255
+ 120_118_history_uint_pkey |          5 |     480024
+ 5_5_trends_pkey           |          0 |     231570
+ 6_6_trends_uint_pkey      |          0 |     154681
+ 120_118_history_uint_pkey |          0 |     140385
+ 119_117_history_pkey      |          0 |     122683
+ 119_117_history_pkey      |          4 |      96092
 ```
 
 ## drop cache

@@ -69,6 +69,9 @@ SELECT
     cds.chunk_schema,
     cds.chunk_name,
     pg_size_pretty(cds.total_bytes) AS pretty_total_size,
+    pg_size_pretty(cds.table_bytes) AS pretty_table_size,
+    pg_size_pretty(cds.index_bytes) AS pretty_index_size,
+    pg_size_pretty(cds.toast_bytes) AS pretty_toast_size,
     tic.range_start_integer,
     tic.range_end_integer
 FROM

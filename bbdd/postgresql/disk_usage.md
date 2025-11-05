@@ -1,12 +1,15 @@
 Mostrar las DBs con su tamaño en disco
 \l+
 
-## -- <https://wiki.postgresql.org/wiki/Disk_Usage>
+## <https://wiki.postgresql.org/wiki/Disk_Usage>
 
--- \dti+ nombre\*
--- chequeo de tamaños de tablas (t) y de índices (i), + para más info
+chequeo de tamaños de tablas (t) y de índices (i), + para más info
 
--- Tamaño de las tablas:
+```sql
+\dti+ nombre*
+```
+
+Tamaño de las tablas:
 
 ```sql
 SELECT *, pg_size_pretty(total_bytes) AS total
