@@ -160,3 +160,17 @@ Para comprobar los distintos métodos de escritura a disco y su performance.
 
 He probado en dos discos en una VM de azure y los resultados son prácticamente iguales, pero un disco era 80k IOPS / 1200MiB/s y el otro 3k IOPS / 125 MiB/s.
 No entiendo el por qué.
+
+# huge pages
+
+<https://www.youtube.com/watch?v=jTJ_X3fJ1Ik>
+
+<https://wiki.postgresql.org/images/7/7d/PostgreSQL_and_Huge_pages_-_PGConf.2019.pdf>
+
+Si tenemos servidores muy grandes, se puede estar dedicando bastante memoria solo a mantener la tabla de paǵinas de memoria.
+
+Por ejemplo, para un server con 256GiB de memoria, unos 6GiB era solo la tabla de páginas.
+
+Usar huge pages reduce mucho ese uso.
+
+Debemos desactivar primero las THP (transparent huge pages).

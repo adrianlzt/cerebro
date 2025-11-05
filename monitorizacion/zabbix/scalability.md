@@ -21,8 +21,15 @@ En grandes instalaciones algunas queries pueden tardar entre 10 y 20s. Es espera
 Posiblemente quien cause estas queries tan grades sea el Configuration Syncer, que hace ciertas queries que atacan a prácticamente toda la tabla items.
 
 Medir el lag entre el real time y los datos almacenados. Tenemos que elegir unos cuantos items que se actualicen cada minuto, la query tendrá que tener valores entre 0 y 60" (comprobar con explain que no es muy cara la query):
-Aqui estamos cogiendo solo los items activos calculated (que los tenemos a 1m)
+Aqui estamos cogiendo solo los items activos calculated (que los tenemos a 1m). Ojo, query poco eficiente
+
+```sql
 select ROUND(EXTRACT(EPOCH FROM now()))-clock AS lag from history where itemid IN ( select itemid from items,hosts where items.hostid=hosts.hostid and items.value_type=0 and items.type=15 and items.state=0 and items.status = 0 and items.flags=0 and hosts.name='NOMBRESERVERZABBIX') order by clock desc limit 1;
+```
+
+Hacer pariticionado de tablas usando postgresql+timescaledb.
+Para tener un buen performance los índices de las tablas history y history_uint deben caber en la shared buffers de postgres.
+Mirar que el hit sea del 100%.
 
 # History y trends
 
@@ -270,7 +277,7 @@ Configuration cache: 2.56GiB
 
 DATADIR 1.9TiB
 
-WAL 93GiB/hour con 20kNVPS.
+WAL 93GiB/hour con 20kNVPS. CUIDADO! este valor podría estar mal, mirar más abajo otros valores de referencia.
 Podemos usar este valor para asumir la generación de WAL files:
 
 ```
@@ -299,4 +306,30 @@ Para 92kNPVS, el disco (PGDATA) crece a un ratio de 40.35GiB/hour
 
 ```
 0.438587 GiB/h*kNVPS
+```
+
+WAL, el nodo standby recibe unos 22MiB/s por streaming para estar sincronizado con el primario.
+
+IO disco de la base de datos
+
+sdc es pgdata
+sdf es pgwal
+
+```bash
+iostat -dhNtxz 60 sdc sdf
+
+11/05/25 13:54:28
+     r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util Device
+    0.00   53.30      0.0k     35.2M     0.00     0.15   0.0%   0.3%    0.00    0.94   0.05     0.0k   676.5k   2.60  13.8% sdf
+    4.52  185.18    516.6k     33.3M     0.00     0.68   0.0%   0.4%    0.81    2.21   0.41   114.4k   184.2k   0.51   9.8% sdc
+
+11/05/25 13:55:28
+     r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util Device
+    0.00   50.57      0.0k     33.4M     0.00     0.48   0.0%   0.9%    0.00    0.94   0.05     0.0k   676.6k   2.37  12.0% sdf
+  166.07   82.05      2.5M     24.9M     0.00     0.95   0.0%   1.1%    0.65    0.82   0.18    15.4k   310.9k   0.52  12.8% sdc
+
+11/05/25 13:56:28
+     r/s     w/s     rkB/s     wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz  svctm  %util Device
+    0.00   37.65      0.0k     22.0M     0.00     0.45   0.0%   1.2%    0.00    0.89   0.03     0.0k   599.1k   2.72  10.2% sdf
+    0.47  121.10     19.3k     27.5M     0.00     5.88   0.0%   4.6%    0.75    0.87   0.11    41.4k   232.8k   0.64   7.8% sdc
 ```
