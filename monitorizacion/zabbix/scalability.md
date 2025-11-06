@@ -310,7 +310,7 @@ Para 92kNPVS, el disco (PGDATA) crece a un ratio de 40.35GiB/hour
 
 WAL, el nodo standby recibe unos 22MiB/s por streaming para estar sincronizado con el primario.
 
-IO disco de la base de datos
+IO disco de la base de datos (los dicos tenían un límite de 80k IOPS y 1200MiB/s de BW)
 
 sdc es pgdata
 sdf es pgwal
