@@ -2,9 +2,13 @@ Sintaxis: <http://daringfireball.net/projects/markdown/syntax>
 
 Typora, editor x11 simple WYSIWYG
 
-<https://github.com/benjajaja/mdfried>
-A markdown viewer for the terminal that renders images and big headers
-aur/mdfried-bin
+Para ver en la cli bat funciona bastante bien
+
+```bash
+bat
+```
+
+<https://www.adamsdesk.com/posts/linux-markdown-viewers/>
 
 <https://markwhen.com/>
 A markdown-like journal language for plainly writing logs , gantt charts , blogs , feeds , notes , journals , diaries , todos , timelines , calendars or anything that happens over time.

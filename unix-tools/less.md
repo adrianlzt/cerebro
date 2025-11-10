@@ -1,4 +1,4 @@
-https://github.com/wofr06/lesspipe
+<https://github.com/wofr06/lesspipe>
 Lesspipe
 Install arch:
 yay lesspipe
@@ -6,17 +6,13 @@ yay lesspipe
 Nos colorea ficheros.
 Nos permite abrir un montón de ficheros distintos (llama por debajo a distintos programas)
 
-lesspipe tiene un bug que asume esquema de colores light.
-Arreglado aqui: https://github.com/wofr06/lesspipe/issues/67
-Por ahora puesto a fuego en ~/bin/lesspipe.sh
-
 Crea /etc/profile.d/lesspipe.sh que mete la venv
 LESSOPEN=|/usr/bin/lesspipe.sh %s
 
 En ~/.lessfilter tengo un filtro custom para no formatear los ficheros .md
 
-
 # less file1 file2 file3
+
 :n  siguiente fichero
 :p  anterior fichero
 
@@ -33,17 +29,19 @@ less +F fichero
   Con 'F' volvemos al modo 'tail -f'
   Para varios ficheros, mejor usar tail -f
 
-~/.lesskey 
-#env
+~/.lesskey
+# env
 LESS = -X -i -R -F -M
 
 # -X: no hacer flush de la pantalla al salir
+
 # -i: busqueda case insensitive
+
 # -R: tratar bien los colores
+
 # -F: salir de un fichero si se muestra completo en la pantalla
+
 # -M: mostrar más información del fichero
-
-
 
 b  previous page
 <N>G  línea N
@@ -56,11 +54,8 @@ b  previous page
 &!PALABRA|COSA
   Nos muestra la pantalla sin esas dos palabras
 
-
 Líneas largas, no cortarlas para mostrar toda la línea:
 less -S
-
-
 
 Ejecutar comando:
 !comando
