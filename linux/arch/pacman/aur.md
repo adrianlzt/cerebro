@@ -17,19 +17,33 @@ rm -fr yay_*
 ```
 
 Compilando:
+
+```bash
 git clone <https://aur.archlinux.org/yay.git> && \
 cd yay && \
 makepkg -si
+```
+
 Para poder ejecutar el makepkg necesitamos: - hacerlo con un user que no sea root - instalar: pacman -S fakeroot binutils make gcc - darle sudo al user
 
 Actualizar todos los paquetes de AUR ignorando errores:
+
+```bash
 yay -Quq --aur | xargs -n 1 yay -S --noconfirm
+```
 
 Para ver lo que no se pudieron instalar (instalación pendientes)
+
+```bash
 yay -Quq --aur
+```
 
 Para ver que paquetes de AUR queremos borrar.
+
+```bash
 yay -Quq --aur | xargs -n 1 yay -Qi | grep -e Nombre -e Descr | cut -d : -f 2- | paste -d "#" - - | sed "s/^\([^#]\*\)/sudo pacman -Rs --noconfirm\1 /" | vi
+```
+
 En el vi que nos abre borraremos lo que nos queremos quedar.
 Si alguna app es necesita por otra, no se borrará.
 
@@ -38,18 +52,24 @@ yay -S --mflags --skipinteg PAQUETE
 
 # Editar PKGBUILD antes de instalar
 
+```bash
 yay -G paquete
 cd paquete/trunk
 vi PKGBUILD
-yay -Bi
-si ejecuto esto me vuelve a modificar el PKGBUILD y lo deja como el original
-otra opción: makepkg -si
+makepkg -si
+```
 
 Si hemos modificado las fuentes, podemos borrar las firmas y ejecutar
+
+```bash
 makepkg -si --skipchecksums
+```
 
 Otra opción (no me ha funcionado la última vez que probé con un paquete ya instalado)
+
+```bash
 yay --editmenu -S linux-drm-tip-git
+```
 
 En ~/.cache/yay/PAQUETE tenemos los ficheros del build que hayamos hecho
 Ahí podríamos hacer modificaciones, meter parches, etc y luego hacer makepkg
