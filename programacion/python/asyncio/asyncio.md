@@ -26,11 +26,14 @@ Async, en grandes rasgos, nos provee de un EventLoop, Tasks y sleep.
 Nosotros programaremos nuestras corutinas (tasks), que correran en el EventLoop y llamarán de vez en cuando a sleep para esperar.
 
 Las corutinas tienen esta forma:
+
+```python
 async def main():
-await asyncio.sleep(1)
-print('hello')
+  await asyncio.sleep(1)
+  print('hello')
 
 asyncio.run(main()) # la ejecutamos con esto
+```
 
 Que podemos pasar a await()
 
