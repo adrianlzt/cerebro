@@ -107,3 +107,13 @@ Quito el condicional porque ya controlo que la posición final esté dentro del 
 # Extraer frames
 
 ffmpeg -ss 05:00 -i <input> -t 05:00 filename%05d.png
+
+# m3u8
+
+Descargar
+
+<https://windyakin.github.io/curl2ffmpeg/>
+
+```bash
+ffmpeg  -i 'https://cms.com/file.m3u8' -c copy 'movie.mp4'
+```
