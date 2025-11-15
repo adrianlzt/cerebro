@@ -45,6 +45,19 @@ Si queremos quitar el auth: DANGEROUSLY_OMIT_AUTH=true
 
 ## cli
 
+### mcporter
+
+<https://github.com/steipete/mcporter>
+<https://github.com/steipete/mcporter/blob/main/docs/cli-reference.md>
+
+Convert the chrome-devtools MCP to a CLI via this one weird trick:
+
+```bash
+npx mcporter generate-cli --command "npx -y chrome-devtools-mcp@latest"
+```
+
+MCPorter auto-discovers the MCP servers you already configured in Cursor, Claude Code/Desktop, Codex, or local overrides.
+
 ### chrishayuk/mcp-cli
 
 Nos da un ncurses tipo chat donde, por defecto, con gpt-4o-mini podemos probar una tool.
