@@ -1,3 +1,11 @@
+Python upload file + ngrok
+
+```bash
+uv run https://gist.githubusercontent.com/adrianlzt/d23432808615f31e545b761309e5bc06/raw/0ec8b784eacdf273494dece49f8e61e97567571d/app.py
+ngrok http 5000
+curl -F 'file=@file.tgz' https://22f70.ngrok-free.app/upload
+```
+
 Si tengo la Freebox, tiene un mecanismo para compartir carpetas.
 
 Telegram @filetobot
