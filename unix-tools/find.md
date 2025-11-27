@@ -83,14 +83,18 @@ find . -maxdepth 1 -name ".[^.]*"
 Contar todo el espacio que consumen:
 find . -maxdepth 1 -name ".[^.]*" | xargs du -hsc
 
+Buscar ficheros modificados en una fecha concreta:
+```bash
+find / -newermt "2024-01-12 09:00:00" ! -newermt "2024-01-13 10:10:00"
+```
 
 # depth
 Sirve para que al listar ficheros y directorios, los directorios se muestren al final
 
 
 # Exec
-http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories  
-note that with GNU find, using + instead of ; as the terminator to the -exec will be more efficient as it will use the minimum needed number of forks to chown instead of one fork per file/directory 
+http://serverfault.com/questions/156437/how-to-chown-a-directory-recursively-including-hidden-files-or-directories
+note that with GNU find, using + instead of ; as the terminator to the -exec will be more efficient as it will use the minimum needed number of forks to chown instead of one fork per file/directory
 
 # Print
 Mirar el man, nos da un montón de opciones de como sacar los datos.
