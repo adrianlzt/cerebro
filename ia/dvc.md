@@ -56,6 +56,24 @@ dvc remote modify --local azure connection_string 'BlobEndpoint=https://ACCOUTN.
 
 El `--local` hace que se guarde la info en `.dvc/config.local` y no en `.dvc/config`, de forma que no se suba al git.
 
+Para minio (debe apuntar al puerto de la API de minio, TCP/9000, no a la interfaz web):
+
+```bash
+❯ cat .dvc/config
+[core]
+    remote = minio
+['remote "minio"']
+    url = s3://dvc-scipio/dvc
+    endpointurl = https://minio-api.com:443
+    access_key_id = XXX
+    listobjects = False
+    use_ssl = True
+
+❯ cat .dvc/config.local
+['remote "minio"']
+    secret_access_key = XXX
+```
+
 ## dvc commit
 
 <https://dvc.org/doc/command-reference/commit>
