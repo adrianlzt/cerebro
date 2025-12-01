@@ -1,3 +1,4 @@
+```
 other.example.com {
   loop
   errors
@@ -19,4 +20,4 @@ example.com {
   errors
   forward . 1.1.1.1 8.8.8.8 9.9.9.9
 }
-
+```
