@@ -1,3 +1,5 @@
+Mirar también reenrutar_trafico.md
+
 Si tenemos dos interfaces y nos entra un paquete por una de ellas, la vuelta se hará siguiendo las tablas de rutas.
 
 Este suele ser un típico problema donde un paquete entre por la interfaz eth1, pero la tabla de rutas tiene una salida por defecto por eth0.

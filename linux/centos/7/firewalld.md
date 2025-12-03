@@ -1,5 +1,5 @@
-http://www.certdepot.net/rhel7-get-started-firewalld/
-https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F
+<http://www.certdepot.net/rhel7-get-started-firewalld/>
+<https://fedoraproject.org/wiki/Firewalld?rd=FirewallD#How_to_configure_or_add_zones.3F>
 
 Tenemos distintas zonas activas, cada zona asociada a una o más interfaces.
 Cada zona define que servicios, y/o puertos, permite.
@@ -7,16 +7,22 @@ Por debajo configura el firewall con nftables (nfables list ruleset).
 Tenemos la configuración "runtime" y la "permanent".
 
 Ver que tenemos en runtime (obtiene las zonas activas y saca su resultado):
+
+```bash
 firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={}
+```
 
 Ver que tenemos permanente:
+
+```bash
 firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={} --permanent
-
-
+```
 
 Abrir el firewall sin restricción:
-firewall-cmd --set-default-zone=trusted
 
+```bash
+firewall-cmd --set-default-zone=trusted
+```
 
 firewalld.noarch : A firewall daemon with D-BUS interface providing a dynamic firewall
 
@@ -31,15 +37,16 @@ Union con NFS con SELinux
 No usar con iptables.
 No hace falta reiniciar.
 
-
 Si tenemos varias interfaces activar el forwarding:
 /etc/sysctl.conf
+
+```conf
 net.ipv4.ip_forward=1
+```
 
+```bash
 sysctl -p
-
-
-
+```
 
 Programas de gestión:
 firewall-config (gráfica)
@@ -50,6 +57,7 @@ Reglas nuestras
 /etc/firewalld/
 
 # Conceptos
+
 Zones, services, connections
 
 Se asigna cada interfaz a una zona.
@@ -65,10 +73,12 @@ Zonas predefinidas:
   trusted
 
 # Firewall-cmd
+
 Al añadir cambios, si queremos que sean permanentes meteremos:
   --permanent
 
 ## Status
+
   --state              Return and print firewalld state
   --reload             Reload firewall and keep state information
   --complete-reload    Reload firewall and loose state information
@@ -80,9 +90,8 @@ Al añadir cambios, si queremos que sean permanentes meteremos:
 firewall-cmd --list-all
   muestra zonas activas y que tienen configuradas.
 
-
-
 ## Zonas
+
 La zona por defecto hará lo que diga su "target" (ACCEPT/DROP/default).
 default es: REJECT + allow ICMP + if ingress zone is default, forwardings will follow egress zone target + zone drifting may be applied depending on global setting
 Para modificarlo:
@@ -117,9 +126,8 @@ firewall-cmd --reload
 Añadir una interfaz a una zona:
 firewall-cmd --zone=docker --permanent --add-interface=docker0
 
-
-
 ## Servicios / Puertos
+
 Servicios predefinidos
 firewall-cmd --get-services
 
@@ -131,7 +139,6 @@ firewall-cmd --list-services
 
 Si queremos ver que puerto está asociado a cada service:
 firewall-cmd --info-service=dhcpv6-client
-
 
 Añadir un servicio (abrir un puerto) a una zona (si no le pasamos nada, la de por defecto):
   RECORDAR lo de --permanent
@@ -153,25 +160,22 @@ firewall-cmd --reload
 Quitar reglas:
 firewall-cmd --zone=public --remove-port=2380/tcp --permanent
 
-
-
 ## Filtrar por IPs y puertos
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source
+<https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source>
 
 Podemos asignar ips o subnets a zonas específicas, por ejemplo, podemos asignar una IP a la zona trusted, para que pueda acceder sin restricciones:
 firewall-cmd --zone=trusted --add-source=192.168.2.15
 firewall-cmd --runtime-to-permanent
 Tambien podemos añadir "permanent" al primer comando.
 
-
 ## Services
+
 Ficheros XML que asocian un nombre a una serie de puertos
 Los predefinidos se encuentran en /usr/lib/firewalld/services
 Si queremos crear uno propio cogeremos uno de los predefeinidos, lo modificaremos y pondremos en: /etc/firewalld/services
 
-
 ## Rich rules
-https://fedoraproject.org/wiki/Features/FirewalldRichLanguage#Documentation
+<https://fedoraproject.org/wiki/Features/FirewalldRichLanguage#Documentation>
 man firewalld.richlanguage
 
 Listar rich rules:
@@ -183,8 +187,7 @@ firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.0.0/24"
 Forward IPv6 port/packets receiving from 1:2:3:4:6:: on port 4011 with protocol tcp to 1::2:3:4:7 on port 4012
 firewall-cmd --add-rich-rule='rule family="ipv6" source address="1:2:3:4:6::" forward-port to-addr="1::2:3:4:7" to-port="4012" protocol="tcp" port="4011"'
 
-
-
 # Errores
+
 Make sure polkit agent is running or run the application as superuser.
  -> sudo firewall-cmd ...
