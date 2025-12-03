@@ -161,6 +161,7 @@ Quitar reglas:
 firewall-cmd --zone=public --remove-port=2380/tcp --permanent
 
 ## Filtrar por IPs y puertos
+
 <https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-using_zones_to_manage_incoming_traffic_depending_on_source>
 
 Podemos asignar ips o subnets a zonas específicas, por ejemplo, podemos asignar una IP a la zona trusted, para que pueda acceder sin restricciones:
@@ -175,6 +176,7 @@ Los predefinidos se encuentran en /usr/lib/firewalld/services
 Si queremos crear uno propio cogeremos uno de los predefeinidos, lo modificaremos y pondremos en: /etc/firewalld/services
 
 ## Rich rules
+
 <https://fedoraproject.org/wiki/Features/FirewalldRichLanguage#Documentation>
 man firewalld.richlanguage
 
@@ -186,6 +188,20 @@ firewall-cmd --add-rich-rule='rule family="ipv4" source address="192.168.0.0/24"
 
 Forward IPv6 port/packets receiving from 1:2:3:4:6:: on port 4011 with protocol tcp to 1::2:3:4:7 on port 4012
 firewall-cmd --add-rich-rule='rule family="ipv6" source address="1:2:3:4:6::" forward-port to-addr="1::2:3:4:7" to-port="4012" protocol="tcp" port="4011"'
+
+# Backend
+
+Para ver que backend usa por debajo firewalld:
+
+```bash
+grep "FirewallBackend" /etc/firewalld/firewalld.conf
+```
+
+Si usa nft. Para ver las reglas con nft:
+
+```bash
+nft list ruleset
+```
 
 # Errores
 
