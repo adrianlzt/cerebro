@@ -7,10 +7,10 @@ Pacman
 aur/albert
 
 Config
-~/local/share/albert
+~/.local/share/albert
 
 Módulos custom:
-/home/adrian/.local/share/albert/org.albert.extension.python/modules
+$HOME/.local/share/albert/python
 
 # Plugins
 
