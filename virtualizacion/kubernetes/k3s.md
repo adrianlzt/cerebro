@@ -76,13 +76,13 @@ load balancer, called Klipper (or svclb), comes in.
 
 Here’s the mechanism:
 
- 1. Detection: The Klipper controller, running as part of the k3s server, watches for new services of type: LoadBalancer.
- 2. DaemonSet Creation: When it sees one (like our ingress-nginx-controller service), it automatically creates a DaemonSet. A DaemonSet is a Kubernetes workload that
-    ensures a specific pod runs on every node in the cluster.
- 3. Host Port Exposure: The pods in this DaemonSet are simple proxies. They are configured to listen on specific ports directly on the host node's network interface. This
-    means they grab ports on the actual machine, outside the cluster's internal network.
- 4. Traffic Forwarding: When external traffic arrives at http://<IP_OF_A_NODE>:<PORT>, the Klipper pod running on that specific node receives it and forwards it to the
-    corresponding service inside the cluster (in this case, the NGINX controller's service).
+1. Detection: The Klipper controller, running as part of the k3s server, watches for new services of type: LoadBalancer.
+2. DaemonSet Creation: When it sees one (like our ingress-nginx-controller service), it automatically creates a DaemonSet. A DaemonSet is a Kubernetes workload that
+   ensures a specific pod runs on every node in the cluster.
+3. Host Port Exposure: The pods in this DaemonSet are simple proxies. They are configured to listen on specific ports directly on the host node's network interface. This
+   means they grab ports on the actual machine, outside the cluster's internal network.
+4. Traffic Forwarding: When external traffic arrives at http://<IP_OF_A_NODE>:<PORT>, the Klipper pod running on that specific node receives it and forwards it to the
+   corresponding service inside the cluster (in this case, the NGINX controller's service).
 
 In short, Klipper uses your own cluster nodes as the load balancer.
 
@@ -98,17 +98,25 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: echo.79.76.123.62.nip.io
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: echo-server-service
-            port:
-              number: 80
+    - host: echo.79.76.123.62.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-server-service
+                port:
+                  number: 80
 ```
+
+# Monitoring
+
+## Metrics
+
+<https://k3s.rocks/metrics/>
+
+Usar prometheus
 
 # Uninstall
 
@@ -123,7 +131,7 @@ sudo kill -9 `cat /sys/fs/cgroup/systemd/system.slice/k3s.service/cgroup.procs`
 sudo umount `cat /proc/self/mounts | awk '{print $2}' | grep '^/run/k3s'`
 sudo umount `cat /proc/self/mounts | awk '{print $2}' | grep '^/var/lib/rancher/k3s'`
 sudo umount $(cat /proc/self/mounts | awk '{print $2}' | grep '^/run/netns/cni')
-  creo que esto puede impactar containers corriendo de otras cosas
+creo que esto puede impactar containers corriendo de otras cosas
 sudo umount $(cat /proc/self/mounts | awk '{print $2}' | grep '^/var/lib/kubelet')
 sudo rm -rf /var/lib/rancher/k3s
 sudo rm -rf /etc/rancher/k3s
