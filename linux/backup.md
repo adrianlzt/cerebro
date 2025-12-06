@@ -55,7 +55,10 @@ Obtener los directorios que ignorará borg:
 find /home/adrian -type f -name ".nobackup" 2> /dev/null > .nobackups_dirs
 
 Configurar baobab para ignorar esos directorios:
+
+```bash
 gsettings set org.gnome.baobab.preferences excluded-uris "$(cat .nobackups_dirs | sed "s#/.nobackup#',#" | sed "s#^#'file://#" | tr -d '\n' | sed 's#^#[#' | sed 's#,$#]#')"
+```
 
 ## borgmatic
 
