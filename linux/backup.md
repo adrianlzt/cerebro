@@ -15,23 +15,39 @@ BackupPC
 
 Mirar más abajo el cliente "borgmatic", que nos simplifica el uso de borg.
 
+```bash
 export BORG_PASSCOMMAND="gopass show -o backup_borg"
-export BORG_REPO="<borgbackup@server.borg.cloud>:backup"
+export BORG_REPO="borgbackup@server.borg.cloud:backup"
+```
 
+```bash
 borg init -e repokey
+```
+
 inicializar el backup (la config necesaria en el remoto)
 
+```bash
 borg list
+```
+
 sacar listado de backups
 
+```bash
 borg list ::default-2020-05-21T08:42:00
+```
+
 sacar listado de un backup determinado
 
+```bash
 borg extract --list ::default-2020-05-21T08:42:00 home/user/pulse
+```
+
 extraer/recuperar ciertos ficheros de un backup
 los dejará en $PWD/home/user/pulse
 
+```bash
 borg mount ::nombre-fecha mountpath/
+```
 
 Conectará con la clave ssh que tengamos en ~/.ssh/id_rsa
 
@@ -40,7 +56,10 @@ vorta, interfaz gráfica que facilita el proceso y nos permite hacer scheduling
 Para que pille lo de .nobackup: <https://github.com/borgbase/vorta/issues/1863>
 
 Logs vorta
+
+```bash
 ~/.local/state/Vorta/log
+```
 
 ## Analizar cuanto espacio va a ocupar un backup
 
@@ -52,7 +71,10 @@ Otra app que he hecho para ver donde se va el storage
 ### Usando baobab
 
 Obtener los directorios que ignorará borg:
+
+```bash
 find /home/adrian -type f -name ".nobackup" 2> /dev/null > .nobackups_dirs
+```
 
 Configurar baobab para ignorar esos directorios:
 
@@ -73,16 +95,24 @@ Simple, con varios backends. Escrito en go.
 
 ## Server (podemos usar otras cosas como backend)
 
+```bash
 docker run --rm -it --name restic-server -p 8000:8000 -v "$PWD/data:/data" restic/rest-server rest-server --path /data
+```
 
 ## Cliente
 
 Backend rest-server
 Creamos el repo:
+
+```bash
 restic init -r rest:<http://localhost:8000/>
+```
 
 Podemos crear distintos repos con distintos paths
+
+```bash
 restic init -r rest:<http://localhost:8000/dos>
+```
 
 Usar variables de entorno para pasarle el repo por defecto RESTIC_REPOSITORY
 Y la password ejecutando un comando: RESTIC_PASSWORD_COMMAND
@@ -97,16 +127,25 @@ Si volvemos a ejecutar el backup contra el mismo dir, verá que es lo mismo y so
 En cada id tendremos todos los ficheros del directorio.
 
 Podemos hacer backup de un único fichero de un directorio ya backupeado:
+
+```bash
 restic backup directorio/a
+```
 
 Tenemos varias opciones para excluir/incluir ficheros: --exclude --iexclude --exclude-caches --exclude-file --exclude-if-present --files-from
 --one-file-system no cruzar file systems
 
 Podemos usar tags:
+
+```bash
 restic backup --tag A --tab B directorio/
+```
 
 Backup de contenido de stdin
+
+```bash
 mysqldump [...] | restic -r /srv/restic-repo backup --stdin --stdin-filename production.sql
+```
 
 ### ver contenido
 
@@ -119,33 +158,57 @@ Podemos aplicar filtros y "group by"
 --group-by host
 
 Ver el contenido del backup
+
+```bash
 restic ls ID
+```
 
 Buscar ficheros en todos los snapshots
+
+```bash
 restic find nombre
 restic find "\*.sql"
+```
 
 Dump de un fichero
+
+```bash
 restic dump 098db9d5 production.sql | mysql
+```
 
 Truco para seleccionar un fichero por su path y usar latest en vez del snapshot ID
+
+```bash
 restic dump --path /production.sql latest production.sql | mysql
+```
 
 Dump de un dir, formato tar
+
+```bash
 restic dump /home/other/work latest > restore.tar
+```
 
 Mount/fuse
+
+```bash
 restic mount mnt/
+```
+
 Tendremos la información puesta organizada de varias formas. Por IDs, por hosts, por tags, por snapshots
 
 ### check
 
 Recomendado chequear de vez en cuando los backups. Se puede hacer un check leyendo tambien los datos, mirar --read-data y --read-data-subset
+
+```bash
 restic check
+```
 
 ### Restaurar
 
+```bash
 restic restore ID --target /donde/restaurarlo
+```
 
 Podemos poner "latest" como ID
 Seleccionar con --path --host --include
@@ -154,12 +217,19 @@ Seleccionar con --path --host --include
 
 <https://restic.readthedocs.io/en/latest/060_forget.html>
 Costoso
+
+```bash
 restic forget --prune a8228ef0
+```
+
 forget solo "olvida". Prune borra
 
 Si hicimos un backup de un dir y borramos un id viejo, los ficheros seguiran estando en los ids nuevos
 
+```bash
 restic forget --keep-last 1 --prune
+```
+
 dejar solo el último backup de cada directorio
 
 Tenemos varios parámetros para poder políticas de borrado
@@ -170,9 +240,15 @@ Another example: Suppose you make daily backups for 100 years. Then forget --kee
 ### Keys
 
 Podemos gestionar varias keys para acceder al repo
-restic key list/add/remove/passwd
 
+```bash
+restic key list/add/remove/passwd
+```
+
+```bash
 restic key add
+```
+
 crearemos una nueva key con la pass que pongamos. Parece que el User y Host lo pone de forma automática <https://github.com/restic/restic/blob/master//internal/repository/key.go#L223>
 
 si borramos la key, se dejará de tener acceso.
@@ -197,15 +273,20 @@ mirar rsnapshot.md
 
 # Con git
 
+```bash
 cd dir/
 git init .
 git add \*
 git commit -a -m "initial commit"
+```
 
 Cron:
+
+```bash
 cd dir/
 git add \*
 git commit -a -m "dd/mm/yyyy"
+```
 
 # etckeeper
 
