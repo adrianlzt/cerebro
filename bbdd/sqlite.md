@@ -3,29 +3,37 @@ Repo oficial de sqlite: <http://repo.or.cz/sqlite.git>
 repl online: <https://www.tutorialspoint.com/execute_sql_online.php>
 
 sqlitebrowser - Editor X11 para bases de datos SQLite
+
 Otro browser ncurses: <https://github.com/ZetloStudio/ZeQLplus> Release 1.0.0 Abril 2023: <https://github.com/ZetloStudio/ZeQLplus/releases/download/v1.0.0/zeql_linux_x86_64.zip> Fichero binario estático.
+
 Muy básico y encima falla. Mirando la sqlite de mlflow no me mostraba una columna que tenía.
 
 Los paquetes sqlite y sqlite3 traen un cliente para ver/editar una base de datos sqlite.
 Asegurarse que usamos la versión (2.x o 3.x) de sqlite adecuada.
 
 Ejecutar comando
+
+```bash
 sqlite3 fichero.db "select 1"
+```
 
 Para abrir una base de datos sqlite:
+
+```bash
 sqlite3 bd.sqlite3
-> .tables <- como SHOW TABLES en mysql
-> .schema zombies <- como DESCRIBE en mysql
-> SELECT * FROM zombies;
 
-.dbinfo info sobre la databsae
-.databases para mostrar las que tenemos abiertas y como (fichero, tcp, etc)
+.tables # como SHOW TABLES en mysql
+.schema zombies # como DESCRIBE en mysql
+SELECT * FROM zombies;
+.dbinfo # info sobre la databsae
+.databases # para mostrar las que tenemos abiertas y como (fichero, tcp, etc)
 
-Mostrar headers:
+# Mostrar headers:
 .header on
 
-Modo columna (en vez de usar "|" como separadores, mostrar como psql):
+# Modo columna (en vez de usar "|" como separadores, mostrar como psql):
 .mode column
+```
 
 Configurar por defecto estas opciones con ~/.sqliterc
 
@@ -35,8 +43,11 @@ Configurar por defecto estas opciones con ~/.sqliterc
 .nullvalue (NULL)
 ```
 
-Si no tenemos los helpers ".*" podemos navegar por:
+Si no tenemos los helpers ".\*" podemos navegar por:
+
+```bash
 SELECT* FROM sqlite_master WHERE type='table';
+```
 
 # Time/Date
 
@@ -55,18 +66,22 @@ Esta es la cli que arranca cuando hacemos ejecutamos sqlite3
 Esta el la standard library
 <https://docs.python.org/3.8/library/sqlite3.html>
 
+```python
 import sqlite3
 conn = sqlite3.connect('example.db')
 cursor.execute("select * from sqlite_master")
 
-Database activada:
+# Database activada:
 cursor.execute("PRAGMA database_list;").fetchall()[0][2]
+```
 
 # dump
 
+```bash
 $ sqlite
 .output dump.sql
 .dump
+```
 
 # Extender sqlite
 
