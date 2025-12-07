@@ -8,6 +8,34 @@ Almacena la auth en .gemini/google_account_id y .gemini/oauth_creds.json
 
 Guarda datos en ~/.gemini/GEMINI.md
 
+# Tools
+
+Preaceptar ciertos comandos:
+
+```json
+{
+  "tools": {
+    "allowed": [
+      "ShellTool(ls)",
+      "ShellTool(find)",
+      "ShellTool(cat)",
+      "ShellTool(cd)",
+      "ShellTool(npm run test)",
+      "ShellTool(git diff)",
+      "ShellTool(git status)",
+      "ShellTool(git log)",
+      "ShellTool(gh pr view)"
+    ]
+  }
+}
+```
+
+# Extensions
+
+<https://geminicli.com/extensions/>
+
+Parece que son MCPs y/o ficheros de contexto.
+
 # MCP
 
 <https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md#:~:text=toolCallCommand%22%3A%20%22bin/call_tool%22-,mcpServers,-(object)%3A>
@@ -22,9 +50,6 @@ Guarda datos en ~/.gemini/GEMINI.md
   },
 }
 ```
-
-
-# mcp
 
 ```bash
 gemini mcp list
@@ -41,7 +66,6 @@ Borrar:
 ```bash
 gemini mcp remove chrome-devtools
 ```
-
 
 # Sandbox
 
@@ -105,6 +129,20 @@ Podemos guardar "checkpoints" de los chats para volver luego a ellos:
 Están asociados al directorio donde ejecutamos el comando.
 
 Si queremos reusar un checkpoint en otro directorio, podemos arrancar el comando en el dir que lo queremos, ver el ultimo dir que se crea en ~/.gemini/tmp y copiar el checkpoint-TAG.json desde el otro directoro.
+
+# Cambiar provider
+
+Usar litellm proxy como endpoint
+
+<https://docs.litellm.ai/docs/tutorials/litellm_gemini_cli>
+
+```bash
+GOOGLE_GEMINI_BASE_URL="http://localhost:8080" GEMINI_API_KEY=sk-XXXX /usr/bin/gemini
+```
+
+El modelo en litellm no debe tener prefijo, si no, deberemos usar un routing como se explica.
+
+Tuve que desactivar el model router de gemini cli, porque usa flash-lite para elegir el modelo a usar, pero flash-lite no estaba devolviendo nada y se quedaba atascado. También puede ser por andar poniendo prompts "tontos" para hacer pruebas estilo "hola".
 
 # Debug / troubleshooting
 

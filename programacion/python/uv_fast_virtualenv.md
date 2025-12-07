@@ -1,3 +1,5 @@
+cheatsheet: <https://pbs.twimg.com/media/G3OuIHcaIAAA0D7?format=jpg&name=4096x4096>
+
 Sustituto de "pip" escrito en rust, mucho más rápido.
 
 uv venv
