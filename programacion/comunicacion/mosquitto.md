@@ -1,3 +1,14 @@
-http://mosquitto.org/
+<http://mosquitto.org/>
+
+mirar networking/mqtt/mqtt.md
 
 Mosquitto is an open source (BSD licensed) message broker that implements the MQ Telemetry Transport protocol version 3.1. MQTT provides a lightweight method of carrying out messaging using a publish/subscribe model. This makes it suitable for "machine to machine" messaging such as with low power sensors or mobile devices such as phones, embedded computers or microcontrollers like the Arduino. A good example of this is all of the work that Andy Stanford-Clark (one of the originators of MQTT) has done in home monitoring and automation with his twittering house and twittering ferry. Andy gave a talk on this at OggCamp that explains a bit about MQTT and how he uses it. The slides and audio are available online at slideshare.
+
+# Docker
+
+<https://hub.docker.com/_/eclipse-mosquitto>
+
+```bash
+podman run --rm -it -P eclipse-mosquitto:2.0.22
+docker run -it -p 1883:1883 -v "$PWD/mosquitto/config:/mosquitto/config" eclipse-mosquitto
+```
