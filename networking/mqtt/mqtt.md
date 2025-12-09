@@ -12,71 +12,97 @@ En un ejemplo:
 
 Parece que el canal "$SYS" lo tienen todos los servers y es por donde envían información de su estado.
 
-
 # Client
+
+```bash
 pacman -S mosquitto
 pip install paho-mqtt
+```
 
 ## Cliente gráfico
-https://github.com/kamilfb/mqtt-spy/releases
-  java -jar mqtt*.jar
-  no me funciona
-  Error: no se ha encontrado o cargado la clase principal pl.baczkowicz.mqttspy.Main
 
+<https://github.com/kamilfb/mqtt-spy/releases>
 
+```bash
+java -jar mqtt*.jar
+```
+
+no me funciona
+Error: no se ha encontrado o cargado la clase principal pl.baczkowicz.mqttspy.Main
 
 # Server
+
+```bash
 yaourt -S mosquitto-hg
 apt install mosquitto
+```
 
 Mirar que sea la version 1.4 en adelante, si no, mirar repos testing o similar
 
+```bash
 /usr/bin/mosquitto
-
-
+```
 
 Servidor gratuito de prueba:
-http://test.mosquitto.org/
+<http://test.mosquitto.org/>
 
 Abrir subscriptor:
+
+```bash
 mosquitto_sub -h test.mosquitto.org -t "pepito/" -v
-  Podemos usar el caracter "#" para subscribirnos a todo, o a todo debajo de un path "casa/#"
+```
+
+Podemos usar el caracter "#" para subscribirnos a todo, o a todo debajo de un path "casa/#"
 
 Enviar mensaje con publicador:
+
+```bash
 mosquitto_pub -h test.mosquitto.org -t "pepito/" -m "mensaje"
+```
 
 Con ssl:
+
+```bash
 mosquitto_pub -h m20.cloudmqtt.com -u USUARIO -P PASSWORD -p 28517 -t "otro/" -m "prueba de mensaje" --cafile /etc/ssl/certs/ca-certificates.crt
-
-
+```
 
 # Poner auth
-http://www.steves-internet-guide.com/mqtt-username-password-example/
+
+<http://www.steves-internet-guide.com/mqtt-username-password-example/>
 
 Parecido a como hace auth basic apache.
 
 Crear fichero de passwd:
-mosquitto_passwd -c passwd adrianlzt
 
+```bash
+mosquitto_passwd -c passwd adrianlzt
+```
 
 /etc/mosquitto/conf.d/auth.conf:
+
+```conf
 allow_anonymous false
 password_file /etc/mosquitto/passwd
-
-
+```
 
 # SSL
-https://primalcortex.wordpress.com/2016/03/31/mqtt-mosquitto-broker-with-ssltls-transport-security/
 
-Generar los certificados con https://github.com/owntracks/tools/blob/master/TLS/generate-CA.sh
+<https://primalcortex.wordpress.com/2016/03/31/mqtt-mosquitto-broker-with-ssltls-transport-security/>
+
+Generar los certificados con <https://github.com/owntracks/tools/blob/master/TLS/generate-CA.sh>
 
 /etc/mosquitto/conf.d/ssl.conf
+
+```conf
 listener 8883
 cafile /etc/mosquitto/certs/ca.crt
 certfile /etc/mosquitto/certs/HOSTNAME.crt
 keyfile /etc/mosquitto/certs/HOSTNAME.key
-
+```
 
 Ejemplo con ssl + auth:
+
+```bash
 mosquitto_sub -h 192.168.1.100 -p 8883 -t "pepito/" -u miuser -P mipass -v --cafile ca.crt
 mosquitto_pub -h 192.168.1.100 -p 8883 -t "pepito/" --cafile ca.crt -m "ppp" -u miuser -P mipass
+```
