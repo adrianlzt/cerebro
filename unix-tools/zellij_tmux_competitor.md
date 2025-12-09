@@ -29,9 +29,13 @@ Podemos usar control+click si quieremos enviar el ratón a la aplicación que te
 # Layouts
 
 default
+
 classic
+
 compact: quita la barra de abajo, la del menu de control / alt
+
 disable-status-bar: como compact pero quitando también la barra de status de abajo
+
 strider: abre un navegador de ficheros en un pane estrecho a la izquierda. Los ficheros que seleccionamos los abre en un nuevo pane.
 
 ```bash
@@ -125,6 +129,14 @@ zellij -l welcome
 ```
 
 Podemos restaurar sesiones que se cerraron.
+
+## Resurrect
+
+La información de las sesiones se almacena en:
+
+```bash
+/home/adrian/.cache/zellij/0.43.1/session_info
+```
 
 ## Multiuser
 
