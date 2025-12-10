@@ -1,5 +1,9 @@
 <https://minio.io/>
 
+DEPRECATED
+
+Alternativas: <https://news.ycombinator.com/item?id=46136023>
+
 Storage de objetos con api compatible con Amazon S3
 
 # Server
