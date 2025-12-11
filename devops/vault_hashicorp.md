@@ -604,34 +604,66 @@ Mirando el tráfico, parece que primero encripta una cadena "tonta" y entiendo q
 ### kv storage
 
 Listar contenidos de un storage tipo KV (con el motor KV debe usarse "kv get/list/put" en vez de directamente "get/list/put")
+
+```bash
 vault kv list nombrePath
 vault kv put some/path foo=bar foo2=bar2
+```
+
 si ya existe "some/path", lo estaremos borrando y recreando con estos valores
+
+```bash
 vault kv put kv/contacts/mario value=@prueba.yaml
+```
+
 subir un fichero.
+
 Si queremos subir un fichero binario, usar base64
+
+```bash
 vault write kv/bin file=@<(cat /usr/bin/fc-cache | base64)
 vault read -field=file kv/contacts/bin | base64 -d > fcat
-Otra opción:
-base64 /path/to/file | vault kv put secret/myapp/secretname file=-
+```
 
+Otra opción:
+
+```bash
+base64 /path/to/file | vault kv put secret/myapp/secretname file=-
+```
+
+```bash
 vault kv get some/path
 vault kv get -version=2 some/path
 vault kv delete some/path
 vault kv undelete -version=2 some/path
 vault kv get metadata some/path
+```
+
 metadata de la entrda. Tambien muestra todas las versiones que ha tenido (fecha de creación y borrado)
+
+```bash
 vault kv metadata put -mount=secret -max-versions 2 -delete-version-after="3h25m19s" my-secret
+```
+
 borrar entradas antiguas
 
 Actualizaciones parciales:
+
+```bash
 vault kv patch foo/bar bar=123
+```
 
 Actualiza la versión 6 de kv/foo. Si tuviésemos una versión más moderna, falla.
+
+```bash
 vault kv patch -cas=6 kv/foo user2=jose3
+```
 
 Editar un secret (script bash custom <https://gist.github.com/adrianlzt/9ef4a1d1c966494ba596c3a1886aaebc>):
+
+```bash
 vault-editor kv/secret/secret-name
+```
 
 En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 <https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after>
@@ -862,12 +894,18 @@ curl -H "X-Vault-Token: foobarxxx" "http://127.0.0.1:8200/v1/secret?list=true"
 curl -H "X-Vault-Token: $(vault print token)" -H "X-Vault-Request: true" http://127.0.0.1:8101/v1/kv/foo3
 ```
 
-Ver que petición equivalente curl haría el cliente (no devuelve el valor, pero algo envía al server):
+Ver que petición equivalente curl haría el cliente (no devuelve el valor, pero algo envía al server). debug/trace/logging:
+
+```bash
 vault kv get -output-curl-string kv/foo3
+```
 
 <https://developer.hashicorp.com/vault/api-docs/system/health>
 Obtener el estado del vault:
+
+```bash
 curl -s localhost:8200/v1/sys/health | jq
+```
 
 ## Python
 
@@ -986,3 +1024,11 @@ Cuidado si usamos autounseal, porque si perdemos acceso al provider que usa para
 ## Export / import - Medusa
 
 <https://github.com/jonasvinther/medusa>
+
+# Troubleshooting
+
+## Problemas de permisos
+
+Variables de entorno definidas?
+
+VAULT_TOKEN_HELPER

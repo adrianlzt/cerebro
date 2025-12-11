@@ -32,3 +32,27 @@ Obener todos los logs para un OrgId determinado:
 ```bash
 curl "http://127.0.0.1:3100/loki/api/v1/query_range" --data-urlencode 'query={job=~".+"}' -H X-Scope-OrgId:default | jq '.data.result[].values'
 ```
+
+# CLI
+
+```bash
+logcli
+```
+
+List all label names
+
+```bash
+logcli labels
+```
+
+List all values for a specific label (e.g., job)
+
+```bash
+logcli labels job
+```
+
+Show all:
+
+```bash
+logcli query '{job=~".+"}' --since=1h
+```
