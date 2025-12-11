@@ -56,3 +56,9 @@ Show all:
 ```bash
 logcli query '{job=~".+"}' --since=1h
 ```
+
+# Limitaciones ingestión
+
+Hay ciertas limitaciones de las fechas en las que puedes ingestar datos
+
+<https://community.grafana.com/t/getting-entry-too-far-behind-even-if-reject-old-samples-and-reject-old-samples-max-age-should-allow/146706>
