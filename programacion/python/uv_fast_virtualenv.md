@@ -117,6 +117,8 @@ docker run ghcr.io/astral-sh/uv:alpine --help
 
 ## Dockerfile
 
+Ejemplo: <https://github.com/astral-sh/uv-docker-example/blob/main/Dockerfile>
+
 ```
 COPY pyproject.toml uv.lock /app/
 RUN uv sync --frozen
