@@ -1,4 +1,4 @@
-https://prometheus.io/docs/prometheus/latest/command-line/promtool/#promtool-query
+<https://prometheus.io/docs/prometheus/latest/command-line/promtool/#promtool-query>
 
 ```bash
 promtool query instant http://localhost:9090 'up{job="prometheus"}'
@@ -28,4 +28,13 @@ Labels:
 
 ```bash
 promtool query labels http://localhost:9090
+```
+
+# TSDB
+
+Analizar los ficheros con los datos
+
+```bash
+promtool tsdb analyze /tmp/prometheus_data
+promtool tsdb dump --match 'container_memory_rss' /tmp/prometheus_data
 ```
