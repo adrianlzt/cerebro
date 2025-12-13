@@ -1,11 +1,11 @@
-https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/
-https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+<https://kubernetes.io/docs/tasks/job/automated-tasks-with-cron-jobs/>
+<https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/>
 
-
+```bash
 kubectl get cronjobs
+```
 
-
-#apiVersion: batch/v1beta1
+```yaml
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -24,11 +24,12 @@ spec:
             - -c
             - date; echo Hello from the Kubernetes cluster
           restartPolicy: OnFailure
-
+```
 
 Si no queremos que la tarea se vuelva a ejecutar si hay un fallo:
-https://stackoverflow.com/a/51687712
+<https://stackoverflow.com/a/51687712>
 
+```yaml
 spec:
   concurrencyPolicy: Forbid  # ESTA OPCION
   failedJobsHistoryLimit: 1  # ESTA OPCION
@@ -37,18 +38,24 @@ spec:
       creationTimestamp: null
     spec:
       backoffLimit: 0  # ESTA OPCION
-      template: 
+      template:
       ... MORE STUFF ...
-
+```
 
 # Jobs
+
 Los cronjobs generarán jobs:
+
+```bash
 kubectl get jobs --watch
+```
 
 Los jobs se ejecutarán creando un pod
 
 Solo se mantendrá el pod del último job.
 
-
 Forzar un job a partir de un cronjob:
+
+```bash
 kubectl create job --from=cronjob/<name of cronjob> <name of job>
+```
