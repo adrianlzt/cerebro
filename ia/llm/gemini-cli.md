@@ -18,12 +18,21 @@ También podemos hacerlo dentro de la cli:
 
 ```
 /directory add /foo
+/dir add /bar/baz
 ```
 
 Para mostrar los configurados:
 
 ```
 /directory show
+```
+
+# Auto GEMINI.md
+
+Para generar automáticamente el fihero `GEMINI.md`, basado en el contenido del proyecto:
+
+```
+/init
 ```
 
 # Memoria
