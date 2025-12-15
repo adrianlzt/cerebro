@@ -4,6 +4,28 @@ Config: ~/.gemini/settings.json
 
 Almacena la auth en .gemini/google_account_id y .gemini/oauth_creds.json
 
+# Include directories
+
+Podemos usar:
+
+```bash
+gemini --include-directories /foo,/bar
+```
+
+Para darle acceso a ficheros fuera del CWD.
+
+También podemos hacerlo dentro de la cli:
+
+```
+/directory add /foo
+```
+
+Para mostrar los configurados:
+
+```
+/directory show
+```
+
 # Memoria
 
 Guarda datos en ~/.gemini/GEMINI.md
@@ -23,7 +45,6 @@ Guarda datos en ~/.gemini/GEMINI.md
 }
 ```
 
-
 # mcp
 
 ```bash
@@ -41,7 +62,6 @@ Borrar:
 ```bash
 gemini mcp remove chrome-devtools
 ```
-
 
 # Sandbox
 
