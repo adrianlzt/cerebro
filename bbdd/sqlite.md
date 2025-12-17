@@ -83,6 +83,12 @@ $ sqlite
 .dump
 ```
 
+```sql
+.mode insert <target_table_name>
+.out file.sql
+select * from MyTable;
+```
+
 # Extender sqlite
 
 <http://charlesleifer.com/blog/extending-sqlite-with-python/>

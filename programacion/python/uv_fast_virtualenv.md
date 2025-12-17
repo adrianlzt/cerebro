@@ -1,3 +1,5 @@
+cheatsheet: <https://pbs.twimg.com/media/G3OuIHcaIAAA0D7?format=jpg&name=4096x4096>
+
 Sustituto de "pip" escrito en rust, mucho más rápido.
 
 uv venv
@@ -114,6 +116,8 @@ docker run ghcr.io/astral-sh/uv:alpine --help
 ```
 
 ## Dockerfile
+
+Ejemplo: <https://github.com/astral-sh/uv-docker-example/blob/main/Dockerfile>
 
 ```
 COPY pyproject.toml uv.lock /app/
