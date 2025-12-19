@@ -70,7 +70,7 @@ Enforcing: SELinux policy is enforced. SELinux denies access based on SELinux po
 
 Permissive: SELinux policy is not enforced. SELinux does not deny access, but denials are logged for actions that would have been denied if running in enforcing mode.
 
-Disabled: SELinux is disabled. Only DAC rules are used.o
+Disabled: SELinux is disabled. Only DAC rules are used.
 
 # Ficheros
 
@@ -125,3 +125,19 @@ To use MLS restrictions, install the selinux-policy-mls package, and configure M
 
 Los datos se configuran en niveles: información, secreto, top secret.
 Luego se permite a los procesos acceder a determinados niveles.
+
+# Como definir políticas
+
+Poner el modo permissive y ver que hubiese bloqueado selinux.
+
+Lo podemos ver en el fichero:
+
+```
+/var/log/audit/audit.log
+```
+
+O ejecutando, buscar registros de denegación y pasarlos por audit2why para generar una explicación:
+
+```bash
+ausearch -m avc,user_avc -ts today | audit2why
+```
