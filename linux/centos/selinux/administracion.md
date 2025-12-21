@@ -1,75 +1,90 @@
-##################
-# Administración #
-##################
-
-Contexto SELinux:
-unconfined_u:object_r:user_home_t:s0
-user        :role    :type       :level
+# Administración
 
 Configuración: /etc/selinux/
+
 Definición de contextos: /etc/selinux/targeted/contexts/files/
 
+## Estado
 
+Estado de selinux
+Deberemos tener el modo a Enforcing y el policy a targeted (es lo "normal")
 
-## Estado / Activar / desactivar ##
+```bash
+sestatus
+```
+
+```bash
+getenforce
+```
 
 Nos dice como esta configurado actualmente
-  Enforcing -> activado
-  Permissive -> no activado
-getenforce  
+Enforcing -> activado
+Permissive -> no activado
 
 Para desactivarlo (no sobrevive a un reinicio)
+
+```bash
 setenforce 0
+```
 
 Para desactivarlo permanentemente
 En version >=7:
+
+```bash
 /etc/selinux/config
-
-Centos 6:
-/etc/sysconfig/selinux:
-SELINUX=permissive
-
+SELINUX=enforcing
+```
 
 Activarlo:
 CUIDADO!
 Si activamos selinux deberemos reiniciar el sistema para que se haga un relabel de todo el filesystem, ya que en modo permissive o disabled los nuevos ficheros no se les ponen etiquetas (label) y/o pueden tener labels incorectas seteadas por algún usuario.
 Puede tardar unos 10minutos, depende de la cantidad de ficheros.
 
-/etc/sysconfig/selinux:
-SELINUX=enforcing
-
+```bash
 reboot
+```
 
+## Ficheros
 
-Estado de selinux
-sestatus
-  Deberemos tener el modo a Enforcing y el policy a targeted (es lo "normal")
-
-
-
-
-## Ficheros ##
 Roles do not have a meaning for files
 
 Info:
+
+```bash
 ls -Z file
+```
 
 Cambiar type (chcon = change context) (no sobrevive a un 'file system relabel'):
+
+```bash
 chcon -t TYPE FICHERO
   -R: recursive
+```
 
 Cambiar usuario:
-chcon -u unconfined_u /etc/fichero
 
+```bash
+chcon -u unconfined_u /etc/fichero
+```
+
+```bash
 matchpathcon -V FICHERO/DIR
 comprobar que tiene los permisos por defecto
+```
 
-Mostrar reglas: 
+Mostrar reglas:
+
+```bash
 semanage fcontext -l
+```
 
 Cambiar de forma permanente (guarda en /etc/selinux/targeted/contexts/files/file_contexts.local)
 Usar siempre un PATH abosluto!
+
+```bash
 semanage fcontext -a -t TYPE FICHERO/DIR/REGEX
+```
+
 Ejemplo:
   semanage fcontext -a -t samba_share_t /etc/file1
   semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
@@ -83,39 +98,57 @@ restorecon -v FICHERO
   -v: show changes
 Los valores que deben ponerse se consultan en /etc/selinux/targeted/contexts/files
 
+## Procesos
 
+Info, mostrando las labels de selinux, el contexto donde corre el proceso.
 
-
-## Procesos ##
-Info
+```bash
 ps -eZ
+ps -eZ f
+```
 
+Un proceso desconocido por defecto ira al contexto "unconfined_u" (no puede leer ni escribir)
 
+## Usuarios
 
-
-## Usuarios ##
 Mirar user.md
 
 Mapeo entre usuarios del sistema y de selinux:
+
+```bash
 semanage login -l
-  __default__ es donde se mapean los usuarios por defecto
-  The last column, MLS/MCS Range, is the level used by Multi-Level Security (MLS) and Multi-Category Security (MCS).
+```
+
+__default__ es donde se mapean los usuarios por defecto
+
+The last column, MLS/MCS Range, is the level used by Multi-Level Security (MLS) and Multi-Category Security (MCS).
 
 Contexto selinux de mi usuario:
+
+```bash
 id -Z
+```
 
 Crear usuario mapeado a un usuario de selinux
+
+```bash
 useradd -Z user_u useruuser
+```
 
 Mapear a selinux un usuario existente
+
+```bash
 semanage login -a -s user_u newuser
+```
 
 Modificar el mapeo
+
+```bash
 semanage login -m -S targeted -s "user_u" -r s0 __default__
-
-
+```
 
 # Boolean
+
 Nos puede servir para cambiar políticas sin tener que modificarlas.
 Buscaremos con grep a ver si hay alguna que cumpla nuestra necesidad.
 getsetbool -a | grep ftp
@@ -139,20 +172,23 @@ To allow Linux users in the guest_t domain to execute applications in their home
 setsebool -P allow_user_exec_content off
 To prevent Linux users in the user_t domain from executing applications in their home directories and /tmp/
 
-
-
 # Puertos
+
 Las políticas también restringuen en que puertos puede correr cada servicio:
+
+```bash
 semanage port -l | grep http
+```
 
 Agregar el puerto 9876 para que pueda escuchar httpd:
 semanage port -a -t http_port_t -p tcp 9876
   The semanage port -a command adds an entry to the /etc/selinux/targeted/modules/active/ports.local file
 
-
-
 # Montar sistemas de ficheros
+
+```bash
 mount -o context=SELinux_user:role:type:level
+```
 
 Ejemplo: montar NFS que pueda leerlo apache
 mount server:/export /local/mount/point -o context="system_u:object_r:httpd_sys_content_t:s0"
@@ -170,24 +206,18 @@ mount server:/export/database /local/database -o \ nosharecache,context="system_
 Para el fstab:
 server:/export /local/mount/ nfs context="system_u:object_r:httpd_sys_content_t:s0" 0 0
 
-
-
 ## Evolucionando reglas - audit2allow ##
-https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-Troubleshooting-Fixing_Problems.html
 
-
+<https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-Troubleshooting-Fixing_Problems.html>
 
 ## Dominios permisivos ##
+
 Mirar permissive_domain.md
-
-
 
 ## Más información ##
 
 avcstat
 This command provides a short output of the access vector cache statistics since boot
-
-
 
 seinfo
 yum install setools-console
@@ -201,7 +231,6 @@ seinfo -aunconfined_domain_type -x
 
 Dominios permisivos:
 seinfo --permissive -x
-
 
 sesearch
 You can use the sesearch command to search for a particular type in the policy. You can search either policy source files or the binary file

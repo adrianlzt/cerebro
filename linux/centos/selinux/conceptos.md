@@ -24,6 +24,11 @@ Para los procesos especifica el dominio donde se va a ejecutar el proceso. Por d
 
 Las reglas definirán como serán los accesos entre los tipos (dominio accediento a tipo, o dominio accediendo a otro dominio)
 
+# Contexto SELinux
+
+unconfined_u:object_r:user_home_t:s0
+user        :role    :type       :level
+
 # Domain transition
 
 Dominio: passwd_t
