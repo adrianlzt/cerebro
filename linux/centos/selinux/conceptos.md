@@ -8,6 +8,11 @@ Las políticas de selinux se aplican sobre el sistema, no las pueden modificar l
 
 La política por defecto es denegar.
 
+En modo "target", las aplicaciones desconocidas corren en el contexto "unconfined", no siendo limitadas por selinux.
+Simplifica el arrancar nuevas aplicaciones, pero quita las ventajas de seguridad de selinux.
+
+En SELinux el contexto de un fichero o proceso se hereda del padre, excepto si hay una política que diga lo contrario.
+
 ## User (no se suele usar)
 
 Mirar user.md
@@ -15,6 +20,14 @@ Mirar user.md
 ## Roles (no se suele usar)
 
 SELinux users are authorized for roles, and roles are authorized for domains.
+
+Para conseguir Role-based Access Control (RBAC).
+
+Listar roles (necesita tener instalado `setools-console`):
+
+```bash
+seinfo -r
+```
 
 ## Type (suele ser lo que se usa)
 
@@ -24,10 +37,41 @@ Para los procesos especifica el dominio donde se va a ejecutar el proceso. Por d
 
 Las reglas definirán como serán los accesos entre los tipos (dominio accediento a tipo, o dominio accediendo a otro dominio)
 
+Listar types actuales:
+
+```bash
+seinfo -t
+```
+
+## Level
+
+Para MLS
+
 # Contexto SELinux
 
+Se lee como:
+user:role:type(domain):level
+
+Ejemplos:
+
+```
 unconfined_u:object_r:user_home_t:s0
-user        :role    :type       :level
+unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+```
+
+unconfined_u typically indicates a user that isn't restricted by SELinux policies.
+
+unconfined_r suggests this process is running with an unrestricted role.
+
+unconfined_t means the process is in an unrestricted domain.
+
+level: security clearance level and categories, and is only applicable in MLS (Multi-Level Security). s0-s0 means the lowest sensitivity level, and "c0.c1023" represents a category range
+
+## Herencia de contexto
+
+Entender como un proceso termina en un contexto determinado: <https://wiki.gentoo.org/wiki/SELinux/Tutorials/How_does_a_process_get_into_a_certain_context>
+
+If there is no policy in SELinux that specifies otherwise, then anything created will inherit the context of its parent.
 
 # Domain transition
 
@@ -80,8 +124,12 @@ Disabled: SELinux is disabled. Only DAC rules are used.
 # Ficheros
 
 Para ficheros en filesystems que aceptan extended attributes y no tienen definido un SELinux context, se pondrá file_t. Este tipo no se usará en ningún otro caso.
+
 Para ficheros con SELinux que no matcheen ninguna pattern de file-context, se definirá default_t
+
 Por ejemplo si creamos un directorio en / este será default_t. Tendremos que definirle un contexto si queremos que un servicio confinado pueda leer este directorio.
+
+Los ficheros heredan del directorio padre el role y type. El user se heredará del usuario que cree el fichero.
 
 # Policies
 
@@ -99,7 +147,8 @@ Processes running in unconfined domains fall back to using DAC rules exclusively
 
 # Policy / Type
 
-targeted - Targeted processes are protected,
+targeted - Targeted processes are protected, el resto se considera "unconfined" y selinux no afecta sobre esto.
+
 mls - Multi Level Security protection.
 
 # Enforcement

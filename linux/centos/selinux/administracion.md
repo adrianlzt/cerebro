@@ -107,7 +107,11 @@ ps -eZ
 ps -eZ f
 ```
 
-Un proceso desconocido por defecto ira al contexto "unconfined_u" (no puede leer ni escribir)
+Un proceso desconocido ejecutado desde la shell por defecto ira al contexto "unconfined_u:unconfined_r:unconfined_t", no viéndose limitado por selinux.
+
+Si lo ejecutamos desde systemd en cambio usará el contexto "system_u:system_r:unconfined_service_t".
+
+Los procesos heredarán el contexto del proceso que lo ejecutó, excepto si alguna regla dice lo contrario.
 
 ## Usuarios
 
@@ -206,41 +210,76 @@ mount server:/export/database /local/database -o \ nosharecache,context="system_
 Para el fstab:
 server:/export /local/mount/ nfs context="system_u:object_r:httpd_sys_content_t:s0" 0 0
 
-## Evolucionando reglas - audit2allow ##
+# Evolucionando reglas - audit2allow
 
 <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-Troubleshooting-Fixing_Problems.html>
 
-## Dominios permisivos ##
+# Dominios permisivos
 
 Mirar permissive_domain.md
 
-## Más información ##
+## Más información
 
-avcstat
 This command provides a short output of the access vector cache statistics since boot
 
-seinfo
-yum install setools-console
+```bash
+avcstat
+```
+
 Información sobre la política actual de selinux
 
+```bash
+seinfo
+yum install setools-console
+```
+
 Dominios:
+
+```bash
 seinfo -adomain -x
+```
 
 Dominios no confinados
+
+```bash
 seinfo -aunconfined_domain_type -x
+```
 
 Dominios permisivos:
-seinfo --permissive -x
 
-sesearch
+```bash
+seinfo --permissive -x
+```
+
+## sesearch
+
+Para instalarla:
+
+```bash
+yum install setools-console
+```
+
 You can use the sesearch command to search for a particular type in the policy. You can search either policy source files or the binary file
+
+```bash
+sesearch
 
 sesearch --role_allow -t httpd_sys_content_t /etc/selinux/targeted/policy/policy.24
 
 sesearch --allow | wc -l
-  number of allow rules
+# number of allow rules
 
 sesearch --dontaudit
-  don't audit rules
-  opcional:
-    -s domain
+# don't audit rules
+# opcional:
+#   -s domain
+```
+
+Buscar policies cuyo source target sea `init_t` y su target type sea `unconfined_service_t`
+
+```bash
+sesearch -s init_t -t unconfined_service_t -A -ds -dt
+# -A                    Search allow and allowxperm rules.
+# -ds                   Match source attributes directly instead of matching member types/roles.
+# -dt                   Match target attributes directly instead of matching member types/roles.
+```
