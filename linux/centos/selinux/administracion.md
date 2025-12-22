@@ -283,3 +283,19 @@ sesearch -s init_t -t unconfined_service_t -A -ds -dt
 # -ds                   Match source attributes directly instead of matching member types/roles.
 # -dt                   Match target attributes directly instead of matching member types/roles.
 ```
+
+# Buscar errores / audit2why
+
+Poner el modo permissive y ver que hubiese bloqueado selinux.
+
+Lo podemos ver en el fichero:
+
+```
+/var/log/audit/audit.log
+```
+
+O ejecutando, buscar registros de denegación y pasarlos por audit2why para generar una explicación:
+
+```bash
+ausearch -m avc,user_avc -ts today | audit2why
+```

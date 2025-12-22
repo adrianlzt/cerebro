@@ -182,16 +182,4 @@ Luego se permite a los procesos acceder a determinados niveles.
 
 # Como definir políticas
 
-Poner el modo permissive y ver que hubiese bloqueado selinux.
-
-Lo podemos ver en el fichero:
-
-```
-/var/log/audit/audit.log
-```
-
-O ejecutando, buscar registros de denegación y pasarlos por audit2why para generar una explicación:
-
-```bash
-ausearch -m avc,user_avc -ts today | audit2why
-```
+Mirar policies.md
