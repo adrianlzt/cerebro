@@ -112,6 +112,12 @@ Permitimos a user roles acceso a dominios.
 
 Definen cómo un proceso pasa de un estado a otro (ej. cuando init ejecuta el binario, el proceso se convierte en mi_app_t).
 
+Ejemplo, definimos que el método de entrada (entrypoint) al dominio testprog_t es el fichero testprog_exec_t. Se definen que permisos se tienen sobre los ficheros con ese type (testprog_exec_t).
+
+```
+allow testprog_t testprog_exec_t : file { ioctl read getattr lock execute execute_no_trans entrypoint open } ;
+```
+
 # Reglas de acceso (allow rules)
 
 Las reglas que permiten las acciones.
