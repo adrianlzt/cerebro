@@ -24,9 +24,9 @@ mi_app_selinux.spec # Spec file
 mi_app.sh # Setup Script
 ```
 
-mi_app.te (Reglas básicas)
+mi_app.te Reglas básicas
 
-mi_app.fc (Contextos de archivo: define los contextos de los distintos ficheros, se puede usar regex para matchear los ficheros)
+mi_app.fc Contextos de archivo: define los contextos de los distintos ficheros, se puede usar regex para matchear los ficheros. `restorecon` usará lo definido aquí para definir los contextos de los ficheros.
 
 mi_app_selinux.spec (Para crear un RPM)
 
@@ -35,6 +35,14 @@ mi_app.sh (Script de instalación, hace el build del módulo y genera el RPM)
 mi_app.if # Interface file. Como la "API pública" de nuestro módulo por si se quiere usar por otros módulos. Terceros usuarios podrán llamar a macros para interactuar con este módulo, en vez de tener que conocer los detalles de implementación.
 
 Los ficheros .te, .if y .fc son usados por sepolicy para crear el módulo para crear el paquete de módulo (.pp).
+
+## Compilar una política
+
+A partir de los ficheros x.te, x.fc, etc genera una política.
+
+```bash
+make -f /usr/share/selinux/devel/Makefile OUTPUT.pp
+```
 
 # audit2allow, generar políticas dejando correr la aplicación
 

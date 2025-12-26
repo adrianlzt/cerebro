@@ -56,7 +56,7 @@ ls -Z file
 
 ### chcon
 
-Cambiar type (chcon = change context) (no sobrevive a un 'file system relabel'):
+Cambiar type (chcon = change context) (CUIDADO, no sobrevive a un 'file system relabel', `restorecon`):
 
 ```bash
 chcon -t TYPE FICHERO
@@ -72,6 +72,16 @@ chcon -u unconfined_u /etc/fichero
 ```bash
 matchpathcon -V FICHERO/DIR
 comprobar que tiene los permisos por defecto
+```
+
+### restorecon
+
+Restaurar los contextos por defecto de los ficheros.
+
+Ejemplo que restaura los contextos mostrando cuales han sido modificados y como:
+
+```bash
+restorecon -v /usr/bin/*
 ```
 
 ### Mostrar reglas
@@ -298,19 +308,7 @@ sesearch -s init_t -t unconfined_service_t -A -ds -dt
 
 # Buscar errores / audit2why
 
-Poner el modo permissive y ver que hubiese bloqueado selinux.
-
-Lo podemos ver en el fichero:
-
-```
-/var/log/audit/audit.log
-```
-
-O ejecutando, buscar registros de denegación y pasarlos por audit2why para generar una explicación:
-
-```bash
-ausearch -m avc,user_avc -ts today | audit2why
-```
+mirar logging.md
 
 # semodule / administrar módulos
 
@@ -324,4 +322,10 @@ Listar módulos:
 
 ```bash
 semodule -g
+```
+
+Eliminar un módulo:
+
+```bash
+semodule -r NAME
 ```
