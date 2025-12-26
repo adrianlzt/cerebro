@@ -9,12 +9,16 @@
 
 <https://es.redhat.com/resourcelibrary/videos/selinux-for-mere-mortals>
 
+```bash
 man selinux
+
+man -k _selinux # mostrar todas las man pages que matchea "_selinux".
 
 man httpd_selinux
 
 man samba_selinux
 
 man named_selinux
+```
 
 A veces también ha una sección dentro del man para SELinux, o puede que haya una página man que se llame selinux_xxx

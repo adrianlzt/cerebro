@@ -133,3 +133,131 @@ Las reglas que permiten las acciones.
 # Administrar módulos / semodule
 
 mirar administracion.md "semodule"
+
+# Mostrar contenido módulos / desensamblar / sedismod
+
+Para ver el contenido de un módulo instalado.
+
+Primero extraemos el modulo a un fichero:
+
+```bash
+semodule -E ntp
+```
+
+Luego usamos el desensamblador:
+
+```bash
+sedismod ntp.pp
+```
+
+No es muy intuitivo, y no tendremos los posibles comentarios añadidos por los desarrolladores.
+
+Suele ser mejor las fuentes donde se hayan definido esos módulos.
+
+## Código fuente políticas
+
+Para rocky linux 9 sería:
+<https://download.rockylinux.org/pub/rocky/9/AppStream/source/tree/Packages/s/selinux-policy-38.1.45-3.el9_5.src.rpm>
+
+Al abrir el RPM tendremos un .tgz y dentro las políticas.
+
+Ejemplo para ntp: selinux-policy/selinux-policy-b010cd37abae61184154e1f2b0db330aaa81fbdb/policy/modules/contrib/ntp.te
+
+Puede ser útil consultar las man pages asociadas, por ejemplo:
+
+```bash
+man ntpd_selinux
+```
+
+# Macros
+
+Para evitar repetir código se pueden usar macros de selinux. Es lo común al crear políticas.
+
+Podemos usar estas funciones de bash para poder encontrar de forma sencilla las definiciones de las macros:
+<https://gist.githubusercontent.com/jamesfreeman959/40d41810beccc4ded23dc049d6ed570d/raw/5da8c9b2aae21e38777d0d2c0e4ac615cc2a2455/selinux-funcs-el9.txt>
+
+```bash
+source selinux-funcs-el9.txt
+export POLICY_LOCATION=$HOME/selinux-policy-0113b35519369e628e7fcd87af000cfcd4b1fa6c/ # el fichero .tgz extraído del src.rpm, mirar sección anterio
+seshowif files_pid_filetrans
+```
+
+Funciones que se definen:
+
+sefindif - Find interface definitions that have a string that matches the given regular expression
+
+seshowif - Show the interface definition
+
+sefinddef - Find macro definitions that have a string that matches the given regular expression
+
+seshowdef - Show the macro definition
+
+sefindcon - Find macro definitions for constrains
+
+selist - List all templates/interfaces in the order allowed by refpolicy
+
+Ejemplo de macro.
+
+Uso:
+
+```
+files_pid_filetrans(ntpd_t, ntpd_var_run_t, file)
+```
+
+Definición (es una _interface_):
+
+```
+interface(`files_pid_filetrans',`
+        gen_require(`
+                type var_t, var_run_t;
+        ')
+
+
+        allow $1 var_t:dir search_dir_perms;
+        filetrans_pattern($1, var_run_t, $2, $3, $4)
+')
+```
+
+Y mostrando las macros que usa esta _interface_:
+
+```
+define(`gen_require',`
+        ifdef(`self_contained_policy',`
+                ifdef(`__in_optional_policy',`
+                        require {
+                                $1
+                        } # end require
+                ')
+        ')
+')
+
+define(`search_dir_perms',`{ getattr search open }')
+
+define(`filetrans_pattern',`
+        allow $1 $2:dir rw_dir_perms;
+        type_transition $1 $2:$4 $3 $5;
+')
+```
+
+Resolviendo las macros quedaría:
+
+```
+files_pid_filetrans(ntpd_t, ntpd_var_run_t, file)
+```
+
+->
+
+```
+ifdef(`self_contained_policy',`
+        ifdef(`__in_optional_policy',`
+                require { type var_t, var_run_t }
+        ')
+')
+
+
+allow ntpd_t var_t:dir { getattr search open };
+
+allow ntpd_t var_run_t:dir { open read getattr lock search ioctl add_name remove_name write };
+type_transition ntpd_t var_run_t:file ntpd_var_run_t;
+
+```
