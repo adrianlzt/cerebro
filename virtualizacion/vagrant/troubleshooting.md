@@ -1,12 +1,13 @@
 # CPU al 100%
 
-Probar a meter esto al final del Vagrantfile:
+Mirar con strace que PID genera más trazas.
+
+Mirar que thread es el culpable:
+
+```bash
+ps -T -p 1778846
 ```
-  config.vm.provider "virtualbox" do |vb|                                         │
-    vb.customize ["modifyvm", :id, "--audio", "none"]                             │
-    vb.customize ["modifyvm", :id, "--usb", "off"]                                │
-    vb.customize ["modifyvm", :id, "--usbehci", "off"]                            │
-    vb.customize ["modifyvm", :id, "--usbxhci", "off"]                            │
-    vb.customize ["modifyvm", :id, "--vram", "16"]                                │
-  end                                                                             │
-```
+
+Si es "NAT", mirar si el problema es que las DNS usadas del host no funcionan en el guest.
+
+Setear las típicas de google.
