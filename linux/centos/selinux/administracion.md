@@ -54,6 +54,8 @@ Info:
 ls -Z file
 ```
 
+### chcon
+
 Cambiar type (chcon = change context) (no sobrevive a un 'file system relabel'):
 
 ```bash
@@ -72,7 +74,7 @@ matchpathcon -V FICHERO/DIR
 comprobar que tiene los permisos por defecto
 ```
 
-Mostrar reglas:
+### Mostrar reglas
 
 ```bash
 semanage fcontext -l
@@ -86,16 +88,26 @@ semanage fcontext -a -t TYPE FICHERO/DIR/REGEX
 ```
 
 Ejemplo:
-  semanage fcontext -a -t samba_share_t /etc/file1
-  semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
-    habilita que httpd lea el contenido de /web/*
+
+```bash
+semanage fcontext -a -t samba_share_t /etc/file1
+semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+# habilita que httpd lea el contenido de /web/*
+```
 
 Borrar regla permanente:
+
+```bash
 semanage fcontext -d FICHERO/DIR/REGEX
+```
 
 Restaurar type al original:
+
+```bash
 restorecon -v FICHERO
-  -v: show changes
+# -v: show changes
+```
+
 Los valores que deben ponerse se consultan en /etc/selinux/targeted/contexts/files
 
 ## Procesos
@@ -298,4 +310,18 @@ O ejecutando, buscar registros de denegación y pasarlos por audit2why para gene
 
 ```bash
 ausearch -m avc,user_avc -ts today | audit2why
+```
+
+# semodule / administrar módulos
+
+Instalar un módulo:
+
+```bash
+semodule -i NAME.pp
+```
+
+Listar módulos:
+
+```bash
+semodule -g
 ```

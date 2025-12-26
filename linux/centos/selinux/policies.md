@@ -121,3 +121,7 @@ allow testprog_t testprog_exec_t : file { ioctl read getattr lock execute execut
 # Reglas de acceso (allow rules)
 
 Las reglas que permiten las acciones.
+
+# Administrar módulos / semodule
+
+mirar administracion.md "semodule"
