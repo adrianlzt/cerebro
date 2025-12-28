@@ -36,6 +36,18 @@ mi_app.if # Interface file. Como la "API pública" de nuestro módulo por si se 
 
 Los ficheros .te, .if y .fc son usados por sepolicy para crear el módulo para crear el paquete de módulo (.pp).
 
+## Files context
+
+Nombres típicos que se suelen asignar a ficheros:
+
+Ejecutables: XXX_exec_t
+
+Configuración: XXX_conf_t
+
+PID files: XXX_var_run_t
+
+Data: XXX_data_t
+
 ## Compilar una política
 
 A partir de los ficheros x.te, x.fc, etc genera una política.
@@ -260,4 +272,40 @@ allow ntpd_t var_t:dir { getattr search open };
 allow ntpd_t var_run_t:dir { open read getattr lock search ioctl add_name remove_name write };
 type_transition ntpd_t var_run_t:file ntpd_var_run_t;
 
+```
+
+Esa interface en concreto está definida en /usr/share/selinux/devel/include/kernel/files.if
+En ese fichero hay un xml con documentación:
+
+```xml
+## <summary>
+##      Create an object in the process ID directory, with a private type.
+## </summary>
+## <desc>
+##      <p>
+##      Create an object in the process ID directory (e.g., /var/run)
+##      with a private type.  Typically this is used for creating
+##      private PID files in /var/run with the private type instead
+##      of the general PID file type. To accomplish this goal,
+##      either the program must be SELinux-aware, or use this interface.
+##      </p>
+##      <p>
+##      Related interfaces:
+##      </p>
+##      <ul>
+##              <li>files_pid_file()</li>
+##      </ul>
+##      <p>
+##      Example usage with a domain that can create and
+##      write its PID file with a private PID file type in the
+##      /var/run directory:
+##      </p>
+##      <p>
+##      type mypidfile_t;
+##      files_pid_file(mypidfile_t)
+##      allow mydomain_t mypidfile_t:file { create_file_perms write_file_perms };
+##      files_pid_filetrans(mydomain_t, mypidfile_t, file)
+##      </p>
+## </desc>
+...
 ```

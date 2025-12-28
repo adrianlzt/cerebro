@@ -18,6 +18,15 @@ Buscar los errores de un comando determinado:
 ausearch -c foo
 ```
 
+## Explicación alertas / sealert
+
+```bash
+sealert -a <(tail -n 40 /var/log/audit/audit.log | grep testprog | tail -n 3)
+```
+
+Nos puede proponer como generar una política para solventar ese problema (con ausearch + audit2allow).
+CUIDADO, tal vez sea demasiado genérica.
+
 ## Como interpretar los logs de /var/log/audit/audit.log
 
 The process with PID 12442 (named testprog) tried to write to a file object (target) which had context (tcontext) unconfined_u:object_r:var_run_t:s0 and was called testprog.pid, with inode number 34663 on the tmpfs device (/var/run is on tmpfs). The source context (scontext) of the process was unconfined_u:unconfined_r:testprog_t:s0-s0:c0.c1023.
@@ -62,12 +71,3 @@ Buscar accesos denegados:
 grep "SELinux is preventing" /var/log/messages
 grep "denied" /var/log/audit/audit.log
 ```
-
-# Explicación alertas / sealert
-
-```bash
-sealert -a <(tail -n 40 audit.log | grep testprog | tail -n 3)
-```
-
-Nos puede proponer como generar una política para solventar ese problema (con ausearch + audit2allow).
-CUIDADO, tal vez sea demasiado genérica.
