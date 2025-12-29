@@ -16,7 +16,7 @@ dnf -y install selinux-policy-devel
 # Generar un esquelo de una política
 
 ```bash
-$ sudo sepolicy generate --init /usr/bin/mi_app
+# sepolicy generate --init /usr/bin/mi_app
 mi_app.te # Type Enforcement file
 mi_app.if # Interface file
 mi_app.fc # File Contexts file

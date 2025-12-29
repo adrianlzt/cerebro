@@ -63,6 +63,12 @@ chcon -t TYPE FICHERO
   -R: recursive
 ```
 
+Ejemplo:
+
+```bash
+chcon -t testprog_data_t /var/testprog/
+```
+
 Cambiar usuario:
 
 ```bash
