@@ -106,7 +106,7 @@ require {
 La `class file` se usa para definir que operaciones se podrán realizar contra los ficheros. `relabelto` es para permitir cambiar la label de un fichero.
 El `process transition` permite al proceso cambiar de dominio al proceso.
 
-# Definiciones
+### Definiciones
 
 Creamos/defimos los types que vamos a usar.
 
@@ -124,11 +124,11 @@ files_type(testprog_exec_t);
 
 Creamos un tipo domain y uno tipo fichero.
 
-# Role Authorization / RBAC
+### Role Authorization / RBAC
 
 Permitimos a user roles acceso a dominios.
 
-# Reglas de transición
+### Reglas de transición
 
 Definen cómo un proceso pasa de un estado a otro (ej. cuando init ejecuta el binario, el proceso se convierte en mi_app_t).
 
@@ -138,9 +138,29 @@ Ejemplo, definimos que el método de entrada (entrypoint) al dominio testprog_t 
 allow testprog_t testprog_exec_t : file { ioctl read getattr lock execute execute_no_trans entrypoint open } ;
 ```
 
-# Reglas de acceso (allow rules)
+### Reglas de acceso (allow rules)
 
 Las reglas que permiten las acciones.
+
+# interaces (ficheros .if)
+
+Declaramos una epsecie de "macros" que puede usar otras políticas para intereactuar con nuestro dominio.
+
+Ejemplo básico, tenemos un programa que genera ficheros de datos bajo la label `testprog_data_t`.
+
+Creamos en la política de ese programa una interfaz que permita a otros programas leer estos datos:
+
+```
+interface(`testprog_read_data',`
+        gen_require(`
+                type testprog_data_t;
+        ')
+
+        # Allow the domain passed as argument 1 to access the testprog data
+        allow $1 testprog_data_t:dir { search add_name };
+        allow $1 testprog_data_t:file { open read getattr };
+')
+```
 
 # Administrar módulos / semodule
 
