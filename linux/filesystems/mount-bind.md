@@ -1,7 +1,10 @@
 Acceder a un set de ficheros desde dos puntos distintos
 
 Crear un directorio como si fuese un enlace duro:
+
+```bash
 mount -t none -o bind /dir/origen /dir/destino
+```
 
 Podemos usar "-o bind,ro" si no queremos que se puedan hacer escrituras en el /dir/destino.
 
