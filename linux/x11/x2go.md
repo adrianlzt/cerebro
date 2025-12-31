@@ -16,7 +16,19 @@ Si ya tenemos abierto chrome en el pc remoto, deberemos cerrarlo para poder abri
 
 # Server
 
+```bash
+yay -S aur/x2goserver
 sudo x2godbadmin --createdb
+```
+
+## Debug
+
+/etc/x2go/x2goserver.conf
+
+```
+[log]
+loglevel=debug
+```
 
 # Client
 
