@@ -1,3 +1,17 @@
+# x11 remoto con compresión
+
+```bash
+ssh -Y -C -c aes128-ctr HOST
+```
+
+-C (Compression): This is the most important flag. It compresses the data stream, which significantly reduces the bandwidth required for X11 bitmaps.
+
+-c aes128-ctr (Faster Cipher): This forces a faster encryption algorithm. While modern CPUs handle standard encryption well, this can still shave off milliseconds of latency.
+
+-Y (Trusted Forwarding): This is faster than standard -X forwarding because it bypasses some of the X11 security extension checks.
+
+Warning: Only use -Y if you trust the remote server, as it technically allows a malicious remote application to mess with your local display.
+
 # google chrome-remote-desktop
 
 Podemos arrancarlo con un comando ssh y luego conectar desde el navegador.
