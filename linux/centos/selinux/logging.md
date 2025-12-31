@@ -59,6 +59,12 @@ type=SYSCALL msg=audit(1226882736.442:86): arch=40000003 syscall=196 success=no 
 Mensaje de log cuando el proceso httpd esta corriendo en un dominio permisivo e intenta acceder a un fichero al que no tiene permiso.
 Mirar que la traza de SYSCALL tiene "success=yes"
 
+Si queremos traducir la syscall, el número, a un nombre:
+
+```bash
+ausyscall x86_64 196
+```
+
 ```bash
 type=AVC msg=audit(1226882925.714:136): avc:  denied  { read } for  pid=2512 comm="httpd" name="file1" dev=dm-0 ino=284133 scontext=unconfined_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:samba_share_t:s0 tclass=file
 

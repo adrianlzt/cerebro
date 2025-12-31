@@ -9,3 +9,5 @@ El resto de ficheros y procesos hereda de los context ya definidos.
 En la práctica esto quiere decir que aplicaciones desconocidas por selinux no estarán protegidas (`unconfined`).
 
 Tendremos que crear policies para nuestras aplicaciones (mirar policies.md).
+
+SELinux puede limitar el acceso a ficheros, sockets, tty y puertos.
