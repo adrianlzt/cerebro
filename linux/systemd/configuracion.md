@@ -26,22 +26,35 @@ Editar unidades:
 <https://wiki.archlinux.org/index.php/Systemd#Editing_provided_unit_files>
 
 Ver que unidades han sido modificadas:
+
+```bash
 systemd-delta
+```
 
 Mostrar el contenido de una:
+
+```bash
 systemctl cat unit
+```
 
 Crear un fichero de override para cambiar ciertos parametros (/etc/systemd/system/unit.d/override.conf)
 Para hacer override de algunos parametros (como ExecStart), tendremos que definirlo primero vacio y luego con el valor que queremos poner.
+
+```bash
 systemctl edit unit
+```
 
 Copiar una unidad al directorio de unidades custom (/etc/systemd/system/unit) y editarla (intentar usar el método anterior mejor):
+
+```bash
 systemctl edit --full unit
 systemctl edit --full -force unit.service
-  la genera si no existe
+# la genera si no existe
+```
 
 # Ejemplo básico
 
+```bash
 [Unit]
 Description=Foo
 After=network.target
@@ -52,38 +65,55 @@ Restart=on-failure
 
 [Install]
 WantedBy=default.target
+```
 
 # Tipos (en la sección [Service])
+
 <https://wiki.archlinux.org/index.php/Systemd#Service_types>
+
+```bash
 Type=simple (default)
 Type=forking
 Type=oneshot (You may want to set RemainAfterExit=yes as well so that systemd still considers the service as active after the process has exited.)
 Type=notify
 Type=dbus
 Type=idle
+```
 
 # Dependencias / Orden
 
 dependency significa que si la unidad A se activa, la unidad B debe activarse también (se arrancarán en paralelo) (Requires= Wants=). Con Wants= el servicio arrancará aunque lo que quiere falle.
 order significa que la unidad A debe activarse antes de la B (After= Before=)
 Si nuestra app, grafana por ejemplo, necesita de mysql, meteremos un override (systemctl edit grafana-server) con:
+
+```bash
 [Unit]
 Requires=mariadb.service
 After=mariadb.service
+```
 
 Si solo ponemos requires, arrancará grafana y mariadb al mismo tiempo.
 Si solo ponemos After=, y mariadb no está marcado para arrancar, grafana arrancará pero no tendrá mariadb disponible.
 
 Dependencias que requiere nuestra unidad:
+
+```bash
 systemctl list-dependencies sshd
+```
 
 Unidades que dependende de nuestra unidad:
+
+```bash
 systemctl list-dependencies --reverse sshd
+```
 
 El sistema arranca default.target y este arrancará todas las dependencias que dependan de él.
 Se activarán en paralelo excepto si hay orden entre ellas.
+
+```bash
 [Unit]
 After=network.target
+```
 
 # Unit: descripción, ordenación, dependencias
 
@@ -91,12 +121,14 @@ After=network.target
 
 # <https://wiki.archlinux.org/index.php/Systemd#Handling_dependencies>
 
+```bash
 [Unit]
 Description=My Advanced Service
 After=etcd.service
 After=docker.service
 Requires=network.target dnsmasq.service # Si alguna unidad de esta lista no exista, fallará el arranque. Porque se pare un Require no quiere decir que se pare el que lo necesita
 Before=xxx.service
+```
 
 # Wants=... # Es un require opcional, si no existe la otra unidad, no aplica
 
@@ -106,14 +138,18 @@ Before=xxx.service
 
 # <http://www.freedesktop.org/software/systemd/man/systemd.service.html>
 
+```bash
 [Service]
 ExecStart=/bin/bash -c '/usr/bin/docker start -a apache || /usr/bin/docker run --name apache -p 80:80 coreos/apache /usr/sbin/apache2ctl -D FOREGROUND'
 ExecStartPost=/usr/bin/etcdctl set /domains/example.com/10.10.10.123:8081 running
+```
 
 # ExecStartPre=
 
+```bash
 ExecStop=/usr/bin/docker stop apache
 ExecStopPost=/usr/bin/etcdctl rm /domains/example.com/10.10.10.123:8081
+```
 
 # Install: sería como los niveles de init
 
@@ -136,15 +172,18 @@ Variables que nos proporciona systemd:
 A full list is on the systemd man page.
 
 # Dynamic generators
+
 <http://www.freedesktop.org/software/systemd/man/systemd.generator.html>
 
 /usr/lib/systemd/system-generators
 /run/systemd/generator
 
 # Templates
+
 <foo@.service> funciona como configuración para cualquier foo<CUALQUIERCOSA>.service
 
 # Restart
+
 <http://www.freedesktop.org/software/systemd/man/systemd.service.html>
 
 Restart=
@@ -169,12 +208,14 @@ Podemos diseñar nuestra app para que envie periódicamente señales a systemd d
 WatchdogSec
 
 # User
+
 <https://www.freedesktop.org/software/systemd/man/systemd.exec.html#>
 
 [Service]
 User=someuser
 
 # Kill
+
 <https://www.freedesktop.org/software/systemd/man/systemd.kill.html>
 
 KillSignal=SIGINT
@@ -182,6 +223,7 @@ por defecto, para parar un servicio, se envia SIGTERM
 
 # Unidad para hacer pruebas
 
+```bash
 [Unit]
 Description=Probando cosas
 
@@ -200,5 +242,6 @@ WorkingDirectory=/home/pi
 [Service]
 Environment=ETCD_CA_FILE=/path/to/CA.pem
 Environment=ETCD_CERT_FILE=/path/to/server.crt
+```
 
 Cuidado con los caracteres "%", hace falta escaparlos con "%%".
