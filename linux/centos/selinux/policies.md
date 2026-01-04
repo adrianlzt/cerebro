@@ -16,15 +16,10 @@ dnf -y install selinux-policy-devel
 # Generar un esquelo de una política
 
 ```bash
-# sepolicy generate --init /usr/bin/mi_app
-mi_app.te # Type Enforcement file
-mi_app.if # Interface file
-mi_app.fc # File Contexts file
-mi_app_selinux.spec # Spec file
-mi_app.sh # Setup Script
+sepolicy generate --init /usr/bin/mi_app
 ```
 
-mi_app.te Reglas básicas
+mi_app.te, Type Enforcement file, reglas básicas
 
 mi_app.fc Contextos de archivo: define los contextos de los distintos ficheros, se puede usar regex para matchear los ficheros. `restorecon` usará lo definido aquí para definir los contextos de los ficheros.
 
@@ -35,6 +30,14 @@ mi_app.sh (Script de instalación, hace el build del módulo y genera el RPM)
 mi_app.if # Interface file. Como la "API pública" de nuestro módulo por si se quiere usar por otros módulos. Terceros usuarios podrán llamar a macros para interactuar con este módulo, en vez de tener que conocer los detalles de implementación.
 
 Los ficheros .te, .if y .fc son usados por sepolicy para crear el módulo para crear el paquete de módulo (.pp).
+
+Si ejecutamos el script bash:
+
+- build de la policy
+- instalar la policy
+- generar man page. Podemos abrirla con `man -l foo_selinux.8`
+- restorecon del fichero binario al que apuntamos
+- generar rpm
 
 ## Files context
 
@@ -55,6 +58,8 @@ A partir de los ficheros x.te, x.fc, etc genera una política.
 ```bash
 make -f /usr/share/selinux/devel/Makefile OUTPUT.pp
 ```
+
+O también podemos usar el fichero .sh que genera `sepolicy generate` (comentar la parte de generar el RPM si no lo queremos).
 
 # audit2allow, generar políticas dejando correr la aplicación
 
