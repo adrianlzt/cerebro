@@ -6,11 +6,23 @@ _Flags_ que podemos activar/desactivar para modificar la política.
 getsebool -a
 ```
 
+Para mostrar el estado actual, el por defecto y la descripción:
+
+```bash
+semanage boolean -l | head
+```
+
 # Modificar booleano
 
 ```bash
 setsebool allow_testprog_use_network=off
+# otra opción
+semanage boolean -m --off allow_testprog_use_network
 ```
+
+Si usamos `-P` (persistent), el cambio persistirá a reinicios.
+
+Parece que se almacena en `/var/lib/selinux/targeted/active/booleans.local`
 
 # Usar booleanos al crear políticas
 

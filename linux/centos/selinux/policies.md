@@ -19,6 +19,14 @@ dnf -y install selinux-policy-devel
 sepolicy generate --init /usr/bin/mi_app
 ```
 
+El flag `--init` es para programas que se arrancarán por systemd.
+
+Típicamente pimero pondremos la app en modo permisivo y analizaremos los errores que genera e iremos corrigiendo la política:
+
+```bash
+semanage permissive -a mywebapp_t
+```
+
 mi_app.te, Type Enforcement file, reglas básicas
 
 mi_app.fc Contextos de archivo: define los contextos de los distintos ficheros, se puede usar regex para matchear los ficheros. `restorecon` usará lo definido aquí para definir los contextos de los ficheros.
