@@ -15,6 +15,8 @@ dnf -y install selinux-policy-devel
 
 # Generar un esquelo de una política
 
+Este comando necesita acceder a los repos.
+
 ```bash
 sepolicy generate --init /usr/bin/mi_app
 ```
