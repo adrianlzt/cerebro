@@ -1,5 +1,11 @@
 # Quadlets
 
+<https://docs.podman.io/en/latest/markdown/podman-quadlet.1.html>
+
+Es la nueva forma de gestionar contendores con systemd.
+
+Se definen los contendores direcatamente como una unit de systemd.
+
 # Ejecutar comando en un pod usando systemd
 
 ```bash
