@@ -151,6 +151,10 @@ targeted - Targeted processes are protected, el resto se considera "unconfined" 
 
 mls - Multi Level Security protection.
 
+# Interface
+
+mirar interface.md
+
 # Enforcement
 
 ## Type enforcement
