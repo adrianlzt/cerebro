@@ -19,7 +19,7 @@ Nos dice para cada usuario que rango de UIDs puede usar.
 
 En RHEL7.7 el nuevo shadow-utils/useradd ya mete las lineas en /etc/sub*id
 
-Parece que todos los uids dentro del container se mapean externamente al init_uid + uid_interno
+Parece que todos los uids dentro del container se mapean externamente al init_uid - 1 + uid_interno, mirar uid_map más abajo.
 
 Root dentro del container será el usuario que ejecuta podman desde fuera.
 
@@ -58,6 +58,11 @@ $ podman unshare cat /proc/self/uid_map
          0       1000          1
          1     100000      65536
 ```
+
+Aquí nos está diciendo que el root del contenedor se mapeará al uid 1000 en el host.
+
+El uid 1 del contendor se mapeará al uid 100000 del host. El uid 2 al 10000, etc.
+El uid N del contendor se mapeará al 100000-1+N
 
 Si seguimos teniendo problemas:
 
