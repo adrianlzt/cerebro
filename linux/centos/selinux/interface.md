@@ -14,7 +14,6 @@ Descripción de una interface (no muestra el contenido):
 sepolicy interface -vi application_domain
 ```
 
-
 Podemos usar estas funciones de bash para poder encontrar de forma sencilla las definiciones de las macros:
 <https://gist.githubusercontent.com/jamesfreeman959/40d41810beccc4ded23dc049d6ed570d/raw/5da8c9b2aae21e38777d0d2c0e4ac615cc2a2455/selinux-funcs-el9.txt>
 
