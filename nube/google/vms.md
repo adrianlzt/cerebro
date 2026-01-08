@@ -1,8 +1,8 @@
 # Aumentar tamaño disco
-https://cloud.google.com/compute/docs/disks/add-persistent-disk?authuser=1#resize_partitions
+<https://cloud.google.com/compute/docs/disks/add-persistent-disk?authuser=1#resize_partitions>
 
 # Formas de acceder con ssh
-https://cloud.google.com/compute/docs/instances/access-overview#project-wide
+<https://cloud.google.com/compute/docs/instances/access-overview#project-wide>
 
 - OS Login (recomendado)
 - ssh keys in metadata
@@ -10,17 +10,17 @@ https://cloud.google.com/compute/docs/instances/access-overview#project-wide
 - using service accounts to grant access to applications
 
 ## OS login
-https://cloud.google.com/compute/docs/oslogin
+<https://cloud.google.com/compute/docs/oslogin>
 
 Como saber si está activado (parece que no viene por defecto)
-https://cloud.google.com/compute/docs/troubleshooting/troubleshoot-os-login#checking_if_os_login_is_enabled
-
+<https://cloud.google.com/compute/docs/troubleshooting/troubleshoot-os-login#checking_if_os_login_is_enabled>
 
 ## SSH keys in metadata
+
 Si hacemos "gcloud compute ssh", se intentará modificar el metadata del proyecto o instancia para añadir nuestra clave ssh y permitirnos el acceso.
 
-
 # Añadir keys con terraform
+
 metadata = {
   ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
 }
@@ -30,9 +30,8 @@ metadata = {
   ssh-keys = "${var.gce_ssh_user}:${file(var.key_pair["public_key_path"])}"
 }
 
-
 # Resolución DNS
-https://cloud.google.com/compute/docs/internal-dns
+<https://cloud.google.com/compute/docs/internal-dns>
 
 Se ven las máquinas conectadas a la misma red.
 
@@ -41,6 +40,31 @@ INSTANCE_NAME.c.PROJECT_ID.internal
 INSTANCE_NAME.ZONE.c.PROJECT_ID.internal
 
 Si queremos ver cual estamos usando, usar:
-curl "http://metadata.google.internal/computeMetadata/v1/instance/hostname" -H "Metadata-Flavor: Google"
+curl "<http://metadata.google.internal/computeMetadata/v1/instance/hostname>" -H "Metadata-Flavor: Google"
 
 Si vemos que pone zona, es que estams usando el zonal DNS
+
+# Metadata
+
+## Project id
+
+```bash
+curl -H "Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/project/project-id
+```
+
+## Zone
+
+```bash
+curl -s -H "Metadata-Flavor: Google" \
+http://metadata.google.internal/computeMetadata/v1/instance/zone \
+| basename $(cat) \
+```
+
+## Region
+
+```bash
+curl -s -H "Metadata-Flavor: Google" \
+http://metadata.google.internal/computeMetadata/v1/instance/zone \
+| basename $(cat) \
+| sed 's/-[a-z]$//'
+```
