@@ -16,27 +16,46 @@ Best practices:
 <https://medium.com/hashicorp-engineering/how-id-attack-your-hashicorp-vault-and-how-you-can-prevent-me-system-hardening-ce151454e26b>
 
 Parece buena idea usar distintos engines para distintos conjuntos de secretos, así evitamos mostrar que existen a quien no haga falta.
+
 No usar docker si es posible.
+
 TLS 1.3 hasta vault, con HSTS
+
 Obligar a MFA
+
 El token generado tras el login que sea short lived (9h, con max ttl 24h?)
+
 Usar IaC para configurar vault (<https://registry.terraform.io/providers/hashicorp/vault/latest/docs>)
+
 Activar auditing
+
 Hacer backups
+
 Meter dentro de la VPN?
+
 pros: más seguro
+
 cons: sin acceso sin vpn (posibilidad de cachear con el proxy v1.16; cuanto tiempo? perdemos auditing, se baja todo)
+
 Transmitir las claves de unseal de manera segura
+
 Borrar el token root (se puede regenerar con las claves de unseal)
+
 Desactivar el histórico de bash si vamos a meter info sensible.
 
 # Arrancar server
 
 Modo desarrollo (sin config):
+
+```bash
 vault server -dev -dev-root-token-id="root"
+```
 
 Tenemos que inicializarlo tras arrancarlo (antiguo, ver como es ahora):
+
+```bash
 vault operator init -key-shares=3 -key-threshold=1
+```
 
 Luego hacer el unseal.
 Luego loguearnos.
@@ -61,16 +80,28 @@ api_addr = "http://127.0.0.1:8200"
 ```
 
 Para inicializarlo:
+
+```bash
 VAULT_ADDR=<http://127.0.0.1:8200> vault operator init
+```
 
 Si solo queremos una key de unseal podemos usar:
+
+```bash
 vault operator init -key-shares=1 -key-threshold=1
+```
 
 Luego haremos el unseal
+
+```bash
 VAULT_ADDR=<http://127.0.0.1:8200> vault operator unseal
+```
 
 Y luego podremos ya usarlo con el root token:
+
+```bash
 VAULT_TOKEN=hvs.XXX VAULT_ADDR=<http://127.0.0.1:8200> vault secrets list
+```
 
 # Auth methods
 
@@ -81,16 +112,29 @@ Podemos usar servicios de terceros para hacer la autenticación: AWS, Azure, Goo
 Vault funciona validando el usuario y devolviéndole un token. Todas las peticiones en adelante se harán con ese token.
 
 Ver cuales tenemos activos
+
+```bash
 vault auth list -detailed
+```
 
 Valores por defecto para ttl:
+
+```bash
 vault read sys/auth/token/tune
 vault read sys/auth/userpass/tune
+```
 
 Modificar el default ttl:
+
+```bash
 vault auth tune -default-lease-ttl=72h github/
+```
+
 Modificar el tiempo máximo de ttl:
+
+```bash
 vault auth tune -max-lease-ttl=2m userpass/
+```
 
 Mirar también info en la sección Tokens.
 
@@ -99,14 +143,24 @@ Mirar también info en la sección Tokens.
 <https://www.vaultproject.io/docs/auth/userpass.html>
 
 Tenemos que activar el Auth Method user/pass.
+
+```bash
 vault auth enable userpass
+```
 
 Una vez activo usaremos la consola para crear usuarios:
+
+```bash
 vault write auth/userpass/users/mitchellh password=foo policies=admins
+```
 
 Para que funcione la cli (tendremos que pasar un token):
+
+```bash
 vault login
 vault login -method=userpass username=foo
+```
+
 guardará el token en ~/.vault-token
 
 Podemos usar un token-helper para almacenar ese token de forma segura.
@@ -114,16 +168,25 @@ Lo configuramos en ~/.vault con "token_helper = /foo/path"
 
 <https://github.com/frntn/vault-token-helper-gopass>
 mirar como configurarlo en <https://github.com/sethvargo/vault-token-helper-osx-keychain>
+
 Este de gopass es muy simple, guarda el contenido en un path de gopass que le digamos
+
 En mi caso lo guardo en privado/vault-auth
+
 <https://github.com/joemiller/vault-token-helper>
 soporte para pass, linux dbus secrets, osx, windows
 
 Si queremos únicamente obtener el token (no lo guardará en ~/.vault-token):
+
+```bash
 vault login -token-only -method=userpass username=foo
+```
 
 O sacar la info en una tabla, como la salida normal, pero tampoco generar el ~/.vault-token:
+
+```bash
 vault login -no-store -method=userpass username=foo3
+```
 
 ## LDAP
 
@@ -132,6 +195,8 @@ vault login -no-store -method=userpass username=foo3
 vault auth enable ldap
 
 Configuración donde tenemos que especificar como se mapean los usuarios y grupos en el LDAP:
+
+```bash
 vault write auth/ldap/config \
  url="ldap://ldap.example.com" \
  userdn="cn=opensolutions,dc=ldap,dc=opensolutions,dc=clou" \
@@ -142,11 +207,17 @@ vault write auth/ldap/config \
  certificate=@ldap_ca_cert.pem \
  insecure_tls=false \
  starttls=true
+```
 
 Si queremos autenticarnos haciendo un bind DN con el usuario, podemos definir
+
 userattr y userdn.
+
 El bind se generará como:
+
+```bash
 "%s=%s,%s", cfg.UserAttr, EscapeLDAPValue(username), cfg.UserD
+```
 
 ## OIDC / OpenID Connect
 
@@ -163,6 +234,7 @@ Para autenticar con google solo falta oauth. Si queremos obtener los grupos si h
 Los grupos de google se administran en: <https://groups.google.com/all-groups>
 Podemos crear también subgrupos.
 
+```bash
 vault write auth/oidc/config -<<EOF
 {
 "oidc_discovery_url": "<https://accounts.google.com>",
@@ -179,7 +251,9 @@ vault write auth/oidc/config -<<EOF
 }
 }
 EOF
+```
 
+```bash
 vault write auth/oidc/role/user -<<EOF
 {
 "allowed_redirect_uris": "<http://localhost:8200/ui/vault/auth/oidc/oidc/callback,http://localhost:8250/oidc/callback>",
@@ -194,9 +268,13 @@ vault write auth/oidc/role/user -<<EOF
 }
 }
 EOF
+```
 
 Para debuear podemos activar
+
+```bash
 vault write auth/oidc/role/your_default_role verbose_oidc_logging=true
+```
 
 <https://developer.hashicorp.com/vault/docs/auth/jwt#claims-as-metadata>
 Para mapear metadata del OIDC a Vault usaremos los "claim_mappings".
@@ -207,11 +285,17 @@ Para mapear metadata del OIDC a Vault usaremos los "claim_mappings".
 Para mapear los grupos de OIDC a policies de Vault haremos:
 
 1. Crear un grupo type=external con las policies que queramos asignar
+
+```bash
    vault write identity/group name="soporte_ext" type="external" policies="policy1,policy2"
+```
 
 2. Crear un group-alias, que mapeará el grupo de OIDC (puesto en "name") con el ID (grupo external de Vault) puesto en canonical_id.
    También tendremos que poner el mount_accessor, el del método de auth que estamos usando, lo podemos obtener con "vault auth list".
+
+   ```bash
    vault write identity/group-alias name='<soporte@foo.io>' mount_accessor='auth_oidc_8e111111' canonical_id=11111111-3cec-5808-bc64-ffc1b528eaeb
+   ```
 
 ### Vault como OIDC provider
 
@@ -225,17 +309,24 @@ Lo de arriba es para que puedas usar un OIDC externo para autenticarte contra va
 <https://github.com/hashicorp/vault-plugin-auth-jwt>
 
 Para cargar el plugin:
+
+```bash
 vault plugin register \
  -sha256=$(sha256sum vault-plugin-auth-jwt/bin/vault-plugin-auth-jwt | cut -d ' ' -f 1) \
  -command="vault-plugin-auth-jwt" \
  auth \
  oidc
 vault auth enable -plugin-name='oidc' plugin
+```
 
 Para cambiarlo:
+
+```bash
 vault auth disable oidc
 ...register...
 ...enable...
+```
+
 Y cargar la config de ODIC (vault write...)
 
 ## AppRoles
@@ -245,13 +336,13 @@ Para máquinas usar AppRoles
 
 Activarlo
 
-```
+```bash
 vault auth enable approle
 ```
 
 Crear un named role:
 
-```
+```bash
 vault write auth/approle/role/my-role \
     token_type=batch \
     secret_id_ttl=10m \
@@ -271,19 +362,33 @@ vault write auth/approle/role/my-role \
 
 Internamente Vault usa identity/ para almacenar los clientes conectados (excepto los que usan tokens).
 
+```bash
 vault path-help identity/
+```
 
 Ver las entities:
+
+```bash
 vault list identity/entity/id/
+```
 
 Detalle de una:
+
+```bash
 vault read identity/entity/id/53dcc787-3fa3-ce57-21bb-04b472957be5
+```
 
 Esas entities tendrán mapeados "alias", que serán los distintos métodos de acceso que se habrán usado:
+
+```bash
 vault list identity/alias/id/
+```
 
 Mostrar todos los alias name junto con su entity id:
+
+```bash
 for i in $(vault list -format=json identity/alias/id/ | jq -r '.[]'); do vault read -format=json identity/alias/id/$i | jq '.data | {"id":.canonical_id,"email":.metadata.email}'; done
+```
 
 Podemos asociar muchos alias a una única entity, de esta manera podríamos hacer que un usuario que se loguea de distintas
 maneras siempre sea el mismo de cara a vault.
@@ -295,17 +400,22 @@ Los alias son los mapeos entre entities de vault y proveedores de identidad (ter
 <https://developer.hashicorp.com/vault/tutorials/auth-methods/identity#create-an-internal-group>
 <https://irezyigit.medium.com/vault-authorization-part-2-aliases-entities-and-groups-4f044d1e2010>
 
+```bash
 vault write identity/group name="engineers" \
  policies="team-eng" \
  member_entity_ids=$(cat entity_id.txt) \
  metadata=team="Engineering" \
  metadata=region="North America"
+```
 
 También se pueden crear grupos "external", para mapearlos a aquellos de los proveedores de identidad externos.
+
+```bash
 vault write -format=json identity/group name="education" \
  policies="education" \
  type="external" \
  metadata=organization="Product Education" | jq -r ".data.id" > group_id.txt
+```
 
 ## Token
 
@@ -313,19 +423,32 @@ vault write -format=json identity/group name="education" \
 <https://developer.hashicorp.com/vault/tutorials/tokens/tokens>
 
 Info sobre el token que estamos usando actualmente
+
+```bash
 vault token lookup
+```
+
 En formato API:
 auth/token/lookup-self
 
 Ver todos los tokens actuales:
+
+```bash
 vault list -format=json auth/token/accessors/ | jq -r ".[]" | xargs -n 1 vault token lookup -format=json -accessor | jq '.data'
+```
 
 Crear un token:
+
+```bash
 vault token create -policy=my-policy -ttl=1h -explicit-max-ttl=2h
 vault token create --period=0 -orphan -no-default-policy -policy=read-telemetry
+```
 
 Renovar un token (si es renovable), mantenemos el mismo token, pero se actualiza su tiempo de vida:
+
+```bash
 vault token renew
+```
 
 Los token tienen un tiempo de vida por defecto, default_lease_ttl, y un tiempo de vida máximo (max_lease_ttl).
 Cuando nos logueamos se nos da un token con el ttl por defecto.
@@ -341,25 +464,42 @@ Son "funciones" que puede realizar Vault.
 Cada una asociada a un "path".
 Por ejemplo:
 kv: almacenar key-values, la kv-v2 tiene versionado (por defecto 10)
+
+```bash
 vault secrets enable kv
 vault secrets enable -version=2 -path=kv2 kv
+```
+
 totp
+
 certificados
+
 cloud varias: generar tokens dinámicos de acceso con tiempo de vida
+
 cubbyhole: engine temporal asociado a un token que se destruye cuando expira el token, parece como un "create temp table" de sql. Útil para compartir credenciales, mirar "Share secrets"
+
 transit: encriptar y desencriptar datos
 
 Ver los que tenemos disponibles:
+
+```bash
 vault plugin list secret
+```
 
 Ayuda específica de cada engine:
+
+```bash
 vault path-help PATH/
+```
 
 Cada engine está separado del resto. Si hackeasen un engine, no podrían saltar al resto.
 <https://developer.hashicorp.com/vault/docs/secrets#barrier-view>
 
 Ejemplo, crear un engine kv:
+
+```bash
 vault secrets enable -path=kv kv
+```
 
 ## LDAP
 
@@ -368,12 +508,19 @@ Esto no es para autenticar, si no para gestionar LDAP.
 <https://developer.hashicorp.com/vault/tutorials/secrets-management/openldap>
 <https://developer.hashicorp.com/vault/docs/secrets/ldap>
 
+```bash
 vault secrets enable ldap
+```
 
+```bash
 vault write ldap/config binddn=$USERNAME bindpass=$PASSWORD url=ldaps://138.91.247.105
+```
 
 Opcional: podemos forzar el rotado de la pass de "root", para que solo openldap la conozca:
+
+```bash
 vault write -f ldap/rotate-root
+```
 
 Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario se lamacena en userPassword.
 
@@ -382,15 +529,22 @@ Por defecto el schema usado por Vault es el que usa OpenLDAP, donde el usuario s
 <https://developer.hashicorp.com/vault/docs/secrets/databases>
 Un tipo especial de engines son los de tipo database
 
+```bash
 vault plugin list database
+```
 
 Vault tiene una credencial hardcoded asociada a la db y genera credenciales dinámicas a los usuarios de vault.
 
 Uso:
 Activar el plugin
+
+```bash
 vault secrets enable database
+```
 
 Creamos una nueva entrada para configurar, por ejemplo, un postgres:
+
+```bash
 vault write database/config/my-postgresql-database \
  plugin_name="postgresql-database-plugin" \
  allowed_roles="my-role" \
@@ -398,17 +552,24 @@ vault write database/config/my-postgresql-database \
  username="vaultuser" \
  password="vaultpass" \
  password_authentication="scram-sha-256"
+```
 
 Configuramos un role para esa db:
+
+```bash
 vault write database/roles/my-role \
  db_name="my-postgresql-database" \
  creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
  GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";" \
  default_ttl="1h" \
  max_ttl="24h"
+```
 
 Obtenemos credenciales (durará 1h, renovable hasta 24h):
+
+```bash
 vault read database/creds/my-role
+```
 
 ## transit
 
@@ -416,8 +577,10 @@ vault read database/creds/my-role
 
 Le pasamos un texto y nos devuelve una cadena encriptada, que luego se la podemos enviar de nuevo para que nos la desencripte.
 
+```bash
 vault write transit/encrypt/orders plaintext=$(base64 <<< "4111 1111 1111 1111")
 vault write transit/decrypt/orders ciphertext=$CIPHERTEXT
+```
 
 # ACL
 
@@ -427,54 +590,86 @@ vault write transit/decrypt/orders ciphertext=$CIPHERTEXT
 
 Las ACL deciden que se puede hacer para cada path.
 Ejemplo:
+
+```bash
 path "secret/\*" {
 capabilities = ["create", "read", "update", "delete", "list"]
 }
+```
 
 Esta ACL permite todos las capabilities bajo el path secret/
 
 Para aplicarla, creamos la policy "admin":
+
+```bash
 vault policy write admin admin-policy.hcl
+```
 
 Luego tendremos que poner las policies a los usuarios:
+
+```bash
 write auth/userpass/users/nombre policies=admins,all
+```
 
 CUIDADO! si escribimos mal la policie no se hace ninguna comprobación. Si no matchea con una existente, simplemente se ignora.
 
 Deben loguearse de nuevo (obtener un nuevo token), si le hemos cambiado las polcies.
 
 Capabilities (y el verbo HTTP asociado):
+
 create POST/PUT
+
 read GET
+
 update POST/PUT
+
 delete DELETE
+
 list LIST
+
 patch PATCH
+
 sudo -
+
 deny -
 
 Permitir ver los engines que hay (vault secrets list):
+
+```bash
 path "sys/mounts"
 {
 capabilities = ["read"]
 }
+```
 
 Hay otro endpoint que solo permite ver los mounts donde tengamos permisos:
 sys/internal/ui/mounts
 
 Ver las políticas que tenemos:
+
+```bash
 vault policy list
 vault policy read admin
+```
 
 Comprobar las capabilities de un token
+
+```bash
 vault token capabilities $ADMIN_TOKEN sys/auth/approle
+```
 
 Obtener que ACL hacen falta para una operación
+
+```bash
 vault kv get -output-policy -mount=secret customer/acme
 vault kv put -output-policy -mount=secret customer/acme customer_name="ACME Inc." contact_email="<john.smith@acme.com>"
+```
 
 Ver nuestra ACL
+
+```bash
 vault read -format=yaml sys/internal/ui/resultant-acl | faq -f yaml .data
+```
 
 Para poder hacer
 
@@ -501,7 +696,10 @@ Detailed log of all requests to Vault, and their responses
 Por defecto no viene activo.
 
 Asegurarnos que tiene permisos de escritura en el path:
+
+```bash
 vault audit enable file file_path=/var/log/vault_audit.log
+```
 
 Nos genera un JSON por cada iteración.
 La información sensible viene hasheada. Es posible desactivarlo (log_raw=true), pero entonces estaremos volcando información confidencial en el log.
@@ -515,8 +713,11 @@ elide_list_responses, por si queremos quitar las respuestas tipo "list", que pue
 
 En kv podemos usarlo para tener un generador de passwords de un formato determinado.
 Típico uso:
+
+```bash
 vault kv put -mount=secret my-generated-secret \
  password=$(vault read -field password sys/policies/password/example/generate)
+```
 
 Por defecto vault tiene una política por defecto para generar contraseñas (cuando usamos plugin "databases" que crear passwords dinámicas).
 
@@ -524,9 +725,15 @@ Por defecto vault tiene una política por defecto para generar contraseñas (cua
 
 ## Loguearnos server remoto
 
+```bash
 vault login -address=<http://vault.com:8200> -method=userpass username=adrian
+```
+
 Otra forma:
+
+```bash
 VAULT_ADDR=<http://vault.com:8200> vault ...
+```
 
 Cada vez que queramos comunicar con un server que no es local deberemos pasar el VAULT_ADDR o -address
 
@@ -535,46 +742,71 @@ Cada vez que queramos comunicar con un server que no es local deberemos pasar el
 <https://www.vaultproject.io/docs/commands/index.html#autocompletion>
 
 Para que funcione el autocompletado tendremos que tener el ACL:
+
+```bash
 path "sys/mounts" {
 capabilities = ["read"]
 }
+```
+
 Asi podemos hacer cosas tipo:
+
+```bash
 vault read s\*<TAB>
+```
+
 E ir navegando por el arbol de secrets
 
 Parece que "vault kv get/put/... <TAB>" no funciona
 Tampoco para "vault write"
 
 Como funciona internamente. Zsh llama a vault pasándole variables de entorno:
+
+```bash
 COMP_CWORD=3 COMP_LINE="vault kv get gopass/wi" COMP_POINT=24 vault
+```
 
 ## Status
 
+```bash
 vault status
 vault status -tls-skip-verify
+```
 
+```bash
 VAULT_SKIP_VERIFY=true vault ...
+```
 
 Ignorar certs, tls, https, skip.
 
 ## Crear new vault server
 
+```bash
 vault operator init -key-shares=1 -key-threshold=1
+```
+
 los parámetros indican que la master key solo se dividirá en un trozo y que hará falta un solo trozo para abrir el vault
+
 devolverá el número de claves master especificado en key-shares y un root token (como se loguea el user root contra el vault)
 
 ## Desbloquear/abrir el vault
 
+debemos pasar las keys necesarias para abrirlo, ejecutando el comando el número de veces definido en key-threshold
+
+```bash
 vault operator unseal
 vault operator unseal $KEY
-debemos pasar las keys necesarias para abrirlo, ejecutando el comando el número de veces definido en key-threshold
+```
 
 ## Bloquear/cerrar el vault
 
-vault operator seal
 esto será una operación poco común, realizada cuando consideremos que el vault está en riesgo
 solo se podrá abrir de nuevo metiendo las claves master
 cualquier user root puede hacer seal del vault
+
+```bash
+vault operator seal
+```
 
 ## AutoUnseal
 
@@ -588,10 +820,16 @@ El típico escenario es un vault desplegado en una nube, con las claves guardada
 Existe la opción es usar otro servidor vault para hacer unseal.
 
 Ese segundo vault necesita tener el plugin transit activado.
+
+```bash
 vault secrets enable transit
+```
 
 Y una clave de encriptación:
+
+```bash
 vault write -f transit/keys/autounseal
+```
 
 Luego configuramos el segundo vault (el que tendrá auto unseal). Mirar la config en la doc.
 Luego tendremos que inicializarlo (operator init).
@@ -669,19 +907,32 @@ En el KV engine se puede confiurar para borrar los secrets cada x tiempo:
 <https://www.vaultproject.io/api-docs/secret/kv/kv-v2#delete_version_after>
 
 Copiar secrets entre distintos paths (si queremos mantener version mirar <https://gist.github.com/elasticdog/e82f0b8e63407cbb6af69341cb9d0336?permalink_comment_id=5013818#gistcomment-5013818>):
+
+```bash
 vault kv get -format=json kv/origin/path | vault kv put kv/destination/path -
 vault kv get -format=json -field=data kv/origin/path | vault kv put kv/destination/path -
+```
 
 CLI para buscar en paths, keys o values:
 <https://github.com/xbglowx/vault-kv-search>
 
 Nos permite tener acceso a todas las credenciales e ir navegando con fuzzy search
+
+```bash
 vault-kv-search --search=path kv -r . --json | jq -r .path | sort -u | fzf --preview 'vault kv get --format=yaml ${} | faq -f yaml .data'
+```
 
 Se puede especificar la versión del KV, quitando la llamada a "mounts" y así poder usar el cacheo del proxy.
+
+```bash
 vault-kv-search --search=path kv -r . --json -k=1 | jq -r .path | sort -u | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data'
+```
+
 Para V2:
+
+```bash
 vault-kv-search --search=path kv/ -r . --json -k=2 | jq -r .path | sort -u | sed "s#\([^/]_\)/\(._\)#\1/data/\2#" | fzf --preview 'vault read -format=yaml ${} | faq -f yaml .data.data'
+```
 
 <https://github.com/hashicorp/vault/issues/5275>
 Issue sobre lo de buscar o acceso recursivo.
@@ -713,7 +964,10 @@ Usar las variables de entorno estandar.
 Autocompletado, pero no navega por los engines ni paths.
 Forzar a cachear todo el contenido de un engine, para poder tenerlo offline en nuestro cache.
 Vaku necesita parche para no usar namespaces.
+
+```bash
 /home/adrian/Documentos/repos/vaku/vaku folder list gopass/ | parallel -j 10 vault read gopass/data/{} > /dev/null
+```
 
 ## vht
 
@@ -744,13 +998,19 @@ sin terminar, no soporta "ls"
 
 ### TOTP
 
+```bash
 vault write totp/keys/my-key4 url="otpauth:///?secret=AAB7LBD7AAAAAAAA"
 vault read totp/code/my-key4
+```
 
 <https://developer.hashicorp.com/vault/docs/secrets/totp#as-a-provider>
 Tambíen se puede usar como provider.
 Generando el código totp, que un cliente usará para generar el código totp y luego pudiendo verificar que ese código es correcto.
+
+```bash
 vault write totp/keys/my-gen generate=true account_name=x issuer=x
+```
+
 nos da el código en la variable "secret" de la url.
 
 No implementado en la UI.
@@ -773,17 +1033,26 @@ Vault firma certificados ssh para permitiendo acceder a los servidores.
 util para poder hacer "vssh servidor" y que gestione todo automáticamente por debajo.
 
 Activar el engine
+
+```bash
 vault secrets enable -path=ssh-client-signer ssh
+```
 
 Crear una CA para firmar los certs:
 vault write ssh-client-signer/config/ca generate_signing_key=true
 O si ya tenemos una CA:
+
+```bash
 vault write ssh-client-signer/config/ca \
  private_key="..." \
  public_key="..."
+```
 
 Obtener la clave pública:
+
+```bash
 vault read ssh-client-signer/public_key -format=raw
+```
 
 La clave pública que genera la configuraremos como TrustedUserCAKeys en los servidores donde queramos acceder.
 /etc/ssh/sshd_config.d/trusted_user_ca.conf
@@ -795,6 +1064,8 @@ ssh-rsa AAAAB3NzaC1...
 Reiniciamos sshd
 
 Creamos un role para firmar certificados ssh:
+
+```bash
 vault write ssh-client-signer/roles/my-role -<<"EOH"
 {
 "algorithm_signer": "rsa-sha2-256",
@@ -809,27 +1080,47 @@ vault write ssh-client-signer/roles/my-role -<<"EOH"
 "ttl": "30m0s"
 }
 EOH
+```
 
 El default_user deberá matchear con el usuario contra el que queremos loguear.
 
 Firmamos nuestra clave ssh:
+
+```bash
 vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > /tmp/foo
+```
+
 podemos pedir otro usuario con "valid_principals=administrator"
-chmod 600 /tmp/foo
 Accedemos pasando la clave firmada y nuestra clave ssh:
+
+```bash
+chmod 600 /tmp/foo
 SSH_AUTH_SOCK="" ssh -v -i /tmp/foo -i ~/.ssh/id_rsa USUARIO@HOST
+```
 
 Si guardamos la clave en este path, ssh la cogerá automáticamente:
+
+```bash
 vault write -field=signed_key ssh-client-signer/sign/my-role public_key=@$HOME/.ssh/id_rsa.pub > ~/.ssh/id_rsa-cert.pub
+```
 
 Ver datos de la clave firmada:
+
+```bash
 ssh-keygen -Lf /tmp/foo
+```
 
 Para navegar por los roles de un ssh mount:
+
+```bash
 vault list datadope-ssh/roles/
+```
 
 Detalles:
+
+```bash
 vault read datadope-ssh/roles/datadope-vault-vm
+```
 
 # Share secrets
 
@@ -845,18 +1136,26 @@ Si queremos compartir unas credenciales con alguien, que también tiene acceso a
 Desde la web también se puede hacer. En tools también podemos generar un wrapped al vuelo y tenemos una tool para hacer el unwrapped.
 
 Obtenemos el wrapped token, ejemplos para cubbyhole y kv:
+
+```bash
 vault write cubbyhole/pepe foo=bar
 vault read -wrap-ttl=5m cubbyhole/pepe
 vault kv get -wrap-ttl=120 kv/dev
 vault read -wrap-ttl=5m -field=wrapping_token cubbyhole/pepe
+```
+
 Para solo sacar el token.
 Podemos obviar -wrap-ttl si usamos la variable de entorno VAULT_WRAP_TTL
 
 La otra persona usa esto para leerlo:
+
+```bash
 vault unwrap hvs.XXXX
+```
 
 # Docker
 
+```bash
 VERSION=0.11.5
 docker run --restart=unless-stopped \
  -v "$PWD/vault/config:/vault/config" \
@@ -864,8 +1163,11 @@ docker run --restart=unless-stopped \
  --cap-add=IPC_LOCK \
  -d -p 8200:8200 \
  --name=vault-${VERSION} vault:${VERSION} server
+```
 
+```bash
 docker exec -it vault sh
+```
 
 # UI
 
@@ -875,9 +1177,12 @@ Trae integrada una, pero no muy potente. No tiene buscador, por ejemplo.
 Última release Apr/2022
 Para ver las keys necesita permiso de lectura sobre sus policies:
 <https://github.com/adobe/cryptr?tab=readme-ov-file#secret-discovery>
+
+```bash
 path "sys/policy/POLITICA_ASIGNADA" {
 capabilities = ["read"]
 }
+```
 
 ARCHIVED 2019
 La mejor (Vue.js + Go): <https://github.com/caiyeon/goldfish>
@@ -912,10 +1217,13 @@ curl -s localhost:8200/v1/sys/health | jq
 <https://pypi.org/project/hvac/>
 
 Exportar VAULT_ADDR y VAULT_TOKEN
+
+```bash
 import hvac
 client = hvac.Client()
 client.secrets.kv.v2.list_secrets(mount_point="kv2", path="/")
 client.secrets.kv.v2.create_or_update_secret(mount_point="kv2", path="/py", secret=dict(psss="1223", foo=333, bar=dict(abc=dict(jose:=1))))
+```
 
 # Vault agent and proxy
 
@@ -942,12 +1250,15 @@ El problema es que si usamos la cli, esta hace siempre una llamada a /v1/sys/int
 que no se cachea, por lo que si el server está caído no funciona.
 
 Si usamos llamadas directas (sin usar "vault kv ..."), evitamos las llamadas a mounts. Ejemplo:
+
+```bash
 vault list kv2/metadata
-para hacer un kb ls kv2/
+# para hacer un kb ls kv2/
 vault list kv2/metadata/foo
-para hacer un kb ls kv2/foo
+# para hacer un kb ls kv2/foo
 vault read kv2/data/bar
-para hacer un kv get kv2/bar
+# para hacer un kv get kv2/bar
+```
 
 Si queremos usar "kv XX" necesitamos forzar (-kv-version=N) la versión del KV, para evitar que la tenga que consultar.
 Parche con esa funcionalidad.
@@ -999,7 +1310,10 @@ Otro módulo no oficial con ciertas mejoras: <https://github.com/jhaals/ansible-
 
 <https://www.vaultproject.io/docs/commands/debug>
 
+```bash
 vault debug
+```
+
 lo arrancamos, hacemos interacciones y lo paramos. Nos genera un .tgz con ficheros con datos (pero no veo las llamadas de clientes)
 Es para el vault server
 
