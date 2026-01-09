@@ -16,6 +16,8 @@ udica -i CONTAINERID my_policy_name
 podman inspect my_container_id | udica my_policy_name
 ```
 
+Podemos ver las macros en udica-templates/
+
 La política típica será heredar de "container" y añadir:
 
 ```
