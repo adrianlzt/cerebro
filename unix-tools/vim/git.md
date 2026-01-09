@@ -9,12 +9,18 @@ Mostrar las líneas modificadas y gestionar los cambios pendientes
 https://github.com/lewis6991/gitsigns.nvim
 
 F10             activar/desactivar columna y colores con cambios
+
 ]c              siguiente cambio
+
 [c              cambio anterior
+
 ,hu             quitar la modificación, dejandolo como estuviese en el commit anterior
+
 ,hs             meter ese cambio en el stage (nos permite commitear solo unos pocos cambios de un fichero). Podemos hacer selección visual para coger varias líneas
+
 ,hp             sobre un cambio, nos muestra una línea con el valor antiguo y otra con el nuevo
                 si queremos stagear solo cierta parte de un cambio de una línea, hacemos el ,hp, saltamos a esa preview (C-w C-w), modificamos lo que no queremos y guardamos (:w)
+
 :GitGutterFold  esconder todo menos los cambios. 'zr' para mostrar contexto (3 líneas por encima y por debajo). Mismo comando de nuevo para deshacer
 
 

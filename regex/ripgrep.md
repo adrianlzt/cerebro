@@ -1,11 +1,12 @@
-http://blog.burntsushi.net/ripgrep/
+<http://blog.burntsushi.net/ripgrep/>
+
+Otra opción, ast-grep
 
 un grep más rápido
 
 Probando en un dir con mezcla de directorios, ficheros binarios y de texto. No me hace recursion
 
 rg busqueda
-
 
 rg -uu es como grep -r
 rg -uuu es como grep -r -a
@@ -20,7 +21,6 @@ rg -l
 rg -I
   no mostrar el nombre de los ficheros donde hay match
 
-
 rg -w git -g '*py'
   buscar "git", como palabra entera, solo en los ficheros py
 
@@ -31,6 +31,6 @@ rg -g '!vendor' dbus
   mostrar más abajo los ficheros más nuevos
 
 Multilinea:
-https://til.hashrocket.com/posts/9zneks2cbv-multiline-matches-with-ripgrep-rg
+<https://til.hashrocket.com/posts/9zneks2cbv-multiline-matches-with-ripgrep-rg>
 
 echo 'apple\norange\nbanana\nkiwi' | rg --multiline --multiline-dotall 'orange.*kiwi'

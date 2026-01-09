@@ -10,6 +10,14 @@ ast-grep -p '$A && $A()' -r '$A?.()'
 
 Busca ese patrón y lo reemplaza.
 
+## YAML
+
+Buscar una key en yaml y obtener lo que está debajo (para este caso tal vez mejor `yq`):
+
+```bash
+ast-grep --lang yaml --pattern 'community.docker.docker_container: $$$'
+```
+
 # Linting
 
 Podemos definir [reglas](https://ast-grep.github.io/guide/rule-config.html) y verificarlas con el escaner.

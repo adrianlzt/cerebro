@@ -1,5 +1,8 @@
 # Pod (algo parecido a las tasks en docker swarm)
-https://kubernetes.io/docs/concepts/workloads/pods/pod/
+
+<https://kubernetes.io/docs/concepts/workloads/pods/pod/>
+
+<https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/>
 
 Varios containers corriendo en el mismo namespace de network, ipc, uts y cgroup. Ambos tendrán la misma ip, se podrán comunicar via localhost:puerto.
 Tendran el mismo hostname
@@ -15,41 +18,46 @@ The Volume in this exercise provides a way for Containers to communicate during 
 
 Kubernetes ensures that pods are able to network with each other, and allocates each pod an IP address from an internal network. This ensures all containers within the pod behave as if they were on the same host. Giving each pod its own IP address means that pods can be treated like physical hosts or virtual machines in terms of port allocation, networking, naming, service discovery, load balancing, application configuration, and migration.
 
-
 Ejemplo:
 Openshift para dar el servicio Kibana crea un pod con dos containers.
-Un container es el que recibe las peticiones y las autentica contra openshift (reverse-proxy https://github.com/fabric8io/openshift-auth-proxy)
+Un container es el que recibe las peticiones y las autentica contra openshift (reverse-proxy <https://github.com/fabric8io/openshift-auth-proxy>)
 El otro es el kibana en si mismo.
 
-
 # init containers
-https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+
+<https://kubernetes.io/docs/concepts/workloads/pods/init-containers/>
 Podemos poner en un pod unos "init containers" que se ejecutarán antes que los containers "normales" de pod.
 
 Para ver sus logs:
-kc logs nombrepod -c nombreinit
 
+```bash
+kc logs nombrepod -c nombreinit
+```
 
 # SCC
-Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.
 
+Todo pod se levanta con un system account determinada, por defecto la sa/default que aparece al crear el proyecto.
 
 Levantar un pod -> mirar shell.md
 
-
-
 # Pods para pruebas
+
+escucha en un puerto y hace eco en el puerto 8080
+
 gcr.io/google_containers/echoserver:1.4
-  escucha en un puerto y hace eco en el puerto 8080
+
+para tener una pequeña shell
+
 busybox
-  para tener una pequeña shell
 
+```bash
 kubectl run -it --rm --restart=Never alpine --image=alpine sh
-
+```
 
 Levantar un nginx
+
+```bash
 kubectl create deployment nginx --image=nginx
 kubectl expose deployment nginx --port 80 --target-port=80
-  exponer el puerto con un ClusterIP (ip vistas desde los nodos del cluster de k8s)
-
-
+# exponer el puerto con un ClusterIP (ip vistas desde los nodos del cluster de k8s)
+```

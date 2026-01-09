@@ -1,21 +1,28 @@
 Escribir pagina man:
-http://liw.fi/manpages/
-
+<http://liw.fi/manpages/>
 
 Abrir un fichero como pagina man:
+
+```bash
 man -l nombre.3
+```
 
+```bash
 man -a pagina
-  leemos todas las man que matchean "pagina" (puede haber varias en distintas secciones
+# leemos todas las man que matchean "pagina" (puede haber varias en distintas secciones
+```
 
+```bash
 man -S 1,2,3 pagina
-  solo abrir la man si está en una de esas secciones
+# solo abrir la man si está en una de esas secciones
+```
 
+```bash
 man -K palabra
 man -S 2 -K palabra
-  buscar en todas las paginas man
-  lento
-
+# buscar en todas las paginas man
+# lento
+```
 
 Secciones
 1 User Commands
