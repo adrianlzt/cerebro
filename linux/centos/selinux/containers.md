@@ -11,7 +11,8 @@ Generar la política:
 ```bash
 podman inspect my_container_id > container.json
 udica -j container.json my_policy_name
-# otra opción
+# otras opciónes
+udica -i CONTAINERID my_policy_name
 podman inspect my_container_id | udica my_policy_name
 ```
 
