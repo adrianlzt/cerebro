@@ -54,3 +54,9 @@ semodule:  Failed!
 ```
 
 Esto nos dará si intentamos borrar un módulo del que depende otro módulo (usa una interfaz).
+
+# Problemas de reglas que no aplican?
+
+Comprobar si el proceso corre con el domain que esperamos.
+
+Usar ausearch para comprobar si existen los permisos que esperamos.

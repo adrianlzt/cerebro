@@ -68,6 +68,16 @@ Si está motando /etc puede que nos ponga simplemente:
 (blockinherit config_rw_container) # si hemos montado /etc como rw
 ```
 
+# Docker
+
+Para que docker use selinux hay que arrancarlo con `--selinux-enabled`.
+
+Otra opción es en configurar `/etc/docker/daemon.json`:
+
+```
+"selinux-enabled": true
+```
+
 # Volúmenes / z - Z
 
 If you use selinux you can add the z or Z options to modify the selinux label of the host file or directory being mounted into the container. This affects the file or directory on the host machine itself and can have consequences outside of the scope of Docker.
@@ -77,3 +87,11 @@ The z option indicates that the bind mount content is shared among multiple cont
 The Z option indicates that the bind mount content is private and unshared.
 
 Use extreme caution with these options. Bind-mounting a system directory such as /home or /usr with the Z option renders your host machine inoperable and you may need to relabel the host machine files by hand.
+
+# type spc_t
+
+<https://danwalsh.livejournal.com/74754.html>
+
+<https://developers.redhat.com/blog/2014/11/06/introducing-a-super-privileged-container-concept>
+
+SPC stands for Super Privileged Container

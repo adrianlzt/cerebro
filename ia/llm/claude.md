@@ -22,6 +22,16 @@ Donde ponemos que provider usamos y la transformación para que las llamadas de 
 
 Ahora mismo no se puede usar con litellm proxy de por medio si no es con models openai: <https://github.com/musistudio/claude-code-router/issues/96#issuecomment-3031351638>
 
+## Permisos
+
+Cuando le decimos que a partir de ahora puede ejecutar tal comando, lo almacena en `.claude/settings.local.json`.
+
+Si queremos quitar ese permiso, borrar de ese fichero lo que no queremos y arrancar de nuevo con:
+
+```bash
+claude --continue
+```
+
 ## MCPs
 
 <https://docs.claude.com/en/docs/claude-code/mcp>

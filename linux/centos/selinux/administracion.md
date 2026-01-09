@@ -312,6 +312,18 @@ sesearch -s init_t -t unconfined_service_t -A -ds -dt
 # -dt                   Match target attributes directly instead of matching member types/roles.
 ```
 
+Buscar si tenemos una regla de lectura del domain "container_domain" al domain "etc_t" para ficheros:
+
+```bash
+sesearch --allow --source container_domain --target etc_t --class file --perm read
+```
+
+# Conocer context actual
+
+```bash
+cat /proc/self/attr/current
+```
+
 # Buscar errores / audit2why
 
 mirar logging.md
