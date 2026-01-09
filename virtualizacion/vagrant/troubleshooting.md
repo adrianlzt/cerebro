@@ -11,3 +11,5 @@ ps -T -p 1778846
 Si es "NAT", mirar si el problema es que las DNS usadas del host no funcionan en el guest.
 
 Setear las típicas de google.
+
+Parece que cambiar de NAT a NAT network soluciona el problema.
