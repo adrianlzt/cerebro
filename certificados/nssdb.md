@@ -15,6 +15,9 @@ Listar claves privadas:
 certutil -K -d ~/.pki/nssdb
 ```
 
-```
+Añádir un cert
 
+```bash
+openssl s_client -showcerts -connect my.site.com:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > my-site.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "My Local Cert" -i my-site.crt
 ```

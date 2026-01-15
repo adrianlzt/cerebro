@@ -1,12 +1,12 @@
 Podemos automatizar la generación de policies para contenedores usando "udica".
 
-Instalar
+# Instalar
 
 ```bash
 dnf install udica
 ```
 
-Generar la política:
+# Generar la política
 
 ```bash
 podman inspect my_container_id > container.json
@@ -68,14 +68,23 @@ Si está motando /etc puede que nos ponga simplemente:
 (blockinherit config_rw_container) # si hemos montado /etc como rw
 ```
 
-# Docker
+Tras generar la policy deberemos isntalarla y usarla en un contendor:
 
-Para que docker use selinux hay que arrancarlo con `--selinux-enabled`.
+```bash
+semodule -i hopeful_austin.cil /usr/share/udica/templates/base_container.cil
+docker run --rm --security-opt label=type:hopeful_austin.process --name hopeful_austin alpine
+```
 
-Otra opción es en configurar `/etc/docker/daemon.json`:
+Veremos que el contendor cambia su contexto, por ejemplo:
 
 ```
-"selinux-enabled": true
+system_u:system_r:hopeful_austin.process:s0:c388,c927
+```
+
+Podremos uscar registros suyos con:
+
+```bash
+ausearch -se hopeful_austin.process
 ```
 
 # Volúmenes / z - Z
@@ -87,6 +96,33 @@ The z option indicates that the bind mount content is shared among multiple cont
 The Z option indicates that the bind mount content is private and unshared.
 
 Use extreme caution with these options. Bind-mounting a system directory such as /home or /usr with the Z option renders your host machine inoperable and you may need to relabel the host machine files by hand.
+
+# Docker
+
+Para que docker use selinux hay que arrancarlo con `--selinux-enabled`.
+
+Otra opción es en configurar `/etc/docker/daemon.json`:
+
+```
+"selinux-enabled": true
+```
+
+Podemos ver si está activo usando:
+
+```bash
+docker info
+...
+
+ Security Options:
+  seccomp
+   Profile: builtin
+  selinux
+  cgroupns
+```
+
+Si no activamos esto, los contendores tendrán el context `system_u:system_r:spc_t:s0`.
+
+Si lo activamos: `system_u:system_r:container_t:s0:c816,c975`
 
 # type spc_t
 

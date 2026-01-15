@@ -17,7 +17,7 @@ is_binary() {
 }
 
 is_key() {
-  grep -E "PRIVATE KEY-----" "$FILE" >& /dev/null
+  grep -E "PRIVATE KEY-----" "$FILE" >&/dev/null
   if [[ $? -eq 0 ]]; then
     return $TRUE
   fi
@@ -25,7 +25,15 @@ is_key() {
 }
 
 is_crl() {
-  grep -E "X509 CRL-----$" "$FILE" >& /dev/null
+  grep -E "X509 CRL-----$" "$FILE" >&/dev/null
+  if [[ $? -eq 0 ]]; then
+    return $TRUE
+  fi
+  return $FALSE
+}
+
+is_csr() {
+  grep -E "CERTIFICATE REQUEST-----" "$FILE" >&/dev/null
   if [[ $? -eq 0 ]]; then
     return $TRUE
   fi
@@ -41,14 +49,14 @@ several_certificates_inside() {
 }
 
 is_file() {
-    local file=$1
-    [[ -f $file ]]
+  local file=$1
+  [[ -f $file ]]
 }
 
-headers () {
-    echo "$1" | grep -E -A 10 "^Certificate:"
-    echo "----"
-    echo "$1" | grep -A 1 "Subject Alternative Name:"
+headers() {
+  echo "$1" | grep -E -A 10 "^Certificate"
+  echo "----"
+  echo "$1" | grep -A 1 "Subject Alternative Name:"
 }
 
 ##########
@@ -67,6 +75,12 @@ if is_key "$FILE"; then
   exit 0
 fi
 
+if is_csr "$FILE"; then
+  echo "Certificate Signing Request (CSR)"
+  OUTPUT=$(openssl req -noout -text -in "$FILE")
+  headers "$(echo "$OUTPUT")"
+  exit 0
+fi
 
 if is_binary "$FILE"; then
   OUTPUT=$(openssl x509 -noout -text -inform der -in "$FILE" 2>&1)
@@ -100,4 +114,3 @@ else
     fi
   fi
 fi
-
