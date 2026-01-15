@@ -1,64 +1,83 @@
 # cliente basico
+
 man s_client
 
+```bash
 openssl s_client -connect example.com:443
+```
 
 Si queremos enviar el "Host" siguiendo el estandar SNI
+
+```bash
 openssl s_client -servername chrismeller.com -connect chrismeller.com:443
-
-
-
+```
 
 # HowTo
-http://www.madboa.com/geek/openssl/
+<http://www.madboa.com/geek/openssl/>
 
 The openssl application that ships with the OpenSSL libraries can perform a wide range of crypto operations. This HOWTO provides some cookbook-style recipes for using it.
 
-
 # Encriptar un fichero con des3
+
+nos pregunta la contraseña via prompt
+
+```bash
 openssl des3 -salt -in "test" -out "test.des3"
-  nos pregunta la contraseña via prompt
+```
 
 Encriptar pasando la pass por parametro y generando un fichero base64
+
+```bash
 openssl des3 -salt -k prueba -a -in "test" -out "test.des3"
+```
 
 Pasando por stdin
+
+```bash
 echo "texto" | openssl des3 -salt -k prueba -a -out "test.des3"
+```
 
 # Desencriptar
+
+```bash
 openssl des3 -d -salt -in "test.des3" -out "test"
+```
 
 Pasando pass por parametro y leyendo base64
+
+```bash
 openssl des3 -d -salt -k prueba -a -in "test" -out "test"
-
-
-
+```
 
 # RSA
+
 Encriptación asimétrica (clave pública - clave privada)
-https://github.com/bobvanluijt/Bitcoin-explained/blob/master/RSA.js
+<https://github.com/bobvanluijt/Bitcoin-explained/blob/master/RSA.js>
 ejemplo de implementacion
 
 Se deben usar claves de al menos 2048 bits, 1024 puede que sean inseguras.
 
-https://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.ht://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.htm
+<https://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.ht://www.emc.com/emc-plus/rsa-labs/historical/has-the-rsa-algorithm-been-compromised.htm>
 NIST offered a table of proposed key sizes for discussion at its key management workshop in November 2001 [7]. For data that needs to be protected no later than the year 2015, the table indicates that the RSA key size should be at least 1024 bits. For data that needs to be protected longer, the key size should be at least 2048 bits.
 
-https://www.keylength.com/en/4/
+<https://www.keylength.com/en/4/>
 
-https://www.openssl.org/docs/manmaster/man1/rsautl.html
+<https://www.openssl.org/docs/manmaster/man1/rsautl.html>
 
+```bash
 echo 'Hi Alice! Please bring malacpörkölt for dinner!' |
 openssl rsautl -encrypt -pubin -inkey alice.pub >message.encrypted
+```
 
 Desencriptar:
+
+```bash
 openssl rsautl -decrypt -in encryptedtext -out plaintext -inkey private.pem
-  Si nos da el error: routines:RSA_EAY_PRIVATE_DECRYPT:data greater than mod len:rsa_eay.c:506:
-  Hacer:
-    openssl enc -in ciphertext -out binarytext -d -a
-    openssl rsautl -decrypt -in binarytext -out plaintext -inkey private.pem
-
-
+# Si nos da el error: routines:RSA_EAY_PRIVATE_DECRYPT:data greater than mod len:rsa_eay.c:506:
+# Hacer:
+#   openssl enc -in ciphertext -out binarytext -d -a
+#   openssl rsautl -decrypt -in binarytext -out plaintext -inkey private.pem
+```
 
 Padding:
 PKCS#1 (ver <=1.5) no es seguro (Eurocrypt 2000, Coron et al), usar OAEP
@@ -68,20 +87,20 @@ Las de 2048bits 27 líneas
 
 RSA es sintácticamente seguro, devuelve distintos valores para el mismo mensaje encriptado.
 
-
-
-
 # AES
+
 Encriptación simétrica
 
 Para algunos de sus modos (CBC o CBF) se usa un vector de inicialización (IV) que suele elegirse de forma aleatoria. Con esto conseguimos que sea semánticamente segura la encriptación.
 Este IV se añade al texto a encriptar y luego se añadre al texto encriptado.
 Algo así:
+
+```bash
 IV = "sd77h85tg" (algo random)
 ciphertext = encriptar(IV+mensaje)
 texto_a_enviar = IV+ciphertext
+```
 
 Si predefinimos el IV, para el mismo texto de entrada siempre tendremos la misma cadena de salida.
-
 
 OFB no necesita padding.
