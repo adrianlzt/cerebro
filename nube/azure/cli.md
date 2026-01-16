@@ -73,32 +73,48 @@ export AZURE_CONFIG_DIR=/path/to/your/azure/config
 
 <https://learn.microsoft.com/en-us/cli/azure/azure-cli-learn-bash>
 
+```bash
 --output yaml/json/table/tsv
 -o json
 --query name
 --query user.name
 --query "[].{subscription_id:id, name:name, isDefault:isDefault}"
+```
 
 # VMs
 
 <https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool#:~:text=Manage%20Azure%20Virtual,Expand%20table>
 
+```bash
 az vm list
 az vm show --resource-group myResourceGroup --name myVMnam
+```
 
 Para ver la IP pública
-az vm show --resource-group myResourceGroup --name myVMnam --show-details
 
+```bash
+az vm show --resource-group myResourceGroup --name myVMnam --show-details
+```
+
+```bash
 az vm list-ip-addresses -n appliance --query "[].virtualMachine.network.publicIpAddresses[].ipAddress" -o tsv
+az vm list-ip-addresses --resource-group iometrics-alsa-prod --output table
+```
 
 ## SSH
 
 <https://learn.microsoft.com/en-us/cli/azure/ssh?view=azure-cli-latest>
+
+```bash
 az ssh vm --resource-group testlink_group --name testlink
+```
 
 Podemos generar ficheros de config ssh:
+
+```bash
 az ssh config --resource-group myResourceGroup --name myMachine --local-user username --certificate-file cert --private-key-file key --file ./sshconfig
 ssh -F ./sshconfig MyResourceGroup-myMachine-username
+```
 
 Por defecto el usuario que crea azure es linux es "azureuser".
 
