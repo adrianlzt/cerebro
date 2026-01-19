@@ -27,52 +27,83 @@ Hacer un POST (mejor no poner -XPOST, mirar en redirects):
 curl -d 'variable=valor&otra=123' <http://www.web.com>
 
 Fake host:
+
+```bash
 curl -H 'Host: be.caja-ingenieros.es' <https://localhost/>....
+```
 
 Otra forma de hacer un "fake host" con que funciona con TLS SNI:
-curl --resolve adfs.mysite.com:443:192.168.1.100 <https://adfs.mysite.com/>
+
+```bash
+curl --resolve adfs.mysite.com:443:192.168.1.100 https://adfs.mysite.com/
+```
 
 Hacer un PUT con datos:
-curl -XPUT host:puerto -d '
-datos
-'
-  -d: envia esos datos al servidor
+
+```bash
+curl -XPUT host:puerto -d 'datos'
+#  -d: envia esos datos al servidor
+```
 
 Curl GET con urlencode:
-curl -G --data-urlencode "GET hosts" httpbin.org/get
-  -> <http://httpbin.org/get?GET> hosts
 
-curl -G --data-urlencode "q=GET services" --data-urlencode "key=description" "<http://10.95.83.172/api/query>"
-  -> <http://10.95.83.172/api/query?q=GET%20services&key=description>
+```bash
+curl -G --data-urlencode "GET hosts" httpbin.org/get
+# -> <http://httpbin.org/get?GET> hosts
+```
+
+```bash
+curl -G --data-urlencode "q=GET services" --data-urlencode "key=description" "http://10.95.83.172/api/query"
+# -> <http://10.95.83.172/api/query?q=GET%20services&key=description>
+```
 
 Post de un fichero binario:
-curl -H "Accept: application/json" -H "Content-Type: application/zip" --data-binary @build/mac/package.zip "<https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip>"
+
+```bash
+curl -H "Accept: application/json" -H "Content-Type: application/zip" --data-binary @build/mac/package.zip "https://uploads.github.com/repos/hubot/singularity/releases/123/assets?name=1.0.0-mac.zip"
+```
 
 Hacer un POST de un JSON
-curl -XPOST <https://api.bintray.com/packages/adrianlzt/rpm> -H "Content-Type: application/json" -d '
+
+```bash
+curl -XPOST https://api.bintray.com/packages/adrianlzt/rpm -H "Content-Type: application/json" -d '
 {
 "name": "my-package",
-"desc": "To be used with <https://github.com/adrianlzt/puppet-monitoring>",
+"desc": "To be used with https://github.com/adrianlzt/puppet-monitoring",
 "labels": ["puppet-monitoring"],
 "licenses": ["Public Domain"],
 }'
+```
 
 Multipart
+
+```bash
 curl -F "clave=valor" ...
+```
 
 Con fichero:
-curl -F filename="@path/image.jpg;type=image/jpeg" <http://localhost:3000/test>
 
+```bash
+curl -F filename="@path/image.jpg;type=image/jpeg" http://localhost:3000/test
+```
+
+```bash
 curl -L <http://web.com/mensaje300.html>
-  -L: si la web nos redirecciona, sigue dicha redirección.
+# -L: si la web nos redirecciona, sigue dicha redirección.
+```
 
 Cookies
+
+```bash
 curl -b "NAME1=VALUE1; NAME2=VALUE2"
+```
 
 Las cookies podemos sacarlas de Chrome con:
   Boton derecho -> Inspeccionar elemento -> Resources -> Cookies
 
-curl -Ns <http://www.climagic\.org/uxmas/[1-12>]
+```bash
+curl -Ns http://www.climagic\.org/uxmas/[1-12]
+```
 
 # curl supports numeric ranges. This is the full 12 days of unix-mas from last year
 
