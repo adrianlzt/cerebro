@@ -51,7 +51,10 @@ Algunos de esos parámetros necesitan reiniciar postgres (al menos el archive_mo
 
 Comprobamos que todo está configurado correctamente (comprueba parámetros de postgres y fuerza a archivar un WAL para ver que se hace correctamente)
 Mirar los logs de postgres mientras lo ejecutamos por si saliese algún error:
+
+```bash
 sudo -u postgres pgbackrest --config /etc/pgbackrest/pgbackrest.conf --stanza zabbix --log-level-console=info check
+```
 
 ## s3
 
@@ -155,7 +158,10 @@ Si vemos este error quiere decir que hemos roto el backup, porque no hemos podid
 Los ficheros WAL los estará copiando postgres con el archive_command a /var/lib/pgbackrest/archive/STANZA/VERSION-POSTGRES/
 
 Si queremos hacer un backup:
+
+```bash
 pgbackrest --config /etc/pgbackrest/pgbackrest.conf --stanza zabbix --log-level-console=info backup
+```
 
 Lo creará en:
 /var/lib/pgbackrest/backup/STANZA/YYYYMMDD-HHMMSSF
@@ -220,8 +226,10 @@ Vigilar la cola de ficheros WAL pendientes de archivar.
 
 # Debug
 
+```bash
 --log-level-console=detail
 --log-level-console=debug
+```
 
 # Restore
 
