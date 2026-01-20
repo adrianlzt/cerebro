@@ -14,21 +14,33 @@ Si estamos usando continuous archiving (mirar backup.md), tener muchos WAL puede
 Parámetros a tener en cuenta:
 <https://postgresqlco.nf/en/doc/param/archive_cleanup_command/?category=write-ahead-log&subcategory=archive-recovery>
 
-checkpoint_timeout:
+# checkpoint_timeout
+
 default: 5m
-incrementarlo:
+
+## incrementarlo
+
 cons: más tiempo en caso de crash recovery. Buffers vaciados a disco por el bgwriter porque se llena el shared_buffer?
+
 pros: si hacemos ETLs muy grandes, evitar checkpoints en medio
-decrementarlo:
+
+## decrementarlo
+
 cons: más carga al disco
+
 pros: reducir RTO (recovery time objetive), si hacemos continuous archiving, evitar perder datos que están en el WAL
 
-max_wal_size:
+# max_wal_size
+
 default: 1GB
-incrementarlo:
+
+## incrementarlo
+
 pros: si tenemos checkpoints con mucha frecuencia a causa de llenados de wal
 cons: incrementa el tiempo de crash recovery
-decrementarlo:
+
+## decrementarlo
+
 cons: muchos checkpoints
 pros: tiempo de crash recovery reducido
 
@@ -93,7 +105,10 @@ checkpoint está limitado para no hacer grandes picos de carga, se reparte duran
 checkpoint_completion_target, le dice que vaya a una velocidad suficiente para tardar el porcentaje definido del checkpoint_timeout.
 Por lo tanto el checkpoint tardará un porcentaje del tiempo medio que suele utilizar. No se considerará completado hasta que haya terminado (no se actualizará checkpoints_timed/checkpoints_req).
 
+```sql
 checkpoint;
+```
+
 Podemos forzar la ejecucción con ese comado. En este caso irá todo lo rápido que pueda.
 No se recomienda en un funcionamiento normal, va a saturar el SO con escrituras a disco.
 
@@ -108,6 +123,8 @@ Después de un checkpoint el wal crece más para poder recuperarse de una escrit
 
 Obtener tiempo entre checkpoints (estimación).
 Esto nos da la media desde el último reset. Más interesante llevarse los distintos números (select checkpoints_timed,checkpoints_req from pg_stat_bgwriter;) y poder obtener ese valor en distintos periodos.
+
+```sql
 SELECT
 (checkpoints_timed+checkpoints_req) AS total_checkpoints,
 CASE checkpoints_timed + checkpoints_req
@@ -115,11 +132,15 @@ WHEN 0 THEN 0
 ELSE EXTRACT(EPOCH FROM (NOW() - stats_reset)) / (checkpoints_timed + checkpoints_req) / 60
 END as minutes_between_checkpoints
 FROM pg_stat_bgwriter;
+```
 
 Ejemplo de salida:
+
+```sql
 total_checkpoints | minutes_between_checkpoints
 -------------------+-----------------------------
 37 | 27.7296053148649
+```
 
 Para sacar último checkpoint (por debajo lee del fichero de control <https://github.com/postgres/postgres/blob/482bc0705d807a8cf4d959e9a42f179ff4b9b121/src/backend/utils/misc/pg_controldata.c#L70>):
 
@@ -174,7 +195,10 @@ Time of latest checkpoint:
 último checkpoint ejecutado
 
 Podemos forzar a que se escriba en un nuevo wal con (regenerar, recrear, forzar wal):
+
+```bash
 select pg_switch_wal();
+```
 
 Mirar en cluster.md para más datos sobre los wal.
 
