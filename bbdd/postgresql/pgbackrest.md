@@ -283,7 +283,12 @@ Borrar backups antiguos.
 Por defecto se ejecuta tras un backup correcto (--expire-auto, por defecto a "y").
 
 Si queremos borrar todos los full menos 1 (no podemos borrar todos, la retention no se puede poner a 0):
+
+```bash
 pgbackrest --config /etc/pgbackrest/pgbackrest.conf expire --stanza=zabbix --repo1-retention-full=1 --repo1-retention-full-type=count
+```
+
+En la versión 2.58.0 añaden: "Allow expiration of oldest full backup regardless of current retention"
 
 # Borrar todo
 
