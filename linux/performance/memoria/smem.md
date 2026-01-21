@@ -11,6 +11,7 @@ smem  reports  physical  memory  usage,  taking shared memory pages into account
 
 - Usa %Pss%smaps para dar una idea del consumo de RAM por proceso.
 
+```bash
 smem
  -k             # muestra unidades (K, M, etc)
  -p             # por proceso
@@ -23,22 +24,42 @@ smem
   %USS          # unshared (no compartida)
   %PSS          # proportional: USS + (shared / nº proc. que comparten)
   %RSS          # total en RAM (shared + unshared)
+```
 
+mostrar los 10 procesos que más USS consumen, manteniendo el header y mostrando un total
+
+```bash
 sudo smem -kt | { sed -u 1q; tail -12; }
-  mostrar los 10 procesos que más USS consumen, manteniendo el header y mostrando un total
+```
 
 Ordenado por swap
+
+```bash
 sudo smem -kts swap | { sed -u 1q; tail -12; }
+```
 
+Para cada proceso del sistema, swap, uss, pss y rss
+
+muestra un global al final
+
+ordenado por USS (no compartida)
+
+```bash
 sudo smem -kt
-  para cada proceso del sistema, swap, uss, pss y rss
-  muestra un global al final
-  ordenado por USS (no compartida)
+```
 
+Nos muestra totales de memoria usada de cada tipo
+
+r=reverse, top consumidores arriba
+
+solo para el usuario que lo ejecuta. Si queremos todo el sistema: sudo smem -rt
+
+```bash
 smem -rtk
-  nos muestra totales de memoria usada de cada tipo
-  r=reverse, top consumidores arriba
-  solo para el usuario que lo ejecuta. Si queremos todo el sistema: sudo smem -rt
+```
 
+consumo por usuario
+
+```bash
 sudo smem -uk
-  consumo por usuario
+```
