@@ -17,6 +17,9 @@ Los permisos se asocian entre grupos, de grupos de usuarios a grupos de hosts.
 4.0: permisos basados en tags
 Esto afecta a poblems, dashboard, overview, screen, maps, actions
 
+Si tenemos nested hostgroups (ejemplo: CLIENTE/ CLIENTE/PROD CLIENTE/NOPROD) y asignamos el permiso de RW a CLIENTE/ al user group, si vamos a la ventana de hostgroups, abrimos ese HG y pinchamos en "Apply permissions and tag filters to all subgroups", el user group obtendrá los permisos RW para todos los nested group.
+Los nuevos grupos nested que se creen, se irán metiendo automáticamente en los permisos de ese user group.
+
 # Performance
 
 Cuidado con los permisos, generan queries muy grandes que matan la performance
