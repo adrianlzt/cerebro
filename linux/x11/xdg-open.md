@@ -29,6 +29,7 @@ aur/selectdefaultapplication-git
 Nos permite ver para cada app que tipos mime puede abrir y cuales tiene puesto que es la app por defecto.
 
 # Ficheros .desktop
+
 <https://wiki.archlinux.org/title/Desktop_entries>
 
 La del usuario tiene precedencia.
@@ -58,7 +59,14 @@ handlr get x-scheme-handler/https --json
 
 Los .desktop están en .local/share/applications o /usr/share/applications/
 
+Almacena la info en
+
+```
+~/.config/mimeapps.list
+```
+
 # Browsers
+
 <https://github.com/Browsers-software/browsers>
 
 Pequeña app gtk para poder elegir el browser cuando X11 quiera abrir un link.
