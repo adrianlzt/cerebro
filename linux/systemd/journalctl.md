@@ -146,8 +146,12 @@ journalctl --vacuum-time=04222015
 borrar ficheros más antiguos de 22/4/2015
 journalctl --vacuum-time=1years
 quedarnos con logs del ultimo año
-journalctl --vacuum-size=1G
+
 borrar logs hasta que solo ocupemos 1GB
+
+```bash
+journalctl --vacuum-size=1G
+```
 
 Limitar el tamaño, /etc/systemd/journald.conf
 System*para cuando se usa /var/log/journal (fs persistente)
