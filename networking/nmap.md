@@ -2,67 +2,101 @@ zmap para escanear en internet, mucho más rápido
 
 cheatsheet: nmap_cheatsheet.jpeg
 
-https://github.com/brandonskerritt/RustScan
+<https://github.com/brandonskerritt/RustScan>
 Para detectar rápidamente que puertos están abiertos y luego ya usar nmap para escanear esos puertos.
 
-https://github.com/Y000o/Nmap
-  cursillo con ejemplos de uso
-http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/
+<https://github.com/Y000o/Nmap>
+cursillo con ejemplos de uso
 
+<http://www.cyberciti.biz/networking/nmap-command-examples-tutorials/>
+
+```bash
 nmap -p- --min-rate 10000 -oA nmap-alltcp 1.2.3.4
 nmap -p 22,80,1337 -sC -sV -oA nmap-tcpscripts 1.2.3.4
-  elegimos solo los puertos de los que queremos obtener más info
-
+# elegimos solo los puertos de los que queremos obtener más info
+```
 
 Escaner de red.
 
 # Sondeos
+
+```bash
 -sS
-  SYN
+# SYN
+```
 
+```bash
 -sT
-  tcp connect
+# tcp connect
+```
 
+```bash
 -sP
-  ping
+# ping
+```
 
+```bash
 -sV
-  obtener servicios y sus versiones
-  Si devuelve tcpwrapped es que puede haber algún tipo de software protegiendo el puerto
-  https://security.stackexchange.com/questions/23407/how-to-bypass-tcpwrapped-with-nmap-scan
-
+# obtener servicios y sus versiones
+# Si devuelve tcpwrapped es que puede haber algún tipo de software protegiendo el puerto
+# https://security.stackexchange.com/questions/23407/how-to-bypass-tcpwrapped-with-nmap-scan
+```
 
 Escanear todos los puertos de una IP, enviando 10k pks/s y salvando el resultado en el fichero
+
+```bash
 nmap -p- --min-rate 10000 -oA scans/nmap-alltcp 10.10.10.147
+```
 
 Escaneo de una red para ver que ips contestan
+
+```bash
 nmap -sP x.x.x.x/a
+```
 
 Escaneo de red descubriendo SO
+
+```bash
 nmap -sS -O 192.168.1.1/24
+```
 
 Escaneo de una red en busca de un puerto ssh abierto:
+
+```bash
 nmap -p 22 192.168.1.1/24
+```
 
 Escanear una red:
+
+```bash
 nmap 192.168.55.*
+```
 
 Escanear tomando las ips/redes de un fichero de texto
+
+```bash
 nmap -iL fichero...
+```
 
 Output en formato normal:
+
+```bash
 nmap -oN fichero.txt ...
-
-
+```
 
 # Escaneo de puertos
 
 Todos los puertos
-nmap -p- 1.2.3.4
 
+```bash
+nmap -p- 1.2.3.4
+```
 
 ## TCP
+
+```bash
 nmap 127.0.0.1 -p 80
+```
 
 Envia un paquete SYN al puerto.
 Si el server, o u firewall en medio, rechaza el paquete:
@@ -84,34 +118,42 @@ Si NMAP nos dice "Note: Host seems down. If it is really up, but blocking our pi
 -Pn
 
 ## UDP
+
 Parece que no es fácil comprobar que un puerto UDP está abierto.
 
-
 # Maquinas lentas
+
+```bash
 nmap --max-retries 5 --min-rtt-timeout 10 10.0.1.1
-  metemos más retries y mas tiempo de espera
-  no lo he probado
+# metemos más retries y mas tiempo de espera
+# no lo he probado
+```
 
 # Timing parameters
-https://www.hackingarticles.in/nmap-scan-with-timing-parameters/
+<https://www.hackingarticles.in/nmap-scan-with-timing-parameters/>
 
 # SNMP
+
 nmap -P0 -v -sU -p 161 10.0.2.5
 
 # XML
+
 Salida en XML
 nmap -oX fichero.xml ...
 
-
 # Vulnerabilidades
-nmap -Pn -sV --script vuln 127.0.0.1
-  -Pn: escanear el host aunque no conteste a ping
-  -sV: mostrar versiones del software de los puertos abiertos
 
+```bash
+nmap -Pn -sV --script vuln 127.0.0.1
+# -Pn: escanear el host aunque no conteste a ping
+# -sV: mostrar versiones del software de los puertos abiertos
+```
 
 # Python
+
 python-nmap
 
+```python
 import nmap
 nm = nmap.PortScanner()
 nm.scan('10.0.0.0/16', ports="80,443", arguments="-sV")
@@ -126,15 +168,13 @@ for host_addr in nm.all_hosts():
         print("ssh")
   except Exception as ex:
     print(f"Exception host {host_addr}: {ex}")
-
-
+```
 
 # Plugins
-https://nmap.org/book/man-nse.html
+<https://nmap.org/book/man-nse.html>
 
 Categorías:
 auth, broadcast, default. discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, vuln
-
 
 Viene con muchos instalados por defecto:
 /usr/share/nmap/scripts/
@@ -142,18 +182,26 @@ Viene con muchos instalados por defecto:
 ## Plugins por defecto
 
 Buscar subdominios de uso común:
+
+```bash
 nmap -p 80 --script dns-brute.nse foo.bar
+```
 
 Buscar otros dominios con la misma ip:
+
+```bash
 nmap -p 80 --script dns-brute.nse subastas.es
+```
 
 Traceroute + geolocation
-sudo nmap --traceroute --script traceroute-geolocation.nse -p 80 hackertarget.com
 
+```bash
+sudo nmap --traceroute --script traceroute-geolocation.nse -p 80 hackertarget.com
+```
 
 ## NSE
-https://www.ncsc.gov.uk/blog-post/introducing-scanning-made-easy
+<https://www.ncsc.gov.uk/blog-post/introducing-scanning-made-easy>
 Help system owners and administrators find systems with specific vulnerabilities.
 
-https://github.com/nccgroup/nmap-nse-vulnerability-scripts
+<https://github.com/nccgroup/nmap-nse-vulnerability-scripts>
 Por ahora, dic 2022, solo tienen un script.
