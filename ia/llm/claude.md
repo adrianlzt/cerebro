@@ -22,6 +22,10 @@ Donde ponemos que provider usamos y la transformación para que las llamadas de 
 
 Ahora mismo no se puede usar con litellm proxy de por medio si no es con models openai: <https://github.com/musistudio/claude-code-router/issues/96#issuecomment-3031351638>
 
+## Prompt
+
+Para editar el prompt en nvim: Control+g (también es el "lock" para zellij).
+
 ## Permisos
 
 Cuando le decimos que a partir de ahora puede ejecutar tal comando, lo almacena en `.claude/settings.local.json`.
