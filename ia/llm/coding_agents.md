@@ -49,15 +49,21 @@ Parece que ninguno obtiene unos resultados ni mínimamente cercanos a lo que hac
 
 # Opencode
 
-Parecen bastante verdes ambos aún.
+<https://opencode.ai/docs>
 
-## SST
+<https://github.com/anomalyco/opencode>
 
-<https://github.com/sst/opencode>
+```bash
+yay opencode-bin
+```
 
-fork de <https://github.com/opencode-ai/opencode> que parece que coje más tracción que el original
+# Crush
 
-Config: ~/.local/share/opencode/auth.json
+<https://github.com/charmbracelet/crush>
+
+Este y opencode tienen un pasado común
+
+Config: ~/.config/opencode/opencode.json
 
 No soporta "openai compatible provider"?
 <https://github.com/sst/opencode/issues/46>
