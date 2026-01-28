@@ -57,13 +57,17 @@ Parece que ninguno obtiene unos resultados ni mínimamente cercanos a lo que hac
 yay opencode-bin
 ```
 
+Config: ~/.config/opencode/opencode.json
+
+Credenciales: ~/.local/share/opencode/auth.json
+
+Conectar con litell: <https://docs.litellm.ai/docs/tutorials/opencode_integration>
+
 # Crush
 
 <https://github.com/charmbracelet/crush>
 
 Este y opencode tienen un pasado común
-
-Config: ~/.config/opencode/opencode.json
 
 No soporta "openai compatible provider"?
 <https://github.com/sst/opencode/issues/46>
