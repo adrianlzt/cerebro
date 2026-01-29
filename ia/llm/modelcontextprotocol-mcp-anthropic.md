@@ -21,6 +21,22 @@ Si queremos modificar alguno, clonar el repo, hacer las modificaciones, build `n
 
 Para usarlo `node dist/index.js`
 
+# Tipos de conectividad
+
+## stdio
+
+## SSE
+
+## HTTP stream
+
+Prueba de conctividad básica:
+
+```bash
+curl -N -v -H "Accept: text/event-stream" http://localhost:9034/mcp
+```
+
+Luego lo más sencillo es usar el mc inspector.
+
 # Clientes
 
 ## goose
