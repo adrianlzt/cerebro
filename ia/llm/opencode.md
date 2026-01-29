@@ -31,6 +31,16 @@ Project config (opencode.json in project) - project-specific settings
 .opencode directories - agents, commands, plugins
 Inline config (OPENCODE_CONFIG_CONTENT env var) - runtime overrides
 
+# init
+
+Usar el comando
+
+```
+/init
+```
+
+Para hacer un análisis del proyecto y generar el `AGENTS.md`. La recomendación es comitear ese fichero.
+
 # MCP
 
 ```bash
@@ -59,6 +69,18 @@ You can use variable substitution in your config files to reference environment 
 
 Use {env:VARIABLE_NAME} to substitute environment variable
 
+# Imágenes / Images
+
+No me queda claro si está actualmente soportado. Con glm-4.7
+
+Se puede hacer drag&drop de imágenes. Pero el modelo debe soportar procesado de imágenes.
+
+Parece que también se puede referenciar con `@`.
+
+# Ficheros
+
+Podemos hacer fuzzy search y buscar ficheros, para meterlos en el contesto usando `@`.
+
 # Web
 
 ```bash
@@ -66,3 +88,30 @@ opencode web
 ```
 
 Abre un navegador para hablar con opencode.
+
+# share
+
+Con el comando
+
+```
+/share
+```
+
+Podemos compartir con un link la conversación.
+
+# undo / redo
+
+Se pueden usar los comandos
+
+```
+/undo
+/redo
+```
+
+Para deshacer el último cambio o rehacerlo.
+
+Cuidado que cambios hechos con comandos (sed, awk), no se podrá deshacer.
+
+# Plugins
+
+<https://opencode.ai/docs/ecosystem/>
