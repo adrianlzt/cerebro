@@ -47,22 +47,6 @@ codex, no veo que genere ningún fichero.
 
 Parece que ninguno obtiene unos resultados ni mínimamente cercanos a lo que hacen las soluciones online (v0, getmocha, spark, etc).
 
-# Opencode
-
-<https://opencode.ai/docs>
-
-<https://github.com/anomalyco/opencode>
-
-```bash
-yay opencode-bin
-```
-
-Config: ~/.config/opencode/opencode.json
-
-Credenciales: ~/.local/share/opencode/auth.json
-
-Conectar con litell: <https://docs.litellm.ai/docs/tutorials/opencode_integration>
-
 # Crush
 
 <https://github.com/charmbracelet/crush>
