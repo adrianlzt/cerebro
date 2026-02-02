@@ -82,6 +82,17 @@ Stores the current contents of files and directories tracked by DVC in the cache
 
 Útil si tenemos un fichero en local y queremos que actualize el dvc.lock con esos valores locales.
 
+También nos vale para actualizar las dependencias de un stage sin ejecutarla.
+Por ejemplo, tenemos un stage que tiene como dependencia el dir "foo1/".
+Si creamos un fichero en foo1, el md5 almacenado habrá modificado y tendremos que reejecutar el stage.
+Pero si hacemos:
+
+```bash
+dvc commit NOMBRESTAGE
+```
+
+Se actualizará el `dvc.lock` con el nuevo md5 del directorio foo1.
+
 ## dvc checkout
 
 Para volver al estado anterior de una ejecución usé:
