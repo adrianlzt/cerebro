@@ -1,3 +1,9 @@
+A complete solution for viewing, creating and editing PDF files
+
+```bash
+masterpdfeditor
+```
+
 Editor online que corre en el navegador (rellenar, añadir texto, imágenes, firmar, poner contraseña, combinar PDFs, borrar páginas):
 <https://breezepdf.com/>
 
@@ -21,12 +27,6 @@ xournal
 ```
 
 Para tomar notas e insertar imágenes sobre pdfs
-
-```bash
-masterpdfeditor
-```
-
-A complete solution for viewing, creating and editing PDF files
 
 ```bash
 pdfcrop
