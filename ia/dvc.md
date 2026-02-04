@@ -167,3 +167,48 @@ Añadir remoto:
 ```bash
 dvc remote add -d myremote /tmp/dvcstore
 ```
+
+# Queues
+
+Añadir todos los jobs de un stage a una cola
+
+```bash
+dvc exp run --queue test_agents
+```
+
+Al ejecutar el experimento se crea un nuevo directorio temporal solo con el contenido trackeado por dvc.
+Si queremos añadir algo más (me ha sucedido con git submodules), podemos usar
+
+```
+--copy-paths directorio/
+```
+
+Pero solo puedes copiar cosas no trackeadas. Si intento copiar un dir de un submodulo, me dice que el dir ya existe, pero no lo inicialia.
+
+Listar estado cola:
+
+```bash
+dvc queue status
+```
+
+Empezar las tareas en paralelo:
+
+```bash
+dvc queue start -j 4
+```
+
+Mirar logs de ejecución:
+
+```bash
+dvc queue logs IDJOB
+```
+
+Cuando añado algo a la cola sea crea la git branch `exps/celery/stash`.
+En esa rama se ven dos commit:
+
+```
+dvc-exp:a1c6ab45502b93c549fc309a95047bec49e04a41:a1c6ab45502b93c549fc309a95047bec49e04a41:bonny-grub
+Index stash
+```
+
+El último ha creado el fichero .dvc/tmp/repro.dat (binario).

@@ -1,3 +1,5 @@
+mirar difi.md
+
 Diff branches                                       git diff <branch1> <branch2>
                                                     git diff <branch1>..<branch2>
 Diff branches rama contra el ancestro común         git diff <branch1>...<branch2>
@@ -8,6 +10,7 @@ Cambios entre HEAD y dos commits antes              git diff HEAD~1..HEAD
 Cambios respecto a una rama solo los ficheros del dir  git diff <branch> .
 
 # Diff con un programa determinado
+
 <https://git.wiki.kernel.org/index.php/GitTips#How_to_use_git_to_track_OpenDocument_.28OpenOffice.2C_Koffice.29_files.3F>
 <http://git-scm.com/book/ch7-2.html>
 
