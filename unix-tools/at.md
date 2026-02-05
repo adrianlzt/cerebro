@@ -1,8 +1,9 @@
-http://www.thegeekstuff.com/2010/06/at-atq-atrm-batch-command-examples/
+<http://www.thegeekstuff.com/2010/06/at-atq-atrm-batch-command-examples/>
 
 # Instalar
 
 ## Centos
+
 yum install at
 
 Comando para ejecutar tareas en hora determinada:
@@ -15,15 +16,36 @@ $ at now + 1 min
 
 Es necesario tener el atd corriendo: /etc/init.d/atd start
 
-
 'echo start_backup.sh | at midnight' starts a command at the specified time
 
-
 # Consultar tareas
+
+```bash
 atq
+```
+
+Ejemplo de salida:
+
+```
+5       Thu Feb  5 08:00:00 2026 = adrian
+5       Thu Feb  5 08:00:00 2026 a adrian
+```
+
+5: job id
+
+Thu Feb  5 08:00:00 2026: fecha de ejecución
+
+a: está en la cola "a" (la predeterminada)
+
+=: está en ejecución
+
+adrian: usuario
+
+Aparece dos veces para decirnos en una línea en la cola que está y en otra que está en ejecución.
 
 Más detalle:
 at -c <num>
 
 # Borrar tarea
+
 atrm <num>
