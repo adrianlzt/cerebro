@@ -4,6 +4,10 @@ DEPRECATED
 
 Alternativas: <https://news.ycombinator.com/item?id=46136023>
 
+rustfs.md
+
+<https://garagehq.deuxfleurs.fr/>
+
 Storage de objetos con api compatible con Amazon S3
 
 # Server
