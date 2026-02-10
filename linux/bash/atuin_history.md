@@ -46,3 +46,11 @@ Pulsando varias veces cambia entre búsqeudas:
 
 Ejemplos de búsqueda:
 <https://docs.atuin.sh/reference/search/#examples>
+
+## Borrar histórico
+
+Borrar todo el histórico de ~/Documentos/ desde ayer:
+
+```bash
+atuin search --cwd "/home/adrian/Documentos" --after "yesterday" --delete ""
+```
