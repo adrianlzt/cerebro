@@ -23,3 +23,7 @@ server:
 # CLI flag: -log.level
   [log_level: <string> | default = "info"]
 ```
+
+# WAL - TSDB
+
+Por defecto prometheus almacena los datos en ficheros WAL y cada n horas (típicamente 2) hace la compatación a bloques inmutables (TSDB).
