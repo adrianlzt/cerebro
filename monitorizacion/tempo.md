@@ -11,3 +11,11 @@ Ejemplo de como arrancar un tempo en un solo proceso, con storage local y config
 <https://grafana.com/docs/grafana/latest/datasources/tempo/query-editor/>
 
 <https://grafana.com/docs/tempo/latest/traceql/>
+
+# Flow de datos
+
+Cuando enviamos datos estos se almacenan en ficheros WAL.
+
+Luego el "compactator" los va agrupando en compacted blocks.
+
+Los datos que esten en WAL no los podemos encontrar vía la Search API (si mediante query by id).
