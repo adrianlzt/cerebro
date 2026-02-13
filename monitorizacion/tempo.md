@@ -19,3 +19,6 @@ Cuando enviamos datos estos se almacenan en ficheros WAL.
 Luego el "compactator" los va agrupando en compacted blocks.
 
 Los datos que esten en WAL no los podemos encontrar vía la Search API (si mediante query by id).
+
+Si ingestamos datos del pasado tenemos problemas.
+Estarán almacenados un tiempo en los ingesters, pero serán datos antiguos, por lo que podemos confundir a tempo y que no los encuentre (pensará que deben estar en los backend).
