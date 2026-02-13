@@ -26,6 +26,12 @@ import bpython; bpython.embed({**globals(), **locals()})
 A partir de python 3.7 podemos poner en el código:
 breakpoint()
 
+Si estamos dentro de pdb y queremos ignorar los breakpoints insertados podemos hacer:
+
+```python
+import sys; sys.breakpointhook = lambda *args: None
+```
+
 Será equivalente a poner:
 import pdb; pdb.set_trace()
 
