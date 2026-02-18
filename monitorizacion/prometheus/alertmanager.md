@@ -1,36 +1,41 @@
 Alerting rules in Prometheus servers send alerts to an Alertmanager.
 The Alertmanager then manages those alerts, including silencing, inhibition, aggregation and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
 
-Step-by-step configurando prometheus para enviar alarmas a slack y emails usando gmail
-https://grafana.com/blog/2020/02/25/step-by-step-guide-to-setting-up-prometheus-alertmanager-with-slack-pagerduty-and-gmail/
+Prometheus envía las alertas a AlertManager via HTTP POST (/api/v2/alerts)
 
+Step-by-step configurando prometheus para enviar alarmas a slack y emails usando gmail
+<https://grafana.com/blog/2020/02/25/step-by-step-guide-to-setting-up-prometheus-alertmanager-with-slack-pagerduty-and-gmail/>
 
 # Configuración
 
 Se realiza toda en un fichero .yaml con distintas secciones.
 
-Ejemplo de fichero: https://github.com/prometheus/alertmanager/blob/main/doc/examples/simple.yml
+Ejemplo de fichero: <https://github.com/prometheus/alertmanager/blob/main/doc/examples/simple.yml>
 
 ## Conceptos
+
 Grouping: agrupar alarmas
-Inhibition (dependencias entre alarmas): no enviar ciertas alarmas si hay otras disparadas 
+Inhibition (dependencias entre alarmas): no enviar ciertas alarmas si hay otras disparadas
 Silences (blackouts): silenciar ciertas alarmas durante un tiempo
 
 ## global
+
 Para poner defaults.
 Los valores que se pueden definir aquí también se pueden reedefinir en cada sección.
 
 Será donde configuraremos los parámetros para enviar notificaciones (tokes, usuarios, passwords, etc)
 
 ## route
+
 Toda alerta debe entrar por el "top-level route". De ahí baja hacia los child nodes.
 Los child nodes tendrán condiciones para "coger" esas alarmas.
 
-Ejemplos: https://github.com/prometheus/alertmanager/blob/main/doc/examples/simple.yml#L13
+Ejemplos: <https://github.com/prometheus/alertmanager/blob/main/doc/examples/simple.yml#L13>
 
 Dentro de un nodo pondemos tener más subnodos, si hace match en un nodo, se terminará ahí la alarma.
 Si no hace match se devolverá al padre.
 Ejemplo:
+
 ```
   routes:
     # This routes performs a regular expression match on alert labels to
@@ -47,8 +52,7 @@ Ejemplo:
           receiver: team-X-pager
 `````
 
-
-Web donde podemos pegar el fichero de configuración y nos pinta el "routing": https://www.prometheus.io/webtools/alerting/routing-tree-editor/
+Web donde podemos pegar el fichero de configuración y nos pinta el "routing": <https://www.prometheus.io/webtools/alerting/routing-tree-editor/>
 
 ## inhibit_rules
 
