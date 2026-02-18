@@ -108,3 +108,11 @@ BLOB. The value is a blob of data, stored exactly as it was input.
 # CTEs
 
 <https://www.sqlitetutorial.net/sqlite-cte/>
+
+# JSON
+
+<https://sqlite.org/json1.html>
+
+```sql
+WHERE json_column ->> '$.key' = 'value';
+```
