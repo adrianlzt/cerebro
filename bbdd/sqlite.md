@@ -75,6 +75,16 @@ cursor.execute("select * from sqlite_master")
 cursor.execute("PRAGMA database_list;").fetchall()[0][2]
 ```
 
+# Extraer el valor de una columna
+
+```bash
+sqlite3 -batch your_database.db <<EOF > extracted_base64.txt
+.headers off
+.mode list
+SELECT base64_data FROM your_table WHERE id = 1;
+EOF
+```
+
 # dump
 
 ```bash
