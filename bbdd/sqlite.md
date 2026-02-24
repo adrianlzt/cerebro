@@ -43,6 +43,12 @@ Configurar por defecto estas opciones con ~/.sqliterc
 .nullvalue (NULL)
 ```
 
+Usar este, en vez de column, para no cortar las líneas por una anchura determnada.
+
+```
+.mode list
+```
+
 Si no tenemos los helpers ".\*" podemos navegar por:
 
 ```bash
