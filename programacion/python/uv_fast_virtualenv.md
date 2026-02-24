@@ -131,3 +131,11 @@ RUN uv sync --locked --no-dev --no-install-project
 COPY . .
 RUN uv sync --locked --no-dev
 ```
+
+# Clean cache
+
+<https://docs.astral.sh/uv/concepts/cache/#dependency-caching>
+
+```bash
+uv cache clean
+```
