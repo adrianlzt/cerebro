@@ -1,4 +1,5 @@
 mirar difi.md
+mirar deff.md
 
 Diff branches                                       git diff <branch1> <branch2>
                                                     git diff <branch1>..<branch2>
