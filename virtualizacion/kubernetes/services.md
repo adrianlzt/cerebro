@@ -1,5 +1,5 @@
-https://kubernetes.io/docs/concepts/services-networking/service/
-https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core
+<https://kubernetes.io/docs/concepts/services-networking/service/>
+<https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#service-v1-core>
 
 Es la abstracción por encima de los PODs para que otros PODs puedan usar a los primeros.
 Ejemplo, un backend que es accedido por un frontend.
@@ -8,11 +8,10 @@ El service decidirá a que pods ataca según un selector (una label con un valor
 
 mirar kube-proxy.md
 
-
-
 # Tipos
 
 ## ClusterIP
+
 Por defecto, crea una VIP alcanzable internamente dentro del cluster
 La VIP llevará el tráfico a los POD con cierta label.
 
@@ -21,9 +20,8 @@ kubectl patch svc nginx-service -p '{"spec":{"externalIPs":["192.168.2.61"]}}'
 Pero parece que solo funciona en los nodos del cluster.
 O si tenemos un LoadBalancer que se encarge de esto (creo)
 
-
 ## NodePort
-https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+<https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport>
 Expone un puerto (por defecto rango 30000-32767) en todos los nodos del cluster que redirigirá el tráfico a nuestro Service.
 Crea automaticamente un ClusterIP
 Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
@@ -33,11 +31,14 @@ Tendremos que usar la IP registrada del nodo (la que vemos con kubectl get nodes
 Útil para tráfico no HTTP, HTTPS o TLS SNI (donde usaríamos Ingress seguramente)
 
 Cons:
- - solo un puerto por service
- - solo puertos del rango alto
- - si cambia la IP del nodo, tendríamos que modificar el LB por encima (o si estamos apuntando directamente, dejaríamos de acceder)
+
+- solo un puerto por service
+- solo puertos del rango alto
+- si cambia la IP del nodo, tendríamos que modificar el LB por encima (o si estamos apuntando directamente, dejaríamos de acceder)
 
 Ejemplo:
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -52,12 +53,10 @@ spec:
     targetPort: 80
     nodePort: 30036  # Opcional, entonces la asignará kubernetes de forma random
     protocol: TCP
-
-
-
+```
 
 ## LoadBalancer
-https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+<https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer>
 Crea un LB sobre la plataforma en la que estemos, por ejemplo en AWS. Es una abstracción sobre la cloud en la que estemos.
 Crea automáticamente un NodePort y un ClusterIP
 Luego el Service se actualizará con la ip externa que nos haya dado el cloud provider.
@@ -68,15 +67,17 @@ kubectl expose deployment FOO --type=LoadBalancer --port=1234 --target-port=1234
 
 Ahora mismo la integración de Kubernetes con los Cloud Providers está integrada en el código.
 Parece que a partir de la versión ¿1.12? va a existir una clara separación gracias a Cloud Controller Manager
-https://kubernetes.io/docs/tasks/administer-cluster/developing-cloud-controller-manager/
+<https://kubernetes.io/docs/tasks/administer-cluster/developing-cloud-controller-manager/>
 
 Existen opciones para poder usar Type:LoadBalancer en bare metal
 metallb.md
 kube-vip.md
 
-Cloud providers no integrados directamente en el código: https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller.md#examples
+Cloud providers no integrados directamente en el código: <https://kubernetes.io/docs/tasks/administer-cluster/running-cloud-controller.md#examples>
 
 Ejemplo:
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -93,11 +94,10 @@ spec:
     release: db
   sessionAffinity: None
   type: LoadBalancer
-
-
-
+```
 
 ## ExternalName
+
 Crea un alias DNS (CNAME).
 Lo utilizaremos cuando queremos que una app de kubernetes necesite usar un servicio externo, pero esté usando el servicio de discovery de kubernetes.
 Ejemplo, una app que ataca a mi-redis.prod.svc.CLUSTER
@@ -114,13 +114,10 @@ spec:
   type: ExternalName
   externalName: test-service.namespacename.svc.cluster.local
 
-https://stackoverflow.com/a/59845018
-
-
-
-
+<https://stackoverflow.com/a/59845018>
 
 # Template
+
 kind: Service
 apiVersion: v1
 metadata:
@@ -133,27 +130,23 @@ spec:
       port: 80
       targetPort: 9376
 
-
-
-
-
 # Funcionamiento
-https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+<https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies>
 
 Dos tipos:
- - pasando el tráfico por userspace (app kube-proxy) DEPRECATED
- - usando iptables (kube-proxy configura iptables) (k8s.io/kubernetes/pkg/proxy/iptables/proxier.go)
- - ipvs (mirar más abajo)
 
+- pasando el tráfico por userspace (app kube-proxy) DEPRECATED
+- usando iptables (kube-proxy configura iptables) (k8s.io/kubernetes/pkg/proxy/iptables/proxier.go)
+- ipvs (mirar más abajo)
 
 Kubernetes chequea periódicamente el selector de los services y guarda el resultado en un objeto Endpoint.
 Si queremos ver los endpoints de un service (y comprobar que apunta a donde esperamos)
 kubectl get endpoints NOMBRESVC -o yaml
 
-
-
 # IPVS
+
 ## Nodeport
+
 Crea un servidor virtual y reencamina el tráfico a las IPs de los pods.
 
 Parece que no podemos hacer 127.0.0.1:node_port en los nodos del cluster.
