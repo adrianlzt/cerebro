@@ -69,11 +69,32 @@ Almacena la info en
 
 <https://github.com/Browsers-software/browsers>
 
+aur/browsers-bin
+
+Tengo que instalaro con `yay -G aur/browsers-bin` y editar el PKGBUILD para quitar "xdg-utils" de las dependencias.
+
+```
+makedepends=("desktop-file-utils" "xdg-utils")
+```
+
+Y meter en la functión `package()` (para que no intente usar xdg):
+
+```
+sed -i "s/^install_icons$/#install_icons/" "$srcdir/install.sh"
+```
+
 Pequeña app gtk para poder elegir el browser cuando X11 quiera abrir un link.
 Se pueden poner reglas para que para ciertas URLs abra siempre el mismo.
 
 Config
 ~/.config/software.Browsers/config.json
+
+Logs
+~/.local/state/software.Browsers/logs/browsers.log
+
+Si deja de funcionar, abrir browsers, ir a los settings y recargar configuración de navegadores.
+
+Me pasaba que abria en el último y tras hacer eso se arregló.
 
 # Node / open
 
