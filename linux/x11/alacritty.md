@@ -54,3 +54,21 @@ ttf-jetbrains-mono-nerd
 control + shift + space
 
 Para copiar, poner el modo visual (v), movernos hasta seleccionar lo que queremos y luego copiar con "y".
+
+Alt+v para modo semántico (coger palabras enteras)
+
+Control+v para modo bloque
+
+shift+v para modo línea
+
+Puedo buscar con '?' (con '/' no me deja, aunque la doc dice que debería poder).
+
+Si buscamos un link y nos movemos hasta él, podemos dar 'enter' para abrirlo.
+
+Salir con control+c
+
+# Buscar
+
+Control+shift+f
+
+Busca en el área que esté visible. No funcionará lo que haya hecho scroll en zellij, por ejemplo.
