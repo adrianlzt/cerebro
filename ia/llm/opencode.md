@@ -140,3 +140,9 @@ pty_kill Terminate a PTY, optionally cleanup the buffer
 /pty-open-background-spy Open the PTY web server interface in the browser
 /pty-show-server-url Show the URL of the running PTY web server instance
 ```
+
+# Debug
+
+```bash
+opencode --print-logs
+```
