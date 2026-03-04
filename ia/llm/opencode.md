@@ -115,3 +115,28 @@ Cuidado que cambios hechos con comandos (sed, awk), no se podrá deshacer.
 # Plugins
 
 <https://opencode.ai/docs/ecosystem/>
+
+## pty
+
+<https://github.com/shekohex/opencode-pty>
+
+Para ejecutar programas en background.
+
+Nos da una interfaz web donde podemos ver su estado e interactuar.
+
+Opencode también puede interactuar con ellos.
+
+Podemos usarlo para iniciar una sesión de debug, con "python -m pdb" por ejemplo.
+
+```
+# Tools
+pty_spawn Create a new PTY session (command, args, workdir, env, title, notifyOnExit)
+pty_write Send input to a PTY (text, escape sequences like \x03 for Ctrl+C)
+pty_read Read output buffer with pagination and optional regex filtering
+pty_list List all PTY sessions with status, PID, line count
+pty_kill Terminate a PTY, optionally cleanup the buffer
+
+# slash commands
+/pty-open-background-spy Open the PTY web server interface in the browser
+/pty-show-server-url Show the URL of the running PTY web server instance
+```
