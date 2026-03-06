@@ -2,6 +2,10 @@
 
 Gestor de tareas para la linea de comandos.
 
+Datos almacenados en ~/.task
+
+sqlite en ~/.task/taskchampion.sqlite3
+
 # Hooks
 
 Podemos ejecutar scripts cuando hagamos cosas a las tareas. Por ejemplo, sincronizar con google tasks, jira o lo que sea.
@@ -32,6 +36,8 @@ a: añadir task. Para añadir tags poner +XXX fuera de las comillas
 
 A: añadir anotaciones a task
 
+l: log task, crea una tarea y la marca inmediatamente como completada
+
 /: filtrar.
 
 e: editar task
@@ -57,5 +63,7 @@ Podemos usar status:deleted o status:completed para ver otros estados
 Se abre el autocompletado con "tab" y se acepta con enter
 
 # Bugwarrior
+
+https://bugwarrior.readthedocs.io/
 
 sincronizar tareas de sitios remotos (github, gitlab, jira, ...)
