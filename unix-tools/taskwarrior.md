@@ -2,6 +2,8 @@
 
 Gestor de tareas para la linea de comandos.
 
+Config en ~/.taskrc
+
 Datos almacenados en ~/.task
 
 sqlite en ~/.task/taskchampion.sqlite3
@@ -64,6 +66,6 @@ Se abre el autocompletado con "tab" y se acepta con enter
 
 # Bugwarrior
 
-https://bugwarrior.readthedocs.io/
+<https://bugwarrior.readthedocs.io/>
 
 sincronizar tareas de sitios remotos (github, gitlab, jira, ...)
