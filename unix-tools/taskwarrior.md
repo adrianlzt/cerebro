@@ -8,6 +8,8 @@ Datos almacenados en ~/.task
 
 sqlite en ~/.task/taskchampion.sqlite3
 
+Creado backup con systemd timer.
+
 # Hooks
 
 Podemos ejecutar scripts cuando hagamos cosas a las tareas. Por ejemplo, sincronizar con google tasks, jira o lo que sea.
