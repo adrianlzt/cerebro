@@ -74,6 +74,12 @@ uv run main.py
 uv run --python 3.12 --with pandas python
 ```
 
+## Otro directorio
+
+```bash
+uv run --directory /foo/bar python x.py
+```
+
 ## Declarar python y versiones en el fichero (Inline script metadata)
 
 <https://packaging.python.org/en/latest/specifications/inline-script-metadata/#script-type>
