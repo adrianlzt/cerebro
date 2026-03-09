@@ -59,7 +59,7 @@ npx -y @modelcontextprotocol/inspector uvx mcp-server-time
 
 Si queremos quitar el auth: DANGEROUSLY_OMIT_AUTH=true
 
-Si queremos acceder remotamente, suponiendo que entramos por la ip 1.2.3.4:
+Si queremos acceder remotamente, suponiendo que entramos por la ip 100.64.0.1:
 
 ```bash
 ALLOWED_ORIGINS=http://100.64.0.1:6274 HOST=0.0.0.0 DANGEROUSLY_OMIT_AUTH=true npx -y @modelcontextprotocol/inspector XXX
