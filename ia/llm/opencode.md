@@ -141,6 +141,50 @@ pty_kill Terminate a PTY, optionally cleanup the buffer
 /pty-show-server-url Show the URL of the running PTY web server instance
 ```
 
+## browser
+
+<https://github.com/different-ai/opencode-browser/>
+
+Una extensión para poder comunicar opencode con el navegador.
+
+Hace falta una instalacion un poco manual.
+
+Hay un script que ayudar a automatizarlo.
+
+Me bajé el repo, instalé a mano el plugin en chrome, y ejecuté:
+
+```bash
+node bin/cli.js install --extension-id ncfalpcdanbcccbaakenefpokeioldgd
+```
+
+Crea este fichero $HOME/.config/google-chrome/NativeMessagingHosts/com.opencode.browser_automation.json
+
+```json
+{
+  "name": "com.opencode.browser_automation",
+  "description": "OpenCode Browser native messaging host",
+  "path": "/home/adrian/.opencode-browser/host-wrapper.sh",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://ncfalpcdanbcccbaakenefpokeioldgd/"
+  ]
+}
+```
+
+Usando el id de la extensión.
+
+También crea ficheros en
+
+```
+$HOME/.opencode-browser
+```
+
+Las primeras pruebas no han sido muy buenas, no conseguía logarse en azure, usando GLM-4.7.
+
+No se como funcionará con varios perfiles de chrome.
+
+Parece que no tiene tool de snapshot que genere una imagen, creo que esto podría ser limitante.
+
 # Debug
 
 ```bash
