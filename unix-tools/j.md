@@ -1,15 +1,17 @@
-https://github.com/rupa/j2
+Usar zoxide.md
+
+<https://github.com/rupa/j2>
 
 Simplifica el movernos entre directorios.
 
-
-git clone https://github.com/rupa/j2.git ~/.j_jump
+git clone <https://github.com/rupa/j2.git> ~/.j_jump
 echo << END
-# https://github.com/rupa/j2
+
+# <https://github.com/rupa/j2>
+
 export JPY=~/.j_ump/j.py
 . ~/.j_ump/j.sh
 END >> .bashrc
-
 
 ## Uso
 
