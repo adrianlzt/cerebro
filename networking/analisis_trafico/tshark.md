@@ -6,6 +6,7 @@ tcpdump supervitaminado
 -T formato de salida
 -E opciones de como mostrar los campos
 -e campo a mostrar
+-V para ver todo el contenido del paquete (verboso)
 
 <https://twitter.com/glennzw/status/936220651093938180?s=09>
 
@@ -21,6 +22,23 @@ Sacar las queries ejecutadas en una captura de postgresql:
 
 ```bash
 tshark -r tcpdump_configuration_syncer.pcap -Y 'pgsql.query' -T fields -e pgsql.query
+```
+
+Ver verbo http, url y cabeceras http:
+
+```bash
+$ tshark -r front-ceres-iris.pcap -Y 'tcp.port==2024 && http.request' \
+  -T fields -e frame.number -e http.request.method -e http.request.uri -e http.request.line \
+|& sed 's/\\r\\n,/\n        /g'
+Add application/x-protobuf dissector    Proto: OTEL_PROTO
+71      POST    /threads        Host: localhost:2024
+        Accept: */*
+        Accept-Encoding: gzip, deflate
+        Connection: keep-alive
+        User-Agent: python-httpx/0.28.1
+        X-User-Id: 1
+        Content-Length: 127
+        Content-Type: application/json\r\n
 ```
 
 Volcar en ElasticSearch

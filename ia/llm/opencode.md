@@ -69,6 +69,21 @@ You can use variable substitution in your config files to reference environment 
 
 Use {env:VARIABLE_NAME} to substitute environment variable
 
+## Remove MCP
+
+Con OAuth:
+
+```jsonc
+    "jira": {
+      // Para hacer el flujo de oauth
+      // opencode mcp auth jira
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "oauth": {},
+      "enabled": false,
+    },
+```
+
 # Imágenes / Images
 
 No me queda claro si está actualmente soportado. Con glm-4.7
