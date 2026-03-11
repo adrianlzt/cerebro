@@ -1,3 +1,11 @@
+Ahora viene con un script en python que nos ayuda a realizar la instalación:
+
+```
+archinstall
+```
+
+Le podemos pasar unos ficheros de configuración, mirar en `network/bow/archinstall`
+
 Más facil usar: manjaro.md
 Es una distribucion de arch
 
@@ -5,6 +13,8 @@ Otra distro: <https://omarchy.org/>
 
 Idea de instalación automatizada:
 <https://github.com/bashrc666/arch-gotoole>
+
+# Old
 
 <https://wiki.archlinux.org/index.php/Installation_guide>
 
@@ -46,6 +56,7 @@ mkswap /dev/xxxx
 swapon /dev/xxx
 
 # Si estamos instalando con el disco duro montado en otro linux, si no, saltar hasta "Si estamos en el propio ..."
+
 <https://wiki.archlinux.org/index.php/Install_from_existing_Linux>
 Bajar bootstrap desde <https://mirrors.kernel.org/archlinux/iso/>
 Descomprimir en algun dir
