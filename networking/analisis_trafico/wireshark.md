@@ -106,7 +106,10 @@ Podemos añadir un campo cualquier como columna custom, picharle con el botón d
 # tshark
 
 Leer ficheros con la cli y aplicar filtros:
+
+```bash
 tshark -r 2020-05-25_11:49:13.pcap -Y '(mysql.command == 22) && !(mysql.query contains "SELECT")'
+```
 
 # USB
 
