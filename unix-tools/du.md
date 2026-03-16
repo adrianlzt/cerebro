@@ -1,6 +1,11 @@
 dust
 una app en rust tipo "du" con colores y un pequeño gráfico para mostrar con claridad el uso de disco
 
+Para buscar que ocupa el espacio:
+```bash
+ncdu
+```
+
 Otra similar:
 
 ```bash

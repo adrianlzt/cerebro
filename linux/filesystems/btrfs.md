@@ -119,6 +119,15 @@ sudo btrfs send -f $(date +%Y%m%d).snap some/subvol
 Crear subvol a partir de un fichero:
 sudo btrfs receive -f fichero.snap subvol/
 
+UI para ver los snapshots: btrfs-assistant
+
+Para arrancarlo usar:
+```bash
+btrfs-assistant-launcher
+```
+
+Gestionar las snapshots con snapper.
+
 
 # deduplicacion
 https://btrfs.wiki.kernel.org/index.php/Deduplication
