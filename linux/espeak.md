@@ -1,3 +1,65 @@
+# vocalinux
+
+https://github.com/jatinkrmalik/vocalinux
+
+Voice to text
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📦 What Was Installed
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Application:    Vocalinux (voice dictation for Linux)
+  Engine:         Whisper.cpp
+  Backend:        CPU
+  Location:       /home/adrian/.local/share/vocalinux-install
+  Virtual Env:    /home/adrian/.local/share/vocalinux/venv
+  Config:         /home/adrian/.config/vocalinux
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🚀 Getting Started
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Launch Vocalinux
+   • From app menu: Look for 'Vocalinux'
+   • From terminal: Run 'vocalinux' command
+
+2. Find the icon in your system tray (top bar)
+   • Click for settings and status
+   • Right-click for menu options
+
+3. Start dictating!
+   Double-tap Ctrl anywhere to toggle recording
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🎤 Testing Your Setup
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open any text editor (gedit, VS Code, LibreOffice, etc.)
+2. Double-tap Ctrl to start recording
+3. Say: 'Hello world period'
+4. Double-tap Ctrl to stop
+5. You should see: 'Hello world.'
+
+💡 Voice commands: 'period' 'comma' 'new line' 'delete that'
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔧 Managing Vocalinux
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Commands:
+  vocalinux              Start the application
+  vocalinux --debug      Start with debug logging
+  vocalinux-gui          Open settings GUI
+
+To activate the virtual environment:
+  source /home/adrian/.local/bin/activate-vocalinux.sh
+
+To uninstall:
+  ./uninstall.sh
+```
+
+# espeak
 pacman -S espeak
 
 espeak "hola"
@@ -36,5 +98,3 @@ el_diphone
 festival> (SayText '"hola me llamo maquina")
 #<Utterance 0x7f7bf9c185d0>
 festival>
-
-
