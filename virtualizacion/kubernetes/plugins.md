@@ -35,9 +35,15 @@ capture
   arrancar sysdig escuchando en un pod
 df-pv
   como df para los volumenes persistentes
+
 sniff
   capturar con wireshask, mirar debug.md
-  muerto? Usar <https://github.com/larryTheSlap/dumpy>
-    este usa tcpdump y puedes exportar los .pcap, no lenvanta el wireshark directamente como el sniff
+  muerto? Último commit Agosto 2022
+
+dumpy
+kubectl krew install dumpy
+https://github.com/larryTheSlap/dumpy
+este usa tcpdump y puedes exportar los .pcap, no lenvanta el wireshark directamente como el sniff
+
 kubectl krew install resource-capacity
   analizar capacidad

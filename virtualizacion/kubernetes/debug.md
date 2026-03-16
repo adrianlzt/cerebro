@@ -4,6 +4,33 @@
 
 Aplicación para debuggear microservicios distribuidos en pod de manera simultanea usando un IDE (VS Studio)
 
+# Traffic dumpy
+
+https://github.com/larryTheSlap/dumpy
+
+Se despliega en el mismo nodo que el pod a analizar.
+
+Arranca tcpdump en el ns de red del pod.
+
+```bash
+kubectl krew install dumpy
+```
+
+```bash
+kc dumpy capture pod grafana-fff57dcfc-db4v4 -f "-i any port 8123"
+```
+
+Con el pod aún corriendo, exportar el pcap:
+```bash
+kubectl dumpy export dumpy-98764228 .
+```
+
+```bash
+kubectl dumpy delete dumpy-98764228
+kubectl dumpy restart dumpy-98764228 -t "NEW FILTER"
+kubectl dumpy stop dumpy-98764228
+```
+
 # Traffic sniff
 
 <https://github.com/eldadru/ksniff>
