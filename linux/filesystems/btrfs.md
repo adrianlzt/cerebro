@@ -104,6 +104,8 @@ sudo btrfs filesystem df PATH
   path apuntará al vol o cualquier subvol, la info devuelta siempre será la misma
 
 # snapshots
+Usar snapper para gestionarlas
+
 ## crear (tenemos que tener creado el subvolumen /home/.snapshots)
 btrfs sub snapshot -r /home /home/.snapshots/myfirstsnapshot
 
