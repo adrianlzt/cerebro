@@ -20,6 +20,11 @@ Para ayudarnos a realizar la config podemos usar <https://pypi.org/project/pycri
 
 <https://github.com/alacritty/alacritty/wiki/Color-schemes>
 
+Cambiar theme on the fly
+```bash
+alacritty msg config "$(cat ~/path/to/theme.toml)"
+```
+
 ## Font
 
 Configurar las disponibles en:
@@ -72,3 +77,14 @@ Salir con control+c
 Control+shift+f
 
 Busca en el área que esté visible. No funcionará lo que haya hecho scroll en zellij, por ejemplo.
+
+# hints
+
+https://wiki.archlinux.org/title/Alacritty#Hints
+https://alacritty.org/config-alacritty.html#s39
+
+Para ejecutar programas cuando encontremos una expresión regular.
+
+Típicamente para abrir el navegador cuando tengamos URLs.
+
+Control+shift+o
