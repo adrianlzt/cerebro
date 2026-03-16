@@ -1,3 +1,7 @@
+# Listado con voice typing sw
+
+https://github.com/primaprashant/awesome-voice-typing
+
 # vocalinux
 
 https://github.com/jatinkrmalik/vocalinux
