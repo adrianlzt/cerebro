@@ -12,7 +12,7 @@ uv tool install -U \
   --with llm-jq  \
   --with llm-cmd  \
   --with llm-claude-3  \
-  --with llm-ollama  \
+  # --with llm-ollama  \ # necesita todos los paquetes nvidia-* que son varios gigas
   --with llm-cmd-comp  \
   --with llm-deepseek  \
   --with llm-groq  \

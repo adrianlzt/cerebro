@@ -3,6 +3,9 @@
 ```bash
 paru -G foo
 cd foo
+paru -Ui # build from source + install. Puede gestionar dependencias de AUR
+
+# O con makepkg
 makepkg -si
 ```
 
