@@ -9,7 +9,7 @@
 /usr/bin/git add *
 COMMIT_MSG=$(/usr/bin/git commit -a -m "Auto save")
 if [[ $? -eq 1 ]]; then
-  echo "${COMMIT_MSG}" | grep "para hacer commit" >&/dev/null
+  echo "${COMMIT_MSG}" | grep -e "nothing to commit" -e "para hacer commit" >&/dev/null
   if [[ $? -eq 1 ]]; then
     # Error comiteando
     echo "${COMMIT_MSG}"
