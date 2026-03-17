@@ -30,3 +30,17 @@ SUPER + SHIFT + cursores
 # Cerrar
 
 SUPER + SHIFT + q
+
+# Fullscreen
+
+SUPER + f
+
+# Scratchpad
+
+Mover al Scratchpad
+
+SUPER + z
+
+Mover a normal (tenemos que enviarla a un escritorio determinado):
+
+SUPER + shift + 0-9
