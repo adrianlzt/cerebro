@@ -1,4 +1,5 @@
-Borrar el contenido de dentro de un delmiter
+Borrar el contenido de dentro de un delmiter.
+La explicación es `Change all Inner "`
 ```
 ci"
 ```
@@ -13,3 +14,5 @@ Similar, pero sin saltar a modo a modo insert:
 ```
 di"
 ```
+
+Este sería `Delete Inner "`
