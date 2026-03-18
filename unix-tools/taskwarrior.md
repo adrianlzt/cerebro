@@ -70,6 +70,10 @@ z: toggle la ventana de abajo (task info)
 
 v: para seleccionar varias tareas
 
+Control+E hacer down scroll en la ventana inferior
+
+Control+Y hacer up scroll en la ventana inferior
+
 ## Filtros
 
 Podemos usar status:deleted o status:completed para ver otros estados
