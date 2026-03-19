@@ -30,3 +30,8 @@ lsof -c /[tT]elegr/
 
 lsof -c /^t.*/ -c ^telegraf
   que empiezen por t pero no sea telegraf
+
+Que proceso está escuchando en un puerto:
+```bash
+lsof -ti:22 | xargs -r ps -o pid,comm=
+```
