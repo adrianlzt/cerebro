@@ -200,8 +200,15 @@ No se como funcionará con varios perfiles de chrome.
 
 Parece que no tiene tool de snapshot que genere una imagen, creo que esto podría ser limitante.
 
+# Database / histórico
+
+Buscar en el histórico de todos los mensajes
+```bash
+sqlite3 .local/share/opencode/opencode.db "select slug,title,directory,s.time_created,data from part join session s ON part.session_id = s.id WHERE data like '%foo bar%' LIMIT 1;"
+```
+
 # Debug
 
 ```bash
-opencode --print-logs
+opencode --print-logs --log-level DEBUG
 ```
