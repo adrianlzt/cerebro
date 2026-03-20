@@ -127,6 +127,14 @@ Para deshacer el último cambio o rehacerlo.
 
 Cuidado que cambios hechos con comandos (sed, awk), no se podrá deshacer.
 
+# Tools
+
+Si queremos mostrar la respuesta de una tool (las de MCP por defecto no se muestran):
+
+Control+p / Show tool details
+
+Se quedará almacenado la última configuración que hayamos usado.
+
 # Plugins
 
 <https://opencode.ai/docs/ecosystem/>
