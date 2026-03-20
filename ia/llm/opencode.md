@@ -220,3 +220,19 @@ Bajar repo y ejecutar
 bun install
 bun dev
 ```
+
+# Skills
+
+https://opencode.ai/docs/skills/
+
+Configuración del proyecto: .opencode/skills/<name>/SKILL.md
+
+Configuración global: ~/.config/opencode/skills/<name>/SKILL.md
+
+Compatible con Proyecto Claude: .claude/skills/<name>/SKILL.md
+
+Compatible con Claude global: ~/.claude/skills/<name>/SKILL.md
+
+Compatible con agente de proyecto: .agents/skills/<name>/SKILL.md
+
+Compatible con agentes globales: ~/.agents/skills/<name>/SKILL.md
