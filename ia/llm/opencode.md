@@ -212,3 +212,11 @@ sqlite3 .local/share/opencode/opencode.db "select slug,title,directory,s.time_cr
 ```bash
 opencode --print-logs --log-level DEBUG
 ```
+
+# Develop
+
+Bajar repo y ejecutar
+```bash
+bun install
+bun dev
+```
