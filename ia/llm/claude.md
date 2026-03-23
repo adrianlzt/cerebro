@@ -10,6 +10,7 @@ CLI de Claude para programar usando modo agentic
 Para poder conectar otros modelos:
 <https://github.com/coffeegrind123/gemini-for-claude-code>
 <https://github.com/musistudio/claude-code-router>
+https://github.com/jolehuit/clother
 
 Arrancar con:
 
