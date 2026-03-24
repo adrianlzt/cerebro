@@ -42,6 +42,15 @@ strider: abre un navegador de ficheros en un pane estrecho a la izquierda. Los f
 zellij --layout compact
 ```
 
+Layout manager:
+https://github.com/zellij-org/zellij/releases/tag/v0.44.0#:~:text=and%20hard%20work.-,Layout%20Manager,-This%20release%20introduces
+
+https://github.com/zellij-org/zellij/pull/4601
+
+Para abrir el layout-manager y poder cambiar el layout:
+
+control+a control+l
+
 # Lock / scape / escapar comandos
 
 Control+g
@@ -84,6 +93,10 @@ Buscar: C-a /
 <https://zellij.dev/tutorials/stacked-resize>
 
 Podemos cambiar el tamaño de los panes: Alt+ / Alt-
+
+También pinchando en los bordes con el ratón y moviendo.
+
+Los float, si pinchamos en los bordes los movemos, usar control+click para resize.
 
 Cambiar organizactión (vertical, horizontal, stacked): `alt [ / alt ]`
 
