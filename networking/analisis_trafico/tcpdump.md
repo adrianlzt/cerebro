@@ -21,10 +21,10 @@ docker run -v ~/pcap:/pcap --net=host -d jgamblin/tcpdump
 
 Si queremos filtrar de una forma más extensa mirar ngrep.md
 
-Capturar todo el tráfico en ficheros, cada uno almacenando 15':
+Capturar todo el tráfico en ficheros, cada uno almacenando 15' (-v para ver cuantos paquetes llevamos capturados):
 
 ```bash
-tcpdump -G 900 -w /tmp/'%Y-%m-%d_%H:%M:%S.pcap' -W 96
+tcpdump -v -G 900 -w /tmp/'%Y-%m-%d_%H:%M:%S.pcap' -W 96
 ```
 
 -G segundos que captura cada fichero
