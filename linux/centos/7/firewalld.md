@@ -9,13 +9,18 @@ Tenemos la configuración "runtime" y la "permanent".
 Ver que tenemos en runtime (obtiene las zonas activas y saca su resultado):
 
 ```bash
-firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={}
+sudo firewall-cmd --get-active-zones | awk '/^\w/{print $1}' | while read zone; do sudo firewall-cmd --list-all --zone="$zone" --permanent; done
 ```
 
 Ver que tenemos permanente:
 
 ```bash
-firewall-cmd --get-active-zones | grep "^[^ ]" | xargs -I {} firewall-cmd --list-all --zone={} --permanent
+sudo firewall-cmd --get-active-zones | awk '/^\w/{print $1}' | while read zone; do sudo firewall-cmd --list-all --zone="$zone" --permanent; done
+```
+
+Comparar running vs permanent:
+```bash
+diff <(sudo firewall-cmd --list-all-zones) <(sudo firewall-cmd --permanent --list-all-zones)
 ```
 
 Abrir el firewall sin restricción:
