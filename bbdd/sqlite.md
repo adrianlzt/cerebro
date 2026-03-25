@@ -120,16 +120,8 @@ Ejemplo mergeando dos sqlites en una:
 sqlite3 combined.db <<'EOF'
 ATTACH 'zabbix_snapshot.db' AS db1;
 ATTACH 'ttech-zabbixproxy2-20260319.db' AS db2;
-SELECT * INTO zabbix_events FROM db1.zabbix_events;
-SELECT * INTO zabbix_hosts FROM db1.zabbix_hosts;
-SELECT * INTO zabbix_templates FROM db1.zabbix_templates;
-SELECT * INTO zabbix_history FROM db1.zabbix_history;
-SELECT * INTO zabbix_items FROM db1.zabbix_items;
-SELECT * INTO zabbix_trends FROM db1.zabbix_trends;
-SELECT * INTO zabbix_host_groups FROM db1.zabbix_host_groups;
-SELECT * INTO zabbix_snapshot_meta FROM db1.zabbix_snapshot_meta;
-SELECT * INTO zabbix_triggers FROM db1.zabbix_triggers;
-SELECT * INTO journal_logs FROM db2.journal_logs;
+CREATE TABLE zabbix_proxy_groups AS SELECT * FROM db1.zabbix_proxy_groups; -- no existe la tabla aún
+INSERT INTO zabbix_proxies SELECT * FROM db1.zabbix_proxies; -- ya existe la tabla
 DETACH db1;
 DETACH db2;
 EOF
@@ -150,6 +142,15 @@ BLOB. The value is a blob of data, stored exactly as it was input.
 # JSON
 
 <https://sqlite.org/json1.html>
+
+## UPDATE
+
+```sql
+UPDATE zabbix_proxies
+SET raw_data = json_set(raw_data, '$.local_address', '127.0.0.1');
+```
+
+## WHERE
 
 ```sql
 WHERE json_column ->> '$.key' = 'value';
