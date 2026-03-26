@@ -41,6 +41,13 @@ Usar el comando
 
 Para hacer un análisis del proyecto y generar el `AGENTS.md`. La recomendación es comitear ese fichero.
 
+# Modelos
+
+Mantiene una caché de modelos en:
+```
+~/.cache/opencode/models.json
+```
+
 # MCP
 
 ```bash
