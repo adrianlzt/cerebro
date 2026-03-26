@@ -53,6 +53,8 @@ Verificar con:
 task diagnostics
 ```
 
+Almacena los registros en ficheros de texto en /.local/share/timewarrior/data
+
 
 ```
 ❯ timew help

@@ -244,3 +244,20 @@ Compatible con Claude global: ~/.claude/skills/<name>/SKILL.md
 Compatible con agente de proyecto: .agents/skills/<name>/SKILL.md
 
 Compatible con agentes globales: ~/.agents/skills/<name>/SKILL.md
+
+Ejemplo formato:
+```
+---
+name: git-release
+description: Create consistent releases and changelogs
+license: MIT
+compatibility: opencode
+metadata:
+  audience: maintainers
+  workflow: github
+---
+
+## What I do
+
+- Draft release notes from merged PRs
+```
