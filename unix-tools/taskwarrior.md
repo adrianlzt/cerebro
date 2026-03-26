@@ -36,6 +36,89 @@ Creo un contexto "work" y le asocio las tareas con tag "work".
 task context define work +work
 ```
 
+# timewarrior
+
+Para ver cuanto tiempo hemos dedicado a cada tarea, tag, etc
+
+
+Lo instalamos y metemos el hook para que timewarrior se entere cuando hacemos start-stop de las tareas y pueda contar el tiempo.
+```bash
+pacman -S timew
+cp /usr/share/doc/timew/ext/on-modify.timewarrior ~/.task/hooks
+chmod a+x ~/.task/hooks/on-modify.timewarrior
+```
+
+Verificar con:
+```bash
+task diagnostics
+```
+
+
+```
+❯ timew help
+Create new config in /home/adrian/.config/timewarrior?
+Create new database in /home/adrian/.local/share/timewarrior? (yes/no) yes
+
+Usage: timew [--version]
+       timew annotate @<id> [@<id> ...] <annotation>
+       timew cancel
+       timew config [<name> [<value> | '']]
+       timew continue [@<id>] [<date>|<interval>]
+       timew day [<interval>] [<tag> ...]
+       timew delete @<id> [@<id> ...]
+       timew diagnostics
+       timew export [<interval>] [<tag> ...]
+       timew extensions
+       timew gaps [<interval>] [<tag> ...]
+       timew get <DOM> [<DOM> ...]
+       timew help [<command> | dates | dom | durations | hints | ranges]
+       timew join @<id> @<id>
+       timew lengthen @<id> [@<id> ...] <duration>
+       timew modify (start|end) @<id> <date>
+       timew modify range @<id> <interval>
+       timew month [<interval>] [<tag> ...]
+       timew move @<id> <date>
+       timew [report] <report> [<interval>] [<tag> ...]
+       timew retag @<id> [@<id> ...] <tag> [<tag> ...]
+       timew shorten @<id> [@<id> ...] <duration>
+       timew show
+       timew split @<id> [@<id> ...]
+       timew start [<date>] [<tag> ...]
+       timew stop [<tag> ...]
+       timew summary [<interval>] [<tag> ...]
+       timew tag @<id> [@<id> ...] <tag> [<tag> ...]
+       timew tags [<interval>] [<tag> ...]
+       timew track <interval> [<tag> ...]
+       timew undo
+       timew untag @<id> [@<id> ...] <tag> [<tag> ...]
+       timew week [<interval>] [<tag> ...]
+
+Additional help:
+       timew help <command>
+       timew help dates
+       timew help dom
+       timew help durations
+       timew help hints
+       timew help ranges
+
+Interval:
+       [from] <date>
+       [from] <date> to/- <date>
+       [from] <date> for <duration>
+       <duration> before/after <date>
+       <duration> ago
+       [for] <duration>
+
+Tag:
+       Word
+       'Single Quoted Words'
+       "Double Quoted Words"
+       Escaped\ Spaces
+
+Configuration overrides:
+       rc.<name>=<value>
+```
+
 # taskwarrior-tui
 
 <https://kdheepak.com/taskwarrior-tui/>
