@@ -146,6 +146,15 @@ Se quedará almacenado la última configuración que hayamos usado.
 
 <https://opencode.ai/docs/ecosystem/>
 
+## OCX
+
+Gestor de plugins
+
+Hace falta tener bun:
+```bash
+paru -S bun
+```
+
 ## pty
 
 <https://github.com/shekohex/opencode-pty>
