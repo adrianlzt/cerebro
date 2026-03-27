@@ -24,3 +24,17 @@ Las reglas se almacenan en ficheros json en:
 ```
 /etc/opensnitchd/rules
 ```
+
+# TUI
+
+https://github.com/amalbansode/opensnitch-tui
+
+Tenemos que configurar opensnitchd para que use TCP. opensnitchd intentará conectar al puerto que le digamos, donde deberá estar escuchando esta app o la de opensnitch-ui (usando --socket 127.0.0.1:PUERTO).
+
+Config opensnitchd:
+```json
+{
+    "Server":
+    {
+        "Address":"127.0.0.1:50051",
+```
