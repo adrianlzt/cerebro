@@ -39,6 +39,16 @@ Mostrar mensajes recibidos:
 npx @kapso/cli whatsapp messages list --phone-number-id=REDACTED | jq ".data[] | {content: .kapso.content, direction: .kapso.direction}"
 ```
 
+Si es un mensaje en contestación a una respuesta:
+```json
+"context": {
+  "id": "wamid.HgDUyMjkVAgARGBJDOTZDMDhCRUQ0OUIxM0MzOTEA",
+  "from": "50403095"
+}
+```
+
+Si nos envían un audio viene añadido el transcript.
+
 # Registrar
 
 <http://www.watools.es/pwd.html>
