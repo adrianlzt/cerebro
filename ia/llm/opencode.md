@@ -155,6 +155,21 @@ Hace falta tener bun:
 paru -S bun
 ```
 
+Inicialización global:
+```bash
+npx -y ocx init --global
+info Created global config: /home/adrian/.config/opencode/ocx.jsonc
+info Created profile config: /home/adrian/.config/opencode/profiles/default/ocx.jsonc
+info Created profile opencode config: /home/adrian/.config/opencode/profiles/default/opencode.jsonc
+info Created profile instructions: /home/adrian/.config/opencode/profiles/default/AGENTS.md
+info
+info Next steps:
+info   1. Edit your profile config: ocx config edit -p default
+info   2. Add registries: ocx registry add <url> --name <name> --global
+info   3. Launch OpenCode: ocx opencode
+info   4. Create more profiles: ocx profile add <name> --global
+```
+
 ## pty
 
 <https://github.com/shekohex/opencode-pty>
