@@ -16,6 +16,29 @@ pip install pywhatsapp
 
 yowsup2 no funciona el registro desde Enero 2019: <https://github.com/tgalal/yowsup/issues/2829>
 
+# kapso
+
+```bash
+npx @kapso/cli setup
+```
+
+Credenciales en:
+
+```
+$HOME/.kapso/cli/secure/config.json
+$HOME/.kapso/cli/config/config.json
+```
+
+Enviar mensaje, el phone-number-id lo sacamos de `npx @kapso/cli whatsapp numbers list`:
+```bash
+npx @kapso/cli whatsapp messages send --phone-number-id=REDACTED --to=DESTNUMBER --text="hola"
+```
+
+Mostrar mensajes recibidos:
+```bash
+npx @kapso/cli whatsapp messages list --phone-number-id=REDACTED | jq ".data[] | {content: .kapso.content, direction: .kapso.direction}"
+```
+
 # Registrar
 
 <http://www.watools.es/pwd.html>
