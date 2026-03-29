@@ -18,6 +18,8 @@ yowsup2 no funciona el registro desde Enero 2019: <https://github.com/tgalal/yow
 
 # kapso
 
+NOTA: política de whastapp, solo podemos enviar mensajes "libres" en la ventana de 24h desde que el usuario contesta. Fuera de eso tenemos que enviar mensajes templatizados.
+
 ```bash
 npx @kapso/cli setup
 ```
