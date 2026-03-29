@@ -42,6 +42,8 @@ Al desplegar una inferencia, Kserve crea un "service" de Knative (ksvc / Service
 
 Para modelos ML genéricos.
 
+InferenceService vs LLMInferenceService: https://kserve.github.io/website/docs/model-serving/generative-inference/llmisvc/llmisvc-overview
+
 Typically translates your definition into a standard Kubernetes Deployment (or Knative Service for serverless scale-to-zero) and a basic Service.
 
 Ejemplo básico, donde básicamente específicamos donde descargar el modelo y su formato:
@@ -72,12 +74,39 @@ Luego tendremos dos containers principales:
 
 kserve-container: realiza la inferencia. También tiene montado /mnt/models
 
-queue-proxy:
+queue-proxy: para la gestión de autoescalado, contar peticiones, encolar peticiones, gestionar que no se pare el pod con peticiones pendientes, etc
+
+### Scale to zero
+
+Por defecto no está activo.
+
+https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler?_highlight=scale&_highlight=z#enable-scale-to-zero
+
+Activarlo con:
+```yaml
+apiVersion: "serving.kserve.io/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: "flowers-sample"
+spec:
+  predictor:
+    minReplicas: 0 # <---- Poner esto
+    model:
+      modelFormat:
+        name: tensorflow
+      storageUri: "gs://kfserving-examples/models/tensorflow/flowers"
+```
 
 
 ## LLMInferenceService
 
+https://kserve.github.io/website/docs/concepts/architecture/control-plane-llmisvc
+
 Específicamente diseñado para los LLMs y sus particularidades.
+
+No usa Knative.
+
+InferenceService vs LLMInferenceService: https://kserve.github.io/website/docs/model-serving/generative-inference/llmisvc/llmisvc-overview
 
 Orchestrates a much more sophisticated network of resources specifically for high-concurrency token streaming. It provisions an InferencePool, an InferenceModel, an internal Scheduler Deployment (Endpoint Picker Pod), an API Gateway, and an HTTPRoute.
 
@@ -115,10 +144,19 @@ Por ejemplo, que para acceder a tal bucket de s3 se usan tales credenciales.
 
 # kubectl
 
+## Parar un InferenceService o LLMInferenceService
+
+https://github.com/kserve/kserve/pull/4455
+
+Añadir la annotation:
+```
+serving.kserve.io/stop: 'true'
+```
+
 ## Obtener todos los recursos de kserve
 
 ```bash
-kc get crd -o json | jq -r '.items[] | select(.metadata.name | contains("kserve.io")) | .spec.names.plural' | xargs -I {} sh -c 'echo "--- Resources for {} (all namespaces) ---"; kc get {} --all-namespaces'
+kubectl get crd -o json | jq -r '.items[] | select(.metadata.name | contains("kserve.io")) | "\(.spec.names.plural).\(.spec.group)"' | xargs -I {} sh -c 'echo -e "\n--- Resources for {} (all namespaces) ---"; kubectl get {} --all-namespaces 2>&1'
 ```
 
 ## Obtener los recursos de los nodos y su ocupación

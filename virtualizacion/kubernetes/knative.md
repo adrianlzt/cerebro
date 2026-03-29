@@ -14,5 +14,5 @@ Parece que ofrece lo que dan ciertos providers cloud, pero sin el lock-in.
 
 Obtener todos los recursos de kserve:
 ```bash
-kc get crd -o json | jq -r '.items[] | select(.metadata.name | contains("knative.dev")) | .spec.names.shortNames[0]' | xargs -I {} sh -c 'echo "--- Resources for {} (all namespaces) ---"; kc get {} --all-namespaces'
+kubectl get crd -o json | jq -r '.items[] | select(.metadata.name | contains("knative.dev")) | "\(.spec.names.plural).\(.spec.group)"' | xargs -I {} sh -c 'echo -e "\n--- Resources for {} (all namespaces) ---"; kubectl get {} --all-namespaces 2>&1'
 ```
