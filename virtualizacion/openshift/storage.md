@@ -64,6 +64,8 @@ Kubernetes se encargará de mapear ese PVC a un PV de los que haya disponibles.
 # Local PV
 Creo que una solución moderna es usar: https://github.com/openebs/dynamic-localpv-provisioner
 
+https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/deploy/helm/charts/README.md
+
 
 https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner
 Podemos usar ese provisionardor para generar automáticamente los PVs a partir de una lista de discos.
