@@ -36,6 +36,16 @@ Creo un contexto "work" y le asocio las tareas con tag "work".
 task context define work +work
 ```
 
+# CLI
+
+## Mover tarea de complete a pending
+
+Primero obtenemos las tareas completed y luego la movemos usando su uuid.
+```bash
+task completed
+task aaabbcce modify status:pending
+```
+
 # timewarrior
 
 Para ver cuanto tiempo hemos dedicado a cada tarea, tag, etc
