@@ -1,4 +1,16 @@
 # NVIM
+
+
+El que uso con lazyvim
+https://github.com/rafamadriz/friendly-snippets/tree/main
+
+
+Otra opción con más configuraciones
+https://github.com/L3MON4D3/LuaSnip
+
+
+
+## Antiguo
 https://github.com/hrsh7th/vim-vsnip
 
 Si queremos crear snippets custom, nos pedirá si lo queremos para el lenguaje o global:
@@ -52,5 +64,3 @@ Si instalamos un nuevo plugin, este puede meter snippets si tiene un directorio 
 Otra opcion:
 https://github.com/Shougo/neosnippet.vim
 https://github.com/Shougo/neocomplete.vim
-
-
