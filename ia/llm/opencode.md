@@ -146,6 +146,68 @@ Se quedará almacenado la última configuración que hayamos usado.
 
 <https://opencode.ai/docs/ecosystem/>
 
+## oh-my-opencode
+
+https://ohmyopenagent.com/
+
+https://ohmyopenagent.com/docs
+
+https://github.com/code-yeongyu/oh-my-openagent
+
+### Prompts
+
+Unos prompts muy largos.
+
+22k tokens para empezar.
+
+Productivity Features: Ralph Loop, Todo Enforcer, Comment Checker, Think Mode, and more
+
+
+### Añade 4 agentes
+
+Sisyphus is your main orchestrator. He plans, delegates to specialists, and drives tasks to completion with aggressive parallel execution. He does not stop halfway.
+
+Hephaestus is your autonomous deep worker. Give him a goal, not a recipe. He explores the codebase, researches patterns, and executes end-to-end without hand-holding. The Legitimate Craftsman.
+
+Prometheus is your strategic planner. Interview mode: it questions, identifies scope, and builds a detailed plan before a single line of code is touched.
+
+Atlas - Master Orchestrator Agent: Orchestrates work via task() to complete ALL tasks in a todo list until fully done. You are the conductor of a symphony of specialized agents.
+
+### Tools
+
+LSP
+
+ast-grep
+
+tmux, parece que para correr cosas en segundo plano.
+
+Edición con "hash line":
+```
+11#VK| function hello() {
+22#XJ|   return "world";
+33#MB| }
+```
+
+Session Tools: List, read, search, and analyze session history
+
+### Skills
+
+https://github.com/code-yeongyu/oh-my-openagent/tree/dev/src/features/builtin-skills
+
+playwright
+
+agent-browser
+
+git-master: 8k tokens. Algunas decisiones no se si muy adecuadas...
+
+### MCPs
+
+websearch (exa)
+
+context7
+
+grep_app (github code search)
+
 ## OCX
 
 Gestor de plugins
@@ -168,6 +230,23 @@ info   1. Edit your profile config: ocx config edit -p default
 info   2. Add registries: ocx registry add <url> --name <name> --global
 info   3. Launch OpenCode: ocx opencode
 info   4. Create more profiles: ocx profile add <name> --global
+```
+
+Arrancar el profile por defecto:
+```bash
+npx ocx oc
+```
+
+Otro profile:
+```bash
+npx ocx oc -p NAME
+```
+
+## Perfiles
+
+Crear un perfil usando "oh-my-opencode" (mete un par de modelos y el plugin de oh-my-opencode):
+```bash
+ocx profile add omo --source kit/omo --from https://ocx-kit.kdco.dev --global
 ```
 
 ## pty
