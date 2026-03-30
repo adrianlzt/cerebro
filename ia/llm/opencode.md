@@ -154,6 +154,33 @@ https://ohmyopenagent.com/docs
 
 https://github.com/code-yeongyu/oh-my-openagent
 
+### Slash commands
+
+Que el modelo no pare hasta completar la tarea:
+```
+/ulw-loop
+```
+
+Por defecto tira sin parar, podemos quitar esto con:
+```
+/cancel-ralph
+```
+
+Activarlo?
+```
+/ralph-loop
+```
+
+Generar AGENTS.md por directorio
+```
+/init-deep
+```
+
+Empezar a trabajar tras un plan de Prometheus:
+```
+/start-work
+```
+
 ### Prompts
 
 Unos prompts muy largos.
@@ -163,7 +190,10 @@ Unos prompts muy largos.
 Productivity Features: Ralph Loop, Todo Enforcer, Comment Checker, Think Mode, and more
 
 
-### Añade 4 agentes
+
+### Añade varios agentes
+
+https://github.com/code-yeongyu/oh-my-openagent/tree/dev/src/agents
 
 Sisyphus is your main orchestrator. He plans, delegates to specialists, and drives tasks to completion with aggressive parallel execution. He does not stop halfway.
 
@@ -208,6 +238,10 @@ context7
 
 grep_app (github code search)
 
+### Debug
+
+Genera un fichero log en /tmp/oh-my-opencode.log
+
 ## OCX
 
 Gestor de plugins
@@ -242,12 +276,18 @@ Otro profile:
 npx ocx oc -p NAME
 ```
 
-## Perfiles
+### Perfiles
 
 Crear un perfil usando "oh-my-opencode" (mete un par de modelos y el plugin de oh-my-opencode):
 ```bash
 ocx profile add omo --source kit/omo --from https://ocx-kit.kdco.dev --global
 ```
+
+### Debug
+
+Genera un directorio donde mergea la configuración, tipo:
+/tmp/ocx-oc-merged-VXrznM
+
 
 ## pty
 
