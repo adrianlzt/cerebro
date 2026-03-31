@@ -29,3 +29,12 @@ Ejemplo de lo que se pasaría al contexto:
 <https://github.com/huggingface/upskill>
 
 Generate and evaluate agent skills for code agents like Claude Code, Open Code, OpenAI Codex
+
+# Store de skills
+
+https://skills.sh
+
+Instalar una:
+```bash
+npx skills add https://github.com/microsoft/github-copilot-for-azure --skill azure-ai
+```
