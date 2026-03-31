@@ -278,6 +278,11 @@ npx ocx oc -p NAME
 
 ### Perfiles
 
+Ver perfiles globales:
+```bash
+ocx p ls --global
+```
+
 Crear un perfil usando "oh-my-opencode" (mete un par de modelos y el plugin de oh-my-opencode):
 ```bash
 ocx profile add omo --source kit/omo --from https://ocx-kit.kdco.dev --global
