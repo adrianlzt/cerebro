@@ -27,6 +27,13 @@ Podemos integrarnos con proveedores de acceso:
 https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/
 Ejemplo para gitlab: https://github.com/argoproj/argo-cd/issues/9034#issuecomment-1219753395
 
+# CLI
+
+Login:
+```bash
+argocd login 192.168.1.2 --username admin
+```
+
 
 # GitOps CI/CD con helm
 https://mixi-developers.mixi.co.jp/argocd-with-helm-fee954d1003c
@@ -43,7 +50,7 @@ Luego tener un repo donde almacenamos 3 cosas:
 https://argocd-notifications.readthedocs.io/en/stable/
 Instalar con helm
 
- 
+
 # Autodeploy de aplicaciones
 https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/
 https://github.com/argoproj/applicationset/blob/master/examples/git-generator-directory/git-directories-example.yaml
