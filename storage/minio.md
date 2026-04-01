@@ -8,6 +8,8 @@ rustfs.md
 
 <https://garagehq.deuxfleurs.fr/>
 
+https://github.com/seaweedfs/seaweedfs
+
 Storage de objetos con api compatible con Amazon S3
 
 # Server
