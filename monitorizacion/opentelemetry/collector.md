@@ -1,3 +1,7 @@
+https://github.com/starkross/augur
+Proyecto chulo para salir con la config del otel-collector más "production ready
+
+
 Levanta puertos para recibir métricas/trazas en distintos protocolos.
 Envia esas trazas/métricas a distintos endpoints.
 
