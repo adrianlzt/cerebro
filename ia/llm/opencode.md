@@ -48,6 +48,13 @@ Mantiene una caché de modelos en:
 ~/.cache/opencode/models.json
 ```
 
+# Permisos
+
+Nueva opción que le permite todo excepto los permisos "deny"
+```bash
+opencode run --dangerously-skip-permissions
+```
+
 # MCP
 
 ```bash
@@ -133,6 +140,13 @@ Se pueden usar los comandos
 Para deshacer el último cambio o rehacerlo.
 
 Cuidado que cambios hechos con comandos (sed, awk), no se podrá deshacer.
+
+# Mouse / ratón
+
+Se puede desactivar con:
+```
+OPENCODE_DISABLE_MOUSE=true
+```
 
 # Tools
 
@@ -288,6 +302,11 @@ Crear un perfil usando "oh-my-opencode" (mete un par de modelos y el plugin de o
 ocx profile add omo --source kit/omo --from https://ocx-kit.kdco.dev --global
 ```
 
+Crear un perfil global vacío:
+```bash
+ocx p add --global NAME
+```
+
 ### Debug
 
 Genera un directorio donde mergea la configuración, tipo:
@@ -424,6 +443,11 @@ https://opencode.ai/docs/agents/
 Global: ~/.config/opencode/agents/
 
 Por proyecto: .opencode/agents/
+
+Crear un agente usando la cli:
+```bash
+opencode agent create
+```
 
 
 Ejemplo:
