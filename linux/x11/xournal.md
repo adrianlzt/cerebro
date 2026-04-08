@@ -20,6 +20,8 @@ También tiene un editor: <https://stirlingpdf.io/view-pdf>
 Añadir recuadros para rellenar a un PDF con cajas pero sin esa funcionalidad puesta:
 <https://detect.penpusher.app/>
 
+https://editpdffree.com/
+
 Discusión en hackernews con más herramientas: <https://news.ycombinator.com/item?id=43880962>
 
 ```bash

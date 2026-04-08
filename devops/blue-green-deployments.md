@@ -1,3 +1,8 @@
+---
+uid: blue-green-deployments
+tags: [virtualizacion, docker]
+---
+
 http://blog.christianposta.com/deploy/blue-green-deployments-a-b-testing-and-canary-releases/
 
 Mirar diffy, para comparar respuesta de dos versiones.
