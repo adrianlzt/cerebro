@@ -1,3 +1,10 @@
+# Identificar un fichero
+
+```bash
+uvx magika FILE
+file FILE
+```
+
 http://www.cyberciti.biz/faq/linux-increase-the-maximum-number-of-open-files/
 ## Limites de ficheros, sockets, scheduling priority, etc
 Para ver todos los límites soft de un usuario (entrando como el usuario)
