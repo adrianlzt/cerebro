@@ -30,7 +30,8 @@ git commit -n ...
 Ejecutarlo a mano
 
 ```bash
-pre-commit run --all-files --force
+pre-commit run --all-files # por defecto simula el hook stage "commit"
+pre-commit run --all-files --hook-stage manual
 ```
 
 # Global
