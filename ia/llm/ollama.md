@@ -1,3 +1,9 @@
+mirar llama.cpp.md unsloth.md
+
+Usar otra cosa:
+https://news.ycombinator.com/item?id=47788385
+
+
 <https://github.com/ollama/ollama/tree/main/docs>
 
 <https://ollama.com/download>
