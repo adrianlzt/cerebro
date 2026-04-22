@@ -27,6 +27,16 @@ yt-dlp
 yt-dlp --cookies-from-browser firefox --remote-components ejs:github -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" 'https://www.youtube.com/watch?v=XXX'
 ```
 
+Para sacar calidades posibles:
+```
+--list-formats
+```
+
+Luego seleccionar con:
+```
+--format
+```
+
 # Subir videos CLI
 
 <https://github.com/porjo/youtubeuploader>
