@@ -1,3 +1,4 @@
+# nvidia
 Top para nvidia
 nvtop
 
@@ -27,4 +28,11 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 2024-02-14 07:52:22.307 client.cpp:834 221155 I] Requesting session from assistify.es:43210
 2024-02-14 07:52:22.928 client.cpp:690 221155 I] Loading CUDA modules locally for PyTorch or TensorFlow
 True
+```
+
+
+# amd
+
+```bash
+amdgpu_top
 ```
