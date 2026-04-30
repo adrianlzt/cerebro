@@ -4,6 +4,11 @@ A complete solution for viewing, creating and editing PDF files
 masterpdfeditor
 ```
 
+Visor ligero:
+```
+zathura-pdf-mupdf
+```
+
 Editor online que corre en el navegador (rellenar, añadir texto, imágenes, firmar, poner contraseña, combinar PDFs, borrar páginas):
 <https://breezepdf.com/>
 
