@@ -4,10 +4,9 @@ A complete solution for viewing, creating and editing PDF files
 masterpdfeditor
 ```
 
-Visor ligero:
-```
-zathura-pdf-mupdf
-```
+Visor ligero: zathura-pdf-mupdf
+Usar vim key bindings
+45G - ir a página 45
 
 Editor online que corre en el navegador (rellenar, añadir texto, imágenes, firmar, poner contraseña, combinar PDFs, borrar páginas):
 <https://breezepdf.com/>
