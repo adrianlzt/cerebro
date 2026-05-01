@@ -52,21 +52,33 @@ tnr ports list
 
 # DeepSeek v4 flash
 
+## Int4
+Requisitos:
+
+Disco: ~160GiB de espacio
+RAM > 180GiB (ponen bastante más)
+
+```bash
+uv run --with vllm vllm serve EnsueAI/DeepSeek-V4-Flash-Base-INT4
+```
+
+Tiempo estimado de arranque: 35-55 minutos
+
+Si solo tengo 2 x NVIDIA A100 (80GiB) usar, para evitar OOM en la GPU (el modelo son 156.6GiB de 160 disponibles):
+```
+--cpu-offload-gb 20
+```
+
+4x A100 80GB cluster is the realistic minimum.
+
+H100 son más rápidas.
+
+## Original
 DeepSeek-V4-Flash-Base model is approximately 295 GB
 
 ```bash
 uv run --with vllm vllm serve --kv-cache-dtype fp8 deepseek-ai/DeepSeek-V4-Flash-Base
 ```
-
-(EngineCore pid=1368) AssertionError: DeepseekV4 only supports fp8 kv-cache format for now, got auto
-
-4 bit:
-```bash
-uv run --with vllm vllm serve EnsueAI/DeepSeek-V4-Flash-Base-INT4
-```
-
-
-Tiempo estimado de arranque: 35-55 minutos
 
 
 # Olmo-3-1025-7 base
@@ -86,3 +98,10 @@ Initial profiling/warmup run took 2.47 s
 
 Graph capturing finished in 34 secs, took 0.39 GiB
 init engine (profile, create kv cache, warmup model) took 94.98 s (compilation: 34.32 s)
+
+
+# Pricing
+
+Snapshots (Long-term storage) $0.05 /GB/mo
+
+0.5$/day para 300GiB
