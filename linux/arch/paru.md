@@ -1,3 +1,10 @@
+# Editar PKGBUILD
+
+Creo que debería ser con esto, pero no parece coger los cambios
+```bash
+paru -S aur/forticlient-vpn --fm nvim
+```
+
 # Descargar un AUR
 
 ```bash
