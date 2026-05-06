@@ -93,10 +93,35 @@ En borgbase.com/ nos dan 10GiB gratis.
 <https://restic.readthedocs.io/en/latest/index.html>
 Simple, con varios backends. Escrito en go.
 
+Podemos usar google drive como backend usando rclone
+
+Stateless, no tiene ficheros de config (si un directorio de caché en ~/.cache/restic)
+
 ## Server (podemos usar otras cosas como backend)
 
 ```bash
 docker run --rm -it --name restic-server -p 8000:8000 -v "$PWD/data:/data" restic/rest-server rest-server --path /data
+```
+
+## Google drive
+
+https://rclone.org/drive/#making-your-own-client-id
+
+```bash
+rclone config
+# name: gdrive
+# Google Drive
+# drive.appfolder
+```
+
+Luego con restic
+```bash
+restic -r rclone:gdrive:LatopBackup init
+```
+
+Luego ya realizar los backups que necesitemos usando:
+```bash
+restic -r rclone:datadope-gdrive:LatopBackup COMANDO
 ```
 
 ## Cliente
@@ -120,7 +145,9 @@ Y la password ejecutando un comando: RESTIC_PASSWORD_COMMAND
 ### backups
 
 Hacer un backup de un directorio
+```bash
 restic backup dir1/ dir2/ dir3/file1
+```
 usará deduplicación para no enviar datos de más
 
 Si volvemos a ejecutar el backup contra el mismo dir, verá que es lo mismo y solo enviará los cambios
@@ -150,7 +177,9 @@ mysqldump [...] | restic -r /srv/restic-repo backup --stdin --stdin-filename pro
 ### ver contenido
 
 Ver los backups (snapshots). Nos dice el id, fecha, host que lo hizo, tags y el path del que se hizo backup
+```bash
 restic snapshots
+```
 
 Podemos aplicar filtros y "group by"
 --host xx
