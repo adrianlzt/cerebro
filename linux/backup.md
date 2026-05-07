@@ -130,13 +130,13 @@ Backend rest-server
 Creamos el repo:
 
 ```bash
-restic init -r rest:<http://localhost:8000/>
+restic init -r rest:http://localhost:8000/
 ```
 
 Podemos crear distintos repos con distintos paths
 
 ```bash
-restic init -r rest:<http://localhost:8000/dos>
+restic init -r rest:http://localhost:8000/dos
 ```
 
 Usar variables de entorno para pasarle el repo por defecto RESTIC_REPOSITORY
@@ -149,6 +149,11 @@ Hacer un backup de un directorio
 restic backup dir1/ dir2/ dir3/file1
 ```
 usará deduplicación para no enviar datos de más
+
+**NOTA** Si luego hacemos, dejará de hacer backup de dir1 dir2 y dir3/file1, para solo hacerlo de dirX
+```bash
+restic backup dirX/
+```
 
 Si volvemos a ejecutar el backup contra el mismo dir, verá que es lo mismo y solo enviará los cambios
 En cada id tendremos todos los ficheros del directorio.

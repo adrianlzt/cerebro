@@ -11,7 +11,10 @@ Podemos pasarlo por linea de comandos: ansible -i fichero ...
 Es case-sensitive.
 
 Para ver nuestro inventario:
+```bash
+ansible-inventory --graph
 ansible all --list-hosts
+```
 
 Para ver las variables que tiene cada host
 ansible all -i ucmdb.yml -m debug -a 'var=hostvars'
