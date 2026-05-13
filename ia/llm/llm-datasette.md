@@ -12,7 +12,6 @@ uv tool install -U \
   --with llm-jq  \
   --with llm-cmd  \
   --with llm-claude-3  \
-  # --with llm-ollama  \ # necesita todos los paquetes nvidia-* que son varios gigas
   --with llm-cmd-comp  \
   --with llm-deepseek  \
   --with llm-groq  \
@@ -20,9 +19,10 @@ uv tool install -U \
   --with git+https://github.com/OttoAllmendinger/llm-git.git  \
   --with llm-github-models \
   --with llm-edit \
-  --with llm-sentence-transformers \
   --with jsonschema \
   llm
+  # --with llm-sentence-transformers \ # necesita todos los paquetes nvidia-* que son varios gigas
+  # --with llm-ollama  \ # necesita todos los paquetes nvidia-* que son varios gigas
 ```
 
 Las credenciales se almacenan en ~/.config/io.datasette.llm/keys.json
