@@ -55,6 +55,12 @@ Nueva opción que le permite todo excepto los permisos "deny"
 opencode run --dangerously-skip-permissions
 ```
 
+# Sesiones
+
+Podemos restaurar una sesión pasada.
+
+Podemos usar "/sessions" para buscar sesiones y pinearlas (si las usamos a menudo).
+
 # MCP
 
 ```bash
