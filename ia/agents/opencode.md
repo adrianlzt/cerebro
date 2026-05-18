@@ -61,6 +61,19 @@ Podemos restaurar una sesión pasada.
 
 Podemos usar "/sessions" para buscar sesiones y pinearlas (si las usamos a menudo).
 
+# Referencias
+
+Podemos meter en la config un bloque tipo:
+```json
+  "reference": {
+    "docs": "./path/to/docs",           // local directory
+    "some-repo": "owner/repo",          // GitHub repo
+    "lib": { "repository": "owner/repo", "branch": "main" }  // git repo with branch
+  }
+```
+
+Y usarlo llamando a `@some-repo`
+
 # MCP
 
 ```bash
@@ -478,3 +491,28 @@ You are in code review mode. Focus on:
 
 Provide constructive feedback without making direct changes.
 ```
+
+## Scout
+
+Para investigar terceros repos.
+
+Ahora mismo (1.15.4) hace falta activarlo con:
+```bash
+OPENCODE_EXPERIMENTAL_SCOUT=1 opencode
+```
+
+Podemos llamarlo usando:
+```
+@scout blabla
+```
+
+# Workspaces / warp
+
+Necesario activarlo con:
+```
+OPENCODE_EXPERIMENTAL_WORKSPACES=1
+```
+
+Nos añade el comando `/warp`.
+
+Nos permite crear git worktrees más fácilmente y saltar entre ellos.
