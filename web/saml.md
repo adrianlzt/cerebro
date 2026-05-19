@@ -65,5 +65,5 @@ https://chrome.google.com/webstore/detail/saml-message-decoder/mpabchoaimgbdbbjj
 https://www.samltool.com/decode.php
 Codificar/decodificar SAML XMLs
 
-https://samltest.id/
+https://www.samltest.dev/
 Servidor que tiene IdP y SP.
