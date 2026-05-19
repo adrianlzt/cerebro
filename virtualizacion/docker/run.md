@@ -1,7 +1,12 @@
 NO USAR. Mejor la opción con inspect (pone cambios de lineas y no necesitamos un contenedor)
 <https://github.com/lavie/runlike>
+
 Obtener el "docker run" de una imagen que ya está corriendo
+```bash
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike NOMBRE_CONTAINER
+```
+
+OJO parece que esta tampoco mete el shmsize
 
 Hacer lo mismo con un único comando (guardada copia del run.tpl en este dir):
 
@@ -9,7 +14,8 @@ Hacer lo mismo con un único comando (guardada copia del run.tpl en este dir):
 docker inspect --format "$(curl -s https://gist.githubusercontent.com/efrecon/8ce9c75d518b6eb863f667442d7bc679/raw/run.tpl)" NOMBRE_CONTENEDOR
 ```
 
-OJO no pilla el tamaño de shm (shared memory, /dev/shm)
+OJO no pilla el tamaño de shm (shared memory, /dev/shm), ni workdir. También mete todas las labels y envs, aunque sean las de por defecto de la imagen.
+Creo que mejor usar assaflavie/runlike.
 
 Si no funciona "docker inspect", podemos coger el config.v2.json (var/lib/docker/containers/CONTANIERID/) y subirlo aquí:
 <https://claude.site/artifacts/eec66dd3-688e-4a25-b41a-df92d16551c0>
