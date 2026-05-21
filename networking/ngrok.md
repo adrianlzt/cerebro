@@ -19,6 +19,10 @@ Otra opcion es localtunnel.md
 
 Otra opcion: loophole: <https://loophole.cloud/download>
 
+Más opciones:
+https://zrok.io/
+https://pinggy.io/
+
 Usar docker para levantar varios ngrok:
 docker run --rm -d --net=host m2i3/ngrok ngrok http 8080
 docker run --rm -e "HTTP_PORT=8080" m2i3/ngrok -> antiguo?
