@@ -3,6 +3,11 @@ https://localtunnel.github.io/www/
 Instalar:
 npm install -g localtunnel
 
+Uso sin instalar:
+```bash
+npx localtunnel ...
+```
+
 Uso:
 lt --port 9090
 http://wbcjegcrvh.localtunnel.me
