@@ -405,7 +405,10 @@ Parece que no tiene tool de snapshot que genere una imagen, creo que esto podrí
 
 Buscar en el histórico de todos los mensajes
 ```bash
-opencode db "select s.id,slug,title,directory,s.time_created,data from part join session s ON part.session_id = s.id WHERE data like '%azure%' ORDER BY s.time_created DESC LIMIT 4;"
+opencode db "select DISTINCT s.id,slug,title,directory,datetime(s.time_created/1000, 'unixepoch') as time_created from part join session s ON part.session_id = s.id WHERE data like '%azure%' ORDER BY s.time_created DESC LIMIT 4;"
+
+# con data
+opencode db "select DISTINCT s.id,slug,title,directory,datetime(s.time_created/1000, 'unixepoch') as time_created, json_pretty(data) as data from part join session s ON part.session_id = s.id WHERE data like '%azure%' ORDER BY s.time_created DESC LIMIT 4;"
 ```
 
 # Debug
