@@ -7,5 +7,8 @@ Mi primera impresión es que parece más para comparar con remoto, menos evident
 # Install
 
 ```bash
+cargo install deff
+
+# otra opción
 curl -fsSL https://raw.githubusercontent.com/flamestro/deff/main/install.sh | bash
 ```
