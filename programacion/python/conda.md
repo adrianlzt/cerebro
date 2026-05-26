@@ -1,3 +1,7 @@
+Cargar:
+source /opt/miniconda3/etc/profile.d/conda.sh
+
+
 Gestion de paquetes para python
 
 Install en arch:
