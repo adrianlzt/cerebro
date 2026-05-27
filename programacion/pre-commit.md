@@ -59,6 +59,8 @@ Y tras instalarlo tendremos que forzar el hooks path al repo:
 git config core.hookspath $PWD/.git/hooks
 ```
 
+Tenemos que poner un path completo para que funcionen los worktrees.
+
 El problema de forzar el directorio es que si movemos el path se romperá.
 
 Parece que no se puede hacer unset de un valor global, solo pisarlo: <https://stackoverflow.com/questions/17205825/is-there-a-way-to-unset-a-global-git-config-section-in-a-local-git-config-file>
