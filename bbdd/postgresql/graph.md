@@ -21,3 +21,7 @@ Otra opción: https://github.com/apache/incubator-age
 
 Según cuentan en el video de 2ndquadrant, postgres va a crear algunas funciones para poder navegar más sencillamente por esquemas tipo grafo.
 También, la gente que crea SQL, está creando otro lenguaje para homogenizar, pero este no llegará a postgres, será para dbs específicas de grafos (se entiende que lo adoptarán neo4j, dgraph, etc)
+
+
+
+PostgreSQL 19 introduces support for SQL/PGQ, letting users execute property graph queries using SQL standard syntax

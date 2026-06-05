@@ -62,6 +62,10 @@ Mirar "Estadísticas" más abajo.
 Si un índice está bloqueado para lectura (por un REINDEX por ejemplo), ese tiempo de bloqueo se contará en el "Planning time"
 
 
+Postgres 19
+This release also introduces the pg_plan_advice extension, which lets users stabilize and control planner decisions, along with pg_stash_advice to apply advice automatically using query identifiers.
+
+
 # Modos de escaneo
 Con esos datos, el planner decide como obtener los datos.
   - sequential scan (full table scan): cuando tenemos muchos datos que obtener (se aprovecha de que leer los datos secuencialmente es barato)
