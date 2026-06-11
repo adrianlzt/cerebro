@@ -15,6 +15,9 @@ Otra opción:
 cloudflared tunnel --url http://localhost:4000
 ```
 
+Opción para desplegar:
+https://github.com/fatedier/frp
+
 Otra opcion es localtunnel.md
 
 Otra opcion: loophole: <https://loophole.cloud/download>
