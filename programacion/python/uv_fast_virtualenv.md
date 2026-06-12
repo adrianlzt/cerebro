@@ -138,6 +138,9 @@ COPY . .
 RUN uv sync --locked --no-dev
 ```
 
+Si queremos instalar a nivel de sistema usar:
+https://docs.astral.sh/uv/concepts/projects/config/#project-environment-path
+
 # Clean cache
 
 <https://docs.astral.sh/uv/concepts/cache/#dependency-caching>
