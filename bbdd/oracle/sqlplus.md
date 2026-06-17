@@ -37,6 +37,7 @@ set linesize 200
 set pagesize 1000
 set trimspool on
 set history on
+alter session set nls_date_format='dd/mm/yyyy hh24:mi:ss';
 ```
 
 Ver el history: history
