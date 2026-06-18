@@ -20,6 +20,11 @@ gcloud config set project my-project
 Listar todos los "assets" de un proyecto:
 gcloud asset search-all-resources --scope=projects/NOMBRE
 
+Recargar creds k8s:
+```bash
+gcloud container clusters get-credentials NAME --region europe-west1 --project XXX
+```
+
 
 # Configuración de cuenta
 Mostrar las que tenemos configuradas:
