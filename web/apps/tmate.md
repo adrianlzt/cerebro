@@ -2,6 +2,8 @@
 
 Otra idea parecida, compartiendo via web: gotty
 
+Otra que hace más cosas, bitbang
+
 Share terminal
 
 Emitimos nuestro terminal, via tmux, a tmate.io.

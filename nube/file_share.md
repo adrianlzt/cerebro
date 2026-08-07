@@ -8,6 +8,9 @@ curl -F 'file=@file.tgz' https://22f70.ngrok-free.app/upload
 
 Si tengo la Freebox, tiene un mecanismo para compartir carpetas.
 
+https://github.com/richlegrand/bitbang-cli
+Monta un server donde otra gente puede conectar.
+
 Telegram @filetobot
 
 <https://driveuploader.com/>

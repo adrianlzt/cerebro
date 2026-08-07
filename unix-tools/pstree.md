@@ -10,6 +10,5 @@ pstree $(pgrep screen)
 pstree -H $(pgrep screen)
   arbol de procesos poniendo en negrita los parents y screen
 
-pstree -p $(pgrep screen)
+pstree -pa $(pgrep screen)
   te muetra los parents de screen, y los hijos de este
-
