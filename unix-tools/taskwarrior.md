@@ -169,6 +169,8 @@ Control+E hacer down scroll en la ventana inferior
 
 Control+Y hacer up scroll en la ventana inferior
 
+t: para meterle un "+next", sube en la urgencia
+
 ## Filtros
 
 Podemos usar status:deleted o status:completed para ver otros estados
@@ -180,3 +182,16 @@ Se abre el autocompletado con "tab" y se acepta con enter
 <https://bugwarrior.readthedocs.io/>
 
 sincronizar tareas de sitios remotos (github, gitlab, jira, ...)
+
+Config: ~/.config/bugwarrior/bugwarrior.toml
+
+
+## Jira
+
+https://bugwarrior.readthedocs.io/en/stable/services/jira.html
+
+Ejecutar periódicamente con un systemd timer.
+
+```bash
+/usr/bin/env uvx --with jira --with setuptools bugwarrior pull
+```
