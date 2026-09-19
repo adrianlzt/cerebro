@@ -53,7 +53,7 @@ control+a control+l
 
 # Lock / scape / escapar comandos
 
-Control+g
+Control+shift+g
 
 Nos pone en modo "lock" que nos permite ejecutar otros "control+" sin que los coja zellij.
 
