@@ -14,7 +14,9 @@ Abrir config leader keys: Control o + c
 
 # Tips
 
-Abrir el contenido de la terminal en $EDITOR: control s +e
+Abrir el contenido de la terminal en $EDITOR, dos opciones:
+Ctrl + Shift + s, e
+Ctrl + a [, e
 Esto nos puede valer para copiar texto.
 
 Copiar, seleccionar con el ratón, se copiará al clipboard.
