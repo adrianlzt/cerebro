@@ -34,3 +34,10 @@ serviceaccount/ax-controller
 ```
 
 Kubernetes debe tener acceso a ese registry.
+
+# Borrar
+
+```bash
+kubectl delete clusterrole.rbac.authorization.k8s.io/ax-controller clusterrolebinding.rbac.authorization.k8s.io/ax-controller namespace/ax-system
+
+```
