@@ -1,3 +1,5 @@
+Gestor de ventanas.
+
 Reload:
 ```bash
 sway reload

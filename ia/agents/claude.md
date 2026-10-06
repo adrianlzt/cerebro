@@ -37,6 +37,54 @@ Si queremos quitar ese permiso, borrar de ese fichero lo que no queremos y arran
 claude --continue
 ```
 
+## teammate
+
+En vez de subagentes, usar sesiones distintas que se pasan mensajes (SendMessage).
+
+```json
+// En ~/.claude/settings.json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
+
+Para usarlo:
+```
+Spawn three teammates to explore this problem:
+- one on UX
+- one on technical architecture
+- one playing devil's advocate
+```
+
+También podemos usar las flechas para movernos entre teammates y escribirles.
+
+Podemos usar tmux para que arranque distintas panes en tmux con cada teammate.
+```json
+{
+  "teammateMode": "auto"  // O "tmux", "iterm2"
+}
+```
+
+Hay un "traductor" tmux -> zellij:
+
+https://github.com/stanislc/zellij-claude-teams
+
+## fork/branch
+
+Resumir una sesión y forkearla (podemos no poner session-id y nos mostrará las posibles).
+```bash
+claude --resume <session-id> --fork-session
+```
+
+## git worktree
+
+Para sesiones paralelas sobre el mismo código
+```bash
+claude --worktree
+```
+
 ## MCPs
 
 <https://docs.claude.com/en/docs/claude-code/mcp>

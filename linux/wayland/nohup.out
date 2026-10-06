@@ -1,0 +1,2131 @@
+[2026-09-24 09:15:39.190] [info] Using configuration file /home/adrian/.config/waybar/config.jsonc
+[2026-09-24 09:15:39.190] [info] Including resource file: ~/.config/waybar/modules/*.jsonc
+[2026-09-24 09:15:39.191] [info] Including resource file: ~/.config/waybar/modules/custom/*.jsonc
+[2026-09-24 09:15:39.191] [info] Including resource file: ~/.config/waybar/modules/hyprland/*.jsonc
+[2026-09-24 09:15:39.193] [info] Using CSS file /home/adrian/.config/waybar/style.css
+[2026-09-24 09:15:39.198] [info] Hyprland IPC starting
+[2026-09-24 09:15:39.199] [info] Loading persistent workspaces from Waybar config
+[2026-09-24 09:15:39.199] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-09-24 09:15:39.211] [warning] There is no configuration for 'custom/monitor', element will be hidden
+Charging
+[2026-09-24 09:15:39.342] [info] Bar configured (width: 1600, height: 32) for output: eDP-1
+[2026-09-24 09:15:45.246] [info] Quitting.
+[2026-09-24 09:15:45.255] [info] Hyprland IPC stopping...
+[2026-09-24 09:15:55.905] [info] Using configuration file /home/adrian/.config/waybar/config.jsonc
+[2026-09-24 09:15:55.905] [info] Including resource file: ~/.config/waybar/modules/*.jsonc
+[2026-09-24 09:15:55.906] [info] Including resource file: ~/.config/waybar/modules/custom/*.jsonc
+[2026-09-24 09:15:55.906] [info] Including resource file: ~/.config/waybar/modules/hyprland/*.jsonc
+[2026-09-24 09:15:55.908] [info] Using CSS file /home/adrian/.config/waybar/style.css
+[2026-09-24 09:15:55.911] [info] Hyprland IPC starting
+[2026-09-24 09:15:55.912] [info] Loading persistent workspaces from Waybar config
+[2026-09-24 09:15:55.912] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-09-24 09:15:55.926] [warning] There is no configuration for 'custom/monitor', element will be hidden
+Charging
+[2026-09-24 09:15:56.054] [info] Bar configured (width: 1600, height: 32) for output: eDP-1
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: timed out
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: timed out
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Plugged
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+PTerminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 31, in single_request
+    sock = self.context.wrap_socket(sock, server_hostname=self.hostname)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/ssl.py", line 457, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/ssl.py", line 1088, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/ssl.py", line 1384, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+TimeoutError: _ssl.c:1015: The handshake operation timed out
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+lugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Full
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+DischargiTerminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+TimeoutError: timed out
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+2026-09-25T09:30:41.253625286+02:00  INFO browsers: Starting Browsers
+2026-09-25T09:30:41.253661132+02:00  INFO browsers: Logging to /home/adrian/.local/state/software.Browsers/logs/browsers.log
+2026-09-25T09:30:41.25373063+02:00  INFO browsers::browser_repository: Repository: /usr/share/software.Browsers/resources/repository/application-repository.toml
+2026-09-25T09:30:41.255687889+02:00  INFO browsers::utils: Config: /home/adrian/.config/software.Browsers/config.json
+2026-09-25T09:30:41.27069597+02:00  INFO browsers::linux::linux_utils: Default for x-scheme-handler/https is 'software.Browsers.desktop'
+2026-09-25T09:30:41.285915098+02:00  INFO browsers::linux::linux_utils: Default for x-scheme-handler/http is 'software.Browsers.desktop'
+
+(browsers:1240574): GLib-GIO-CRITICAL **: 09:30:41.316: This application can not open files.
+2026-09-25T09:30:44.123219463+02:00  INFO browsers::gui::ui: Exiting Browsers
+Opening in existing browser session.
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+ng
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Plugged
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+[2026-09-25 11:48:06.443] [error] custom/notification: Error parsing JSON: * Line 1, Column 1
+  Syntax error: value, object or array expected.
+
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Charging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+Discharging
+[2026-09-25 22:20:40.327] [info] Loading persistent workspaces from Waybar config
+[2026-09-25 22:20:40.327] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-09-25 22:20:40.357] [warning] There is no configuration for 'custom/monitor', element will be hidden
+Discharging
+[2026-09-25 22:20:40.521] [info] Bar configured (width: 1920, height: 32) for output: HDMI-A-1
+[2026-09-25 22:20:40.523] [info] Bar configured (width: 1920, height: 32) for output: HDMI-A-1
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+gcalcli command failed with exit code 1, command: gcalcli --nocolor agenda today --nodeclined --details=end --details=url --tsv
+Calendar available:
+[33;1m Access  Title
+[0m[33;1m ------  -----
+[0m[0m  owner  nocker
+[0m[0m  owner  Archive
+[0m[0m  owner  Adrián
+[0m[0m  owner  Deporte
+[0m[0m  owner  Familia
+[0m[0m  owner  Médico
+[0m[0m  owner  worklzt
+[0m[0m reader  adrian.lopez@datadope.io
+[0m[0m reader  adrian@fr8hub.com
+[0m[0m reader  Festivos en España
+[0m
+Try nextmeeting --calendar=CALENDAR option to target the right calendar.
+Use --debug to see the full error message.
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Traceback (most recent call last):
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 304, in <module>
+    main()
+    ~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 287, in main
+    timer = get_running_timer()
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 182, in get_running_timer
+    uid, models, db, password, error = get_client()
+                                       ~~~~~~~~~~^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 107, in get_client
+    uid = common.authenticate(db, username, password, {})
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adrian/.local/share/albert/python/plugins/odoo-timer/odoo_timer.py", line 30, in single_request
+    sock = socket.create_connection((self.ip, 443), timeout=self.timeout)
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/home/adrian/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+Terminated                 fakeroot -- pacman -Sy --disable-sandbox-filesystem --dbpath "$CHECKUPDATES_DB" --logfile /dev/null &> /dev/null
+==> ERROR: Cannot fetch updates
